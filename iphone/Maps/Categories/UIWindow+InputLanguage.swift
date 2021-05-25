@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2018.
 extension UIWindow {
   private func findFirstResponder(view: UIView) -> UIResponder? {
     guard !view.isFirstResponder else { return view }
@@ -9,7 +10,7 @@ extension UIWindow {
     return nil
   }
 
-  @objc func firstResponder() -> UIResponder? {
-    return findFirstResponder(view: self)
-  }
+//  @objc func firstResponder() -> UIResponder? {
+//    return findFirstResponder(view: self)
+//  }
 }

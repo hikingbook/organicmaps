@@ -52,13 +52,13 @@ final class RouteManagerCell: MWMTableViewCell {
         switch model.intermediateIndex {
         case 0:
           typeImage.image = #imageLiteral(resourceName: "ic_route_manager_stop_a")
-          typeImage.tintColor = UIColor.primary()
+          typeImage.tintColor = UIColor.mapsMe()
         case 1:
           typeImage.image = #imageLiteral(resourceName: "ic_route_manager_stop_b")
-          typeImage.tintColor = UIColor.primary()
+          typeImage.tintColor = UIColor.mapsMe()
         case 2:
           typeImage.image = #imageLiteral(resourceName: "ic_route_manager_stop_c")
-          typeImage.tintColor = UIColor.primary()
+          typeImage.tintColor = UIColor.mapsMe()
         default: fatalError("Unsupported route point intermediateIndex.")
         }
       case .finish:

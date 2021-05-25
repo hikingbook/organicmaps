@@ -141,6 +141,7 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
   }
 }
 
+#if OMaps
 // MARK: - ElevationProfileViewControllerDelegate
 
 extension PlacePageInteractor: ElevationProfileViewControllerDelegate {
@@ -152,6 +153,7 @@ extension PlacePageInteractor: ElevationProfileViewControllerDelegate {
     BookmarksManager.shared().setElevationActivePoint(distance, trackId: placePageData.elevationProfileData!.trackId)
   }
 }
+#endif
 
 // MARK: - PlacePageHeaderViewController
 

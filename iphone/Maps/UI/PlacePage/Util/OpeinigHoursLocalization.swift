@@ -1,6 +1,7 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 import Foundation
 
-class OpeinigHoursLocalization: IOpeningHoursLocalization {
+class OpeinigHoursLocalization: NSObject, IOpeningHoursLocalization {
   var closedString: String {
     L("closed")
   }

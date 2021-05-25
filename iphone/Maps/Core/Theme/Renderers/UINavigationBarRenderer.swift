@@ -1,13 +1,13 @@
-
+// This file is modified by Zheng-Xiang Ke on 2020.
 extension UINavigationBar {
   @objc override func applyTheme() {
-    if styleName.isEmpty {
-      styleName = "NavigationBar"
-    }
-    for style in StyleManager.shared.getStyle(styleName)
-      where !style.isEmpty && !style.hasExclusion(view: self) {
-      UINavigationBarRenderer.render(self, style: style)
-    }
+//    if styleName.isEmpty {
+//      styleName = "NavigationBar"
+//    }
+//    for style in StyleManager.shared.getStyle(styleName)
+//      where !style.isEmpty && !style.hasExclusion(view: self) {
+//      UINavigationBarRenderer.render(self, style: style)
+//    }
   }
 }
 

@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2020.
 @objc protocol ThemeListener {
   @objc func applyTheme()
 }
@@ -9,7 +10,7 @@
 
   override private init() {
     super.init()
-    SwizzleStyle.swizzle()
+//    SwizzleStyle.swizzle()
   }
 
   func setTheme (_ theme: Theme) {
@@ -26,15 +27,15 @@
       updateView(window.rootViewController?.view)
     }
     
-    let appDelegate = UIApplication.shared.delegate as! MapsAppDelegate
-    if let vc = appDelegate.window.rootViewController?.presentedViewController {
-      vc.applyTheme()
-      updateView(vc.view)
-    }  else if let vcs = appDelegate.window.rootViewController?.children {
-      for vc in vcs {
-        vc.applyTheme()
-      }
-    }
+//    let appDelegate = UIApplication.shared.delegate as! MapsAppDelegate
+//    if let vc = appDelegate.window.rootViewController?.presentedViewController {
+//      vc.applyTheme()
+//      updateView(vc.view)
+//    }  else if let vcs = appDelegate.window.rootViewController?.children {
+//      for vc in vcs {
+//        vc.applyTheme()
+//      }
+//    }
     
     for container in listeners {
       if let listener = container.value {

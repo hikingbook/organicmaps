@@ -145,7 +145,7 @@ static NSDictionary<NSString *, UIColor *> *night;
 }
 
 // Green color
-+ (UIColor *)primary
++ (UIColor *)mapsMe
 {
   return StyleManager.shared.theme.colors.primary;
 }

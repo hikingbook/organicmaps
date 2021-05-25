@@ -4589,6 +4589,7 @@
 				INFOPLIST_FILE = OMaps.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OMaps = 1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-Wall",
@@ -4600,7 +4601,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fcxx-modules",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DOMaps";
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "Organic Maps (Debug)";
 				SDKROOT = iphoneos;
@@ -4634,6 +4635,7 @@
 				INFOPLIST_FILE = OMaps.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OMaps = 1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-Wall",
@@ -4645,7 +4647,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fcxx-modules",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DOMaps";
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "Organic Maps";
 				SDKROOT = iphoneos;
