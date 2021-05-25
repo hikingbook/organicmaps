@@ -1,7 +1,7 @@
 #import "MWMSearchCommonCell.h"
 #import "CLLocation+Mercator.h"
 #import "MWMLocationManager.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include "map/place_page_info.hpp"
 

@@ -1,20 +1,23 @@
+// This file is modified by Zheng-Xiang Ke on 2017.
 #import "MapViewController.h"
 #import <CoreApi/MWMBookmarksManager.h>
 #import "EAGLView.h"
-#import "MWMAuthorizationCommon.h"
-#import "MWMAuthorizationWebViewLoginViewController.h"
-#import "MWMAutoupdateController.h"
-#import "MWMEditorViewController.h"
+//#import "MWMAuthorizationCommon.h"
+//#import "MWMAuthorizationWebViewLoginViewController.h"
+//#import "MWMAutoupdateController.h"
+//#import "MWMEditorViewController.h"
 #import "MWMFrameworkListener.h"
 #import "MWMFrameworkObservers.h"
 #import "MWMLocationHelpers.h"
 #import "MWMLocationModeListener.h"
 #import "MWMMapDownloadDialog.h"
-#import "MWMMapViewControlsManager.h"
-#import "MWMNetworkPolicy+UI.h"
+//#import "MWMMapViewControlsManager.h"
+//#import "MWMNetworkPolicy+UI.h"
 #import "MWMPlacePageProtocol.h"
 #import "MapsAppDelegate.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
+//#import "Hikingbook-Swift-Header.h"
+#import "FrameworkAdapter.h"
 
 #import <CoreApi/Framework.h>
 #import <CoreApi/MWMFrameworkHelper.h>
@@ -67,8 +70,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 @end
 
 @interface MapViewController () <MWMFrameworkDrapeObserver,
-                                 MWMWelcomePageControllerProtocol,
-                                 MWMKeyboardObserver,
+//                                 MWMWelcomePageControllerProtocol,
+//                                 MWMKeyboardObserver,
                                  MWMBookmarksObserver>
 
 @property(nonatomic, readwrite) MWMMapViewControlsManager *controlsManager;
@@ -87,7 +90,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint *sideButtonsAreaBottom;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint *sideButtonsAreaKeyboard;
 @property(strong, nonatomic) IBOutlet UIImageView *carplayPlaceholderLogo;
-@property(strong, nonatomic) BookmarksCoordinator * bookmarksCoordinator;
+//@property(strong, nonatomic) BookmarksCoordinator * bookmarksCoordinator;
 
 @property(strong, nonatomic) NSHashTable<id<MWMLocationModeListener>> *listeners;
 
@@ -102,35 +105,37 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 @synthesize mapView, controlsView;
 
 + (MapViewController *)sharedController {
-  return [MapsAppDelegate theApp].mapViewController;
+//    Modifined by Zheng-Xiang Ke
+//  return [MapsAppDelegate theApp].mapViewController;
+    return [FrameworkAdapter.shared getMapViewController:[UIApplication sharedApplication]];
 }
 
 #pragma mark - Map Navigation
 
-- (void)showRegularPlacePage {
-  self.placePageVC = [PlacePageBuilder build];
-  self.placePageContainer.hidden = NO;
-  [self.placePageContainer addSubview:self.placePageVC.view];
-  [self.view bringSubviewToFront:self.placePageContainer];
-  [NSLayoutConstraint activateConstraints:@[
-    [self.placePageVC.view.topAnchor constraintEqualToAnchor:self.placePageContainer.safeAreaLayoutGuide.topAnchor],
-    [self.placePageVC.view.leftAnchor constraintEqualToAnchor:self.placePageContainer.leftAnchor],
-    [self.placePageVC.view.bottomAnchor constraintEqualToAnchor:self.placePageContainer.bottomAnchor],
-    [self.placePageVC.view.rightAnchor constraintEqualToAnchor:self.placePageContainer.rightAnchor]
-  ]];
-  self.placePageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
-  [self addChildViewController:self.placePageVC];
-  [self.placePageVC didMoveToParentViewController:self];
-}
-
-- (void)showPlacePage {
-  if (!PlacePageData.hasData) {
-    return;
-  }
-  
-  self.controlsManager.trafficButtonHidden = YES;
-  [self showRegularPlacePage];
-}
+//- (void)showRegularPlacePage {
+//  self.placePageVC = [PlacePageBuilder build];
+//  self.placePageContainer.hidden = NO;
+//  [self.placePageContainer addSubview:self.placePageVC.view];
+//  [self.view bringSubviewToFront:self.placePageContainer];
+//  [NSLayoutConstraint activateConstraints:@[
+//    [self.placePageVC.view.topAnchor constraintEqualToAnchor:self.placePageContainer.safeAreaLayoutGuide.topAnchor],
+//    [self.placePageVC.view.leftAnchor constraintEqualToAnchor:self.placePageContainer.leftAnchor],
+//    [self.placePageVC.view.bottomAnchor constraintEqualToAnchor:self.placePageContainer.bottomAnchor],
+//    [self.placePageVC.view.rightAnchor constraintEqualToAnchor:self.placePageContainer.rightAnchor]
+//  ]];
+//  self.placePageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+//  [self addChildViewController:self.placePageVC];
+//  [self.placePageVC didMoveToParentViewController:self];
+//}
+//
+//- (void)showPlacePage {
+//  if (!PlacePageData.hasData) {
+//    return;
+//  }
+//
+//  self.controlsManager.trafficButtonHidden = YES;
+//  [self showRegularPlacePage];
+//}
 
 - (void)dismissPlacePage {
   GetFramework().DeactivateMapSelection(true);
@@ -149,37 +154,37 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if (self.placePageVC != nil) {
     [self hideRegularPlacePage];
   }
-  self.controlsManager.trafficButtonHidden = NO;
+//  self.controlsManager.trafficButtonHidden = NO;
 }
 
 - (void)onMapObjectDeselected:(bool)switchFullScreenMode {
   [self hidePlacePage];
 
-  BOOL const isSearchResult = [MWMSearchManager manager].state == MWMSearchManagerStateResult;
-  BOOL const isNavigationDashboardHidden = [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
-  if (isSearchResult) {
-    if (isNavigationDashboardHidden) {
-      [MWMSearchManager manager].state = MWMSearchManagerStateMapSearch;
-    } else {
-      [MWMSearchManager manager].state = MWMSearchManagerStateHidden;
-    }
-  }
-
-  if (!switchFullScreenMode)
-    return;
-
-  if (DeepLinkHandler.shared.isLaunchedByDeeplink)
-    return;
-
-  BOOL const isSearchHidden = [MWMSearchManager manager].state == MWMSearchManagerStateHidden;
-  if (isSearchHidden && isNavigationDashboardHidden) {
-    self.controlsManager.hidden = !self.controlsManager.hidden;
-  }
+//  BOOL const isSearchResult = [MWMSearchManager manager].state == MWMSearchManagerStateResult;
+//  BOOL const isNavigationDashboardHidden = [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
+//  if (isSearchResult) {
+//    if (isNavigationDashboardHidden) {
+//      [MWMSearchManager manager].state = MWMSearchManagerStateMapSearch;
+//    } else {
+//      [MWMSearchManager manager].state = MWMSearchManagerStateHidden;
+//    }
+//  }
+//
+//  if (!switchFullScreenMode)
+//    return;
+//
+//  if (DeepLinkHandler.shared.isLaunchedByDeeplink)
+//    return;
+//
+//  BOOL const isSearchHidden = [MWMSearchManager manager].state == MWMSearchManagerStateHidden;
+//  if (isSearchHidden && isNavigationDashboardHidden) {
+//    self.controlsManager.hidden = !self.controlsManager.hidden;
+//  }
 }
 
 - (void)onMapObjectSelected {
   [self hidePlacePage];
-  [self showPlacePage];
+//  [self showPlacePage];
 }
 
 - (void)onMapObjectUpdated {
@@ -201,9 +206,9 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 - (void)sendTouchType:(df::TouchEvent::ETouchType)type withTouches:(NSSet *)touches andEvent:(UIEvent *)event {
-  if ([MWMCarPlayService shared].isCarplayActivated) {
-    return;
-  }
+//  if ([MWMCarPlayService shared].isCarplayActivated) {
+//    return;
+//  }
   NSArray *allTouches = [[event allTouches] allObjects];
   if ([allTouches count] < 1)
     return;
@@ -273,8 +278,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
   [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
   [self.alertController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-  [self.controlsManager viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-  [self.welcomePageController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//  [self.controlsManager viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//  [self.welcomePageController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -295,15 +300,15 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden &&
-      [MWMSearchManager manager].state == MWMSearchManagerStateHidden)
-    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+//  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden &&
+//      [MWMSearchManager manager].state == MWMSearchManagerStateHidden)
+//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
   [self updateStatusBarStyle];
   GetFramework().SetRenderingEnabled();
   GetFramework().InvalidateRendering();
   [self showViralAlertIfNeeded];
-  [self checkAuthorization];
+//  [self checkAuthorization];
   [MWMRouter updateRoute];
 }
 
@@ -316,30 +321,30 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if (self.needDeferFocusNotification)
     [self onGetFocus:self.deferredFocusValue];
 
-  [self.mapView setLaunchByDeepLink:DeepLinkHandler.shared.isLaunchedByDeeplink];
-  [MWMRouter restoreRouteIfNeeded];
+//  [self.mapView setLaunchByDeepLink:DeepLinkHandler.shared.isLaunchedByDeeplink];
+//  [MWMRouter restoreRouteIfNeeded];
 
   self.view.clipsToBounds = YES;
-  [MWMKeyboard addObserver:self];
-  self.welcomePageController = [MWMWelcomePageController controllerWithParent:self];
+//  [MWMKeyboard addObserver:self];
+//  self.welcomePageController = [MWMWelcomePageController controllerWithParent:self];
   [self processMyPositionStateModeEvent:[MWMLocationManager isLocationProhibited] ? MWMMyPositionModeNotFollowNoPosition
                                                                                   : MWMMyPositionModePendingPosition];
-  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+//  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
+//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
   [NSNotificationCenter.defaultCenter addObserver:self
                                          selector:@selector(didBecomeActive)
                                              name:UIApplicationDidBecomeActiveNotification
                                            object:nil];
-  [self.welcomePageController show];
-  if (!self.welcomePageController) {
-    [DeepLinkHandler.shared handleDeeplink];
-  }
+//  [self.welcomePageController show];
+//  if (!self.welcomePageController) {
+//    [DeepLinkHandler.shared handleDeeplink];
+//  }
 }
 
 - (void)didBecomeActive {
-  if (!self.welcomePageController)
-    [self.controlsManager showAdditionalViewsIfNeeded];
+//  if (!self.welcomePageController)
+//    [self.controlsManager showAdditionalViewsIfNeeded];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -354,8 +359,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 - (void)closePageController:(MWMWelcomePageController *)pageController {
-  if ([pageController isEqual:self.welcomePageController])
-    self.welcomePageController = nil;
+//  if ([pageController isEqual:self.welcomePageController])
+//    self.welcomePageController = nil;
 
   auto const todo = GetFramework().ToDoAfterUpdate();
 
@@ -365,7 +370,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
       break;
     case Framework::DoAfterUpdate::AutoupdateMaps:
     case Framework::DoAfterUpdate::AskForUpdateMaps:
-      [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
+//      [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
       break;
   }
 }
@@ -373,9 +378,9 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)showViralAlertIfNeeded {
   NSUserDefaults *ud = NSUserDefaults.standardUserDefaults;
 
-  using namespace osm_auth_ios;
-  if (!AuthorizationIsNeedCheck() || [ud objectForKey:kUDViralAlertWasShown] || !AuthorizationHaveCredentials())
-    return;
+//  using namespace osm_auth_ios;
+//  if (!AuthorizationIsNeedCheck() || [ud objectForKey:kUDViralAlertWasShown] || !AuthorizationHaveCredentials())
+//    return;
 
   if (osm::Editor::Instance().GetStats().m_edits.size() < 2)
     return;
@@ -383,7 +388,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if (!Platform::IsConnected())
     return;
 
-  [self.alertController presentEditorViralAlert];
+//  [self.alertController presentEditorViralAlert];
 
   [ud setObject:[NSDate date] forKey:kUDViralAlertWasShown];
   [ud synchronize];
@@ -392,18 +397,18 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden &&
-      [MWMSearchManager manager].state == MWMSearchManagerStateHidden)
-    self.controlsManager.menuRestoreState = self.controlsManager.menuState;
+//  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden &&
+//      [MWMSearchManager manager].state == MWMSearchManagerStateHidden)
+//    self.controlsManager.menuRestoreState = self.controlsManager.menuState;
   GetFramework().SetRenderingDisabled(false);
 }
 
 - (BOOL)prefersStatusBarHidden {
   return NO;
 }
-- (UIStatusBarStyle)preferredStatusBarStyle {
-  return [self.controlsManager preferredStatusBarStyle];
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//  return [self.controlsManager preferredStatusBarStyle];
+//}
 
 - (void)updateStatusBarStyle {
   [self setNeedsStatusBarAppearanceUpdate];
@@ -420,19 +425,19 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
 - (void)initialize {
   self.listeners = [NSHashTable<id<MWMLocationModeListener>> weakObjectsHashTable];
-  Framework &f = GetFramework();
+//  Framework &f = GetFramework();
   // TODO: Review and improve this code.
-  f.SetPlacePageListeners([self]() { [self onMapObjectSelected]; },
-                          [self](bool switchFullScreen) { [self onMapObjectDeselected:switchFullScreen]; },
-                          [self]() { [self onMapObjectUpdated]; });
+//  f.SetPlacePageListeners([self]() { [self onMapObjectSelected]; },
+//                          [self](bool switchFullScreen) { [self onMapObjectDeselected:switchFullScreen]; },
+//                          [self]() { [self onMapObjectUpdated]; });
   // TODO: Review and improve this code.
-  f.SetMyPositionModeListener([self](location::EMyPositionMode mode, bool routingActive) {
+//  f.SetMyPositionModeListener([self](location::EMyPositionMode mode, bool routingActive) {
     // TODO: Two global listeners are subscribed to the same event from the core.
     // Probably it's better to subscribe only wnen needed and usubscribe in other cases.
     // May be better solution would be multiobservers support in the C++ core.
-    [self processMyPositionStateModeEvent:location_helpers::mwmMyPositionMode(mode)];
-  });
-  f.SetMyPositionPendingTimeoutListener([self] { [self processMyPositionPendingTimeout]; });
+//    [self processMyPositionStateModeEvent:location_helpers::mwmMyPositionMode(mode)];
+//  });
+//  f.SetMyPositionPendingTimeoutListener([self] { [self processMyPositionPendingTimeout]; });
 
   self.userTouchesAction = UserTouchesActionNone;
   [[MWMBookmarksManager sharedManager] addObserver:self];
@@ -460,7 +465,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 - (void)openEditor {
-  [self performSegueWithIdentifier:kEditorSegue sender:self.controlsManager.featureHolder];
+//  [self performSegueWithIdentifier:kEditorSegue sender:self.controlsManager.featureHolder];
 }
 
 - (void)openBookmarkEditor {
@@ -468,22 +473,22 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 - (void)openFullPlaceDescriptionWithHtml:(NSString *)htmlString {
-  WebViewController *descriptionViewController =
-    [[PlacePageDescriptionViewController alloc] initWithHtml:htmlString
-                                                     baseUrl:nil
-                                                       title:L(@"place_description_title")];
-  descriptionViewController.openInSafari = YES;
-  [self.navigationController pushViewController:descriptionViewController animated:YES];
+//  WebViewController *descriptionViewController =
+//    [[PlacePageDescriptionViewController alloc] initWithHtml:htmlString
+//                                                     baseUrl:nil
+//                                                       title:L(@"place_description_title")];
+//  descriptionViewController.openInSafari = YES;
+//  [self.navigationController pushViewController:descriptionViewController animated:YES];
 }
 
 - (void)searchText:(NSString *)text {
-  [self.controlsManager searchText:text forInputLocale:[[AppInfo sharedInfo] languageId]];
+//  [self.controlsManager searchText:text forInputLocale:[[AppInfo sharedInfo] languageId]];
 }
 
 - (void)openDrivingOptions {
-  UIStoryboard *sb = [UIStoryboard instance:MWMStoryboardDrivingOptions];
-  UIViewController *vc = [sb instantiateInitialViewController];
-  [self.navigationController pushViewController:vc animated:YES];
+//  UIStoryboard *sb = [UIStoryboard instance:MWMStoryboardDrivingOptions];
+//  UIViewController *vc = [sb instantiateInitialViewController];
+//  [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showRemoveAds {
@@ -492,7 +497,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)processMyPositionStateModeEvent:(MWMMyPositionMode)mode {
   self.currentPositionMode = mode;
   [MWMLocationManager setMyPositionMode:mode];
-  [[MWMSideButtons buttons] processMyPositionStateModeEvent:mode];
+//  [[MWMSideButtons buttons] processMyPositionStateModeEvent:mode];
   NSArray<id<MWMLocationModeListener>> *objects = self.listeners.allObjects;
   for (id<MWMLocationModeListener> object in objects) {
     [object processMyPositionStateModeEvent:mode];
@@ -502,9 +507,9 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
     case MWMMyPositionModeNotFollowNoPosition:
       break;
     case MWMMyPositionModePendingPosition:
-      if (self.welcomePageController && [FirstSession isFirstSession]) {
-        break;
-      }
+//      if (self.welcomePageController && [FirstSession isFirstSession]) {
+//        break;
+//      }
       [MWMLocationManager start];
       if (![MWMLocationManager isStarted])
         [self processMyPositionStateModeEvent:MWMMyPositionModeNotFollowNoPosition];
@@ -547,14 +552,14 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 #pragma mark - Authorization
 
 - (void)checkAuthorization {
-  using namespace osm_auth_ios;
-  BOOL const isAfterEditing = AuthorizationIsNeedCheck() && !AuthorizationHaveCredentials();
-  if (isAfterEditing) {
-    AuthorizationSetNeedCheck(NO);
-    if (!Platform::IsConnected())
-      return;
-    [self.alertController presentOsmAuthAlert];
-  }
+//  using namespace osm_auth_ios;
+//  BOOL const isAfterEditing = AuthorizationIsNeedCheck() && !AuthorizationHaveCredentials();
+//  if (isAfterEditing) {
+//    AuthorizationSetNeedCheck(NO);
+//    if (!Platform::IsConnected())
+//      return;
+//    [self.alertController presentOsmAuthAlert];
+//  }
 }
 
 #pragma mark - 3d touch
@@ -562,15 +567,15 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)performAction:(NSString *)action {
   [self.navigationController popToRootViewControllerAnimated:NO];
   if (self.isViewLoaded) {
-    auto searchState = MWMSearchManagerStateHidden;
-    [MWMRouter stopRouting];
-    if ([action isEqualToString:@"me.maps.3daction.bookmarks"])
-      [self.bookmarksCoordinator open];
-    else if ([action isEqualToString:@"me.maps.3daction.search"])
-      searchState = MWMSearchManagerStateDefault;
-    else if ([action isEqualToString:@"me.maps.3daction.route"])
-      [self.controlsManager onRoutePrepare];
-    [MWMSearchManager manager].state = searchState;
+//    auto searchState = MWMSearchManagerStateHidden;
+//    [MWMRouter stopRouting];
+//    if ([action isEqualToString:@"me.maps.3daction.bookmarks"])
+//      [self.bookmarksCoordinator open];
+//    else if ([action isEqualToString:@"me.maps.3daction.search"])
+//      searchState = MWMSearchManagerStateDefault;
+//    else if ([action isEqualToString:@"me.maps.3daction.route"])
+//      [self.controlsManager onRoutePrepare];
+//    [MWMSearchManager manager].state = searchState;
   } else {
     dispatch_async(dispatch_get_main_queue(), ^{
       [self performAction:action];
@@ -596,20 +601,20 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ([segue.identifier isEqualToString:kEditorSegue]) {
-    MWMEditorViewController *dvc = segue.destinationViewController;
-    [dvc setFeatureToEdit:static_cast<id<MWMFeatureHolder>>(sender).featureId];
-  } else if ([segue.identifier isEqualToString:kDownloaderSegue]) {
-    MWMDownloadMapsViewController *dvc = segue.destinationViewController;
-    NSNumber *mode = sender;
-    dvc.mode = (MWMMapDownloaderMode)mode.integerValue;
-  } else if ([segue.identifier isEqualToString:kMap2FBLoginSegue]) {
-    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
-    dvc.authType = MWMWebViewAuthorizationTypeFacebook;
-  } else if ([segue.identifier isEqualToString:kMap2GoogleLoginSegue]) {
-    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
-    dvc.authType = MWMWebViewAuthorizationTypeGoogle;
-  }
+//  if ([segue.identifier isEqualToString:kEditorSegue]) {
+//    MWMEditorViewController *dvc = segue.destinationViewController;
+//    [dvc setFeatureToEdit:static_cast<id<MWMFeatureHolder>>(sender).featureId];
+//  } else if ([segue.identifier isEqualToString:kDownloaderSegue]) {
+//    MWMDownloadMapsViewController *dvc = segue.destinationViewController;
+//    NSNumber *mode = sender;
+//    dvc.mode = (MWMMapDownloaderMode)mode.integerValue;
+//  } else if ([segue.identifier isEqualToString:kMap2FBLoginSegue]) {
+//    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
+//    dvc.authType = MWMWebViewAuthorizationTypeFacebook;
+//  } else if ([segue.identifier isEqualToString:kMap2GoogleLoginSegue]) {
+//    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
+//    dvc.authType = MWMWebViewAuthorizationTypeGoogle;
+//  }
 }
 
 #pragma mark - MWMKeyboard
@@ -618,22 +623,22 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   [self.view setNeedsLayout];
 }
 - (void)onKeyboardAnimation {
-  auto const kbHeight = [MWMKeyboard keyboardHeight];
-  self.sideButtonsAreaKeyboard.constant = kbHeight;
-  if (IPAD) {
-    self.visibleAreaKeyboard.constant = kbHeight;
-    self.placePageAreaKeyboard.constant = kbHeight;
-  }
+//  auto const kbHeight = [MWMKeyboard keyboardHeight];
+//  self.sideButtonsAreaKeyboard.constant = kbHeight;
+//  if (IPAD) {
+//    self.visibleAreaKeyboard.constant = kbHeight;
+//    self.placePageAreaKeyboard.constant = kbHeight;
+//  }
 }
 #pragma mark - Properties
 
-- (MWMMapViewControlsManager *)controlsManager {
-  if (!self.isViewLoaded)
-    return nil;
-  if (!_controlsManager)
-    _controlsManager = [[MWMMapViewControlsManager alloc] initWithParentController:self];
-  return _controlsManager;
-}
+//- (MWMMapViewControlsManager *)controlsManager {
+//  if (!self.isViewLoaded)
+//    return nil;
+//  if (!_controlsManager)
+//    _controlsManager = [[MWMMapViewControlsManager alloc] initWithParentController:self];
+//  return _controlsManager;
+//}
 
 - (BOOL)hasNavigationBar {
   return NO;
@@ -661,13 +666,13 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   f.SetViewportCenter(center, zoomLevel, false);
 }
 
-- (BookmarksCoordinator *)bookmarksCoordinator {
-  if (!_bookmarksCoordinator)
-    _bookmarksCoordinator = [[BookmarksCoordinator alloc] initWithNavigationController:self.navigationController
-                                                                       controlsManager:self.controlsManager
-                                                                     navigationManager:[MWMNavigationDashboardManager sharedManager]];
-  return _bookmarksCoordinator;
-}
+//- (BookmarksCoordinator *)bookmarksCoordinator {
+//  if (!_bookmarksCoordinator)
+//    _bookmarksCoordinator = [[BookmarksCoordinator alloc] initWithNavigationController:self.navigationController
+//                                                                       controlsManager:self.controlsManager
+//                                                                     navigationManager:[MWMNavigationDashboardManager sharedManager]];
+//  return _bookmarksCoordinator;
+//}
 
 #pragma mark - CarPlay map append/remove
 
@@ -734,11 +739,11 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 - (void)goBack {
-   NSString *backURL = [DeepLinkHandler.shared getBackUrl];
-   BOOL canOpenURL = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:backURL]];
-   if (canOpenURL){
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:backURL] options:@{} completionHandler:nil];
-   }
+//   NSString *backURL = [DeepLinkHandler.shared getBackUrl];
+//   BOOL canOpenURL = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:backURL]];
+//   if (canOpenURL){
+//     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:backURL] options:@{} completionHandler:nil];
+//   }
 }
 
 @end

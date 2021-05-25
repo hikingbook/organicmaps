@@ -1,6 +1,6 @@
 #import "MWMNavigationController.h"
 #import "MWMController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #import <SafariServices/SafariServices.h>
 

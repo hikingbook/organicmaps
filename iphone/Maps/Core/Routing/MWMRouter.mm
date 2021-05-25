@@ -10,7 +10,7 @@
 #import "MWMRoutePoint+CPP.h"
 #import "MWMStorage+UI.h"
 #import "MapsAppDelegate.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "UIImage+RGBAData.h"
 
 #include <CoreApi/Framework.h>

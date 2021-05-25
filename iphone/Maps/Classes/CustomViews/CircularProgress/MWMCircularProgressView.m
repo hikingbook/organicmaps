@@ -1,5 +1,5 @@
 #import "MWMCircularProgressView.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "UIImageView+Coloring.h"
 
 static CGFloat const kLineWidth = 2.0;

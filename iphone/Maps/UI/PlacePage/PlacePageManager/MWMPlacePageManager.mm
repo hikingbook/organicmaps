@@ -5,7 +5,7 @@
 #import "MWMLocationObserver.h"
 #import "MWMRoutePoint+CPP.h"
 #import "MWMStorage+UI.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "MWMMapViewControlsManager+AddPlace.h"
 #import "location_util.h"
 

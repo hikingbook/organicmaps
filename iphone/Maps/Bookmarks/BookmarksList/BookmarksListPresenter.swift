@@ -63,7 +63,7 @@ final class BookmarksListPresenter {
   }
 
   private func mapBookmarks(_ bookmarks: [Bookmark]) -> [BookmarkViewModel] {
-    let location = LocationManager.lastLocation()
+    let location = MWMLocationManager.lastLocation()
     return bookmarks.map {
       let formattedDistance: String?
       if let location = location {
@@ -85,7 +85,7 @@ final class BookmarksListPresenter {
   }
 
   private func showSortMenu() {
-    var sortItems = interactor.availableSortingTypes(hasMyPosition: LocationManager.lastLocation() != nil)
+    var sortItems = interactor.availableSortingTypes(hasMyPosition: MWMLocationManager.lastLocation() != nil)
       .map { sortingType -> BookmarksListMenuItem in
         switch sortingType {
         case .distance:
@@ -150,7 +150,7 @@ final class BookmarksListPresenter {
   }
 
   private func sort(_ sortingType: BookmarksListSortingType) {
-    interactor.sort(sortingType, location: LocationManager.lastLocation()) { [weak self] sortedSections in
+    interactor.sort(sortingType, location: MWMLocationManager.lastLocation()) { [weak self] sortedSections in
       let sections = sortedSections.map { (bookmarksSection) -> IBookmarksListSectionViewModel in
         if let bookmarks = bookmarksSection.bookmarks, let self = self {
           return BookmarksSectionViewModel(title: bookmarksSection.sectionName, bookmarks: self.mapBookmarks(bookmarks))

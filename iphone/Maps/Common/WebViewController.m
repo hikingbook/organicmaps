@@ -1,6 +1,6 @@
 #import "WebViewController.h"
 #import <CoreApi/MWMFrameworkHelper.h>
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface WebViewController ()
 

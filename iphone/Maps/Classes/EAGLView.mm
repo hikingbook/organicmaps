@@ -1,7 +1,7 @@
 #import "EAGLView.h"
 #import "iosOGLContextFactory.h"
 #import "MWMMapWidgets.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 
 #include "base/assert.hpp"

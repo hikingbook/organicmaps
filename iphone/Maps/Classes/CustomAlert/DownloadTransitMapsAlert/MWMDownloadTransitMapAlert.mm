@@ -3,7 +3,7 @@
 #import "MWMDownloaderDialogCell.h"
 #import "MWMDownloaderDialogHeader.h"
 #import "MWMStorage+UI.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "UILabel+RuntimeAttributes.h"
 
 #include <CoreApi/Framework.h>

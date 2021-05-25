@@ -3,7 +3,7 @@
 #import "MWMAlertViewController.h"
 #import "MWMTableViewCell.h"
 #import "MWMTableViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 
 @interface MWMTableViewController ()

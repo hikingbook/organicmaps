@@ -8,7 +8,7 @@
 #import "MWMSearch.h"
 #import "MWMSearchManager.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "UIImageView+Coloring.h"
 #import "location_util.h"
 

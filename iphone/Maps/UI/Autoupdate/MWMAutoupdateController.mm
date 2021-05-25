@@ -1,7 +1,7 @@
 #import "MWMAutoupdateController.h"
 #import "MWMCircularProgress.h"
 #import "MWMStorage+UI.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include "platform/downloader_defines.hpp"
 

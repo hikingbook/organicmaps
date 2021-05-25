@@ -1,7 +1,7 @@
 #import "MWMSettingsViewController.h"
 #import "MWMAuthorizationCommon.h"
 #import "MWMTextToSpeech+CPP.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #import <CoreApi/CoreApi.h>
 

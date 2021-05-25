@@ -2,7 +2,7 @@
 #import "MWMActivityViewController.h"
 #import "MWMAlertViewController.h"
 #import "MWMAuthorizationCommon.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMEditorViralAlert ()
 

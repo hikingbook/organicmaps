@@ -3,7 +3,7 @@
 #import "MWMLocationManager.h"
 #import "MWMRouterTransitStepInfo.h"
 #import "MWMSettings.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include <CoreApi/Framework.h>
 

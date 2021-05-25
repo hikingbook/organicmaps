@@ -1,6 +1,6 @@
 #import "MWMNightModeController.h"
 #import "MWMSettings.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMNightModeController ()
 

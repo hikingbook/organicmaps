@@ -1,5 +1,5 @@
 #import "MWMEditorSwitchTableViewCell.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMEditorSwitchTableViewCell ()
 

@@ -1,5 +1,6 @@
+// This file is modified by Zheng-Xiang Ke on 2019.
 #import "DownloadIndicatorProtocol.h"
-#import "MWMNavigationController.h"
+//#import "MWMNavigationController.h"
 
 @class MapViewController;
 @class MWMCarPlayService;

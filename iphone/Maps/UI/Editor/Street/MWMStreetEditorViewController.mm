@@ -1,6 +1,6 @@
 #import "MWMStreetEditorViewController.h"
 #import "MWMStreetEditorEditTableViewCell.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMStreetEditorViewController () <MWMStreetEditorEditCellProtocol>
 {

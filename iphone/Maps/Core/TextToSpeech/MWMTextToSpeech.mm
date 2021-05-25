@@ -1,7 +1,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MWMRouter.h"
 #import "MWMTextToSpeech+CPP.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include "LocaleTranslator.h"
 

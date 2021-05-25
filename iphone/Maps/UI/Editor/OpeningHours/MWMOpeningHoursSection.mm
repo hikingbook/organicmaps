@@ -1,7 +1,7 @@
 #import "MWMOpeningHoursSection.h"
 #import <CoreApi/MWMOpeningHoursCommon.h>
 #import "MWMOpeningHoursTableViewCell.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 extern NSDictionary * const kMWMOpeningHoursEditorTableCells;
 

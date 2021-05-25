@@ -512,6 +512,8 @@
 		99F9A0E52462CA0E00AE21E0 /* DownloadAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F9A0E42462CA0E00AE21E0 /* DownloadAllView.swift */; };
 		99F9A0E72462CA1700AE21E0 /* DownloadAllView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F9A0E62462CA1700AE21E0 /* DownloadAllView.xib */; };
 		A630D1EA207CA95900976DEA /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A630D1E8207CA95900976DEA /* Localizable.stringsdict */; };
+		AA5F89B2265CF3E200CEA24B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC79F1201E534D4000B7D954 /* CoreTelephony.framework */; };
+		AA88D1AF265CC219008327A8 /* FrameworkAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA88D1AE265CC219008327A8 /* FrameworkAdapter.mm */; };
 		B33D21AF20DAF9F000BAD749 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21AE20DAF9F000BAD749 /* Toast.swift */; };
 		B33D21B820E130D000BAD749 /* BookmarksTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */; };
 		B3E3B4FD20D463B700DA8C13 /* BMCCategoriesHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */; };
@@ -1361,6 +1363,9 @@
 		A630D204207CAA3400976DEA /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A630D205207CAA3A00976DEA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		A630D206207CAA5800976DEA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		AA5F89B3265D06E300CEA24B /* MWMMapDownloadDialogDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMMapDownloadDialogDelegate.h; sourceTree = "<group>"; };
+		AA88D1AD265CC218008327A8 /* FrameworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkAdapter.h; path = Core/Framework/FrameworkAdapter.h; sourceTree = SOURCE_ROOT; };
+		AA88D1AE265CC219008327A8 /* FrameworkAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FrameworkAdapter.mm; path = Core/Framework/FrameworkAdapter.mm; sourceTree = SOURCE_ROOT; };
 		AC79F11E1E534D0B00B7D954 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AC79F1201E534D4000B7D954 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AC79F1221E534DFA00B7D954 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1690,6 +1695,7 @@
 				47A13CA424BE872600027D4F /* DatePicker.framework in Frameworks */,
 				6741AACE1BF356BA002C974C /* libopening_hours.a in Frameworks */,
 				347A4C5E1C4E76C9006BA66E /* liboauthcpp.a in Frameworks */,
+				AA5F89B2265CF3E200CEA24B /* CoreTelephony.framework in Frameworks */,
 				6741AAD01BF356BA002C974C /* libplatform.a in Frameworks */,
 				6741AAD11BF356BA002C974C /* libprotobuf.a in Frameworks */,
 				6741AAD31BF356BA002C974C /* librouting.a in Frameworks */,
@@ -2529,6 +2535,7 @@
 			children = (
 				34FE4C431BCC013500066718 /* MWMMapWidgets.h */,
 				34FE4C441BCC013500066718 /* MWMMapWidgets.mm */,
+				AA5F89B3265D06E300CEA24B /* MWMMapDownloadDialogDelegate.h */,
 				3406FA131C6E0C3300E9FAD2 /* MWMMapDownloadDialog.h */,
 				3406FA141C6E0C3300E9FAD2 /* MWMMapDownloadDialog.mm */,
 				3406FA171C6E0D8F00E9FAD2 /* MWMMapDownloadDialog.xib */,
@@ -2982,6 +2989,8 @@
 		CDCA27762243CCFF00167D87 /* ProxyObjects */ = {
 			isa = PBXGroup;
 			children = (
+				AA88D1AD265CC218008327A8 /* FrameworkAdapter.h */,
+				AA88D1AE265CC219008327A8 /* FrameworkAdapter.mm */,
 				CDCA278D2248F34C00167D87 /* Location */,
 				CDCA27892248F34C00167D87 /* Routing */,
 			);
@@ -3707,6 +3716,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Organic Maps";
 				TargetAttributes = {
@@ -4188,6 +4198,7 @@
 				CD9AD96F2281DF3600EC174A /* CategoryInfo.swift in Sources */,
 				3DEE1AEB21F72CD300054A91 /* MWMPowerManagmentViewController.mm in Sources */,
 				34AB66771FC5AA330078E451 /* TransportRoutePreviewStatus.swift in Sources */,
+				AA88D1AF265CC219008327A8 /* FrameworkAdapter.mm in Sources */,
 				34D3AFEA1E378AF1004100F9 /* UINib+Init.swift in Sources */,
 				F63AF5131EA6250F00A1DB98 /* FilterCollectionHolderCell.swift in Sources */,
 				34AB663E1FC5AA330078E451 /* RouteManagerTransitioning.swift in Sources */,
@@ -4533,6 +4544,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.debug;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Hikingbook-Swift-Header.h";
 			};
 			name = Debug;
 		};
@@ -4553,6 +4565,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Hikingbook-Swift-Header.h";
 			};
 			name = Release;
 		};

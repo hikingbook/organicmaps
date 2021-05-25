@@ -58,7 +58,7 @@ extension BottomMenuInteractor: BottomMenuInteractorProtocol {
   }
 
   func shareLocation(cell: BottomMenuItemCell) {
-    let lastLocation = LocationManager.lastLocation()
+    let lastLocation = MWMLocationManager.lastLocation()
     guard let coordinates = lastLocation?.coordinate else {
       UIAlertView(title: L("unknown_current_position"),
                   message: nil,

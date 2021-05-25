@@ -2,7 +2,7 @@
 #import "MWMSearchCommonCell.h"
 #import "MWMSearchSuggestionCell.h"
 #import "MWMSearchTableView.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include "platform/localization.hpp"
 

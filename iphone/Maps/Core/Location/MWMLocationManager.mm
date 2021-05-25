@@ -1,10 +1,12 @@
+// This file is modified by Zheng-Xiang Ke on 2017.
 #import "MWMLocationManager.h"
 #import "MWMAlertViewController.h"
 #import "MWMLocationObserver.h"
 #import "MWMLocationPredictor.h"
 #import "MWMRouter.h"
 #import "MapsAppDelegate.h"
-#import "SwiftBridge.h"
+//#import "Hikingbook-Swift-Header.h"
+#import "Hikingbook-Swift-Header.h"
 #import "location_util.h"
 
 #include <CoreApi/Framework.h>
@@ -297,11 +299,11 @@ void setShowLocationAlert(BOOL needShow) {
     break;
   case MWMLocationStatusDenied:
   case MWMLocationStatusGPSIsOff:
-    if (needShowLocationAlert()) {
-      [[MWMAlertViewController activeAlertController] presentLocationAlertWithCancelBlock:^{
-        setShowLocationAlert(NO);
-      }];
-    }
+//    if (needShowLocationAlert()) {
+//      [[MWMAlertViewController activeAlertController] presentLocationAlertWithCancelBlock:^{
+//        setShowLocationAlert(NO);
+//      }];
+//    }
     break;
   }
 }
@@ -515,8 +517,10 @@ void setShowLocationAlert(BOOL needShow) {
   auto app = UIApplication.sharedApplication;
   if (app.applicationState != UIApplicationStateActive)
     return;
-  auto delegate = static_cast<MapsAppDelegate *>(app.delegate);
-  if (delegate.isDrapeEngineCreated)
+  // Modified by Zheng-Xiang Ke
+//  auto delegate = static_cast<MapsAppDelegate *>(app.delegate);
+//  if (delegate.isDrapeEngineCreated)
+  if ([MapViewController sharedController].mapView.drapeEngineCreated)
   {
     auto & f = GetFramework();
     if (self.frameworkUpdateMode & MWMLocationFrameworkUpdateLocation)

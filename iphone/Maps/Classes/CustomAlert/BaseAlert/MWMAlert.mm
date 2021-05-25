@@ -9,7 +9,7 @@
 #import "MWMRateAlert.h"
 #import "MWMRoutingDisclaimerAlert.h"
 
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @implementation MWMAlert
 

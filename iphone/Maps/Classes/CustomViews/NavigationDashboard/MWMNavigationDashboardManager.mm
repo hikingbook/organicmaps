@@ -5,7 +5,7 @@
 #import "MWMSearch.h"
 #import "MapViewController.h"
 
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 namespace {
 NSString *const kRoutePreviewIPhoneXibName = @"MWMiPhoneRoutePreview";

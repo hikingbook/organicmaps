@@ -7,7 +7,7 @@
 #import "MWMMapViewControlsCommon.h"
 #import "MWMMapViewControlsManager.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 #import "base/assert.hpp"
 
 namespace {

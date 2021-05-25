@@ -1,5 +1,5 @@
 #import "MWMSearchFilterViewController_Protected.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @implementation MWMSearchFilterViewController
 

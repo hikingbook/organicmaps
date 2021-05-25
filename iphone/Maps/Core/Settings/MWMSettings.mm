@@ -1,7 +1,7 @@
 #import "MWMSettings.h"
 #import "MWMCoreUnits.h"
 #import "MWMMapViewControlsManager.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 
 #include <CoreApi/Framework.h>

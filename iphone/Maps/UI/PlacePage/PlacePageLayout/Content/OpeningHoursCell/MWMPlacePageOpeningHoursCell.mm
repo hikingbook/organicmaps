@@ -2,7 +2,7 @@
 #import <CoreApi/MWMCommon.h>
 #import <CoreApi/MWMOpeningHoursCommon.h>
 #import "MWMPlacePageOpeningHoursDayView.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include "editor/ui2oh.hpp"
 

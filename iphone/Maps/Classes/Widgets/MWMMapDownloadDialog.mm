@@ -1,10 +1,12 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "MWMMapDownloadDialog.h"
 #import <SafariServices/SafariServices.h>
 #import "CLLocation+Mercator.h"
 #import "MWMCircularProgress.h"
 #import "MWMStorage+UI.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
+#import "MWMMapDownloadDialogDelegate.h"
 
 #include <CoreApi/Framework.h>
 
@@ -44,6 +46,7 @@ using namespace storage;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint *nodeTopOffset;
 @property(strong, nonatomic) IBOutlet UIButton *downloadButton;
 @property(strong, nonatomic) IBOutlet UIView *progressWrapper;
+@property(strong, nonatomic) IBOutlet UILabel *numDownloadedMapsLimitLabel;
 
 @property(weak, nonatomic) MapViewController *controller;
 @property(nonatomic) MWMCircularProgress *progress;
@@ -142,6 +145,12 @@ using namespace storage;
     }
   } else {
     [self removeFromSuperview];
+  }
+  
+  // Added by Zheng-Xiang Ke
+  id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+  if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:)]) {
+    [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel];
   }
 
   if (self.superview)

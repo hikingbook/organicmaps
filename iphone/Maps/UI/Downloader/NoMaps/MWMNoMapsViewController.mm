@@ -1,7 +1,7 @@
 #import "MWMNoMapsViewController.h"
 #import "MWMMapDownloaderMode.h"
 #import "MWMMapViewControlsManager.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @implementation MWMNoMapsViewController
 

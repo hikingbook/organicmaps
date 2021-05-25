@@ -1,6 +1,6 @@
 #import "UIColorRoutines.h"
 #import "UIColor+MapsMeColor.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 static BOOL isNightMode = NO;
 static NSDictionary<NSString *, UIColor *> *day;

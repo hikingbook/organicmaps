@@ -1,7 +1,7 @@
 #import "MWMMapWidgets.h"
 #import "EAGLView.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMMapWidgets ()
 

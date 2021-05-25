@@ -1,7 +1,7 @@
 #import "MWMEditorTextTableViewCell.h"
 #import "MWMEditorCommon.h"
 #import "UIImageView+Coloring.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 static CGFloat const kErrorLabelDefaultTopSpace = 4.;
 
 @interface MWMEditorTextTableViewCell ()<UITextFieldDelegate>

@@ -5,7 +5,7 @@
 #import "MWMLocationNotFoundAlert.h"
 #import "MapViewController.h"
 #import "MapsAppDelegate.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController";
 

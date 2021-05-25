@@ -1,6 +1,6 @@
 #import "MWMEditorCategoryCell.h"
 #import "MWMEditorCommon.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 CGFloat const kDetailShortRightSpace = 16;
 

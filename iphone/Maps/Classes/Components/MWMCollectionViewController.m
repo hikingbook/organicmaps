@@ -1,7 +1,7 @@
 #import "MWMCollectionViewController.h"
 #import "MWMAlertViewController.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMCollectionViewController ()
 

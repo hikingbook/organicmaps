@@ -1,10 +1,13 @@
+// This file is modified by Zheng-Xiang Ke on 2019.
 #import "MWMMyPositionMode.h"
 #import "MWMLocationObserver.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(LocationManager)
+//NS_SWIFT_NAME(LocationManager)
 @interface MWMLocationManager : NSObject
+
++ (MWMLocationManager *)manager;
 
 + (void)start;
 + (void)stop;

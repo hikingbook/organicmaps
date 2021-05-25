@@ -1,5 +1,5 @@
 #import "MWMButton.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 static NSString * const kDefaultPattern = @"%@_%@";
 static NSString * const kHighlightedPattern = @"%@_highlighted_%@";
 static NSString * const kSelectedPattern = @"%@_selected_%@";

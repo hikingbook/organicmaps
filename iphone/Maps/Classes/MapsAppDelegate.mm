@@ -1,24 +1,26 @@
+// This file is modified by Zheng-Xiang Ke on 2019.
 #import "MapsAppDelegate.h"
 
 #import "EAGLView.h"
-#import "MWMAuthorizationCommon.h"
+//#import "MWMAuthorizationCommon.h"
 #import "MWMCoreRouterType.h"
 #import "MWMFrameworkListener.h"
 #import "MWMFrameworkObservers.h"
-#import "MWMMapViewControlsManager.h"
+//#import "MWMMapViewControlsManager.h"
 #import "MWMRoutePoint+CPP.h"
 #import "MWMRouter.h"
-#import "MWMSearch+CoreSpotlight.h"
-#import "MWMTextToSpeech.h"
+//#import "MWMSearch+CoreSpotlight.h"
+//#import "MWMTextToSpeech.h"
 #import "MapViewController.h"
 #import "NSDate+TimeDistance.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
+//#import "Hikingbook-Swift-Header.h"
 
 
-#import <CarPlay/CarPlay.h>
-#import <CoreSpotlight/CoreSpotlight.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <UserNotifications/UserNotifications.h>
+//#import <CarPlay/CarPlay.h>
+//#import <CoreSpotlight/CoreSpotlight.h>
+//#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+//#import <UserNotifications/UserNotifications.h>
 
 #import <CoreApi/Framework.h>
 #import <CoreApi/MWMFrameworkHelper.h>
@@ -70,10 +72,10 @@ void OverrideUserAgent() {
 }
 }  // namespace
 
-using namespace osm_auth_ios;
+//using namespace osm_auth_ios;
 
-@interface MapsAppDelegate () <MWMStorageObserver,
-                               CPApplicationDelegate>
+@interface MapsAppDelegate () <MWMStorageObserver>
+//                               CPApplicationDelegate>
 
 @property(nonatomic) NSInteger standbyCounter;
 @property(nonatomic) MWMBackgroundFetchScheduler *backgroundFetchScheduler;
@@ -102,8 +104,8 @@ using namespace osm_auth_ios;
     return;
   }
 
-  [[MWMMapViewControlsManager manager] searchText:[searchString stringByAppendingString:@" "]
-                                   forInputLocale:[MWMSettings spotlightLocaleLanguageId]];
+//  [[MWMMapViewControlsManager manager] searchText:[searchString stringByAppendingString:@" "]
+//                                   forInputLocale:[MWMSettings spotlightLocaleLanguageId]];
 }
 
 - (void)incrementSessionsCountAndCheckForAlert {
@@ -142,7 +144,7 @@ using namespace osm_auth_ios;
   }
   [self enableTTSForTheFirstTime];
 
-  [[DeepLinkHandler shared] applicationDidFinishLaunching:launchOptions];
+//  [[DeepLinkHandler shared] applicationDidFinishLaunching:launchOptions];
   return YES;
 }
 
@@ -171,7 +173,7 @@ using namespace osm_auth_ios;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   LOG(LINFO, ("applicationDidEnterBackground - begin"));
-  [DeepLinkHandler.shared reset];
+//  [DeepLinkHandler.shared reset];
   if (m_activeDownloadsCounter) {
     m_backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
       [application endBackgroundTask:self->m_backgroundTask];
@@ -239,26 +241,26 @@ using namespace osm_auth_ios;
                        true /* recreateContextDependentResources */);
   }
   [MWMLocationManager applicationDidBecomeActive];
-  [MWMSearch addCategoriesToSpotlight];
-  [MWMKeyboard applicationDidBecomeActive];
-  [MWMTextToSpeech applicationDidBecomeActive];
+//  [MWMSearch addCategoriesToSpotlight];
+//  [MWMKeyboard applicationDidBecomeActive];
+//  [MWMTextToSpeech applicationDidBecomeActive];
   LOG(LINFO, ("applicationDidBecomeActive - end"));
 }
 
 - (BOOL)application:(UIApplication *)application
   continueUserActivity:(NSUserActivity *)userActivity
     restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *_Nullable))restorationHandler {
-  if ([userActivity.activityType isEqualToString:CSSearchableItemActionType]) {
-    NSString *searchStringKey = userActivity.userInfo[CSSearchableItemActivityIdentifier];
-    NSString *searchString = L(searchStringKey);
-    if (searchString) {
-      [self searchText:searchString];
-      return YES;
-    }
-  } else if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb] &&
-             userActivity.webpageURL != nil) {
-    return [DeepLinkHandler.shared applicationDidReceiveUniversalLink:userActivity.webpageURL];
-  }
+//  if ([userActivity.activityType isEqualToString:CSSearchableItemActionType]) {
+//    NSString *searchStringKey = userActivity.userInfo[CSSearchableItemActivityIdentifier];
+//    NSString *searchString = L(searchStringKey);
+//    if (searchString) {
+//      [self searchText:searchString];
+//      return YES;
+//    }
+//  } else if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb] &&
+//             userActivity.webpageURL != nil) {
+//    return [DeepLinkHandler.shared applicationDidReceiveUniversalLink:userActivity.webpageURL];
+//  }
 
   return NO;
 }
@@ -300,12 +302,12 @@ using namespace osm_auth_ios;
   textField.keyboardAppearance = [UIColor isNightMode] ? UIKeyboardAppearanceDark : UIKeyboardAppearanceDefault;
 }
 
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
-
-  return [DeepLinkHandler.shared applicationDidOpenUrl:url];
-}
+//- (BOOL)application:(UIApplication *)app
+//            openURL:(NSURL *)url
+//            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+//
+//  return [DeepLinkHandler.shared applicationDidOpenUrl:url];
+//}
 
 - (void)showMap {
   [(UINavigationController *)self.window.rootViewController popToRootViewControllerAnimated:YES];
@@ -314,7 +316,7 @@ using namespace osm_auth_ios;
 - (void)updateApplicationIconBadgeNumber {
   auto const number = [self badgeNumber];
   UIApplication.sharedApplication.applicationIconBadgeNumber = number;
-  BottomTabBarViewController.controller.isApplicationBadgeHidden = number == 0;
+//  BottomTabBarViewController.controller.isApplicationBadgeHidden = number == 0;
 }
 
 - (NSUInteger)badgeNumber {
@@ -351,15 +353,15 @@ using namespace osm_auth_ios;
     return nil;
 }
 
-- (MWMCarPlayService *)carplayService {
-  return [MWMCarPlayService shared];
-}
+//- (MWMCarPlayService *)carplayService {
+//  return [MWMCarPlayService shared];
+//}
 
 #pragma mark - TTS
 
 - (void)enableTTSForTheFirstTime {
-  if (![MWMTextToSpeech savedLanguage].length)
-    [MWMTextToSpeech setTTSEnabled:YES];
+//  if (![MWMTextToSpeech savedLanguage].length)
+//    [MWMTextToSpeech setTTSEnabled:YES];
 }
 
 #pragma mark - Standby
@@ -417,7 +419,7 @@ using namespace osm_auth_ios;
   if (!Platform::IsConnected() || [MWMRouter isRoutingActive])
     return;
 
-  [[MWMAlertViewController activeAlertController] presentRateAlert];
+//  [[MWMAlertViewController activeAlertController] presentRateAlert];
   [NSUserDefaults.standardUserDefaults setObject:NSDate.date forKey:kUDLastRateRequestDate];
 }
 
@@ -458,24 +460,24 @@ using namespace osm_auth_ios;
   return YES;
 }
 
-#pragma mark - CPApplicationDelegate implementation
-
-- (void)application:(UIApplication *)application
-  didConnectCarInterfaceController:(CPInterfaceController *)interfaceController
-                          toWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
-  [self.carplayService setupWithWindow:window interfaceController:interfaceController];
-  if (@available(iOS 13.0, *)) {
-    window.overrideUserInterfaceStyle = UIUserInterfaceStyleUnspecified;
-  }
-  [self updateAppearanceFromWindow:self.window toWindow:window isCarplayActivated:YES];
-}
-
-- (void)application:(UIApplication *)application
-  didDisconnectCarInterfaceController:(CPInterfaceController *)interfaceController
-                           fromWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
-  [self.carplayService destroy];
-  [self updateAppearanceFromWindow:window toWindow:self.window isCarplayActivated:NO];
-}
+//#pragma mark - CPApplicationDelegate implementation
+//
+//- (void)application:(UIApplication *)application
+//  didConnectCarInterfaceController:(CPInterfaceController *)interfaceController
+//                          toWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
+//  [self.carplayService setupWithWindow:window interfaceController:interfaceController];
+//  if (@available(iOS 13.0, *)) {
+//    window.overrideUserInterfaceStyle = UIUserInterfaceStyleUnspecified;
+//  }
+//  [self updateAppearanceFromWindow:self.window toWindow:window isCarplayActivated:YES];
+//}
+//
+//- (void)application:(UIApplication *)application
+//  didDisconnectCarInterfaceController:(CPInterfaceController *)interfaceController
+//                           fromWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
+//  [self.carplayService destroy];
+//  [self updateAppearanceFromWindow:window toWindow:self.window isCarplayActivated:NO];
+//}
 
 - (void)updateAppearanceFromWindow:(UIWindow *)sourceWindow
                           toWindow:(UIWindow *)destinationWindow

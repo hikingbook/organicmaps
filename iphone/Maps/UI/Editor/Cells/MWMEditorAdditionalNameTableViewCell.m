@@ -1,5 +1,5 @@
 #import "MWMEditorAdditionalNameTableViewCell.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 static CGFloat const kErrorLabelHeight = 16;
 

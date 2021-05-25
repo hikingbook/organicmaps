@@ -16,7 +16,7 @@ final class ThemeManager: NSObject {
 
   @objc static func setDarkModeEnabled(_ val: Bool) {
     instance.isDarkModeEnabled = val
-    instance.update(theme: Settings.theme())
+    instance.update(theme: MWMSettings.theme())
   }
 
   private func update(theme: MWMTheme) {
@@ -33,7 +33,7 @@ final class ThemeManager: NSObject {
           return isDarkModeEnabled ? .vehicleNight : .vehicleDay
         } else {
           guard isVehicleRouting else { return .day }
-          switch FrameworkHelper.daytime(at: LocationManager.lastLocation()) {
+          switch FrameworkHelper.daytime(at: MWMLocationManager.lastLocation()) {
           case .day: return .vehicleDay
           case .night: return .vehicleNight
           @unknown default:
@@ -71,7 +71,7 @@ final class ThemeManager: NSObject {
   }
 
   @objc static func invalidate() {
-    instance.update(theme: Settings.theme())
+    instance.update(theme: MWMSettings.theme())
   }
 
   @available(iOS, deprecated:13.0)

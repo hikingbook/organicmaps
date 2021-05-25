@@ -7,7 +7,7 @@
 #import "MWMSearchManager+Layout.h"
 #import "MWMSearchTableViewController.h"
 #import "MapViewController.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 namespace {
 typedef NS_ENUM(NSUInteger, MWMSearchManagerActionBarState) {

@@ -2,7 +2,7 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
   private lazy var distanceFormatter: MKDistanceFormatter = {
     let formatter =  MKDistanceFormatter()
     formatter.unitStyle = .abbreviated
-    formatter.units = Settings.measurementUnits() == .imperial ? .imperial : .metric
+    formatter.units = MWMSettings.measurementUnits() == .imperial ? .imperial : .metric
     return formatter
   }()
 
@@ -149,12 +149,12 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
       self.updateBookmarkRelatedSections()
     }
 
-    LocationManager.add(observer: self)
-    if let lastLocation = LocationManager.lastLocation() {
+    MWMLocationManager.add(observer: self)
+    if let lastLocation = MWMLocationManager.lastLocation() {
       onLocationUpdate(lastLocation)
       self.lastLocation = lastLocation
     }
-    if let lastHeading = LocationManager.lastHeading() {
+    if let lastHeading = MWMLocationManager.lastHeading() {
       onHeadingUpdate(lastHeading)
     }
 
@@ -228,7 +228,7 @@ extension PlacePageCommonLayout: MWMLocationObserver {
 
   func onLocationUpdate(_ location: CLLocation) {
     if placePageData.isMyPosition {
-      let imperial = Settings.measurementUnits() == .imperial
+      let imperial = MWMSettings.measurementUnits() == .imperial
       let alt = imperial ? location.altitude / 0.3048 : location.altitude
       let altMeasurement = Measurement(value: alt.rounded(), unit: imperial ? UnitLength.feet : UnitLength.meters)
       let altString = "▲ \(unitsFormatter.string(from: altMeasurement))"
@@ -236,7 +236,7 @@ extension PlacePageCommonLayout: MWMLocationObserver {
       if location.speed > 0 && location.timestamp.timeIntervalSinceNow >= -2 {
         let speed = imperial ? location.speed * 2.237 : location.speed * 3.6
         let speedMeasurement = Measurement(value: speed.rounded(), unit: imperial ? UnitSpeed.milesPerHour: UnitSpeed.kilometersPerHour)
-        let speedString = "\(LocationManager.speedSymbolFor(location.speed))\(unitsFormatter.string(from: speedMeasurement))"
+        let speedString = "\(MWMLocationManager.speedSymbolFor(location.speed))\(unitsFormatter.string(from: speedMeasurement))"
         previewViewController.updateSpeedAndAltitude("\(altString)  \(speedString)")
       } else {
         previewViewController.updateSpeedAndAltitude(altString)

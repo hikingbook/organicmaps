@@ -7,7 +7,7 @@ class ElevationProfileBuilder {
     let viewController = storyboard.instantiateViewController(ofType: ElevationProfileViewController.self);
     let presenter = ElevationProfilePresenter(view: viewController,
                                               data: elevationProfileData,
-                                              imperialUnits: Settings.measurementUnits() == .imperial,
+                                              imperialUnits: MWMSettings.measurementUnits() == .imperial,
                                               delegate: delegate)
     
     viewController.presenter = presenter

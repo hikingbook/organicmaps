@@ -9,7 +9,7 @@ final class BookmarksListBuilder {
                                            router: router,
                                            delegate: delegate,
                                            interactor: interactor,
-                                           imperialUnits: Settings.measurementUnits() == .imperial)
+                                           imperialUnits: MWMSettings.measurementUnits() == .imperial)
     viewController.presenter = presenter
     return viewController
   }

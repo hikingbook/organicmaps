@@ -1,7 +1,7 @@
 #import "MWMTTSSettingsViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MWMTextToSpeech+CPP.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include <CoreApi/Framework.h>
 #include "LocaleTranslator.h"

@@ -1,4 +1,5 @@
-NS_SWIFT_NAME(Settings)
+// This file is modified by Zheng-Xiang Ke on 2021.
+//NS_SWIFT_NAME(Settings)
 @interface MWMSettings : NSObject
 
 + (BOOL)autoDownloadEnabled;

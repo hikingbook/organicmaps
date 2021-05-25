@@ -3,7 +3,7 @@
 #import "MWMNavigationDashboardManager+Entity.h"
 #import "MWMRouter.h"
 #import "MWMRouterTransitStepInfo.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #import <AudioToolbox/AudioServices.h>
 

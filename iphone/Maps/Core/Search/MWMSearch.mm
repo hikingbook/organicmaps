@@ -1,7 +1,7 @@
 #import "MWMSearch.h"
 #import "MWMFrameworkListener.h"
 #import "MWMFrameworkObservers.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include <CoreApi/Framework.h>
 

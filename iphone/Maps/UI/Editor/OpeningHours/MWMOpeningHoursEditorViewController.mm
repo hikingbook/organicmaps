@@ -7,7 +7,7 @@
 #import "MWMOpeningHoursDeleteScheduleTableViewCell.h"
 #import "MWMOpeningHoursTimeSelectorTableViewCell.h"
 #import "MWMOpeningHoursTimeSpanTableViewCell.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 extern NSDictionary * const kMWMOpeningHoursEditorTableCells = @{
   @(MWMOpeningHoursEditorDaysSelectorCell) : [MWMOpeningHoursDaysSelectorTableViewCell class],

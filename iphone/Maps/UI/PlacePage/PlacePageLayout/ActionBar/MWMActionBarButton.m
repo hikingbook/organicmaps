@@ -1,7 +1,7 @@
 #import "MWMActionBarButton.h"
 #import "MWMButton.h"
 #import "MWMCircularProgress.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 NSString *titleForButton(MWMActionBarButtonType type, BOOL isSelected) {
   switch (type) {

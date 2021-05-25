@@ -5,7 +5,7 @@
 #import "MWMRouter.h"
 #import "MWMSettings.h"
 #import "MWMSideButtonsView.h"
-#import "SwiftBridge.h"
+#import "Hikingbook-Swift-Header.h"
 
 #include <CoreApi/Framework.h>
 
