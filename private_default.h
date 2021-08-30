@@ -5,7 +5,7 @@
 #define MWM_GEOLOCATION_SERVER ""
 #define METASERVER_URL "https://meta.omaps.app/maps"
 #define DIFF_LIST_URL ""
-#define DEFAULT_URLS_JSON "[ \"https://cdn.organicmaps.app/\" ]"
+#define DEFAULT_URLS_JSON "[ \"https://cdn.organicmaps.app/\", \"https://hikingbook.net/\" ]"
 #define TRAFFIC_DATA_BASE_URL ""
 #define USER_BINDING_PKCS12 ""
 #define USER_BINDING_PKCS12_PASSWORD ""
