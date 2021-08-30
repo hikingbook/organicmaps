@@ -446,6 +446,8 @@
 		99F9A0E72462CA1700AE21E0 /* DownloadAllView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F9A0E62462CA1700AE21E0 /* DownloadAllView.xib */; };
 		A630D1EA207CA95900976DEA /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A630D1E8207CA95900976DEA /* Localizable.stringsdict */; };
 		AA1C7E3E269A2DD600BAADF2 /* EditTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7E3D269A2DD600BAADF2 /* EditTrackViewController.swift */; };
+		AA4B377626DCCEF6008624B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */; };
+		AA4B377726DCCF32008624B4 /* FrameworkAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */; };
 		B33D21AF20DAF9F000BAD749 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21AE20DAF9F000BAD749 /* Toast.swift */; };
 		B33D21B820E130D000BAD749 /* BookmarksTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */; };
 		B3E3B4FD20D463B700DA8C13 /* BMCCategoriesHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */; };
@@ -1308,6 +1310,10 @@
 		A630D205207CAA3A00976DEA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		A630D206207CAA5800976DEA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		AA1C7E3D269A2DD600BAADF2 /* EditTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTrackViewController.swift; sourceTree = "<group>"; };
+		AA4B377026DCC525008624B4 /* FrameworkAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameworkAdapter.h; sourceTree = "<group>"; };
+		AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameworkAdapter.mm; sourceTree = "<group>"; };
+		AA4B377426DCC598008624B4 /* MWMMapDownloadDialogDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMMapDownloadDialogDelegate.h; sourceTree = "<group>"; };
+		AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B33D21AE20DAF9F000BAD749 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTabViewController.swift; sourceTree = "<group>"; };
 		B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMCCategoriesHeader.xib; sourceTree = "<group>"; };
@@ -1642,6 +1648,7 @@
 				FA853BE126BC58690026D455 /* libsdf_image.a in Frameworks */,
 				FA853BDF26BC58620026D455 /* libge0.a in Frameworks */,
 				FA853BDD26BC58570026D455 /* DatePicker.framework in Frameworks */,
+				AA4B377626DCCEF6008624B4 /* CoreTelephony.framework in Frameworks */,
 				FA853BDB26BC54CD0026D455 /* libtraffic.a in Frameworks */,
 				FA853BD926BC54C80026D455 /* libexpat.a in Frameworks */,
 				FA853BD726BC54650026D455 /* libpugixml.a in Frameworks */,
@@ -1766,6 +1773,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */,
 				FA456C3B26BDC6AD00B83C20 /* Chart.framework */,
 				FA853BF226BC5DE50026D455 /* libshaders.a */,
 				FA853BF026BC5C120026D455 /* libshaders.a */,
@@ -2200,6 +2208,8 @@
 				3486B5131E27AD3B0069C126 /* MWMFrameworkListener.mm */,
 				3486B5141E27AD3B0069C126 /* MWMFrameworkObservers.h */,
 				473500C023A8F81800661A95 /* MWMFrameworkObserver.h */,
+				AA4B377026DCC525008624B4 /* FrameworkAdapter.h */,
+				AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -2454,9 +2464,9 @@
 		34FE4C421BCC013500066718 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				AA4B377426DCC598008624B4 /* MWMMapDownloadDialogDelegate.h */,
 				34FE4C431BCC013500066718 /* MWMMapWidgets.h */,
 				34FE4C441BCC013500066718 /* MWMMapWidgets.mm */,
-				AA5F89B3265D06E300CEA24B /* MWMMapDownloadDialogDelegate.h */,
 				3406FA131C6E0C3300E9FAD2 /* MWMMapDownloadDialog.h */,
 				3406FA141C6E0C3300E9FAD2 /* MWMMapDownloadDialog.mm */,
 				3406FA171C6E0D8F00E9FAD2 /* MWMMapDownloadDialog.xib */,
@@ -2890,8 +2900,6 @@
 		CDCA27762243CCFF00167D87 /* ProxyObjects */ = {
 			isa = PBXGroup;
 			children = (
-				AA88D1AD265CC218008327A8 /* FrameworkAdapter.h */,
-				AA88D1AE265CC219008327A8 /* FrameworkAdapter.mm */,
 				CDCA278D2248F34C00167D87 /* Location */,
 				CDCA27892248F34C00167D87 /* Routing */,
 			);
@@ -3914,6 +3922,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA4B377726DCCF32008624B4 /* FrameworkAdapter.mm in Sources */,
 				34845DB71E166084003D55B9 /* Common.swift in Sources */,
 				47F4F21323A6EC420022FD56 /* DownloadMapsViewController.swift in Sources */,
 				99A906F623FA9C010005872B /* InsetsLabelRenderer.swift in Sources */,
@@ -4143,7 +4152,6 @@
 				CD9AD96F2281DF3600EC174A /* CategoryInfo.swift in Sources */,
 				3DEE1AEB21F72CD300054A91 /* MWMPowerManagmentViewController.mm in Sources */,
 				34AB66771FC5AA330078E451 /* TransportRoutePreviewStatus.swift in Sources */,
-				AA88D1AF265CC219008327A8 /* FrameworkAdapter.mm in Sources */,
 				34D3AFEA1E378AF1004100F9 /* UINib+Init.swift in Sources */,
 				F63AF5131EA6250F00A1DB98 /* FilterCollectionHolderCell.swift in Sources */,
 				34AB663E1FC5AA330078E451 /* RouteManagerTransitioning.swift in Sources */,
@@ -4554,7 +4562,7 @@
 				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = SwiftBridge.h;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Hikingbook-Swift-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4601,7 +4609,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = SwiftBridge.h;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Hikingbook-Swift-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

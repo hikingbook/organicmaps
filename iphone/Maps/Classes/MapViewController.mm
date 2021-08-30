@@ -342,9 +342,9 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
     self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
-  if (isLaunchedByDeeplink)
-    (void)[DeepLinkHandler.shared handleDeepLink];
-  else {
+//  if (isLaunchedByDeeplink)
+//    (void)[DeepLinkHandler.shared handleDeepLink];
+//  else {
     // TODO(vng): Uncomment update dialog when we're ready to handle more traffic.
 //  auto const todo = GetFramework().ToDoAfterUpdate();
 //  switch (todo) {
@@ -356,7 +356,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //      [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
 //      break;
 //  }
-  }
+//  }
 }
 
 - (void)viewDidLayoutSubviews {
