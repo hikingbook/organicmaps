@@ -3,7 +3,6 @@
 #include "platform/battery_tracker.hpp"
 #include "platform/country_defines.hpp"
 #include "platform/gui_thread.hpp"
-#include "platform/http_user_agent.hpp"
 #include "platform/secure_storage.hpp"
 
 #include "coding/reader.hpp"
@@ -116,8 +115,6 @@ protected:
 
   /// Platform-dependent secure storage.
   platform::SecureStorage m_secureStorage;
-
-  platform::HttpUserAgent m_appUserAgent;
 
   std::unique_ptr<base::TaskLoop> m_guiThread;
 
@@ -263,16 +260,9 @@ public:
 
   std::string DeviceModel() const;
 
-  std::string UniqueClientId() const;
-
-  std::string UniqueIdHash() const;
-
-  std::string MacAddress(bool md5Decoded) const;
-
   /// @return url for clients to download maps
   //@{
   std::string MetaServerUrl() const;
-  std::string ResourcesMetaServerUrl() const;
   //@}
 
   /// @return JSON-encoded list of urls if metaserver is unreachable
@@ -297,8 +287,6 @@ public:
   void SetupMeasurementSystem() const;
 
   platform::SecureStorage & GetSecureStorage() { return m_secureStorage; }
-  platform::HttpUserAgent & GetAppUserAgent() { return m_appUserAgent; }
-  platform::HttpUserAgent const & GetAppUserAgent() const { return m_appUserAgent; }
 
   /// \brief Placing an executable object |task| on a queue of |thread|. Then the object will be
   /// executed on |thread|.

@@ -359,6 +359,23 @@ Track const * BookmarkManager::GetTrack(kml::TrackId trackId) const
   return (it != m_tracks.end()) ? it->second.get() : nullptr;
 }
 
+Track * BookmarkManager::GetTrackForEdit(kml::TrackId trackId)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto it = m_tracks.find(trackId);
+  if (it == m_tracks.end())
+    return nullptr;
+
+  return it->second.get();
+}
+
+void BookmarkManager::MoveTrack(kml::TrackId trackID, kml::MarkGroupId curGroupID, kml::MarkGroupId newGroupID)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  DetachTrack(trackID, curGroupID);
+  AttachTrack(trackID, newGroupID);
+}
+
 void BookmarkManager::AttachTrack(kml::TrackId trackId, kml::MarkGroupId groupId)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
@@ -370,6 +387,8 @@ void BookmarkManager::AttachTrack(kml::TrackId trackId, kml::MarkGroupId groupId
 void BookmarkManager::DetachTrack(kml::TrackId trackId, kml::MarkGroupId groupId)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto it = m_tracks.find(trackId);
+  it->second->Detach();
   GetBmCategory(groupId)->DetachTrack(trackId);
 }
 
@@ -2061,6 +2080,16 @@ std::optional<std::string> BookmarkManager::GetKMLPath(std::string const & fileP
     if (!base::CopyFileX(filePath, fileSavePath))
       return {};
   }
+  else if (fileExt == kKmbExtension)
+  {
+    auto kmlData = LoadKmlFile(filePath, KmlFileType::Binary);
+    if (kmlData == nullptr)
+      return {};
+
+    fileSavePath = GenerateValidAndUniqueFilePathForKML(GetFileName(filePath));
+    if (!SaveKmlFileByExt(*kmlData, fileSavePath))
+      return {};
+  }
   else if (fileExt == kKmzExtension)
   {
     try
@@ -2650,7 +2679,6 @@ void BookmarkManager::SetUniqueName(kml::CategoryData & data, UniquityChecker ch
 std::unique_ptr<kml::FileData> BookmarkManager::CollectBmGroupKMLData(BookmarkCategory const * group) const
 {
   auto kmlData = std::make_unique<kml::FileData>();
-  kmlData->m_deviceId = GetPlatform().UniqueClientId();
   kmlData->m_serverId = group->GetServerId();
   kmlData->m_categoryData = group->GetCategoryData();
   auto const & markIds = group->GetUserMarks();
@@ -3366,6 +3394,11 @@ void BookmarkManager::EditSession::DeleteBookmark(kml::MarkId bmId)
   m_bmManager.DeleteBookmark(bmId);
 }
 
+Track * BookmarkManager::EditSession::GetTrackForEdit(kml::TrackId trackId)
+{
+  return m_bmManager.GetTrackForEdit(trackId);
+}
+
 void BookmarkManager::EditSession::DeleteTrack(kml::TrackId trackId)
 {
   m_bmManager.DeleteTrack(trackId);
@@ -3400,6 +3433,11 @@ void BookmarkManager::EditSession::AttachBookmark(kml::MarkId bmId, kml::MarkGro
 void BookmarkManager::EditSession::DetachBookmark(kml::MarkId bmId, kml::MarkGroupId groupId)
 {
   m_bmManager.DetachBookmark(bmId, groupId);
+}
+
+void BookmarkManager::EditSession::MoveTrack(kml::TrackId trackID, kml::MarkGroupId curGroupID, kml::MarkGroupId newGroupID)
+{
+  m_bmManager.MoveTrack(trackID, curGroupID, newGroupID);
 }
 
 void BookmarkManager::EditSession::AttachTrack(kml::TrackId trackId, kml::MarkGroupId groupId)

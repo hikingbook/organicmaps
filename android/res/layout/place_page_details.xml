@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:background="?windowBackgroundForced"
   android:orientation="vertical">
 
@@ -36,13 +37,16 @@
 
     <include layout="@layout/place_page_placename"/>
 
-    <include layout="@layout/place_page_key_info_header"/>
-
     <include layout="@layout/place_page_opening_hours"/>
 
     <include layout="@layout/place_page_entrance"/>
 
-    <include layout="@layout/place_page_phone"/>
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rw__phone"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?cardBackground"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <include layout="@layout/place_page_website"/>
 

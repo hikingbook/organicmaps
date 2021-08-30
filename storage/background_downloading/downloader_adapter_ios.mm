@@ -69,11 +69,17 @@ void BackgroundDownloaderAdapter::Download(QueuedCountry && queuedCountry)
 
   auto const countryId = queuedCountry.GetCountryId();
   auto urls = MakeUrlList(queuedCountry.GetRelativeUrl());
+  // Get urls order from worst to best.
+  std::reverse(urls.begin(), urls.end());
   auto const path = queuedCountry.GetFileDownloadPath();
 
-  queuedCountry.OnStartDownloading();
+  // The order is important here: add to the queue first, notify start downloading then.
+  // Infinite recursion possible here, otherwise:
+  // OnStartDownloading -> NotifyStatusChanged -> processCountryEvent -> configDialog (?!)
+  // -> downloadNode for the same country if autodownload enabled -> Download.
+  m_queue.Append(QueuedCountry(queuedCountry));
 
-  m_queue.Append(std::move(queuedCountry));
+  queuedCountry.OnStartDownloading();
 
   DownloadFromLastUrl(countryId, path, std::move(urls));
 }

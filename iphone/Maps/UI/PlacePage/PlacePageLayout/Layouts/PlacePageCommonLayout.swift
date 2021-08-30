@@ -34,7 +34,6 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
   lazy var previewViewController: PlacePagePreviewViewController = {
     let vc = storyboard.instantiateViewController(ofType: PlacePagePreviewViewController.self)
     vc.placePagePreviewData = placePageData.previewData
-    vc.delegate = interactor
     return vc
   } ()
   
@@ -48,10 +47,6 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
   lazy var descriptionDividerViewController: PlacePageDividerViewController = {
     let vc = storyboard.instantiateViewController(ofType: PlacePageDividerViewController.self)
     vc.view.isHidden = true
-    if let bookmarkData = placePageData.bookmarkData {
-      let group = BookmarkGroup(categoryId: bookmarkData.bookmarkGroupId, bookmarksManager: BookmarksManager.shared())
-      vc.isAuthorIconHidden = true
-    }
     vc.titleText = L("placepage_place_description").uppercased()
     return vc
   } ()
@@ -208,6 +203,10 @@ extension PlacePageCommonLayout {
     if let bookmarkData = placePageData.bookmarkData {
       bookmarkViewController.bookmarkData = bookmarkData
       isBookmark = true
+    }
+    if let title = placePageData.previewData.title {
+      header?.setTitle(title)
+      placePageNavigationViewController.setTitle(title)
     }
     self.presenter?.layoutIfNeeded()
     UIView.animate(withDuration: kDefaultAnimationDuration) { [unowned self] in

@@ -82,9 +82,7 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_base"
         android:paddingStart="@dimen/margin_base"
-        android:paddingRight="@dimen/margin_base"
         android:paddingEnd="@dimen/margin_base"
         tools:visibility="gone">
 
@@ -105,8 +103,7 @@
           android:fontFamily="@string/robotoMedium"
           android:text="@string/openstreetmap"
           android:textAllCaps="false"
-          android:textAppearance="@style/MwmTextAppearance.Body1.Light"
-          tools:targetApi="jelly_bean"/>
+          android:textAppearance="@style/MwmTextAppearance.Body1.Light"/>
 
         <TextView
           android:layout_width="wrap_content"

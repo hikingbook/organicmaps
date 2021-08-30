@@ -8,6 +8,7 @@
 #include "com/mapswithme/util/NetworkPolicy.hpp"
 #include "com/mapswithme/vulkan/android_vulkan_context_factory.hpp"
 
+#include "map/bookmark_helpers.hpp"
 #include "map/chart_generator.hpp"
 #include "map/everywhere_search_params.hpp"
 #include "map/user_mark.hpp"
@@ -1051,15 +1052,16 @@ Java_com_mapswithme_maps_Framework_nativeGetSettingsDir(JNIEnv * env, jclass)
 JNIEXPORT jobjectArray JNICALL
 Java_com_mapswithme_maps_Framework_nativeGetMovableFilesExts(JNIEnv * env, jclass)
 {
-  vector<string> exts = { DATA_FILE_EXTENSION, FONT_FILE_EXTENSION, ROUTING_FILE_EXTENSION };
+  vector<string> exts = { DATA_FILE_EXTENSION, FONT_FILE_EXTENSION };
   platform::CountryIndexes::GetIndexesExts(exts);
   return jni::ToJavaStringArray(env, exts);
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_mapswithme_maps_Framework_nativeGetBookmarksExt(JNIEnv * env, jclass)
+JNIEXPORT jobjectArray JNICALL
+Java_com_mapswithme_maps_Framework_nativeGetBookmarksFilesExts(JNIEnv * env, jclass)
 {
-  return jni::ToJavaString(env, BOOKMARKS_FILE_EXTENSION);
+  const vector<string> exts = { kKmzExtension, kKmlExtension, kKmbExtension };
+  return jni::ToJavaStringArray(env, exts);
 }
 
 JNIEXPORT void JNICALL
@@ -1117,12 +1119,6 @@ JNIEXPORT void JNICALL
 Java_com_mapswithme_maps_Framework_nativeDisableFollowing(JNIEnv * env, jclass)
 {
   frm()->GetRoutingManager().DisableFollowMode();
-}
-
-JNIEXPORT jstring JNICALL
-Java_com_mapswithme_maps_Framework_nativeGetUserAgent(JNIEnv * env, jclass)
-{
-  return jni::ToJavaString(env, GetPlatform().GetAppUserAgent());
 }
 
 JNIEXPORT jobjectArray JNICALL
@@ -1365,7 +1361,17 @@ Java_com_mapswithme_maps_Framework_nativeMarkMapStyle(JNIEnv * env, jclass, jint
 JNIEXPORT void JNICALL
 Java_com_mapswithme_maps_Framework_nativeSetRouter(JNIEnv * env, jclass, jint routerType)
 {
-  g_framework->GetRoutingManager().SetRouter(static_cast<routing::RouterType>(routerType));
+  using Type = routing::RouterType;
+  Type type = Type::Vehicle;
+  switch (routerType)
+  {
+    case 0: break;
+    case 1: type = Type::Pedestrian; break;
+    case 2: type = Type::Bicycle; break;
+    case 3: type = Type::Transit; break;
+    default: assert(false); break;
+  }
+  g_framework->GetRoutingManager().SetRouter(type);
 }
 
 JNIEXPORT jint JNICALL

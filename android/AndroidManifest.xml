@@ -25,7 +25,6 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <!--
     https://developer.android.com/reference/androidx/core/app/JobIntentService:
@@ -40,6 +39,12 @@
   <uses-permission android:name="android.permission.BATTERY_STATS"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.TTS_SERVICE"/>
+    </intent>
+  </queries>
+
   <!-- -->
   <supports-screens
       android:largeScreens="true"
@@ -53,7 +58,7 @@
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:theme="@style/MwmTheme"
-      android:supportsRtl="false"
+      android:supportsRtl="true"
       android:networkSecurityConfig="@xml/network_security_config">
 
     <activity
@@ -86,12 +91,18 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
 
-        <data
-            android:host="omaps.app"
-            android:scheme="https"/>
-        <data
-            android:host="omaps.app"
-            android:scheme="http"/>
+        <data android:scheme="http" android:host="ge0.me"/>
+        <data android:scheme="https"/>
+      </intent-filter>
+
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+
+        <data android:scheme="http" android:host="omaps.app"/>
+        <data android:scheme="https"/>
       </intent-filter>
 
       <intent-filter>
@@ -100,12 +111,8 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
 
-        <data
-          android:host="maps.google.com"
-          android:scheme="https"/>
-        <data
-          android:host="maps.google.com"
-          android:scheme="http"/>
+        <data android:scheme="http" android:host="maps.google.com"/>
+        <data android:scheme="https"/>
       </intent-filter>
 
       <intent-filter>
@@ -165,23 +172,66 @@
       </intent-filter>
 
       <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
+        <action android:name="android.intent.action.SEND"/>
         <category android:name="android.intent.category.DEFAULT"/>
-        <data
-          android:host="*"
-          android:mimeType="*/*"
-          android:pathPattern=".*\\.kmz"
-          android:scheme="file"/>
+        <data android:mimeType="application/vnd.google-earth.kmz"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="application/vnd.google-earth.kml+xml"/>
       </intent-filter>
 
       <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
-        <data
-          android:host="*"
-          android:mimeType="*/*"
-          android:pathPattern=".*\\.kml"
-          android:scheme="file"/>
+        <data android:scheme="content"/>
+        <data android:scheme="file"/>
+        <data android:scheme="data"/>
+        <data android:host="*"/>
+        <data android:mimeType="*/*"/>
+        <!-- See http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i -->
+        <data android:pathPattern="*.kmz"/>
+        <data android:pathPattern=".*\\.kmz" />
+        <data android:pathPattern=".*\\..*\\.kmz" />
+        <data android:pathPattern=".*\\..*\\..*\\.kmz" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kmz" />
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="content"/>
+        <data android:scheme="file"/>
+        <data android:scheme="data"/>
+        <data android:host="*"/>
+        <data android:mimeType="*/*"/>
+        <data android:pathPattern="*.kml"/>
+        <data android:pathPattern=".*\\.kml" />
+        <data android:pathPattern=".*\\..*\\.kml" />
+        <data android:pathPattern=".*\\..*\\..*\\.kml" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kml" />
+      </intent-filter>
+
+      <!-- Old MAPS.ME binary format //-->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="content"/>
+        <data android:scheme="file"/>
+        <data android:scheme="data"/>
+        <data android:host="*"/>
+        <data android:mimeType="*/*"/>
+        <data android:pathPattern="*.kmb"/>
+        <data android:pathPattern=".*\\.kmb" />
+        <data android:pathPattern=".*\\..*\\.kmb" />
+        <data android:pathPattern=".*\\..*\\..*\\.kmb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kmb" />
       </intent-filter>
     </activity>
 
@@ -275,30 +325,6 @@
       android:permission="android.permission.BIND_JOB_SERVICE"
       android:exported="false"/>
 
-    <receiver android:name="com.mapswithme.maps.location.TrackRecorderWakeReceiver">
-      <intent-filter>
-        <action android:name="com.mapswithme.maps.TRACK_RECORDER_ALARM"/>
-      </intent-filter>
-    </receiver>
-
-    <service android:name="com.mapswithme.maps.location.TrackRecorderWakeService"
-             android:permission="android.permission.BIND_JOB_SERVICE"
-             android:exported="false"/>
-
-    <receiver
-      android:name="com.mapswithme.maps.background.SystemDownloadCompletedReceiver"
-      android:exported="true">
-      <intent-filter>
-        <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
-      </intent-filter>
-    </receiver>
-
-    <service
-      android:name="com.mapswithme.maps.background.SystemDownloadCompletedService"
-      android:permission="android.permission.BIND_JOB_SERVICE"
-      android:exported="false">
-    </service>
-
     <!-- Catches app upgraded intent -->
     <receiver android:name=".background.UpgradeReceiver">
       <intent-filter>
@@ -315,5 +341,11 @@
         android:resource="@xml/file_paths">
       </meta-data>
     </provider>
+
+    <!-- Disable Google's checks for visited sites and loaded URLs in bookmarks description. -->
+    <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
+    <!-- Disable Google's anonymous stats collection -->
+    <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
+
   </application>
 </manifest>

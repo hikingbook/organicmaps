@@ -1,10 +1,16 @@
 package com.mapswithme.maps.bookmarks;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.IdRes;
@@ -15,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.adapter.OnItemClickListener;
 import com.mapswithme.maps.base.BaseMwmRecyclerFragment;
@@ -22,12 +29,20 @@ import com.mapswithme.maps.base.DataChangedListener;
 import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.bookmarks.data.BookmarkSharingResult;
+import com.mapswithme.maps.dialog.DialogUtils;
 import com.mapswithme.maps.dialog.EditTextDialogFragment;
 import com.mapswithme.maps.widget.PlaceholderView;
 import com.mapswithme.maps.widget.recycler.ItemDecoratorFactory;
 import com.mapswithme.util.BottomSheetHelper;
+import com.mapswithme.util.StorageUtils;
+import com.mapswithme.util.concurrency.ThreadPool;
+import com.mapswithme.util.concurrency.UiThread;
+import com.mapswithme.util.log.Logger;
+import com.mapswithme.util.log.LoggerFactory;
 
+import java.io.File;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<BookmarkCategoriesAdapter>
     implements EditTextDialogFragment.EditTextDialogInterface,
@@ -35,12 +50,17 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
     BookmarkManager.BookmarksLoadingListener,
     CategoryListCallback,
     OnItemClickListener<BookmarkCategory>,
+    OnItemMoreClickListener<BookmarkCategory>,
     OnItemLongClickListener<BookmarkCategory>, BookmarkManager.BookmarksSharingListener
 
 {
   static final int REQ_CODE_DELETE_CATEGORY = 102;
+  static final int REQ_CODE_IMPORT_DIRECTORY = 103;
 
   private static final int MAX_CATEGORY_NAME_LENGTH = 60;
+
+  private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
+  private static final String TAG = BookmarkCategoriesFragment.class.getSimpleName();
 
   @Nullable
   private BookmarkCategory mSelectedCategory;
@@ -75,6 +95,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
     onPrepareControllers(view);
     getAdapter().setOnClickListener(this);
     getAdapter().setOnLongClickListener(this);
+    getAdapter().setOnMoreClickListener(this);
     getAdapter().setCategoryListCallback(this);
 
     RecyclerView rw = getRecyclerView();
@@ -104,6 +125,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
   {
     super.onStart();
     BookmarkManager.INSTANCE.addLoadingListener(this);
+    BookmarkManager.INSTANCE.addSharingListener(this);
   }
   
   @Override
@@ -111,6 +133,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
   {
     super.onStop();
     BookmarkManager.INSTANCE.removeLoadingListener(this);
+    BookmarkManager.INSTANCE.removeSharingListener(this);
   }
 
   @Override
@@ -213,6 +236,23 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
         MAX_CATEGORY_NAME_LENGTH, this);
   }
 
+  @Override
+  public void onImportButtonClick()
+  {
+    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+    // Sic: EXTRA_INITIAL_URI doesn't work
+    // https://stackoverflow.com/questions/65326605/extra-initial-uri-will-not-work-no-matter-what-i-do
+    // intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initial);
+
+    // Enable "Show SD card option"
+    // http://stackoverflow.com/a/31334967/1615876
+    intent.putExtra("android.content.extra.SHOW_ADVANCED", true);
+
+    intent.putExtra(DocumentsContract.EXTRA_EXCLUDE_SELF, true);
+    startActivityForResult(intent, REQ_CODE_IMPORT_DIRECTORY);
+  }
+
   @NonNull
   @Override
   public EditTextDialogFragment.OnTextSaveListener getSaveTextListener()
@@ -255,10 +295,48 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
   public final void onActivityResult(int requestCode, int resultCode, Intent data)
   {
     super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == Activity.RESULT_OK && requestCode == REQ_CODE_DELETE_CATEGORY)
+    if (resultCode != Activity.RESULT_OK)
+      return;
+    switch (requestCode)
+    {
+    case REQ_CODE_DELETE_CATEGORY:
     {
       onDeleteActionSelected(getSelectedCategory());
       return;
+    }
+    case REQ_CODE_IMPORT_DIRECTORY:
+    {
+      if (data == null)
+        throw new AssertionError("Data is null");
+
+      final Context context = getActivity();
+      final Uri rootUri = data.getData();
+      final ProgressDialog dialog = DialogUtils.createModalProgressDialog(context, R.string.wait_several_minutes);
+      dialog.show();
+      LOGGER.d(TAG, "Importing bookmarks from " + rootUri);
+      MwmApplication app = MwmApplication.from(context);
+      final File tempDir = new File(StorageUtils.getTempPath(app));
+      final ContentResolver resolver = context.getContentResolver();
+      ThreadPool.getStorage().execute(() -> {
+        AtomicInteger found = new AtomicInteger(0);
+        StorageUtils.listContentProviderFilesRecursively(
+            resolver, rootUri, uri -> {
+              if (BookmarkManager.INSTANCE.importBookmarksFile(resolver, uri, tempDir))
+                found.incrementAndGet();
+            });
+        UiThread.run(() -> {
+          if (dialog.isShowing())
+            dialog.dismiss();
+          int found_val = found.get();
+          String message = context.getResources().getQuantityString(
+              R.plurals.bookmarks_detect_message, found_val, found_val);
+          Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+        });
+      });
+      break;
+    }
+    default:
+      throw new AssertionError("Invalid requestCode: " + requestCode);
     }
   }
 
@@ -267,6 +345,12 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
   {
     showBottomMenu(category);
   }
+
+  public void onItemMoreClick(@NonNull View v, @NonNull BookmarkCategory category)
+  {
+    showBottomMenu(category);
+  }
+
 
   static void setEnableForMenuItem(@IdRes int id, @NonNull BottomSheet bottomSheet,
                                    boolean enable)

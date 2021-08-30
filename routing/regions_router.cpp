@@ -88,13 +88,9 @@ void RegionsRouter::Do()
 
   for (size_t i = 0; i < m_checkpoints.GetNumSubroutes(); ++i)
   {
-    auto const & [pointFrom, mwmFrom] = GetCheckpointRegion(i);
-    auto const & [pointTo, mwmTo] = GetCheckpointRegion(i + 1);
-
-    if (mwmFrom == mwmTo)
+    // equal mwm ids
+    if (GetCheckpointRegion(i).second == GetCheckpointRegion(i + 1).second)
       continue;
-
-    uint32_t const fakeNumerationStart = 0;
 
     std::optional<FakeEnding> const startFakeEnding =
         sparseGraph.GetFakeEnding(m_checkpoints.GetPoint(i));
@@ -107,7 +103,7 @@ void RegionsRouter::Do()
       return;
 
     IndexGraphStarter subrouteStarter(*startFakeEnding, *finishFakeEnding,
-                                      fakeNumerationStart, false /* isStartSegmentStrictForward */,
+                                      0 /* fakeNumerationStart */, false /* isStartSegmentStrictForward */,
                                       *graph);
 
     subrouteStarter.GetGraph().SetMode(WorldGraphMode::NoLeaps);
@@ -126,9 +122,9 @@ void RegionsRouter::Do()
     {
       for (bool front : {false, true})
       {
-        LatLonWithAltitude const & point = subrouteStarter.GetJunction(s, front);
-        std::string name = m_countryFileGetterFn(mercator::FromLatLon(point.GetLatLon()));
+        auto const & ll = subrouteStarter.GetJunction(s, front).GetLatLon();
 
+        std::string name = m_countryFileGetterFn(mercator::FromLatLon(ll));
         if (name.empty() && !IndexGraphStarter::IsFakeSegment(s))
           name = m_numMwmIds->GetFile(s.GetMwmId()).GetName();
 

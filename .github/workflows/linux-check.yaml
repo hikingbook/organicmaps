@@ -1,19 +1,20 @@
 name: Linux Check
 on:
+  workflow_dispatch: # Manual trigger
   pull_request:
     paths-ignore:
-      - .github/workflows/android*
-      - .github/workflows/ios*
+      - .gitignore
+      - .github/**
       - CONTRIBUTORS
       - LICENSE
       - NOTICE
       - README.md
       - android/**
-      - docs/**
       - iphone/**
+      - xcode/**
+      - docs/**
       - packaging/**
       - pyhelpers/**
-      - xcode/**
 
 jobs:
   linux-debug:
@@ -21,11 +22,9 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        compiler: [
-          { CXX: g++-10, CC: gcc-10 },
-          { CXX: clang++, CC: clang },
-        ]
+        compiler: [{ CXX: g++-10, CC: gcc-10 }, { CXX: clang++, CC: clang }]
 
     steps:
       - name: Checkout sources
@@ -38,7 +37,8 @@ jobs:
       - name: Install build tools and dependencies
         shell: bash
         run: |
-          sudo apt-get install -y \
+          sudo apt update -y
+          sudo apt install -y \
               ninja-build \
               qtbase5-dev \
               libqt5svg5-dev \
@@ -88,8 +88,6 @@ jobs:
             -e drape_tests \
             -e shaders_tests \
                             \
-            -e routing_tests \
-            -e generator_tests \
             -e opening_hours_tests \
             -e opening_hours_integration_tests \
             -e routing_consistency_tests \

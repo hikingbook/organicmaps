@@ -1,4 +1,4 @@
-protocol BottomTabBarPresenterProtocol: class {
+protocol BottomTabBarPresenterProtocol: AnyObject {
   func configure()
   func onSearchButtonPressed()
   func onPoint2PointButtonPressed()
@@ -20,7 +20,6 @@ class BottomTabBarPresenter: NSObject {
 
 extension BottomTabBarPresenter: BottomTabBarPresenterProtocol {
   func configure() {
-    view?.isLayersBadgeHidden = true
   }
 
   func onSearchButtonPressed() {

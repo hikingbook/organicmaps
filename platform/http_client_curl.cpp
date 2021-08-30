@@ -1,7 +1,7 @@
 /*******************************************************************************
  The MIT License (MIT)
 
- Copyright (c) 2014 Alexander Zolotarev <me@alex.bio> from Minsk, Belarus
+ Copyright (c) 2014 Alexander Borsuk <me@alex.bio> from Minsk, Belarus
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -188,7 +188,15 @@ bool HttpClient::RunHttpRequest()
   ScopedRemoveFile body_deleter;
   ScopedRemoveFile received_file_deleter;
 
-  std::string cmd = "curl -s -w '%{http_code}' -X " + m_httpMethod + " -D '" + headers_deleter.m_fileName + "' ";
+  std::string cmd = "curl -s -w '%{http_code}' -D '" + headers_deleter.m_fileName + "' ";
+  // From curl manual:
+  // This  option [-X] only changes the actual word used in the HTTP request, it does not alter
+  // the way curl behaves. So for example if you want to make a proper
+  // HEAD request, using -X HEAD will not suffice. You need to use the -I, --head option.
+  if (m_httpMethod == "HEAD")
+    cmd += "-I ";
+  else
+    cmd += "-X " + m_httpMethod + " ";
 
   for (auto const & header : m_headers)
   {

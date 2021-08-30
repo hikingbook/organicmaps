@@ -17,8 +17,7 @@
       android:layout_height="wrap_content"
       android:background="?attr/colorPrimary"
       android:elevation="@dimen/dp_0"
-      app:elevation="@dimen/dp_0"
-      tools:targetApi="lollipop">
+      app:elevation="@dimen/dp_0">
         <include
           android:id="@+id/toolbar"
           layout="@layout/toolbar_with_search_no_elevation"
@@ -75,8 +74,8 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center_horizontal"
-          android:paddingLeft="@dimen/margin_double_and_half"
-          android:paddingRight="@dimen/margin_double_and_half"
+          android:paddingStart="@dimen/margin_double_and_half"
+          android:paddingEnd="@dimen/margin_double_and_half"
           android:paddingTop="@dimen/placeholder_margin_top"
           android:visibility="gone"
           tools:visibility="visible"/>

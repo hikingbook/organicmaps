@@ -17,11 +17,9 @@ import com.mapswithme.maps.background.Notifier;
 import com.mapswithme.maps.base.MediaPlayerWrapper;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.downloader.CountryItem;
-import com.mapswithme.maps.downloader.MapDownloadManager;
 import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.editor.Editor;
 import com.mapswithme.maps.location.LocationHelper;
-import com.mapswithme.maps.location.TrackRecorder;
 import com.mapswithme.maps.maplayer.isolines.IsolinesManager;
 import com.mapswithme.maps.maplayer.subway.SubwayManager;
 import com.mapswithme.maps.maplayer.traffic.TrafficManager;
@@ -59,10 +57,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
   private IsolinesManager mIsolinesManager;
-
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private MapDownloadManager mMapDownloadManager;
 
   private volatile boolean mFrameworkInitialized;
   private volatile boolean mPlatformInitialized;
@@ -149,7 +143,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     mBackgroundTracker = new AppBackgroundTracker(this);
     mSubwayManager = new SubwayManager(this);
     mIsolinesManager = new IsolinesManager(this);
-    mMapDownloadManager = new MapDownloadManager(this);
 
     mPlayer = new MediaPlayerWrapper(this);
     WebView.setWebContentsDebuggingEnabled(Utils.isDebugOrBeta());
@@ -182,7 +175,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     final String apkPath = StorageUtils.getApkPath(this);
     log.d(TAG, "Apk path = " + apkPath);
     // Note: StoragePathManager uses Config, which requires initConfig() to be called.
-    final String writablePath = new StoragePathManager().findMapsStorage(this);
+    final String writablePath = StoragePathManager.findMapsStorage(this);
     log.d(TAG, "Writable path = " + writablePath);
     final String privatePath = StorageUtils.getPrivatePath(this);
     log.d(TAG, "Private path = " + privatePath);
@@ -239,7 +232,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     TrafficManager.INSTANCE.initialize(null);
     SubwayManager.from(this).initialize(null);
     IsolinesManager.from(this).initialize(null);
-    TrackRecorder.INSTANCE.initialize(this);
     mBackgroundTracker.addListener(this);
 
     getLogger().i(TAG, "Framework initialized");
@@ -323,12 +315,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   public void onTransit(boolean foreground)
   {
     nativeOnTransit(foreground);
-  }
-
-  @NonNull
-  public MapDownloadManager getMapDownloadManager()
-  {
-    return mMapDownloadManager;
   }
 
   private class StorageCallbackImpl implements MapManager.StorageCallback

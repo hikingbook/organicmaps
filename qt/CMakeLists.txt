@@ -87,7 +87,6 @@ omim_link_libraries(
   transit
   descriptions
   drape
-  web_api
   kml
   editor
   indexer
@@ -171,7 +170,6 @@ copy_resources(
   resources-xxhdpi_clear
   resources-xxxhdpi_clear
   resources-6plus_clear
-  taxi_places
   welcome.html
 
   categories.txt
@@ -194,8 +192,10 @@ copy_resources(
   unicode_blocks.txt
   World.mwm
   WorldCoasts.mwm
-  icudt57l.dat
+  icudt69l.dat
 
+  00_NotoNaskhArabic-Regular.ttf
+  00_NotoSansThai-Regular.ttf
   01_dejavusans.ttf
   02_droidsans-fallback.ttf
   03_jomolhari-id-a3d.ttf

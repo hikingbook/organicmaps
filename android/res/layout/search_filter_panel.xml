@@ -16,22 +16,21 @@
     style="@style/MwmTextAppearance.Button"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/margin_half"
-    android:paddingRight="@dimen/margin_half"
+    android:paddingStart="@dimen/margin_half"
+    android:paddingEnd="@dimen/margin_half"
     android:layout_centerVertical="true"
     android:gravity="center"
     android:background="?clickableBackground"
     android:fontFamily="@string/robotoMedium"
     android:textSize="@dimen/text_size_caption"
-    android:text="@string/search_show_on_map"
-    tools:targetApi="jelly_bean"/>
+    android:text="@string/search_show_on_map"/>
   <include
     android:id="@+id/divider"
     layout="@layout/divider_horizontal"
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:layout_alignParentBottom="true"
-    android:layout_marginLeft="@dimen/neg_margin_half"
-    android:layout_marginRight="@dimen/neg_margin_half"
+    android:layout_marginStart="@dimen/neg_margin_half"
+    android:layout_marginEnd="@dimen/neg_margin_half"
     android:layout_marginBottom="@dimen/neg_margin_half"/>
 </RelativeLayout>

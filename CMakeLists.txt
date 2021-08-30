@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.18)
 
 project(omim C CXX)
 
@@ -187,12 +187,14 @@ include(BundledBoost)
 
 # Scripts
 
-execute_process(
-    COMMAND "${OMIM_ROOT}/tools/unix/check_cert.sh"
-    RESULT_VARIABLE CheckCertResult
-)
-if (CheckCertResult)
-    message(FATAL_ERROR "Certificate check failed")
+if (NOT CMAKE_HOST_WIN32)
+  execute_process(
+      COMMAND "${OMIM_ROOT}/tools/unix/check_cert.sh"
+      RESULT_VARIABLE CheckCertResult
+  )
+  if (CheckCertResult)
+      message(FATAL_ERROR "Certificate check failed")
+  endif()
 endif()
 
 if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
@@ -267,6 +269,12 @@ if (USE_PCH)
   )
 endif()
 
+# Suppress "Policy CMP0077 is not set: option() honors normal variables"
+# for the option(EXPAT_SHARED_LIBS) in 3party/expat/expat/CMakeLists.txt
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+# Build libexpat.a instead of libexpat.so
+set(EXPAT_SHARED_LIBS OFF)
+
 # Include subdirectories
 add_subdirectory(3party/agg)
 add_subdirectory(3party/bsdiff-courgette)
@@ -330,7 +338,6 @@ add_subdirectory(storage)
 add_subdirectory(tracking)
 add_subdirectory(traffic)
 add_subdirectory(transit)
-add_subdirectory(web_api)
 
 if (PLATFORM_DESKTOP)
   if (BUILD_MAPSHOT)

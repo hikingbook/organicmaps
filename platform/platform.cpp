@@ -84,11 +84,6 @@ Platform::EError Platform::ErrnoToError()
   }
 }
 
-std::string Platform::UniqueIdHash() const
-{
-  return coding::SHA1::CalculateBase64ForString(UniqueClientId());
-}
-
 // static
 bool Platform::RmDirRecursively(string const & dirName)
 {
@@ -155,11 +150,6 @@ string Platform::ReadPathForFile(string const & file, string searchScope) const
                                 "Have been looking in:\n", possiblePaths));
 }
 
-string Platform::ResourcesMetaServerUrl() const
-{
-  return RESOURCES_METASERVER_URL;
-}
-
 string Platform::MetaServerUrl() const
 {
   return METASERVER_URL;
@@ -194,13 +184,15 @@ void Platform::GetFontNames(FilesList & res) const
   /// @todo Actually, this list should present once in all our code.
   /// We can take it from data/external_resources.txt
   char const * arrDef[] = {
+    "00_NotoNaskhArabic-Regular.ttf",
+    "00_NotoSansThai-Regular.ttf",
     "01_dejavusans.ttf",
     "02_droidsans-fallback.ttf",
     "03_jomolhari-id-a3d.ttf",
     "04_padauk.ttf",
     "05_khmeros.ttf",
     "06_code2000.ttf",
-    "07_roboto_medium.ttf"
+    "07_roboto_medium.ttf",
   };
   res.insert(res.end(), arrDef, arrDef + ARRAY_SIZE(arrDef));
 

@@ -124,45 +124,6 @@ void ProcessCategory(string const & line, vector<string> & groups, vector<uint32
 // static
 int8_t constexpr CategoriesHolder::kEnglishCode;
 int8_t constexpr CategoriesHolder::kUnsupportedLocaleCode;
-uint8_t constexpr CategoriesHolder::kMaxSupportedLocaleIndex;
-
-// *NOTE* These constants should be updated when adding new
-// translation to categories.txt. When editing, keep in mind to check
-// CategoriesHolder::MapLocaleToInteger() and
-// CategoriesHolder::MapIntegerToLocale() as their implementations
-// strongly depend on the contents of the variable.
-vector<CategoriesHolder::Mapping> const CategoriesHolder::kLocaleMapping = {{"en", 1},
-                                                                            {"ru", 2},
-                                                                            {"uk", 3},
-                                                                            {"de", 4},
-                                                                            {"fr", 5},
-                                                                            {"it", 6},
-                                                                            {"es", 7},
-                                                                            {"ko", 8},
-                                                                            {"ja", 9},
-                                                                            {"cs", 10},
-                                                                            {"nl", 11},
-                                                                            {"zh-Hant", 12},
-                                                                            {"pl", 13},
-                                                                            {"pt", 14},
-                                                                            {"hu", 15},
-                                                                            {"th", 16},
-                                                                            {"zh-Hans", 17},
-                                                                            {"ar", 18},
-                                                                            {"da", 19},
-                                                                            {"tr", 20},
-                                                                            {"sk", 21},
-                                                                            {"sv", 22},
-                                                                            {"vi", 23},
-                                                                            {"id", 24},
-                                                                            {"ro", 25},
-                                                                            {"nb", 26},
-                                                                            {"fi", 27},
-                                                                            {"el", 28},
-                                                                            {"he", 29},
-                                                                            {"sw", 30},
-                                                                            {"fa", 31}};
-vector<string> CategoriesHolder::kDisabledLanguages = {"el", "he", "sw"};
 
 CategoriesHolder::CategoriesHolder(unique_ptr<Reader> && reader)
 {
@@ -172,7 +133,7 @@ CategoriesHolder::CategoriesHolder(unique_ptr<Reader> && reader)
 
 #if defined(DEBUG)
   for (auto const & entry : kLocaleMapping)
-    ASSERT_LESS_OR_EQUAL(entry.m_code, kMaxSupportedLocaleIndex, ());
+    ASSERT_LESS_OR_EQUAL(entry.m_code, kLocaleMapping.size(), ());
 #endif
 }
 
@@ -363,10 +324,10 @@ int8_t CategoriesHolder::MapLocaleToInteger(string const & locale)
       find(kDisabledLanguages.begin(), kDisabledLanguages.end(), "en") == kDisabledLanguages.end(),
       ());
 
-  for (auto const & entry : kLocaleMapping)
+  for (auto it = kLocaleMapping.crbegin(); it != kLocaleMapping.crend(); ++it)
   {
-    if (locale.find(entry.m_name) == 0)
-      return entry.m_code;
+    if (locale.find(it->m_name) == 0)
+      return it->m_code;
   }
 
   // Special cases for different Chinese variations
@@ -378,10 +339,10 @@ int8_t CategoriesHolder::MapLocaleToInteger(string const & locale)
     for (char const * s : {"hant", "tw", "hk", "mo"})
     {
       if (lower.find(s) != string::npos)
-        return 12;  // Traditional Chinese
+        return 36;  // Traditional Chinese
     }
 
-    return 17;  // Simplified Chinese by default for all other cases
+    return 35;  // Simplified Chinese by default for all other cases
   }
 
   return kUnsupportedLocaleCode;

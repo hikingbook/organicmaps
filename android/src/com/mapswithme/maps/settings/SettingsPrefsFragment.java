@@ -25,13 +25,11 @@ import androidx.preference.TwoStatePreference;
 
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.R;
-import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.downloader.OnmapDownloader;
 import com.mapswithme.maps.editor.ProfileActivity;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.location.LocationProviderFactory;
-import com.mapswithme.maps.location.TrackRecorder;
 import com.mapswithme.maps.sound.LanguageData;
 import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.util.Config;
@@ -41,7 +39,7 @@ import com.mapswithme.util.PowerManagment;
 import com.mapswithme.util.SharedPropertiesUtils;
 import com.mapswithme.util.ThemeSwitcher;
 import com.mapswithme.util.UiUtils;
-import com.mapswithme.util.concurrency.UiThread;
+import com.mapswithme.util.Utils;
 import com.mapswithme.util.log.LoggerFactory;
 
 import java.util.HashMap;
@@ -297,14 +295,21 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     initTransliterationPrefsCallbacks();
     init3dModePrefsCallbacks();
     initPerspectivePrefsCallbacks();
-    initTrackRecordPrefsCallbacks();
-    initPlayServicesPrefsCallbacks();
     initAutoZoomPrefsCallbacks();
     initLoggingEnabledPrefsCallbacks();
     initEmulationBadStorage();
     initUseMobileDataPrefsCallbacks();
     initPowerManagementPrefsCallbacks();
-    initCrashReports();
+    boolean playServices = initPlayServicesPrefsCallbacks();
+    boolean crashReports = initCrashReports();
+    if (!playServices && !crashReports)
+    {
+      // Remove "Tracking" section completely.
+      PreferenceCategory tracking = findPreference(getString(R.string.pref_subtittle_opt_out));
+      if (tracking != null)
+        mPreferenceScreen.removePreference(tracking);
+    }
+    initScreenSleepEnabledPrefsCallbacks();
     updateTts();
   }
 
@@ -345,7 +350,6 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
   {
     super.onResume();
 
-    initTrackRecordPrefsCallbacks();
     updateTts();
   }
 
@@ -452,46 +456,17 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
       return;
 
     NetworkPolicy.Type curValue = Config.getUseMobileDataSettings();
-
-    if (curValue != NetworkPolicy.Type.NOT_TODAY && curValue != NetworkPolicy.Type.TODAY
-        && curValue != NetworkPolicy.Type.NONE)
-    {
-      mobilePref.setValue(String.valueOf(curValue));
-      mobilePref.setSummary(mobilePref.getEntry());
-    }
-    else
-    {
-      mobilePref.setSummary(getString(R.string.mobile_data_description));
-    }
+    if (curValue == NetworkPolicy.Type.NOT_TODAY || curValue == NetworkPolicy.Type.TODAY)
+        curValue = NetworkPolicy.Type.ASK;
+    mobilePref.setValue(curValue.name());
     mobilePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
     {
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue)
       {
         String valueStr = (String)newValue;
-        int value = Integer.parseInt(valueStr);
-        NetworkPolicy.Type type = NetworkPolicy.Type.values()[value];
-
-        if (type == NetworkPolicy.Type.ALWAYS
-            || type == NetworkPolicy.Type.ASK
-            || type == NetworkPolicy.Type.NEVER)
-        {
-          Config.setUseMobileDataSettings(type);
-        }
-        else
-        {
-          throw new AssertionError("Wrong NetworkPolicy type, value = " + valueStr);
-        }
-
-        UiThread.runLater(new Runnable()
-        {
-          @Override
-          public void run()
-          {
-            mobilePref.setSummary(mobilePref.getEntry());
-          }
-        });
-
+        NetworkPolicy.Type type = NetworkPolicy.Type.valueOf(valueStr);
+        Config.setUseMobileDataSettings(type);
         return true;
       }
     });
@@ -566,15 +541,16 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     });
   }
 
-  private void initPlayServicesPrefsCallbacks()
+  private boolean initPlayServicesPrefsCallbacks()
   {
     Preference pref = findPreference(getString(R.string.pref_play_services));
     if (pref == null)
-      return;
+      return false;
 
     if (!LocationProviderFactory.isGoogleLocationAvailable(getActivity().getApplicationContext()))
     {
       removePreference(getString(R.string.pref_subtittle_opt_out), pref);
+      return false;
     }
     else
     {
@@ -594,69 +570,8 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
           return true;
         }
       });
+      return true;
     }
-  }
-
-  private void initTrackRecordPrefsCallbacks()
-  {
-    final ListPreference trackPref = findPreference(getString(R.string.pref_track_record));
-    final Preference pref = findPreference(getString(R.string.pref_track_record_time));
-    final Preference root = findPreference(getString(R.string.pref_track_screen));
-    if (trackPref == null || pref == null)
-      return;
-
-    boolean enabled = TrackRecorder.INSTANCE.isEnabled();
-    ((TwoStatePreference)pref).setChecked(enabled);
-    trackPref.setEnabled(enabled);
-    if (root != null)
-      root.setSummary(enabled ? R.string.on : R.string.off);
-    pref.setTitle(enabled ? R.string.on : R.string.off);
-    pref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
-    {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object newValue)
-      {
-        boolean enabled = (Boolean) newValue;
-        TrackRecorder.INSTANCE.setEnabled(enabled);
-        trackPref.setEnabled(enabled);
-        if (root != null)
-          root.setSummary(enabled ? R.string.on : R.string.off);
-        pref.setTitle(enabled ? R.string.on : R.string.off);
-        trackPref.performClick();
-        return true;
-      }
-    });
-
-    String value = (enabled ? String.valueOf(TrackRecorder.INSTANCE.getDuration()) : "0");
-    trackPref.setValue(value);
-    trackPref.setSummary(trackPref.getEntry());
-    trackPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
-    {
-      @Override
-      public boolean onPreferenceChange(final Preference preference, Object newValue)
-      {
-        int value = Integer.valueOf((String)newValue);
-        boolean enabled = value != 0;
-        if (enabled)
-          TrackRecorder.INSTANCE.setDuration(value);
-        TrackRecorder.INSTANCE.setEnabled(enabled);
-        ((TwoStatePreference) pref).setChecked(enabled);
-        trackPref.setEnabled(enabled);
-        if (root != null)
-          root.setSummary(enabled ? R.string.on : R.string.off);
-        pref.setTitle(enabled ? R.string.on : R.string.off);
-
-        UiThread.runLater(new Runnable()
-        {
-          @Override
-          public void run()
-          {
-            trackPref.setSummary(trackPref.getEntry());
-          }
-        });
-        return true;
-      }
-    });
   }
 
   private void init3dModePrefsCallbacks()
@@ -815,21 +730,41 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     });
   }
 
-  private void initCrashReports()
+  private boolean initCrashReports()
   {
     String key = getString(R.string.pref_crash_reports);
     Preference pref = findPreference(key);
     if (pref == null)
-      return;
+      return false;
 
     if (!CrashlyticsUtils.INSTANCE.isAvailable())
     {
       removePreference(getString(R.string.pref_subtittle_opt_out), pref);
-      return;
+      return false;
     }
 
     ((TwoStatePreference)pref).setChecked(CrashlyticsUtils.INSTANCE.isEnabled());
     pref.setOnPreferenceChangeListener((preference, newValue) -> onToggleCrashReports(newValue));
+    return true;
+  }
+
+  private void initScreenSleepEnabledPrefsCallbacks()
+  {
+    Preference pref = findPreference(getString(R.string.pref_screen_sleep));
+    if (pref == null)
+      return;
+
+    final boolean isScreenSleepEnabled = Config.isScreenSleepEnabled();
+    ((TwoStatePreference) pref).setChecked(isScreenSleepEnabled);
+    pref.setOnPreferenceChangeListener(
+        (preference, newValue) ->
+        {
+          boolean newVal = (Boolean) newValue;
+          if (isScreenSleepEnabled != newVal)
+            Config.setScreenSleepEnabled(newVal);
+            Utils.keepScreenOn(!newVal, getActivity().getWindow());
+          return true;
+        });
   }
 
   private void removePreference(@NonNull String categoryKey, @NonNull Preference preference)

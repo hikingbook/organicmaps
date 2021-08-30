@@ -18,6 +18,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.util.AndroidRuntimeException;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.DimenRes;
@@ -56,8 +57,7 @@ public class Utils
   @StringRes
   public static final int INVALID_ID = 0;
   public static final String UTF_8 = "utf-8";
-  public static final String BASE_64 = "base64";
-  public static final String TEXT_HTML = "text/html;";
+  public static final String TEXT_HTML = "text/html; charset=utf-8";
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = "Utils";
 
@@ -102,13 +102,23 @@ public class Utils
 
   public static void showSnackbar(@NonNull View view, @NonNull String message)
   {
-    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+    Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+    setSnackbarMaxLines(snackbar, 3);
+    snackbar.show();
   }
 
   public static void showSnackbarAbove(@NonNull View view, @NonNull View viewAbove, @NonNull String message)
   {
-    Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-            .setAnchorView(viewAbove).show();
+    Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+    setSnackbarMaxLines(snackbar, 3);
+    snackbar.setAnchorView(viewAbove);
+    snackbar.show();
+  }
+
+  private static void setSnackbarMaxLines(@NonNull final Snackbar snackbar, final int maxLinesCount)
+  {
+    TextView snackTextView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+    snackTextView.setMaxLines(maxLinesCount);
   }
 
   public static void showSnackbar(@NonNull Context context, @NonNull View view, int messageResId)
@@ -202,10 +212,7 @@ public class Utils
   {
     final Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-      marketIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-    else
-      marketIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    marketIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
 
     try
     {
@@ -791,6 +798,14 @@ public class Utils
           {
             Uri uri = StorageUtils.getUriForFilePath(activity, logsZipFile);
             intent.putExtra(Intent.EXTRA_STREAM, uri);
+            // Properly set permissions for intent, see
+            // https://developer.android.com/reference/androidx/core/content/FileProvider#include-the-permission-in-an-intent
+            intent.setData(uri);
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP_MR1) {
+              intent.setClipData(ClipData.newRawUri("", uri));
+              intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            }
           }
         }
         // Do this so some email clients don't complain about empty body.

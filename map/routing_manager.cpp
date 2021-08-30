@@ -203,8 +203,7 @@ VehicleType GetVehicleType(RouterType routerType)
   {
   case RouterType::Pedestrian: return VehicleType::Pedestrian;
   case RouterType::Bicycle: return VehicleType::Bicycle;
-  case RouterType::Vehicle:
-  case RouterType::Taxi: return VehicleType::Car;
+  case RouterType::Vehicle: return VehicleType::Car;
   case RouterType::Transit: return VehicleType::Transit;
   case RouterType::Count: CHECK(false, ("Invalid type", routerType)); return VehicleType::Count;
   }
@@ -517,10 +516,7 @@ void RoutingManager::SetRouterImpl(RouterType type)
   auto localFileChecker = [this](string const & countryFile) -> bool {
     MwmSet::MwmId const mwmId = m_callbacks.m_dataSourceGetter().GetMwmIdByCountryFile(
       platform::CountryFile(countryFile));
-    if (!mwmId.IsAlive())
-      return false;
-
-    return version::MwmTraits(mwmId.GetInfo()->m_version).HasRoutingIndex();
+    return mwmId.IsAlive();
   };
 
   auto const getMwmRectByName = [this](string const & countryId) -> m2::RectD {
@@ -686,7 +682,6 @@ bool RoutingManager::InsertRoute(Route const & route)
     switch (m_currentRouterType)
     {
       case RouterType::Vehicle:
-      case RouterType::Taxi:
         {
           subroute->m_routeType = m_currentRouterType == RouterType::Vehicle ? df::RouteType::Car : df::RouteType::Taxi;
           subroute->AddStyle(df::SubrouteStyle(df::kRouteColor, df::kRouteOutlineColor));
@@ -963,9 +958,6 @@ void RoutingManager::ReorderIntermediatePoints()
 
 void RoutingManager::GenerateNotifications(vector<string> & turnNotifications)
 {
-  if (m_currentRouterType == RouterType::Taxi)
-    return;
-
   m_routingSession.GenerateNotifications(turnNotifications);
 }
 

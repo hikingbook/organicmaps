@@ -324,6 +324,9 @@ private:
       // English - English
       "street", "st", "avenue", "av", "ave", "square", "sq", "road", "rd", "boulevard", "blvd", "drive", "dr", "highway", "hwy", "lane", "ln", "way", "circle", "place", "pl",
 
+      // Belarusian - Беларуская мова
+      "вуліца", "вул", "завулак", "набярэжная", "плошча", "пл", "праезд", "праспект", "пр", "тракт", "тр", "тупік",
+
       // Bulgarian - Български
       "булевард", "бул", "площад", "пл", "улица", "ул", "квартал", "кв",
 
@@ -394,7 +397,7 @@ private:
       "sokak", "sk.", "sok", "sokağı", "cadde", "cad", "cd", "caddesi", "bulvar", "bulvarı", "blv.",
 
       // Ukrainian - Українська
-      "дорога", "провулок", "площа", "шосе", "вулиця", "дор", "пров", "вул"
+      "дорога", "провулок", "площа", "шосе", "вулиця", "дор", "пров", "вул",
 
       // Vietnamese - Tiếng Việt
       "quốc lộ", "ql", "tỉnh lộ", "tl", "Đại lộ", "Đl", "Đường", "Đ", "Đường sắt", "Đs", "Đường phố", "Đp", "vuông", "con Đường", "Đại lộ", "Đường cao tốc",

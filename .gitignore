@@ -54,6 +54,11 @@ out/*
 qt/mapswithme.log
 
 # XCode
+xcode/keys/*
+xcode/build/*
+xcode/metadata/review_information/*
+xcode/fastlane/report.xml
+xcode/fastlane/README.md
 iphone/*/*.xcodeproj/*.pbxuser
 iphone/*/*.xcodeproj/*.perspectivev3
 iphone/*/*.xcodeproj/project.xcworkspace/*
@@ -138,6 +143,7 @@ android/libnotify.properties
 android/google-services.json
 android/google-play.json
 android/firebase-app-distribution.json
+android/firebase-test-lab.json
 android/huawei-appgallery.json
 android/res/xml/network_security_config.xml
 server
@@ -171,3 +177,14 @@ tools/python/data/*/*.egg-info
 # Configs
 tools/python/maps_generator/var/etc/map_generator.ini
 tools/python/routing/etc/*.ini
+
+# Helpers
+/node_modules/
+/package-lock.json
+
+# VS Code
+.vscode
+
+# Screenshots
+screenshots
+android/src/google/play/listings/??-??/graphics/*

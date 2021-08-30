@@ -7,8 +7,6 @@
 + (void)editPlace;
 + (void)addBusiness;
 + (void)addPlace:(CLLocationCoordinate2D)coordinate;
-+ (void)orderTaxi:(PlacePageData *)data;
-+ (void)taxiShown:(PlacePageData *)data;
 + (void)openWebsite:(PlacePageData *)data;
 + (void)call:(PlacePageData *)data;
 + (void)showAllFacilities:(PlacePageData *)data;
@@ -31,7 +29,6 @@
 + (void)avoidDirty;
 + (void)avoidFerry;
 + (void)avoidToll;
-+ (void)showRemoveAds;
 + (void)openElevationDifficultPopup:(PlacePageData *)data;
 
 @end

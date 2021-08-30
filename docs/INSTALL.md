@@ -8,11 +8,11 @@
 
 ### Preparing
 
-You need a Linux or a Mac machine to build OMaps.
+You need a Linux or a Mac machine to build a desktop version of Organic Maps.
 
- - We haven't compiled OMaps on Windows in a long time, though it is possible.
-   It is likely some make files should be updated.
-   If you succeed, please submit a tutorial.
+- We haven't compiled Organic Maps on Windows in a long time, though it is possible.
+  It is likely some make files should be updated.
+  If you succeed, please submit a tutorial.
 
 Ensure that you have at least 20GB of free space.
 
@@ -89,11 +89,11 @@ With all tools installed, just run `tools/unix/build_omim.sh`.
 It will build both debug and release versions to `../omim-build-<buildtype>`.
 Command-line switches are:
 
-* `-r` to build a release version
-* `-d` to build a debug version
-* `-c` to delete target directories before building
-* `-s` to not build a desktop app, when you don't have desktop Qt libraries.
-* `-p` with a path to where the binaries will be built.
+- `-r` to build a release version
+- `-d` to build a debug version
+- `-c` to delete target directories before building
+- `-s` to not build a desktop app, when you don't have desktop Qt libraries.
+- `-p` with a path to where the binaries will be built.
 
 After switches, you can specify a target (everything by default). For example,
 to build a generator tool release version only:
@@ -116,7 +116,6 @@ The `build_omim.sh` script basically runs these commands:
 
     cmake <path_to_omim> -DCMAKE_BUILD_TYPE={Debug|Release}
     make [<target>] -j <number_of_processes>
-
 
 ### Running
 
@@ -189,11 +188,7 @@ Some tests [are known to be broken](https://github.com/organicmaps/organicmaps/i
 
 ### Preparing
 
-You need a Linux or a Mac machine to build OMaps for Android.
-
- - We haven't compiled OMaps on Windows in a long time, though it is possible.
-   It is likely some make files should be updated.
-   If you succeed, please submit a tutorial.
+Linux, Mac, or Windows should work to build Organic Maps for Android.
 
 Ensure that you have at least 20GB of free space.
 
@@ -202,18 +197,45 @@ Install [Android Studio](https://developer.android.com/studio).
 Install [Android SDK](https://developer.android.com/sdk/index.html) and
 [NDK](https://developer.android.com/tools/sdk/ndk/index.html):
 
- - Run the Android Studio.
- - Open "SDK Manager" ("Tools" → "SDK Manager").
- - Choose "Android 10 (Q) API Level 29" SDK.
- - Choose "version "29" and click "OK".
- - Open "SDK Tools", choose "NDK (side by side)" and "CMake" and click "OK"
+- Run the Android Studio.
+- Open "SDK Manager" ("Tools" → "SDK Manager").
+- Choose "Android 11 (R) API Level 30" SDK.
+- Choose "version "30" and click "OK".
+- Check "Show Package Details" checkbox.
+- Choose "NDK (side by side)" version **21.X.Y**.
+- Choose "CMake" version **3.18.1**.
+- Click "OK".
 
 Alternatively, you can install only
 [Android SDK](https://developer.android.com/sdk/index.html) and
 [NDK](https://developer.android.com/tools/sdk/ndk/index.html) without
-installing Android Studio.
+installing Android Studio. Please make sure that SDK for API Level 30,
+NDK version **21.X.Y** and CMake version **3.18.XX** are installed.
+
+Configure `PATH` to prefer `cmake` from Android SDK/NDK instead of
+installed in the system:
+
+**Linux**:
+
+```bash
+export PATH=$HOME/Android/sdk/cmake/3.18.1/bin:$PATH
+```
+
+**macOS**:
+
+```bash
+export PATH=$HOME/Library/Android/sdk/cmake/3.18.1/bin:$PATH
+```
 
 ### Getting sources
+
+**Windows 10.** Enable [symlinks][git-symlinks] support in git:
+
+[git-symlinks]: https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks
+
+```bash
+git config --global core.symlinks true
+```
 
 Clone the repository:
 
@@ -231,7 +253,6 @@ Configure the repository as opensource build:
 
 ```bash
 ./configure.sh
-
 ```
 
 or with private repository
@@ -240,6 +261,19 @@ or with private repository
 ./configure.sh <private-repo-name>
 ```
 
+**Windows 10.** Use WSL to run `./configure.sh`:
+
+```bash
+bash ./configure.sh # execute the script by using Ubuntu WSL VM
+```
+
+**Windows 10.** Alternative way is to initialize Boost manually:
+
+1. Install Visual Studio 2019 Community Edition.
+2. Add cl.exe to your PATH (`C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\\vcvars32.bat`).
+3. Run `./configure.sh` from _Git (for Window) Bash_ and ignore all errors related to Boost.
+4. Go to `./3party/boost`, run `./bootstrap.bat`, and then `b2 headers` to configure Boost.
+
 Set Android SDK and NDK path:
 
 ```bash
@@ -247,6 +281,8 @@ Set Android SDK and NDK path:
 ./tools/android/set_up_android.py --sdk $HOME/Android/Sdk
 # MacOS
 ./tools/android/set_up_android.py --sdk $HOME/Library/Android/Sdk
+# Windows 10
+# no actions needed, should work out of the box
 ```
 
 ### Building
@@ -254,15 +290,16 @@ Set Android SDK and NDK path:
 There is a matrix of different build variants:
 
 - Type:
-  * `Debug` is a debug version with all checks enabled.
-  * `Beta` is a manual pre-release build.
-  * `Release` is a fully optimized version for stores.
+
+  - `Debug` is a debug version with all checks enabled.
+  - `Beta` is a manual pre-release build.
+  - `Release` is a fully optimized version for stores.
 
 - Flavor:
-  * `Web` is a light apk without any bundled maps.
-  * `Google` is a full store version without low-zoom overview world map.
-  * There are also `Amazon`, `Samsung`, `Xiaomi`, `Yandex`
-        and other targets.
+  - `Web` is a light apk without any bundled maps.
+  - `Google` is a full store version without low-zoom overview world map.
+  - There are also `Amazon`, `Samsung`, `Xiaomi`, `Yandex`
+    and other targets.
 
 To run a debug version on your device/emulator:
 
@@ -282,22 +319,22 @@ ls -la ./android/build/outputs/apk/android-web-beta-*.apk
 To enable logging in case of crashes, after installing a debug version, run:
 
 ```bash
-adb shell pm grant app.omaps.debug android.permission.READ_LOGS
+adb shell pm grant app.organicmaps.debug android.permission.READ_LOGS
 ```
 
 ## iOS app
 
 ### Preparing
 
-Building OMaps for iOS requires a Mac.
+Building Organic Maps for iOS requires a Mac.
 
 Ensure that you have at least 20GB of free space.
 
 Install Command Line Tools:
 
- - Launch Terminal application on your Mac.
- - Type `git` in the command line.
- - Follow the instructions in GUI.
+- Launch Terminal application on your Mac.
+- Type `git` in the command line.
+- Follow the instructions in GUI.
 
 Install [Xcode](https://apps.apple.com/ru/app/xcode/id497799835?mt=12) from AppStore.
 
@@ -345,13 +382,13 @@ Install required pods for the project:
 
 Set up your developer account and add certificates:
 
- - Run Xcode.
- - Click "Xcode" → "Preferences".
- - Open "Account" tab.
- - Enter account credentials from the previous step.
- - Click "Manage Certificates".
- - Click "+" and choose "Apple Development".
- - You may also need to register your Mac in your Apple Developer account.
+- Run Xcode.
+- Click "Xcode" → "Preferences".
+- Open "Account" tab.
+- Enter account credentials from the previous step.
+- Click "Manage Certificates".
+- Click "+" and choose "Apple Development".
+- You may also need to register your Mac in your Apple Developer account.
 
 Reconfigure the project to use your developer signing keys:
 
@@ -366,7 +403,7 @@ Open `xcode/omim.xcworkspace` in XCode.
 
 Select "OMaps" product scheme.
 
- * Choose "Your Mac (Designed for iPad)" to run on Mac without using Simulator.
- * Choose arbitrary "iPhone *" or "iPad *" to run on Simulator.
+- Choose "Your Mac (Designed for iPad)" to run on Mac without using Simulator.
+- Choose arbitrary "iPhone _" or "iPad _" to run on Simulator.
 
 Compile and run the project ("Product" → "Run").

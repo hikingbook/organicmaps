@@ -8,6 +8,7 @@ endif()
 
 set(
   SRC
+  ../private.h  # To properly detect its changes with CMake.
   battery_tracker.cpp
   battery_tracker.hpp
   chunks_download_strategy.cpp
@@ -34,8 +35,6 @@ set(
   http_thread_callback.hpp
   http_uploader.hpp
   http_uploader_background.hpp
-  http_user_agent.cpp
-  http_user_agent.hpp
   local_country_file.cpp
   local_country_file.hpp
   local_country_file_utils.cpp
@@ -97,7 +96,6 @@ elseif(${PLATFORM_ANDROID})
 else() # neither iPhone nor Android
   append(
     SRC
-    http_user_agent_dummy.cpp
     localization_dummy.cpp
     location_service.cpp
     location_service.hpp
@@ -111,7 +109,6 @@ else() # neither iPhone nor Android
     append(
       SRC
       http_client_curl.cpp
-      http_user_agent_dummy.cpp
       http_thread_qt.cpp
       http_thread_qt.hpp
       http_uploader_background_dummy.cpp
@@ -130,7 +127,6 @@ else() # neither iPhone nor Android
       http_thread_apple.mm
       http_uploader_apple.mm
       http_uploader_background_dummy.cpp
-      http_user_agent_dummy.cpp
       locale.mm
       platform_mac.mm
       platform_unix_impl.cpp
@@ -148,7 +144,6 @@ else() # neither iPhone nor Android
       http_thread_qt.hpp
       http_uploader_dummy.cpp
       http_uploader_background_dummy.cpp
-      http_user_agent_dummy.cpp
       locale_linux.cpp
       platform_linux.cpp
       platform_unix_impl.cpp

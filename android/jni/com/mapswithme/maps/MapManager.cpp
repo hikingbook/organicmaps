@@ -165,7 +165,7 @@ static void UpdateItem(JNIEnv * env, jobject item, NodeAttrs const & attrs)
   static jfieldID const countryItemFieldChildCount = env->GetFieldID(g_countryItemClass, "childCount", "I");
   static jfieldID const countryItemFieldTotalChildCount = env->GetFieldID(g_countryItemClass, "totalChildCount", "I");
   static jfieldID const countryItemFieldPresent = env->GetFieldID(g_countryItemClass, "present", "Z");
-  static jfieldID const countryItemFieldProgress = env->GetFieldID(g_countryItemClass, "progress", "I");
+  static jfieldID const countryItemFieldProgress = env->GetFieldID(g_countryItemClass, "progress", "F");
   static jfieldID const countryItemFieldDownloadedBytes = env->GetFieldID(g_countryItemClass, "downloadedBytes", "J");
   static jfieldID const countryItemFieldBytesToDownload = env->GetFieldID(g_countryItemClass, "bytesToDownload", "J");
 
@@ -226,14 +226,14 @@ static void UpdateItem(JNIEnv * env, jobject item, NodeAttrs const & attrs)
   env->SetBooleanField(item, countryItemFieldPresent, attrs.m_present);
 
   // Progress
-  int percentage = 0;
+  float percentage = 0;
   if (attrs.m_downloadingProgress.m_bytesTotal != 0)
   {
     auto const & progress = attrs.m_downloadingProgress;
-    percentage = (int)(progress.m_bytesDownloaded * kMaxProgress / progress.m_bytesTotal);
+    percentage = progress.m_bytesDownloaded * kMaxProgress / progress.m_bytesTotal;
   }
 
-  env->SetIntField(item, countryItemFieldProgress, percentage);
+  env->SetFloatField(item, countryItemFieldProgress, percentage);
   env->SetLongField(item, countryItemFieldDownloadedBytes, attrs.m_downloadingProgress.m_bytesDownloaded);
   env->SetLongField(item, countryItemFieldBytesToDownload, attrs.m_downloadingProgress.m_bytesTotal);
 }
@@ -575,17 +575,5 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeGetSelectedCountry(JNIEnv *
 
   storage::CountryId const & res = g_framework->GetPlacePageInfo().GetCountryId();
   return (res == storage::kInvalidCountryId ? nullptr : jni::ToJavaString(env, res));
-}
-
-JNIEXPORT jboolean JNICALL
-Java_com_mapswithme_maps_downloader_MapManager_nativeIsUrlSupported(JNIEnv * env, jclass, jstring url)
-{
-  return static_cast<jboolean>(downloader::IsUrlSupported(jni::ToNativeString(env, url)));
-}
-
-JNIEXPORT jstring JNICALL
-Java_com_mapswithme_maps_downloader_MapManager_nativeGetFilePathByUrl(JNIEnv * env, jclass, jstring url)
-{
-  return jni::ToJavaString(env, downloader::GetFilePathByUrl(jni::ToNativeString(env, url)));
 }
 } // extern "C"

@@ -7,19 +7,19 @@
     <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
     <item name="android:listViewStyle">@style/MwmWidget.ListView</item>
     <item name="android:textViewStyle">@style/MwmWidget.TextView</item>
-    <item name="android:forceDarkAllowed">false</item>
+    <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
     <item name="android:textColorPrimary">@color/text_dark</item>
     <item name="android:textColorPrimaryInverse">@color/text_light</item>
     <item name="android:textColorSecondary">@color/text_dark_subtitle</item>
     <item name="android:windowBackground">?windowBackgroundForced</item>
-    <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/bg_statusbar</item>
+    <item name="android:colorPrimaryDark">@color/bg_statusbar</item>
     <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-    <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/robotoRegular</item>
+    <item name="android:fontFamily">@string/robotoRegular</item>
     <item name="android:colorBackgroundCacheHint">@null</item>
     <item name="android:windowActionBarOverlay">true</item>
     <item name="clickableBackground">?selectableItemBackground</item>
-    <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="alertDialogTheme">@style/MwmTheme.AlertDialog</item>
     <item name="windowBackgroundForced">@color/bg_window</item>
     <item name="cardFrame">@drawable/card_frame</item>
@@ -33,7 +33,9 @@
     <item name="sidePanel">@color/bg_side_panel</item>
     <item name="iconTint">@color/black_54</item>
     <item name="iconTintDisabled">@color/black_12</item>
+    <item name="iconTintActive">@color/yellow</item>
     <item name="iconTintLight">@color/icon_tint_light</item>
+    <item name="chevronTintColor">@color/black_12</item>
 
     <item name="secondary">@color/text_dark_hint</item>
     <item name="dividerHorizontal">@color/divider</item>
@@ -108,7 +110,7 @@
 
     <!-- if don't override this attribute the app will be crashed on start on Android 4.xx,
       because on old prelolipop devices vector drawables don't work correctly -->
-    <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+    <item name="homeAsUpIndicator">@drawable/back_arrow</item>
 
     <item name="transitPedestrianBackground">@color/black_4</item>
     <item name="transitStepDivider">@drawable/dot_divider</item>
@@ -181,19 +183,19 @@
     <item name="materialCalendarTheme">@style/MwmWidget.MaterialCalendar.Theme.Dark</item>
     <item name="android:listViewStyle">@style/MwmWidget.ListView</item>
     <item name="android:textViewStyle">@style/MwmWidget.TextView</item>
-    <item name="android:forceDarkAllowed">false</item>
+    <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
     <item name="android:textColorPrimary">@color/text_light</item>
     <item name="android:textColorPrimaryInverse">@color/text_dark</item>
     <item name="android:textColorSecondary">@color/text_light_subtitle</item>
     <item name="android:windowBackground">?windowBackgroundForced</item>
-    <item name="android:colorPrimaryDark" tools:targetApi="lollipop">?statusBar</item>
+    <item name="android:colorPrimaryDark">?statusBar</item>
     <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-    <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/robotoRegular</item>
+    <item name="android:fontFamily">@string/robotoRegular</item>
     <item name="android:colorBackgroundCacheHint">@null</item>
     <item name="android:windowActionBarOverlay">true</item>
     <item name="clickableBackground">?selectableItemBackground</item>
-    <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
 
     <item name="alertDialogTheme">@style/MwmTheme.Night.AlertDialog</item>
     <item name="windowBackgroundForced">@color/bg_window_night</item>
@@ -209,7 +211,9 @@
     <item name="sidePanel">@color/bg_side_panel_night</item>
     <item name="iconTint">@color/white_secondary</item>
     <item name="iconTintDisabled">@color/white_12</item>
+    <item name="iconTintActive">@color/yellow</item>
     <item name="iconTintLight">@color/icon_tint_light_night</item>
+    <item name="chevronTintColor">@color/white_12</item>
 
     <item name="secondary">@color/text_light_hint</item>
     <item name="dividerHorizontal">@color/divider_night</item>
@@ -282,7 +286,7 @@
 
     <!-- if don't override this attribute the app will be crashed on start on Android 4.xx,
       because on old prelolipop devices vector drawables don't work correctly -->
-    <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+    <item name="homeAsUpIndicator">@drawable/back_arrow</item>
 
     <item name="transitPedestrianBackground">@color/white_4</item>
     <item name="transitStepDivider">@drawable/dot_divider_night</item>

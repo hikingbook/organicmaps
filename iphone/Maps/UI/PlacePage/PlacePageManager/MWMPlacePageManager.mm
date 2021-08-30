@@ -73,14 +73,6 @@ using namespace storage;
   [self closePlacePage];
 }
 
-- (void)orderTaxi:(PlacePageData *)data
-{
-  [MWMRouter setType:MWMRouterTypeTaxi];
-  MWMRoutePoint * point = [self routePointWithData:data pointType:MWMRoutePointTypeFinish intermediateIndex:0];
-  [MWMRouter buildToPoint:point bestRouter:NO];
-  [self closePlacePage];
-}
-
 - (MWMRoutePoint *)routePointWithData:(PlacePageData *)data
                                  pointType:(MWMRoutePointType)type
                     intermediateIndex:(size_t)intermediateIndex
@@ -212,7 +204,7 @@ using namespace storage;
 - (void)editBookmark:(PlacePageData *)data {
   MWMEditBookmarkController *editBookmarkController = [[UIStoryboard instance:MWMStoryboardMain]
                                                        instantiateViewControllerWithIdentifier:@"MWMEditBookmarkController"];
-  editBookmarkController.placePageData = data;
+  [editBookmarkController configureWithPlacePageData:data];
   [[MapViewController sharedController].navigationController pushViewController:editBookmarkController animated:YES];
 }
 

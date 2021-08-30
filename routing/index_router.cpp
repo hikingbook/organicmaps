@@ -128,38 +128,10 @@ unique_ptr<DirectionsEngine> CreateDirectionsEngine(VehicleType vehicleType,
   UNREACHABLE();
 }
 
-shared_ptr<TrafficStash> CreateTrafficStash(VehicleType vehicleType, shared_ptr<NumMwmIds> numMwmIds,
-                                            traffic::TrafficCache const & trafficCache)
+shared_ptr<TrafficStash> CreateTrafficStash(VehicleType, shared_ptr<NumMwmIds>, traffic::TrafficCache const &)
 {
-  if (vehicleType != VehicleType::Car)
-    return nullptr;
-
-  return make_shared<TrafficStash>(trafficCache, numMwmIds);
-}
-
-/// \returns true if the mwm is ready for index graph routing and cross mwm index graph routing.
-/// It means the mwm contains routing and cross_mwm sections. In terms of production mwms
-/// the method returns false for mwms 170328 and earlier, and returns true for mwms 170428 and
-/// later.
-bool MwmHasRoutingData(version::MwmTraits const & traits)
-{
-  return traits.HasRoutingIndex() && traits.HasCrossMwmSection();
-}
-
-void GetOutdatedMwms(DataSource & dataSource, vector<string> & outdatedMwms)
-{
-  outdatedMwms.clear();
-  vector<shared_ptr<MwmInfo>> infos;
-  dataSource.GetMwmsInfo(infos);
-
-  for (auto const & info : infos)
-  {
-    if (info->GetType() != MwmInfo::COUNTRY)
-      continue;
-
-    if (!MwmHasRoutingData(version::MwmTraits(info->m_version)))
-      outdatedMwms.push_back(info->GetCountryName());
-  }
+  return nullptr;
+  //return (vehicleType == VehicleType::Car ? make_shared<TrafficStash>(trafficCache, numMwmIds) : nullptr);
 }
 
 void PushPassedSubroutes(Checkpoints const & checkpoints, vector<Route::SubrouteAttrs> & subroutes)
@@ -371,17 +343,6 @@ RouterResultCode IndexRouter::CalculateRoute(Checkpoints const & checkpoints,
                                              bool adjustToPrevRoute,
                                              RouterDelegate const & delegate, Route & route)
 {
-  vector<string> outdatedMwms;
-  GetOutdatedMwms(m_dataSource, outdatedMwms);
-
-  if (!outdatedMwms.empty())
-  {
-    for (string const & mwm : outdatedMwms)
-      route.AddAbsentCountry(mwm);
-
-    return RouterResultCode::FileTooOld;
-  }
-
   auto const & startPoint = checkpoints.GetStart();
   auto const & finalPoint = checkpoints.GetFinish();
 
@@ -560,17 +521,19 @@ RouterResultCode IndexRouter::DoCalculateRoute(Checkpoints const & checkpoints,
 
   for (auto const & checkpoint : checkpoints.GetPoints())
   {
-    string const countryName = m_countryFileFn(checkpoint);
+    auto const country = platform::CountryFile(m_countryFileFn(checkpoint));
 
-    if (countryName.empty())
+    if (country.IsEmpty())
     {
+      /// @todo Can we pass an error into \a route instance with final message like:
+      /// "Please, try to move start/end point a bit .."
+
       LOG(LWARNING, ("For point", mercator::ToLatLon(checkpoint),
-                   "CountryInfoGetter returns an empty CountryFile(). It happens when checkpoint"
+                   "CountryInfoGetter returns an empty CountryFile(). It happens when checkpoint "
                    "is put at gaps between mwm."));
       return RouterResultCode::InternalError;
     }
 
-    auto const country = platform::CountryFile(countryName);
     if (!m_dataSource.IsLoaded(country))
     {
       route.AddAbsentCountry(country.GetName());
@@ -578,7 +541,7 @@ RouterResultCode IndexRouter::DoCalculateRoute(Checkpoints const & checkpoints,
     else if (guidesMwmId == kFakeNumMwmId)
     {
       guidesMwmId = m_numMwmIds->GetId(country);
-    };
+    }
   }
 
   if (!route.GetAbsentCountries().empty())

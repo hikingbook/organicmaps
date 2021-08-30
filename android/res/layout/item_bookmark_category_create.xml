@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:paddingLeft="@dimen/margin_double"
-  android:paddingRight="@dimen/margin_double"
   android:paddingStart="@dimen/margin_double"
   android:paddingEnd="@dimen/margin_double"
   android:layout_height="@dimen/height_block_base">
@@ -19,6 +16,5 @@
     android:fontFamily="@string/robotoMedium"
     android:textStyle="normal"
     android:letterSpacing="0.04"
-    android:textAppearance="@style/MwmTextAppearance.Button"
-    tools:targetApi="lollipop"/>
+    android:textAppearance="@style/MwmTextAppearance.Button"/>
 </FrameLayout>

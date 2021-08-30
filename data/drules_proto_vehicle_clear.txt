@@ -18856,42 +18856,42 @@ cont {
   element {
     scale: 14
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
   element {
     scale: 15
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
   element {
     scale: 16
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
   element {
     scale: 17
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
   element {
     scale: 18
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
   element {
     scale: 19
     area {
-      color: 13031851
+      color: 15592899
       priority: -15883
     }
   }
@@ -24746,7 +24746,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -24779,9 +24874,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -25053,7 +25167,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -25086,9 +25295,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -25360,7 +25588,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -25393,9 +25716,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -25667,7 +26009,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -25700,9 +26137,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -26489,7 +26945,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15611
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -26522,9 +27073,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15611
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -26796,7 +27366,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15611
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -26829,9 +27494,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15611
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -27103,7 +27787,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -27136,9 +27915,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -27410,7 +28208,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -27443,9 +28336,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -27717,7 +28629,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -27750,9 +28757,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -28024,7 +29050,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -28057,9 +29178,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -28331,7 +29471,102 @@ cont {
     apply_if: "population<40000"
   }
   element {
+    scale: 9
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 9
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
     scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15600
+    }
+    apply_if: "population<40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15623
+    }
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 10
+    caption {
+      primary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 10
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
+  }
+  element {
+    scale: 11
     caption {
       primary {
         height: 10
@@ -28364,9 +29599,28 @@ cont {
         offset_y: 1
         text: "int_name"
       }
-      priority: 15600
+      priority: 15623
     }
-    apply_if: "population<40000"
+    apply_if: "population>=40000"
+  }
+  element {
+    scale: 11
+    caption {
+      primary {
+        height: 12
+        color: 3355443
+        stroke_color: 16777215
+      }
+      secondary {
+        height: 11
+        color: 3355443
+        stroke_color: 16777215
+        offset_y: 1
+        text: "int_name"
+      }
+      priority: 15000
+    }
+    apply_if: "population>=0"
   }
   element {
     scale: 12
@@ -33385,1032 +34639,6 @@ cont {
   }
 }
 cont {
-  name: "railway-station-subway-blue"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-brown"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-darkgreen"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-gray"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-green"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-grey"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
   name: "railway-station-subway-kiev"
   element {
     scale: 13
@@ -34569,348 +34797,6 @@ cont {
       secondary {
         height: 12
         color: 3355443
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-lightblue"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-lightgreen"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
         offset_y: 1
         text: "int_name"
       }
@@ -35805,177 +35691,6 @@ cont {
   }
 }
 cont {
-  name: "railway-station-subway-orange"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
   name: "railway-station-subway-paris"
   element {
     scale: 13
@@ -36126,348 +35841,6 @@ cont {
     scale: 19
     symbol {
       name: "subway-paris-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-purple"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-red"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
       apply_for_type: 1
       priority: 16905
     }
@@ -36748,348 +36121,6 @@ cont {
     caption {
       primary {
         height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-violet"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 14
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-}
-cont {
-  name: "railway-station-subway-yellow"
-  element {
-    scale: 13
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 14
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
-  }
-  element {
-    scale: 15
-    symbol {
-      name: "train-m"
-      apply_for_type: 1
-      priority: 16905
-    }
-    caption {
-      primary {
-        height: 12
         color: 3355443
         stroke_color: 872415231
         offset_y: 1

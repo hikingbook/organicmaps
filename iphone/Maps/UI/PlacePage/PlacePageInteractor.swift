@@ -1,4 +1,4 @@
-protocol PlacePageInteractorProtocol: class {
+protocol PlacePageInteractorProtocol: AnyObject {
   func updateTopBound(_ bound: CGFloat, duration: TimeInterval)
 }
 
@@ -19,14 +19,6 @@ class PlacePageInteractor {
 extension PlacePageInteractor: PlacePageInteractorProtocol {
   func updateTopBound(_ bound: CGFloat, duration: TimeInterval) {
     mapViewController?.setPlacePageTopBound(bound, duration: duration)
-  }
-}
-
-// MARK: - PlacePagePreviewViewControllerDelegate
-
-extension PlacePageInteractor: PlacePagePreviewViewControllerDelegate {
-  func previewDidPressRemoveAds() {
-    MWMPlacePageManagerHelper.showRemoveAds()
   }
 }
 

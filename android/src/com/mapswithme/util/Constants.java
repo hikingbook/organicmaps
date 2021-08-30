@@ -9,12 +9,12 @@ public final class Constants
   public static final int GB = 1024 * 1024 * 1024;
 
   static final int CONNECTION_TIMEOUT_MS = 5000;
-  static final int READ_TIMEOUT_MS = 30000;
+  static final int READ_TIMEOUT_MS = 10000;
 
   public static class Url
   {
     public static final String SHORT_SHARE_PREFIX = "om://";
-    public static final String HTTP_SHARE_PREFIX = "http://omaps.app/";
+    public static final String HTTP_SHARE_PREFIX = "https://omaps.app/";
 
     public static final String MAILTO_SCHEME = "mailto:";
     public static final String MAIL_SUBJECT = "?subject=";

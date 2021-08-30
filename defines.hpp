@@ -25,7 +25,6 @@
 #define ID2REL_EXT ".id2rel"
 
 #define CENTERS_FILE_TAG "centers"
-#define FEATURES_FILE_TAG_V1_V9 "dat"
 #define FEATURES_FILE_TAG "features"
 #define GEOMETRY_FILE_TAG "geom"
 #define TRIANGLE_FILE_TAG "trg"
@@ -65,8 +64,6 @@
 #define RESUME_FILE_EXTENSION ".resume"
 #define DOWNLOADING_FILE_EXTENSION ".downloading"
 #define BOOKMARKS_FILE_EXTENSION ".kml"
-#define ROUTING_FILE_EXTENSION ".routing"
-#define NOROUTING_FILE_EXTENSION ".norouting"
 #define TRANSIT_FILE_EXTENSION ".transit.json"
 
 #define GEOM_INDEX_TMP_EXT ".geomidx.tmp"

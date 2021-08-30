@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +14,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GestureDetectorCompat;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.bookmarks.data.MapObject;
@@ -47,14 +46,7 @@ public class RichPlacePageController implements PlacePageController, LocationLis
   @SuppressWarnings("NullableProblems")
   @NonNull
   private PlacePageView mPlacePage;
-  @SuppressWarnings("NullableProblems")
-  @NonNull
-  private Toolbar mToolbar;
-  @SuppressWarnings("NullableProblems")
-  @NonNull
-  private AppBarLayout mToolbarLayout;
   private int mViewportMinHeight;
-  private int mCurrentTop;
   private boolean mPeekHeightAnimating;
   @NonNull
   private final SlideListener mSlideListener;
@@ -78,7 +70,7 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     @Override
     public void onSheetDetailsOpened()
     {
-      UiUtils.show(mToolbarLayout);
+      // No op.
     }
 
     @Override
@@ -86,7 +78,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     {
       mPlacePage.resetScroll();
       setPeekHeight();
-      UiUtils.show(mToolbarLayout);
     }
 
     @Override
@@ -116,7 +107,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     mDeactivateMapSelection = true;
     PlacePageUtils.moveViewportUp(mPlacePage, mViewportMinHeight);
     UiUtils.invisible(mButtonsLayout);
-    UiUtils.hide(mToolbarLayout);
   }
 
   RichPlacePageController(@NonNull SlideListener listener,
@@ -133,11 +123,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     Objects.requireNonNull(activity);
     Resources res = activity.getResources();
     mViewportMinHeight = res.getDimensionPixelSize(R.dimen.viewport_min_height);
-    mToolbar = activity.findViewById(R.id.pp_toolbar);
-    mToolbarLayout = activity.findViewById(R.id.app_bar);
-    UiUtils.extendViewWithStatusBar(mToolbar);
-    UiUtils.showHomeUpButton(mToolbar);
-    mToolbar.setNavigationOnClickListener(v -> close(true));
     mPlacePage = activity.findViewById(R.id.placepage);
     mPlacePageBehavior = AnchorBottomSheetBehavior.from(mPlacePage);
     mPlacePageBehavior.addBottomSheetCallback(mSheetCallback);
@@ -152,7 +137,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     ViewGroup buttons = mButtonsLayout.findViewById(R.id.container);
     mPlacePage.initButtons(buttons);
     UiUtils.bringViewToFrontOf(mButtonsLayout, mPlacePage);
-    UiUtils.bringViewToFrontOf(activity.findViewById(R.id.app_bar), mPlacePage);
     LocationHelper.INSTANCE.addListener(this);
   }
 
@@ -185,7 +169,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
       openPlacePage();
     });
 
-    mToolbar.setTitle(object.getTitle());
   }
 
   private void openPlacePage()
@@ -369,7 +352,6 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     mPlacePage.setMapObject(object, (isSameObject) -> {
       restorePlacePageState(object, state);
     });
-    mToolbar.setTitle(object.getTitle());
   }
 
   private void restorePlacePageState(@NonNull MapObject object, @AnchorBottomSheetBehavior.State int state)
@@ -398,7 +380,10 @@ public class RichPlacePageController implements PlacePageController, LocationLis
   @Override
   public void onActivityResumed(Activity activity)
   {
-    // No op.
+    // workaround for https://github.com/organicmaps/organicmaps/issues/722
+    if (Build.VERSION.SDK_INT >= 30) {
+      mPlacePage.requestLayout();
+    }
   }
 
   @Override

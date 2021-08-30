@@ -19,7 +19,7 @@
         android:id="@+id/category"
         style="@style/MwmWidget.Editor.MetadataBlock.Clickable"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/editor_height_field"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:padding="@dimen/margin_half_plus">
         <ImageView
@@ -31,20 +31,14 @@
           android:layout_marginStart="@dimen/margin_quarter"
           android:tint="?iconTint"
           tools:src="@drawable/ic_operator"/>
-        <Space
-          android:id="@+id/anchor_center"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_centerVertical="true"/>
+
         <TextView
           android:id="@+id/title"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_above="@id/anchor_center"
-          android:layout_marginLeft="@dimen/margin_quarter"
+          android:layout_alignParentTop="true"
           android:layout_marginStart="@dimen/margin_quarter"
           android:layout_toEndOf="@id/icon"
-          android:layout_toRightOf="@id/icon"
           android:text="@string/editor_edit_place_category_title"
           android:textAppearance="@style/MwmTextAppearance.Body4"
           tools:text="Trololo"/>
@@ -53,7 +47,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_alignStart="@id/title"
-          android:layout_below="@id/anchor_center"
+          android:layout_below="@id/title"
           android:textAppearance="@style/MwmTextAppearance.Body1"
           tools:text="Ololo"/>
       </RelativeLayout>
@@ -144,9 +138,35 @@
         <include
           android:id="@+id/block_opening_hours"
           layout="@layout/item_opening_hours"/>
-        <include
-          android:id="@+id/block_phone"
-          layout="@layout/item_editor_input"/>
+        <RelativeLayout
+            android:id="@+id/block_phone"
+            style="@style/MwmWidget.Editor.MetadataBlock.Clickable">
+          <ImageView
+              style="@style/MwmWidget.Editor.MetadataIcon"
+              android:src="@drawable/ic_phone"
+              tools:ignore="ContentDescription"/>
+          <TextView
+              android:id="@+id/phone"
+              style="@style/MwmWidget.Editor.FieldLayout.EditText"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_centerVertical="true"
+              android:layout_marginStart="@dimen/editor_margin_left"
+              android:layout_toStartOf="@+id/edit_phone"/>
+          <TextView
+              android:id="@+id/edit_phone"
+              android:layout_marginStart="@dimen/margin_half_plus"
+              android:background="?clickableBackground"
+              android:gravity="center_vertical"
+              android:text="@string/edit"
+              android:textAllCaps="true"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_alignParentEnd="true"
+              android:layout_centerVertical="true"
+              android:textAppearance="@style/MwmTextAppearance.Body1"
+              android:textColor="?colorAccent"/>
+        </RelativeLayout>
         <include
           android:id="@+id/block_website"
           layout="@layout/item_editor_input"/>
@@ -202,7 +222,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/editor_margin_left"
-            android:layout_toLeftOf="@+id/sw__wifi"
             android:layout_toStartOf="@+id/sw__wifi"
             android:text="@string/wifi"/>
           <androidx.appcompat.widget.SwitchCompat

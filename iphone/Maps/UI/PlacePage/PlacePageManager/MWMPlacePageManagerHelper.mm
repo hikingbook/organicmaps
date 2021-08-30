@@ -14,8 +14,6 @@
 - (void)editPlace;
 - (void)addBusiness;
 - (void)addPlace:(CLLocationCoordinate2D)coordinate;
-- (void)orderTaxi:(PlacePageData *)data;
-- (void)logTaxiShown:(PlacePageData *)data;
 - (void)openWebsite:(PlacePageData *)data;
 - (void)call:(PlacePageData *)data;
 - (void)showAllFacilities:(PlacePageData *)data;
@@ -38,7 +36,6 @@
 - (void)avoidDirty;
 - (void)avoidFerry;
 - (void)avoidToll;
-- (void)showRemoveAds;
 - (void)openElevationDifficultPopup:(PlacePageData *)data;
 
 @end
@@ -60,14 +57,6 @@
 
 + (void)addPlace:(CLLocationCoordinate2D)coordinate {
   [[MWMMapViewControlsManager manager].placePageManager addPlace:coordinate];
-}
-
-+ (void)orderTaxi:(PlacePageData *)data {
-  [[MWMMapViewControlsManager manager].placePageManager orderTaxi:data];
-}
-
-+ (void)taxiShown:(PlacePageData *)data {
-  [[MWMMapViewControlsManager manager].placePageManager logTaxiShown:data];
 }
 
 + (void)openWebsite:(PlacePageData *)data {
@@ -156,10 +145,6 @@
 
 + (void)avoidToll {
   [[MWMMapViewControlsManager manager].placePageManager avoidToll];
-}
-
-+ (void)showRemoveAds {
-  [[MWMMapViewControlsManager manager].placePageManager showRemoveAds];
 }
 
 + (void)openElevationDifficultPopup:(PlacePageData *)data {

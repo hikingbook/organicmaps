@@ -5,6 +5,7 @@
 #include "base/string_utils.hpp"
 
 #include <algorithm>
+#include <array>
 #include <cstdint>
 #include <iostream>
 #include <map>
@@ -64,12 +65,54 @@ private:
 public:
   static int8_t constexpr kEnglishCode = 1;
   static int8_t constexpr kUnsupportedLocaleCode = -1;
-  static uint8_t constexpr kMaxSupportedLocaleIndex = 31;
-  static std::vector<Mapping> const kLocaleMapping;
+  // *NOTE* These constants should be updated when adding new
+  // translation to categories.txt. When editing, keep in mind to check
+  // CategoriesHolder::MapLocaleToInteger() and
+  // CategoriesHolder::MapIntegerToLocale() as their implementations
+  // strongly depend on the contents of the variable.
+  // TODO: Refactor for more flexibility and to avoid breaking rules in two methods mentioned above.
+  static std::array<CategoriesHolder::Mapping, 36> constexpr kLocaleMapping = {{
+      {"en", 1},
+      {"en-AU", 2},
+      {"en-GB", 3},
+      {"en-US", 4},
+      {"ru", 5},
+      {"ar", 6},
+      {"bg", 7},
+      {"cs", 8},
+      {"da", 9},
+      {"de", 10},
+      {"el", 11},
+      {"es", 12},
+      {"fa", 13},
+      {"fi", 14},
+      {"fr", 15},
+      {"he", 16},
+      {"hu", 17},
+      {"id", 18},
+      {"it", 19},
+      {"ja", 20},
+      {"ko", 21},
+      {"nb", 22},
+      {"nl", 23},
+      {"pl", 24},
+      {"pt", 25},
+      {"pt-BR", 26},
+      {"ro", 27},
+      {"sk", 28},
+      {"sv", 29},
+      {"sw", 30},
+      {"th", 31},
+      {"tr", 32},
+      {"uk", 33},
+      {"vi", 34},
+      {"zh-Hans", 35},
+      {"zh-Hant", 36},
+  }};
 
   // List of languages that are currently disabled in the application
   // because their translations are not yet complete.
-  static std::vector<std::string> kDisabledLanguages;
+  static std::array<char const *, 3> constexpr kDisabledLanguages = {"el", "he", "sw"};
 
   explicit CategoriesHolder(std::unique_ptr<Reader> && reader);
 

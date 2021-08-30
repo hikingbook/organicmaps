@@ -18,25 +18,6 @@
 
 #include <sys/system_properties.h>
 
-std::string Platform::UniqueClientId() const
-{
-  return "TODO";
-}
-
-std::string Platform::MacAddress(bool md5Decoded) const
-{
-  JNIEnv * env = jni::GetEnv();
-  static jmethodID const getMacAddressMethod = jni::GetStaticMethodID(env, g_utilsClazz, "getMacAddress",
-                                                                      "(Landroid/content/Context;)"
-                                                                      "(Z)Ljava/lang/String;");
-  jobject context = android::Platform::Instance().GetContext();
-  auto const macAddr = static_cast<jstring>(env->CallStaticObjectMethod(g_utilsClazz,
-                                                                        getMacAddressMethod,
-                                                                        context,
-                                                                        static_cast<jboolean>(md5Decoded)));
-  return jni::ToNativeString(env, macAddr);
-}
-
 std::string Platform::GetMemoryInfo() const
 {
   JNIEnv * env = jni::GetEnv();
@@ -160,9 +141,8 @@ void Platform::Initialize(JNIEnv * env, jobject functorProcessObject, jstring ap
   m_resourcesDir = jni::ToNativeString(env, apkPath);
   m_privateDir = jni::ToNativeString(env, privatePath);
   m_tmpDir = jni::ToNativeString(env, tmpPath);
-  m_writableDir = jni::ToNativeString(env, writablePath);
+  SetWritableDir(jni::ToNativeString(env, writablePath));
   LOG(LINFO, ("Apk path = ", m_resourcesDir));
-  LOG(LINFO, ("Writable path = ", m_writableDir));
   LOG(LINFO, ("Temporary path = ", m_tmpDir));
 
   // IMPORTANT: This method SHOULD be called from UI thread to cache static jni ID-s inside.

@@ -224,8 +224,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @SuppressWarnings("NullableProblems")
   @NonNull
   private MenuController mMainMenuController;
-  @NonNull
-  private Toolbar mPlacePageToolbar;
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
   private Toolbar mBookmarkCategoryToolbar;
@@ -422,7 +420,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
     mIsTabletLayout = getResources().getBoolean(R.bool.tabletLayout);
 
-    if (!mIsTabletLayout && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP))
+    if (!mIsTabletLayout)
       getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
     setContentView(R.layout.activity_map);
@@ -443,7 +441,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
                      .addOnGlobalLayoutListener(new ToolbarLayoutChangeListener());
     mSearchController.setVisibilityListener(this);
 
-    mPlacePageToolbar = findViewById(R.id.pp_toolbar);
     mBookmarkCategoryToolbar = findViewById(R.id.bookmark_category_toolbar);
     mBookmarkCategoryToolbar.inflateMenu(R.menu.menu_bookmark_catalog);
     mBookmarkCategoryToolbar.setOnMenuItemClickListener(this::onBookmarkToolbarMenuClicked);
@@ -2210,6 +2207,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
     public void onShareLocationOptionSelected()
     {
       closeMenu(MwmActivity.this::shareMyLocation);
+    }
+
+    @Override
+    public void onReportOptionSelected()
+    {
+      closeMenu(() -> Utils.sendFeedback(getActivity()));
     }
 
     @Override

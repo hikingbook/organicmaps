@@ -44,7 +44,6 @@ bool IsResource(string const & file, string const & ext)
             strings::StartsWith(file, WORLD_FILE_NAME));
   }
   else if (ext == BOOKMARKS_FILE_EXTENSION ||
-           ext == ROUTING_FILE_EXTENSION ||
            file == SETTINGS_FILE_NAME)
   {
     return false;
@@ -251,4 +250,38 @@ void Platform::SetupMeasurementSystem() const
   // @TODO Add correct implementation
   units = measurement_utils::Units::Metric;
   settings::Set(settings::kMeasurementUnits, units);
+}
+
+void Platform::GetSystemFontNames(FilesList & res) const
+{
+  bool wasRoboto = false;
+
+  string const path = "/system/fonts/";
+  pl::EnumerateFiles(path, [&](char const * entry)
+  {
+    string name(entry);
+    if (name != "Roboto-Medium.ttf" && name != "Roboto-Regular.ttf")
+    {
+      if (!strings::StartsWith(name, "NotoNaskh") && !strings::StartsWith(name, "NotoSans"))
+        return;
+
+      if (name.find("-Regular") == string::npos)
+        return;
+    }
+    else
+      wasRoboto = true;
+
+    LOG(LINFO, ("Found usable system font", name));
+    res.push_back(path + name);
+  });
+
+  if (!wasRoboto)
+  {
+    string droidSans = path + "DroidSans.ttf";
+    if (IsFileExistsByFullPath(droidSans))
+    {
+      LOG(LINFO, ("Found usable system font", droidSans));
+      res.push_back(std::move(droidSans));
+    }
+  }
 }

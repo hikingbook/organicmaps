@@ -26,7 +26,6 @@ set(
   com/mapswithme/core/logging.hpp
   com/mapswithme/core/ScopedEnv.hpp
   com/mapswithme/core/ScopedLocalRef.hpp
-  com/mapswithme/maps/DownloaderAdapter.hpp
   com/mapswithme/maps/Framework.hpp
   com/mapswithme/maps/SearchEngine.hpp
   com/mapswithme/opengl/android_gl_utils.hpp
@@ -43,7 +42,6 @@ set(
   com/mapswithme/core/logging.cpp
   com/mapswithme/maps/bookmarks/data/BookmarkManager.cpp
   com/mapswithme/maps/DisplayedCategories.cpp
-  com/mapswithme/maps/DownloaderAdapter.cpp
   com/mapswithme/maps/DownloadResourcesLegacyActivity.cpp
   com/mapswithme/maps/editor/Editor.cpp
   com/mapswithme/maps/editor/OpeningHours.cpp
@@ -70,7 +68,6 @@ set(
   com/mapswithme/opengl/gl3stub.c
   com/mapswithme/platform/GuiThread.cpp
   com/mapswithme/platform/HttpThread.cpp
-  com/mapswithme/platform/HttpUserAgent.cpp
   com/mapswithme/platform/Language.cpp
   com/mapswithme/platform/Localization.cpp
   com/mapswithme/platform/Platform.cpp
@@ -119,7 +116,6 @@ target_link_libraries(
   transit
   indexer
   platform
-  web_api
   mwm_diff
   bsdiff
   geometry

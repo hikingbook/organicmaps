@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.os.Build;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -14,12 +12,12 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +32,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollViewClickFixed;
 import androidx.fragment.app.Fragment;
 
+import androidx.recyclerview.widget.RecyclerView;
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
@@ -47,7 +46,6 @@ import com.mapswithme.maps.bookmarks.data.Metadata;
 import com.mapswithme.maps.bookmarks.data.RoadWarningMarkType;
 import com.mapswithme.maps.downloader.CountryItem;
 import com.mapswithme.maps.downloader.DownloaderStatusIcon;
-import com.mapswithme.maps.downloader.MapDownloadManager;
 import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.editor.Editor;
 import com.mapswithme.maps.editor.OpeningHours;
@@ -96,13 +94,12 @@ public class PlacePageView extends NestedScrollViewClickFixed
   private ArrowView mAvDirection;
   private TextView mTvDistance;
   private TextView mTvAddress;
-  private View mPhone;
-  private TextView mTvPhone;
+  private RecyclerView mPhoneRecycler;
+  private PlacePhoneAdapter mPhoneAdapter;
   private View mWebsite;
   private TextView mTvWebsite;
   private TextView mTvLatlon;
   private View mOpeningHours;
-  private View mKeyInfo;
   private TextView mFullOpeningHours;
   private TextView mTodayOpeningHours;
   private View mWifi;
@@ -292,16 +289,15 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mTvAddress = mPreview.findViewById(R.id.tv__address);
 
     RelativeLayout address = findViewById(R.id.ll__place_name);
-    mPhone = findViewById(R.id.ll__place_phone);
-    mPhone.setOnClickListener(this);
-    mTvPhone = findViewById(R.id.tv__place_phone);
+    mPhoneRecycler = findViewById(R.id.rw__phone);
+    mPhoneAdapter = new PlacePhoneAdapter();
+    mPhoneRecycler.setAdapter(mPhoneAdapter);
     mWebsite = findViewById(R.id.ll__place_website);
     mWebsite.setOnClickListener(this);
     mTvWebsite = findViewById(R.id.tv__place_website);
     LinearLayout latlon = findViewById(R.id.ll__place_latlon);
     latlon.setOnClickListener(this);
     mTvLatlon = findViewById(R.id.tv__place_latlon);
-    mKeyInfo = findViewById(R.id.place_page_key_info);
     mOpeningHours = findViewById(R.id.ll__place_schedule);
     mFullOpeningHours = findViewById(R.id.opening_hours);
     mTodayOpeningHours = findViewById(R.id.today_opening_hours);
@@ -327,7 +323,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mEditTopSpace = findViewById(R.id.edit_top_space);
     latlon.setOnLongClickListener(this);
     address.setOnLongClickListener(this);
-    mPhone.setOnLongClickListener(this);
     mWebsite.setOnLongClickListener(this);
     mOpeningHours.setOnLongClickListener(this);
     mEmail.setOnLongClickListener(this);
@@ -336,7 +331,9 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
     mBookmarkFrame = findViewById(R.id.bookmark_frame);
     mWvBookmarkNote = mBookmarkFrame.findViewById(R.id.wv__bookmark_notes);
-    mWvBookmarkNote.getSettings().setJavaScriptEnabled(false);
+    final WebSettings settings = mWvBookmarkNote.getSettings();
+    settings.setJavaScriptEnabled(false);
+    settings.setDefaultTextEncodingName("utf-8");
     mTvBookmarkNote = mBookmarkFrame.findViewById(R.id.tv__bookmark_notes);
     initEditMapObjectBtn();
 
@@ -344,8 +341,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
     mDownloaderInfo = mPreview.findViewById(R.id.tv__downloader_details);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-      setElevation(UiUtils.dimen(getContext(), R.dimen.placepage_elevation));
+    setElevation(UiUtils.dimen(getContext(), R.dimen.placepage_elevation));
 
     if (UiUtils.isLandscape(getContext()))
       setBackgroundResource(0);
@@ -451,7 +447,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
             break;
 
           case CALL:
-            onCallBtnClicked();
+            onCallBtnClicked(buttons);
             break;
         }
       }
@@ -538,9 +534,36 @@ public class PlacePageView extends NestedScrollViewClickFixed
       RoutingController.get().removeStop(mMapObject);
   }
 
-  private void onCallBtnClicked()
+  private List<String> getAllPhones()
   {
-    Utils.callPhone(getContext(), mTvPhone.getText().toString());
+    return mPhoneAdapter.getPhonesList();
+  }
+
+  private void onCallBtnClicked(View parentView)
+  {
+    final List<String> phones = getAllPhones();
+    if (phones.size() == 1)
+    {
+      Utils.callPhone(getContext(), phones.get(0));
+    }
+    else
+    {
+      // Show popup menu with all phones
+      final PopupMenu popup = new PopupMenu(getContext(), parentView);
+      final Menu menu = popup.getMenu();
+
+      for (int i = 0; i < phones.size(); i++)
+        menu.add(Menu.NONE, i, i, phones.get(i));
+
+      popup.setOnMenuItemClickListener(item -> {
+        final int id = item.getItemId();
+        final Context ctx = getContext();
+        Utils.callPhone(ctx, phones.get(id));
+        return true;
+      });
+
+      popup.show();
+    }
   }
 
   public void setRoutingModeListener(@Nullable RoutingModeListener routingModeListener)
@@ -772,14 +795,13 @@ public class PlacePageView extends NestedScrollViewClickFixed
     String website = mapObject.getMetadata(Metadata.MetadataType.FMD_WEBSITE);
     String url = mapObject.getMetadata(Metadata.MetadataType.FMD_URL);
     refreshMetadataOrHide(TextUtils.isEmpty(website) ? url : website, mWebsite, mTvWebsite);
-    refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER), mPhone, mTvPhone);
+    refreshPhoneNumberList(mapObject.getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_EMAIL), mEmail, mTvEmail);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_OPERATOR), mOperator, mTvOperator);
     refreshMetadataOrHide(Framework.nativeGetActiveObjectFormattedCuisine(), mCuisine, mTvCuisine);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA), mWiki, null);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_INTERNET), mWifi, null);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_FLATS), mEntrance, mTvEntrance);
-    UiUtils.showIf(mapObject.hasMetadata(), mKeyInfo);
     refreshOpeningHours(mapObject);
 
 //    showTaxiOffer(mapObject);
@@ -802,21 +824,36 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
   private void refreshOpeningHours(@NonNull MapObject mapObject)
   {
-    final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(mapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS));
-    if (timetables == null || timetables.length == 0)
+    final String ohStr = mapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
+    final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
+    final boolean isEmptyTT = (timetables == null || timetables.length == 0);
+    final int color = ThemeUtils.getColor(getContext(), android.R.attr.textColorPrimary);
+
+    String ohStringToShow = null;
+
+    if (isEmptyTT)
     {
-      UiUtils.hide(mOpeningHours);
-      return;
+      if (!ohStr.isEmpty())
+        ohStringToShow = ohStr;
+      else
+      {
+        UiUtils.hide(mOpeningHours);
+        return;
+      }
     }
 
     UiUtils.show(mOpeningHours);
 
     final Resources resources = getResources();
-    if (timetables[0].isFullWeek())
+    if (!isEmptyTT && timetables[0].isFullWeek())
     {
-      refreshTodayOpeningHours((timetables[0].isFullday ? resources.getString(R.string.twentyfour_seven)
-                                                        : resources.getString(R.string.daily) + " " + timetables[0].workingTimespan),
-                               ThemeUtils.getColor(getContext(), android.R.attr.textColorPrimary));
+      ohStringToShow = timetables[0].isFullday ? resources.getString(R.string.twentyfour_seven)
+                                               : resources.getString(R.string.daily) + " " + timetables[0].workingTimespan;
+    }
+
+    if (ohStringToShow != null)
+    {
+      refreshTodayOpeningHours(ohStringToShow, color);
       UiUtils.clearTextAndHide(mFullOpeningHours);
       return;
     }
@@ -840,9 +877,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
           workingTime = tt.workingTimespan.toString();
         }
 
-        refreshTodayOpeningHours(resources.getString(R.string.today) + " " + workingTime,
-                                 ThemeUtils.getColor(getContext(), android.R.attr.textColorPrimary));
-
+        refreshTodayOpeningHours(resources.getString(R.string.today) + " " + workingTime, color);
         break;
       }
     }
@@ -858,13 +893,18 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mTodayOpeningHours.setTextColor(color);
   }
 
+  private void refreshPhoneNumberList(String phones)
+  {
+    mPhoneAdapter.refreshPhones(phones);
+  }
+
   private void updateBookmarkButton()
   {
     if (mBookmarkButtonIcon == null || mBookmarkButtonFrame == null)
       return;
 
     if (mBookmarkSet)
-      mBookmarkButtonIcon.setImageDrawable(Graphics.tint(getContext(), R.drawable.ic_bookmarks_on, R.attr.iconTint));
+      mBookmarkButtonIcon.setImageDrawable(Graphics.tint(getContext(), R.drawable.ic_bookmarks_on, R.attr.iconTintActive));
     else
       mBookmarkButtonIcon.setImageDrawable(Graphics.tint(getContext(), R.drawable.ic_bookmarks_off, R.attr.iconTint));
 
@@ -893,8 +933,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
     if (StringUtils.nativeIsHtml(notes))
     {
-      String base64version = Base64.encodeToString(notes.getBytes(), Base64.DEFAULT);
-      mWvBookmarkNote.loadData(base64version, Utils.TEXT_HTML, Utils.BASE_64);
+      mWvBookmarkNote.loadData(notes, Utils.TEXT_HTML, Utils.UTF_8);
       UiUtils.show(mWvBookmarkNote);
       UiUtils.hide(mTvBookmarkNote);
     }
@@ -946,15 +985,29 @@ public class PlacePageView extends NestedScrollViewClickFixed
     if (showBackButton || ParsedMwmRequest.isPickPointMode())
       buttons.add(PlacePageButtons.Item.BACK);
 
-    if (mapObject.hasPhoneNumber())
-      buttons.add(PlacePageButtons.Item.CALL);
+    final boolean hasNumber = mapObject.hasPhoneNumber();
 
-    buttons.add(PlacePageButtons.Item.BOOKMARK);
-
-    if (RoutingController.get().isPlanning() || showRoutingButton)
+    if (hasNumber)
     {
+      buttons.add(PlacePageButtons.Item.CALL);
+      mPhoneRecycler.setVisibility(VISIBLE);
+    }
+    else
+      mPhoneRecycler.setVisibility(GONE);
+
+    boolean needToShowRoutingButtons = RoutingController.get().isPlanning() || showRoutingButton;
+
+    if (needToShowRoutingButtons && !hasNumber)
       buttons.add(PlacePageButtons.Item.ROUTE_FROM);
+
+    buttons.add(mapObject.getMapObjectType() == MapObject.BOOKMARK ? PlacePageButtons.Item.BOOKMARK_DELETE
+        : PlacePageButtons.Item.BOOKMARK_SAVE);
+
+    if (needToShowRoutingButtons)
+    {
       buttons.add(PlacePageButtons.Item.ROUTE_TO);
+      if (hasNumber)
+        buttons.add(PlacePageButtons.Item.ROUTE_FROM);
       if (RoutingController.get().isStopPointAllowed())
         buttons.add(PlacePageButtons.Item.ROUTE_ADD);
     }
@@ -968,7 +1021,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     if (mMapObject == null)
     {
-      LOGGER.e(TAG, "A location cannot be refreshed, mMapObject is null!");
+      // TODO: This method is constantly called even when nothing is selected on the map.
+      //LOGGER.e(TAG, "A location cannot be refreshed, mMapObject is null!");
       return;
     }
 
@@ -1097,9 +1151,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
         }
         refreshLatLon(mMapObject);
         break;
-      case R.id.ll__place_phone:
-        Utils.callPhone(getContext(), mTvPhone.getText().toString());
-        break;
       case R.id.ll__place_website:
         Utils.openUrl(getContext(), mTvWebsite.getText().toString());
         break;
@@ -1164,9 +1215,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
         break;
       case R.id.ll__place_email:
         items.add(mTvEmail.getText().toString());
-        break;
-      case R.id.ll__place_phone:
-        items.add(mTvPhone.getText().toString());
         break;
       case R.id.ll__place_schedule:
         String text = UiUtils.isVisible(mFullOpeningHours)
@@ -1268,7 +1316,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mCurrentCountry = map;
     if (mStorageCallbackSlot == 0)
       mStorageCallbackSlot = MapManager.nativeSubscribe(mStorageCallback);
-    MapDownloadManager.from(getContext()).startProgressTracking();
 
     mDownloaderIcon.setOnIconClickListener(mDownloadClickListener)
                    .setOnCancelClickListener(mCancelDownloadListener);
@@ -1284,7 +1331,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
     MapManager.nativeUnsubscribe(mStorageCallbackSlot);
     mStorageCallbackSlot = 0;
-    MapDownloadManager.from(getContext()).stopProgressTracking();
     mCurrentCountry = null;
     mDownloaderIcon.setOnIconClickListener(null)
                    .setOnCancelClickListener(null);
