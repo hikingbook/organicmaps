@@ -448,6 +448,7 @@
 		AA1C7E3E269A2DD600BAADF2 /* EditTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7E3D269A2DD600BAADF2 /* EditTrackViewController.swift */; };
 		AA4B377626DCCEF6008624B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */; };
 		AA4B377726DCCF32008624B4 /* FrameworkAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */; };
+		AA4B377A26DCDD58008624B4 /* OrganicMaps-Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA4B377826DCDD57008624B4 /* OrganicMaps-Localizable.strings */; };
 		B33D21AF20DAF9F000BAD749 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21AE20DAF9F000BAD749 /* Toast.swift */; };
 		B33D21B820E130D000BAD749 /* BookmarksTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */; };
 		B3E3B4FD20D463B700DA8C13 /* BMCCategoriesHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */; };
@@ -1314,6 +1315,9 @@
 		AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameworkAdapter.mm; sourceTree = "<group>"; };
 		AA4B377426DCC598008624B4 /* MWMMapDownloadDialogDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMMapDownloadDialogDelegate.h; sourceTree = "<group>"; };
 		AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		AA4B377926DCDD57008624B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
+		AA4B377B26DCDD62008624B4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
+		AA4B377C26DCDD6A008624B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
 		B33D21AE20DAF9F000BAD749 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTabViewController.swift; sourceTree = "<group>"; };
 		B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMCCategoriesHeader.xib; sourceTree = "<group>"; };
@@ -2454,6 +2458,7 @@
 		34F73F5E1E082FF700AC1FD6 /* LocalizedStrings */ = {
 			isa = PBXGroup;
 			children = (
+				AA4B377826DCDD57008624B4 /* OrganicMaps-Localizable.strings */,
 				A630D1E8207CA95900976DEA /* Localizable.stringsdict */,
 				34F73F5F1E082FF700AC1FD6 /* InfoPlist.strings */,
 				34F73F611E082FF800AC1FD6 /* Localizable.strings */,
@@ -3743,6 +3748,7 @@
 				F6C3A1B221AC22810060EEC8 /* Alert 5.m4a in Resources */,
 				6741A9531BF340DE002C974C /* 01_dejavusans.ttf in Resources */,
 				6741A9541BF340DE002C974C /* 02_droidsans-fallback.ttf in Resources */,
+				AA4B377A26DCDD58008624B4 /* OrganicMaps-Localizable.strings in Resources */,
 				6741A9571BF340DE002C974C /* 03_jomolhari-id-a3d.ttf in Resources */,
 				3404F49A2028A20D0090E401 /* BMCCategoryCell.xib in Resources */,
 				6741A9581BF340DE002C974C /* 04_padauk.ttf in Resources */,
@@ -4476,6 +4482,16 @@
 				FA9F050B26923D4C007849F1 /* pt-BR */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		AA4B377826DCDD57008624B4 /* OrganicMaps-Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA4B377926DCDD57008624B4 /* en */,
+				AA4B377B26DCDD62008624B4 /* zh-Hans */,
+				AA4B377C26DCDD6A008624B4 /* zh-Hant */,
+			);
+			name = "OrganicMaps-Localizable.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
