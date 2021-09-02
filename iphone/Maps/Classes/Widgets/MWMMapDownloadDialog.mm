@@ -132,12 +132,6 @@ using namespace storage;
   } else {
     [self removeFromSuperview];
   }
-  
-  // Added by Zheng-Xiang Ke
-  id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-  if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:)]) {
-    [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel];
-  }
 
   if (self.superview)
     [self setNeedsLayout];
@@ -199,6 +193,12 @@ using namespace storage;
   self.downloadButton.hidden = NO;
   self.progressWrapper.hidden = YES;
   [self addToSuperview];
+    
+    // Added by Zheng-Xiang Ke
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:NO isInQueue:NO];
+    }
 }
 
 - (void)showDownloading:(CGFloat)progress {
@@ -209,6 +209,12 @@ using namespace storage;
   self.progressWrapper.hidden = NO;
   self.progress.progress = progress;
   [self addToSuperview];
+    
+    // Added by Zheng-Xiang Ke
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:YES isInQueue:NO];
+    }
 }
 
 - (void)showInQueue {
@@ -218,6 +224,12 @@ using namespace storage;
   self.progressWrapper.hidden = NO;
   self.progress.state = MWMCircularProgressStateSpinner;
   [self addToSuperview];
+    
+    // Added by Zheng-Xiang Ke
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:NO isInQueue:YES];
+    }
 }
 
 - (void)processViewportCountryEvent:(CountryId const &)countryId {
@@ -262,6 +274,13 @@ using namespace storage;
 #pragma mark - Actions
 
 - (IBAction)downloadAction {
+    // Added by Zheng-Xiang Ke
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
+        if (![delegate downloadDialog:self shouldDownloadMap:@(m_countryId.c_str())]) {
+            return;
+        }
+    }
   [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str())
                                  onSuccess:^{ [self showInQueue]; }];
 }

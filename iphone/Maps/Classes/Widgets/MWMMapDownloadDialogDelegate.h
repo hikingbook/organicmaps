@@ -6,19 +6,12 @@
 //  Copyright © 2021 Zheng-Xiang Ke. All rights reserved.
 //
 
-#ifndef MWMMapDownloadDialogDelegate_h
-#define MWMMapDownloadDialogDelegate_h
-
-#include "storage/storage_defines.hpp"
-
 @class MWMMapDownloadDialog;
 
 @protocol MWMMapDownloadDialogDelegate <NSObject>
 
--(BOOL)downloadDialog:(MWMMapDownloadDialog *)downloadDialog shouldDownloadMap:(storage::CountryId const &)countryId;
--(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog updateNumDownloadedMapsLimitLabel:(UILabel *)numDownloadedMapsLimitLabel;
+@optional
+-(BOOL)downloadDialog:(MWMMapDownloadDialog *)downloadDialog shouldDownloadMap:(NSString *)countryId;
+-(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog updateNumDownloadedMapsLimitLabel:(UILabel *)numDownloadedMapsLimitLabel isDownloading:(BOOL)isDownloading isInQueue:(BOOL)isInQueue;
 
 @end
-
-
-#endif /* MWMMapDownloadDialogDelegate_h */
