@@ -328,7 +328,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
   if ([FirstSession isFirstSession])
   {
-    [MWMLocationManager start];
+//    [MWMLocationManager start];
     dispatch_async(dispatch_get_main_queue(), ^{
       [MWMFrameworkHelper processFirstLaunch:[MWMLocationManager isStarted]];
     });
@@ -339,8 +339,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
         MWMMyPositionModeNotFollowNoPosition : MWMMyPositionModePendingPosition];
   }
 
-  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+//  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
+//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
 //  if (isLaunchedByDeeplink)
 //    (void)[DeepLinkHandler.shared handleDeepLink];

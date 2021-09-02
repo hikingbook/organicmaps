@@ -1,6 +1,7 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "MWMSettings.h"
 #import "MWMCoreUnits.h"
-#import "MWMMapViewControlsManager.h"
+//#import "MWMMapViewControlsManager.h"
 #import "Hikingbook-Swift-Header.h"
 
 
@@ -57,7 +58,7 @@ NSString * const kUDTrackWarningAlertWasShown = @"TrackWarningAlertWasShown";
 + (void)setZoomButtonsEnabled:(BOOL)zoomButtonsEnabled
 {
   settings::Set(kZoomButtonsEnabledKey, static_cast<bool>(zoomButtonsEnabled));
-  [MWMMapViewControlsManager manager].zoomHidden = !zoomButtonsEnabled;
+//  [MWMMapViewControlsManager manager].zoomHidden = !zoomButtonsEnabled;
 }
 
 + (BOOL)compassCalibrationEnabled
@@ -74,14 +75,14 @@ NSString * const kUDTrackWarningAlertWasShown = @"TrackWarningAlertWasShown";
 
 + (MWMTheme)theme
 {
-  if ([MWMCarPlayService shared].isCarplayActivated) {
-    UIUserInterfaceStyle style = [[MWMCarPlayService shared] interfaceStyle];
-    switch (style) {
-    case UIUserInterfaceStyleLight: return MWMThemeDay;
-    case UIUserInterfaceStyleDark: return MWMThemeNight;
-    case UIUserInterfaceStyleUnspecified: break;
-    }
-  }
+//  if ([MWMCarPlayService shared].isCarplayActivated) {
+//    UIUserInterfaceStyle style = [[MWMCarPlayService shared] interfaceStyle];
+//    switch (style) {
+//    case UIUserInterfaceStyleLight: return MWMThemeDay;
+//    case UIUserInterfaceStyleDark: return MWMThemeNight;
+//    case UIUserInterfaceStyleUnspecified: break;
+//    }
+//  }
   auto ud = NSUserDefaults.standardUserDefaults;
   if (![ud boolForKey:kUDAutoNightModeOff])
     return MWMThemeAuto;

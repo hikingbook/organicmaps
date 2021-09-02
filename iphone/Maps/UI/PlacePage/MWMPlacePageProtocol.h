@@ -1,4 +1,5 @@
-#import "MWMMapViewControlsManager.h"
+// This file is modified by Zheng-Xiang Ke on 2021.
+//#import "MWMMapViewControlsManager.h"
 
 struct FeatureID;
 

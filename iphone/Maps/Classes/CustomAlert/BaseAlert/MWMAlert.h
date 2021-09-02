@@ -3,10 +3,10 @@
 
 @property(weak, nonatomic) MWMAlertViewController *alertController;
 
-+ (MWMAlert *)rateAlert;
+//+ (MWMAlert *)rateAlert;
 + (MWMAlert *)authErrorAlertWithRetryBlock:(MWMVoidBlock)retryBlock;
 + (MWMAlert *)locationAlertWithCancelBlock:(MWMVoidBlock)cancelBlock;
-+ (MWMAlert *)routingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block;
+//+ (MWMAlert *)routingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block;
 + (MWMAlert *)disabledLocationAlert;
 + (MWMAlert *)noWiFiAlertWithOkBlock:(MWMVoidBlock)okBlock andCancelBlock:(MWMVoidBlock)cancelBlock;
 + (MWMAlert *)noConnectionAlert;
@@ -24,19 +24,19 @@
 + (MWMAlert *)downloaderNotEnoughSpaceAlert;
 + (MWMAlert *)downloaderInternalErrorAlertWithOkBlock:(MWMVoidBlock)okBlock cancelBlock:(MWMVoidBlock)cancelBlock;
 + (MWMAlert *)downloaderNeedUpdateAlertWithOkBlock:(MWMVoidBlock)okBlock;
-+ (MWMAlert *)placeDoesntExistAlertWithBlock:(MWMStringBlock)block;
+//+ (MWMAlert *)placeDoessntExistAlertWithBlock:(MWMStringBlock)block;
 + (MWMAlert *)resetChangesAlertWithBlock:(MWMVoidBlock)block;
 + (MWMAlert *)deleteFeatureAlertWithBlock:(MWMVoidBlock)block;
 + (MWMAlert *)editorViralAlert;
-+ (MWMAlert *)osmAuthAlert;
+//+ (MWMAlert *)osmAuthAlert;
 + (MWMAlert *)personalInfoWarningAlertWithBlock:(MWMVoidBlock)block;
 + (MWMAlert *)trackWarningAlertWithCancelBlock:(MWMVoidBlock)block;
 + (MWMAlert *)infoAlert:(NSString *)title text:(NSString *)text;
-+ (MWMAlert *)createBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
-                                             minCharacterNum:(NSUInteger)min
-                                                    callback:(MWMCheckStringBlock)callback;
+//+ (MWMAlert *)createBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
+//                                             minCharacterNum:(NSUInteger)min
+//                                                    callback:(MWMCheckStringBlock)callback;
 + (MWMAlert *)convertBookmarksAlertWithCount:(NSUInteger)count block:(MWMVoidBlock)block;
-+ (MWMAlert *)spinnerAlertWithTitle:(NSString *)title cancel:(MWMVoidBlock)cancel;
+//+ (MWMAlert *)spinnerAlertWithTitle:(NSString *)title cancel:(MWMVoidBlock)cancel;
 + (MWMAlert *)bookmarkConversionErrorAlert;
 + (MWMAlert *)restoreBookmarkAlertWithMessage:(NSString *)message
                             rightButtonAction:(MWMVoidBlock)rightButton

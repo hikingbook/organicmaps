@@ -67,8 +67,8 @@ typedef void (^MWMImageHeightBlock)(UIImage *, NSString *);
 + (void)updateRoute;
 + (BOOL)hasActiveDrivingOptions;
 + (void)avoidRoadTypeAndRebuild:(MWMRoadType)type;
-+ (void)showNavigationMapControls;
-+ (void)hideNavigationMapControls;
+//+ (void)showNavigationMapControls;
+//+ (void)hideNavigationMapControls;
 
 - (instancetype)init __attribute__((unavailable("call +router instead")));
 - (instancetype)copy __attribute__((unavailable("call +router instead")));

@@ -28,9 +28,9 @@
 
 @objc(MWMBackgroundEditsUpload)
 final class BackgroundEditsUpload: BackgroundFetchTask {
-  override fileprivate func fire() {
-    MWMEditorHelper.uploadEdits(self.finish)
-  }
+//  override fileprivate func fire() {
+//    MWMEditorHelper.uploadEdits(self.finish)
+//  }
 
   override var description: String {
     return "Edits upload"

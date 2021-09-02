@@ -1,21 +1,22 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "MWMAlert+CPP.h"
 #import "MWMAlertViewController.h"
 #import "MWMDefaultAlert.h"
 #import "MWMDownloadTransitMapAlert.h"
-#import "MWMEditorViralAlert.h"
+//#import "MWMEditorViralAlert.h"
 #import "MWMLocationAlert.h"
-#import "MWMOsmAuthAlert.h"
-#import "MWMPlaceDoesntExistAlert.h"
-#import "MWMRateAlert.h"
-#import "MWMRoutingDisclaimerAlert.h"
+//#import "MWMOsmAuthAlert.h"
+//#import "MWMPlaceDoesntExistAlert.h"
+//#import "MWMRateAlert.h"
+//#import "MWMRoutingDisclaimerAlert.h"
 
 #import "Hikingbook-Swift-Header.h"
 
 @implementation MWMAlert
 
-+ (MWMAlert *)rateAlert {
-  return [MWMRateAlert alert];
-}
+//+ (MWMAlert *)rateAlert {
+//  return [MWMRateAlert alert];
+//}
 
 + (MWMAlert *)authErrorAlertWithRetryBlock:(MWMVoidBlock)retryBlock {
   return [MWMDefaultAlert authErrorAlertWithRetryBlock:retryBlock];
@@ -29,9 +30,9 @@
   return [MWMDefaultAlert point2PointAlertWithOkBlock:block needToRebuild:needToRebuild];
 }
 
-+ (MWMAlert *)routingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block {
-  return [MWMRoutingDisclaimerAlert alertWithOkBlock:block];
-}
+//+ (MWMAlert *)routingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block {
+//  return [MWMRoutingDisclaimerAlert alertWithOkBlock:block];
+//}
 
 + (MWMAlert *)disabledLocationAlert {
   return [MWMDefaultAlert disabledLocationAlert];
@@ -140,9 +141,9 @@
   return [MWMDefaultAlert downloaderNeedUpdateAlertWithOkBlock:okBlock];
 }
 
-+ (MWMAlert *)placeDoesntExistAlertWithBlock:(MWMStringBlock)block {
-  return [MWMPlaceDoesntExistAlert alertWithBlock:block];
-}
+//+ (MWMAlert *)placeDoesntExistAlertWithBlock:(MWMStringBlock)block {
+//  return [MWMPlaceDoesntExistAlert alertWithBlock:block];
+//}
 
 + (MWMAlert *)resetChangesAlertWithBlock:(MWMVoidBlock)block {
   return [MWMDefaultAlert resetChangesAlertWithBlock:block];
@@ -152,12 +153,12 @@
   return [MWMDefaultAlert deleteFeatureAlertWithBlock:block];
 }
 
-+ (MWMAlert *)editorViralAlert {
-  return [MWMEditorViralAlert alert];
-}
-+ (MWMAlert *)osmAuthAlert {
-  return [MWMOsmAuthAlert alert];
-}
+//+ (MWMAlert *)editorViralAlert {
+//  return [MWMEditorViralAlert alert];
+//}
+//+ (MWMAlert *)osmAuthAlert {
+//  return [MWMOsmAuthAlert alert];
+//}
 + (MWMAlert *)personalInfoWarningAlertWithBlock:(MWMVoidBlock)block {
   return [MWMDefaultAlert personalInfoWarningAlertWithBlock:block];
 }
@@ -170,19 +171,19 @@
   return [MWMDefaultAlert infoAlert:title text:text];
 }
 
-+ (MWMAlert *)createBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
-                                             minCharacterNum:(NSUInteger)min
-                                                    callback:(MWMCheckStringBlock)callback {
-  return [MWMBCCreateCategoryAlert alertWithMaxCharachersNum:max minCharactersNum:min callback:callback];
-}
+//+ (MWMAlert *)createBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
+//                                             minCharacterNum:(NSUInteger)min
+//                                                    callback:(MWMCheckStringBlock)callback {
+//  return [MWMBCCreateCategoryAlert alertWithMaxCharachersNum:max minCharactersNum:min callback:callback];
+//}
 
 + (MWMAlert *)convertBookmarksAlertWithCount:(NSUInteger)count block:(MWMVoidBlock)block {
   return [MWMDefaultAlert convertBookmarksWithCount:count okBlock:block];
 }
 
-+ (MWMAlert *)spinnerAlertWithTitle:(NSString *)title cancel:(MWMVoidBlock)cancel {
-  return [MWMSpinnerAlert alertWithTitle:title cancel:cancel];
-}
+//+ (MWMAlert *)spinnerAlertWithTitle:(NSString *)title cancel:(MWMVoidBlock)cancel {
+//  return [MWMSpinnerAlert alertWithTitle:title cancel:cancel];
+//}
 
 + (MWMAlert *)bookmarkConversionErrorAlert {
   return [MWMDefaultAlert bookmarkConversionErrorAlert];

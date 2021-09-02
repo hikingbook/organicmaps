@@ -46,9 +46,9 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 
 #pragma mark - Actions
 
-- (void)presentRateAlert {
-  [self displayAlert:[MWMAlert rateAlert]];
-}
+//- (void)presentRateAlert {
+//  [self displayAlert:[MWMAlert rateAlert]];
+//}
 
 - (void)presentAuthErrorAlertWithRetryBlock:(nonnull MWMVoidBlock)retryBlock {
   [self displayAlert:[MWMAlert authErrorAlertWithRetryBlock:retryBlock]];
@@ -112,9 +112,9 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
                                             downloadCompleteBlock:downloadCompleteBlock]];
 }
 
-- (void)presentRoutingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block {
-  [self displayAlert:[MWMAlert routingDisclaimerAlertWithOkBlock:block]];
-}
+//- (void)presentRoutingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block {
+//  [self displayAlert:[MWMAlert routingDisclaimerAlertWithOkBlock:block]];
+//}
 
 - (void)presentDisabledLocationAlert {
   [self displayAlert:[MWMAlert disabledLocationAlert]];
@@ -145,9 +145,9 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
   [self displayAlert:[MWMAlert downloaderNeedUpdateAlertWithOkBlock:okBlock]];
 }
 
-- (void)presentPlaceDoesntExistAlertWithBlock:(MWMStringBlock)block {
-  [self displayAlert:[MWMAlert placeDoesntExistAlertWithBlock:block]];
-}
+//- (void)presentPlaceDoesntExistAlertWithBlock:(MWMStringBlock)block {
+//  [self displayAlert:[MWMAlert placeDoesntExistAlertWithBlock:block]];
+//}
 
 - (void)presentResetChangesAlertWithBlock:(MWMVoidBlock)block {
   [self displayAlert:[MWMAlert resetChangesAlertWithBlock:block]];
@@ -180,31 +180,31 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 - (void)presentEditorViralAlert {
   [self displayAlert:[MWMAlert editorViralAlert]];
 }
-- (void)presentOsmAuthAlert {
-  [self displayAlert:[MWMAlert osmAuthAlert]];
-}
+//- (void)presentOsmAuthAlert {
+//  [self displayAlert:[MWMAlert osmAuthAlert]];
+//}
 
-- (void)presentCreateBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
-                                              minCharacterNum:(NSUInteger)min
-                                                     callback:(nonnull MWMCheckStringBlock)callback {
-  auto alert =
-    static_cast<MWMBCCreateCategoryAlert *>([MWMAlert createBookmarkCategoryAlertWithMaxCharacterNum:max
-                                                                                     minCharacterNum:min
-                                                                                            callback:callback]);
-  [self displayAlert:alert];
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [alert.textField becomeFirstResponder];
-  });
-}
+//- (void)presentCreateBookmarkCategoryAlertWithMaxCharacterNum:(NSUInteger)max
+//                                              minCharacterNum:(NSUInteger)min
+//                                                     callback:(nonnull MWMCheckStringBlock)callback {
+//  auto alert =
+//    static_cast<MWMBCCreateCategoryAlert *>([MWMAlert createBookmarkCategoryAlertWithMaxCharacterNum:max
+//                                                                                     minCharacterNum:min
+//                                                                                            callback:callback]);
+//  [self displayAlert:alert];
+//  dispatch_async(dispatch_get_main_queue(), ^{
+//    [alert.textField becomeFirstResponder];
+//  });
+//}
 
 - (void)presentConvertBookmarksAlertWithCount:(NSUInteger)count block:(nonnull MWMVoidBlock)block {
   auto alert = [MWMAlert convertBookmarksAlertWithCount:count block:block];
   [self displayAlert:alert];
 }
 
-- (void)presentSpinnerAlertWithTitle:(nonnull NSString *)title cancel:(nullable MWMVoidBlock)cancel {
-  [self displayAlert:[MWMAlert spinnerAlertWithTitle:title cancel:cancel]];
-}
+//- (void)presentSpinnerAlertWithTitle:(nonnull NSString *)title cancel:(nullable MWMVoidBlock)cancel {
+//  [self displayAlert:[MWMAlert spinnerAlertWithTitle:title cancel:cancel]];
+//}
 
 - (void)presentBookmarkConversionErrorAlert {
   [self displayAlert:[MWMAlert bookmarkConversionErrorAlert]];

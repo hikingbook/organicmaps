@@ -76,36 +76,36 @@
   return self.rm.IsRouteFinished();
 }
 
-- (MWMRouteInfo *)routeInfo {
-  if (!self.isRoutingActive) { return  nil; }
-  routing::FollowingInfo info;
-  self.rm.GetRouteFollowingInfo(info);
-  if (!info.IsValid()) { return nil; }
-  CLLocation * lastLocation = [MWMLocationManager lastLocation];
-  NSString *speed = @"0";
-  if (lastLocation && lastLocation.speed >= 0) {
-    auto const units = coreUnits([MWMSettings measurementUnits]);
-    speed = @(measurement_utils::FormatSpeedNumeric(lastLocation.speed, units).c_str());
-  }
-  NSInteger roundExitNumber = 0;
-  if (info.m_turn == routing::turns::CarDirection::EnterRoundAbout ||
-      info.m_turn == routing::turns::CarDirection::StayOnRoundAbout ||
-      info.m_turn == routing::turns::CarDirection::LeaveRoundAbout) {
-    roundExitNumber = info.m_exitNum;
-  }
-  
-  MWMRouteInfo *objCInfo = [[MWMRouteInfo alloc] initWithTimeToTarget:info.m_time
-                                                       targetDistance:@(info.m_distToTarget.c_str())
-                                                          targetUnits:@(info.m_targetUnitsSuffix.c_str())
-                                                       distanceToTurn:@(info.m_distToTurn.c_str())
-                                                           streetName:@(info.m_displayedStreetName.c_str())
-                                                            turnUnits:@(info.m_turnUnitsSuffix.c_str())
-                                                        turnImageName:[self turnImageName:info.m_turn isPrimary:YES]
-                                                    nextTurnImageName:[self turnImageName:info.m_nextTurn isPrimary:NO]
-                                                                speed:[speed integerValue]
-                                                      roundExitNumber: roundExitNumber];
-  return objCInfo;
-}
+//- (MWMRouteInfo *)routeInfo {
+//  if (!self.isRoutingActive) { return  nil; }
+//  routing::FollowingInfo info;
+//  self.rm.GetRouteFollowingInfo(info);
+//  if (!info.IsValid()) { return nil; }
+//  CLLocation * lastLocation = [MWMLocationManager lastLocation];
+//  NSString *speed = @"0";
+//  if (lastLocation && lastLocation.speed >= 0) {
+//    auto const units = coreUnits([MWMSettings measurementUnits]);
+//    speed = @(measurement_utils::FormatSpeedNumeric(lastLocation.speed, units).c_str());
+//  }
+//  NSInteger roundExitNumber = 0;
+//  if (info.m_turn == routing::turns::CarDirection::EnterRoundAbout ||
+//      info.m_turn == routing::turns::CarDirection::StayOnRoundAbout ||
+//      info.m_turn == routing::turns::CarDirection::LeaveRoundAbout) {
+//    roundExitNumber = info.m_exitNum;
+//  }
+//  
+//  MWMRouteInfo *objCInfo = [[MWMRouteInfo alloc] initWithTimeToTarget:info.m_time
+//                                                       targetDistance:@(info.m_distToTarget.c_str())
+//                                                          targetUnits:@(info.m_targetUnitsSuffix.c_str())
+//                                                       distanceToTurn:@(info.m_distToTurn.c_str())
+//                                                           streetName:@(info.m_displayedStreetName.c_str())
+//                                                            turnUnits:@(info.m_turnUnitsSuffix.c_str())
+//                                                        turnImageName:[self turnImageName:info.m_turn isPrimary:YES]
+//                                                    nextTurnImageName:[self turnImageName:info.m_nextTurn isPrimary:NO]
+//                                                                speed:[speed integerValue]
+//                                                      roundExitNumber: roundExitNumber];
+//  return objCInfo;
+//}
 
 - (MWMRouterType)type {
   return routerType(self.rm.GetRouter());

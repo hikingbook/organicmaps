@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "MWMRouter.h"
 #import "MWMAlertViewController+CPP.h"
 #import "MWMCoreRouterType.h"
@@ -5,8 +6,8 @@
 #import "MWMFrameworkObservers.h"
 #import "MWMLocationHelpers.h"
 #import "MWMLocationObserver.h"
-#import "MWMMapViewControlsManager.h"
-#import "MWMNavigationDashboardManager+Entity.h"
+//#import "MWMMapViewControlsManager.h"
+//#import "MWMNavigationDashboardManager+Entity.h"
 #import "MWMRoutePoint+CPP.h"
 #import "MWMStorage+UI.h"
 #import "MapsAppDelegate.h"
@@ -190,7 +191,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 + (void)removePoint:(MWMRoutePoint *)point {
   RouteMarkData pt = point.routeMarkData;
   GetFramework().GetRoutingManager().RemoveRoutePoint(pt.m_pointType, pt.m_intermediateIndex);
-  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
+//  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
 }
 
 + (void)removePointAndRebuild:(MWMRoutePoint *)point {
@@ -211,7 +212,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 
   RouteMarkData pt = point.routeMarkData;
   GetFramework().GetRoutingManager().AddRoutePoint(std::move(pt));
-  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
+//  [[MWMNavigationDashboardManager sharedManager] onRoutePointsUpdated];
 }
 
 + (void)addPointAndRebuild:(MWMRoutePoint *)point {
@@ -264,13 +265,13 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
   auto const pointsCount = points.size();
   if (pointsCount < 2) {
     [self doStop:NO];
-    [[MWMMapViewControlsManager manager] onRoutePrepare];
+//    [[MWMMapViewControlsManager manager] onRoutePrepare];
     return;
   }
   if (bestRouter)
     self.type = routerType(rm.GetBestRouter(points.front().m_position, points.back().m_position));
 
-  [[MWMMapViewControlsManager manager] onRouteRebuild];
+//  [[MWMMapViewControlsManager manager] onRouteRebuild];
   rm.BuildRoute();
 }
 
@@ -285,7 +286,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 
       if (p1.isMyPosition && [MWMLocationManager lastLocation]) {
         rm.FollowRoute();
-        [[MWMMapViewControlsManager manager] onRouteStart];
+//        [[MWMMapViewControlsManager manager] onRouteStart];
         [MWMThemeManager setAutoUpdates:YES];
       } else {
         MWMAlertViewController *alertController = [MWMAlertViewController activeAlertController];
@@ -315,7 +316,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 
 + (void)stop:(BOOL)removeRoutePoints {
   [self doStop:removeRoutePoints];
-  [self hideNavigationMapControls];
+//  [self hideNavigationMapControls];
   [MWMRouter router].canAutoAddLastLocation = YES;
 }
 
@@ -334,13 +335,13 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
   auto const &rm = GetFramework().GetRoutingManager();
   routing::FollowingInfo info;
   rm.GetRouteFollowingInfo(info);
-  auto navManager = [MWMNavigationDashboardManager sharedManager];
-  if (!info.IsValid())
-    return;
-  if ([MWMRouter type] == MWMRouterTypePublicTransport)
-    [navManager updateTransitInfo:rm.GetTransitRouteInfo()];
-  else
-    [navManager updateFollowingInfo:info type:[MWMRouter type]];
+//  auto navManager = [MWMNavigationDashboardManager sharedManager];
+//  if (!info.IsValid())
+//    return;
+//  if ([MWMRouter type] == MWMRouterTypePublicTransport)
+//    [navManager updateTransitInfo:rm.GetTransitRouteInfo()];
+//  else
+//    [navManager updateFollowingInfo:info type:[MWMRouter type]];
 }
 
 + (void)routeAltitudeImageForSize:(CGSize)size completion:(MWMImageHeightBlock)block {
@@ -410,12 +411,12 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 - (void)onLocationUpdate:(CLLocation *)location {
   if (![MWMRouter isRoutingActive])
     return;
-  auto tts = [MWMTextToSpeech tts];
-  NSArray<NSString *> *turnNotifications = [MWMRouter turnNotifications];
-  if ([MWMRouter isOnRoute] && tts.active) {
-    [tts playTurnNotifications:turnNotifications];
-    [tts playWarningSound];
-  }
+//  auto tts = [MWMTextToSpeech tts];
+//  NSArray<NSString *> *turnNotifications = [MWMRouter turnNotifications];
+//  if ([MWMRouter isOnRoute] && tts.active) {
+//    [tts playTurnNotifications:turnNotifications];
+//    [tts playWarningSound];
+//  }
 
   [self updateFollowingInfo];
 }
@@ -433,13 +434,13 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
     });
   }
 
-  [[MWMMapViewControlsManager manager] onRouteReady:hasWarnings];
+//  [[MWMMapViewControlsManager manager] onRouteReady:hasWarnings];
   [self updateFollowingInfo];
 }
 
 - (void)processRouteBuilderEvent:(routing::RouterResultCode)code
                        countries:(storage::CountriesSet const &)absentCountries {
-  MWMMapViewControlsManager *mapViewControlsManager = [MWMMapViewControlsManager manager];
+//  MWMMapViewControlsManager *mapViewControlsManager = [MWMMapViewControlsManager manager];
   switch (code) {
     case routing::RouterResultCode::NoError:
       [self onRouteReady:NO];
@@ -454,10 +455,10 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
     case routing::RouterResultCode::RouteNotFound:
       self.routingOptions = [MWMRoutingOptions new];
       [self presentDownloaderAlert:code countries:absentCountries];
-      [[MWMNavigationDashboardManager sharedManager] onRouteError:L(@"routing_planning_error")];
+//      [[MWMNavigationDashboardManager sharedManager] onRouteError:L(@"routing_planning_error")];
       break;
     case routing::RouterResultCode::Cancelled:
-      [mapViewControlsManager onRoutePrepare];
+//      [mapViewControlsManager onRoutePrepare];
       break;
     case routing::RouterResultCode::StartPointNotFound:
     case routing::RouterResultCode::EndPointNotFound:
@@ -469,14 +470,14 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
     case routing::RouterResultCode::TransitRouteNotFoundTooLongPedestrian:
     case routing::RouterResultCode::RouteNotFoundRedressRouteError:
       [[MWMAlertViewController activeAlertController] presentAlert:code];
-      [[MWMNavigationDashboardManager sharedManager] onRouteError:L(@"routing_planning_error")];
+//      [[MWMNavigationDashboardManager sharedManager] onRouteError:L(@"routing_planning_error")];
       break;
   }
 }
 
-- (void)processRouteBuilderProgress:(CGFloat)progress {
-  [[MWMNavigationDashboardManager sharedManager] setRouteBuilderProgress:progress];
-}
+//- (void)processRouteBuilderProgress:(CGFloat)progress {
+//  [[MWMNavigationDashboardManager sharedManager] setRouteBuilderProgress:progress];
+//}
 
 - (void)processRouteRecommendation:(MWMRouterRecommendation)recommendation {
   switch (recommendation) {
@@ -590,12 +591,12 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
   [self rebuildWithBestRouter:YES];
 }
 
-+ (void)showNavigationMapControls {
-  [[MWMMapViewControlsManager manager] onRouteStart];
-}
-
-+ (void)hideNavigationMapControls {
-  [[MWMMapViewControlsManager manager] onRouteStop];
-}
+//+ (void)showNavigationMapControls {
+//  [[MWMMapViewControlsManager manager] onRouteStart];
+//}
+//
+//+ (void)hideNavigationMapControls {
+//  [[MWMMapViewControlsManager manager] onRouteStop];
+//}
 
 @end

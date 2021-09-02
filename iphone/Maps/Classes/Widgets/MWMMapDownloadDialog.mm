@@ -104,7 +104,7 @@ using namespace storage;
           m_autoDownloadCountryId = kInvalidCountryId;
           [self showDownloadRequest];
         }
-        [[MWMCarPlayService shared] showNoMapAlert];
+//        [[MWMCarPlayService shared] showNoMapAlert];
         break;
       }
       case NodeStatus::Downloading:
@@ -157,7 +157,7 @@ using namespace storage;
 
 
 - (void)removeFromSuperview {
-  [[MWMCarPlayService shared] hideNoMapAlert];
+//  [[MWMCarPlayService shared] hideNoMapAlert];
   self.progress.state = MWMCircularProgressStateNormal;
   [[MWMStorage sharedStorage] removeObserver:self];
   [super removeFromSuperview];

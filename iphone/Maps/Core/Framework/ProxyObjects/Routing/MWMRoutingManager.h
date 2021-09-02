@@ -2,7 +2,7 @@
 #import "MWMRoutePoint.h"
 #import "MWMRouterResultCode.h"
 #import "MWMSpeedCameraManagerMode.h"
-@class RouteInfo;
+//@class RouteInfo;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +22,7 @@ NS_SWIFT_NAME(RoutingManager)
 @property(nonatomic, readonly) BOOL isOnRoute;
 @property(nonatomic, readonly) BOOL isRoutingActive;
 @property(nonatomic, readonly) BOOL isRouteFinished;
-@property(nonatomic, readonly, nullable) RouteInfo *routeInfo;
+//@property(nonatomic, readonly, nullable) RouteInfo *routeInfo;
 @property(nonatomic, readonly) MWMRouterType type;
 @property(nonatomic) MWMSpeedCameraManagerMode speedCameraMode;
 
