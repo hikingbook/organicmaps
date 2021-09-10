@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "MapsAppDelegate.h"
 #import "MapViewController.h"
 #import "MWMAlertViewController.h"
@@ -30,7 +31,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self.navigationController.navigationBar setTranslucent:NO];
+//  [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 #pragma mark - Properties

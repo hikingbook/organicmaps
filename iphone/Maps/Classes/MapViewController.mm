@@ -367,7 +367,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
 - (void)applyTheme {
   [super applyTheme];
-  [MapsAppDelegate customizeAppearance];
+//  [MapsAppDelegate customizeAppearance];
 }
 
 - (void)showViralAlertIfNeeded {
