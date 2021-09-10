@@ -12,7 +12,7 @@
 
 namespace
 {
-std::string const kMapsPath = "maps";
+std::string const kMapsPath = "ios";
 std::string const kDiffsPath = "diffs";
 }  // namespace
 
