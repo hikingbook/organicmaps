@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2021.
 #import "platform/background_downloader_ios.h"
 
 #include "platform/downloader_utils.hpp"
@@ -43,7 +44,8 @@ static const NSTimeInterval kTimeoutIntervalInSeconds = 10;
 @implementation MapFileSaveStrategy
 
 - (NSURL *)getLocationForWebUrl:(NSURL *)webUrl {
-  NSString *path = @(downloader::GetFilePathByUrl(webUrl.path.UTF8String).c_str());
+  NSString *normalizedPath = [webUrl.path stringByReplacingOccurrencesOfString:@"/hikingbook-maps" withString:@""];
+  NSString *path = @(downloader::GetFilePathByUrl(normalizedPath.UTF8String).c_str());
   return [NSURL fileURLWithPath:path];
 }
 
