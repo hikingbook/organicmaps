@@ -154,7 +154,7 @@ MapFilesDownloader::ServersList MapFilesDownloader::LoadServersList()
   {
     platform::HttpClient request(metaServerUrl);
     request.SetRawHeader("X-OM-DataVersion", std::to_string(m_dataVersion));
-    request.SetTimeout(10.0); // timeout in seconds
+    request.SetTimeout(60.0); // timeout in seconds
     request.RunHttpRequest(httpResult);
   }
 
