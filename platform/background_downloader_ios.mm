@@ -216,7 +216,15 @@ static const NSTimeInterval kTimeoutIntervalInSeconds = 10;
     [[NSFileManager defaultManager] removeItemAtURL:location.filePathURL error:nil];
   } else {
     NSURL *destinationUrl = [self.saveStrategy getLocationForWebUrl:downloadTask.currentRequest.URL];
-    [[NSFileManager defaultManager] moveItemAtURL:location.filePathURL toURL:destinationUrl error:&error];
+    @try {
+        [[NSFileManager defaultManager] moveItemAtURL:location.filePathURL toURL:destinationUrl error:&error];
+    }
+    @catch (NSException *exception) {
+        error = [NSError errorWithDomain:exception.name code:0 userInfo:@{
+            NSUnderlyingErrorKey: exception,
+            NSDebugDescriptionErrorKey: exception.userInfo ?: @{ },
+            NSLocalizedFailureReasonErrorKey: (exception.reason ?: @"unknown reason") }];
+    }
   }
   dispatch_async(dispatch_get_main_queue(), ^{
     [self finishDownloading:downloadTask error:error];
