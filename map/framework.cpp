@@ -1767,7 +1767,7 @@ void Framework::SetWidgetLayout(gui::TWidgetsLayoutInfo && layout)
 bool Framework::ShowMapForURL(string const & url)
 {
   m2::PointD point;
-  double scale;
+  double scale = 0;
   string name;
   ApiMarkPoint const * apiMark = nullptr;
 
@@ -2177,11 +2177,16 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
                             outInfo);
         return outInfo;
       }
+      case UserMark::Type::TRANSIT:
+      {
+        /// @todo Add useful info in PP for TransitMark (public transport).
+        break;
+      }
       default:
         ASSERT(false, ("FindNearestUserMark returned invalid mark."));
       }
-      SetPlacePageLocation(outInfo);
 
+      SetPlacePageLocation(outInfo);
       return outInfo;
     }
   }

@@ -192,6 +192,12 @@ Url::Url(std::string const & url)
   }
 }
 
+Url Url::FromString(std::string const & url)
+{
+  bool const hasProtocol = strings::StartsWith(url, "http://") || strings::StartsWith(url, "https://");
+  return Url(hasProtocol ? url : "https://" + url);
+}
+
 bool Url::Parse(std::string const & url)
 {
   // Get url scheme.
@@ -253,6 +259,23 @@ bool Url::Parse(std::string const & url)
   }
 
   return true;
+}
+
+string Url::GetWebDomain() const
+{
+  auto const found = m_path.find('/');
+  if (found != string::npos)
+    return m_path.substr(0, found);
+  return m_path;
+}
+
+string Url::GetWebPath() const
+{
+  // Return everything after the domain name.
+  auto const found = m_path.find('/');
+  if (found != string::npos && m_path.size() > found + 1)
+    return m_path.substr(found + 1);
+  return {};
 }
 
 void Url::ForEachParam(Callback const & callback) const

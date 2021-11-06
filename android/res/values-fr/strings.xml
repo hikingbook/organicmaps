@@ -183,6 +183,8 @@
 	<string name="share_my_location">Partager ma position</string>
 	<!-- Settings general group in settings screen -->
 	<string name="prefs_group_general">Paramètres généraux</string>
+	<!-- Settings information group in settings screen -->
+	<string name="prefs_group_information">Information</string>
 	<string name="prefs_group_route">Navigation</string>
 	<string name="pref_zoom_title">Boutons de zoom</string>
 	<string name="pref_zoom_summary">Afficher à l\'écran</string>
@@ -215,7 +217,7 @@
 	<string name="duration_6_hours">6 heures</string>
 	<string name="duration_12_hours">12 heures</string>
 	<string name="duration_1_day">1 jour</string>
-	<string name="recent_track_help_text">Ceci vous permet d’enregistrer le chemin emprunté pendant un certain temps et de le voir sur la carte. Veuillez noter : l’activation de cette fonction entraîne une grande utilisation de la batterie. La route sera supprimée automatiquement de la carte lorsque l’intervalle de temps sera arrivé à expiration.</string>
+	<string name="recent_track_help_text">Ceci vous permet d’enregistrer le chemin emprunté pendant un certain temps et de le voir sur la carte. Veuillez noter : l’activation de cette fonction entraîne une grande utilisation de la batterie. La route sera supprimée automatiquement de la carte lorsque l’intervalle de temps sera arrivé à expiration.</string>
 	<string name="placepage_distance">Distance</string>
 	<string name="search_show_on_map">Voir sur la carte</string>
 	<!-- Text in menu -->
@@ -226,9 +228,13 @@
 	<string name="rate_the_app">Évaluer l\'appli</string>
 	<!-- Text in menu -->
 	<string name="help">Aide</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Questions et réponses</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Comment nous soutenir?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Tous droits réservés</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Signaler un bug</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Le client de courriel n\'a pas été configuré. Veuillez le faire ou employer tout autre moyen pour nous contacter à %s</string>
@@ -566,14 +572,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Consultez</string>
 	<string name="recent_track_background_dialog_message">Organic Maps utilise votre géolocalisation en arrière-plan pour enregistrer vos itinéraires récents.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Noter sur Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Recommander à un ami</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Salut! Installe Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps est une application hors ligne essentielle pour les voyages. Organic Maps se base sur les données OpenStreetMap et permet de les modifier.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps est une application de cartographie hors ligne gratuite et open source. Pas de pubs. Pas de localisation. Si vous voyez une erreur sur la carte, veuillez la corriger dans OpenStreetMap. Le projet est créé par des passionnés pendant notre temps libre, nous avons donc besoin de vos commentaires et de votre soutien.</string>
 	<string name="general_settings">Paramètres généraux</string>
 	<!-- For the first routing -->
 	<string name="accept">Accepter</string>
@@ -615,7 +615,6 @@
 	<string name="placepage_remove_stop">Supprimer</string>
 	<string name="planning_route_remove_title">Faire glisser ici pour supprimer</string>
 	<string name="placepage_add_stop">Ajouter un arrêt</string>
-	<string name="preloader_viator_button">En savoir plus</string>
 	<string name="start_from_my_position">Commencer à partir de</string>
 	<string name="profile_authorization_error">Oups, une erreur s\'est produite. Essayez de vous connecter à nouveau.</string>
 	<string name="dialog_error_storage_title">Problème d\'accès au stockage</string>
@@ -646,7 +645,6 @@
 	<string name="please_wait">S\'il vous plaît, attendez…</string>
 	<string name="phone_number">Numéro de téléphone</string>
 	<string name="profile">Profil OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Rechercher des hôtels similaires</string>
 	<string name="bookmarks_detect_title">Nouveaux fichiers détectés</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d fichier a été trouvé. Vous le verrez après la conversion.</item>
@@ -860,7 +858,7 @@
 	<string name="type.amenity.doctors">Cabinet médical</string>
 	<string name="type.amenity.drinking_water">Eau potable</string>
 	<string name="type.amenity.driving_school">Auto-école</string>
-	<string name="type.amenity.embassy">Ambassade</string>
+	<string name="type.office.diplomatic">Ambassade</string>
 	<string name="type.amenity.fast_food">Restauration rapide</string>
 	<string name="type.amenity.ferry_terminal">Traversier</string>
 	<string name="type.amenity.fire_station">Caserne de pompiers</string>
@@ -933,6 +931,7 @@
 	<string name="type.barrier.gate">Porte</string>
 	<string name="type.barrier.lift_gate">Barrière levante</string>
 	<string name="type.barrier.stile">Échalier</string>
+	<string name="type.barrier.swing_gate">Barrière levante</string>
 	<string name="type.barrier.toll_booth">Poste de péage</string>
 	<string name="type.boundary.national_park">Parc national</string>
 	<string name="type.building">Bâtiment</string>
@@ -1039,6 +1038,7 @@
 	<string name="type.emergency.fire_hydrant">Bouche d’incendie</string>
 	<string name="type.emergency.phone">Téléphone d\'urgence</string>
 	<string name="type.entrance">Entrée</string>
+	<string name="type.healthcare.laboratory">Laboratoire médical</string>
 	<string name="type.highway.bus_stop">Arrêt de bus</string>
 	<string name="type.highway.construction">Route en construction</string>
 	<string name="type.highway.footway">Chemin</string>
@@ -1199,9 +1199,9 @@
 	<string name="type.natural.geyser">Geyser</string>
 	<string name="type.natural.glacier">Glacier</string>
 	<string name="type.natural.grassland">Champ</string>
-	<string name="type.natural.lake">Lac</string>
+	<string name="type.natural.water.lake">Lac</string>
 	<string name="type.natural.peak">Sommet</string>
-	<string name="type.natural.pond">Étang</string>
+	<string name="type.natural.water.pond">Étang</string>
 	<string name="type.natural.scrub">Fourré</string>
 	<string name="type.natural.spring">Source</string>
 	<string name="type.natural.strait">Détroit</string>
@@ -1256,28 +1256,15 @@
 	<string name="type.railway.station.subway">Métro</string>
 	<string name="type.railway.station.subway.barcelona">Métro</string>
 	<string name="type.railway.station.subway.berlin">Métro</string>
-	<string name="type.railway.station.subway.blue">Métro</string>
-	<string name="type.railway.station.subway.brown">Métro</string>
-	<string name="type.railway.station.subway.darkgreen">Métro</string>
-	<string name="type.railway.station.subway.gray">Métro</string>
-	<string name="type.railway.station.subway.green">Métro</string>
-	<string name="type.railway.station.subway.grey">Métro</string>
 	<string name="type.railway.station.subway.kiev">Métro</string>
-	<string name="type.railway.station.subway.lightblue">Métro</string>
-	<string name="type.railway.station.subway.lightgreen">Métro</string>
 	<string name="type.railway.station.subway.london">Métro</string>
 	<string name="type.railway.station.subway.madrid">Métro</string>
 	<string name="type.railway.station.subway.minsk">Métro</string>
 	<string name="type.railway.station.subway.moscow">Métro</string>
 	<string name="type.railway.station.subway.newyork">Métro</string>
-	<string name="type.railway.station.subway.orange">Métro</string>
 	<string name="type.railway.station.subway.paris">Métro</string>
-	<string name="type.railway.station.subway.purple">Métro</string>
-	<string name="type.railway.station.subway.red">Métro</string>
 	<string name="type.railway.station.subway.roma">Métro</string>
 	<string name="type.railway.station.subway.spb">Métro</string>
-	<string name="type.railway.station.subway.violet">Métro</string>
-	<string name="type.railway.station.subway.yellow">Métro</string>
 	<string name="type.railway.subway_entrance">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.barcelona">Métro</string>
 	<string name="type.railway.subway_entrance.berlin">Métro</string>

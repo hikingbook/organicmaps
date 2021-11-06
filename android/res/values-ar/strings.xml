@@ -222,9 +222,13 @@
 	<string name="rate_the_app">تقييم التطبيق</string>
 	<!-- Text in menu -->
 	<string name="help">مساعدة</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">ﺔﺑﻮﺟﺃﻭ ﺔﻠﺌﺳﺃ</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">كيف تدعم لنا؟</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">حقوق الطبع والنشر</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">الإبلاغ عن خطأ</string>
 	<!-- Alert text -->
 	<string name="email_error_body">لم يتم تعيين البريد الإلكتروني للعميل. يرجى تكوينه أو استخدام أي وسيلة أخرى للاتصال بنا على %s</string>
@@ -560,14 +564,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">انظر</string>
 	<string name="recent_track_background_dialog_message">يستخدم Organic Maps موقعك الجغرافي في الخلفية لتسجيل مسار سفرك الأخير.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">تصنيف على Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">أخبر صديق</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">مرحبًا! تثبيت Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps هو تطبيق أساسي للسفر بدون اتصال بالإنترنت. يعتمد برنامج Organic Maps على بيانات OpenStreetMap ويتيح تحريرها.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps هي تطبيق خرائط مجاني ومفتوح المصدر بلا اتصال بالإنترنت. لا اعلانات. لا تتبع. إذا رأيت خطأً على الخريطة ، فيرجى إصلاحه في OpenStreetMap. تم إنشاء المشروع بواسطة المتحمسين في أوقات فراغنا ، لذلك نحتاج إلى ملاحظاتك ودعمك.</string>
 	<string name="general_settings">إعدادات عامة</string>
 	<!-- For the first routing -->
 	<string name="accept">قبول</string>
@@ -609,7 +607,6 @@
 	<string name="placepage_remove_stop">إزالة</string>
 	<string name="planning_route_remove_title">اسحب هنا للإزالة</string>
 	<string name="placepage_add_stop">إضافة نقطة توقف</string>
-	<string name="preloader_viator_button">تعلم المزيد</string>
 	<string name="start_from_my_position">بدء من</string>
 	<string name="profile_authorization_error">عفوًا، كان هناك خطأ. حاول تسجيل الدخول مرة اخرى.</string>
 	<string name="dialog_error_storage_title">مشكلة الوصول للتخزين</string>
@@ -640,7 +637,6 @@
 	<string name="please_wait">أرجو الإنتظار…</string>
 	<string name="phone_number">رقم الهاتف</string>
 	<string name="profile">الملف الشخصي OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">ابحث عن فنادق مماثلة</string>
 	<string name="bookmarks_detect_title">تم اكتشاف ملفات جديدة</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">تم العثور على %d ملفات. سوف تراهم بعد التحويل.</item>
@@ -855,7 +851,7 @@
 	<string name="type.amenity.doctors">طبيب</string>
 	<string name="type.amenity.drinking_water">مياه شرب</string>
 	<string name="type.amenity.driving_school">مدرسة قيادة</string>
-	<string name="type.amenity.embassy">سفارة</string>
+	<string name="type.office.diplomatic">سفارة</string>
 	<string name="type.amenity.fast_food">وجبات سريعة</string>
 	<string name="type.amenity.ferry_terminal">محطة عبّارات</string>
 	<string name="type.amenity.fire_station">محطة إطفاء</string>
@@ -935,6 +931,7 @@
 	<string name="type.barrier.gate">بوابة</string>
 	<string name="type.barrier.lift_gate">حاجز بوابة</string>
 	<string name="type.barrier.stile">ممر عبور</string>
+	<string name="type.barrier.swing_gate">حاجز بوابة</string>
 	<string name="type.barrier.toll_booth">كشك رسوم عبور</string>
 	<string name="type.boundary.national_park">منتزه وطني</string>
 	<string name="type.building">مبنى</string>
@@ -1042,6 +1039,7 @@
 	<string name="type.emergency.fire_hydrant">صنبور الإطفاء</string>
 	<string name="type.emergency.phone">هاتف الطوارئ</string>
 	<string name="type.entrance">مدخل</string>
+	<string name="type.healthcare.laboratory">ﺔﻴﺒﻄﻟﺍ ﺕﺍﺮﺒﺘﺨﻤﻟﺍ</string>
 	<string name="type.highway.bus_stop">موقف حافلة</string>
 	<string name="type.highway.construction">طريق تحت الإنشاء</string>
 	<string name="type.highway.footway">مسار</string>
@@ -1206,9 +1204,9 @@
 	<string name="type.natural.geyser">نبع ماء حار</string>
 	<string name="type.natural.glacier">كتلة جليدية</string>
 	<string name="type.natural.grassland">ملعب</string>
-	<string name="type.natural.lake">بحيرة</string>
+	<string name="type.natural.water.lake">بحيرة</string>
 	<string name="type.natural.peak">قمة</string>
-	<string name="type.natural.pond">بركة</string>
+	<string name="type.natural.water.pond">بركة</string>
 	<string name="type.natural.scrub">أَيْكَة</string>
 	<string name="type.natural.spring">ينبوع</string>
 	<string name="type.natural.strait">مضيق</string>
@@ -1265,28 +1263,15 @@
 	<string name="type.railway.station.subway">محطة مترو</string>
 	<string name="type.railway.station.subway.barcelona">محطة مترو</string>
 	<string name="type.railway.station.subway.berlin">محطة مترو</string>
-	<string name="type.railway.station.subway.blue">محطة مترو</string>
-	<string name="type.railway.station.subway.brown">محطة مترو</string>
-	<string name="type.railway.station.subway.darkgreen">محطة مترو</string>
-	<string name="type.railway.station.subway.gray">محطة مترو</string>
-	<string name="type.railway.station.subway.green">محطة مترو</string>
-	<string name="type.railway.station.subway.grey">محطة مترو</string>
 	<string name="type.railway.station.subway.kiev">محطة مترو</string>
-	<string name="type.railway.station.subway.lightblue">محطة مترو</string>
-	<string name="type.railway.station.subway.lightgreen">محطة مترو</string>
 	<string name="type.railway.station.subway.london">محطة مترو</string>
 	<string name="type.railway.station.subway.madrid">محطة مترو</string>
 	<string name="type.railway.station.subway.minsk">محطة مترو</string>
 	<string name="type.railway.station.subway.moscow">محطة مترو</string>
 	<string name="type.railway.station.subway.newyork">محطة مترو</string>
-	<string name="type.railway.station.subway.orange">محطة مترو</string>
 	<string name="type.railway.station.subway.paris">محطة مترو</string>
-	<string name="type.railway.station.subway.purple">محطة مترو</string>
-	<string name="type.railway.station.subway.red">محطة مترو</string>
 	<string name="type.railway.station.subway.roma">محطة مترو</string>
 	<string name="type.railway.station.subway.spb">محطة مترو</string>
-	<string name="type.railway.station.subway.violet">محطة مترو</string>
-	<string name="type.railway.station.subway.yellow">محطة مترو</string>
 	<string name="type.railway.subway_entrance">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.barcelona">محطة مترو</string>
 	<string name="type.railway.subway_entrance.berlin">محطة مترو</string>

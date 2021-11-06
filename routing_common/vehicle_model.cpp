@@ -94,6 +94,11 @@ void VehicleModel::SetAdditionalRoadTypes(Classificator const & c,
   }
 }
 
+uint32_t VehicleModel::PrepareToMatchType(uint32_t type)
+{
+  return ftypes::BaseChecker::PrepareToMatch(type, 2);
+}
+
 SpeedKMpH VehicleModel::GetSpeed(FeatureType & f, SpeedParams const & speedParams) const
 {
   feature::TypesHolder const types(f);
@@ -130,8 +135,7 @@ double VehicleModel::GetMaxWeightSpeed() const
 optional<HighwayType> VehicleModel::GetHighwayType(uint32_t type) const
 {
   optional<HighwayType> hwType;
-  type = ftypes::BaseChecker::PrepareToMatch(type, 2);
-  auto const it = m_roadTypes.find(type);
+  auto const it = m_roadTypes.find(PrepareToMatchType(type));
   if (it != m_roadTypes.cend())
     hwType = it->second.GetHighwayType();
 
@@ -240,17 +244,7 @@ SpeedKMpH VehicleModel::GetSpeedWihtoutMaxspeed(FeatureType & f,
 
 bool VehicleModel::IsOneWay(FeatureType & f) const
 {
-  // It's a hotfix for release and this code shouldn't be merge to master.
-  // According to osm documentation on roundabout it's implied that roundabout is one way
-  // road execpt for rare cases. Only 0.3% (~1200) of roundabout in the world are two-way road.
-  // (https://wiki.openstreetmap.org/wiki/Tag:junction%3Droundabout)
-  // It should be processed on map generation stage together with other implied one way features
-  // rules like: motorway_link (if not set oneway == "no")
-  // motorway (if not set oneway == "no"). Please see
-  // https://github.com/organicmaps/organicmaps/blob/master/3party/osrm/osrm-backend/profiles/car.lua#L392
-  // for further details.
-  // TODO(@Zverik, @bykoianko) Please process the rules on map generation stage.
-  return HasOneWayType(feature::TypesHolder(f)) || ftypes::IsRoundAboutChecker::Instance()(f);
+  return HasOneWayType(feature::TypesHolder(f));
 }
 
 bool VehicleModel::HasOneWayType(feature::TypesHolder const & types) const
@@ -287,8 +281,7 @@ bool VehicleModel::HasPassThroughType(feature::TypesHolder const & types) const
 {
   for (uint32_t t : types)
   {
-    uint32_t const type = ftypes::BaseChecker::PrepareToMatch(t, 2);
-    auto it = m_roadTypes.find(type);
+    auto it = m_roadTypes.find(PrepareToMatchType(t));
     if (it != m_roadTypes.end() && it->second.IsPassThroughAllowed())
       return true;
   }
@@ -299,7 +292,7 @@ bool VehicleModel::HasPassThroughType(feature::TypesHolder const & types) const
 bool VehicleModel::IsRoadType(uint32_t type) const
 {
   return FindAdditionalRoadType(type) != m_addRoadTypes.cend() ||
-         m_roadTypes.find(ftypes::BaseChecker::PrepareToMatch(type, 2)) != m_roadTypes.end();
+         m_roadTypes.find(PrepareToMatchType(type)) != m_roadTypes.end();
 }
 
 VehicleModelInterface::RoadAvailability VehicleModel::GetRoadAvailability(feature::TypesHolder const & /* types */) const
@@ -307,11 +300,11 @@ VehicleModelInterface::RoadAvailability VehicleModel::GetRoadAvailability(featur
   return RoadAvailability::Unknown;
 }
 
-vector<VehicleModel::AdditionalRoadType>::const_iterator VehicleModel::FindAdditionalRoadType(
-    uint32_t type) const
+vector<VehicleModel::AdditionalRoadType>::const_iterator
+VehicleModel::FindAdditionalRoadType(uint32_t type) const
 {
   return find_if(m_addRoadTypes.begin(), m_addRoadTypes.cend(),
-                 [&type](AdditionalRoadType const & t) { return t.m_type == type; });
+                 [type](AdditionalRoadType const & t) { return t.m_type == type; });
 }
 
 VehicleModelFactory::VehicleModelFactory(
@@ -455,8 +448,6 @@ string DebugPrint(HighwayType type)
   case HighwayType::HighwaySecondaryLink: return "highway-secondary_link";
   case HighwayType::RouteFerry: return "route-ferry";
   case HighwayType::HighwayTertiaryLink: return "highway-tertiary_link";
-  case HighwayType::RouteFerryMotorcar: return "route-ferry-motorcar";
-  case HighwayType::RouteFerryMotorVehicle: return "route-ferry-motor_vehicle";
   case HighwayType::RailwayRailMotorVehicle: return "railway-rail-motor_vehicle";
   case HighwayType::RouteShuttleTrain: return "route-shuttle_train";
   }

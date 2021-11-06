@@ -10,6 +10,8 @@
 #include "base/macros.hpp"
 #include "base/string_utils.hpp"
 
+#include "coding/url.hpp"
+
 #include <algorithm>
 #include <cctype>
 #include <cmath>
@@ -492,6 +494,26 @@ void EditableMapObject::SetWebsite(string website)
   m_metadata.Drop(feature::Metadata::FMD_URL);
 }
 
+void EditableMapObject::SetFacebookPage(string facebookPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_FACEBOOK_PAGE, facebookPage);
+}
+
+void EditableMapObject::SetInstagramPage(string instagramPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_INSTAGRAM_PAGE, instagramPage);
+}
+
+void EditableMapObject::SetTwitterPage(string twitterPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_TWITTER_PAGE, twitterPage);
+}
+
+void EditableMapObject::SetVkPage(string vkPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_VK_PAGE, vkPage);
+}
+
 void EditableMapObject::SetInternet(Internet internet)
 {
   m_metadata.Set(feature::Metadata::FMD_INTERNET, DebugPrint(internet));
@@ -744,6 +766,108 @@ bool EditableMapObject::ValidateWebsite(string const & site)
   return true;
 }
 
+//static
+bool EditableMapObject::ValidateFacebookPage(string const & page)
+{
+  if (page.empty())
+    return true;
+
+  // See rules: https://www.facebook.com/help/105399436216001
+  static auto const s_fbRegex = regex(R"(^@?[a-zA-Z\d.\-]{5,}$)");
+  if (regex_match(page, s_fbRegex))
+    return true;
+
+  if (ValidateWebsite(page))
+  {
+    string const domain = strings::MakeLowerCase(url::Url::FromString(page).GetWebDomain());
+    return (strings::StartsWith(domain, "facebook.") || strings::StartsWith(domain, "fb.") ||
+            domain.find(".facebook.") != string::npos || domain.find(".fb.") != string::npos);
+  }
+
+  return false;
+}
+
+//static
+bool EditableMapObject::ValidateInstagramPage(string const & page)
+{
+  if (page.empty())
+    return true;
+
+  // Rules took here: https://blog.jstassen.com/2016/03/code-regex-for-instagram-username-and-hashtags/
+  static auto const s_instaRegex = regex(R"(^@?[A-Za-z0-9_][A-Za-z0-9_.]{0,28}[A-Za-z0-9_]$)");
+  if (regex_match(page, s_instaRegex))
+    return true;
+
+  if (ValidateWebsite(page))
+  {
+    string const domain = strings::MakeLowerCase(url::Url::FromString(page).GetWebDomain());
+    return domain == "instagram.com" || strings::EndsWith(domain, ".instagram.com");
+  }
+
+  return false;
+}
+
+//static
+bool EditableMapObject::ValidateTwitterPage(string const & page)
+{
+  if (page.empty())
+    return true;
+
+  if (ValidateWebsite(page))
+  {
+    string const domain = strings::MakeLowerCase(url::Url::FromString(page).GetWebDomain());
+    return domain == "twitter.com" || strings::EndsWith(domain, ".twitter.com");
+  }
+  else
+  {
+    // Rules took here: https://stackoverflow.com/q/11361044
+    static auto const s_twitterRegex = regex(R"(^@?[A-Za-z0-9_]{1,15}$)");
+    return regex_match(page, s_twitterRegex);
+  }
+}
+
+//static
+bool EditableMapObject::ValidateVkPage(string page)
+{
+  if (page.empty())
+    return true;
+
+  {
+    /* Check that page contains valid username. Rules took here: https://vk.com/faq18038
+       The page name must be between 5 and 32 characters.
+       Invalid format could be in cases:
+     * - begins with three or more numbers (one or two numbers are allowed).
+     * - begins and ends with "_".
+     * - contains a period with less than four symbols after it starting with a letter.
+     */
+
+    if (page.size() < 5)
+      return false;
+
+    if (page.front() == '@')
+      page = page.substr(1);
+    if (page.front() == '_' && page.back() == '_')
+      return false;
+
+    static auto const s_badVkRegex = regex(R"(^\d\d\d.+$)");
+    if (regex_match(page, s_badVkRegex))
+      return false;
+
+    static auto const s_goodVkRegex = regex(R"(^[A-Za-z0-9_.]{5,32}$)");
+    if (regex_match(page, s_goodVkRegex))
+      return true;
+  }
+
+  if (ValidateWebsite(page))
+  {
+    string const domain = strings::MakeLowerCase(url::Url::FromString(page).GetWebDomain());
+    return domain == "vk.com" || strings::EndsWith(domain, ".vk.com")
+        || domain == "vkontakte.ru" || strings::EndsWith(domain, ".vkontakte.ru");
+  }
+
+  return false;
+}
+
 // static
 bool EditableMapObject::ValidateEmail(string const & email)
 {
@@ -751,7 +875,10 @@ bool EditableMapObject::ValidateEmail(string const & email)
     return true;
 
   if (strings::IsASCIIString(email))
-    return regex_match(email, regex(R"([^@\s]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$)"));
+  {
+    static auto const s_emailRegex = regex(R"([^@\s]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$)");
+    return regex_match(email, s_emailRegex);
+  }
 
   if ('@' == email.front() || '@' == email.back())
     return false;
@@ -804,7 +931,10 @@ bool EditableMapObject::ValidateName(string const & name)
     return true;
 
   if (strings::IsASCIIString(name))
-    return regex_match(name, regex(R"(^[ A-Za-z0-9.,?!@#$%&()\-\+:;"'`]+$)"));
+  {
+    static auto const s_nameRegex = regex(R"(^[ A-Za-z0-9.,?!@#$%&()\-\+:;"'`]+$)");
+    return regex_match(name, s_nameRegex);
+  }
 
   std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> converter;
 

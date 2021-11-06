@@ -222,9 +222,13 @@
 	<string name="rate_the_app">ให้คะแนนแอป</string>
 	<!-- Text in menu -->
 	<string name="help">ความช่วยเหลือ</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">คำถามและคำตอบ</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">วิธีการสนับสนุนเรา</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">ลิขสิทธิ์</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">แจ้งข้อผิดพลาด</string>
 	<!-- Alert text -->
 	<string name="email_error_body">อีเมลลูกค้ายังไม่ได้รับการจัดตั้งขึ้น กรุณาตั้งค่าหรือใช้วิธีอื่นที่จะติดต่อเราที่ %s</string>
@@ -560,14 +564,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">ตรวจชม</string>
 	<string name="recent_track_background_dialog_message">Organic Maps ใช้ตำแหน่งทางภูมิศาสตร์ของคุณในพื้นหลังเพื่อบันทึกเส้นทางที่คุณเดินทางเมื่อเร็ว ๆ นี้</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">ให้คะแนนบน Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">บอกเพื่อน</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">สวัสดี! ติดตั้ง Organic Maps กันเถอะ!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps เป็นแอปพลิเคชั่นออฟไลน์ที่จำเป็นสำหรับการท่องเที่ยว Organic Maps นั้นใช้งานบนพื้นฐานของข้อมูล OpenStreetMap และใช้แก้ไขได้ด้วย</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps เป็นแอปพลิเคชันแผนที่ออฟไลน์แบบโอเพนซอร์สฟรี ไม่มีโฆษณา ไม่มีการติดตาม. หากคุณเห็นข้อผิดพลาดบนแผนที่ โปรดแก้ไขใน OpenStreetMap โครงการนี้สร้างขึ้นโดยผู้ที่ชื่นชอบในเวลาว่าง เราจึงต้องการความคิดเห็นและการสนับสนุนจากคุณ</string>
 	<string name="general_settings">การตั้งค่าทั่วไป</string>
 	<!-- For the first routing -->
 	<string name="accept">ยอมรับ</string>
@@ -609,7 +607,6 @@
 	<string name="placepage_remove_stop">เอาออก</string>
 	<string name="planning_route_remove_title">ลากมาที่นี่เพื่อเอาออก</string>
 	<string name="placepage_add_stop">เพิ่มจุดแวะพัก</string>
-	<string name="preloader_viator_button">เรียนรู้เพิ่มเติม</string>
 	<string name="start_from_my_position">เริ่มจาก</string>
 	<string name="profile_authorization_error">โอ๊ะ มีข้อผิดพลาดเกิดขึ้น ลองลงชื่อเข้าใช้อีกครั้ง</string>
 	<string name="dialog_error_storage_title">ปัญหาการเข้าถึงที่เก็บข้อมูล</string>
@@ -640,7 +637,6 @@
 	<string name="please_wait">โปรดรอสักครู่ …</string>
 	<string name="phone_number">หมายเลขโทรศัพท์</string>
 	<string name="profile">โปรไฟล์ OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">ค้นหาโรงแรมที่คล้ายกัน</string>
 	<string name="bookmarks_detect_title">พบไฟล์ใหม่แล้ว</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d ไฟล์ที่ค้นพบ คุณจะเห็นพวกเขาหลังจากการแปลง</item>
@@ -855,7 +851,7 @@
 	<string name="type.amenity.doctors">ห้องแพทย์</string>
 	<string name="type.amenity.drinking_water">น้ำดื่ม</string>
 	<string name="type.amenity.driving_school">โรงเรียนสอนขับรถ</string>
-	<string name="type.amenity.embassy">สถานทูต</string>
+	<string name="type.office.diplomatic">สถานทูต</string>
 	<string name="type.amenity.fast_food">อาหารจานด่วน</string>
 	<string name="type.amenity.ferry_terminal">เฟอร์รี่</string>
 	<string name="type.amenity.fire_station">สถานีดับเพลิง</string>
@@ -935,6 +931,7 @@
 	<string name="type.barrier.gate">ประตู</string>
 	<string name="type.barrier.lift_gate">ไม้กั้น</string>
 	<string name="type.barrier.stile">บันไดข้าม</string>
+	<string name="type.barrier.swing_gate">ไม้กั้น</string>
 	<string name="type.barrier.toll_booth">ด่านเก็บเงิน</string>
 	<string name="type.boundary.national_park">อุทยานแห่งชาติ</string>
 	<string name="type.building">อาคาร</string>
@@ -1042,6 +1039,7 @@
 	<string name="type.emergency.fire_hydrant">หัวจ่ายน้ำดับเพลิง</string>
 	<string name="type.emergency.phone">โทรศัพท์ฉุกเฉิน</string>
 	<string name="type.entrance">ทางเข้า</string>
+	<string name="type.healthcare.laboratory">ห้องปฏิบัติการทางการแพทย์</string>
 	<string name="type.highway.bus_stop">ป้ายรถเมล์</string>
 	<string name="type.highway.construction">ทางกำลังอยู่ในการก่อสร้าง</string>
 	<string name="type.highway.footway">เส้นทาง</string>
@@ -1206,9 +1204,9 @@
 	<string name="type.natural.geyser">นำ้พุร้อน</string>
 	<string name="type.natural.glacier">ธารน้ำแข็ง</string>
 	<string name="type.natural.grassland">ทุ่งหญ้า</string>
-	<string name="type.natural.lake">ทะเลสาบ</string>
+	<string name="type.natural.water.lake">ทะเลสาบ</string>
 	<string name="type.natural.peak">จุดสูงสุด</string>
-	<string name="type.natural.pond">บ่อ</string>
+	<string name="type.natural.water.pond">บ่อ</string>
 	<string name="type.natural.scrub">ป่าละเมาะ</string>
 	<string name="type.natural.spring">ฤดูใบไม้ผลิ</string>
 	<string name="type.natural.strait">ช่องแคบ</string>
@@ -1265,28 +1263,15 @@
 	<string name="type.railway.station.subway">รถไฟ</string>
 	<string name="type.railway.station.subway.barcelona">รถไฟ</string>
 	<string name="type.railway.station.subway.berlin">รถไฟ</string>
-	<string name="type.railway.station.subway.blue">รถไฟ</string>
-	<string name="type.railway.station.subway.brown">รถไฟ</string>
-	<string name="type.railway.station.subway.darkgreen">รถไฟ</string>
-	<string name="type.railway.station.subway.gray">รถไฟ</string>
-	<string name="type.railway.station.subway.green">รถไฟ</string>
-	<string name="type.railway.station.subway.grey">รถไฟ</string>
 	<string name="type.railway.station.subway.kiev">รถไฟ</string>
-	<string name="type.railway.station.subway.lightblue">รถไฟ</string>
-	<string name="type.railway.station.subway.lightgreen">รถไฟ</string>
 	<string name="type.railway.station.subway.london">รถไฟ</string>
 	<string name="type.railway.station.subway.madrid">รถไฟ</string>
 	<string name="type.railway.station.subway.minsk">รถไฟ</string>
 	<string name="type.railway.station.subway.moscow">รถไฟ</string>
 	<string name="type.railway.station.subway.newyork">รถไฟ</string>
-	<string name="type.railway.station.subway.orange">รถไฟ</string>
 	<string name="type.railway.station.subway.paris">รถไฟ</string>
-	<string name="type.railway.station.subway.purple">รถไฟ</string>
-	<string name="type.railway.station.subway.red">รถไฟ</string>
 	<string name="type.railway.station.subway.roma">รถไฟ</string>
 	<string name="type.railway.station.subway.spb">รถไฟ</string>
-	<string name="type.railway.station.subway.violet">รถไฟ</string>
-	<string name="type.railway.station.subway.yellow">รถไฟ</string>
 	<string name="type.railway.subway_entrance">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.barcelona">รถไฟ</string>
 	<string name="type.railway.subway_entrance.berlin">รถไฟ</string>

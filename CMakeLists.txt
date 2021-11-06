@@ -30,11 +30,11 @@ endif()
 
 if (CMAKE_SYSTEM_NAME MATCHES "Android")
   set(ANDROID_DETECTED TRUE)
+  if ((${OS} MATCHES "mac"))
+    set(DARWIN TRUE)
+  endif()
 endif()
 
-if (ANDROID_DETECTED AND (${OS} MATCHES "mac"))
-  set(DARWIN TRUE)
-endif()
 
 omim_set_platform_var(PLATFORM_IPHONE "iphone-.*")
 omim_set_platform_var(PLATFORM_ANDROID "android-.*" ${ANDROID_DETECTED})
@@ -49,6 +49,18 @@ else()
 endif()
 
 # End of setting the target platform
+
+# Sanitizer
+if (PLATFORM_DESKTOP)
+  # https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation
+  set(BUILD_WITH_SANITIZER None CACHE STRING "Set to 'address' or others to enable sanitizer")
+
+  if (NOT ${BUILD_WITH_SANITIZER} MATCHES "None")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=${BUILD_WITH_SANITIZER} -fno-omit-frame-pointer")
+      set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -fsanitize=${BUILD_WITH_SANITIZER} -fno-omit-frame-pointer")
+      message(STATUS "Enable sanitizer: ${BUILD_WITH_SANITIZER}")
+  endif()
+endif()
 
 # Set build type:
 if (NOT CMAKE_BUILD_TYPE)
@@ -175,7 +187,8 @@ if (NOT SKIP_TESTS)
 endif()
 
 if (NOT PYTHON_VERSION)
-  set(PYTHON_VERSION 2.7)
+  # FDroid build server has 3.5.3 Python installed.
+  set(PYTHON_VERSION 3.5)
 endif()
 
 # End of setting environment variables

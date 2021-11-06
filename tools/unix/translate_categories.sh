@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Install translate-shell before using this script.
+# Install translate-shell before using this script:
+# https://github.com/soimort/translate-shell
 # Use `brew install translate-shell` on Mac OS X.
 
 # There is a rate-limit for Google which can be work-arounded by using
 # another IP or IPv6.
 
 set -euo pipefail
+
+DELIM=${DELIM:-:}
 
 case $# in
   1) SRC=en
@@ -15,16 +18,16 @@ case $# in
   2) SRC="$1"
      WORD="$2"
      ;;
-  *) echo "Usage: $0 word_or_text_in_English"
+  *) echo "Usage: [DELIM=' = '] $0 word_or_text_in_English"
      echo "       or"
-     echo "       $0 source_language_code word_or_text_in_given_language"
+     echo "       [DELIM=' = '] $0 source_language_code word_or_text_in_given_language"
      exit 1
      ;;
 esac
 
 # Note: default Google engine doesn't properly support European Portuguese (pt-PT)
-# and always produces Brazilian translations.
-LANGUAGES=( en ru ar be bg cs da de el es fa fi fr he hu id it ja ko nb nl pl pt-PT pt-BR ro ru sk sv sw th tr uk vi zh-CN zh-TW )
+# and always produces Brazilian translations. Need to use Deepl.
+LANGUAGES=( en ar be bg cs da de el es fa 'fi' fr he hu id it ja ko nb nl pl pt-PT pt-BR ro ru sk sv sw th tr uk vi zh-CN zh-TW )
 
 for lang in "${LANGUAGES[@]}"; do
   TRANSLATION=$(trans -b "$SRC:$lang" "$WORD" | sed 's/   *//')
@@ -34,5 +37,7 @@ for lang in "${LANGUAGES[@]}"; do
     zh-TW) lang="zh-Hant" ;;
     pt-PT) lang="pt"      ;;
   esac
-  echo "$lang:$(tr '[:lower:]' '[:upper:]' <<< ${TRANSLATION:0:1})${TRANSLATION:1}"
+  echo "$lang:$(tr '[:lower:]' '[:upper:]' <<< "${TRANSLATION:0:1}")${TRANSLATION:1}"
+  # To avoid quota limits.
+  sleep 1
 done

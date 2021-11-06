@@ -14,10 +14,12 @@ import androidx.annotation.Nullable;
 
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.base.BaseMwmFragment;
+import com.mapswithme.maps.base.BaseMwmFragmentActivity;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.widget.WheelProgressView;
 import com.mapswithme.util.StringUtils;
 import com.mapswithme.util.UiUtils;
+import com.mapswithme.util.Utils;
 
 import java.util.List;
 import java.util.Locale;
@@ -213,7 +215,8 @@ public class CountrySuggestFragment extends BaseMwmFragment implements View.OnCl
       break;
 
     case R.id.btn__select_map:
-      getMwmActivity().replaceFragment(DownloaderFragment.class, null, null);
+      BaseMwmFragmentActivity activity = Utils.castTo(getActivity());
+      activity.replaceFragment(DownloaderFragment.class, null, null);
       break;
 
     case R.id.wpv__download_progress:

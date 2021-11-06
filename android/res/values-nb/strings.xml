@@ -222,9 +222,13 @@
 	<string name="rate_the_app">Ranger appen</string>
 	<!-- Text in menu -->
 	<string name="help">Hjelp</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Spørsmål og svar</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Hvordan støtte oss?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Opphavsrett</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Rapporter en feil</string>
 	<!-- Alert text -->
 	<string name="email_error_body">E-postklienten har ikke blitt konfigurert. Konfigurer den eller bruk en annen måte å kontakte oss på %s</string>
@@ -558,14 +562,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Sjekk ut</string>
 	<string name="recent_track_background_dialog_message">Organic Maps bruker geografiske funksjoner i bakgrunnen for å registrere din nylig reiste rute.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Gi vurdering på Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Fortell en venn</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Hei! Installer Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps er en offline app for reising. Organic Maps bygger på OpenStreetMap-data og tillater redigering av den.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps er en gratis og åpen kildekode-app for offline kart. Ingen annonser. Ingen sporing. Hvis du ser en feil på kartet, må du rette den i OpenStreetMap. Prosjektet er laget av entusiaster på fritiden vår, så vi trenger din tilbakemelding og støtte.</string>
 	<string name="general_settings">Generelle innstillinger</string>
 	<!-- For the first routing -->
 	<string name="accept">Godta</string>
@@ -607,7 +605,6 @@
 	<string name="placepage_remove_stop">Fjern</string>
 	<string name="planning_route_remove_title">Dra hit for å fjerne</string>
 	<string name="placepage_add_stop">Angi stopp</string>
-	<string name="preloader_viator_button">Finn ut mer</string>
 	<string name="start_from_my_position">Start fra</string>
 	<string name="profile_authorization_error">Oops, en feil oppstod. Prøv å logge inn på nytt.</string>
 	<string name="dialog_error_storage_title">Problemer med tilgang til lagring</string>
@@ -638,7 +635,6 @@
 	<string name="please_wait">Vennligst vent…</string>
 	<string name="phone_number">Telefonnummer</string>
 	<string name="profile">OpenStreetMap profil</string>
-	<string name="place_page_search_similar_hotel">Søk lignende hoteller</string>
 	<string name="bookmarks_detect_title">Nye filer oppdaget</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d filen ble funnet. Du vil se dem etter konverteringen.</item>
@@ -829,7 +825,7 @@
 	<string name="type.amenity.doctors">Legekontor</string>
 	<string name="type.amenity.drinking_water">Drikkevann</string>
 	<string name="type.amenity.driving_school">Kjøreskole</string>
-	<string name="type.amenity.embassy">Ambassade</string>
+	<string name="type.office.diplomatic">Ambassade</string>
 	<string name="type.amenity.fast_food">Hurtigmat</string>
 	<string name="type.amenity.ferry_terminal">Ferje</string>
 	<string name="type.amenity.fire_station">Brannstasjon</string>
@@ -907,6 +903,7 @@
 	<string name="type.barrier.gate">Port</string>
 	<string name="type.barrier.lift_gate">Bom</string>
 	<string name="type.barrier.stile">Sperre</string>
+	<string name="type.barrier.swing_gate">Bom</string>
 	<string name="type.barrier.toll_booth">Bomstasjon</string>
 	<string name="type.boundary.national_park">Nasonalpark</string>
 	<string name="type.building">Bygning</string>
@@ -1014,6 +1011,7 @@
 	<string name="type.emergency.fire_hydrant">Brannhydrant</string>
 	<string name="type.emergency.phone">Nødtelefon</string>
 	<string name="type.entrance">Inngang</string>
+	<string name="type.healthcare.laboratory">Medisinsk laboratorium</string>
 	<string name="type.highway.bus_stop">Busstopp</string>
 	<string name="type.highway.construction">Veikonstruksjon</string>
 	<string name="type.highway.footway">Sti</string>
@@ -1174,9 +1172,9 @@
 	<string name="type.natural.geyser">Gaysir</string>
 	<string name="type.natural.glacier">Isbre</string>
 	<string name="type.natural.grassland">Slette</string>
-	<string name="type.natural.lake">Innsjø</string>
+	<string name="type.natural.water.lake">Innsjø</string>
 	<string name="type.natural.peak">Høydepunkt</string>
-	<string name="type.natural.pond">Dam</string>
+	<string name="type.natural.water.pond">Dam</string>
 	<string name="type.natural.scrub">Myr</string>
 	<string name="type.natural.spring">Vår</string>
 	<string name="type.natural.strait">Sund</string>
@@ -1232,28 +1230,15 @@
 	<string name="type.railway.station.subway">T-bane</string>
 	<string name="type.railway.station.subway.barcelona">T-bane</string>
 	<string name="type.railway.station.subway.berlin">T-bane</string>
-	<string name="type.railway.station.subway.blue">T-bane</string>
-	<string name="type.railway.station.subway.brown">T-bane</string>
-	<string name="type.railway.station.subway.darkgreen">T-bane</string>
-	<string name="type.railway.station.subway.gray">T-bane</string>
-	<string name="type.railway.station.subway.green">T-bane</string>
-	<string name="type.railway.station.subway.grey">T-bane</string>
 	<string name="type.railway.station.subway.kiev">T-bane</string>
-	<string name="type.railway.station.subway.lightblue">T-bane</string>
-	<string name="type.railway.station.subway.lightgreen">T-bane</string>
 	<string name="type.railway.station.subway.london">T-bane</string>
 	<string name="type.railway.station.subway.madrid">T-bane</string>
 	<string name="type.railway.station.subway.minsk">T-bane</string>
 	<string name="type.railway.station.subway.moscow">T-bane</string>
 	<string name="type.railway.station.subway.newyork">T-bane</string>
-	<string name="type.railway.station.subway.orange">T-bane</string>
 	<string name="type.railway.station.subway.paris">T-bane</string>
-	<string name="type.railway.station.subway.purple">T-bane</string>
-	<string name="type.railway.station.subway.red">T-bane</string>
 	<string name="type.railway.station.subway.roma">T-bane</string>
 	<string name="type.railway.station.subway.spb">T-bane</string>
-	<string name="type.railway.station.subway.violet">T-bane</string>
-	<string name="type.railway.station.subway.yellow">T-bane</string>
 	<string name="type.railway.subway_entrance">T-bane inngang</string>
 	<string name="type.railway.subway_entrance.barcelona">T-bane</string>
 	<string name="type.railway.subway_entrance.berlin">T-bane</string>

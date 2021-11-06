@@ -23,8 +23,6 @@
 	<string name="leave_a_review">Lav en bedømmelse</string>
 	<!-- View and button titles for accessibility -->
 	<string name="maps">Kort</string>
-	<!-- Settings/Downloader - size string, only strings different from English should be translated -->
-	<string name="mb">MB</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
 	<string name="miles">Mil</string>
 	<!-- View and button titles for accessibility -->
@@ -222,9 +220,13 @@
 	<string name="rate_the_app">Bedøm appen</string>
 	<!-- Text in menu -->
 	<string name="help">Hjælp</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Spørgsmål og svar</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Sådan støtter vi os?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Copyright</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Rapportér fejl</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Emailklienten er ikke blevet sat op. Venligst konfigurér den eller brug en anden måde til at kontakte os på %s</string>
@@ -560,14 +562,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Tjek</string>
 	<string name="recent_track_background_dialog_message">Organic Maps anvender din geoposition i baggrunden til at gemme din seneste rejserute.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Bedøm på Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Sig det videre til en ven</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Hej! Installer Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps er en essentiel offline-app for rejsende. Organic Maps er baseret på data fra OpenStreetMap, og gør det muligt at redigere disse data.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps er en gratis og open source offline kortapplikation. Ingen annoncer. Ingen sporing. Hvis du ser en fejl på kortet, skal du rette den i OpenStreetMap. Projektet er skabt af entusiaster i vores fritid, så vi har brug for din feedback og support.</string>
 	<string name="general_settings">Generelle indstillinger</string>
 	<!-- For the first routing -->
 	<string name="accept">Accepter</string>
@@ -609,7 +605,6 @@
 	<string name="placepage_remove_stop">Fjern</string>
 	<string name="planning_route_remove_title">Træk herhen for at fjerne</string>
 	<string name="placepage_add_stop">Tilføj stop</string>
-	<string name="preloader_viator_button">Flere oplysninger</string>
 	<string name="start_from_my_position">Start fra</string>
 	<string name="profile_authorization_error">Ups, der skete en fejl. Prøv at logge på igen.</string>
 	<string name="dialog_error_storage_title">Problem med lageradgang</string>
@@ -640,7 +635,6 @@
 	<string name="please_wait">Vent venligst…</string>
 	<string name="phone_number">Telefonnummer</string>
 	<string name="profile">OpenStreetMap profil</string>
-	<string name="place_page_search_similar_hotel">Søg lignende hoteller</string>
 	<string name="bookmarks_detect_title">Nye filer registreret</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d fil blev fundet. Du vil se det efter konvertering.</item>
@@ -853,7 +847,7 @@
 	<string name="type.amenity.doctors">Lægekontor</string>
 	<string name="type.amenity.drinking_water">Vand</string>
 	<string name="type.amenity.driving_school">Køreskole</string>
-	<string name="type.amenity.embassy">Ambassade</string>
+	<string name="type.office.diplomatic">Ambassade</string>
 	<string name="type.amenity.fast_food">Fastfood</string>
 	<string name="type.amenity.ferry_terminal">Færge</string>
 	<string name="type.amenity.fire_station">Brandstation</string>
@@ -928,6 +922,7 @@
 	<string name="type.barrier.gate">Port</string>
 	<string name="type.barrier.lift_gate">Bom</string>
 	<string name="type.barrier.stile">Gærdebro</string>
+	<string name="type.barrier.swing_gate">Bom</string>
 	<string name="type.barrier.toll_booth">Betalingsstation</string>
 	<string name="type.boundary.national_park">National park</string>
 	<string name="type.building">Bygning</string>
@@ -1034,6 +1029,7 @@
 	<string name="type.emergency.fire_hydrant">Brandhane</string>
 	<string name="type.emergency.phone">Nødtelefon</string>
 	<string name="type.entrance">Indgang</string>
+	<string name="type.healthcare.laboratory">Medicinsk laboratorium</string>
 	<string name="type.highway.bus_stop">Busstoppested</string>
 	<string name="type.highway.construction">Vej under opbygning</string>
 	<string name="type.highway.footway">Sti</string>
@@ -1193,9 +1189,9 @@
 	<string name="type.natural.geyser">Gejser</string>
 	<string name="type.natural.glacier">Gletsjer</string>
 	<string name="type.natural.grassland">Mark</string>
-	<string name="type.natural.lake">Sø</string>
+	<string name="type.natural.water.lake">Sø</string>
 	<string name="type.natural.peak">Bjerg</string>
-	<string name="type.natural.pond">Dam</string>
+	<string name="type.natural.water.pond">Dam</string>
 	<string name="type.natural.scrub">Kratbevokset område</string>
 	<string name="type.natural.spring">Kilde</string>
 	<string name="type.natural.strait">Stræde</string>
@@ -1250,28 +1246,15 @@
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.barcelona">Metro</string>
 	<string name="type.railway.station.subway.berlin">Metro</string>
-	<string name="type.railway.station.subway.blue">Metro</string>
-	<string name="type.railway.station.subway.brown">Metro</string>
-	<string name="type.railway.station.subway.darkgreen">Metro</string>
-	<string name="type.railway.station.subway.gray">Metro</string>
-	<string name="type.railway.station.subway.green">Metro</string>
-	<string name="type.railway.station.subway.grey">Metro</string>
 	<string name="type.railway.station.subway.kiev">Metro</string>
-	<string name="type.railway.station.subway.lightblue">Metro</string>
-	<string name="type.railway.station.subway.lightgreen">Metro</string>
 	<string name="type.railway.station.subway.london">Metro</string>
 	<string name="type.railway.station.subway.madrid">Metro</string>
 	<string name="type.railway.station.subway.minsk">Metro</string>
 	<string name="type.railway.station.subway.moscow">Metro</string>
 	<string name="type.railway.station.subway.newyork">Metro</string>
-	<string name="type.railway.station.subway.orange">Metro</string>
 	<string name="type.railway.station.subway.paris">Metro</string>
-	<string name="type.railway.station.subway.purple">Metro</string>
-	<string name="type.railway.station.subway.red">Metro</string>
 	<string name="type.railway.station.subway.roma">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
-	<string name="type.railway.station.subway.violet">Metro</string>
-	<string name="type.railway.station.subway.yellow">Metro</string>
 	<string name="type.railway.subway_entrance">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.barcelona">Metro</string>
 	<string name="type.railway.subway_entrance.berlin">Metro</string>

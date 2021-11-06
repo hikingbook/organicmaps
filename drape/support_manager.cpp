@@ -6,7 +6,6 @@
 
 #include "base/logging.hpp"
 
-
 #include "std/target_os.hpp"
 
 #include <algorithm>
@@ -23,7 +22,7 @@ struct SupportManager::Configuration
 };
 
 char const * kSupportedAntialiasing = "Antialiasing";
-char const * kVulkanForbidden = "VulkanForbidden";
+static char const * kVulkanForbidden = "VulkanForbidden";
 
 void SupportManager::Init(ref_ptr<GraphicsContext> context)
 {
@@ -114,8 +113,10 @@ bool SupportManager::IsVulkanForbidden() const
 bool SupportManager::IsVulkanForbidden(std::string const & deviceName,
                                        Version apiVersion, Version driverVersion) const
 {
-  static std::array<std::string ,2> const kBannedDevices = {"PowerVR Rogue GE8100",
-                                                            "PowerVR Rogue GE8300"};
+  /// @todo Should we ban all PowerVR Rogue devices?
+  static char const * kBannedDevices[] = {
+    "PowerVR Rogue G6110", "PowerVR Rogue GE8100", "PowerVR Rogue GE8300"
+  };
 
   // On these configurations we've detected fatal driver-specific Vulkan errors.
   static std::array<Configuration, 3> const kBannedConfigurations = {
@@ -152,7 +153,7 @@ bool SupportManager::IsVulkanTexturePartialUpdateBuggy(int sdkVersion,
 
   // For these configurations partial updates of texture clears whole texture except part updated
   static std::array<Configuration, 1> const kBadConfigurations = {
-      {"Mali-G76", {1, 1, 97}, {18, 0, 0}},
+      {{"Mali-G76", {1, 1, 97}, {18, 0, 0}}},
   };
 
   for (auto const & c : kBadConfigurations)

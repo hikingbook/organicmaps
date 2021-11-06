@@ -26,7 +26,7 @@ buildscript {
   ext.googleFirebaseServicesEnabled = project.hasProperty('firebase') ?: googleFirebaseServicesDefault
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.0.1'
+    classpath 'com.android.tools.build:gradle:7.0.3'
 
     if (googleMobileServicesEnabled) {
       println("Building with Google Mobile Services")
@@ -94,7 +94,7 @@ dependencies {
   implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
   implementation 'androidx.work:work-runtime:2.5.0'
   implementation 'com.trafi:anchor-bottom-sheet-behavior:0.13-alpha'
-  implementation 'com.github.yoksnod:MPAndroidChart:3.2.0-alpha'
+  implementation 'com.github.devnullorthrow:MPAndroidChart:3.2.0-alpha'
   implementation 'com.google.android.material:material:1.5.0-alpha02'
   implementation 'androidx.appcompat:appcompat:1.3.1'
   implementation 'androidx.preference:preference:1.1.1'
@@ -170,7 +170,7 @@ android {
     targetSdkVersion propTargetSdkVersion.toInteger()
     applicationId project.ext.appId
     buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
-    buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.omaps"'
+    buildConfigField 'String', 'REVIEW_URL', '"https://organicmaps.app/donate/"'
     buildConfigField 'int', 'RATING_THRESHOLD', '5'
 
     multiDexEnabled true
@@ -224,6 +224,7 @@ android {
       dimension "default"
       versionName = android.defaultConfig.versionName + '-Google'
       buildConfigField 'String', 'SUPPORT_MAIL', '"googleplay@organicmaps.app"'
+      buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.organicmaps"'
       android.sourceSets.google.assets.srcDirs = ['flavors/world-enabled']
     }
 
@@ -246,6 +247,7 @@ android {
       versionName = android.defaultConfig.versionName + '-Huawei'
       versionCode = HUAWEI_VERSION_CODE_BASE + android.defaultConfig.versionCode
       buildConfigField 'String', 'SUPPORT_MAIL', '"huawei@organicmaps.app"'
+      buildConfigField 'String', 'REVIEW_URL', '"appmarket://details?id=app.organicmaps"'
       android.sourceSets.huawei.assets.srcDirs = ['flavors/world-enabled']
     }
   }
@@ -317,10 +319,14 @@ android {
         if (project.hasProperty('x86')) {
           abiFilters.add('x86')
         }
+        if (project.hasProperty('x86_64') || project.hasProperty('x64')) {
+          abiFilters.add('x86_64')
+        }
         if (abiFilters.isEmpty()) {
           abiFilters.add('armeabi-v7a')
           abiFilters.add('arm64-v8a')
-          abiFilters.add('x86') // for emulator
+          // For the emulator, chromebooks and some Intel Atom devices.
+          abiFilters.add('x86_64')
         }
       }
 
@@ -340,7 +346,6 @@ android {
       resValue 'string', 'app_name', project.ext.appName
       ndk {
         debugSymbolLevel 'SYMBOL_TABLE'
-        abiFilters 'armeabi-v7a', 'arm64-v8a'
       }
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -358,7 +363,6 @@ android {
       resValue 'string', 'app_name', project.ext.appName + ' ' + '(Beta)'
       ndk {
         debugSymbolLevel 'SYMBOL_TABLE'
-        abiFilters 'armeabi-v7a', 'arm64-v8a'
       }
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -437,9 +441,9 @@ import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 play {
   enabled.set(false)
   track.set("production")
-  userFraction.set(Double.valueOf(0.05)) // 5%
+  userFraction.set(Double.valueOf(0.10)) // 10%
   defaultToAppBundles.set(true)
-  releaseStatus.set(ReleaseStatus.COMPLETED)
+  releaseStatus.set(ReleaseStatus.IN_PROGRESS)
   serviceAccountCredentials.set(file("google-play.json"))
 }
 
@@ -448,7 +452,8 @@ huaweiPublish {
     huaweiRelease {
       credentialsPath = "$rootDir/huawei-appgallery.json"
       buildFormat = "aab"
-      deployType = 'publish'
+      // https://github.com/cianru/huawei-publish-gradle-plugin/issues/32
+      deployType = 'draft'
     }
   }
 }

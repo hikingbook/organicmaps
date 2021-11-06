@@ -220,9 +220,13 @@
 	<string name="rate_the_app">Ohodnotiť aplikáciu</string>
 	<!-- Text in menu -->
 	<string name="help">Nápoveda</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Otázky a odpovede</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Ako nás podporiť?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Autorské práva</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Nahlásiť chybu</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Emailový klient nebol nastavený. Nakonfigurujte ho prosím alebo použite iný spôsob k tomu, abyste nás kontaktovali na %s</string>
@@ -556,14 +560,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Pozrite si</string>
 	<string name="recent_track_background_dialog_message">Organic Maps používa vašu geopozíciu na pozadí pre zaznamenávanie vami nedávno precestovanej trasy.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Ohodnotiť v službe Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Povedať priateľovi</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Ahoj! Nainštaluj si aplikáciu Organic Maps</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps je offine aplikácia na cestovanie. Základom aplikácie Organic Maps sú dáta OpenStreetMap, pričom aplikácia nám ich umožňuje upravovať.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps je bezplatná offline aplikácia máp s otvoreným zdrojom. Žiadne reklamy. Žiadne sledovanie. Ak na mape vidíte chybu, opravte ju v OpenStreetMap. Projekt vytvárajú nadšenci v našom voľnom čase, preto potrebujeme vašu spätnú väzbu a podporu.</string>
 	<string name="general_settings">Všeobecné nastavenia</string>
 	<!-- For the first routing -->
 	<string name="accept">Prijať</string>
@@ -605,7 +603,6 @@
 	<string name="placepage_remove_stop">Odstrániť</string>
 	<string name="planning_route_remove_title">Presunutím sem odstránite</string>
 	<string name="placepage_add_stop">Pridať zastávku</string>
-	<string name="preloader_viator_button">Zistiť viac</string>
 	<string name="start_from_my_position">Začať od</string>
 	<string name="profile_authorization_error">Ups, vyskytla sa chyba. Skúste sa prihlásiť znova.</string>
 	<string name="dialog_error_storage_title">Problém s prístupom k úložisku</string>
@@ -636,7 +633,6 @@
 	<string name="please_wait">Prosím čakajte…</string>
 	<string name="phone_number">Telefónne číslo</string>
 	<string name="profile">Profil OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Vyhľadať podobné hotely</string>
 	<string name="bookmarks_detect_title">Zistené nové súbory</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="few">Boli nájdené %d súbory. Uvidíte ich po konverzii.</item>
@@ -852,7 +848,7 @@
 	<string name="type.amenity.doctors">Ambulancia</string>
 	<string name="type.amenity.drinking_water">Pitná voda</string>
 	<string name="type.amenity.driving_school">Autoškola</string>
-	<string name="type.amenity.embassy">Veľvyslanectvo</string>
+	<string name="type.office.diplomatic">Veľvyslanectvo</string>
 	<string name="type.amenity.fast_food">Rýchle občerstvenie</string>
 	<string name="type.amenity.ferry_terminal">Trajekt</string>
 	<string name="type.amenity.fire_station">Hasičská stanica</string>
@@ -931,6 +927,7 @@
 	<string name="type.barrier.gate">Brána</string>
 	<string name="type.barrier.lift_gate">Závora</string>
 	<string name="type.barrier.stile">Turniket</string>
+	<string name="type.barrier.swing_gate">Závora</string>
 	<string name="type.barrier.toll_booth">Mýtne</string>
 	<string name="type.boundary.national_park">Národný park</string>
 	<string name="type.building">Budova</string>
@@ -1038,6 +1035,7 @@
 	<string name="type.emergency.fire_hydrant">Požiarny hydrant</string>
 	<string name="type.emergency.phone">Tiesňového volania</string>
 	<string name="type.entrance">Vstup</string>
+	<string name="type.healthcare.laboratory">Lekárske laboratórium</string>
 	<string name="type.highway.bus_stop">Autobusová zastávka</string>
 	<string name="type.highway.construction">Cesta vo výstavbe</string>
 	<string name="type.highway.footway">Cesta</string>
@@ -1198,9 +1196,9 @@
 	<string name="type.natural.geyser">Gejzír</string>
 	<string name="type.natural.glacier">Ľadovec</string>
 	<string name="type.natural.grassland">Lúka</string>
-	<string name="type.natural.lake">Jazero</string>
+	<string name="type.natural.water.lake">Jazero</string>
 	<string name="type.natural.peak">Hora</string>
-	<string name="type.natural.pond">Rybník</string>
+	<string name="type.natural.water.pond">Rybník</string>
 	<string name="type.natural.scrub">Krovie</string>
 	<string name="type.natural.spring">Prameň</string>
 	<string name="type.natural.strait">Prieliv</string>
@@ -1257,28 +1255,15 @@
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.barcelona">Metro</string>
 	<string name="type.railway.station.subway.berlin">Metro</string>
-	<string name="type.railway.station.subway.blue">Metro</string>
-	<string name="type.railway.station.subway.brown">Metro</string>
-	<string name="type.railway.station.subway.darkgreen">Metro</string>
-	<string name="type.railway.station.subway.gray">Metro</string>
-	<string name="type.railway.station.subway.green">Metro</string>
-	<string name="type.railway.station.subway.grey">Metro</string>
 	<string name="type.railway.station.subway.kiev">Metro</string>
-	<string name="type.railway.station.subway.lightblue">Metro</string>
-	<string name="type.railway.station.subway.lightgreen">Metro</string>
 	<string name="type.railway.station.subway.london">Metro</string>
 	<string name="type.railway.station.subway.madrid">Metro</string>
 	<string name="type.railway.station.subway.minsk">Metro</string>
 	<string name="type.railway.station.subway.moscow">Metro</string>
 	<string name="type.railway.station.subway.newyork">Metro</string>
-	<string name="type.railway.station.subway.orange">Metro</string>
 	<string name="type.railway.station.subway.paris">Metro</string>
-	<string name="type.railway.station.subway.purple">Metro</string>
-	<string name="type.railway.station.subway.red">Metro</string>
 	<string name="type.railway.station.subway.roma">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
-	<string name="type.railway.station.subway.violet">Metro</string>
-	<string name="type.railway.station.subway.yellow">Metro</string>
 	<string name="type.railway.subway_entrance">Vstup do metra</string>
 	<string name="type.railway.subway_entrance.barcelona">Metro</string>
 	<string name="type.railway.subway_entrance.berlin">Metro</string>

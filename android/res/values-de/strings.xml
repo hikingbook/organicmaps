@@ -153,11 +153,11 @@
 	<!-- Alert message that downloading is in progress. -->
 	<string name="downloading_is_active">Das Land wird gerade heruntergeladen.</string>
 	<!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-	<string name="my_position_share_sms">Schau wo ich gerade bin. Klicke auf den Link %1$s oder %2$s - Keine Offline-Karten installiert? Hier herunterladen: https://omaps.app/get</string>
+	<string name="my_position_share_sms">Hey, sieh dir meinen aktuellen Standort auf Organic Maps an! %1$s oder %2$s Keine Offline-Karten installiert? Hier herunterladen: https://omaps.app/get</string>
 	<!-- Subject for emailed bookmark -->
-	<string name="bookmark_share_email_subject">Schau dir meine Stecknadel auf der Organic Maps-Karte an</string>
+	<string name="bookmark_share_email_subject">Hey, sieh dir meine Stecknadel auf der Organic Maps-Karte an!</string>
 	<!-- Subject for emailed position -->
-	<string name="my_position_share_email_subject">Sieh dir meinen aktuellen Standort auf der Organic Maps-Karte an</string>
+	<string name="my_position_share_email_subject">Hey, sieh dir meinen aktuellen Standort auf der Organic Maps-Karte an</string>
 	<!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
 	<string name="my_position_share_email">Hi,\n\nich bin gerade hier: %1$s. Klicke den Link %2$s oder %3$s, um den Ort auf der Karte anzuzeigen.\n\nVielen Dank.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
@@ -181,6 +181,10 @@
 	<!-- Length of track in cell that describes route -->
 	<string name="length">Länge</string>
 	<string name="share_my_location">Meinen Standort teilen</string>
+	<!-- Settings general group in settings screen -->
+	<string name="prefs_group_general">Allgemeine Einstellungen</string>
+	<!-- Settings information group in settings screen -->
+	<string name="prefs_group_information">Information</string>
 	<string name="prefs_group_route">Navigation</string>
 	<string name="pref_zoom_title">Zoom-Tasten</string>
 	<string name="pref_zoom_summary">Auf dem Bildschirm anzeigen</string>
@@ -224,9 +228,13 @@
 	<string name="rate_the_app">Bewerten Sie die App</string>
 	<!-- Text in menu -->
 	<string name="help">Hilfe</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Fragen und Antworten</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Wie unterstützen Sie uns?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Copyright</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Fehler melden</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Der Email-Client ist noch nicht eingerichtet worden. Konfigurieren Sie ihn bitte oder nutzen Sie eine andere Möglichkeit, uns unter %s zu erreichen.</string>
@@ -562,14 +570,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Nachsehen</string>
 	<string name="recent_track_background_dialog_message">Organic Maps verwendet Ihre Geoposition im Hintergrund, um Ihre kürzlich gefahrene Route aufzunehmen.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Bei Google Play bewerten</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Einem Freund empfehlen</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Hallo! Installiere dir Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps ist eine wichtige Offline-App zum Reisen. Organic Maps basiert auf OpenStreetMap-Daten und ermöglicht das Bearbeiten dieser.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps ist eine kostenlose Open-Source-Offline-Kartenanwendung. Keine Werbung. Keine Verfolgung. Wenn Sie einen Fehler auf der Karte sehen, beheben Sie ihn bitte in OpenStreetMap. Das Projekt wird von Enthusiasten in unserer Freizeit erstellt, daher brauchen wir Ihr Feedback und Ihre Unterstützung.</string>
 	<string name="general_settings">Allgemeine Einstellungen</string>
 	<!-- For the first routing -->
 	<string name="accept">Annehmen</string>
@@ -611,7 +613,6 @@
 	<string name="placepage_remove_stop">Entfernen</string>
 	<string name="planning_route_remove_title">Hierher ziehen zum Entfernen</string>
 	<string name="placepage_add_stop">Zwischenstopp hinzufügen</string>
-	<string name="preloader_viator_button">Weitere Informationen</string>
 	<string name="start_from_my_position">Starten von</string>
 	<string name="profile_authorization_error">Hoppla, es ist ein Fehler aufgetreten. Versuchen Sie erneut, sich anzumelden.</string>
 	<string name="dialog_error_storage_title">Problem mit dem Zugreifen auf den Speicher</string>
@@ -642,7 +643,6 @@
 	<string name="please_wait">Warten Sie mal…</string>
 	<string name="phone_number">Telefonnummer</string>
 	<string name="profile">OpenStreetMap-Profil</string>
-	<string name="place_page_search_similar_hotel">Nach ähnlichen Hotels suchen</string>
 	<string name="bookmarks_detect_title">Neue Dateien erkannt</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d Datei wurde gefunden. Sie werden es nach der Konvertierung sehen.</item>
@@ -854,7 +854,7 @@
 	<string name="type.amenity.doctors">Arztpraxis</string>
 	<string name="type.amenity.drinking_water">Trinkwasser</string>
 	<string name="type.amenity.driving_school">Fahrschule</string>
-	<string name="type.amenity.embassy">Botschaft</string>
+	<string name="type.office.diplomatic">Botschaft</string>
 	<string name="type.amenity.fast_food">Fast-Food</string>
 	<string name="type.amenity.ferry_terminal">Fähre</string>
 	<string name="type.amenity.fire_station">Feuerwehr</string>
@@ -930,6 +930,7 @@
 	<string name="type.barrier.gate">Tor</string>
 	<string name="type.barrier.lift_gate">Schranke</string>
 	<string name="type.barrier.stile">Zaunübertritt</string>
+	<string name="type.barrier.swing_gate">Schranke</string>
 	<string name="type.barrier.toll_booth">Mautstelle</string>
 	<string name="type.boundary.national_park">Nationalpark</string>
 	<string name="type.building">Gebäude</string>
@@ -1035,6 +1036,7 @@
 	<string name="type.emergency.fire_hydrant">Hydrant</string>
 	<string name="type.emergency.phone">Notruftelefon</string>
 	<string name="type.entrance">Eingang</string>
+	<string name="type.healthcare.laboratory">Medizinisches Labor</string>
 	<string name="type.highway.bus_stop">Bushaltestelle</string>
 	<string name="type.highway.construction">Straße im Bau</string>
 	<string name="type.highway.footway">Fußweg</string>
@@ -1194,9 +1196,9 @@
 	<string name="type.natural.geyser">Geysir</string>
 	<string name="type.natural.glacier">Gletscher</string>
 	<string name="type.natural.grassland">Grasland</string>
-	<string name="type.natural.lake">See</string>
+	<string name="type.natural.water.lake">See</string>
 	<string name="type.natural.peak">Berg</string>
-	<string name="type.natural.pond">Teich</string>
+	<string name="type.natural.water.pond">Teich</string>
 	<string name="type.natural.scrub">Dickicht</string>
 	<string name="type.natural.spring">Quelle</string>
 	<string name="type.natural.strait">Meerenge</string>
@@ -1252,28 +1254,15 @@
 	<string name="type.railway.station.subway">U-Bahn</string>
 	<string name="type.railway.station.subway.barcelona">U-Bahn</string>
 	<string name="type.railway.station.subway.berlin">U-Bahn</string>
-	<string name="type.railway.station.subway.blue">U-Bahn</string>
-	<string name="type.railway.station.subway.brown">U-Bahn</string>
-	<string name="type.railway.station.subway.darkgreen">U-Bahn</string>
-	<string name="type.railway.station.subway.gray">U-Bahn</string>
-	<string name="type.railway.station.subway.green">U-Bahn</string>
-	<string name="type.railway.station.subway.grey">U-Bahn</string>
 	<string name="type.railway.station.subway.kiev">U-Bahn</string>
-	<string name="type.railway.station.subway.lightblue">U-Bahn</string>
-	<string name="type.railway.station.subway.lightgreen">U-Bahn</string>
 	<string name="type.railway.station.subway.london">U-Bahn</string>
 	<string name="type.railway.station.subway.madrid">U-Bahn</string>
 	<string name="type.railway.station.subway.minsk">U-Bahn</string>
 	<string name="type.railway.station.subway.moscow">U-Bahn</string>
 	<string name="type.railway.station.subway.newyork">U-Bahn</string>
-	<string name="type.railway.station.subway.orange">U-Bahn</string>
 	<string name="type.railway.station.subway.paris">U-Bahn</string>
-	<string name="type.railway.station.subway.purple">U-Bahn</string>
-	<string name="type.railway.station.subway.red">U-Bahn</string>
 	<string name="type.railway.station.subway.roma">U-Bahn</string>
 	<string name="type.railway.station.subway.spb">U-Bahn</string>
-	<string name="type.railway.station.subway.violet">U-Bahn</string>
-	<string name="type.railway.station.subway.yellow">U-Bahn</string>
 	<string name="type.railway.subway_entrance">U-Bahn-Eingang</string>
 	<string name="type.railway.subway_entrance.barcelona">U-Bahn</string>
 	<string name="type.railway.subway_entrance.berlin">U-Bahn</string>

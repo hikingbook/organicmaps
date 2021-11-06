@@ -5058,87 +5058,17 @@ cont {
 cont {
   name: "building-train_station"
   element {
-    scale: 11
-    caption {
-      primary {
-        height: 10
-        color: 3355443
-        stroke_color: 1728053247
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
-    }
-  }
-  element {
-    scale: 12
-    caption {
-      primary {
-        height: 10
-        color: 3355443
-        stroke_color: 1728053247
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
-    }
-  }
-  element {
     scale: 13
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
+      priority: 16952
     }
   }
   element {
     scale: 14
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 1308622847
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
+      priority: 16952
     }
   }
   element {
@@ -5153,24 +5083,7 @@ cont {
     }
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
-    }
-    caption {
-      primary {
-        height: 12
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 10
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
+      priority: 16952
     }
   }
   element {
@@ -5185,24 +5098,7 @@ cont {
     }
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
-    }
-    caption {
-      primary {
-        height: 13
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-      }
-      secondary {
-        height: 11
-        color: 3355443
-        stroke_color: 872415231
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15952
+      priority: 16952
     }
   }
   element {
@@ -5217,23 +5113,14 @@ cont {
     }
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
+      priority: 16176
     }
     caption {
       primary {
         height: 15
         color: 6381914
-        stroke_color: 452984831
         offset_y: 1
         text: "addr:housenumber"
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
       }
       priority: 15176
     }
@@ -5250,23 +5137,14 @@ cont {
     }
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
+      priority: 16176
     }
     caption {
       primary {
         height: 16
         color: 6381914
-        stroke_color: 452984831
         offset_y: 1
         text: "addr:housenumber"
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
       }
       priority: 15176
     }
@@ -5283,23 +5161,14 @@ cont {
     }
     symbol {
       name: "train-m"
-      priority: 19100
-      min_distance: 2
+      priority: 16176
     }
     caption {
       primary {
         height: 17
         color: 6381914
-        stroke_color: 452984831
         offset_y: 1
         text: "addr:housenumber"
-      }
-      secondary {
-        height: 12
-        color: 3355443
-        stroke_color: 452984831
-        offset_y: 1
-        text: "int_name"
       }
       priority: 15176
     }
@@ -18130,73 +17999,6 @@ cont {
   }
 }
 cont {
-  name: "historic-museum"
-  element {
-    scale: 16
-    symbol {
-      name: "museum-m"
-      priority: 16000
-      min_distance: 12
-    }
-    caption {
-      primary {
-        height: 10
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15000
-    }
-  }
-  element {
-    scale: 17
-    symbol {
-      name: "museum-m"
-      priority: 16000
-      min_distance: 12
-    }
-    caption {
-      primary {
-        height: 10
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15000
-    }
-  }
-  element {
-    scale: 18
-    symbol {
-      name: "museum-m"
-      priority: 16000
-      min_distance: 12
-    }
-    caption {
-      primary {
-        height: 10
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15000
-    }
-  }
-  element {
-    scale: 19
-    symbol {
-      name: "museum-m"
-      priority: 16000
-      min_distance: 12
-    }
-    caption {
-      primary {
-        height: 10
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15000
-    }
-  }
-}
-cont {
   name: "historic-ruins"
   element {
     scale: 17
@@ -18578,6 +18380,72 @@ cont {
         step: 184.0
         offset: 200.0
       }
+    }
+  }
+}
+cont {
+  name: "junction"
+  element {
+    scale: 17
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
+    }
+  }
+  element {
+    scale: 18
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
+    }
+  }
+  element {
+    scale: 19
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
+    }
+  }
+}
+cont {
+  name: "junction-roundabout"
+  element {
+    scale: 17
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
+    }
+  }
+  element {
+    scale: 18
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
+    }
+  }
+  element {
+    scale: 19
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+      }
+      priority: 15529
     }
   }
 }
@@ -20938,6 +20806,114 @@ cont {
   }
 }
 cont {
+  name: "leisure-beach_resort"
+  element {
+    scale: 10
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 11
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 12
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 13
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 14
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 15
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 17
+    area {
+      color: 2801593470
+      priority: -15942
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15058
+    }
+  }
+  element {
+    scale: 18
+    area {
+      color: 2801593470
+      priority: -15942
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15058
+    }
+  }
+  element {
+    scale: 19
+    area {
+      color: 2801593470
+      priority: -15942
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15058
+    }
+  }
+}
+cont {
   name: "leisure-garden"
   element {
     scale: 12
@@ -22187,6 +22163,58 @@ cont {
   }
 }
 cont {
+  name: "leisure-swimming_pool-private"
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15812
+    }
+  }
+}
+cont {
   name: "man_made-breakwater"
   element {
     scale: 12
@@ -22486,6 +22514,222 @@ cont {
 }
 cont {
   name: "natural-beach"
+  element {
+    scale: 10
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 11
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 12
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 13
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 14
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 15
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 17
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 18
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 19
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+}
+cont {
+  name: "natural-beach-gravel"
+  element {
+    scale: 10
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 11
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 12
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 13
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 14
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+  }
+  element {
+    scale: 15
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 17
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 18
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+  element {
+    scale: 19
+    area {
+      color: 2801593470
+      priority: -15989
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+      }
+      priority: 15011
+    }
+  }
+}
+cont {
+  name: "natural-beach-sand"
   element {
     scale: 10
     area {
@@ -23030,308 +23274,6 @@ cont {
   }
 }
 cont {
-  name: "natural-lake"
-  element {
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 1
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 2
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 3
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 4
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 5
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 6
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 7
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 8
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 9
-    area {
-      color: 9163744
-      priority: -15071
-    }
-  }
-  element {
-    scale: 10
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 10
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 11
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 11
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 12
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 12
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 13
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 13
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 14
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 14
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 15
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 15
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 16
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 16
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 17
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 17
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 18
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 18
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-  element {
-    scale: 19
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    caption {
-      primary {
-        height: 8
-        color: 4495803
-      }
-      priority: 15929
-    }
-    apply_if: "bbox_area>=4000000"
-  }
-  element {
-    scale: 19
-    area {
-      color: 9163744
-      priority: -15071
-    }
-    apply_if: "bbox_area<4000000"
-  }
-}
-cont {
   name: "natural-land"
   element {
     area {
@@ -23474,290 +23416,6 @@ cont {
   }
 }
 cont {
-  name: "natural-pond"
-  element {
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 1
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 2
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 3
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 4
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 5
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 6
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 7
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 8
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 9
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 10
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 11
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 12
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 13
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 14
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 15
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 16
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 17
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 18
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 19
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-}
-cont {
-  name: "natural-salt_pond"
-  element {
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 1
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 2
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 3
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 4
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 5
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 6
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 7
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 8
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 9
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 10
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 11
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 12
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 13
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 14
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 15
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 16
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 17
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 18
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-  element {
-    scale: 19
-    area {
-      color: 9163744
-      priority: -15812
-    }
-  }
-}
-cont {
   name: "natural-scrub"
   element {
     scale: 14
@@ -23877,6 +23535,2366 @@ cont {
 }
 cont {
   name: "natural-water"
+  element {
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 1
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 2
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 3
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 4
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 5
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 6
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 7
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 8
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 9
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+}
+cont {
+  name: "natural-water-basin"
+  element {
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 1
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 2
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 3
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 4
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 5
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 6
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 7
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 8
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 9
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+}
+cont {
+  name: "natural-water-lake"
+  element {
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 1
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 2
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 3
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 4
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 5
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 6
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 7
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 8
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 9
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+}
+cont {
+  name: "natural-water-pond"
+  element {
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 1
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 2
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 3
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 4
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 5
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 6
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 7
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 8
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 9
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+}
+cont {
+  name: "natural-water-reservoir"
+  element {
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 1
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 2
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 3
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 4
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 5
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 6
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 7
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 8
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 9
+    area {
+      color: 9163744
+      priority: -15071
+    }
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 10
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 11
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 12
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 13
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 14
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 15
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 9
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 16
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 17
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 18
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=80000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area>=4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    apply_if: "bbox_area<4000000"
+  }
+  element {
+    scale: 19
+    area {
+      color: 9163744
+      priority: -15071
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4495803
+      }
+      priority: 15929
+    }
+    apply_if: "bbox_area>=1000000"
+  }
+}
+cont {
+  name: "natural-water-river"
   element {
     area {
       color: 9163744
@@ -32094,22 +34112,6 @@ cont {
 cont {
   name: "railway-level_crossing"
   element {
-    scale: 15
-    symbol {
-      name: "railway-crossing-m"
-      apply_for_type: 1
-      priority: 16870
-    }
-  }
-  element {
-    scale: 16
-    symbol {
-      name: "railway-crossing-m"
-      apply_for_type: 1
-      priority: 16870
-    }
-  }
-  element {
     scale: 17
     symbol {
       name: "railway-crossing-m"
@@ -32398,164 +34400,6 @@ cont {
       }
       priority: 1081
       cap: BUTTCAP
-    }
-    lines {
-      width: 5.0
-      color: 15658734
-      dashdot {
-        dd: 10.1
-        dd: 10.1
-      }
-      priority: 1388
-    }
-  }
-}
-cont {
-  name: "railway-light_rail-tunnel"
-  element {
-    scale: 13
-    lines {
-      width: 0.9
-      color: 11710882
-      priority: 1376
-      cap: BUTTCAP
-    }
-  }
-  element {
-    scale: 14
-    lines {
-      width: 3.15
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 1.15
-      color: 11710882
-      priority: 1376
-      cap: BUTTCAP
-    }
-  }
-  element {
-    scale: 15
-    lines {
-      width: 3.8
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 1.8
-      color: 11710882
-      priority: 1376
-      cap: BUTTCAP
-    }
-  }
-  element {
-    scale: 16
-    lines {
-      width: 4.8
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 2.8
-      color: 11710882
-      priority: 1376
-    }
-    lines {
-      width: 1.5
-      color: 15658734
-      dashdot {
-        dd: 4.5
-        dd: 4.5
-      }
-      priority: 1388
-    }
-  }
-  element {
-    scale: 17
-    lines {
-      width: 5.2
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 3.2
-      color: 11710882
-      priority: 1376
-    }
-    lines {
-      width: 2.4
-      color: 15658734
-      dashdot {
-        dd: 6.3
-        dd: 6.3
-      }
-      priority: 1388
-    }
-  }
-  element {
-    scale: 18
-    lines {
-      width: 6.2
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 4.2
-      color: 11710882
-      priority: 1376
-    }
-    lines {
-      width: 3.3
-      color: 15658734
-      dashdot {
-        dd: 8.1
-        dd: 8.1
-      }
-      priority: 1388
-    }
-  }
-  element {
-    scale: 19
-    lines {
-      width: 7.8
-      color: 8421504
-      dashdot {
-        dd: 5.0
-        dd: 5.0
-      }
-      priority: 1375
-      cap: BUTTCAP
-    }
-    lines {
-      width: 5.8
-      color: 11710882
-      priority: 1376
     }
     lines {
       width: 5.0
@@ -33661,22 +35505,6 @@ cont {
       apply_for_type: 1
       priority: 16882
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15882
-    }
   }
   element {
     scale: 14
@@ -33788,6 +35616,13 @@ cont {
         stroke_color: 452984831
         offset_y: 1
       }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
+      }
       priority: 15882
     }
   }
@@ -33804,6 +35639,13 @@ cont {
         color: 3355443
         stroke_color: 452984831
         offset_y: 1
+      }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
       }
       priority: 15882
     }
@@ -33818,22 +35660,6 @@ cont {
       apply_for_type: 1
       priority: 16882
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15882
-    }
   }
   element {
     scale: 14
@@ -33945,6 +35771,13 @@ cont {
         stroke_color: 452984831
         offset_y: 1
       }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
+      }
       priority: 15882
     }
   }
@@ -33961,6 +35794,13 @@ cont {
         color: 3355443
         stroke_color: 452984831
         offset_y: 1
+      }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
       }
       priority: 15882
     }
@@ -33975,22 +35815,6 @@ cont {
       apply_for_type: 1
       priority: 16882
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15882
-    }
   }
   element {
     scale: 14
@@ -34102,6 +35926,13 @@ cont {
         stroke_color: 452984831
         offset_y: 1
       }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
+      }
       priority: 15882
     }
   }
@@ -34119,6 +35950,13 @@ cont {
         stroke_color: 452984831
         offset_y: 1
       }
+      secondary {
+        height: 12
+        color: 3355443
+        stroke_color: 452984831
+        offset_y: 1
+        text: "int_name"
+      }
       priority: 15882
     }
   }
@@ -34131,22 +35969,6 @@ cont {
       name: "train-m"
       apply_for_type: 1
       priority: 16905
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
     }
   }
   element {
@@ -34304,22 +36126,6 @@ cont {
       priority: 16905
       min_distance: 1
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
   }
   element {
     scale: 14
@@ -34475,22 +36281,6 @@ cont {
       apply_for_type: 1
       priority: 16905
       min_distance: 1
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
     }
   }
   element {
@@ -34655,13 +36445,6 @@ cont {
         stroke_color: 1308622847
         offset_y: 1
       }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
       priority: 15905
     }
   }
@@ -34813,22 +36596,6 @@ cont {
       apply_for_type: 1
       priority: 16905
       min_distance: 1
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
     }
   }
   element {
@@ -34985,22 +36752,6 @@ cont {
       apply_for_type: 1
       priority: 16905
       min_distance: 1
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
     }
   }
   element {
@@ -35164,13 +36915,6 @@ cont {
         color: 3355443
         stroke_color: 1308622847
         offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
       }
       priority: 15905
     }
@@ -35528,22 +37272,6 @@ cont {
       priority: 16905
       min_distance: 1
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
   }
   element {
     scale: 14
@@ -35700,22 +37428,6 @@ cont {
       priority: 16905
       min_distance: 1
     }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
-    }
   }
   element {
     scale: 14
@@ -35871,22 +37583,6 @@ cont {
       apply_for_type: 1
       priority: 16905
       min_distance: 1
-    }
-    caption {
-      primary {
-        height: 11
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-      }
-      secondary {
-        height: 9
-        color: 3355443
-        stroke_color: 1728053247
-        offset_y: 1
-        text: "int_name"
-      }
-      priority: 15905
     }
   }
   element {
@@ -36229,6 +37925,282 @@ cont {
         text: "int_name"
       }
       priority: 15905
+    }
+  }
+}
+cont {
+  name: "railway-subway"
+  element {
+    scale: 13
+    lines {
+      width: 0.9
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 14
+    lines {
+      width: 1.15
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.8
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.8
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 1.5
+      color: 15658734
+      dashdot {
+        dd: 4.5
+        dd: 4.5
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 3.2
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 2.4
+      color: 15658734
+      dashdot {
+        dd: 6.3
+        dd: 6.3
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 4.2
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 3.3
+      color: 15658734
+      dashdot {
+        dd: 8.1
+        dd: 8.1
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 5.8
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 5.0
+      color: 15658734
+      dashdot {
+        dd: 10.1
+        dd: 10.1
+      }
+      priority: 1388
+    }
+  }
+}
+cont {
+  name: "railway-subway-bridge"
+  element {
+    scale: 13
+    lines {
+      width: 0.9
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 14
+    lines {
+      width: 1.15
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+    lines {
+      width: 4.3
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.8
+      color: 11710882
+      priority: 1376
+      cap: BUTTCAP
+    }
+    lines {
+      width: 5.6
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.8
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 5.4
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+    lines {
+      width: 5.8
+      color: 8421504
+      dashdot {
+      }
+      priority: 1293
+      cap: BUTTCAP
+    }
+    lines {
+      width: 1.5
+      color: 15658734
+      dashdot {
+        dd: 4.5
+        dd: 4.5
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 3.2
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 7.6
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+    lines {
+      width: 8.0
+      color: 8421504
+      dashdot {
+      }
+      priority: 1293
+      cap: BUTTCAP
+    }
+    lines {
+      width: 2.4
+      color: 15658734
+      dashdot {
+        dd: 6.3
+        dd: 6.3
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 4.2
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 10.6
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+    lines {
+      width: 11.0
+      color: 8421504
+      dashdot {
+      }
+      priority: 1293
+      cap: BUTTCAP
+    }
+    lines {
+      width: 3.3
+      color: 15658734
+      dashdot {
+        dd: 8.1
+        dd: 8.1
+      }
+      priority: 1388
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 5.8
+      color: 11710882
+      priority: 1376
+    }
+    lines {
+      width: 14.0
+      color: 15066325
+      dashdot {
+      }
+      priority: 1304
+      cap: BUTTCAP
+    }
+    lines {
+      width: 14.4
+      color: 8421504
+      dashdot {
+      }
+      priority: 1293
+      cap: BUTTCAP
+    }
+    lines {
+      width: 5.0
+      color: 15658734
+      dashdot {
+        dd: 10.1
+        dd: 10.1
+      }
+      priority: 1388
     }
   }
 }

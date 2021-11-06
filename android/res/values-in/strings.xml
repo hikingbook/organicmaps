@@ -222,9 +222,13 @@
 	<string name="rate_the_app">Beri nilai aplikasi</string>
 	<!-- Text in menu -->
 	<string name="help">Bantuan</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Pertanyaan dan jawaban</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Bagaimana cara mendukung kami?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Hak cipta</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Laporkan gangguan</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Surel pelanggan belum diatur. Mohon konfigurasikan atau gunakan cara lain untuk menghubungi kami di %s</string>
@@ -560,14 +564,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Lihat</string>
 	<string name="recent_track_background_dialog_message">Organic Maps menggunakan geoposisi di latar belakang untuk merekam rute yang baru Anda lalui.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Beri nilai di Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Beri Tahu Teman</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Hai! Instal Organic Maps yuk!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps adalah aplikasi offline yang sangat berguna untuk bepergian. Organic Maps didasarkan pada data OpenStreetMap dan memungkinkan kita untuk mengeditnya.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps adalah aplikasi peta offline sumber terbuka dan gratis. Tanpa iklan. Tidak ada pelacakan. Jika Anda melihat kesalahan pada peta, harap perbaiki di OpenStreetMap. Proyek ini dibuat oleh para penggemar di waktu luang kami, jadi kami membutuhkan masukan dan dukungan Anda.</string>
 	<string name="general_settings">Setelan umum</string>
 	<!-- For the first routing -->
 	<string name="accept">Terima</string>
@@ -609,7 +607,6 @@
 	<string name="placepage_remove_stop">Hapus</string>
 	<string name="planning_route_remove_title">Seret ke sini untuk menghapus</string>
 	<string name="placepage_add_stop">Tambah perhentian</string>
-	<string name="preloader_viator_button">Pelajari selengkapnya</string>
 	<string name="start_from_my_position">Mulai dari</string>
 	<string name="profile_authorization_error">Ah, tadi ada kesalahan. Coba masuk kembali.</string>
 	<string name="dialog_error_storage_title">Masalah akses penyimpanan</string>
@@ -640,7 +637,6 @@
 	<string name="please_wait">Mohon tunggu…</string>
 	<string name="phone_number">Nomor telepon</string>
 	<string name="profile">Profil OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Cari hotel serupa</string>
 	<string name="bookmarks_detect_title">File baru terdeteksi</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d file ditemukan. Anda akan melihatnya setelah mengonversi.</item>
@@ -852,7 +848,7 @@
 	<string name="type.amenity.doctors">Praktik dokter</string>
 	<string name="type.amenity.drinking_water">Air minum</string>
 	<string name="type.amenity.driving_school">Sekolah Mengemudi</string>
-	<string name="type.amenity.embassy">Kedutaan</string>
+	<string name="type.office.diplomatic">Kedutaan</string>
 	<string name="type.amenity.fast_food">Cepat saji</string>
 	<string name="type.amenity.ferry_terminal">Terminal</string>
 	<string name="type.amenity.fire_station">Kantor pemadam kebakaran</string>
@@ -930,6 +926,7 @@
 	<string name="type.barrier.gate">Gerbang</string>
 	<string name="type.barrier.lift_gate">Polisi tidur</string>
 	<string name="type.barrier.stile">Undakan</string>
+	<string name="type.barrier.swing_gate">Polisi tidur</string>
 	<string name="type.barrier.toll_booth">Gerbang tol</string>
 	<string name="type.boundary.national_park">Taman Nasional</string>
 	<string name="type.building">Gedung</string>
@@ -1036,6 +1033,7 @@
 	<string name="type.emergency.fire_hydrant">Keran Kebakaran</string>
 	<string name="type.emergency.phone">Telepon darurat</string>
 	<string name="type.entrance">Pintu masuk</string>
+	<string name="type.healthcare.laboratory">Laboratorium medis</string>
 	<string name="type.highway.bus_stop">Halte bus</string>
 	<string name="type.highway.construction">Jalan sedang dibangun</string>
 	<string name="type.highway.footway">Jalur</string>
@@ -1197,9 +1195,9 @@
 	<string name="type.natural.geyser">Geiser</string>
 	<string name="type.natural.glacier">Gletser</string>
 	<string name="type.natural.grassland">Ladang</string>
-	<string name="type.natural.lake">Danau</string>
+	<string name="type.natural.water.lake">Danau</string>
 	<string name="type.natural.peak">Puncak</string>
-	<string name="type.natural.pond">Kolam</string>
+	<string name="type.natural.water.pond">Kolam</string>
 	<string name="type.natural.scrub">Semak</string>
 	<string name="type.natural.spring">Mata air</string>
 	<string name="type.natural.strait">Selat</string>
@@ -1256,28 +1254,15 @@
 	<string name="type.railway.station.subway">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.barcelona">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.berlin">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.blue">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.brown">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.darkgreen">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.gray">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.green">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.grey">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.kiev">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.lightblue">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.lightgreen">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.london">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.madrid">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.minsk">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.moscow">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.newyork">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.orange">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.paris">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.purple">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.red">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.roma">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.spb">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.violet">Stasiun bawah tanah</string>
-	<string name="type.railway.station.subway.yellow">Stasiun bawah tanah</string>
 	<string name="type.railway.subway_entrance">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.barcelona">Stasiun bawah tanah</string>
 	<string name="type.railway.subway_entrance.berlin">Stasiun bawah tanah</string>

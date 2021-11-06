@@ -6,6 +6,10 @@ Thank you for your interest in contributing to Organic Maps!
 
 There are many ways to contribute.
 
+### Donate
+
+See https://organicmaps.app/donate/
+
 ### Bug Reports
 
 The simplest way to contribute is to [submit an issue](https://github.com/organicmaps/organicmaps/issues).
@@ -23,6 +27,19 @@ If you have some ideas or want to request a new feature, please [start a discuss
 ### Translations
 
 If you want to improve app translations or add more search synonyms, please update [strings.txt](https://github.com/organicmaps/organicmaps/blob/master/data/strings/strings.txt) file, run `./tools/unix/generate_localizations.sh` and create a [Pull Request](#pull-requests).
+
+Use `./tools/python/strings/google_translate.py` to generate initial strings for all languages:
+
+```bash
+cd tools/python/strings
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+```bash
+./google_translate.py "Hello"
+```
 
 ### Code Contributions
 

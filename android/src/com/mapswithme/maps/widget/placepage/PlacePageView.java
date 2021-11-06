@@ -31,8 +31,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollViewClickFixed;
 import androidx.fragment.app.Fragment;
-
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
@@ -67,6 +67,7 @@ import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -80,7 +81,12 @@ public class PlacePageView extends NestedScrollViewClickFixed
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = PlacePageView.class.getSimpleName();
-  private static final String PREF_USE_DMS = "use_dms";
+  private static final String PREF_COORDINATES_FORMAT = "coordinates_format";
+  private static final List<CoordinatesFormat> visibleCoordsFormat =
+      Arrays.asList(CoordinatesFormat.LatLonDMS,
+                    CoordinatesFormat.LatLonDecimal,
+                    CoordinatesFormat.OLCFull,
+                    CoordinatesFormat.OSMLink);
 
   private boolean mIsDocked;
   private boolean mIsFloating;
@@ -94,11 +100,24 @@ public class PlacePageView extends NestedScrollViewClickFixed
   private ArrowView mAvDirection;
   private TextView mTvDistance;
   private TextView mTvAddress;
+
+  // Details.
+  private ViewGroup mDetails;
   private RecyclerView mPhoneRecycler;
   private PlacePhoneAdapter mPhoneAdapter;
   private View mWebsite;
   private TextView mTvWebsite;
   private TextView mTvLatlon;
+  //Social links
+  private View mFacebookPage;
+  private TextView mTvFacebookPage;
+  private View mInstagramPage;
+  private TextView mTvInstagramPage;
+  private View mTwitterPage;
+  private TextView mTvTwitterPage;
+  private View mVkPage;
+  private TextView mTvVkPage;
+
   private View mOpeningHours;
   private TextView mFullOpeningHours;
   private TextView mTodayOpeningHours;
@@ -150,7 +169,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   // Data
   @Nullable
   private MapObject mMapObject;
-  private boolean mIsLatLonDms;
+  private CoordinatesFormat mCoordsFormat = CoordinatesFormat.LatLonDecimal;
 
   // Downloader`s stuff
   private DownloaderStatusIcon mDownloaderIcon;
@@ -267,7 +286,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   public PlacePageView(Context context, AttributeSet attrs, int defStyleAttr)
   {
     super(context, attrs);
-    mIsLatLonDms = MwmApplication.prefs(context).getBoolean(PREF_USE_DMS, false);
+    mCoordsFormat = CoordinatesFormat.fromId(MwmApplication.prefs(context).getInt(PREF_COORDINATES_FORMAT, CoordinatesFormat.LatLonDecimal.getId()));
     init(attrs, defStyleAttr);
   }
 
@@ -288,6 +307,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
 
     mTvAddress = mPreview.findViewById(R.id.tv__address);
 
+    mDetails = findViewById(R.id.pp__details_frame);
     RelativeLayout address = findViewById(R.id.ll__place_name);
     mPhoneRecycler = findViewById(R.id.rw__phone);
     mPhoneAdapter = new PlacePhoneAdapter();
@@ -295,6 +315,26 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mWebsite = findViewById(R.id.ll__place_website);
     mWebsite.setOnClickListener(this);
     mTvWebsite = findViewById(R.id.tv__place_website);
+    //Social links
+    mFacebookPage = findViewById(R.id.ll__place_facebook);
+    mFacebookPage.setOnClickListener(this);
+    mFacebookPage.setOnLongClickListener(this);
+    mTvFacebookPage = findViewById(R.id.tv__place_facebook_page);
+
+    mInstagramPage = findViewById(R.id.ll__place_instagram);
+    mInstagramPage.setOnClickListener(this);
+    mInstagramPage.setOnLongClickListener(this);
+    mTvInstagramPage = findViewById(R.id.tv__place_instagram_page);
+
+    mTwitterPage = findViewById(R.id.ll__place_twitter);
+    mTwitterPage.setOnClickListener(this);
+    mTwitterPage.setOnLongClickListener(this);
+    mTvTwitterPage = findViewById(R.id.tv__place_twitter_page);
+
+    mVkPage = findViewById(R.id.ll__place_vk);
+    mVkPage.setOnClickListener(this);
+    mVkPage.setOnLongClickListener(this);
+    mTvVkPage = findViewById(R.id.tv__place_vk_page);
     LinearLayout latlon = findViewById(R.id.ll__place_latlon);
     latlon.setOnClickListener(this);
     mTvLatlon = findViewById(R.id.tv__place_latlon);
@@ -703,6 +743,21 @@ public class PlacePageView extends NestedScrollViewClickFixed
     refreshPreview(mMapObject);
     refreshDetails(mMapObject);
     refreshViewsInternal(mMapObject);
+
+    //
+    // The view is completely broken after the first call to refreshView():
+    // https://github.com/organicmaps/organicmaps/issues/722
+    // https://github.com/organicmaps/organicmaps/issues/1065
+    //
+    // Force re-layout explicitly on the next event loop after the first call to refreshView().
+    //
+    if (Utils.isAndroid11OrLater()) {
+      post(() -> {
+        mPreview.requestLayout();
+        mDetails.requestLayout();
+        mButtons.getFrame().requestLayout();
+      });
+    }
   }
 
   private void refreshViewsInternal(@NonNull MapObject mapObject)
@@ -803,6 +858,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_INTERNET), mWifi, null);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_FLATS), mEntrance, mTvEntrance);
     refreshOpeningHours(mapObject);
+    refreshSocialLinks(mapObject);
 
 //    showTaxiOffer(mapObject);
 
@@ -885,6 +941,34 @@ public class PlacePageView extends NestedScrollViewClickFixed
     UiUtils.setTextAndShow(mFullOpeningHours, TimeFormatUtils.formatTimetables(getContext(), timetables));
     if (!containsCurrentWeekday)
       refreshTodayOpeningHours(resources.getString(R.string.day_off_today), resources.getColor(R.color.base_red));
+  }
+
+  private void refreshSocialLinks(@NonNull MapObject mapObject)
+  {
+    final String facebookPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_FACEBOOK_PAGE);
+    refreshSocialPageLink(mFacebookPage, mTvFacebookPage, facebookPageLink, "facebook.com");
+    final String instagramPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_INSTAGRAM_PAGE);
+    refreshSocialPageLink(mInstagramPage, mTvInstagramPage, instagramPageLink, "instagram.com");
+    final String twitterPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_TWITTER_PAGE);
+    refreshSocialPageLink(mTwitterPage, mTvTwitterPage, twitterPageLink, "twitter.com");
+    final String vkPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_VK_PAGE);
+    refreshSocialPageLink(mVkPage, mTvVkPage, vkPageLink, "vk.com");
+  }
+
+  private void refreshSocialPageLink(View view, TextView tvSocialPage, String socialPage, String webDomain)
+  {
+    if (TextUtils.isEmpty(socialPage))
+    {
+      view.setVisibility(GONE);
+    }
+    else
+    {
+      view.setVisibility(VISIBLE);
+      if (socialPage.indexOf('/') >= 0)
+        tvSocialPage.setText("https://" + webDomain + "/" + socialPage);
+      else
+        tvSocialPage.setText("@" + socialPage);
+    }
   }
 
   private void refreshTodayOpeningHours(String text, @ColorInt int color)
@@ -1074,9 +1158,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     final double lat = mapObject.getLat();
     final double lon = mapObject.getLon();
-    final String[] latLon = Framework.nativeFormatLatLonToArr(lat, lon, mIsLatLonDms);
-    if (latLon.length == 2)
-      mTvLatlon.setText(String.format(Locale.US, "%1$s, %2$s", latLon[0], latLon[1]));
+    final String latLon = Framework.nativeFormatLatLon(lat, lon, mCoordsFormat.getId());
+    mTvLatlon.setText(latLon);
   }
 
   private static void refreshMetadataOrHide(String metadata, View metaLayout, TextView metaTv)
@@ -1142,8 +1225,9 @@ public class PlacePageView extends NestedScrollViewClickFixed
         addPlace();
         break;
       case R.id.ll__place_latlon:
-        mIsLatLonDms = !mIsLatLonDms;
-        MwmApplication.prefs(getContext()).edit().putBoolean(PREF_USE_DMS, mIsLatLonDms).apply();
+        final int formatIndex = visibleCoordsFormat.indexOf(mCoordsFormat);
+        mCoordsFormat = visibleCoordsFormat.get((formatIndex + 1) % visibleCoordsFormat.size());
+        MwmApplication.prefs(getContext()).edit().putInt(PREF_COORDINATES_FORMAT, mCoordsFormat.getId()).apply();
         if (mMapObject == null)
         {
           LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
@@ -1153,6 +1237,22 @@ public class PlacePageView extends NestedScrollViewClickFixed
         break;
       case R.id.ll__place_website:
         Utils.openUrl(getContext(), mTvWebsite.getText().toString());
+        break;
+      case R.id.ll__place_facebook:
+        final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_FACEBOOK_PAGE);
+        Utils.openUrl(getContext(), "https://m.facebook.com/"+facebookPage);
+        break;
+      case R.id.ll__place_instagram:
+        final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_INSTAGRAM_PAGE);
+        Utils.openUrl(getContext(), "https://instagram.com/"+instagramPage);
+        break;
+      case R.id.ll__place_twitter:
+        final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_TWITTER_PAGE);
+        Utils.openUrl(getContext(), "https://mobile.twitter.com/"+twitterPage);
+        break;
+      case R.id.ll__place_vk:
+        final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_VK_PAGE);
+        Utils.openUrl(getContext(), "https://vk.com/" + vkPage);
         break;
       case R.id.ll__place_wiki:
         // TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
@@ -1207,11 +1307,27 @@ public class PlacePageView extends NestedScrollViewClickFixed
         }
         final double lat = mMapObject.getLat();
         final double lon = mMapObject.getLon();
-        items.add(Framework.nativeFormatLatLon(lat, lon, false));
-        items.add(Framework.nativeFormatLatLon(lat, lon, true));
+        for(CoordinatesFormat format: visibleCoordsFormat)
+          items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
         break;
       case R.id.ll__place_website:
         items.add(mTvWebsite.getText().toString());
+        break;
+      case R.id.ll__place_facebook:
+        final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_FACEBOOK_PAGE);
+        items.add("https://m.facebook.com/" + facebookPage);
+        break;
+      case R.id.ll__place_instagram:
+        final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_INSTAGRAM_PAGE);
+        items.add("https://instagram.com/" + instagramPage);
+        break;
+      case R.id.ll__place_twitter:
+        final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_TWITTER_PAGE);
+        items.add("https://mobile.twitter.com/" + twitterPage);
+        break;
+      case R.id.ll__place_vk:
+        final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_VK_PAGE);
+        items.add("https://vk.com/" + vkPage);
         break;
       case R.id.ll__place_email:
         items.add(mTvEmail.getText().toString());
@@ -1226,11 +1342,6 @@ public class PlacePageView extends NestedScrollViewClickFixed
         items.add(mTvOperator.getText().toString());
         break;
       case R.id.ll__place_wiki:
-        if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "A long click tap on wiki cannot be handled, mMapObject is null!");
-          break;
-        }
         items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
         break;
     }
@@ -1243,7 +1354,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
       final int id = item.getItemId();
       final Context ctx = getContext();
       Utils.copyTextToClipboard(ctx, items.get(id));
-      Utils.showSnackbarAbove(findViewById(R.id.pp__details_frame),
+      Utils.showSnackbarAbove(mDetails,
                               getRootView().findViewById(R.id.menu_frame),
                               ctx.getString(R.string.copied_to_clipboard, items.get(id)));
       return true;

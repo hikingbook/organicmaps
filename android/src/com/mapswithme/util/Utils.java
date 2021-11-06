@@ -78,6 +78,11 @@ public class Utils
     return isTargetOrLater(Build.VERSION_CODES.O);
   }
 
+  public static boolean isAndroid11OrLater()
+  {
+    return isTargetOrLater(Build.VERSION_CODES.R);
+  }
+
   private static boolean isTargetOrLater(int target)
   {
     return Build.VERSION.SDK_INT >= target;
@@ -241,6 +246,11 @@ public class Utils
     activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.TWITTER)));
   }
 
+  public static void showSupportUsPage(Activity activity)
+  {
+    activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.SUPPORT_US)));
+  }
+
   public static void openUrl(@NonNull Context context, @Nullable String url)
   {
     if (TextUtils.isEmpty(url))
@@ -328,7 +338,7 @@ public class Utils
 
   public static void sendFeedback(@NonNull Activity activity)
   {
-    LoggerFactory.INSTANCE.zipLogs(new SupportInfoWithLogsCallback(activity, "Feedback",
+    LoggerFactory.INSTANCE.zipLogs(new SupportInfoWithLogsCallback(activity, "Organic Maps Feedback",
                                                                    Constants.Email.FEEDBACK));
   }
 
@@ -596,17 +606,12 @@ public class Utils
     catch (RuntimeException e)
     {
       LOGGER.e(TAG, "Failed to get string with id '" + key + "'", e);
-      if (isDebugOrBeta())
+      if (BuildConfig.BUILD_TYPE.equals("debug") || BuildConfig.BUILD_TYPE.equals("beta"))
       {
         Toast.makeText(context, "Add string id for '" + key + "'!", Toast.LENGTH_LONG).show();
       }
     }
     return INVALID_ID;
-  }
-
-  public static boolean isDebugOrBeta()
-  {
-    return BuildConfig.BUILD_TYPE.equals("debug") || BuildConfig.BUILD_TYPE.equals("beta");
   }
 
   /**

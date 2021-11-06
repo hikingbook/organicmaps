@@ -29,9 +29,12 @@ public:
   using Callback = std::function<void(Param const & param)>;
 
   explicit Url(std::string const & url);
+  static Url FromString(std::string const & url);
 
   std::string const & GetScheme() const { return m_scheme; }
   std::string const & GetPath() const { return m_path; }
+  std::string GetWebDomain() const;
+  std::string GetWebPath() const;
   bool IsValid() const { return !m_scheme.empty(); }
   void ForEachParam(Callback const & callback) const;
 

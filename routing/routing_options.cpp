@@ -61,14 +61,12 @@ RoutingOptionsClassifier::RoutingOptionsClassifier()
 {
   Classificator const & c = classif();
 
-  initializer_list<pair<vector<string>, RoutingOptions::Road>> const types = {
+  pair<vector<string>, RoutingOptions::Road> const types[] = {
     {{"highway", "motorway"},             RoutingOptions::Road::Motorway},
 
     {{"hwtag", "toll"},                   RoutingOptions::Road::Toll},
 
     {{"route", "ferry"},                  RoutingOptions::Road::Ferry},
-    {{"route", "ferry", "motorcar"},      RoutingOptions::Road::Ferry},
-    {{"route", "ferry", "motor_vehicle"}, RoutingOptions::Road::Ferry},
 
     {{"highway", "track"},                RoutingOptions::Road::Dirty},
     {{"highway", "road"},                 RoutingOptions::Road::Dirty},
@@ -77,13 +75,7 @@ RoutingOptionsClassifier::RoutingOptionsClassifier()
   };
 
   for (auto const & data : types)
-  {
-    auto const & stringType = data.first;
-    auto const & optionType = data.second;
-
-    ASSERT_EQUAL(m_data.count(c.GetTypeByPath(stringType)), 0, ());
-    m_data[c.GetTypeByPath(stringType)] = optionType;
-  }
+    VERIFY(m_data.insert({c.GetTypeByPath(data.first), data.second}).second, ());
 }
 
 optional<RoutingOptions::Road> RoutingOptionsClassifier::Get(uint32_t type) const
