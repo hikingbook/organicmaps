@@ -78,7 +78,7 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
     if (!MwmApplication.from(this).arePlatformAndCoreInitialized())
     {
       super.onCreate(savedInstanceState);
-      goToSplashScreen(getIntent());
+//      goToSplashScreen(getIntent());
       return;
     }
 
@@ -345,9 +345,9 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
     return android.R.id.content;
   }
 
-  private void goToSplashScreen(@Nullable Intent initialIntent)
-  {
-    SplashActivity.start(this, getClass(), initialIntent);
-    finish();
-  }
+//  private void goToSplashScreen(@Nullable Intent initialIntent)
+//  {
+//    SplashActivity.start(this, getClass(), initialIntent);
+//    finish();
+//  }
 }

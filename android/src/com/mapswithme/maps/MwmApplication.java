@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/14/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps;
 
 import android.app.Application;
@@ -5,7 +9,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
@@ -14,26 +17,27 @@ import com.mapswithme.maps.background.AppBackgroundTracker;
 import com.mapswithme.maps.background.NotificationChannelFactory;
 import com.mapswithme.maps.background.NotificationChannelProvider;
 import com.mapswithme.maps.background.Notifier;
-import com.mapswithme.maps.base.MediaPlayerWrapper;
+//import com.mapswithme.maps.base.MediaPlayerWrapper;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.downloader.CountryItem;
 import com.mapswithme.maps.downloader.MapManager;
-import com.mapswithme.maps.editor.Editor;
+//import com.mapswithme.maps.editor.Editor;
 import com.mapswithme.maps.location.LocationHelper;
-import com.mapswithme.maps.maplayer.isolines.IsolinesManager;
+//import com.mapswithme.maps.maplayer.isolines.IsolinesManager;
 import com.mapswithme.maps.maplayer.subway.SubwayManager;
-import com.mapswithme.maps.maplayer.traffic.TrafficManager;
-import com.mapswithme.maps.routing.RoutingController;
-import com.mapswithme.maps.search.SearchEngine;
+//import com.mapswithme.maps.maplayer.traffic.TrafficManager;
+//import com.mapswithme.maps.routing.RoutingController;
+//import com.mapswithme.maps.search.SearchEngine;
 import com.mapswithme.maps.settings.StoragePathManager;
-import com.mapswithme.maps.sound.TtsPlayer;
+//import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.util.Config;
 import com.mapswithme.util.ConnectionState;
 import com.mapswithme.util.Counters;
 import com.mapswithme.util.CrashlyticsUtils;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.SharedPropertiesUtils;
 import com.mapswithme.util.StorageUtils;
-import com.mapswithme.util.ThemeSwitcher;
+//import com.mapswithme.util.ThemeSwitcher;
 import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.log.Logger;
@@ -50,13 +54,13 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   public final static String TAG = "MwmApplication";
 
   private AppBackgroundTracker mBackgroundTracker;
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private SubwayManager mSubwayManager;
+//  @SuppressWarnings("NotNullFieldNotInitialized")
+//  @NonNull
+//  private SubwayManager mSubwayManager;
 
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private IsolinesManager mIsolinesManager;
+//  @SuppressWarnings("NotNullFieldNotInitialized")
+//  @NonNull
+//  private IsolinesManager mIsolinesManager;
 
   private volatile boolean mFrameworkInitialized;
   private volatile boolean mPlatformInitialized;
@@ -65,26 +69,27 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   private final Object mMainQueueToken = new Object();
   @NonNull
   private final MapManager.StorageCallback mStorageCallbacks = new StorageCallbackImpl();
-  @SuppressWarnings("NullableProblems")
-  @NonNull
-  private MediaPlayerWrapper mPlayer;
+//  @SuppressWarnings("NullableProblems")
+//  @NonNull
+//  private MediaPlayerWrapper mPlayer;
   private boolean mFirstLaunch;
 
-  @NonNull
-  public SubwayManager getSubwayManager()
-  {
-    return mSubwayManager;
-  }
+//  @NonNull
+//  public SubwayManager getSubwayManager()
+//  {
+//    return mSubwayManager;
+//  }
 
-  @NonNull
-  public IsolinesManager getIsolinesManager()
-  {
-    return mIsolinesManager;
-  }
+//  @NonNull
+//  public IsolinesManager getIsolinesManager()
+//  {
+//    return mIsolinesManager;
+//  }
 
   public MwmApplication()
   {
     super();
+    OrganicmapsFrameworkAdapter.INSTANCE.initApplication(this);
   }
 
   @NonNull
@@ -141,11 +146,11 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     initNotificationChannels();
 
     mBackgroundTracker = new AppBackgroundTracker(this);
-    mSubwayManager = new SubwayManager(this);
-    mIsolinesManager = new IsolinesManager(this);
+//    mSubwayManager = new SubwayManager(this);
+//    mIsolinesManager = new IsolinesManager(this);
 
-    mPlayer = new MediaPlayerWrapper(this);
-    WebView.setWebContentsDebuggingEnabled(Utils.isDebugOrBeta());
+//    mPlayer = new MediaPlayerWrapper(this);
+//    WebView.setWebContentsDebuggingEnabled(Utils.isDebugOrBeta());
   }
 
   private void initNotificationChannels()
@@ -196,7 +201,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 
     Config.setStatisticsEnabled(SharedPropertiesUtils.isStatisticsEnabled(this));
 
-    Editor.init(this);
+//    Editor.init(this);
     mPlatformInitialized = true;
     log.i(TAG, "Platform initialized");
   }
@@ -222,16 +227,16 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     MapManager.nativeSubscribe(mStorageCallbacks);
 
     initNativeStrings();
-    ThemeSwitcher.INSTANCE.initialize(this);
-    SearchEngine.INSTANCE.initialize(null);
+//    ThemeSwitcher.INSTANCE.initialize(this);
+//    SearchEngine.INSTANCE.initialize(null);
     BookmarkManager.loadBookmarks();
-    TtsPlayer.INSTANCE.initialize(this);
-    ThemeSwitcher.INSTANCE.restart(false);
+//    TtsPlayer.INSTANCE.initialize(this);
+//    ThemeSwitcher.INSTANCE.restart(false);
     LocationHelper.INSTANCE.initialize(this);
-    RoutingController.get().initialize(null);
-    TrafficManager.INSTANCE.initialize(null);
-    SubwayManager.from(this).initialize(null);
-    IsolinesManager.from(this).initialize(null);
+//    RoutingController.get().initialize(null);
+//    TrafficManager.INSTANCE.initialize(null);
+//    SubwayManager.from(this).initialize(null);
+//    IsolinesManager.from(this).initialize(null);
     mBackgroundTracker.addListener(this);
 
     getLogger().i(TAG, "Framework initialized");
@@ -265,10 +270,10 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     System.loadLibrary("mapswithme");
   }
 
-  public static void onUpgrade(@NonNull Context context)
-  {
-    Counters.resetAppSessionCounters(context);
-  }
+//  public static void onUpgrade(@NonNull Context context)
+//  {
+//    Counters.resetAppSessionCounters(context);
+//  }
 
   @SuppressWarnings("unused")
   void forwardToMainThread(final long taskPointer)
@@ -285,11 +290,11 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     mMainLoopHandler.sendMessage(m);
   }
 
-  @NonNull
-  public MediaPlayerWrapper getMediaPlayer()
-  {
-    return mPlayer;
-  }
+//  @NonNull
+//  public MediaPlayerWrapper getMediaPlayer()
+//  {
+//    return mPlayer;
+//  }
 
   private static native void nativeSetSettingsDir(String settingsPath);
   private native void nativeInitPlatform(String apkPath, String writablePath, String privatePath,
@@ -305,11 +310,11 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   {
     return mLogger;
   }
-
-  public boolean isFirstLaunch()
-  {
-    return mFirstLaunch;
-  }
+//
+//  public boolean isFirstLaunch()
+//  {
+//    return mFirstLaunch;
+//  }
 
   @Override
   public void onTransit(boolean foreground)
