@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.maplayer.subway;
 
 import android.app.Application;
@@ -55,12 +60,12 @@ public class SubwayManager implements Initializable<Void>
     nativeAddListener(mSchemeChangedListener);
   }
 
-  @NonNull
-  public static SubwayManager from(@NonNull Context context)
-  {
-    MwmApplication app = (MwmApplication) context.getApplicationContext();
-    return app.getSubwayManager();
-  }
+//  @NonNull
+//  public static SubwayManager from(@NonNull Context context)
+//  {
+//    MwmApplication app = (MwmApplication) context.getApplicationContext();
+//    return app.getSubwayManager();
+//  }
   private static native void nativeAddListener(@NonNull OnTransitSchemeChangedListener listener);
 
   private static native void nativeRemoveListener(@NonNull OnTransitSchemeChangedListener listener);

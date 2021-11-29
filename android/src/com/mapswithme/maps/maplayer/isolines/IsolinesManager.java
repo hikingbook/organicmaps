@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.maplayer.isolines;
 
 import android.app.Application;
@@ -56,12 +61,12 @@ public class IsolinesManager implements Initializable<Void>, Detachable<Isolines
     // No op.
   }
 
-  @NonNull
-  public static IsolinesManager from(@NonNull Context context)
-  {
-    MwmApplication app = (MwmApplication) context.getApplicationContext();
-    return app.getIsolinesManager();
-  }
+//  @NonNull
+//  public static IsolinesManager from(@NonNull Context context)
+//  {
+//    MwmApplication app = (MwmApplication) context.getApplicationContext();
+//    return app.getIsolinesManager();
+//  }
 
   private static native void nativeAddListener(@NonNull OnIsolinesChangedListener listener);
   private static native void nativeRemoveListener(@NonNull OnIsolinesChangedListener listener);

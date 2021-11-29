@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.maplayer;
 
 import android.content.Context;
@@ -16,22 +21,23 @@ public enum Mode
         @Override
         public boolean isEnabled(@NonNull Context context)
         {
-          return !SubwayManager.from(context).isEnabled()
-                 && TrafficManager.INSTANCE.isEnabled();
+//          return !SubwayManager.from(context).isEnabled()
+//                 && TrafficManager.INSTANCE.isEnabled();
+            return false;
         }
 
         @Override
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
-          TrafficManager.INSTANCE.setEnabled(isEnabled);
+//          TrafficManager.INSTANCE.setEnabled(isEnabled);
         }
 
         @Override
         public void toggle(@NonNull Context context)
         {
-          TrafficManager.INSTANCE.toggle();
-          SubwayManager.from(context).setEnabled(false);
-          IsolinesManager.from(context).setEnabled(false);
+//          TrafficManager.INSTANCE.toggle();
+//          SubwayManager.from(context).setEnabled(false);
+//          IsolinesManager.from(context).setEnabled(false);
         }
       },
   SUBWAY
@@ -39,21 +45,22 @@ public enum Mode
         @Override
         public boolean isEnabled(@NonNull Context context)
         {
-          return SubwayManager.from(context).isEnabled();
+//          return SubwayManager.from(context).isEnabled();
+            return false;
         }
 
         @Override
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
-          SubwayManager.from(context).setEnabled(isEnabled);
+//          SubwayManager.from(context).setEnabled(isEnabled);
         }
 
         @Override
         public void toggle(@NonNull Context context)
         {
-          SubwayManager.from(context).toggle();
-          TrafficManager.INSTANCE.setEnabled(false);
-          IsolinesManager.from(context).setEnabled(false);
+//          SubwayManager.from(context).toggle();
+//          TrafficManager.INSTANCE.setEnabled(false);
+//          IsolinesManager.from(context).setEnabled(false);
         }
       },
 
@@ -62,21 +69,22 @@ public enum Mode
         @Override
         public boolean isEnabled(@NonNull Context context)
         {
-          return IsolinesManager.from(context).isEnabled();
+//          return IsolinesManager.from(context).isEnabled();
+            return false;
         }
 
         @Override
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
-          IsolinesManager.from(context).setEnabled(isEnabled);
+//          IsolinesManager.from(context).setEnabled(isEnabled);
         }
 
         @Override
         public void toggle(@NonNull Context context)
         {
-          IsolinesManager.from(context).toggle();
-          TrafficManager.INSTANCE.setEnabled(false);
-          SubwayManager.from(context).setEnabled(false);
+//          IsolinesManager.from(context).toggle();
+//          TrafficManager.INSTANCE.setEnabled(false);
+//          SubwayManager.from(context).setEnabled(false);
         }
       };
   

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.maplayer;
 
 import android.content.Context;
@@ -22,8 +27,8 @@ public abstract class AbstractIsoLinesClickListener extends DefaultClickListener
   @Override
   public void onItemClickInternal(@NonNull View v, @NonNull BottomSheetItem item)
   {
-    Context context = v.getContext();
-    if (IsolinesManager.from(context).shouldShowNotification())
-      Utils.showSnackbar(context, v.getRootView(), R.string.isolines_toast_zooms_1_10);
+//    Context context = v.getContext();
+//    if (IsolinesManager.from(context).shouldShowNotification())
+//      Utils.showSnackbar(context, v.getRootView(), R.string.isolines_toast_zooms_1_10);
   }
 }
