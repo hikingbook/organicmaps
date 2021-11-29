@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove Crashlytics
+ */
+
 package com.mapswithme.util;
 
 import android.app.Activity;
@@ -255,13 +260,13 @@ public class Utils
     {
       context.startActivity(intent);
     }
-    catch (ActivityNotFoundException e)
-    {
-      CrashlyticsUtils.INSTANCE.logException(e);
-    }
+//    catch (ActivityNotFoundException e)
+//    {
+//      CrashlyticsUtils.INSTANCE.logException(e);
+//    }
     catch (AndroidRuntimeException e)
     {
-      CrashlyticsUtils.INSTANCE.logException(e);
+//      CrashlyticsUtils.INSTANCE.logException(e);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
     }
@@ -276,14 +281,14 @@ public class Utils
       context.startActivity(intent);
       return true;
     }
-    catch (ActivityNotFoundException e)
-    {
-      CrashlyticsUtils.INSTANCE.logException(e);
-      return false;
-    }
+//    catch (ActivityNotFoundException e)
+//    {
+//      CrashlyticsUtils.INSTANCE.logException(e);
+//      return false;
+//    }
     catch (AndroidRuntimeException e)
     {
-      CrashlyticsUtils.INSTANCE.logException(e);
+//      CrashlyticsUtils.INSTANCE.logException(e);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
       return false;
@@ -659,7 +664,8 @@ public class Utils
   public static void detachFragmentIfCoreNotInitialized(@NonNull Context context,
                                                         @NonNull Fragment fragment)
   {
-    if (MwmApplication.from(context).arePlatformAndCoreInitialized())
+//    if (MwmApplication.from(context).arePlatformAndCoreInitialized())
+    if (OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
       return;
 
     FragmentManager manager = fragment.getFragmentManager();
@@ -817,7 +823,7 @@ public class Utils
         }
         catch (ActivityNotFoundException e)
         {
-          CrashlyticsUtils.INSTANCE.logException(e);
+//          CrashlyticsUtils.INSTANCE.logException(e);
         }
       });
     }

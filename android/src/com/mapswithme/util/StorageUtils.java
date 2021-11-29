@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove Crashlytics
+ */
+
 package com.mapswithme.util;
 
 import android.app.Application;
@@ -112,8 +117,9 @@ public class StorageUtils
   {
     try
     {
-      return application.getPackageManager()
-                        .getApplicationInfo(BuildConfig.APPLICATION_ID, 0).sourceDir;
+      return application.getPackageManager().getApplicationInfo(OrganicmapsFrameworkAdapter.INSTANCE.getApplicationID(), 0).sourceDir;
+//      return application.getPackageManager()
+//                        .getApplicationInfo(BuildConfig.APPLICATION_ID, 0).sourceDir;
     }
     catch (final PackageManager.NameNotFoundException e)
     {
@@ -155,7 +161,7 @@ public class StorageUtils
     {
       IOException error = new IOException("Can't create directories for: " + path);
       LOGGER.e(TAG, "Can't create directories for: " + path);
-      CrashlyticsUtils.INSTANCE.logException(error);
+//      CrashlyticsUtils.INSTANCE.logException(error);
       throw error;
     }
   }

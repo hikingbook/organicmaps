@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: OrganicmapsFrameworkAdapter.INSTANCE.getApplication() instead context
+ */
+
 package com.mapswithme.util;
 
 import android.content.Context;
@@ -19,7 +24,8 @@ public final class SecureStorage
   public static void save(@NonNull Context context, @NonNull String key, @NonNull String value)
   {
     LOGGER.d(TAG, "save: key = " + key);
-    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+//    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+    SharedPreferences prefs = OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getSharedPreferences("secure", Context.MODE_PRIVATE);
     prefs.edit().putString(key, value).apply();
   }
 
@@ -27,14 +33,16 @@ public final class SecureStorage
   public static String load(@NonNull Context context, @NonNull String key)
   {
     LOGGER.d(TAG, "load: key = " + key);
-    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+//    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+    SharedPreferences prefs = OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getSharedPreferences("secure", Context.MODE_PRIVATE);
     return prefs.getString(key, null);
   }
 
   public static void remove(@NonNull Context context, @NonNull String key)
   {
     LOGGER.d(TAG, "remove: key = " + key);
-    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+//    SharedPreferences prefs = context.getSharedPreferences("secure", Context.MODE_PRIVATE);
+    SharedPreferences prefs = OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getSharedPreferences("secure", Context.MODE_PRIVATE);
     prefs.edit().remove(key).apply();
   }
 }

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove showHomeUpButton()
+ */
+
 package com.mapswithme.util;
 
 import android.animation.Animator;
@@ -13,6 +18,7 @@ import android.net.Uri;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -276,10 +282,10 @@ public final class UiUtils
     hide(tv);
   }
 
-  public static void showHomeUpButton(Toolbar toolbar)
-  {
-    toolbar.setNavigationIcon(ThemeUtils.getResource(toolbar.getContext(), R.attr.homeAsUpIndicator));
-  }
+//  public static void showHomeUpButton(Toolbar toolbar)
+//  {
+//    toolbar.setNavigationIcon(ThemeUtils.getResource(toolbar.getContext(), R.attr.homeAsUpIndicator));
+//  }
 
   public static String deviceOrientationAsString(Activity activity)
   {
@@ -304,6 +310,8 @@ public final class UiUtils
 
   public static boolean isTablet(@NonNull Context context)
   {
+//    Log.d("isTablet", "OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication():"+OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication());
+//    Log.d("isTablet", "OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication().getResources():"+OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication().getResources());
     return MwmApplication.from(context).getResources().getBoolean(R.bool.tabletLayout);
   }
 
@@ -448,7 +456,7 @@ public final class UiUtils
   public static void setupHomeUpButtonAsNavigationIcon(@NonNull Toolbar toolbar,
                                                        @NonNull View.OnClickListener listener)
   {
-    UiUtils.showHomeUpButton(toolbar);
+//    UiUtils.showHomeUpButton(toolbar);
     toolbar.setNavigationOnClickListener(listener);
   }
 

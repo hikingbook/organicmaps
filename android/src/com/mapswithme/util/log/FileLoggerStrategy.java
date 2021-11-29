@@ -11,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.mapswithme.maps.BuildConfig;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.StorageUtils;
 import com.mapswithme.util.Utils;
 
@@ -180,7 +181,7 @@ class FileLoggerStrategy implements LoggerStrategy
     {
       fw.write("Android version: " + Build.VERSION.SDK_INT + "\n");
       fw.write("Device: " + Utils.getFullDeviceModel() + "\n");
-      fw.write("App version: " + BuildConfig.APPLICATION_ID + " " + BuildConfig.VERSION_NAME + "\n");
+      fw.write("App version: " + OrganicmapsFrameworkAdapter.INSTANCE.getApplicationID() + " " + BuildConfig.VERSION_NAME + "\n");
       fw.write("Locale : " + Locale.getDefault());
       fw.write("\nNetworks : ");
       final ConnectivityManager manager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);

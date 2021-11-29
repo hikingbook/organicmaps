@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove Crashlytics
+ */
+
 package com.mapswithme.util.log;
 
 import android.app.Application;
@@ -11,7 +16,7 @@ import androidx.annotation.Nullable;
 import com.mapswithme.maps.BuildConfig;
 import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.maps.R;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.StorageUtils;
 
 import net.jcip.annotations.GuardedBy;
@@ -182,7 +187,7 @@ public class LoggerFactory
       default:
         logger.v(CORE_TAG, msg);
     }
-    CrashlyticsUtils.INSTANCE.log(level, CORE_TAG, msg);
+//    CrashlyticsUtils.INSTANCE.log(level, CORE_TAG, msg);
   }
 
   private static native void nativeToggleCoreDebugLogs(boolean enabled);
