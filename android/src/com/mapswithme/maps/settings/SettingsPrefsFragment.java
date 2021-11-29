@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.settings;
 
 import android.app.Activity;
@@ -27,13 +31,13 @@ import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.downloader.OnmapDownloader;
-import com.mapswithme.maps.editor.ProfileActivity;
+//import com.mapswithme.maps.editor.ProfileActivity;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.location.LocationProviderFactory;
 import com.mapswithme.maps.sound.LanguageData;
 import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.util.Config;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.NetworkPolicy;
 import com.mapswithme.util.PowerManagment;
 import com.mapswithme.util.SharedPropertiesUtils;
@@ -269,7 +273,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
   private boolean onToggleCrashReports(Object newValue)
   {
     boolean isEnabled = (boolean) newValue;
-    CrashlyticsUtils.INSTANCE.setEnabled(isEnabled);
+//    CrashlyticsUtils.INSTANCE.setEnabled(isEnabled);
     return true;
   }
 
@@ -283,7 +287,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     mPrefLanguages = findPreference(getString(R.string.pref_tts_language));
     mLangInfo = findPreference(getString(R.string.pref_tts_info));
     mLangInfoLink = findPreference(getString(R.string.pref_tts_info_link));
-    initLangInfoLink();
+//    initLangInfoLink();
     updateStoragePrefs();
     initStoragePrefCallbacks();
     initMeasureUnitsPrefsCallbacks();
@@ -372,37 +376,37 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
   @Override
   public boolean onPreferenceTreeClick(Preference preference)
   {
-    if (preference.getKey() != null && preference.getKey().equals(getString(R.string.pref_osm_profile)))
-    {
-      startActivity(new Intent(getActivity(), ProfileActivity.class));
-    }
+//    if (preference.getKey() != null && preference.getKey().equals(getString(R.string.pref_osm_profile)))
+//    {
+//      startActivity(new Intent(getActivity(), ProfileActivity.class));
+//    }
     return super.onPreferenceTreeClick(preference);
   }
 
-  private void initLangInfoLink()
-  {
-    if (mLangInfoLink != null)
-    {
-      Spannable link = new SpannableString(getString(R.string.prefs_languages_information_off_link));
-      link.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),
-                                                                  UiUtils.getStyledResourceId(getContext(), R.attr.colorAccent))),
-                   0, link.length(), 0);
-      mLangInfoLink.setSummary(link);
-      String TTS_INFO_LINK = getActivity().getString(R.string.tts_info_link);
-      mLangInfoLink.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
-      {
-        @Override
-        public boolean onPreferenceClick(Preference preference)
-        {
-          final Intent intent = new Intent(Intent.ACTION_VIEW);
-          intent.setData(Uri.parse(TTS_INFO_LINK));
-          getContext().startActivity(intent);
-          return false;
-        }
-      });
-      removePreference(getString(R.string.pref_navigation), mLangInfoLink);
-    }
-  }
+//  private void initLangInfoLink()
+//  {
+//    if (mLangInfoLink != null)
+//    {
+//      Spannable link = new SpannableString(getString(R.string.prefs_languages_information_off_link));
+//      link.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),
+//                                                                  UiUtils.getStyledResourceId(getContext(), R.attr.colorAccent))),
+//                   0, link.length(), 0);
+//      mLangInfoLink.setSummary(link);
+//      String TTS_INFO_LINK = getActivity().getString(R.string.tts_info_link);
+//      mLangInfoLink.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+//      {
+//        @Override
+//        public boolean onPreferenceClick(Preference preference)
+//        {
+//          final Intent intent = new Intent(Intent.ACTION_VIEW);
+//          intent.setData(Uri.parse(TTS_INFO_LINK));
+//          getContext().startActivity(intent);
+//          return false;
+//        }
+//      });
+//      removePreference(getString(R.string.pref_navigation), mLangInfoLink);
+//    }
+//  }
 
   private void initLargeFontSizePrefsCallbacks()
   {
@@ -714,18 +718,19 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
       @Override
       public boolean onPreferenceClick(Preference preference)
       {
-        if (MapManager.nativeIsDownloading())
-          new AlertDialog.Builder(getActivity())
-              .setTitle(getString(R.string.downloading_is_active))
-              .setMessage(getString(R.string.cant_change_this_setting))
-              .setPositiveButton(getString(R.string.ok), null)
-              .show();
-        else
+//        if (MapManager.nativeIsDownloading())
+//          new AlertDialog.Builder(getActivity())
+//              .setTitle(getString(R.string.downloading_is_active))
+//              .setMessage(getString(R.string.cant_change_this_setting))
+//              .setPositiveButton(getString(R.string.ok), null)
+//              .show();
+//        else
 //          getSettingsActivity().switchToFragment(StoragePathFragment.class, R.string.maps_storage);
-          getSettingsActivity().replaceFragment(StoragePathFragment.class,
-                                                getString(R.string.maps_storage), null);
+//          getSettingsActivity().replaceFragment(StoragePathFragment.class,
+//                                                getString(R.string.maps_storage), null);
 
-        return true;
+//        return true;
+        return false;
       }
     });
   }
@@ -737,13 +742,13 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     if (pref == null)
       return false;
 
-    if (!CrashlyticsUtils.INSTANCE.isAvailable())
-    {
-      removePreference(getString(R.string.pref_subtittle_opt_out), pref);
-      return false;
-    }
+//    if (!CrashlyticsUtils.INSTANCE.isAvailable())
+//    {
+//      removePreference(getString(R.string.pref_subtittle_opt_out), pref);
+//      return false;
+//    }
 
-    ((TwoStatePreference)pref).setChecked(CrashlyticsUtils.INSTANCE.isEnabled());
+//    ((TwoStatePreference)pref).setChecked(CrashlyticsUtils.INSTANCE.isEnabled());
     pref.setOnPreferenceChangeListener((preference, newValue) -> onToggleCrashReports(newValue));
     return true;
   }

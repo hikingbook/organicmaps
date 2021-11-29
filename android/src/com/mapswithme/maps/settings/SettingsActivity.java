@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.settings;
 
 import android.os.Bundle;
@@ -74,22 +78,22 @@ public class SettingsActivity extends BaseToolbarActivity
                                .commitAllowingStateLoss();
     getSupportFragmentManager().executePendingTransactions();
 
-    if (title != null)
-    {
-      Toolbar toolbar = getToolbar();
-      if (toolbar != null && toolbar.getTitle() != null)
-      {
-        mLastTitle = toolbar.getTitle().toString();
-        toolbar.setTitle(title);
-      }
-    }
+//    if (title != null)
+//    {
+//      Toolbar toolbar = getToolbar();
+//      if (toolbar != null && toolbar.getTitle() != null)
+//      {
+//        mLastTitle = toolbar.getTitle().toString();
+//        toolbar.setTitle(title);
+//      }
+//    }
   }
 
   @Override
   public void onBackPressed()
   {
-    if (mLastTitle != null)
-      getToolbar().setTitle(mLastTitle);
+//    if (mLastTitle != null)
+//      getToolbar().setTitle(mLastTitle);
 
     super.onBackPressed();
   }

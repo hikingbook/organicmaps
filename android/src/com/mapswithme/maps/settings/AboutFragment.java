@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: swith-case view id instead to if-else
+ */
 package com.mapswithme.maps.settings;
 
 
@@ -87,44 +91,26 @@ public class AboutFragment extends BaseSettingsFragment
   {
     try
     {
-      switch (v.getId())
-      {
-      case R.id.web:
+      int id = v.getId();
+      if (id == R.id.web) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.WEB_SITE)));
-        break;
-
-      case R.id.github:
+      } else if (id == R.id.github) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.GITHUB)));
-        break;
-
-      case R.id.telegram:
+      } else if (id == R.id.telegram) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.TELEGRAM)));
-        break;
-
-      case R.id.instagram:
+      } else if (id == R.id.instagram) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.Url.INSTAGRAM)));
-        break;
-
-      case R.id.facebook:
+      } else if (id == R.id.facebook) {
         Utils.showFacebookPage(getActivity());
-        break;
-
-      case R.id.twitter:
+      } else if (id == R.id.twitter) {
         Utils.showTwitterPage(getActivity());
-        break;
-
-      case R.id.rate:
+      } else if (id == R.id.rate) {
         Utils.openAppInMarket(getActivity(), BuildConfig.REVIEW_URL);
-        break;
-
-      case R.id.share:
+      } else if (id == R.id.share) {
         SharingUtils.shareApplication(getContext());
-        break;
-
-      case R.id.copyright:
-        getSettingsActivity().replaceFragment(CopyrightFragment.class,
-                                              getString(R.string.copyright), null);
-        break;
+      } else if (id == R.id.copyright) {
+//        getSettingsActivity().replaceFragment(CopyrightFragment.class,
+//                getString(R.string.copyright), null);
       }
     } catch (ActivityNotFoundException e)
     {

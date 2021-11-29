@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.settings;
 
 import android.content.Intent;
@@ -44,9 +48,9 @@ public class CopyrightFragment extends BaseSettingsFragment
   @Override
   public boolean onBackPressed()
   {
-    if (!mDelegate.onBackPressed())
-      getSettingsActivity().replaceFragment(AboutFragment.class,
-                                            getString(R.string.about_menu_title), null);
+//    if (!mDelegate.onBackPressed())
+//      getSettingsActivity().replaceFragment(AboutFragment.class,
+//                                            getString(R.string.about_menu_title), null);
 
     return true;
   }
