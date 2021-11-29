@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.routing;
 
 import android.annotation.SuppressLint;
@@ -178,18 +182,18 @@ final class RoutingBottomMenuController implements View.OnClickListener
     UiUtils.show(mActionFrame);
     mActionMessage.setText(R.string.routing_add_start_point);
     mActionMessage.setTag(RoutePointInfo.ROUTE_MARK_START);
-    if (LocationHelper.INSTANCE.getMyPosition() != null)
-    {
-      UiUtils.show(mActionButton);
-      Drawable icon = ContextCompat.getDrawable(mContext, R.drawable.ic_my_location);
-      int colorAccent = ContextCompat.getColor(mContext,
-                                               UiUtils.getStyledResourceId(mContext, R.attr.colorAccent));
-      mActionIcon.setImageDrawable(Graphics.tint(icon, colorAccent));
-    }
-    else
-    {
-      UiUtils.hide(mActionButton);
-    }
+//    if (LocationHelper.INSTANCE.getMyPosition() != null)
+//    {
+//      UiUtils.show(mActionButton);
+//      Drawable icon = ContextCompat.getDrawable(mContext, R.drawable.ic_my_location);
+//      int colorAccent = ContextCompat.getColor(mContext,
+//                                               UiUtils.getStyledResourceId(mContext, R.attr.colorAccent));
+//      mActionIcon.setImageDrawable(Graphics.tint(icon, colorAccent));
+//    }
+//    else
+//    {
+//      UiUtils.hide(mActionButton);
+//    }
   }
 
   void showAddFinishFrame()
@@ -271,10 +275,10 @@ final class RoutingBottomMenuController implements View.OnClickListener
                                                 limits.isMetricUnits ? meter : foot));
       Drawable icon = ContextCompat.getDrawable(mContext,
                                                 R.drawable.ic_altitude_difference);
-      int colorAccent = ContextCompat.getColor(mContext,
-          UiUtils.getStyledResourceId(mContext, R.attr.colorAccent));
-      mAltitudeDifference.setCompoundDrawablesRelativeWithIntrinsicBounds(Graphics.tint(icon, colorAccent),
-                                                                  null, null, null);
+//      int colorAccent = ContextCompat.getColor(mContext,
+//          UiUtils.getStyledResourceId(mContext, R.attr.colorAccent));
+//      mAltitudeDifference.setCompoundDrawablesRelativeWithIntrinsicBounds(Graphics.tint(icon, colorAccent),
+//                                                                  null, null, null);
       UiUtils.show(mAltitudeDifference);
     }
   }
@@ -390,20 +394,16 @@ final class RoutingBottomMenuController implements View.OnClickListener
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-      case R.id.btn__my_position_use:
-        if (mListener != null)
-          mListener.onUseMyPositionAsStart();
-        break;
-      case R.id.btn__search_point:
-        if (mListener != null)
-        {
-          @RoutePointInfo.RouteMarkType
-          int pointType = (Integer) mActionMessage.getTag();
-          mListener.onSearchRoutePoint(pointType);
-        }
-        break;
+    int id = v.getId();
+    if (id == R.id.btn__my_position_use) {
+      if (mListener != null)
+        mListener.onUseMyPositionAsStart();
+    } else if (id == R.id.btn__search_point) {
+      if (mListener != null) {
+        @RoutePointInfo.RouteMarkType
+        int pointType = (Integer) mActionMessage.getTag();
+        mListener.onSearchRoutePoint(pointType);
+      }
     }
   }
 }

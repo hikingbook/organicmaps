@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.routing;
 
 import android.animation.Animator;
@@ -23,7 +28,7 @@ import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.concurrency.UiThread;
 
 
-class SearchWheel implements View.OnClickListener
+class SearchWheel
 {
   private static final String EXTRA_CURRENT_OPTION = "extra_current_option";
   private final View mFrame;
@@ -105,9 +110,9 @@ class SearchWheel implements View.OnClickListener
     mFrame = frame;
 
     mTouchInterceptor = mFrame.findViewById(R.id.touch_interceptor);
-    mTouchInterceptor.setOnClickListener(this);
+//    mTouchInterceptor.setOnClickListener(this);
     mSearchButton = mFrame.findViewById(R.id.btn_search);
-    mSearchButton.setOnClickListener(this);
+//    mSearchButton.setOnClickListener(this);
     mSearchLayout = mFrame.findViewById(R.id.search_frame);
     if (UiUtils.isLandscape(mFrame.getContext()))
     {
@@ -116,8 +121,8 @@ class SearchWheel implements View.OnClickListener
         mSearchLayout.setPivotY(mSearchLayout.getMeasuredHeight() / 2);
       });
     }
-    for (SearchOption searchOption : SearchOption.values())
-      mFrame.findViewById(searchOption.mResId).setOnClickListener(this);
+//    for (SearchOption searchOption : SearchOption.values())
+//      mFrame.findViewById(searchOption.mResId).setOnClickListener(this);
     refreshSearchVisibility();
   }
 
@@ -143,7 +148,7 @@ class SearchWheel implements View.OnClickListener
   {
     if (mCurrentOption != null)
     {
-      refreshSearchButtonImage();
+//      refreshSearchButtonImage();
       return;
     }
 
@@ -155,7 +160,7 @@ class SearchWheel implements View.OnClickListener
     }
 
     mCurrentOption = SearchOption.fromSearchQuery(query, mFrame.getContext());
-    refreshSearchButtonImage();
+//    refreshSearchButtonImage();
   }
 
   private void toggleSearchLayout()
@@ -205,86 +210,76 @@ class SearchWheel implements View.OnClickListener
                                                  R.drawable.ic_routing_search_on));
   }
 
-  private void refreshSearchButtonImage()
-  {
-    mSearchButton.setImageDrawable(Graphics.tint(mSearchButton.getContext(),
-                                                 mCurrentOption == null ?
-                                                 R.drawable.ic_routing_search_off :
-                                                 mCurrentOption.mDrawableOff,
-                                                 R.attr.colorAccent));
-  }
+//  private void refreshSearchButtonImage()
+//  {
+//    mSearchButton.setImageDrawable(Graphics.tint(mSearchButton.getContext(),
+//                                                 mCurrentOption == null ?
+//                                                 R.drawable.ic_routing_search_off :
+//                                                 mCurrentOption.mDrawableOff,
+//                                                 R.attr.colorAccent));
+//  }
 
-  public boolean performClick()
-  {
-    return mSearchButton.performClick();
-  }
+//  public boolean performClick()
+//  {
+//    return mSearchButton.performClick();
+//  }
 
-  @Override
-  public void onClick(View v)
-  {
-    switch (v.getId())
-    {
-    case R.id.btn_search:
-      if (RoutingController.get().isPlanning())
-      {
-        if (TextUtils.isEmpty(SearchEngine.INSTANCE.getQuery()))
-          showSearchInParent();
-        else
-          reset();
-        return;
-      }
+//  @Override
+//  public void onClick(View v)
+//  {
+//    int id = v.getId();
+//    if (id == R.id.btn_search) {
+//      if (RoutingController.get().isPlanning()) {
+//        if (TextUtils.isEmpty(SearchEngine.INSTANCE.getQuery()))
+//          showSearchInParent();
+//        else
+//          reset();
+//        return;
+//      }
+//
+//      if (mCurrentOption != null || !TextUtils.isEmpty(SearchEngine.INSTANCE.getQuery())) {
+//        SearchEngine.INSTANCE.cancelInteractiveSearch();
+//        mCurrentOption = null;
+//        mIsExpanded = false;
+//        resetSearchButtonImage();
+//        refreshSearchVisibility();
+//        return;
+//      }
+//
+//      if (mIsExpanded) {
+//        showSearchInParent();
+//        return;
+//      }
+//
+//      toggleSearchLayout();
+//    } else if (id == R.id.touch_interceptor) {
+//      toggleSearchLayout();
+//    } else if (id == R.id.search_fuel || id == R.id.search_parking || id == R.id.search_eat || id == R.id.search_food || id == R.id.search_atm) {
+//      startSearch(SearchOption.fromResId(v.getId()));
+//    }
+//  }
 
-      if (mCurrentOption != null || !TextUtils.isEmpty(SearchEngine.INSTANCE.getQuery()))
-      {
-        SearchEngine.INSTANCE.cancelInteractiveSearch();
-        mCurrentOption = null;
-        mIsExpanded = false;
-        resetSearchButtonImage();
-        refreshSearchVisibility();
-        return;
-      }
-
-      if (mIsExpanded)
-      {
-        showSearchInParent();
-        return;
-      }
-
-      toggleSearchLayout();
-      break;
-    case R.id.touch_interceptor:
-      toggleSearchLayout();
-      break;
-    case R.id.search_fuel:
-    case R.id.search_parking:
-    case R.id.search_eat:
-    case R.id.search_food:
-    case R.id.search_atm:
-      startSearch(SearchOption.fromResId(v.getId()));
-    }
-  }
-
-  private void showSearchInParent()
-  {
-    Context context = mFrame.getContext();
-    final MwmActivity parent;
-    if (context instanceof ContextThemeWrapper)
-      parent = (MwmActivity)((ContextThemeWrapper)context).getBaseContext();
-    else if (context instanceof androidx.appcompat.view.ContextThemeWrapper)
-      parent = (MwmActivity)((androidx.appcompat.view.ContextThemeWrapper)context).getBaseContext();
-    else
-      parent = (MwmActivity) context;
-    parent.showSearch();
-    mIsExpanded = false;
-    refreshSearchVisibility();
-  }
+//  private void showSearchInParent()
+//  {
+//    Context context = mFrame.getContext();
+//    final MwmActivity parent;
+//    if (context instanceof ContextThemeWrapper)
+//      parent = (MwmActivity)((ContextThemeWrapper)context).getBaseContext();
+//    else if (context instanceof androidx.appcompat.view.ContextThemeWrapper)
+//      parent = (MwmActivity)((androidx.appcompat.view.ContextThemeWrapper)context).getBaseContext();
+//    else
+//      parent = (MwmActivity) context;
+//    parent.showSearch();
+//    mIsExpanded = false;
+//    refreshSearchVisibility();
+//  }
 
   private void startSearch(SearchOption searchOption)
   {
     mCurrentOption = searchOption;
     final String query = mFrame.getContext().getString(searchOption.mQueryId);
     SearchEngine.INSTANCE.searchInteractive(mFrame.getContext(), query, System.nanoTime(), false /* isMapAndTable */);
-    refreshSearchButtonImage();
+//    refreshSearchButtonImage();
 
     toggleSearchLayout();
   }

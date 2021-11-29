@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.routing;
 
 import android.app.Activity;
@@ -28,7 +32,7 @@ import com.mapswithme.maps.base.MediaPlayerWrapper;
 import com.mapswithme.maps.bookmarks.BookmarkCategoriesActivity;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.maplayer.traffic.TrafficManager;
-import com.mapswithme.maps.settings.SettingsActivity;
+//import com.mapswithme.maps.settings.SettingsActivity;
 import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.maps.widget.FlatProgressView;
 import com.mapswithme.maps.widget.menu.NavMenu;
@@ -118,7 +122,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mBottomFrame = mFrame.findViewById(R.id.nav_bottom_frame);
     mBottomFrame.setOnClickListener(v -> switchTimeFormat());
     mNavMenu = createNavMenu();
-    mNavMenu.refresh();
+//    mNavMenu.refresh();
 
     // Top frame
     View topFrame = mFrame.findViewById(R.id.nav_top_frame);
@@ -179,11 +183,11 @@ public class NavigationController implements Application.ActivityLifecycleCallba
       stop(parent);
       break;
     case SETTINGS:
-      parent.closeMenu(() -> parent.startActivity(new Intent(parent, SettingsActivity.class)));
+//      parent.closeMenu(() -> parent.startActivity(new Intent(parent, SettingsActivity.class)));
       break;
     case TTS_VOLUME:
-      TtsPlayer.setEnabled(!TtsPlayer.isEnabled());
-      mNavMenu.refreshTts();
+//      TtsPlayer.setEnabled(!TtsPlayer.isEnabled());
+//      mNavMenu.refreshTts();
       break;
 //    case TRAFFIC:
 //      TrafficManager.INSTANCE.toggle();
@@ -192,13 +196,13 @@ public class NavigationController implements Application.ActivityLifecycleCallba
 //      break;
     case TOGGLE:
       mNavMenu.toggle(true);
-      parent.refreshFade();
+//      parent.refreshFade();
     }
   }
 
   public void stop(MwmActivity parent)
   {
-    parent.refreshFade();
+//    parent.refreshFade();
     mSearchWheel.reset();
 
     if (mBound)
@@ -287,7 +291,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mDistanceValue.setText(info.distToTarget);
     mDistanceUnits.setText(info.targetUnits);
     mRouteProgress.setProgress((int) info.completionPercent);
-    playbackSpeedCamWarning(info);
+//    playbackSpeedCamWarning(info);
   }
 
   private void updateStreetView(@NonNull RoutingInfo info)
@@ -311,15 +315,15 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mSpeedViewContainer.setActivated(info.isSpeedLimitExceeded());
   }
 
-  private void playbackSpeedCamWarning(@NonNull RoutingInfo info)
-  {
-    if (!info.shouldPlayWarningSignal() || TtsPlayer.INSTANCE.isSpeaking())
-      return;
-
-    Context context = mBottomFrame.getContext();
-    MediaPlayerWrapper player = MediaPlayerWrapper.from(context);
-    player.playback(R.raw.speed_cams_beep, mSpeedCamSignalCompletionListener);
-  }
+//  private void playbackSpeedCamWarning(@NonNull RoutingInfo info)
+//  {
+//    if (!info.shouldPlayWarningSignal() || TtsPlayer.INSTANCE.isSpeaking())
+//      return;
+//
+//    Context context = mBottomFrame.getContext();
+//    MediaPlayerWrapper player = MediaPlayerWrapper.from(context);
+//    player.playback(R.raw.speed_cams_beep, mSpeedCamSignalCompletionListener);
+//  }
 
   private void updateTime(int seconds)
   {
@@ -519,18 +523,15 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-      case R.id.btn_bookmarks:
-        BookmarkCategoriesActivity.start(mFrame.getContext());
-        break;
+    if (v.getId() == R.id.btn_bookmarks) {
+      BookmarkCategoriesActivity.start(mFrame.getContext());
     }
   }
 
-  public void destroy()
-  {
-    MediaPlayerWrapper.from(mBottomFrame.getContext()).release();
-  }
+//  public void destroy()
+//  {
+//    MediaPlayerWrapper.from(mBottomFrame.getContext()).release();
+//  }
 
   private static class CameraWarningSignalCompletionListener implements MediaPlayer.OnCompletionListener
   {
@@ -545,7 +546,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     @Override
     public void onCompletion(MediaPlayer mp)
     {
-      TtsPlayer.INSTANCE.playTurnNotifications(mApp);
+//      TtsPlayer.INSTANCE.playTurnNotifications(mApp);
     }
   }
 }

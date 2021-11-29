@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.routing;
 
 import static androidx.core.app.NotificationCompat.Builder;
@@ -224,7 +228,7 @@ public class NavigationService extends Service
     if (turnNotifications != null)
     {
       mNavigationText = Utils.fixCaseInString(turnNotifications[0]);
-      TtsPlayer.INSTANCE.playTurnNotifications(getApplicationContext(), turnNotifications);
+//      TtsPlayer.INSTANCE.playTurnNotifications(getApplicationContext(), turnNotifications);
     }
     mRemoteViews.setTextViewText(R.id.navigation_text, mNavigationText);
 
