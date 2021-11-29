@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.widget.placepage;
 
 import android.os.Bundle;
@@ -91,7 +95,7 @@ public class EditDescriptionFragment extends BaseMwmDialogFragment
         saveDescription();
       }
     });
-    UiUtils.showHomeUpButton(toolbar);
+//    UiUtils.showHomeUpButton(toolbar);
     toolbar.setTitle(R.string.description);
     toolbar.setNavigationOnClickListener(new View.OnClickListener()
     {

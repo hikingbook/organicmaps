@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.widget.menu;
 
 import android.animation.Animator;
@@ -101,7 +105,7 @@ public class NavMenu extends BaseMenu
   public void onResume(@Nullable Runnable procAfterMeasurement)
   {
     measureContent(procAfterMeasurement);
-    refresh();
+//    refresh();
   }
 
   public boolean isOpen()
@@ -218,25 +222,25 @@ public class NavMenu extends BaseMenu
     });
   }
 
-  public void refresh()
-  {
-    refreshTts();
-  }
+//  public void refresh()
+//  {
+//    refreshTts();
+//  }
 
-  public void refreshTts()
-  {
-    mTts.setImageDrawable(TtsPlayer.isEnabled() ? Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_on,
-                                                                R.attr.colorAccent)
-                                                : Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_off));
-  }
+//  public void refreshTts()
+//  {
+//    mTts.setImageDrawable(TtsPlayer.isEnabled() ? Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_on,
+//                                                                R.attr.colorAccent)
+//                                                : Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_off));
+//  }
 
-  public void refreshTraffic()
-  {
-    Drawable onIcon = Graphics.tint(mFrame.getContext(), R.drawable.ic_setting_traffic_on,
-                                    R.attr.colorAccent);
-    Drawable offIcon = Graphics.tint(mFrame.getContext(), R.drawable.ic_setting_traffic_off);
-   mTraffic.setImageDrawable(TrafficManager.INSTANCE.isEnabled() ? onIcon : offIcon);
-  }
+//  public void refreshTraffic()
+//  {
+//    Drawable onIcon = Graphics.tint(mFrame.getContext(), R.drawable.ic_setting_traffic_on,
+//                                    R.attr.colorAccent);
+//    Drawable offIcon = Graphics.tint(mFrame.getContext(), R.drawable.ic_setting_traffic_off);
+//   mTraffic.setImageDrawable(TrafficManager.INSTANCE.isEnabled() ? onIcon : offIcon);
+//  }
 
   @Override
   protected void setToggleState(boolean open, boolean animate)

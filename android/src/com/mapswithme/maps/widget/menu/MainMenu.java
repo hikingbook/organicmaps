@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.widget.menu;
 
 import android.view.View;
@@ -10,9 +14,11 @@ import com.mapswithme.maps.R;
 import com.mapswithme.maps.routing.RoutingController;
 import com.mapswithme.util.UiUtils;
 
-public class MainMenu extends BaseMenu
+//public class MainMenu extends BaseMenu
+public class MainMenu
 {
-  public enum State
+
+    public enum State
   {
     MENU
         {
@@ -38,248 +44,248 @@ public class MainMenu extends BaseMenu
     }
   }
 
-  private final View mButtonsFrame;
-  private final View mRoutePlanFrame;
+//  private final View mButtonsFrame;
+//  private final View mRoutePlanFrame;
+//
+//  private final MenuToggle mToggle;
 
-  private final MenuToggle mToggle;
+//  public enum Item implements BaseMenu.Item
+//  {
+//    MENU(R.id.toggle)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            return new MwmActivity.MenuClickDelegate(activity, item);
+//          }
+//        },
+//    ADD_PLACE(R.id.add_place)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
+//          }
+//        },
+//    SEARCH(R.id.search)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            return new MwmActivity.SearchClickDelegate(activity, item);
+//          }
+//        },
+//    POINT_TO_POINT(R.id.p2p)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            return new MwmActivity.PointToPointDelegate(activity, item);
+//          }
+//        },
+//    BOOKMARKS(R.id.bookmarks)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            return new MwmActivity.BookmarksDelegate(activity, item);
+//          }
+//        },
+//    SHARE_MY_LOCATION(R.id.share)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
+//          }
+//        },
+//    DOWNLOAD_MAPS(R.id.download_maps)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
+//          }
+//        },
+//    SETTINGS(R.id.settings)
+//        {
+//          @NonNull
+//          @Override
+//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                       @NonNull Item item)
+//          {
+//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
+//          }
+//        };
 
-  public enum Item implements BaseMenu.Item
-  {
-    MENU(R.id.toggle)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            return new MwmActivity.MenuClickDelegate(activity, item);
-          }
-        },
-    ADD_PLACE(R.id.add_place)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-          }
-        },
-    SEARCH(R.id.search)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            return new MwmActivity.SearchClickDelegate(activity, item);
-          }
-        },
-    POINT_TO_POINT(R.id.p2p)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            return new MwmActivity.PointToPointDelegate(activity, item);
-          }
-        },
-    BOOKMARKS(R.id.bookmarks)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            return new MwmActivity.BookmarksDelegate(activity, item);
-          }
-        },
-    SHARE_MY_LOCATION(R.id.share)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-          }
-        },
-    DOWNLOAD_MAPS(R.id.download_maps)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-          }
-        },
-    SETTINGS(R.id.settings)
-        {
-          @NonNull
-          @Override
-          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                       @NonNull Item item)
-          {
-            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-          }
-        };
+//    private final int mViewId;
+//
+//    Item(int viewId)
+//    {
+//      mViewId = viewId;
+//    }
+//
+//    @Override
+//    public int getViewId()
+//    {
+//      return mViewId;
+//    }
 
-    private final int mViewId;
+//    public void onClicked(@NonNull MwmActivity activity, @NonNull Item item)
+//    {
+//      ClickMenuDelegate delegate = createClickDelegate(activity, item);
+//      delegate.onMenuItemClick();
+//    }
 
-    Item(int viewId)
-    {
-      mViewId = viewId;
-    }
+//    @NonNull
+//    public abstract ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+//                                                          @NonNull Item item);
+//  }
 
-    @Override
-    public int getViewId()
-    {
-      return mViewId;
-    }
+//  private void mapItem(MainMenu.Item item)
+//  {
+//    mapItem(item, mButtonsFrame);
+//  }
 
-    public void onClicked(@NonNull MwmActivity activity, @NonNull Item item)
-    {
-      ClickMenuDelegate delegate = createClickDelegate(activity, item);
-      delegate.onMenuItemClick();
-    }
+//  @Override
+//  void afterLayoutMeasured(Runnable procAfterCorrection)
+//  {
+//    UiUtils.showIf(!RoutingController.get().isNavigating(), mFrame);
+//    super.afterLayoutMeasured(procAfterCorrection);
+//  }
+//
+//  @Override
+//  public void onResume(@Nullable Runnable procAfterMeasurement)
+//  {
+//    updateMarker();
+//  }
+//
+//  @Override
+//  public boolean isOpen()
+//  {
+//    return false;
+//  }
+//
+//  @Override
+//  public boolean isAnimating()
+//  {
+//    return false;
+//  }
+//
+//  @Override
+//  public boolean open(boolean animate)
+//  {
+//    return false;
+//  }
+//
+//  @Override
+//  public boolean close(boolean animate, @Nullable Runnable onCloseListener)
+//  {
+//    if (onCloseListener != null)
+//      onCloseListener.run();
+//    return false;
+//  }
+//
+//  @Override
+//  public void toggle(boolean animate)
+//  {
+//    // Do nothing.
+//  }
+//
+//  @Override
+//  protected void setToggleState(boolean open, boolean animate)
+//  {
+//    // Do nothing.
+//  }
 
-    @NonNull
-    public abstract ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-                                                          @NonNull Item item);
-  }
+//  private void init()
+//  {
+//    mapItem(Item.ADD_PLACE);
+//    mapItem(Item.SEARCH);
+//    mapItem(Item.POINT_TO_POINT);
+//    mapItem(Item.BOOKMARKS);
+//    mapItem(Item.SHARE_MY_LOCATION);
+//    mapItem(Item.DOWNLOAD_MAPS);
+//    mapItem(Item.SETTINGS);
 
-  private void mapItem(MainMenu.Item item)
-  {
-    mapItem(item, mButtonsFrame);
-  }
+//    setState(State.MENU, false);
+//  }
 
-  @Override
-  void afterLayoutMeasured(Runnable procAfterCorrection)
-  {
-    UiUtils.showIf(!RoutingController.get().isNavigating(), mFrame);
-    super.afterLayoutMeasured(procAfterCorrection);
-  }
+//  public MainMenu(View frame, ItemClickListener<Item> itemClickListener)
+//  {
+//    super(frame, itemClickListener);
+//
+//    mButtonsFrame = mLineFrame.findViewById(R.id.buttons_frame);
+//    mRoutePlanFrame = mLineFrame.findViewById(R.id.routing_plan_frame);
+//
+//    mToggle = new MenuToggle(mLineFrame, getHeightResId());
+//    mapItem(Item.MENU, mLineFrame);
 
-  @Override
-  public void onResume(@Nullable Runnable procAfterMeasurement)
-  {
-    updateMarker();
-  }
+//    init();
+//  }
 
-  @Override
-  public boolean isOpen()
-  {
-    return false;
-  }
+//  @Override
+//  protected int getHeightResId()
+//  {
+//    return R.dimen.menu_line_height;
+//  }
 
-  @Override
-  public boolean isAnimating()
-  {
-    return false;
-  }
+//  public void setState(State state, boolean isFullScreen)
+//  {
+//    if (state != State.NAVIGATION)
+//    {
+//      mToggle.show(state.showToggle());
+//      mToggle.setOpen(false, false);
+//
+//      boolean isRouting = state == State.ROUTE_PREPARE;
+//      if (mRoutePlanFrame == null)
+//      {
+//        UiUtils.show(mButtonsFrame);
+//      }
+//      else
+//      {
+//        UiUtils.showIf(state == State.MENU, mButtonsFrame);
+//        UiUtils.showIf(isRouting, mRoutePlanFrame);
+//        if (isRouting)
+//          mToggle.hide();
+//      }
+//
+//      setVisible(Item.ADD_PLACE, !isRouting);
+//    }
+//
+//    show(state != State.NAVIGATION && !isFullScreen);
+//    UiUtils.showIf(state == State.MENU, mButtonsFrame);
+//    UiUtils.showIf(state == State.ROUTE_PREPARE, mRoutePlanFrame);
+//  }
 
-  @Override
-  public boolean open(boolean animate)
-  {
-    return false;
-  }
+//  public void setEnabled(Item item, boolean enable)
+//  {
+//    View button = mButtonsFrame.findViewById(item.mViewId);
+//    if (button == null)
+//      return;
+//
+//    button.setAlpha(enable ? 1.0f : 0.4f);
+//    button.setEnabled(enable);
+//  }
 
-  @Override
-  public boolean close(boolean animate, @Nullable Runnable onCloseListener)
-  {
-    if (onCloseListener != null)
-      onCloseListener.run();
-    return false;
-  }
-
-  @Override
-  public void toggle(boolean animate)
-  {
-    // Do nothing.
-  }
-
-  @Override
-  protected void setToggleState(boolean open, boolean animate)
-  {
-    // Do nothing.
-  }
-
-  private void init()
-  {
-    mapItem(Item.ADD_PLACE);
-    mapItem(Item.SEARCH);
-    mapItem(Item.POINT_TO_POINT);
-    mapItem(Item.BOOKMARKS);
-    mapItem(Item.SHARE_MY_LOCATION);
-    mapItem(Item.DOWNLOAD_MAPS);
-    mapItem(Item.SETTINGS);
-
-    setState(State.MENU, false);
-  }
-
-  public MainMenu(View frame, ItemClickListener<Item> itemClickListener)
-  {
-    super(frame, itemClickListener);
-
-    mButtonsFrame = mLineFrame.findViewById(R.id.buttons_frame);
-    mRoutePlanFrame = mLineFrame.findViewById(R.id.routing_plan_frame);
-
-    mToggle = new MenuToggle(mLineFrame, getHeightResId());
-    mapItem(Item.MENU, mLineFrame);
-
-    init();
-  }
-
-  @Override
-  protected int getHeightResId()
-  {
-    return R.dimen.menu_line_height;
-  }
-
-  public void setState(State state, boolean isFullScreen)
-  {
-    if (state != State.NAVIGATION)
-    {
-      mToggle.show(state.showToggle());
-      mToggle.setOpen(false, false);
-
-      boolean isRouting = state == State.ROUTE_PREPARE;
-      if (mRoutePlanFrame == null)
-      {
-        UiUtils.show(mButtonsFrame);
-      }
-      else
-      {
-        UiUtils.showIf(state == State.MENU, mButtonsFrame);
-        UiUtils.showIf(isRouting, mRoutePlanFrame);
-        if (isRouting)
-          mToggle.hide();
-      }
-
-      setVisible(Item.ADD_PLACE, !isRouting);
-    }
-
-    show(state != State.NAVIGATION && !isFullScreen);
-    UiUtils.showIf(state == State.MENU, mButtonsFrame);
-    UiUtils.showIf(state == State.ROUTE_PREPARE, mRoutePlanFrame);
-  }
-
-  public void setEnabled(Item item, boolean enable)
-  {
-    View button = mButtonsFrame.findViewById(item.mViewId);
-    if (button == null)
-      return;
-
-    button.setAlpha(enable ? 1.0f : 0.4f);
-    button.setEnabled(enable);
-  }
-
-  private void setVisible(@NonNull Item item, boolean show)
-  {
-    final View itemInButtonsFrame = mButtonsFrame.findViewById(item.mViewId);
-    if (itemInButtonsFrame != null)
-      UiUtils.showIf(show, itemInButtonsFrame);
-  }
+//  private void setVisible(@NonNull Item item, boolean show)
+//  {
+//    final View itemInButtonsFrame = mButtonsFrame.findViewById(item.mViewId);
+//    if (itemInButtonsFrame != null)
+//      UiUtils.showIf(show, itemInButtonsFrame);
+//  }
 }

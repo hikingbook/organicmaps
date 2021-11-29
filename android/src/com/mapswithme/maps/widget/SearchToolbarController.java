@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: switch-case view id instead to if-else
+ */
+
 package com.mapswithme.maps.widget;
 
 import android.app.Activity;
@@ -179,19 +184,13 @@ public class SearchToolbarController extends ToolbarController
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.query:
+    int id = v.getId();
+    if (id == R.id.query) {
       onQueryClick(getQuery());
-      break;
-
-    case R.id.clear:
+    } else if (id == R.id.clear) {
       onClearClick();
-      break;
-
-    case R.id.voice_input:
+    } else if (id == R.id.voice_input) {
       onVoiceInputClick();
-      break;
     }
   }
 

@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: swith-case view id instead to if-else
+ */
 package com.mapswithme.maps.widget.placepage;
 
 import android.content.Context;
@@ -423,7 +427,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
             break;
 
           case ROUTE_TO:
-            onRouteToBtnClicked();
+//            onRouteToBtnClicked();
             break;
 
           case ROUTE_ADD:
@@ -509,18 +513,18 @@ public class PlacePageView extends NestedScrollViewClickFixed
     }
   }
 
-  private void onRouteToBtnClicked()
-  {
-    if (RoutingController.get().isPlanning())
-    {
-      RoutingController.get().setEndPoint(mMapObject);
-      close();
-    }
-    else
-    {
-      getActivity().startLocationToPoint(getMapObject(), true);
-    }
-  }
+//  private void onRouteToBtnClicked()
+//  {
+//    if (RoutingController.get().isPlanning())
+//    {
+//      RoutingController.get().setEndPoint(mMapObject);
+//      close();
+//    }
+//    else
+//    {
+//      getActivity().startLocationToPoint(getMapObject(), true);
+//    }
+//  }
 
   private void onRouteAddBtnClicked()
   {
@@ -1112,63 +1116,49 @@ public class PlacePageView extends NestedScrollViewClickFixed
     }
   }
 
-  private void addOrganisation()
-  {
-    getActivity().showPositionChooser(true, false);
-  }
+//  private void addOrganisation()
+//  {
+//    getActivity().showPositionChooser(true, false);
+//  }
 
-  private void addPlace()
-  {
-    getActivity().showPositionChooser(false, true);
-  }
+//  private void addPlace()
+//  {
+//    getActivity().showPositionChooser(false, true);
+//  }
 
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-      case R.id.ll__place_editor:
-        if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "Cannot start editor, map object is null!");
-          break;
-        }
-        getActivity().showEditor();
-        break;
-      case R.id.ll__add_organisation:
-        addOrganisation();
-        break;
-      case R.id.ll__place_add:
-        addPlace();
-        break;
-      case R.id.ll__place_latlon:
-        mIsLatLonDms = !mIsLatLonDms;
-        MwmApplication.prefs(getContext()).edit().putBoolean(PREF_USE_DMS, mIsLatLonDms).apply();
-        if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
-          break;
-        }
-        refreshLatLon(mMapObject);
-        break;
-      case R.id.ll__place_website:
-        Utils.openUrl(getContext(), mTvWebsite.getText().toString());
-        break;
-      case R.id.ll__place_wiki:
-        // TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
-        if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "Cannot follow url, mMapObject is null!");
-          break;
-        }
-        Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
-        break;
-      case R.id.direction_frame:
-        showBigDirection();
-        break;
-      case R.id.ll__place_email:
-        Utils.sendTo(getContext(), mTvEmail.getText().toString());
-        break;
+    int id = v.getId();
+    if (id == R.id.ll__place_editor) {
+      if (mMapObject == null) {
+        LOGGER.e(TAG, "Cannot start editor, map object is null!");
+      }
+//        getActivity().showEditor();
+    } else if (id == R.id.ll__add_organisation) {
+//      addOrganisation();
+    } else if (id == R.id.ll__place_add) {
+//      addPlace();
+    } else if (id == R.id.ll__place_latlon) {
+      mIsLatLonDms = !mIsLatLonDms;
+      MwmApplication.prefs(getContext()).edit().putBoolean(PREF_USE_DMS, mIsLatLonDms).apply();
+      if (mMapObject == null) {
+        LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
+        return;
+      }
+      refreshLatLon(mMapObject);
+    } else if (id == R.id.ll__place_website) {
+      Utils.openUrl(getContext(), mTvWebsite.getText().toString());
+    } else if (id == R.id.ll__place_wiki) {// TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
+      if (mMapObject == null) {
+        LOGGER.e(TAG, "Cannot follow url, mMapObject is null!");
+        return;
+      }
+      Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+    } else if (id == R.id.direction_frame) {
+      showBigDirection();
+    } else if (id == R.id.ll__place_email) {
+      Utils.sendTo(getContext(), mTvEmail.getText().toString());
     }
   }
 
@@ -1197,42 +1187,34 @@ public class PlacePageView extends NestedScrollViewClickFixed
     final PopupMenu popup = new PopupMenu(getContext(), v);
     final Menu menu = popup.getMenu();
     final List<String> items = new ArrayList<>();
-    switch (v.getId())
-    {
-      case R.id.ll__place_latlon:
-        if (mMapObject == null)
+
+    int id = v.getId();
+    if (id == R.id.ll__place_latlon) {
+      if (mMapObject == null)
         {
           LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
-          break;
         }
         final double lat = mMapObject.getLat();
         final double lon = mMapObject.getLon();
         items.add(Framework.nativeFormatLatLon(lat, lon, false));
         items.add(Framework.nativeFormatLatLon(lat, lon, true));
-        break;
-      case R.id.ll__place_website:
-        items.add(mTvWebsite.getText().toString());
-        break;
-      case R.id.ll__place_email:
-        items.add(mTvEmail.getText().toString());
-        break;
-      case R.id.ll__place_schedule:
+    } else if (id == R.id.ll__place_website) {
+      items.add(mTvWebsite.getText().toString());
+    } else if (id == R.id.ll__place_email) {
+      items.add(mTvEmail.getText().toString());
+    } else if (id == R.id.ll__place_schedule) {
         String text = UiUtils.isVisible(mFullOpeningHours)
-                      ? mFullOpeningHours.getText().toString()
-                      : mTodayOpeningHours.getText().toString();
+                ? mFullOpeningHours.getText().toString()
+                : mTodayOpeningHours.getText().toString();
         items.add(text);
-        break;
-      case R.id.ll__place_operator:
-        items.add(mTvOperator.getText().toString());
-        break;
-      case R.id.ll__place_wiki:
-        if (mMapObject == null)
+    } else if (id == R.id.ll__place_operator) {
+      items.add(mTvOperator.getText().toString());
+    } else if (id == R.id.ll__place_wiki) {
+      if (mMapObject == null)
         {
           LOGGER.e(TAG, "A long click tap on wiki cannot be handled, mMapObject is null!");
-          break;
         }
         items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
-        break;
     }
 
     final String copyText = getResources().getString(android.R.string.copy);
@@ -1240,12 +1222,12 @@ public class PlacePageView extends NestedScrollViewClickFixed
       menu.add(Menu.NONE, i, i, String.format("%s %s", copyText, items.get(i)));
 
     popup.setOnMenuItemClickListener(item -> {
-      final int id = item.getItemId();
+      final int itemId = item.getItemId();
       final Context ctx = getContext();
-      Utils.copyTextToClipboard(ctx, items.get(id));
+      Utils.copyTextToClipboard(ctx, items.get(itemId));
       Utils.showSnackbarAbove(findViewById(R.id.pp__details_frame),
                               getRootView().findViewById(R.id.menu_frame),
-                              ctx.getString(R.string.copied_to_clipboard, items.get(id)));
+                              ctx.getString(R.string.copied_to_clipboard, items.get(itemId)));
       return true;
     });
 

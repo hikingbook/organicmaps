@@ -126,7 +126,7 @@ public final class PlacePageButtons
     ROUTE_AVOID_FERRY,
     ROUTE_AVOID_UNPAVED,
     SHARE,
-    MORE,
+//    MORE,
     CALL
   }
 
@@ -222,10 +222,10 @@ public final class PlacePageButtons
         ButtonType.SHARE),
 
     // Must not be used outside
-    MORE(
-        R.string.placepage_more_button,
-        new ImageResources(R.drawable.bs_ic_more),
-        ButtonType.MORE),
+//    MORE(
+//        R.string.placepage_more_button,
+//        new ImageResources(R.drawable.bs_ic_more),
+//        ButtonType.MORE),
 
     CALL(
         R.string.placepage_call_button,
@@ -296,8 +296,8 @@ public final class PlacePageButtons
   private @NonNull List<PlacePageButtons.PlacePageButton> collectButtons(List<PlacePageButtons.PlacePageButton> items)
   {
     List<PlacePageButtons.PlacePageButton> res = new ArrayList<>(items);
-    if (res.size() > mMaxButtons)
-      res.add(mMaxButtons - 1, Item.MORE);
+//    if (res.size() > mMaxButtons)
+//      res.add(mMaxButtons - 1, Item.MORE);
 
     // Swap ROUTE_FROM and ROUTE_TO if the latter one was pressed out to bottomsheet
     int from = res.indexOf(Item.ROUTE_FROM);
@@ -424,10 +424,10 @@ public final class PlacePageButtons
     @Override
     public void onClick(View v)
     {
-      if (mCurrent == Item.MORE)
-        showPopup(mItems);
-      else
-        mItemListener.onItemClick(mCurrent);
+//      if (mCurrent == Item.MORE)
+//        showPopup(mItems);
+//      else
+//        mItemListener.onItemClick(mCurrent);
     }
   }
 }

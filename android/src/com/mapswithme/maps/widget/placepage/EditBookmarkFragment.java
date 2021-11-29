@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: swith-case view id instead to if-else
+ */
 package com.mapswithme.maps.widget.placepage;
 
 import android.content.Context;
@@ -114,7 +118,7 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
         saveBookmark();
       }
     });
-    UiUtils.showHomeUpButton(toolbar);
+//    UiUtils.showHomeUpButton(toolbar);
     toolbar.setTitle(R.string.description);
     toolbar.setNavigationOnClickListener(new View.OnClickListener()
     {
@@ -147,14 +151,11 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.iv__bookmark_color:
+    int id = v.getId();
+    if (id == R.id.iv__bookmark_color) {
       selectBookmarkColor();
-      break;
-    case R.id.tv__bookmark_set:
+    } else if (id == R.id.tv__bookmark_set) {
       selectBookmarkSet();
-      break;
     }
   }
 
