@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
 package com.mapswithme.maps.downloader;
 
 import android.location.Location;
@@ -199,26 +203,18 @@ public class CountrySuggestFragment extends BaseMwmFragment implements View.OnCl
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.btn__download_map:
-      MapManager.warn3gAndDownload(getActivity(), mCurrentCountry.id, new Runnable()
-      {
+    int id = v.getId();
+    if (id == R.id.btn__download_map) {
+      MapManager.warn3gAndDownload(getActivity(), mCurrentCountry.id, new Runnable() {
         @Override
-        public void run()
-        {
+        public void run() {
           mDownloadingCountry = mCurrentCountry;
         }
       });
-      break;
-
-    case R.id.btn__select_map:
+    } else if (id == R.id.btn__select_map) {
       getMwmActivity().replaceFragment(DownloaderFragment.class, null, null);
-      break;
-
-    case R.id.wpv__download_progress:
+    } else if (id == R.id.wpv__download_progress) {
       MapManager.nativeCancel(mDownloadingCountry.id);
-      break;
     }
   }
 }

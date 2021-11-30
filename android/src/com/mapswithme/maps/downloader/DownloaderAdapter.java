@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.downloader;
 
 import android.app.Activity;
@@ -127,10 +131,10 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
 
       private void deleteNode(CountryItem item, DownloaderAdapter adapter)
       {
-        if (adapter.mActivity instanceof MwmActivity)
-        {
-          ((MwmActivity) adapter.mActivity).closePlacePage();
-        }
+//        if (adapter.mActivity instanceof MwmActivity)
+//        {
+//          ((MwmActivity) adapter.mActivity).closePlacePage();
+//        }
         deleteNode(item);
       }
     },
