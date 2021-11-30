@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps;
 
 import android.content.Intent;
@@ -6,7 +11,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
@@ -25,11 +31,12 @@ public abstract class MwmJobIntentService extends JobIntentService
   @Override
   protected void onHandleWork(@NonNull Intent intent)
   {
-    MwmApplication app = MwmApplication.from(this);
+//    MwmApplication app = MwmApplication.from(this);
     String msg = "onHandleWork: " + intent;
     LOGGER.i(getTag(), msg);
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, getTag(), msg);
-    if (!app.arePlatformAndCoreInitialized())
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, getTag(), msg);
+//    if (!app.arePlatformAndCoreInitialized())
+    if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
       LOGGER.w(getTag(), "Application is not initialized, ignoring " + intent);
       return;

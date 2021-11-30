@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.intent;
 
 import android.content.ContentResolver;
@@ -29,8 +34,9 @@ import com.mapswithme.maps.bookmarks.data.MapObject;
 import com.mapswithme.maps.routing.RoutingController;
 import com.mapswithme.maps.search.SearchActivity;
 import com.mapswithme.maps.search.SearchEngine;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.KeyValue;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.StorageUtils;
 import com.mapswithme.util.UTM;
 import com.mapswithme.util.Utils;
@@ -137,7 +143,7 @@ public class Factory
       final String uri = data.toString();
       String msg = this.getClass().getSimpleName() + ": incoming intent uri: " + uri;
       LOGGER.i(this.getClass().getSimpleName(), msg);
-      CrashlyticsUtils.INSTANCE.log(Log.INFO, getClass().getSimpleName(), msg);
+//      CrashlyticsUtils.INSTANCE.log(Log.INFO, getClass().getSimpleName(), msg);
       return createMapTask(uri);
     }
 
@@ -416,8 +422,9 @@ public class Factory
     @Override
     public MapTask process(@NonNull Intent intent)
     {
-      MwmApplication app = MwmApplication.from(mActivity);
-      final File tempDir = new File(StorageUtils.getTempPath(app));
+//      MwmApplication app = MwmApplication.from(mActivity);
+//      final File tempDir = new File(StorageUtils.getTempPath(app));
+      final File tempDir = new File(StorageUtils.getTempPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication()));
       final ContentResolver resolver = mActivity.getContentResolver();
       ThreadPool.getStorage().execute(() -> {
         BookmarkManager.INSTANCE.importBookmarksFile(resolver, mData, tempDir);
@@ -619,69 +626,69 @@ public class Factory
     }
   }
 
-  public static class ShowBookmarkCategoryTask implements MapTask
-  {
-    private static final long serialVersionUID = 8285565041410550281L;
-    final long mCategoryId;
+//  public static class ShowBookmarkCategoryTask implements MapTask
+//  {
+//    private static final long serialVersionUID = 8285565041410550281L;
+//    final long mCategoryId;
+//
+//    public ShowBookmarkCategoryTask(long categoryId)
+//    {
+//      mCategoryId = categoryId;
+//    }
+//
+//    public boolean run(@NonNull MwmActivity target)
+//    {
+//      target.showBookmarkCategoryOnMap(mCategoryId);
+//      return true;
+//    }
+//  }
 
-    public ShowBookmarkCategoryTask(long categoryId)
-    {
-      mCategoryId = categoryId;
-    }
+//  static abstract class BaseUserMarkTask implements MapTask
+//  {
+//    private static final long serialVersionUID = -3348320422813422144L;
+//    final long mCategoryId;
+//    final long mId;
+//
+//    BaseUserMarkTask(long categoryId, long id)
+//    {
+//      mCategoryId = categoryId;
+//      mId = id;
+//    }
+//  }
 
-    public boolean run(@NonNull MwmActivity target)
-    {
-      target.showBookmarkCategoryOnMap(mCategoryId);
-      return true;
-    }
-  }
+//  public static class ShowBookmarkTask extends BaseUserMarkTask
+//  {
+//    private static final long serialVersionUID = 7582931785363515736L;
+//
+//    public ShowBookmarkTask(long categoryId, long bookmarkId)
+//    {
+//      super(categoryId, bookmarkId);
+//    }
+//
+//    @Override
+//    public boolean run(@NonNull MwmActivity target)
+//    {
+//      target.showBookmarkOnMap(mId);
+//      return true;
+//    }
+//  }
 
-  static abstract class BaseUserMarkTask implements MapTask
-  {
-    private static final long serialVersionUID = -3348320422813422144L;
-    final long mCategoryId;
-    final long mId;
-
-    BaseUserMarkTask(long categoryId, long id)
-    {
-      mCategoryId = categoryId;
-      mId = id;
-    }
-  }
-
-  public static class ShowBookmarkTask extends BaseUserMarkTask
-  {
-    private static final long serialVersionUID = 7582931785363515736L;
-
-    public ShowBookmarkTask(long categoryId, long bookmarkId)
-    {
-      super(categoryId, bookmarkId);
-    }
-
-    @Override
-    public boolean run(@NonNull MwmActivity target)
-    {
-      target.showBookmarkOnMap(mId);
-      return true;
-    }
-  }
-
-  public static class ShowTrackTask extends BaseUserMarkTask
-  {
-    private static final long serialVersionUID = 1091286722919338991L;
-
-    public ShowTrackTask(long categoryId, long trackId)
-    {
-      super(categoryId, trackId);
-    }
-
-    @Override
-    public boolean run(@NonNull MwmActivity target)
-    {
-      target.showTrackOnMap(mId);
-      return true;
-    }
-  }
+//  public static class ShowTrackTask extends BaseUserMarkTask
+//  {
+//    private static final long serialVersionUID = 1091286722919338991L;
+//
+//    public ShowTrackTask(long categoryId, long trackId)
+//    {
+//      super(categoryId, trackId);
+//    }
+//
+//    @Override
+//    public boolean run(@NonNull MwmActivity target)
+//    {
+//      target.showTrackOnMap(mId);
+//      return true;
+//    }
+//  }
 
   public static class ShowPointTask implements MapTask
   {

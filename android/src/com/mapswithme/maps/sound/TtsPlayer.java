@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.sound;
 
 import android.content.Context;
@@ -213,27 +218,27 @@ public enum TtsPlayer implements Initializable<Context>
       }
   }
 
-  public void playTurnNotifications(@NonNull Context context)
-  {
-    if (MediaPlayerWrapper.from(context).isPlaying())
-      return;
-    // It's necessary to call Framework.nativeGenerateTurnNotifications() even if TtsPlayer is invalid.
-    final String[] turnNotifications = Framework.nativeGenerateNotifications();
+//  public void playTurnNotifications(@NonNull Context context)
+//  {
+//    if (MediaPlayerWrapper.from(context).isPlaying())
+//      return;
+//    // It's necessary to call Framework.nativeGenerateTurnNotifications() even if TtsPlayer is invalid.
+//    final String[] turnNotifications = Framework.nativeGenerateNotifications();
+//
+//    if (turnNotifications != null && isReady())
+//      for (String textToSpeak : turnNotifications)
+//        speak(textToSpeak);
+//  }
 
-    if (turnNotifications != null && isReady())
-      for (String textToSpeak : turnNotifications)
-        speak(textToSpeak);
-  }
-
-  public void playTurnNotifications(@NonNull Context context, @NonNull String[] turnNotifications)
-  {
-    if (MediaPlayerWrapper.from(context).isPlaying())
-      return;
-
-    if (isReady())
-      for (String textToSpeak : turnNotifications)
-        speak(textToSpeak);
-  }
+//  public void playTurnNotifications(@NonNull Context context, @NonNull String[] turnNotifications)
+//  {
+//    if (MediaPlayerWrapper.from(context).isPlaying())
+//      return;
+//
+//    if (isReady())
+//      for (String textToSpeak : turnNotifications)
+//        speak(textToSpeak);
+//  }
 
   public void stop()
   {
