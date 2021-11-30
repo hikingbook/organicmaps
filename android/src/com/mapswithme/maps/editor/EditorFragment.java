@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
+
 package com.mapswithme.maps.editor;
 
 import android.content.DialogInterface;
@@ -487,43 +492,31 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.edit_opening_hours:
-    case R.id.empty_opening_hours:
-    case R.id.opening_hours:
+    int id = v.getId();
+    if (id == R.id.edit_opening_hours || id == R.id.empty_opening_hours || id == R.id.opening_hours) {
       mParent.editTimetable();
-      break;
-    case R.id.phone:
-    case R.id.edit_phone:
+    } else if (id == R.id.phone || id == R.id.edit_phone) {
       mParent.editPhone();
-    case R.id.block_wifi:
+
       mWifi.toggle();
-      break;
-    case R.id.block_street:
+    } else if (id == R.id.block_wifi) {
+      mWifi.toggle();
+    } else if (id == R.id.block_street) {
       mParent.editStreet();
-      break;
-    case R.id.block_cuisine:
+    } else if (id == R.id.block_cuisine) {
       mParent.editCuisine();
-      break;
-    case R.id.category:
+    } else if (id == R.id.category) {
       mParent.editCategory();
-      break;
-    case R.id.more_names:
-    case R.id.show_additional_names:
+    } else if (id == R.id.more_names || id == R.id.show_additional_names) {
       if (mNamesAdapter.areAdditionalLanguagesShown() && !validateNames())
-        break;
+        return;
       showAdditionalNames(!mNamesAdapter.areAdditionalLanguagesShown());
-      break;
-    case R.id.add_langs:
+    } else if (id == R.id.add_langs) {
       mParent.addLanguage();
-      break;
-    case R.id.about_osm:
+    } else if (id == R.id.about_osm) {
       startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(Constants.Url.OSM_ABOUT)));
-      break;
-    case R.id.reset:
+    } else if (id == R.id.reset) {
       reset();
-      break;
     }
   }
 

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
+
 package com.mapswithme.maps.editor;
 
 import android.util.SparseArray;
@@ -262,38 +267,29 @@ class SimpleTimetableAdapter extends RecyclerView.Adapter<SimpleTimetableAdapter
     @Override
     public void onClick(View v)
     {
-      switch (v.getId())
-      {
-      case R.id.time_open:
+      int id = v.getId();
+      if (id == R.id.time_open) {
         pickTime(getAdapterPosition(), HoursMinutesPickerFragment.TAB_FROM, ID_OPENING);
-        break;
-      case R.id.time_close:
+      } else if (id == R.id.time_close) {
         pickTime(getAdapterPosition(), HoursMinutesPickerFragment.TAB_TO, ID_OPENING);
-        break;
-      case R.id.tv__remove_timetable:
+      } else if (id == R.id.tv__remove_timetable) {
         removeTimetable(getAdapterPosition());
-        break;
-      case R.id.tv__add_closed:
+      } else if (id == R.id.tv__add_closed) {
         pickTime(getAdapterPosition(), HoursMinutesPickerFragment.TAB_FROM, ID_CLOSING);
-        break;
-      case R.id.allday:
+      } else if (id == R.id.allday) {
         swAllday.toggle();
-        break;
       }
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
     {
-      switch (buttonView.getId())
-      {
-      case R.id.sw__allday:
+      int id = buttonView.getId();
+      if (id == R.id.sw__allday) {
         setFullday(getAdapterPosition(), isChecked);
-        break;
-      case R.id.chb__day:
+      } else if (id == R.id.chb__day) {
         final int dayIndex = (Integer) buttonView.getTag();
         switchWorkingDay(dayIndex);
-        break;
       }
     }
 

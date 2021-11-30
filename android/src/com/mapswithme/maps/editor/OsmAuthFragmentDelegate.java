@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
 package com.mapswithme.maps.editor;
 
 import android.content.Intent;
@@ -40,14 +44,11 @@ public abstract class OsmAuthFragmentDelegate implements View.OnClickListener
   public void onClick(View v)
   {
     // TODO show/hide spinners
-    switch (v.getId())
-    {
-    case R.id.login_osm:
+    int id = v.getId();
+    if (id == R.id.login_osm) {
       loginOsm();
-      break;
-    case R.id.register:
+    } else if (id == R.id.register) {
       register();
-      break;
     }
   }
 

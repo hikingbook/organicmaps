@@ -17,6 +17,7 @@ import com.mapswithme.maps.editor.data.Language;
 import com.mapswithme.maps.editor.data.LocalizedName;
 import com.mapswithme.maps.editor.data.LocalizedStreet;
 import com.mapswithme.maps.editor.data.NamesDataSource;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -57,7 +58,7 @@ public final class Editor
   {
     if (nativeHasSomethingToUpload() && OsmOAuth.isAuthorized(context))
       nativeUploadChanges(OsmOAuth.getAuthToken(context), OsmOAuth.getAuthSecret(context),
-                          BuildConfig.VERSION_NAME, BuildConfig.APPLICATION_ID);
+                          BuildConfig.VERSION_NAME, OrganicmapsFrameworkAdapter.INSTANCE.getApplicationID());
   }
 
   public static native boolean nativeShouldShowEditPlace();

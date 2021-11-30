@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove unused code
+ */
+
 package com.mapswithme.maps.editor;
 
 import android.os.Bundle;
@@ -22,7 +27,7 @@ import com.mapswithme.util.InputUtils;
 import com.mapswithme.util.UiUtils;
 
 public class AdvancedTimetableFragment extends BaseMwmFragment
-                                       implements View.OnClickListener, TimetableProvider
+                                       implements TimetableProvider
 {
   private boolean mIsExampleShown;
   private EditText mInput;
@@ -44,59 +49,57 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
   {
     super.onViewCreated(view, savedInstanceState);
-    initViews(view);
-    refreshTimetables();
-    showExample(false);
+//    initViews(view);
+//    refreshTimetables();
+//    showExample(false);
   }
 
   @Override
   public void onResume()
   {
     super.onResume();
-    refreshTimetables();
+//    refreshTimetables();
   }
 
-  private void initViews(View view)
-  {
-    view.findViewById(R.id.examples).setOnClickListener(this);
-    mInput = view.findViewById(R.id.et__timetable);
-    mExample = view.findViewById(R.id.wv__examples);
-    mExample.loadUrl(Constants.Url.OPENING_HOURS_MANUAL);
-    mExamplesTitle = view.findViewById(R.id.tv__examples_title);
-    setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
-    setTextChangedListener(mInput, mListener);
-  }
+//  private void initViews(View view)
+//  {
+//    view.findViewById(R.id.examples).setOnClickListener(this);
+//    mInput = view.findViewById(R.id.et__timetable);
+//    mExample = view.findViewById(R.id.wv__examples);
+//    mExample.loadUrl(Constants.Url.OPENING_HOURS_MANUAL);
+//    mExamplesTitle = view.findViewById(R.id.tv__examples_title);
+//    setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
+//    setTextChangedListener(mInput, mListener);
+//  }
 
-  private void showExample(boolean show)
-  {
-    mIsExampleShown = show;
-    if (mIsExampleShown)
-    {
-      UiUtils.show(mExample);
-      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_less);
-    }
-    else
-    {
-      UiUtils.hide(mExample);
-      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
-    }
-  }
+//  private void showExample(boolean show)
+//  {
+//    mIsExampleShown = show;
+//    if (mIsExampleShown)
+//    {
+//      UiUtils.show(mExample);
+//      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_less);
+//    }
+//    else
+//    {
+//      UiUtils.hide(mExample);
+//      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
+//    }
+//  }
 
-  private void setExampleDrawables(@DrawableRes int left, @DrawableRes int right)
-  {
-    mExamplesTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(Graphics.tint(getActivity(), left, R.attr.colorAccent), null,
-                                                           Graphics.tint(getActivity(), right, R.attr.colorAccent), null);
-  }
+//  private void setExampleDrawables(@DrawableRes int left, @DrawableRes int right)
+//  {
+//    mExamplesTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(Graphics.tint(getActivity(), left, R.attr.colorAccent), null,
+//                                                           Graphics.tint(getActivity(), right, R.attr.colorAccent), null);
+//  }
 
-  @Override
-  public void onClick(View v)
-  {
-    switch (v.getId())
-    {
-    case R.id.examples:
-      showExample(!mIsExampleShown);
-    }
-  }
+//  @Override
+//  public void onClick(View v)
+//  {
+//    if (v.getId() == R.id.examples) {
+//      showExample(!mIsExampleShown);
+//    }
+//  }
 
   @Nullable
   @Override
@@ -109,18 +112,18 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
   public void setTimetables(@Nullable String timetables)
   {
     mInitTimetables = timetables;
-    refreshTimetables();
+//    refreshTimetables();
   }
 
-  private void refreshTimetables()
-  {
-    if (mInput == null || mInitTimetables == null)
-      return;
-
-    mInput.setText(mInitTimetables);
-    mInput.requestFocus();
-    InputUtils.showKeyboard(mInput);
-  }
+//  private void refreshTimetables()
+//  {
+//    if (mInput == null || mInitTimetables == null)
+//      return;
+//
+//    mInput.setText(mInitTimetables);
+//    mInput.requestFocus();
+//    InputUtils.showKeyboard(mInput);
+//  }
 
   void setTimetableChangedListener(@NonNull TimetableChangedListener listener)
   {

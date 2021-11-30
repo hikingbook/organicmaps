@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
 package com.mapswithme.maps.editor;
 
 import android.content.DialogInterface;
@@ -114,22 +118,17 @@ public class ProfileFragment extends AuthFragment implements View.OnClickListene
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.more:
+    int id = v.getId();
+    if (id == R.id.more) {
       showBottomSheet();
-      break;
-    case R.id.about_osm:
+    } else if (id == R.id.about_osm) {
       startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(Constants.Url.OSM_ABOUT)));
-      break;
-    case R.id.osm_history:
-      // Debug builds use dev OSM playground for APIs.
+    } else if (id == R.id.osm_history) {// Debug builds use dev OSM playground for APIs.
       final String url = BuildConfig.DEBUG
-          ? "https://master.apis.dev.openstreetmap.org/user/%s/history"
-          : "https://www.openstreetmap.org/user/%s/history";
+              ? "https://master.apis.dev.openstreetmap.org/user/%s/history"
+              : "https://www.openstreetmap.org/user/%s/history";
       startActivity(new Intent((Intent.ACTION_VIEW),
-          Uri.parse(String.format(url, OsmOAuth.getUsername(requireContext())))));
-      break;
+              Uri.parse(String.format(url, OsmOAuth.getUsername(requireContext())))));
     }
   }
 

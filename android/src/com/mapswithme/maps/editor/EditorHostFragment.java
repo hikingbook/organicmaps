@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Remove unused code
+ */
+
 package com.mapswithme.maps.editor;
 
 import android.app.Activity;
@@ -349,10 +354,10 @@ public class EditorHostFragment extends BaseMwmToolbarFragment
     final Activity parent = getActivity();
     parent.startActivity(intent);
 
-    if (parent instanceof MwmActivity)
-      ((MwmActivity) parent).customOnNavigateUp();
-    else
-      parent.finish();
+//    if (parent instanceof MwmActivity)
+//      ((MwmActivity) parent).customOnNavigateUp();
+//    else
+//      parent.finish();
   }
 
   private Intent makeParentActivityIntent()

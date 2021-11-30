@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead switch-case
+ */
+
 package com.mapswithme.maps.editor;
 
 import android.app.Activity;
@@ -90,14 +95,11 @@ public class OsmAuthFragment extends BaseMwmToolbarFragment implements View.OnCl
   @Override
   public void onClick(View v)
   {
-    switch (v.getId())
-    {
-    case R.id.login:
+    int id = v.getId();
+    if (id == R.id.login) {
       login();
-      break;
-    case R.id.lost_password:
+    } else if (id == R.id.lost_password) {
       recoverPassword();
-      break;
     }
   }
 
