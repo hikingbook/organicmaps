@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.location;
 
 import android.app.Activity;
@@ -307,14 +311,14 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     // the core to the platform code (https://jira.mail.ru/browse/MAPSME-3675),
     // because calling the native method 'nativeIsRouteFinished'
     // too often can result in poor UI performance.
-    if (RoutingController.get().isNavigating() && Framework.nativeIsRouteFinished())
-    {
-      mLogger.d(TAG, "End point is reached");
-      restart();
-      if (mUiCallback != null)
-        mUiCallback.onRoutingFinish();
-      RoutingController.get().cancel();
-    }
+//    if (RoutingController.get().isNavigating() && Framework.nativeIsRouteFinished())
+//    {
+//      mLogger.d(TAG, "End point is reached");
+//      restart();
+//      if (mUiCallback != null)
+//        mUiCallback.onRoutingFinish();
+//      RoutingController.get().cancel();
+//    }
   }
 
   private void notifyLocationUpdated(LocationListener listener)
@@ -400,55 +404,55 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     mSensorHelper.start();
   }
 
-  private void calcLocationUpdatesInterval()
-  {
-    mLogger.d(TAG, "calcLocationUpdatesInterval()");
-    if (RoutingController.get().isNavigating())
-    {
-      mLogger.d(TAG, "calcLocationUpdatesInterval(), it's navigation mode");
-      final @Framework.RouterType int router = Framework.nativeGetRouter();
-      switch (router)
-      {
-      case Framework.ROUTER_TYPE_PEDESTRIAN:
-        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
-        break;
-
-      case Framework.ROUTER_TYPE_VEHICLE:
-        mInterval = INTERVAL_NAVIGATION_VEHICLE_MS;
-        break;
-
-      case Framework.ROUTER_TYPE_BICYCLE:
-        mInterval = INTERVAL_NAVIGATION_BICYCLE_MS;
-        break;
-
-      case Framework.ROUTER_TYPE_TRANSIT:
-        // TODO: what is the interval should be for transit type?
-        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
-        break;
-
-      default:
-        throw new IllegalArgumentException("Unsupported router type: " + router);
-      }
-
-      return;
-    }
-
-    int mode = getMyPositionMode();
-    switch (mode)
-    {
-      case LocationState.FOLLOW:
-        mInterval = INTERVAL_FOLLOW_MS;
-        break;
-
-      case LocationState.FOLLOW_AND_ROTATE:
-        mInterval = INTERVAL_FOLLOW_AND_ROTATE_MS;
-        break;
-
-      default:
-        mInterval = INTERVAL_NOT_FOLLOW_MS;
-        break;
-    }
-  }
+//  private void calcLocationUpdatesInterval()
+//  {
+//    mLogger.d(TAG, "calcLocationUpdatesInterval()");
+//    if (RoutingController.get().isNavigating())
+//    {
+//      mLogger.d(TAG, "calcLocationUpdatesInterval(), it's navigation mode");
+//      final @Framework.RouterType int router = Framework.nativeGetRouter();
+//      switch (router)
+//      {
+//      case Framework.ROUTER_TYPE_PEDESTRIAN:
+//        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
+//        break;
+//
+//      case Framework.ROUTER_TYPE_VEHICLE:
+//        mInterval = INTERVAL_NAVIGATION_VEHICLE_MS;
+//        break;
+//
+//      case Framework.ROUTER_TYPE_BICYCLE:
+//        mInterval = INTERVAL_NAVIGATION_BICYCLE_MS;
+//        break;
+//
+//      case Framework.ROUTER_TYPE_TRANSIT:
+//        // TODO: what is the interval should be for transit type?
+//        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
+//        break;
+//
+//      default:
+//        throw new IllegalArgumentException("Unsupported router type: " + router);
+//      }
+//
+//      return;
+//    }
+//
+//    int mode = getMyPositionMode();
+//    switch (mode)
+//    {
+//      case LocationState.FOLLOW:
+//        mInterval = INTERVAL_FOLLOW_MS;
+//        break;
+//
+//      case LocationState.FOLLOW_AND_ROTATE:
+//        mInterval = INTERVAL_FOLLOW_AND_ROTATE_MS;
+//        break;
+//
+//      default:
+//        mInterval = INTERVAL_NOT_FOLLOW_MS;
+//        break;
+//    }
+//  }
 
   long getInterval()
   {
@@ -506,10 +510,10 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
       return;
     }
 
-    long oldInterval = mInterval;
-    mLogger.d(TAG, "Old time interval (ms): " + oldInterval);
-    calcLocationUpdatesInterval();
-    mLogger.d(TAG, "start(), params: " + mInterval);
+//    long oldInterval = mInterval;
+//    mLogger.d(TAG, "Old time interval (ms): " + oldInterval);
+//    calcLocationUpdatesInterval();
+//    mLogger.d(TAG, "start(), params: " + mInterval);
     startInternal();
   }
 
@@ -571,7 +575,7 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     checkProviderInitialization();
     //noinspection ConstantConditions
     mLocationProvider.stop();
-    mSensorHelper.stop();
+//    mSensorHelper.stop();
   }
 
   /**

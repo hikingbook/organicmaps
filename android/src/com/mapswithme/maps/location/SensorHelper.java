@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps.location;
 
 import android.content.Context;
@@ -10,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.mapswithme.maps.MwmApplication;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 
 class SensorHelper implements SensorEventListener
 {
@@ -51,7 +56,8 @@ class SensorHelper implements SensorEventListener
 
   SensorHelper(@NonNull Context context)
   {
-    mMwmApplication = MwmApplication.from(context);
+//    mMwmApplication = MwmApplication.from(context);
+    mMwmApplication = OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication();
     mSensorManager = (SensorManager) mMwmApplication.getSystemService(Context.SENSOR_SERVICE);
     if (mSensorManager != null)
       mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
