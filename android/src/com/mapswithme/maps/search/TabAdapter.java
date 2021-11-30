@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.search;
 
 import android.content.Context;
@@ -75,31 +80,31 @@ class TabAdapter extends FragmentPagerAdapter
     }
   }
 
-  private static class OnTabSelectedListenerForViewPager extends TabLayout.ViewPagerOnTabSelectedListener
-  {
-    @NonNull
-    private final Context mContext;
-
-    OnTabSelectedListenerForViewPager(ViewPager viewPager)
-    {
-      super(viewPager);
-      mContext = viewPager.getContext();
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab)
-    {
-      super.onTabSelected(tab);
-      Graphics.tint(mContext, tab.getIcon(), R.attr.colorAccent);
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab)
-    {
-      super.onTabUnselected(tab);
-      Graphics.tint(mContext, tab.getIcon());
-    }
-  }
+//  private static class OnTabSelectedListenerForViewPager extends TabLayout.ViewPagerOnTabSelectedListener
+//  {
+//    @NonNull
+//    private final Context mContext;
+//
+//    OnTabSelectedListenerForViewPager(ViewPager viewPager)
+//    {
+//      super(viewPager);
+//      mContext = viewPager.getContext();
+//    }
+//
+//    @Override
+//    public void onTabSelected(TabLayout.Tab tab)
+//    {
+//      super.onTabSelected(tab);
+//      Graphics.tint(mContext, tab.getIcon(), R.attr.colorAccent);
+//    }
+//
+//    @Override
+//    public void onTabUnselected(TabLayout.Tab tab)
+//    {
+//      super.onTabUnselected(tab);
+//      Graphics.tint(mContext, tab.getIcon());
+//    }
+//  }
 
   private final ViewPager mPager;
   private final List<Class<? extends Fragment>> mClasses = new ArrayList<>();
@@ -145,7 +150,7 @@ class TabAdapter extends FragmentPagerAdapter
 
     ViewPager.OnPageChangeListener listener = new PageChangedListener(tabs);
     mPager.addOnPageChangeListener(listener);
-    tabs.setOnTabSelectedListener(new OnTabSelectedListenerForViewPager(mPager));
+//    tabs.setOnTabSelectedListener(new OnTabSelectedListenerForViewPager(mPager));
     listener.onPageSelected(0);
   }
 

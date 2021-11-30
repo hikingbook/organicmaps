@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.search;
 
 import android.content.Context;
@@ -54,20 +59,20 @@ class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchDataViewHol
     BaseResultViewHolder(@NonNull View view)
     {
       super(view);
-      if (view instanceof TextView)
-      {
-        int tintAttr = getTintAttr();
-        if (tintAttr != 0)
-          Graphics.tint((TextView)view, tintAttr);
-      }
-      view.setOnClickListener(new View.OnClickListener()
-      {
-        @Override
-        public void onClick(View v)
-        {
-          processClick(mResult, mOrder);
-        }
-      });
+//      if (view instanceof TextView)
+//      {
+//        int tintAttr = getTintAttr();
+//        if (tintAttr != 0)
+//          Graphics.tint((TextView)view, tintAttr);
+//      }
+//      view.setOnClickListener(new View.OnClickListener()
+//      {
+//        @Override
+//        public void onClick(View v)
+//        {
+//          processClick(mResult, mOrder);
+//        }
+//      });
     }
 
     @Override
@@ -105,10 +110,10 @@ class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchDataViewHol
         titleView.setText(builder);
     }
 
-    @AttrRes int getTintAttr()
-    {
-      return R.attr.colorAccent;
-    }
+//    @AttrRes int getTintAttr()
+//    {
+//      return R.attr.colorAccent;
+//    }
 
     abstract TextView getTitleView();
 
@@ -150,11 +155,11 @@ class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchDataViewHol
     @NonNull
     final TextView mDistance;
 
-    @Override
-    int getTintAttr()
-    {
-      return 0;
-    }
+//    @Override
+//    int getTintAttr()
+//    {
+//      return 0;
+//    }
 
     // FIXME: Better format based on result type
     private CharSequence formatDescription(SearchResult result)
