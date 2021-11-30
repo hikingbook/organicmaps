@@ -1,8 +1,14 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Instead application by OrganicmapsFrameworkAdapter.INSTANCE.getApplication()
+ */
 package com.mapswithme.maps.background;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 
 public class StubNotificationChannelProvider implements NotificationChannelProvider
 {
@@ -42,6 +48,6 @@ public class StubNotificationChannelProvider implements NotificationChannelProvi
   @NonNull
   protected Application getApplication()
   {
-    return mApplication;
+    return OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
   }
 }

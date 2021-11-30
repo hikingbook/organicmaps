@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.background;
 
 import android.content.Context;
@@ -13,6 +18,6 @@ public class UpgradeReceiver extends MwmBroadcastReceiver
   @Override
   protected void onReceiveInitialized(@NonNull Context context, @NonNull Intent intent)
   {
-    MwmApplication.onUpgrade(context);
+//    MwmApplication.onUpgrade(context);
   }
 }

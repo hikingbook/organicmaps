@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.background;
 
 import android.app.Application;
@@ -45,16 +50,16 @@ public final class Notifier
 
   public void notifyDownloadFailed(@Nullable String id, @Nullable String name)
   {
-    String title = mContext.getString(R.string.app_name);
-    String content = mContext.getString(R.string.download_country_failed, name);
-
-    Intent intent = MwmActivity.createShowMapIntent(mContext, id)
-                               .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    PendingIntent pi = PendingIntent.getActivity(mContext, 0, intent,
-                                                 PendingIntent.FLAG_UPDATE_CURRENT);
-
-    String channel = NotificationChannelFactory.createProvider(mContext).getDownloadingChannel();
-    placeNotification(title, content, pi, ID_DOWNLOAD_FAILED, channel);
+//    String title = mContext.getString(R.string.app_name);
+//    String content = mContext.getString(R.string.download_country_failed, name);
+//
+//    Intent intent = MwmActivity.createShowMapIntent(mContext, id)
+//                               .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//    PendingIntent pi = PendingIntent.getActivity(mContext, 0, intent,
+//                                                 PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//    String channel = NotificationChannelFactory.createProvider(mContext).getDownloadingChannel();
+//    placeNotification(title, content, pi, ID_DOWNLOAD_FAILED, channel);
   }
 
   public void cancelNotification(@NotificationId int id)
