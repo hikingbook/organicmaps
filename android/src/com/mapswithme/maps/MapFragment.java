@@ -1,3 +1,6 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ */
 package com.mapswithme.maps;
 
 import android.content.Context;
@@ -388,11 +391,11 @@ public class MapFragment extends BaseMwmFragment
     return mSurfaceCreated;
   }
 
-  static native void nativeCompassUpdated(double north, boolean forceRedraw);
+  public static native void nativeCompassUpdated(double north, boolean forceRedraw);
   static native void nativeScalePlus();
   static native void nativeScaleMinus();
   public static native boolean nativeShowMapForUrl(String url);
-  static native boolean nativeIsEngineCreated();
+  public static native boolean nativeIsEngineCreated();
   static native boolean nativeDestroySurfaceOnDetach();
   private static native boolean nativeCreateEngine(Surface surface, int density,
                                                    boolean firstLaunch,

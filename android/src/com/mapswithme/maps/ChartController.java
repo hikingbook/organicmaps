@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps;
 
 import android.content.Context;
@@ -106,7 +111,7 @@ public class ChartController implements OnChartValueSelectedListener, Initializa
     mChart.setDrawBorders(false);
     Legend l = mChart.getLegend();
     l.setEnabled(false);
-    initAxises();
+//    initAxises();
   }
 
   @Override
@@ -118,37 +123,37 @@ public class ChartController implements OnChartValueSelectedListener, Initializa
 
   private void highlightChartCurrentLocation()
   {
-    mChart.highlightValues(Collections.singletonList(getCurrentPosHighlight()),
-                           Collections.singletonList(mCurrentLocationMarkerView));
+//    mChart.highlightValues(Collections.singletonList(getCurrentPosHighlight()),
+//                           Collections.singletonList(mCurrentLocationMarkerView));
   }
 
-  private void initAxises()
-  {
-    XAxis x = mChart.getXAxis();
-    x.setLabelCount(CHART_X_LABEL_COUNT, false);
-    x.setDrawGridLines(false);
-    x.setGranularity(CHART_AXIS_GRANULARITY);
-    x.setGranularityEnabled(true);
-    x.setTextColor(ThemeUtils.getColor(mContext, R.attr.elevationProfileAxisLabelColor));
-    x.setPosition(XAxis.XAxisPosition.BOTTOM);
-    x.setAxisLineColor(ThemeUtils.getColor(mContext, R.attr.dividerHorizontal));
-    x.setAxisLineWidth(mContext.getResources().getDimensionPixelSize(R.dimen.divider_height));
-    ValueFormatter xAxisFormatter = new AxisValueFormatter(mChart);
-    x.setValueFormatter(xAxisFormatter);
-
-    YAxis y = mChart.getAxisLeft();
-    y.setLabelCount(CHART_Y_LABEL_COUNT, false);
-    y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-    y.setDrawGridLines(true);
-    y.setGridColor(mContext.getResources().getColor(R.color.black_12));
-    y.setEnabled(true);
-    y.setTextColor(Color.TRANSPARENT);
-    y.setAxisLineColor(Color.TRANSPARENT);
-    int lineLength = mContext.getResources().getDimensionPixelSize(R.dimen.margin_eighth);
-    y.enableGridDashedLine(lineLength, 2 * lineLength, 0);
-
-    mChart.getAxisRight().setEnabled(false);
-  }
+//  private void initAxises()
+//  {
+//    XAxis x = mChart.getXAxis();
+//    x.setLabelCount(CHART_X_LABEL_COUNT, false);
+//    x.setDrawGridLines(false);
+//    x.setGranularity(CHART_AXIS_GRANULARITY);
+//    x.setGranularityEnabled(true);
+//    x.setTextColor(ThemeUtils.getColor(mContext, R.attr.elevationProfileAxisLabelColor));
+//    x.setPosition(XAxis.XAxisPosition.BOTTOM);
+//    x.setAxisLineColor(ThemeUtils.getColor(mContext, R.attr.dividerHorizontal));
+//    x.setAxisLineWidth(mContext.getResources().getDimensionPixelSize(R.dimen.divider_height));
+//    ValueFormatter xAxisFormatter = new AxisValueFormatter(mChart);
+//    x.setValueFormatter(xAxisFormatter);
+//
+//    YAxis y = mChart.getAxisLeft();
+//    y.setLabelCount(CHART_Y_LABEL_COUNT, false);
+//    y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+//    y.setDrawGridLines(true);
+//    y.setGridColor(mContext.getResources().getColor(R.color.black_12));
+//    y.setEnabled(true);
+//    y.setTextColor(Color.TRANSPARENT);
+//    y.setAxisLineColor(Color.TRANSPARENT);
+//    int lineLength = mContext.getResources().getDimensionPixelSize(R.dimen.margin_eighth);
+//    y.enableGridDashedLine(lineLength, 2 * lineLength, 0);
+//
+//    mChart.getAxisRight().setEnabled(false);
+//  }
 
   public void setData(@NonNull ElevationInfo info)
   {
@@ -192,11 +197,11 @@ public class ChartController implements OnChartValueSelectedListener, Initializa
     mFloatingMarkerView.updateOffsets(e, h);
     Highlight curPos = getCurrentPosHighlight();
 
-    if (mCurrentPositionOutOfTrack)
-      mChart.highlightValues(Collections.singletonList(h), Collections.singletonList(mFloatingMarkerView));
-    else
-      mChart.highlightValues(Arrays.asList(curPos, h), Arrays.asList(mCurrentLocationMarkerView,
-                                                                       mFloatingMarkerView));
+//    if (mCurrentPositionOutOfTrack)
+//      mChart.highlightValues(Collections.singletonList(h), Collections.singletonList(mFloatingMarkerView));
+//    else
+//      mChart.highlightValues(Arrays.asList(curPos, h), Arrays.asList(mCurrentLocationMarkerView,
+//                                                                       mFloatingMarkerView));
     if (mTrackId == Utils.INVALID_ID)
       return;
 

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps;
 
 import android.content.BroadcastReceiver;
@@ -7,7 +12,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
@@ -26,11 +32,12 @@ public abstract class MwmBroadcastReceiver extends BroadcastReceiver
   @Override
   public final void onReceive(@NonNull Context context, @NonNull Intent intent)
   {
-    MwmApplication app = MwmApplication.from(context);
+//    MwmApplication app = MwmApplication.from(context);
     String msg = "onReceive: " + intent;
     LOGGER.i(getTag(), msg);
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, getTag(), msg);
-    if (!app.arePlatformAndCoreInitialized())
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, getTag(), msg);
+//    if (!app.arePlatformAndCoreInitialized())
+    if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
       LOGGER.w(getTag(), "Application is not initialized, ignoring " + intent);
       return;

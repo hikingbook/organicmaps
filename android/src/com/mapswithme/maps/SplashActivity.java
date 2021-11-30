@@ -1,3 +1,7 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
 package com.mapswithme.maps;
 
 import android.app.Activity;
@@ -16,7 +20,7 @@ import com.mapswithme.maps.base.BaseActivity;
 import com.mapswithme.maps.base.BaseActivityDelegate;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.util.Config;
-import com.mapswithme.util.Counters;
+//import com.mapswithme.util.Counters;
 import com.mapswithme.util.PermissionsUtils;
 import com.mapswithme.util.ThemeUtils;
 import com.mapswithme.util.UiUtils;
@@ -64,30 +68,30 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
     super.onCreate(savedInstanceState);
     mBaseDelegate.onCreate();
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
-    Counters.initCounters(this);
-    UiUtils.setupStatusBar(this);
-    setContentView(R.layout.activity_splash);
+//    Counters.initCounters(this);
+//    UiUtils.setupStatusBar(this);
+//    setContentView(R.layout.activity_splash);
   }
 
   @Override
   protected void onNewIntent(Intent intent)
   {
     super.onNewIntent(intent);
-    mBaseDelegate.onNewIntent(intent);
+//    mBaseDelegate.onNewIntent(intent);
   }
 
   @Override
   protected void onStart()
   {
     super.onStart();
-    mBaseDelegate.onStart();
+//    mBaseDelegate.onStart();
   }
 
   @Override
   protected void onResume()
   {
     super.onResume();
-    mBaseDelegate.onResume();
+//    mBaseDelegate.onResume();
     if (mCanceled)
       return;
     if (!Config.isLocationRequested() && !PermissionsUtils.isLocationGranted(this))
@@ -103,7 +107,7 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
   protected void onPause()
   {
     super.onPause();
-    mBaseDelegate.onPause();
+//    mBaseDelegate.onPause();
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
   }
 
@@ -111,14 +115,14 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
   protected void onStop()
   {
     super.onStop();
-    mBaseDelegate.onStop();
+//    mBaseDelegate.onStop();
   }
 
   @Override
   protected void onDestroy()
   {
     super.onDestroy();
-    mBaseDelegate.onDestroy();
+//    mBaseDelegate.onDestroy();
   }
 
   private void showFatalErrorDialog(@StringRes int titleId, @StringRes int messageId)
@@ -151,9 +155,10 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
     // No-op here - onResume() calls init();
   }
 
+
   private void init()
   {
-    MwmApplication app = MwmApplication.from(this);
+    MwmApplication app = (MwmApplication) MwmApplication.from(this);
     try
     {
       app.init();
@@ -163,38 +168,39 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
       return;
     }
 
-    if (Counters.isFirstLaunch(this) && PermissionsUtils.isLocationGranted(this))
+//    if (Counters.isFirstLaunch(this) && PermissionsUtils.isLocationGranted(this))
+    if (PermissionsUtils.isLocationGranted(this))
     {
       LocationHelper.INSTANCE.onEnteredIntoFirstRun();
       if (!LocationHelper.INSTANCE.isActive())
         LocationHelper.INSTANCE.start();
     }
 
-    processNavigation();
+//    processNavigation();
   }
 
-  @SuppressWarnings("unchecked")
-  private void processNavigation()
-  {
-    Intent input = getIntent();
-    Intent result = new Intent(this, DownloadResourcesLegacyActivity.class);
-    if (input != null)
-    {
-      if (input.hasExtra(EXTRA_ACTIVITY_TO_START))
-      {
-        result = new Intent(this,
-                            (Class<? extends Activity>) input.getSerializableExtra(EXTRA_ACTIVITY_TO_START));
-      }
-
-      Intent initialIntent = input.hasExtra(EXTRA_INITIAL_INTENT) ?
-                           input.getParcelableExtra(EXTRA_INITIAL_INTENT) :
-                           input;
-      result.putExtra(EXTRA_INITIAL_INTENT, initialIntent);
-    }
-    Counters.setFirstStartDialogSeen(this);
-    startActivity(result);
-    finish();
-  }
+//  @SuppressWarnings("unchecked")
+//  private void processNavigation()
+//  {
+//    Intent input = getIntent();
+//    Intent result = new Intent(this, DownloadResourcesLegacyActivity.class);
+//    if (input != null)
+//    {
+//      if (input.hasExtra(EXTRA_ACTIVITY_TO_START))
+//      {
+//        result = new Intent(this,
+//                            (Class<? extends Activity>) input.getSerializableExtra(EXTRA_ACTIVITY_TO_START));
+//      }
+//
+//      Intent initialIntent = input.hasExtra(EXTRA_INITIAL_INTENT) ?
+//                           input.getParcelableExtra(EXTRA_INITIAL_INTENT) :
+//                           input;
+//      result.putExtra(EXTRA_INITIAL_INTENT, initialIntent);
+//    }
+//    Counters.setFirstStartDialogSeen(this);
+//    startActivity(result);
+//    finish();
+//  }
 
   @Override
   @NonNull

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
@@ -33,7 +34,7 @@ import com.mapswithme.maps.settings.StoragePathManager;
 import com.mapswithme.util.Config;
 import com.mapswithme.util.ConnectionState;
 import com.mapswithme.util.Counters;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.SharedPropertiesUtils;
 import com.mapswithme.util.StorageUtils;
@@ -93,9 +94,11 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   }
 
   @NonNull
-  public static MwmApplication from(@NonNull Context context)
+  public static Application from(@NonNull Context context)
   {
-    return (MwmApplication) context.getApplicationContext();
+    return OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
+//    return OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication();
+//    return (MwmApplication) context.getApplicationContext();
   }
 
   @NonNull
@@ -107,8 +110,17 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   @NonNull
   public static SharedPreferences prefs(@NonNull Context context)
   {
-    String prefFile = context.getString(R.string.pref_file_name);
-    return context.getSharedPreferences(prefFile, MODE_PRIVATE);
+    SharedPreferences mPrefs;
+    if (OrganicmapsFrameworkAdapter.INSTANCE.getSharedPreferences() == null) {
+      mPrefs = context.getSharedPreferences(context.getString(R.string.pref_file_name), MODE_PRIVATE);
+      OrganicmapsFrameworkAdapter.INSTANCE.setSharedPreferences(mPrefs);
+    } else {
+      mPrefs = OrganicmapsFrameworkAdapter.INSTANCE.getSharedPreferences();
+    }
+
+    return mPrefs;
+//    String prefFile = context.getString(R.string.pref_file_name);
+//    return context.getSharedPreferences(prefFile, MODE_PRIVATE);
   }
 
   @Override
@@ -123,12 +135,12 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   public void onCreate()
   {
     super.onCreate();
-    LoggerFactory.INSTANCE.initialize(this);
+    LoggerFactory.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     mLogger = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
     getLogger().d(TAG, "Application is created");
     // Set configuration directory as early as possible.
     // Other methods may explicitly use Config, which requires settingsDir to be set.
-    final String settingsPath = StorageUtils.getSettingsPath(this);
+    final String settingsPath = StorageUtils.getSettingsPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     getLogger().d(TAG, "Settings path = " + settingsPath);
     try
     {
@@ -139,10 +151,20 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
       // We have nothing to do here.
       throw new AssertionError("Can't create settingsDir " + settingsPath);
     }
-    mMainLoopHandler = new Handler(getMainLooper());
-    ConnectionState.INSTANCE.initialize(this);
-    CrashlyticsUtils.INSTANCE.initialize(this);
-    
+
+    if (OrganicmapsFrameworkAdapter.INSTANCE.getMainLooper() == null) {
+      OrganicmapsFrameworkAdapter.INSTANCE.setMainLooper(getMainLooper());
+      mMainLoopHandler = new Handler(getMainLooper());
+    } else {
+      mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getMainLooper());
+    }
+//    mMainLoopHandler = new Handler(getMainLooper());
+    ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication());
+//    CrashlyticsUtils.INSTANCE.initialize(this);
+
+    if (OrganicmapsFrameworkAdapter.INSTANCE.getApplicationID() == null)
+      OrganicmapsFrameworkAdapter.INSTANCE.setApplicationID(BuildConfig.LIBRARY_PACKAGE_NAME);
+
     initNotificationChannels();
 
     mBackgroundTracker = new AppBackgroundTracker(this);
@@ -177,14 +199,14 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
       return;
 
     final Logger log = getLogger();
-    final String apkPath = StorageUtils.getApkPath(this);
+    final String apkPath = StorageUtils.getApkPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     log.d(TAG, "Apk path = " + apkPath);
     // Note: StoragePathManager uses Config, which requires initConfig() to be called.
-    final String writablePath = StoragePathManager.findMapsStorage(this);
+    final String writablePath = StoragePathManager.findMapsStorage(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     log.d(TAG, "Writable path = " + writablePath);
-    final String privatePath = StorageUtils.getPrivatePath(this);
+    final String privatePath = StorageUtils.getPrivatePath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     log.d(TAG, "Private path = " + privatePath);
-    final String tempPath = StorageUtils.getTempPath(this);
+    final String tempPath = StorageUtils.getTempPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     log.d(TAG, "Temp path = " + tempPath);
 
     // If platform directories are not created it means that native part of app will not be able
@@ -210,7 +232,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
                                             @NonNull String privatePath,
                                             @NonNull String tempPath) throws IOException
   {
-    SharedPropertiesUtils.emulateBadExternalStorage(this);
+//    SharedPropertiesUtils.emulateBadExternalStorage(this);
 
     StorageUtils.createDirectory(writablePath);
     StorageUtils.createDirectory(privatePath);

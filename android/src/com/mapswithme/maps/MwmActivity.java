@@ -87,7 +87,7 @@ import com.mapswithme.maps.search.SearchFilterController;
 import com.mapswithme.maps.search.SearchFragment;
 import com.mapswithme.maps.settings.DrivingOptionsActivity;
 import com.mapswithme.maps.settings.RoadType;
-import com.mapswithme.maps.settings.SettingsActivity;
+//import com.mapswithme.maps.settings.SettingsActivity;
 import com.mapswithme.maps.settings.StoragePathManager;
 import com.mapswithme.maps.settings.UnitLocale;
 import com.mapswithme.maps.sound.TtsPlayer;
@@ -98,13 +98,14 @@ import com.mapswithme.maps.widget.menu.MainMenuOptionListener;
 import com.mapswithme.maps.widget.menu.MenuController;
 import com.mapswithme.maps.widget.menu.MenuControllerFactory;
 import com.mapswithme.maps.widget.menu.MenuStateObserver;
-import com.mapswithme.maps.widget.menu.MyPositionButton;
+//import com.mapswithme.maps.widget.menu.MyPositionButton;
 import com.mapswithme.maps.widget.placepage.PlacePageController;
 import com.mapswithme.maps.widget.placepage.PlacePageData;
 import com.mapswithme.maps.widget.placepage.PlacePageFactory;
 import com.mapswithme.maps.widget.placepage.RoutingModeListener;
 import com.mapswithme.util.Counters;
 import com.mapswithme.util.InputUtils;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.PermissionsUtils;
 import com.mapswithme.util.SharingUtils;
 import com.mapswithme.util.ThemeSwitcher;
@@ -139,7 +140,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //               RoutingModeListener,
                AppBackgroundTracker.OnTransitionListener,
 //               OnIsolinesLayerToggleListener,
-               NoConnectionListener,
+               NoConnectionListener
 //               MapWidgetOffsetsProvider
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
@@ -157,7 +158,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //                                                     EditorHostFragment.class.getName(),
 //                                                     ReportFragment.class.getName() };
 
-  private static final String EXTRA_LOCATION_DIALOG_IS_ANNOYING = "LOCATION_DIALOG_IS_ANNOYING";
+  public static final String EXTRA_LOCATION_DIALOG_IS_ANNOYING = "LOCATION_DIALOG_IS_ANNOYING";
   private static final int REQ_CODE_LOCATION_PERMISSION = 1;
   public static final int REQ_CODE_ERROR_DRIVING_OPTIONS_DIALOG = 5;
   public static final int REQ_CODE_DRIVING_OPTIONS = 6;
@@ -192,8 +193,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  private MainMenu mMainMenu;
 
   private PanelAnimator mPanelAnimator;
+//  @Nullable
+//  private OnmapDownloader mOnmapDownloader;
   @Nullable
-  private OnmapDownloader mOnmapDownloader;
+  public OnmapDownloader mOnmapDownloader;
 
 //  @Nullable
 //  private MyPositionButton mNavMyPosition;
@@ -205,16 +208,18 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  @Nullable
 //  private SearchFilterController mFilterController;
 
-  private boolean mIsTabletLayout;
-  private boolean mIsFullscreen;
-  private boolean mIsFullscreenAnimating;
+  public boolean mIsTabletLayout;
+//  private boolean mIsTabletLayout;
+//  private boolean mIsFullscreen;
+//  private boolean mIsFullscreenAnimating;
 //  private boolean mIsAppearMenuLater;
 
 //  @SuppressWarnings("NotNullFieldNotInitialized")
 //  @NonNull
 //  private FloatingSearchToolbarController mSearchController;
 
-  private boolean mLocationErrorDialogAnnoying = false;
+  public boolean mLocationErrorDialogAnnoying = false;
+//  private boolean mLocationErrorDialogAnnoying = false;
 //  @Nullable
 //  private Dialog mLocationErrorDialog;
 
@@ -233,6 +238,18 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  @NonNull
 //  private Toolbar mBookmarkCategoryToolbar;
 
+  @NonNull
+  private FragmentActivity mActivity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
+
+  public MwmActivity() {
+    super();
+  }
+
+  public MwmActivity(FragmentActivity activity) {
+    super();
+    mActivity = activity;
+  }
+
   public interface LeftAnimationTrackListener
   {
     void onTrackStarted(boolean collapsed);
@@ -242,18 +259,19 @@ public class MwmActivity extends BaseMwmFragmentActivity
     void onTrackLeftAnimation(float offset);
   }
 
-  public static Intent createShowMapIntent(@NonNull Context context, @Nullable String countryId)
-  {
-    return new Intent(context, DownloadResourcesLegacyActivity.class)
-        .putExtra(DownloadResourcesLegacyActivity.EXTRA_COUNTRY, countryId);
-  }
+//  public static Intent createShowMapIntent(@NonNull Context context, @Nullable String countryId)
+//  {
+//    return new Intent(context, DownloadResourcesLegacyActivity.class)
+//        .putExtra(DownloadResourcesLegacyActivity.EXTRA_COUNTRY, countryId);
+//  }
 
   @Override
   public void onRenderingCreated()
   {
     checkMeasurementSystem();
 
-    LocationHelper.INSTANCE.attach(this);
+    LocationHelper.INSTANCE.attach((LocationHelper.UiCallback) mActivity);
+//    LocationHelper.INSTANCE.attach(this);
   }
 
   @Override
@@ -276,13 +294,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
     LocationHelper.INSTANCE.restart();
   }
 
-  private void runTasks()
+  public void runTasks()
   {
     while (!mTasks.isEmpty())
       mTasks.pop().run(this);
   }
 
-  private static void checkMeasurementSystem()
+  public static void checkMeasurementSystem()
   {
     UnitLocale.initializeCurrentUnits();
   }
@@ -490,7 +508,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
                                 R.string.ok, listener);
   }
 
-  private void initViews(boolean isLaunchByDeeplink)
+  public void initViews(boolean isLaunchByDeeplink)
   {
     initMap(isLaunchByDeeplink);
 //    initNavigationButtons();
@@ -568,7 +586,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initMap(boolean isLaunchByDeepLink)
   {
-    mFadeView = findViewById(R.id.fade_view);
+    if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
+      mFadeView = mActivity.findViewById(R.id.fade_view);
+    } else {
+      mFadeView = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.fade_view);
+    }
+
+//    mFadeView = findViewById(R.id.fade_view);
     mFadeView.setListener(this::onFadeViewTouch);
 
     mMapFragment = (MapFragment) getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
@@ -576,14 +600,35 @@ public class MwmActivity extends BaseMwmFragmentActivity
     {
       Bundle args = new Bundle();
       args.putBoolean(MapFragment.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
-      mMapFragment = (MapFragment) MapFragment.instantiate(this, MapFragment.class.getName(), args);
-      getSupportFragmentManager()
-          .beginTransaction()
-          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-          .commit();
+      if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
+        mMapFragment = (MapFragment) MapFragment.instantiate(this, MapFragment.class.getName(), args);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+                .commit();
+      } else {
+        mMapFragment = (MapFragment) MapFragment.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity(), MapFragment.class.getName(), args);
+        OrganicmapsFrameworkAdapter.INSTANCE.getFragment().getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+                .commit();
+      }
+
+//      mMapFragment = (MapFragment) MapFragment.instantiate(this, MapFragment.class.getName(), args);
+//      getSupportFragmentManager()
+//          .beginTransaction()
+//          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+//          .commit();
     }
 
-    View container = findViewById(R.id.map_fragment_container);
+    View container;
+    if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
+      container = mActivity.findViewById(R.id.map_fragment_container);
+    } else {
+      container = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.map_fragment_container);
+    }
+
+//    View container = findViewById(R.id.map_fragment_container);
     if (container != null)
     {
       container.setOnTouchListener(this);
@@ -1000,7 +1045,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    RoutingController.get().attach(this);
 //    IsolinesManager.from(getApplicationContext()).attach(this::onIsolinesStateChanged);
     if (MapFragment.nativeIsEngineCreated())
-      LocationHelper.INSTANCE.attach(this);
+      LocationHelper.INSTANCE.attach((LocationHelper.UiCallback) mActivity);
 //    mPlacePageController.onActivityStarted(this);
 //    mSearchController.attach(this);
 //    MwmApplication.backgroundTracker(getActivity()).addListener(this);
@@ -1843,7 +1888,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
   }
 
-  private void showLocationNotFoundDialog()
+  public void showLocationNotFoundDialog()
   {
     String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
                                    getString(R.string.current_location_unknown_title));
