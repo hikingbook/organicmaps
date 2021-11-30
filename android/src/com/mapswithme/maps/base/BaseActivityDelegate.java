@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.content.Intent;
@@ -8,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.mapswithme.util.Config;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.ViewServer;
 import com.mapswithme.util.concurrency.UiThread;
 import com.mapswithme.util.log.Logger;
@@ -98,7 +103,7 @@ public class BaseActivityDelegate
   private void logLifecycleMethod(@NonNull String method)
   {
     String msg = mActivity.getClass().getSimpleName() + ": " + method + " activity: " + mActivity;
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, msg);
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, msg);
     LOGGER.i(TAG, msg);
   }
 }

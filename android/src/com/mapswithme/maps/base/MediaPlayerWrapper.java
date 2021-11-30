@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.app.Application;
@@ -105,12 +110,12 @@ public class MediaPlayerWrapper
     return mPlayer != null && mPlayer.isPlaying();
   }
 
-  @NonNull
-  public static MediaPlayerWrapper from(@NonNull Context context)
-  {
-    MwmApplication app = (MwmApplication) context.getApplicationContext();
-    return app.getMediaPlayer();
-  }
+//  @NonNull
+//  public static MediaPlayerWrapper from(@NonNull Context context)
+//  {
+//    MwmApplication app = (MwmApplication) context.getApplicationContext();
+//    return app.getMediaPlayer();
+//  }
 
   private static class InitPlayerTask extends AsyncTask<Integer, Void, InitializationResult>
   {

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.content.Context;
@@ -6,6 +11,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.Utils;
 
 public class BaseMwmFragment extends Fragment implements OnBackPressListener
@@ -14,7 +20,9 @@ public class BaseMwmFragment extends Fragment implements OnBackPressListener
   public void onAttach(Context context)
   {
     super.onAttach(context);
-    Utils.detachFragmentIfCoreNotInitialized(context, this);
+    if (OrganicmapsFrameworkAdapter.INSTANCE.getFragment() == null) OrganicmapsFrameworkAdapter.INSTANCE.setFragment(this);
+    Utils.detachFragmentIfCoreNotInitialized(context, OrganicmapsFrameworkAdapter.INSTANCE.getFragment());
+//    Utils.detachFragmentIfCoreNotInitialized(context, this);
   }
 
   public BaseMwmFragmentActivity getMwmActivity()

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.app.Activity;
@@ -66,21 +71,21 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   @Override
   protected final void onCreate(@Nullable Bundle savedInstanceState)
   {
-    mBaseDelegate.onCreate();
-    RtlUtils.manageRtl(this);
+//    mBaseDelegate.onCreate();
+//    RtlUtils.manageRtl(this);
     // An intent that was skipped due to core wasn't initialized has to be used
     // as a target intent for this activity, otherwise all input extras will be lost
     // in a splash activity loop.
-    Intent initialIntent = getIntent().getParcelableExtra(SplashActivity.EXTRA_INITIAL_INTENT);
-    if (initialIntent != null)
-      setIntent(initialIntent);
-
-    if (!MwmApplication.from(this).arePlatformAndCoreInitialized())
-    {
-      super.onCreate(savedInstanceState);
+//    Intent initialIntent = getIntent().getParcelableExtra(SplashActivity.EXTRA_INITIAL_INTENT);
+//    if (initialIntent != null)
+//      setIntent(initialIntent);
+//
+//    if (!MwmApplication.from(this).arePlatformAndCoreInitialized())
+//    {
+//      super.onCreate(savedInstanceState);
 //      goToSplashScreen(getIntent());
-      return;
-    }
+//      return;
+//    }
 
     super.onCreate(savedInstanceState);
 
@@ -94,51 +99,51 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   @CallSuper
   protected void onSafeCreate(@Nullable Bundle savedInstanceState)
   {
-    setVolumeControlStream(AudioManager.STREAM_MUSIC);
+//    setVolumeControlStream(AudioManager.STREAM_MUSIC);
     final int layoutId = getContentLayoutResId();
     if (layoutId != 0)
       setContentView(layoutId);
 
-    if (useTransparentStatusBar())
-      UiUtils.setupStatusBar(this);
-    if (useColorStatusBar())
-      UiUtils.setupColorStatusBar(this, getStatusBarColor());
+//    if (useTransparentStatusBar())
+//      UiUtils.setupStatusBar(this);
+//    if (useColorStatusBar())
+//      UiUtils.setupColorStatusBar(this, getStatusBarColor());
 
     // Use full-screen on Kindle Fire only
-    if (Utils.isAmazonDevice())
-    {
-      getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);
-      getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-    }
+//    if (Utils.isAmazonDevice())
+//    {
+//      getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//      getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+//    }
 
     attachDefaultFragment();
     mBaseDelegate.onSafeCreate();
     mSafeCreated = true;
   }
 
-  @ColorRes
-  protected int getStatusBarColor()
-  {
-    Context context = getApplicationContext();
-    if (ThemeUtils.isDefaultTheme(context))
-      return R.color.bg_statusbar;
+//  @ColorRes
+//  protected int getStatusBarColor()
+//  {
+//    Context context = getApplicationContext();
+//    if (ThemeUtils.isDefaultTheme(context))
+//      return R.color.bg_statusbar;
+//
+//    if (ThemeUtils.isNightTheme(context))
+//      return R.color.bg_statusbar_night;
+//
+//    throw new IllegalArgumentException("Attempt to apply unsupported theme: "
+//                                       + Config.getCurrentUiTheme(context));
+//  }
 
-    if (ThemeUtils.isNightTheme(context))
-      return R.color.bg_statusbar_night;
+//  protected boolean useColorStatusBar()
+//  {
+//    return false;
+//  }
 
-    throw new IllegalArgumentException("Attempt to apply unsupported theme: "
-                                       + Config.getCurrentUiTheme(context));
-  }
-
-  protected boolean useColorStatusBar()
-  {
-    return false;
-  }
-
-  protected boolean useTransparentStatusBar()
-  {
-    return true;
-  }
+//  protected boolean useTransparentStatusBar()
+//  {
+//    return true;
+//  }
 
   @CallSuper
   @Override
@@ -237,15 +242,15 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
     mBaseDelegate.onPause();
   }
 
-  protected Toolbar getToolbar()
-  {
-    return (Toolbar) findViewById(R.id.toolbar);
-  }
+//  protected Toolbar getToolbar()
+//  {
+//    return (Toolbar) findViewById(R.id.toolbar);
+//  }
 
-  protected void displayToolbarAsActionBar()
-  {
-    setSupportActionBar(getToolbar());
-  }
+//  protected void displayToolbarAsActionBar()
+//  {
+//    setSupportActionBar(getToolbar());
+//  }
 
   @Override
   public void onBackPressed()

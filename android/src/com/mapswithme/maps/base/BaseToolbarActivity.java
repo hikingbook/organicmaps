@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.os.Bundle;
@@ -20,25 +25,25 @@ public abstract class BaseToolbarActivity extends BaseMwmFragmentActivity
   {
     super.onSafeCreate(savedInstanceState);
 
-    Toolbar toolbar = getToolbar();
-    if (toolbar != null)
-    {
-      UiUtils.extendViewWithStatusBar(toolbar);
-      int title = getToolbarTitle();
-      if (title == 0)
-        toolbar.setTitle(getTitle());
-      else
-        toolbar.setTitle(title);
+//    Toolbar toolbar = getToolbar();
+//    if (toolbar != null)
+//    {
+//      UiUtils.extendViewWithStatusBar(toolbar);
+//      int title = getToolbarTitle();
+//      if (title == 0)
+//        toolbar.setTitle(getTitle());
+//      else
+//        toolbar.setTitle(title);
 
-      setupHomeButton(toolbar);
-      displayToolbarAsActionBar();
-    }
+//      setupHomeButton(toolbar);
+//      displayToolbarAsActionBar();
+//    }
   }
 
-  protected void setupHomeButton(@NonNull Toolbar toolbar)
-  {
-    UiUtils.showHomeUpButton(toolbar);
-  }
+//  protected void setupHomeButton(@NonNull Toolbar toolbar)
+//  {
+//    UiUtils.showHomeUpButton(toolbar);
+//  }
 
   @StringRes
   protected int getToolbarTitle()

@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.base;
 
 import android.os.Bundle;
@@ -18,17 +23,17 @@ public abstract class BaseMwmExtraTitleActivity extends BaseMwmFragmentActivity
   {
     super.onSafeCreate(savedInstanceState);
 
-    String title = "";
-    Bundle bundle = getIntent().getExtras();
-    if (bundle != null)
-    {
-      title = bundle.getString(EXTRA_TITLE);
-    }
-    Toolbar toolbar = getToolbar();
-    UiUtils.extendViewWithStatusBar(toolbar);
-    toolbar.setTitle(title);
-    UiUtils.showHomeUpButton(toolbar);
-    displayToolbarAsActionBar();
+//    String title = "";
+//    Bundle bundle = getIntent().getExtras();
+//    if (bundle != null)
+//    {
+//      title = bundle.getString(EXTRA_TITLE);
+//    }
+//    Toolbar toolbar = getToolbar();
+//    UiUtils.extendViewWithStatusBar(toolbar);
+//    toolbar.setTitle(title);
+//    UiUtils.showHomeUpButton(toolbar);
+//    displayToolbarAsActionBar();
   }
 
   @Override
