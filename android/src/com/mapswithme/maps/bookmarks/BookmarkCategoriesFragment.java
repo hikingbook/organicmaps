@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.bookmarks;
 
 import android.app.Activity;
@@ -34,6 +39,7 @@ import com.mapswithme.maps.dialog.EditTextDialogFragment;
 import com.mapswithme.maps.widget.PlaceholderView;
 import com.mapswithme.maps.widget.recycler.ItemDecoratorFactory;
 import com.mapswithme.util.BottomSheetHelper;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.StorageUtils;
 import com.mapswithme.util.concurrency.ThreadPool;
 import com.mapswithme.util.concurrency.UiThread;
@@ -314,8 +320,9 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
       final ProgressDialog dialog = DialogUtils.createModalProgressDialog(context, R.string.wait_several_minutes);
       dialog.show();
       LOGGER.d(TAG, "Importing bookmarks from " + rootUri);
-      MwmApplication app = MwmApplication.from(context);
-      final File tempDir = new File(StorageUtils.getTempPath(app));
+//      MwmApplication app = MwmApplication.from(context);
+      final File tempDir = new File(StorageUtils.getTempPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication()));
+//      final File tempDir = new File(StorageUtils.getTempPath(app));
       final ContentResolver resolver = context.getContentResolver();
       ThreadPool.getStorage().execute(() -> {
         AtomicInteger found = new AtomicInteger(0);

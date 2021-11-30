@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: if-else instead of switch-case
+ */
+
 package com.mapswithme.maps.bookmarks;
 
 import android.content.Context;
@@ -143,20 +148,14 @@ public class ChooseBookmarksSortingTypeFragment extends BaseMwmDialogFragment
   @Override
   public void onCheckedChanged(RadioGroup group, @IdRes int id)
   {
-    switch (id)
-    {
-      case R.id.sort_by_default:
-        resetSorting();
-        break;
-      case R.id.sort_by_type:
-        setSortingType(BookmarkManager.SORT_BY_TYPE);
-        break;
-      case R.id.sort_by_distance:
-        setSortingType(BookmarkManager.SORT_BY_DISTANCE);
-        break;
-      case R.id.sort_by_time:
-        setSortingType(BookmarkManager.SORT_BY_TIME);
-        break;
+    if (id == R.id.sort_by_default) {
+      resetSorting();
+    } else if (id == R.id.sort_by_type) {
+      setSortingType(BookmarkManager.SORT_BY_TYPE);
+    } else if (id == R.id.sort_by_distance) {
+      setSortingType(BookmarkManager.SORT_BY_DISTANCE);
+    } else if (id == R.id.sort_by_time) {
+      setSortingType(BookmarkManager.SORT_BY_TIME);
     }
   }
 }

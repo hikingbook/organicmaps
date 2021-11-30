@@ -1,3 +1,8 @@
+/**
+ * Author by robin, Date on 11/30/21.
+ * Comment: Comment unused code
+ */
+
 package com.mapswithme.maps.bookmarks;
 
 import android.app.Activity;
@@ -41,7 +46,7 @@ import com.mapswithme.maps.widget.SearchToolbarController;
 import com.mapswithme.maps.widget.placepage.EditBookmarkFragment;
 import com.mapswithme.maps.widget.recycler.ItemDecoratorFactory;
 import com.mapswithme.util.BottomSheetHelper;
-import com.mapswithme.util.CrashlyticsUtils;
+//import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.SharingUtils;
 import com.mapswithme.util.UiUtils;
 
@@ -96,7 +101,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   public void onCreate(@Nullable Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onCreate");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onCreate");
     BookmarkCategory category = getCategoryOrThrow();
     mCategoryDataSource = new CategoryDataSource(category);
   }
@@ -147,7 +152,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
   {
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onViewCreated");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onViewCreated");
 
     if (BookmarkManager.INSTANCE.isAsyncBookmarksLoadingInProgress())
     {
@@ -164,7 +169,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   {
     configureBookmarksListAdapter();
 
-    configureFab(view);
+//    configureFab(view);
 
     setHasOptionsMenu(true);
 
@@ -189,7 +194,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   public void onStart()
   {
     super.onStart();
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onStart");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onStart");
     SearchEngine.INSTANCE.addBookmarkListener(this);
     BookmarkManager.INSTANCE.addLoadingListener(this);
     BookmarkManager.INSTANCE.addSortingListener(this);
@@ -200,7 +205,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   public void onResume()
   {
     super.onResume();
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onResume");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onResume");
     if (BookmarkManager.INSTANCE.isAsyncBookmarksLoadingInProgress())
       return;
 
@@ -215,14 +220,14 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   public void onPause()
   {
     super.onPause();
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG,"onPause");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG,"onPause");
   }
 
   @Override
   public void onStop()
   {
     super.onStop();
-    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onStop");
+//    CrashlyticsUtils.INSTANCE.log(Log.INFO, TAG, "onStop");
     SearchEngine.INSTANCE.removeBookmarkListener(this);
     BookmarkManager.INSTANCE.removeLoadingListener(this);
     BookmarkManager.INSTANCE.removeSortingListener(this);
@@ -247,18 +252,18 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     });
   }
 
-  private void configureFab(@NonNull View view)
-  {
-    mFabViewOnMap = view.findViewById(R.id.fabViewOnMap);
-    mFabViewOnMap.setOnClickListener(v ->
-    {
-      final Intent i = makeMwmActivityIntent();
-      i.putExtra(MwmActivity.EXTRA_TASK,
-          new Factory.ShowBookmarkCategoryTask(mCategoryDataSource.getData().getId()));
-      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      startActivity(i);
-    });
-  }
+//  private void configureFab(@NonNull View view)
+//  {
+//    mFabViewOnMap = view.findViewById(R.id.fabViewOnMap);
+//    mFabViewOnMap.setOnClickListener(v ->
+//    {
+//      final Intent i = makeMwmActivityIntent();
+//      i.putExtra(MwmActivity.EXTRA_TASK,
+//          new Factory.ShowBookmarkCategoryTask(mCategoryDataSource.getData().getId()));
+//      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//      startActivity(i);
+//    });
+//  }
 
   private void configureRecyclerAnimations()
   {
@@ -566,11 +571,11 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
         return;
 
       case BookmarkListAdapter.TYPE_BOOKMARK:
-        onBookmarkClicked(position, intent, adapter);
+//        onBookmarkClicked(position, intent, adapter);
         break;
 
       case BookmarkListAdapter.TYPE_TRACK:
-        onTrackClicked(position, intent, adapter);
+//        onTrackClicked(position, intent, adapter);
         break;
     }
 
@@ -584,20 +589,20 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     return new Intent(requireActivity(), MwmActivity.class);
   }
 
-  private void onTrackClicked(int position, @NonNull Intent i, @NonNull BookmarkListAdapter adapter)
-  {
-    final Track track = (Track) adapter.getItem(position);
-    i.putExtra(MwmActivity.EXTRA_TASK,
-               new Factory.ShowTrackTask(track.getCategoryId(), track.getTrackId()));
-  }
+//  private void onTrackClicked(int position, @NonNull Intent i, @NonNull BookmarkListAdapter adapter)
+//  {
+//    final Track track = (Track) adapter.getItem(position);
+//    i.putExtra(MwmActivity.EXTRA_TASK,
+//               new Factory.ShowTrackTask(track.getCategoryId(), track.getTrackId()));
+//  }
 
-  private void onBookmarkClicked(int position, @NonNull Intent i,
-                                 @NonNull BookmarkListAdapter adapter)
-  {
-    final BookmarkInfo bookmark = (BookmarkInfo) adapter.getItem(position);
-    i.putExtra(MwmActivity.EXTRA_TASK,
-               new Factory.ShowBookmarkTask(bookmark.getCategoryId(), bookmark.getBookmarkId()));
-  }
+//  private void onBookmarkClicked(int position, @NonNull Intent i,
+//                                 @NonNull BookmarkListAdapter adapter)
+//  {
+//    final BookmarkInfo bookmark = (BookmarkInfo) adapter.getItem(position);
+//    i.putExtra(MwmActivity.EXTRA_TASK,
+//               new Factory.ShowBookmarkTask(bookmark.getCategoryId(), bookmark.getBookmarkId()));
+//  }
 
   public void onItemMore(int position)
   {
@@ -648,59 +653,49 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   {
     BookmarkListAdapter adapter = getBookmarkListAdapter();
     BookmarkInfo item = (BookmarkInfo) adapter.getItem(mSelectedPosition);
-    switch (menuItem.getItemId())
-    {
-      case R.id.share:
-        SharingUtils.shareBookmark(requireContext(), item);
-        break;
-
-      case R.id.edit:
-        EditBookmarkFragment.editBookmark(
-            item.getCategoryId(), item.getBookmarkId(), requireActivity(), getChildFragmentManager(),
-            (bookmarkId, movedFromCategory) ->
-            {
-              if (movedFromCategory)
-                resetSearchAndSort();
-              else
-                adapter.notifyDataSetChanged();
-            });
-        break;
-
-      case R.id.delete:
-        adapter.onDelete(mSelectedPosition);
-        BookmarkManager.INSTANCE.deleteBookmark(item.getBookmarkId());
-        adapter.notifyDataSetChanged();
-        if (mSearchMode)
-          mNeedUpdateSorting = true;
-        updateSearchVisibility();
-        updateRecyclerVisibility();
-        break;
+    int itemId = menuItem.getItemId();
+    if (itemId == R.id.share) {
+      SharingUtils.shareBookmark(requireContext(), item);
+    } else if (itemId == R.id.edit) {
+      EditBookmarkFragment.editBookmark(
+              item.getCategoryId(), item.getBookmarkId(), requireActivity(), getChildFragmentManager(),
+              (bookmarkId, movedFromCategory) ->
+              {
+                if (movedFromCategory)
+                  resetSearchAndSort();
+                else
+                  adapter.notifyDataSetChanged();
+              });
+    } else if (itemId == R.id.delete) {
+      adapter.onDelete(mSelectedPosition);
+      BookmarkManager.INSTANCE.deleteBookmark(item.getBookmarkId());
+      adapter.notifyDataSetChanged();
+      if (mSearchMode)
+        mNeedUpdateSorting = true;
+      updateSearchVisibility();
+      updateRecyclerVisibility();
     }
     return false;
   }
 
   public boolean onListMoreMenuItemClick(@NonNull MenuItem menuItem)
   {
-    switch (menuItem.getItemId())
-    {
-      case R.id.sort:
-        ChooseBookmarksSortingTypeFragment.chooseSortingType(getAvailableSortingTypes(),
-            getLastSortingType(), requireActivity(), getChildFragmentManager());
-        return false;
-
-      case R.id.share_category:
-        long catId = mCategoryDataSource.getData().getId();
-        BookmarksSharingHelper.INSTANCE.prepareBookmarkCategoryForSharing(requireActivity(), catId);
-        return false;
-
-      case R.id.settings:
-        BookmarkCategorySettingsActivity.startForResult(this, mCategoryDataSource.getData());
-        return false;
-
-      case R.id.delete_category:
-        requireActivity().setResult(Activity.RESULT_OK);
-        requireActivity().finish();
-        return false;
+    int itemId = menuItem.getItemId();
+    if (itemId == R.id.sort) {
+      ChooseBookmarksSortingTypeFragment.chooseSortingType(getAvailableSortingTypes(),
+              getLastSortingType(), requireActivity(), getChildFragmentManager());
+      return false;
+    } else if (itemId == R.id.share_category) {
+      long catId = mCategoryDataSource.getData().getId();
+      BookmarksSharingHelper.INSTANCE.prepareBookmarkCategoryForSharing(requireActivity(), catId);
+      return false;
+    } else if (itemId == R.id.settings) {
+      BookmarkCategorySettingsActivity.startForResult(this, mCategoryDataSource.getData());
+      return false;
+    } else if (itemId == R.id.delete_category) {
+      requireActivity().setResult(Activity.RESULT_OK);
+      requireActivity().finish();
+      return false;
     }
     return false;
   }
