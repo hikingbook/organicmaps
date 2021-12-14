@@ -98,6 +98,9 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.fragment:fragment:1.3.6'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    // Support stream api version of >24 API
+    implementation 'com.annimon:stream:1.2.1'
 }
 
 def run(cmd) {
