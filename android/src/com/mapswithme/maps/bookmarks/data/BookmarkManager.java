@@ -919,6 +919,44 @@ public enum BookmarkManager
 
   public static native void nativeRemoveElevationActiveChangedListener();
 
+  /**
+   * Native method add by RobinChien 2020/07/10
+   * */
+  @NonNull
+  public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon, int iconType);
+
+  @NonNull
+  public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon);
+
+  @NonNull
+  public native void nativeDeleteAllBookmarkWithCategory(long catId);
+
+  @NonNull
+  public native long nativeSearchBookmarkIDWithName(String bookmarkName, long catId);
+
+  @NonNull
+  public native long nativeSearchCategoryIDWithName(String categoryName);
+
+  @NonNull
+  public native long nativeAddTrack(long catId, String trackName, String trackDescription, double[][] trackLocation, int color, double width);
+
+  @NonNull
+  public native void nativeDeleteAllTracksInCategory(long catId);
+
+  @NonNull
+  public native long nativeAddLocationIntoTrack(double lat, double lon, long trackId);
+
+  @NonNull
+  public native int nativeDrawLineWithLocations(double[][] locations, int color, double width);
+
+  @NonNull
+  public native void nativeRemoveLine(int lineId);
+
+  @NonNull
+  public native void nativeClearLines();
+
+  public native int nativeGetTracksCount(long catId);
+
   public interface ElevationActivePointChangedListener
   {
     void onElevationActivePointChanged();

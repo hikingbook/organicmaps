@@ -16,6 +16,14 @@
 
 #include <utility>
 
+#ifndef MIN
+#define MIN(a,b) (((a)<(b)) ? (a) : (b))
+#endif
+
+#ifndef MAX
+#define MAX(a,b) (((a)<(b)) ? (b) : (a))
+#endif
+
 using namespace jni;
 using namespace std::placeholders;
 
@@ -44,6 +52,10 @@ jmethodID g_onBookmarksSortingCancelled;
 jmethodID g_bookmarkInfoConstructor;
 jclass g_bookmarkInfoClass;
 
+/**
+ * Add by RobinChien 2020/07/10
+ * */
+int lineId = 0;
 
 void PrepareClassRefs(JNIEnv * env)
 {
@@ -947,5 +959,329 @@ Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeRemoveElevationAct
         JNIEnv *env, jclass)
 {
   frm()->GetBookmarkManager().SetElevationActivePointChangedCallback(nullptr);
+}
+
+/**
+ * Add by RobinChien at 2020/07/07
+ * Refactoring Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddBookmarkToLastEditedCategory
+ * */
+JNIEXPORT jlong JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddBookmark(
+        JNIEnv * env, jobject thiz, jlong groupId, jstring name, jstring description, jint color, double lat, double lon, jint iconType)
+{
+
+  BookmarkManager & bmMng = frm()->GetBookmarkManager();
+
+  kml::BookmarkData bmData;
+  kml::LocalizableString bmName;
+  kml::SetDefaultStr(bmName, ToNativeString(env, name));
+  bmData.m_name = bmName;
+
+  kml::LocalizableString bmDescription;
+  kml::SetDefaultStr(bmDescription, ToNativeString(env, description));
+  bmData.m_description = bmDescription;
+
+  if (iconType == 0) {
+    bmData.m_icon = kml::BookmarkIcon::Start;
+  } else if(iconType == 1) {
+    bmData.m_icon = kml::BookmarkIcon::Finish;
+  } else {
+    bmData.m_icon = kml::BookmarkIcon::None;
+  }
+
+  bmData.m_color.m_predefinedColor = kml::PredefinedColor(color);
+  bmData.m_point = mercator::FromLatLon(lat, lon);
+  bmData.m_viewportScale = MAX(scales::GetUpperComfortScale(), frm()->GetDrawScale());
+  auto const * createdBookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
+                                                                       static_cast<kml::MarkGroupId>(groupId));
+
+  return createdBookmark ? static_cast<jlong>(createdBookmark->GetId()) : LLONG_MAX;
+}
+
+/**
+ * Add by RobinChien at 2020/07/09
+ * Add method to search cateory ID with name
+ * */
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeUpdateBookmark(
+        JNIEnv * env, jobject thiz, jlong bookmarkID, jstring name, jstring description, jint color, double lat, double lon)
+{
+//    BookmarkManager & bmMng = frm()->GetBookmarkManager();
+
+  kml::BookmarkData bmData;
+  kml::LocalizableString bmName;
+  kml::SetDefaultStr(bmName, ToNativeString(env, name));
+  bmData.m_name = bmName;
+
+  kml::LocalizableString bmDescription;
+  kml::SetDefaultStr(bmDescription, ToNativeString(env, description));
+  bmData.m_description = bmDescription;
+
+  bmData.m_color.m_predefinedColor = kml::PredefinedColor(color);
+  bmData.m_point = mercator::FromLatLon(lat, lon);
+
+  frm()->GetBookmarkManager().GetEditSession().UpdateBookmark(static_cast<kml::MarkId>(bookmarkID),
+                                                              std::move(bmData));
+}
+
+/**
+ * Add by RobinChien at 2020/07/09
+ * Add method to delete all bookmark in category
+ * */
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeDeleteAllBookmarkWithCategory(
+        JNIEnv * env, jobject thiz, jlong catId)
+{
+  auto const bookmarkIDs = frm()->GetBookmarkManager().GetUserMarkIds(
+          static_cast<kml::MarkGroupId>(catId));
+  for (auto const bookmarkID : bookmarkIDs) {
+    frm()->GetBookmarkManager().GetEditSession().DeleteBookmark(static_cast<kml::MarkId>(bookmarkID));
+  }
+}
+
+/**
+ * Add by RobinChien at 2020/07/09
+ * Add method to search bookmark ID with name
+ * */
+JNIEXPORT jlong JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeSearchBookmarkIDWithName(
+        JNIEnv * env, jobject thiz, jstring bookmarkName, jlong catId)
+{
+  if (!bookmarkName)
+    return LLONG_MAX;
+
+  auto const bookmarkIDs = frm()->GetBookmarkManager().GetUserMarkIds(
+          static_cast<kml::MarkGroupId>(catId));
+  for (auto const bookmarkID : bookmarkIDs) {
+    auto bookmark = frm()->GetBookmarkManager().GetBookmark(bookmarkID);
+    if (!bookmark) {
+      continue;
+    }
+    if (bookmark->GetPreferredName() == ToNativeString(env, bookmarkName)) {
+      return bookmarkID;
+    }
+  }
+  return LLONG_MAX;
+}
+
+/**
+ * Add by RobinChien at 2020/07/09
+ * Add method to search category ID with name
+ * */
+JNIEXPORT jlong JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeSearchCategoryIDWithName(
+        JNIEnv * env, jobject thiz, jstring name)
+{
+  if (!name)
+    return LLONG_MAX;
+
+  auto const categoryID = frm()->GetBookmarkManager().GetCategoryId(ToNativeString(env, name));
+  return (categoryID != kml::kInvalidMarkGroupId) ? categoryID : LLONG_MAX;
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddTrack(
+        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray locations, jint color, double width)
+{
+  if (env->GetArrayLength(locations) <= 0) {
+    return LLONG_MAX;
+  }
+
+  kml::TrackData trackData;
+  trackData.m_timestamp = std::chrono::time_point<std::chrono::system_clock>::max();
+
+  kml::LocalizableString trackName;
+  kml::SetDefaultStr(trackName, ToNativeString(env, name));
+  trackData.m_name = trackName;
+
+  kml::LocalizableString trackDescription;
+  kml::SetDefaultStr(trackDescription, ToNativeString(env, description));
+  trackData.m_description = trackDescription;
+
+  const jsize size = env->GetArrayLength(locations);
+
+  if (size < 2) {
+    return LLONG_MAX;
+  }
+
+  for (jsize i = 0; i < size; ++i) {
+    jobject jlocationArray = env->GetObjectArrayElement(locations, i);
+    jdoubleArray * latlonData = reinterpret_cast<jdoubleArray *>(&jlocationArray);
+    double * latlon = env->GetDoubleArrayElements(* latlonData, NULL);
+    double lat = latlon[0];
+    double lon = latlon[1];
+    m2::PointD const point(mercator::FromLatLon(lat, lon));
+    trackData.m_pointsWithAltitudes.emplace_back(geometry::PointWithAltitude(point, 0 /* altitude */));
+    env->DeleteLocalRef(jlocationArray);
+  }
+
+  kml::ColorData colorData;
+  colorData.m_predefinedColor = kml::PredefinedColor(color);
+  dp::Color dpcolor = dp::Color(0, 0, 0, 0);
+
+  switch (colorData.m_predefinedColor)
+  {
+    case kml::PredefinedColor::Red: dpcolor = dp::Color(229, 27, 35, 204);
+          break;
+    case kml::PredefinedColor::Pink: dpcolor = dp::Color(255, 65, 130, 204);
+          break;
+    case kml::PredefinedColor::Purple: dpcolor = dp::Color(155, 36, 178, 204);
+          break;
+    case kml::PredefinedColor::DeepPurple: dpcolor = dp::Color(102, 57, 191, 204);
+          break;
+    case kml::PredefinedColor::Blue: dpcolor = dp::Color(0, 102, 204, 204);
+          break;
+    case kml::PredefinedColor::LightBlue: dpcolor = dp::Color(36, 156, 242, 204);
+          break;
+    case kml::PredefinedColor::Cyan: dpcolor = dp::Color(20, 190, 205, 204);
+          break;
+    case kml::PredefinedColor::Teal: dpcolor = dp::Color(0, 165, 140, 204);
+          break;
+    case kml::PredefinedColor::Green: dpcolor = dp::Color(60, 140, 60, 204);
+          break;
+    case kml::PredefinedColor::Lime: dpcolor = dp::Color(147, 191, 57, 204);
+          break;
+    case kml::PredefinedColor::Yellow: dpcolor = dp::Color(255, 200, 0, 204);
+          break;
+    case kml::PredefinedColor::Orange: dpcolor = dp::Color(255, 150, 0, 204);
+          break;
+    case kml::PredefinedColor::DeepOrange: dpcolor = dp::Color(240, 100, 50, 204);
+          break;
+    case kml::PredefinedColor::Brown: dpcolor = dp::Color(128, 70, 51, 204);
+          break;
+    case kml::PredefinedColor::Gray: dpcolor = dp::Color(115, 115, 115, 204);
+          break;
+    case kml::PredefinedColor::BlueGray: dpcolor = dp::Color(89, 115, 128, 204);
+          break;
+    case kml::PredefinedColor::None: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+    case kml::PredefinedColor::Count: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+  }
+
+  colorData.m_rgba = dpcolor.GetRed() << 24 | dpcolor.GetGreen() << 16 | dpcolor.GetBlue() << 8 | dpcolor.GetAlpha();
+
+  kml::TrackLayer trackLayer;
+  trackLayer.m_color = colorData;
+  trackLayer.m_lineWidth = width;
+  trackData.m_layers.emplace_back(trackLayer);
+
+  auto editSession = frm()->GetBookmarkManager().GetEditSession();
+  auto track = editSession.CreateTrack(std::move(trackData));
+  if (track == nullptr) {
+    return LLONG_MAX;
+  }
+  long trackId = track->GetId();
+  editSession.AttachTrack(trackId, catId);
+
+  return trackId;
+}
+
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeDeleteAllTracksInCategory(
+        JNIEnv * env, jobject thiz, jlong catId)
+{
+  auto const trackIds = frm()->GetBookmarkManager().GetTrackIds(static_cast<kml::MarkGroupId>(catId));
+  for (auto const trackId : trackIds) {
+    frm()->GetBookmarkManager().GetEditSession().DeleteTrack(trackId);
+  }
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddLocationIntoTrack(
+        JNIEnv * env, jobject thiz, double lat, double lon, jlong trackId)
+{
+  auto const track = frm()->GetBookmarkManager().GetTrack(trackId);
+  if (track == nullptr) {
+    return LLONG_MAX;
+  }
+
+  m2::PointD const point(mercator::FromLatLon(lat, lon));
+  auto trackData = track->GetData();
+  trackData.m_pointsWithAltitudes.emplace_back(geometry::PointWithAltitude(point, 0 /* altitude */));
+
+  return track->GetId();
+}
+
+JNIEXPORT jint JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeDrawLineWithLocations(
+        JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width)
+{
+  const jsize size = env->GetArrayLength(locations);
+  if (size <= 1) {
+    return 0;
+  }
+
+  std::vector<m2::PointD> points;
+  for (jsize i = 0; i < size; ++i) {
+    auto jlocationArray = (env->GetObjectArrayElement(locations, i));
+    jdouble * latlonData = env->GetDoubleArrayElements((jdoubleArray) jlocationArray, 0);
+    double lat = latlonData[0];
+    double lon = latlonData[1];
+    m2::PointD const point(mercator::FromLatLon(lat, lon));
+    points.emplace_back(point);
+    env->DeleteLocalRef(jlocationArray);
+  }
+
+  auto const predefinedColor = kml::PredefinedColor(color);
+  dp::Color dpcolor = dp::Color(0, 0, 0, 0);
+  switch (predefinedColor)
+  {
+    case kml::PredefinedColor::Red: dpcolor = dp::Color(229, 27, 35, 204);
+          break;
+    case kml::PredefinedColor::Pink: dpcolor = dp::Color(255, 65, 130, 204);
+          break;
+    case kml::PredefinedColor::Purple: dpcolor = dp::Color(155, 36, 178, 204);
+          break;
+    case kml::PredefinedColor::DeepPurple: dpcolor = dp::Color(102, 57, 191, 204);
+          break;
+    case kml::PredefinedColor::Blue: dpcolor = dp::Color(0, 102, 204, 204);
+          break;
+    case kml::PredefinedColor::LightBlue: dpcolor = dp::Color(36, 156, 242, 204);
+          break;
+    case kml::PredefinedColor::Cyan: dpcolor = dp::Color(20, 190, 205, 204);
+          break;
+    case kml::PredefinedColor::Teal: dpcolor = dp::Color(0, 165, 140, 204);
+          break;
+    case kml::PredefinedColor::Green: dpcolor = dp::Color(60, 140, 60, 204);
+          break;
+    case kml::PredefinedColor::Lime: dpcolor = dp::Color(147, 191, 57, 204);
+          break;
+    case kml::PredefinedColor::Yellow: dpcolor = dp::Color(255, 200, 0, 204);
+          break;
+    case kml::PredefinedColor::Orange: dpcolor = dp::Color(255, 150, 0, 204);
+          break;
+    case kml::PredefinedColor::DeepOrange: dpcolor = dp::Color(240, 100, 50, 204);
+          break;
+    case kml::PredefinedColor::Brown: dpcolor = dp::Color(128, 70, 51, 204);
+          break;
+    case kml::PredefinedColor::Gray: dpcolor = dp::Color(115, 115, 115, 204);
+          break;
+    case kml::PredefinedColor::BlueGray: dpcolor = dp::Color(89, 115, 128, 204);
+          break;
+    case kml::PredefinedColor::None: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+    case kml::PredefinedColor::Count: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+  }
+
+  lineId++;
+  frm()->GetDrapeApi().AddLine(std::to_string(lineId), df::DrapeApiLineData(points, dpcolor).Width(width));
+
+  return lineId;
+}
+
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeRemoveLine(
+        JNIEnv * env, jobject thiz, jint lineId)
+{
+  frm()->GetDrapeApi().RemoveLine(std::to_string(lineId));
+}
+
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeClearLines(
+        JNIEnv * env, jobject thiz)
+{
+  frm()->GetDrapeApi().Clear();
 }
 }  // extern "C"
