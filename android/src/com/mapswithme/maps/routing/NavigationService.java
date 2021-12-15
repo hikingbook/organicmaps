@@ -18,6 +18,7 @@ import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Build;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
@@ -196,8 +197,12 @@ public class NavigationService extends Service
   {
     Intent stopSelf = new Intent(this, NavigationService.class);
     stopSelf.putExtra(EXTRA_STOP_SERVICE, true);
+    int flags = PendingIntent.FLAG_CANCEL_CURRENT;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      flags = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+    }
     PendingIntent pStopSelf = PendingIntent.getService(this, 0,
-                                                       stopSelf, PendingIntent.FLAG_CANCEL_CURRENT);
+                                                       stopSelf, flags);
 
     // TODO (@velichkomarija): restore navigation from notification.
     PendingIntent activityPendingIntent = PendingIntent
