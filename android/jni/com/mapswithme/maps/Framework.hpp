@@ -148,6 +148,8 @@ namespace android
 
     void DeactivatePopup();
 
+    void DeactivateMapSelection();
+
     std::string GetOutdatedCountriesString();
 
     void SetMyPositionModeListener(location::TMyPositionModeChanged const & fn);

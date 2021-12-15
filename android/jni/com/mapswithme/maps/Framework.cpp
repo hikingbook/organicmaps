@@ -576,6 +576,11 @@ void Framework::DeactivatePopup()
   m_work.DeactivateMapSelection(false);
 }
 
+void Framework::DeactivateMapSelection()
+{
+  m_work.DeactivateMapSelection(true);
+}
+
 string Framework::GetOutdatedCountriesString()
 {
   vector<Country const *> countries;
@@ -1797,5 +1802,11 @@ JNIEXPORT jboolean JNICALL
 Java_com_mapswithme_maps_Framework_nativeHasPlacePageInfo(JNIEnv *, jclass)
 {
   return static_cast<jboolean>(frm()->HasPlacePageInfo());
+}
+
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_Framework_nativeDeactivateMapSelection(JNIEnv * env, jclass)
+{
+  return g_framework->DeactivatePopup();
 }
 }  // extern "C"
