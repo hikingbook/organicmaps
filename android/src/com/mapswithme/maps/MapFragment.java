@@ -79,8 +79,8 @@ public class MapFragment extends BaseMwmFragment
   private SurfaceView mSurfaceView;
   @Nullable
   private MapRenderingListener mMapRenderingListener;
-  @Nullable
-  private MapWidgetOffsetsProvider mWidgetOffsetsProvider;
+//  @Nullable
+//  private MapWidgetOffsetsProvider mWidgetOffsetsProvider;
 
   private void setupWidgets(int width, int height)
   {
@@ -111,10 +111,10 @@ public class MapFragment extends BaseMwmFragment
   private void setupWidgetOffsets()
   {
     int rulerOffset = 0;
-    if (mWidgetOffsetsProvider != null)
-    {
-      rulerOffset = mWidgetOffsetsProvider.getRulerOffsetY();
-    }
+//    if (mWidgetOffsetsProvider != null)
+//    {
+//      rulerOffset = mWidgetOffsetsProvider.getRulerOffsetY();
+//    }
     setupRuler(rulerOffset, false);
   }
 
@@ -265,7 +265,7 @@ public class MapFragment extends BaseMwmFragment
   {
     super.onAttach(context);
     mMapRenderingListener = (MapRenderingListener) context;
-    mWidgetOffsetsProvider = (MapWidgetOffsetsProvider) context;
+//    mWidgetOffsetsProvider = (MapWidgetOffsetsProvider) context;
   }
 
   @Override
@@ -273,7 +273,7 @@ public class MapFragment extends BaseMwmFragment
   {
     super.onDetach();
     mMapRenderingListener = null;
-    mWidgetOffsetsProvider = null;
+//    mWidgetOffsetsProvider = null;
   }
 
   @Override

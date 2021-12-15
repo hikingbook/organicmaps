@@ -4,6 +4,7 @@ import static com.mapswithme.maps.MwmActivity.EXTRA_LOCATION_DIALOG_IS_ANNOYING;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -20,11 +21,18 @@ import com.mapswithme.maps.MapFragment;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.maps.R;
+import com.mapswithme.maps.background.AppBackgroundTracker;
+import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
+import com.mapswithme.maps.bookmarks.data.BookmarkManager;
+import com.mapswithme.maps.bookmarks.data.MapObject;
 import com.mapswithme.maps.location.CompassData;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.util.log.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Stream;
 
 public enum OrganicmapsFrameworkAdapter {
     INSTANCE;
@@ -39,6 +47,7 @@ public enum OrganicmapsFrameworkAdapter {
     private Fragment fragment;
     private View mapView;
     private Looper mainLooper;
+    private AppBackgroundTracker mBackgroundTracker;
     private SharedPreferences sharedPreferences;
 
     public void initApplication(Application application) {
@@ -113,6 +122,14 @@ public enum OrganicmapsFrameworkAdapter {
 
     public SharedPreferences getSharedPreferences() {
         return this.sharedPreferences;
+    }
+
+    public void setBackgroundTracker(AppBackgroundTracker appBackgroundTracker) {
+        this.mBackgroundTracker = appBackgroundTracker;
+    }
+
+    public AppBackgroundTracker getBackgroundTracker() {
+        return this.mBackgroundTracker;
     }
 
     private void initLoggerFactory() {
@@ -202,5 +219,223 @@ public enum OrganicmapsFrameworkAdapter {
         mwmActivity.checkMeasurementSystem();
         LocationHelper.INSTANCE.attach((LocationHelper.UiCallback) getFragment());
     }
+    public void nativeDeactivatePopup() {
+        Framework.nativeDeactivatePopup();
+    }
 
+    public void nativeDeactivateMapSelection() {
+        Framework.nativeDeactivateMapSelection();
+    }
+
+    public Location getSavedLocation() {
+        return LocationHelper.INSTANCE.getSavedLocation();
+    }
+
+    public void myPositionClick() {
+        LocationHelper.INSTANCE.setStopLocationUpdateByUser(false);
+        LocationHelper.INSTANCE.switchToNextMode();
+        LocationHelper.INSTANCE.restart();
+    }
+
+    public void setViewportCenter(double lat, double lon) {
+        Framework.nativeSetViewportCenter(lat, lon, SEARCH_IN_VIEWPORT_ZOOM, true);
+    }
+
+    public void zoomToPoint(double lat, double lon) {
+        Framework.nativeZoomToPoint(lat, lon, SEARCH_IN_VIEWPORT_ZOOM, true);
+    }
+
+    /**
+     * Bookmark CRUD
+     */
+    public long createBookmark(String catName, HashMap data) {
+        long catId = searchCategoryIDWithName(catName);
+        return BookmarkManager.INSTANCE.nativeAddBookmark(
+                catId,
+                (String) data.get("name"),
+                (String) data.get("description"),
+                (int) data.get("color"),
+                (Double) data.get("lat"),
+                (Double) data.get("lon"),
+                (int) data.get("iconType")
+        );
+    }
+
+    public void updateBookmark(long bmkId, HashMap data) {
+        BookmarkManager.INSTANCE.nativeUpdateBookmark(
+                bmkId,
+                (String) data.get("name"),
+                (String) data.get("description"),
+                (int) data.get("color"),
+                (Double) data.get("lat"),
+                (Double) data.get("lon"));
+    }
+
+    public void deleteBookmark(long bmkId) {
+        BookmarkManager.INSTANCE.deleteBookmark(bmkId);
+    }
+
+    public void deleteAllBookmarksWithCategory(long catId) {
+        BookmarkManager.INSTANCE.nativeDeleteAllBookmarkWithCategory(catId);
+    }
+
+    public long searchBookmarkIDWithName(String bmkName, long catId) {
+        return BookmarkManager.INSTANCE.nativeSearchBookmarkIDWithName(bmkName, catId);
+    }
+
+    public void showBookmark(long bmkId) {
+        BookmarkManager.INSTANCE.showBookmarkOnMap(bmkId);
+    }
+
+    /**
+     * Bookmark Category CRUD
+     */
+    public long createCategory(@NonNull String catName) {
+        return BookmarkManager.INSTANCE.createCategory(catName);
+    }
+
+    public void deleteCategory(long catId) {
+        BookmarkManager.INSTANCE.deleteCategory(catId);
+    }
+
+    public void deleteAllCategory(List<Long> catIdList) {
+        for (long catId : catIdList) {
+            deleteCategory(catId);
+        }
+    }
+
+    public void toggleCategoryVisibility(Long catId) {
+        BookmarkCategory category =  BookmarkManager.INSTANCE.getCategoryById(catId);
+        BookmarkManager.INSTANCE.toggleCategoryVisibility(category);
+    }
+
+    public void setCategoryVisibility(String catName, boolean visible) {
+        long catId = OrganicmapsFrameworkAdapter.INSTANCE.searchCategoryIDWithName(catName);
+        if (catId != Long.MAX_VALUE) {
+            BookmarkManager.INSTANCE.setVisibility(catId, visible);
+        }
+    }
+
+    public boolean isCategoryVisible(long catId) {
+        return BookmarkManager.INSTANCE.isVisible(catId);
+    }
+
+    public long searchCategoryIDWithName(@NonNull String catName) {
+        return BookmarkManager.INSTANCE.nativeSearchCategoryIDWithName(catName);
+    }
+
+    public void showBookmarkCategoryOnMap(long catId) {
+        BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(catId);
+    }
+
+    /**
+     * Track CRUD
+     */
+    public long createTrack(long catId, String name, String description, Double[][] locations, int color, double lineWidth) {
+        double[][] doubleLocations = new double[locations.length][2];
+        for (int i = 0; i < locations.length; i++) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
+            } else {
+                doubleLocations[i] = com.annimon.stream.Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
+            }
+        }
+
+        return BookmarkManager.INSTANCE.nativeAddTrack(
+                catId,
+                name,
+                description,
+                doubleLocations,
+                color,
+                lineWidth
+        );
+    }
+
+    public long addLocationIntoTrack(Location location, long catId) {
+        return BookmarkManager.INSTANCE.nativeAddLocationIntoTrack(
+                location.getLatitude(),
+                location.getLongitude(),
+                catId);
+    }
+
+    public boolean isTrackExistedInCategory(long catId) {
+        if (catId != Long.MAX_VALUE) {
+            int count = BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
+            return count > 0;
+        }
+        return false;
+    }
+
+    public void deleteTrack(long trackId) {
+        BookmarkManager.INSTANCE.deleteTrack(trackId);
+    }
+
+    public void deleteAllTracksInCategory(long catId) {
+        BookmarkManager.INSTANCE.nativeDeleteAllTracksInCategory(catId);
+    }
+
+    public int countTracksInCategory(long catId) {
+        if (catId != Long.MAX_VALUE) {
+            return BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
+        }
+        return 0;
+    }
+
+    /**
+     * Track Line CRUD
+     */
+    public int drawLineWithLocations(Double[][] locations, int color, double lineWidth) {
+        double[][] doubleLocations = new double[locations.length][2];
+        for (int i = 0; i < locations.length; i++) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
+            } else {
+                doubleLocations[i] = com.annimon.stream.Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
+            }
+        }
+
+        return BookmarkManager.INSTANCE.nativeDrawLineWithLocations(
+                doubleLocations,
+                color,
+                lineWidth
+        );
+    }
+
+    public void removeLine(int lineId) {
+        BookmarkManager.INSTANCE.nativeRemoveLine(lineId);
+    }
+
+    public void clearLines() {
+        BookmarkManager.INSTANCE.nativeClearLines();
+    }
+
+    /**
+     * Iso Lines
+     */
+    public boolean isIsoLinesEnabled() {
+        return Framework.nativeIsIsolinesLayerEnabled();
+    }
+
+    public void toggleIsoLines() {
+        Framework.nativeSetIsolinesLayerEnabled(!Framework.nativeIsIsolinesLayerEnabled());
+    }
+
+    /**
+     * Calculate Distance
+     */
+    public String getFlatDistance(double dstLatitude, double dstLongitude, double v) {
+        MapObject myPosition = LocationHelper.INSTANCE.getMyPosition();
+        return Framework.nativeGetDistanceAndAzimuthFromLatLon(dstLatitude, dstLongitude, myPosition.getLat(), myPosition.getLon(), v).getDistance();
+    }
+
+    /**
+     * Map Font Size
+     */
+    public void setLargeFontsSize(boolean value) {
+        Config.setLargeFontsSize(value);
+    }
+
+    public void isLargeFontsSize() {
+        Config.isLargeFontsSize();
+    }
 }

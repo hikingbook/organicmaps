@@ -170,7 +170,7 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     initProvider();
     LocationState.nativeSetListener(mMyPositionModeListener);
     LocationState.nativeSetLocationPendingTimeoutListener(mLocationPendingTimeoutListener);
-    MwmApplication.backgroundTracker(context).addListener(this);
+//    MwmApplication.backgroundTracker(context).addListener(this);
   }
 
   @Override

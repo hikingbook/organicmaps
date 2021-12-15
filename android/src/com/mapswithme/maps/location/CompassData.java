@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.util.LocationUtils;
+import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 
 
 public final class CompassData
@@ -15,7 +16,8 @@ public final class CompassData
 
   public void update(@NonNull Context context, double north)
   {
-    Activity top = MwmApplication.backgroundTracker(context).getTopActivity();
+//    Activity top = MwmApplication.backgroundTracker(context).getTopActivity();
+    Activity top = OrganicmapsFrameworkAdapter.INSTANCE.getBackgroundTracker().getTopActivity();
     if (top == null)
       return;
 

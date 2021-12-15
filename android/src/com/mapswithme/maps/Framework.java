@@ -250,6 +250,8 @@ public class Framework
 
   public static native void nativeDeactivatePopup();
 
+  public static native void nativeDeactivateMapSelection();
+
   public static native String[] nativeGetMovableFilesExts();
 
   public static native String[] nativeGetBookmarksFilesExts();

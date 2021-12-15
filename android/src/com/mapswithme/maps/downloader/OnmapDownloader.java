@@ -1,5 +1,6 @@
 package com.mapswithme.maps.downloader;
 
+import android.app.Activity;
 import android.location.Location;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
@@ -27,7 +29,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 {
   private static boolean sAutodownloadLocked;
 
-  private final MwmActivity mActivity;
+  private final Activity mActivity;
   private final View mFrame;
   private final TextView mParent;
   private final TextView mTitle;
@@ -184,10 +186,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     UiUtils.showIf(showFrame, mFrame);
   }
 
-  public OnmapDownloader(MwmActivity activity)
+  public OnmapDownloader(Fragment fragment)
   {
-    mActivity = activity;
-    mFrame = activity.findViewById(R.id.onmap_downloader);
+    mActivity = fragment.getActivity();
+    mFrame = fragment.getView().findViewById(R.id.onmap_downloader);
     mParent = mFrame.findViewById(R.id.downloader_parent);
     mTitle = mFrame.findViewById(R.id.downloader_title);
     mSize = mFrame.findViewById(R.id.downloader_size);
@@ -208,7 +210,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         setAutodownloadLocked(true);
       }
     });
-    final Notifier notifier = Notifier.from(activity.getApplication());
+    final Notifier notifier = Notifier.from(mActivity.getApplication());
     mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
       if (mCurrentCountry == null)
         return;

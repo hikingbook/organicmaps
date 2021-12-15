@@ -17,9 +17,9 @@ public class GPSCheck extends MwmBroadcastReceiver
     {
       throw new AssertionError("An intent with wrong action detected: " + intent.getAction());
     }
-    if (MwmApplication.backgroundTracker(context).isForeground())
-    {
-      LocationHelper.INSTANCE.restart();
-    }
+//    if (MwmApplication.backgroundTracker(context).isForeground())
+//    {
+//      LocationHelper.INSTANCE.restart();
+//    }
   }
 }

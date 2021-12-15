@@ -159,7 +159,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
       mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getMainLooper());
     }
 //    mMainLoopHandler = new Handler(getMainLooper());
-    ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication());
+    ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 //    CrashlyticsUtils.INSTANCE.initialize(this);
 
     if (OrganicmapsFrameworkAdapter.INSTANCE.getApplicationID() == null)
@@ -168,6 +168,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     initNotificationChannels();
 
     mBackgroundTracker = new AppBackgroundTracker(this);
+    OrganicmapsFrameworkAdapter.INSTANCE.setBackgroundTracker(mBackgroundTracker);
 //    mSubwayManager = new SubwayManager(this);
 //    mIsolinesManager = new IsolinesManager(this);
 
@@ -254,12 +255,12 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
 //    ThemeSwitcher.INSTANCE.restart(false);
-    LocationHelper.INSTANCE.initialize(this);
+    LocationHelper.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 //    RoutingController.get().initialize(null);
 //    TrafficManager.INSTANCE.initialize(null);
 //    SubwayManager.from(this).initialize(null);
 //    IsolinesManager.from(this).initialize(null);
-    mBackgroundTracker.addListener(this);
+    OrganicmapsFrameworkAdapter.INSTANCE.getBackgroundTracker().addListener(this);
 
     getLogger().i(TAG, "Framework initialized");
     mFrameworkInitialized = true;
@@ -267,13 +268,13 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 
   private void initNativeStrings()
   {
-    nativeAddLocalization("core_entrance", getString(R.string.core_entrance));
-    nativeAddLocalization("core_exit", getString(R.string.core_exit));
-    nativeAddLocalization("core_my_places", getString(R.string.core_my_places));
-    nativeAddLocalization("core_my_position", getString(R.string.core_my_position));
-    nativeAddLocalization("core_placepage_unknown_place", getString(R.string.core_placepage_unknown_place));
-    nativeAddLocalization("postal_code", getString(R.string.postal_code));
-    nativeAddLocalization("wifi", getString(R.string.wifi));
+//    nativeAddLocalization("core_entrance", getString(R.string.core_entrance));
+//    nativeAddLocalization("core_exit", getString(R.string.core_exit));
+//    nativeAddLocalization("core_my_places", getString(R.string.core_my_places));
+//    nativeAddLocalization("core_my_position", getString(R.string.core_my_position));
+//    nativeAddLocalization("core_placepage_unknown_place", getString(R.string.core_placepage_unknown_place));
+//    nativeAddLocalization("postal_code", getString(R.string.postal_code));
+    nativeAddLocalization("wifi", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.wifi));
   }
 
   public boolean arePlatformAndCoreInitialized()
@@ -284,7 +285,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   @NonNull
   public AppBackgroundTracker getBackgroundTracker()
   {
-    return mBackgroundTracker;
+    return OrganicmapsFrameworkAdapter.INSTANCE.getBackgroundTracker();
   }
 
   static

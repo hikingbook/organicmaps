@@ -118,9 +118,9 @@ public enum ThemeSwitcher implements Initializable<Context>
 
       DownloaderStatusIcon.clearCache();
 
-      Activity a = MwmApplication.backgroundTracker(mContext).getTopActivity();
-      if (a != null && !a.isFinishing())
-        a.recreate();
+//      Activity a = MwmApplication.backgroundTracker(mContext).getTopActivity();
+//      if (a != null && !a.isFinishing())
+//        a.recreate();
     }
     else
     {

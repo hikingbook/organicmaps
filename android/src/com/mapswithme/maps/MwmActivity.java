@@ -773,7 +773,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initOnmapDownloader()
   {
-    mOnmapDownloader = new OnmapDownloader(this);
+    mOnmapDownloader = new OnmapDownloader(OrganicmapsFrameworkAdapter.INSTANCE.getFragment());
     if (mIsTabletLayout)
       mPanelAnimator.registerListener(mOnmapDownloader);
   }

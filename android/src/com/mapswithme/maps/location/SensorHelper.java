@@ -23,13 +23,14 @@ class SensorHelper implements SensorEventListener
   @Nullable
   private Sensor mRotation;
   @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private final MwmApplication mMwmApplication;
+//  @NonNull
+//  private final MwmApplication mMwmApplication;
 
   @Override
   public void onSensorChanged(SensorEvent event)
   {
-    if (!mMwmApplication.arePlatformAndCoreInitialized())
+//    if (!mMwmApplication.arePlatformAndCoreInitialized())
+    if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
       return;
 
     notifyInternal(event);
@@ -57,8 +58,7 @@ class SensorHelper implements SensorEventListener
   SensorHelper(@NonNull Context context)
   {
 //    mMwmApplication = MwmApplication.from(context);
-    mMwmApplication = OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication();
-    mSensorManager = (SensorManager) mMwmApplication.getSystemService(Context.SENSOR_SERVICE);
+    mSensorManager = (SensorManager) OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getSystemService(Context.SENSOR_SERVICE);
     if (mSensorManager != null)
       mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
   }
