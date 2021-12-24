@@ -594,7 +594,7 @@
 		675345B31A4054AD00A0A8C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					3DA571D720C1921D007BDE27 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -738,6 +738,7 @@
 		674A29E41B26FD1C001A525C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",
@@ -750,6 +751,7 @@
 		674A29E51B26FD1C001A525C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",
@@ -763,14 +765,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87E91DBE5AD000E5E7DC /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "qgl_render_context.*";
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "qgl_render_context.*";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(QT_PATH)/include",
-					"$(OMIM_ROOT)/3party/freetype/include",
 					"$(OMIM_ROOT)/3party/expat/lib",
 					"$(OMIM_ROOT)/3party/glm",
 					"$(OMIM_ROOT)/3party/jansson/src",
@@ -783,14 +780,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87EA1DBE5AD000E5E7DC /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "qgl_render_context.*";
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "qgl_render_context.*";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(QT_PATH)/include",
-					"$(OMIM_ROOT)/3party/freetype/include",
 					"$(OMIM_ROOT)/3party/expat/lib",
 					"$(OMIM_ROOT)/3party/glm",
 					"$(OMIM_ROOT)/3party/jansson/src",

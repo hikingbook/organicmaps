@@ -9,7 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_C_EXTENSIONS OFF)
 
 # Force colored errors and warnings for Ninja.
-if (CMAKE_GENERATOR MATCHES "Ninja" AND NOT (ENV{COLORS_DISABLE} EQUAL "1") )
+if (CMAKE_GENERATOR MATCHES "Ninja" AND NOT (DEFINED ENV{COLORS_DISABLE}))
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     add_compile_options (-fdiagnostics-color=always)
   elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
@@ -70,15 +70,11 @@ endif()
 # Global compile options for all configurations.
 add_compile_options(-ffast-math)
 
-if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-  add_definitions(-DDEBUG)
-elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+  add_definitions(-DDEBUG -fno-omit-frame-pointer)
+elseif (${CMAKE_BUILD_TYPE} MATCHES "^Rel")
   add_definitions(-DRELEASE)
-elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
-  add_definitions(-DRELEASE)
-  add_compile_options(
-    "-fno-omit-frame-pointer"
-  )
+  add_compile_options(-Ofast)
 else()
   message(FATAL_ERROR "Unknown build type: " ${CMAKE_BUILD_TYPE})
 endif()
@@ -103,8 +99,7 @@ option(SKIP_DESKTOP "Skip building of desktop application" OFF)
 option(BUILD_MAPSHOT "Build mapshot tool" OFF)
 option(USE_PCH "Use precompiled headers" OFF)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND
-    CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7.0)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7.0)
   message(FATAL_ERROR "Minimum supported g++ version is 7.0 yours is ${CMAKE_CXX_COMPILER_VERSION}")
 endif()
 
@@ -151,7 +146,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
-if (NOT (ENV{CCACHE_DISABLE} EQUAL "1"))
+if (NOT (DEFINED ENV{CCACHE_DISABLE}))
   find_program(CCACHE_PROGRAM ccache HINTS /usr/local/bin/)
   if (CCACHE_PROGRAM)
     message(STATUS "Using ccache, export CCACHE_DISABLE=1 to disable it.")
@@ -211,21 +206,16 @@ if (NOT CMAKE_HOST_WIN32)
 endif()
 
 if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
-  find_package(Qt5Core)
-  if (NOT Qt5Core_FOUND)
-    message(FATAL_ERROR "Qt5 cmake files were not found, please set QT_PATH environment variable")
-  endif()
-  if (Qt5Core_VERSION VERSION_LESS 5.5.0)
-    message(FATAL_ERROR "Minimum supported Qt5 version is 5.5")
-  endif()
-  find_package(Qt5Network REQUIRED)
+  list(APPEND qt_components Core Network)
   if (NOT SKIP_DESKTOP OR NOT SKIP_TESTS OR PYBINDINGS)
-    find_package(Qt5Widgets)
+    list(APPEND qt_components Widgets)
   endif()
   if (NOT SKIP_DESKTOP)
-    find_qt5_desktop_package(Qt5Gui)
-    find_qt5_desktop_package(Qt5Xml)
-    find_qt5_desktop_package(Qt5Svg)
+    list(APPEND qt_components Gui Xml Svg)
+  endif()
+  find_package(Qt5 COMPONENTS REQUIRED ${qt_components})
+  if (Qt5_VERSION VERSION_LESS 5.5.0)
+    message(FATAL_ERROR "Minimum supported Qt5 version is 5.5")
   endif()
 endif()
 
@@ -380,7 +370,7 @@ endif()
 add_custom_target(BuildVersion ALL
   COMMAND ${CMAKE_COMMAND}
   ARGS
-  -D MAPSME_CURRENT_PROJECT_ROOT=${OMIM_ROOT}
+  -D OMAPS_CURRENT_PROJECT_ROOT=${OMIM_ROOT}
   -D PATH_WITH_BUILD_VERSION_HPP=${OMIM_ROOT}
   -D PROJECT_NAME=${PROJECT_NAME}
   -P ${OMIM_ROOT}/cmake/BuildVersion.cmake

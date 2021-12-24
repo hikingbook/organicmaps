@@ -16,6 +16,7 @@
 #include "routing/index_router.hpp"
 #include "routing/route.hpp"
 #include "routing/routing_helpers.hpp"
+#include "routing/speed_camera_prohibition.hpp"
 
 #include "routing_common/num_mwm_id.hpp"
 
@@ -2135,9 +2136,6 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
     place_page::BuildInfo const & buildInfo)
 {
   place_page::Info outInfo;
-  if (m_drapeEngine == nullptr)
-    return {};
-
   outInfo.SetBuildInfo(buildInfo);
 
   if (buildInfo.IsUserMarkMatchingEnabled())
@@ -2212,7 +2210,8 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
   FeatureID selectedFeature = buildInfo.m_featureId;
   auto const isFeatureMatchingEnabled = buildInfo.IsFeatureMatchingEnabled();
 
-  if (buildInfo.IsTrackMatchingEnabled() && !buildInfo.m_isLongTap &&
+  // Using VisualParams inside FindTrackInTapPosition/GetDefaultTapRect requires drapeEngine.
+  if (m_drapeEngine != nullptr && buildInfo.IsTrackMatchingEnabled() && !buildInfo.m_isLongTap &&
       !(isFeatureMatchingEnabled && selectedFeature.IsValid()))
   {
     auto const trackSelectionInfo = FindTrackInTapPosition(buildInfo);
@@ -2730,16 +2729,18 @@ bool Framework::ParseEditorDebugCommand(search::SearchParams const & params)
   return false;
 }
 
-bool Framework::ParseRoutingDebugCommand(search::SearchParams const &)
+bool Framework::ParseRoutingDebugCommand(search::SearchParams const & params)
 {
-  // This is an example.
-  /*
-    if (params.m_query == "?speedcams")
-    {
-      GetRoutingManager().RoutingSession().EnableMyFeature();
-      return true;
-    }
-  */
+  if (params.m_query == "?debug-cam")
+  {
+    settings::Set(kDebugSpeedCamSetting, true);
+    return true;
+  }
+  else if (params.m_query == "?no-debug-cam")
+  {
+    settings::Set(kDebugSpeedCamSetting, false);
+    return true;
+  }
   return false;
 }
 

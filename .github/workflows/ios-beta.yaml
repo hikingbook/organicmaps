@@ -1,10 +1,11 @@
 name: iOS Beta
 on:
+  workflow_dispatch: # Manual trigger
   push:
     branches:
       - master
-      - rt-ios-testflight # TODO: remove
     paths-ignore:
+      - .gitignore
       - .github/**
       - '**/*_tests/**'
       - '**/CMakeLists.txt'
@@ -19,6 +20,7 @@ on:
       - pyhelpers/**
       - qt*/**
       - skin_generator/**
+      - tools/**
       - track_generator/**
 
 jobs:

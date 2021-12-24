@@ -1,16 +1,30 @@
-# Category groups referenced in many categories, should be defined before being referenced.
+# Category @groups allow to apply same set of search terms to different categories.
+# The @groups should be defined before being referenced in categories.
+# In the example below a "groceries" will result in POIs of both shop-greengrocers and
+# shop-supermarket categories, while a "fruit" search will result in shop-greengrocers only.
+# ---
+# @food
+# en:Food|groceries
+#
+# shop-greengrocers|@food
+# en:Greengrocer|vegetables|fruit|
+#
+# shop-supermarket|@food
+# en:Supermarket
+# ---
+#
+# Categories match their sub-categories, e.g. a search term defined for historic-memorial
+# will also match historic-memorial-statue, historic-memorial-plaque, etc.
 #
 # Syntax:
-# @   - string that starts with this symbol indicates the beginning of the group
-#       translations which are used for the search.
-# :   - symbol that is used to separate the name of the language and translation
-#       (or group of translated synonyms). Language name is located on the left side
-#       of ':', and the translation on the right.
-# |   - symbol that is used to separate several translated synonyms.
+# @   - indicates the beginning of the group of searh terms translations
+# :   - used to separate the name of the language and translated search synonims.
+# |   - used to separate several categories/groups or translated synonyms.
 # 1-9 - digits in front of a synonym indicate the number of symbols than need to be
 #       typed in a search query to make this synonym appear in the list of suggestions.
 #       Located immediately after the separating characters ':' or '|'. At most one
 #       digit per synonym is allowed.
+# Its possible to use emoji codes as search synonims, e.g. U+1F6B0 for Potable water.
 # Each category must end with an empty line.
 #
 # BNF:
@@ -418,7 +432,7 @@ cs:3Bankomat
 da:3Hæveautomat
 nl:3Geldautomaat
 fi:Pankkiautomaatti
-fr:GAB
+fr:DAB|GAB|argent|Distributeur de billets
 de:3Geldautomat
 hu:4Pénzautomata
 id:2ATM
@@ -753,7 +767,7 @@ ar:محطة وقود|بترول
 cs:2pumpa
 da:3Tankstation
 nl:3Tankstation|3brandstof
-fr:Station-service|3carburant
+fr:Station-service|3carburant|3essence
 de:Tankstation|Tankstelle
 hu:3Benzinkút|benzin
 id:Pompa bensin
@@ -922,7 +936,7 @@ cs:Školka|zahradní centrum
 da:Planteskole|havecenter|plantecenter|havebutik
 nl:Tuincentrum
 fi:Taimitarha
-fr:Crèche|garderie d'enfants
+fr:Jardinerie
 de:Gärtnerei|Garten-Center
 hu:Kertészet|Kertészeti áruház
 id:Penitipan anak
@@ -1024,7 +1038,7 @@ cs:Řeznictví
 da:Slagter|slagterbutik
 nl:Slager|beenhouwer
 fi:Lihakauppias
-fr:Boucherie
+fr:Boucherie|Charcuterie
 de:Metzgerei|Metzger|Schlachter
 hu:Hentes|Mészáros
 id:Tukang daging
@@ -1057,7 +1071,7 @@ cs:Nábytek
 da:Møbelbutik|møbelforretning|møbelhandler
 nl:Meubelzaak
 fi:Huonekalukauppa
-fr:Magasin de meubles
+fr:Magasin de meubles|Ameublement
 de:Möbelgeschäft
 hu:Bútoráruház
 id:Toko mebel
@@ -1092,7 +1106,7 @@ cs:Obchod s alkoholem
 da:Alkohol|vinhandel|sprut|spiritus
 nl:Slijterij|drankhandel
 fi:Alkoholikauppa|alkoholi
-fr:Magasin de vins et spiritueux|vins et spiritueux
+fr:Magasin de vins et spiritueux|vins et spiritueux|alcool
 de:Spirituosengeschäft|Spirituosen
 hu:Italbolt|ital
 id:Toko alkohol|minuman keras
@@ -1191,7 +1205,7 @@ cs:Elektronika
 da:Elektronikbutik|elektronik
 nl:Elektronicazaak
 fi:Elektroniikka
-fr:Magasin d'électroménager
+fr:Magasin d'électroménager|électronique
 de:Elektronik
 hu:Elektronika
 id:Elektronik
@@ -1325,7 +1339,7 @@ cs:Obchod s dárkovým zbožím
 da:Gavebutik|souvenirbutik
 nl:Cadeauwinkel
 fi:Lahjatavaraliike
-fr:Boutique de souvenirs
+fr:Boutique de souvenirs|cadeaux
 de:Geschenkladen|Geschenke|Geschenkartikelladen|Andenkenladen|Andenken|Präsente
 hu:Ajándékbolt|Souvenir|Szuvenír
 id:Toko hadiah
@@ -1393,7 +1407,7 @@ cs:Ovoce a zelenina
 da:Grønthandler|grønthandel|frugt og grønt
 nl:Groentenwinkel|groenteboer
 fi:Vihanneskauppias
-fr:Primeur
+fr:Primeur|Marchand de fruits et légumes
 de:Gemüseladen|Gemüsehändler
 hu:Zöldséges|Zöldség-gyümölcs
 id:Penjual sayuran
@@ -1459,7 +1473,7 @@ cs:3Supermarket
 da:3Supermarked|dagligvarebutik
 nl:3Supermarkt
 fi:3Supermarketti
-fr:3Supermarché
+fr:3Supermarché|Hypermarché
 de:3Supermarkt
 hu:3Szupermarket
 id:3Supermarket
@@ -1494,7 +1508,7 @@ cs:Obchoďák
 da:Indkøbscenter|butikscenter|storcenter|center
 nl:Het winkelcentrum
 fi:Ostoskeskus
-fr:Le centre commercial
+fr:Centre commercial|Galerie marchande
 de:Einkaufszentrum|Ladenstraße|Einkaufsgalerie|Einkaufen|Einkaufspassage|Kaufhalle|Vergnügungszentrum|Einzelhandel
 hu:Bevásárlóközpont
 id:Mall
@@ -1664,7 +1678,7 @@ cs:4Prádelna|veřejná prádelna
 da:4Vaskeri|møntvask
 nl:4Wasserette
 fi:4Pesula
-fr:4Blanchisserie|laverie automatique
+fr:4Blanchisserie|laverie automatique|pressing
 de:Wäscherei|Waschsalon
 hu:4Mosoda
 id:4Londri|binatu
@@ -2635,7 +2649,7 @@ cs:2Vodopád|zajímavost
 da:2Vandfald
 nl:2Watervallen|waterval
 fi:3Vesiputous
-fr:3Cascade
+fr:3Cascade|Chute d'eau
 de:2Wasserfall
 hu:2Vízesés
 id:2Air terjun
@@ -2651,7 +2665,7 @@ es:3Cascada
 sv:2Vattenfall
 th:2น้ำตก
 tr:2Şelale
-uk:2Водоспад|пам’ятні місця
+uk:2Водоспад
 vi:2Thác nước|điểm tham quan
 zh-Hans:2瀑布|景点
 zh-Hant:1瀑布|旅遊景點
@@ -2703,7 +2717,7 @@ cs:Zámek|zajímavost
 da:Slot|borg
 nl:Kasteel|burcht|attractie
 fi:Linna
-fr:Château
+fr:Château|Forteresse|Palais
 de:Burg|Schloss|Festung
 hu:Vár|Katély|Erőd|Palota
 id:Kastel
@@ -2833,7 +2847,8 @@ fa:خرابه های تاریخی
 historic-ship|@tourism
 en:Ship|boat
 ru:Корабль|судно|лодка
-bg:Кораб|лодка|вода|туризъм
+bg:Кораб|лодка|туризъм
+fr:Bâteau|navire
 nl:Schip|boot
 ko:배|보트
 pl:Łódź|okręt
@@ -2845,6 +2860,7 @@ historic-tomb|@tourism
 en:Tomb|grave|memorial
 ru:Гробница|склеп|захоронение|могила|кладбище
 bg:Гробница|гробище|могила|погребани
+fr:Tombe
 nl:Tombe|graf|gedenkteken
 ko:무덤|묘지
 pl:Grób|grobowiec
@@ -2857,6 +2873,7 @@ en:3Dog area|Dog park
 ru:Место для выгула собак|Площадка для собак|4Собачья площадка
 bg:Кучешка зона|домашни любимци
 cs:3Psí hřiště
+fr:Parc canin
 nl:4Hondenpark|Hondengebied
 ko:개 놀이 공원|도그 파크
 pl:Park dla psów|Wyprowadzanie psów
@@ -2980,7 +2997,7 @@ de:Carsharing|Car-Sharing|Carsharing-Dienste|Auto teilen|Auto|Teilen|Fahrgemeins
 el:Παραχώρηση αυτοκινήτου
 es:Compartir coche
 fi:Autojen yhteiskäyttö
-fr:Car Sharing
+fr:Station d'autopartage|auto-partage
 hu:Gépjárműmegosztás
 id:Berbagi mobil
 it:Car Sharing
@@ -3235,40 +3252,6 @@ sk:Vysoká škola
 sw:Chuo
 fa:دانشگاه
 
-amenity-drinking_water
-en:4Drinking Water|U+1F6B0
-ru:4Питьевой фонтан
-bg:вода|фонтан|чешма
-ar:مياه شرب
-cs:4Pitná voda
-da:3Vand|4drikkevand
-nl:4Drinkwater
-fi:Juomavesi
-fr:4Eau potable
-de:4Trinkwasser|Brunnen
-hu:4Ivóvíz
-id:Air minum
-it:4Acqua potabile
-ja:1水飲み場|飲料水|飲水|水
-ko:음수대|식수|분수식 물마시는 곳
-nb:Drikkevann
-pl:4Picie wody|woda|picie
-pt:Água potável|bebedouro|bebedoiro
-pt-BR:Água potável|bebedouro
-ro:Apă de băut
-es:4Agua potable|Fuente de agua potable|Fuente
-sv:4Dricksvatten
-th:4น้ำดื่ม
-tr:4Içme suyu
-uk:4Питна вода
-vi:Nước uống
-zh-Hans:1饮用水
-zh-Hant:1飲用水|飲水機|可喝的水|2飲水設施|喝水|口渴
-el:Πόσιμο νερό
-sk:4Pitná voda
-sw:Maji ya kunywa
-fa:اب اشامیدنی
-
 amenity-fire_station
 en:Fire Station|U+1F692
 ru:Пожарная часть|Пожарная станция|Пожарные
@@ -3306,7 +3289,7 @@ fa:ایستگاه اتش نشانی
 amenity-fountain
 en:Fountain|U+26F2
 ru:Фонтан
-bg:фонтан|вода
+bg:фонтан
 ar:نافورة
 cs:Kašna|fontána
 da:3Springvand|fontæne
@@ -3473,7 +3456,7 @@ cs:Lékařská ordinace|Klinika|nemocnice
 da:Lægekontor|lægehus|klinik|hospital
 nl:Huisartsenpost|Kliniek|huisarts|ziekenhuis|dokter
 fi:Lääkärin vastaanotto|Klinikka|sairaala
-fr:Cabinet médical|hôpital
+fr:Cabinet médical|docteur|hôpital
 de:Arztpraxis|Klinik|Krankenhaus
 hu:Rendelő|Klinika|orvosi rendelő|kórház
 id:Praktik dokter|Klinik|rumah sakit
@@ -3542,7 +3525,7 @@ el:Ιατρικό Εργαστήριο
 es:Laboratorio médico
 fa:ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ
 fi:Lääketieteellinen laboratorio
-fr:Laboratoire médical
+fr:Laboratoire médical|Laboratoire de biologie médicale|Laboratoire d'analyses médicales
 he:תיאופר הדבעמ
 hu:Orvosi laboratórium
 id:Laboratorium medis
@@ -3610,7 +3593,7 @@ cs:Školka|mateřská škola|dětská školka|mateřská školka
 da:4Børnehave
 nl:Kleuterschool
 fi:Päiväkoti
-fr:Maternelle|garderie
+fr:Maternelle|garderie|crèche|halte-garderie
 de:Kindergarten|Kinderkrippe|Krippe|Tagesstätte|Hort|Kinderbetreuung|Kinderbetreuungseinrichtung|Vorschule
 hu:Óvoda
 id:Taman kanak-kanak
@@ -3825,7 +3808,7 @@ bg:Поща
 ar:مكتب بريد
 da:3Postkontor|posthus
 nl:3Postkantoor
-fr:3comptoir postal
+fr:3comptoir postal|bureau de poste
 de:Postamt
 id:Kantor pos
 pl:Poczta|listy
@@ -4260,7 +4243,7 @@ cs:Přístřešek|úkryt
 da:Shelter|læskur|hytte
 nl:Beschutting
 fi:Turvapaikka
-fr:Refuge
+fr:Refuge|abri
 de:Schutzhütte|Schutzraum|Zivilschutz
 hu:Menedék
 id:Tempat penampungan
@@ -4833,7 +4816,7 @@ cs:Lokalita
 da:Lokalitet|sted
 nl:Plaats|streek|localiteit
 fi:Paikkakunta
-fr:Localité
+fr:Lieu-dit|Localité|hameau
 de:Örtlichkeit|Lokalität|Region|Ort
 hu:Dűlő|Lakatlan hely
 id:Wilayah
@@ -4891,76 +4874,6 @@ el:Αγρόκτημα
 sk:Farma
 sw:Shamba
 fa:مزرعه
-
-# Skipped if empty name
-waterway-river|waterway-stream|waterway-riverbank
-en:River|stream|creek
-ru:Река
-bg:река|течение
-ar:نهر
-cs:Řeka
-da:Flod
-nl:Rivier|beek|stroom|waterloop
-fi:Joki
-fr:Rivière|fleuve
-de:Fluss|Strom
-hu:Folyó
-id:Sungai
-it:Fiume
-ja:河川|川|河|流域|河川流域
-ko:강
-nb:Elv
-pl:3Rzeka|strumień
-pt:Rio
-pt-BR:Rio|Ribeiro|Ribeira|Córrego|Riaxo
-ro:Râu
-es:Río
-sv:Flod
-th:แม่น้ำ
-tr:Nehir
-uk:Річка
-vi:Sông
-zh-Hans:河
-zh-Hant:1河流|河
-el:Ποταμός|ρυάκι
-sk:Rieka
-sw:Mto
-fa:رودخانه
-
-# Skipped if empty name
-waterway-canal
-en:Canal
-ru:Канал
-bg:канал
-ar:قناة
-cs:Kanál
-da:Kanal
-nl:Kanaal|waterloop|gracht
-fi:Kanaali
-fr:Canal
-de:Kanal
-hu:Csatorna
-id:Kanal
-it:Canale
-ja:1運河
-ko:운하
-nb:Kanal
-pl:4Kanał
-pt:Canal
-pt-BR:Canal
-ro:Canal
-es:Canal
-sv:Kanal
-th:คลอง
-tr:Kanal
-uk:Канал
-vi:Kênh
-zh-Hans:运河
-zh-Hant:1運河
-el:Κανάλι
-sk:Kanál
-sw:Mfereji
-fa:کانال اب
 
 highway-raceway
 en:Racetrack|U+1F3C1
@@ -5140,116 +5053,13 @@ fa:قله|کوه|کوهستان
 
 # Skipped if empty name
 natural-saddle|mountain_pass
-en:Saddle
-be:Седлавіна
+en:Saddle|Pass
+be:Седлавіна|Перавал
+fr:Col
 it:Sella
 ru:Седловина|Перевал
-uk:Сідловина
+uk:Сідловина|Перевал
 
-# Skipped if empty name
-natural-water|landuse-basin|landuse-reservoir
-en:Water
-ru:Водоём
-bg:вода|резервоар
-ar:مياه
-cs:Voda
-da:Vand
-nl:Water
-fi:Vesi
-fr:Eau
-de:Wasserfläche|Wasserbecken
-hu:Víz
-id:Air
-it:Bacino
-ja:1水地|池|貯水所
-ko:저수지|물
-nb:Vann
-pl:Woda|naturalna woda
-pt:Água
-pt-BR:Água|reservatório|represa
-ro:Apă
-es:Cuenca
-sv:Vatten
-th:น้ำ
-tr:Su
-uk:Водоймище|резервуар|басейн
-vi:Nước
-zh-Hans:水
-zh-Hant:1水庫|盆地|休閒|大自然
-el:Νερό
-sk:Voda
-sw:Maji
-fa:اب
-
-# Skipped if empty name
-natural-water-pond
-en:Pond|water
-ru:Пруд|водоём
-bg:локва|вода|езеро|басейн
-ar:بركة|مياه
-cs:Rybník|vodní nádrž|voda
-da:Dam|vandhul
-nl:Plas|water
-fi:Lampi|vesi
-fr:Étang|bassin|eau
-de:Teich|Wasserbecken
-hu:Tavacska|víz
-id:Kolam
-it:Stagno|bacino
-ja:池
-ko:연못이|연못
-nb:Dam|vann
-pl:3Staw|woda
-pt:Lagoa|água
-pt-BR:Lagoa|água
-ro:Heleșteu
-es:Estanque|agua
-sv:Damm|vatten
-th:1บ่อ|น้ำ
-tr:Gölet|su
-uk:Ставок|водойма
-vi:Ao
-zh-Hans:1池塘|水
-zh-Hant:潭|池塘
-el:Δεξαμενή|νερό
-sk:Rybník|vodná nádrž|voda
-sw:Bwawa
-fa:تالاب
-
-# Skipped if empty name
-natural-water-lake
-en:Lake|water
-ru:Озеро|водоём
-bg:Езеро|вода
-ar:بحيرة|مياه
-cs:Jezero|vodní nádrž|voda
-da:1Sø
-nl:Meer|water
-fi:Järvi|vesi
-fr:Lac|eau
-de:See|Wasserbecken
-hu:Tó|víz
-id:Danau
-it:Lago|bacino
-ja:湖|池
-ko:호수
-nb:Innsjø|vann
-pl:3Jezioro|woda|akwen|zbiornik
-pt:Lago|água
-pt-BR:Lago|água
-ro:Lac
-es:Lago|agua
-sv:Sjö|vatten
-th:2ทะเลสาบ|น้ำ
-tr:Göl|su
-uk:Озеро|водойма
-vi:Hồ
-zh-Hans:湖|水
-zh-Hant:1湖泊|湖
-el:Λίμνη|νερό
-sk:Jazero|vodná nádrž|voda
-sw:Ziwa
-fa:دریاچه
 
 # Skipped if empty name
 natural-strait
@@ -5427,7 +5237,7 @@ cs:Penzion|hostel|ubytovna
 da:Gæstehus|gæstehjem|hostel
 nl:Gasthuis|B&B|bed and breakfast|hostel
 fi:Majatalo
-fr:Maison d'hôtes|auberge de jeunesse
+fr:Maison d'hôtes|chambre d'hôtes
 de:Gästehaus|Wohnheim|Unterkunft|Herberge
 hu:Vendégház|panzió
 id:Wisma tamu
@@ -5494,7 +5304,7 @@ cs:4Ubytování v horách|Horská chata|horský hotel|hotel
 da:Bjerg logi|hotel
 nl:3Berghut|alpenhut|hotel
 fi:Vuorimajoitus|hotelli
-fr:Hôtel de montagne|hôtel|auberge de jeunesse|cabane alpine
+fr:Refuge de montagne|auberge de jeunesse|cabane alpine
 de:4Berghütte|Almhütte|Berghotel|Hotel|Unterkunft|Bergunterkunft|Herberge|Lager
 hu:Hegyi menedék|kabin|hotel|szálloda
 id:Penginapan di pegunungan|hotel
@@ -5914,11 +5724,12 @@ fa:پلیس
 
 amenity-police|@police
 en:U+1F693|U+1F46E|U+1F694|U+1F482|U+1F6A8
-ru:4милиция
+ru:4милиция|4полиция
 bg:Полиция|милиция
 ar:الشرطة
 cs:4bezpečnost
 de:Polizeiwache|Polizei
+fr:Poste de police|Commissariat
 it:Posto di polizia
 ja:1屯所|ポリス|交番|お巡りさん|おまわりさん|通報
 ko:보안대
@@ -6000,9 +5811,93 @@ sk:Záliv
 sw:Ghuba
 fa:خلیج
 
-natural-spring
+# A generic "Water" search shall result in all water sources with a likely drinkable water:
+#   amenity=drinking_water
+#   amenity=water_point
+#   man_made=water_tap
+#   man_made=water_well
+#   natural=spring
+#
+# Bigger bodies of water like rivers, lakes, ponds etc. should not be included in "Water" search
+# as they are quite big and obvious terrain features on the map anyway.
+#
+# A search for "Drinking/Potable water" shall result in amenity=drinking_water only.
+#
+@water
+en:3Water|water source
+ru:3Вода|источник воды
+be:3Вада
+bg:3Вода
+ar:ماء
+cs:3Voda
+da:3Vand
+de:3Wasser
+el:3Νερό
+es:3Agua
+fa:اب
+fi:3Vesi
+fr:3Eau|L'eau
+he:מים
+hu:3Víz
+id:3Air
+it:3Acqua
+ja:水
+ko:물
+nl:3Water
+nb:Vann
+pl:3Woda
+pt:2Água
+pt-BR:2Água
+ro:3Apă
+sk:3Voda
+sv:3Vatten
+sw:4Maji
+th:น้ำ
+tr:Su
+uk:3Вода|джерело води
+vi:Nước
+zh-Hans:水
+zh-Hant:水
+
+amenity-drinking_water|@water
+en:4Drinking Water|3Potable Water|U+1F6B0
+ru:3Питьевая вода
+be:3Пітная вада
+bg:3Питейна вода
+ar:مياه شرب
+cs:4Pitná voda
+da:4Drikkevand
+nl:4Drinkwater
+fi:Juomavesi
+fr:3Eau potable
+de:4Trinkwasser
+hu:4Ivóvíz
+id:Air minum
+it:3Acqua potabile
+ja:1水飲み場|飲料水|飲水
+ko:음수대|식수|분수식 물마시는 곳
+nb:4Drikkevann
+pl:4Picie wody|woda pitna
+pt:2Água potável|4bebedouro|bebedoiro
+pt-BR:2Água potável|4bebedouro
+ro:Apă de băut|apă potabilă
+es:3Agua potable|Fuente de agua potable
+sv:4Dricksvatten
+th:4น้ำดื่ม
+tr:4Içme suyu
+uk:3Питна вода
+vi:Nước uống
+zh-Hans:1饮用水
+zh-Hant:1飲用水|飲水機|可喝的水|2飲水設施|喝水|口渴
+el:4Πόσιμο νερό
+sk:4Pitná voda
+sw:4Maji ya kunywa
+fa:اب اشامیدنی
+
+natural-spring|@water
 en:Spring
-ru:Родник
+ru:Родник|ключ|источник
+be:Крыніца
 bg:Извор
 ar:ينبوع
 cs:Pramen
@@ -6025,7 +5920,7 @@ es:Manantial
 sv:Vattenkälla
 th:ฤดูใบไม้ผลิ
 tr:Pınar
-uk:Джерело|криниця
+uk:Джерело
 vi:Suối
 zh-Hans:海湾
 zh-Hant:1泉水|泉|玩水
@@ -6033,6 +5928,363 @@ el:Πηγή νερού
 sk:Prameň
 sw:Chemchemi
 fa:چشمه
+
+man_made-water_well|@water
+en:Water Well
+ru:Колодец|скважина
+be:Калодзеж|студня
+bg:Кладенец
+ar:بئر ماء
+cs:Studna
+da:Brønd
+nl:Waterbron
+fi:Kaivo
+fr:Puits à eau
+de:Brunnen
+hu:Kút
+id:Sumur air
+it:Pozzo d'acqua
+ja:井戸
+ko:우물
+nb:Brønn
+pl:Studnia
+pt:Poço de água
+pt-BR:Poço de água
+ro:Puț de apă
+es:Pozo
+sv:Brunn
+th:บ่อน้ำ
+tr:Puits à eau
+uk:Криниця
+vi:Giếng Nước
+zh-Hans:水井
+zh-Hant:水井
+el:Πηγάδι νερού
+sk:Studňa
+fa:چاه اب
+
+amenity-water_point|@water
+en:Water Point|water for rv|water for campervan|water for caravan
+ru:Заправка водой|вода для трейлера|вода для дома на колёсах
+be:Запраўка вадой|вада для каравану
+bg:водна точка|вода за каравана
+ar:نقطة مائية|الماء للقافلة
+cs:Vodní zdroj|voda pro karavanu
+da:Vandstation
+de:Wasseranschluss
+el:Παροχή νερού
+es:Fuente de agua|agua para caravana
+fi:Vesipiste
+fr:Point d’eau|eau pour caravane
+hu:Vízvételi pont
+he:מים לקרון
+id:Titik Air
+it:Distributore acqua|acqua per la roulotte
+ja:給水所
+ko:급수장
+nb:Vannpunkt
+nl:Waterpunt
+pl:Ujęcie wody
+pt:Ponto de água|Água para Caravana
+pt-BR:Ponto de água|Água para Caravana
+ro:Punct de alimentare cu apă
+sk:Voda pre karavan
+sv:Vattenpost
+sw:Kituo cha Maji
+th:จุดเติมน้ำ
+tr:Su Noktası
+uk:Заправка водою|вода для каравану
+vi:Điểm cấp nước
+zh-Hans:取水点
+zh-Hant:飲水站
+fa:شیر آب قابل شرب
+
+man_made-water_tap|@water
+en:Water Tap
+ru:Водопроводный кран
+be:Вадаправодны кран
+bg:кран за вода|чешмяна вода
+ar:حنفية مياه
+cs:Vodovodní kohoutek
+da:Vandhane
+de:Wasserhahn
+el:Βρύση νερού
+es:Toma de agua
+fi:Vesihana
+fr:Robinet d'eau|point d'eau
+hu:Vízcsap
+id:Keran Air
+it:Rubinetto dell'acqua
+ja:給水栓
+ko:수도꼭지|수마개
+nb:Vannkran
+nl:Waterkraan
+pl:Dotknięcie wody
+pt:Torneira de água
+pt-BR:Torneira de água
+ro:Robinet cu apă
+sk:Vodovodný kohútik
+sv:Vattenkran
+sw:Bomba la Maji
+th:ก๊อกน้ำ
+tr:Çeşme Suyu|su musluğu
+uk:Водопровідний кран
+vi:Vòi nước
+zh-Hans:水龙头
+zh-Hant:水龍頭
+fa:شیراب
+
+# Do not add the "water" search term,
+# use terms like at https://www.wikidata.org/wiki/Q15324#sitelinks-wikipedia
+#
+# Bigger bodies of water like lakes, ponds, rivers etc. should not be included in "water" search
+# as they are quite big and obvious terrain features on the map anyway.
+@waterbody
+en:Water body|water surface
+ru:Водоём
+ar:مسطح مائي
+be:Вадаём
+bg:Воден басейн
+cs:Vodní plocha
+da:Vandmasse
+de:Wasserfläche|Gewässer
+es:Cuerpo de agua
+fa:پهنه آبی
+fi:Vesimuodostuma
+fr:Étendue d'eau
+he:גוף מים
+id:Perairan
+ja:水地
+ko:수역
+nl:Waterlichaam
+nb:Vassmasse
+pl:Akwen
+pt:Corpo de água
+pt-BR:Corpo de água
+th:แหล่งน้ำ
+uk:Водоймище|водойма
+vi:Thủy vực
+zh-Hans:水體
+zh-Hant:水體
+
+natural-water|@waterbody
+
+# Do not add the "water" search term
+natural-water-basin|landuse-basin|@waterbody
+en:Basin
+be:Рэзервуар
+ru:Резервуар
+bg:Резервоар
+ar:حوض المياه
+cs:Vodní nádrž
+da:Vandbassin
+de:Wasserbecken
+el:Μια λεκάνη νερού
+es:Cuenca
+fa:حوضه آب
+fi:Vesisäiliö
+fr:bassin|réservoir
+he:אגן מים
+hu:Vízgyűjtő
+id:Sebuah baskom air
+it:Bacino d'acqua
+ja:水地|貯水所
+ko:저수지
+nl:Waterbassin
+nb:Vannvask
+pl:Basen wodny|zbiornik
+pt:Reservatório
+pt-BR:Reservatório
+ro:Bazin de apă
+ru:Водный бассейн
+sk:Vodná nádrž
+sv:Vattenbassäng
+sw:Bonde la Maji
+th:อ่างน้ำ
+tr:Bir su havzası
+uk:Резервуар|басейн
+vi:Một chậu nước
+zh-Hans:水盆地
+zh-Hant:水庫|盆地
+
+# Do not add the "water" search term
+natural-water-pond|@waterbody
+en:Pond
+ru:Пруд
+be:Сажалка
+bg:локва|езерце|басейн
+ar:بركة|مياه
+cs:Rybník
+da:Dam|vandhul
+nl:Plas
+fi:Lampi
+fr:Étang|bassin
+de:Teich|Wasserbecken
+hu:Tavacska
+id:Kolam
+it:Stagno|bacino
+ja:池
+ko:연못이|연못
+nb:Dam
+pl:3Staw
+pt:Lagoa
+pt-BR:Lagoa
+ro:Heleșteu
+es:Estanque
+sv:Damm
+th:1บ่อ|น้ำ
+tr:Gölet
+uk:Ставок
+vi:Ao
+zh-Hans:1池塘
+zh-Hant:潭|池塘
+el:Δεξαμενή
+sk:Rybník
+sw:Bwawa
+fa:تالاب
+
+# Do not add the "water" search term
+natural-water-lake|@waterbody
+en:Lake
+ru:Озеро
+be:Возера
+bg:Езеро
+ar:بحيرة|مياه
+cs:Jezero
+da:1Sø
+nl:Meer
+fi:Järvi
+fr:Lac
+de:See|Wasserbecken
+hu:Tó
+id:Danau
+it:Lago|bacino
+ja:湖|池
+ko:호수
+nb:Innsjø
+pl:Jezioro
+pt:Lago
+pt-BR:Lago
+ro:Lac
+es:Lago
+sv:Sjö
+th:ทะเลสาบ
+tr:Göl
+uk:Озеро
+vi:Hồ
+zh-Hans:湖|水
+zh-Hant:湖泊|湖
+el:Λίμνη
+sk:Jazero
+sw:Ziwa
+fa:دریاچه
+
+# Do not add the "water" search term
+natural-water-reservoir|landuse-reservoir|@waterbody
+en:Reservoir
+ru:Водохранилище
+be:Вадасховішча
+ar:خزان
+bg:Резервоар
+cs:Nádrž
+da:Reservoir
+de:Reservoir
+el:Δεξαμενή
+es:Reservorio
+fa:مخزن
+fi:Säiliö
+fr:Réservoir
+he:מאגר
+hu:Rezervoár
+id:Waduk
+it:Serbatoio
+ja:貯水池
+ko:저수지
+nl:Reservoir
+nb:Reservoar
+pl:Zbiornik
+pt:Reservatório
+ro:Rezervor
+sk:Nádrž
+sv:Reservoar
+sw:Hifadhi
+th:อ่างเก็บน้ำ
+tr:Rezervuar
+uk:Водосховище
+vi:Hồ chứa
+zh-Hans:水库
+zh-Hant:水庫
+
+# Do not add the "water" search term
+waterway-river|waterway-stream|waterway-riverbank|natural-water-river
+en:River|stream|creek|brook
+ru:Река|ручей
+be:Рака|ручай
+bg:река|течение|рекичка
+ar:نهر
+cs:Řeka
+da:Flod
+nl:Rivier|beek|stroom|waterloop
+fi:Joki
+fr:Rivière|fleuve
+de:Fluss|Strom
+hu:Folyó
+id:Sungai
+it:Fiume
+ja:河川|川|河|流域|河川流域
+ko:강
+nb:Elv
+pl:3Rzeka|strumień
+pt:Rio
+pt-BR:Rio|Ribeiro|Ribeira|Córrego|Riaxo
+ro:Râu
+es:Río
+sv:Flod
+th:แม่น้ำ
+tr:Nehir
+uk:Річка|струмок
+vi:Sông
+zh-Hans:河
+zh-Hant:1河流|河
+el:Ποταμός|ρυάκι
+sk:Rieka
+sw:Mto
+fa:رودخانه
+
+# Do not add the "water" search term
+waterway-canal
+en:Canal
+ru:Канал
+bg:канал
+ar:قناة
+cs:Kanál
+da:Kanal
+nl:Kanaal|waterloop|gracht
+fi:Kanaali
+fr:Canal
+de:Kanal
+hu:Csatorna
+id:Kanal
+it:Canale
+ja:1運河
+ko:운하
+nb:Kanal
+pl:4Kanał
+pt:Canal
+pt-BR:Canal
+ro:Canal
+es:Canal
+sv:Kanal
+th:คลอง
+tr:Kanal
+uk:Канал
+vi:Kênh
+zh-Hans:运河
+zh-Hant:1運河
+el:Κανάλι
+sk:Kanál
+sw:Mfereji
+fa:کانال اب
 
 shop-car_repair
 en:3Car Repair Shop|4service station|auto|garage|U+1F527
@@ -6312,7 +6564,7 @@ cs:Pivovar
 da:Bryggeri
 nl:Brouwerij|bier|ambachtelijk bier|brouwhuis
 fi:Panimo
-fr:Brasserie
+fr:Brasserie artisanale|Brasseur
 de:Brauerei|Brauhaus|Hausbrauerei|Bier|Bierausschank|Hausbräu
 hu:Sörfőzde|sör
 id:Toko minuman
@@ -6704,7 +6956,7 @@ sk:3Internet
 sw:Intaneti
 fa:اینترنت
 
-natural-beach|leisure-beach_resort
+natural-beach|natural-beach-sand|natural-beach-gravel|leisure-beach_resort
 en:Beach|U+1F459
 ru:Пляж
 bg:Плаж
@@ -6909,7 +7161,7 @@ cs:Chemické čištění|čistírna
 da:Renseri|vaskeri
 nl:Stomerij|chemisch reinigen|droogkuis|wassen|stomen
 fi:Kuivapesula|pesula
-fr:Nettoyage à sec|Lavage
+fr:Nettoyage à sec|Pressing|Lavage
 de:Chemische Reinigung|Reinigung
 hu:Ruhatisztító|vegytisztító|patyolat|tisztító
 id:Cuci Kering|kering
@@ -7268,38 +7520,6 @@ el:Σάουνα
 sk:Sauna
 fa:سونا
 
-man_made-water_well
-en:Water Well
-ru:Колодец
-bg:Кладенец
-ar:بئر ماء
-cs:Studna
-da:Brønd
-nl:Waterbron
-fi:Kaivo
-fr:Puits à eau
-de:Brunnen
-hu:Kút
-id:Sumur air
-it:Pozzo d'acqua
-ja:井戸
-ko:우물
-nb:Brønn
-pl:Studnia
-pt:Poço de água
-pt-BR:Poço de água
-ro:Puț de apă
-es:Pozo
-sv:Brunn
-th:บ่อน้ำ
-tr:Puits à eau
-uk:Криниця
-vi:Giếng Nước
-zh-Hans:水井
-zh-Hant:水井
-el:Πηγάδι νερού
-sk:Studňa
-fa:چاه اب
 
 shop-car_repair-tyres|shop-car_repair
 en:Tyre Repair|tyre|puncture repair|tyre puncture repair|flat tyre repair|tyre replacement
@@ -7513,7 +7733,7 @@ cs:Soud
 da:Domhus|retsbygning
 nl:Rechtban|gerechtsgebouw
 fi:Oikeustalo
-fr:Palais de justice
+fr:Tribunal|Palais de justice
 de:Justizgebäude|Gerichtsgebäude
 hu:Bíróság
 id:Gedung pengadilan
@@ -7846,7 +8066,7 @@ cs:Vinařství
 da:Vinhandel
 nl:Slijterij|Wijn
 fi:Alkoholimyymälä
-fr:Hors licence
+fr:Cave à vins|Caviste|Magasin de vins
 de:Wein- und Spirituosengeschäft|Weinladen
 hu:Borkereskedés
 id:Toko anggur
@@ -7914,7 +8134,7 @@ cs:Chalet|Horská chata
 da:Hytte
 nl:Chalet
 fi:Alppimaja
-fr:Chalet
+fr:Chalet|Meublé de tourisme
 de:Hütte
 hu:Nyaralóház|Kulcsosház
 id:Chalet
@@ -8278,7 +8498,7 @@ cs:Jeskyně
 da:Hule
 nl:Grot
 fi:Luola
-fr:Cave
+fr:Grotte
 de:Höhle
 hu:Barlang
 id:Gua
@@ -8380,7 +8600,7 @@ cs:Realitní makléř
 da:Ejendomsmægler
 nl:Makelaar
 fi:Kiinteistönvälittäjä
-fr:Agent immobilier
+fr:Agence immobilière|agent immobilier
 de:Immobilienmakler
 hu:Ingatlaniroda
 id:Agen ril estat
@@ -8446,7 +8666,7 @@ cs:Knihovna|Směnárna knih
 da:Bog udveksling
 nl:Boekenkast|Boekuitwisseling
 fi:Kirjahylly|Kirjakauppa
-fr:Bibliothèque
+fr:Microbibliothèque|boîte à livres
 de:Bücherregal|Büchertausch|Bücherschrank
 hu:Nyilvános könyvespolc|könyvcsere
 id:Rak Buku|Bursa Buku
@@ -8511,7 +8731,7 @@ cs:Střelnice
 da:Skydebane
 nl:Schietbaan
 fi:Ampumarata
-fr:Centre de tir
+fr:Stand de tir|Centre de tir
 de:Schießanlage
 hu:Lőtér
 id:Lapangan tembak
@@ -8779,7 +8999,7 @@ de:Internetcafé
 el:Καφετέρια με Ίντερνετ
 es:Cibercafé
 fi:Internetkahvila
-fr:Internet café
+fr:Cybercafé
 hu:Internetkávézó
 id:Kafe Internet
 it:Internet Cafe
@@ -8938,40 +9158,6 @@ zh-Hans:淋浴
 zh-Hant:淋浴間
 fa:حمام
 
-amenity-water_point
-en:Water Point
-ru:Выдача питьевой воды
-bg:Питейна вода|доставка
-ar:نقطة مائية
-cs:Vodní zdroj
-da:Vandstation
-de:Wasseranschluss
-el:Παροχή νερού
-es:Fuente de agua potable
-fi:Vesipiste
-fr:Point d’eau
-hu:Vízvételi pont
-id:Titik Air
-it:Distributore acqua
-ja:給水所
-ko:급수장
-nb:Vannpunkt
-nl:Waterpunt
-pl:Ujęcie wody
-pt:Ponto de água
-pt-BR:Ponto de água
-ro:Punct de alimentare cu apă
-sk:Voda
-sv:Vattenpost
-sw:Kituo cha Maji
-th:จุดเติมน้ำ
-tr:Su Noktası
-uk:Пункт постачання води
-vi:Điểm cấp nước
-zh-Hans:取水点
-zh-Hant:飲水站
-fa:شیر آب قابل شرب
-
 emergency-defibrillator
 en:Defibrillator|AED
 ru:Дефибриллятор
@@ -8983,7 +9169,7 @@ de:Defibrillator
 el:Πρώτες βοήθειες|απινιδωτής
 es:Desfibrilador
 fi:Defibrillaattori
-fr:Défibrillateur
+fr:Défibrillateur|DAE
 hu:Defibrillátor
 id:Defibrilator
 it:Defibrillatore
@@ -9017,7 +9203,7 @@ de:Hydrant
 el:Πυροσβεστικός κρουνός
 es:Boca de incendio
 fi:Paloposti
-fr:Bouche d’incendie
+fr:Bouche d’incendie|borne d'incendie
 hu:Tűzcsap
 id:Keran Kebakaran
 it:Idrante
@@ -9041,7 +9227,7 @@ zh-Hant:消防栓
 fa:شیر آتش‌نشانی
 
 leisure-fitness_station
-en:Fitness Station
+en:Fitness Station|street workout
 ru:Спортивные снаряды
 bg:Спортно оборудване|фитнес
 ar:مركز لياقة
@@ -9074,39 +9260,6 @@ zh-Hans:健身驿站
 zh-Hant:健身房
 fa:پارک سلامت
 
-man_made-water_tap
-en:Water Tap
-ru:Колонка с водой
-bg:Чешма|вода
-ar:حنفية مياه
-cs:Vodovodní kohoutek
-da:Vandhane
-de:Wasserhahn
-el:Βρύση νερού
-es:Toma de agua
-fi:Vesihana
-fr:Robinet d'eau
-hu:Vízcsap
-id:Keran Air
-it:Rubinetto dell'acqua
-ja:給水栓
-ko:수도꼭지|수마개
-nb:Vannkran
-nl:Waterkraan
-pl:Woda pitna
-pt:Torneira de água
-pt-BR:Torneira de água
-ro:Robinet cu apă
-sk:Vodovodný kohútik
-sv:Vattenkran
-sw:Bomba la Maji
-th:ก๊อกน้ำ
-tr:Çeşme Suyu
-uk:Водопровідний кран
-vi:Vòi nước
-zh-Hans:水龙头
-zh-Hant:水龍頭
-fa:شیراب
 
 office-insurance
 en:Insurance Office
@@ -9154,7 +9307,7 @@ de:Büro einer Nichtregierungsorganisation
 el:Γραφείο ΜΚΟ
 es:Sede de ONG
 fi:Valtioista riippumattoman järjestön toimisto
-fr:Bureau ONG
+fr:Bureau d'ONG|organisation non gouvernementale
 hu:Civil szervezet irodája
 id:Kantor LSM
 it:Sede ONG
@@ -9530,7 +9683,7 @@ de:Wildnishütte
 el:Καλύβα|αγροικία
 es:Cabaña
 fi:Autiotupa
-fr:Cabane sauvage
+fr:Refuge non gardé|Refuge-bivouac
 hu:Menedékház
 id:Pondok Alam Liar
 it:Rifugio
@@ -9558,6 +9711,8 @@ en:Gallery|museum
 ru:Галерея|музей|картины|картинная галерея
 bg:Галерия|музей|изложба|туризъм|картини
 de:Galerie|Museum
+es:Galería de arte|museo
+fr:Galerie d'art|musée d'art
 ko:갤러리|박물관
 nl:Galerij|museum
 pl:Galeria|muzeum

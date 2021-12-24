@@ -720,8 +720,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87C91DBE4F4900E5E7DC /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -731,7 +729,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/glm/",
-					"$(OMIM_ROOT)/3party/freetype/include",
+					"$(OMIM_ROOT)/3party/freetype",
+					"$(OMIM_ROOT)/3party/freetype/freetype/include",
 					"$(OMIM_ROOT)/3party/expat/lib",
 					"$(OMIM_ROOT)/3party/icu",
 					"$(OMIM_ROOT)/3party/icu/icu/icu4c/source/common",
@@ -746,7 +745,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87CA1DBE4F4900E5E7DC /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					UCONFIG_USE_LOCAL,
@@ -754,7 +752,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/glm/",
-					"$(OMIM_ROOT)/3party/freetype/include",
+					"$(OMIM_ROOT)/3party/freetype",
+					"$(OMIM_ROOT)/3party/freetype/freetype/include",
 					"$(OMIM_ROOT)/3party/expat/lib",
 					"$(OMIM_ROOT)/3party/icu",
 					"$(OMIM_ROOT)/3party/icu/icu/icu4c/source/common",

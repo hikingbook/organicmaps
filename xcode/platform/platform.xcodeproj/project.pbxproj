@@ -605,7 +605,7 @@
 		675343701A3F5CF500A0A8C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					675340E81C58C496002CF0D9 = {
 						CreatedOnToolsVersion = 7.2;
@@ -759,16 +759,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F558331DBF273C00A4FC11 /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = (
 					platform_mac.mm,
 					secure_storage_qt.cpp,
 					platform_qt.cpp,
+					"wifi_*",
 				);
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = (
 					platform_mac.mm,
 					secure_storage_qt.cpp,
 					platform_qt.cpp,
+					"wifi_*",
 				);
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = (
 					"ios_*",
@@ -824,16 +825,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F558341DBF273C00A4FC11 /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = (
 					platform_mac.mm,
 					secure_storage_qt.cpp,
 					platform_qt.cpp,
+					"wifi_*",
 				);
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = (
 					platform_mac.mm,
 					secure_storage_qt.cpp,
 					platform_qt.cpp,
+					"wifi_*",
 				);
 				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = (
 					"ios_*",
@@ -918,6 +920,7 @@
 		678338931C6DE54700FD6263 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.platform_tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -926,6 +929,7 @@
 		678338941C6DE54700FD6263 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.platform_tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
