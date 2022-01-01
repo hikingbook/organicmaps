@@ -21,6 +21,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.AndroidRuntimeException;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -733,7 +734,7 @@ public class Utils
 
     String key = "type." + type.replace('-', '.')
                                .replace(':', '_');
-    return getLocalizedFeatureByKey(context, key);
+    return getLocalizedFeatureByKey(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(), key);
   }
 
   @NonNull

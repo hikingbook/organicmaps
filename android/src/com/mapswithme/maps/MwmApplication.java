@@ -96,8 +96,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   @NonNull
   public static Application from(@NonNull Context context)
   {
-    return OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
-//    return OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication();
+    return (Application) OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
 //    return (MwmApplication) context.getApplicationContext();
   }
 

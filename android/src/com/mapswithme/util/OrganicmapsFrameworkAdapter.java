@@ -81,7 +81,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public Boolean isMwmApplication() {
-        return (application instanceof MwmApplication);
+        return (this.application instanceof MwmApplication);
     }
 
     public void setApplicationID(String applicationID) {
