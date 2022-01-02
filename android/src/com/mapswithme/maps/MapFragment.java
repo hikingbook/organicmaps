@@ -125,9 +125,9 @@ public class MapFragment extends BaseMwmFragment
     int marginX = UiUtils.dimen(context, R.dimen.margin_compass) + navPadding;
     int marginY = UiUtils.dimen(context, R.dimen.margin_compass_top) + navPadding;
     nativeSetupWidget(WIDGET_COMPASS,
-                      mWidth - marginX,
-                      offsetY + marginY,
-                      ANCHOR_CENTER);
+            marginX,
+            mHeight - UiUtils.dimen(context, R.dimen.margin_ruler_bottom)*2 - marginY + offsetY,
+            ANCHOR_CENTER);
     if (forceRedraw && mSurfaceCreated)
       nativeApplyWidgets();
   }
