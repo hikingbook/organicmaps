@@ -231,10 +231,12 @@ public:
     Wlan,
     RailwayStation,
     SubwayStation,
+    WheelchairAny,
     WheelchairYes,
     BarrierGate,
     Toll,
     BicycleOnedir,
+    Ferry,
     Count
   };
 
@@ -264,10 +266,13 @@ public:
         {Type::Wlan,               {"internet_access", "wlan"}},
         {Type::RailwayStation,     {"railway", "station"}},
         {Type::SubwayStation,      {"railway", "station", "subway"}},
+        {Type::WheelchairAny,      {"wheelchair"}},
         {Type::WheelchairYes,      {"wheelchair", "yes"}},
         {Type::BarrierGate,        {"barrier", "gate"}},
         {Type::Toll,               {"hwtag", "toll"}},
-        {Type::BicycleOnedir,      {"hwtag", "onedir_bicycle"}}};
+        {Type::BicycleOnedir,      {"hwtag", "onedir_bicycle"}},
+        {Type::Ferry,              {"route", "ferry"}},
+    };
 
     m_types.resize(static_cast<size_t>(Type::Count));
     for (auto const & kv : kTypeToName)
@@ -285,7 +290,15 @@ public:
     return t == Get(Type::Highway);
   }
 
-  bool IsRailwayStation(uint32_t t) const { return t == Get(Type::RailwayStation); }
+  bool IsFerry(uint32_t t) const
+  {
+    return t == Get(Type::Ferry);
+  }
+
+  bool IsRailwayStation(uint32_t t) const
+  {
+    return t == Get(Type::RailwayStation);
+  }
 
   bool IsSubwayStation(uint32_t t) const
   {
@@ -429,57 +442,46 @@ string DetermineSurface(OsmElement * p)
     return {};
 
   static base::StringIL pavedSurfaces = {
-      "paved",         "asphalt",  "cobblestone",    "cobblestone:flattened",
-      "sett",          "concrete", "concrete:lanes", "concrete:plates",
-      "paving_stones", "metal",    "wood",           "chipseal"};
+      "paved",         "asphalt",  "cobblestone",    "cobblestone:flattened", "unhewn_cobblestone",
+      "sett",          "concrete", "concrete:lanes", "concrete:plates",       "pebblestone",
+      "paving_stones", "metal",    "wood",           "chipseal",              "fine_gravel" };
 
-  static base::StringIL badSurfaces = {"cobblestone", "sett", "metal", "wood", "grass",
-                                       "gravel",      "mud",  "sand",  "snow", "woodchips"};
+  static base::StringIL badSurfaces = {"cobblestone", "sett",   "pebblestone"         "metal", "wood", "grass", "dirt",      "earth",
+                                       "fine_gravel", "gravel", "unhewn_cobblestone", "mud",   "sand",  "snow", "woodchips", "ground" };
   static base::StringIL badSmoothness = {
       "bad",           "very_bad",       "horrible",        "very_horrible", "impassable",
       "robust_wheels", "high_clearance", "off_road_wheels", "rough"};
+
+  static base::StringIL goodSmoothness = { "excellent", "good", "intermediate" };
+
+  auto const Has = [](base::StringIL const & il, std::string const & v)
+  {
+    return std::find(il.begin(), il.end(), v) != il.end();
+  };
 
   bool isPaved = false;
   bool isGood = true;
 
   if (!surface.empty())
-  {
-    for (auto const & value : pavedSurfaces)
-    {
-      if (surface == value)
-        isPaved = true;
-    }
-  }
+    isPaved = Has(pavedSurfaces, surface);
   else
-  {
-    isPaved = smoothness == "excellent" || smoothness == "good";
-  }
+    isPaved = !smoothness.empty() && Has(goodSmoothness, smoothness);
 
   if (!smoothness.empty())
   {
-    for (auto const & value : badSmoothness)
-    {
-      if (smoothness == value)
-        isGood = false;
-    }
+    if (smoothness == "intermediate" && !surface.empty())
+      isGood = !Has(badSurfaces, surface);
+    else
+      isGood = !Has(badSmoothness, smoothness);
+
+    /// @todo Hm, looks like some hack, but will not change it now ..
     if (smoothness == "bad" && !isPaved)
       isGood = true;
   }
   else if (surface_grade == "0" || surface_grade == "1")
-  {
     isGood = false;
-  }
-  else
-  {
-    if (surface_grade != "3")
-    {
-      for (auto const & value : badSurfaces)
-      {
-        if (surface == value)
-          isGood = false;
-      }
-    }
-  }
+  else if (surface_grade.empty() || surface_grade == "2")
+    isGood = surface.empty() || !Has(badSurfaces, surface);
 
   string psurface = isPaved ? "paved_" : "unpaved_";
   psurface += isGood ? "good" : "bad";
@@ -706,7 +708,8 @@ void PostprocessElement(OsmElement * p, FeatureBuilderParams & params)
   {
     // Delete "entrance" type for house number (use it only with refs).
     // Add "address" type if we have house number but no valid types.
-    if (params.PopExactType(types.Get(CachedTypes::Type::Entrance)))
+    if (params.PopExactType(types.Get(CachedTypes::Type::Entrance)) ||
+        (params.m_types.size() == 1 && params.IsTypeExist(types.Get(CachedTypes::Type::WheelchairAny), 1)))
     {
       params.name.Clear();
       // If we have address (house name or number), we should assign valid type.
@@ -725,16 +728,18 @@ void PostprocessElement(OsmElement * p, FeatureBuilderParams & params)
   bool highwayDone = false;
   bool subwayDone = false;
   bool railwayDone = false;
-
-  bool addOneway = false;
-  bool noOneway = false;
+  bool ferryDone = false;
 
   // Get a copy of source types, because we will modify params in the loop;
   FeatureBuilderParams::Types const vTypes = params.m_types;
+
   for (size_t i = 0; i < vTypes.size(); ++i)
   {
     if (!highwayDone && types.IsHighway(vTypes[i]))
     {
+      bool addOneway = false;
+      bool noOneway = false;
+
       TagProcessor(p).ApplyRules({
           {"oneway", "yes", [&addOneway] { addOneway = true; }},
           {"oneway", "1", [&addOneway] { addOneway = true; }},
@@ -785,6 +790,46 @@ void PostprocessElement(OsmElement * p, FeatureBuilderParams & params)
         params.AddType(types.Get(CachedTypes::Type::OneWay));
 
       highwayDone = true;
+    }
+
+    if (!ferryDone && types.IsFerry(vTypes[i]))
+    {
+      bool yesMotorFerry = false;
+      bool noMotorFerry = false;
+
+      TagProcessor(p).ApplyRules({
+          {"foot", "!", [&params] { params.AddType(types.Get(CachedTypes::Type::NoFoot)); }},
+          {"foot", "~", [&params] { params.AddType(types.Get(CachedTypes::Type::YesFoot)); }},
+          {"ferry", "footway", [&params] { params.AddType(types.Get(CachedTypes::Type::YesFoot)); }},
+          {"ferry", "pedestrian", [&params] { params.AddType(types.Get(CachedTypes::Type::YesFoot)); }},
+          {"ferry", "path", [&params] {
+             params.AddType(types.Get(CachedTypes::Type::YesFoot));
+             params.AddType(types.Get(CachedTypes::Type::YesBicycle));
+          }},
+
+          {"bicycle", "!", [&params] { params.AddType(types.Get(CachedTypes::Type::NoBicycle)); }},
+          {"bicycle", "~", [&params] { params.AddType(types.Get(CachedTypes::Type::YesBicycle)); }},
+
+          // Check for explicit no-tag.
+          {"motor_vehicle", "!", [&noMotorFerry] { noMotorFerry = true; }},
+          {"motorcar", "!", [&noMotorFerry] { noMotorFerry = true; }},
+
+          {"motor_vehicle", "yes", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"motorcar", "yes", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "trunk", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "primary", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "secondary", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "tertiary", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "residential", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "service", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "unclassified", [&yesMotorFerry] { yesMotorFerry = true; }},
+          {"ferry", "track", [&yesMotorFerry] { yesMotorFerry = true; }},
+      });
+
+      // Car routing for ferries should be explicitly defined.
+      params.AddType(types.Get(!noMotorFerry && yesMotorFerry ? CachedTypes::Type::YesCar : CachedTypes::Type::NoCar));
+
+      ferryDone = true;
     }
 
     /// @todo Probably, we can delete this processing because cities

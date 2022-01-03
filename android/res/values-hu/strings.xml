@@ -220,9 +220,13 @@
 	<string name="rate_the_app">Értékeld az alkalmazást</string>
 	<!-- Text in menu -->
 	<string name="help">Segítség</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Kérdések és válaszok</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Hogyan támogat minket?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Szerzői jog</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Hibabejelentés</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Az email kliens nincs beállítva. Kérjük, konfiguráld vagy próbálj meg valamilyen más módon kapcsolatba lépni velünk a %s email címen keresztül.</string>
@@ -557,14 +561,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Tekintse meg</string>
 	<string name="recent_track_background_dialog_message">A Organic Maps a geopozíciód használatával a háttérben rögzíti a legutóbb megtett utad.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Arány a Google Play-n</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Mondja el egy ismerősének</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Szia! Telepítsd a Organic Maps alkalmazást!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">A Organic Maps egy nélkülözhetetlen alkalmazás utazáshoz. A Organic Maps az OpenStreetMap adataira épül, és lehetővé teszi ezek szerkesztését.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Az Organic Maps egy ingyenes, nyílt forráskódú offline térképalkalmazás. Nincsenek hirdetések. Nincs nyomkövetés. Ha hibát lát a térképen, javítsa ki az OpenStreetMap segítségével. A projektet a lelkesek készítik szabadidőnkben, ezért szükségünk van az Ön visszajelzésére és támogatására.</string>
 	<string name="general_settings">Általános beállítások</string>
 	<!-- For the first routing -->
 	<string name="accept">Elfogadja</string>
@@ -606,7 +604,6 @@
 	<string name="placepage_remove_stop">Eltávolítja</string>
 	<string name="planning_route_remove_title">Húzza ide az eltávolításhoz</string>
 	<string name="placepage_add_stop">Hozzáad megállót</string>
-	<string name="preloader_viator_button">Tudjon meg többet</string>
 	<string name="start_from_my_position">Elkezdi innen:</string>
 	<string name="profile_authorization_error">Hoppá, volt egy hiba. Próbáljon meg újra bejelentkezni.</string>
 	<string name="dialog_error_storage_title">Tároló hozzáférési hiba</string>
@@ -637,7 +634,6 @@
 	<string name="please_wait">Kérlek várj…</string>
 	<string name="phone_number">Telefonszám</string>
 	<string name="profile">OpenStreetMap profil</string>
-	<string name="place_page_search_similar_hotel">Hasonló szálláshelyek keresése</string>
 	<string name="bookmarks_detect_title">Új fájlokat észleltek</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d fájlt találtunk. Látni fogja őket a megtérés után.</item>
@@ -852,7 +848,7 @@
 	<string name="type.amenity.doctors">Rendelő</string>
 	<string name="type.amenity.drinking_water">Ivóvíz</string>
 	<string name="type.amenity.driving_school">Autósiskola</string>
-	<string name="type.amenity.embassy">Nagykövetség</string>
+	<string name="type.office.diplomatic">Nagykövetség</string>
 	<string name="type.amenity.fast_food">Gyorsétterem</string>
 	<string name="type.amenity.ferry_terminal">Komp</string>
 	<string name="type.amenity.fire_station">Tűzoltóság</string>
@@ -931,6 +927,7 @@
 	<string name="type.barrier.gate">Kapu</string>
 	<string name="type.barrier.lift_gate">Sorompó</string>
 	<string name="type.barrier.stile">Átjáró</string>
+	<string name="type.barrier.swing_gate">Sorompó</string>
 	<string name="type.barrier.toll_booth">Díjfizető kapu</string>
 	<string name="type.boundary.national_park">Nemzeti park</string>
 	<string name="type.building">Épület</string>
@@ -1038,6 +1035,7 @@
 	<string name="type.emergency.fire_hydrant">Tűzcsap</string>
 	<string name="type.emergency.phone">Sürgősségi telefon</string>
 	<string name="type.entrance">Bejárat</string>
+	<string name="type.healthcare.laboratory">Orvosi laboratórium</string>
 	<string name="type.highway.bus_stop">Buszmegálló</string>
 	<string name="type.highway.construction">Útépítés</string>
 	<string name="type.highway.footway">Ösvény</string>
@@ -1149,7 +1147,7 @@
 	<string name="type.historic.ruins">Romok</string>
 	<string name="type.historic.ship">Túrizmus</string>
 	<string name="type.historic.tomb">Túrizmus</string>
-	<string name="type.landuse.basin">Víz</string>
+	<string name="type.landuse.basin">Vízgyűjtő</string>
 	<string name="type.landuse.cemetery">Temető</string>
 	<string name="type.landuse.cemetery.christian">Temető</string>
 	<string name="type.landuse.churchyard">Templomtér</string>
@@ -1199,15 +1197,18 @@
 	<string name="type.natural.geyser">Gejzír</string>
 	<string name="type.natural.glacier">Gleccser</string>
 	<string name="type.natural.grassland">Mező</string>
-	<string name="type.natural.lake">Tó</string>
+	<string name="type.natural.water.lake">Tó</string>
+	<string name="type.natural.water.pond">Tavacska</string>
+	<string name="type.natural.water.reservoir">Rezervoár</string>
+	<string name="type.natural.water.basin">Vízgyűjtő</string>
+	<string name="type.natural.water.river">Folyó</string>
 	<string name="type.natural.peak">Csúcs</string>
-	<string name="type.natural.pond">Tavacska</string>
 	<string name="type.natural.scrub">Cserjés</string>
 	<string name="type.natural.spring">Forrás</string>
 	<string name="type.natural.strait">Szoros</string>
 	<string name="type.natural.tree">Fa</string>
 	<string name="type.natural.volcano">Tűzhányó</string>
-	<string name="type.natural.water">Víz</string>
+	<string name="type.natural.water">Vizek</string>
 	<string name="type.natural.wetland">Vizes terület</string>
 	<string name="type.office">Hivatal</string>
 	<string name="type.office.company">Vállalati iroda</string>
@@ -1258,28 +1259,15 @@
 	<string name="type.railway.station.subway">Földalatti</string>
 	<string name="type.railway.station.subway.barcelona">Földalatti</string>
 	<string name="type.railway.station.subway.berlin">Földalatti</string>
-	<string name="type.railway.station.subway.blue">Földalatti</string>
-	<string name="type.railway.station.subway.brown">Földalatti</string>
-	<string name="type.railway.station.subway.darkgreen">Földalatti</string>
-	<string name="type.railway.station.subway.gray">Földalatti</string>
-	<string name="type.railway.station.subway.green">Földalatti</string>
-	<string name="type.railway.station.subway.grey">Földalatti</string>
 	<string name="type.railway.station.subway.kiev">Földalatti</string>
-	<string name="type.railway.station.subway.lightblue">Földalatti</string>
-	<string name="type.railway.station.subway.lightgreen">Földalatti</string>
 	<string name="type.railway.station.subway.london">Földalatti</string>
 	<string name="type.railway.station.subway.madrid">Földalatti</string>
 	<string name="type.railway.station.subway.minsk">Földalatti</string>
 	<string name="type.railway.station.subway.moscow">Földalatti</string>
 	<string name="type.railway.station.subway.newyork">Földalatti</string>
-	<string name="type.railway.station.subway.orange">Földalatti</string>
 	<string name="type.railway.station.subway.paris">Földalatti</string>
-	<string name="type.railway.station.subway.purple">Földalatti</string>
-	<string name="type.railway.station.subway.red">Földalatti</string>
 	<string name="type.railway.station.subway.roma">Földalatti</string>
 	<string name="type.railway.station.subway.spb">Földalatti</string>
-	<string name="type.railway.station.subway.violet">Földalatti</string>
-	<string name="type.railway.station.subway.yellow">Földalatti</string>
 	<string name="type.railway.subway_entrance">Földalatti bejárat</string>
 	<string name="type.railway.subway_entrance.barcelona">Földalatti</string>
 	<string name="type.railway.subway_entrance.berlin">Földalatti</string>

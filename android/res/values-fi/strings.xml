@@ -101,7 +101,7 @@
 	<!-- Search category for cafes, bars, restaurants -->
 	<string name="eat">Missä syödä</string>
 	<!-- Search category for grocery stores -->
-	<string name="food">Tuotteet</string>
+	<string name="food">Elintarvikkeet</string>
 	<!-- Search category -->
 	<string name="transport">Liikenne</string>
 	<!-- Search category -->
@@ -179,6 +179,10 @@
 	<!-- Length of track in cell that describes route -->
 	<string name="length">Pituus</string>
 	<string name="share_my_location">Jaa sijaintini</string>
+	<!-- Settings general group in settings screen -->
+	<string name="prefs_group_general">Yleiset asetukset</string>
+	<!-- Settings information group in settings screen -->
+	<string name="prefs_group_information">Tietoja</string>
 	<string name="prefs_group_route">Navigaatio</string>
 	<string name="pref_zoom_title">Zoomauspainikkeet</string>
 	<string name="pref_zoom_summary">Näytä ruudulla</string>
@@ -222,9 +226,13 @@
 	<string name="rate_the_app">Arvioi sovellus</string>
 	<!-- Text in menu -->
 	<string name="help">Ohje</string>
-	<!-- Text in menu -->
-	<string name="copyright">Copyright</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Kysymykset ja vastaukset</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Kuinka tukea meitä?</string>
+	<!-- Button in the main Help dialog -->
+	<string name="copyright">Tekijänoikeudet</string>
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Ilmoita virheestä</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Sähköpostisovellusta ei ole asetettu. Ole hyvä ja määritä sähköpostiasetukset tai ota meihin yhteyttä toista kautta osoitteessa %s</string>
@@ -560,14 +568,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Tarkastele</string>
 	<string name="recent_track_background_dialog_message">MAPS.SE käyttää taustalla geosijaintia sinun viimeisen matkareitin tallentamiseksi.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Arvioi Google Playssa</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Kerro kaverille</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Hei, asenna Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps on ehdoton offline-sovellus matkoja varten. Organic Maps perustuu OpenStreetMap-dataan ja sallii sen muokkauksen.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps on ilmainen ja avoimen lähdekoodin offline-karttasovellus. Ei mainoksia. Ei seurantaa. Jos näet virheen kartalla, korjaa se OpenStreetMapissa. Hankkeen ovat luoneet harrastajat vapaa-ajallamme, joten tarvitsemme palautettasi ja tukeasi.</string>
 	<string name="general_settings">Yleiset asetukset</string>
 	<!-- For the first routing -->
 	<string name="accept">Hyväksy</string>
@@ -609,7 +611,6 @@
 	<string name="placepage_remove_stop">Poista</string>
 	<string name="planning_route_remove_title">Vedä tähän poistaaksesi</string>
 	<string name="placepage_add_stop">Lisää pysähdys</string>
-	<string name="preloader_viator_button">Lisätietoja</string>
 	<string name="start_from_my_position">Aloita kohdasta</string>
 	<string name="profile_authorization_error">Tapahtui virhe. Yritä kirjautua sisään uudelleen.</string>
 	<string name="dialog_error_storage_title">Ongelma tallennustilan käyttämisessä</string>
@@ -624,6 +625,8 @@
 	  <item quantity="other">%d kirjanmerkkiä</item>
 	</plurals>
 	<string name="bookmarks_create_new_group">Luo uusi luettelo</string>
+	<!-- Bookmark categories screen -->
+	<string name="bookmarks_import">Tuo kirjamerkit</string>
 	<string name="downloader_hide_screen">Piilota näyttö</string>
 	<string name="downloader_percent">%1$s (%2$s / %3$s)</string>
 	<string name="downloader_process">Ladataan %s…</string>
@@ -634,13 +637,12 @@
 	<string name="bookmarks_error_title_empty_list_name">Nimi ei voinut olla tyhjä</string>
 	<string name="bookmarks_error_message_empty_list_name">Anna luettelon nimi</string>
 	<string name="bookmarks_new_list_hint">Uusi lista</string>
-	<string name="bookmarks_error_title_list_name_already_taken">Tämä nimi on jo otettu</string>
+	<string name="bookmarks_error_title_list_name_already_taken">Nimi on jo käytössä</string>
 	<string name="bookmarks_error_message_list_name_already_taken">Valitse toinen nimi</string>
 	<string name="bookmarks_error_title_list_name_too_long">Tämä nimi on liian pitkä</string>
 	<string name="please_wait">Odota…</string>
 	<string name="phone_number">Puhelinnumero</string>
 	<string name="profile">OpenStreetMap-profiili</string>
-	<string name="place_page_search_similar_hotel">Etsi samanlaisia ​​hotelleja</string>
 	<string name="bookmarks_detect_title">Uusia tiedostoja havaittiin</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d tiedosto löydettiin. Näet sen muunnoksen jälkeen.</item>
@@ -662,14 +664,14 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d radat</item>
 	</plurals>
-	<string name="subtittle_opt_out">Seuranta-asetukset</string>
+	<string name="subtittle_opt_out">Paikannusasetukset</string>
 	<string name="crash_reports">Kaatumisraportti</string>
 	<string name="crash_reports_description">Me saatamme käyttää tietojasi parantaaksemme Organic Maps kokemusta. Muutokset alkavat vaikuttamaan kun käynnistät sovelluksen uudestaan.</string>
 	<string name="privacy_policy">Yksityisyyskäytäntö</string>
 	<string name="terms_of_use">Käyttöehdot</string>
 	<string name="button_layer_traffic">Liikenne</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Kartan tasot</string>
+	<string name="layers_title">Karttatasot</string>
 	<string name="subway_data_unavailable">Metrokartta ei ole saatavilla</string>
 	<string name="bookmarks_empty_list_title">Lista on tyhjä</string>
 	<string name="bookmarks_empty_list_message">Lisätäksesi kirjanmerkin, paina kartasta ja sitten paina tähden kuvaa</string>
@@ -678,7 +680,7 @@
 	<string name="export_file">Viedä tiedosto</string>
 	<string name="list_settings">Listan asetukset</string>
 	<string name="delete_list">Poista lista</string>
-	<string name="hide_from_map">Piilottaa kartalta</string>
+	<string name="hide_from_map">Piilota kartalta</string>
 	<string name="public_access">Julkinen pääsy</string>
 	<string name="limited_access">Yksityinen pääsy</string>
 	<string name="bookmark_category_name">Kategoria</string>
@@ -731,7 +733,7 @@
 	<string name="dialog_routing_change_end_carplay">Reittiä ei ole mahdollista luoda loppupisteeseen. Valitse toinen</string>
 	<string name="dialog_routing_check_gps_carplay">Ei ole GPS-signaalia. Siirry avaralle alueelle</string>
 	<string name="dialog_routing_unable_locate_route_carplay">Reittiä ei ole mahdollista luoda. Valitse muut reittipisteet</string>
-	<string name="dialog_routing_download_files_carplay">Luodaksesi reitin lataa puutt. kartat</string>
+	<string name="dialog_routing_download_files_carplay">Luodaksesi reitin lataa puuttuvat kartat</string>
 	<string name="dialog_routing_system_error_carplay">On tapahtunut virhe. Käynnistä sovellus uudelleen</string>
 	<string name="dialog_routing_rebuild_from_current_location_carplay">Reitti luodaan nykyisestä sijainnista</string>
 	<string name="dialog_routing_rebuild_for_vehicle_carplay">Reitti muutetaan autoilijan reitiksi</string>
@@ -788,29 +790,32 @@
 	<string name="religious_places">Pyhät paikat</string>
 	<string name="select_list">Valitse luettelo</string>
 	<string name="transit_not_found">Metron reittiohjeet eivät ole vielä saatavilla tällä alueella</string>
-	<string name="dialog_pedestrian_route_is_long_header">Metroreittiä ei ole löytynyt</string>
+	<string name="dialog_pedestrian_route_is_long_header">Metroreittiä ei löytynyt</string>
 	<string name="dialog_pedestrian_route_is_long_message">Valitse reitin aloitus- tai loppupiste lähemmäksi metroasemaa</string>
-	<string name="button_layer_isolines">Korkeudet</string>
-	<string name="isolines_activation_error_dialog">Päivitä tai lataa haluamasi alueen kartta, voidaksesi käyttää korkeuslinjoja</string>
-	<string name="isolines_location_error_dialog">Korkeus linjat eivät ole vielä saatavilla tällä alueella</string>
+	<string name="button_layer_isolines">Maasto</string>
+	<string name="isolines_activation_error_dialog">Päivitä tai lataa haluamasi alueen kartta, voidaksesi käyttää korkeuskäyriä</string>
+	<string name="isolines_location_error_dialog">Korkeuskäyrät eivät ole vielä saatavilla tällä alueella</string>
 	<string name="elevation_profile_diff_level">Vaikeustaso</string>
 	<string name="elevation_profile_diff_level_easy">Helppo</string>
 	<string name="elevation_profile_diff_level_moderate">Kohtuullinen</string>
 	<string name="elevation_profile_diff_level_hard">Vaikea</string>
-	<string name="elevation_profile_ascent">Nosto</string>
-	<string name="elevation_profile_descent">Lasku</string>
+	<string name="elevation_profile_ascent">Nousua</string>
+	<string name="elevation_profile_descent">Laskua</string>
 	<string name="elevation_profile_minaltitude">Min. korkeus</string>
 	<string name="elevation_profile_maxaltitude">Maks. korkeus</string>
 	<string name="elevation_profile_difficulty">Vaikeus</string>
 	<string name="elevation_profile_distance">Etäisyys:</string>
 	<string name="elevation_profile_time">Aika:</string>
-	<string name="isolines_toast_zooms_1_10">Suurenna kartta nähdäksesi korkeuslinjat</string>
+	<string name="isolines_toast_zooms_1_10">Suurenna kartta nähdäksesi korkeuskäyrät</string>
 	<string name="downloader_updating_ios">Päivitys</string>
 	<string name="downloader_loading_ios">Lataus</string>
 	<string name="key_information_title">Avaintietoa</string>
-	<string name="enable_screen_sleep">Anna näytön nukkua</string>
+	<string name="download_map_title">Lataa maailmankartta</string>
+	<string name="connection_failure">Yhteysvirhe</string>
+	<string name="disconnect_usb_cable_title">Irrota USB-kaapeli</string>
+	<string name="enable_screen_sleep">Salli näytön lepotila</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Kun tämä asetus on käytössä, näytön annetaan nukkua käyttämättömyyden jälkeen.</string>
+	<string name="enable_screen_sleep_description">Kun tämä asetus on käytössä, näyttö menee lepotilaan käyttämättömyyden jälkeen.</string>
 	<!-- Autoupdate dialog on start -->
 	<string name="whats_new_auto_update_title">Päivitä ladatut kartat</string>
 	<!-- Autoupdate dialog on start -->
@@ -819,6 +824,12 @@
 	<string name="whats_new_auto_update_button_size">Päivitä (%s)</string>
 	<!-- Autoupdate dialog on start -->
 	<string name="whats_new_auto_update_button_later">Päivitä manuaalisesti myöhemmin</string>
+	<!-- Delete track button on track edit screen -->
+	<string name="placepage_delete_track_button">Poista reitti</string>
+	<!-- Placeholder for track name input on track edit screen -->
+	<string name="placepage_track_name_hint">Reitin nimi</string>
+	<!-- move track or bookmark from the list button text -->
+	<string name="move">Siirrä</string>
 	<!-- edit track screen title -->
 	<string name="track_title">Reitti</string>
 
@@ -854,7 +865,7 @@
 	<string name="type.amenity.doctors">Lääkärin vastaanotto</string>
 	<string name="type.amenity.drinking_water">Juomavesi</string>
 	<string name="type.amenity.driving_school">Autokoulu</string>
-	<string name="type.amenity.embassy">Suurlähetystö</string>
+	<string name="type.office.diplomatic">Suurlähetystö</string>
 	<string name="type.amenity.fast_food">Pikaruokala</string>
 	<string name="type.amenity.ferry_terminal">Lautta</string>
 	<string name="type.amenity.fire_station">Paloasema</string>
@@ -934,6 +945,7 @@
 	<string name="type.barrier.gate">Portti</string>
 	<string name="type.barrier.lift_gate">Puomi</string>
 	<string name="type.barrier.stile">Portaat</string>
+	<string name="type.barrier.swing_gate">Puomi</string>
 	<string name="type.barrier.toll_booth">Tietulliasema</string>
 	<string name="type.boundary.national_park">Kansallispuisto</string>
 	<string name="type.building">Rakennus</string>
@@ -1041,6 +1053,7 @@
 	<string name="type.emergency.fire_hydrant">Paloposti</string>
 	<string name="type.emergency.phone">Hätäpuhelin</string>
 	<string name="type.entrance">Sisäänkäynti</string>
+	<string name="type.healthcare.laboratory">Lääketieteellinen laboratorio</string>
 	<string name="type.highway.bus_stop">Bussipysäkki</string>
 	<string name="type.highway.construction">Rakenteilla oleva tie</string>
 	<string name="type.highway.footway">Polku</string>
@@ -1152,7 +1165,7 @@
 	<string name="type.historic.ruins">Rauniot</string>
 	<string name="type.historic.ship">Nähtävyydet</string>
 	<string name="type.historic.tomb">Nähtävyydet</string>
-	<string name="type.landuse.basin">Vesi</string>
+	<string name="type.landuse.basin">Vesisäiliö</string>
 	<string name="type.landuse.cemetery">Hautausmaa</string>
 	<string name="type.landuse.cemetery.christian">Hautausmaa</string>
 	<string name="type.landuse.churchyard">Kirkon piha</string>
@@ -1203,15 +1216,18 @@
 	<string name="type.natural.geyser">Geysir</string>
 	<string name="type.natural.glacier">Jäätikkö</string>
 	<string name="type.natural.grassland">Pelto</string>
-	<string name="type.natural.lake">Järvi</string>
+	<string name="type.natural.water.lake">Järvi</string>
+	<string name="type.natural.water.pond">Lampi</string>
+	<string name="type.natural.water.reservoir">Säiliö</string>
+	<string name="type.natural.water.basin">Vesisäiliö</string>
+	<string name="type.natural.water.river">Joki</string>
 	<string name="type.natural.peak">Huippu</string>
-	<string name="type.natural.pond">Lampi</string>
 	<string name="type.natural.scrub">Tiheiköt</string>
 	<string name="type.natural.spring">Lähde</string>
 	<string name="type.natural.strait">Salmi</string>
 	<string name="type.natural.tree">Puu</string>
 	<string name="type.natural.volcano">Tulivuori</string>
-	<string name="type.natural.water">Vesi</string>
+	<string name="type.natural.water">Vesimuodostuma</string>
 	<string name="type.natural.wetland">Suoperäinen seutu</string>
 	<string name="type.office">Toimisto</string>
 	<string name="type.office.company">Yhtiön toimisto</string>
@@ -1262,28 +1278,15 @@
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.barcelona">Metro</string>
 	<string name="type.railway.station.subway.berlin">Metro</string>
-	<string name="type.railway.station.subway.blue">Metro</string>
-	<string name="type.railway.station.subway.brown">Metro</string>
-	<string name="type.railway.station.subway.darkgreen">Metro</string>
-	<string name="type.railway.station.subway.gray">Metro</string>
-	<string name="type.railway.station.subway.green">Metro</string>
-	<string name="type.railway.station.subway.grey">Metro</string>
 	<string name="type.railway.station.subway.kiev">Metro</string>
-	<string name="type.railway.station.subway.lightblue">Metro</string>
-	<string name="type.railway.station.subway.lightgreen">Metro</string>
 	<string name="type.railway.station.subway.london">Metro</string>
 	<string name="type.railway.station.subway.madrid">Metro</string>
 	<string name="type.railway.station.subway.minsk">Metro</string>
 	<string name="type.railway.station.subway.moscow">Metro</string>
 	<string name="type.railway.station.subway.newyork">Metro</string>
-	<string name="type.railway.station.subway.orange">Metro</string>
 	<string name="type.railway.station.subway.paris">Metro</string>
-	<string name="type.railway.station.subway.purple">Metro</string>
-	<string name="type.railway.station.subway.red">Metro</string>
 	<string name="type.railway.station.subway.roma">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
-	<string name="type.railway.station.subway.violet">Metro</string>
-	<string name="type.railway.station.subway.yellow">Metro</string>
 	<string name="type.railway.subway_entrance">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.barcelona">Metro</string>
 	<string name="type.railway.subway_entrance.berlin">Metro</string>
@@ -1364,10 +1367,24 @@
 	<string name="type.shop.video">Videokauppa</string>
 	<string name="type.shop.video_games">Videopelikauppa</string>
 	<string name="type.shop.wine">Alkoholimyymälä</string>
+	<string name="type.sport">Urheilu</string>
+	<string name="type.sport.american_football">Amerikkalainen jalkapallo</string>
+	<string name="type.sport.archery">Jousiammunta</string>
 	<string name="type.sport.athletics">Yleisurheilu</string>
 	<string name="type.sport.basketball">Koripallo</string>
+	<string name="type.sport.bowls">Bowls</string>
+	<string name="type.sport.cricket">Kriketti</string>
+	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Hevosurheilu</string>
+	<string name="type.sport.golf">Golf</string>
+	<string name="type.sport.gymnastics">Voimistelu</string>
+	<string name="type.sport.handball">Käsipallo</string>
+	<string name="type.sport.shooting">Ammunta</string>
+	<string name="type.sport.skiing">Hiihto</string>
+	<string name="type.sport.soccer">Jalkapallo</string>
+	<string name="type.sport.swimming">Uinti</string>
 	<string name="type.sport.tennis">Tenniskenttä</string>
+	<string name="type.tourism">Turismi</string>
 	<string name="type.tourism.alpine_hut">Vuorimajoitus</string>
 	<string name="type.tourism.apartment">Loma-asunnot</string>
 	<string name="type.tourism.artwork">Taideteos</string>
@@ -1398,8 +1415,13 @@
 	<string name="type.tourism.viewpoint">Näköalatasanne</string>
 	<string name="type.tourism.wilderness_hut">Autiotupa</string>
 	<string name="type.tourism.zoo">Eläintarha</string>
+	<string name="type.traffic_calming.bump">Hidastetöyssy</string>
+	<string name="type.waterway">Vesiväylä</string>
 	<string name="type.waterway.canal">Kanaali</string>
 	<string name="type.waterway.canal.tunnel">Kanaali</string>
+	<string name="type.waterway.dam">Pato</string>
+	<string name="type.waterway.ditch">Oja</string>
+	<string name="type.waterway.dock">Telakka</string>
 	<string name="type.waterway.lock_gate">Kanavasulku</string>
 	<string name="type.waterway.river">Joki</string>
 	<string name="type.waterway.river.tunnel">Joki</string>
@@ -1409,8 +1431,18 @@
 	<string name="type.waterway.stream.intermittent">Joki</string>
 	<string name="type.waterway.stream.tunnel">Joki</string>
 	<string name="type.waterway.waterfall">Vesiputous</string>
+	<string name="type.wheelchair">Rullatuoli</string>
 	<string name="type.wheelchair.limited">Osittain varustettu vammaisille</string>
 	<string name="type.wheelchair.no">Ei varustettu vammaisille</string>
 	<string name="type.wheelchair.yes">Varustettu vammaisille</string>
+	<string name="type.piste_type.downhill">Laskettelurinne</string>
+	<string name="type.piste_type.nordic">Latu</string>
 	<string name="type.building_part">Rakennus</string>
+	<string name="type.area_highway.cycleway">Pyörätie</string>
+	<string name="type.area_highway.footway">Kävelytie</string>
+	<string name="type.area_highway.motorway">Moottoritie</string>
+	<string name="type.area_highway.path">Polku</string>
+	<string name="type.area_highway.pedestrian">Kävelykatu</string>
+	<string name="type.area_highway.residential">Katu</string>
+	<string name="type.area_highway.steps">Portaat</string>
 </resources>

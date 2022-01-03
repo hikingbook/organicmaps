@@ -26,17 +26,21 @@ buildscript {
     ext.googleFirebaseServicesEnabled = project.hasProperty('firebase') ?: googleFirebaseServicesDefault
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.1'
+        classpath 'com.android.tools.build:gradle:7.0.3'
 
         if (googleMobileServicesEnabled) {
+            println("Building with Google Mobile Services")
             classpath 'com.google.gms:google-services:4.3.5'
         } else {
+            println("Building without Google Services")
         }
 
         if (googleFirebaseServicesEnabled) {
+            println("Building with Google Firebase Services")
             classpath 'com.google.firebase:firebase-crashlytics-gradle:2.6.1'
             classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
         } else {
+            println("Building without Google Firebase Services")
         }
 
 //        classpath("com.github.triplet.gradle:play-publisher:3.6.0")
@@ -64,7 +68,6 @@ apply from: 'secure.properties'
 //apply plugin: 'ru.cian.huawei-publish'
 
 dependencies {
-
     implementation 'androidx.multidex:multidex:' + propMultiDexVersion
 
     // Google Mobile Services
@@ -112,15 +115,15 @@ def run(cmd) {
     return stdout.toString()
 }
 
-def getVersion() {
-    def time = Integer.parseInt(run(['git', 'log', '-1', '--format=%ct']).trim())
-    def cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH)
-    cal.setTimeInMillis((long) time * 1000)
-    def year = cal.get(Calendar.YEAR)
-    def month = cal.get(Calendar.MONTH) + 1
-    def day = cal.get(Calendar.DAY_OF_MONTH)
-    def date_of_last_commit = String.format("%04d-%02d-%02d", year, month, day)
-    def build = Integer.parseInt(run(['git', 'rev-list', '--count', '--after="' + date_of_last_commit + 'T00:00:00Z"', 'HEAD']).trim())
+//def getVersion() {
+//    def time = Integer.parseInt(run(['git', 'log', '-1', '--format=%ct']).trim())
+//    def cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH)
+//    cal.setTimeInMillis((long) time * 1000)
+//    def year = cal.get(Calendar.YEAR)
+//    def month = cal.get(Calendar.MONTH) + 1
+//    def day = cal.get(Calendar.DAY_OF_MONTH)
+//    def date_of_last_commit = String.format("%04d-%02d-%02d", year, month, day)
+//    def build = Integer.parseInt(run(['git', 'rev-list', '--count', '--after="' + date_of_last_commit + 'T00:00:00Z"', 'HEAD']).trim())
 
     // Use the last git commit date to generate the version code:
     // RR_yy_MM_dd_CC
@@ -132,15 +135,15 @@ def getVersion() {
     // 21_00_00_00_00 is the the greatest value Google Play allows for versionCode.
     // See https://developer.android.com/studio/publish/versioning for details.
 //    def versionCode = (year - 2000) * 1_00_00_00 + month * 1_00_00 + day * 1_00 + build
-    def versionCode = 1
+//    def versionCode = 1
 
     // Use the current date to generate the version name:
     // 2021.04.11-12-Google (-Google added by flavor)
 //    def versionName = String.format("%04d.%02d.%02d-%d", year, month, day, build)
-    def versionName = "1.0"
+//    def versionName = "1.0"
 
 //    return new Tuple2(versionCode, versionName)
-}
+//}
 
 def getCommitMessage() {
     return run(['git', '--no-pager', 'show', '-s', '--format=%s%n%n%b', 'HEAD']).trim()
@@ -165,9 +168,9 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         // Default package name is taken from the manifest and should be app.organicmaps
-        def ver = getVersion()
-        versionCode = 1
-        versionName = "1.0"
+//        def ver = getVersion()
+        versionCode 1
+        versionName "1.0"
 
 //        minSdkVersion propMinSdkVersion.toInteger()
         minSdkVersion 21
@@ -192,8 +195,32 @@ android {
                         '-Wno-extern-c-compat'
                 arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_static',
                         "-DOS=$osName", '-DSKIP_TESTS=ON', "-DUSE_PCH=$pchFlag"
-                targets 'mapswithme'
+                targets 'organicmaps'
             }
+        }
+
+        // Use, for example, -Parm32 gradle parameter to build only for armeabi-v7a.
+        ndk {
+            abiFilters = new HashSet<>()
+            if (project.hasProperty('arm32') || project.hasProperty('armeabi-v7a')) {
+                abiFilters.add('armeabi-v7a')
+            }
+            if (project.hasProperty('arm64') || project.hasProperty('arm64-v8a')) {
+                abiFilters.add('arm64-v8a')
+            }
+            if (project.hasProperty('x86')) {
+                abiFilters.add('x86')
+            }
+            if (project.hasProperty('x86_64') || project.hasProperty('x64')) {
+                abiFilters.add('x86_64')
+            }
+            if (abiFilters.isEmpty()) {
+                abiFilters.add('armeabi-v7a')
+                abiFilters.add('arm64-v8a')
+                // For the emulator, chromebooks and some Intel Atom devices.
+                abiFilters.add('x86_64')
+            }
+            println("Building for " + abiFilters + " archs.")
         }
 
         setProperty("archivesBaseName", appName.replaceAll("\\s", "") + "-" + defaultConfig.versionCode)
@@ -218,24 +245,25 @@ android {
         assets.srcDirs = ['assets']
         jniLibs.srcDirs = [android.getNdkDirectory().toString() + '/sources/third_party/vulkan/src/build-android/jniLibs']
     }
+
     flavorDimensions "default"
 
     productFlavors {
         // See getVersion()
 //        final int HUAWEI_VERSION_CODE_BASE = 01_00_00_00_00
-//        google {
-//            dimension "default"
-//            versionName = android.defaultConfig.versionName + '-Google'
-//            buildConfigField 'String', 'SUPPORT_MAIL', '"googleplay@organicmaps.app"'
-//            android.sourceSets.google.assets.srcDirs = ['flavors/world-enabled']
-//        }
-
-        web {
+        google {
             dimension "default"
-            versionName = android.defaultConfig.versionName + '-Web'
-            buildConfigField 'String', 'SUPPORT_MAIL', '"apk@organicmaps.app"'
-            android.sourceSets.web.assets.srcDirs = ['flavors/world-enabled']
+            versionName = android.defaultConfig.versionName + '-Google'
+            buildConfigField 'String', 'SUPPORT_MAIL', '"googleplay@organicmaps.app"'
+            android.sourceSets.google.assets.srcDirs = ['flavors/world-enabled']
         }
+
+//        web {
+//            dimension "default"
+//            versionName = android.defaultConfig.versionName + '-Web'
+//            buildConfigField 'String', 'SUPPORT_MAIL', '"apk@organicmaps.app"'
+////            android.sourceSets.web.assets.srcDirs = ['flavors/world-enabled']
+//        }
 
 //        fdroid {
 //            dimension "default"
@@ -261,6 +289,7 @@ android {
 
     splits.abi {
         boolean enabled = project.hasProperty('splitApk')
+        println ("Create separate apks: " + enabled)
         enable enabled
         reset()
         include 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64'
@@ -297,7 +326,6 @@ android {
         }
     }
 
-
     buildTypes {
         debug {
 //            applicationIdSuffix '.debug'   // Allows to install debug and release builds together
@@ -308,24 +336,6 @@ android {
 //      resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
             resValue 'string', 'app_name', project.ext.appName + ' ' + '(Debug)'
             ndk.debugSymbolLevel = 'SYMBOL_TABLE'
-
-            ndk {
-                abiFilters = new HashSet<>()
-                if (project.hasProperty('arm32') || project.hasProperty('armeabi-v7a')) {
-                    abiFilters.add('armeabi-v7a')
-                }
-                if (project.hasProperty('arm64') || project.hasProperty('arm64-v8a')) {
-                    abiFilters.add('arm64-v8a')
-                }
-                if (project.hasProperty('x86')) {
-                    abiFilters.add('x86')
-                }
-                if (abiFilters.isEmpty()) {
-                    abiFilters.add('armeabi-v7a')
-                    abiFilters.add('arm64-v8a')
-                    abiFilters.add('x86') // for emulator
-                }
-            }
 
 //            if (googleFirebaseServicesEnabled) {
 //                firebaseCrashlytics {
@@ -347,7 +357,7 @@ android {
             resValue 'string', 'app_name', project.ext.appName
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
+//                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
             if (googleFirebaseServicesEnabled) {
                 firebaseCrashlytics {
@@ -365,7 +375,7 @@ android {
             resValue 'string', 'app_name', project.ext.appName + ' ' + '(Beta)'
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
+//                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
             if (googleFirebaseServicesEnabled) {
                 firebaseCrashlytics {
@@ -382,7 +392,6 @@ android {
         }
     }
 
-
     externalNativeBuild {
         cmake {
             version "3.18.0+"
@@ -393,10 +402,6 @@ android {
 
     // We don't compress these extensions in assets/ because our random FileReader can't read zip-compressed files from apk.
     // TODO: Load all minor files via separate call to ReadAsString which can correctly handle compressed files in zip containers.
-//    androidResources {
-//        ignoreAssetsPattern '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
-//        noCompress 'txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv'
-//    }
     aaptOptions {
         ignoreAssetsPattern '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
         noCompress 'txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv'
@@ -407,27 +412,33 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
     packagingOptions {
-        exclude 'lib/armeabi-v7a/libVkLayer_khronos_validation.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_core_validation.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_threading.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_image.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_parameter_validation.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_object_tracker.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_swapchain.so'
-        exclude 'lib/armeabi-v7a/libVkLayer_unique_objects.so'
-
-        exclude 'lib/arm64-v8a/libVkLayer_khronos_validation.so'
-        exclude 'lib/arm64-v8a/libVkLayer_core_validation.so'
-        exclude 'lib/arm64-v8a/libVkLayer_threading.so'
-        exclude 'lib/arm64-v8a/libVkLayer_image.so'
-        exclude 'lib/arm64-v8a/libVkLayer_parameter_validation.so'
-        exclude 'lib/arm64-v8a/libVkLayer_object_tracker.so'
-        exclude 'lib/arm64-v8a/libVkLayer_swapchain.so'
-        exclude 'lib/arm64-v8a/libVkLayer_unique_objects.so'
+        exclude 'lib/**/libVkLayer_khronos_validation.so'
+        exclude 'lib/**/libVkLayer_core_validation.so'
+        exclude 'lib/**/libVkLayer_threading.so'
+        exclude 'lib/**/libVkLayer_image.so'
+        exclude 'lib/**/libVkLayer_parameter_validation.so'
+        exclude 'lib/**/libVkLayer_object_tracker.so'
+        exclude 'lib/**/libVkLayer_swapchain.so'
+        exclude 'lib/**/libVkLayer_unique_objects.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_khronos_validation.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_core_validation.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_threading.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_image.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_parameter_validation.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_object_tracker.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_swapchain.so'
+//        exclude 'lib/armeabi-v7a/libVkLayer_unique_objects.so'
+//
+//        exclude 'lib/arm64-v8a/libVkLayer_khronos_validation.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_core_validation.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_threading.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_image.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_parameter_validation.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_object_tracker.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_swapchain.so'
+//        exclude 'lib/arm64-v8a/libVkLayer_unique_objects.so'
     }
-
 }
 
 // Tasks needed to compile NDK part

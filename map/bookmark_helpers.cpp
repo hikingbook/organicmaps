@@ -51,7 +51,6 @@ std::map<std::string, BookmarkMatchInfo> const kFeatureTypeToBookmarkMatchInfo =
 
   {"amenity-college", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"amenity-courthouse", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
-  {"amenity-embassy", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"amenity-kindergarten", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"amenity-library", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"amenity-police", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
@@ -59,6 +58,7 @@ std::map<std::string, BookmarkMatchInfo> const kFeatureTypeToBookmarkMatchInfo =
   {"amenity-school", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"building-university", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"office", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
+  {"office-diplomatic", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
   {"office-lawyer", {kml::BookmarkIcon::Building, BookmarkBaseType::Building}},
 
   {"amenity-grave_yard-christian", {kml::BookmarkIcon::Christianity, BookmarkBaseType::ReligiousPlace}},
@@ -163,15 +163,11 @@ std::map<std::string, BookmarkMatchInfo> const kFeatureTypeToBookmarkMatchInfo =
   {"leisure-sports_centre-shooting", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
   {"leisure-sports_centre-yoga", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
   {"leisure-stadium", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
-  {"olympics-bike_sport", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
-  {"olympics-stadium", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
-  {"olympics-stadium_main", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
   {"sport", {kml::BookmarkIcon::Sport, BookmarkBaseType::Entertainment}},
 
   {"leisure-sports_centre-swimming", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
   {"leisure-swimming_pool", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
   {"natural-beach", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
-  {"olympics-water_sport", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
   {"sport-diving", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
   {"sport-scuba_diving", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},
   {"sport-swimming", {kml::BookmarkIcon::Swim, BookmarkBaseType::Swim}},

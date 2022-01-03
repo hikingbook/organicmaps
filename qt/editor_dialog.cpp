@@ -122,6 +122,11 @@ EditorDialog::EditorDialog(QWidget * parent, osm::EditableMapObject & emo)
     case osm::Props::Fax: v = emo.GetFax(); break;
     case osm::Props::Email: v = emo.GetEmail(); break;
     case osm::Props::Website: v = emo.GetWebsite(); break;
+    case osm::Props::ContactFacebook: v = emo.GetFacebookPage(); break;
+    case osm::Props::ContactInstagram: v = emo.GetInstagramPage(); break;
+    case osm::Props::ContactTwitter: v = emo.GetTwitterPage(); break;
+    case osm::Props::ContactVk: v = emo.GetVkPage(); break;
+    case osm::Props::ContactLine: v = emo.GetLinePage(); break;
     case osm::Props::Internet:
       {
         grid->addWidget(new QLabel(kInternetObjectName), row, 0);
@@ -165,8 +170,8 @@ EditorDialog::EditorDialog(QWidget * parent, osm::EditableMapObject & emo)
   {  // Dialog buttons.
     QDialogButtonBox * buttonBox =
         new QDialogButtonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Save);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(OnSave()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &EditorDialog::OnSave);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     // Delete button should send custom int return value from dialog.
     QPushButton * deletePOIButton = new QPushButton("Delete POI");
     QSignalMapper * signalMapper = new QSignalMapper();
@@ -243,6 +248,11 @@ void EditorDialog::OnSave()
     case osm::Props::Fax: m_feature.SetFax(v); break;
     case osm::Props::Email: m_feature.SetEmail(v); break;
     case osm::Props::Website: m_feature.SetWebsite(v); break;
+    case osm::Props::ContactFacebook: m_feature.SetFacebookPage(v); break;
+    case osm::Props::ContactInstagram: m_feature.SetInstagramPage(v); break;
+    case osm::Props::ContactTwitter: m_feature.SetTwitterPage(v); break;
+    case osm::Props::ContactVk: m_feature.SetVkPage(v); break;
+    case osm::Props::ContactLine: m_feature.SetLinePage(v); break;
     case osm::Props::Internet: ASSERT(false, ("Is handled separately above."));
     case osm::Props::Cuisine:
     {

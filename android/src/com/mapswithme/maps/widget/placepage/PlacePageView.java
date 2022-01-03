@@ -35,8 +35,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollViewClickFixed;
 import androidx.fragment.app.Fragment;
-
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
@@ -54,6 +54,7 @@ import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.editor.Editor;
 import com.mapswithme.maps.editor.OpeningHours;
 import com.mapswithme.maps.editor.data.TimeFormatUtils;
+import com.mapswithme.maps.editor.data.Timespan;
 import com.mapswithme.maps.editor.data.Timetable;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.routing.RoutingController;
@@ -71,6 +72,7 @@ import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -84,7 +86,12 @@ public class PlacePageView extends NestedScrollViewClickFixed
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = PlacePageView.class.getSimpleName();
-  private static final String PREF_USE_DMS = "use_dms";
+  private static final String PREF_COORDINATES_FORMAT = "coordinates_format";
+  private static final List<CoordinatesFormat> visibleCoordsFormat =
+      Arrays.asList(CoordinatesFormat.LatLonDMS,
+                    CoordinatesFormat.LatLonDecimal,
+                    CoordinatesFormat.OLCFull,
+                    CoordinatesFormat.OSMLink);
 
   private boolean mIsDocked;
   private boolean mIsFloating;
@@ -98,14 +105,32 @@ public class PlacePageView extends NestedScrollViewClickFixed
   private ArrowView mAvDirection;
   private TextView mTvDistance;
   private TextView mTvAddress;
+
+  // Details.
+  private ViewGroup mDetails;
   private RecyclerView mPhoneRecycler;
   private PlacePhoneAdapter mPhoneAdapter;
   private View mWebsite;
   private TextView mTvWebsite;
   private TextView mTvLatlon;
+  //Social links
+  private View mFacebookPage;
+  private TextView mTvFacebookPage;
+  private View mInstagramPage;
+  private TextView mTvInstagramPage;
+  private View mTwitterPage;
+  private TextView mTvTwitterPage;
+  private View mVkPage;
+  private TextView mTvVkPage;
+  private View mLinePage;
+  private TextView mTvLinePage;
+
   private View mOpeningHours;
-  private TextView mFullOpeningHours;
-  private TextView mTodayOpeningHours;
+  private TextView mTodayLabel;
+  private TextView mTodayOpenTime;
+  private TextView mTodayNonBusinessTime;
+  private RecyclerView mFullWeekOpeningHours;
+  private PlaceOpeningHoursAdapter mOpeningHoursAdapter;
   private View mWifi;
   private View mEmail;
   private TextView mTvEmail;
@@ -154,7 +179,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   // Data
   @Nullable
   private MapObject mMapObject;
-  private boolean mIsLatLonDms;
+  private CoordinatesFormat mCoordsFormat = CoordinatesFormat.LatLonDecimal;
 
   // Downloader`s stuff
   private DownloaderStatusIcon mDownloaderIcon;
@@ -223,11 +248,19 @@ public class PlacePageView extends NestedScrollViewClickFixed
   private Closable mClosable;
 
   @Nullable
+  private PlacePageGestureListener mPlacePageGestureListener;
+
+  @Nullable
   private RoutingModeListener mRoutingModeListener;
 
   void setScrollable(boolean scrollable)
   {
     mScrollable = scrollable;
+  }
+
+  void addPlacePageGestureListener(@NonNull PlacePageGestureListener ppGestureListener)
+  {
+    mPlacePageGestureListener = ppGestureListener;
   }
 
   void addClosable(@NonNull Closable closable)
@@ -271,7 +304,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   public PlacePageView(Context context, AttributeSet attrs, int defStyleAttr)
   {
     super(context, attrs);
-    mIsLatLonDms = MwmApplication.prefs(context).getBoolean(PREF_USE_DMS, false);
+    mCoordsFormat = CoordinatesFormat.fromId(MwmApplication.prefs(context).getInt(PREF_COORDINATES_FORMAT, CoordinatesFormat.LatLonDecimal.getId()));
     init(attrs, defStyleAttr);
   }
 
@@ -281,7 +314,11 @@ public class PlacePageView extends NestedScrollViewClickFixed
     super.onFinishInflate();
     mPreview = findViewById(R.id.pp__preview);
     mTvTitle = mPreview.findViewById(R.id.tv__title);
+    mTvTitle.setOnLongClickListener(this);
+    mTvTitle.setOnClickListener(this);
     mTvSecondaryTitle = mPreview.findViewById(R.id.tv__secondary_title);
+    mTvSecondaryTitle.setOnLongClickListener(this);
+    mTvSecondaryTitle.setOnClickListener(this);
     mToolbar = findViewById(R.id.toolbar);
     mTvSubtitle = mPreview.findViewById(R.id.tv__subtitle);
 
@@ -291,7 +328,10 @@ public class PlacePageView extends NestedScrollViewClickFixed
     directionFrame.setOnClickListener(this);
 
     mTvAddress = mPreview.findViewById(R.id.tv__address);
+    mTvAddress.setOnLongClickListener(this);
+    mTvAddress.setOnClickListener(this);
 
+    mDetails = findViewById(R.id.pp__details_frame);
     RelativeLayout address = findViewById(R.id.ll__place_name);
     mPhoneRecycler = findViewById(R.id.rw__phone);
     mPhoneAdapter = new PlacePhoneAdapter();
@@ -299,12 +339,41 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mWebsite = findViewById(R.id.ll__place_website);
     mWebsite.setOnClickListener(this);
     mTvWebsite = findViewById(R.id.tv__place_website);
+    //Social links
+    mFacebookPage = findViewById(R.id.ll__place_facebook);
+    mFacebookPage.setOnClickListener(this);
+    mFacebookPage.setOnLongClickListener(this);
+    mTvFacebookPage = findViewById(R.id.tv__place_facebook_page);
+
+    mInstagramPage = findViewById(R.id.ll__place_instagram);
+    mInstagramPage.setOnClickListener(this);
+    mInstagramPage.setOnLongClickListener(this);
+    mTvInstagramPage = findViewById(R.id.tv__place_instagram_page);
+
+    mTwitterPage = findViewById(R.id.ll__place_twitter);
+    mTwitterPage.setOnClickListener(this);
+    mTwitterPage.setOnLongClickListener(this);
+    mTvTwitterPage = findViewById(R.id.tv__place_twitter_page);
+
+    mVkPage = findViewById(R.id.ll__place_vk);
+    mVkPage.setOnClickListener(this);
+    mVkPage.setOnLongClickListener(this);
+    mTvVkPage = findViewById(R.id.tv__place_vk_page);
+
+    mLinePage = findViewById(R.id.ll__place_line);
+    mLinePage.setOnClickListener(this);
+    mLinePage.setOnLongClickListener(this);
+    mTvLinePage = findViewById(R.id.tv__place_line_page);
     LinearLayout latlon = findViewById(R.id.ll__place_latlon);
     latlon.setOnClickListener(this);
     mTvLatlon = findViewById(R.id.tv__place_latlon);
     mOpeningHours = findViewById(R.id.ll__place_schedule);
-    mFullOpeningHours = findViewById(R.id.opening_hours);
-    mTodayOpeningHours = findViewById(R.id.today_opening_hours);
+    mTodayLabel = findViewById(R.id.oh_today_label);
+    mTodayOpenTime = findViewById(R.id.oh_today_open_time);
+    mTodayNonBusinessTime = findViewById(R.id.oh_nonbusiness_time);
+    mFullWeekOpeningHours = findViewById(R.id.rw__full_opening_hours);
+    mOpeningHoursAdapter = new PlaceOpeningHoursAdapter();
+    mFullWeekOpeningHours.setAdapter(mOpeningHoursAdapter);
     mWifi = findViewById(R.id.ll__place_wifi);
     mEmail = findViewById(R.id.ll__place_email);
     mEmail.setOnClickListener(this);
@@ -339,6 +408,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     settings.setJavaScriptEnabled(false);
     settings.setDefaultTextEncodingName("utf-8");
     mTvBookmarkNote = mBookmarkFrame.findViewById(R.id.tv__bookmark_notes);
+    mTvBookmarkNote.setOnLongClickListener(this);
     initEditMapObjectBtn();
 
     mDownloaderIcon = new DownloaderStatusIcon(mPreview.findViewById(R.id.downloader_status_frame));
@@ -602,6 +672,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     mPlaceDescriptionContainer = findViewById(R.id.poi_description_container);
     mPlaceDescriptionView = findViewById(R.id.poi_description);
+    mPlaceDescriptionView.setOnLongClickListener(this);
     mPlaceDescriptionHeaderContainer = findViewById(R.id.pp_description_header_container);
     mPlaceDescriptionMoreBtn = findViewById(R.id.more_btn);
     mPlaceDescriptionMoreBtn.setOnClickListener(v -> showDescriptionScreen());
@@ -707,6 +778,21 @@ public class PlacePageView extends NestedScrollViewClickFixed
     refreshPreview(mMapObject);
     refreshDetails(mMapObject);
     refreshViewsInternal(mMapObject);
+
+    //
+    // The view is completely broken after the first call to refreshView():
+    // https://github.com/organicmaps/organicmaps/issues/722
+    // https://github.com/organicmaps/organicmaps/issues/1065
+    //
+    // Force re-layout explicitly on the next event loop after the first call to refreshView().
+    //
+    if (Utils.isAndroid11OrLater()) {
+      post(() -> {
+        mPreview.requestLayout();
+        mDetails.requestLayout();
+        mButtons.getFrame().requestLayout();
+      });
+    }
   }
 
   private void refreshViewsInternal(@NonNull MapObject mapObject)
@@ -768,10 +854,11 @@ public class PlacePageView extends NestedScrollViewClickFixed
     {
       SpannableStringBuilder sb = new SpannableStringBuilder(text);
       int start = text.indexOf("★");
+      int end = text.lastIndexOf("★") + 1;
       if (start > -1)
       {
         sb.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.base_yellow)),
-                   start, sb.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                   start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
       }
       mTvSubtitle.setText(sb);
@@ -807,6 +894,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_INTERNET), mWifi, null);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_FLATS), mEntrance, mTvEntrance);
     refreshOpeningHours(mapObject);
+    refreshSocialLinks(mapObject);
 
 //    showTaxiOffer(mapObject);
 
@@ -833,35 +921,51 @@ public class PlacePageView extends NestedScrollViewClickFixed
     final boolean isEmptyTT = (timetables == null || timetables.length == 0);
     final int color = ThemeUtils.getColor(getContext(), android.R.attr.textColorPrimary);
 
-    String ohStringToShow = null;
-
     if (isEmptyTT)
     {
+      // 'opening_hours' tag wasn't parsed either because it's empty or wrong format.
       if (!ohStr.isEmpty())
-        ohStringToShow = ohStr;
+      {
+        UiUtils.show(mOpeningHours);
+        refreshTodayOpeningHours(ohStr, color);
+        UiUtils.hide(mTodayNonBusinessTime);
+        UiUtils.hide(mFullWeekOpeningHours);
+      }
       else
       {
         UiUtils.hide(mOpeningHours);
-        return;
       }
+      return;
     }
 
     UiUtils.show(mOpeningHours);
 
     final Resources resources = getResources();
-    if (!isEmptyTT && timetables[0].isFullWeek())
-    {
-      ohStringToShow = timetables[0].isFullday ? resources.getString(R.string.twentyfour_seven)
-                                               : resources.getString(R.string.daily) + " " + timetables[0].workingTimespan;
-    }
 
-    if (ohStringToShow != null)
+    if (timetables[0].isFullWeek())
     {
-      refreshTodayOpeningHours(ohStringToShow, color);
-      UiUtils.clearTextAndHide(mFullOpeningHours);
+      final Timetable tt = timetables[0];
+      if (tt.isFullday)
+      {
+        refreshTodayOpeningHours(resources.getString(R.string.twentyfour_seven), color);
+        UiUtils.clearTextAndHide(mTodayNonBusinessTime);
+        UiUtils.hide(mTodayNonBusinessTime);
+      }
+      else
+      {
+        refreshTodayOpeningHours(resources.getString(R.string.daily), tt.workingTimespan.toWideString(), color);
+        refreshTodayNonBusinessTime(tt.closedTimespans);
+      }
+
+      UiUtils.hide(mFullWeekOpeningHours);
       return;
     }
 
+    // Show whole week time table.
+    mOpeningHoursAdapter.setTimetables(timetables);
+    UiUtils.show(mFullWeekOpeningHours);
+
+    // Show today's open time + non-business time.
     boolean containsCurrentWeekday = false;
     final int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
     for (Timetable tt : timetables)
@@ -869,32 +973,106 @@ public class PlacePageView extends NestedScrollViewClickFixed
       if (tt.containsWeekday(currentDay))
       {
         containsCurrentWeekday = true;
-        String workingTime;
+        String openTime;
 
         if (tt.isFullday)
         {
           String allDay = resources.getString(R.string.editor_time_allday);
-          workingTime = Utils.unCapitalize(allDay);
+          openTime = Utils.unCapitalize(allDay);
         }
         else
         {
-          workingTime = tt.workingTimespan.toString();
+          openTime = tt.workingTimespan.toWideString();
         }
 
-        refreshTodayOpeningHours(resources.getString(R.string.today) + " " + workingTime, color);
+        refreshTodayOpeningHours(resources.getString(R.string.today), openTime, color);
+        refreshTodayNonBusinessTime(tt.closedTimespans);
+
         break;
       }
     }
 
-    UiUtils.setTextAndShow(mFullOpeningHours, TimeFormatUtils.formatTimetables(getContext(), timetables));
+    // Show that place is closed today.
     if (!containsCurrentWeekday)
+    {
       refreshTodayOpeningHours(resources.getString(R.string.day_off_today), resources.getColor(R.color.base_red));
+      UiUtils.hide(mTodayNonBusinessTime);
+    }
   }
 
-  private void refreshTodayOpeningHours(String text, @ColorInt int color)
+  private void refreshTodayNonBusinessTime(Timespan[] closedTimespans)
   {
-    UiUtils.setTextAndShow(mTodayOpeningHours, text);
-    mTodayOpeningHours.setTextColor(color);
+    final String hoursClosedLabel = getResources().getString(R.string.editor_hours_closed);
+    if (closedTimespans==null || closedTimespans.length == 0)
+      UiUtils.clearTextAndHide(mTodayNonBusinessTime);
+    else
+      UiUtils.setTextAndShow(mTodayNonBusinessTime, TimeFormatUtils.formatNonBusinessTime(closedTimespans, hoursClosedLabel));
+  }
+
+  private void refreshSocialLinks(@NonNull MapObject mapObject)
+  {
+    final String facebookPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
+    refreshSocialPageLink(mFacebookPage, mTvFacebookPage, facebookPageLink, "facebook.com");
+    final String instagramPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
+    refreshSocialPageLink(mInstagramPage, mTvInstagramPage, instagramPageLink, "instagram.com");
+    final String twitterPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
+    refreshSocialPageLink(mTwitterPage, mTvTwitterPage, twitterPageLink, "twitter.com");
+    final String vkPageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
+    refreshSocialPageLink(mVkPage, mTvVkPage, vkPageLink, "vk.com");
+    final String linePageLink = mapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
+    refreshLinePageLink(mLinePage, mTvLinePage, linePageLink);
+  }
+
+  private void refreshSocialPageLink(View view, TextView tvSocialPage, String socialPage, String webDomain)
+  {
+    if (TextUtils.isEmpty(socialPage))
+    {
+      view.setVisibility(GONE);
+    }
+    else
+    {
+      view.setVisibility(VISIBLE);
+      if (socialPage.indexOf('/') >= 0)
+        tvSocialPage.setText("https://" + webDomain + "/" + socialPage);
+      else
+        tvSocialPage.setText("@" + socialPage);
+    }
+  }
+
+  // Tag `contact:line` could contain urls from domains: line.me, liff.line.me, page.line.me, etc.
+  // And `socialPage` should not be prepended with domain, but only with "https://" protocol.
+  private void refreshLinePageLink(View view, TextView tvSocialPage, String socialPage)
+  {
+    if (TextUtils.isEmpty(socialPage))
+    {
+      view.setVisibility(GONE);
+    }
+    else
+    {
+      view.setVisibility(VISIBLE);
+      if (socialPage.indexOf('/') >= 0)
+        tvSocialPage.setText("https://" + socialPage);
+      else
+        tvSocialPage.setText("@" + socialPage);
+    }
+  }
+
+  private void refreshTodayOpeningHours(String label, String openTime, @ColorInt int color)
+  {
+    UiUtils.setTextAndShow(mTodayLabel, label);
+    UiUtils.setTextAndShow(mTodayOpenTime, openTime);
+
+    mTodayLabel.setTextColor(color);
+    mTodayOpenTime.setTextColor(color);
+  }
+
+  private void refreshTodayOpeningHours(String label, @ColorInt int color)
+  {
+    UiUtils.setTextAndShow(mTodayLabel, label);
+    UiUtils.hide(mTodayOpenTime);
+
+    mTodayLabel.setTextColor(color);
+    mTodayOpenTime.setTextColor(color);
   }
 
   private void refreshPhoneNumberList(String phones)
@@ -1078,9 +1256,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     final double lat = mapObject.getLat();
     final double lon = mapObject.getLon();
-    final String[] latLon = Framework.nativeFormatLatLonToArr(lat, lon, mIsLatLonDms);
-    if (latLon.length == 2)
-      mTvLatlon.setText(String.format(Locale.US, "%1$s, %2$s", latLon[0], latLon[1]));
+    final String latLon = Framework.nativeFormatLatLon(lat, lon, mCoordsFormat.getId());
+    mTvLatlon.setText(latLon);
   }
 
   private static void refreshMetadataOrHide(String metadata, View metaLayout, TextView metaTv)
@@ -1130,18 +1307,21 @@ public class PlacePageView extends NestedScrollViewClickFixed
   public void onClick(View v)
   {
     int id = v.getId();
-    if (id == R.id.ll__place_editor) {
+    if (id == R.id.tv__title || id == R.id.tv__secondary_title || id == R.id.tv__address) {// A workaround to make single taps toggle the bottom sheet.
+      if (mPlacePageGestureListener != null) {
+        mPlacePageGestureListener.onSingleTapConfirmed(null);
+      }
+    } else if (id == R.id.ll__place_editor) {
       if (mMapObject == null) {
         LOGGER.e(TAG, "Cannot start editor, map object is null!");
       }
 //        getActivity().showEditor();
-    } else if (id == R.id.ll__add_organisation) {
-//      addOrganisation();
-    } else if (id == R.id.ll__place_add) {
-//      addPlace();
+    } else if (id == R.id.ll__add_organisation) {//        addOrganisation();
+    } else if (id == R.id.ll__place_add) {//        addPlace();
     } else if (id == R.id.ll__place_latlon) {
-      mIsLatLonDms = !mIsLatLonDms;
-      MwmApplication.prefs(getContext()).edit().putBoolean(PREF_USE_DMS, mIsLatLonDms).apply();
+      final int formatIndex = visibleCoordsFormat.indexOf(mCoordsFormat);
+      mCoordsFormat = visibleCoordsFormat.get((formatIndex + 1) % visibleCoordsFormat.size());
+      MwmApplication.prefs(getContext()).edit().putInt(PREF_COORDINATES_FORMAT, mCoordsFormat.getId()).apply();
       if (mMapObject == null) {
         LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
         return;
@@ -1149,6 +1329,24 @@ public class PlacePageView extends NestedScrollViewClickFixed
       refreshLatLon(mMapObject);
     } else if (id == R.id.ll__place_website) {
       Utils.openUrl(getContext(), mTvWebsite.getText().toString());
+    } else if (id == R.id.ll__place_facebook) {
+      final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
+      Utils.openUrl(getContext(), "https://m.facebook.com/" + facebookPage);
+    } else if (id == R.id.ll__place_instagram) {
+      final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
+      Utils.openUrl(getContext(), "https://instagram.com/" + instagramPage);
+    } else if (id == R.id.ll__place_twitter) {
+      final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
+      Utils.openUrl(getContext(), "https://mobile.twitter.com/" + twitterPage);
+    } else if (id == R.id.ll__place_vk) {
+      final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
+      Utils.openUrl(getContext(), "https://vk.com/" + vkPage);
+    } else if (id == R.id.ll__place_line) {
+      final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
+      if (linePage.indexOf('/') >= 0)
+        Utils.openUrl(getContext(), "https://" + linePage);
+      else
+        Utils.openUrl(getContext(), "https://line.me/R/ti/p/@" + linePage);
     } else if (id == R.id.ll__place_wiki) {// TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
       if (mMapObject == null) {
         LOGGER.e(TAG, "Cannot follow url, mMapObject is null!");
@@ -1183,38 +1381,68 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     final Object tag = v.getTag();
     final String tagStr = tag == null ? "" : tag.toString();
-
     final PopupMenu popup = new PopupMenu(getContext(), v);
     final Menu menu = popup.getMenu();
     final List<String> items = new ArrayList<>();
-
     int id = v.getId();
-    if (id == R.id.ll__place_latlon) {
-      if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
-        }
-        final double lat = mMapObject.getLat();
-        final double lon = mMapObject.getLon();
-        items.add(Framework.nativeFormatLatLon(lat, lon, false));
-        items.add(Framework.nativeFormatLatLon(lat, lon, true));
+    if (id == R.id.tv__title) {
+      items.add(mTvTitle.getText().toString());
+    } else if (id == R.id.tv__secondary_title) {
+      items.add(mTvSecondaryTitle.getText().toString());
+    } else if (id == R.id.tv__address) {
+      items.add(mTvAddress.getText().toString());
+    } else if (id == R.id.tv__bookmark_notes) {
+      items.add(mTvBookmarkNote.getText().toString());
+    } else if (id == R.id.poi_description) {
+      items.add(mPlaceDescriptionView.getText().toString());
+    } else if (id == R.id.ll__place_latlon) {
+      if (mMapObject == null) {
+        LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
+      }
+      final double lat = mMapObject.getLat();
+      final double lon = mMapObject.getLon();
+      for (CoordinatesFormat format : visibleCoordsFormat)
+        items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
     } else if (id == R.id.ll__place_website) {
       items.add(mTvWebsite.getText().toString());
+    } else if (id == R.id.ll__place_facebook) {
+      final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
+      if (facebookPage.indexOf('/') == -1)
+        items.add(facebookPage); // Show username along with URL.
+      items.add("https://m.facebook.com/" + facebookPage);
+    } else if (id == R.id.ll__place_instagram) {
+      final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
+      if (instagramPage.indexOf('/') == -1)
+        items.add(instagramPage); // Show username along with URL.
+      items.add("https://instagram.com/" + instagramPage);
+    } else if (id == R.id.ll__place_twitter) {
+      final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
+      if (twitterPage.indexOf('/') == -1)
+        items.add(twitterPage); // Show username along with URL.
+      items.add("https://mobile.twitter.com/" + twitterPage);
+    } else if (id == R.id.ll__place_vk) {
+      final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
+      if (vkPage.indexOf('/') == -1)
+        items.add(vkPage); // Show username along with URL.
+      items.add("https://vk.com/" + vkPage);
+    } else if (id == R.id.ll__place_line) {
+      final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
+      if (linePage.indexOf('/') >= 0)
+        items.add("https://" + linePage);
+      else {
+        items.add(linePage); // Show username along with URL.
+        items.add("https://line.me/R/ti/p/@" + linePage);
+      }
     } else if (id == R.id.ll__place_email) {
       items.add(mTvEmail.getText().toString());
     } else if (id == R.id.ll__place_schedule) {
-        String text = UiUtils.isVisible(mFullOpeningHours)
-                ? mFullOpeningHours.getText().toString()
-                : mTodayOpeningHours.getText().toString();
-        items.add(text);
+      final String ohStr = mMapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
+      final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
+      items.add(TimeFormatUtils.generateCopyText(getResources(), ohStr, timetables));
     } else if (id == R.id.ll__place_operator) {
       items.add(mTvOperator.getText().toString());
     } else if (id == R.id.ll__place_wiki) {
-      if (mMapObject == null)
-        {
-          LOGGER.e(TAG, "A long click tap on wiki cannot be handled, mMapObject is null!");
-        }
-        items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+      items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
     }
 
     final String copyText = getResources().getString(android.R.string.copy);

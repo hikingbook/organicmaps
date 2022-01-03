@@ -94,7 +94,12 @@ using namespace storage;
       case NodeStatus::Partly: {
         MapViewController *controller = self.controller;
         BOOL const isMapVisible = [controller.navigationController.topViewController isEqual:controller];
-        if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId)) {
+          
+          BOOL shouldDownloadMap = YES;
+          if ([self.delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
+              shouldDownloadMap = [self.delegate downloadDialog:self shouldDownloadMap:@(m_countryId.c_str())];
+          }
+        if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap) {
           m_autoDownloadCountryId = m_countryId;
           [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str())
                                          onSuccess:^{

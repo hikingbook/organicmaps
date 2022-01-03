@@ -345,7 +345,12 @@ BOOST_PYTHON_MODULE(pygen)
         .value("level", Metadata::EType::FMD_LEVEL)
         .value("airport_iata", Metadata::EType::FMD_AIRPORT_IATA)
         .value("brand", Metadata::EType::FMD_BRAND)
-        .value("duration", Metadata::EType::FMD_DURATION);
+        .value("duration", Metadata::EType::FMD_DURATION)
+        .value("contact_facebook", Metadata::EType::FMD_CONTACT_FACEBOOK)
+        .value("contact_instagram", Metadata::EType::FMD_CONTACT_INSTAGRAM)
+        .value("contact_twitter", Metadata::EType::FMD_CONTACT_TWITTER)
+        .value("contact_vk", Metadata::EType::FMD_CONTACT_VK)
+        .value("contact_line", Metadata::EType::FMD_CONTACT_LINE);
 
     bp::enum_<GeomType>("GeomType")
         .value("undefined", GeomType::Undefined)

@@ -6,19 +6,16 @@
 
 #include "coding/point_coding.hpp"
 #include "coding/reader.hpp"
+#include "coding/varint.hpp"
 #include "coding/write_to_sink.hpp"
 
-#include "geometry/mercator.hpp"
+#include "geometry/latlon.hpp"
 #include "geometry/point2d.hpp"
-#include "geometry/point_with_altitude.hpp"
 
 #include "base/assert.hpp"
-#include "base/logging.hpp"
 
-#include <algorithm>
 #include <cmath>
 #include <cstdint>
-#include <iterator>
 #include <limits>
 #include <memory>
 #include <set>
@@ -28,7 +25,6 @@
 
 namespace routing
 {
-uint32_t constexpr kLatestVersionRoutingWorldSection = 0;
 
 using RegionSegmentId = uint32_t;
 
@@ -75,11 +71,14 @@ public:
                           std::shared_ptr<NumMwmIds> numMwmIds);
 
 private:
+  static uint32_t constexpr kVersion = 1;
+  static double constexpr kDouble2Int = 1.0E6;
+
   struct Header
   {
     Header() = default;
     explicit Header(CrossBorderGraph const & graph,
-                    uint32_t version = kLatestVersionRoutingWorldSection);
+                    uint32_t version = kVersion);
 
     template <class Sink>
     void Serialize(Sink & sink) const;
@@ -90,7 +89,7 @@ private:
     uint32_t m_numRegions = 0;
     uint32_t m_numRoads = 0;
 
-    uint32_t m_version = kLatestVersionRoutingWorldSection;
+    uint32_t m_version = kVersion;
   };
 
   static size_t constexpr kBitsForDouble = 30;
@@ -119,6 +118,8 @@ void CrossBorderGraphSerializer::Serialize(CrossBorderGraph const & graph, Sink 
     CHECK(mwmNameHashes.emplace(hash).second, (mwmId, mwmName, hash));
   }
 
+  CHECK_LESS(mwmNameHashes.size(), std::numeric_limits<NumMwmId>::max(), ());
+
   for (auto hash : mwmNameHashes)
     WriteToSink(sink, hash);
 
@@ -132,18 +133,16 @@ void CrossBorderGraphSerializer::Serialize(CrossBorderGraph const & graph, Sink 
     auto it = mwmNameHashes.find(mwmNameHash);
     CHECK(it != mwmNameHashes.end(), (ending.m_numMwmId, mwmNameHash));
 
-    NumMwmId id = std::distance(mwmNameHashes.begin(), it);
+    NumMwmId const id = std::distance(mwmNameHashes.begin(), it);
     WriteToSink(sink, id);
   };
 
   for (auto const & [segId, seg] : graph.m_segments)
   {
-    WriteToSink(sink, segId);
+    WriteVarUint(sink, segId);
 
-    double const weightRounded = std::ceil(seg.m_weight);
-    CHECK_LESS(weightRounded, std::numeric_limits<uint32_t>::max(), (weightRounded));
+    WriteVarUint(sink, static_cast<uint64_t>(std::round(seg.m_weight * kDouble2Int)));
 
-    WriteToSink(sink, static_cast<uint32_t>(weightRounded));
     writeSegEnding(seg.m_start);
     writeSegEnding(seg.m_end);
   }
@@ -162,9 +161,10 @@ void CrossBorderGraphSerializer::Deserialize(CrossBorderGraph & graph, Source & 
 
   std::map<uint32_t, NumMwmId> hashToMwmId;
 
-  numMwmIds->ForEachId([&](NumMwmId id) {
+  numMwmIds->ForEachId([&](NumMwmId id)
+  {
     std::string const & region = numMwmIds->GetFile(id).GetName();
-    auto const & mwmNameHash = Hash(region);
+    uint32_t const mwmNameHash = Hash(region);
     // Triggering of this check in runtime means that the latest built mwm set differs from
     // the previous one ("classic" mwm set which is constant for many years). The solution is to
     // replace current hash function Hash() and rebuild World.mwm.
@@ -202,11 +202,21 @@ void CrossBorderGraphSerializer::Deserialize(CrossBorderGraph & graph, Source & 
 
   for (size_t i = 0; i < header.m_numRoads; ++i)
   {
-    RegionSegmentId segId = ReadPrimitiveFromSource<RegionSegmentId>(src);
-
     CrossBorderSegment seg;
+    RegionSegmentId segId;
 
-    seg.m_weight = static_cast<double>(ReadPrimitiveFromSource<uint32_t>(src));
+    if (header.m_version == 0)
+    {
+      segId = ReadPrimitiveFromSource<RegionSegmentId>(src);
+      seg.m_weight = static_cast<double>(ReadPrimitiveFromSource<uint32_t>(src));
+    }
+    else
+    {
+      segId = ReadVarUint<RegionSegmentId>(src);
+      seg.m_weight = static_cast<double>(ReadVarUint<uint64_t>(src));
+      seg.m_weight /= kDouble2Int;
+    }
+
     readSegEnding(seg.m_start);
     readSegEnding(seg.m_end);
 
@@ -226,8 +236,6 @@ template <class Source>
 void CrossBorderGraphSerializer::Header::Deserialize(Source & src)
 {
   m_version = ReadPrimitiveFromSource<uint32_t>(src);
-  CHECK_EQUAL(m_version, kLatestVersionRoutingWorldSection, ("Unknown CrossRegionGraph version."));
-
   m_numRegions = ReadPrimitiveFromSource<uint32_t>(src);
   m_numRoads = ReadPrimitiveFromSource<uint32_t>(src);
 }

@@ -1178,7 +1178,7 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					6753401A1A3F2A1B00A0A8C3 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1354,7 +1354,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87CF1DBE52DC00E5E7DC /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/gflags/src",
@@ -1369,7 +1368,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34AF87D01DBE52DC00E5E7DC /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/gflags/src",
@@ -1417,6 +1415,7 @@
 		FACB775726B90BB800810C9C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1424,6 +1423,7 @@
 		FACB775826B90BB800810C9C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

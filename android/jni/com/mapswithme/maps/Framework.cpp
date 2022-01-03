@@ -51,6 +51,8 @@
 #include "base/math.hpp"
 #include "base/sunrise_sunset.hpp"
 
+#include "3party/open-location-code/openlocationcode.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
@@ -923,29 +925,20 @@ Java_com_mapswithme_maps_Framework_nativeGetDistanceAndAzimuthFromLatLon(
 }
 
 JNIEXPORT jobject JNICALL
-Java_com_mapswithme_maps_Framework_nativeFormatLatLon(JNIEnv * env, jclass, jdouble lat, jdouble lon, jboolean useDMSFormat)
+Java_com_mapswithme_maps_Framework_nativeFormatLatLon(JNIEnv * env, jclass, jdouble lat, jdouble lon, int coordsFormat)
 {
-  return jni::ToJavaString(
-      env, (useDMSFormat ? measurement_utils::FormatLatLonAsDMS(lat, lon, 2)
-                         : measurement_utils::FormatLatLon(lat, lon, true /* withSemicolon */, 6)));
-}
-
-JNIEXPORT jobjectArray JNICALL
-Java_com_mapswithme_maps_Framework_nativeFormatLatLonToArr(JNIEnv * env, jclass, jdouble lat, jdouble lon, jboolean useDMSFormat)
-{
-  string slat, slon;
-  if (useDMSFormat)
-    measurement_utils::FormatLatLonAsDMS(lat, lon, slat, slon, 2);
-  else
-    measurement_utils::FormatLatLon(lat, lon, slat, slon, 6);
-
-  static jclass const klass = jni::GetGlobalClassRef(env, "java/lang/String");
-  jobjectArray arr = env->NewObjectArray(2, klass, 0);
-
-  env->SetObjectArrayElement(arr, 0, jni::ToJavaString(env, slat));
-  env->SetObjectArrayElement(arr, 1, jni::ToJavaString(env, slon));
-
-  return arr;
+  switch (static_cast<android::CoordinatesFormat>(coordsFormat))
+  {
+    default:
+    case android::CoordinatesFormat::LatLonDMS: // DMS, comma separated
+      return jni::ToJavaString(env, measurement_utils::FormatLatLonAsDMS(lat, lon, true /*withComma*/, 2));
+    case android::CoordinatesFormat::LatLonDecimal: // Decimal, comma separated
+      return jni::ToJavaString(env, measurement_utils::FormatLatLon(lat, lon, true /* withComma */, 6));
+    case android::CoordinatesFormat::OLCFull: // Open location code, long format
+      return jni::ToJavaString(env, openlocationcode::Encode({lat, lon}));
+    case android::CoordinatesFormat::OSMLink: // Link to osm.org
+      return jni::ToJavaString(env, measurement_utils::FormatOsmLink(lat, lon, 14));
+  }
 }
 
 JNIEXPORT jobject JNICALL

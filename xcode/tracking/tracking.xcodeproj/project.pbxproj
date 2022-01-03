@@ -237,7 +237,7 @@
 		675E88481DB7AC0300F8EBDA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					675E884F1DB7AC0300F8EBDA = {
 						CreatedOnToolsVersion = 8.0;
@@ -311,7 +311,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F558511DBF38A000A4FC11 /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 			};
 			name = Debug;
 		};
@@ -319,7 +318,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F558521DBF38A000A4FC11 /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 			};
 			name = Release;
 		};
@@ -344,6 +342,7 @@
 		675E88811DB7ACD900F8EBDA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.tracking_tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -352,6 +351,7 @@
 		675E88821DB7ACD900F8EBDA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.tracking_tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

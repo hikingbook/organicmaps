@@ -120,6 +120,7 @@ void SingleVehicleWorldGraph::GetEdgeList(
   auto & indexGraph = GetIndexGraph(parent.GetMwmId());
   indexGraph.GetEdgeList(parentVertexData, parent, isOutgoing, jointEdges, parentWeights, parents);
 
+  // Comment this call to debug routing on single generated mwm.
   if (m_mode != WorldGraphMode::JointSingleMwm)
     CheckAndProcessTransitFeatures(parent, jointEdges, parentWeights, isOutgoing);
 }
@@ -299,10 +300,11 @@ SingleVehicleWorldGraph::AreWavesConnectibleImpl(Parents<VertexType> const & for
     return true;
   };
 
-  auto const fillParents = [&](VertexType const & start, auto const & parents)
+  auto const fillParents = [&](VertexType current, auto const & parents)
   {
-    VertexType current = start;
+    /// @todo Realize the meaning of this constant.
     static uint32_t constexpr kStepCountOneSide = 3;
+
     for (uint32_t i = 0; i < kStepCountOneSide; ++i)
     {
       if (!fillUntilNextFeatureId(current, parents))

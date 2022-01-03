@@ -230,9 +230,13 @@
 	<string name="rate_the_app">为该应用打分</string>
 	<!-- Text in menu -->
 	<string name="help">帮助</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">问题和解答</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">如何支持我们？</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">版权</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">报告漏洞</string>
 	<!-- Alert text -->
 	<string name="email_error_body">电子邮件客户端尚未建立。请配置或使用任何其他方式与我们联系%s</string>
@@ -570,14 +574,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">来看看</string>
 	<string name="recent_track_background_dialog_message">Organic Maps使用背景中的地理位置记录您最近去过的路径。</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">在 Google Play 上的评分</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">告诉朋友</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">您好！安装 Organic Maps！</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps 是一款基本的离线旅行应用。Organic Maps 基于 OpenStreetMap 数据并且允许对其进行编辑。</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps 是一款免费的开源离线地图应用程序。无广告。没有跟踪。如果您在地图上看到错误，请在 OpenStreetMap 中修复它。该项目由爱好者在我们的空闲时间创建，因此我们需要您的反馈和支持。</string>
 	<string name="general_settings">常规设置</string>
 	<!-- For the first routing -->
 	<string name="accept">接受</string>
@@ -619,7 +617,6 @@
 	<string name="placepage_remove_stop">移除</string>
 	<string name="planning_route_remove_title">拖动到此处以移除</string>
 	<string name="placepage_add_stop">添加经停点</string>
-	<string name="preloader_viator_button">了解更多</string>
 	<string name="start_from_my_position">起点</string>
 	<string name="profile_authorization_error">糟糕，出错了。请尝试重新登录。</string>
 	<string name="dialog_error_storage_title">存储空间访问问题</string>
@@ -650,7 +647,6 @@
 	<string name="please_wait">请稍候…</string>
 	<string name="phone_number">电话号码</string>
 	<string name="profile">OpenStreetMap 资料</string>
-	<string name="place_page_search_similar_hotel">搜索类似的酒店</string>
 	<string name="bookmarks_detect_title">检测到新文件</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">找到%d个文件。 转换后你会看到它。</item>
@@ -719,7 +715,7 @@
 	<string name="unable_to_calc_alert_title">无法规划路线</string>
 	<string name="unable_to_calc_alert_subtitle">很遗憾，我们无法使用所选选项规划路线。请更改设置，然后重试</string>
 	<string name="define_to_avoid_btn">设置绕行路径</string>
-	<string name="change_driving_options_btn">繞行設置已開啟</string>
+	<string name="change_driving_options_btn">绕行设置已开启</string>
 	<string name="toll_road">收费公路</string>
 	<string name="unpaved_road">土路</string>
 	<string name="ferry_crossing">轮渡</string>
@@ -800,7 +796,7 @@
 	<string name="dialog_pedestrian_route_is_long_header">地铁路线图未找到</string>
 	<string name="dialog_pedestrian_route_is_long_message">选择地铁站附近的起点和终点</string>
 	<string name="button_layer_isolines">高度</string>
-	<string name="isolines_activation_error_dialog">如需使用高度線，請更新或下載所需區域的地圖</string>
+	<string name="isolines_activation_error_dialog">如需使用高度线，请更新或下载所需区域的地图</string>
 	<string name="isolines_location_error_dialog">暂时无法获取该地区的高低线</string>
 	<string name="elevation_profile_diff_level">难度等级</string>
 	<string name="elevation_profile_diff_level_easy">容易</string>
@@ -875,7 +871,7 @@
 	<string name="type.amenity.doctors">医师办公室</string>
 	<string name="type.amenity.drinking_water">饮用水</string>
 	<string name="type.amenity.driving_school">驾校</string>
-	<string name="type.amenity.embassy">大使馆</string>
+	<string name="type.office.diplomatic">大使馆</string>
 	<string name="type.amenity.fast_food">快餐店</string>
 	<string name="type.amenity.ferry_terminal">轮渡码头</string>
 	<string name="type.amenity.fire_station">消防局</string>
@@ -963,6 +959,7 @@
 	<string name="type.barrier.lift_gate">道闸</string>
 	<string name="type.barrier.retaining_wall">挡土墙</string>
 	<string name="type.barrier.stile">台阶</string>
+	<string name="type.barrier.swing_gate">道闸</string>
 	<string name="type.barrier.toll_booth">收费站</string>
 	<string name="type.barrier.wall">墙</string>
 	<string name="type.boundary">边界</string>
@@ -1095,6 +1092,7 @@
 	<string name="type.emergency.fire_hydrant">消防栓</string>
 	<string name="type.emergency.phone">紧急电话</string>
 	<string name="type.entrance">入口</string>
+	<string name="type.healthcare.laboratory">医学实验室</string>
 	<string name="type.highway">公路要素</string>
 	<string name="type.highway.bridleway">马道</string>
 	<string name="type.highway.bridleway.bridge">马道</string>
@@ -1218,7 +1216,6 @@
 	<string name="type.historic.memorial.sculpture">雕塑</string>
 	<string name="type.historic.memorial.statue">塑像</string>
 	<string name="type.historic.monument">纪念堂</string>
-	<string name="type.historic.museum">历史博物馆</string>
 	<string name="type.historic.ruins">废墟</string>
 	<string name="type.historic.ship">历史船</string>
 	<string name="type.historic.tomb">陵墓</string>
@@ -1230,7 +1227,7 @@
 	<string name="type.junction.roundabout">环岛</string>
 	<string name="type.landuse">土地利用要素</string>
 	<string name="type.landuse.allotments">市民农园</string>
-	<string name="type.landuse.basin">水</string>
+	<string name="type.landuse.basin">水盆地</string>
 	<string name="type.landuse.brownfield">棕土</string>
 	<string name="type.landuse.cemetery">墓地</string>
 	<string name="type.landuse.cemetery.christian">基督教墓地</string>
@@ -1319,9 +1316,12 @@
 	<string name="type.natural.grassland">草原</string>
 	<string name="type.natural.heath">荒野</string>
 	<string name="type.natural.hot_spring">温泉</string>
-	<string name="type.natural.lake">湖</string>
+	<string name="type.natural.water.lake">湖</string>
+	<string name="type.natural.water.pond">池塘</string>
+	<string name="type.natural.water.reservoir">水库</string>
+	<string name="type.natural.water.basin">水盆地</string>
+	<string name="type.natural.water.river">河流</string>
 	<string name="type.natural.peak">峰</string>
-	<string name="type.natural.pond">池塘</string>
 	<string name="type.natural.rock">岩石</string>
 	<string name="type.natural.scrub">灌木丛</string>
 	<string name="type.natural.spring">泉水</string>
@@ -1329,7 +1329,7 @@
 	<string name="type.natural.tree">树</string>
 	<string name="type.natural.tree_row">树列</string>
 	<string name="type.natural.volcano">火山</string>
-	<string name="type.natural.water">水</string>
+	<string name="type.natural.water">水體</string>
 	<string name="type.natural.wetland">湿地</string>
 	<string name="type.natural.wetland.bog">泥炭地</string>
 	<string name="type.natural.wetland.marsh">沼泽地</string>
@@ -1414,28 +1414,15 @@
 	<string name="type.railway.station.subway">地铁车站</string>
 	<string name="type.railway.station.subway.barcelona">地铁车站</string>
 	<string name="type.railway.station.subway.berlin">地铁车站</string>
-	<string name="type.railway.station.subway.blue">地铁车站</string>
-	<string name="type.railway.station.subway.brown">地铁车站</string>
-	<string name="type.railway.station.subway.darkgreen">地铁车站</string>
-	<string name="type.railway.station.subway.gray">地铁车站</string>
-	<string name="type.railway.station.subway.green">地铁车站</string>
-	<string name="type.railway.station.subway.grey">地铁车站</string>
 	<string name="type.railway.station.subway.kiev">地铁车站</string>
-	<string name="type.railway.station.subway.lightblue">地铁车站</string>
-	<string name="type.railway.station.subway.lightgreen">地铁车站</string>
 	<string name="type.railway.station.subway.london">地铁车站</string>
 	<string name="type.railway.station.subway.madrid">地铁车站</string>
 	<string name="type.railway.station.subway.minsk">地铁车站</string>
 	<string name="type.railway.station.subway.moscow">地铁车站</string>
 	<string name="type.railway.station.subway.newyork">地铁车站</string>
-	<string name="type.railway.station.subway.orange">地铁车站</string>
 	<string name="type.railway.station.subway.paris">地铁车站</string>
-	<string name="type.railway.station.subway.purple">地铁车站</string>
-	<string name="type.railway.station.subway.red">地铁车站</string>
 	<string name="type.railway.station.subway.roma">地铁车站</string>
 	<string name="type.railway.station.subway.spb">地铁车站</string>
-	<string name="type.railway.station.subway.violet">地铁车站</string>
-	<string name="type.railway.station.subway.yellow">地铁车站</string>
 	<string name="type.railway.subway_entrance">地铁入口</string>
 	<string name="type.railway.subway_entrance.barcelona">地铁入口</string>
 	<string name="type.railway.subway_entrance.berlin">地铁入口</string>
@@ -1457,8 +1444,6 @@
 	<string name="type.railway.yard.tunnel">铁路货场</string>
 	<string name="type.route">线路</string>
 	<string name="type.route.ferry">航线</string>
-	<string name="type.route.ferry.motor_vehicle">航线</string>
-	<string name="type.route.ferry.motorcar">航线</string>
 	<string name="type.shop">商店</string>
 	<string name="type.shop.alcohol">烈酒</string>
 	<string name="type.shop.bakery">烘培店</string>
@@ -1533,7 +1518,6 @@
 	<string name="type.sport.cricket">板球</string>
 	<string name="type.sport.diving">跳水</string>
 	<string name="type.sport.equestrian">马术运动</string>
-	<string name="type.sport.football">足球</string>
 	<string name="type.sport.golf">高尔夫球</string>
 	<string name="type.sport.gymnastics">体操</string>
 	<string name="type.sport.handball">手球</string>

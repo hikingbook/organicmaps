@@ -47,7 +47,7 @@ world  +
         doctors  -
         drinking_water  -
         driving_school  -
-        embassy  -
+        events_venue  -
         fast_food  -
         ferry_terminal  -
         fire_station  -
@@ -63,6 +63,7 @@ world  +
         internet_cafe  -
         kindergarten  -
         library  -
+        loading_dock  -
         marketplace  -
         motorcycle_parking  -
         nightclub  -
@@ -104,7 +105,6 @@ world  +
         school  -
         shelter  -
         shower  -
-        speed_trap  -
         taxi  -
         telephone  -
         theatre  -
@@ -143,6 +143,7 @@ world  +
         block  -
         bollard  -
         border_control  -
+        chain  -
         city_wall  -
         cycle_barrier  -
         entrance  -
@@ -152,6 +153,7 @@ world  +
         lift_gate  -
         retaining_wall  -
         stile  -
+        swing_gate  -
         toll_booth  -
         wall  -
         {}
@@ -297,6 +299,9 @@ world  +
         phone  -
         {}
     entrance  -
+    healthcare  +
+        laboratory  -
+        {}
     highway  +
         bridleway  +
             bridge  -
@@ -310,6 +315,7 @@ world  +
             permissive  -
             tunnel  -
             {}
+        elevator  -
         footway  +
             alpine_hiking  -
             area  -
@@ -447,7 +453,6 @@ world  +
             statue  -
             {}
         monument  -
-        museum  -
         ruins  -
         ship  -
         tomb  -
@@ -521,6 +526,7 @@ world  +
         vineyard  -
         {}
     leisure  +
+        beach_resort  -
         common  -
         dog_park  -
         fitness_centre  -
@@ -549,7 +555,9 @@ world  +
             yoga  -
             {}
         stadium  -
-        swimming_pool  -
+        swimming_pool  +
+            private  -
+            {}
         track  -
         water_park  -
         {}
@@ -563,6 +571,8 @@ world  +
         pipeline  +
             overground  -
             {}
+        silo  -
+        storage_tank  -
         surveillance  -
         tower  -
         wastewater_plant  -
@@ -578,10 +588,14 @@ world  +
     military  +
         bunker  -
         {}
+    mountain_pass  -
     natural  +
         bare_rock  -
         bay  -
-        beach  -
+        beach  +
+            gravel  -
+            sand  -
+            {}
         cape  -
         cave_entrance  -
         cliff  -
@@ -591,22 +605,23 @@ world  +
         grassland  -
         heath  -
         hot_spring  -
-        lake  -
         land  -
-        meadow  -
-        orchard  -
         peak  -
-        pond  -
         rock  -
-        salt_pond  -
+        saddle  -
         scrub  -
         spring  -
         strait  -
         tree  -
         tree_row  -
-        vineyard  -
         volcano  -
-        water  -
+        water  +
+            basin  -
+            lake  -
+            pond  -
+            reservoir  -
+            river  -
+            {}
         wetland  +
             bog  -
             marsh  -
@@ -617,28 +632,13 @@ world  +
         {}
     office  +
         company  -
+        diplomatic  -
         estate_agent  -
         government  -
         insurance  -
         lawyer  -
         ngo  -
         telecommunication  -
-        {}
-    olympics  +
-        attraction  -
-        bike_sport  -
-        live_site  -
-        official_building  -
-        stadium  -
-        stadium_main  -
-        transport_airport  -
-        transport_boat  -
-        transport_bus  -
-        transport_cable  -
-        transport_railway  -
-        transport_subway  -
-        transport_tram  -
-        water_sport  -
         {}
     piste:lift  +
         j-bar  -
@@ -728,10 +728,6 @@ world  +
             tunnel  -
             {}
         halt  -
-        incline  +
-            bridge  -
-            tunnel  -
-            {}
         level_crossing  -
         light_rail  +
             bridge  -
@@ -782,21 +778,8 @@ world  +
                 {}
             {}
         subway  +
-            blue  -
             bridge  -
-            brown  -
-            darkgreen  -
-            gray  -
-            green  -
-            grey  -
-            lightblue  -
-            lightgreen  -
-            orange  -
-            purple  -
-            red  -
             tunnel  -
-            violet  -
-            yellow  -
             {}
         subway_entrance  +
             barcelona  -
@@ -832,10 +815,7 @@ world  +
         toxic  -
         {}
     route  +
-        ferry  +
-            motor_vehicle  -
-            motorcar  -
-            {}
+        ferry  -
         shuttle_train  -
         {}
     shop  +
@@ -945,7 +925,6 @@ world  +
         curling  -
         diving  -
         equestrian  -
-        football  -
         golf  -
         gymnastics  -
         handball  -

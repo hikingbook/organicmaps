@@ -23,8 +23,6 @@
 	<string name="leave_a_review">Αφήστε μια κριτική</string>
 	<!-- View and button titles for accessibility -->
 	<string name="maps">Χάρτες</string>
-	<!-- Settings/Downloader - size string, only strings different from English should be translated -->
-	<string name="mb">MB</string>
 	<string name="gb">GB</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
 	<string name="miles">Μίλια</string>
@@ -224,9 +222,13 @@
 	<string name="rate_the_app">Βαθμολογήστε την εφαρμογή</string>
 	<!-- Text in menu -->
 	<string name="help">Βοήθεια</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Ερωτήσεις και απαντήσεις</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Πώς να μας υποστηρίξετε;</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Πνευματικά δικαιώματα</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Αναφορά σφάλματος</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Το πρόγραμμα-client ηλεκτρονικού ταχυδρομείου έχει δεν έχει ρυθμιστεί. Ρυθμίστε το ή χρησιμοποιήστε άλλο τρόπο να επικοινωνήσετε μαζί μας στη διεύθυνση %s</string>
@@ -550,14 +552,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Αναχώρηση</string>
 	<string name="recent_track_background_dialog_message">Το Organic Maps χρησιμοποιεί τη γεωγραφική σας τοποθεσία στο παρασκήνιο για την καταγραφή των πρόσφατων διαδρομών σας.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Βαθμολογήστε το στο Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Πείτε το σε ένα φίλο</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Γεια σας! Εγκαταστήστε το Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Το Organic Maps είναι η απαραίτητη εφαρμογή γα ταξίδια που λειτουργεί εκτός σύνδεσης. Το Organic Maps βασίζεται σε δεδομένα OpenStreetMap και σας επιτρέπει να τα επεξεργαστείτε.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Οι Organic Maps είναι μια δωρεάν και ανοιχτού κώδικα εφαρμογή χαρτών εκτός σύνδεσης. Χωρίς διαφημίσεις. Χωρίς εντοπισμό. Εάν δείτε κάποιο σφάλμα στον χάρτη, διορθώστε το στο OpenStreetMap. Το έργο δημιουργείται από λάτρεις στον ελεύθερο χρόνο μας, επομένως χρειαζόμαστε τα σχόλια και την υποστήριξή σας.</string>
 	<string name="general_settings">Γενικές ρυθμίσεις</string>
 	<!-- For the first routing -->
 	<string name="accept">Συμφωνώ</string>
@@ -599,7 +595,6 @@
 	<string name="placepage_remove_stop">Κατάργηση</string>
 	<string name="planning_route_remove_title">Σύρετε εδώ για κατάργηση</string>
 	<string name="placepage_add_stop">Προσθήκη στάσης</string>
-	<string name="preloader_viator_button">Μάθετε περισσότερα</string>
 	<string name="start_from_my_position">Έναρξη από</string>
 	<string name="profile_authorization_error">Ωχ, παρουσιάστηκε σφάλμα. Προσπαθήστε να συνδεθείτε ξανά.</string>
 	<string name="dialog_error_storage_title">Πρόβλημα πρόσβασης στον αποθηκευτικό χώρο</string>
@@ -630,7 +625,6 @@
 	<string name="please_wait">Παρακαλώ περιμένετε…</string>
 	<string name="phone_number">Τηλεφωνικό νούμερο</string>
 	<string name="profile">Προφίλ OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Αναζήτηση παρόμοιων ξενοδοχείων</string>
 	<string name="bookmarks_detect_title">Εντοπίστηκαν νέα αρχεία</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">Βρέθηκε %d αρχείο. Θα το δείτε μετά τη μετατροπή.</item>
@@ -845,7 +839,7 @@
 	<string name="type.amenity.doctors">Γιατροί</string>
 	<string name="type.amenity.drinking_water">Πόσιμο νερό</string>
 	<string name="type.amenity.driving_school">Σχολή οδήγησης</string>
-	<string name="type.amenity.embassy">Πρεσβεία</string>
+	<string name="type.office.diplomatic">Πρεσβεία</string>
 	<string name="type.amenity.fast_food">Ταχυφαγίο</string>
 	<string name="type.amenity.ferry_terminal">Πορθμείο</string>
 	<string name="type.amenity.fire_station">Σταθμός πυρόσβεσης</string>
@@ -925,6 +919,7 @@
 	<string name="type.barrier.gate">Πύλη</string>
 	<string name="type.barrier.lift_gate">Ανυψούμενη μπάρα</string>
 	<string name="type.barrier.stile">Τουρνικέ</string>
+	<string name="type.barrier.swing_gate">Ανυψούμενη μπάρα</string>
 	<string name="type.barrier.toll_booth">Σταθμός διοδίων</string>
 	<string name="type.boundary.national_park">Εθνικό πάρκο</string>
 	<string name="type.building">Κτίριο</string>
@@ -1032,6 +1027,7 @@
 	<string name="type.emergency.fire_hydrant">Πυροσβεστικός κρουνός</string>
 	<string name="type.emergency.phone">Τηλέφωνο έκτακτης ανάγκης</string>
 	<string name="type.entrance">Είσοδος</string>
+	<string name="type.healthcare.laboratory">Ιατρικό Εργαστήριο</string>
 	<string name="type.highway.bus_stop">Στάση λεωφορείου</string>
 	<string name="type.highway.construction">Οδός υπό κατασκευή</string>
 	<string name="type.highway.footway">Διαδρομή</string>
@@ -1145,7 +1141,7 @@
 	<string name="type.historic.tomb">Αξιοθέατο</string>
 	<string name="type.internet_access">Ίντερνετ</string>
 	<string name="type.internet_access.wlan">Ίντερνετ</string>
-	<string name="type.landuse.basin">Νερό</string>
+	<string name="type.landuse.basin">Μια λεκάνη νερού</string>
 	<string name="type.landuse.cemetery">Νεκροταφείο</string>
 	<string name="type.landuse.cemetery.christian">Νεκροταφείο</string>
 	<string name="type.landuse.churchyard">Αυλόγυρος εκκλησίας</string>
@@ -1196,15 +1192,18 @@
 	<string name="type.natural.geyser">Θερμοπίδακας</string>
 	<string name="type.natural.glacier">Παγετώνας</string>
 	<string name="type.natural.grassland">Λιβάδι</string>
-	<string name="type.natural.lake">Λίμνη</string>
+	<string name="type.natural.water.lake">Λίμνη</string>
+	<string name="type.natural.water.pond">Δεξαμενή</string>
+	<string name="type.natural.water.reservoir">Δεξαμενή</string>
+	<string name="type.natural.water.basin">Μια λεκάνη νερού</string>
+	<string name="type.natural.water.river">Ποταμός</string>
 	<string name="type.natural.peak">Κορυφή</string>
-	<string name="type.natural.pond">Δεξαμενή</string>
 	<string name="type.natural.scrub">Θαμνώδες περιοχή</string>
 	<string name="type.natural.spring">Πηγή νερού</string>
 	<string name="type.natural.strait">Πορθμός</string>
 	<string name="type.natural.tree">Δέντρο</string>
 	<string name="type.natural.volcano">Ηφαίστειο</string>
-	<string name="type.natural.water">Νερό</string>
+	<string name="type.natural.water">Σώμα νερού</string>
 	<string name="type.natural.wetland">Υγρότοπος</string>
 	<string name="type.office">Γραφείο</string>
 	<string name="type.office.company">Γραφείο επιχείρησης</string>
@@ -1255,28 +1254,15 @@
 	<string name="type.railway.station.subway">Μετρό</string>
 	<string name="type.railway.station.subway.barcelona">Μετρό</string>
 	<string name="type.railway.station.subway.berlin">Μετρό</string>
-	<string name="type.railway.station.subway.blue">Μετρό</string>
-	<string name="type.railway.station.subway.brown">Μετρό</string>
-	<string name="type.railway.station.subway.darkgreen">Μετρό</string>
-	<string name="type.railway.station.subway.gray">Μετρό</string>
-	<string name="type.railway.station.subway.green">Μετρό</string>
-	<string name="type.railway.station.subway.grey">Μετρό</string>
 	<string name="type.railway.station.subway.kiev">Μετρό</string>
-	<string name="type.railway.station.subway.lightblue">Μετρό</string>
-	<string name="type.railway.station.subway.lightgreen">Μετρό</string>
 	<string name="type.railway.station.subway.london">Μετρό</string>
 	<string name="type.railway.station.subway.madrid">Μετρό</string>
 	<string name="type.railway.station.subway.minsk">Μετρό</string>
 	<string name="type.railway.station.subway.moscow">Μετρό</string>
 	<string name="type.railway.station.subway.newyork">Μετρό</string>
-	<string name="type.railway.station.subway.orange">Μετρό</string>
 	<string name="type.railway.station.subway.paris">Μετρό</string>
-	<string name="type.railway.station.subway.purple">Μετρό</string>
-	<string name="type.railway.station.subway.red">Μετρό</string>
 	<string name="type.railway.station.subway.roma">Μετρό</string>
 	<string name="type.railway.station.subway.spb">Μετρό</string>
-	<string name="type.railway.station.subway.violet">Μετρό</string>
-	<string name="type.railway.station.subway.yellow">Μετρό</string>
 	<string name="type.railway.subway_entrance">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.barcelona">Μετρό</string>
 	<string name="type.railway.subway_entrance.berlin">Μετρό</string>

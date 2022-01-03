@@ -218,9 +218,13 @@
 	<string name="rate_the_app">アプリを評価</string>
 	<!-- Text in menu -->
 	<string name="help">ヘルプ</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">質問と回答</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">どのように私たちを支持する方法？</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">著作権</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">バグを報告</string>
 	<!-- Alert text -->
 	<string name="email_error_body">このメールクライアントはセットアップされていません。設定するか、他の方法で%sにご連絡ください。</string>
@@ -556,14 +560,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">ご覧ください</string>
 	<string name="recent_track_background_dialog_message">Organic Mapsは、あなたの位置情報をバックグラウンドで使用して最近の走行ルートを記録します。</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Google Play で評価</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">友達に教える</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">こんにちは！Organic Maps をインストールしましょう！</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps は旅に必要不可欠なオフラインアプリケーションです。Organic Maps は OpenStreetMap データに基づいており、データを編集することができます。</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Mapsは、無料のオープンソースのオフラインマップアプリケーションです。広告なし。全く追跡しません。地図上にエラーが表示された場合は、OpenStreetMapで修正してください。プロジェクトは私たちの自由な時間に愛好家によって作成されているため、フィードバックとサポートが必要です。</string>
 	<string name="general_settings">一般設定</string>
 	<!-- For the first routing -->
 	<string name="accept">了解</string>
@@ -605,7 +603,6 @@
 	<string name="placepage_remove_stop">削除</string>
 	<string name="planning_route_remove_title">ここにドラッグして削除</string>
 	<string name="placepage_add_stop">経由地点を追加</string>
-	<string name="preloader_viator_button">詳細情報</string>
 	<string name="start_from_my_position">開始位置</string>
 	<string name="profile_authorization_error">エラーが発生しました。もう一度サインインしてみてください。</string>
 	<string name="dialog_error_storage_title">ストレージアクセスの問題</string>
@@ -636,7 +633,6 @@
 	<string name="please_wait">お待ちください…</string>
 	<string name="phone_number">電話番号</string>
 	<string name="profile">OpenStreetMap プロフィール</string>
-	<string name="place_page_search_similar_hotel">類似のホテルを検索</string>
 	<string name="bookmarks_detect_title">新しいファイルが検出されました</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d ファイルが見つかりました。 あなたは変換後にそれらを見るでしょう。</item>
@@ -862,7 +858,7 @@
 	<string name="type.amenity.doctors">医院</string>
 	<string name="type.amenity.drinking_water">水飲み場</string>
 	<string name="type.amenity.driving_school">自動車教習所</string>
-	<string name="type.amenity.embassy">大使館</string>
+	<string name="type.office.diplomatic">大使館</string>
 	<string name="type.amenity.fast_food">ファストフード</string>
 	<string name="type.amenity.ferry_terminal">フェリー</string>
 	<string name="type.amenity.fire_station">消防署</string>
@@ -951,6 +947,7 @@
 	<string name="type.barrier.lift_gate">ブームバリア</string>
 	<string name="type.barrier.retaining_wall">擁壁</string>
 	<string name="type.barrier.stile">回転扉</string>
+	<string name="type.barrier.swing_gate">ブームバリア</string>
 	<string name="type.barrier.toll_booth">料金所</string>
 	<string name="type.barrier.wall">壁</string>
 	<string name="type.boundary">境界線</string>
@@ -1062,6 +1059,7 @@
 	<string name="type.emergency.fire_hydrant">消火栓</string>
 	<string name="type.emergency.phone">緊急電話</string>
 	<string name="type.entrance">エントランス</string>
+	<string name="type.healthcare.laboratory">医療研究所</string>
 	<string name="type.highway">道路</string>
 	<string name="type.highway.bridleway">馬道</string>
 	<string name="type.highway.bridleway.bridge">馬道(橋)</string>
@@ -1185,7 +1183,6 @@
 	<string name="type.historic.memorial.sculpture">彫刻</string>
 	<string name="type.historic.memorial.statue">塑像</string>
 	<string name="type.historic.monument">記念碑</string>
-	<string name="type.historic.museum">歴史的なミュージアム</string>
 	<string name="type.historic.ruins">古跡</string>
 	<string name="type.historic.ship">退役船</string>
 	<string name="type.historic.tomb">墓</string>
@@ -1197,7 +1194,7 @@
 	<string name="type.junction.roundabout">ラウンドアバウト</string>
 	<string name="type.landuse">土地利用</string>
 	<string name="type.landuse.allotments">市民農園</string>
-	<string name="type.landuse.basin">遊水地</string>
+	<string name="type.landuse.basin">水地</string>
 	<string name="type.landuse.brownfield">再開発用地</string>
 	<string name="type.landuse.cemetery">墓地</string>
 	<string name="type.landuse.cemetery.christian">キリスト教墓地</string>
@@ -1290,14 +1287,16 @@
 	<string name="type.natural.grassland">野原</string>
 	<string name="type.natural.heath">ヒース</string>
 	<string name="type.natural.hot_spring">温泉</string>
-	<string name="type.natural.lake">湖</string>
+	<string name="type.natural.water.lake">湖</string>
+	<string name="type.natural.water.pond">池</string>
+	<string name="type.natural.water.reservoir">貯水池</string>
+	<string name="type.natural.water.basin">水地</string>
+	<string name="type.natural.water.river">河川</string>
 	<string name="type.natural.land">陸地</string>
 	<string name="type.natural.meadow">牧草地</string>
 	<string name="type.natural.orchard">果樹園</string>
 	<string name="type.natural.peak">山頂</string>
-	<string name="type.natural.pond">池</string>
 	<string name="type.natural.rock">岩</string>
-	<string name="type.natural.salt_pond">塩田</string>
 	<string name="type.natural.scrub">雑木林</string>
 	<string name="type.natural.spring">泉</string>
 	<string name="type.natural.strait">海峡</string>
@@ -1319,12 +1318,6 @@
 	<string name="type.office.lawyer">弁護士事務所</string>
 	<string name="type.office.ngo">NGO 事務局</string>
 	<string name="type.office.telecommunication">携帯電話事業者</string>
-	<string name="type.olympics">オリンピック</string>
-	<string name="type.olympics.attraction">オリンピックアトラクション</string>
-	<string name="type.olympics.bike_sport">オリンピック自転車競技</string>
-	<string name="type.olympics.stadium">オリンピックスタジアム</string>
-	<string name="type.olympics.stadium_main">オリンピックメインスタジアム</string>
-	<string name="type.olympics.water_sport">オリンピック水上競技</string>
 	<string name="type.place">地名</string>
 	<string name="type.place.city">市</string>
 	<string name="type.place.city.capital">首都</string>
@@ -1410,28 +1403,15 @@
 	<string name="type.railway.station.subway">地下鉄</string>
 	<string name="type.railway.station.subway.barcelona">地下鉄</string>
 	<string name="type.railway.station.subway.berlin">地下鉄</string>
-	<string name="type.railway.station.subway.blue">地下鉄</string>
-	<string name="type.railway.station.subway.brown">地下鉄</string>
-	<string name="type.railway.station.subway.darkgreen">地下鉄</string>
-	<string name="type.railway.station.subway.gray">地下鉄</string>
-	<string name="type.railway.station.subway.green">地下鉄</string>
-	<string name="type.railway.station.subway.grey">地下鉄</string>
 	<string name="type.railway.station.subway.kiev">地下鉄</string>
-	<string name="type.railway.station.subway.lightblue">地下鉄</string>
-	<string name="type.railway.station.subway.lightgreen">地下鉄</string>
 	<string name="type.railway.station.subway.london">地下鉄</string>
 	<string name="type.railway.station.subway.madrid">地下鉄</string>
 	<string name="type.railway.station.subway.minsk">地下鉄</string>
 	<string name="type.railway.station.subway.moscow">地下鉄</string>
 	<string name="type.railway.station.subway.newyork">地下鉄</string>
-	<string name="type.railway.station.subway.orange">地下鉄</string>
 	<string name="type.railway.station.subway.paris">地下鉄</string>
-	<string name="type.railway.station.subway.purple">地下鉄</string>
-	<string name="type.railway.station.subway.red">地下鉄</string>
 	<string name="type.railway.station.subway.roma">地下鉄</string>
 	<string name="type.railway.station.subway.spb">地下鉄</string>
-	<string name="type.railway.station.subway.violet">地下鉄</string>
-	<string name="type.railway.station.subway.yellow">地下鉄</string>
 	<string name="type.railway.subway_entrance">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.barcelona">地下鉄</string>
 	<string name="type.railway.subway_entrance.berlin">地下鉄</string>
@@ -1453,8 +1433,6 @@
 	<string name="type.railway.yard.tunnel">ヤード(トンネル)</string>
 	<string name="type.route">ルート</string>
 	<string name="type.route.ferry">フェリー航路</string>
-	<string name="type.route.ferry.motor_vehicle">フェリー航路(動力車)</string>
-	<string name="type.route.ferry.motorcar">フェリー航路(自動車)</string>
 	<string name="type.shop">買い物</string>
 	<string name="type.shop.alcohol">酒屋</string>
 	<string name="type.shop.bakery">パン屋</string>
@@ -1534,7 +1512,6 @@
 	<string name="type.sport.curling">カーリング</string>
 	<string name="type.sport.diving">ダイビング</string>
 	<string name="type.sport.equestrian">馬術</string>
-	<string name="type.sport.football">フットボール</string>
 	<string name="type.sport.golf">ゴルフ</string>
 	<string name="type.sport.gymnastics">体操競技</string>
 	<string name="type.sport.handball">ハンドボール</string>

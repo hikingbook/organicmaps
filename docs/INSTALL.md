@@ -1,8 +1,64 @@
 # Building
 
+- [System requirements](#system-requirements)
+- [Getting sources](#getting-sources)
 - [Desktop](#desktop-app)
 - [Android](#android-app)
 - [iOS](#ios-app)
+
+## System requirements
+
+To build and run Organic Maps you'll need a machine with at least 4Gb of RAM and 20-30Gb of disk space depending on your target platform. Expect to download 5-10Gb of files.
+
+## Getting sources
+
+First of all get the source code. The full Organic Maps sources repository is ~8.5Gb in size, there are various [clone options](#special-cases-options) to reduce download size to suit your needs.
+
+For _Windows 10_ enable [symlinks](https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks) support in git first:
+
+```bash
+git config --global core.symlinks true
+```
+
+Clone the repository including all submodules:
+
+(if you plan to contribute and propose pull requests then use a web interface at https://github.com/organicmaps/organicmaps to fork the repo first and use your fork's url in the command below)
+
+```bash
+git clone --recurse-submodules https://github.com/organicmaps/organicmaps.git
+```
+
+Go into the cloned repo:
+```bash
+cd organicmaps
+```
+
+Configure the repository for an opensource build:
+
+(if you plan to publish the app privately in stores check [special options](#special-cases-options))
+
+```bash
+./configure.sh
+```
+
+For _Windows 10_: Use WSL to run `./configure.sh`:
+
+```bash
+bash ./configure.sh # execute the script by using Ubuntu WSL VM
+```
+
+### Special cases options
+
+If all you want is just a one-off build or your Internet bandwidth or disk space are limited then add following options to the `git clone` command:
+
+- a `--filter=blob:limit=128k` option to make a _partial clone_ (saves ~4Gb), i.e. blob files over 128k in size will be excluded from the history and downloaded on-demand - should be suitable for a generic development use;
+
+- a `--depth=1` option to make a _shallow copy_ (and possibly a `--no-single-branch` to have all branches not just `master`), i.e. omit history while retaining current commits only (saves ~4.5Gb) - suitable for one-off builds;
+
+- a `--shallow-submodules` option to _shallow clone_ the submodules (save ~1.3Gb) - should be suitable for a generic development if no work on submodules is planned.
+
+To be able to publish the app in stores e.g. in Google Play its necessary to populate some configs with private keys, etc.
+Check `./configure.sh --help` to see how to copy the configs automatically from a private repo.
 
 ## Desktop app
 
@@ -16,9 +72,9 @@ You need a Linux or a Mac machine to build a desktop version of Organic Maps.
 
 Ensure that you have at least 20GB of free space.
 
-Install Cmake, Boost, Qt 5 and other dependencies.
+Install Cmake (**3.18.1** minimum), Boost, Qt 5 and other dependencies.
 
-**Ubuntu 20.04**:
+_Ubuntu 20.04:_
 
 ```bash
 sudo apt-get update && sudo apt-get install -y \
@@ -35,7 +91,7 @@ sudo apt-get update && sudo apt-get install -y \
     zlib1g-dev
 ```
 
-**Fedora 33**:
+_Fedora 33:_
 
 ```bash
 sudo dnf install -y \
@@ -47,75 +103,28 @@ sudo dnf install -y \
     sqlite-devel
 ```
 
-**macOS**:
+_macOS:_ 
 
 ```bash
-brew install qt cmake
+brew install cmake qt@5
 ```
-
-### Getting sources
-
-Clone the repository:
-
-```bash
-git clone --recursive https://github.com/organicmaps/organicmaps.git
-```
-
-Default clone destination directory is organicmaps.
-
-Update git submodules (sometimes doesn't work automatically):
-
-```bash
-git submodule update --init --recursive
-```
-
-Configure the repository as opensource build:
-
-```bash
-./configure.sh
-```
-
-or with private repository
-
-```bash
-./configure.sh <private-repo-name>
-```
-
-You can check usage `./configure.sh --help`
 
 ### Building
 
-With all tools installed, just run `tools/unix/build_omim.sh`.
-It will build both debug and release versions to `../omim-build-<buildtype>`.
-Command-line switches are:
-
-- `-r` to build a release version
-- `-d` to build a debug version
-- `-c` to delete target directories before building
-- `-s` to not build a desktop app, when you don't have desktop Qt libraries.
-- `-p` with a path to where the binaries will be built.
-
-After switches, you can specify a target (everything by default). For example,
-to build a generator tool release version only:
-
-```
-tools/unix/build_omim.sh -r generator_tool
+To build a debug version of the desktop app:
+```bash
+tools/unix/build_omim.sh -d desktop
 ```
 
-Targets list can be viewed:
+The output binary will go into `../omim-build-debug`.
+
+Check `tools/unix/build_omim.sh -h` for more build options, e.g. to build a release.
+
+Besides _desktop_ there are other targets like _generator_tool_, to see a full list execute:
 
 ```bash
-cmake --build ../omim-build-<buildtype> --target help
+tools/unix/build_omim.sh -d help
 ```
-
-If you have Qt installed in an unusual directory, use `QT_PATH` variable (`SET (QT_PATH "your-path-to-qt")`). You can skip building tests
-with `CMAKE_CONFIG=-DSKIP_TESTS` variable. You would need 1.5 GB of memory
-to compile the `stats` module.
-
-The `build_omim.sh` script basically runs these commands:
-
-    cmake <path_to_omim> -DCMAKE_BUILD_TYPE={Debug|Release}
-    make [<target>] -j <number_of_processes>
 
 ### Running
 
@@ -123,7 +132,7 @@ The generated binaries appear in `../omim-build-<buildtype>`.
 
 Run `OMaps` binary from `../omim-build-<buildtype>`, for example, for release:
 
-**Linux**:
+_Linux:_
 
 ```bash
 ../omim-build-release/OMaps -data_path ./data
@@ -137,7 +146,7 @@ ln -s ../organicmaps/data ./data
 ./OMaps -data_path ./data
 ```
 
-**macOS**:
+_macOS:_
 
 ```bash
 ../omim-build-release/OMaps.app/Contents/MacOS/OMaps
@@ -184,135 +193,81 @@ ln -s ../data/ data
 
 Some tests [are known to be broken](https://github.com/organicmaps/organicmaps/issues?q=is%3Aissue+is%3Aopen+label%3ATests).
 
+### More options
+
+If you have Qt installed in an unusual directory, use `QT_PATH` variable (`SET (QT_PATH "your-path-to-qt")`). You can skip building tests
+with `CMAKE_CONFIG=-DSKIP_TESTS` variable. You would need 1.5 GB of memory
+to compile the `stats` module.
+
+The `build_omim.sh` script basically runs these commands:
+```bash
+    cmake <path_to_omim> -DCMAKE_BUILD_TYPE={Debug|Release}
+    <make or ninja> [<target>] -j <number_of_processes>
+```
+
 ## Android app
 
 ### Preparing
 
 Linux, Mac, or Windows should work to build Organic Maps for Android.
 
-Ensure that you have at least 20GB of free space.
+Ensure that you have at least 30GB of free space.
 
 Install [Android Studio](https://developer.android.com/studio).
 
-Install [Android SDK](https://developer.android.com/sdk/index.html) and
-[NDK](https://developer.android.com/tools/sdk/ndk/index.html):
+Install Android SDK and NDK:
 
 - Run the Android Studio.
-- Open "SDK Manager" ("Tools" → "SDK Manager").
-- Choose "Android 11 (R) API Level 30" SDK.
-- Choose "version "30" and click "OK".
+- Open "SDK Manager" (under "More Actions" in a welcome screen or a three-dot menu in a list of recent projects screen or "Tools" top menu item in an open project).
+- Select "Android 11.0 (R) / API Level 30" SDK.
+- Switch to "SDK Tools" tab
 - Check "Show Package Details" checkbox.
-- Choose "NDK (side by side)" version **21.X.Y**.
-- Choose "CMake" version **3.18.1**.
-- Click "OK".
+- Select "NDK (Side by side)" version **21.4.7075529**.
+- Select "CMake" version **3.18.1**.
+- Click "OK" and wait for downloads and installation to finish.
 
-Alternatively, you can install only
-[Android SDK](https://developer.android.com/sdk/index.html) and
-[NDK](https://developer.android.com/tools/sdk/ndk/index.html) without
-installing Android Studio. Please make sure that SDK for API Level 30,
-NDK version **21.X.Y** and CMake version **3.18.XX** are installed.
+Configure the repo with Android SDK and NDK paths:
 
-Configure `PATH` to prefer `cmake` from Android SDK/NDK instead of
-installed in the system:
-
-**Linux**:
-
+_Linux:_
 ```bash
-export PATH=$HOME/Android/sdk/cmake/3.18.1/bin:$PATH
-```
-
-**macOS**:
-
-```bash
-export PATH=$HOME/Library/Android/sdk/cmake/3.18.1/bin:$PATH
-```
-
-### Getting sources
-
-**Windows 10.** Enable [symlinks][git-symlinks] support in git:
-
-[git-symlinks]: https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks
-
-```bash
-git config --global core.symlinks true
-```
-
-Clone the repository:
-
-```bash
-git clone --recursive https://github.com/organicmaps/organicmaps.git
-```
-
-Update git submodules (sometimes doesn't work automatically):
-
-```
-git submodule update --init --recursive
-```
-
-Configure the repository as opensource build:
-
-```bash
-./configure.sh
-```
-
-or with private repository
-
-```bash
-./configure.sh <private-repo-name>
-```
-
-**Windows 10.** Use WSL to run `./configure.sh`:
-
-```bash
-bash ./configure.sh # execute the script by using Ubuntu WSL VM
-```
-
-**Windows 10.** Alternative way is to initialize Boost manually:
-
-1. Install Visual Studio 2019 Community Edition.
-2. Add cl.exe to your PATH (`C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\\vcvars32.bat`).
-3. Run `./configure.sh` from _Git (for Window) Bash_ and ignore all errors related to Boost.
-4. Go to `./3party/boost`, run `./bootstrap.bat`, and then `b2 headers` to configure Boost.
-
-Set Android SDK and NDK path:
-
-```bash
-# Linux
 ./tools/android/set_up_android.py --sdk $HOME/Android/Sdk
-# MacOS
-./tools/android/set_up_android.py --sdk $HOME/Library/Android/Sdk
-# Windows 10
-# no actions needed, should work out of the box
 ```
+
+_macOS:_
+```bash
+./tools/android/set_up_android.py --sdk $HOME/Library/Android/Sdk
+```
+
+_Windows 10:_ no action needed, should work out of the box.
+
+In Android Studio open the project in `android/` directory.
+Make sure the Studio has at least 1920Mb max heap size in "File > Settings... > Appearance & Behavior > System Settings > Memory Settings", otherwise it might get stuck on "Updating indexes".
+
+Setup a virtual device to use [emulator]((https://developer.android.com/studio/run/emulator)) ("Tools > AVD Manager") or [use a hardware device for debugging](https://developer.android.com/studio/run/device).
 
 ### Building
 
 There is a matrix of different build variants:
 
-- Type:
-
+- _Type_:
   - `Debug` is a debug version with all checks enabled.
-  - `Beta` is a manual pre-release build.
-  - `Release` is a fully optimized version for stores.
+  - `Beta` is a manual pre-release build for testing.
+  - `Release` is a fully optimized version for app stores.
 
-- Flavor:
+- _Flavor_:
   - `Web` is a light apk without any bundled maps.
-  - `Google` is a full store version without low-zoom overview world map.
-  - There are also `Amazon`, `Samsung`, `Xiaomi`, `Yandex`
-    and other targets.
+  - `Google` is a full Google Play store version including a low-zoom overview world map.
+  - `Fdroid` is a version for publishing on [F-Droid](https://f-droid.org/) open source apps store (no bundled maps and no Google services).
+  - ...and other flavors like `Huawei`.
 
-To run a debug version on your device/emulator:
+You can choose a build variant in Android Studio's "Build > Select Build Variant..." menu. There you can also choose a target architecture (Active ABI) like _x86_64_ (for e.g. emulator) or _arm64-v8a_ (many modern devices).
 
-```bash
-(cd android; ./gradlew clean runWebDebug)
-```
+To build and run the app in the emulator or on a hardware device use a "Run > Run (android)" menu item.
 
-To compile a redistributable `.apk` for testing:
+To build a redistributable apk use a "Build > Build Bundle(s) / APK(s) > Build APK(s)" menu item. Generated apks are stored in `build/outputs/apk/`.
 
-```bash
-(cd android; ./gradlew clean assembleWebBeta)
-ls -la ./android/build/outputs/apk/android-web-beta-*.apk
-```
+See also https://developer.android.com/studio/run.
+
 
 ### Debugging
 
@@ -321,6 +276,108 @@ To enable logging in case of crashes, after installing a debug version, run:
 ```bash
 adb shell pm grant app.organicmaps.debug android.permission.READ_LOGS
 ```
+
+### More options
+
+#### Building from the command line
+
+First configure `PATH` to prefer `cmake` from Android SDK/NDK instead of one installed in the system:
+
+_Linux:_
+
+```bash
+export PATH=$HOME/Android/Sdk/cmake/3.18.1/bin:$PATH
+```
+
+_macOS:_
+
+```bash
+export PATH=$HOME/Library/Android/Sdk/cmake/3.18.1/bin:$PATH
+```
+
+Check if you have a system-wide Java runtime environment (JRE) installed:
+
+```bash
+java -version
+```
+
+If your system doesn't have a JRE installed or Java version is less than 11 (openjdk)
+or you want command line builds to use a JRE version bundled with the Studio
+then set `JAVA_HOME` environment variable:
+
+_Linux:_
+
+```bash
+export JAVA_HOME=<path-to-android-studio-installation>/android-studio/jre
+```
+
+_macOS:_
+
+```bash
+export JAVA_HOME=<path-to-android-studio-installation>/Contents/jre/Contents/Home
+```
+
+Run the builds from the android subdirectory of the repo:
+```bash
+cd android
+```
+
+To build, install and run e.g. a _Web Debug_ version on your device/emulator:
+
+```bash
+./gradlew runWebDebug
+```
+
+Or to compile a redistributable _Fdroid Beta_ apk for testing:
+
+```bash
+./gradlew assembleFdroidBeta
+```
+
+Or to build _Release_ apks for all _Flavors_:
+
+```bash
+./gradlew assembleRelease
+```
+
+Run `./gradlew tasks` to see all possible build variants.
+
+Intermediate files for each build (_Type_ + _Flavor_ + target arch) take ~3-4.5Gb of space.
+To remove all intermediate build files run `./gradlew clean`.
+
+By default the build will run for all 3 target architectures: _arm64-v8a_, _armeabi-v7a_ and _x86_64_. To speed up your build include only the arch you need by adding e.g. a `-Parm64` option to the gradle build command (other options are `-Parm32` for _armeabi-v7a_, `-Px64` for _x86_64_ and `-Px86` for _x86_).
+
+To create separate apks for all target arches add a `-PsplitApk` option (by default all arches are combined in one "fat" apk).
+
+Adding a `-Ppch` (use precompiled headers) option makes builds ~15% faster.
+
+If a running build makes your computer slow and laggish then try lowering the priority of the build process by adding a `--priority=low` option.
+
+See also https://developer.android.com/studio/build/building-cmdline.
+
+#### Reduce resource usage
+
+You can install
+[Android SDK](https://developer.android.com/sdk/index.html) and
+[NDK](https://developer.android.com/tools/sdk/ndk/index.html) without
+Android Studio. Please make sure that SDK for API Level 30,
+NDK version **21.4.7075529** and CMake version **3.18.1** are installed.
+
+If you are low on RAM, disk space or traffic there are ways to reduce system requirements:
+- in Android Studio enable "File > Power Save Mode";
+- don't install Android Studio, run builds and emulator from command line;
+- build only for target arches you actually need, e.g. `arm64`;
+- for debugging use an older emulated device with low RAM and screen resolution, e.g. "Nexus S";
+- make sure the emulator uses [hardware acceleration](https://developer.android.com/studio/run/emulator-acceleration);
+- don't use emulator, debug on a hardware device instead.
+
+#### Windows 10: Manual Boost library initialization
+
+1. Install Visual Studio 2019 Community Edition.
+2. Add cl.exe to your PATH (`C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\\vcvars32.bat`).
+3. Run `./configure.sh` from _Git (for Window) Bash_ and ignore all errors related to Boost.
+4. Go to `./3party/boost`, run `./bootstrap.bat`, and then `b2 headers` to configure Boost.
+
 
 ## iOS app
 
@@ -338,45 +395,7 @@ Install Command Line Tools:
 
 Install [Xcode](https://apps.apple.com/ru/app/xcode/id497799835?mt=12) from AppStore.
 
-Enroll in the [Apple Developer Program](https://developer.apple.com/programs/).
-
-### Getting sources
-
-Clone the repository:
-
-```bash
-git clone --recursive https://github.com/organicmaps/organicmaps.git
-```
-
-Update git submodules (sometimes doesn't work automatically):
-
-```
-git submodule update --init --recursive
-```
-
-Configure the repository as opensource build:
-
-```bash
-./configure.sh
-```
-
-or with private repository
-
-```bash
-./configure.sh <private-repo-name>
-```
-
-Install [CocoaPods](https://cocoapods.org/):
-
-```bash
-brew install cocoapods
-```
-
-Install required pods for the project:
-
-```bash
-(cd iphone/Maps && pod install)
-```
+Enroll in the [Apple Developer Program](https://developer.apple.com/programs/) (you can run Organic Maps in Simulator without this step).
 
 ### Configuring Xcode
 

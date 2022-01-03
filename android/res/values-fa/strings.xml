@@ -214,9 +214,13 @@
 	<string name="rate_the_app">امتیاز به این اپلیکیشن</string>
 	<!-- Text in menu -->
 	<string name="help">کمک</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">ﺦﺳﺎﭘ ﻭ ﺶﺳﺮﭘ</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">چگونه از ما حمایت کنیم؟</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">حق نشر و کپی رایت</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">گزارش خطا</string>
 	<!-- Alert text -->
 	<string name="email_error_body">کلاینت ایمیل شما پیکربندی نشده است.لطفا ان را پیکربندی کنید یا از طریق دیگر با ما تماس بگیرید %s</string>
@@ -546,14 +550,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">بررسی کنید</string>
 	<string name="recent_track_background_dialog_message">Organic Maps  از اطلاعات موقعیت مکانی شما در پس ضمینه برای ذخیره مسیر هایی که اخیرا سفر کرده اید استفاده می کند.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">امتیاز دادن در گوگل پلی</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">به یک دوست بگویید</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">سلام!  Organic Maps را نصب کنید.</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps یک نرم افزار افلاین مخصوص سفر است. Organic Maps بر پایه دیتای OpenStreetMap است و به شما اجازه ویرایش در ان را می دهد.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps یک برنامه نقشه آفلاین رایگان و منبع باز است. بدون تبلیغات بدون ردیابی اگر خطایی روی نقشه مشاهده کردید، لطفاً آن را در OpenStreetMap برطرف کنید. این پروژه توسط علاقه مندان در اوقات فراغت ما ایجاد می شود، بنابراین ما به بازخورد و پشتیبانی شما نیاز داریم.</string>
 	<string name="general_settings">تنظیمات عمومی</string>
 	<!-- For the first routing -->
 	<string name="accept">موافقم</string>
@@ -595,7 +593,6 @@
 	<string name="placepage_remove_stop">حذف</string>
 	<string name="planning_route_remove_title">برای حذف اینجا بکشید</string>
 	<string name="placepage_add_stop">اضافه کردن توقف</string>
-	<string name="preloader_viator_button">بیشتر بدانید</string>
 	<string name="start_from_my_position">شروع از</string>
 	<string name="profile_authorization_error">اوه، یک خطا وجود داشت سعی کنید دوباره وارد سیستم شوید</string>
 	<string name="dialog_error_storage_title">مشکل دسترسی به ذخیره سازی</string>
@@ -627,7 +624,6 @@
 	<string name="please_wait">لطفا صبر کنید…</string>
 	<string name="phone_number">شماره تلفن</string>
 	<string name="profile">OpenStreetMap نمایه</string>
-	<string name="place_page_search_similar_hotel">جست‌وجوی هتل‌های مشابه</string>
 	<string name="bookmarks_detect_title">فایل‌های جدید پیدا شد</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d فایل پیدا شد. بعد از تبدیل آن را می‌بینید.</item>
@@ -845,7 +841,7 @@
 	<string name="type.amenity.doctors">کلینیک</string>
 	<string name="type.amenity.drinking_water">اب اشامیدنی</string>
 	<string name="type.amenity.driving_school">اموزشگاه رانندگی</string>
-	<string name="type.amenity.embassy">سفارت</string>
+	<string name="type.office.diplomatic">سفارت</string>
 	<string name="type.amenity.fast_food">فست فود</string>
 	<string name="type.amenity.ferry_terminal">حمل و نقل</string>
 	<string name="type.amenity.fire_station">ایستگاه اتش نشانی</string>
@@ -924,6 +920,7 @@
 	<string name="type.barrier.gate">ورودی</string>
 	<string name="type.barrier.lift_gate">اسانسور</string>
 	<string name="type.barrier.stile">پلکان</string>
+	<string name="type.barrier.swing_gate">اسانسور</string>
 	<string name="type.barrier.toll_booth">گیشه عوارضی</string>
 	<string name="type.boundary.national_park">پارک ملی</string>
 	<string name="type.building">ساختمان</string>
@@ -945,6 +942,7 @@
 	<string name="type.emergency.fire_hydrant">شیر آتش‌نشانی</string>
 	<string name="type.emergency.phone">تلفن اضطراری</string>
 	<string name="type.entrance">ورودی</string>
+	<string name="type.healthcare.laboratory">ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ</string>
 	<string name="type.highway.bus_stop">حمل و نقل</string>
 	<string name="type.highway.construction">جاده در دست ساخت است</string>
 	<string name="type.highway.footway">مسیر</string>
@@ -1057,7 +1055,7 @@
 	<string name="type.historic.tomb">گردشگری</string>
 	<string name="type.internet_access">وای فای</string>
 	<string name="type.internet_access.wlan">وای فای</string>
-	<string name="type.landuse.basin">اب</string>
+	<string name="type.landuse.basin">حوضه آب</string>
 	<string name="type.landuse.cemetery">قبرستان</string>
 	<string name="type.landuse.cemetery.christian">قبرستان</string>
 	<string name="type.landuse.churchyard">حیاط کلیسا</string>
@@ -1106,15 +1104,18 @@
 	<string name="type.natural.geyser">چشمه آب گرم</string>
 	<string name="type.natural.glacier">یخچال طبیعی</string>
 	<string name="type.natural.grassland">کشتزار</string>
-	<string name="type.natural.lake">دریاچه</string>
+	<string name="type.natural.water.lake">دریاچه</string>
+	<string name="type.natural.water.pond">تالاب</string>
+	<string name="type.natural.water.reservoir">مخزن</string>
+	<string name="type.natural.water.basin">حوضه آب</string>
+	<string name="type.natural.water.river">رودخانه</string>
 	<string name="type.natural.peak">قله</string>
-	<string name="type.natural.pond">تالاب</string>
 	<string name="type.natural.scrub">بوته زار</string>
 	<string name="type.natural.spring">چشمه</string>
 	<string name="type.natural.strait">تنگه</string>
 	<string name="type.natural.tree">درخت</string>
 	<string name="type.natural.volcano">اتشفشان</string>
-	<string name="type.natural.water">اب</string>
+	<string name="type.natural.water">پهنه آبی</string>
 	<string name="type.natural.wetland">ناحیه تالابی</string>
 	<string name="type.office">اداره</string>
 	<string name="type.office.company">دفتر شرکت</string>
@@ -1164,28 +1165,15 @@
 	<string name="type.railway.station.subway">حمل و نقل</string>
 	<string name="type.railway.station.subway.barcelona">حمل و نقل</string>
 	<string name="type.railway.station.subway.berlin">حمل و نقل</string>
-	<string name="type.railway.station.subway.blue">حمل و نقل</string>
-	<string name="type.railway.station.subway.brown">حمل و نقل</string>
-	<string name="type.railway.station.subway.darkgreen">حمل و نقل</string>
-	<string name="type.railway.station.subway.gray">حمل و نقل</string>
-	<string name="type.railway.station.subway.green">حمل و نقل</string>
-	<string name="type.railway.station.subway.grey">حمل و نقل</string>
 	<string name="type.railway.station.subway.kiev">حمل و نقل</string>
-	<string name="type.railway.station.subway.lightblue">حمل و نقل</string>
-	<string name="type.railway.station.subway.lightgreen">حمل و نقل</string>
 	<string name="type.railway.station.subway.london">حمل و نقل</string>
 	<string name="type.railway.station.subway.madrid">حمل و نقل</string>
 	<string name="type.railway.station.subway.minsk">حمل و نقل</string>
 	<string name="type.railway.station.subway.moscow">حمل و نقل</string>
 	<string name="type.railway.station.subway.newyork">حمل و نقل</string>
-	<string name="type.railway.station.subway.orange">حمل و نقل</string>
 	<string name="type.railway.station.subway.paris">حمل و نقل</string>
-	<string name="type.railway.station.subway.purple">حمل و نقل</string>
-	<string name="type.railway.station.subway.red">حمل و نقل</string>
 	<string name="type.railway.station.subway.roma">حمل و نقل</string>
 	<string name="type.railway.station.subway.spb">حمل و نقل</string>
-	<string name="type.railway.station.subway.violet">حمل و نقل</string>
-	<string name="type.railway.station.subway.yellow">حمل و نقل</string>
 	<string name="type.railway.subway_entrance">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.barcelona">حمل و نقل</string>
 	<string name="type.railway.subway_entrance.berlin">حمل و نقل</string>

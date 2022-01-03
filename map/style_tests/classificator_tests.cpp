@@ -239,8 +239,7 @@ void CheckPriority(vector<base::StringIL> const & arrT, vector<size_t> const & a
 
 UNIT_TEST(Classificator_AreaPriority)
 {
-  vector<base::StringIL> types =
-  {
+  CheckPriority({
     // 0
     {"natural", "coastline"},
     // 1
@@ -251,36 +250,28 @@ UNIT_TEST(Classificator_AreaPriority)
     // ?
     //{"leisure", "park"}, {"leisure", "garden"}, - maybe next time (too tricky to do it now)
     // 3
-    {"natural", "water"}, {"natural", "lake"}, {"landuse", "basin"}, {"waterway", "riverbank"}
-  };
-
-  CheckPriority(types, {1, 2, 7, 4}, drule::area);
+    {"natural", "water"}, {"natural", "water", "lake"}, {"landuse", "basin"}, {"waterway", "riverbank"}
+  }, {1, 2, 7, 4}, drule::area);
 }
 
 UNIT_TEST(Classificator_PoiPriority)
 {
   {
-    vector<base::StringIL> types =
-    {
+    CheckPriority({
       // 1
       {"amenity", "atm"},
       // 2
       {"amenity", "bank"}
-    };
-
-    CheckPriority(types, {1, 1}, drule::symbol);
+    }, {1, 1}, drule::symbol);
   }
 
   {
-    vector<base::StringIL> types =
-    {
+    CheckPriority({
       // 1
       {"amenity", "bench"}, {"amenity", "shelter"},
       // 2
       {"highway", "bus_stop"}, {"amenity", "bus_station"},
       {"railway", "station"}, {"railway", "halt"}, {"railway", "tram_stop"},
-    };
-
-    CheckPriority(types, {2, 5}, drule::symbol);
+    }, {2, 5}, drule::symbol);
   }
 }

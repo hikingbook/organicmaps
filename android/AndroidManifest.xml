@@ -99,7 +99,7 @@
         <data android:scheme="https"/>
       </intent-filter>
 
-      <intent-filter android:autoVerify="true">
+      <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
 
         <category android:name="android.intent.category.DEFAULT"/>
@@ -280,6 +280,18 @@
 <!--        android:configChanges="orientation|screenLayout|screenSize"-->
 <!--        android:label="@string/settings"-->
 <!--        android:parentActivityName="com.mapswithme.maps.MwmActivity" />-->
+
+    <activity
+        android:name="com.mapswithme.maps.help.HelpActivity"
+        android:configChanges="orientation|screenLayout|screenSize"
+        android:label="@string/help"
+        android:exported="false"
+        android:parentActivityName="com.mapswithme.maps.MwmActivity">
+      <intent-filter>
+        <action android:name="com.mapswithme.maps.help.HelpActivity" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
 
     <activity
         android:name="com.mapswithme.maps.bookmarks.BookmarkCategoriesActivity"

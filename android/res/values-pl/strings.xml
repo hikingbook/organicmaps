@@ -136,6 +136,7 @@
 	<string name="description">Notatki</string>
 	<!-- Email Subject when sharing bookmarks category -->
 	<string name="share_bookmarks_email_subject">Udostępnione zakładki z Organic Maps</string>
+	<string name="share_bookmarks_email_body">Cześć!\n\nZałączam moje zakładki z aplikacji Organic Maps. Proszę otwórz je jeżeli masz zaintalowane Organic Maps. Lub, jeżeli nie masz, pobierz aplikację na swoje urządzenie iOS/Android za pomocą tego linka: https://omaps.app/get?kmz\n\nMiłego podróżowania z Organic Maps!</string>
 	<!-- message title of loading file -->
 	<string name="load_kmz_title">Wczytywanie zakładek</string>
 	<!-- Kmz file successful loading -->
@@ -226,9 +227,13 @@
 	<string name="rate_the_app">Oceń aplikację</string>
 	<!-- Text in menu -->
 	<string name="help">Pomoc</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Pytania i odpowiedzi</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Jak nas wspierać?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Prawa autorskie</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Zgłoś błąd</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Email klienta nie został założony. Proszę skonfigurować adres email, bądź skorzystać z innych opcji, aby się z nami skontaktować na %s</string>
@@ -458,6 +463,7 @@
 	<!-- login text field -->
 	<string name="email_or_username">Email lub nazwa użytkownika</string>
 	<string name="phone">Telefon</string>
+	<string name="editor_add_phone">Dodaj numer telefonu</string>
 	<string name="please_note">Uwaga!</string>
 	<string name="downloader_delete_map_dialog">Wszystkie zmiany dotyczące mapy zostaną usunięte wraz z nią.</string>
 	<string name="downloader_update_maps">Aktualizuj mapy</string>
@@ -550,6 +556,10 @@
 	<string name="error_enter_correct_phone">Wprowadź poprawny numer telefonu</string>
 	<string name="error_enter_correct_web">Wpisz prawidłowy adres strony internetowej</string>
 	<string name="error_enter_correct_email">Wpisz prawidłowy email</string>
+	<string name="error_enter_correct_facebook_page">Wprowadź poprawny link, nazwę konta lub nazwę strony na Facebooku</string>
+	<string name="error_enter_correct_instagram_page">Wprowadź poprawny link lub nazwę konta na Instagramie</string>
+	<string name="error_enter_correct_twitter_page">Wprowadź poprawny adres lub nazwę konta na Twitterze</string>
+	<string name="error_enter_correct_vk_page">Wprowadź poprawny adres lub nazwę konta na VK</string>
 	<string name="refresh">Uaktualnić</string>
 	<string name="placepage_add_place_button">Dodaj miejsce do mapy</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
@@ -564,14 +574,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Sprawdź</string>
 	<string name="recent_track_background_dialog_message">Organic Maps używa w tle geolokalizacji w celu rejestrowania niedawno przebytej trasy.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Oceń w Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Powiadom znajomego</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Cześć! Zainstaluj Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps to niezbędna aplikacja do podróży działająca w trybie offline. Organic Maps opiera się o dane OpenStreetMap oraz umożliwia ich edycję.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps to bezpłatna aplikacja do map offline typu open source. Bez reklam. Bez śledzenia. Jeśli zobaczysz błąd na mapie, napraw go w OpenStreetMap. Projekt jest tworzony przez entuzjastów w czasie wolnym, dlatego potrzebujemy Twojej opinii i wsparcia.</string>
 	<string name="general_settings">Ustawienia ogólne</string>
 	<!-- For the first routing -->
 	<string name="accept">Zaakceptuj</string>
@@ -613,7 +617,6 @@
 	<string name="placepage_remove_stop">Usuń</string>
 	<string name="planning_route_remove_title">Przeciągnij tu, aby usunąć</string>
 	<string name="placepage_add_stop">Dodaj postój</string>
-	<string name="preloader_viator_button">Dowiedz się więcej</string>
 	<string name="start_from_my_position">Zacznij od</string>
 	<string name="profile_authorization_error">Ups, nastąpił błąd. Spróbuj zalogować się ponownie.</string>
 	<string name="dialog_error_storage_title">Problem z dostępem do pamięci masowej</string>
@@ -628,6 +631,8 @@
 	  <item quantity="other">Zakładki: %d</item>
 	</plurals>
 	<string name="bookmarks_create_new_group">Utwórz nową listę</string>
+	<!-- Bookmark categories screen -->
+	<string name="bookmarks_import">Import zakładek</string>
 	<string name="downloader_hide_screen">Ukryj ekran</string>
 	<string name="downloader_percent">%1$s (%2$s z %3$s)</string>
 	<string name="downloader_process">Pobieranie %s…</string>
@@ -644,7 +649,6 @@
 	<string name="please_wait">Proszę czekać…</string>
 	<string name="phone_number">Numer telefonu</string>
 	<string name="profile">Profil OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Wyszukaj podobne hotele</string>
 	<string name="bookmarks_detect_title">Wykryto nowe pliki</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">Znaleziono %d plik. Zobaczysz to po konwersji.</item>
@@ -680,6 +684,7 @@
 	<string name="bookmarks_empty_list_message">Aby dodać zakładkę, dotknij miejsca na mapie, a następnie dotknij ikony gwiazdy.</string>
 	<string name="category_desc_more">…więcej</string>
 	<string name="title_error_downloading_bookmarks">Wystąpił błąd</string>
+	<string name="popular_place">Popularne</string>
 	<string name="export_file">Eksportuj plik</string>
 	<string name="list_settings">Ustawienia listy</string>
 	<string name="delete_list">Usuń listę</string>
@@ -813,6 +818,9 @@
 	<string name="downloader_updating_ios">Aktualizacja</string>
 	<string name="downloader_loading_ios">Pobieranie</string>
 	<string name="key_information_title">Kluczowe informacje</string>
+	<string name="download_map_title">Pobierz mapę świata</string>
+	<string name="connection_failure">Błąd połączenia</string>
+	<string name="disconnect_usb_cable_title">Odłącz kabel USB</string>
 	<string name="enable_screen_sleep">Pozwól ekranowi spać</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Po włączeniu ekran będzie mógł spać po okresie bezczynności.</string>
@@ -824,6 +832,12 @@
 	<string name="whats_new_auto_update_button_size">Zaktualizuj (%s)</string>
 	<!-- Autoupdate dialog on start -->
 	<string name="whats_new_auto_update_button_later">Zaktualizuj ręcznie później</string>
+	<!-- Delete track button on track edit screen -->
+	<string name="placepage_delete_track_button">Usuwanie trasy</string>
+	<!-- Placeholder for track name input on track edit screen -->
+	<string name="placepage_track_name_hint">Nazwa trasy</string>
+	<!-- move track or bookmark from the list button text -->
+	<string name="move">Przenieś</string>
 	<!-- edit track screen title -->
 	<string name="track_title">Trasa</string>
 
@@ -870,7 +884,7 @@
 	<string name="type.amenity.doctors">Lekarz</string>
 	<string name="type.amenity.drinking_water">Woda pitna</string>
 	<string name="type.amenity.driving_school">Szkoła nauki jazdy</string>
-	<string name="type.amenity.embassy">Ambasada</string>
+	<string name="type.office.diplomatic">Ambasada</string>
 	<string name="type.amenity.fast_food">Fast food</string>
 	<string name="type.amenity.ferry_terminal">Terminal promowy</string>
 	<string name="type.amenity.fire_station">Straż pożarna</string>
@@ -928,7 +942,6 @@
 	<string name="type.amenity.school">Szkoła</string>
 	<string name="type.amenity.shelter">Wiata</string>
 	<string name="type.amenity.shower">Prysznic</string>
-	<string name="type.amenity.speed_trap">Kontrola radarowa</string>
 	<string name="type.amenity.taxi">Taksówka</string>
 	<string name="type.amenity.telephone">Telefon</string>
 	<string name="type.amenity.theatre">Teatr</string>
@@ -957,6 +970,7 @@
 	<string name="type.barrier.lift_gate">Szlaban</string>
 	<string name="type.barrier.retaining_wall">Mur oporowy</string>
 	<string name="type.barrier.stile">Przełaz</string>
+	<string name="type.barrier.swing_gate">Szlaban</string>
 	<string name="type.barrier.toll_booth">Kasa</string>
 	<string name="type.barrier.wall">Mur</string>
 	<string name="type.boundary">Granica</string>
@@ -1076,6 +1090,7 @@
 	<string name="type.emergency.fire_hydrant">Hydrant</string>
 	<string name="type.emergency.phone">Telefon alarmowy</string>
 	<string name="type.entrance">Wejście</string>
+	<string name="type.healthcare.laboratory">Laboratorium Medyczne</string>
 	<string name="type.highway">Droga</string>
 	<string name="type.highway.bridleway">Droga dla koni</string>
 	<string name="type.highway.bridleway.bridge">Most drogowy dla koni</string>
@@ -1198,7 +1213,6 @@
 	<string name="type.historic.memorial.plaque">Tablica pamiątkowa</string>
 	<string name="type.historic.memorial.sculpture">Rzeźba</string>
 	<string name="type.historic.memorial.statue">Pomnik</string>
-	<string name="type.historic.museum">Muzeum historyczne</string>
 	<string name="type.historic.ruins">Ruiny</string>
 	<string name="type.historic.ship">Okręt</string>
 	<string name="type.historic.tomb">Grobowiec</string>
@@ -1208,7 +1222,7 @@
 	<string name="type.junction.roundabout">Rondo</string>
 	<string name="type.landuse">Zagospodarowanie ziemi</string>
 	<string name="type.landuse.allotments">Działki</string>
-	<string name="type.landuse.basin">Woda</string>
+	<string name="type.landuse.basin">Zbiornik</string>
 	<string name="type.landuse.brownfield">Teren do zabudowy</string>
 	<string name="type.landuse.cemetery">Cmentarz</string>
 	<string name="type.landuse.cemetery.christian">Cmentarz chrześcijański</string>
@@ -1297,13 +1311,15 @@
 	<string name="type.natural.grassland">Pastwisko</string>
 	<string name="type.natural.heath">Wrzosowisko</string>
 	<string name="type.natural.hot_spring">Gorące źródło</string>
-	<string name="type.natural.lake">Jezioro</string>
+	<string name="type.natural.water.lake">Jezioro</string>
+	<string name="type.natural.water.pond">Staw</string>
+	<string name="type.natural.water.reservoir">Zbiornik</string>
+	<string name="type.natural.water.basin">Zbiornik</string>
+	<string name="type.natural.water.river">Rzeka</string>
 	<string name="type.natural.meadow">Łąka</string>
 	<string name="type.natural.orchard">Sad</string>
 	<string name="type.natural.peak">Szczyt</string>
-	<string name="type.natural.pond">Staw</string>
 	<string name="type.natural.rock">Skała</string>
-	<string name="type.natural.salt_pond">Słony staw</string>
 	<string name="type.natural.scrub">Zarośla</string>
 	<string name="type.natural.spring">Źródło</string>
 	<string name="type.natural.strait">Cieśnina</string>
@@ -1311,7 +1327,7 @@
 	<string name="type.natural.tree_row">Rząd drzew</string>
 	<string name="type.natural.vineyard">Winnica</string>
 	<string name="type.natural.volcano">Wulkan</string>
-	<string name="type.natural.water">Woda</string>
+	<string name="type.natural.water">Akwen</string>
 	<string name="type.natural.wetland">Tereny podmokłe</string>
 	<string name="type.natural.wetland.bog">Torfowisko</string>
 	<string name="type.natural.wetland.marsh">Moczary</string>
@@ -1325,13 +1341,6 @@
 	<string name="type.office.lawyer">Prawnik</string>
 	<string name="type.office.ngo">Biuro organizacji pozarządowej</string>
 	<string name="type.office.telecommunication">Biuro operatora telefonii komórkowej</string>
-	<string name="type.olympics">Olimpiada</string>
-	<string name="type.olympics.attraction">Atrakcje olimpijskie</string>
-	<string name="type.olympics.bike_sport">Olimpijskie sporty rowerowe</string>
-	<string name="type.olympics.official_building">Oficjalny budynek olimpijski</string>
-	<string name="type.olympics.stadium">Stadion olimpijski</string>
-	<string name="type.olympics.stadium_main">Główny stadion olimpijski</string>
-	<string name="type.olympics.water_sport">Olimpijskie sporty wodne</string>
 	<string name="type.place">Miejsce</string>
 	<string name="type.place.city">Miasto</string>
 	<string name="type.place.city.capital">Stolica</string>
@@ -1382,28 +1391,15 @@
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.barcelona">Metro</string>
 	<string name="type.railway.station.subway.berlin">Metro</string>
-	<string name="type.railway.station.subway.blue">Metro</string>
-	<string name="type.railway.station.subway.brown">Metro</string>
-	<string name="type.railway.station.subway.darkgreen">Metro</string>
-	<string name="type.railway.station.subway.gray">Metro</string>
-	<string name="type.railway.station.subway.green">Metro</string>
-	<string name="type.railway.station.subway.grey">Metro</string>
 	<string name="type.railway.station.subway.kiev">Metro</string>
-	<string name="type.railway.station.subway.lightblue">Metro</string>
-	<string name="type.railway.station.subway.lightgreen">Metro</string>
 	<string name="type.railway.station.subway.london">Metro</string>
 	<string name="type.railway.station.subway.madrid">Metro</string>
 	<string name="type.railway.station.subway.minsk">Metro</string>
 	<string name="type.railway.station.subway.moscow">Metro</string>
 	<string name="type.railway.station.subway.newyork">Metro</string>
-	<string name="type.railway.station.subway.orange">Metro</string>
 	<string name="type.railway.station.subway.paris">Metro</string>
-	<string name="type.railway.station.subway.purple">Metro</string>
-	<string name="type.railway.station.subway.red">Metro</string>
 	<string name="type.railway.station.subway.roma">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
-	<string name="type.railway.station.subway.violet">Metro</string>
-	<string name="type.railway.station.subway.yellow">Metro</string>
 	<string name="type.railway.subway_entrance">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.barcelona">Metro</string>
 	<string name="type.railway.subway_entrance.berlin">Metro</string>
@@ -1491,7 +1487,6 @@
 	<string name="type.sport.bowls">Kręgle</string>
 	<string name="type.sport.cricket">Krykiet</string>
 	<string name="type.sport.equestrian">Jeździectwo</string>
-	<string name="type.sport.football">Piłka nożna</string>
 	<string name="type.sport.golf">Golf</string>
 	<string name="type.sport.gymnastics">Gimnastyka</string>
 	<string name="type.sport.handball">Piłka ręczna</string>

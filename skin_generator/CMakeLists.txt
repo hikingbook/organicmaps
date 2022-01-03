@@ -1,8 +1,6 @@
 project(skin_generator_tool)
 
 include_directories(
-  ${OMIM_ROOT}/3party/gflags/src
-  ${OMIM_ROOT}/3party/freetype/include
   ${Boost_INCLUDE_DIRS}
 )
 
@@ -18,6 +16,7 @@ if (BUILD_DESIGNER)
 endif()
 
 omim_add_executable(${PROJECT_NAME} ${SRC})
+target_link_libraries(${PROJECT_NAME} gflags::gflags)
 
 omim_link_libraries(
   ${PROJECT_NAME}
@@ -25,7 +24,6 @@ omim_link_libraries(
   coding
   base
   freetype
-  gflags
   Boost::boost
   ${Qt5Gui_LIBRARIES}
   ${Qt5Widgets_LIBRARIES}

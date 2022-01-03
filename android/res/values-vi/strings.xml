@@ -23,8 +23,6 @@
 	<string name="leave_a_review">Để lại Đánh giá</string>
 	<!-- View and button titles for accessibility -->
 	<string name="maps">Bản đồ</string>
-	<!-- Settings/Downloader - size string, only strings different from English should be translated -->
-	<string name="mb">MB</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
 	<string name="miles">Dặm</string>
 	<!-- View and button titles for accessibility -->
@@ -222,9 +220,13 @@
 	<string name="rate_the_app">Cho điểm ứng dụng</string>
 	<!-- Text in menu -->
 	<string name="help">Trợ giúp</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Câu hỏi và trả lời</string>
+	<!-- Button in the main Help dialog -->
+	<string name="how_to_support_us">Làm thế nào để hỗ trợ chúng tôi?</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Bản quyền</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Báo cáo lỗi</string>
 	<!-- Alert text -->
 	<string name="email_error_body">Trình khách email này chưa được thiết lập. Bạn vui lòng cấu hình nó hoặc sử dụng một cách khác để liên hệ với chúng tôi tại %s</string>
@@ -560,14 +562,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Xem</string>
 	<string name="recent_track_background_dialog_message">Organic Maps sử dụng định vị của bạn trong ứng dụng chạy nền để ghi lại tuyến đường đã đi gần đây của bạn.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Cho điểm trên Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Giới thiệu với Bạn bè</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Xin chào! Hãy cài đặt Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">Organic Maps là một ứng dụng ngoại tuyến thiết yếu khi đi du lịch. Organic Maps được dựa trên dữ liệu của OpenStreetMap và cho phép bạn hiệu chỉnh nó.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps là một ứng dụng bản đồ ngoại tuyến mã nguồn mở và miễn phí. Không quảng cáo. Không theo dõi. Nếu bạn thấy lỗi trên bản đồ, hãy sửa lỗi đó trong OpenStreetMap. Dự án được tạo ra bởi những người đam mê trong thời gian rảnh của chúng tôi, vì vậy chúng tôi cần phản hồi và hỗ trợ của bạn.</string>
 	<string name="general_settings">Thiết lập chung</string>
 	<!-- For the first routing -->
 	<string name="accept">Chấp nhận</string>
@@ -609,7 +605,6 @@
 	<string name="placepage_remove_stop">Xóa</string>
 	<string name="planning_route_remove_title">Kéo vào đây để xóa</string>
 	<string name="placepage_add_stop">Thêm điểm dừng</string>
-	<string name="preloader_viator_button">Tìm hiểu thêm</string>
 	<string name="start_from_my_position">Bắt đầu từ</string>
 	<string name="profile_authorization_error">Rất tiếc, đã có lỗi xảy ra. Hãy thử đăng nhập lại.</string>
 	<string name="dialog_error_storage_title">Vấn đề truy cập ổ lưu trữ</string>
@@ -640,7 +635,6 @@
 	<string name="please_wait">Vui lòng chờ…</string>
 	<string name="phone_number">Số điện thoại</string>
 	<string name="profile">Hồ sơ OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Tìm kiếm khách sạn</string>
 	<string name="bookmarks_detect_title">Đã phát hiện tệp mới</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d dã tìm thấy một tệp. Bạn sẽ thấy nó sau khi chuyển đổi.</item>
@@ -855,7 +849,7 @@
 	<string name="type.amenity.doctors">Bác sĩ</string>
 	<string name="type.amenity.drinking_water">Nước uống</string>
 	<string name="type.amenity.driving_school">Trường lái xe</string>
-	<string name="type.amenity.embassy">Đại sứ quán</string>
+	<string name="type.office.diplomatic">Đại sứ quán</string>
 	<string name="type.amenity.fast_food">Thức ăn nhanh</string>
 	<string name="type.amenity.ferry_terminal">Phà</string>
 	<string name="type.amenity.fire_station">Trạm cứu hỏa</string>
@@ -934,6 +928,7 @@
 	<string name="type.barrier.gate">Cổng</string>
 	<string name="type.barrier.lift_gate">Thanh Chắn</string>
 	<string name="type.barrier.stile">Trụ chắn</string>
+	<string name="type.barrier.swing_gate">Thanh Chắn</string>
 	<string name="type.barrier.toll_booth">Quầy Soát Vé</string>
 	<string name="type.boundary.national_park">Công viên quốc gia</string>
 	<string name="type.building">Tòa nhà</string>
@@ -1041,6 +1036,7 @@
 	<string name="type.emergency.fire_hydrant">Vòi chữa cháy</string>
 	<string name="type.emergency.phone">Điện thoại khẩn cấp</string>
 	<string name="type.entrance">Lối vào</string>
+	<string name="type.healthcare.laboratory">Phòng thí nghiệm y tế</string>
 	<string name="type.highway.bus_stop">Bến xe buýt</string>
 	<string name="type.highway.construction">Đường đang thi công</string>
 	<string name="type.highway.footway">Đường</string>
@@ -1152,7 +1148,7 @@
 	<string name="type.historic.ruins">Phế tích</string>
 	<string name="type.historic.ship">Diểm tham quan</string>
 	<string name="type.historic.tomb">Diểm tham quan</string>
-	<string name="type.landuse.basin">Nước</string>
+	<string name="type.landuse.basin">Một chậu nước</string>
 	<string name="type.landuse.cemetery">Bãi tha ma</string>
 	<string name="type.landuse.cemetery.christian">Bãi tha ma</string>
 	<string name="type.landuse.churchyard">Nhà thờ</string>
@@ -1203,15 +1199,18 @@
 	<string name="type.natural.geyser">Suối nước nóng</string>
 	<string name="type.natural.glacier">Sông băng</string>
 	<string name="type.natural.grassland">Cánh đồng</string>
-	<string name="type.natural.lake">Hồ</string>
+	<string name="type.natural.water.lake">Hồ</string>
+	<string name="type.natural.water.pond">Ao</string>
+	<string name="type.natural.water.reservoir">Hồ chứa</string>
+	<string name="type.natural.water.basin">Một chậu nước</string>
+	<string name="type.natural.water.river">Sông</string>
 	<string name="type.natural.peak">Đỉnh</string>
-	<string name="type.natural.pond">Ao</string>
 	<string name="type.natural.scrub">Bụi rậm</string>
 	<string name="type.natural.spring">Suối</string>
 	<string name="type.natural.strait">Eo biển</string>
 	<string name="type.natural.tree">Cây</string>
 	<string name="type.natural.volcano">Núi lửa</string>
-	<string name="type.natural.water">Nước</string>
+	<string name="type.natural.water">Thủy vực</string>
 	<string name="type.natural.wetland">Khu vực đầm lầy</string>
 	<string name="type.office">Văn phòng</string>
 	<string name="type.office.company">Văn phòng công ty</string>
@@ -1262,28 +1261,15 @@
 	<string name="type.railway.station.subway">Ngầm</string>
 	<string name="type.railway.station.subway.barcelona">Ngầm</string>
 	<string name="type.railway.station.subway.berlin">Ngầm</string>
-	<string name="type.railway.station.subway.blue">Ngầm</string>
-	<string name="type.railway.station.subway.brown">Ngầm</string>
-	<string name="type.railway.station.subway.darkgreen">Ngầm</string>
-	<string name="type.railway.station.subway.gray">Ngầm</string>
-	<string name="type.railway.station.subway.green">Ngầm</string>
-	<string name="type.railway.station.subway.grey">Ngầm</string>
 	<string name="type.railway.station.subway.kiev">Ngầm</string>
-	<string name="type.railway.station.subway.lightblue">Ngầm</string>
-	<string name="type.railway.station.subway.lightgreen">Ngầm</string>
 	<string name="type.railway.station.subway.london">Ngầm</string>
 	<string name="type.railway.station.subway.madrid">Ngầm</string>
 	<string name="type.railway.station.subway.minsk">Ngầm</string>
 	<string name="type.railway.station.subway.moscow">Ngầm</string>
 	<string name="type.railway.station.subway.newyork">Ngầm</string>
-	<string name="type.railway.station.subway.orange">Ngầm</string>
 	<string name="type.railway.station.subway.paris">Ngầm</string>
-	<string name="type.railway.station.subway.purple">Ngầm</string>
-	<string name="type.railway.station.subway.red">Ngầm</string>
 	<string name="type.railway.station.subway.roma">Ngầm</string>
 	<string name="type.railway.station.subway.spb">Ngầm</string>
-	<string name="type.railway.station.subway.violet">Ngầm</string>
-	<string name="type.railway.station.subway.yellow">Ngầm</string>
 	<string name="type.railway.subway_entrance">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.barcelona">Ngầm</string>
 	<string name="type.railway.subway_entrance.berlin">Ngầm</string>

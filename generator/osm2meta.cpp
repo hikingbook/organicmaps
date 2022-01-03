@@ -4,6 +4,7 @@
 
 #include "indexer/classificator.hpp"
 #include "indexer/ftypes_matcher.hpp"
+#include "indexer/editable_map_object.hpp"
 
 #include "platform/measurement_utils.hpp"
 
@@ -26,6 +27,7 @@ using namespace std;
 
 namespace
 {
+using osm::EditableMapObject;
 
 constexpr char const * kOSMMultivalueDelimiter = ";";
 

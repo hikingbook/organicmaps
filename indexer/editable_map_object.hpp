@@ -137,6 +137,11 @@ public:
 
   void SetEmail(std::string const & email);
   void SetWebsite(std::string website);
+  void SetFacebookPage(std::string const & facebookPage);
+  void SetInstagramPage(std::string const & instagramPage);
+  void SetTwitterPage(std::string const & twitterPage);
+  void SetVkPage(std::string const & vkPage);
+  void SetLinePage(std::string const & linePage);
   void SetWikipedia(std::string const & wikipedia);
 
   void SetInternet(Internet internet);

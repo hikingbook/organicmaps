@@ -227,9 +227,11 @@
 	<string name="rate_the_app">Avaliar o aplicativo</string>
 	<!-- Text in menu -->
 	<string name="help">Ajuda</string>
-	<!-- Text in menu -->
+	<!-- Button in the main Help dialog -->
+	<string name="faq">Perguntas e respostas</string>
+	<!-- Button in the main Help dialog -->
 	<string name="copyright">Direitos autorais</string>
-	<!-- Text in menu -->
+	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Relatar um problema</string>
 	<!-- Alert text -->
 	<string name="email_error_body">O cliente de email não está configurado. Por favor, configure-o ou utilize qualquer outro modo para nos contatar através de %s</string>
@@ -566,14 +568,8 @@
 	<!-- For sharing via SMS and so on -->
 	<string name="sharing_call_action_look">Procure</string>
 	<string name="recent_track_background_dialog_message">O Organic Maps usa sua localização geográfica em segundo plano para registrar sua rota recente.</string>
-	<!-- Rate on Google Play (Android only) -->
-	<string name="rate_gp">Avaliar em Google Play</string>
-	<!-- Share with friends: menu item title -->
-	<string name="tell_friends">Indique a um amigo</string>
-	<!-- Share with friends: sharing text -->
-	<string name="tell_friends_text">Olá! Instale o Organic Maps!</string>
-	<!-- About short text (below logo) -->
-	<string name="about_description">O Organic Maps é um aplicativo offline essencial para viajar. O Organic Maps se baseia nos dados do OpenStreetMap e permite editá-los.</string>
+	<!-- Text under the version number in the Help dialog. -->
+	<string name="about_description">Organic Maps é uma aplicação gratuita e de código aberto de mapas off-line. Sem anúncios. Sem rastreamento. Se você vir um erro no mapa, por favor, corrija em OpenStreetMap. O projeto é criado por entusiastas em nosso tempo livre, então precisamos de seu feedback e suporte.</string>
 	<string name="general_settings">Definições gerais</string>
 	<!-- For the first routing -->
 	<string name="accept">Aceitar</string>
@@ -614,7 +610,6 @@
 	<string name="placepage_remove_stop">Remover</string>
 	<string name="planning_route_remove_title">Arraste aqui para remover</string>
 	<string name="placepage_add_stop">Adicionar parada</string>
-	<string name="preloader_viator_button">Saiba mais</string>
 	<string name="start_from_my_position">Iniciar a partir de</string>
 	<string name="profile_authorization_error">Ups, ocorreu um erro. Tente iniciar sessão novamente.</string>
 	<string name="dialog_error_storage_title">Problema de acesso ao armazenamento</string>
@@ -648,7 +643,6 @@
 	<string name="please_wait">Espere, por favor�</string>
 	<string name="phone_number">Número de telefone</string>
 	<string name="profile">Perfil do OpenStreetMap</string>
-	<string name="place_page_search_similar_hotel">Buscar hotéis semelhantes</string>
 	<string name="bookmarks_detect_title">Novos arquivos detectados</string>
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="one">%d arquivo foi encontrado. Você vai ver depois da conversão.</item>
@@ -881,7 +875,7 @@
 	<string name="type.amenity.doctors">Consultório médico</string>
 	<string name="type.amenity.drinking_water">Água potável</string>
 	<string name="type.amenity.driving_school">Autoescola</string>
-	<string name="type.amenity.embassy">Embaixada ou consulado</string>
+	<string name="type.office.diplomatic">Embaixada ou consulado</string>
 	<string name="type.amenity.fast_food">Lanchonete</string>
 	<string name="type.amenity.ferry_terminal">Estação de barcas</string>
 	<string name="type.amenity.fire_station">Posto de bombeiros</string>
@@ -942,7 +936,6 @@
 	<string name="type.amenity.school">Escola</string>
 	<string name="type.amenity.shelter">Abrigo</string>
 	<string name="type.amenity.shower">Chuveiro</string>
-	<string name="type.amenity.speed_trap">Radar de velocidade</string>
 	<string name="type.amenity.taxi">Táxi</string>
 	<string name="type.amenity.telephone">Telefone</string>
 	<string name="type.amenity.theatre">Teatro</string>
@@ -971,6 +964,7 @@
 	<string name="type.barrier.lift_gate">Cancela</string>
 	<string name="type.barrier.retaining_wall">Muro de retenção</string>
 	<string name="type.barrier.stile">Travessia de escada cerca ou muro</string>
+	<string name="type.barrier.swing_gate">Cancela</string>
 	<string name="type.barrier.toll_booth">Cabine de pedágio</string>
 	<string name="type.barrier.wall">Muro</string>
 	<string name="type.boundary">Fronteira</string>
@@ -1102,6 +1096,7 @@
 	<string name="type.emergency.fire_hydrant">Hidrante</string>
 	<string name="type.emergency.phone">Telefone de emergência</string>
 	<string name="type.entrance">Entrada</string>
+	<string name="type.healthcare.laboratory">Laboratório médico</string>
 	<string name="type.highway">Rodovia</string>
 	<string name="type.highway.bridleway">Caminho para cavaleiros</string>
 	<string name="type.highway.bridleway.bridge">Caminho para cavaleiros</string>
@@ -1225,7 +1220,6 @@
 	<string name="type.historic.memorial.sculpture">Escultura memorial</string>
 	<string name="type.historic.memorial.statue">Estátua memorial</string>
 	<string name="type.historic.monument">Monumento</string>
-	<string name="type.historic.museum">Museu</string>
 	<string name="type.historic.ruins">Ruínas</string>
 	<string name="type.historic.ship">Barco histórico</string>
 	<string name="type.historic.tomb">Túmulo</string>
@@ -1237,7 +1231,7 @@
 	<string name="type.junction.roundabout">Rotatória</string>
 	<string name="type.landuse">Uso do solo</string>
 	<string name="type.landuse.allotments">Horta comunitária</string>
-	<string name="type.landuse.basin">Água</string>
+	<string name="type.landuse.basin">Reservatório</string>
 	<string name="type.landuse.brownfield">Terreno industrial devoluto</string>
 	<string name="type.landuse.cemetery">Cemitério</string>
 	<string name="type.landuse.cemetery.christian">Cemitério cristão</string>
@@ -1308,7 +1302,7 @@
 	<string name="type.man_made.lighthouse">Farol</string>
 	<string name="type.man_made.pier">Píer</string>
 	<string name="type.man_made.pipeline">Pipeline</string>
-	<string name="type.man_made.pipeline.overground">Pipeline subterrâneo</string>
+	<string name="type.man_made.pipeline.overground">Pipeline aéreo</string>
 	<string name="type.man_made.surveillance">Câmara de vigilância</string>
 	<string name="type.man_made.tower">Torre</string>
 	<string name="type.man_made.wastewater_plant">Estação de tratamento de esgoto</string>
@@ -1332,14 +1326,15 @@
 	<string name="type.natural.grassland">Pradaria</string>
 	<string name="type.natural.heath">Charneca</string>
 	<string name="type.natural.hot_spring">Nascente de água quente</string>
-	<string name="type.natural.lake">Lago</string>
+	<string name="type.natural.water.lake">Lago</string>
+	<string name="type.natural.water.pond">Lagoa</string>
+	<string name="type.natural.water.basin">Reservatório</string>
+	<string name="type.natural.water.river">Rio</string>
 	<string name="type.natural.land">Campo</string>
 	<string name="type.natural.meadow">Pradaria</string>
 	<string name="type.natural.orchard">Pomar</string>
 	<string name="type.natural.peak">Pico</string>
-	<string name="type.natural.pond">Lagoa</string>
 	<string name="type.natural.rock">Rochedo</string>
-	<string name="type.natural.salt_pond">Salina</string>
 	<string name="type.natural.scrub">Matagal</string>
 	<string name="type.natural.spring">Nascente</string>
 	<string name="type.natural.strait">Estreito</string>
@@ -1347,7 +1342,7 @@
 	<string name="type.natural.tree_row">Linha de árvores</string>
 	<string name="type.natural.vineyard">Vinha</string>
 	<string name="type.natural.volcano">Vulcão</string>
-	<string name="type.natural.water">Água</string>
+	<string name="type.natural.water">Corpo de água</string>
 	<string name="type.natural.wetland">Zona úmida</string>
 	<string name="type.natural.wetland.bog">Zona úmida</string>
 	<string name="type.natural.wetland.marsh">Zona úmida</string>
@@ -1361,13 +1356,6 @@
 	<string name="type.office.lawyer">Escritório de advogado</string>
 	<string name="type.office.ngo">Escritório de ONG</string>
 	<string name="type.office.telecommunication">Operadora de telecomunicações</string>
-	<string name="type.olympics">Jogos olímpicos</string>
-	<string name="type.olympics.attraction">Atração dos jogos olímpicos</string>
-	<string name="type.olympics.bike_sport">Jogos olímpicos de bicicleta</string>
-	<string name="type.olympics.official_building">Edifício oficial dos jogos olímpicos</string>
-	<string name="type.olympics.stadium">Estádio dos jogos olímpicos</string>
-	<string name="type.olympics.stadium_main">Estádio principal dos jogos olímpicos</string>
-	<string name="type.olympics.water_sport">Jogos olímpicos na água</string>
 	<string name="type.place">Local</string>
 	<string name="type.place.city">Cidade</string>
 	<string name="type.place.city.capital">Capital</string>
@@ -1453,44 +1441,18 @@
 	<string name="type.railway.station.subway">Estação do metrô</string>
 	<string name="type.railway.station.subway.barcelona">Estação do metrô</string>
 	<string name="type.railway.station.subway.berlin">Estação do metrô</string>
-	<string name="type.railway.station.subway.blue">Estação do metrô</string>
-	<string name="type.railway.station.subway.brown">Estação do metrô</string>
-	<string name="type.railway.station.subway.darkgreen">Estação do metrô</string>
-	<string name="type.railway.station.subway.gray">Estação do metrô</string>
-	<string name="type.railway.station.subway.green">Estação do metrô</string>
-	<string name="type.railway.station.subway.grey">Estação do metrô</string>
 	<string name="type.railway.station.subway.kiev">Estação do metrô</string>
-	<string name="type.railway.station.subway.lightblue">Estação do metrô</string>
-	<string name="type.railway.station.subway.lightgreen">Estação do metrô</string>
 	<string name="type.railway.station.subway.london">Estação do metrô</string>
 	<string name="type.railway.station.subway.madrid">Estação do metrô</string>
 	<string name="type.railway.station.subway.minsk">Estação do metrô</string>
 	<string name="type.railway.station.subway.moscow">Estação do metrô</string>
 	<string name="type.railway.station.subway.newyork">Estação do metrô</string>
-	<string name="type.railway.station.subway.orange">Estação do metrô</string>
 	<string name="type.railway.station.subway.paris">Estação do metrô</string>
-	<string name="type.railway.station.subway.purple">Estação do metrô</string>
-	<string name="type.railway.station.subway.red">Estação do metrô</string>
 	<string name="type.railway.station.subway.roma">Estação do metrô</string>
 	<string name="type.railway.station.subway.spb">Estação do metrô</string>
-	<string name="type.railway.station.subway.violet">Estação do metrô</string>
-	<string name="type.railway.station.subway.yellow">Estação do metrô</string>
 	<string name="type.railway.subway">Metrô</string>
-	<string name="type.railway.subway.blue">Metrô</string>
 	<string name="type.railway.subway.bridge">Metrô</string>
-	<string name="type.railway.subway.brown">Metrô</string>
-	<string name="type.railway.subway.darkgreen">Metrô</string>
-	<string name="type.railway.subway.gray">Metrô</string>
-	<string name="type.railway.subway.green">Metrô</string>
-	<string name="type.railway.subway.grey">Metrô</string>
-	<string name="type.railway.subway.lightblue">Metrô</string>
-	<string name="type.railway.subway.lightgreen">Metrô</string>
-	<string name="type.railway.subway.orange">Metrô</string>
-	<string name="type.railway.subway.purple">Metrô</string>
-	<string name="type.railway.subway.red">Metrô</string>
 	<string name="type.railway.subway.tunnel">Metrô</string>
-	<string name="type.railway.subway.violet">Metrô</string>
-	<string name="type.railway.subway.yellow">Metrô</string>
 	<string name="type.railway.subway_entrance">Entrada de metrô</string>
 	<string name="type.railway.subway_entrance.barcelona">Entrada de estação do metrô</string>
 	<string name="type.railway.subway_entrance.berlin">Entrada de estação do metrô</string>
@@ -1512,8 +1474,6 @@
 	<string name="type.railway.yard.tunnel">Pátio de manobras ferroviárias</string>
 	<string name="type.route">Rota</string>
 	<string name="type.route.ferry">Rota de balsa</string>
-	<string name="type.route.ferry.motor_vehicle">Rota de balsa</string>
-	<string name="type.route.ferry.motorcar">Rota de balsa</string>
 	<string name="type.route.shuttle_train">Rota de trem vaivem</string>
 	<string name="type.shop">Loja</string>
 	<string name="type.shop.alcohol">Loja de bebidas alcoolicas</string>
@@ -1596,7 +1556,6 @@
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.diving">Mergulho</string>
 	<string name="type.sport.equestrian">Esportes equestres</string>
-	<string name="type.sport.football">Futebol</string>
 	<string name="type.sport.golf">Golfe</string>
 	<string name="type.sport.gymnastics">Ginástica</string>
 	<string name="type.sport.handball">Andebol</string>

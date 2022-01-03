@@ -106,6 +106,11 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
   private TextView mEditPhoneLink;
   private EditText mWebsite;
   private EditText mEmail;
+  private EditText mFacebookPage;
+  private EditText mInstagramPage;
+  private EditText mTwitterPage;
+  private EditText mVkPage;
+  private EditText mLinePage;
   private TextView mCuisine;
   private EditText mOperator;
   private SwitchCompat mWifi;
@@ -115,6 +120,11 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
   private TextInputLayout mInputZipcode;
   private TextInputLayout mInputWebsite;
   private TextInputLayout mInputEmail;
+  private TextInputLayout mInputFacebookPage;
+  private TextInputLayout mInputInstagramPage;
+  private TextInputLayout mInputTwitterPage;
+  private TextInputLayout mInputVkPage;
+  private TextInputLayout mInputLinePage;
 
   private View mEmptyOpeningHours;
   private TextView mOpeningHours;
@@ -196,6 +206,56 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
       }
     });
 
+    mFacebookPage.setText(Editor.nativeGetFacebookPage());
+    mFacebookPage.addTextChangedListener(new StringUtils.SimpleTextWatcher()
+    {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        UiUtils.setInputError(mInputFacebookPage, Editor.nativeIsFacebookPageValid(s.toString()) ? 0 : R.string.error_enter_correct_facebook_page);
+      }
+    });
+
+    mInstagramPage.setText(Editor.nativeGetInstagramPage());
+    mInstagramPage.addTextChangedListener(new StringUtils.SimpleTextWatcher()
+    {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        UiUtils.setInputError(mInputInstagramPage, Editor.nativeIsInstagramPageValid(s.toString()) ? 0 : R.string.error_enter_correct_instagram_page);
+      }
+    });
+
+    mTwitterPage.setText(Editor.nativeGetTwitterPage());
+    mTwitterPage.addTextChangedListener(new StringUtils.SimpleTextWatcher()
+    {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        UiUtils.setInputError(mInputTwitterPage, Editor.nativeIsTwitterPageValid(s.toString()) ? 0 : R.string.error_enter_correct_twitter_page);
+      }
+    });
+
+    mVkPage.setText(Editor.nativeGetVkPage());
+    mVkPage.addTextChangedListener(new StringUtils.SimpleTextWatcher()
+    {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        UiUtils.setInputError(mInputVkPage, Editor.nativeIsVkPageValid(s.toString()) ? 0 : R.string.error_enter_correct_vk_page);
+      }
+    });
+
+    mLinePage.setText(Editor.nativeGetLinePage());
+    mLinePage.addTextChangedListener(new StringUtils.SimpleTextWatcher()
+    {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        UiUtils.setInputError(mInputLinePage, Editor.nativeIsLinePageValid(s.toString()) ? 0 : R.string.error_enter_correct_line_page);
+      }
+    });
+
     mCuisine.setText(Editor.nativeGetFormattedCuisine());
     mOperator.setText(Editor.nativeGetOperator());
     mWifi.setChecked(Editor.nativeHasWifi());
@@ -221,6 +281,11 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
     Editor.nativeSetBuildingLevels(mBuildingLevels.getText().toString());
     Editor.nativeSetWebsite(mWebsite.getText().toString());
     Editor.nativeSetEmail(mEmail.getText().toString());
+    Editor.nativeSetFacebookPage(mFacebookPage.getText().toString());
+    Editor.nativeSetInstagramPage(mInstagramPage.getText().toString());
+    Editor.nativeSetTwitterPage(mTwitterPage.getText().toString());
+    Editor.nativeSetVkPage(mVkPage.getText().toString());
+    Editor.nativeSetLinePage(mLinePage.getText().toString());
     Editor.nativeSetHasWifi(mWifi.isChecked());
     Editor.nativeSetOperator(mOperator.getText().toString());
     Editor.nativeSetNames(mParent.getNamesAsArray());
@@ -278,6 +343,41 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
     {
       mEmail.requestFocus();
       InputUtils.showKeyboard(mEmail);
+      return false;
+    }
+
+    if (!Editor.nativeIsFacebookPageValid(mFacebookPage.getText().toString()))
+    {
+      mFacebookPage.requestFocus();
+      InputUtils.showKeyboard(mFacebookPage);
+      return false;
+    }
+
+    if (!Editor.nativeIsInstagramPageValid(mInstagramPage.getText().toString()))
+    {
+      mInstagramPage.requestFocus();
+      InputUtils.showKeyboard(mInstagramPage);
+      return false;
+    }
+
+    if (!Editor.nativeIsTwitterPageValid(mTwitterPage.getText().toString()))
+    {
+      mTwitterPage.requestFocus();
+      InputUtils.showKeyboard(mTwitterPage);
+      return false;
+    }
+
+    if (!Editor.nativeIsVkPageValid(mVkPage.getText().toString()))
+    {
+      mVkPage.requestFocus();
+      InputUtils.showKeyboard(mVkPage);
+      return false;
+    }
+
+    if (!Editor.nativeIsLinePageValid(mLinePage.getText().toString()))
+    {
+      mLinePage.requestFocus();
+      InputUtils.showKeyboard(mLinePage);
       return false;
     }
 
@@ -441,6 +541,32 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
     mEmail = findInputAndInitBlock(blockEmail, R.drawable.ic_email, R.string.email);
     mEmail.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
     mInputEmail = blockEmail.findViewById(R.id.custom_input);
+
+    View blockFacebookPage = view.findViewById(R.id.block_facebook);
+    mFacebookPage = findInputAndInitBlock(blockFacebookPage, R.drawable.ic_facebook_white, R.string.facebook);
+    mFacebookPage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+    mInputFacebookPage = blockFacebookPage.findViewById(R.id.custom_input);
+
+    View blockInstagramPage = view.findViewById(R.id.block_instagram);
+    mInstagramPage = findInputAndInitBlock(blockInstagramPage, R.drawable.ic_instagram_white, R.string.instagram);
+    mInstagramPage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+    mInputInstagramPage = blockInstagramPage.findViewById(R.id.custom_input);
+
+    View blockTwitterPage = view.findViewById(R.id.block_twitter);
+    mTwitterPage = findInputAndInitBlock(blockTwitterPage, R.drawable.ic_twitter_white, R.string.twitter);
+    mTwitterPage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+    mInputTwitterPage = blockTwitterPage.findViewById(R.id.custom_input);
+
+    View blockVkPage = view.findViewById(R.id.block_vk);
+    mVkPage = findInputAndInitBlock(blockVkPage, R.drawable.ic_vk_white, R.string.vk);
+    mVkPage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+    mInputVkPage = blockVkPage.findViewById(R.id.custom_input);
+
+    View blockLinePage = view.findViewById(R.id.block_line);
+    mLinePage = findInputAndInitBlock(blockLinePage, R.drawable.ic_line_white, R.string.editor_line_social_network);
+    mLinePage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+    mInputLinePage = blockLinePage.findViewById(R.id.custom_input);
+
     View blockCuisine = view.findViewById(R.id.block_cuisine);
     blockCuisine.setOnClickListener(this);
     mCuisine = view.findViewById(R.id.cuisine);
@@ -497,7 +623,6 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
       mParent.editTimetable();
     } else if (id == R.id.phone || id == R.id.edit_phone) {
       mParent.editPhone();
-
       mWifi.toggle();
     } else if (id == R.id.block_wifi) {
       mWifi.toggle();

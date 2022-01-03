@@ -3,12 +3,15 @@
 #include "indexer/classificator.hpp"
 #include "indexer/cuisines.hpp"
 #include "indexer/postcodes_matcher.hpp"
+#include "indexer/validate_and_format_contacts.hpp"
 
 #include "platform/preferred_languages.hpp"
 
 #include "base/control_flow.hpp"
 #include "base/macros.hpp"
 #include "base/string_utils.hpp"
+
+#include "coding/url.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -492,6 +495,31 @@ void EditableMapObject::SetWebsite(string website)
   m_metadata.Drop(feature::Metadata::FMD_URL);
 }
 
+void EditableMapObject::SetFacebookPage(string const & facebookPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_CONTACT_FACEBOOK, ValidateAndFormat_facebook(facebookPage));
+}
+
+void EditableMapObject::SetInstagramPage(string const & instagramPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_CONTACT_INSTAGRAM, ValidateAndFormat_instagram(instagramPage));
+}
+
+void EditableMapObject::SetTwitterPage(string const & twitterPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_CONTACT_TWITTER, ValidateAndFormat_twitter(twitterPage));
+}
+
+void EditableMapObject::SetVkPage(string const & vkPage)
+{
+  m_metadata.Set(feature::Metadata::FMD_CONTACT_VK, ValidateAndFormat_vk(vkPage));
+}
+
+void EditableMapObject::SetLinePage(string const & linePage)
+{
+  m_metadata.Set(feature::Metadata::FMD_CONTACT_LINE, ValidateAndFormat_contactLine(linePage));
+}
+
 void EditableMapObject::SetInternet(Internet internet)
 {
   m_metadata.Set(feature::Metadata::FMD_INTERNET, DebugPrint(internet));
@@ -751,7 +779,10 @@ bool EditableMapObject::ValidateEmail(string const & email)
     return true;
 
   if (strings::IsASCIIString(email))
-    return regex_match(email, regex(R"([^@\s]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$)"));
+  {
+    static auto const s_emailRegex = regex(R"([^@\s]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$)");
+    return regex_match(email, s_emailRegex);
+  }
 
   if ('@' == email.front() || '@' == email.back())
     return false;
@@ -804,7 +835,10 @@ bool EditableMapObject::ValidateName(string const & name)
     return true;
 
   if (strings::IsASCIIString(name))
-    return regex_match(name, regex(R"(^[ A-Za-z0-9.,?!@#$%&()\-\+:;"'`]+$)"));
+  {
+    static auto const s_nameRegex = regex(R"(^[ A-Za-z0-9.,?!@#$%&()\-\+:;"'`]+$)");
+    return regex_match(name, s_nameRegex);
+  }
 
   std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> converter;
 

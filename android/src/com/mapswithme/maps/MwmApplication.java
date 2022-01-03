@@ -9,11 +9,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
-
 import com.mapswithme.maps.background.AppBackgroundTracker;
 import com.mapswithme.maps.background.NotificationChannelFactory;
 import com.mapswithme.maps.background.NotificationChannelProvider;
@@ -40,7 +37,6 @@ import com.mapswithme.util.SharedPropertiesUtils;
 import com.mapswithme.util.StorageUtils;
 //import com.mapswithme.util.ThemeSwitcher;
 import com.mapswithme.util.UiUtils;
-import com.mapswithme.util.Utils;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
@@ -170,7 +166,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     OrganicmapsFrameworkAdapter.INSTANCE.setBackgroundTracker(mBackgroundTracker);
 //    mSubwayManager = new SubwayManager(this);
 //    mIsolinesManager = new IsolinesManager(this);
-
 //    mPlayer = new MediaPlayerWrapper(this);
 //    WebView.setWebContentsDebuggingEnabled(Utils.isDebugOrBeta());
   }
@@ -289,7 +284,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 
   static
   {
-    System.loadLibrary("mapswithme");
+    System.loadLibrary("organicmaps");
   }
 
 //  public static void onUpgrade(@NonNull Context context)

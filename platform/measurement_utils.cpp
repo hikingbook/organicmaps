@@ -5,6 +5,7 @@
 #include "geometry/mercator.hpp"
 
 #include "base/assert.hpp"
+#include "base/bits.hpp"
 #include "base/macros.hpp"
 #include "base/math.hpp"
 #include "base/stl_helpers.hpp"
@@ -143,9 +144,9 @@ string FormatLatLonAsDMSImpl(double value, char positive, char negative, int dac
   return sstream.str();
 }
 
-string FormatLatLonAsDMS(double lat, double lon, int dac)
+string FormatLatLonAsDMS(double lat, double lon, bool withComma, int dac)
 {
-  return (FormatLatLonAsDMSImpl(lat, 'N', 'S', dac) + " "  +
+  return (FormatLatLonAsDMSImpl(lat, 'N', 'S', dac) + (withComma ? ", " : " ") +
           FormatLatLonAsDMSImpl(lon, 'E', 'W', dac));
 }
 
@@ -172,9 +173,9 @@ string FormatLatLon(double lat, double lon, int dac)
   return to_string_dac(lat, dac) + " " + to_string_dac(lon, dac);
 }
 
-string FormatLatLon(double lat, double lon, bool withSemicolon, int dac)
+string FormatLatLon(double lat, double lon, bool withComma, int dac)
 {
-  return to_string_dac(lat, dac) + (withSemicolon ? ", " : " ") + to_string_dac(lon, dac);
+  return to_string_dac(lat, dac) + (withComma ? ", " : " ") + to_string_dac(lon, dac);
 }
 
 void FormatLatLon(double lat, double lon, string & latText, string & lonText, int dac)
@@ -243,6 +244,26 @@ string FormatSpeedUnits(Units units)
   case Units::Metric: return "km/h";
   }
   UNREACHABLE();
+}
+
+string FormatOsmLink(double lat, double lon, int zoom)
+{
+  static char char_array[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~";
+  uint32_t const x = round((lon + 180.0) / 360.0 * (1L<<32));
+  uint32_t const y = round((lat + 90.0) / 180.0 * (1L<<32));
+  uint64_t const code = bits::BitwiseMerge(y, x);
+  string osmUrl = "https://osm.org/go/";
+
+  for (int i = 0; i < (zoom + 10) / 3; ++i)
+  {
+    int digit = (code >> (58 - 6 * i)) & 0x3f;
+    osmUrl += char_array[digit];
+  }
+
+  for (int i = 0; i < (zoom + 8) % 3; ++i)
+    osmUrl += "-";
+
+  return osmUrl + "?m=";
 }
 
 bool OSMDistanceToMeters(string const & osmRawValue, double & outMeters)

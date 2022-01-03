@@ -521,7 +521,7 @@
 		675342D81A3F59EF00A0A8C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					675342DF1A3F59EF00A0A8C3 = {
 						CreatedOnToolsVersion = 6.1;
@@ -675,7 +675,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F5584A1DBF2FC000A4FC11 /* common-debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/jansson/src",
@@ -688,7 +687,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34F5584B1DBF2FC000A4FC11 /* common-release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/jansson/src",
@@ -718,6 +716,7 @@
 		67F90B6D1C6A275B00CD458E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",
@@ -730,6 +729,7 @@
 		67F90B6E1C6A275B00CD458E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",
@@ -742,6 +742,7 @@
 		67F90BCB1C6A29F700CD458E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",
@@ -754,6 +755,7 @@
 		67F90BCC1C6A29F700CD458E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP=1",

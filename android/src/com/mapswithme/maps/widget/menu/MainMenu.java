@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import com.mapswithme.maps.ClickMenuDelegate;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
+import com.mapswithme.maps.downloader.MapManager;
+import com.mapswithme.maps.downloader.UpdateInfo;
 import com.mapswithme.maps.routing.RoutingController;
 import com.mapswithme.util.UiUtils;
 

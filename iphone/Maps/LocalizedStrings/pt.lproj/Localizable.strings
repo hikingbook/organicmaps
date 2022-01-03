@@ -366,6 +366,12 @@
 /* Text in menu */
 "instagram" = "Instagram";
 
+/* Text in the editor */
+"vk" = "VK";
+
+/* Text in the editor */
+"editor_line_social_network" = "LINE";
+
 /* Text in menu */
 "openstreetmap" = "OpenStreetMap";
 
@@ -378,10 +384,16 @@
 /* Text in menu */
 "help" = "Ajuda";
 
-/* Text in menu */
+/* Button in the main Help dialog */
+"faq" = "Perguntas e respostas";
+
+/* Button in the main Help dialog */
+"how_to_support_us" = "Como nos apoiar?";
+
+/* Button in the main Help dialog */
 "copyright" = "Direitos de autor";
 
-/* Text in menu */
+/* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "Reportar um problema";
 
 /* Alert text */
@@ -961,6 +973,16 @@
 
 "error_enter_correct_email" = "Preencha com um endereço válido de email";
 
+"error_enter_correct_facebook_page" = "Enter a valid Facebook web address, account, or page name";
+
+"error_enter_correct_instagram_page" = "Enter a valid Instagram web address or account name";
+
+"error_enter_correct_twitter_page" = "Enter a valid Twitter web address or username";
+
+"error_enter_correct_vk_page" = "Enter a valid VK web address or account name";
+
+"error_enter_correct_line_page" = "Enter a valid LINE web address or LINE ID";
+
 "refresh" = "Atualizar";
 
 "placepage_add_place_button" = "Adicionar um local ao mapa";
@@ -985,17 +1007,8 @@
 
 "recent_track_background_dialog_message" = "O Organic Maps usa a sua localização geográfica em segundo plano para gravar a sua rota recente.";
 
-/* Rate on Google Play (Android only) */
-"rate_gp" = "Avaliar no Google Play";
-
-/* Share with friends: menu item title */
-"tell_friends" = "Indique a um amigo";
-
-/* Share with friends: sharing text */
-"tell_friends_text" = "Olá! Instale o Organic Maps!";
-
-/* About short text (below logo) */
-"about_description" = "O Organic Maps é uma aplicação offline essencial para viajar. O Organic Maps baseia-se nos dados do OpenStreetMap e permite editá-los.";
+/* Text under the version number in the Help dialog. */
+"about_description" = "Organic Maps é uma aplicação gratuita e de código aberto de mapas offline. Sem anúncios. Sem seguimento. Se vir um erro no mapa, por favor repare-o em OpenStreetMap. O projecto é criado por entusiastas no nosso tempo livre, por isso precisamos do seu feedback e apoio.";
 
 "general_settings" = "Configurações gerais";
 
@@ -1073,8 +1086,6 @@
 
 "placepage_add_stop" = "Adicionar paragem";
 
-"preloader_viator_button" = "Saber mais";
-
 "start_from_my_position" = "Iniciar a partir de";
 
 "profile_authorization_error" = "Ups, ocorreu um erro. Tente iniciar sessão novamente.";
@@ -1131,8 +1142,6 @@
 "phone_number" = "Número de telefone";
 
 "profile" = "Perfil no OpenStreetMap";
-
-"place_page_search_similar_hotel" = "Pesquisar hotéis semelhantes";
 
 "bookmarks_detect_title" = "Foram detetados novos ficheiros";
 
@@ -1564,7 +1573,7 @@
 
 "type.amenity.driving_school" = "Escola de condução";
 
-"type.amenity.embassy" = "Embaixada ou consulado";
+"type.office.diplomatic" = "Embaixada ou consulado";
 
 "type.amenity.fast_food" = "Comida rápida";
 
@@ -1686,8 +1695,6 @@
 
 "type.amenity.shower" = "Chuveiro";
 
-"type.amenity.speed_trap" = "Radar de velocidade";
-
 "type.amenity.taxi" = "Táxi";
 
 "type.amenity.telephone" = "Telefone";
@@ -1726,6 +1733,8 @@
 
 "type.barrier.border_control" = "Controlo de fronteira";
 
+"type.barrier.chain" = "Chain";
+
 "type.barrier.city_wall" = "Muralha de cidade";
 
 "type.barrier.cycle_barrier" = "Barreira de bicicletas";
@@ -1743,6 +1752,8 @@
 "type.barrier.retaining_wall" = "Muro de retenção";
 
 "type.barrier.stile" = "Travessia de escada em vedação ou muro";
+
+"type.barrier.swing_gate" = "Cancela elevatória";
 
 "type.barrier.toll_booth" = "Portagem";
 
@@ -2008,6 +2019,8 @@
 
 "type.entrance" = "Entrada";
 
+"type.healthcare.laboratory" = "Laboratório médico";
+
 "type.highway" = "Rodovia";
 
 "type.highway.bridleway" = "Caminho para cavaleiros";
@@ -2029,6 +2042,8 @@
 "type.highway.cycleway.permissive" = "Ciclovia";
 
 "type.highway.cycleway.tunnel" = "Ciclovia";
+
+"type.highway.elevator" = "Elevator";
 
 "type.highway.footway" = "Caminho pedonal";
 
@@ -2258,8 +2273,6 @@
 
 "type.historic.monument" = "Monumento";
 
-"type.historic.museum" = "Museu";
-
 "type.historic.ruins" = "Ruínas";
 
 "type.historic.ship" = "Barco histórico";
@@ -2308,7 +2321,7 @@
 
 "type.landuse.allotments" = "Horta comunitária";
 
-"type.landuse.basin" = "Água";
+"type.landuse.basin" = "Reservatório";
 
 "type.landuse.brownfield" = "Terreno industrial devoluto";
 
@@ -2450,7 +2463,11 @@
 
 "type.man_made.pipeline" = "Pipeline";
 
-"type.man_made.pipeline.overground" = "Pipeline subterrâneo";
+"type.man_made.pipeline.overground" = "Pipeline aéreo";
+
+"type.man_made.silo" = "Silo";
+
+"type.man_made.storage_tank" = "Storage Tank";
 
 "type.man_made.surveillance" = "Câmara de vigilância";
 
@@ -2476,6 +2493,8 @@
 
 "type.military.bunker" = "Búnquer";
 
+"type.mountain_pass" = "Mountain Pass";
+
 "type.natural" = "Natureza";
 
 "type.natural.bare_rock" = "Zona rochosa";
@@ -2483,6 +2502,10 @@
 "type.natural.bay" = "Baía";
 
 "type.natural.beach" = "Praia";
+
+"type.natural.beach.sand" = "Sandy Beach";
+
+"type.natural.beach.gravel" = "Gravel Beach";
 
 "type.natural.cape" = "Cabo";
 
@@ -2502,7 +2525,15 @@
 
 "type.natural.hot_spring" = "Nascente de água quente";
 
-"type.natural.lake" = "Lago";
+"type.natural.water.lake" = "Lago";
+
+"type.natural.water.pond" = "Lagoa";
+
+"type.natural.water.reservoir" = "Reservatório";
+
+"type.natural.water.basin" = "Reservatório";
+
+"type.natural.water.river" = "Rio";
 
 "type.natural.land" = "Campo";
 
@@ -2512,11 +2543,9 @@
 
 "type.natural.peak" = "Pico";
 
-"type.natural.pond" = "Lagoa";
+"type.natural.saddle" = "Mountain Saddle";
 
 "type.natural.rock" = "Rochedo";
-
-"type.natural.salt_pond" = "Salina";
 
 "type.natural.scrub" = "Matagal";
 
@@ -2532,7 +2561,7 @@
 
 "type.natural.volcano" = "Vulcão";
 
-"type.natural.water" = "Água";
+"type.natural.water" = "Corpo de água";
 
 "type.natural.wetland" = "Zona úmida";
 
@@ -2559,36 +2588,6 @@
 "type.office.ngo" = "Escritório de ONG";
 
 "type.office.telecommunication" = "Operadora de telecomunicações";
-
-"type.olympics" = "Jogos olímpicos";
-
-"type.olympics.attraction" = "Atração dos jogos olímpicos";
-
-"type.olympics.bike_sport" = "Jogos olímpicos de bicicleta";
-
-"type.olympics.live_site" = "olympics-live_site";
-
-"type.olympics.official_building" = "Edifício oficial dos jogos olímpicos";
-
-"type.olympics.stadium" = "Estádio dos jogos olímpicos";
-
-"type.olympics.stadium_main" = "Estádio principal dos jogos olímpicos";
-
-"type.olympics.transport_airport" = "olympics-transport_airport";
-
-"type.olympics.transport_boat" = "olympics-transport_boat";
-
-"type.olympics.transport_bus" = "olympics-transport_bus";
-
-"type.olympics.transport_cable" = "olympics-transport_cable";
-
-"type.olympics.transport_railway" = "olympics-transport_railway";
-
-"type.olympics.transport_subway" = "olympics-transport_subway";
-
-"type.olympics.transport_tram" = "olympics-transport_tram";
-
-"type.olympics.water_sport" = "Jogos olímpicos na água";
 
 "type.place" = "Local";
 
@@ -2708,12 +2707,6 @@
 
 "type.railway.halt" = "Apeadeiro";
 
-"type.railway.incline" = "railway-incline";
-
-"type.railway.incline.bridge" = "railway-incline-bridge";
-
-"type.railway.incline.tunnel" = "railway-incline-tunnel";
-
 "type.railway.level_crossing" = "Passagem de nível";
 
 "type.railway.light_rail" = "Metropolitano de superfície";
@@ -2776,23 +2769,7 @@
 
 "type.railway.station.subway.berlin" = "Estação de metropolitano";
 
-"type.railway.station.subway.blue" = "Estação de metropolitano";
-
-"type.railway.station.subway.brown" = "Estação de metropolitano";
-
-"type.railway.station.subway.darkgreen" = "Estação de metropolitano";
-
-"type.railway.station.subway.gray" = "Estação de metropolitano";
-
-"type.railway.station.subway.green" = "Estação de metropolitano";
-
-"type.railway.station.subway.grey" = "Estação de metropolitano";
-
 "type.railway.station.subway.kiev" = "Estação de metropolitano";
-
-"type.railway.station.subway.lightblue" = "Estação de metropolitano";
-
-"type.railway.station.subway.lightgreen" = "Estação de metropolitano";
 
 "type.railway.station.subway.london" = "Estação de metropolitano";
 
@@ -2804,53 +2781,17 @@
 
 "type.railway.station.subway.newyork" = "Estação de metropolitano";
 
-"type.railway.station.subway.orange" = "Estação de metropolitano";
-
 "type.railway.station.subway.paris" = "Estação de metropolitano";
-
-"type.railway.station.subway.purple" = "Estação de metropolitano";
-
-"type.railway.station.subway.red" = "Estação de metropolitano";
 
 "type.railway.station.subway.roma" = "Estação de metropolitano";
 
 "type.railway.station.subway.spb" = "Estação de metropolitano";
 
-"type.railway.station.subway.violet" = "Estação de metropolitano";
-
-"type.railway.station.subway.yellow" = "Estação de metropolitano";
-
 "type.railway.subway" = "Metropolitano";
-
-"type.railway.subway.blue" = "Metropolitano";
 
 "type.railway.subway.bridge" = "Metropolitano";
 
-"type.railway.subway.brown" = "Metropolitano";
-
-"type.railway.subway.darkgreen" = "Metropolitano";
-
-"type.railway.subway.gray" = "Metropolitano";
-
-"type.railway.subway.green" = "Metropolitano";
-
-"type.railway.subway.grey" = "Metropolitano";
-
-"type.railway.subway.lightblue" = "Metropolitano";
-
-"type.railway.subway.lightgreen" = "Metropolitano";
-
-"type.railway.subway.orange" = "Metropolitano";
-
-"type.railway.subway.purple" = "Metropolitano";
-
-"type.railway.subway.red" = "Metropolitano";
-
 "type.railway.subway.tunnel" = "Metropolitano";
-
-"type.railway.subway.violet" = "Metropolitano";
-
-"type.railway.subway.yellow" = "Metropolitano";
 
 "type.railway.subway_entrance" = "Entrada de metropolitano";
 
@@ -2893,10 +2834,6 @@
 "type.route" = "Rota";
 
 "type.route.ferry" = "Rota de ferry";
-
-"type.route.ferry.motor_vehicle" = "Rota de ferry";
-
-"type.route.ferry.motorcar" = "Rota de ferry";
 
 "type.route.shuttle_train" = "Rota de comboio vaivem";
 
@@ -3105,8 +3042,6 @@
 "type.sport.diving" = "Mergulho";
 
 "type.sport.equestrian" = "Hipismo";
-
-"type.sport.football" = "Futebol";
 
 "type.sport.golf" = "Golfe";
 

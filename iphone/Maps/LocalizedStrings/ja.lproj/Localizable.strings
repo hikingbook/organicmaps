@@ -366,6 +366,12 @@
 /* Text in menu */
 "instagram" = "Instagram";
 
+/* Text in the editor */
+"vk" = "VK";
+
+/* Text in the editor */
+"editor_line_social_network" = "LINE";
+
 /* Text in menu */
 "openstreetmap" = "OpenStreetMap";
 
@@ -378,10 +384,16 @@
 /* Text in menu */
 "help" = "ヘルプ";
 
-/* Text in menu */
+/* Button in the main Help dialog */
+"faq" = "質問と回答";
+
+/* Button in the main Help dialog */
+"how_to_support_us" = "どのように私たちを支持する方法？";
+
+/* Button in the main Help dialog */
 "copyright" = "著作権";
 
-/* Text in menu */
+/* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "バグを報告";
 
 /* Alert text */
@@ -961,6 +973,16 @@
 
 "error_enter_correct_email" = "有効なメールアドレスを入力してください";
 
+"error_enter_correct_facebook_page" = "Enter a valid Facebook web address, account, or page name";
+
+"error_enter_correct_instagram_page" = "Enter a valid Instagram web address or account name";
+
+"error_enter_correct_twitter_page" = "Enter a valid Twitter web address or username";
+
+"error_enter_correct_vk_page" = "Enter a valid VK web address or account name";
+
+"error_enter_correct_line_page" = "Enter a valid LINE web address or LINE ID";
+
 "refresh" = "更新";
 
 "placepage_add_place_button" = "地図上に場所を追加";
@@ -985,17 +1007,8 @@
 
 "recent_track_background_dialog_message" = "Organic Mapsは、あなたの位置情報をバックグラウンドで使用して最近の走行ルートを記録します。";
 
-/* Rate on Google Play (Android only) */
-"rate_gp" = "Google Play で評価";
-
-/* Share with friends: menu item title */
-"tell_friends" = "友達に教える";
-
-/* Share with friends: sharing text */
-"tell_friends_text" = "こんにちは！Organic Maps をインストールしましょう！";
-
-/* About short text (below logo) */
-"about_description" = "Organic Maps は旅に必要不可欠なオフラインアプリケーションです。Organic Maps は OpenStreetMap データに基づいており、データを編集することができます。";
+/* Text under the version number in the Help dialog. */
+"about_description" = "Organic Mapsは、無料のオープンソースのオフラインマップアプリケーションです。広告なし。全く追跡しません。地図上にエラーが表示された場合は、OpenStreetMapで修正してください。プロジェクトは私たちの自由な時間に愛好家によって作成されているため、フィードバックとサポートが必要です。";
 
 "general_settings" = "一般設定";
 
@@ -1073,8 +1086,6 @@
 
 "placepage_add_stop" = "経由地点を追加";
 
-"preloader_viator_button" = "詳細情報";
-
 "start_from_my_position" = "開始位置";
 
 "profile_authorization_error" = "エラーが発生しました。もう一度サインインしてみてください。";
@@ -1131,8 +1142,6 @@
 "phone_number" = "電話番号";
 
 "profile" = "OpenStreetMap プロフィール";
-
-"place_page_search_similar_hotel" = "類似のホテルを検索";
 
 "bookmarks_detect_title" = "新しいファイルが検出されました";
 
@@ -1564,7 +1573,7 @@
 
 "type.amenity.driving_school" = "自動車教習所";
 
-"type.amenity.embassy" = "大使館";
+"type.office.diplomatic" = "大使館";
 
 "type.amenity.fast_food" = "ファストフード";
 
@@ -1686,8 +1695,6 @@
 
 "type.amenity.shower" = "シャワー";
 
-"type.amenity.speed_trap" = "amenity-speed_trap";
-
 "type.amenity.taxi" = "タクシー";
 
 "type.amenity.telephone" = "公衆電話";
@@ -1726,6 +1733,8 @@
 
 "type.barrier.border_control" = "国境管理";
 
+"type.barrier.chain" = "Chain";
+
 "type.barrier.city_wall" = "城壁";
 
 "type.barrier.cycle_barrier" = "バリカー";
@@ -1743,6 +1752,8 @@
 "type.barrier.retaining_wall" = "擁壁";
 
 "type.barrier.stile" = "回転扉";
+
+"type.barrier.swing_gate" = "ブームバリア";
 
 "type.barrier.toll_booth" = "料金所";
 
@@ -1998,7 +2009,7 @@
 
 "type.cuisine.vietnamese" = "ベトナム料理";
 
-"type.emergency" = "emergency";
+"type.emergency" = "Emergency";
 
 "type.emergency.defibrillator" = "除細動器";
 
@@ -2007,6 +2018,8 @@
 "type.emergency.phone" = "緊急電話";
 
 "type.entrance" = "エントランス";
+
+"type.healthcare.laboratory" = "医療研究所";
 
 "type.highway" = "道路";
 
@@ -2029,6 +2042,8 @@
 "type.highway.cycleway.permissive" = "自転車道";
 
 "type.highway.cycleway.tunnel" = "自転車道(トンネル)";
+
+"type.highway.elevator" = "Elevator";
 
 "type.highway.footway" = "歩道";
 
@@ -2258,8 +2273,6 @@
 
 "type.historic.monument" = "記念碑";
 
-"type.historic.museum" = "歴史的なミュージアム";
-
 "type.historic.ruins" = "古跡";
 
 "type.historic.ship" = "退役船";
@@ -2308,7 +2321,7 @@
 
 "type.landuse.allotments" = "市民農園";
 
-"type.landuse.basin" = "遊水地";
+"type.landuse.basin" = "水地";
 
 "type.landuse.brownfield" = "再開発用地";
 
@@ -2410,7 +2423,7 @@
 
 "type.leisure.playground" = "児童公園";
 
-"type.leisure.recreation_ground" = "Recreation ground";
+"type.leisure.recreation_ground" = "Recreation Ground";
 
 "type.leisure.sauna" = "サウナ";
 
@@ -2452,6 +2465,10 @@
 
 "type.man_made.pipeline.overground" = "地表のパイプライン";
 
+"type.man_made.silo" = "Silo";
+
+"type.man_made.storage_tank" = "Storage Tank";
+
 "type.man_made.surveillance" = "監視カメラ";
 
 "type.man_made.tower" = "タワー";
@@ -2476,6 +2493,8 @@
 
 "type.military.bunker" = "掩蔽壕";
 
+"type.mountain_pass" = "Mountain Pass";
+
 "type.natural" = "自然";
 
 "type.natural.bare_rock" = "岩肌";
@@ -2483,6 +2502,10 @@
 "type.natural.bay" = "港湾";
 
 "type.natural.beach" = "ビーチ";
+
+"type.natural.beach.sand" = "Sandy Beach";
+
+"type.natural.beach.gravel" = "Gravel Beach";
 
 "type.natural.cape" = "岬";
 
@@ -2502,7 +2525,15 @@
 
 "type.natural.hot_spring" = "温泉";
 
-"type.natural.lake" = "湖";
+"type.natural.water.lake" = "湖";
+
+"type.natural.water.pond" = "池";
+
+"type.natural.water.reservoir" = "貯水池";
+
+"type.natural.water.basin" = "水地";
+
+"type.natural.water.river" = "河川";
 
 "type.natural.land" = "陸地";
 
@@ -2512,11 +2543,9 @@
 
 "type.natural.peak" = "山頂";
 
-"type.natural.pond" = "池";
+"type.natural.saddle" = "Mountain Saddle";
 
 "type.natural.rock" = "岩";
-
-"type.natural.salt_pond" = "塩田";
 
 "type.natural.scrub" = "雑木林";
 
@@ -2559,36 +2588,6 @@
 "type.office.ngo" = "NGO 事務局";
 
 "type.office.telecommunication" = "携帯電話事業者";
-
-"type.olympics" = "オリンピック";
-
-"type.olympics.attraction" = "オリンピックアトラクション";
-
-"type.olympics.bike_sport" = "オリンピック自転車競技";
-
-"type.olympics.live_site" = "olympics-live_site";
-
-"type.olympics.official_building" = "olympics-official_building";
-
-"type.olympics.stadium" = "オリンピックスタジアム";
-
-"type.olympics.stadium_main" = "オリンピックメインスタジアム";
-
-"type.olympics.transport_airport" = "olympics-transport_airport";
-
-"type.olympics.transport_boat" = "olympics-transport_boat";
-
-"type.olympics.transport_bus" = "olympics-transport_bus";
-
-"type.olympics.transport_cable" = "olympics-transport_cable";
-
-"type.olympics.transport_railway" = "olympics-transport_railway";
-
-"type.olympics.transport_subway" = "olympics-transport_subway";
-
-"type.olympics.transport_tram" = "olympics-transport_tram";
-
-"type.olympics.water_sport" = "オリンピック水上競技";
 
 "type.place" = "地名";
 
@@ -2708,12 +2707,6 @@
 
 "type.railway.halt" = "鉄道駅";
 
-"type.railway.incline" = "railway-incline";
-
-"type.railway.incline.bridge" = "railway-incline-bridge";
-
-"type.railway.incline.tunnel" = "railway-incline-tunnel";
-
 "type.railway.level_crossing" = "踏切";
 
 "type.railway.light_rail" = "ライトレール";
@@ -2776,23 +2769,7 @@
 
 "type.railway.station.subway.berlin" = "地下鉄";
 
-"type.railway.station.subway.blue" = "地下鉄";
-
-"type.railway.station.subway.brown" = "地下鉄";
-
-"type.railway.station.subway.darkgreen" = "地下鉄";
-
-"type.railway.station.subway.gray" = "地下鉄";
-
-"type.railway.station.subway.green" = "地下鉄";
-
-"type.railway.station.subway.grey" = "地下鉄";
-
 "type.railway.station.subway.kiev" = "地下鉄";
-
-"type.railway.station.subway.lightblue" = "地下鉄";
-
-"type.railway.station.subway.lightgreen" = "地下鉄";
 
 "type.railway.station.subway.london" = "地下鉄";
 
@@ -2804,53 +2781,17 @@
 
 "type.railway.station.subway.newyork" = "地下鉄";
 
-"type.railway.station.subway.orange" = "地下鉄";
-
 "type.railway.station.subway.paris" = "地下鉄";
-
-"type.railway.station.subway.purple" = "地下鉄";
-
-"type.railway.station.subway.red" = "地下鉄";
 
 "type.railway.station.subway.roma" = "地下鉄";
 
 "type.railway.station.subway.spb" = "地下鉄";
 
-"type.railway.station.subway.violet" = "地下鉄";
+"type.railway.subway" = "Subway Line";
 
-"type.railway.station.subway.yellow" = "地下鉄";
+"type.railway.subway.bridge" = "Subway Line";
 
-"type.railway.subway" = "railway-subway";
-
-"type.railway.subway.blue" = "railway-subway-blue";
-
-"type.railway.subway.bridge" = "railway-subway-bridge";
-
-"type.railway.subway.brown" = "railway-subway-brown";
-
-"type.railway.subway.darkgreen" = "railway-subway-darkgreen";
-
-"type.railway.subway.gray" = "railway-subway-gray";
-
-"type.railway.subway.green" = "railway-subway-green";
-
-"type.railway.subway.grey" = "railway-subway-grey";
-
-"type.railway.subway.lightblue" = "railway-subway-lightblue";
-
-"type.railway.subway.lightgreen" = "railway-subway-lightgreen";
-
-"type.railway.subway.orange" = "railway-subway-orange";
-
-"type.railway.subway.purple" = "railway-subway-purple";
-
-"type.railway.subway.red" = "railway-subway-red";
-
-"type.railway.subway.tunnel" = "railway-subway-tunnel";
-
-"type.railway.subway.violet" = "railway-subway-violet";
-
-"type.railway.subway.yellow" = "railway-subway-yellow";
+"type.railway.subway.tunnel" = "Subway Line";
 
 "type.railway.subway_entrance" = "地下鉄入り口";
 
@@ -2894,11 +2835,7 @@
 
 "type.route.ferry" = "フェリー航路";
 
-"type.route.ferry.motor_vehicle" = "フェリー航路(動力車)";
-
-"type.route.ferry.motorcar" = "フェリー航路(自動車)";
-
-"type.route.shuttle_train" = "route-shuttle_train";
+"type.route.shuttle_train" = "Shuttle Train";
 
 "type.shop" = "買い物";
 
@@ -3106,8 +3043,6 @@
 
 "type.sport.equestrian" = "馬術";
 
-"type.sport.football" = "フットボール";
-
 "type.sport.golf" = "ゴルフ";
 
 "type.sport.gymnastics" = "体操競技";
@@ -3214,7 +3149,7 @@
 
 "type.waterway.drain.tunnel" = "用水路";
 
-"type.waterway.lock" = "waterway-lock";
+"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "水門";
 
@@ -3278,29 +3213,29 @@
 
 "type.building_part" = "建物";
 
-"type.area_highway.cycleway" = "area:highway-cycleway";
+"type.area_highway.cycleway" = "Bike Path";
 
-"type.area_highway.footway" = "area:highway-footway";
+"type.area_highway.footway" = "Path";
 
-"type.area_highway.living_street" = "area:highway-living_street";
+"type.area_highway.living_street" = "Street";
 
 "type.area_highway.motorway" = "area:highway-motorway";
 
-"type.area_highway.path" = "area:highway-path";
+"type.area_highway.path" = "Path";
 
-"type.area_highway.pedestrian" = "area:highway-pedestrian";
+"type.area_highway.pedestrian" = "Street";
 
-"type.area_highway.primary" = "area:highway-primary";
+"type.area_highway.primary" = "Street";
 
-"type.area_highway.residential" = "area:highway-residential";
+"type.area_highway.residential" = "Street";
 
-"type.area_highway.secondary" = "area:highway-secondary";
+"type.area_highway.secondary" = "Street";
 
-"type.area_highway.service" = "area:highway-service";
+"type.area_highway.service" = "Street";
 
-"type.area_highway.tertiary" = "area:highway-tertiary";
+"type.area_highway.tertiary" = "Street";
 
-"type.area_highway.steps" = "area:highway-steps";
+"type.area_highway.steps" = "Steps";
 
 "type.area_highway.track" = "area:highway-track";
 
