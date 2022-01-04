@@ -25,6 +25,7 @@ import com.mapswithme.maps.background.AppBackgroundTracker;
 import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.bookmarks.data.MapObject;
+import com.mapswithme.maps.downloader.OnmapDownloader;
 import com.mapswithme.maps.location.CompassData;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.util.log.LoggerFactory;
@@ -245,30 +246,46 @@ public enum OrganicmapsFrameworkAdapter {
         Framework.nativeZoomToPoint(lat, lon, SEARCH_IN_VIEWPORT_ZOOM, true);
     }
 
+    public void updateNumMapLimit(boolean isVisible, String text, int color, int backgroundColor) {
+        if (mwmActivity.mOnmapDownloader == null) {
+            return;
+        }
+        mwmActivity.mOnmapDownloader.updateNumMapLimit(isVisible, text, color, backgroundColor);
+    }
+
+    public void setDownloaderDelegate(OnmapDownloader.IDownloaderDelegate downloaderDelegate) {
+        mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
+    }
+
+    public  void drawCirlce(Location location, float radius, int color, int width) {
+
+    }
+
     /**
      * Bookmark CRUD
      */
-    public long createBookmark(String catName, HashMap data) {
+    public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
         long catId = searchCategoryIDWithName(catName);
         return BookmarkManager.INSTANCE.nativeAddBookmark(
                 catId,
-                (String) data.get("name"),
-                (String) data.get("description"),
-                (int) data.get("color"),
-                (Double) data.get("lat"),
-                (Double) data.get("lon"),
-                (int) data.get("iconType")
+                name,
+                description,
+                color,
+                lat,
+                lon,
+                iconType
         );
     }
 
-    public void updateBookmark(long bmkId, HashMap data) {
+    public void updateBookmark(long bmkId, String name, String description, int color, double lat, double lon) {
         BookmarkManager.INSTANCE.nativeUpdateBookmark(
                 bmkId,
-                (String) data.get("name"),
-                (String) data.get("description"),
-                (int) data.get("color"),
-                (Double) data.get("lat"),
-                (Double) data.get("lon"));
+                name,
+                description,
+                color,
+                lat,
+                lon
+        );
     }
 
     public void deleteBookmark(long bmkId) {

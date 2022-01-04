@@ -36,6 +36,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private final TextView mSize;
   private final WheelProgressView mProgress;
   private final Button mButton;
+  private final TextView mNumMapLimit;
+  public IDownloaderDelegate downloaderDelegate;
 
   private int mStorageSubscriptionSlot;
 
@@ -85,7 +87,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     public void onCurrentCountryChanged(String countryId)
     {
       mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
-      updateState(true);
+      updateState(false);
     }
   };
 
@@ -193,6 +195,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mParent = mFrame.findViewById(R.id.downloader_parent);
     mTitle = mFrame.findViewById(R.id.downloader_title);
     mSize = mFrame.findViewById(R.id.downloader_size);
+    mNumMapLimit = (TextView)mFrame.findViewById(R.id.text_view_num_maps_limit);
 
     View controls = mFrame.findViewById(R.id.downloader_controls_frame);
     mProgress = controls.findViewById(R.id.wheel_downloader_progress);
@@ -211,9 +214,18 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       }
     });
     final Notifier notifier = Notifier.from(mActivity.getApplication());
+
     mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
+      if (downloaderDelegate != null && !downloaderDelegate.shouldDownloadMap(mCurrentCountry)) {
+        return;
+      }
+
       if (mCurrentCountry == null)
         return;
+
+      // Modified by Ke, Zheng-Xiang
+      mCurrentCountry.status = CountryItem.STATUS_ENQUEUED;
+      updateState(false);
 
       boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
       if (retry)
@@ -264,5 +276,21 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   public static void setAutodownloadLocked(boolean locked)
   {
     sAutodownloadLocked = locked;
+  }
+
+  public void updateNumMapLimit(boolean isVisible, String text, int color, int backgroundColor) {
+    mNumMapLimit.setText(text);
+    mNumMapLimit.setTextColor(color);
+    mNumMapLimit.setBackgroundColor(backgroundColor);
+    if (isVisible) {
+      mNumMapLimit.setVisibility(View.VISIBLE);
+    }
+    else {
+      mNumMapLimit.setVisibility(View.GONE);
+    }
+  }
+
+  public interface IDownloaderDelegate {
+    boolean shouldDownloadMap(CountryItem countryItem);
   }
 }
