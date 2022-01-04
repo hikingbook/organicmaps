@@ -955,6 +955,8 @@ public enum BookmarkManager
   @NonNull
   public native void nativeClearLines();
 
+  public native int nativeDrawCircle(double lat, double lon, double radius, int color, double width);
+
   public native int nativeGetTracksCount(long catId);
 
   public interface ElevationActivePointChangedListener

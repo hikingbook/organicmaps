@@ -5,6 +5,7 @@
 #include "map/bookmark_helpers.hpp"
 #include "map/place_page_info.hpp"
 
+#include "geometry/circle_on_earth.hpp"
 
 #include "coding/zip_creator.hpp"
 
@@ -30,6 +31,51 @@ using namespace std::placeholders;
 namespace
 {
 ::Framework * frm() { return g_framework->NativeFramework(); }
+
+::dp::Color initDpColor(int color) {
+  auto const predefinedColor = kml::PredefinedColor(color);
+  dp::Color dpcolor = dp::Color(0, 0, 0, 0);
+  switch (predefinedColor)
+  {
+    case kml::PredefinedColor::Red: dpcolor = dp::Color(229, 27, 35, 204);
+          break;
+    case kml::PredefinedColor::Pink: dpcolor = dp::Color(255, 65, 130, 204);
+          break;
+    case kml::PredefinedColor::Purple: dpcolor = dp::Color(155, 36, 178, 204);
+          break;
+    case kml::PredefinedColor::DeepPurple: dpcolor = dp::Color(102, 57, 191, 204);
+          break;
+    case kml::PredefinedColor::Blue: dpcolor = dp::Color(0, 102, 204, 204);
+          break;
+    case kml::PredefinedColor::LightBlue: dpcolor = dp::Color(36, 156, 242, 204);
+          break;
+    case kml::PredefinedColor::Cyan: dpcolor = dp::Color(20, 190, 205, 204);
+          break;
+    case kml::PredefinedColor::Teal: dpcolor = dp::Color(0, 165, 140, 204);
+          break;
+    case kml::PredefinedColor::Green: dpcolor = dp::Color(60, 140, 60, 204);
+          break;
+    case kml::PredefinedColor::Lime: dpcolor = dp::Color(147, 191, 57, 204);
+          break;
+    case kml::PredefinedColor::Yellow: dpcolor = dp::Color(255, 200, 0, 204);
+          break;
+    case kml::PredefinedColor::Orange: dpcolor = dp::Color(255, 150, 0, 204);
+          break;
+    case kml::PredefinedColor::DeepOrange: dpcolor = dp::Color(240, 100, 50, 204);
+          break;
+    case kml::PredefinedColor::Brown: dpcolor = dp::Color(128, 70, 51, 204);
+          break;
+    case kml::PredefinedColor::Gray: dpcolor = dp::Color(115, 115, 115, 204);
+          break;
+    case kml::PredefinedColor::BlueGray: dpcolor = dp::Color(89, 115, 128, 204);
+          break;
+    case kml::PredefinedColor::None: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+    case kml::PredefinedColor::Count: dpcolor = dp::Color(0, 0, 0, 204);
+          break;
+  }
+  return dpcolor;
+}
 
 jclass g_bookmarkManagerClass;
 jfieldID g_bookmarkManagerInstanceField;
@@ -1117,48 +1163,8 @@ Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddTrack(
 
   kml::ColorData colorData;
   colorData.m_predefinedColor = kml::PredefinedColor(color);
-  dp::Color dpcolor = dp::Color(0, 0, 0, 0);
 
-  switch (colorData.m_predefinedColor)
-  {
-    case kml::PredefinedColor::Red: dpcolor = dp::Color(229, 27, 35, 204);
-          break;
-    case kml::PredefinedColor::Pink: dpcolor = dp::Color(255, 65, 130, 204);
-          break;
-    case kml::PredefinedColor::Purple: dpcolor = dp::Color(155, 36, 178, 204);
-          break;
-    case kml::PredefinedColor::DeepPurple: dpcolor = dp::Color(102, 57, 191, 204);
-          break;
-    case kml::PredefinedColor::Blue: dpcolor = dp::Color(0, 102, 204, 204);
-          break;
-    case kml::PredefinedColor::LightBlue: dpcolor = dp::Color(36, 156, 242, 204);
-          break;
-    case kml::PredefinedColor::Cyan: dpcolor = dp::Color(20, 190, 205, 204);
-          break;
-    case kml::PredefinedColor::Teal: dpcolor = dp::Color(0, 165, 140, 204);
-          break;
-    case kml::PredefinedColor::Green: dpcolor = dp::Color(60, 140, 60, 204);
-          break;
-    case kml::PredefinedColor::Lime: dpcolor = dp::Color(147, 191, 57, 204);
-          break;
-    case kml::PredefinedColor::Yellow: dpcolor = dp::Color(255, 200, 0, 204);
-          break;
-    case kml::PredefinedColor::Orange: dpcolor = dp::Color(255, 150, 0, 204);
-          break;
-    case kml::PredefinedColor::DeepOrange: dpcolor = dp::Color(240, 100, 50, 204);
-          break;
-    case kml::PredefinedColor::Brown: dpcolor = dp::Color(128, 70, 51, 204);
-          break;
-    case kml::PredefinedColor::Gray: dpcolor = dp::Color(115, 115, 115, 204);
-          break;
-    case kml::PredefinedColor::BlueGray: dpcolor = dp::Color(89, 115, 128, 204);
-          break;
-    case kml::PredefinedColor::None: dpcolor = dp::Color(0, 0, 0, 204);
-          break;
-    case kml::PredefinedColor::Count: dpcolor = dp::Color(0, 0, 0, 204);
-          break;
-  }
-
+  dp::Color dpcolor = initDpColor(color);
   colorData.m_rgba = dpcolor.GetRed() << 24 | dpcolor.GetGreen() << 16 | dpcolor.GetBlue() << 8 | dpcolor.GetAlpha();
 
   kml::TrackLayer trackLayer;
@@ -1223,47 +1229,7 @@ Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
     env->DeleteLocalRef(jlocationArray);
   }
 
-  auto const predefinedColor = kml::PredefinedColor(color);
-  dp::Color dpcolor = dp::Color(0, 0, 0, 0);
-  switch (predefinedColor)
-  {
-    case kml::PredefinedColor::Red: dpcolor = dp::Color(229, 27, 35, 204);
-          break;
-    case kml::PredefinedColor::Pink: dpcolor = dp::Color(255, 65, 130, 204);
-          break;
-    case kml::PredefinedColor::Purple: dpcolor = dp::Color(155, 36, 178, 204);
-          break;
-    case kml::PredefinedColor::DeepPurple: dpcolor = dp::Color(102, 57, 191, 204);
-          break;
-    case kml::PredefinedColor::Blue: dpcolor = dp::Color(0, 102, 204, 204);
-          break;
-    case kml::PredefinedColor::LightBlue: dpcolor = dp::Color(36, 156, 242, 204);
-          break;
-    case kml::PredefinedColor::Cyan: dpcolor = dp::Color(20, 190, 205, 204);
-          break;
-    case kml::PredefinedColor::Teal: dpcolor = dp::Color(0, 165, 140, 204);
-          break;
-    case kml::PredefinedColor::Green: dpcolor = dp::Color(60, 140, 60, 204);
-          break;
-    case kml::PredefinedColor::Lime: dpcolor = dp::Color(147, 191, 57, 204);
-          break;
-    case kml::PredefinedColor::Yellow: dpcolor = dp::Color(255, 200, 0, 204);
-          break;
-    case kml::PredefinedColor::Orange: dpcolor = dp::Color(255, 150, 0, 204);
-          break;
-    case kml::PredefinedColor::DeepOrange: dpcolor = dp::Color(240, 100, 50, 204);
-          break;
-    case kml::PredefinedColor::Brown: dpcolor = dp::Color(128, 70, 51, 204);
-          break;
-    case kml::PredefinedColor::Gray: dpcolor = dp::Color(115, 115, 115, 204);
-          break;
-    case kml::PredefinedColor::BlueGray: dpcolor = dp::Color(89, 115, 128, 204);
-          break;
-    case kml::PredefinedColor::None: dpcolor = dp::Color(0, 0, 0, 204);
-          break;
-    case kml::PredefinedColor::Count: dpcolor = dp::Color(0, 0, 0, 204);
-          break;
-  }
+  dp::Color dpcolor = initDpColor(color);
 
   lineId++;
   frm()->GetDrapeApi().AddLine(std::to_string(lineId), df::DrapeApiLineData(points, dpcolor).Width(width));
@@ -1284,4 +1250,15 @@ Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeClearLines(
 {
   frm()->GetDrapeApi().Clear();
 }
+
+JNIEXPORT jint JNICALL
+Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeDrawCircle(JNIEnv * env, jobject thiz, jdouble lat, jdouble lon, jdouble radius, jint color, jdouble width)
+{
+  std::vector<m2::PointD> points = ms::CreateCircleGeometryOnEarth(ms::LatLon(static_cast<double>(lat), static_cast<double>(lon)), radius, 1);
+
+  lineId++;
+  frm()->GetDrapeApi().AddLine(std::to_string(lineId), df::DrapeApiLineData(points, initDpColor(color)).Width(static_cast<double>(width)));
+  return lineId;
+}
+
 }  // extern "C"

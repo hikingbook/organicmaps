@@ -716,6 +716,6 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     void onCompassUpdated(@NonNull CompassData compass);
     void onLocationError();
     void onLocationNotFound();
-    void onRoutingFinish();
+//    void onRoutingFinish();
   }
 }
