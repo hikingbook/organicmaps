@@ -248,16 +248,16 @@ public enum OrganicmapsFrameworkAdapter {
     /**
      * Bookmark CRUD
      */
-    public long createBookmark(String catName, HashMap data) {
+    public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
         long catId = searchCategoryIDWithName(catName);
         return BookmarkManager.INSTANCE.nativeAddBookmark(
                 catId,
-                (String) data.get("name"),
-                (String) data.get("description"),
-                (int) data.get("color"),
-                (Double) data.get("lat"),
-                (Double) data.get("lon"),
-                (int) data.get("iconType")
+                name,
+                description,
+                color,
+                lat,
+                lon,
+                iconType
         );
     }
 
