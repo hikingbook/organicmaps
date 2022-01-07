@@ -262,12 +262,12 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 
   private void initNativeStrings()
   {
-//    nativeAddLocalization("core_entrance", getString(R.string.core_entrance));
-//    nativeAddLocalization("core_exit", getString(R.string.core_exit));
-//    nativeAddLocalization("core_my_places", getString(R.string.core_my_places));
-//    nativeAddLocalization("core_my_position", getString(R.string.core_my_position));
-//    nativeAddLocalization("core_placepage_unknown_place", getString(R.string.core_placepage_unknown_place));
-//    nativeAddLocalization("postal_code", getString(R.string.postal_code));
+    nativeAddLocalization("core_entrance", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_entrance));
+    nativeAddLocalization("core_exit", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_exit));
+    nativeAddLocalization("core_my_places", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_my_places));
+    nativeAddLocalization("core_my_position", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_my_position));
+    nativeAddLocalization("core_placepage_unknown_place", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_placepage_unknown_place));
+    nativeAddLocalization("postal_code",  OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.postal_code));
     nativeAddLocalization("wifi", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.wifi));
   }
 
