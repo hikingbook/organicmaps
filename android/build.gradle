@@ -115,15 +115,15 @@ def run(cmd) {
     return stdout.toString()
 }
 
-//def getVersion() {
-//    def time = Integer.parseInt(run(['git', 'log', '-1', '--format=%ct']).trim())
-//    def cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH)
-//    cal.setTimeInMillis((long) time * 1000)
-//    def year = cal.get(Calendar.YEAR)
-//    def month = cal.get(Calendar.MONTH) + 1
-//    def day = cal.get(Calendar.DAY_OF_MONTH)
-//    def date_of_last_commit = String.format("%04d-%02d-%02d", year, month, day)
-//    def build = Integer.parseInt(run(['git', 'rev-list', '--count', '--after="' + date_of_last_commit + 'T00:00:00Z"', 'HEAD']).trim())
+def getVersion() {
+    def time = Integer.parseInt(run(['git', 'log', '-1', '--format=%ct']).trim())
+    def cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH)
+    cal.setTimeInMillis((long) time * 1000)
+    def year = cal.get(Calendar.YEAR)
+    def month = cal.get(Calendar.MONTH) + 1
+    def day = cal.get(Calendar.DAY_OF_MONTH)
+    def date_of_last_commit = String.format("%04d-%02d-%02d", year, month, day)
+    def build = Integer.parseInt(run(['git', 'rev-list', '--count', '--after="' + date_of_last_commit + 'T00:00:00Z"', 'HEAD']).trim())
 
     // Use the last git commit date to generate the version code:
     // RR_yy_MM_dd_CC
@@ -134,16 +134,14 @@ def run(cmd) {
     // - CC - the number of commits from the current day
     // 21_00_00_00_00 is the the greatest value Google Play allows for versionCode.
     // See https://developer.android.com/studio/publish/versioning for details.
-//    def versionCode = (year - 2000) * 1_00_00_00 + month * 1_00_00 + day * 1_00 + build
-//    def versionCode = 1
+    def versionCode = (year - 2000) * 1_00_00_00 + month * 1_00_00 + day * 1_00 + build
 
     // Use the current date to generate the version name:
     // 2021.04.11-12-Google (-Google added by flavor)
-//    def versionName = String.format("%04d.%02d.%02d-%d", year, month, day, build)
-//    def versionName = "1.0"
+    def versionName = String.format("%04d.%02d.%02d-%d", year, month, day, build)
 
-//    return new Tuple2(versionCode, versionName)
-//}
+    return new Tuple2(versionCode, versionName)
+}
 
 def getCommitMessage() {
     return run(['git', '--no-pager', 'show', '-s', '--format=%s%n%n%b', 'HEAD']).trim()
@@ -159,27 +157,29 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    compileSdkVersion 31
+    compileSdkVersion propCompileSdkVersion.toInteger()
     // All properties are read from gradle.properties file
-    buildToolsVersion '30.0.3'
+    buildToolsVersion propBuildToolsVersion
 
     ndkVersion '21.4.7075529'
 
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         // Default package name is taken from the manifest and should be app.organicmaps
-//        def ver = getVersion()
-        versionCode 1
-        versionName "1.0"
+        def ver = getVersion()
+        println('Version: ' + ver.first)
+        println('VersionCode: ' + ver.second)
+        versionCode = ver.first
+        versionName = ver.second
 
-//        minSdkVersion propMinSdkVersion.toInteger()
-        minSdkVersion 21
-//        targetSdkVersion propTargetSdkVersion.toInteger()
-        targetSdkVersion 31
+        minSdkVersion propMinSdkVersion.toInteger()
+        targetSdkVersion propTargetSdkVersion.toInteger()
 //    applicationId project.ext.appId
         buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
         buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.omaps"'
         buildConfigField 'int', 'RATING_THRESHOLD', '5'
+        buildConfigField 'int', 'VERSION_CODE', "${versionCode}"
+        buildConfigField 'String','VERSION_NAME',"\"${versionName}\""
 
         multiDexEnabled true
         multiDexKeepFile file('multidex-config.txt')
@@ -342,9 +342,6 @@ android {
 //                    nativeSymbolUploadEnabled true
 //                }
 //            }
-
-            buildConfigField('int', 'VERSION_CODE', "${defaultConfig.versionCode}")
-            buildConfigField('String','VERSION_NAME',"\"${defaultConfig.versionName}\"")
         }
 
 
