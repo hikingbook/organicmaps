@@ -1890,27 +1890,27 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void showLocationNotFoundDialog()
   {
-    String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
-                                   getString(R.string.current_location_unknown_title));
-
-    DialogInterface.OnClickListener stopClickListener = (dialog, which) ->
-    {
-      LocationHelper.INSTANCE.setStopLocationUpdateByUser(true);
-    };
-
-    DialogInterface.OnClickListener continueClickListener = (dialog, which) ->
-    {
-      if (!LocationHelper.INSTANCE.isActive())
-        LocationHelper.INSTANCE.start();
-      LocationHelper.INSTANCE.switchToNextMode();
-    };
-
-    new AlertDialog.Builder(this)
-        .setMessage(message)
-        .setNegativeButton(R.string.current_location_unknown_stop_button, stopClickListener)
-        .setPositiveButton(R.string.current_location_unknown_continue_button, continueClickListener)
-        .setCancelable(false)
-        .show();
+//    String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
+//                                   getString(R.string.current_location_unknown_title));
+//
+//    DialogInterface.OnClickListener stopClickListener = (dialog, which) ->
+//    {
+//      LocationHelper.INSTANCE.setStopLocationUpdateByUser(true);
+//    };
+//
+//    DialogInterface.OnClickListener continueClickListener = (dialog, which) ->
+//    {
+//      if (!LocationHelper.INSTANCE.isActive())
+//        LocationHelper.INSTANCE.start();
+//      LocationHelper.INSTANCE.switchToNextMode();
+//    };
+//
+//    new AlertDialog.Builder(this)
+//        .setMessage(message)
+//        .setNegativeButton(R.string.current_location_unknown_stop_button, stopClickListener)
+//        .setPositiveButton(R.string.current_location_unknown_continue_button, continueClickListener)
+//        .setCancelable(false)
+//        .show();
   }
 
   @Override
