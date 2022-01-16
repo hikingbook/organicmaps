@@ -576,4 +576,18 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeGetSelectedCountry(JNIEnv *
   storage::CountryId const & res = g_framework->GetPlacePageInfo().GetCountryId();
   return (res == storage::kInvalidCountryId ? nullptr : jni::ToJavaString(env, res));
 }
+
+// Added by Zheng-Xiang Ke
+// static void nativeDeleteOldMaps(String root, int version);
+JNIEXPORT jboolean JNICALL
+Java_com_mapswithme_maps_downloader_MapManager_nativeDeleteOldMaps(JNIEnv * env, jclass clazz, jstring root, jint version)
+{
+  auto const countryId = jni::ToNativeString(env, root);
+  auto const latestLocalFile = GetStorage().GetLatestLocalFile(countryId);
+  if (latestLocalFile->GetVersion() < version) {
+    Java_com_mapswithme_maps_downloader_MapManager_nativeDelete(env, clazz, root);
+    return true;
+  }
+  return false;
+}
 } // extern "C"

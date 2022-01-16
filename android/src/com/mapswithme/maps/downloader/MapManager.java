@@ -411,4 +411,9 @@ public final class MapManager
    * Returns country ID which the current PP object points to, or {@code null}.
    */
   public static native @Nullable String nativeGetSelectedCountry();
+
+  /**
+   * Removes latest map version for the given node {@code root}.
+   */
+  public static native boolean nativeDeleteOldMaps(String root, int version);
 }
