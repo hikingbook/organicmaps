@@ -351,7 +351,7 @@ public enum OrganicmapsFrameworkAdapter {
     public long createTrack(long catId, String name, String description, Double[][] locations, int color, double lineWidth) {
         double[][] doubleLocations = new double[locations.length][2];
         for (int i = 0; i < locations.length; i++) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
             } else {
                 doubleLocations[i] = com.annimon.stream.Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
