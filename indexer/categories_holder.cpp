@@ -13,7 +13,7 @@ using namespace std;
 
 namespace
 {
-enum State
+enum ParseState
 {
   EParseTypes,
   EParseLanguages
@@ -133,7 +133,7 @@ CategoriesHolder::CategoriesHolder(unique_ptr<Reader> && reader)
 
 #if defined(DEBUG)
   for (auto const & entry : kLocaleMapping)
-    ASSERT_LESS_OR_EQUAL(entry.m_code, kLocaleMapping.size(), ());
+    ASSERT_LESS_OR_EQUAL(uint8_t(entry.m_code), kLocaleMapping.size(), ());
 #endif
 }
 
@@ -194,7 +194,7 @@ void CategoriesHolder::LoadFromStream(istream & s)
   m_name2type.Clear();
   m_groupTranslations.clear();
 
-  State state = EParseTypes;
+  ParseState state = EParseTypes;
   string line;
   Category cat;
   vector<uint32_t> types;

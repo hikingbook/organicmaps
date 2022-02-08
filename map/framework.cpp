@@ -1,7 +1,6 @@
 #include "map/framework.hpp"
 #include "map/benchmark_tools.hpp"
 #include "map/chart_generator.hpp"
-#include "map/displayed_categories_modifiers.hpp"
 #include "map/everywhere_search_params.hpp"
 #include "map/gps_tracker.hpp"
 #include "map/user_mark.hpp"
@@ -211,7 +210,7 @@ void Framework::OnLocationUpdate(GpsInfo const & info)
   }
 
 #else
-  GpsInfo rInfo(info);
+  GpsInfo const & rInfo = info;
 #endif
 
   m_routingManager.OnLocationUpdate(rInfo);
@@ -1393,20 +1392,17 @@ size_t Framework::ShowSearchResults(search::Results const & results)
 
 void Framework::FillSearchResultsMarks(bool clear, search::Results const & results)
 {
-  FillSearchResultsMarks(results.begin(), results.end(), clear,
-                         Framework::SearchMarkPostProcessing());
+  FillSearchResultsMarks(results.begin(), results.end(), clear);
 }
 
-void Framework::FillSearchResultsMarks(search::Results::ConstIter begin,
-                                       search::Results::ConstIter end, bool clear,
-                                       SearchMarkPostProcessing fn)
+void Framework::FillSearchResultsMarks(SearchResultsIterT beg, SearchResultsIterT end, bool clear)
 {
   auto editSession = GetBookmarkManager().GetEditSession();
   if (clear)
     editSession.ClearGroup(UserMark::Type::SEARCH);
   editSession.SetIsVisible(UserMark::Type::SEARCH, true);
 
-  for (auto it = begin; it != end; ++it)
+  for (auto it = beg; it != end; ++it)
   {
     auto const & r = *it;
     if (!r.HasPoint())
@@ -1428,9 +1424,6 @@ void Framework::FillSearchResultsMarks(search::Results::ConstIter begin,
       mark->SetVisited(m_searchMarks.IsVisited(mark->GetFeatureID()));
       mark->SetSelected(m_searchMarks.IsSelected(mark->GetFeatureID()));
     }
-
-    if (fn)
-      fn(*mark);
   }
 }
 
@@ -2023,6 +2016,7 @@ void Framework::DeactivateMapSelection(bool notifyUI)
 
 void Framework::InvalidateUserMarks()
 {
+  // Actual invalidation call happens in EditSession dtor.
   GetBookmarkManager().GetEditSession();
 }
 
@@ -3248,11 +3242,9 @@ void Framework::RunUITask(function<void()> fn)
   GetPlatform().RunTask(Platform::Thread::Gui, move(fn));
 }
 
-void Framework::ShowViewportSearchResults(search::Results::ConstIter begin,
-                                          search::Results::ConstIter end, bool clear)
+void Framework::ShowViewportSearchResults(SearchResultsIterT begin, SearchResultsIterT end, bool clear)
 {
-  FillSearchResultsMarks(begin, end, clear,
-                         Framework::SearchMarkPostProcessing());
+  FillSearchResultsMarks(begin, end, clear);
 }
 
 void Framework::ClearViewportSearchResults()

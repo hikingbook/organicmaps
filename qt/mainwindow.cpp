@@ -153,7 +153,12 @@ extern char const * kTokenSecretSetting;
 
 MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
                        std::unique_ptr<ScreenshotParams> && screenshotParams,
-                       QString const & /*mapcssFilePath = QString()*/)
+                       QRect const & screenGeometry,
+                       QString const &
+#ifdef BUILD_DESIGNER
+                       mapcssFilePath
+#endif
+                       )
   : m_Docks{}
   , m_locationService(CreateDesktopLocationService(*this))
   , m_screenshotMode(screenshotParams != nullptr)
@@ -161,9 +166,7 @@ MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
   , m_mapcssFilePath(mapcssFilePath)
 #endif
 {
-  // Always runs on the first desktop
-  QDesktopWidget const * desktop(QApplication::desktop());
-  setGeometry(desktop->screenGeometry(desktop->primaryScreen()));
+  setGeometry(screenGeometry);
 
   if (m_screenshotMode)
   {
@@ -878,7 +881,7 @@ void MainWindow::OnRunTests()
 {
   try
   {
-    pair<bool, QString> res = build_style::RunCurrentStyleTests();
+    std::pair<bool, QString> res = build_style::RunCurrentStyleTests();
     InfoDialog dlg(QString("Style tests: ") + (res.first ? "OK" : "FAILED"), res.second, NULL);
     dlg.exec();
   }

@@ -44,10 +44,11 @@ namespace
 
   UNIT_TEST(MoscowKashirskoeShosseCrossing)
   {
+    // OSRM agrees here: https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=55.66216%2C37.63259%3B55.66237%2C37.63560
     integration::CalculateRouteAndTestRouteLength(
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(55.66216, 37.63259), {0., 0.},
-        mercator::FromLatLon(55.66237, 37.63560), 2073.94);
+        mercator::FromLatLon(55.66237, 37.63560), 2877.81);
   }
 
   UNIT_TEST(MoscowToSVOAirport)
@@ -59,7 +60,7 @@ namespace
     integration::CalculateRouteAndTestRouteLength(
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(55.97310, 37.41460), {0.0, 0.0},
-        mercator::FromLatLon(55.75100, 37.61790), 42732.6);
+        mercator::FromLatLon(55.75100, 37.61790), 39129.8);
   }
 
   // Restrictions tests. Check restrictions generation, if there are any errors.
@@ -108,7 +109,7 @@ namespace
     integration::CalculateRouteAndTestRouteLength(
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(55.77787, 37.70405), {0., 0.},
-        mercator::FromLatLon(55.77691, 37.70428), 150.);
+        mercator::FromLatLon(55.77691, 37.70428), 171.);
   }
 
   UNIT_TEST(PriceIslandLoadCrossGeometryTest)
@@ -311,7 +312,7 @@ namespace
 
     CHECK(routeResult.first, ());
     Route const & route = *routeResult.first;
-    integration::TestRouteTime(route, 1023.0);
+    integration::TestRouteTime(route, 1044.42);
   }
 
   UNIT_TEST(RussiaMoscowLenigradskiy39GeroevPanfilovtsev22SubrouteTest)
@@ -392,7 +393,7 @@ namespace
 
     CHECK(routeResult.first, ());
     Route const & route = *routeResult.first;
-    integration::TestRouteTime(route, 19381.5);
+    integration::TestRouteTime(route, 19053.0);
   }
 
   // Test on roads with tag route=shuttle_train
@@ -468,7 +469,7 @@ namespace
       mercator::FromLatLon(43.38234, -5.67648), {0.0, 0.0},
       mercator::FromLatLon(43.38222, -5.69083), 8289.0);
   }
-  
+
   UNIT_TEST(RussiaMoscowRestirctionOnlyMany)
   {
     integration::CalculateRouteAndTestRouteLength(
@@ -571,5 +572,23 @@ namespace
     integration::CalculateRouteAndTestRouteLength(
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(55.31103, 38.80954), {0., 0.}, mercator::FromLatLon(55.31155, 38.8217), 2489.8);
+  }
+
+  // https://github.com/organicmaps/organicmaps/issues/1788
+  UNIT_TEST(Germany_ShortRouteWithPassThroughChanges)
+  {
+    integration::CalculateRouteAndTestRouteLength(
+        integration::GetVehicleComponents(VehicleType::Car),
+        mercator::FromLatLon(49.512076, 8.284476), {0., 0.},
+        mercator::FromLatLon(49.523783, 8.288701), 2014.);
+  }
+
+  // https://github.com/organicmaps/organicmaps/issues/821
+  UNIT_TEST(Ukraine_UmanOdessa)
+  {
+    integration::CalculateRouteAndTestRouteLength(
+        integration::GetVehicleComponents(VehicleType::Car),
+        mercator::FromLatLon(48.7498, 30.2203), {0., 0.},
+        mercator::FromLatLon(46.4859, 30.6837), 265163.);
   }
 }  // namespace

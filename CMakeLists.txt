@@ -8,17 +8,19 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_C_EXTENSIONS OFF)
 
-# Force colored errors and warnings for Ninja.
-if (CMAKE_GENERATOR MATCHES "Ninja" AND NOT (DEFINED ENV{COLORS_DISABLE}))
-  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    add_compile_options (-fdiagnostics-color=always)
-  elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
-          "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
-    add_compile_options (-fcolor-diagnostics)
-  endif()
+if (NOT (DEFINED ENV{UNITY_DISABLE}))
+  message("Using unity builds, export UNITY_DISABLE=1 to disable it.")
+  set(CMAKE_UNITY_BUILD ON)
+  set(CMAKE_UNITY_BUILD_BATCH_SIZE 50)
 endif()
 
-get_filename_component(OMIM_ROOT . ABSOLUTE)
+if (NOT (DEFINED ENV{COLORS_DISABLE}) AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  message("export COLORS_DISABLE=1 to disable colored compiler output.")
+  add_compile_options($<$<CXX_COMPILER_ID:GNU>:-fdiagnostics-color=always> $<$<CXX_COMPILER_ID:Clang,AppleClang>:-fcolor-diagnostics>)
+  add_link_options($<$<CXX_COMPILER_ID:GNU>:-fdiagnostics-color=always> $<$<CXX_COMPILER_ID:Clang,AppleClang>:-fcolor-diagnostics>)
+endif()
+
+set(OMIM_ROOT ${CMAKE_SOURCE_DIR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${OMIM_ROOT}/cmake")
 
@@ -96,8 +98,18 @@ option(USE_TSAN "Enable Thread Sanitizer" OFF)
 option(USE_LIBFUZZER "Enable LibFuzzer" OFF)
 option(PYBINDINGS "Create makefiles for building python bindings" OFF)
 option(SKIP_DESKTOP "Skip building of desktop application" OFF)
+# TODO: Fix mapshot, it doesn't work without our old FreeType hack.
 option(BUILD_MAPSHOT "Build mapshot tool" OFF)
 option(USE_PCH "Use precompiled headers" OFF)
+option(NJOBS "Number of parallel processes" OFF)
+
+if (NJOBS)
+  message("Number of parallel processes: ${NJOBS}")
+  set(CMAKE_JOB_POOLS custom=${NJOBS})
+  set(CMAKE_JOB_POOL_COMPILE custom)
+  set(CMAKE_JOB_POOL_LINK custom)
+  set(CMAKE_JOB_POOL_PRECOMPILE_HEADER custom)
+endif()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7.0)
   message(FATAL_ERROR "Minimum supported g++ version is 7.0 yours is ${CMAKE_CXX_COMPILER_VERSION}")
@@ -149,7 +161,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 if (NOT (DEFINED ENV{CCACHE_DISABLE}))
   find_program(CCACHE_PROGRAM ccache HINTS /usr/local/bin/)
   if (CCACHE_PROGRAM)
-    message(STATUS "Using ccache, export CCACHE_DISABLE=1 to disable it.")
+    message("Using ccache, export CCACHE_DISABLE=1 to disable it.")
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CCACHE_PROGRAM}")
     set(CMAKE_C_COMPILER_LAUNCHER   "${CCACHE_PROGRAM}")
@@ -157,11 +169,17 @@ if (NOT (DEFINED ENV{CCACHE_DISABLE}))
   endif()
 endif()
 
-if (PLATFORM_LINUX)
-  find_program(GOLD_FOUND ld.gold)
-  if (GOLD_FOUND)
-    message(STATUS "Using ld.gold")
-    set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=gold")
+if (PLATFORM_LINUX OR PLATFORM_ANDROID)
+  find_program(LLD_FOUND ld.lld)
+  if (LLD_FOUND)
+    message(STATUS "Using ld.ldd linker")
+    set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=lld")
+  else()
+    find_program(GOLD_FOUND ld.gold)
+    if (GOLD_FOUND)
+      message(STATUS "Using ld.gold")
+      set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=gold")
+    endif()
   endif()
 endif()
 
@@ -190,9 +208,6 @@ endif()
 
 find_package(Threads REQUIRED)
 
-# Cannot call it at the beginning of the file because it depends on PYTHON_VERSION.
-include(BundledBoost)
-
 # Scripts
 
 if (NOT CMAKE_HOST_WIN32)
@@ -213,14 +228,11 @@ if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
   if (NOT SKIP_DESKTOP)
     list(APPEND qt_components Gui Xml Svg)
   endif()
-  find_package(Qt5 COMPONENTS REQUIRED ${qt_components})
+  # PATHS are hard-coded hints where to look for qt5 in addition to other places.
+  find_package(Qt5 COMPONENTS REQUIRED ${qt_components} PATHS /usr/local/opt/qt@5)
   if (Qt5_VERSION VERSION_LESS 5.5.0)
     message(FATAL_ERROR "Minimum supported Qt5 version is 5.5")
   endif()
-endif()
-
-if (PLATFORM_LINUX)
-  find_package(OpenGL)
 endif()
 
 find_library(LIBZ NAMES z)
@@ -228,18 +240,8 @@ if (LIBZ STREQUAL "LIBZ-NOTFOUND")
   message(FATAL_ERROR "Failed to find libz library.")
 endif()
 
-if (NOT DEVELOPER_FRAMEWORKS_DIR)
-  message("Doing nothing, because we know nothing about developer frameworks dir")
-  #do nothing
-else()
-  include_directories(${DEVELOPER_FRAMEWORKS_DIR})
-endif()
-
-include_directories(
-  ${CMAKE_HOME_DIRECTORY}
-  ${Qt5Core_INCLUDE_DIRS}
-  ${Qt5Network_INCLUDE_DIRS}
-)
+# To allow #include "base/file_name.hpp" in all sources.
+include_directories(${CMAKE_HOME_DIRECTORY})
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -272,16 +274,42 @@ if (USE_PCH)
   )
 endif()
 
-# Suppress "Policy CMP0077 is not set: option() honors normal variables"
-# for the option(EXPAT_SHARED_LIBS) in 3party/expat/expat/CMakeLists.txt
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-# Build libexpat.a instead of libexpat.so
-set(EXPAT_SHARED_LIBS OFF)
+# Generate version header file.
+execute_process(COMMAND tools/unix/version.sh android_name
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE OM_VERSION
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+execute_process(COMMAND tools/unix/version.sh android_code
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE OM_VERSION_CODE
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+execute_process(COMMAND tools/unix/version.sh git_hash
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE OM_GIT_HASH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+# TODO: Does it run on every build or only on configure step?
+# TODO: Run only when dependent targets are built.
+configure_file(build_version.hpp.in ${CMAKE_SOURCE_DIR}/build_version.hpp @ONLY)
 
-# Include subdirectories
+# Include 3party dependencies.
+
+# Configure expat library.
+# Suppress "Policy CMP0077 is not set: option() honors normal variables"
+# for the expat options below.
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+set(EXPAT_BUILD_TOOLS OFF)
+set(EXPAT_BUILD_EXAMPLES OFF)
+set(EXPAT_BUILD_TESTS OFF)
+set(EXPAT_BUILD_DOCS OFF)
+set(EXPAT_BUILD_PKGCONFIG OFF)
+set(EXPAT_ENABLE_INSTALL OFF)
+set(EXPAT_SHARED_LIBS OFF)
+add_subdirectory(3party/expat/expat)
 add_subdirectory(3party/agg)
 add_subdirectory(3party/bsdiff-courgette)
-add_subdirectory(3party/expat/expat)
 add_subdirectory(3party/freetype)
 add_subdirectory(3party/gflags)
 add_subdirectory(3party/icu)
@@ -289,7 +317,6 @@ add_subdirectory(3party/jansson)
 add_subdirectory(3party/liboauthcpp)
 add_subdirectory(3party/minizip)
 add_subdirectory(3party/opening_hours)
-add_subdirectory(3party/protobuf)
 add_subdirectory(3party/pugixml)
 add_subdirectory(3party/sdf_image)
 add_subdirectory(3party/stb_image)
@@ -307,17 +334,11 @@ add_compile_options(
   "-Wall"
 )
 
-add_clang_compile_options("-Wshorten-64-to-32")
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND
-    CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 7.0)
-  add_gcc_cpp_compile_options("-Wno-noexcept-type")
-endif()
-
-find_package(PythonInterp ${PYTHON_VERSION})
-if (PYTHONINTERP_FOUND)
-  message("Found python to use in qt/, shaders/ and 3party/: ${PYTHON_EXECUTABLE}")
+find_package(Python3 COMPONENTS Interpreter)
+if (Python3_Interpreter_FOUND)
+  message("Found python to use in qt/, shaders/ and 3party/: ${Python3_EXECUTABLE}")
 else()
-  message(FATAL_ERROR "Could not find python to use in qt/, shaders/ and 3party/.")
+  message(FATAL_ERROR "Could not find python3 to use in qt/, shaders/ and 3party/.")
 endif()
 
 add_subdirectory(base)
@@ -360,18 +381,8 @@ if (PLATFORM_DESKTOP)
   endif()
 endif()
 
-omim_add_test_subdirectory(3party/gmock)
 omim_add_test_subdirectory(qt_tstfrm)
 
 if (PLATFORM_ANDROID)
   add_subdirectory(android/jni)
 endif()
-
-add_custom_target(BuildVersion ALL
-  COMMAND ${CMAKE_COMMAND}
-  ARGS
-  -D OMAPS_CURRENT_PROJECT_ROOT=${OMIM_ROOT}
-  -D PATH_WITH_BUILD_VERSION_HPP=${OMIM_ROOT}
-  -D PROJECT_NAME=${PROJECT_NAME}
-  -P ${OMIM_ROOT}/cmake/BuildVersion.cmake
-)

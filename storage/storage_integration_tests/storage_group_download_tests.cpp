@@ -17,12 +17,12 @@
 
 #include <string>
 
+namespace storage_group_download_tests
+{
 using namespace platform;
 using namespace std;
 using namespace storage;
 
-namespace
-{
 CountryId const kGroupCountryId = "Venezuela";
 CountriesSet const kLeafCountriesIds = { "Venezuela_North", "Venezuela_South" };
 
@@ -272,10 +272,6 @@ void TestDownloadDelete(bool downloadOneByOne, bool deleteOneByOne)
   DeleteGroup(storage, deleteOneByOne);
 }
 
-} // namespace
-
-/// @todo Too long to wait for downloads.
-/*
 UNIT_TEST(SmallMwms_GroupDownloadDelete_Test1)
 {
   TestDownloadDelete(false, false);
@@ -295,4 +291,4 @@ UNIT_TEST(SmallMwms_GroupDownloadDelete_Test4)
 {
   TestDownloadDelete(true, true);
 }
-*/
+} // namespace storage_group_download_tests
