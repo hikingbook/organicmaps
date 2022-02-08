@@ -29,10 +29,10 @@
 #include <map>
 #include <string>
 
-#include "3party/boost/boost/noncopyable.hpp"
-#include "3party/boost/boost/python.hpp"
-#include "3party/boost/boost/shared_ptr.hpp"
-#include "3party/boost/boost/weak_ptr.hpp"
+#include <boost/noncopyable.hpp>
+#include <boost/python.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 using namespace feature;
 namespace bp = boost::python;
@@ -338,10 +338,6 @@ BOOST_PYTHON_MODULE(pygen)
         .value("denomination", Metadata::EType::FMD_DENOMINATION)
         .value("building_levels", Metadata::EType::FMD_BUILDING_LEVELS)
         .value("test_id", Metadata::EType::FMD_TEST_ID)
-        .value("sponsored_id", Metadata::EType::FMD_SPONSORED_ID)
-        .value("price_rate", Metadata::EType::FMD_PRICE_RATE)
-        .value("rating", Metadata::EType::FMD_RATING)
-        .value("banner_url", Metadata::EType::FMD_BANNER_URL)
         .value("level", Metadata::EType::FMD_LEVEL)
         .value("airport_iata", Metadata::EType::FMD_AIRPORT_IATA)
         .value("brand", Metadata::EType::FMD_BRAND)

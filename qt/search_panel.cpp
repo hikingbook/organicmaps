@@ -167,8 +167,7 @@ void SearchPanel::OnEverywhereSearchResults(uint64_t timestamp, search::Results 
   }
 
   m_pDrawWidget->GetFramework().FillSearchResultsMarks(m_results.begin() + sizeBeforeUpdate,
-                                                       m_results.end(), false /* clear */,
-                                                       Framework::SearchMarkPostProcessing());
+                                                       m_results.end(), false /* clear */);
 
   if (results.IsEndMarker())
     StopBusyIndicator();
@@ -324,13 +323,13 @@ void SearchPanel::OnAnimationTimer()
 {
   static int angle = 0;
 
-  QMatrix rm;
+  QTransform transform;
   angle += 15;
   if (angle >= 360)
     angle = 0;
-  rm.rotate(angle);
+  transform.rotate(angle);
 
-  m_pClearButton->setIcon(QIcon(m_busyIcon.transformed(rm)));
+  m_pClearButton->setIcon(QIcon(m_busyIcon.transformed(transform)));
 }
 
 void SearchPanel::OnClearButton()

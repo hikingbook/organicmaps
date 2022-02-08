@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-#include "boost/circular_buffer.hpp"
+#include <boost/circular_buffer.hpp>
 
 namespace location
 {

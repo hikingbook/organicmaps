@@ -161,7 +161,7 @@ public class Utils
   {
     final android.content.ClipboardManager clipboard =
         (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-    final ClipData clip = ClipData.newPlainText("maps.me: " + text, text);
+    final ClipData clip = ClipData.newPlainText("Organic Maps: " + text, text);
     clipboard.setPrimaryClip(clip);
   }
 
@@ -361,7 +361,7 @@ public class Utils
 
   public static SpannableStringBuilder formatUnitsText(Context context, @DimenRes int size, @DimenRes int units, String dimension, String unitText)
   {
-    final SpannableStringBuilder res = new SpannableStringBuilder(dimension).append(" ").append(unitText);
+    final SpannableStringBuilder res = new SpannableStringBuilder(dimension).append("\u00A0").append(unitText);
     res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, size), false), 0, dimension.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, units), false), dimension.length(), res.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return res;
@@ -414,43 +414,6 @@ public class Utils
     } catch (PackageManager.NameNotFoundException e)
     {
       return false;
-    }
-  }
-
-  private static void launchAppDirectly(@NonNull Context context, @NonNull SponsoredLinks links)
-  {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    intent.setData(Uri.parse(links.getDeepLink()));
-    context.startActivity(intent);
-  }
-
-  private static void launchAppIndirectly(@NonNull Context context, @NonNull SponsoredLinks links)
-  {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setData(Uri.parse(links.getDeepLink()));
-    context.startActivity(intent);
-  }
-
-  public static void openPartner(@NonNull Context activity, @NonNull SponsoredLinks links,
-                                 @NonNull String packageName, @NonNull PartnerAppOpenMode openMode)
-  {
-    switch (openMode)
-    {
-      case  Direct:
-        if (!Utils.isAppInstalled(activity, packageName))
-        {
-          openUrl(activity, links.getUniversalLink());
-          return;
-        }
-        launchAppDirectly(activity, links);
-        break;
-      case Indirect:
-        launchAppIndirectly(activity, links);
-        break;
-      default:
-        throw new AssertionError("Unsupported partner app open mode: " + openMode +
-                                 "; Package name: " + packageName);
     }
   }
 
@@ -652,6 +615,21 @@ public class Utils
   public static String getDeviceModel()
   {
     return Build.MODEL;
+  }
+
+  @NonNull
+  public static String getVersion()
+  {
+    return BuildConfig.VERSION_NAME;
+  }
+
+  @NonNull
+  public static int getIntVersion()
+  {
+    // Please sync with getVersion() in build.gradle
+    // - % 100000000 removes prefix for special markets, e.g Huawei.
+    // - / 100 removes the number of commits in the current day.
+    return (BuildConfig.VERSION_CODE % 1_00_00_00_00) / 100;
   }
 
   @NonNull

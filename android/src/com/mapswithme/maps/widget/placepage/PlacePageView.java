@@ -1380,86 +1380,117 @@ public class PlacePageView extends NestedScrollViewClickFixed
   public boolean onLongClick(View v)
   {
     final Object tag = v.getTag();
-    final String tagStr = tag == null ? "" : tag.toString();
-    final PopupMenu popup = new PopupMenu(getContext(), v);
-    final Menu menu = popup.getMenu();
+
     final List<String> items = new ArrayList<>();
-    int id = v.getId();
-    if (id == R.id.tv__title) {
-      items.add(mTvTitle.getText().toString());
-    } else if (id == R.id.tv__secondary_title) {
-      items.add(mTvSecondaryTitle.getText().toString());
-    } else if (id == R.id.tv__address) {
-      items.add(mTvAddress.getText().toString());
-    } else if (id == R.id.tv__bookmark_notes) {
-      items.add(mTvBookmarkNote.getText().toString());
-    } else if (id == R.id.poi_description) {
-      items.add(mPlaceDescriptionView.getText().toString());
-    } else if (id == R.id.ll__place_latlon) {
-      if (mMapObject == null) {
-        LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
-      }
-      final double lat = mMapObject.getLat();
-      final double lon = mMapObject.getLon();
-      for (CoordinatesFormat format : visibleCoordsFormat)
-        items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
-    } else if (id == R.id.ll__place_website) {
-      items.add(mTvWebsite.getText().toString());
-    } else if (id == R.id.ll__place_facebook) {
-      final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
-      if (facebookPage.indexOf('/') == -1)
-        items.add(facebookPage); // Show username along with URL.
-      items.add("https://m.facebook.com/" + facebookPage);
-    } else if (id == R.id.ll__place_instagram) {
-      final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
-      if (instagramPage.indexOf('/') == -1)
-        items.add(instagramPage); // Show username along with URL.
-      items.add("https://instagram.com/" + instagramPage);
-    } else if (id == R.id.ll__place_twitter) {
-      final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
-      if (twitterPage.indexOf('/') == -1)
-        items.add(twitterPage); // Show username along with URL.
-      items.add("https://mobile.twitter.com/" + twitterPage);
-    } else if (id == R.id.ll__place_vk) {
-      final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
-      if (vkPage.indexOf('/') == -1)
-        items.add(vkPage); // Show username along with URL.
-      items.add("https://vk.com/" + vkPage);
-    } else if (id == R.id.ll__place_line) {
-      final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
-      if (linePage.indexOf('/') >= 0)
-        items.add("https://" + linePage);
-      else {
-        items.add(linePage); // Show username along with URL.
-        items.add("https://line.me/R/ti/p/@" + linePage);
-      }
-    } else if (id == R.id.ll__place_email) {
-      items.add(mTvEmail.getText().toString());
-    } else if (id == R.id.ll__place_schedule) {
-      final String ohStr = mMapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
-      final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
-      items.add(TimeFormatUtils.generateCopyText(getResources(), ohStr, timetables));
-    } else if (id == R.id.ll__place_operator) {
-      items.add(mTvOperator.getText().toString());
-    } else if (id == R.id.ll__place_wiki) {
-      items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+//    switch (v.getId())
+//    {
+//      case R.id.tv__title:
+//        items.add(mTvTitle.getText().toString());
+//        break;
+//      case R.id.tv__secondary_title:
+//        items.add(mTvSecondaryTitle.getText().toString());
+//        break;
+//      case R.id.tv__address:
+//        items.add(mTvAddress.getText().toString());
+//        break;
+//      case R.id.tv__bookmark_notes:
+//        items.add(mTvBookmarkNote.getText().toString());
+//        break;
+//      case R.id.poi_description:
+//        items.add(mPlaceDescriptionView.getText().toString());
+//        break;
+//      case R.id.ll__place_latlon:
+//        if (mMapObject == null)
+//        {
+//          LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
+//          break;
+//        }
+//        final double lat = mMapObject.getLat();
+//        final double lon = mMapObject.getLon();
+//        for(CoordinatesFormat format: visibleCoordsFormat)
+//          items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
+//        break;
+//      case R.id.ll__place_website:
+//        items.add(mTvWebsite.getText().toString());
+//        break;
+//      case R.id.ll__place_facebook:
+//        final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
+//        if (facebookPage.indexOf('/') == -1)
+//          items.add(facebookPage); // Show username along with URL.
+//        items.add("https://m.facebook.com/" + facebookPage);
+//        break;
+//      case R.id.ll__place_instagram:
+//        final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
+//        if (instagramPage.indexOf('/') == -1)
+//          items.add(instagramPage); // Show username along with URL.
+//        items.add("https://instagram.com/" + instagramPage);
+//        break;
+//      case R.id.ll__place_twitter:
+//        final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
+//        if (twitterPage.indexOf('/') == -1)
+//          items.add(twitterPage); // Show username along with URL.
+//        items.add("https://mobile.twitter.com/" + twitterPage);
+//        break;
+//      case R.id.ll__place_vk:
+//        final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
+//        if (vkPage.indexOf('/') == -1)
+//          items.add(vkPage); // Show username along with URL.
+//        items.add("https://vk.com/" + vkPage);
+//        break;
+//      case R.id.ll__place_line:
+//        final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
+//        if (linePage.indexOf('/') >= 0)
+//          items.add("https://" + linePage);
+//        else
+//        {
+//          items.add(linePage); // Show username along with URL.
+//          items.add("https://line.me/R/ti/p/@" + linePage);
+//        }
+//        break;
+//      case R.id.ll__place_email:
+//        items.add(mTvEmail.getText().toString());
+//        break;
+//      case R.id.ll__place_schedule:
+//        final String ohStr = mMapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
+//        final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
+//        items.add(TimeFormatUtils.formatTimetables(getResources(), ohStr, timetables));
+//        break;
+//      case R.id.ll__place_operator:
+//        items.add(mTvOperator.getText().toString());
+//        break;
+//      case R.id.ll__place_wiki:
+//        items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+//        break;
+//    }
+
+    final Context ctx = getContext();
+    if (items.size() == 1)
+    {
+      Utils.copyTextToClipboard(ctx, items.get(0));
+      Utils.showSnackbarAbove(mDetails,
+                              getRootView().findViewById(R.id.menu_frame),
+                              ctx.getString(R.string.copied_to_clipboard, items.get(0)));
+    }
+    else
+    {
+      final PopupMenu popup = new PopupMenu(getContext(), v);
+      final Menu menu = popup.getMenu();
+      final String copyText = getResources().getString(android.R.string.copy);
+
+      for (int i = 0; i < items.size(); i++)
+        menu.add(Menu.NONE, i, i, String.format("%s %s", copyText, items.get(i)));
+
+      popup.setOnMenuItemClickListener(item -> {
+        final int id = item.getItemId();
+        Utils.copyTextToClipboard(ctx, items.get(id));
+        Utils.showSnackbarAbove(mDetails,
+                                getRootView().findViewById(R.id.menu_frame),
+                                ctx.getString(R.string.copied_to_clipboard, items.get(id)));
+        return true;
+      });
+      popup.show();
     }
 
-    final String copyText = getResources().getString(android.R.string.copy);
-    for (int i = 0; i < items.size(); i++)
-      menu.add(Menu.NONE, i, i, String.format("%s %s", copyText, items.get(i)));
-
-    popup.setOnMenuItemClickListener(item -> {
-      final int itemId = item.getItemId();
-      final Context ctx = getContext();
-      Utils.copyTextToClipboard(ctx, items.get(itemId));
-      Utils.showSnackbarAbove(findViewById(R.id.pp__details_frame),
-                              getRootView().findViewById(R.id.menu_frame),
-                              ctx.getString(R.string.copied_to_clipboard, items.get(itemId)));
-      return true;
-    });
-
-    popup.show();
     return true;
   }
 

@@ -3,16 +3,15 @@
 #include "geometry/point2d.hpp"
 #include "geometry/region2d.hpp"
 
-#if defined(__clang__)
+#include <boost/polygon/detail/polygon_sort_adaptor.hpp>
+#ifdef __clang__
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #pragma clang diagnostic ignored "-Wreturn-std-move"
-#include "3party/boost/boost/polygon/detail/polygon_sort_adaptor.hpp"
-#include "3party/boost/boost/polygon/polygon.hpp"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#endif
+#include <boost/polygon/polygon.hpp>
+#ifdef __clang__
 #pragma clang diagnostic pop
-#else
-#include "3party/boost/boost/polygon/detail/polygon_sort_adaptor.hpp"
-#include "3party/boost/boost/polygon/polygon.hpp"
 #endif
 
 #include <vector>

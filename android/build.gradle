@@ -108,7 +108,7 @@ dependencies {
 
 def run(cmd) {
     def stdout = new ByteArrayOutputStream()
-    exec {
+    exec{
         commandLine = cmd
         standardOutput = stdout
     }
@@ -116,30 +116,8 @@ def run(cmd) {
 }
 
 def getVersion() {
-    def time = Integer.parseInt(run(['git', 'log', '-1', '--format=%ct']).trim())
-    def cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.ENGLISH)
-    cal.setTimeInMillis((long) time * 1000)
-    def year = cal.get(Calendar.YEAR)
-    def month = cal.get(Calendar.MONTH) + 1
-    def day = cal.get(Calendar.DAY_OF_MONTH)
-    def date_of_last_commit = String.format("%04d-%02d-%02d", year, month, day)
-    def build = Integer.parseInt(run(['git', 'rev-list', '--count', '--after="' + date_of_last_commit + 'T00:00:00Z"', 'HEAD']).trim())
-
-    // Use the last git commit date to generate the version code:
-    // RR_yy_MM_dd_CC
-    // - RR - reserved to identify special markets, max value is 21.
-    // - yy - year
-    // - MM - month
-    // - dd - day
-    // - CC - the number of commits from the current day
-    // 21_00_00_00_00 is the the greatest value Google Play allows for versionCode.
-    // See https://developer.android.com/studio/publish/versioning for details.
-    def versionCode = (year - 2000) * 1_00_00_00 + month * 1_00_00 + day * 1_00 + build
-
-    // Use the current date to generate the version name:
-    // 2021.04.11-12-Google (-Google added by flavor)
-    def versionName = String.format("%04d.%02d.%02d-%d", year, month, day, build)
-
+    def versionCode = Integer.parseInt(run(['../tools/unix/version.sh', 'android_code']).trim())
+    def versionName = run(['../tools/unix/version.sh', 'android_name']).trim()
     return new Tuple2(versionCode, versionName)
 }
 
@@ -161,22 +139,20 @@ android {
     // All properties are read from gradle.properties file
     buildToolsVersion propBuildToolsVersion
 
-    ndkVersion '21.4.7075529'
+    ndkVersion '23.1.7779620'
 
     defaultConfig {
-        vectorDrawables.useSupportLibrary = true
         // Default package name is taken from the manifest and should be app.organicmaps
         def ver = getVersion()
         println('Version: ' + ver.first)
         println('VersionCode: ' + ver.second)
         versionCode = ver.first
         versionName = ver.second
-
         minSdkVersion propMinSdkVersion.toInteger()
         targetSdkVersion propTargetSdkVersion.toInteger()
-//    applicationId project.ext.appId
+//        applicationId project.ext.appId
         buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
-        buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.omaps"'
+        buildConfigField 'String', 'REVIEW_URL', '"https://organicmaps.app/donate/"'
         buildConfigField 'int', 'RATING_THRESHOLD', '5'
         buildConfigField 'int', 'VERSION_CODE', "${versionCode}"
         buildConfigField 'String','VERSION_NAME',"\"${versionName}\""
@@ -188,13 +164,17 @@ android {
             def pchFlag = 'OFF'
             if (project.hasProperty('pch')) pchFlag = 'ON'
 
+            def njobs = ''
+            if (project.hasProperty('njobs')) njobs = project.getProperty('njobs')
+
             cmake {
                 cppFlags '-fexceptions', '-frtti'
                 // There is no sense to enable sections without gcc's --gc-sections flag.
                 cFlags '-fno-function-sections', '-fno-data-sections',
                         '-Wno-extern-c-compat'
                 arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_static',
-                        "-DOS=$osName", '-DSKIP_TESTS=ON', "-DUSE_PCH=$pchFlag"
+                        "-DOS=$osName", '-DSKIP_TESTS=ON', "-DUSE_PCH=$pchFlag",
+                        "-DNJOBS=$njobs"
                 targets 'organicmaps'
             }
         }
@@ -223,7 +203,7 @@ android {
             println("Building for " + abiFilters + " archs.")
         }
 
-        setProperty("archivesBaseName", appName.replaceAll("\\s", "") + "-" + defaultConfig.versionCode)
+        setProperty("archivesBaseName", appName.replaceAll("\\s","") + "-" + defaultConfig.versionCode)
     }
 
     sourceSets.main {
@@ -249,12 +229,14 @@ android {
     flavorDimensions "default"
 
     productFlavors {
-        // See getVersion()
-//        final int HUAWEI_VERSION_CODE_BASE = 01_00_00_00_00
+        // 01 is a historical artefact, sorry.
+        final int HUAWEI_VERSION_CODE_BASE = 01_00_00_00_00
+
         google {
             dimension "default"
             versionName = android.defaultConfig.versionName + '-Google'
             buildConfigField 'String', 'SUPPORT_MAIL', '"googleplay@organicmaps.app"'
+            buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.organicmaps"'
             android.sourceSets.google.assets.srcDirs = ['flavors/world-enabled']
         }
 
@@ -262,7 +244,7 @@ android {
 //            dimension "default"
 //            versionName = android.defaultConfig.versionName + '-Web'
 //            buildConfigField 'String', 'SUPPORT_MAIL', '"apk@organicmaps.app"'
-////            android.sourceSets.web.assets.srcDirs = ['flavors/world-enabled']
+//            //android.sourceSets.web.assets.srcDirs = ['flavors/world-enabled']
 //        }
 
 //        fdroid {
@@ -277,6 +259,7 @@ android {
 //            versionName = android.defaultConfig.versionName + '-Huawei'
 //            versionCode = HUAWEI_VERSION_CODE_BASE + android.defaultConfig.versionCode
 //            buildConfigField 'String', 'SUPPORT_MAIL', '"huawei@organicmaps.app"'
+//            buildConfigField 'String', 'REVIEW_URL', '"appmarket://details?id=app.organicmaps"'
 //            android.sourceSets.huawei.assets.srcDirs = ['flavors/world-enabled']
 //        }
     }
@@ -301,14 +284,14 @@ android {
         abortOnError false
     }
 
-//  gradle.projectsEvaluated {
-//    android.applicationVariants.all { variant ->
-//      def task = variant.name.capitalize()
-//      project.task(type: Exec, "run${task}", dependsOn: "install${task}") {
-//        commandLine android.getAdbExe(), 'shell', 'am', 'start', '-n', "${applicationId}/com.mapswithme.maps.SplashActivity"
-//      }
+//    gradle.projectsEvaluated {
+//        android.applicationVariants.all { variant ->
+//            def task = variant.name.capitalize()
+//            project.task(type: Exec, "run${task}", dependsOn: "install${task}") {
+//                commandLine android.getAdbExe(), 'shell', 'am', 'start', '-n', "${applicationId}/com.mapswithme.maps.SplashActivity"
+//            }
+//        }
 //    }
-//  }
 
     signingConfigs {
         debug {
@@ -333,8 +316,8 @@ android {
             jniDebuggable true           // Enable jni debug build
             zipAlignEnabled true
             signingConfig signingConfigs.debug
-//      resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
-            resValue 'string', 'app_name', project.ext.appName + ' ' + '(Debug)'
+//            resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
+            resValue 'string', 'app_name', project.ext.appName  + ' ' + '(Debug)'
             ndk.debugSymbolLevel = 'SYMBOL_TABLE'
 
 //            if (googleFirebaseServicesEnabled) {
@@ -344,17 +327,15 @@ android {
 //            }
         }
 
-
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
 //            shrinkResources true
             proguardFile('proguard-mwm.txt')
-//      resValue 'string', 'app_id', android.defaultConfig.applicationId
+//            resValue 'string', 'app_id', android.defaultConfig.applicationId
             resValue 'string', 'app_name', project.ext.appName
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
-//                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
             if (googleFirebaseServicesEnabled) {
                 firebaseCrashlytics {
@@ -368,11 +349,10 @@ android {
             versionNameSuffix '-beta'
             signingConfig signingConfigs.release
             matchingFallbacks = ['debug', 'release']
-//      resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
+//            resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
             resValue 'string', 'app_name', project.ext.appName + ' ' + '(Beta)'
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
-//                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
             if (googleFirebaseServicesEnabled) {
                 firebaseCrashlytics {
@@ -399,7 +379,7 @@ android {
 
     // We don't compress these extensions in assets/ because our random FileReader can't read zip-compressed files from apk.
     // TODO: Load all minor files via separate call to ReadAsString which can correctly handle compressed files in zip containers.
-    aaptOptions {
+    androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
         noCompress 'txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv'
     }
@@ -418,23 +398,6 @@ android {
         exclude 'lib/**/libVkLayer_object_tracker.so'
         exclude 'lib/**/libVkLayer_swapchain.so'
         exclude 'lib/**/libVkLayer_unique_objects.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_khronos_validation.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_core_validation.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_threading.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_image.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_parameter_validation.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_object_tracker.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_swapchain.so'
-//        exclude 'lib/armeabi-v7a/libVkLayer_unique_objects.so'
-//
-//        exclude 'lib/arm64-v8a/libVkLayer_khronos_validation.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_core_validation.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_threading.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_image.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_parameter_validation.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_object_tracker.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_swapchain.so'
-//        exclude 'lib/arm64-v8a/libVkLayer_unique_objects.so'
     }
 }
 
@@ -448,30 +411,31 @@ if (System.properties['os.name'].toLowerCase().contains('windows'))
 
 android.buildTypes.all { buildType ->
     def suffix = applicationIdSuffix != null ? applicationIdSuffix : ""
-//  def authorityValue = android.defaultConfig.applicationId + suffix + ".provider"
+//    def authorityValue = android.defaultConfig.applicationId + suffix + ".provider"
     def authorityValue = suffix + ".provider"
     def authority = "\"" + authorityValue + "\""
     buildConfigField 'String', 'FILE_PROVIDER_AUTHORITY', authority
-//    manifestPlaceholders += [FILE_PROVIDER_PLACEHOLDER: authorityValue]
+//    manifestPlaceholders += [FILE_PROVIDER_PLACEHOLDER : authorityValue]
 }
 
 //import com.github.triplet.gradle.androidpublisher.ReleaseStatus
-
+//
 //play {
 //    enabled.set(false)
 //    track.set("production")
-//    userFraction.set(Double.valueOf(0.05)) // 5%
+//    userFraction.set(Double.valueOf(0.10)) // 10%
 //    defaultToAppBundles.set(true)
-//    releaseStatus.set(ReleaseStatus.COMPLETED)
+//    releaseStatus.set(ReleaseStatus.IN_PROGRESS)
 //    serviceAccountCredentials.set(file("google-play.json"))
 //}
-
+//
 //huaweiPublish {
 //    instances {
 //        huaweiRelease {
 //            credentialsPath = "$rootDir/huawei-appgallery.json"
 //            buildFormat = "aab"
-//            deployType = 'publish'
+//            // https://github.com/cianru/huawei-publish-gradle-plugin/issues/32
+//            deployType = 'draft'
 //        }
 //    }
 //}

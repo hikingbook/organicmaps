@@ -1,19 +1,8 @@
 project(desktop)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-
 QT5_ADD_RESOURCES(RES_SOURCES res/resources.qrc)
 
-set_property(SOURCE qrc_resources.cpp PROPERTY SKIP_AUTOGEN ON)
-
-include_directories(
-  ${OMIM_ROOT}/3party/glm
-  ${OMIM_ROOT}/3party/jansson/src
-)
-
-set(
-  SRC
+set(SRC
   about.cpp
   about.hpp
   bookmark_dialog.cpp
@@ -66,65 +55,18 @@ set(
 )
 
 omim_add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${RES_SOURCES} ${SRC})
-target_link_libraries(${PROJECT_NAME} gflags::gflags)
 
-omim_link_libraries(
-  ${PROJECT_NAME}
+set_target_properties(${PROJECT_NAME} PROPERTIES AUTOMOC ON)
+
+target_link_libraries(${PROJECT_NAME}
+  generator  # For borders::LoadBorders
   qt_common
   map
-  ge0
-  drape_frontend
-  shaders
-  generator
-  routing
-  search
-  storage
-  mwm_diff
-  bsdiff
-  tracking
-  traffic
-  routing_common
-  transit
-  descriptions
-  drape
-  kml
-  editor
-  indexer
-  platform
-  geometry
-  coding
-  base
-  freetype
-  expat
-  icu
-  agg
-  jansson
-  protobuf
-  minizip
-  succinct
-  pugixml
-  oauthcpp
-  opening_hours
-  stb_image
-  sdf_image
-  vulkan_wrapper
-  ${Qt5Gui_LIBRARIES}
-  ${Qt5Network_LIBRARIES}
-  ${Qt5Widgets_LIBRARIES}
-  ${LIBZ}
+  gflags::gflags
 )
 
-if (PLATFORM_LINUX)
-  omim_link_libraries(
-    ${PROJECT_NAME}
-    dl
-  )
-endif()
-
-link_opengl(${PROJECT_NAME})
-link_qt5_core(${PROJECT_NAME})
-
 if (BUILD_DESIGNER)
+  target_link_libraries(${PROJECT_NAME} generator)
   set(BUNDLE_NAME "OMaps.Designer")
   set(BUNDLE_DISPLAY_NAME "OMaps Designer")
   set(BUNDLE_ICON designer.icns)
@@ -134,11 +76,7 @@ else()
   set(BUNDLE_ICON mac.icns)
 endif()
 
-set_target_properties(
-  ${PROJECT_NAME}
-  PROPERTIES
-  OUTPUT_NAME ${BUNDLE_NAME}
-)
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${BUNDLE_NAME})
 
 set(BUNDLE_EXECUTABLE ${BUNDLE_NAME})
 
@@ -191,7 +129,7 @@ copy_resources(
   unicode_blocks.txt
   World.mwm
   WorldCoasts.mwm
-  icudt69l.dat
+  icudt70l.dat
 
   00_NotoNaskhArabic-Regular.ttf
   00_NotoSansThai-Regular.ttf
@@ -215,15 +153,6 @@ elseif(PLATFORM_LINUX)
 endif()
 
 if (PLATFORM_MAC)
-  target_link_libraries(
-    ${PROJECT_NAME}
-    "-framework Foundation"
-    "-framework CoreLocation"
-    "-framework CoreWLAN"
-    "-framework SystemConfiguration"
-    "-framework CFNetwork"
-  )
-
   if (NOT APP_VERSION)
     set(BUNDLE_VERSION "UNKNOWN")
   else()
@@ -232,11 +161,10 @@ if (PLATFORM_MAC)
 
   configure_file(${PROJECT_SOURCE_DIR}/res/Info.plist.in ${PROJECT_SOURCE_DIR}/res/Info.plist)
 
-  set_target_properties(
-    ${PROJECT_NAME}
+  set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    OUTPUT_NAME ${BUNDLE_NAME}
-    MACOSX_BUNDLE_INFO_PLIST ${PROJECT_SOURCE_DIR}/res/Info.plist
+      OUTPUT_NAME ${BUNDLE_NAME}
+      MACOSX_BUNDLE_INFO_PLIST ${PROJECT_SOURCE_DIR}/res/Info.plist
   )
 endif()
 
@@ -278,8 +206,7 @@ if (BUILD_DESIGNER)
 
   # Generate DMG
   install(DIRECTORY ${DATA_DIR}/styles DESTINATION .)
-  set(
-    BUNDLES
+  set(BUNDLES
     ${CMAKE_BINARY_DIR}/generator_tool.app
     ${CMAKE_BINARY_DIR}/skin_generator_tool.app
     ${CMAKE_BINARY_DIR}/style_tests.app
@@ -307,7 +234,7 @@ if (BUILD_DESIGNER)
 elseif (BUILD_STANDALONE)
   add_custom_command(TARGET desktop POST_BUILD
     COMMAND "${QT_PATH}/bin/macdeployqt" ${BUNDLE_FOLDER}
-    COMMAND ${PYTHON_EXECUTABLE} "${OMIM_ROOT}/tools/macdeployqtfix/macdeployqtfix.py" -q -nl ${BUNDLE_FOLDER}/Contents/MacOS/${BUNDLE_NAME} ${QT_PATH}
+    COMMAND ${Python3_EXECUTABLE} "${OMIM_ROOT}/tools/macdeployqtfix/macdeployqtfix.py" -q -nl ${BUNDLE_FOLDER}/Contents/MacOS/${BUNDLE_NAME} ${QT_PATH}
     COMMAND echo "Fixing Qt dependencies finished."
     VERBATIM
     COMMENT "Fixing Qt dependencies for standalone desktop app"

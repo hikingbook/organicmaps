@@ -7,9 +7,6 @@
 /********** Strings **********/
 
 /* Button text (should be short) */
-"back" = "Geri";
-
-/* Button text (should be short) */
 "cancel" = "İptal";
 
 /* Button which interrupts country download */
@@ -19,9 +16,6 @@
 "delete" = "Sil";
 
 "download_maps" = "Haritaları İndir";
-
-/* Settings/Downloader - info for country when download fails */
-"download_has_failed" = "İndirme işlemi başarısız oldu, bir kez daha denemek için tekrar dokunun";
 
 /* Settings/Downloader - info for country which started downloading */
 "downloading" = "İndiriliyor…";
@@ -35,11 +29,6 @@
 /* View and button titles for accessibility */
 "maps" = "Haritalar";
 
-/* Settings/Downloader - size string, only strings different from English should be translated */
-"mb" = "MB";
-
-"gb" = "GB";
-
 /* Choose measurement on first launch alert - choose imperial system button */
 "miles" = "Mil";
 
@@ -52,14 +41,8 @@
 /* View and button titles for accessibility */
 "search" = "Ara";
 
-/* Search box placeholder text */
-"search_map" = "Haritada Ara";
-
 /* Settings/Downloader - 3G download warning dialog confirm button */
 "use_cellular_data" = "Evet";
-
-/* Location services are disabled by user alert - message */
-"location_is_disabled_long_text" = "Şu anda bu cihaz için tüm Yer Hizmetleri veya uygulama devre dışı bırakılmış. Lütfen Ayarlar bölümünden etkinleştirin.";
 
 /* View and button titles for accessibility */
 "zoom_to_country" = "Haritada göster";
@@ -70,153 +53,100 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "Indirme işlemi başarısız oldu";
 
-/* Button text for the button under the country_status_download_failed message */
-"try_again" = "Tekrar Deneyin";
-
 "about_menu_title" = "Organic Maps Hakkında";
-
-"connection_settings" = "Bağlantı Ayarları";
 
 "close" = "Kapat";
 
-"unsupported_phone" = "Hızlı donanıma sahip bir OpenGL gerekli. Ne yazık ki cihazınız desteklenmiyor.";
-
 "download" = "İndir";
-
-"disconnect_usb_cable" = "Organic Maps’yi kullanabilmeniz için lütfen USB kablosunun bağlantısını kesin veya hafıza kartı takın";
-
-"not_enough_free_space_on_sdcard" = "Uygulamayı kullanabilmeniz için lütfen SD kart/USB depolama aygıtında biraz alan boşaltın";
-
-"not_enough_memory" = "Uygulamayı başlatmak için yeterli hafıza yok";
-
-"download_resources" = "Başlamadan önce cihazınıza genel dünya haritasını indirelim.\nVerilerin %@’si gerekli.";
-
-"download_resources_continue" = "Haritaya Git";
-
-"downloading_country_can_proceed" = "%@ indiriliyor. Şimdi haritaya\ngidebilirsiniz.";
-
-"download_country_ask" = "%@ indir?";
-
-"update_country_ask" = "%@ güncelle?";
-
-/* REMOVE THIS STRING AFTER REFACTORING */
-"pause" = "Duraklat";
 
 /* REMOVE THIS STRING AFTER REFACTORING */
 "continue_download" = "Devam";
 
-/* Show popup notification on top of the map when country download has failed. */
-"download_country_failed" = "%@ indirme işlemi başarısız oldu";
-
-/* Add New Bookmark Set dialog title */
+/* "Add new bookmark list" dialog title */
 "add_new_set" = "Yeni Ayar ekle";
 
 /* Bookmark Color dialog title */
 "bookmark_color" = "Yer İmi Rengi";
 
-/* Add Bookmark Set dialog - hint when set name is empty */
-"bookmark_set_name" = "Yer İmi Adını Ayarla";
+/* Add Bookmark list dialog - hint when the list name is empty */
+"bookmark_set_name" = "Yer İmi Listesi Adı";
 
-/* Bookmark Sets dialog title */
-"bookmark_sets" = "Yer İmi Ayarları";
+/* "Bookmark Lists" dialog title */
+"bookmark_sets" = "Yer İmi Listeleri";
 
-/* Bookmarks - dialog title */
+/* "Bookmarks" dialog title */
 "bookmarks" = "Yer İmleri";
 
-/* Default bookmarks set name */
+/* Default bookmark list name */
 "core_my_places" = "Yerlerim";
-
-/* Add bookmark dialog - bookmark name */
-"name" = "Adı";
 
 /* Editor title above street and house number */
 "address" = "Adres";
 
-/* Add bookmark dialog - bookmark set, Bookmarks dialog - Bookmark set cell */
-"set" = "Ayarla";
-
 /* Settings button in system menu */
 "settings" = "Ayarlar";
 
-/* Header of settings activity where user defines storage path */
-"maps_storage" = "Haritaları depolama";
-
-/* Detailed description of Maps Storage settings button */
-"maps_storage_summary" = "Haritaların indirileceği yeri seçin";
-
-/* Question dialog for transferring maps from one storage to another */
-"move_maps" = "Haritaları taşı?";
-
-/* Ask to wait user several minutes (some long process in modal dialog). */
-"wait_several_minutes" = "Bu işlem birkaç dakika sürebilir.\nLütfen bekleyin…";
-
 /* Measurement units title in settings activity */
-"measurement_units" = "Ölçü Birimleri";
+"measurement_units" = "Ölçü birimleri";
 
-/* Detailed description of Measurement Units settings button */
-"measurement_units_summary" = "Mil veya kilometre seçimini yap";
 
-/* Search category for cafes, bars, restaurants */
+/********** Search categories **********/
+
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
 "eat" = "Nerede yenir";
 
-/* Search category for grocery stores */
-"food" = "Bakkaliye";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
+"food" = "Market";
 
-/* Search category */
+/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
 "transport" = "Ulaşım";
 
-/* Search category */
-"fuel" = "Benzin";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
+"fuel" = "Yakıt";
 
-/* Search category */
+/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
 "parking" = "Otopark";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops */
+/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Alışveriş";
 
-/* Search category */
+/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Otel";
 
-/* Search category */
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
 "tourism" = "Görülecek yerler";
 
-/* Search category */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
 "entertainment" = "Eğlence";
 
-/* Search category */
+/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
 "atm" = "Bankamatik";
 
-/* Search category for nightclubs/bars */
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
 "nightlife" = "Gece hayatı";
 
-/* Search category for water park/disneyland/playground/toys store */
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
 "children" = "Aile tatili";
 
-/* Search category */
+/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
 "bank" = "Banka";
 
-/* Search category */
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
 "pharmacy" = "Eczane";
 
-/* Search category */
+/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
 "hospital" = "Hastane";
 
-/* Search category */
-"toilet" = "Tuvalet";
+/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
+"toilet" = "WC";
 
-/* Search category */
+/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
 "post" = "Posta";
 
-/* Search category */
+/* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Polis";
 
-/* Notes field in Bookmarks view */
-"description" = "Notlar";
-
-/* Email Subject when sharing bookmarks category */
-"share_bookmarks_email_subject" = "Paylaşılan Organic Maps yer imleri";
-
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Merhaba!\n\nEktekiler benim Organic Maps yer imlerim. Eğer Organic Maps'i yüklediyseniz lütfen ektekileri açın. Eğer yüklemediyseniz, bu bağlantıyı takip ederek iOS ve Android cihazınız için uygulamayı yükleyebilirsiniz: https://omaps.app/get?kmz\n\nOrganic Maps ile seyahat etmenin keyfini çıkarın!";
 
 /* message title of loading file */
 "load_kmz_title" = "Yer İmleri Yükleniyor";
@@ -233,32 +163,17 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "Yeriniz henüz belirlenmedi";
 
-/* Alert message that we can't run Map Storage settings due to some reasons. */
-"cant_change_this_setting" = "Üzgünüz, Harita Depolama ayarları şu anda devre dışı.";
-
-/* Alert message that downloading is in progress. */
-"downloading_is_active" = "Ülke indirme işlemi şu anda sürüyor.";
-
-/* Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. */
-"my_position_share_sms" = "Hey, Organic Maps’de geçerli konumumu incele! %1$@ veya %2$@ Çevrimiçi haritalar sende yok mu? Buradan indir: https://omaps.app/get";
-
 /* Subject for emailed bookmark */
 "bookmark_share_email_subject" = "Hey, Organic Maps haritasında pinimi incele!";
 
 /* Subject for emailed position */
-"my_position_share_email_subject" = "Hey, Organic Maps’de geçerli konumumu incele!";
-
-/* Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME */
-"my_position_share_email" = "Merhaba,\n\nŞu anda bulunduğum yer: %1$@. Yeri haritada görmek için bu bağlantıya %2$@ veya şuna %3$@ tıkla.\n\nTeşekkürler.";
+"my_position_share_email_subject" = "Hey, Organic Maps’te geçerli konumumu incele!";
 
 /* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
 "share" = "Paylaş";
 
 /* Share by email button text, also used in editor. */
 "email" = "E-posta";
-
-/* Text for message when used successfully copied something */
-"copied_to_clipboard" = "Panoya Kopyalandı: %1$@";
 
 /* place preview title */
 "info" = "Bilgi";
@@ -270,30 +185,19 @@
 "version" = "Sürüm: %@";
 
 /* Data version in «About» screen */
-"data_version" = "Data version: %d";
-
-/* Confirmation in downloading countries dialog */
-"are_you_sure" = "Devam etmek istediğinizden emin misiniz?";
+"data_version" = "Veri sürümü: %d";
 
 /* Title for tracks category in bookmarks manager */
-"tracks_title" = "Parçalar";
+"tracks_title" = "Kayıtlar";
 
 /* Length of track in cell that describes route */
 "length" = "Uzunluk";
 
 "share_my_location" = "Yerimi paylaş";
 
-/* Settings general group in settings screen */
-"prefs_group_general" = "General settings";
-
-/* Settings information group in settings screen */
-"prefs_group_information" = "Information";
-
 "prefs_group_route" = "Navigasyon";
 
 "pref_zoom_title" = "Yakınlaştırma butonları";
-
-"pref_zoom_summary" = "Ekranda göster";
 
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Gece Modu";
@@ -311,7 +215,7 @@
 "pref_map_3d_title" = "Perspektif görünüm";
 
 /* Settings «Map» category: «3D buildings» title */
-"pref_map_3d_buildings_title" = "3 Boyutlu Binalar";
+"pref_map_3d_buildings_title" = "3D yapılar";
 
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Sesli Talimatlar";
@@ -319,14 +223,11 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Ses Dili";
 
-/* Settings «Route» category: «Tts unavailable» subtitle */
-"pref_tts_unavailable" = "Mevcut değil";
-
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Diğer";
 
 /* Settings «Map» category: «Record track» title */
-"pref_track_record_title" = "En son yol";
+"pref_track_record_title" = "En sonki kayıt";
 
 "pref_map_auto_zoom" = "Otomatik yakınlaştırma";
 
@@ -366,12 +267,6 @@
 /* Text in menu */
 "instagram" = "Instagram";
 
-/* Text in the editor */
-"vk" = "VK";
-
-/* Text in the editor */
-"editor_line_social_network" = "LINE";
-
 /* Text in menu */
 "openstreetmap" = "OpenStreetMap";
 
@@ -383,12 +278,6 @@
 
 /* Text in menu */
 "help" = "Yardım";
-
-/* Button in the main Help dialog */
-"faq" = "Sorular ve cevaplar";
-
-/* Button in the main Help dialog */
-"how_to_support_us" = "Bizi nasıl destekleyebilirim?";
 
 /* Button in the main Help dialog */
 "copyright" = "Telif hakkı";
@@ -410,9 +299,6 @@
 
 /* Update all button text */
 "downloader_update_all_button" = "Hepsini güncelle";
-
-/* Cancel all button text */
-"downloader_cancel_all" = "Tümünü İptal Et";
 
 /* Downloaded maps category */
 "downloader_downloaded_subtitle" = "İndirildi";
@@ -449,16 +335,10 @@
 "downloader_download_map" = "Haritayı indir";
 
 /* Item status in downloader. */
-"downloader_retry" = "Tekrarla";
+"downloader_retry" = "Tekrar dene";
 
 /* Item in context menu. */
 "downloader_delete_map" = "Haritayı Sil";
-
-/* Item in context menu. */
-"downloader_update_map" = "Haritayı Güncelle";
-
-/* Preference text */
-"pref_use_google_play" = "Şu anki konumunuzu almak için Google Play hizmetlerini kullanın";
 
 /* Text for rating dialog */
 "rating_just_rated" = "Uygulamanıza az önce puan verdim";
@@ -478,18 +358,10 @@
 /* Text for routing error dialog */
 "routing_requires_all_map" = "Konumunuzdan bir rota oluşturmak bölgenizdeki tüm haritaların indirilmesini ve güncellenmesini gerektirir.";
 
-/* Text for routing error dialog */
-"routing_not_enough_space" = "Yeterli alan yok";
-
 /* bookmark button text */
 "bookmark" = "yer i̇mi";
 
-/* location service disabled */
-"enable_location_services" = "Lütfen Yer Hizmetlerini etkinleştirin";
-
 "save" = "Kaydet";
-
-"edit_description_hint" = "Açıklamalarınız (metin veya html)";
 
 "create" = "oluştur";
 
@@ -575,8 +447,6 @@
 
 "dialog_routing_unable_locate_route" = "Güzergah belirlenemiyor";
 
-"dialog_routing_cant_build_route" = "Güzergah oluşturulamıyor.";
-
 "dialog_routing_change_start_or_end" = "Lütfen başlangıç noktanızı veya hedefinizi ayarlayın.";
 
 "dialog_routing_change_start" = "Başlangıç noktasını ayarlayın";
@@ -610,18 +480,11 @@
 
 /********** Strings for downloading map from search **********/
 
-"search_without_internet_advertisement" = "Rotaları aramak ve oluşturmaya başlamak için lütfen haritayı indirin ve artık internet bağlantısına ihtiyacınız yok.";
-
-"search_select_map" = "Haritayi Seçin";
-
 /* «Show» context menu */
 "show" = "Göster";
 
 /* «Hide» context menu */
 "hide" = "Gizle";
-
-/* «Rename» context menu */
-"rename" = "Yeniden Adlandır";
 
 /* Failed planning route message in navigation view */
 "routing_planning_error" = "Rota Planlaması Başarısız";
@@ -654,12 +517,9 @@
 
 "search_history_title" = "Arama Geçmişi";
 
-"search_history_text" = "En son yapılan arama sorgularına hızlı erişim.";
+"search_history_text" = "En son yapılan arama sorgularını görüntüle.";
 
-"clear_search" = "Arama geçmişini temizle";
-
-/* Place Page link to Wikipedia article (if map object has it). */
-"read_in_wikipedia" = "Wikipedia";
+"clear_search" = "Arama Geçmişini temizle";
 
 "p2p_your_location" = "Konumunuz";
 
@@ -667,14 +527,11 @@
 
 "p2p_from_here" = "Başlangıç";
 
-"p2p_to_here" = "Varış yeri:";
+"p2p_to_here" = "Varış yeri";
 
 "p2p_only_from_current" = "Navigasyon sadece şu anki konumunuzdan mevcut.";
 
 "p2p_reroute_from_current" = "Mevcut konumunuzdan bir rota planlamamızı ister misiniz?";
-
-/* Edit open hours/set time and minutes dialog */
-"next_button" = "Sonraki";
 
 "editor_time_add" = "Plan Ekle";
 
@@ -699,27 +556,13 @@
 
 "editor_example_values" = "Örnek Değerler";
 
-"editor_correct_mistake" = "Hatayı düzelt";
-
 "editor_add_select_location" = "Konum";
 
 "editor_done_dialog_1" = "Dünya haritasını değiştirdiniz. Bunu gizlemeyin! Arkadaşlarınıza anlatın ve birlikte düzenleyin.";
 
 "share_with_friends" = "Arkadaşlarınla paylaş";
 
-"editor_report_problem_desription_1" = "OpenStreetMap topluluğunun hatayı düzeltmesi için lütfen problemi detaylı bir şekilde tanımlayın.";
-
-"editor_report_problem_desription_2" = "Veya bunu adresinden kendiniz yapın https://www.openstreetmap.org/";
-
 "editor_report_problem_send_button" = "Gönder";
-
-"editor_report_problem_title" = "Problem";
-
-"editor_report_problem_no_place_title" = "Yer mevcut değil";
-
-"editor_report_problem_under_construction_title" = "Bakım için kapalı";
-
-"editor_report_problem_duplicate_place_title" = "Kopyalanmış yer";
 
 "autodownload" = "Otomatik indir";
 
@@ -739,9 +582,7 @@
 
 "add_opening_hours" = "İş saatlerini ekle";
 
-"edit_opening_hours" = "İş saatlerini düzenle";
-
-"no_osm_account" = "OpenStreetMap' hesabın yok mu?";
+"no_osm_account" = "OpenStreetMap hesabın yok mu?";
 
 "register_at_openstreetmap" = "Kaydol";
 
@@ -750,8 +591,6 @@
 "invalid_username_or_password" = "Geçersiz Kullanıcı Adı veya Şifre.";
 
 "login" = "Oturum aç";
-
-"password" = "Şifre";
 
 "forgot_password" = "Şifreni mi unuttun?";
 
@@ -766,14 +605,12 @@
 
 "edit_place" = "Yeri düzenle";
 
-"place_name" = "Yer ismi";
+"place_name" = "Yerin Adı";
 
 "add_language" = "Bir dil ekle";
 
-"street" = "Sokak";
-
 /* Editable House Number text field (in address block). */
-"house_number" = "Bir ev numarası";
+"house_number" = "Bina numarası";
 
 "details" = "Detaylar";
 
@@ -795,15 +632,11 @@
 
 "phone" = "Telefon";
 
-"editor_add_phone" = "Add Phone";
-
 "please_note" = "Lütfen dikkat";
 
 "downloader_delete_map_dialog" = "Harita ile birlikte tüm harita değişiklikleri de silinecektir.";
 
 "downloader_update_maps" = "Haritaları güncelle";
-
-"downloader_mwm_migration_dialog" = "Bir rota oluşturmak için tüm haritaları güncellemeli ve ardından rotayı tekrar planlamalısınız.";
 
 "downloader_search_field_hint" = "Harita bul";
 
@@ -815,11 +648,9 @@
 
 "downloader_no_space_message" = "Lütfen gereksiz verileri silin";
 
-"editor_login_error_dialog" = "Giriş hatası";
-
 "editor_profile_changes" = "Doğrulanan Değişiklikler";
 
-"editor_focus_map_on_location" = "Objenin doğru konumunu seçmek için haritayı çekin.";
+"editor_focus_map_on_location" = "Objenin doğru konumunu seçmek için haritayı sürükleyin.";
 
 "editor_add_select_category" = "Kategori seç";
 
@@ -831,46 +662,40 @@
 
 "editor_add_place_title" = "Ekleme";
 
-"editor_edit_place_name_hint" = "Yerin ismi";
+"editor_edit_place_name_hint" = "Yerin adı";
 
 "editor_edit_place_category_title" = "Kategori";
 
-"detailed_problem_description" = "Sorunun ayrıntılı açıklaması";
-
-"editor_report_problem_other_title" = "Farklı bir problem";
-
-"placepage_add_business_button" = "Kuruluş ekle";
-
-"whatsnew_editor_message_1" = "Doğrudan uygulamadan haritaya yeni yerler ekle ve mevcut yerleri düzenleyin.";
+"whatsnew_editor_message_1" = "Doğrudan uygulamadan haritaya yeni yerler ekleyin ve mevcut yerleri düzenleyin.";
 
 "dialog_incorrect_feature_position" = "Konumu değiştir";
 
 "message_invalid_feature_position" = "Buraya bir nesne konumlandırılamıyor";
 
-"login_to_make_edits_visible" = "Giriş yapın böylelikle diğer kullanıcılar yaptığınız değişiklikleri görebilirler.";
+"login_to_make_edits_visible" = "Diğer kullanıcıların yaptığınız değişiklikleri görebilmesi için oturum açın";
 
 /* Error dialog no space */
 "migration_no_space_message" = "İndirmek için daha fazla alana ihtiyacınız var. Lütfen gereksiz verileri silin.";
 
-"editor_sharing_title" = "Organic Maps haritalarını iyileştirdim";
+"editor_sharing_title" = "Organic Maps haritalarını geliştirdim";
 
 /* Downloaded 10 **of** 20 <- it is that "of" */
 "downloader_of" = "%1$d/%2$d";
 
-"download_over_mobile_header" = "Hücresel bir ağ bağlantısı kullanarak indir?";
+"download_over_mobile_header" = "Hücresel bir ağ bağlantısı kullanarak indirilsin mi?";
 
-"download_over_mobile_message" = "Bu işlem bazı planlarla ya da dolaşım ise büyük ölçüde pahalı olabilir.";
+"download_over_mobile_message" = "Bu işlem, bazı planlarda veya dolaşımda oldukça pahalı olabilir.";
 
-"error_enter_correct_house_number" = "Doğru ev numarası girin";
+"error_enter_correct_house_number" = "Geçerli bir bina numarası girin";
 
 "editor_storey_number" = "Kat sayısı (en fazla %d)";
 
 /* Error message in Editor when a user tries to set the number of floors for a building higher than 25 */
-"error_enter_correct_storey_number" = "Binayı en fazla 25 katlı düzenle";
+"error_enter_correct_storey_number" = "Kat sayısı 25'i geçmemelidir";
 
 "editor_zip_code" = "Posta Kodu";
 
-"error_enter_correct_zip_code" = "Doğru Posta Kodunu girin";
+"error_enter_correct_zip_code" = "Geçerli bir posta kodu girin";
 
 /* Place Page title for long tap */
 "core_placepage_unknown_place" = "Bilinmeyen Yer";
@@ -879,23 +704,21 @@
 
 "editor_detailed_description_hint" = "Ayrıntılı yorum";
 
-"editor_detailed_description" = "Önerdiğiniz değişiklikler OpenStreetMap topluluğuna gönderilecek. Organic Maps’de düzenlenemeyen ayrıntıları açıklayın.";
+"editor_detailed_description" = "Önerdiğiniz değişiklikler OpenStreetMap topluluğuna gönderilecek. Organic Maps’te düzenlenemeyen ayrıntıları açıklayın.";
 
 "editor_more_about_osm" = "OpenStreetMap hakkında ek bilgi";
 
 "editor_operator" = "İşletmeci";
-
-"downloader_my_maps_title" = "Haritalarım";
 
 "downloader_no_downloaded_maps_title" = "Hiç harita indirmediniz";
 
 "downloader_no_downloaded_maps_message" = "Çevrimdışı olarak adres bulmak ve gezinmek için haritaları indirin.";
 
 /* Error title that appears after certain time without location. */
-"current_location_unknown_title" = "Geçerli konumunuzuz izlenmeye devam edilsin mi";
+"current_location_unknown_title" = "Geçerli konumunuzuz izlenmeye devam edilsin mi?";
 
 /* Error that appears after certain time without location. */
-"current_location_unknown_message" = "Geçerli konum bilinmiyor Muhtemelen bir binanın içinde veya tüneldesiniz.";
+"current_location_unknown_message" = "Geçerli konum bilinmiyor. Muhtemelen bir binanın içinde veya tüneldesiniz.";
 
 "current_location_unknown_continue_button" = "Devam";
 
@@ -903,18 +726,18 @@
 
 "current_location_unknown_error_title" = "Geçerli konum bilinmiyor.";
 
-"current_location_unknown_error_message" = "Konumunuz aranırken bir hata oluştu. Cihazının düzgün çalışıp çalışmadığını kontrol edip daha sonra tekrar deneyin.";
+"current_location_unknown_error_message" = "Konumunuz aranırken bir hata oluştu. Cihazınızın düzgün çalışıp çalışmadığını kontrol edin ve daha sonra tekrar deneyin.";
 
-"location_services_disabled_header" = "Konum tanımlama devre dışı bırakıldı";
+"location_services_disabled_header" = "Konum servisleri devre dışı bırakıldı";
 
-"location_services_disabled_message" = "Cihaz ayarlarında konum belirlemeye erişimi etkinleştirin";
+"location_services_disabled_message" = "Cihaz ayarlarında coğrafi konuma erişimi etkinleştirin";
 
 "location_services_disabled_1" = "1. Ayarları Açın";
 
 "location_services_disabled_2" = "2. Konuma Dokunun";
 
 /* iOS Dialog for the case when the location permission is not granted */
-"location_services_disabled_3" = "3. Uygulamayı Kullanırken Seç";
+"location_services_disabled_3" = "3. \"Uygulamayı Kullanırken\"i Seçin";
 
 "meter" = "m";
 
@@ -926,17 +749,11 @@
 
 "foot" = "fit";
 
-"miles_per_hour" = "mph";
-
-"hour" = "sa";
-
-"minute" = "dk";
+"miles_per_hour" = "saatte mil";
 
 "placepage_place_description" = "Açıklama";
 
 "placepage_more_button" = "Diğer";
-
-"placepage_more_reviews_button" = "Diğer yorumlar";
 
 "book_button" = "Rezervasyon";
 
@@ -958,7 +775,7 @@
 
 "editor_reset_edits_button" = "Sıfırla";
 
-"editor_remove_place_message" = "Eklenen bir yer kaldırılsın mı?";
+"editor_remove_place_message" = "Eklenen yer kaldırılsın mı?";
 
 "editor_remove_place_button" = "Kaldır";
 
@@ -967,21 +784,11 @@
 "text_more_button" = "…daha fazla";
 
 /* Phone number error message */
-"error_enter_correct_phone" = "Doğru telefon numarası gir";
+"error_enter_correct_phone" = "Geçerli bir telefon numarası girin";
 
 "error_enter_correct_web" = "Geçerli bir web adresi girin";
 
 "error_enter_correct_email" = "Geçerli bir e-posta girin";
-
-"error_enter_correct_facebook_page" = "Enter a valid Facebook web address, account, or page name";
-
-"error_enter_correct_instagram_page" = "Enter a valid Instagram web address or account name";
-
-"error_enter_correct_twitter_page" = "Enter a valid Twitter web address or username";
-
-"error_enter_correct_vk_page" = "Enter a valid VK web address or account name";
-
-"error_enter_correct_line_page" = "Enter a valid LINE web address or LINE ID";
 
 "refresh" = "Güncelleştirme";
 
@@ -993,7 +800,7 @@
 /* iOS Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Herhangi bir kişisel bilgi girmediğinizden emin olun.";
 
-"editor_share_to_all_dialog_message_2" = "Değişikliği kontrol edeceğiz. Eğer herhangi bir sorumuz olursa sizinle e-posta aracılığıyla temasa geçeceğiz.";
+"editor_share_to_all_dialog_message_2" = "Değişikliği kontrol edeceğiz. Eğer herhangi bir sorumuz olursa sizinle e-posta aracılığıyla iletişime geçeceğiz.";
 
 "navigation_stop_button" = "dur";
 
@@ -1013,12 +820,12 @@
 "general_settings" = "Genel ayarlar";
 
 /* For the first routing */
-"accept" = "Kabul";
+"accept" = "Kabul et";
 
 /* For the first routing */
-"decline" = "Ret";
+"decline" = "Reddet";
 
-/* noun */
+/* A noun - a button name used to show search results in list form */
 "search_in_table" = "Liste";
 
 "mobile_data_dialog" = "Ayrıntılı bilgileri görüntülemek için mobil internet kullanılsın mı?";
@@ -1041,15 +848,11 @@
 
 "big_font" = "Harita üzerindeki yazı tipi boyutunu artır";
 
-"traffic_update_app" = "Lütfen Organic Maps uygulamasını güncelleyin";
-
 /* "traffic" as in road congestion */
 "traffic_update_app_message" = "Trafik verilerini görüntülemek için uygulamanın güncellenmesi gerekiyor.";
 
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafik verileri kullanılamıyor";
-
-"enable_logging" = "Günlüğü etkinleştir";
 
 /* Settings: "Send general feedback" button */
 "feedback_general" = "Genel Geribildirim";
@@ -1058,23 +861,13 @@
 
 "off" = "Kapat";
 
-"prefs_languages_information" = "Sesli talimatlar için TTS sistemini kullanıyoruz. Çoğu Android cihaz, Google TTS'yi kullanıyor, Uygulamayı, Google Play'den indirebilir veya güncelleyebilirsiniz (https://play.google.com/store/apps/details?id=com.google.android.tts)";
-
-"prefs_languages_information_off" = "Bazı diller için uygulama mağazasından (Google Play Market, Samsung Apps) farklı bir konuşma sentezleyicisi veya ek bir dil paketi yüklemeniz gerekebilir. Cihaz ayarları → Dil ve Giriş → Konuşma → Metin Okuma sekmelerini açın. Buradan konuşma sentezi ayarlarını yönetebilir (örneğin, çevrimdışı kullanım için bir dil paketini karşıdan yükleyebilir) ve başka bir metin okuma motorunu seçebilirsiniz.";
-
-"prefs_languages_information_off_link" = "Daha fazla bilgi için lütfen bu kılavuzu inceleyin.";
-
-"transliteration_title" = "Latince alfabesine çevirme";
-
-"learn_more" = "Daha fazla bilgi edinin";
+"transliteration_title" = "Latin alfabesine çevirme";
 
 "core_exit" = "Çık";
 
 "routing_add_start_point" = "Güzergâhı planlamak için bir başlangıç noktası ekleyin";
 
 "routing_add_finish_point" = "Güzergâhı planlamak için bir varış noktası ekleyin";
-
-"button_exit" = "Çık";
 
 "planning_route_manage_route" = "Güzergâhı yönet";
 
@@ -1090,26 +883,18 @@
 
 "profile_authorization_error" = "Üzgünüz, bir hata oluştu. Tekrar oturum açmayı deneyin.";
 
-"dialog_error_storage_title" = "Depolama alanı erişim sorunu";
-
-"dialog_error_storage_message" = "Harici bellek kullanılamıyor, muhtemelen SD Kart çıkarılmış, hasarlı veya dosya sistemi salt okunur. Lütfen kontrol edin ve support@organicmaps.app adresinden bizimle iletişime geçin";
-
-"setting_emulate_bad_storage" = "Bozuk depolama alanını taklit et";
-
 "core_entrance" = "Giriş";
 
 "error_enter_correct_name" = "Lütfen, doğru bir isim girin";
 
-"bookmarks_groups" = "Listeler";
+"bookmark_lists" = "Listeler";
 
-"bookmarks_groups_hide_all" = "Tümünü gizle";
+/* Do not display all bookmark lists on the map */
+"bookmark_lists_hide_all" = "Tümünü gizle";
 
-"bookmarks_groups_show_all" = "Tümünü göster";
+"bookmark_lists_show_all" = "Tümünü göster";
 
 "bookmarks_create_new_group" = "Yeni liste oluştur";
-
-/* Bookmark categories screen */
-"bookmarks_import" = "Import bookmarks";
 
 "downloader_hide_screen" = "Ekranı Gizle";
 
@@ -1125,27 +910,17 @@
 
 "bookmarks_error_message_share_empty" = "Boş bir liste paylaşılamaz";
 
-"bookmarks_error_title_empty_list_name" = "Isim boş olamaz";
-
-"bookmarks_error_message_empty_list_name" = "Lütfen liste ismini giriniz";
-
-"bookmarks_new_list_hint" = "Yeni liste";
+"bookmarks_error_message_empty_list_name" = "Lütfen liste ismini girin";
 
 "bookmarks_error_title_list_name_already_taken" = "Bu isim zaten alınmış";
 
-"bookmarks_error_message_list_name_already_taken" = "Lütfen başka bir isim seçiniz";
-
 "bookmarks_error_title_list_name_too_long" = "Bu isim çok uzun";
 
-"please_wait" = "Lütfen bekle…";
-
-"phone_number" = "Telefon numarası";
-
-"profile" = "OpenStreetMap profil";
+"profile" = "OpenStreetMap profili";
 
 "bookmarks_detect_title" = "Yeni dosyalar algılandı";
 
-"button_convert" = "Dönüştürmek";
+"button_convert" = "Dönüştür";
 
 "bookmarks_convert_error_title" = "Hata";
 
@@ -1153,17 +928,9 @@
 
 "bookmarks_restore_title" = "Bu sürümü geri yükle?";
 
-"common_check_internet_connection_dialog_title" = "İnternet bağlantısı yok";
-
 "error_system_message" = "Bilinmeyen bir hata oluştu";
 
-"restore" = "Restore";
-
-"subtittle_opt_out" = "İzleme ayarları";
-
-"crash_reports" = "Kilitlenme raporu";
-
-"crash_reports_description" = "Organic Maps deneyimini geliştirmek için verilerinizi kullanabiliriz. Değişiklikler, uygulama yeniden başlatıldıktan sonra geçerli olur.";
+"restore" = "Geri al";
 
 "privacy_policy" = "Gizlilik politikası";
 
@@ -1177,15 +944,9 @@
 
 "subway_data_unavailable" = "Metro haritası mevcut değil";
 
-"bookmarks_empty_list_title" = "Bu liste boş";
-
-"bookmarks_empty_list_message" = "Yer imi eklemek için önce haritadaki bir yere sonrasında ise yıldız simgesine dokunun";
-
-"category_desc_more" = "…daha fazla";
-
 "title_error_downloading_bookmarks" = "Bir hata oluştu";
 
-"popular_place" = "Popular";
+"popular_place" = "Popüler";
 
 "export_file" = "Dosyayı dışa aktar";
 
@@ -1195,15 +956,7 @@
 
 "hide_from_map" = "Haritadan gizle";
 
-"public_access" = "Genel erişim";
-
-"limited_access" = "Sınırlı erişim";
-
-"bookmark_category_name" = "Kategori";
-
-"bookmark_category_description_hint" = "Bir açıklama yazın (metin veya html)";
-
-"not_shared" = "Şahsi";
+"bookmark_list_description_hint" = "Bir açıklama yazın (metin veya html)";
 
 "tags_loading_error_subtitle" = "Etiketler yüklenirken bir hata oluştu, lütfen tekrar deneyin";
 
@@ -1219,9 +972,6 @@
 
 "place_description_title" = "Yer Açıklaması";
 
-/* this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. */
-"notification_channel_downloader" = "Harita indiricisi";
-
 "speedcams_notice_message" = "Otomatik - Hız sınırını aşma riski varsa hız kameraları hakkında uyar\nHer zaman - Hız kameraları hakkında her zaman uyar\nAsla - Hız kameraları hakkında hiçbir zaman uyarma";
 
 "power_managment_title" = "Güç tasarrufu modu";
@@ -1233,10 +983,6 @@
 "power_managment_setting_auto" = "Otomatik";
 
 "power_managment_setting_manual_max" = "Maksimum güç tasarrufu";
-
-"enable_logging_warning_message" = "Seçenek tanı amaçlı, günlüğe kaydetmeyi açar. Uygulamayla ilgili sorunları gideren destek ekibimiz için yardımcı olabilir. Bu seçeneği yalnızca Organic Maps desteğinin isteği üzerine etkinleştirin.";
-
-"access_rules_author_only" = "Çevrimiçi düzenleme";
 
 "driving_options_title" = "Sürüş seçenekleri";
 
@@ -1308,7 +1054,7 @@
 
 "ok" = "Tamam";
 
-"avoid_unpaved_carplay_1" = "Stabilizesiz";
+"avoid_unpaved_carplay_1" = "Toprak yol yok";
 
 "avoid_unpaved_carplay_2" = "Asfaltsız hariç";
 
@@ -1331,9 +1077,6 @@
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sırala…";
 
-/* Android, title, max 20-22 symbols */
-"sort_bookmarks" = "Yer imlerini sırala";
-
 /* iOS */
 "sort_default" = "Varsayılana göre sırala";
 
@@ -1343,18 +1086,6 @@
 
 "sort_date" = "Tarihe göre sırala";
 
-/* Android */
-"by_default" = "Varsayılana göre";
-
-/* Android */
-"by_type" = "Türe göre";
-
-/* Android */
-"by_distance" = "Mesafeye göre";
-
-/* Android */
-"by_date" = "Tarihe göre";
-
 "week_ago_sorttype" = "Bir hafta önce";
 
 "month_ago_sorttype" = "Bir ay önce";
@@ -1363,7 +1094,7 @@
 
 "moreyear_ago_sorttype" = "Bir yıldan daha önce";
 
-"near_me_sorttype" = "Bana yakın";
+"near_me_sorttype" = "Bana yakınlarda";
 
 "others_sorttype" = "Diğerleri";
 
@@ -1401,8 +1132,6 @@
 
 "religious_places" = "Dini yerler";
 
-"select_list" = "Liste seç";
-
 "transit_not_found" = "Metro navigasyonu bu bölgede henüz mevcut değil";
 
 "dialog_pedestrian_route_is_long_header" = "Metro güzergahı bulunamadı";
@@ -1433,8 +1162,6 @@
 
 "elevation_profile_difficulty" = "Zorluk";
 
-"elevation_profile_distance" = "Mesafe:";
-
 "elevation_profile_time" = "Süre:";
 
 "isolines_toast_zooms_1_10" = "Konturları görmek için haritayı büyütün";
@@ -1442,19 +1169,6 @@
 "downloader_updating_ios" = "Güncelleme";
 
 "downloader_loading_ios" = "İndir";
-
-"key_information_title" = "Anahtar bilgisi";
-
-"download_map_title" = "Download the world map";
-
-"connection_failure" = "Connection failure";
-
-"disconnect_usb_cable_title" = "Disconnect USB cable";
-
-"enable_screen_sleep" = "Ekranın uyumasına izin ver";
-
-/* Description in preferences */
-"enable_screen_sleep_description" = "Etkinleştirildiğinde ekranın bir süre hareketsiz kaldıktan sonra uykuya geçmesine izin verilir.";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_title" = "İndirdiğiniz haritaları güncelleyin";
@@ -1469,10 +1183,10 @@
 "whats_new_auto_update_button_later" = "Daha sonra manüel olarak güncelle";
 
 /* Delete track button on track edit screen */
-"placepage_delete_track_button" = "Delete Track";
+"placepage_delete_track_button" = "Kaydı Sil";
 
 /* Placeholder for track name input on track edit screen */
-"placepage_track_name_hint" = "Track Name";
+"placepage_track_name_hint" = "Kayıt Adı";
 
 /* move track or bookmark from the list button text */
 "move" = "Move";
@@ -2021,27 +1735,30 @@
 
 "type.healthcare.laboratory" = "Tıbbi laboratuvar";
 
+
+/********** Types: Roads **********/
+
 "type.highway" = "Highway";
 
-"type.highway.bridleway" = "Rider's Path";
+"type.highway.bridleway" = "Bridle Path";
 
-"type.highway.bridleway.bridge" = "Rider's Path";
+"type.highway.bridleway.bridge" = "Bridle Path";
 
-"type.highway.bridleway.permissive" = "Rider's Path";
+"type.highway.bridleway.permissive" = "Bridle Path";
 
-"type.highway.bridleway.tunnel" = "Rider's Path";
+"type.highway.bridleway.tunnel" = "Bridle Path";
 
 "type.highway.bus_stop" = "Otobüs durağı";
 
 "type.highway.construction" = "Yol yapım aşamasında";
 
-"type.highway.cycleway" = "Bike Path";
+"type.highway.cycleway" = "Cycle Path";
 
-"type.highway.cycleway.bridge" = "Bike Path";
+"type.highway.cycleway.bridge" = "Cycle Path";
 
-"type.highway.cycleway.permissive" = "Bike Path";
+"type.highway.cycleway.permissive" = "Cycle Path";
 
-"type.highway.cycleway.tunnel" = "Bike Path";
+"type.highway.cycleway.tunnel" = "Cycle Path";
 
 "type.highway.elevator" = "Elevator";
 
@@ -2175,7 +1892,7 @@
 
 "type.highway.service.tunnel" = "Cadde";
 
-"type.highway.services" = "Service on the Road";
+"type.highway.services" = "Service Area";
 
 "type.highway.speed_camera" = "Hız Kamerası";
 
@@ -2241,9 +1958,42 @@
 
 "type.highway.unclassified.tunnel" = "Cadde";
 
+"type.area_highway.cycleway" = "Cycle Path";
+
+"type.area_highway.footway" = "Yol";
+
+"type.area_highway.living_street" = "Cadde";
+
+"type.area_highway.motorway" = "Cadde";
+
+"type.area_highway.path" = "Yol";
+
+"type.area_highway.pedestrian" = "Cadde";
+
+"type.area_highway.primary" = "Cadde";
+
+"type.area_highway.residential" = "Cadde";
+
+"type.area_highway.secondary" = "Cadde";
+
+"type.area_highway.service" = "Cadde";
+
+"type.area_highway.tertiary" = "Cadde";
+
+"type.area_highway.steps" = "Yol";
+
+"type.area_highway.track" = "Cadde";
+
+"type.area_highway.trunk" = "Cadde";
+
+"type.area_highway.unclassified" = "Cadde";
+
 "type.highway.world_level" = "highway-world_level";
 
 "type.highway.world_towns_level" = "highway-world_towns_level";
+
+
+/********** Types: Historic **********/
 
 "type.historic" = "Historic";
 
@@ -2447,6 +2197,8 @@
 
 "type.leisure.water_park" = "Centre aquatique";
 
+"type.leisure.beach_resort" = "Beach Resort";
+
 "type.man_made" = "Man Made";
 
 "type.man_made.breakwater" = "Breakwater";
@@ -2561,7 +2313,7 @@
 
 "type.natural.volcano" = "Volcan";
 
-"type.natural.water" = "Water body";
+"type.natural.water" = "Su";
 
 "type.natural.wetland" = "Sulak alan";
 
@@ -2595,25 +2347,25 @@
 
 "type.place.city.capital" = "Başkent";
 
-"type.place.city.capital.10" = "Başkent";
+"type.place.city.capital.10" = "Şehir";
 
-"type.place.city.capital.11" = "Başkent";
+"type.place.city.capital.11" = "Şehir";
 
 "type.place.city.capital.2" = "Başkent";
 
-"type.place.city.capital.3" = "Başkent";
+"type.place.city.capital.3" = "Şehir";
 
-"type.place.city.capital.4" = "Başkent";
+"type.place.city.capital.4" = "Şehir";
 
-"type.place.city.capital.5" = "Başkent";
+"type.place.city.capital.5" = "Şehir";
 
-"type.place.city.capital.6" = "Başkent";
+"type.place.city.capital.6" = "Şehir";
 
-"type.place.city.capital.7" = "Başkent";
+"type.place.city.capital.7" = "Şehir";
 
-"type.place.city.capital.8" = "Başkent";
+"type.place.city.capital.8" = "Şehir";
 
-"type.place.city.capital.9" = "Başkent";
+"type.place.city.capital.9" = "Şehir";
 
 "type.place.continent" = "Kıta";
 
@@ -2691,11 +2443,11 @@
 
 "type.railway.abandoned.bridge" = "Abandoned railway";
 
-"type.railway.abandoned.tunnel" = "Abandoned railway";
+"type.railway.abandoned.tunnel" = "Abandoned Railway";
 
-"type.railway.construction" = "Railway's construction";
+"type.railway.construction" = "Railway's Construction";
 
-"type.railway.crossing" = "Railway crossing";
+"type.railway.crossing" = "Railway Crossing";
 
 "type.railway.disused" = "Disused railway";
 
@@ -2971,54 +2723,6 @@
 
 "type.shop.wine" = "Caviste";
 
-"type.sponsored" = "sponsored";
-
-"type.sponsored.booking" = "sponsored-booking";
-
-"type.sponsored.holiday" = "Christmas or New Year Celebrations";
-
-"type.sponsored.opentable" = "sponsored-opentable";
-
-"type.sponsored.partner1" = "sponsored-partner1";
-
-"type.sponsored.partner10" = "sponsored-partner10";
-
-"type.sponsored.partner11" = "sponsored-partner11";
-
-"type.sponsored.partner12" = "sponsored-partner12";
-
-"type.sponsored.partner13" = "sponsored-partner13";
-
-"type.sponsored.partner14" = "sponsored-partner14";
-
-"type.sponsored.partner15" = "sponsored-partner15";
-
-"type.sponsored.partner16" = "sponsored-partner16";
-
-"type.sponsored.partner17" = "sponsored-partner17";
-
-"type.sponsored.partner18" = "MegaFon";
-
-"type.sponsored.partner19" = "MegaFon";
-
-"type.sponsored.partner2" = "sponsored-partner2";
-
-"type.sponsored.partner20" = "MegaFon";
-
-"type.sponsored.partner3" = "sponsored-partner3";
-
-"type.sponsored.partner4" = "sponsored-partner4";
-
-"type.sponsored.partner5" = "sponsored-partner5";
-
-"type.sponsored.partner6" = "sponsored-partner6";
-
-"type.sponsored.partner7" = "sponsored-partner7";
-
-"type.sponsored.partner8" = "sponsored-partner8";
-
-"type.sponsored.partner9" = "sponsored-partner9";
-
 "type.sport" = "sport";
 
 "type.sport.american_football" = "American Football";
@@ -3212,33 +2916,3 @@
 "type.piste_type.sled" = "piste:type-sled";
 
 "type.building_part" = "Bina";
-
-"type.area_highway.cycleway" = "Bike Path";
-
-"type.area_highway.footway" = "Path";
-
-"type.area_highway.living_street" = "Street";
-
-"type.area_highway.motorway" = "area:highway-motorway";
-
-"type.area_highway.path" = "Path";
-
-"type.area_highway.pedestrian" = "Street";
-
-"type.area_highway.primary" = "Street";
-
-"type.area_highway.residential" = "Street";
-
-"type.area_highway.secondary" = "Street";
-
-"type.area_highway.service" = "Street";
-
-"type.area_highway.tertiary" = "Street";
-
-"type.area_highway.steps" = "Steps";
-
-"type.area_highway.track" = "area:highway-track";
-
-"type.area_highway.trunk" = "area:highway-trunk";
-
-"type.area_highway.unclassified" = "area:highway-unclassified";

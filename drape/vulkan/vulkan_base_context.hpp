@@ -12,9 +12,6 @@
 
 #include "geometry/point2d.hpp"
 
-#include <vulkan_wrapper.h>
-#include <vulkan/vulkan.h>
-
 #include <array>
 #include <atomic>
 #include <cstdint>
@@ -58,7 +55,7 @@ public:
   void DebugSynchronizeWithCPU() override {}
   void PushDebugLabel(std::string const & label) override {}
   void PopDebugLabel() override {}
-  
+
   void SetClearColor(Color const & color) override;
   void Clear(uint32_t clearBits, uint32_t storeBits) override;
   void Flush() override {}
@@ -83,7 +80,7 @@ public:
                   VkSurfaceCapabilitiesKHR const & surfaceCapabilities);
   void ResetSurface(bool allowPipelineDump);
 
-  VkPhysicalDevice const GetPhysicalDevice() const { return m_gpu; }
+  VkPhysicalDevice GetPhysicalDevice() const { return m_gpu; }
   VkDevice GetDevice() const { return m_device; }
 
   VkPhysicalDeviceProperties const & GetGpuProperties() const { return m_gpuProperties; }

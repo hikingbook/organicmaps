@@ -30,8 +30,6 @@ using namespace std::placeholders;
 
 namespace
 {
-::Framework * frm() { return g_framework->NativeFramework(); }
-
 ::dp::Color initDpColor(int color) {
   auto const predefinedColor = kml::PredefinedColor(color);
   dp::Color dpcolor = dp::Color(0, 0, 0, 0);

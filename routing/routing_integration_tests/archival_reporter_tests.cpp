@@ -1,5 +1,7 @@
 #include "testing/testing.hpp"
 
+#include "tracking/archival_manager.hpp"
+
 #include "routing/routing_integration_tests/routing_test_tools.hpp"
 
 #include "map/framework.hpp"
@@ -23,6 +25,7 @@
 
 namespace
 {
+/*
 void UpdateLocationForArchiving(location::GpsInfo & point) { point.m_timestamp += 3; }
 
 size_t GetFilesCount(std::string const & path,
@@ -61,20 +64,20 @@ void TestFilesExistence(size_t newestIndex, size_t fileCount, std::string const 
          ());
   }
 }
-
+*/
 TRouteResult GetRouteResult()
 {
   return integration::CalculateRoute(integration::GetVehicleComponents(routing::VehicleType::Car),
-                                     mercator::FromLatLon(55.76100, 37.58000), m2::PointD::Zero(),
+                                     mercator::FromLatLon(55.7607268, 37.5801099), m2::PointD::Zero(),
                                      mercator::FromLatLon(55.75718, 37.63156));
 }
-
+/*
 size_t GetInitialTimestamp()
 {
   auto const now = std::chrono::system_clock::now();
   return std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()).count();
 }
-
+*/
 class TestArchivalReporter
 {
 public:
@@ -108,7 +111,11 @@ protected:
   Route & m_route;
   std::string m_tracksDir;
 };
+} // namespace
 
+/// @obsolete https://github.com/organicmaps/organicmaps/commit/04bc294c851bdfe3189d04391f7c3a7d6e601835
+
+/*
 // Ordinary ArchivalReporter pipeline: periodically dump files.
 UNIT_CLASS_TEST(TestArchivalReporter, StraightPipeline)
 {
@@ -158,7 +165,6 @@ UNIT_TEST(TestArchivalReporter_DeleteOldData)
 
 // ArchivalReporter pipeline with no dumping.
 // Checks behaviour if there is no free space on device.
-/*
 UNIT_CLASS_TEST(TestArchivalReporter, FreeSpaceOnDisk)
 {
   tracking::ArchivingSettings settings;
@@ -173,5 +179,3 @@ UNIT_CLASS_TEST(TestArchivalReporter, FreeSpaceOnDisk)
   }
 }
 */
-
-}  // namespace
