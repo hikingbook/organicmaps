@@ -275,21 +275,20 @@ void FeatureType::ParseTypes()
   ArrayByteSource source(m_data.data() + typesOffset);
 
   size_t const count = GetTypesCount();
-  uint32_t index = 0;
-  try
+  for (size_t i = 0; i < count; ++i)
   {
-    for (size_t i = 0; i < count; ++i)
+    uint32_t index = ReadVarUint<uint32_t>(source);
+    uint32_t const type = c.GetTypeForIndex(index);
+    if (type > 0)
+      m_types[i] = type;
+    else
     {
-      index = ReadVarUint<uint32_t>(source);
-      m_types[i] = c.GetTypeForIndex(index);
+      // Possible for newer MWMs with added types.
+      LOG(LWARNING, ("Incorrect type index for feature. FeatureID:", m_id, ". Incorrect index:", index,
+                   ". Loaded feature types:", m_types, ". Total count of types:", count));
+
+      m_types[i] = c.GetStubType();
     }
-  }
-  catch (std::out_of_range const & ex)
-  {
-    LOG(LERROR, ("Incorrect type index for feature.FeatureID:", m_id, ". Incorrect index:", index,
-                 ". Loaded feature types:", m_types, ". Total count of types:", count,
-                 ". Header:", m_header));
-    throw;
   }
 
   m_offsets.m_common = CalcOffset(source, m_data.data());
@@ -586,7 +585,8 @@ string FeatureType::DebugString(int scale)
   Classificator const & c = classif();
 
   string res = "Types";
-  for (size_t i = 0; i < GetTypesCount(); ++i)
+  uint32_t const count = GetTypesCount();
+  for (size_t i = 0; i < count; ++i)
     res += (" : " + c.GetReadableObjectName(m_types[i]));
   res += "\n";
 
@@ -771,7 +771,7 @@ void FeatureType::GetReadableName(bool allowTranslit, int8_t deviceLang, string 
   ::GetReadableName(mwmInfo->GetRegionData(), GetNames(), deviceLang, allowTranslit, name);
 }
 
-string FeatureType::GetHouseNumber()
+string const & FeatureType::GetHouseNumber()
 {
   ParseCommon();
   return m_params.house.Get();
@@ -794,7 +794,7 @@ uint8_t FeatureType::GetRank()
 
 uint64_t FeatureType::GetPopulation() { return feature::RankToPopulation(GetRank()); }
 
-string FeatureType::GetRoadNumber()
+string const & FeatureType::GetRoadNumber()
 {
   ParseCommon();
   return m_params.ref;
@@ -816,7 +816,7 @@ std::string FeatureType::GetMetadata(feature::Metadata::EType type)
   if (it == m_metaIds.end())
     return {};
 
-  auto const value = m_metadataDeserializer->GetMetaById(it->second);
+  auto value = m_metadataDeserializer->GetMetaById(it->second);
   m_metadata.Set(type, value);
   return value;
 }

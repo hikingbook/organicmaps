@@ -146,6 +146,15 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Police";
 
+/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
+"recycling" = "Recycling";
+
+/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
+"water" = "Water";
+
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
+"rv" = "RV Facilities";
+
 "share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
 
 /* message title of loading file */
@@ -172,7 +181,7 @@
 /* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
 "share" = "Share";
 
-/* Share by email button text, also used in editor. */
+/* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
 /* place preview title */
@@ -184,8 +193,8 @@
 /* Prints version number in About dialog */
 "version" = "Version: %@";
 
-/* Data version in «About» screen */
-"data_version" = "Data version: %d";
+/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
+"data_version" = "OpenStreetMap data: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "Tracks";
@@ -259,6 +268,9 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
+"matrix" = "[matrix]";
+
+/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -278,6 +290,12 @@
 
 /* Text in menu */
 "help" = "Help";
+
+/* Button in the main Help dialog */
+"faq" = "Frequently Asked Questions";
+
+/* Button in the main Help dialog */
+"how_to_support_us" = "How to support us?";
 
 /* Button in the main Help dialog */
 "copyright" = "Copyright";
@@ -339,18 +357,6 @@
 
 /* Item in context menu. */
 "downloader_delete_map" = "Delete Map";
-
-/* Text for rating dialog */
-"rating_just_rated" = "I’ve just rated your app";
-
-/* Text for rating dialog */
-"rating_thanks" = "Thank you!";
-
-/* Text for rating dialog */
-"rating_share_ideas" = "Share any ideas or issues so we can improve the app for you.";
-
-/* Text for rating dialog */
-"rating_send_feedback" = "Send feedback";
 
 /* Text for routing error dialog */
 "routing_download_maps_along" = "Download all of the maps along your route";
@@ -494,16 +500,6 @@
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Download and update all map along the projected path to calculate route.";
-
-"rate_alert_title" = "Like the app?";
-
-"rate_alert_default_message" = "Thank you for using Organic Maps. Please rate the app. Your feedback helps us improve our product.";
-
-"rate_alert_five_star_message" = "Hooray! We love you, too!";
-
-"rate_alert_four_star_message" = "Thank you, we will do our best!";
-
-"rate_alert_less_than_four_star_message" = "Any idea how we can make it better?";
 
 "categories" = "Categories";
 
@@ -814,8 +810,8 @@
 
 "recent_track_background_dialog_message" = "Organic Maps uses your geoposition in the background for recording your recently traveled route.";
 
-/* Text under the version number in the Help dialog. */
-"about_description" = "Organic Maps is a free and open-source offline maps application. No ads. No tracking. If you see an error on the map, please fix it in OpenStreetMap. The project is created by enthusiasts in our free time, so we need your feedback and support.";
+/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
+"about_description" = "Organic Maps is a fast and free offline maps app without ads and tracking. Maps are based on crowd-sourced OpenStreetMap.org data, so you can fix mapping errors and add features there yourself. Organic Maps is an open-source project created by enthusiasts in their spare time. Your feedback and support are much appreciated!";
 
 "general_settings" = "General settings";
 
@@ -838,7 +834,8 @@
 
 "mobile_data" = "Mobile Internet";
 
-"mobile_data_description" = "Mobile internet is required for displaying detailed information about places, such as photographs, prices and reviews.";
+/* NOTE to translators: please synchronize your translation with the English one. */
+"mobile_data_description" = "Mobile internet is required for map update notifications and for displaying detailed information about places and bookmarks.";
 
 "mobile_data_option_never" = "Never Use";
 
@@ -1098,6 +1095,9 @@
 
 "others_sorttype" = "Others";
 
+
+/********** Bookmark types used for sorting **********/
+
 "food_places" = "Food";
 
 "tourist_places" = "Sights";
@@ -1123,8 +1123,6 @@
 "parkings" = "Parkings";
 
 "fuel_places" = "Gas stations";
-
-"water" = "Water";
 
 "medicine" = "Medicine";
 
@@ -1211,21 +1209,21 @@
 
 "type.aerialway.station" = "Aerialway Station";
 
-"type.aeroway" = "Aeroway";
+"type.aeroway" = "Airspace Infrastructure";
 
 "type.aeroway.aerodrome" = "Airport";
 
-"type.aeroway.aerodrome.international" = "Airport";
+"type.aeroway.aerodrome.international" = "International Airport";
 
-"type.aeroway.apron" = "aeroway-apron";
+"type.aeroway.apron" = "Apron";
 
 "type.aeroway.gate" = "Gate";
 
 "type.aeroway.helipad" = "Helipad";
 
-"type.aeroway.runway" = "aeroway-runway";
+"type.aeroway.runway" = "Runway";
 
-"type.aeroway.taxiway" = "aeroway-taxiway";
+"type.aeroway.taxiway" = "Taxiway";
 
 "type.aeroway.terminal" = "Terminal";
 
@@ -1301,15 +1299,17 @@
 
 "type.amenity.fuel" = "Gas Station";
 
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.amenity.grave_yard" = "Graveyard";
 
-"type.amenity.grave_yard.christian" = "Graveyard";
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
+"type.amenity.grave_yard.christian" = "Christian Graveyard";
 
 "type.amenity.hospital" = "Hospital";
 
 "type.amenity.hunting_stand" = "Hunting Stand";
 
-"type.amenity.ice_cream" = "Ice Cream Stand";
+"type.amenity.ice_cream" = "Ice Cream";
 
 "type.amenity.internet_cafe" = "Internet Cafe";
 
@@ -1371,7 +1371,7 @@
 
 "type.amenity.police" = "Police";
 
-"type.amenity.post_box" = "Postbox";
+"type.amenity.post_box" = "Post Box";
 
 "type.amenity.post_office" = "Post Office";
 
@@ -1381,19 +1381,24 @@
 
 "type.amenity.public_bookcase" = "Book Exchange";
 
-"type.amenity.recycling" = "Recycling Center";
 
-"type.amenity.recycling_container" = "Recycling Container";
+/********** Types: Recycling **********/
 
-"type.recycling.toxic" = "Toxic Waste";
+"type.amenity.recycling.centre" = "Recycling Center";
 
-"type.recycling.clothes" = "Old Clothes";
+"type.amenity.recycling" = "Recycling Container";
+
+"type.amenity.recycling.container" = "Recycling Container";
+
+"type.recycling.batteries" = "Household Batteries";
+
+"type.recycling.clothes" = "Clothes";
 
 "type.recycling.glass_bottles" = "Glass Bottles";
 
-"type.recycling.paper" = "Paper Waste";
+"type.recycling.paper" = "Paper";
 
-"type.recycling.plastic" = "Plastic Waste";
+"type.recycling.plastic" = "Plastic";
 
 "type.recycling.plastic_bottles" = "Plastic Bottles";
 
@@ -1401,7 +1406,19 @@
 
 "type.recycling.small_appliances" = "Electronic Waste";
 
+"type.recycling.cardboard" = "Cardboard";
+
+"type.recycling.cans" = "Cans";
+
+"type.recycling.shoes" = "Shoes";
+
+"type.recycling.green_waste" = "Green/Organic Waste";
+
+"type.recycling.cartons" = "Bewerage Cartons";
+
 "type.amenity.restaurant" = "Restaurant";
+
+"type.amenity.sanitary_dump_station" = "Holding Tank Dump Station";
 
 "type.amenity.school" = "School";
 
@@ -1425,11 +1442,17 @@
 
 "type.amenity.vending_machine.cigarettes" = "Cigarette Dispenser";
 
-"type.amenity.vending_machine.drinks" = "Drink Dispenser";
+"type.amenity.vending_machine.drinks" = "Drinks Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parking Tickets";
 
-"type.amenity.vending_machine.public_transport_tickets" = "Vending Machine for Public Transport Tickets";
+"type.amenity.vending_machine.public_transport_tickets" = "Ticket Machine";
+
+"type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
+
+"type.amenity.parcel_locker" = "Parcel Locker";
+
+"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
 
 "type.amenity.veterinary" = "Veterinary Doctor";
 
@@ -1437,7 +1460,9 @@
 
 "type.amenity.waste_disposal" = "Dumpster";
 
-"type.amenity.water_point" = "Water Point";
+"type.amenity.waste_transfer_station" = "Waste Transfer Station";
+
+"type.amenity.water_point" = "RV Water Point";
 
 "type.barrier" = "Barrier";
 
@@ -1475,45 +1500,43 @@
 
 "type.boundary" = "Boundary";
 
-"type.boundary.administrative" = "boundary-administrative";
+"type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "boundary-administrative-10";
+"type.boundary.administrative.10" = "Administrative Boundary";
 
-"type.boundary.administrative.11" = "boundary-administrative-11";
+"type.boundary.administrative.11" = "Administrative Boundary";
 
-"type.boundary.administrative.2" = "boundary-administrative-2";
+"type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "boundary-administrative-3";
+"type.boundary.administrative.3" = "Administrative Boundary";
 
-"type.boundary.administrative.4" = "boundary-administrative-4";
+"type.boundary.administrative.4" = "Administrative Boundary";
 
-"type.boundary.administrative.4.state" = "boundary-administrative-4-state";
+"type.boundary.administrative.5" = "Administrative Boundary";
 
-"type.boundary.administrative.5" = "boundary-administrative-5";
+"type.boundary.administrative.6" = "Administrative Boundary";
 
-"type.boundary.administrative.6" = "boundary-administrative-6";
+"type.boundary.administrative.7" = "Administrative Boundary";
 
-"type.boundary.administrative.7" = "boundary-administrative-7";
+"type.boundary.administrative.8" = "Administrative Boundary";
 
-"type.boundary.administrative.8" = "boundary-administrative-8";
+"type.boundary.administrative.9" = "Administrative Boundary";
 
-"type.boundary.administrative.9" = "boundary-administrative-9";
+"type.boundary.administrative.city" = "City Boundary";
 
-"type.boundary.administrative.city" = "boundary-administrative-city";
+"type.boundary.administrative.country" = "National Border";
 
-"type.boundary.administrative.country" = "boundary-administrative-country";
+"type.boundary.administrative.county" = "County Boundary";
 
-"type.boundary.administrative.county" = "boundary-administrative-county";
+"type.boundary.administrative.municipality" = "Municipality Boundary";
 
-"type.boundary.administrative.municipality" = "boundary-administrative-municipality";
+"type.boundary.administrative.nation" = "National Border";
 
-"type.boundary.administrative.nation" = "boundary-administrative-nation";
+"type.boundary.administrative.region" = "Regional Boundary";
 
-"type.boundary.administrative.region" = "boundary-administrative-region";
+"type.boundary.administrative.state" = "State Boundary";
 
-"type.boundary.administrative.state" = "boundary-administrative-state";
-
-"type.boundary.administrative.suburb" = "boundary-administrative-suburb";
+"type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "National Park";
 
@@ -1986,7 +2009,7 @@
 
 "type.area_highway.trunk" = "National Highway";
 
-"type.area_highway.unclassified" = "area:highway-unclassified";
+"type.area_highway.unclassified" = "Minor Road";
 
 "type.highway.world_level" = "highway-world_level";
 
@@ -2075,9 +2098,11 @@
 
 "type.landuse.brownfield" = "Brownfield";
 
-"type.landuse.cemetery" = "Graveyard";
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
+"type.landuse.cemetery" = "Cemetery";
 
-"type.landuse.cemetery.christian" = "Christian Graveyard";
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
+"type.landuse.cemetery.christian" = "Christian Cemetery";
 
 "type.landuse.churchyard" = "Churchyard";
 
@@ -2139,7 +2164,7 @@
 
 "type.leisure" = "Leisure";
 
-"type.leisure.common" = "leisure-common";
+"type.leisure.common" = "Public Land";
 
 "type.leisure.dog_park" = "Dog Area";
 
@@ -2193,6 +2218,8 @@
 
 "type.leisure.swimming_pool" = "Swimming Pool";
 
+"type.leisure.swimming_pool.private" = "Swimming Pool";
+
 "type.leisure.track" = "Track";
 
 "type.leisure.water_park" = "Water Park";
@@ -2209,7 +2236,11 @@
 
 "type.man_made.cutline" = "Cutline";
 
+"type.man_made.flagpole" = "Flagpole";
+
 "type.man_made.lighthouse" = "Lighthouse";
+
+"type.man_made.mast" = "Mast";
 
 "type.man_made.pier" = "Pier";
 
@@ -2321,9 +2352,7 @@
 
 "type.natural.wetland.marsh" = "Wetland";
 
-"type.noexit" = "noexit";
-
-"type.noexit.motor_vehicle" = "noexit-motor_vehicle";
+"type.noexit" = "Dead End";
 
 "type.office" = "Office";
 
@@ -2479,7 +2508,7 @@
 
 "type.railway.narrow_gauge.tunnel" = "Narrow Gauge Rail";
 
-"type.railway.platform" = "Platform";
+"type.railway.platform" = "Railway Platform";
 
 "type.railway.preserved" = "Preserved Rail";
 
@@ -2607,13 +2636,15 @@
 
 "type.shop.butcher" = "Butcher’s";
 
-"type.shop.car" = "Car Shop";
+"type.shop.car" = "Car Dealership";
 
 "type.shop.car_parts" = "Car Parts";
 
 "type.shop.car_repair" = "Car Repair Shop";
 
 "type.shop.car_repair.tyres" = "Tyre Repair";
+
+"type.shop.caravan" = "RV Dealership";
 
 "type.shop.chemist" = "Chemist Shop";
 
@@ -2791,7 +2822,7 @@
 
 "type.tourism.camp_site" = "Camping";
 
-"type.tourism.caravan_site" = "Caravan Site";
+"type.tourism.caravan_site" = "RV Park";
 
 "type.tourism.chalet" = "Chalet";
 
@@ -2883,36 +2914,37 @@
 
 "type.wheelchair.yes" = "Full Wheelchair Access";
 
-"type.piste_lift" = "piste:lift";
+/* en.wikipedia.org/wiki/Surface_lift */
+"type.piste_lift" = "Surface Lift";
 
-"type.piste_lift.j.bar" = "piste:lift-j-bar";
+"type.piste_lift.j.bar" = "J-bar Lift";
 
-"type.piste_lift.magic_carpet" = "piste:lift-magic_carpet";
+"type.piste_lift.magic_carpet" = "Magic Carpet";
 
-"type.piste_lift.platter" = "piste:lift-platter";
+"type.piste_lift.platter" = "Platter Lift";
 
-"type.piste_lift.rope_tow" = "piste:lift-rope_tow";
+"type.piste_lift.rope_tow" = "Rope Tow";
 
-"type.piste_lift.t.bar" = "piste:lift-t-bar";
+"type.piste_lift.t.bar" = "T-bar Lift";
 
-"type.piste_type" = "piste:type";
+"type.piste_type" = "Piste Type";
 
-"type.piste_type.downhill" = "piste:type-downhill";
+"type.piste_type.downhill" = "Downhill Ski Run";
 
-"type.piste_type.downhill.advanced" = "piste:type-downhill-advanced";
+"type.piste_type.downhill.advanced" = "Downhill Ski Run";
 
-"type.piste_type.downhill.easy" = "piste:type-downhill-easy";
+"type.piste_type.downhill.easy" = "Downhill Ski Run";
 
-"type.piste_type.downhill.expert" = "piste:type-downhill-expert";
+"type.piste_type.downhill.expert" = "Downhill Ski Run";
 
-"type.piste_type.downhill.freeride" = "piste:type-downhill-freeride";
+"type.piste_type.downhill.freeride" = "Downhill Ski Run";
 
-"type.piste_type.downhill.intermediate" = "piste:type-downhill-intermediate";
+"type.piste_type.downhill.intermediate" = "Downhill Ski Run";
 
-"type.piste_type.downhill.novice" = "piste:type-downhill-novice";
+"type.piste_type.downhill.novice" = "Downhill Ski Run";
 
-"type.piste_type.nordic" = "piste:type-nordic";
+"type.piste_type.nordic" = "Nordic Ski Trail";
 
-"type.piste_type.sled" = "piste:type-sled";
+"type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "Building";

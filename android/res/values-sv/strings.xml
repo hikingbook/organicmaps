@@ -123,6 +123,10 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polis</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Återvinning</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Vatten</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Anteckningar</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">Hej,\n\nJag är här nu: %1$s. Klicka på denna länk %2$s eller denna %3$s för att se platsen på kartan.\n\nTack.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Dela</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-post</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Kopierat till urklippsbordet: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Klar</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Version: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap-data: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Är du säker på att du vill fortsätta?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -441,7 +449,6 @@
 	<string name="placepage_place_description">Beskrivning</string>
 	<string name="placepage_more_button">Mer</string>
 	<string name="placepage_more_reviews_button">Fler recensioner</string>
-	<string name="book_button">Boka</string>
 	<string name="placepage_call_button">Ring</string>
 	<string name="placepage_edit_bookmark_button">Redigera bokmärke</string>
 	<string name="editor_comment_hint">kommentar…</string>
@@ -460,7 +467,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Se till att du inte angett någon personinformation</string>
 	<string name="editor_share_to_all_dialog_message_2">Vi kommer att kontrollera ändringar. Om vi har några frågor kontaktar vi dig via e-post.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps är en gratis offlinekartapplikation med öppen källkod. Inga annonser. Ingen spårning. Om du ser ett fel på kartan, åtgärda det i OpenStreetMap. Projektet skapas av entusiaster på vår fritid, så vi behöver din feedback och support.</string>
 	<!-- For the first routing -->
 	<string name="accept">Acceptera</string>
@@ -473,6 +480,7 @@
 	<string name="mobile_data_option_today">Endast idag</string>
 	<string name="mobile_data_option_not_today">Använd inte idag</string>
 	<string name="mobile_data">Mobilt internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Mobil internet krävs för att visa detaljerad information om platser, som t. ex. fotografier, priser och omdömen.</string>
 	<string name="mobile_data_option_never">Använd aldrig</string>
 	<string name="mobile_data_option_ask">Fråga alltid</string>
@@ -600,6 +608,8 @@
 	<string name="moreyear_ago_sorttype">För över ett år sedan</string>
 	<string name="near_me_sorttype">Bredvid mig</string>
 	<string name="others_sorttype">Andra</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Mat</string>
 	<string name="tourist_places">Sevärdheter</string>
 	<string name="museums">Museer</string>
@@ -613,7 +623,6 @@
 	<string name="shops">Butiker</string>
 	<string name="parkings">Parkeringsplatser</string>
 	<string name="fuel_places">Bensinstationer</string>
-	<string name="water">Vatten</string>
 	<string name="medicine">Medicin</string>
 	<string name="search_in_the_list">Söka i listan</string>
 	<string name="religious_places">Heliga platser</string>
@@ -674,7 +683,9 @@
 	<string name="type.amenity.fire_station">Brandstation</string>
 	<string name="type.amenity.fountain">Fontän</string>
 	<string name="type.amenity.fuel">Bensinstation</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Begravningsplats</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Begravningsplats</string>
 	<string name="type.amenity.hospital">Sjukhus</string>
 	<string name="type.amenity.hunting_stand">Jakttorn</string>
@@ -713,9 +724,12 @@
 	<string name="type.amenity.post_office">Postkontor</string>
 	<string name="type.amenity.pub">Krog</string>
 	<string name="type.amenity.public_bookcase">Bokskåp</string>
-	<string name="type.amenity.recycling">Återvinningscentral</string>
-	<string name="type.amenity.recycling_container">Behållare för återvinningsbart avfall</string>
-	<string name="type.recycling.toxic">Giftigt avfall</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Återvinningscentral</string>
+	<string name="type.amenity.recycling">Behållare för återvinningsbart avfall</string>
+	<string name="type.amenity.recycling.container">Behållare för återvinningsbart avfall</string>
+	<string name="type.recycling.batteries">Batterier</string>
 	<string name="type.recycling.clothes">Gamla kläder</string>
 	<string name="type.recycling.glass_bottles">Returglas</string>
 	<string name="type.recycling.paper">Returpapper</string>
@@ -983,7 +997,9 @@
 	<string name="type.historic.ship">Attraktion</string>
 	<string name="type.historic.tomb">Attraktion</string>
 	<string name="type.landuse.basin">Vattenbassäng</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Begravningsplats</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Begravningsplats</string>
 	<string name="type.landuse.churchyard">Kyrkogård</string>
 	<string name="type.landuse.farmland">Jordbruksmark</string>
@@ -1016,6 +1032,7 @@
 	<string name="type.leisure.sports_centre.yoga">Yogastudio</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Simbassäng</string>
+	<string name="type.leisure.swimming_pool.private">Simbassäng</string>
 	<string name="type.leisure.water_park">Äventyrspark</string>
 	<string name="type.man_made.chimney">Fabriksskorsten</string>
 	<string name="type.man_made.lighthouse">Fyr</string>

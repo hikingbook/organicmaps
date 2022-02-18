@@ -125,6 +125,10 @@
 	<string name="post">بريد</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">شرطة</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">إعادة تدوير</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">ماء</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">ملاحظات</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -153,12 +157,16 @@
 	<string name="my_position_share_email">مرحبا،\n\nأنا هنا الآن: %1$s. انقر على هذا الرابط %2$s أو ذلك الرابط %3$s لمشاهدة المكان على الخريطة.\n\nشكرا لك.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">مشاركة</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">البريد الالكتروني</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">تم النسخ الى الحافظة: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">تم</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">الاصدار: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap: %s ﺕﺎﻧﺎﻴﺑ</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">هل أنت واثق أنك تريد الاستمرار؟</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -447,7 +455,6 @@
 	<string name="placepage_place_description">الوصف</string>
 	<string name="placepage_more_button">المزيد</string>
 	<string name="placepage_more_reviews_button">المزيد من المراجعات</string>
-	<string name="book_button">حجز</string>
 	<string name="placepage_call_button">اتصال</string>
 	<string name="placepage_edit_bookmark_button">تحرير العلامة المرجعية</string>
 	<string name="editor_comment_hint">تعليق…</string>
@@ -466,7 +473,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">تأكد من أنك لم تقم بإدخال أي بيانات شخصية.</string>
 	<string name="editor_share_to_all_dialog_message_2">سنقوم بمراجعة هذه التغييرات. إذا كانت لدينا أي أسئلة فسوف نتصل بك عبر البريد الإلكتروني.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps هي تطبيق خرائط مجاني ومفتوح المصدر بلا اتصال بالإنترنت. لا اعلانات. لا تتبع. إذا رأيت خطأً على الخريطة ، فيرجى إصلاحه في OpenStreetMap. تم إنشاء المشروع بواسطة المتحمسين في أوقات فراغنا ، لذلك نحتاج إلى ملاحظاتك ودعمك.</string>
 	<!-- For the first routing -->
 	<string name="accept">قبول</string>
@@ -479,6 +486,7 @@
 	<string name="mobile_data_option_today">اليوم فقط</string>
 	<string name="mobile_data_option_not_today">عدم الاستخدام اليوم</string>
 	<string name="mobile_data">انترنت المحمول</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">الإنترنت المحمول مطلوب لعرض معلومات تفصيلية عن الأماكن مثل الصور الفوتوغرافية والأسعار والمراجعات.</string>
 	<string name="mobile_data_option_never">عدم الاستخدام مطلقًا</string>
 	<string name="mobile_data_option_ask">السؤال دوماً</string>
@@ -605,6 +613,8 @@
 	<string name="moreyear_ago_sorttype">منذ أكثر من سنة</string>
 	<string name="near_me_sorttype">قريب مني</string>
 	<string name="others_sorttype">أخرى</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">طعام</string>
 	<string name="tourist_places">مشاهد</string>
 	<string name="museums">متاحف</string>
@@ -618,7 +628,6 @@
 	<string name="shops">متاجر</string>
 	<string name="parkings">مواقف سيارات</string>
 	<string name="fuel_places">محطات وقود</string>
-	<string name="water">ماء</string>
 	<string name="medicine">دواء</string>
 	<string name="search_in_the_list">بحث في القائمة</string>
 	<string name="religious_places">أماكن دينية</string>
@@ -681,7 +690,9 @@
 	<string name="type.amenity.fire_station">محطة إطفاء</string>
 	<string name="type.amenity.fountain">نافورة</string>
 	<string name="type.amenity.fuel">محطة وقود</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">مقبرة</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">مقبرة</string>
 	<string name="type.amenity.hospital">عيادة</string>
 	<string name="type.amenity.hunting_stand">منصة صيد</string>
@@ -720,9 +731,12 @@
 	<string name="type.amenity.post_office">مكتب بريد</string>
 	<string name="type.amenity.pub">بار</string>
 	<string name="type.amenity.public_bookcase">مكتبة، تبادل كتب</string>
-	<string name="type.amenity.recycling">مركز إعادة تدوير</string>
-	<string name="type.amenity.recycling_container">حاوية لإعادة التدوير</string>
-	<string name="type.recycling.toxic">نفايات سامة</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">مركز إعادة تدوير</string>
+	<string name="type.amenity.recycling">حاوية لإعادة التدوير</string>
+	<string name="type.amenity.recycling.container">حاوية لإعادة التدوير</string>
+	<string name="type.recycling.batteries">ﺕﺎﻳﺭﺎﻄﺑ</string>
 	<string name="type.recycling.clothes">ملابس قديمة</string>
 	<string name="type.recycling.glass_bottles">زجاجات زجاجية</string>
 	<string name="type.recycling.paper">نفايات ورقية</string>
@@ -996,7 +1010,9 @@
 	<string name="type.internet_access">واي فاي</string>
 	<string name="type.internet_access.wlan">واي فاي</string>
 	<string name="type.landuse.basin">حوض المياه</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">مقبرة</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">مقبرة</string>
 	<string name="type.landuse.churchyard">فناء الكنيسة</string>
 	<string name="type.landuse.farmland">حقل</string>
@@ -1029,6 +1045,7 @@
 	<string name="type.leisure.sports_centre.yoga">نادي يوغا</string>
 	<string name="type.leisure.stadium">استاد</string>
 	<string name="type.leisure.swimming_pool">حوض سباحة</string>
+	<string name="type.leisure.swimming_pool.private">حوض سباحة</string>
 	<string name="type.leisure.water_park">ملاهي مائية</string>
 	<string name="type.man_made.chimney">مدخنة مصنع</string>
 	<string name="type.man_made.lighthouse">منارة</string>

@@ -2,18 +2,15 @@ protocol BottomTabBarPresenterProtocol: AnyObject {
   func configure()
   func onSearchButtonPressed()
   func onPoint2PointButtonPressed()
-  func onDiscoveryButtonPressed()
+  func onHelpButtonPressed()
   func onBookmarksButtonPressed()
   func onMenuButtonPressed()
 }
 
 class BottomTabBarPresenter: NSObject {
-  private weak var view: BottomTabBarViewProtocol?
   private let interactor: BottomTabBarInteractorProtocol
   
-  init(view: BottomTabBarViewProtocol, 
-       interactor: BottomTabBarInteractorProtocol) {
-    self.view = view
+  init(interactor: BottomTabBarInteractorProtocol) {
     self.interactor = interactor
   }
 }
@@ -30,8 +27,8 @@ extension BottomTabBarPresenter: BottomTabBarPresenterProtocol {
     interactor.openPoint2Point()
   }
   
-  func onDiscoveryButtonPressed() {
-    interactor.openDiscovery()
+  func onHelpButtonPressed() {
+    interactor.openHelp()
   }
   
   func onBookmarksButtonPressed() {

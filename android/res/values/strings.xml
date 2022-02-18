@@ -126,6 +126,12 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Police</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Recycling</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Water</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">RV Facilities</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notes</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -155,14 +161,16 @@
 	<string name="my_position_share_email">Hi,\n\nI\'m here now: %1$s. Click this link %2$s or this one %3$s to see the place on the map.\n\nThanks.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Share</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Copied to clipboard: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Done</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Data version: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Version: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap data: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Are you sure you want to continue?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -209,6 +217,8 @@
 	<string name="github">GitHub</string>
 	<!-- Text in menu -->
 	<string name="telegram">Telegram</string>
+	<!-- Text in menu -->
+	<string name="matrix">[matrix]</string>
 	<!-- Text in menu -->
 	<string name="facebook">Facebook</string>
 	<!-- Text in menu -->
@@ -474,7 +484,6 @@
 	<string name="placepage_place_description">Description</string>
 	<string name="placepage_more_button">More</string>
 	<string name="placepage_more_reviews_button">More Reviews</string>
-	<string name="book_button">Book</string>
 	<string name="placepage_call_button">Call</string>
 	<string name="placepage_edit_bookmark_button">Edit Bookmark</string>
 	<string name="editor_comment_hint">Comment…</string>
@@ -500,8 +509,8 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Make sure you did not enter any personal data.</string>
 	<string name="editor_share_to_all_dialog_message_2">We will check the changes. If we have any questions we will contact you via email.</string>
-	<!-- Text under the version number in the Help dialog. -->
-	<string name="about_description">Organic Maps is a free and open-source offline maps application. No ads. No tracking. If you see an error on the map, please fix it in OpenStreetMap. The project is created by enthusiasts in our free time, so we need your feedback and support.</string>
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
+	<string name="about_description">Organic Maps is a fast and free offline maps app without ads and tracking. Maps are based on crowd-sourced OpenStreetMap.org data, so you can fix mapping errors and add features there yourself. Organic Maps is an open-source project created by enthusiasts in their spare time. Your feedback and support are much appreciated!</string>
 	<!-- For the first routing -->
 	<string name="accept">Accept</string>
 	<!-- For the first routing -->
@@ -513,7 +522,8 @@
 	<string name="mobile_data_option_today">Only Today</string>
 	<string name="mobile_data_option_not_today">Do not Use Today</string>
 	<string name="mobile_data">Mobile Internet</string>
-	<string name="mobile_data_description">Mobile internet is required for displaying detailed information about places, such as photographs, prices and reviews.</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
+	<string name="mobile_data_description">Mobile internet is required for map update notifications and for displaying detailed information about places and bookmarks.</string>
 	<string name="mobile_data_option_never">Never Use</string>
 	<string name="mobile_data_option_ask">Always Ask</string>
 	<string name="traffic_update_maps_text">To display traffic data, maps must be updated.</string>
@@ -527,7 +537,7 @@
 	<string name="on">On</string>
 	<string name="off">Off</string>
 	<string name="prefs_languages_information">We use system TTS for voice instructions. Many Android devices use Google TTS, you can download or update it from Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">For some languages, you will need to install a speech synthesizer or an additional language pack from the app store (Google Play Market, Samsung Apps).\nOpen your device\'s settings → Language and input → Speech → Text to speech output.\nHere you can manage settings for speech synthesis (for example, download language pack for offline use) and select another text-to-speech engine.</string>
+	<string name="prefs_languages_information_off">For some languages, you will need to install a speech synthesizer or an additional language pack from the app store (Google Play, Samsung Apps, App Gallery, FDroid).\nOpen your device\'s settings → Language and input → Speech → Text to speech output.\nHere you can manage settings for speech synthesis (for example, download language pack for offline use) and select another text-to-speech engine.</string>
 	<string name="prefs_languages_information_off_link">For more information please check this guide.</string>
 	<string name="transliteration_title">Transliteration into Latin</string>
 	<string name="learn_more">Learn more</string>
@@ -645,6 +655,8 @@
 	<string name="moreyear_ago_sorttype">More than a year ago</string>
 	<string name="near_me_sorttype">Near me</string>
 	<string name="others_sorttype">Others</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Food</string>
 	<string name="tourist_places">Sights</string>
 	<string name="museums">Museums</string>
@@ -658,7 +670,6 @@
 	<string name="shops">Shops</string>
 	<string name="parkings">Parkings</string>
 	<string name="fuel_places">Gas stations</string>
-	<string name="water">Water</string>
 	<string name="medicine">Medicine</string>
 	<string name="search_in_the_list">Search in the list</string>
 	<string name="religious_places">Religious places</string>
@@ -683,6 +694,10 @@
 	<string name="enable_screen_sleep">Allow screen to sleep</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">When enabled the screen will be allowed to sleep after a period of inactivity.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Show on the lock screen</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">When enabled, you don\'t need to unlock your device every time while the app is running.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Aerialway</string>
@@ -692,14 +707,14 @@
 	<string name="type.aerialway.gondola">Aerialway</string>
 	<string name="type.aerialway.mixed_lift">Aerialway</string>
 	<string name="type.aerialway.station">Aerialway Station</string>
-	<string name="type.aeroway">Aeroway</string>
+	<string name="type.aeroway">Airspace Infrastructure</string>
 	<string name="type.aeroway.aerodrome">Airport</string>
-	<string name="type.aeroway.aerodrome.international">Airport</string>
-	<string name="type.aeroway.apron">aeroway-apron</string>
+	<string name="type.aeroway.aerodrome.international">International Airport</string>
+	<string name="type.aeroway.apron">Apron</string>
 	<string name="type.aeroway.gate">Gate</string>
 	<string name="type.aeroway.helipad">Helipad</string>
-	<string name="type.aeroway.runway">aeroway-runway</string>
-	<string name="type.aeroway.taxiway">aeroway-taxiway</string>
+	<string name="type.aeroway.runway">Runway</string>
+	<string name="type.aeroway.taxiway">Taxiway</string>
 	<string name="type.aeroway.terminal">Terminal</string>
 	<string name="type.amenity">Amenity</string>
 	<string name="type.amenity.arts_centre">Art Center</string>
@@ -737,11 +752,13 @@
 	<string name="type.amenity.food_court">Food Court</string>
 	<string name="type.amenity.fountain">Fountain</string>
 	<string name="type.amenity.fuel">Gas Station</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Graveyard</string>
-	<string name="type.amenity.grave_yard.christian">Graveyard</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">Christian Graveyard</string>
 	<string name="type.amenity.hospital">Hospital</string>
 	<string name="type.amenity.hunting_stand">Hunting Stand</string>
-	<string name="type.amenity.ice_cream">Ice Cream Stand</string>
+	<string name="type.amenity.ice_cream">Ice Cream</string>
 	<string name="type.amenity.internet_cafe">Internet Cafe</string>
 	<string name="type.amenity.kindergarten">Kindergarten</string>
 	<string name="type.amenity.library">Library</string>
@@ -772,22 +789,31 @@
 	<string name="type.amenity.place_of_worship.shinto">Shrine</string>
 	<string name="type.amenity.place_of_worship.taoist">Temple</string>
 	<string name="type.amenity.police">Police</string>
-	<string name="type.amenity.post_box">Postbox</string>
+	<string name="type.amenity.post_box">Post Box</string>
 	<string name="type.amenity.post_office">Post Office</string>
 	<string name="type.amenity.prison">Prison</string>
 	<string name="type.amenity.pub">Pub</string>
 	<string name="type.amenity.public_bookcase">Book Exchange</string>
-	<string name="type.amenity.recycling">Recycling Center</string>
-	<string name="type.amenity.recycling_container">Recycling Container</string>
-	<string name="type.recycling.toxic">Toxic Waste</string>
-	<string name="type.recycling.clothes">Old Clothes</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Recycling Center</string>
+	<string name="type.amenity.recycling">Recycling Container</string>
+	<string name="type.amenity.recycling.container">Recycling Container</string>
+	<string name="type.recycling.batteries">Household Batteries</string>
+	<string name="type.recycling.clothes">Clothes</string>
 	<string name="type.recycling.glass_bottles">Glass Bottles</string>
-	<string name="type.recycling.paper">Paper Waste</string>
-	<string name="type.recycling.plastic">Plastic Waste</string>
+	<string name="type.recycling.paper">Paper</string>
+	<string name="type.recycling.plastic">Plastic</string>
 	<string name="type.recycling.plastic_bottles">Plastic Bottles</string>
 	<string name="type.recycling.scrap_metal">Scrap Metal</string>
 	<string name="type.recycling.small_appliances">Electronic Waste</string>
+	<string name="type.recycling.cardboard">Cardboard</string>
+	<string name="type.recycling.cans">Cans</string>
+	<string name="type.recycling.shoes">Shoes</string>
+	<string name="type.recycling.green_waste">Green/Organic Waste</string>
+	<string name="type.recycling.cartons">Bewerage Cartons</string>
 	<string name="type.amenity.restaurant">Restaurant</string>
+	<string name="type.amenity.sanitary_dump_station">Holding Tank Dump Station</string>
 	<string name="type.amenity.school">School</string>
 	<string name="type.amenity.shelter">Shelter</string>
 	<string name="type.amenity.shower">Shower</string>
@@ -799,13 +825,17 @@
 	<string name="type.amenity.university">University</string>
 	<string name="type.amenity.vending_machine">Vending Machine</string>
 	<string name="type.amenity.vending_machine.cigarettes">Cigarette Dispenser</string>
-	<string name="type.amenity.vending_machine.drinks">Drink Dispenser</string>
+	<string name="type.amenity.vending_machine.drinks">Drinks Dispenser</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Parking Tickets</string>
-	<string name="type.amenity.vending_machine.public_transport_tickets">Vending Machine for Public Transport Tickets</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">Ticket Machine</string>
+	<string name="type.amenity.vending_machine.excrement_bags">Excrement Bags Dispenser</string>
+	<string name="type.amenity.parcel_locker">Parcel Locker</string>
+	<string name="type.amenity.vending_machine.fuel">Fuel Dispenser</string>
 	<string name="type.amenity.veterinary">Veterinary Doctor</string>
 	<string name="type.amenity.waste_basket">Trash Bin</string>
 	<string name="type.amenity.waste_disposal">Dumpster</string>
-	<string name="type.amenity.water_point">Water Point</string>
+	<string name="type.amenity.waste_transfer_station">Waste Transfer Station</string>
+	<string name="type.amenity.water_point">RV Water Point</string>
 	<string name="type.barrier">Barrier</string>
 	<string name="type.barrier.block">Block</string>
 	<string name="type.barrier.bollard">Pillar</string>
@@ -824,26 +854,25 @@
 	<string name="type.barrier.toll_booth">Toll Booth</string>
 	<string name="type.barrier.wall">Wall</string>
 	<string name="type.boundary">Boundary</string>
-	<string name="type.boundary.administrative">boundary-administrative</string>
-	<string name="type.boundary.administrative.10">boundary-administrative-10</string>
-	<string name="type.boundary.administrative.11">boundary-administrative-11</string>
-	<string name="type.boundary.administrative.2">boundary-administrative-2</string>
-	<string name="type.boundary.administrative.3">boundary-administrative-3</string>
-	<string name="type.boundary.administrative.4">boundary-administrative-4</string>
-	<string name="type.boundary.administrative.4.state">boundary-administrative-4-state</string>
-	<string name="type.boundary.administrative.5">boundary-administrative-5</string>
-	<string name="type.boundary.administrative.6">boundary-administrative-6</string>
-	<string name="type.boundary.administrative.7">boundary-administrative-7</string>
-	<string name="type.boundary.administrative.8">boundary-administrative-8</string>
-	<string name="type.boundary.administrative.9">boundary-administrative-9</string>
-	<string name="type.boundary.administrative.city">boundary-administrative-city</string>
-	<string name="type.boundary.administrative.country">boundary-administrative-country</string>
-	<string name="type.boundary.administrative.county">boundary-administrative-county</string>
-	<string name="type.boundary.administrative.municipality">boundary-administrative-municipality</string>
-	<string name="type.boundary.administrative.nation">boundary-administrative-nation</string>
-	<string name="type.boundary.administrative.region">boundary-administrative-region</string>
-	<string name="type.boundary.administrative.state">boundary-administrative-state</string>
-	<string name="type.boundary.administrative.suburb">boundary-administrative-suburb</string>
+	<string name="type.boundary.administrative">Administrative Boundary</string>
+	<string name="type.boundary.administrative.10">Administrative Boundary</string>
+	<string name="type.boundary.administrative.11">Administrative Boundary</string>
+	<string name="type.boundary.administrative.2">National Border</string>
+	<string name="type.boundary.administrative.3">Administrative Boundary</string>
+	<string name="type.boundary.administrative.4">Administrative Boundary</string>
+	<string name="type.boundary.administrative.5">Administrative Boundary</string>
+	<string name="type.boundary.administrative.6">Administrative Boundary</string>
+	<string name="type.boundary.administrative.7">Administrative Boundary</string>
+	<string name="type.boundary.administrative.8">Administrative Boundary</string>
+	<string name="type.boundary.administrative.9">Administrative Boundary</string>
+	<string name="type.boundary.administrative.city">City Boundary</string>
+	<string name="type.boundary.administrative.country">National Border</string>
+	<string name="type.boundary.administrative.county">County Boundary</string>
+	<string name="type.boundary.administrative.municipality">Municipality Boundary</string>
+	<string name="type.boundary.administrative.nation">National Border</string>
+	<string name="type.boundary.administrative.region">Regional Boundary</string>
+	<string name="type.boundary.administrative.state">State Boundary</string>
+	<string name="type.boundary.administrative.suburb">Suburb Boundary</string>
 	<string name="type.boundary.national_park">National Park</string>
 	<string name="type.building">Building</string>
 	<string name="type.building.address">Building</string>
@@ -1080,7 +1109,7 @@
 	<string name="type.area_highway.steps">Stairs</string>
 	<string name="type.area_highway.track">Track</string>
 	<string name="type.area_highway.trunk">National Highway</string>
-	<string name="type.area_highway.unclassified">area:highway-unclassified</string>
+	<string name="type.area_highway.unclassified">Minor Road</string>
 	<string name="type.highway.world_level">highway-world_level</string>
 	<string name="type.highway.world_towns_level">highway-world_towns_level</string>
 
@@ -1125,8 +1154,10 @@
 	<string name="type.landuse.allotments">Allotments</string>
 	<string name="type.landuse.basin">Basin</string>
 	<string name="type.landuse.brownfield">Brownfield</string>
-	<string name="type.landuse.cemetery">Graveyard</string>
-	<string name="type.landuse.cemetery.christian">Christian Graveyard</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery">Cemetery</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery.christian">Christian Cemetery</string>
 	<string name="type.landuse.churchyard">Churchyard</string>
 	<string name="type.landuse.commercial">Commercial Area</string>
 	<string name="type.landuse.construction">Construction</string>
@@ -1157,7 +1188,7 @@
 	<string name="type.landuse.village_green">Land</string>
 	<string name="type.landuse.vineyard">Vineyard</string>
 	<string name="type.leisure">Leisure</string>
-	<string name="type.leisure.common">leisure-common</string>
+	<string name="type.leisure.common">Public Land</string>
 	<string name="type.leisure.dog_park">Dog Area</string>
 	<string name="type.leisure.fitness_centre">Fitness Centre</string>
 	<string name="type.leisure.fitness_station">Fitness Station</string>
@@ -1184,6 +1215,7 @@
 	<string name="type.leisure.sports_centre.yoga">Yoga Studio</string>
 	<string name="type.leisure.stadium">Stadium</string>
 	<string name="type.leisure.swimming_pool">Swimming Pool</string>
+	<string name="type.leisure.swimming_pool.private">Swimming Pool</string>
 	<string name="type.leisure.track">Track</string>
 	<string name="type.leisure.water_park">Water Park</string>
 	<string name="type.leisure.beach_resort">Beach Resort</string>
@@ -1192,7 +1224,9 @@
 	<string name="type.man_made.cairn">Cairn</string>
 	<string name="type.man_made.chimney">Factory Chimney</string>
 	<string name="type.man_made.cutline">Cutline</string>
+	<string name="type.man_made.flagpole">Flagpole</string>
 	<string name="type.man_made.lighthouse">Lighthouse</string>
+	<string name="type.man_made.mast">Mast</string>
 	<string name="type.man_made.pier">Pier</string>
 	<string name="type.man_made.pipeline">Pipeline</string>
 	<string name="type.man_made.pipeline.overground">Overground Pipeline</string>
@@ -1248,8 +1282,7 @@
 	<string name="type.natural.wetland">Wetland</string>
 	<string name="type.natural.wetland.bog">Wetland</string>
 	<string name="type.natural.wetland.marsh">Wetland</string>
-	<string name="type.noexit">noexit</string>
-	<string name="type.noexit.motor_vehicle">noexit-motor_vehicle</string>
+	<string name="type.noexit">Dead End</string>
 	<string name="type.office">Office</string>
 	<string name="type.office.company">Company Office</string>
 	<string name="type.office.estate_agent">Estate Agent</string>
@@ -1327,7 +1360,7 @@
 	<string name="type.railway.narrow_gauge">Narrow Gauge Rail</string>
 	<string name="type.railway.narrow_gauge.bridge">Narrow Gauge Rail</string>
 	<string name="type.railway.narrow_gauge.tunnel">Narrow Gauge Rail</string>
-	<string name="type.railway.platform">Platform</string>
+	<string name="type.railway.platform">Railway Platform</string>
 	<string name="type.railway.preserved">Preserved Rail</string>
 	<string name="type.railway.preserved.bridge">Preserved Rail</string>
 	<string name="type.railway.preserved.tunnel">Preserved Rail</string>
@@ -1391,10 +1424,11 @@
 	<string name="type.shop.bookmaker">Bookmaker</string>
 	<string name="type.shop.books">Bookstore</string>
 	<string name="type.shop.butcher">Butcher’s</string>
-	<string name="type.shop.car">Car Shop</string>
+	<string name="type.shop.car">Car Dealership</string>
 	<string name="type.shop.car_parts">Car Parts</string>
 	<string name="type.shop.car_repair">Car Repair Shop</string>
 	<string name="type.shop.car_repair.tyres">Tyre Repair</string>
+	<string name="type.shop.caravan">RV Dealership</string>
 	<string name="type.shop.chemist">Chemist Shop</string>
 	<string name="type.shop.chocolate">Shop</string>
 	<string name="type.shop.clothes">Clothes Shop</string>
@@ -1483,7 +1517,7 @@
 	<string name="type.tourism.attraction.animal">Attraction</string>
 	<string name="type.tourism.attraction.specified">Attraction</string>
 	<string name="type.tourism.camp_site">Camping</string>
-	<string name="type.tourism.caravan_site">Caravan Site</string>
+	<string name="type.tourism.caravan_site">RV Park</string>
 	<string name="type.tourism.chalet">Chalet</string>
 	<string name="type.tourism.gallery">Gallery</string>
 	<string name="type.tourism.guest_house">Guest House</string>
@@ -1529,21 +1563,22 @@
 	<string name="type.wheelchair.limited">Limited Wheelchair Access</string>
 	<string name="type.wheelchair.no">No Wheelchair Access</string>
 	<string name="type.wheelchair.yes">Full Wheelchair Access</string>
-	<string name="type.piste_lift">piste:lift</string>
-	<string name="type.piste_lift.j.bar">piste:lift-j-bar</string>
-	<string name="type.piste_lift.magic_carpet">piste:lift-magic_carpet</string>
-	<string name="type.piste_lift.platter">piste:lift-platter</string>
-	<string name="type.piste_lift.rope_tow">piste:lift-rope_tow</string>
-	<string name="type.piste_lift.t.bar">piste:lift-t-bar</string>
-	<string name="type.piste_type">piste:type</string>
-	<string name="type.piste_type.downhill">piste:type-downhill</string>
-	<string name="type.piste_type.downhill.advanced">piste:type-downhill-advanced</string>
-	<string name="type.piste_type.downhill.easy">piste:type-downhill-easy</string>
-	<string name="type.piste_type.downhill.expert">piste:type-downhill-expert</string>
-	<string name="type.piste_type.downhill.freeride">piste:type-downhill-freeride</string>
-	<string name="type.piste_type.downhill.intermediate">piste:type-downhill-intermediate</string>
-	<string name="type.piste_type.downhill.novice">piste:type-downhill-novice</string>
-	<string name="type.piste_type.nordic">piste:type-nordic</string>
-	<string name="type.piste_type.sled">piste:type-sled</string>
+	<!-- en.wikipedia.org/wiki/Surface_lift -->
+	<string name="type.piste_lift">Surface Lift</string>
+	<string name="type.piste_lift.j.bar">J-bar Lift</string>
+	<string name="type.piste_lift.magic_carpet">Magic Carpet</string>
+	<string name="type.piste_lift.platter">Platter Lift</string>
+	<string name="type.piste_lift.rope_tow">Rope Tow</string>
+	<string name="type.piste_lift.t.bar">T-bar Lift</string>
+	<string name="type.piste_type">Piste Type</string>
+	<string name="type.piste_type.downhill">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.advanced">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.easy">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.expert">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.freeride">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.intermediate">Downhill Ski Run</string>
+	<string name="type.piste_type.downhill.novice">Downhill Ski Run</string>
+	<string name="type.piste_type.nordic">Nordic Ski Trail</string>
+	<string name="type.piste_type.sled">Sledding Piste</string>
 	<string name="type.building_part">Building</string>
 </resources>

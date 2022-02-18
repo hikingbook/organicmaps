@@ -120,6 +120,10 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Politie</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Recycling</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Water</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notities</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -149,14 +153,16 @@
 	<string name="my_position_share_email">Hoi,\n\nMomenteel ben ik hier: %1$s. Klik op deze %2$s link of deze %3$s link om de plaats op de kaart te zien.\n\nBedankt.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Delen</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Naar het klembord gekopieerd: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Klaar</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Gegevensversie: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Versie: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap-gegevens: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Weet u zeker dat u wilt doorgaan?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -447,7 +453,6 @@
 	<string name="placepage_place_description">Beschrijving</string>
 	<string name="placepage_more_button">Meer</string>
 	<string name="placepage_more_reviews_button">Meer reacties</string>
-	<string name="book_button">Boeken</string>
 	<string name="placepage_call_button">Bellen</string>
 	<string name="placepage_edit_bookmark_button">Bladwijzer bewerken</string>
 	<string name="editor_comment_hint">Reactie…</string>
@@ -466,7 +471,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Controleer dat je geen persoonlijke gegevens hebt ingevoerd.</string>
 	<string name="editor_share_to_all_dialog_message_2">We zullen de wijzigingen controleren. Als we nog vragen hebben, zullen we contact met je opnemen via email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps is een gratis en open-source offline kaartentoepassing. Geen advertenties. Geen volgen. Als je een fout op de kaart ziet, corrigeer deze dan in OpenStreetMap. Het project is gemaakt door enthousiastelingen in onze vrije tijd, dus we hebben uw feedback en ondersteuning nodig.</string>
 	<!-- For the first routing -->
 	<string name="accept">Aanvaarden</string>
@@ -479,6 +484,7 @@
 	<string name="mobile_data_option_today">Enkel Vandaag</string>
 	<string name="mobile_data_option_not_today">Vandaag niet Gebruiken</string>
 	<string name="mobile_data">Mobiel Internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Mobiel internet is vereist voor het weergeven van gedetailleerde informatie over plaatsen, zoals foto\'s, prijzen en beoordelingen.</string>
 	<string name="mobile_data_option_never">Nooit Gebruiken</string>
 	<string name="mobile_data_option_ask">Altijd Vragen</string>
@@ -493,7 +499,7 @@
 	<string name="on">Aan</string>
 	<string name="off">Uit</string>
 	<string name="prefs_languages_information">We gebruiken het TTS-systeem voor gesproken instructies. Vele Android toestellen gebruiken Google TTS, u kunt het downloaden of bijwerken in Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Voor sommige talen dient u een andere spraaksynthese software of een aanvullende taalpakket te installeren van de app store (Google Play Market, Samsung Apps).\nOpen de instellingen van uw toestel → Taal en invoer → Spraak → Uitvoer voor tekst-naar-spraak.\nHier kunt u instellingen voor spraaksynthese beheren (bijvoorbeeld taalpakket downloaden voor offline gebruik) en een andere tekst-naar-spraak engine selecteren.</string>
+	<string name="prefs_languages_information_off">Voor sommige talen dient u een andere spraaksynthese software of een aanvullende taalpakket te installeren van de app store (Google Play, Samsung Apps, App Gallery, FDroid).\nOpen de instellingen van uw toestel → Taal en invoer → Spraak → Uitvoer voor tekst-naar-spraak.\nHier kunt u instellingen voor spraaksynthese beheren (bijvoorbeeld taalpakket downloaden voor offline gebruik) en een andere tekst-naar-spraak engine selecteren.</string>
 	<string name="prefs_languages_information_off_link">Gelieve deze handleiding te lezen voor meer informatie.</string>
 	<string name="transliteration_title">Transliteratie in het Latijn</string>
 	<string name="learn_more">Meer informatie</string>
@@ -606,6 +612,8 @@
 	<string name="moreyear_ago_sorttype">Meer dan een jaar geleden</string>
 	<string name="near_me_sorttype">Naast mij</string>
 	<string name="others_sorttype">Andere</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Eten</string>
 	<string name="tourist_places">Bezienswaardigheden</string>
 	<string name="museums">Musea</string>
@@ -619,7 +627,6 @@
 	<string name="shops">Winkels</string>
 	<string name="parkings">Parkeerplaatsen</string>
 	<string name="fuel_places">Benzinestations</string>
-	<string name="water">Water</string>
 	<string name="medicine">Geneeskunde</string>
 	<string name="search_in_the_list">In de lijst zoeken</string>
 	<string name="religious_places">Religieuze plaatsen</string>
@@ -678,7 +685,9 @@
 	<string name="type.amenity.fire_station">Brandweer</string>
 	<string name="type.amenity.fountain">Fontein</string>
 	<string name="type.amenity.fuel">Tankstation</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Begraafplaats</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Begraafplaats</string>
 	<string name="type.amenity.hospital">Ziekenhuis</string>
 	<string name="type.amenity.hunting_stand">Jaagplek</string>
@@ -717,9 +726,12 @@
 	<string name="type.amenity.post_office">Postkantoor</string>
 	<string name="type.amenity.pub">Kroeg</string>
 	<string name="type.amenity.public_bookcase">Boekenkast</string>
-	<string name="type.amenity.recycling">Milieustraat</string>
-	<string name="type.amenity.recycling_container">Recycling container</string>
-	<string name="type.recycling.toxic">Giftig afval</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Milieustraat</string>
+	<string name="type.amenity.recycling">Recycling container</string>
+	<string name="type.amenity.recycling.container">Recycling container</string>
+	<string name="type.recycling.batteries">Batterijen</string>
 	<string name="type.recycling.clothes">Oude kleding</string>
 	<string name="type.recycling.glass_bottles">Glazen flessen</string>
 	<string name="type.recycling.paper">Papierafval</string>
@@ -984,7 +996,9 @@
 	<string name="type.historic.ship">Toerisme</string>
 	<string name="type.historic.tomb">Toerisme</string>
 	<string name="type.landuse.basin">Waterbassin</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Begraafplaats</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Begraafplaats</string>
 	<string name="type.landuse.churchyard">Kerkhof</string>
 	<string name="type.landuse.farmland">Landbouwgrond</string>
@@ -1015,6 +1029,7 @@
 	<string name="type.leisure.sports_centre.swimming">Zwembad</string>
 	<string name="type.leisure.sports_centre.yoga">Yogastudio</string>
 	<string name="type.leisure.swimming_pool">Zwembad</string>
+	<string name="type.leisure.swimming_pool.private">Zwembad</string>
 	<string name="type.leisure.water_park">Waterpark</string>
 	<string name="type.man_made.chimney">Fabrieksschoorsteen</string>
 	<string name="type.man_made.lighthouse">Vuurtoren</string>

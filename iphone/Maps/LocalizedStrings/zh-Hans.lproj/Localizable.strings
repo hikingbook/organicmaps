@@ -146,6 +146,15 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "警察";
 
+/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
+"recycling" = "回收";
+
+/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
+"water" = "水";
+
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
+"rv" = "RV Facilities";
+
 "share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
 
 /* message title of loading file */
@@ -172,7 +181,7 @@
 /* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
 "share" = "分享";
 
-/* Share by email button text, also used in editor. */
+/* Share by email button text, also used in editor and About. */
 "email" = "邮件";
 
 /* place preview title */
@@ -184,8 +193,8 @@
 /* Prints version number in About dialog */
 "version" = "版本:%@";
 
-/* Data version in «About» screen */
-"data_version" = "资料版本： %d";
+/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
+"data_version" = "OpenStreetMap 数据：%@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "轨迹";
@@ -259,6 +268,9 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
+"matrix" = "[matrix]";
+
+/* Text in menu */
 "facebook" = "脸书";
 
 /* Text in menu */
@@ -278,6 +290,12 @@
 
 /* Text in menu */
 "help" = "帮助";
+
+/* Button in the main Help dialog */
+"faq" = "问题和解答";
+
+/* Button in the main Help dialog */
+"how_to_support_us" = "如何支持我们？";
 
 /* Button in the main Help dialog */
 "copyright" = "版权";
@@ -339,18 +357,6 @@
 
 /* Item in context menu. */
 "downloader_delete_map" = "删除地图";
-
-/* Text for rating dialog */
-"rating_just_rated" = "我刚刚评价了您的应用";
-
-/* Text for rating dialog */
-"rating_thanks" = "谢谢您！";
-
-/* Text for rating dialog */
-"rating_share_ideas" = "分享任何主意或问题，这样我们可以为您改善应用。";
-
-/* Text for rating dialog */
-"rating_send_feedback" = "发送反馈";
 
 /* Text for routing error dialog */
 "routing_download_maps_along" = "下载沿线地图";
@@ -494,16 +500,6 @@
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "要创建路线，请下载并更新所有沿路线的地图。";
-
-"rate_alert_title" = "喜欢这个应用吗？";
-
-"rate_alert_default_message" = "感谢您使用 Organic Maps。请评价此应用。您的反馈帮助我们改善我们的产品。";
-
-"rate_alert_five_star_message" = "太棒了！我们也爱您！";
-
-"rate_alert_four_star_message" = "谢谢您，我们会尽可能做好！";
-
-"rate_alert_less_than_four_star_message" = "有没有想法我们能怎么把它变得更好？";
 
 "categories" = "类别";
 
@@ -814,7 +810,7 @@
 
 "recent_track_background_dialog_message" = "Organic Maps使用背景中的地理位置记录您最近去过的路径。";
 
-/* Text under the version number in the Help dialog. */
+/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
 "about_description" = "Organic Maps 是一款免费的开源离线地图应用程序。无广告。没有跟踪。如果您在地图上看到错误，请在 OpenStreetMap 中修复它。该项目由爱好者在我们的空闲时间创建，因此我们需要您的反馈和支持。";
 
 "general_settings" = "常规设置";
@@ -838,6 +834,7 @@
 
 "mobile_data" = "移动网络";
 
+/* NOTE to translators: please synchronize your translation with the English one. */
 "mobile_data_description" = "要显示地点的详细信息（例如照片、价格和评价），需要使用移动网络。";
 
 "mobile_data_option_never" = "从不使用";
@@ -1098,6 +1095,9 @@
 
 "others_sorttype" = "其他";
 
+
+/********** Bookmark types used for sorting **********/
+
 "food_places" = "美食";
 
 "tourist_places" = "名胜";
@@ -1123,8 +1123,6 @@
 "parkings" = "停车场";
 
 "fuel_places" = "加油站";
-
-"water" = "水";
 
 "medicine" = "医疗";
 
@@ -1203,11 +1201,11 @@
 
 "type.aerialway.chair_lift" = "登山吊椅";
 
-"type.aerialway.drag_lift" = "Aerialway";
+"type.aerialway.drag_lift" = "缆车要素";
 
 "type.aerialway.gondola" = "循环式索道";
 
-"type.aerialway.mixed_lift" = "Aerialway";
+"type.aerialway.mixed_lift" = "缆车";
 
 "type.aerialway.station" = "缆车车站";
 
@@ -1301,9 +1299,11 @@
 
 "type.amenity.fuel" = "加油站";
 
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.amenity.grave_yard" = "墓地";
 
-"type.amenity.grave_yard.christian" = "墓地";
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
+"type.amenity.grave_yard.christian" = "基督教墓地";
 
 "type.amenity.hospital" = "医院";
 
@@ -1381,11 +1381,16 @@
 
 "type.amenity.public_bookcase" = "公共书架";
 
-"type.amenity.recycling" = "资源回收设施";
 
-"type.amenity.recycling_container" = "回收容器";
+/********** Types: Recycling **********/
 
-"type.recycling.toxic" = "有毒垃圾";
+"type.amenity.recycling.centre" = "资源回收设施";
+
+"type.amenity.recycling" = "回收容器";
+
+"type.amenity.recycling.container" = "回收容器";
+
+"type.recycling.batteries" = "电池";
 
 "type.recycling.clothes" = "旧衣物";
 
@@ -1401,7 +1406,19 @@
 
 "type.recycling.small_appliances" = "电子垃圾";
 
+"type.recycling.cardboard" = "Cardboard";
+
+"type.recycling.cans" = "Cans";
+
+"type.recycling.shoes" = "Shoes";
+
+"type.recycling.green_waste" = "Green/Organic Waste";
+
+"type.recycling.cartons" = "Bewerage Cartons";
+
 "type.amenity.restaurant" = "餐馆";
+
+"type.amenity.sanitary_dump_station" = "Holding Tank Dump Station";
 
 "type.amenity.school" = "学校";
 
@@ -1431,11 +1448,19 @@
 
 "type.amenity.vending_machine.public_transport_tickets" = "公共交通售票机";
 
+"type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
+
+"type.amenity.parcel_locker" = "Parcel Locker";
+
+"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+
 "type.amenity.veterinary" = "兽医";
 
 "type.amenity.waste_basket" = "垃圾篓";
 
 "type.amenity.waste_disposal" = "大型垃圾箱";
+
+"type.amenity.waste_transfer_station" = "Waste Transfer Station";
 
 "type.amenity.water_point" = "取水点";
 
@@ -1481,13 +1506,11 @@
 
 "type.boundary.administrative.11" = "11级行政区域界线";
 
-"type.boundary.administrative.2" = "2级行政区域界线";
+"type.boundary.administrative.2" = "国家行政区域界线";
 
 "type.boundary.administrative.3" = "3级行政区域界线";
 
 "type.boundary.administrative.4" = "4级行政区域界线";
-
-"type.boundary.administrative.4.state" = "4级州省界线";
 
 "type.boundary.administrative.5" = "5级行政区域界线";
 
@@ -2007,7 +2030,7 @@
 
 "type.historic.castle.defensive" = "城堡";
 
-"type.historic.castle.stately" = "城堡";
+"type.historic.castle.stately" = "宫殿";
 
 "type.historic.citywalls" = "历史城墙";
 
@@ -2015,7 +2038,7 @@
 
 "type.historic.memorial" = "纪念物";
 
-"type.historic.memorial.plaque" = "纪念物";
+"type.historic.memorial.plaque" = "纪念牌匾";
 
 "type.historic.memorial.sculpture" = "雕塑";
 
@@ -2075,8 +2098,10 @@
 
 "type.landuse.brownfield" = "棕土";
 
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.landuse.cemetery" = "墓地";
 
+/* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.landuse.cemetery.christian" = "基督教墓地";
 
 "type.landuse.churchyard" = "教堂庭院";
@@ -2193,6 +2218,8 @@
 
 "type.leisure.swimming_pool" = "游泳池";
 
+"type.leisure.swimming_pool.private" = "游泳池";
+
 "type.leisure.track" = "賽道";
 
 "type.leisure.water_park" = "水上乐园";
@@ -2209,7 +2236,11 @@
 
 "type.man_made.cutline" = "树林分界线";
 
+"type.man_made.flagpole" = "Flagpole";
+
 "type.man_made.lighthouse" = "灯塔";
+
+"type.man_made.mast" = "Mast";
 
 "type.man_made.pier" = "码头";
 
@@ -2321,9 +2352,7 @@
 
 "type.natural.wetland.marsh" = "沼泽地";
 
-"type.noexit" = "noexit";
-
-"type.noexit.motor_vehicle" = "noexit-motor_vehicle";
+"type.noexit" = "Dead End";
 
 "type.office" = "办公地点";
 
@@ -2615,6 +2644,8 @@
 
 "type.shop.car_repair.tyres" = "轮胎修理";
 
+"type.shop.caravan" = "RV Dealership";
+
 "type.shop.chemist" = "药妆店";
 
 "type.shop.chocolate" = "商店";
@@ -2883,36 +2914,37 @@
 
 "type.wheelchair.yes" = "配备残疾人专用";
 
-"type.piste_lift" = "piste:lift";
+/* en.wikipedia.org/wiki/Surface_lift */
+"type.piste_lift" = "Surface Lift";
 
-"type.piste_lift.j.bar" = "piste:lift-j-bar";
+"type.piste_lift.j.bar" = "J-bar Lift";
 
-"type.piste_lift.magic_carpet" = "piste:lift-magic_carpet";
+"type.piste_lift.magic_carpet" = "Magic Carpet";
 
-"type.piste_lift.platter" = "piste:lift-platter";
+"type.piste_lift.platter" = "Platter Lift";
 
-"type.piste_lift.rope_tow" = "piste:lift-rope_tow";
+"type.piste_lift.rope_tow" = "Rope Tow";
 
-"type.piste_lift.t.bar" = "piste:lift-t-bar";
+"type.piste_lift.t.bar" = "T-bar Lift";
 
-"type.piste_type" = "piste:type";
+"type.piste_type" = "Piste Type";
 
-"type.piste_type.downhill" = "piste:type-downhill";
+"type.piste_type.downhill" = "Downhill Ski Run";
 
-"type.piste_type.downhill.advanced" = "piste:type-downhill-advanced";
+"type.piste_type.downhill.advanced" = "Downhill Ski Run";
 
-"type.piste_type.downhill.easy" = "piste:type-downhill-easy";
+"type.piste_type.downhill.easy" = "Downhill Ski Run";
 
-"type.piste_type.downhill.expert" = "piste:type-downhill-expert";
+"type.piste_type.downhill.expert" = "Downhill Ski Run";
 
-"type.piste_type.downhill.freeride" = "piste:type-downhill-freeride";
+"type.piste_type.downhill.freeride" = "Downhill Ski Run";
 
-"type.piste_type.downhill.intermediate" = "piste:type-downhill-intermediate";
+"type.piste_type.downhill.intermediate" = "Downhill Ski Run";
 
-"type.piste_type.downhill.novice" = "piste:type-downhill-novice";
+"type.piste_type.downhill.novice" = "Downhill Ski Run";
 
-"type.piste_type.nordic" = "piste:type-nordic";
+"type.piste_type.nordic" = "Nordic Ski Trail";
 
-"type.piste_type.sled" = "piste:type-sled";
+"type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "建筑部分";

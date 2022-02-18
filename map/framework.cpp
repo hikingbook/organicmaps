@@ -6,6 +6,7 @@
 #include "map/user_mark.hpp"
 #include "map/viewport_search_params.hpp"
 
+#include "ge0/geo_url_parser.hpp"
 #include "ge0/parser.hpp"
 #include "ge0/url_generator.hpp"
 
@@ -412,7 +413,7 @@ Framework::Framework(FrameworkParams const & params)
 
   m_featuresFetcher.GetDataSource().AddObserver(editor);
 
-  LOG(LINFO, ("Editor initialized"));
+  LOG(LDEBUG, ("Editor initialized"));
 
   m_trafficManager.SetCurrentDataVersion(m_storage.GetCurrentDataVersion());
   m_trafficManager.SetSimplifiedColorScheme(LoadTrafficSimplifiedColors());
@@ -577,9 +578,22 @@ kml::MarkGroupId Framework::AddCategory(string const & categoryName)
 
 void Framework::FillPointInfoForBookmark(Bookmark const & bmk, place_page::Info & info) const
 {
-  auto types = feature::TypesHolder::FromTypesIndexes(bmk.GetData().m_featureTypes);
-  FillPointInfo(info, bmk.GetPivot(), {} /* customTitle */, [&types](FeatureType & ft) {
-    return !types.Empty() && feature::TypesHolder(ft).Equals(types);
+  // Convert indices to sorted classifier types.
+  Classificator const & cl = classif();
+  buffer_vector<uint8_t, 8> types;
+  for (uint32_t i : bmk.GetData().m_featureTypes)
+    types.push_back(cl.GetTypeForIndex(i));
+  std::sort(types.begin(), types.end());
+
+  FillPointInfo(info, bmk.GetPivot(), {} /* customTitle */, [&types](FeatureType & ft)
+  {
+    if (types.empty() || ft.GetTypesCount() != types.size())
+      return false;
+
+    // Strict equal types.
+    feature::TypesHolder fTypes(ft);
+    std::sort(fTypes.begin(), fTypes.end());
+    return std::equal(types.begin(), types.end(), fTypes.begin(), fTypes.end());
   });
 }
 
@@ -615,9 +629,10 @@ void Framework::FillTrackInfo(Track const & track, m2::PointD const & trackPoint
   info.SetMercator(trackPoint);
 }
 
-search::ReverseGeocoder::Address Framework::GetAddressAtPoint(m2::PointD const & pt) const
+search::ReverseGeocoder::Address Framework::GetAddressAtPoint(m2::PointD const & pt,
+                                                              double distanceThresholdMeters) const
 {
-  return m_addressGetter.GetAddressAtPoint(m_featuresFetcher.GetDataSource(), pt);
+  return m_addressGetter.GetAddressAtPoint(m_featuresFetcher.GetDataSource(), pt, distanceThresholdMeters);
 }
 
 void Framework::FillFeatureInfo(FeatureID const & fid, place_page::Info & info) const
@@ -698,16 +713,9 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   info.SetPopularity(m_popularityLoader.Get(ft.GetID()));
 
   // Fill countryId for place page info
-  uint32_t const placeContinentType = classif().GetTypeByPath({"place", "continent"});
-  if (info.GetTypes().Has(placeContinentType))
-    return;
-
-  uint32_t const placeCountryType = classif().GetTypeByPath({"place", "country"});
-  uint32_t const placeStateType = classif().GetTypeByPath({"place", "state"});
-
-  bool const isState = info.GetTypes().Has(placeStateType);
-  bool const isCountry = info.GetTypes().Has(placeCountryType);
-  if (isCountry || isState)
+  auto const & types = info.GetTypes();
+  bool const isState = ftypes::IsStateChecker::Instance()(types);
+  if (isState || ftypes::IsCountryChecker::Instance()(types))
   {
     size_t const level = isState ? 1 : 0;
     CountriesVec countries;
@@ -1590,8 +1598,6 @@ void Framework::OnRecoverSurface(int width, int height, bool recreateContextDepe
 
     InvalidateUserMarks();
 
-    UpdatePlacePageInfoForCurrentSelection();
-
     m_drapeApi.Invalidate();
   }
 
@@ -1768,8 +1774,21 @@ bool Framework::ShowMapForURL(string const & url)
   enum ResultT { FAILED, NEED_CLICK, NO_NEED_CLICK };
   ResultT result = FAILED;
 
-  if (strings::StartsWith(url, "om") || strings::StartsWith(url, "ge0"))
+  // It's an API request, parsed in parseAndSetApiURL and nativeParseAndSetApiUrl.
+  if (m_parsedMapApi.IsValid())
   {
+    if (!m_parsedMapApi.GetViewportParams(point, scale))
+    {
+      point = {0, 0};
+      scale = 0;
+    }
+
+    apiMark = m_parsedMapApi.GetSinglePoint();
+    result = apiMark ? NEED_CLICK : NO_NEED_CLICK;
+  }
+  else if (strings::StartsWith(url, "om") || strings::StartsWith(url, "ge0"))
+  {
+    // Note that om scheme is used to encode both API and ge0 links.
     ge0::Ge0Parser parser;
     ge0::Ge0Parser::Result parseResult;
 
@@ -1781,20 +1800,9 @@ bool Framework::ShowMapForURL(string const & url)
       result = NEED_CLICK;
     }
   }
-  else if (m_parsedMapApi.IsValid())
-  {
-    if (!m_parsedMapApi.GetViewportParams(point, scale))
-    {
-      point = {0, 0};
-      scale = 0;
-    }
-
-    apiMark = m_parsedMapApi.GetSinglePoint();
-    result = apiMark ? NEED_CLICK : NO_NEED_CLICK;
-  }
   else  // Actually, we can parse any geo url scheme with correct coordinates.
   {
-    url::GeoURLInfo info(url);
+    geo::GeoURLInfo const info = geo::UnifiedParser().Parse(url);
     if (info.IsValid())
     {
       point = mercator::FromLatLon(info.m_lat, info.m_lon);
@@ -1872,6 +1880,7 @@ FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator,
   auto haveBuilding = false;
   auto closestDistanceToCenter = numeric_limits<double>::max();
   auto currentDistance = numeric_limits<double>::max();
+
   indexer::ForEachFeatureAtPoint(m_featuresFetcher.GetDataSource(), [&](FeatureType & ft)
   {
     if (fullMatch.IsValid())
@@ -1895,28 +1904,34 @@ FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator,
       line = ft.GetID();
       break;
     case feature::GeomType::Area:
+    {
       // Buildings have higher priority over other types.
       if (haveBuilding)
         return;
+
       // Skip/ignore coastlines.
-      if (feature::TypesHolder(ft).Has(classif().GetCoastType()))
+      feature::TypesHolder types(ft);
+      if (ftypes::IsCoastlineChecker::Instance()(types))
         return;
-      haveBuilding = ftypes::IsBuildingChecker::Instance()(ft);
+
+      haveBuilding = ftypes::IsBuildingChecker::Instance()(types);
       currentDistance = mercator::DistanceOnEarth(mercator, feature::GetCenter(ft));
       // Choose the first matching building or, if no buildings are matched,
       // the first among the closest matching non-buildings.
       if (!haveBuilding && currentDistance >= closestDistanceToCenter)
         return;
+
       area = ft.GetID();
       closestDistanceToCenter = currentDistance;
       break;
+    }
     case feature::GeomType::Undefined:
       ASSERT(false, ("case feature::Undefined"));
       break;
     }
   }, mercator);
 
-  return fullMatch.IsValid() ? fullMatch : (poi.IsValid() ? poi : (area.IsValid() ? area : line));
+  return fullMatch.IsValid() ? fullMatch : (poi.IsValid() ? poi : (line.IsValid() ? line : area));
 }
 
 osm::MapObject Framework::GetMapObjectByID(FeatureID const & fid) const
@@ -2571,12 +2586,6 @@ void Framework::BlockTapEvents(bool block)
 {
   if (m_drapeEngine != nullptr)
     m_drapeEngine->BlockTapEvents(block);
-}
-
-namespace feature
-{
-string GetPrintableTypes(FeatureType & ft) { return DebugPrint(feature::TypesHolder(ft)); }
-uint32_t GetBestType(FeatureType & ft) { return feature::TypesHolder(ft).GetBestType(); }
 }
 
 bool Framework::ParseDrapeDebugCommand(string const & query)

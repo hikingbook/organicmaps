@@ -1,6 +1,8 @@
 project(base)
 
 set(SRC
+  # Added to automatically recompile our sources if the submodule is updated.
+  ../3party/fast_double_parser/include/fast_double_parser.h
   array_adapters.hpp
   assert.hpp
   atomic_shared_ptr.hpp
@@ -61,6 +63,7 @@ set(SRC
   set_operations.hpp
   shared_buffer_manager.cpp
   shared_buffer_manager.hpp
+  small_map.hpp
   small_set.hpp
   src_point.cpp
   src_point.hpp

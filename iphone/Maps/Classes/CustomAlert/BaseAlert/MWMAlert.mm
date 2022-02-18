@@ -7,16 +7,11 @@
 #import "MWMLocationAlert.h"
 //#import "MWMOsmAuthAlert.h"
 //#import "MWMPlaceDoesntExistAlert.h"
-//#import "MWMRateAlert.h"
 //#import "MWMRoutingDisclaimerAlert.h"
 
 #import "Hikingbook-Swift-Header.h"
 
 @implementation MWMAlert
-
-//+ (MWMAlert *)rateAlert {
-//  return [MWMRateAlert alert];
-//}
 
 + (MWMAlert *)authErrorAlertWithRetryBlock:(MWMVoidBlock)retryBlock {
   return [MWMDefaultAlert authErrorAlertWithRetryBlock:retryBlock];

@@ -126,6 +126,12 @@
 	<string name="post">Пошта</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Паліцыя</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Перапрацоўка</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Вада</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">Для аўтадамоў</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Нататкі</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -155,14 +161,16 @@
 	<string name="my_position_share_email">Прывітанне,\n\nЯ зараз тут: %1$s. Перайдзі па гэтай %2$s альбо гэтай %3$s спасылцы каб убачыць месца на мапе.\n\nДзякуй.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Падзяліцца</string>
-	<!-- Share by email button text, also used in editor. -->
-	<string name="email">Email</string>
+	<!-- Share by email button text, also used in editor and About. -->
+	<string name="email">Электронная пошта</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Скапіравана ў буфер абмена: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Гатова</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Версія дадзеных: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Версія: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Дадзеныя OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Сапраўды хочаце працягнуць?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -457,7 +465,6 @@
 	<string name="placepage_place_description">Апісанне</string>
 	<string name="placepage_more_button">Яшчэ</string>
 	<string name="placepage_more_reviews_button">Больш водгукаў</string>
-	<string name="book_button">Забраніраваць</string>
 	<string name="placepage_call_button">Патэлефанаваць</string>
 	<string name="placepage_edit_bookmark_button">Правіць закладку</string>
 	<string name="editor_comment_hint">Каментар…</string>
@@ -479,8 +486,8 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Упэўніцеся, што вы не ўвялі ніякіх асабістых дадзеных.</string>
 	<string name="editor_share_to_all_dialog_message_2">Мы праверым змены. Калі ў нас з\'явяцца пытанні, мы з вамі звяжамся праз email.</string>
-	<!-- Text under the version number in the Help dialog. -->
-	<string name="about_description">Organic Maps – бясплатныя мапы з адкрытым зыходным кодам, якія працуюць без інтэрнэту. Ніякай рэкламы. Ніякага адсочвання. Калі вы бачыце памылку на карце, выпраўце яе ў OpenStreetMap. Праект ствараецца энтузіястамі ў вольны час, таму нам патрэбны вашы водгукі і падтрымка.</string>
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
+	<string name="about_description">Organic Maps — гэта хуткія і бясплатныя мапы без рэкламы, якія працуюць без Інтэрнэту і не шпіёняць за вамі. Усе картаграфічныя дадзеныя бяруцца з OpenStreetMap.org, там вы зможаце самастойна выпраўляць памылкі і дадаваць новыя аб\'екты. Organic Maps — гэта праект з адкрытым зыходным кодам, які ствараецца энтузіястамі ў вольны час. Будзем рады вашай падтрымцы і зваротнай сувязі!</string>
 	<!-- For the first routing -->
 	<string name="accept">Прыняць</string>
 	<!-- For the first routing -->
@@ -492,7 +499,8 @@
 	<string name="mobile_data_option_today">Толькі сёння</string>
 	<string name="mobile_data_option_not_today">Не сёння</string>
 	<string name="mobile_data">Мабільны інтэрнэт</string>
-	<string name="mobile_data_description">Мабільны інтэрнэт патрэбны каб паказваць падрабязную інфармацыю пра месцы, такую як фотаздымкі, цэны і водгукі.</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
+	<string name="mobile_data_description">Мабільны інтэрнэт неабходны для апавяшчэнняў аб абнаўленні мапы і для адлюстравання падрабязнай інфармацыі аб месцах і закладках.</string>
 	<string name="mobile_data_option_never">Ніколі не ужываць</string>
 	<string name="mobile_data_option_ask">Заўсёды пытаць</string>
 	<string name="traffic_update_maps_text">Для паказу інфармацыі пра рух, трэба абнавіць мапы.</string>
@@ -506,7 +514,7 @@
 	<string name="on">Укл.</string>
 	<string name="off">Выкл.</string>
 	<string name="prefs_languages_information">Мы ужываем сістэмны сінтэзатар маўлення (TTS). Многія прылады на Android ужываюць Google TTS, вы можаце спампаваць альбо абнавіць яго праз Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Для некаторых моў вам спатрэбіцца ўсталяваць сінтэзатар маўлення альбо дадатковы моўны пакет з крамы дадаткаў (Google Play Market, Samsung Apps).\Зайдзіце на вашай прыладзе ў Налады → Мова і ўвод → Маўленне → Сінтэз маўлення.\nТут вы можаце задаць налады сінтэза маўлення (напрыклад, спампаваць моўны пакет для выкарыстання без падключэння да інтэрнэту) альбо выбраць іншы сінтэзатар маўлення.</string>
+	<string name="prefs_languages_information_off">Для некаторых моў вам спатрэбіцца ўсталяваць сінтэзатар маўлення альбо дадатковы моўны пакет з крамы дадаткаў (Google Play, Samsung Apps, App Gallery, FDroid).\Зайдзіце на вашай прыладзе ў Налады → Мова і ўвод → Маўленне → Сінтэз маўлення.\nТут вы можаце задаць налады сінтэза маўлення (напрыклад, спампаваць моўны пакет для выкарыстання без падключэння да інтэрнэту) альбо выбраць іншы сінтэзатар маўлення.</string>
 	<string name="prefs_languages_information_off_link">Больш падрабязная інфармацыя знаходзіцца ў гэтым кіраўніцтве.</string>
 	<string name="transliteration_title">Транслітарацыя лацінкай</string>
 	<string name="learn_more">Даведацца больш</string>
@@ -623,6 +631,8 @@
 	<string name="moreyear_ago_sorttype">Больш за год таму</string>
 	<string name="near_me_sorttype">Каля мяне</string>
 	<string name="others_sorttype">Іншыя</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Ежа</string>
 	<string name="tourist_places">Славутасці</string>
 	<string name="museums">Музеі</string>
@@ -636,9 +646,8 @@
 	<string name="shops">Крамы</string>
 	<string name="parkings">Паркоўкі</string>
 	<string name="fuel_places">Запраўкі</string>
-	<string name="water">Вада</string>
 	<string name="medicine">Медыцына</string>
-	<string name="search_in_the_list">Шукаць у спіце</string>
+	<string name="search_in_the_list">Шукаць у спісе</string>
 	<string name="religious_places">Святыя месцы</string>
 	<string name="select_list">Выбраць спіс</string>
 	<string name="transit_not_found">Навігацыі па метро для гэтага рэгіёна пакуль няма</string>
@@ -661,16 +670,65 @@
 	<string name="enable_screen_sleep">Дазволіць экрану засынаць</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Дазваляе экрану засынаць пасля перыяда бездзеяння.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Паказваць на экране блакіроўкі</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Калі ўключана, вам не трэба разблакіраваць прыладу кожны раз падчас працы дадатку.</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.amenity.fire_station">Пажарная частка</string>
+	<string name="type.amenity.fuel">АЗС</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard">Могілкі</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">Хрысціянскія могілкі</string>
+	<string name="type.amenity.ice_cream">Марозіва</string>
+	<string name="type.amenity.post_box">Паштовая скрыня</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Прыём другсыравіны</string>
+	<string name="type.amenity.recycling">Кантэйнер для другаснай сыравіны</string>
+	<string name="type.amenity.recycling.container">Кантэйнер для другаснай сыравіны</string>
+	<string name="type.recycling.batteries">Батарэйкі</string>
+	<string name="type.recycling.clothes">Адзенне</string>
+	<string name="type.recycling.glass_bottles">Шклатара</string>
+	<string name="type.recycling.paper">Папера</string>
+	<string name="type.recycling.plastic">Пластык</string>
+	<string name="type.recycling.plastic_bottles">Пластыкавыя бутэлькі</string>
+	<string name="type.recycling.scrap_metal">Металалом</string>
+	<string name="type.recycling.cardboard">Кардон</string>
+	<string name="type.recycling.cans">Бляшаныя і алюмініевыя слоікі</string>
+	<string name="type.recycling.shoes">Абутак</string>
+	<string name="type.recycling.green_waste">Арганіка / Харчовыя адходы</string>
+	<string name="type.recycling.cartons">Тэтрапак і аналагі</string>
+	<string name="type.amenity.sanitary_dump_station">Зліў для прыбіральняў транспартных сродкаў</string>
+	<string name="type.amenity.vending_machine">Гандлёвы аўтамат</string>
+	<string name="type.amenity.vending_machine.cigarettes">Аўтамат з цыгарэтамі</string>
+	<string name="type.amenity.vending_machine.drinks">Аўтамат з напоямі</string>
+	<string name="type.amenity.vending_machine.parking_tickets">Паркамат</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">Аўтамат па продажы білетаў</string>
+	<string name="type.amenity.vending_machine.excrement_bags">Мяшкі дзеля экскрыментаў</string>
+	<string name="type.amenity.parcel_locker">Паштамат</string>
+	<string name="type.amenity.vending_machine.fuel">Паліўная калонка</string>
+	<string name="type.amenity.waste_transfer_station">Станцыя перавалкі адходаў</string>
+	<string name="type.amenity.water_point">Вада для аўтадомаў</string>
 	<string name="type.barrier.chain">Ланцуг</string>
 	<string name="type.barrier.lift_gate">Шлагбаўм</string>
 	<string name="type.barrier.swing_gate">Шлагбаўм</string>
+	<string name="type.emergency.defibrillator">Дэфібрылятар</string>
+	<string name="type.emergency.fire_hydrant">Пажарны гідрант</string>
 	<string name="type.healthcare.laboratory">Медыцынская лабараторыя</string>
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.landuse.basin">Рэзервуар</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery">Могілкі</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery.christian">Хрысціянскія могілкі</string>
+	<string name="type.leisure.marina">Прычал</string>
 	<string name="type.leisure.picnic_table">Стол для пікніка</string>
+	<string name="type.man_made.flagpole">Флагшток</string>
+	<string name="type.man_made.mast">Мачта/вышка</string>
 	<string name="type.man_made.silo">Сілас</string>
 	<string name="type.man_made.storage_tank">Рэзервуар</string>
 	<string name="type.mountain_pass">Перавал</string>
@@ -686,6 +744,11 @@
 	<string name="type.natural.peak">Вяршыня</string>
 	<string name="type.natural.saddle">Седлавіна</string>
 	<string name="type.natural.water">Вадаём</string>
+	<string name="type.railway.platform">Чыгуначная платформа</string>
+	<string name="type.shop.beverages">Напоі</string>
+	<string name="type.shop.caravan">Продаж аўтадамоў</string>
+	<string name="type.shop.funeral_directors">Рытуальныя паслугі</string>
+	<string name="type.tourism.caravan_site">Кемпінг для аўтадамоў</string>
 	<string name="type.waterway.river">Рака</string>
 	<string name="type.waterway.river.tunnel">Рака</string>
 	<string name="type.waterway.riverbank">Рака</string>

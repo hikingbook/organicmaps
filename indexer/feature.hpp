@@ -38,7 +38,6 @@ public:
   FeatureType(osm::MapObject const & emo);
 
   feature::GeomType GetGeomType() const;
-  FeatureParamsBase & GetParams() { return m_params; }
 
   uint8_t GetTypesCount() const { return (m_header & feature::HEADER_MASK_TYPE) + 1; }
 
@@ -134,7 +133,7 @@ public:
 
   std::string DebugString(int scale);
 
-  std::string GetHouseNumber();
+  std::string const & GetHouseNumber();
 
   /// @name Get names for feature.
   /// @param[out] defaultName corresponds to osm tag "name"
@@ -153,7 +152,7 @@ public:
 
   uint8_t GetRank();
   uint64_t GetPopulation();
-  std::string GetRoadNumber();
+  std::string const & GetRoadNumber();
 
   feature::Metadata const & GetMetadata();
 
@@ -191,14 +190,15 @@ public:
 private:
   struct ParsedFlags
   {
-    bool m_types = false;
-    bool m_common = false;
-    bool m_header2 = false;
-    bool m_points = false;
-    bool m_triangles = false;
-    bool m_metadata = false;
-    bool m_metaIds = false;
+    bool m_types : 1;
+    bool m_common : 1;
+    bool m_header2 : 1;
+    bool m_points : 1;
+    bool m_triangles : 1;
+    bool m_metadata : 1;
+    bool m_metaIds : 1;
 
+    ParsedFlags() { Reset(); }
     void Reset()
     {
       m_types = m_common = m_header2 = m_points = m_triangles = m_metadata = m_metaIds = false;

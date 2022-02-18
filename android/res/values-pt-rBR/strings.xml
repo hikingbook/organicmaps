@@ -123,6 +123,10 @@
 	<string name="post">Correios</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polícia</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Reciclagem</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Água</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notas</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">Olá,\n\nEstou aqui agora: %1$s. Clique neste link %2$s ou neste %3$s para ver o local no mapa.\n\nObrigado.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Compartilhar</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Copiado para a área de transferência: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Feito</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Versão dos dados: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Versão: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Dados do OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Tem certeza que deseja continuar?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -449,7 +455,6 @@
 	<string name="placepage_place_description">Descrição</string>
 	<string name="placepage_more_button">Mais</string>
 	<string name="placepage_more_reviews_button">Mais avaliações</string>
-	<string name="book_button">Reservar</string>
 	<string name="placepage_call_button">Ligar</string>
 	<string name="placepage_edit_bookmark_button">Editar favorito</string>
 	<string name="editor_comment_hint">Comentar…</string>
@@ -468,7 +473,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Certifique-se de não ter incluído nenhum dado pessoal.</string>
 	<string name="editor_share_to_all_dialog_message_2">Verificaremos as alterações. Se tivermos perguntas, entraremos em contato com você por email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps é uma aplicação gratuita e de código aberto de mapas off-line. Sem anúncios. Sem rastreamento. Se você vir um erro no mapa, por favor, corrija em OpenStreetMap. O projeto é criado por entusiastas em nosso tempo livre, então precisamos de seu feedback e suporte.</string>
 	<!-- For the first routing -->
 	<string name="accept">Aceitar</string>
@@ -481,6 +486,7 @@
 	<string name="mobile_data_option_today">Apenas hoje</string>
 	<string name="mobile_data_option_not_today">Não utilizar hoje</string>
 	<string name="mobile_data">Internet Móvel</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Para visualizar informações detalhadas sobre os locais, tais como fotos, preços e análises, é necessário acesso à internet móvel.</string>
 	<string name="mobile_data_option_never">Nunca utilizar</string>
 	<string name="mobile_data_option_ask">Perguntar sempre</string>
@@ -612,6 +618,8 @@
 	<string name="moreyear_ago_sorttype">Mais de um ano atrás</string>
 	<string name="near_me_sorttype">Proximo de mim</string>
 	<string name="others_sorttype">Outros</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Comida</string>
 	<string name="tourist_places">Pontos turíticos</string>
 	<string name="museums">Museus</string>
@@ -625,7 +633,6 @@
 	<string name="shops">Lojas</string>
 	<string name="parkings">Estacionamentos</string>
 	<string name="fuel_places">Postos de gasolina</string>
-	<string name="water">Água</string>
 	<string name="medicine">Remédio</string>
 	<string name="search_in_the_list">Buscar na lista</string>
 	<string name="religious_places">Lugares religiosos</string>
@@ -703,7 +710,9 @@
 	<string name="type.amenity.food_court">Praça de alimentação</string>
 	<string name="type.amenity.fountain">Fonte decorativa</string>
 	<string name="type.amenity.fuel">Posto de combustível</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Cemitério</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Cemitério cristão</string>
 	<string name="type.amenity.hospital">Hospital</string>
 	<string name="type.amenity.hunting_stand">Estande de caça</string>
@@ -743,9 +752,12 @@
 	<string name="type.amenity.prison">Presidiário</string>
 	<string name="type.amenity.pub">Pub ou buteco</string>
 	<string name="type.amenity.public_bookcase">Biblioteca livre</string>
-	<string name="type.amenity.recycling">Centro de reciclagem</string>
-	<string name="type.amenity.recycling_container">Recipiente de reciclagem</string>
-	<string name="type.recycling.toxic">Lixo tóxico</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Centro de reciclagem</string>
+	<string name="type.amenity.recycling">Recipiente de reciclagem</string>
+	<string name="type.amenity.recycling.container">Recipiente de reciclagem</string>
+	<string name="type.recycling.batteries">Baterias</string>
 	<string name="type.recycling.clothes">Roupas velhas</string>
 	<string name="type.recycling.glass_bottles">Garrafas de vidro</string>
 	<string name="type.recycling.paper">Lixo de papel</string>
@@ -792,10 +804,9 @@
 	<string name="type.boundary.administrative">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.10">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.11">Fronteira administrativa</string>
-	<string name="type.boundary.administrative.2">Fronteira administrativa</string>
+	<string name="type.boundary.administrative.2">Fronteira de país</string>
 	<string name="type.boundary.administrative.3">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.4">Fronteira administrativa</string>
-	<string name="type.boundary.administrative.4.state">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.5">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.6">Fronteira administrativa</string>
 	<string name="type.boundary.administrative.7">Fronteira administrativa</string>
@@ -1074,7 +1085,9 @@
 	<string name="type.landuse.allotments">Horta comunitária</string>
 	<string name="type.landuse.basin">Reservatório</string>
 	<string name="type.landuse.brownfield">Terreno industrial devoluto</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Cemitério</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cemitério cristão</string>
 	<string name="type.landuse.churchyard">Adro de igreja</string>
 	<string name="type.landuse.commercial">Área comercial</string>
@@ -1133,6 +1146,7 @@
 	<string name="type.leisure.sports_centre.yoga">Estúdio de ioga</string>
 	<string name="type.leisure.stadium">Estádio</string>
 	<string name="type.leisure.swimming_pool">Piscina</string>
+	<string name="type.leisure.swimming_pool.private">Piscina</string>
 	<string name="type.leisure.track">Pista para esportes não motorizados</string>
 	<string name="type.leisure.water_park">Parque aquático</string>
 	<string name="type.man_made">Construção humana</string>
@@ -1188,7 +1202,6 @@
 	<string name="type.natural.wetland.bog">Zona úmida</string>
 	<string name="type.natural.wetland.marsh">Zona úmida</string>
 	<string name="type.noexit">Via sem saída</string>
-	<string name="type.noexit.motor_vehicle">Via sem saída para veículos a motor</string>
 	<string name="type.office">Escritório</string>
 	<string name="type.office.company">Escritório de empresa</string>
 	<string name="type.office.estate_agent">Corretor imobiliário</string>
@@ -1463,6 +1476,7 @@
 	<string name="type.wheelchair.limited">Acesso limitado para cadeira de rodas</string>
 	<string name="type.wheelchair.no">Sem acesso para cadeira de rodas</string>
 	<string name="type.wheelchair.yes">Acesso total para cadeira de rodas</string>
+	<!-- en.wikipedia.org/wiki/Surface_lift -->
 	<string name="type.piste_lift">Telesqui</string>
 	<string name="type.piste_lift.j.bar">Telesqui de barra em J</string>
 	<string name="type.piste_lift.magic_carpet">Tapete deslizante</string>

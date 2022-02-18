@@ -123,6 +123,10 @@
 	<string name="post">우편</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">치안대</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">재활용</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">물</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">메모</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">안녕하세요.\n\n지금 다음 위치에 있습니다: %1$s. %2$s 또는 %3$s 링크를 클릭하여 지도상에서 해당 장소를 살펴보시기 바랍니다.\n\n감사합니다.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">공유</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">이메일</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">클립보드에 복사됨: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">완료</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">버전: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap 데이터: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">계속하겠습니까?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -443,7 +451,6 @@
 	<string name="placepage_place_description">설명</string>
 	<string name="placepage_more_button">자세히</string>
 	<string name="placepage_more_reviews_button">더 많은 리뷰</string>
-	<string name="book_button">예약</string>
 	<string name="placepage_call_button">전화</string>
 	<string name="placepage_edit_bookmark_button">즐겨찾기 편집</string>
 	<string name="editor_comment_hint">설명…</string>
@@ -462,7 +469,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">개인 정보를 입력하지 않았는지 확인하십시오.</string>
 	<string name="editor_share_to_all_dialog_message_2">저희가 변경 사항을 확인할 것입니다. 질문이 있으신 경우, 저희에게 이메일을 통해 연락하십시오.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps는 무료 오픈 소스 오프라인 지도 애플리케이션입니다. 광고 없음. 추적이 없습니다. 지도에 오류가 표시되면 OpenStreetMap에서 수정하세요. 이 프로젝트는 여가 시간에 열광자들에 의해 만들어지므로 여러분의 피드백과 지원이 필요합니다.</string>
 	<!-- For the first routing -->
 	<string name="accept">동의</string>
@@ -475,6 +482,7 @@
 	<string name="mobile_data_option_today">오늘만</string>
 	<string name="mobile_data_option_not_today">오늘 사용 안 함</string>
 	<string name="mobile_data">모바일 인터넷</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">모바일 인터넷은 사진, 가격, 리뷰 등 장소에 대한 자세한 정보를 표시하는 데 필요합니다.</string>
 	<string name="mobile_data_option_never">전혀 사용 안 함</string>
 	<string name="mobile_data_option_ask">항상 표시</string>
@@ -489,7 +497,7 @@
 	<string name="on">켜기</string>
 	<string name="off">끄기</string>
 	<string name="prefs_languages_information">당사는 음성 지침을 위해 시스템 TTS를 사용합니다. 많은 Android 장치에서 Google TTS를 사용합니다. Google Play(https://play.google.com/store/apps/details?id=com.google.android.tts)에서 Google TTS를 다운로드하거나 업데이트할 수 있습니다.</string>
-	<string name="prefs_languages_information_off">일부 언어의 경우 앱 스토어(Google Play Market, Samsung Apps)에서 다른 음성 합성기 또는 추가 언어 팩을 설치해야 합니다.\n장치의 설정 → 언어 및 입력 → 음성 → 텍스트-음성 변환 출력을 엽니다.\n여기서 음성 합성에 대한 설정을 관리하고(예: 오프라인 사용을 위한 언어 팩 다운로드) 다른 텍스트-음성 변환 엔진을 선택할 수 있습니다.</string>
+	<string name="prefs_languages_information_off">일부 언어의 경우 앱 스토어(Google Play, Samsung Apps, App Gallery, FDroid)에서 다른 음성 합성기 또는 추가 언어 팩을 설치해야 합니다.\n장치의 설정 → 언어 및 입력 → 음성 → 텍스트-음성 변환 출력을 엽니다.\n여기서 음성 합성에 대한 설정을 관리하고(예: 오프라인 사용을 위한 언어 팩 다운로드) 다른 텍스트-음성 변환 엔진을 선택할 수 있습니다.</string>
 	<string name="prefs_languages_information_off_link">자세한 내용을 보려면 이 가이드를 확인하세요.</string>
 	<string name="transliteration_title">라틴어로 음역</string>
 	<string name="learn_more">자세히 알아보기</string>
@@ -601,6 +609,8 @@
 	<string name="moreyear_ago_sorttype">1년 그 이상 전</string>
 	<string name="near_me_sorttype">나와 가까운 곳</string>
 	<string name="others_sorttype">기타</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">음식</string>
 	<string name="tourist_places">명소</string>
 	<string name="museums">박물관</string>
@@ -614,7 +624,6 @@
 	<string name="shops">상점</string>
 	<string name="parkings">주차장</string>
 	<string name="fuel_places">주유소</string>
-	<string name="water">물</string>
 	<string name="medicine">의료</string>
 	<string name="search_in_the_list">리스트에서 검색</string>
 	<string name="religious_places">종교적 장소</string>
@@ -676,7 +685,9 @@
 	<string name="type.amenity.fire_station">소방서</string>
 	<string name="type.amenity.fountain">분수</string>
 	<string name="type.amenity.fuel">주유소</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">묘소</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">묘소</string>
 	<string name="type.amenity.hospital">병원</string>
 	<string name="type.amenity.hunting_stand">사냥 스탠드</string>
@@ -715,9 +726,12 @@
 	<string name="type.amenity.post_office">우체국</string>
 	<string name="type.amenity.pub">술집</string>
 	<string name="type.amenity.public_bookcase">도서 교환</string>
-	<string name="type.amenity.recycling">재활용센터</string>
-	<string name="type.amenity.recycling_container">재활용 쓰레기통</string>
-	<string name="type.recycling.toxic">유독성 폐기물</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">재활용센터</string>
+	<string name="type.amenity.recycling">재활용 쓰레기통</string>
+	<string name="type.amenity.recycling.container">재활용 쓰레기통</string>
+	<string name="type.recycling.batteries">배터리</string>
 	<string name="type.recycling.clothes">낡은 옷</string>
 	<string name="type.recycling.glass_bottles">유리병</string>
 	<string name="type.recycling.paper">종이 쓰레기</string>
@@ -990,7 +1004,9 @@
 	<string name="type.internet_access">인터넷</string>
 	<string name="type.internet_access.wlan">인터넷</string>
 	<string name="type.landuse.basin">저수지</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">묘소</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">묘소</string>
 	<string name="type.landuse.churchyard">교회 마당</string>
 	<string name="type.landuse.farmland">농지</string>
@@ -1023,6 +1039,7 @@
 	<string name="type.leisure.sports_centre.yoga">요가 스튜디오</string>
 	<string name="type.leisure.stadium">경기장</string>
 	<string name="type.leisure.swimming_pool">수영장</string>
+	<string name="type.leisure.swimming_pool.private">수영장</string>
 	<string name="type.leisure.water_park">워터파크</string>
 	<string name="type.man_made.chimney">공장 굴뚝</string>
 	<string name="type.man_made.lighthouse">등대</string>

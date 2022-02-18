@@ -125,6 +125,10 @@
 	<string name="post">Posti</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Poliisi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Kierrätys</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Vesi</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Muistiinpanot</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -153,12 +157,16 @@
 	<string name="my_position_share_email">Hei,n\nOlen nyt täällä: %1$s. Klikkaa linkkiä %2$s tai %3$s nähdäksesi paikan kartalla. Kiitos.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Jaa</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Sähköposti</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Kopioitu leikepöydälle: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Valmis</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Versio: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap-tiedot: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Oletko varma että haluat jatkaa?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -449,7 +457,6 @@
 	<string name="placepage_place_description">Kuvaus</string>
 	<string name="placepage_more_button">Lisää</string>
 	<string name="placepage_more_reviews_button">Lisää arvosteluja</string>
-	<string name="book_button">Varaa</string>
 	<string name="placepage_call_button">Soita</string>
 	<string name="placepage_edit_bookmark_button">Muokkaa kirjanmerkkiä</string>
 	<string name="editor_comment_hint">Kommentti…</string>
@@ -468,7 +475,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Varmistat, ettet syöttänyt henkilökohtaisia tietojasi.</string>
 	<string name="editor_share_to_all_dialog_message_2">Tarkistamme muutokset. Otamme sinuun yhteyttä sähköpostitse, jos meillä on kysyttävää.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps on ilmainen ja avoimen lähdekoodin offline-karttasovellus. Ei mainoksia. Ei seurantaa. Jos näet virheen kartalla, korjaa se OpenStreetMapissa. Hankkeen ovat luoneet harrastajat vapaa-ajallamme, joten tarvitsemme palautettasi ja tukeasi.</string>
 	<!-- For the first routing -->
 	<string name="accept">Hyväksy</string>
@@ -481,6 +488,7 @@
 	<string name="mobile_data_option_today">Vain tänään</string>
 	<string name="mobile_data_option_not_today">Älä käytä tänään</string>
 	<string name="mobile_data">Mobiili-internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Mobiili-internet vaaditaan paikkojen lisätietojen näyttämiseen, kuten valokuviin, hintoihin ja arvioihin.</string>
 	<string name="mobile_data_option_never">Älä käytä koskaan</string>
 	<string name="mobile_data_option_ask">Kysy aina</string>
@@ -495,7 +503,7 @@
 	<string name="on">Käytössä</string>
 	<string name="off">Ei käytössä</string>
 	<string name="prefs_languages_information">Käytämme ääniohjeisiin tekstistä puheeksi -järjestelmää. Monet Android-laitteet käyttävät Googlen tekstistä puheeksi -sovellusta, jonka voit ladata tai päivittää Google Playssä (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Joidenkin kielien osalta sinun täytyy asentaa toinen puhesyntetisaattori tai lisäkielipaketti sovelluskaupasta (Google Play Market, Samsung Apps). Avaa laitteen asetukset → Kieli ja syöttötapa → Puhe → Teksistä puheeksi -toisto. Täällä voit hallita puhesynteesin asetuksia (esimerkiksi ladata offline-tilassa käytettävän kielipaketin) ja valita toisen tekstistä puheeksi -moottorin.</string>
+	<string name="prefs_languages_information_off">Joidenkin kielien osalta sinun täytyy asentaa toinen puhesyntetisaattori tai lisäkielipaketti sovelluskaupasta (Google Play, Samsung Apps, App Gallery, FDroid). Avaa laitteen asetukset → Kieli ja syöttötapa → Puhe → Teksistä puheeksi -toisto. Täällä voit hallita puhesynteesin asetuksia (esimerkiksi ladata offline-tilassa käytettävän kielipaketin) ja valita toisen tekstistä puheeksi -moottorin.</string>
 	<string name="prefs_languages_information_off_link">Lisätietoja saat tästä oppaasta.</string>
 	<string name="transliteration_title">Translitterointi latinaksi</string>
 	<string name="learn_more">Lisätietoja</string>
@@ -610,6 +618,8 @@
 	<string name="moreyear_ago_sorttype">Yli vuosi sitten</string>
 	<string name="near_me_sorttype">Lähelläni</string>
 	<string name="others_sorttype">Muut</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Ruoka</string>
 	<string name="tourist_places">Nähtävyydet</string>
 	<string name="museums">Museot</string>
@@ -623,7 +633,6 @@
 	<string name="shops">Kaupat</string>
 	<string name="parkings">Pysäköinti</string>
 	<string name="fuel_places">Huoltoasemat</string>
-	<string name="water">Vesi</string>
 	<string name="medicine">Apteekki</string>
 	<string name="search_in_the_list">Etsi listalta</string>
 	<string name="religious_places">Pyhät paikat</string>
@@ -687,7 +696,9 @@
 	<string name="type.amenity.fire_station">Paloasema</string>
 	<string name="type.amenity.fountain">Suihkulähde</string>
 	<string name="type.amenity.fuel">Huoltoasema</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Hautausmaa</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Hautausmaa</string>
 	<string name="type.amenity.hospital">Sairaala</string>
 	<string name="type.amenity.hunting_stand">Metsästyspaikka</string>
@@ -726,9 +737,12 @@
 	<string name="type.amenity.post_office">Postitoimisto</string>
 	<string name="type.amenity.pub">Pubi</string>
 	<string name="type.amenity.public_bookcase">Kirjahylly</string>
-	<string name="type.amenity.recycling">Kierrätyskeskus</string>
-	<string name="type.amenity.recycling_container">Kierrätysjäteastia</string>
-	<string name="type.recycling.toxic">Myrkkyjäte</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Kierrätyskeskus</string>
+	<string name="type.amenity.recycling">Kierrätysjäteastia</string>
+	<string name="type.amenity.recycling.container">Kierrätysjäteastia</string>
+	<string name="type.recycling.batteries">Paristot</string>
 	<string name="type.recycling.clothes">Vanhat vaatteet</string>
 	<string name="type.recycling.glass_bottles">Lasipullot</string>
 	<string name="type.recycling.paper">Paperi- ja kartonkijäte</string>
@@ -1001,7 +1015,9 @@
 	<string name="type.historic.ship">Nähtävyydet</string>
 	<string name="type.historic.tomb">Nähtävyydet</string>
 	<string name="type.landuse.basin">Vesisäiliö</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Hautausmaa</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Hautausmaa</string>
 	<string name="type.landuse.churchyard">Kirkon piha</string>
 	<string name="type.landuse.farmland">Maatalousmaa</string>
@@ -1034,6 +1050,7 @@
 	<string name="type.leisure.sports_centre.yoga">Joogastudio</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Uima-allas</string>
+	<string name="type.leisure.swimming_pool.private">Uima-allas</string>
 	<string name="type.leisure.water_park">Vesipuisto</string>
 	<string name="type.man_made.chimney">Tehtaan piippu</string>
 	<string name="type.man_made.lighthouse">Majakka</string>
@@ -1271,6 +1288,12 @@
 	<string name="type.wheelchair.no">Ei varustettu vammaisille</string>
 	<string name="type.wheelchair.yes">Varustettu vammaisille</string>
 	<string name="type.piste_type.downhill">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.advanced">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.easy">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.expert">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.freeride">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.intermediate">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.novice">Laskettelurinne</string>
 	<string name="type.piste_type.nordic">Latu</string>
 	<string name="type.building_part">Rakennus</string>
 </resources>

@@ -123,6 +123,10 @@
 	<string name="post">Poczta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Policja</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Recykling</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Woda</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notatki</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">Cześć,\n\nJestem teraz tutaj: %1$s. Naciśnij na ten link %2$s lub ten %3$s, aby zobaczyć to miejsce na mapie.\n\nDziękuję.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Udostępnij</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Skopiowano do schowka: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Gotowe</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Wersja danych: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Wersja: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Dane OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Kontynuować?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -451,7 +457,6 @@
 	<string name="placepage_place_description">Opis</string>
 	<string name="placepage_more_button">Więcej</string>
 	<string name="placepage_more_reviews_button">Więcej opinii</string>
-	<string name="book_button">Zarezerwuj</string>
 	<string name="placepage_call_button">Zadzwoń</string>
 	<string name="placepage_edit_bookmark_button">Edytuj zakładkę</string>
 	<string name="editor_comment_hint">Komentarz…</string>
@@ -474,7 +479,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Upewnij się, że nie podałeś osobistych danych.</string>
 	<string name="editor_share_to_all_dialog_message_2">Zapoznamy się ze zmianami. W przypadku pytań skontaktujemy się z Tobą przez email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps to bezpłatna aplikacja do map offline typu open source. Bez reklam. Bez śledzenia. Jeśli zobaczysz błąd na mapie, napraw go w OpenStreetMap. Projekt jest tworzony przez entuzjastów w czasie wolnym, dlatego potrzebujemy Twojej opinii i wsparcia.</string>
 	<!-- For the first routing -->
 	<string name="accept">Zaakceptuj</string>
@@ -487,6 +492,7 @@
 	<string name="mobile_data_option_today">Tylko dzisiaj</string>
 	<string name="mobile_data_option_not_today">Nie stosuj dzisiaj</string>
 	<string name="mobile_data">Internet mobilny</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Do wyświetlania danych szczegółowych o miejscach (np. zdjęcia, ceny i recenzje) wymagany jest internet mobilny.</string>
 	<string name="mobile_data_option_never">Nigdy nie stosuj</string>
 	<string name="mobile_data_option_ask">Zawsze pytaj</string>
@@ -501,7 +507,7 @@
 	<string name="on">Wł.</string>
 	<string name="off">Wył.</string>
 	<string name="prefs_languages_information">Stosujemy system TTS dla komend głosowych. Stosuje go wiele urządzeń z systemem Android, można go pobrać lub zaktualizować z Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">W przypadku niektórych języków wymagana będzie instalacja innego syntezatora lub pakietu językowego ze strony aplikacji (Google Play Market, Samsung Apps). Otwórz ustawienia urządzenia → Język i klawiatura → Mowa → Przetwarzanie tekstu na mowę.\nMożesz w tym miejscu zarządzać ustawieniami syntezy mowy (np. pobrać pakiet językowy do stosowania offline) i wybrać inny silnik przetwarzania tekstu na mowę.</string>
+	<string name="prefs_languages_information_off">W przypadku niektórych języków wymagana będzie instalacja innego syntezatora lub pakietu językowego ze strony aplikacji (Google Play, Samsung Apps, App Gallery, FDroid). Otwórz ustawienia urządzenia → Język i klawiatura → Mowa → Przetwarzanie tekstu na mowę.\nMożesz w tym miejscu zarządzać ustawieniami syntezy mowy (np. pobrać pakiet językowy do stosowania offline) i wybrać inny silnik przetwarzania tekstu na mowę.</string>
 	<string name="prefs_languages_information_off_link">Aby uzyskać więcej informacji, sprawdź ten poradnik.</string>
 	<string name="transliteration_title">Transkrypcja na alfabet łaciński</string>
 	<string name="learn_more">Dowiedz się więcej</string>
@@ -617,6 +623,8 @@
 	<string name="moreyear_ago_sorttype">Ponad rok wstecz</string>
 	<string name="near_me_sorttype">Obok mnie</string>
 	<string name="others_sorttype">Inne</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Jedzenie</string>
 	<string name="tourist_places">Zabytki</string>
 	<string name="museums">Muzea</string>
@@ -630,7 +638,6 @@
 	<string name="shops">Sklepy</string>
 	<string name="parkings">Parkingi</string>
 	<string name="fuel_places">Stacje paliw</string>
-	<string name="water">Woda</string>
 	<string name="medicine">Lecznictwo</string>
 	<string name="search_in_the_list">Wyszukaj na liście</string>
 	<string name="religious_places">Święte miejsca</string>
@@ -655,6 +662,10 @@
 	<string name="enable_screen_sleep">Pozwól ekranowi spać</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Po włączeniu ekran będzie mógł spać po okresie bezczynności.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Pokazuj na ekranie blokady</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Po włączeniu nie musisz odblokowywać urządzenia za każdym razem, gdy aplikacja jest uruchomiona.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Transport linowy</string>
@@ -706,7 +717,9 @@
 	<string name="type.amenity.food_court">Sekcja gastronomiczna</string>
 	<string name="type.amenity.fountain">Fontanna</string>
 	<string name="type.amenity.fuel">Stacja benzynowa</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Cmentarz</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Cmentarz chrześcijański</string>
 	<string name="type.amenity.hospital">Szpital</string>
 	<string name="type.amenity.hunting_stand">Ambona myśliwska</string>
@@ -743,9 +756,12 @@
 	<string name="type.amenity.post_office">Urząd Pocztowy</string>
 	<string name="type.amenity.prison">Więzienie</string>
 	<string name="type.amenity.public_bookcase">Wymiana książek</string>
-	<string name="type.amenity.recycling">Centrum przetwórstwa odpadów</string>
-	<string name="type.amenity.recycling_container">Pojemnik do recyklingu</string>
-	<string name="type.recycling.toxic">Odpady toksyczne</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Centrum przetwórstwa odpadów</string>
+	<string name="type.amenity.recycling">Pojemnik do recyklingu</string>
+	<string name="type.amenity.recycling.container">Pojemnik do recyklingu</string>
+	<string name="type.recycling.batteries">Baterie</string>
 	<string name="type.recycling.clothes">Stare ubrania</string>
 	<string name="type.recycling.glass_bottles">Szkło</string>
 	<string name="type.recycling.paper">Makulatura</string>
@@ -790,10 +806,21 @@
 	<string name="type.barrier.wall">Mur</string>
 	<string name="type.boundary">Granica</string>
 	<string name="type.boundary.administrative">Granica administracyjna</string>
+	<string name="type.boundary.administrative.10">Granica administracyjna</string>
+	<string name="type.boundary.administrative.11">Granica administracyjna</string>
+	<string name="type.boundary.administrative.2">Granica państwa</string>
+	<string name="type.boundary.administrative.3">Granica administracyjna</string>
+	<string name="type.boundary.administrative.4">Granica administracyjna</string>
+	<string name="type.boundary.administrative.5">Granica administracyjna</string>
+	<string name="type.boundary.administrative.6">Granica administracyjna</string>
+	<string name="type.boundary.administrative.7">Granica administracyjna</string>
+	<string name="type.boundary.administrative.8">Granica administracyjna</string>
+	<string name="type.boundary.administrative.9">Granica administracyjna</string>
 	<string name="type.boundary.administrative.city">Granica miasta</string>
 	<string name="type.boundary.administrative.country">Granica państwa</string>
 	<string name="type.boundary.administrative.county">Granica hrabstwa</string>
 	<string name="type.boundary.administrative.municipality">Granica gminy</string>
+	<string name="type.boundary.administrative.nation">Granica państwa</string>
 	<string name="type.boundary.administrative.region">Granica regionu</string>
 	<string name="type.boundary.administrative.state">Granica województwa</string>
 	<string name="type.boundary.administrative.suburb">Granica przedmieść</string>
@@ -1058,7 +1085,9 @@
 	<string name="type.landuse.allotments">Działki</string>
 	<string name="type.landuse.basin">Zbiornik</string>
 	<string name="type.landuse.brownfield">Teren do zabudowy</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Cmentarz</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cmentarz chrześcijański</string>
 	<string name="type.landuse.churchyard">Teren kościelny</string>
 	<string name="type.landuse.commercial">Teren handlu i usług</string>
@@ -1114,6 +1143,7 @@
 	<string name="type.leisure.sports_centre.yoga">Studio jogi</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Basen</string>
+	<string name="type.leisure.swimming_pool.private">Basen</string>
 	<string name="type.leisure.water_park">Park wodny</string>
 	<string name="type.man_made.breakwater">Falochron</string>
 	<string name="type.man_made.cairn">Kopiec</string>
@@ -1166,7 +1196,6 @@
 	<string name="type.natural.wetland.bog">Torfowisko</string>
 	<string name="type.natural.wetland.marsh">Moczary</string>
 	<string name="type.noexit">Ślepy koniec drogi</string>
-	<string name="type.noexit.motor_vehicle">Ślepy koniec drogi dla pojazdów mechanicznych</string>
 	<string name="type.office">Biuro</string>
 	<string name="type.office.company">Biuro przedsiębiorstwa</string>
 	<string name="type.office.estate_agent">Pośrednik handlu nieruchomościami</string>

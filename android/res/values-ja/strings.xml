@@ -123,6 +123,10 @@
 	<string name="post">郵便局</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">リサイクル</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">水</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">メモ</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -149,12 +153,16 @@
 	<string name="my_position_share_email">私は今ここにいます: %1$s\n\nリンクをクリックすると詳細がマップに表示されます。\n\n%2$s\n\n%3$s</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">共有</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Eメール</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">クリップボードにコピーしました: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">完了</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">バージョン： %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMapデータ：%s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">本当に続けますか?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -441,7 +449,6 @@
 	<string name="placepage_place_description">説明</string>
 	<string name="placepage_more_button">さらに詳しく</string>
 	<string name="placepage_more_reviews_button">レビューを更に表示</string>
-	<string name="book_button">予約</string>
 	<string name="placepage_call_button">コール</string>
 	<string name="placepage_edit_bookmark_button">ブックマークを編集</string>
 	<string name="editor_comment_hint">コメント…</string>
@@ -460,7 +467,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">個人情報を入力していないことを確認してください。</string>
 	<string name="editor_share_to_all_dialog_message_2">弊社で変更を確認します。質問がある場合はメールでご連絡します。</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Mapsは、無料のオープンソースのオフラインマップアプリケーションです。広告なし。全く追跡しません。地図上にエラーが表示された場合は、OpenStreetMapで修正してください。プロジェクトは私たちの自由な時間に愛好家によって作成されているため、フィードバックとサポートが必要です。</string>
 	<!-- For the first routing -->
 	<string name="accept">了解</string>
@@ -473,6 +480,7 @@
 	<string name="mobile_data_option_today">今日だけ</string>
 	<string name="mobile_data_option_not_today">今日は使用しない</string>
 	<string name="mobile_data">モバイルインターネット</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">モバイルインターネットは場所、写真、価格やレビューのような詳細情報を表示するのに必要です。</string>
 	<string name="mobile_data_option_never">使用しない</string>
 	<string name="mobile_data_option_ask">常に確認</string>
@@ -599,6 +607,8 @@
 	<string name="moreyear_ago_sorttype">1年以上前</string>
 	<string name="near_me_sorttype">近隣</string>
 	<string name="others_sorttype">その他</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">食べ物</string>
 	<string name="tourist_places">観光地</string>
 	<string name="museums">博物館</string>
@@ -612,7 +622,6 @@
 	<string name="shops">ショップ</string>
 	<string name="parkings">駐車場</string>
 	<string name="fuel_places">ガソリンスタンド</string>
-	<string name="water">水</string>
 	<string name="medicine">医薬品</string>
 	<string name="search_in_the_list">リスト内で検索</string>
 	<string name="religious_places">宗教に関連した場所</string>
@@ -687,7 +696,9 @@
 	<string name="type.amenity.food_court">フードコート</string>
 	<string name="type.amenity.fountain">噴水</string>
 	<string name="type.amenity.fuel">ガソリンスタンド</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">キリスト教墓地</string>
 	<string name="type.amenity.hospital">病院</string>
 	<string name="type.amenity.hunting_stand">狩猟スタンド</string>
@@ -727,9 +738,12 @@
 	<string name="type.amenity.prison">刑務所</string>
 	<string name="type.amenity.pub">バー</string>
 	<string name="type.amenity.public_bookcase">街角文庫</string>
-	<string name="type.amenity.recycling">リサイクルセンター</string>
-	<string name="type.amenity.recycling_container">リサイクルボックス</string>
-	<string name="type.recycling.toxic">有毒廃棄物</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">リサイクルセンター</string>
+	<string name="type.amenity.recycling">リサイクルボックス</string>
+	<string name="type.amenity.recycling.container">リサイクルボックス</string>
+	<string name="type.recycling.batteries">バッテリー</string>
 	<string name="type.recycling.clothes">古着</string>
 	<string name="type.recycling.glass_bottles">ガラス瓶</string>
 	<string name="type.recycling.paper">紙くず</string>
@@ -774,6 +788,15 @@
 	<string name="type.barrier.wall">壁</string>
 	<string name="type.boundary">境界線</string>
 	<string name="type.boundary.administrative">行政境界</string>
+	<string name="type.boundary.administrative.10">行政境界</string>
+	<string name="type.boundary.administrative.11">行政境界</string>
+	<string name="type.boundary.administrative.3">行政境界</string>
+	<string name="type.boundary.administrative.4">行政境界</string>
+	<string name="type.boundary.administrative.5">行政境界</string>
+	<string name="type.boundary.administrative.6">行政境界</string>
+	<string name="type.boundary.administrative.7">行政境界</string>
+	<string name="type.boundary.administrative.8">行政境界</string>
+	<string name="type.boundary.administrative.9">行政境界</string>
 	<string name="type.boundary.national_park">国立公園</string>
 	<string name="type.building">建物</string>
 	<string name="type.building.address">建物</string>
@@ -1037,7 +1060,9 @@
 	<string name="type.landuse.allotments">市民農園</string>
 	<string name="type.landuse.basin">水地</string>
 	<string name="type.landuse.brownfield">再開発用地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">キリスト教墓地</string>
 	<string name="type.landuse.churchyard">キリスト教教会付属地</string>
 	<string name="type.landuse.commercial">商業用地</string>
@@ -1094,6 +1119,7 @@
 	<string name="type.leisure.sports_centre.yoga">ヨガスタジオ</string>
 	<string name="type.leisure.stadium">スタジアム</string>
 	<string name="type.leisure.swimming_pool">プール</string>
+	<string name="type.leisure.swimming_pool.private">プール</string>
 	<string name="type.leisure.track">トラック</string>
 	<string name="type.leisure.water_park">ウォーターパーク</string>
 	<string name="type.man_made">構造物</string>
@@ -1150,7 +1176,6 @@
 	<string name="type.natural.wetland.bog">泥炭地</string>
 	<string name="type.natural.wetland.marsh">沼地</string>
 	<string name="type.noexit">行き止まり</string>
-	<string name="type.noexit.motor_vehicle">行き止まり</string>
 	<string name="type.office">オフィス</string>
 	<string name="type.office.company">会社事務所</string>
 	<string name="type.office.estate_agent">不動産業者</string>

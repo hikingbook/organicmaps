@@ -123,6 +123,10 @@
 	<string name="post">Posta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Rendőrség</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Újrahasznosítás</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Víz</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Jegyzetek</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">Üdvözlöm!\n\nJelenleg itt vagyok: %1$s Kattintson erre a hivatkozásra %2$s vagy erre %3$s, hogy lássa a helyet a térképen.\n\nKöszönöm.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Megosztás</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">A vágólapra másolva: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Kész</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Verzió: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap adatok: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Valóban folytatni akarja?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -443,7 +451,6 @@
 	<string name="placepage_place_description">Leírás</string>
 	<string name="placepage_more_button">Még</string>
 	<string name="placepage_more_reviews_button">További vélemények</string>
-	<string name="book_button">Foglalás</string>
 	<string name="placepage_call_button">Hívás</string>
 	<string name="placepage_edit_bookmark_button">Könyvjelző szerkesztése</string>
 	<string name="editor_comment_hint">Megjegyzés…</string>
@@ -462,7 +469,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Győződj meg arról, hogy nem adsz meg semmilyen személyes információt.</string>
 	<string name="editor_share_to_all_dialog_message_2">Ellenőrizni fogjuk a változásokat. Ha bármilyen kérdésünk van, emailben keresünk.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Az Organic Maps egy ingyenes, nyílt forráskódú offline térképalkalmazás. Nincsenek hirdetések. Nincs nyomkövetés. Ha hibát lát a térképen, javítsa ki az OpenStreetMap segítségével. A projektet a lelkesek készítik szabadidőnkben, ezért szükségünk van az Ön visszajelzésére és támogatására.</string>
 	<!-- For the first routing -->
 	<string name="accept">Elfogadja</string>
@@ -475,6 +482,7 @@
 	<string name="mobile_data_option_today">Csak ma</string>
 	<string name="mobile_data_option_not_today">Ma nem használhatja</string>
 	<string name="mobile_data">Mobil Internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Mobil internetre van szükség helyszínekre vonatkozó részletes információ, mint például fotók, árak és szemlék megjelenítéséhez.</string>
 	<string name="mobile_data_option_never">Soha se használja</string>
 	<string name="mobile_data_option_ask">Mindig kérdezze meg</string>
@@ -489,7 +497,7 @@
 	<string name="on">Be</string>
 	<string name="off">Ki</string>
 	<string name="prefs_languages_information">TTS rendszert használunk a hangnavigációhoz. Sok Android-os készülék használja a Google TTS-t; töltse le vagy frissítse a Google Play áruházból (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Egyes nyelveknél másik beszédszintetizátort vagy további nyelvi csomagot kell telepítenie az alkalmazás-áruházból (Google Play Market, Samsung Apps). Nyissa meg a készülék beállításait → Nyelv és bevitel → Beszéd → Szöveg-beszéd átalakító kimenet. Itt kezelheti a beszédszintézis beállításokat (például nyelvi csomag letöltése kapcsolat nélküli használatra) és másik szövegfelolvasót jelölhe tki.</string>
+	<string name="prefs_languages_information_off">Egyes nyelveknél másik beszédszintetizátort vagy további nyelvi csomagot kell telepítenie az alkalmazás-áruházból (Google Play, Samsung Apps, App Gallery, FDroid). Nyissa meg a készülék beállításait → Nyelv és bevitel → Beszéd → Szöveg-beszéd átalakító kimenet. Itt kezelheti a beszédszintézis beállításokat (például nyelvi csomag letöltése kapcsolat nélküli használatra) és másik szövegfelolvasót jelölhe tki.</string>
 	<string name="prefs_languages_information_off_link">További tájékoztatást találhat még ebben az útmutatóban.</string>
 	<string name="transliteration_title">Átírás latin nyelvre</string>
 	<string name="learn_more">Tudjon meg többet</string>
@@ -602,6 +610,8 @@
 	<string name="moreyear_ago_sorttype">Több mint egy éve</string>
 	<string name="near_me_sorttype">Hozzám közel</string>
 	<string name="others_sorttype">Más</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Étel</string>
 	<string name="tourist_places">Látnivalók</string>
 	<string name="museums">Múzeumok</string>
@@ -615,7 +625,6 @@
 	<string name="shops">Üzletek</string>
 	<string name="parkings">Parkolók</string>
 	<string name="fuel_places">Benzinkutak</string>
-	<string name="water">Víz</string>
 	<string name="medicine">Gyógyszer</string>
 	<string name="search_in_the_list">Keresés a listában</string>
 	<string name="religious_places">Vallási helyek</string>
@@ -677,7 +686,9 @@
 	<string name="type.amenity.fire_station">Tűzoltóság</string>
 	<string name="type.amenity.fountain">Szökőkút</string>
 	<string name="type.amenity.fuel">Benzinkút</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Temető</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Temető</string>
 	<string name="type.amenity.hospital">Kórház</string>
 	<string name="type.amenity.hunting_stand">Vadászles</string>
@@ -716,9 +727,12 @@
 	<string name="type.amenity.post_office">Posta</string>
 	<string name="type.amenity.pub">Kocsma</string>
 	<string name="type.amenity.public_bookcase">Nyilvános könyvespolc</string>
-	<string name="type.amenity.recycling">Újrahasznosító központ</string>
-	<string name="type.amenity.recycling_container">Újrahasznosító tartály</string>
-	<string name="type.recycling.toxic">Mérgező hulladék</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Újrahasznosító központ</string>
+	<string name="type.amenity.recycling">Újrahasznosító tartály</string>
+	<string name="type.amenity.recycling.container">Újrahasznosító tartály</string>
+	<string name="type.recycling.batteries">Elemek</string>
 	<string name="type.recycling.clothes">Régi ruhák</string>
 	<string name="type.recycling.glass_bottles">Üveg palackok</string>
 	<string name="type.recycling.paper">Papír hulladék</string>
@@ -989,7 +1003,9 @@
 	<string name="type.historic.ship">Túrizmus</string>
 	<string name="type.historic.tomb">Túrizmus</string>
 	<string name="type.landuse.basin">Vízgyűjtő</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Temető</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Temető</string>
 	<string name="type.landuse.churchyard">Templomtér</string>
 	<string name="type.landuse.farmland">Termőföld</string>
@@ -1022,6 +1038,7 @@
 	<string name="type.leisure.sports_centre.yoga">Jógastúdió</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Úszómedence</string>
+	<string name="type.leisure.swimming_pool.private">Úszómedence</string>
 	<string name="type.leisure.water_park">Aquapark</string>
 	<string name="type.man_made.chimney">Gyárkémény</string>
 	<string name="type.man_made.lighthouse">Világítótorony</string>
