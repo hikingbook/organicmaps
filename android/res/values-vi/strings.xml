@@ -123,6 +123,10 @@
 	<string name="post">Bưu điện</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Cảnh sát</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Tái chế rác thải</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Nước</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Ghi chú</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">Chào,\n\nTôi hiện đang ở đây: %1$s. Hãy nhấn vào liên kết này %2$s hoặc liên kết này %3$s để xem địa điểm trên bản đồ.\n\nCám ơn.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Chia sẻ</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Đã sao chép vào Bảng tạm: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Xong</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Phiên bản: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Dữ liệu OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Bạn có chắc muốn tiếp tục không?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -443,7 +451,6 @@
 	<string name="placepage_place_description">Mô tả</string>
 	<string name="placepage_more_button">Bổ sung</string>
 	<string name="placepage_more_reviews_button">Thêm nhận xét</string>
-	<string name="book_button">Đặt trước</string>
 	<string name="placepage_call_button">Gọi</string>
 	<string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
 	<string name="editor_comment_hint">Nhận xét…</string>
@@ -462,7 +469,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Chắc chắn rằng bạn không nhập bất kỳ thông tin cá nhân nào.</string>
 	<string name="editor_share_to_all_dialog_message_2">Chúng tôi sẽ kiểm tra những thay đổi. Nếu chúng tôi có câu hỏi nào, chúng tôi sẽ liên lạc với bạn qua email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps là một ứng dụng bản đồ ngoại tuyến mã nguồn mở và miễn phí. Không quảng cáo. Không theo dõi. Nếu bạn thấy lỗi trên bản đồ, hãy sửa lỗi đó trong OpenStreetMap. Dự án được tạo ra bởi những người đam mê trong thời gian rảnh của chúng tôi, vì vậy chúng tôi cần phản hồi và hỗ trợ của bạn.</string>
 	<!-- For the first routing -->
 	<string name="accept">Chấp nhận</string>
@@ -475,6 +482,7 @@
 	<string name="mobile_data_option_today">Chỉ Hôm nay</string>
 	<string name="mobile_data_option_not_today">Không Sử dụng Hôm nay</string>
 	<string name="mobile_data">Internet Di động</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Internet di động là cần thiết để hiển thị thông tin chi tiết về các nơi, ví dụ như ảnh chụp, giá cả và đánh giá.</string>
 	<string name="mobile_data_option_never">Không bao giờ sử dụng</string>
 	<string name="mobile_data_option_ask">Luôn Hỏi</string>
@@ -489,7 +497,7 @@
 	<string name="on">Bật</string>
 	<string name="off">Tắt</string>
 	<string name="prefs_languages_information">Chúng tôi sử dụng TTS hệ thống để hướng dẫn bằng giọng nói. Rất nhiều thiết bị Android sử dụng Google TTS, bạn có thể tải về hoặc cập nhật nó từ Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play Market, Samsung Apps).\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
+	<string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play, Samsung Apps, App Gallery, FDroid).\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
 	<string name="prefs_languages_information_off_link">Để biết thêm thông tin, vui lòng kiểm tra bài hướng dẫn này.</string>
 	<string name="transliteration_title">Chuyển ngữ sang chữ Latinh</string>
 	<string name="learn_more">Tìm hiểu thêm</string>
@@ -602,6 +610,8 @@
 	<string name="moreyear_ago_sorttype">Hơn một năm trước</string>
 	<string name="near_me_sorttype">Ở gần tôi</string>
 	<string name="others_sorttype">Khác</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Đồ ăn</string>
 	<string name="tourist_places">Danh lam thắng cảnh</string>
 	<string name="museums">Bảo tàng</string>
@@ -615,7 +625,6 @@
 	<string name="shops">Cửa hàng</string>
 	<string name="parkings">Bãi đậu xe</string>
 	<string name="fuel_places">Trạm xăng dầu</string>
-	<string name="water">Nước</string>
 	<string name="medicine">Y tế</string>
 	<string name="search_in_the_list">Tìm trong danh sách</string>
 	<string name="religious_places">Những nơi tôn nghiêm</string>
@@ -677,7 +686,9 @@
 	<string name="type.amenity.fire_station">Trạm cứu hỏa</string>
 	<string name="type.amenity.fountain">Đài phun nước</string>
 	<string name="type.amenity.fuel">Trạm xăng</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Bãi tha ma</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Bãi tha ma</string>
 	<string name="type.amenity.hospital">Bệnhviện</string>
 	<string name="type.amenity.hunting_stand">Điểm săn bắn</string>
@@ -716,9 +727,12 @@
 	<string name="type.amenity.post_office">Bưu cục</string>
 	<string name="type.amenity.pub">Quán rượu</string>
 	<string name="type.amenity.public_bookcase">Kệ sách</string>
-	<string name="type.amenity.recycling">Trung tâm tái sinh</string>
-	<string name="type.amenity.recycling_container">Thùng rác</string>
-	<string name="type.recycling.toxic">Chất thải độc hại</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Trung tâm tái sinh</string>
+	<string name="type.amenity.recycling">Thùng rác</string>
+	<string name="type.amenity.recycling.container">Thùng rác</string>
+	<string name="type.recycling.batteries">Ắc quy</string>
 	<string name="type.recycling.clothes">Quần áo cũ</string>
 	<string name="type.recycling.glass_bottles">Chai lọ thủy tinh</string>
 	<string name="type.recycling.paper">Giấy phế liệu</string>
@@ -989,7 +1003,9 @@
 	<string name="type.historic.ship">Diểm tham quan</string>
 	<string name="type.historic.tomb">Diểm tham quan</string>
 	<string name="type.landuse.basin">Một chậu nước</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Bãi tha ma</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Bãi tha ma</string>
 	<string name="type.landuse.churchyard">Nhà thờ</string>
 	<string name="type.landuse.farmland">Đất nông nghiệp</string>
@@ -1022,6 +1038,7 @@
 	<string name="type.leisure.sports_centre.yoga">Phòng tập yoga</string>
 	<string name="type.leisure.stadium">Sân vận động</string>
 	<string name="type.leisure.swimming_pool">Bể bơi</string>
+	<string name="type.leisure.swimming_pool.private">Bể bơi</string>
 	<string name="type.leisure.water_park">Công Viên Nước</string>
 	<string name="type.man_made.chimney">Ống Khói Nhà Máy</string>
 	<string name="type.man_made.lighthouse">Hải đăng</string>

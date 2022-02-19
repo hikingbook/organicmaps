@@ -124,6 +124,10 @@
 	<string name="post">Ταχυδρομείο</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Αστυνομία</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Ανακύκλωση</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Νερό</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Σημειώσεις</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">Γεια,\n\nείμαι εδώ τώρα: %1$s. Κάνε κλικ σε αυτό το σύνδεσμο %2$s ή σε αυτόν %3$s για να δεις την τοποθεσία στο χάρτη.\n\nΕυχαριστώ.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Κοινοποίηση</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Αντιγράφηκε στο Πρόχειρο: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Ολοκληρώθηκε</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Ημερομηνία έκδοσης: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Έκδοση: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Δεδομένα OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Θέλετε σίγουρα να συνεχίσετε?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -458,7 +464,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Βεβαιωθείτε ότι δεν έχετε εισάγει προσωπικά δεδομένα.</string>
 	<string name="editor_share_to_all_dialog_message_2">Θα ελέγξουμε τις αλλαγές. Εάν έχουμε οποιαδήποτε απορία θα επικοινωνήσουμε μαζί σας μέσω email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Οι Organic Maps είναι μια δωρεάν και ανοιχτού κώδικα εφαρμογή χαρτών εκτός σύνδεσης. Χωρίς διαφημίσεις. Χωρίς εντοπισμό. Εάν δείτε κάποιο σφάλμα στον χάρτη, διορθώστε το στο OpenStreetMap. Το έργο δημιουργείται από λάτρεις στον ελεύθερο χρόνο μας, επομένως χρειαζόμαστε τα σχόλια και την υποστήριξή σας.</string>
 	<!-- For the first routing -->
 	<string name="accept">Συμφωνώ</string>
@@ -471,6 +477,7 @@
 	<string name="mobile_data_option_today">Μόνο σήμερα</string>
 	<string name="mobile_data_option_not_today">Να μην χρησιμοποιηθεί σήμερα</string>
 	<string name="mobile_data">Ίντερνετ μέσω δικτύου κινητής</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Απαιτείται πρόσβαση στο Ίντερνετ μέσω δικτύου κινητής για την εμφάνιση αναλυτικών πληροφοριών για τις τοποθεσίες, όπως φωτογραφίες, τιμές και κριτικές.</string>
 	<string name="mobile_data_option_never">Να μην χρησιμοποιείται ποτέ</string>
 	<string name="mobile_data_option_ask">Να γίνεται ερώτηση πάντα</string>
@@ -485,7 +492,7 @@
 	<string name="on">Ενεργ.</string>
 	<string name="off">Απενεργ.</string>
 	<string name="prefs_languages_information">Χρησιμοποιούμε σύστημα TTS για τις φωνητικές οδηγίες. Αρκετές συσκευές Android χρησιμοποιούν Google TTS, μπορείτε να το κατεβάσετε ή να το ενημερώσετε από το Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Για μερικές γλώσσες θα χρειαστεί να εγκαταστήσετε συνθεσάιζερ ομιλίας ή συμπληρωματικό πακέτο γλώσσας από το app store (Google Play Market, Samsung Apps).\nΑνοίξτε τις Ρυθμίσεις της συσκευής σας → Γλώσσα και εισαγωγή → Ομιλία → Μετατροπή κειμένου σε ομιλία.\nΕδώ μπορείτε να διαχειριστείτε τις ρυθμίσεις της σύνθεσης ομιλίας (για παράδειγμα, μπορείτε να κατεβάσετε πακέτο γλώσσας για χρήση εκτός σύνδεσης) και να επιλέξετε άλλη μηχανή μετατροπής κειμένου σε ομιλία.</string>
+	<string name="prefs_languages_information_off">Για μερικές γλώσσες θα χρειαστεί να εγκαταστήσετε συνθεσάιζερ ομιλίας ή συμπληρωματικό πακέτο γλώσσας από το app store (Google Play, Samsung Apps, App Gallery, FDroid).\nΑνοίξτε τις Ρυθμίσεις της συσκευής σας → Γλώσσα και εισαγωγή → Ομιλία → Μετατροπή κειμένου σε ομιλία.\nΕδώ μπορείτε να διαχειριστείτε τις ρυθμίσεις της σύνθεσης ομιλίας (για παράδειγμα, μπορείτε να κατεβάσετε πακέτο γλώσσας για χρήση εκτός σύνδεσης) και να επιλέξετε άλλη μηχανή μετατροπής κειμένου σε ομιλία.</string>
 	<string name="prefs_languages_information_off_link">Για περισσότερες πληροφορίες δείτε αυτό τον οδηγό.</string>
 	<string name="transliteration_title">Μεταγραφή στα Λατινικά</string>
 	<string name="learn_more">Μάθετε περισσότερα</string>
@@ -598,6 +605,8 @@
 	<string name="moreyear_ago_sorttype">Περισσότερο από ένα έτος πριν</string>
 	<string name="near_me_sorttype">Δίπλα μου</string>
 	<string name="others_sorttype">Άλλα</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Εστίαση</string>
 	<string name="tourist_places">Αξιοθέατα</string>
 	<string name="museums">Μουσεία</string>
@@ -611,7 +620,6 @@
 	<string name="shops">Καταστήματα</string>
 	<string name="parkings">Χώροι στάθμευσης</string>
 	<string name="fuel_places">Πρατήρια βενζίνης</string>
-	<string name="water">Νερό</string>
 	<string name="medicine">Γιατρική βοήθεια</string>
 	<string name="search_in_the_list">Αναζήτηση στη λίστα</string>
 	<string name="religious_places">Άγιοι τόποι</string>
@@ -679,7 +687,9 @@
 	<string name="type.amenity.fire_station">Σταθμός πυρόσβεσης</string>
 	<string name="type.amenity.fountain">Συντριβάνι</string>
 	<string name="type.amenity.fuel">Βενζινάδικο</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Νεκροταφείο</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Νεκροταφείο</string>
 	<string name="type.amenity.hospital">Νοσοκομείο</string>
 	<string name="type.amenity.hunting_stand">Βάση σκόπευσης</string>
@@ -718,9 +728,12 @@
 	<string name="type.amenity.post_office">Ταχυδρομείο</string>
 	<string name="type.amenity.pub">Παμπ</string>
 	<string name="type.amenity.public_bookcase">Ανταλλαγή βιβλίων</string>
-	<string name="type.amenity.recycling">Κέντρο ανακύκλωσης</string>
-	<string name="type.amenity.recycling_container">Κάδος ανακύκλωσης</string>
-	<string name="type.recycling.toxic">Τοξικά απόβλητα</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Κέντρο ανακύκλωσης</string>
+	<string name="type.amenity.recycling">Κάδος ανακύκλωσης</string>
+	<string name="type.amenity.recycling.container">Κάδος ανακύκλωσης</string>
+	<string name="type.recycling.batteries">Μπαταρίες</string>
 	<string name="type.recycling.clothes">Παλιά ρούχα</string>
 	<string name="type.recycling.glass_bottles">Γυάλινα μπουκάλια</string>
 	<string name="type.recycling.paper">Απορρίμματα χαρτιού</string>
@@ -994,7 +1007,9 @@
 	<string name="type.internet_access">Ίντερνετ</string>
 	<string name="type.internet_access.wlan">Ίντερνετ</string>
 	<string name="type.landuse.basin">Μια λεκάνη νερού</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Νεκροταφείο</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Νεκροταφείο</string>
 	<string name="type.landuse.churchyard">Αυλόγυρος εκκλησίας</string>
 	<string name="type.landuse.farmland">Αγροτική γη</string>
@@ -1027,6 +1042,7 @@
 	<string name="type.leisure.sports_centre.yoga">Στούντιο γιόγκα</string>
 	<string name="type.leisure.stadium">Γήπεδο</string>
 	<string name="type.leisure.swimming_pool">Πισίνα</string>
+	<string name="type.leisure.swimming_pool.private">Πισίνα</string>
 	<string name="type.leisure.water_park">Υδάτινο πάρκο</string>
 	<string name="type.man_made.chimney">Καμινάδα εργοστασίου</string>
 	<string name="type.man_made.lighthouse">Φάρος</string>

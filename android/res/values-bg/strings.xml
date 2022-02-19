@@ -126,6 +126,10 @@
 	<string name="post">Поща</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Полиция</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Рециклиране</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Вода</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Бележки</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -154,14 +158,16 @@
 	<string name="my_position_share_email">Здравей,\n\nСега съм тук: %1$s. Натисни върху тази връзка %2$s или тази %3$s, за да видиш мястото на картата.\n\nБлагодаря.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Споделяне</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Имейл</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Копирано в клипборда: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Готово</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Версия на данните: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Версия: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Данни на OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Сигурни ли сте, че искате да продължите?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -436,7 +442,6 @@
 	<string name="placepage_place_description">Описание</string>
 	<string name="placepage_more_button">Още</string>
 	<string name="placepage_more_reviews_button">Още отзиви</string>
-	<string name="book_button">Резервиране</string>
 	<string name="placepage_call_button">Обаждане</string>
 	<string name="placepage_edit_bookmark_button">Редакция на отметка</string>
 	<string name="editor_comment_hint">Коментиране…</string>
@@ -455,7 +460,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Уверете се, че не сте въвели никакви лични данни.</string>
 	<string name="editor_share_to_all_dialog_message_2">Ще проверим промените. Ако имаме някакви въпроси, ще се свържем с вас по имейл.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps е безплатно приложение за офлайн карти с отворен код. Без реклами. Без проследяване. Ако видите грешка на картата, моля, поправете я в OpenStreetMap. Проектът е създаден от ентусиасти в свободното ни време, така че имаме нужда от вашата отзиви и подкрепа.</string>
 	<!-- For the first routing -->
 	<string name="accept">Приемане</string>
@@ -468,6 +473,7 @@
 	<string name="mobile_data_option_today">Само днес</string>
 	<string name="mobile_data_option_not_today">Без днес</string>
 	<string name="mobile_data">Мобилни данни</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Мобилните данни са необходими за показване на подробна информация за местата, като например снимки, цени и отзиви.</string>
 	<string name="mobile_data_option_never">Никога</string>
 	<string name="mobile_data_option_ask">Винаги питай</string>
@@ -590,6 +596,8 @@
 	<string name="by_distance">По разстояние</string>
 	<!-- Android -->
 	<string name="by_date">По дата</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="search_in_the_list">Търсене в списъка</string>
 	<string name="select_list">Избор на списък</string>
 	<string name="transit_not_found">Навигацията за метро все още не е налична в региона</string>
@@ -613,7 +621,8 @@
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Когато е разрешено, екранът ще бъде оставен да заспи след определен период на неактивност.</string>
 
-	<!-- SECTION: Types -->
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.recycling.batteries">Батерии</string>
 	<string name="type.healthcare.laboratory">Медицинска лаборатория</string>
 
 	<!-- SECTION: Types: Historic -->

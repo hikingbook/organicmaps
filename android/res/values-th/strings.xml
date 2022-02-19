@@ -125,6 +125,10 @@
 	<string name="post">ไปรษณีย์</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">ตำรวจ</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">การรีไซเคิล</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">น้ำ</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">บันทึก</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -153,12 +157,16 @@
 	<string name="my_position_share_email">หวัดดี\n\nฉันอยู่ที่นี่ตอนนี้: %1$s. คลิกลิงก์นี้ %2$s หรือลิงก์นี้ %3$s เพื่อดูสถานที่บนแผนที่\n\nขอบคุณ</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">แชร์</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">อีเมล</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">เสร็จแล้ว</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">เวอร์ชัน: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">ข้อมูล OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">คุณแน่ใจหรือไม่ว่าคุณต้องการดำเนินการต่อ?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -445,7 +453,6 @@
 	<string name="placepage_place_description">คำอธิบาย</string>
 	<string name="placepage_more_button">เพิ่มเติม</string>
 	<string name="placepage_more_reviews_button">รีวิวอื่น ๆ</string>
-	<string name="book_button">จอง</string>
 	<string name="placepage_call_button">โทร</string>
 	<string name="placepage_edit_bookmark_button">แก้ไข Bookmark</string>
 	<string name="editor_comment_hint">ข้อคิดเห็น</string>
@@ -464,7 +471,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">ตรวจสอบว่าคุณไม่ได้กรอกข้อมูลส่วนตัวใด ๆ</string>
 	<string name="editor_share_to_all_dialog_message_2">เราจะตรวจสอบการเปลี่ยนแปลง หากเรามีคำถามใด ๆ เราจะติดต่อคุณผ่านทางอีเมล</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps เป็นแอปพลิเคชันแผนที่ออฟไลน์แบบโอเพนซอร์สฟรี ไม่มีโฆษณา ไม่มีการติดตาม. หากคุณเห็นข้อผิดพลาดบนแผนที่ โปรดแก้ไขใน OpenStreetMap โครงการนี้สร้างขึ้นโดยผู้ที่ชื่นชอบในเวลาว่าง เราจึงต้องการความคิดเห็นและการสนับสนุนจากคุณ</string>
 	<!-- For the first routing -->
 	<string name="accept">ยอมรับ</string>
@@ -477,6 +484,7 @@
 	<string name="mobile_data_option_today">วันนี้เท่านั้น</string>
 	<string name="mobile_data_option_not_today">ไม่ใช้วันนี้</string>
 	<string name="mobile_data">อินเทอร์เน็ตมือถือ</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">จำเป็นต้องใช้อินเทอร์เน็ตมือถือในการแสดงข้อมูลโดยรายละเอียดเกี่ยวกับสถานที่ เช่น รูปถ่าย ราคา และรีวิว</string>
 	<string name="mobile_data_option_never">ไม่ใช้เลย</string>
 	<string name="mobile_data_option_ask">ถามก่อนเสมอ</string>
@@ -491,7 +499,7 @@
 	<string name="on">เปิด</string>
 	<string name="off">ปิด</string>
 	<string name="prefs_languages_information">เราใช้ระบบ TTS สำหรับคำแนะนำด้วยเสียงพูด เครื่องแอนดรอยด์จำนวนมากใช้งาน Google TTS คุณสามารถดาวน์โหลดหรืออัปเดตได้จาก Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">สำหรับบางภาษาคุณจำเป็นต้องติดตั้งตัวสังเคราะห์เสียงหรือชุดภาษาเพิ่มเติมจากแอปสโตร์ (Google Play Market, Samsung Apps)\nเปิดการตั้งค่าของเครื่องคุณ → ภาษาและการป้อนข้อมูล → คำพูด → เอาต์พุตการอ่านออกเสียง\nที่นี่คุณสามารถจัดการการตั้งค่าสำหรับการสังเคราะห์เสียง (ตัวอย่างเช่น ดาวน์โหลดชุดภาษาสำหรับใช้งานออฟไลน์) และเลือกเครื่องมืออ่านออกเสียงข้อความตัวอื่นได้</string>
+	<string name="prefs_languages_information_off">สำหรับบางภาษาคุณจำเป็นต้องติดตั้งตัวสังเคราะห์เสียงหรือชุดภาษาเพิ่มเติมจากแอปสโตร์ (Google Play, Samsung Apps, App Gallery, FDroid)\nเปิดการตั้งค่าของเครื่องคุณ → ภาษาและการป้อนข้อมูล → คำพูด → เอาต์พุตการอ่านออกเสียง\nที่นี่คุณสามารถจัดการการตั้งค่าสำหรับการสังเคราะห์เสียง (ตัวอย่างเช่น ดาวน์โหลดชุดภาษาสำหรับใช้งานออฟไลน์) และเลือกเครื่องมืออ่านออกเสียงข้อความตัวอื่นได้</string>
 	<string name="prefs_languages_information_off_link">สำหรับข้อมูลเพิ่มเติม กรุณาเข้าชมคำแนะนำนี้</string>
 	<string name="transliteration_title">การทับศัพท์เป็นภาษาละติน</string>
 	<string name="learn_more">ศึกษาเพิ่มเติม</string>
@@ -603,6 +611,8 @@
 	<string name="moreyear_ago_sorttype">มากกว่าหนึ่งปีที่ผ่านมา</string>
 	<string name="near_me_sorttype">ใกล้ฉัน</string>
 	<string name="others_sorttype">อื่นๆ</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">อาหาร</string>
 	<string name="tourist_places">ที่ท่องเที่ยว</string>
 	<string name="museums">พิพิธภัณฑ์</string>
@@ -616,7 +626,6 @@
 	<string name="shops">ร้านค้า</string>
 	<string name="parkings">ที่จอดรถ</string>
 	<string name="fuel_places">ปั๊มน้ำมัน/แก๊ส</string>
-	<string name="water">น้ำ</string>
 	<string name="medicine">ยา</string>
 	<string name="search_in_the_list">ค้นหาในรายการ</string>
 	<string name="religious_places">สถานที่ทางศาสนา</string>
@@ -679,7 +688,9 @@
 	<string name="type.amenity.fire_station">สถานีดับเพลิง</string>
 	<string name="type.amenity.fountain">น้ำพุ</string>
 	<string name="type.amenity.fuel">ปั๊มน้ำมัน</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">สุสาน</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">สุสาน</string>
 	<string name="type.amenity.hospital">คลินิก</string>
 	<string name="type.amenity.hunting_stand">จุดล่าสัตว์</string>
@@ -718,9 +729,12 @@
 	<string name="type.amenity.post_office">ที่ทำการไปรษณีย์</string>
 	<string name="type.amenity.pub">ผับ</string>
 	<string name="type.amenity.public_bookcase">ตู้หนังสือ สถานที่แลกเปลี่ยนหนังสือ</string>
-	<string name="type.amenity.recycling">ศูนย์รีไซเคิล</string>
-	<string name="type.amenity.recycling_container">บรรจุภัณฑ์รีไซเคิล</string>
-	<string name="type.recycling.toxic">ขยะสารพิษ</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">ศูนย์รีไซเคิล</string>
+	<string name="type.amenity.recycling">บรรจุภัณฑ์รีไซเคิล</string>
+	<string name="type.amenity.recycling.container">บรรจุภัณฑ์รีไซเคิล</string>
+	<string name="type.recycling.batteries">แบตเตอรี่</string>
 	<string name="type.recycling.clothes">เสื้อผ้าเก่า</string>
 	<string name="type.recycling.glass_bottles">ขวดแก้ว</string>
 	<string name="type.recycling.paper">ขยะกระดาษ</string>
@@ -994,7 +1008,9 @@
 	<string name="type.internet_access">อินเทอร์เน็ต</string>
 	<string name="type.internet_access.wlan">อินเทอร์เน็ต</string>
 	<string name="type.landuse.basin">อ่างน้ำ</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">สุสาน</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">สุสาน</string>
 	<string name="type.landuse.churchyard">บริเวณโบสถ์</string>
 	<string name="type.landuse.farmland">พื้นที่ทำการเกษตร</string>
@@ -1027,6 +1043,7 @@
 	<string name="type.leisure.sports_centre.yoga">โยคะสตูดิโอ</string>
 	<string name="type.leisure.stadium">สนามกีฬา</string>
 	<string name="type.leisure.swimming_pool">สระว่ายน้ำ</string>
+	<string name="type.leisure.swimming_pool.private">สระว่ายน้ำ</string>
 	<string name="type.leisure.water_park">สวนน้ำ</string>
 	<string name="type.man_made.chimney">ปล่องควันโรงงาน</string>
 	<string name="type.man_made.lighthouse">ประภาคาร</string>

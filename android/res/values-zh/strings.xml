@@ -123,6 +123,10 @@
 	<string name="post">邮政</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">回收</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">水</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">注释</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,14 +155,16 @@
 	<string name="my_position_share_email">嗨，\n\n我现在在这:%1$s。点击此链 接%2$s或此链接 %3$s来查看在地图上的位置。\n\n谢谢。</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">分享</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">邮件</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">复制到剪贴板:%1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">完成</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">资料版本： %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">版本:%s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap 数据：%s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">您确定要继续吗？</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -455,7 +461,6 @@
 	<string name="placepage_place_description">说明</string>
 	<string name="placepage_more_button">更多</string>
 	<string name="placepage_more_reviews_button">更多评论</string>
-	<string name="book_button">预約</string>
 	<string name="placepage_call_button">呼叫</string>
 	<string name="placepage_edit_bookmark_button">编辑书签</string>
 	<string name="editor_comment_hint">备注…</string>
@@ -474,7 +479,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">确保您没有输入任何个人数据。</string>
 	<string name="editor_share_to_all_dialog_message_2">我们会检查更改。如果我们有任何问题，我们会邮件与您联系。</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps 是一款免费的开源离线地图应用程序。无广告。没有跟踪。如果您在地图上看到错误，请在 OpenStreetMap 中修复它。该项目由爱好者在我们的空闲时间创建，因此我们需要您的反馈和支持。</string>
 	<!-- For the first routing -->
 	<string name="accept">接受</string>
@@ -487,6 +492,7 @@
 	<string name="mobile_data_option_today">仅在今天</string>
 	<string name="mobile_data_option_not_today">今天不使用</string>
 	<string name="mobile_data">移动网络</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">要显示地点的详细信息（例如照片、价格和评价），需要使用移动网络。</string>
 	<string name="mobile_data_option_never">从不使用</string>
 	<string name="mobile_data_option_ask">总是询问</string>
@@ -613,6 +619,8 @@
 	<string name="moreyear_ago_sorttype">一年多以前</string>
 	<string name="near_me_sorttype">在我旁边</string>
 	<string name="others_sorttype">其他</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">美食</string>
 	<string name="tourist_places">名胜</string>
 	<string name="museums">博物馆</string>
@@ -626,7 +634,6 @@
 	<string name="shops">商店</string>
 	<string name="parkings">停车场</string>
 	<string name="fuel_places">加油站</string>
-	<string name="water">水</string>
 	<string name="medicine">医疗</string>
 	<string name="search_in_the_list">在列表中搜索</string>
 	<string name="religious_places">圣地</string>
@@ -653,7 +660,9 @@
 	<string name="type.aerialway">缆车要素</string>
 	<string name="type.aerialway.cable_car">缆车</string>
 	<string name="type.aerialway.chair_lift">登山吊椅</string>
+	<string name="type.aerialway.drag_lift">缆车要素</string>
 	<string name="type.aerialway.gondola">循环式索道</string>
+	<string name="type.aerialway.mixed_lift">缆车</string>
 	<string name="type.aerialway.station">缆车车站</string>
 	<string name="type.aeroway">机场要素</string>
 	<string name="type.aeroway.aerodrome">机场</string>
@@ -700,8 +709,10 @@
 	<string name="type.amenity.food_court">美食广场</string>
 	<string name="type.amenity.fountain">喷泉</string>
 	<string name="type.amenity.fuel">加油站</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">墓地</string>
-	<string name="type.amenity.grave_yard.christian">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">基督教墓地</string>
 	<string name="type.amenity.hospital">医院</string>
 	<string name="type.amenity.hunting_stand">狩猎站</string>
 	<string name="type.amenity.ice_cream">冰淇淋店</string>
@@ -740,9 +751,12 @@
 	<string name="type.amenity.prison">监狱</string>
 	<string name="type.amenity.pub">酒馆</string>
 	<string name="type.amenity.public_bookcase">公共书架</string>
-	<string name="type.amenity.recycling">资源回收设施</string>
-	<string name="type.amenity.recycling_container">回收容器</string>
-	<string name="type.recycling.toxic">有毒垃圾</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">资源回收设施</string>
+	<string name="type.amenity.recycling">回收容器</string>
+	<string name="type.amenity.recycling.container">回收容器</string>
+	<string name="type.recycling.batteries">电池</string>
 	<string name="type.recycling.clothes">旧衣物</string>
 	<string name="type.recycling.glass_bottles">玻璃瓶</string>
 	<string name="type.recycling.paper">废纸</string>
@@ -788,10 +802,9 @@
 	<string name="type.boundary.administrative">行政区域界线</string>
 	<string name="type.boundary.administrative.10">10级行政区域界线</string>
 	<string name="type.boundary.administrative.11">11级行政区域界线</string>
-	<string name="type.boundary.administrative.2">2级行政区域界线</string>
+	<string name="type.boundary.administrative.2">国家行政区域界线</string>
 	<string name="type.boundary.administrative.3">3级行政区域界线</string>
 	<string name="type.boundary.administrative.4">4级行政区域界线</string>
-	<string name="type.boundary.administrative.4.state">4级州省界线</string>
 	<string name="type.boundary.administrative.5">5级行政区域界线</string>
 	<string name="type.boundary.administrative.6">6级行政区域界线</string>
 	<string name="type.boundary.administrative.7">7级行政区域界线</string>
@@ -1049,11 +1062,11 @@
 	<string name="type.historic.boundary_stone">界碑</string>
 	<string name="type.historic.castle">城堡</string>
 	<string name="type.historic.castle.defensive">城堡</string>
-	<string name="type.historic.castle.stately">城堡</string>
+	<string name="type.historic.castle.stately">宫殿</string>
 	<string name="type.historic.citywalls">历史城墙</string>
 	<string name="type.historic.fort">历史要塞</string>
 	<string name="type.historic.memorial">纪念物</string>
-	<string name="type.historic.memorial.plaque">纪念物</string>
+	<string name="type.historic.memorial.plaque">纪念牌匾</string>
 	<string name="type.historic.memorial.sculpture">雕塑</string>
 	<string name="type.historic.memorial.statue">塑像</string>
 	<string name="type.historic.monument">纪念堂</string>
@@ -1070,7 +1083,9 @@
 	<string name="type.landuse.allotments">市民农园</string>
 	<string name="type.landuse.basin">水盆地</string>
 	<string name="type.landuse.brownfield">棕土</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">基督教墓地</string>
 	<string name="type.landuse.churchyard">教堂庭院</string>
 	<string name="type.landuse.commercial">商务办公用地</string>
@@ -1124,6 +1139,7 @@
 	<string name="type.leisure.sports_centre.yoga">瑜伽工作室</string>
 	<string name="type.leisure.stadium">体育场</string>
 	<string name="type.leisure.swimming_pool">游泳池</string>
+	<string name="type.leisure.swimming_pool.private">游泳池</string>
 	<string name="type.leisure.track">賽道</string>
 	<string name="type.leisure.water_park">水上乐园</string>
 	<string name="type.man_made">人造要素</string>

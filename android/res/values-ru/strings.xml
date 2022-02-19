@@ -126,6 +126,12 @@
 	<string name="post">Почта</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Полиция</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Переработка</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Вода</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">Для автодомов</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Примечание</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -155,14 +161,16 @@
 	<string name="my_position_share_email">Привет!\n\nЯ сейчас здесь: %1$s. Чтобы увидеть это место на карте Organic Maps, открой эту ссылку %2$s или эту %3$s\n\nСпасибо.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Поделиться</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Скопировано в буфер обмена: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Готово</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Версия данных: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Версия: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Данные OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Вы уверены, что хотите продолжить?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -458,7 +466,6 @@
 	<string name="placepage_place_description">Описание</string>
 	<string name="placepage_more_button">Ещё</string>
 	<string name="placepage_more_reviews_button">Ещё отзывы</string>
-	<string name="book_button">Забронировать</string>
 	<string name="placepage_call_button">Позвонить</string>
 	<string name="placepage_edit_bookmark_button">Редактировать метку</string>
 	<string name="editor_comment_hint">Коментарий…</string>
@@ -484,8 +491,8 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Убедитесь, что вы не ввели личные данные.</string>
 	<string name="editor_share_to_all_dialog_message_2">Если при проверке изменений возникнут вопросы, мы напишем вам на email.</string>
-	<!-- Text under the version number in the Help dialog. -->
-	<string name="about_description">Organic Maps — бесплатные офлайновые карты с открытым исходным кодом, без рекламы и без сбора ваших персональных данных, созданные энтузиастами в свободное от основной работы время. Так как все данные мы берём из OpenStreetMap, то ошибки на карте нужно исправлять именно там. Будем рады вашей поддержке и обратной связи.</string>
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
+	<string name="about_description">Organic Maps — быстрые и бесплатные карты, которые работают без Интернета. Все картографические данные берутся из OpenStreetMap.org, там можно самостоятельно исправлять ошибки и добавлять новые объекты. В Organic Maps нет рекламы и сбора пресональных данных. Это проект с открытым исходным кодом, создаваемый энтузиастами в свободное время. Будем рады вашей поддержке и обратной связи!</string>
 	<!-- For the first routing -->
 	<string name="accept">Принять</string>
 	<!-- For the first routing -->
@@ -497,7 +504,8 @@
 	<string name="mobile_data_option_today">Только сегодня</string>
 	<string name="mobile_data_option_not_today">Не сегодня</string>
 	<string name="mobile_data">Мобильный интернет</string>
-	<string name="mobile_data_description">Мобильный интернет требуется для отображения более детальной информации о местах: фотографий, цен, отзывов.</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
+	<string name="mobile_data_description">Мобильный интернет требуется для уведомлений об обновлении карты и для отображения более подробной информации о местах и метках.</string>
 	<string name="mobile_data_option_never">Никогда не использовать</string>
 	<string name="mobile_data_option_ask">Всегда спрашивать</string>
 	<string name="traffic_update_maps_text">Для отображения пробок необходимо обновить карты.</string>
@@ -511,7 +519,7 @@
 	<string name="on">Вкл.</string>
 	<string name="off">Выкл.</string>
 	<string name="prefs_languages_information">Подсказки озвучиваются системным синтезатором речи (TTS). На многих устройствах используется Google TTS, его можно загрузить или обновить в Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Для некоторых языков, возможно, необходимо установить дополнительный синтезатор речи (TTS) из магазина приложений (Google Play Market, Samsung Apps).\nЧтобы настроить синтезатор речи, перейдите в Настройки → Язык и ввод → Синтез речи.\nЗдесь можно установить дополнительные языковые пакеты или выбрать синтезатор речи.</string>
+	<string name="prefs_languages_information_off">Для некоторых языков, возможно, необходимо установить дополнительный синтезатор речи (TTS) из магазина приложений (Google Play, Samsung Apps, App Gallery, FDroid).\nЧтобы настроить синтезатор речи, перейдите в Настройки → Язык и ввод → Синтез речи.\nЗдесь можно установить дополнительные языковые пакеты или выбрать синтезатор речи.</string>
 	<string name="prefs_languages_information_off_link">Более подробная информация — в этом руководстве.</string>
 	<string name="transliteration_title">Латинская транслитерация</string>
 	<string name="learn_more">Узнать больше</string>
@@ -633,6 +641,8 @@
 	<string name="moreyear_ago_sorttype">Больше года назад</string>
 	<string name="near_me_sorttype">Рядом со мной</string>
 	<string name="others_sorttype">Другие</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Еда</string>
 	<string name="tourist_places">Достопримечательности</string>
 	<string name="museums">Музеи</string>
@@ -646,7 +656,6 @@
 	<string name="shops">Магазины</string>
 	<string name="parkings">Парковки</string>
 	<string name="fuel_places">Заправки</string>
-	<string name="water">Вода</string>
 	<string name="medicine">Медицина</string>
 	<string name="search_in_the_list">Искать в списке</string>
 	<string name="religious_places">Святые места</string>
@@ -671,6 +680,10 @@
 	<string name="enable_screen_sleep">Разрешить экрану спать</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">При включении экран может переходить в спящий режим после периода бездействия.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Показывать на экране блокировки</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Если эта функция включена, вам не нужно каждый раз разблокировать устройство во время работы приложения.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Канатная дорога</string>
@@ -680,7 +693,7 @@
 	<string name="type.aerialway.gondola">Канатная дорога</string>
 	<string name="type.aerialway.mixed_lift">Канатная дорога</string>
 	<string name="type.aerialway.station">Канатная дорога</string>
-	<string name="type.aeroway">Аэропорт</string>
+	<string name="type.aeroway">Аэрокосмическая инфраструктура</string>
 	<string name="type.aeroway.aerodrome">Аэропорт</string>
 	<string name="type.aeroway.aerodrome.international">Международный аэропорт</string>
 	<string name="type.aeroway.apron">Перрон</string>
@@ -724,9 +737,11 @@
 	<string name="type.amenity.fire_station">Пожарная часть</string>
 	<string name="type.amenity.food_court">Ресторанный дворик</string>
 	<string name="type.amenity.fountain">Фонтан</string>
-	<string name="type.amenity.fuel">Заправка</string>
+	<string name="type.amenity.fuel">АЗС</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Кладбище</string>
-	<string name="type.amenity.grave_yard.christian">Кладбище</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">Христианское кладбище</string>
 	<string name="type.amenity.hospital">Больница</string>
 	<string name="type.amenity.hunting_stand">Охотничья вышка</string>
 	<string name="type.amenity.ice_cream">Мороженое</string>
@@ -765,17 +780,26 @@
 	<string name="type.amenity.prison">Тюрьма</string>
 	<string name="type.amenity.pub">Паб</string>
 	<string name="type.amenity.public_bookcase">Книгообмен</string>
-	<string name="type.amenity.recycling">Приём вторсырья</string>
-	<string name="type.amenity.recycling_container">Контейнер для вторсырья</string>
-	<string name="type.recycling.toxic">Ядовитые отходы</string>
-	<string name="type.recycling.clothes">Старая одежда</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Приём вторсырья</string>
+	<string name="type.amenity.recycling">Контейнер для вторсырья</string>
+	<string name="type.amenity.recycling.container">Контейнер для вторсырья</string>
+	<string name="type.recycling.batteries">Батарейки</string>
+	<string name="type.recycling.clothes">Одежда</string>
 	<string name="type.recycling.glass_bottles">Стеклотара</string>
-	<string name="type.recycling.paper">Макулатура</string>
-	<string name="type.recycling.plastic">Пластиковый мусор</string>
-	<string name="type.recycling.plastic_bottles">Сбор пластиковых бутылок</string>
+	<string name="type.recycling.paper">Бумага</string>
+	<string name="type.recycling.plastic">Пластик</string>
+	<string name="type.recycling.plastic_bottles">Пластиковые бутылки</string>
 	<string name="type.recycling.scrap_metal">Металлолом</string>
 	<string name="type.recycling.small_appliances">Электроотходы</string>
+	<string name="type.recycling.cardboard">Картон</string>
+	<string name="type.recycling.cans">Жестяные и алюминиевые банки</string>
+	<string name="type.recycling.shoes">Обувь</string>
+	<string name="type.recycling.green_waste">Органика / Пищевые отходы</string>
+	<string name="type.recycling.cartons">Тетрапак и аналоги</string>
 	<string name="type.amenity.restaurant">Ресторан</string>
+	<string name="type.amenity.sanitary_dump_station">Слив для туалетов транспортных средств</string>
 	<string name="type.amenity.school">Школа</string>
 	<string name="type.amenity.shelter">Укрытие</string>
 	<string name="type.amenity.shower">Душ</string>
@@ -786,14 +810,18 @@
 	<string name="type.amenity.townhall">Ратуша</string>
 	<string name="type.amenity.university">Университет</string>
 	<string name="type.amenity.vending_machine">Торговый автомат</string>
-	<string name="type.amenity.vending_machine.cigarettes">Сигаретный автомат</string>
+	<string name="type.amenity.vending_machine.cigarettes">Автомат с сигаретами</string>
 	<string name="type.amenity.vending_machine.drinks">Автомат с напитками</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Паркомат</string>
-	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат по продаже билетов на общественный транспорт</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат по продаже билетов</string>
+	<string name="type.amenity.vending_machine.excrement_bags">Пакеты для экскрементов</string>
+	<string name="type.amenity.parcel_locker">Почтомат</string>
+	<string name="type.amenity.vending_machine.fuel">Топливная колонка</string>
 	<string name="type.amenity.veterinary">Ветеринарная клиника</string>
 	<string name="type.amenity.waste_basket">Урна</string>
 	<string name="type.amenity.waste_disposal">Мусорный контейнер</string>
-	<string name="type.amenity.water_point">Заправка водой</string>
+	<string name="type.amenity.waste_transfer_station">Станция перевалки отходов</string>
+	<string name="type.amenity.water_point">Вода для автодомов</string>
 	<string name="type.barrier">Преграда</string>
 	<string name="type.barrier.block">Блок</string>
 	<string name="type.barrier.bollard">Столбик</string>
@@ -815,10 +843,9 @@
 	<string name="type.boundary.administrative">Административная граница</string>
 	<string name="type.boundary.administrative.10">Административная граница</string>
 	<string name="type.boundary.administrative.11">Административная граница</string>
-	<string name="type.boundary.administrative.2">Административная граница</string>
+	<string name="type.boundary.administrative.2">Граница страны</string>
 	<string name="type.boundary.administrative.3">Административная граница</string>
 	<string name="type.boundary.administrative.4">Административная граница</string>
-	<string name="type.boundary.administrative.4.state">Административная граница</string>
 	<string name="type.boundary.administrative.5">Административная граница</string>
 	<string name="type.boundary.administrative.6">Административная граница</string>
 	<string name="type.boundary.administrative.7">Административная граница</string>
@@ -828,7 +855,7 @@
 	<string name="type.boundary.administrative.country">Граница страны</string>
 	<string name="type.boundary.administrative.county">Граница округа</string>
 	<string name="type.boundary.administrative.municipality">Граница муниципалитета</string>
-	<string name="type.boundary.administrative.nation">Национальная граница</string>
+	<string name="type.boundary.administrative.nation">Граница страны</string>
 	<string name="type.boundary.administrative.region">Граница региона</string>
 	<string name="type.boundary.administrative.state">Граница штата</string>
 	<string name="type.boundary.administrative.suburb">Граница пригорода</string>
@@ -938,7 +965,7 @@
 	<string name="type.cuisine.vietnamese">Вьетнамская кухня</string>
 	<string name="type.emergency">Экстренная служба</string>
 	<string name="type.emergency.defibrillator">Дефибриллятор</string>
-	<string name="type.emergency.fire_hydrant">Гидрант</string>
+	<string name="type.emergency.fire_hydrant">Пожарный гидрант</string>
 	<string name="type.emergency.phone">Телефон для экстренных вызовов</string>
 	<string name="type.entrance">Вход</string>
 	<string name="type.healthcare.laboratory">Медицинская лаборатория</string>
@@ -1098,7 +1125,9 @@
 	<string name="type.landuse.allotments">Земельные участки</string>
 	<string name="type.landuse.basin">Резервуар</string>
 	<string name="type.landuse.brownfield">Земля для застройки</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Кладбище</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Христианское кладбище</string>
 	<string name="type.landuse.churchyard">Церковный двор</string>
 	<string name="type.landuse.commercial">Коммерческая застройка</string>
@@ -1157,6 +1186,7 @@
 	<string name="type.leisure.sports_centre.yoga">Йога-центр</string>
 	<string name="type.leisure.stadium">Стадион</string>
 	<string name="type.leisure.swimming_pool">Плавательный бассейн</string>
+	<string name="type.leisure.swimming_pool.private">Плавательный бассейн</string>
 	<string name="type.leisure.track">Беговая дорожка</string>
 	<string name="type.leisure.water_park">Аквапарк</string>
 	<string name="type.leisure.beach_resort">Пляжный курорт</string>
@@ -1165,7 +1195,9 @@
 	<string name="type.man_made.cairn">Тур</string>
 	<string name="type.man_made.chimney">Заводская труба</string>
 	<string name="type.man_made.cutline">Просека</string>
+	<string name="type.man_made.flagpole">Флагшток</string>
 	<string name="type.man_made.lighthouse">Маяк</string>
+	<string name="type.man_made.mast">Мачта/вышка</string>
 	<string name="type.man_made.pier">Пирс</string>
 	<string name="type.man_made.pipeline">Трубопровод</string>
 	<string name="type.man_made.pipeline.overground">Наземный трубопровод</string>
@@ -1220,7 +1252,6 @@
 	<string name="type.natural.wetland.bog">Торфяное болото</string>
 	<string name="type.natural.wetland.marsh">Болотистая местность</string>
 	<string name="type.noexit">Тупик</string>
-	<string name="type.noexit.motor_vehicle">Тупик для моторного транспорта</string>
 	<string name="type.office">Офис</string>
 	<string name="type.office.company">Организация</string>
 	<string name="type.office.estate_agent">Агентство недвижимости</string>
@@ -1366,6 +1397,7 @@
 	<string name="type.shop.car_parts">Автомобильные запчасти</string>
 	<string name="type.shop.car_repair">СТО</string>
 	<string name="type.shop.car_repair.tyres">Шиномонтаж</string>
+	<string name="type.shop.caravan">Продажа автодомов</string>
 	<string name="type.shop.chemist">Бытовая химия</string>
 	<string name="type.shop.chocolate">Магазин</string>
 	<string name="type.shop.clothes">Магазин одежды</string>
@@ -1454,7 +1486,7 @@
 	<string name="type.tourism.attraction.animal">Достопримечательность</string>
 	<string name="type.tourism.attraction.specified">Достопримечательность</string>
 	<string name="type.tourism.camp_site">Кемпинг</string>
-	<string name="type.tourism.caravan_site">Автокемпинг</string>
+	<string name="type.tourism.caravan_site">Кемпинг для автодомов</string>
 	<string name="type.tourism.chalet">Шале</string>
 	<string name="type.tourism.gallery">Галерея</string>
 	<string name="type.tourism.guest_house">Гостевой дом</string>
@@ -1500,12 +1532,13 @@
 	<string name="type.wheelchair.limited">Частично оборудовано для инвалидов</string>
 	<string name="type.wheelchair.no">Не оборудовано для инвалидов</string>
 	<string name="type.wheelchair.yes">Оборудовано для инвалидов</string>
-	<string name="type.piste_lift">Подъёмник</string>
-	<string name="type.piste_lift.j.bar">Подъёмник</string>
+	<!-- en.wikipedia.org/wiki/Surface_lift -->
+	<string name="type.piste_lift">Бугельный подъёмник</string>
+	<string name="type.piste_lift.j.bar">Бугельный подъёмник</string>
 	<string name="type.piste_lift.magic_carpet">Ленточный конвейер</string>
-	<string name="type.piste_lift.platter">Подъёмник</string>
-	<string name="type.piste_lift.rope_tow">Подъёмник</string>
-	<string name="type.piste_lift.t.bar">Подъёмник</string>
+	<string name="type.piste_lift.platter">Бугельный подъёмник</string>
+	<string name="type.piste_lift.rope_tow">Бугельный подъёмник</string>
+	<string name="type.piste_lift.t.bar">Бугельный подъёмник</string>
 	<string name="type.piste_type">Тип трассы</string>
 	<string name="type.piste_type.downhill">Горнолыжная трасса</string>
 	<string name="type.piste_type.downhill.advanced">Продвинутая горнолыжная трасса</string>
@@ -1514,7 +1547,7 @@
 	<string name="type.piste_type.downhill.freeride">Горнолыжная трасса для фрирайда</string>
 	<string name="type.piste_type.downhill.intermediate">Горнолыжная трасса средней сложности</string>
 	<string name="type.piste_type.downhill.novice">Горнолыжная трасса для новичков</string>
-	<string name="type.piste_type.nordic">Трасса для скандинавской ходьбы</string>
+	<string name="type.piste_type.nordic">Лыжня</string>
 	<string name="type.piste_type.sled">Трасса для саней</string>
 	<string name="type.building_part">Здание</string>
 </resources>

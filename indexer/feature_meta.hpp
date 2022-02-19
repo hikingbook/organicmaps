@@ -83,18 +83,13 @@ protected:
   // TODO: Change uint8_t to appropriate type when FMD_COUNT reaches 256.
   void Set(uint8_t type, std::string const & value)
   {
-    auto found = m_metadata.find(type);
-    if (found == m_metadata.end())
-    {
-      if (!value.empty())
-        m_metadata[type] = value;
-    }
+    if (value.empty())
+      m_metadata.erase(type);
     else
     {
-      if (value.empty())
-        m_metadata.erase(found);
-      else
-        found->second = value;
+      auto res = m_metadata.try_emplace(type, value);
+      if (!res.second)
+        res.first->second = value;
     }
   }
 
@@ -106,12 +101,13 @@ class Metadata : public MetadataBase
 public:
   /// @note! Do not change values here.
   /// Add new types to the end of list, before FMD_COUNT.
-  /// Add new types to the corresponding list in Java.
+  /// Add new types to the corresponding list in android/.../Metadata.java.
   /// Add new types to the corresponding list in generator/pygen/pygen.cpp.
   /// For types parsed from OSM get corresponding OSM tag to MetadataTagProcessor::TypeFromString().
   enum EType : int8_t
   {
-    FMD_CUISINE = 1,
+    // Defined by classifier types now.
+    //FMD_CUISINE = 1,
     FMD_OPEN_HOURS = 2,
     FMD_PHONE_NUMBER = 3,
     FMD_FAX_NUMBER = 4,
@@ -127,7 +123,7 @@ public:
     FMD_EMAIL = 14,
     FMD_POSTCODE = 15,
     FMD_WIKIPEDIA = 16,
-    // FMD_MAXSPEED used to be 17 but now it is stored in a section of its own.
+    FMD_DESCRIPTION = 17,
     FMD_FLATS = 18,
     FMD_HEIGHT = 19,
     FMD_MIN_HEIGHT = 20,
@@ -246,12 +242,13 @@ public:
     MetadataBase::Set(Type::RD_LEAP_WEIGHT_SPEED, strValue);
   }
 
-  double GetLeapWeightSpeed(double defaultValue) const
-  {
-    if (Has(Type::RD_LEAP_WEIGHT_SPEED))
-      return std::stod(Get(Type::RD_LEAP_WEIGHT_SPEED));
-    return defaultValue;
-  }
+  /// @see EdgeEstimator::GetLeapWeightSpeed
+//  double GetLeapWeightSpeed(double defaultValue) const
+//  {
+//    if (Has(Type::RD_LEAP_WEIGHT_SPEED))
+//      return std::stod(Get(Type::RD_LEAP_WEIGHT_SPEED));
+//    return defaultValue;
+//  }
 };
 
 // Prints types in osm-friendly format.

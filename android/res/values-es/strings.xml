@@ -123,6 +123,10 @@
 	<string name="post">Oficina de correos</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Policía</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Reciclaje</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Agua</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notas</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">Hola:\n\nAhora estoy aquí: %1$s. Haz clic en este enlace %2$s o esta %3$s para verlo en el mapa.\n\nGracias.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Compartir</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Copiado al portapapeles: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Hecho</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Versión de datos: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Versión: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Datos de OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">¿Seguro que desea continuar?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -452,7 +458,6 @@
 	<string name="placepage_place_description">Descripción</string>
 	<string name="placepage_more_button">Más</string>
 	<string name="placepage_more_reviews_button">Más comentarios</string>
-	<string name="book_button">Reservar</string>
 	<string name="placepage_call_button">Llamar</string>
 	<string name="placepage_edit_bookmark_button">Editar marcador</string>
 	<string name="editor_comment_hint">Comentario…</string>
@@ -475,7 +480,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Asegúrate de que no has introducido ningún dato personal.</string>
 	<string name="editor_share_to_all_dialog_message_2">Comprobaremos los cambios. Si tenemos alguna pregunta, te contactaremos por correo electrónico.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps es una aplicación de mapas sin conexión gratuita y de código abierto. Sin anuncios. Sin seguimiento. Si ve un error en el mapa, corríjalo en OpenStreetMap. El proyecto está creado por entusiastas en nuestro tiempo libre, por lo que necesitamos tus comentarios y tu apoyo.</string>
 	<!-- For the first routing -->
 	<string name="accept">Aceptar</string>
@@ -488,6 +493,7 @@
 	<string name="mobile_data_option_today">Solo hoy</string>
 	<string name="mobile_data_option_not_today">No usar hoy</string>
 	<string name="mobile_data">Internet móvil</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Se necesita Internet móvil para mostrar información detallada de los lugares, como fotografías, precios y reseñas.</string>
 	<string name="mobile_data_option_never">No usar nunca</string>
 	<string name="mobile_data_option_ask">Preguntar siempre</string>
@@ -502,7 +508,7 @@
 	<string name="on">Act.</string>
 	<string name="off">Desact.</string>
 	<string name="prefs_languages_information">Utilizamos el sistema TTS para las instrucciones de voz. Muchos dispositivos de Android usan Google TTS. Puede descargar o actualizarlo desde Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Samsung Apps). Abra los Ajustes de su dispositivo → Idioma e introducción → Voz → Opciones texto a voz. Aquí puede administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
+	<string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Samsung Apps, App Gallery, FDroid). Abra los Ajustes de su dispositivo → Idioma e introducción → Voz → Opciones texto a voz. Aquí puede administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
 	<string name="prefs_languages_information_off_link">Para obtener más información, consulte esta guía.</string>
 	<string name="transliteration_title">Transliteración al latín</string>
 	<string name="learn_more">Leer más</string>
@@ -620,6 +626,8 @@
 	<string name="moreyear_ago_sorttype">Hace más de un año</string>
 	<string name="near_me_sorttype">Cerca de mí</string>
 	<string name="others_sorttype">Otros</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Comida</string>
 	<string name="tourist_places">Sitios de interés</string>
 	<string name="museums">Museos</string>
@@ -633,7 +641,6 @@
 	<string name="shops">Tiendas</string>
 	<string name="parkings">Estacionamiento</string>
 	<string name="fuel_places">Gasolinera</string>
-	<string name="water">Agua</string>
 	<string name="medicine">Medicina</string>
 	<string name="search_in_the_list">Buscar en la lista</string>
 	<string name="religious_places">Lugares sagrados</string>
@@ -696,7 +703,9 @@
 	<string name="type.amenity.fire_station">Parque de bomberos</string>
 	<string name="type.amenity.fountain">Fuente</string>
 	<string name="type.amenity.fuel">Gasolinera</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Cementerio</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Cementerio</string>
 	<string name="type.amenity.hunting_stand">Galería de caza</string>
 	<string name="type.amenity.ice_cream">Heladería</string>
@@ -733,9 +742,12 @@
 	<string name="type.amenity.post_box">Buzón</string>
 	<string name="type.amenity.post_office">Oficina de correos</string>
 	<string name="type.amenity.public_bookcase">Intercambio de libros</string>
-	<string name="type.amenity.recycling">Centro de reciclaje</string>
-	<string name="type.amenity.recycling_container">Contenedor de reciclaje</string>
-	<string name="type.recycling.toxic">Residuos tóxicos</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Centro de reciclaje</string>
+	<string name="type.amenity.recycling">Contenedor de reciclaje</string>
+	<string name="type.amenity.recycling.container">Contenedor de reciclaje</string>
+	<string name="type.recycling.batteries">Baterías</string>
 	<string name="type.recycling.clothes">Ropa vieja</string>
 	<string name="type.recycling.glass_bottles">Cascos de botellas</string>
 	<string name="type.recycling.paper">Desperdicio de papel</string>
@@ -1002,7 +1014,9 @@
 	<string name="type.historic.ship">Turismo</string>
 	<string name="type.historic.tomb">Turismo</string>
 	<string name="type.landuse.basin">Cuenca</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Cementerio</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cementerio</string>
 	<string name="type.landuse.churchyard">Camposanto</string>
 	<string name="type.landuse.farmland">Tierras agrícolas</string>
@@ -1035,6 +1049,7 @@
 	<string name="type.leisure.sports_centre.yoga">Centro de yoga</string>
 	<string name="type.leisure.stadium">Estadio</string>
 	<string name="type.leisure.swimming_pool">Piscina</string>
+	<string name="type.leisure.swimming_pool.private">Piscina</string>
 	<string name="type.leisure.water_park">Parque acuático</string>
 	<string name="type.man_made.chimney">Chimenea de fábrica</string>
 	<string name="type.man_made.lighthouse">Faro</string>

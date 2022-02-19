@@ -107,6 +107,8 @@
 	<string name="post">דואר</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">משטרה</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">מים</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">הערות</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -139,6 +141,10 @@
 	<string name="copied_to_clipboard">הועתקו לזכרון זמני %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">בוצע</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">%s וורסיה</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap: %s ינותנ</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">האם הנך בטוח שרצונך להמשיך?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -206,14 +212,17 @@
 	<string name="search_without_internet_advertisement">על מנת להתחיל לחפש וליצור מסלולים, הורידו בבקשה את המפה ולא תזדקקו יותר לחיבור לאינטרנט.</string>
 	<string name="search_select_map">בחרו את המפה</string>
 	<string name="twentyfour_seven">יום ולילה</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps היא אפליקציית מפות לא מקוונות בחינם ובקוד פתוח. ללא פרסומות. אין מעקב. אם אתה רואה שגיאה במפה, אנא תקן אותה ב-OpenStreetMap. הפרויקט נוצר על ידי חובבים בזמננו הפנוי, אז אנו זקוקים למשוב ולתמיכה שלכם.</string>
 	<string name="transliteration_title">תעתיק ללטינית</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="enable_screen_sleep">אפשר למסך לישון</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">כאשר מופעל המסך יורשה לישון לאחר תקופה של חוסר פעילות.</string>
 
-	<!-- SECTION: Types -->
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.recycling.batteries">תוללוס</string>
 	<string name="type.cuisine.african">מטבח אפריקאי</string>
 	<string name="type.cuisine.american">מטבח אמריקאי</string>
 	<string name="type.cuisine.arab">מטבח ערבי</string>

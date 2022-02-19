@@ -13,16 +13,6 @@
 
 @implementation MWMViewController
 
-- (NSString *)localizedTitle
-{
-  return L(self.title);
-}
-
-- (void)setLocalizedTitle:(NSString *)localizedTitle
-{
-  self.title = L(localizedTitle);
-}
-
 - (BOOL)prefersStatusBarHidden
 {
   return NO;

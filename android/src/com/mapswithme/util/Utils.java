@@ -16,6 +16,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.format.DateUtils;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import android.util.AndroidRuntimeException;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,11 +86,6 @@ public class Utils
     return isTargetOrLater(Build.VERSION_CODES.O);
   }
 
-  public static boolean isAndroid11OrLater()
-  {
-    return isTargetOrLater(Build.VERSION_CODES.R);
-  }
-
   private static boolean isTargetOrLater(int target)
   {
     return Build.VERSION.SDK_INT >= target;
@@ -109,6 +106,16 @@ public class Utils
       w.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     else
       w.clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+  }
+
+  public static void showOnLockScreen(boolean enable, Activity activity)
+  {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
+      activity.setShowWhenLocked(enable);
+    else if (enable)
+      activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+    else
+      activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   }
 
   public static void showSnackbar(@NonNull View view, @NonNull String message)
@@ -603,6 +610,19 @@ public class Utils
       LOGGER.e(TAG, "Failed to get value for string '" + key + "'", e);
     }
     return key;
+  }
+
+  /**
+   * Returns a name for a new bookmark created off the current GPS location.
+   * The name includes current time and date in locale-specific format.
+   *
+   * @return bookmark name with time and date.
+   */
+  @NonNull
+  public static String getMyPositionBookmarkName(@NonNull Context context)
+  {
+    return DateUtils.formatDateTime(context, System.currentTimeMillis(),
+                                    DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
   }
 
   @NonNull

@@ -126,6 +126,12 @@
 	<string name="post">Пошта</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Поліція</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Переробка відходів</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Вода</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">Для автобудинків</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Примітка</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -154,12 +160,16 @@
 	<string name="my_position_share_email">Привіт,\n\nЯ зараз тут: %1$s. Натисни на це посилання %2$s або на це посилання %3$s щоб побачити місце на мапі.\n\nДякую.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Подiлитись</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Ел. пошта</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Скопіювати в буфер обміну: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Готово</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Версія: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Дані OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Продовжити?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -450,7 +460,6 @@
 	<string name="placepage_place_description">Опис</string>
 	<string name="placepage_more_button">Ще</string>
 	<string name="placepage_more_reviews_button">Ще відгуки</string>
-	<string name="book_button">Забронювати</string>
 	<string name="placepage_call_button">Подзвонити</string>
 	<string name="placepage_edit_bookmark_button">Редагувати мiтку</string>
 	<string name="editor_comment_hint">Коментар…</string>
@@ -476,8 +485,8 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Переконайтеся, що ви не ввели особисті дані.</string>
 	<string name="editor_share_to_all_dialog_message_2">Якщо при перевірці змін виникнуть питання, ми напишемо вам на email.</string>
-	<!-- Text under the version number in the Help dialog. -->
-	<string name="about_description">Organic Maps – це безкоштовні офлайнові карти із відкритим вихідним кодом. Без реклами. Без відстеження. Якщо ви бачите помилку на карті, виправте її в OpenStreetMap. Проект створюється ентузіастами у вільний час, тому нам потрібні ваші відгуки та підтримка.</string>
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
+	<string name="about_description">Organic Maps – це швидкі та безкоштовні карти, які не потребують доступу до Інтернету. Карти засновані на даних проекта OpenStreetMap.org, саме там Ви можете виправити помилки та додати відсутні дані. Реклама та збір особистої інформації відсутні. Organic Maps це проект з відкритим вихідним кодом, створюється ентузіастами у вільний час, тому нам потрібні Ваші відгуки та підтримку!</string>
 	<!-- For the first routing -->
 	<string name="accept">Прийняти</string>
 	<!-- For the first routing -->
@@ -489,7 +498,8 @@
 	<string name="mobile_data_option_today">Тільки сьогодні</string>
 	<string name="mobile_data_option_not_today">За винятком сьогодні</string>
 	<string name="mobile_data">Мобільні дані</string>
-	<string name="mobile_data_description">Використання мобільних даних необхідно для відображення докладної інформації про місця (наприклад, фотографій, цін та відгуків).</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
+	<string name="mobile_data_description">Використання мобільних даних необхідно для сповіщень про оновлення карти та для відображення докладної інформації про місця та мітки.</string>
 	<string name="mobile_data_option_never">Ніколи</string>
 	<string name="mobile_data_option_ask">Завжди питати</string>
 	<string name="traffic_update_maps_text">Для відображення інформації про трафік необхідно оновити мапи.</string>
@@ -503,7 +513,7 @@
 	<string name="on">Увімкн.</string>
 	<string name="off">Вимкн.</string>
 	<string name="prefs_languages_information">Для озвучування голосових інструкцій ми використовуємо систему TTS. Більшість Android-пристроїв підтримують систему Google TTS. Для завантаження або оновлення перейдіть до магазину Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Для деяких мов вам знадобиться встановити інший додаток для синтезу мовлення або додатковий мовний пакет з магазину додатків (Google Play Market, Samsung Apps).\nВідкрийте налаштування пристрою → Мови та введення → Мовлення → Синтез мовлення.\nТут ви можете здійснювати управління налаштуваннями синтезу мовлення (наприклад, завантажити мовний пакет для використання офлайн) або вибрати інший програмний рушій для синтезу мовлення.</string>
+	<string name="prefs_languages_information_off">Для деяких мов вам знадобиться встановити інший додаток для синтезу мовлення або додатковий мовний пакет з магазину додатків (Google Play, Samsung Apps, App Gallery, FDroid).\nВідкрийте налаштування пристрою → Мови та введення → Мовлення → Синтез мовлення.\nТут ви можете здійснювати управління налаштуваннями синтезу мовлення (наприклад, завантажити мовний пакет для використання офлайн) або вибрати інший програмний рушій для синтезу мовлення.</string>
 	<string name="prefs_languages_information_off_link">Додаткову інформацію див. у цьому керівництві.</string>
 	<string name="transliteration_title">Транслітерація латинськими літерами</string>
 	<string name="learn_more">Докладніше</string>
@@ -559,7 +569,7 @@
 	<string name="layers_title">Зображення мапи</string>
 	<string name="subway_data_unavailable">Мапа метрополітену недоступна</string>
 	<string name="bookmarks_empty_list_title">Список порожній</string>
-	<string name="bookmarks_empty_list_message">Щоб додати нову позначку, натисніть на значок зірочки в картці об’єкта</string>
+	<string name="bookmarks_empty_list_message">Щоб додати нову мітку, натисніть на значок зірочки в картці об’єкта</string>
 	<string name="category_desc_more">…ще</string>
 	<string name="export_file">Експортувати файл</string>
 	<string name="list_settings">Налаштування списку</string>
@@ -617,6 +627,8 @@
 	<string name="moreyear_ago_sorttype">Понад рік тому</string>
 	<string name="near_me_sorttype">Поруч зі мною</string>
 	<string name="others_sorttype">Інші</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Їжа</string>
 	<string name="tourist_places">Пам’ятки</string>
 	<string name="museums">Музеї</string>
@@ -630,7 +642,6 @@
 	<string name="shops">Магазини</string>
 	<string name="parkings">Парковки</string>
 	<string name="fuel_places">Заправки</string>
-	<string name="water">Вода</string>
 	<string name="medicine">Медицина</string>
 	<string name="search_in_the_list">Шукати в списку</string>
 	<string name="religious_places">Святі місця</string>
@@ -652,6 +663,10 @@
 	<string name="enable_screen_sleep">Дозволити екрану вимкнутись</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">При включенні екран може переходити в сплячий режим після певного періоду бездіяльності</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Показувати на заблокованому екрані</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Якщо ввімкнено, вам не потрібно щоразу розблоковувати пристрій під час роботи програми.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Канатна дорога</string>
@@ -661,7 +676,7 @@
 	<string name="type.aerialway.gondola">Канатна дорога</string>
 	<string name="type.aerialway.mixed_lift">Канатна дорога</string>
 	<string name="type.aerialway.station">Канатна дорога</string>
-	<string name="type.aeroway">Аеропорт</string>
+	<string name="type.aeroway">Аерокосмічна інфраструктура</string>
 	<string name="type.aeroway.aerodrome">Аеропорт</string>
 	<string name="type.aeroway.aerodrome.international">Міжнародний аеропорт</string>
 	<string name="type.aeroway.apron">Перон</string>
@@ -705,12 +720,14 @@
 	<string name="type.amenity.fire_station">Пожежна частина</string>
 	<string name="type.amenity.food_court">Ресторанний двір</string>
 	<string name="type.amenity.fountain">Фонтан</string>
-	<string name="type.amenity.fuel">Заправка</string>
+	<string name="type.amenity.fuel">АЗС</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Цвинтар</string>
-	<string name="type.amenity.grave_yard.christian">Цвинтар</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">Християнський цвинтар</string>
 	<string name="type.amenity.hospital">Лікарня</string>
 	<string name="type.amenity.hunting_stand">Мисливська башта</string>
-	<string name="type.amenity.ice_cream">Кіоск з морозивом</string>
+	<string name="type.amenity.ice_cream">Морозиво</string>
 	<string name="type.amenity.internet_cafe">Інтернет-кафе</string>
 	<string name="type.amenity.kindergarten">Дитячий садок</string>
 	<string name="type.amenity.library">Бібліотека</string>
@@ -746,17 +763,26 @@
 	<string name="type.amenity.prison">В\'язниця</string>
 	<string name="type.amenity.pub">Паб</string>
 	<string name="type.amenity.public_bookcase">Книгообмін</string>
-	<string name="type.amenity.recycling">Прийом вторсировини</string>
-	<string name="type.amenity.recycling_container">Контейнер для вторсировини</string>
-	<string name="type.recycling.toxic">Отруйні відходи</string>
-	<string name="type.recycling.clothes">Старий одяг</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Прийом вторсировини</string>
+	<string name="type.amenity.recycling">Контейнер для вторсировини</string>
+	<string name="type.amenity.recycling.container">Контейнер для вторсировини</string>
+	<string name="type.recycling.batteries">Батарейки</string>
+	<string name="type.recycling.clothes">Одяг</string>
 	<string name="type.recycling.glass_bottles">Склотара</string>
-	<string name="type.recycling.paper">Макулатура</string>
-	<string name="type.recycling.plastic">Пластикове сміття</string>
-	<string name="type.recycling.plastic_bottles">Збір пластикових пляшок</string>
+	<string name="type.recycling.paper">Папір</string>
+	<string name="type.recycling.plastic">Пластик</string>
+	<string name="type.recycling.plastic_bottles">Пластикові бутилки</string>
 	<string name="type.recycling.scrap_metal">Металобрухт</string>
 	<string name="type.recycling.small_appliances">Електровідходи</string>
+	<string name="type.recycling.cardboard">Картон</string>
+	<string name="type.recycling.cans">Бляшані та алюмінієві банки</string>
+	<string name="type.recycling.shoes">Взуття</string>
+	<string name="type.recycling.green_waste">Органіка / Харчові відходи</string>
+	<string name="type.recycling.cartons">Тетрапак та аналоги</string>
 	<string name="type.amenity.restaurant">Ресторан</string>
+	<string name="type.amenity.sanitary_dump_station">Злив для туалетів транспортних засобів</string>
 	<string name="type.amenity.school">Школа</string>
 	<string name="type.amenity.shelter">Укриття</string>
 	<string name="type.amenity.shower">Душ</string>
@@ -766,14 +792,19 @@
 	<string name="type.amenity.toilets">Туалет</string>
 	<string name="type.amenity.townhall">Ратуша</string>
 	<string name="type.amenity.university">Університет</string>
-	<string name="type.amenity.vending_machine.cigarettes">Автомат з продажу сигарет</string>
+	<string name="type.amenity.vending_machine">Торговий автомат</string>
+	<string name="type.amenity.vending_machine.cigarettes">Автомат з цигарками</string>
 	<string name="type.amenity.vending_machine.drinks">Автомат з напоями</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Паркомат</string>
-	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат з продажу квитків на громадський транспорт</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат з продажу квитків</string>
+	<string name="type.amenity.vending_machine.excrement_bags">Мішки для екскрементів</string>
+	<string name="type.amenity.parcel_locker">Поштомат</string>
+	<string name="type.amenity.vending_machine.fuel">Паливна колонка</string>
 	<string name="type.amenity.veterinary">Ветеринарна клініка</string>
 	<string name="type.amenity.waste_basket">Бак для сміття</string>
 	<string name="type.amenity.waste_disposal">Сміттєвий контейнер</string>
-	<string name="type.amenity.water_point">Заправка водою</string>
+	<string name="type.amenity.waste_transfer_station">Станція передачі сміття</string>
+	<string name="type.amenity.water_point">Вода для автобудинків</string>
 	<string name="type.barrier">Перешкода</string>
 	<string name="type.barrier.block">Блок</string>
 	<string name="type.barrier.bollard">Стовпчик</string>
@@ -793,9 +824,9 @@
 	<string name="type.boundary.administrative">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.10">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.11">Адміністративний поділ</string>
-	<string name="type.boundary.administrative.2">Адміністративний поділ</string>
+	<string name="type.boundary.administrative.2">Кордон країни</string>
+	<string name="type.boundary.administrative.3">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.4">Адміністративний поділ</string>
-	<string name="type.boundary.administrative.4.state">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.5">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.6">Адміністративний поділ</string>
 	<string name="type.boundary.administrative.7">Адміністративний поділ</string>
@@ -804,7 +835,7 @@
 	<string name="type.boundary.administrative.city">Межа міста</string>
 	<string name="type.boundary.administrative.country">Кордон країни</string>
 	<string name="type.boundary.administrative.county">Поділ округа</string>
-	<string name="type.boundary.administrative.nation">Національний кордон</string>
+	<string name="type.boundary.administrative.nation">Кордон країни</string>
 	<string name="type.boundary.administrative.region">Областний поділ</string>
 	<string name="type.boundary.administrative.suburb">Приміська межа</string>
 	<string name="type.boundary.national_park">Національний парк</string>
@@ -912,7 +943,7 @@
 	<string name="type.cuisine.vegetarian">Вегетаріанська кухня</string>
 	<string name="type.cuisine.vietnamese">В\'єтнамська кухня</string>
 	<string name="type.emergency.defibrillator">Дефібрилятор</string>
-	<string name="type.emergency.fire_hydrant">Пожежний кран</string>
+	<string name="type.emergency.fire_hydrant">Пожежний гідрант</string>
 	<string name="type.emergency.phone">Аварійний телефон</string>
 	<string name="type.entrance">Вхід</string>
 	<string name="type.healthcare.laboratory">Медична лабораторія</string>
@@ -1072,7 +1103,9 @@
 	<string name="type.landuse.allotments">Земельні ділянки</string>
 	<string name="type.landuse.basin">Резервуар</string>
 	<string name="type.landuse.brownfield">Земля для будiвництва</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Цвинтар</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Християнський цвинтар</string>
 	<string name="type.landuse.churchyard">Церковний двір</string>
 	<string name="type.landuse.commercial">Комерційні ділянки</string>
@@ -1131,6 +1164,7 @@
 	<string name="type.leisure.sports_centre.yoga">Студія йоги</string>
 	<string name="type.leisure.stadium">Стадіон</string>
 	<string name="type.leisure.swimming_pool">Басейн для плавання</string>
+	<string name="type.leisure.swimming_pool.private">Басейн для плавання</string>
 	<string name="type.leisure.track">Бігова доріжка</string>
 	<string name="type.leisure.water_park">Аквапарк</string>
 	<string name="type.leisure.beach_resort">Пляжний курорт</string>
@@ -1139,7 +1173,9 @@
 	<string name="type.man_made.cairn">Тур</string>
 	<string name="type.man_made.chimney">Заводська труба</string>
 	<string name="type.man_made.cutline">Просіка</string>
+	<string name="type.man_made.flagpole">Флагшток</string>
 	<string name="type.man_made.lighthouse">Маяк</string>
+	<string name="type.man_made.mast">Щогла/вишка</string>
 	<string name="type.man_made.pier">Пірс</string>
 	<string name="type.man_made.pipeline">Трубопровід</string>
 	<string name="type.man_made.silo">Силос</string>
@@ -1330,6 +1366,7 @@
 	<string name="type.shop.car_parts">Автозапчастини</string>
 	<string name="type.shop.car_repair">СТО</string>
 	<string name="type.shop.car_repair.tyres">Шиномонтаж</string>
+	<string name="type.shop.caravan">Продаж автобудинків</string>
 	<string name="type.shop.chemist">Магазин побутової хімії</string>
 	<string name="type.shop.chocolate">Крамниця</string>
 	<string name="type.shop.clothes">Магазин одягу</string>
@@ -1346,7 +1383,7 @@
 	<string name="type.shop.erotic">Секс-шоп</string>
 	<string name="type.shop.fabric">Крамниця</string>
 	<string name="type.shop.florist">Магазин квітів</string>
-	<string name="type.shop.funeral_directors">Ритуальна служба</string>
+	<string name="type.shop.funeral_directors">Ритуальні послуги</string>
 	<string name="type.shop.furniture">Магазин меблів</string>
 	<string name="type.shop.garden_centre">Товари для саду</string>
 	<string name="type.shop.gift">Магазин сувенірів</string>
@@ -1418,7 +1455,7 @@
 	<string name="type.tourism.attraction.animal">Пам’ятка</string>
 	<string name="type.tourism.attraction.specified">Пам’ятка</string>
 	<string name="type.tourism.camp_site">Кемпінг</string>
-	<string name="type.tourism.caravan_site">Автокемпінг</string>
+	<string name="type.tourism.caravan_site">Кемпінг для автобудинків</string>
 	<string name="type.tourism.chalet">Шале</string>
 	<string name="type.tourism.gallery">Пам’ятні місця</string>
 	<string name="type.tourism.guest_house">Гостинний дім</string>
@@ -1464,13 +1501,14 @@
 	<string name="type.wheelchair.limited">Частково обладнано для інвалідів</string>
 	<string name="type.wheelchair.no">Не обладнано для інвалідів</string>
 	<string name="type.wheelchair.yes">Обладнано для інвалідів</string>
-	<string name="type.piste_lift">Пiдйомник</string>
-	<string name="type.piste_lift.j.bar">Пiдйомник</string>
+	<!-- en.wikipedia.org/wiki/Surface_lift -->
+	<string name="type.piste_lift">Бугельний витяг</string>
+	<string name="type.piste_lift.j.bar">Бугельний витяг</string>
 	<string name="type.piste_lift.magic_carpet">Стрiчковий конвеєр</string>
-	<string name="type.piste_lift.platter">Пiдйомник</string>
-	<string name="type.piste_lift.rope_tow">Пiдйомник</string>
-	<string name="type.piste_lift.t.bar">Пiдйомник</string>
-	<string name="type.piste_type">Тип дороги</string>
+	<string name="type.piste_lift.platter">Бугельний витяг</string>
+	<string name="type.piste_lift.rope_tow">Бугельний витяг</string>
+	<string name="type.piste_lift.t.bar">Бугельний витяг</string>
+	<string name="type.piste_type">Тип траси</string>
 	<string name="type.piste_type.downhill">Гірськолижна траса</string>
 	<string name="type.piste_type.downhill.advanced">Доповнена гірськолижна траса</string>
 	<string name="type.piste_type.downhill.easy">Легка гірськолижна траса</string>
@@ -1478,7 +1516,7 @@
 	<string name="type.piste_type.downhill.freeride">Гірськолижна траса вільного спуска</string>
 	<string name="type.piste_type.downhill.intermediate">Гірськолижна траса середнього рівня</string>
 	<string name="type.piste_type.downhill.novice">Гірськолижна траса для новеньких</string>
-	<string name="type.piste_type.nordic">Траса для скандинавської ходьби</string>
+	<string name="type.piste_type.nordic">Лижня</string>
 	<string name="type.piste_type.sled">Траса для санок</string>
 	<string name="type.building_part">Будівля</string>
 </resources>

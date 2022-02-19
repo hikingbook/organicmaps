@@ -123,6 +123,10 @@
 	<string name="post">Poştă</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Poliția</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Reciclare</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Apă</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Detalii</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">Bună,\n\nAcum sînt aici: %1$s. Apasă pe adresa %2$s sau pe %3$s pentru a vedea locul pe hartă.\n\nMulțumesc.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Trimite</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Copiat în notițe: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Gata</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">Versiune: %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Versiune: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Date OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Vrei să continui?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -455,7 +461,6 @@
 	<string name="placepage_place_description">Descriere</string>
 	<string name="placepage_more_button">Mai mult</string>
 	<string name="placepage_more_reviews_button">Mai multe recenzii</string>
-	<string name="book_button">Rezervare</string>
 	<string name="placepage_call_button">Apelează</string>
 	<string name="placepage_edit_bookmark_button">Modifică locul preferat</string>
 	<string name="editor_comment_hint">Comentariu…</string>
@@ -481,7 +486,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Asigură-te că nu ai introdus niciun fel de date personale.</string>
 	<string name="editor_share_to_all_dialog_message_2">Vom verifica modificările. Dacă vor apărea întrebări, te vom contacta prin e-mail.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps este o aplicație gratuită și cod sursă public care permite descărcarea hărților și navigare fără internet. Fără reclame. Fără urmărire. Dacă vezi o eroare pe hartă, te rugăm să o corectezi în OpenStreetMap. Proiectul este creat de entuziaști în timpul nostru liber, așa că avem nevoie de părerea și sprijinul tău.</string>
 	<!-- For the first routing -->
 	<string name="accept">Acceptă</string>
@@ -494,6 +499,7 @@
 	<string name="mobile_data_option_today">Doar astăzi</string>
 	<string name="mobile_data_option_not_today">Nu folosi astăzi</string>
 	<string name="mobile_data">Internet mobil</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Internetul mobil este necesar pentru afişarea de informaţii detaliate despre locuri, precum fotografii, preţuri şi recenzii.</string>
 	<string name="mobile_data_option_never">Nu utiliza niciodată</string>
 	<string name="mobile_data_option_ask">Întreabă mereu</string>
@@ -508,7 +514,7 @@
 	<string name="on">Pornit</string>
 	<string name="off">Oprit</string>
 	<string name="prefs_languages_information">Pentru instrucțiuni vocale utilizăm sistemul TTS. Multe dispozitive cu Android folosesc Google TTS. Poți descărca sau actualiza aplicația din Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Pentru unele limbi trebuie să instalezi alt sintetizator de voce sau un pachet lingvistic suplimentar din Magazinul de aplicații (Google Play, Samsung Apps).\nDeschide reglările aparatului → Limbă → Transformare text în vorbire → Motor preferat.\nAici poți alege motorul de transformare a textului în vorbire și poți descărca o limbă pentru utilizare fără internet.</string>
+	<string name="prefs_languages_information_off">Pentru unele limbi trebuie să instalezi alt sintetizator de voce sau un pachet lingvistic suplimentar din Magazinul de aplicații (Google Play, Samsung Apps, App Gallery, FDroid).\nDeschide reglările aparatului → Limbă → Transformare text în vorbire → Motor preferat.\nAici poți alege motorul de transformare a textului în vorbire și poți descărca o limbă pentru utilizare fără internet.</string>
 	<string name="prefs_languages_information_off_link">Consultă acest ghid pentru informații suplimentare.</string>
 	<string name="transliteration_title">Transcrie în alfabet latin</string>
 	<string name="learn_more">Mai multe</string>
@@ -626,6 +632,8 @@
 	<string name="moreyear_ago_sorttype">Cu peste un an în urmă</string>
 	<string name="near_me_sorttype">Lîngă mine</string>
 	<string name="others_sorttype">Altele</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Mîncare</string>
 	<string name="tourist_places">Obiective turistice</string>
 	<string name="museums">Muzee</string>
@@ -639,7 +647,6 @@
 	<string name="shops">Magazine</string>
 	<string name="parkings">Parcări</string>
 	<string name="fuel_places">Benzinării</string>
-	<string name="water">Apă</string>
 	<string name="medicine">Farmacii</string>
 	<string name="search_in_the_list">Caută în listă</string>
 	<string name="religious_places">Locuri sfinte</string>
@@ -664,6 +671,10 @@
 	<string name="enable_screen_sleep">Lasă ecranul să se stingă</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Cînd este activat, ecranul se va stinge după o perioadă de inactivitate.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Arată pe ecranul blocat</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Cînd este activată, nu trebuie să deblochezi telefonul de fiecare dată cînd aplicația este în funcțiune.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.station">Stație de teleferic</string>
@@ -700,7 +711,9 @@
 	<string name="type.amenity.fire_station">Unitate de pompieri</string>
 	<string name="type.amenity.fountain">Fântână</string>
 	<string name="type.amenity.fuel">Benzinărie</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Cimitir</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Cimitir</string>
 	<string name="type.amenity.hospital">Spital</string>
 	<string name="type.amenity.hunting_stand">Stand de vânătoare</string>
@@ -737,9 +750,12 @@
 	<string name="type.amenity.post_box">Cutie poștală</string>
 	<string name="type.amenity.post_office">Oficiu poștal</string>
 	<string name="type.amenity.public_bookcase">Bibliotecă</string>
-	<string name="type.amenity.recycling">Centru de reciclare</string>
-	<string name="type.amenity.recycling_container">Containere pentru reciclare</string>
-	<string name="type.recycling.toxic">Deșeuri toxice</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Centru de reciclare</string>
+	<string name="type.amenity.recycling">Containere pentru reciclare</string>
+	<string name="type.amenity.recycling.container">Containere pentru reciclare</string>
+	<string name="type.recycling.batteries">Baterii</string>
 	<string name="type.recycling.clothes">Haine vechi</string>
 	<string name="type.recycling.glass_bottles">Deșeuri de sticlă</string>
 	<string name="type.recycling.paper">Deșeuri de hârtie</string>
@@ -1006,7 +1022,9 @@
 	<string name="type.historic.ship">Obiective turistice</string>
 	<string name="type.historic.tomb">Obiective turistice</string>
 	<string name="type.landuse.basin">Bazin de apă</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Cimitir</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cimitir</string>
 	<string name="type.landuse.churchyard">Curtea Bisericii</string>
 	<string name="type.landuse.farmland">Teren arabil</string>
@@ -1039,6 +1057,7 @@
 	<string name="type.leisure.sports_centre.yoga">Studio yoga</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Piscină</string>
+	<string name="type.leisure.swimming_pool.private">Piscină</string>
 	<string name="type.leisure.water_park">Parc acvatic</string>
 	<string name="type.man_made.chimney">Coș de fabrică</string>
 	<string name="type.man_made.lighthouse">Far</string>

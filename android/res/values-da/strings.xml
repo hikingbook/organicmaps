@@ -123,6 +123,10 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Politi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Genbrug</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Vand</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Noter</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">Hey, her er jeg nu: %1$s. Tryk på dette link %2$s eller dette %3$s for at se stedet på kortet. Tak.</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Del</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Kopieret til udklipsholderen: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Færdig</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Version: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap-data: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Er du sikker på, at du vil fortsætte?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -445,7 +453,6 @@
 	<string name="placepage_place_description">Beskrivelse</string>
 	<string name="placepage_more_button">Mere</string>
 	<string name="placepage_more_reviews_button">Flere anmeldelser</string>
-	<string name="book_button">Book</string>
 	<string name="placepage_call_button">Ring</string>
 	<string name="placepage_edit_bookmark_button">Rediger bogmærke</string>
 	<string name="editor_comment_hint">Kommentar…</string>
@@ -464,7 +471,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Sørg for at du ikke indtastede personlige oplysninger.</string>
 	<string name="editor_share_to_all_dialog_message_2">Vi vil kigge på ændringerne. Hvis vi har spørgsmål, vil vi kontakte dig via email.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps er en gratis og open source offline kortapplikation. Ingen annoncer. Ingen sporing. Hvis du ser en fejl på kortet, skal du rette den i OpenStreetMap. Projektet er skabt af entusiaster i vores fritid, så vi har brug for din feedback og support.</string>
 	<!-- For the first routing -->
 	<string name="accept">Accepter</string>
@@ -477,6 +484,7 @@
 	<string name="mobile_data_option_today">Kun i dag</string>
 	<string name="mobile_data_option_not_today">Brug ikke i dag</string>
 	<string name="mobile_data">Mobilt internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Mobile internet er nødvendigt til visning af detaljerede oplysninger om steder, såsom fotos, priser og anmeldelser.</string>
 	<string name="mobile_data_option_never">Brug aldrig</string>
 	<string name="mobile_data_option_ask">Spørg altid</string>
@@ -491,7 +499,7 @@
 	<string name="on">Til</string>
 	<string name="off">Fra</string>
 	<string name="prefs_languages_information">Vi bruger systemets TTS til stemmevejledning. Mange Android-enheder bruger Google TTS, du kan hente eller opdatere det via Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">For nogle sprog skal du installere en anden talesyntese eller en yderligere sprogpakke fra appbutiken (Google Play Market, Samsung Apps).\nÅbn enhedens indstillinger → Sprog og input → Tale → Tekst til tale. Her kan du administrere indstillingerne for talesyntese (f. eks downloade en sprogpakke til brug offline) og vælge et andet tekst-til-tale program.</string>
+	<string name="prefs_languages_information_off">For nogle sprog skal du installere en anden talesyntese eller en yderligere sprogpakke fra appbutiken (Google Play, Samsung Apps, App Gallery, FDroid).\nÅbn enhedens indstillinger → Sprog og input → Tale → Tekst til tale. Her kan du administrere indstillingerne for talesyntese (f. eks downloade en sprogpakke til brug offline) og vælge et andet tekst-til-tale program.</string>
 	<string name="prefs_languages_information_off_link">Se denne vejledning for flere oplysninger.</string>
 	<string name="transliteration_title">Translitteration til latinsk</string>
 	<string name="learn_more">Flere oplysninger</string>
@@ -604,6 +612,8 @@
 	<string name="moreyear_ago_sorttype">Mere end et år siden</string>
 	<string name="near_me_sorttype">I nærheden</string>
 	<string name="others_sorttype">Andre</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Mad</string>
 	<string name="tourist_places">Seværdigheder</string>
 	<string name="museums">Museer</string>
@@ -617,7 +627,6 @@
 	<string name="shops">Butikker</string>
 	<string name="parkings">Parkering</string>
 	<string name="fuel_places">Benzintankstationer</string>
-	<string name="water">Vand</string>
 	<string name="medicine">Medicin</string>
 	<string name="search_in_the_list">Søg i listen</string>
 	<string name="religious_places">Religiøse steder</string>
@@ -677,7 +686,9 @@
 	<string name="type.amenity.fire_station">Brandstation</string>
 	<string name="type.amenity.fountain">Springvand</string>
 	<string name="type.amenity.fuel">Tankstation</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Kirkegård</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Kirkegård</string>
 	<string name="type.amenity.hunting_stand">Jagtsted</string>
 	<string name="type.amenity.ice_cream">Isbod</string>
@@ -715,9 +726,12 @@
 	<string name="type.amenity.post_office">Postkontor</string>
 	<string name="type.amenity.pub">Værtshus</string>
 	<string name="type.amenity.public_bookcase">Bog udveksling</string>
-	<string name="type.amenity.recycling">Genbrugsplads</string>
-	<string name="type.amenity.recycling_container">Genbrugscontainer</string>
-	<string name="type.recycling.toxic">Giftigt affald</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Genbrugsplads</string>
+	<string name="type.amenity.recycling">Genbrugscontainer</string>
+	<string name="type.amenity.recycling.container">Genbrugscontainer</string>
+	<string name="type.recycling.batteries">Batterier</string>
 	<string name="type.recycling.clothes">Gammelt tøj</string>
 	<string name="type.recycling.glass_bottles">Glasflasker</string>
 	<string name="type.recycling.paper">Papiraffald</string>
@@ -983,7 +997,9 @@
 	<string name="type.historic.ship">Turisme</string>
 	<string name="type.historic.tomb">Turisme</string>
 	<string name="type.landuse.basin">Vandbassin</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Kirkegård</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Kirkegård</string>
 	<string name="type.landuse.churchyard">Kirkegård</string>
 	<string name="type.landuse.farmland">Landbrugsjord</string>
@@ -1015,6 +1031,7 @@
 	<string name="type.leisure.sports_centre.swimming">Svømmecenter</string>
 	<string name="type.leisure.sports_centre.yoga">Yoga center</string>
 	<string name="type.leisure.swimming_pool">Svømmebassin</string>
+	<string name="type.leisure.swimming_pool.private">Svømmebassin</string>
 	<string name="type.leisure.water_park">Vandpark</string>
 	<string name="type.man_made.chimney">Fabriksskorsten</string>
 	<string name="type.man_made.lighthouse">Fyrtårn</string>

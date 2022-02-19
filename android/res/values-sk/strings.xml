@@ -123,6 +123,10 @@
 	<string name="post">Pošta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polícia</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">Recyklácia</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">Voda</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Poznámky</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -151,12 +155,16 @@
 	<string name="my_position_share_email">Ahoj,\n\nPráve som tu: %1$s. Stlačte jeden z týchto odkazov %2$s, %3$s a uvidíte toto miesto na mape.\n\nVďaka</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Zdielať</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">Skopírované do schránky: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Hotovo</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">Verzia: %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">Údaje OpenStreetMap: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Naozaj chcete pokračovať?</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -441,7 +449,6 @@
 	<string name="placepage_place_description">Popis</string>
 	<string name="placepage_more_button">Viac</string>
 	<string name="placepage_more_reviews_button">Ďalšie recenzie</string>
-	<string name="book_button">Rezervovať</string>
 	<string name="placepage_call_button">Zavolať</string>
 	<string name="placepage_edit_bookmark_button">Upraviť záložku</string>
 	<string name="editor_comment_hint">Poznámka…</string>
@@ -460,7 +467,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Nezadávajte žiadne osobné udaje.</string>
 	<string name="editor_share_to_all_dialog_message_2">Skontrolujeme zmeny. V prípade otázok vás budeme kontaktovať emailom.</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps je bezplatná offline aplikácia máp s otvoreným zdrojom. Žiadne reklamy. Žiadne sledovanie. Ak na mape vidíte chybu, opravte ju v OpenStreetMap. Projekt vytvárajú nadšenci v našom voľnom čase, preto potrebujeme vašu spätnú väzbu a podporu.</string>
 	<!-- For the first routing -->
 	<string name="accept">Prijať</string>
@@ -473,6 +480,7 @@
 	<string name="mobile_data_option_today">Iba dnes</string>
 	<string name="mobile_data_option_not_today">Dnes nepoužiť</string>
 	<string name="mobile_data">Mobilný internet</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">Na zobrazenie podrobnejších informácií o miestach, napríklad fotografií, cien a recenzií, sa vyžaduje mobilný internet.</string>
 	<string name="mobile_data_option_never">Nikdy nepoužiť</string>
 	<string name="mobile_data_option_ask">Vždy sa opýtať</string>
@@ -487,7 +495,7 @@
 	<string name="on">Zap.</string>
 	<string name="off">Vyp.</string>
 	<string name="prefs_languages_information">Na hlasové pokyny používame systém TTS. Mnohé zariadenia s Adroidom používajú Google TTS, ktorý si môžete stiahnuť alebo aktualizovať z obchodu Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Pre niektoré jazyky bude potrebné nainštalovať syntetizátor reči alebo balík doplnkového jazyka z obchodu s aplikáciami (Google Play, Samsung Apps). Otvorte nastavenia zariadenia → Jazyk a vstup → Reč → Prevod textu na reč. Tu môžete spravovať nastavenia pre syntézu reči (napríklad stiahnuť jazykový balík pre použitie v režime offline) a vybrať iný jazyk.</string>
+	<string name="prefs_languages_information_off">Pre niektoré jazyky bude potrebné nainštalovať syntetizátor reči alebo balík doplnkového jazyka z obchodu s aplikáciami (Google Play, Samsung Apps, App Gallery, FDroid). Otvorte nastavenia zariadenia → Jazyk a vstup → Reč → Prevod textu na reč. Tu môžete spravovať nastavenia pre syntézu reči (napríklad stiahnuť jazykový balík pre použitie v režime offline) a vybrať iný jazyk.</string>
 	<string name="prefs_languages_information_off_link">Viac informácií nájdete v tomto návode.</string>
 	<string name="transliteration_title">Prepis do latinčiny</string>
 	<string name="learn_more">Zistiť viac</string>
@@ -601,6 +609,8 @@
 	<string name="moreyear_ago_sorttype">Pred viac ako rokom</string>
 	<string name="near_me_sorttype">Blízko mňa</string>
 	<string name="others_sorttype">Iné</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">Jedlo</string>
 	<string name="tourist_places">Pamiatky</string>
 	<string name="museums">Múzeá</string>
@@ -614,7 +624,6 @@
 	<string name="shops">Obchody</string>
 	<string name="parkings">Parkovanie</string>
 	<string name="fuel_places">Čerpacie stanice</string>
-	<string name="water">Voda</string>
 	<string name="medicine">Medicína</string>
 	<string name="search_in_the_list">Vyhľadať v zozname</string>
 	<string name="religious_places">Náboženské miesta</string>
@@ -676,7 +685,9 @@
 	<string name="type.amenity.fire_station">Hasičská stanica</string>
 	<string name="type.amenity.fountain">Fontána</string>
 	<string name="type.amenity.fuel">Benzínová pumpa</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">Cintorín</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard.christian">Cintorín</string>
 	<string name="type.amenity.hospital">Nemocnica</string>
 	<string name="type.amenity.hunting_stand">Lovecké stanovisko</string>
@@ -715,9 +726,12 @@
 	<string name="type.amenity.post_office">Pošta</string>
 	<string name="type.amenity.pub">Pohostinstvo</string>
 	<string name="type.amenity.public_bookcase">Knižnica</string>
-	<string name="type.amenity.recycling">Zberné suroviny</string>
-	<string name="type.amenity.recycling_container">Recyklačný odpad</string>
-	<string name="type.recycling.toxic">Toxický odpad</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Zberné suroviny</string>
+	<string name="type.amenity.recycling">Recyklačný odpad</string>
+	<string name="type.amenity.recycling.container">Recyklačný odpad</string>
+	<string name="type.recycling.batteries">Batérie</string>
 	<string name="type.recycling.clothes">Staré oblečenie</string>
 	<string name="type.recycling.glass_bottles">Sklenené fľaše</string>
 	<string name="type.recycling.paper">Papierový odpad</string>
@@ -988,7 +1002,9 @@
 	<string name="type.historic.ship">Pamätihodnosť</string>
 	<string name="type.historic.tomb">Pamätihodnosť</string>
 	<string name="type.landuse.basin">Vodná nádrž</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Cintorín</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cintorín</string>
 	<string name="type.landuse.churchyard">Cintorín</string>
 	<string name="type.landuse.farmland">Pole</string>
@@ -1021,6 +1037,7 @@
 	<string name="type.leisure.sports_centre.yoga">Štúdio jogy</string>
 	<string name="type.leisure.stadium">Štadión</string>
 	<string name="type.leisure.swimming_pool">Kúpalisko</string>
+	<string name="type.leisure.swimming_pool.private">Kúpalisko</string>
 	<string name="type.leisure.water_park">Vodný park</string>
 	<string name="type.man_made.chimney">Komín</string>
 	<string name="type.man_made.lighthouse">Maják</string>

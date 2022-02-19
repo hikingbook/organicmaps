@@ -123,6 +123,10 @@
 	<string name="post">郵局</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察局</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
+	<string name="recycling">回收</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
+	<string name="water">水</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">描述說明</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -152,14 +156,16 @@
 	<string name="my_position_share_email">嗨，\n\n我現在在這：%1$s。點擊此連結 %2$s 或此連結 %3$s 來查看在地圖上的位置。\n\n謝謝。</string>
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">分享</string>
-	<!-- Share by email button text, also used in editor. -->
+	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">電子郵件</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">已複製到剪貼簿：%1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">完成</string>
-	<!-- Data version in «About» screen -->
-	<string name="data_version">資料版本： %d</string>
+	<!-- Prints version number in About dialog -->
+	<string name="version">版本： %s</string>
+	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
+	<string name="data_version">OpenStreetMap 數據：%s</string>
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">確定要繼續嗎？</string>
 	<!-- Title for tracks category in bookmarks manager -->
@@ -459,7 +465,6 @@
 	<string name="placepage_place_description">說明</string>
 	<string name="placepage_more_button">更多</string>
 	<string name="placepage_more_reviews_button">更多評論</string>
-	<string name="book_button">預約</string>
 	<string name="placepage_call_button">呼叫</string>
 	<string name="placepage_edit_bookmark_button">編輯書籤</string>
 	<string name="editor_comment_hint">註解…</string>
@@ -482,7 +487,7 @@
 	<!-- iOS Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">確保您沒有輸入任何個人資料。</string>
 	<string name="editor_share_to_all_dialog_message_2">我們會檢查更改。如果我們有任何問題，我們會郵件與您聯絡。</string>
-	<!-- Text under the version number in the Help dialog. -->
+	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps 是一款免費的開源離線地圖 app。沒有廣告，不會追蹤。如果您在地圖上看到錯誤，請在 OpenStreetMap 中修復吧。這個專案由愛好者在我們的空閒時間創建，因此我們需要您的回饋和支援。</string>
 	<!-- For the first routing -->
 	<string name="accept">接受</string>
@@ -495,6 +500,7 @@
 	<string name="mobile_data_option_today">僅限今天</string>
 	<string name="mobile_data_option_not_today">今天不使用</string>
 	<string name="mobile_data">手機網路</string>
+	<!-- NOTE to translators: please synchronize your translation with the English one. -->
 	<string name="mobile_data_description">需有手機網路才能顯示相片、價格與評論等詳細資訊和地點。</string>
 	<string name="mobile_data_option_never">絕不使用</string>
 	<string name="mobile_data_option_ask">一律詢問</string>
@@ -623,6 +629,8 @@
 	<string name="moreyear_ago_sorttype">一年多以前</string>
 	<string name="near_me_sorttype">附近</string>
 	<string name="others_sorttype">其他</string>
+
+	<!-- SECTION: Bookmark types used for sorting -->
 	<string name="food_places">食物</string>
 	<string name="tourist_places">觀光景點</string>
 	<string name="museums">博物館</string>
@@ -636,7 +644,6 @@
 	<string name="shops">商店</string>
 	<string name="parkings">停車場</string>
 	<string name="fuel_places">加油站</string>
-	<string name="water">水</string>
 	<string name="medicine">醫療</string>
 	<string name="search_in_the_list">在列表中搜尋</string>
 	<string name="religious_places">宗教聖地</string>
@@ -661,12 +668,21 @@
 	<string name="enable_screen_sleep_description">啟用後，螢幕將在一段時間不活動後進入休眠狀態。</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.aerialway">纜車要素</string>
 	<string name="type.aerialway.cable_car">纜車</string>
+	<string name="type.aerialway.drag_lift">纜車要素</string>
+	<string name="type.aerialway.gondola">循環式索道</string>
+	<string name="type.aerialway.mixed_lift">纜車</string>
 	<string name="type.aerialway.station">纜車站</string>
+	<string name="type.aeroway">機場要素</string>
 	<string name="type.aeroway.aerodrome">機場</string>
 	<string name="type.aeroway.aerodrome.international">機場</string>
+	<string name="type.aeroway.apron">機場停機坪</string>
+	<string name="type.aeroway.gate">登機口</string>
 	<string name="type.aeroway.helipad">直升機場</string>
 	<string name="type.aeroway.runway">機場跑道</string>
+	<string name="type.aeroway.taxiway">滑行道</string>
+	<string name="type.aeroway.terminal">航站楼</string>
 	<string name="type.amenity">設施</string>
 	<string name="type.amenity.arts_centre">藝術中心</string>
 	<string name="type.amenity.atm">自動櫃員機</string>
@@ -702,8 +718,10 @@
 	<string name="type.amenity.fire_station">消防局</string>
 	<string name="type.amenity.fountain">噴泉</string>
 	<string name="type.amenity.fuel">加氣站</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.amenity.grave_yard">墓地</string>
-	<string name="type.amenity.grave_yard.christian">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">基督教墓地</string>
 	<string name="type.amenity.hospital">醫院</string>
 	<string name="type.amenity.hunting_stand">狩獵場</string>
 	<string name="type.amenity.ice_cream">冰淇淋攤</string>
@@ -729,21 +747,25 @@
 	<string name="type.amenity.payment_terminal">付款終端</string>
 	<string name="type.amenity.pharmacy">藥局</string>
 	<string name="type.amenity.place_of_worship">寺廟</string>
-	<string name="type.amenity.place_of_worship.buddhist">寺廟</string>
-	<string name="type.amenity.place_of_worship.christian">教堂</string>
-	<string name="type.amenity.place_of_worship.hindu">寺廟</string>
+	<string name="type.amenity.place_of_worship.buddhist">佛教寺廟</string>
+	<string name="type.amenity.place_of_worship.christian">基督教堂</string>
+	<string name="type.amenity.place_of_worship.hindu">印度教寺廟</string>
 	<string name="type.amenity.place_of_worship.jewish">猶太教堂</string>
 	<string name="type.amenity.place_of_worship.muslim">清真寺</string>
 	<string name="type.amenity.place_of_worship.shinto">聖殿</string>
-	<string name="type.amenity.place_of_worship.taoist">寺廟</string>
+	<string name="type.amenity.place_of_worship.taoist">道教宮觀</string>
 	<string name="type.amenity.police">警察局</string>
 	<string name="type.amenity.post_box">郵筒</string>
 	<string name="type.amenity.post_office">郵局</string>
+	<string name="type.amenity.prison">監獄</string>
 	<string name="type.amenity.pub">酒館</string>
 	<string name="type.amenity.public_bookcase">書架</string>
-	<string name="type.amenity.recycling">回收中心</string>
-	<string name="type.amenity.recycling_container">回收箱</string>
-	<string name="type.recycling.toxic">有毒垃圾</string>
+
+	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">回收中心</string>
+	<string name="type.amenity.recycling">回收箱</string>
+	<string name="type.amenity.recycling.container">回收箱</string>
+	<string name="type.recycling.batteries">電池</string>
 	<string name="type.recycling.clothes">舊衣物</string>
 	<string name="type.recycling.glass_bottles">玻璃瓶</string>
 	<string name="type.recycling.paper">廢紙</string>
@@ -1003,22 +1025,31 @@
 	<string name="type.area_highway.unclassified">道路</string>
 
 	<!-- SECTION: Types: Historic -->
+	<string name="type.historic">歷史地點</string>
 	<string name="type.historic.archaeological_site">考古遺址</string>
+	<string name="type.historic.battlefield">古戰場</string>
+	<string name="type.historic.boundary_stone">界碑</string>
 	<string name="type.historic.castle">城堡</string>
 	<string name="type.historic.castle.defensive">城堡</string>
-	<string name="type.historic.castle.stately">城堡</string>
+	<string name="type.historic.castle.stately">宮殿</string>
+	<string name="type.historic.citywalls">歷史城牆</string>
+	<string name="type.historic.fort">歷史要塞</string>
 	<string name="type.historic.memorial">紀念館</string>
-	<string name="type.historic.memorial.plaque">紀念館</string>
-	<string name="type.historic.memorial.sculpture">紀念館</string>
-	<string name="type.historic.memorial.statue">紀念館</string>
+	<string name="type.historic.memorial.plaque">紀念牌匾</string>
+	<string name="type.historic.memorial.sculpture">雕塑</string>
+	<string name="type.historic.memorial.statue">塑像</string>
 	<string name="type.historic.monument">紀念碑</string>
 	<string name="type.historic.ruins">廢墟</string>
-	<string name="type.historic.ship">旅遊景點</string>
-	<string name="type.historic.tomb">旅遊景點</string>
+	<string name="type.historic.ship">歷史船</string>
+	<string name="type.historic.tomb">陵墓</string>
+	<string name="type.historic.wayside_cross">路旁十字架</string>
+	<string name="type.historic.wayside_shrine">路旁神龕</string>
 	<string name="type.internet_access">互聯網</string>
 	<string name="type.internet_access.wlan">互聯網</string>
 	<string name="type.landuse.basin">水庫</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">墓地</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">基督教墓地</string>
 	<string name="type.landuse.churchyard">教堂庭院</string>
 	<string name="type.landuse.farmland">農業用地</string>
@@ -1051,6 +1082,7 @@
 	<string name="type.leisure.sports_centre.yoga">瑜伽工作室</string>
 	<string name="type.leisure.stadium">體育場</string>
 	<string name="type.leisure.swimming_pool">游泳池</string>
+	<string name="type.leisure.swimming_pool.private">游泳池</string>
 	<string name="type.leisure.water_park">水上樂園</string>
 	<string name="type.man_made.chimney">工廠煙囪</string>
 	<string name="type.man_made.lighthouse">燈塔</string>
