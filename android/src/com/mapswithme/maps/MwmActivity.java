@@ -238,18 +238,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @NonNull
   private Toolbar mBookmarkCategoryToolbar;
 
-  @NonNull
-  private FragmentActivity mActivity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
-
-  public MwmActivity() {
-    super();
-  }
-
-  public MwmActivity(FragmentActivity activity) {
-    super();
-    mActivity = activity;
-  }
-
   public interface LeftAnimationTrackListener
   {
     void onTrackStarted(boolean collapsed);
@@ -270,7 +258,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     checkMeasurementSystem();
 
-    LocationHelper.INSTANCE.attach(this);
+    LocationHelper.INSTANCE.attach((LocationHelper.UiCallback) OrganicmapsFrameworkAdapter.INSTANCE.getActivity());
   }
 
   @Override
@@ -448,6 +436,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     setContentView(R.layout.activity_map);
 
+    OrganicmapsFrameworkAdapter.INSTANCE.initActivity(this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()), this.findViewById(android.R.id.content));
+
     mPlacePageController = PlacePageFactory.createCompositePlacePageController(
         this, this);
     mPlacePageController.initialize(this);
@@ -603,12 +593,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initMap(boolean isLaunchByDeepLink)
   {
-    if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
-      mFadeView = mActivity.findViewById(R.id.fade_view);
-    } else {
-      mFadeView = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.fade_view);
-    }
 //    mFadeView = findViewById(R.id.fade_view);
+    mFadeView = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.fade_view);
     mFadeView.setListener(this::onFadeViewTouch);
 
     mMapFragment = (MapFragment) getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
@@ -621,28 +607,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //          .beginTransaction()
 //          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
 //          .commit();
-      if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
-        mMapFragment = (MapFragment) MapFragment.instantiate(this, MapFragment.class.getName(), args);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-                .commit();
-      } else {
-        mMapFragment = (MapFragment) MapFragment.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity(), MapFragment.class.getName(), args);
-        OrganicmapsFrameworkAdapter.INSTANCE.getFragment().getChildFragmentManager()
-                .beginTransaction()
-                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-                .commit();
-      }
+      mMapFragment = (MapFragment) MapFragment.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity(), MapFragment.class.getName(), args);
+      OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getSupportFragmentManager()
+              .beginTransaction()
+              .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+              .commit();
     }
 
 //    View container = findViewById(R.id.map_fragment_container);
-    View container;
-    if (OrganicmapsFrameworkAdapter.INSTANCE.isMwmApplication()) {
-      container = mActivity.findViewById(R.id.map_fragment_container);
-    } else {
-      container = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.map_fragment_container);
-    }
+    View container = OrganicmapsFrameworkAdapter.INSTANCE.getView().findViewById(R.id.map_fragment_container);
     if (container != null)
     {
       container.setOnTouchListener(this);
@@ -1979,8 +1952,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  private void showLocationNotFoundDialog()
   public void showLocationNotFoundDialog()
   {
-    String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
-                                   getString(R.string.current_location_unknown_title));
+
+    String message = String.format("%s\n\n%s", OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getString(R.string.current_location_unknown_message),
+            OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getString(R.string.current_location_unknown_title));
 
     DialogInterface.OnClickListener stopClickListener = (dialog, which) ->
     {
@@ -1994,7 +1968,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       LocationHelper.INSTANCE.switchToNextMode();
     };
 
-    new AlertDialog.Builder(this)
+    new AlertDialog.Builder(OrganicmapsFrameworkAdapter.INSTANCE.getActivity())
         .setMessage(message)
         .setNegativeButton(R.string.current_location_unknown_stop_button, stopClickListener)
         .setPositiveButton(R.string.current_location_unknown_continue_button, continueClickListener)

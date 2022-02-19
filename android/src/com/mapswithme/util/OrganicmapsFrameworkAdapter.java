@@ -2,6 +2,7 @@ package com.mapswithme.util;
 
 import static com.mapswithme.maps.MwmActivity.EXTRA_LOCATION_DIALOG_IS_ANNOYING;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -47,7 +48,6 @@ public enum OrganicmapsFrameworkAdapter {
     private FragmentActivity activity;
     private Fragment fragment;
     private View mapView;
-    private Looper mainLooper;
     private AppBackgroundTracker mBackgroundTracker;
     private SharedPreferences sharedPreferences;
 
@@ -63,14 +63,11 @@ public enum OrganicmapsFrameworkAdapter {
                 Log.d("initApplication", "is new MwmApplication:"+mwmApplication);
             }
         }
+        mwmActivity = new MwmActivity();
     }
 
     public Application getApplication() {
         return this.application;
-    }
-
-    public MwmApplication getMwmApplication() {
-        return this.mwmApplication;
     }
 
     public void setActivity(FragmentActivity activity) {
@@ -79,10 +76,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     public FragmentActivity getActivity() {
         return this.activity;
-    }
-
-    public Boolean isMwmApplication() {
-        return (this.application instanceof MwmApplication);
     }
 
     public void setApplicationID(String applicationID) {
@@ -101,20 +94,8 @@ public enum OrganicmapsFrameworkAdapter {
         return this.fragment;
     }
 
-    public void setView(View view) {
-        this.mapView = view;
-    }
-
     public View getView() {
         return this.mapView;
-    }
-
-    public void setMainLooper(Looper looper) {
-        this.mainLooper = this.application.getMainLooper();
-    }
-
-    public Looper getMainLooper() {
-        return this.application.getMainLooper();
     }
 
     public void setSharedPreferences(SharedPreferences sharedPreferences) {
@@ -137,7 +118,7 @@ public enum OrganicmapsFrameworkAdapter {
         LoggerFactory.INSTANCE.initialize(this.application);
     }
 
-    public void onCreateMwmApplication() {
+    private void onCreateMwmApplication() {
         mwmApplication.onCreate();
     }
 
@@ -157,10 +138,10 @@ public enum OrganicmapsFrameworkAdapter {
         return mwmApplication.arePlatformAndCoreInitialized();
     }
 
-    public void initMwmActivity(FragmentActivity activity, Fragment fragment, View view) {
+    public void initActivity(FragmentActivity activity, Fragment fragment, View view) {
+        setActivity(activity);
         setFragment(fragment);
-        setView(view);
-        mwmActivity = new MwmActivity(activity);
+        this.mapView = view;
     }
 
     public void onCreateMwmActivity(Bundle savedInstanceState) {

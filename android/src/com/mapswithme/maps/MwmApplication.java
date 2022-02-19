@@ -147,12 +147,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
       throw new AssertionError("Can't create settingsDir " + settingsPath);
     }
 
-    if (OrganicmapsFrameworkAdapter.INSTANCE.getMainLooper() == null) {
-      OrganicmapsFrameworkAdapter.INSTANCE.setMainLooper(getMainLooper());
-      mMainLoopHandler = new Handler(getMainLooper());
-    } else {
-      mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getMainLooper());
-    }
+    mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getMainLooper());
 //    mMainLoopHandler = new Handler(getMainLooper());
     ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 //    CrashlyticsUtils.INSTANCE.initialize(this);

@@ -310,8 +310,6 @@ public final class UiUtils
 
   public static boolean isTablet(@NonNull Context context)
   {
-//    Log.d("isTablet", "OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication():"+OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication());
-//    Log.d("isTablet", "OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication().getResources():"+OrganicmapsFrameworkAdapter.INSTANCE.getMwmApplication().getResources());
     return MwmApplication.from(context).getResources().getBoolean(R.bool.tabletLayout);
   }
 
