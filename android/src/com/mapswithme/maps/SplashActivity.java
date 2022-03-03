@@ -158,23 +158,23 @@ public class SplashActivity extends AppCompatActivity implements BaseActivity
 
   private void init()
   {
-    MwmApplication app = (MwmApplication) MwmApplication.from(this);
-    try
-    {
-      app.init();
-    } catch (IOException e)
-    {
-      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message);
-      return;
-    }
+//    MwmApplication app = (MwmApplication) MwmApplication.from(this);
+//    try
+//    {
+//      app.init();
+//    } catch (IOException e)
+//    {
+//      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message);
+//      return;
+//    }
 
 //    if (Counters.isFirstLaunch(this) && PermissionsUtils.isLocationGranted(this))
-    if (PermissionsUtils.isLocationGranted(this))
-    {
-      LocationHelper.INSTANCE.onEnteredIntoFirstRun();
-      if (!LocationHelper.INSTANCE.isActive())
-        LocationHelper.INSTANCE.start();
-    }
+//    if (PermissionsUtils.isLocationGranted(this))
+//    {
+//      LocationHelper.INSTANCE.onEnteredIntoFirstRun();
+//      if (!LocationHelper.INSTANCE.isActive())
+//        LocationHelper.INSTANCE.start();
+//    }
 
 //    processNavigation();
   }
