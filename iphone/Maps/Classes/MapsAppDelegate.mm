@@ -9,7 +9,7 @@
 //#import "MWMMapViewControlsManager.h"
 #import "MWMRoutePoint+CPP.h"
 #import "MWMRouter.h"
-//#import "MWMSearch+CoreSpotlight.h"
+#import "MWMSearch+CoreSpotlight.h"
 //#import "MWMTextToSpeech.h"
 #import "MapViewController.h"
 #import "NSDate+TimeDistance.h"
@@ -18,7 +18,7 @@
 
 
 //#import <CarPlay/CarPlay.h>
-//#import <CoreSpotlight/CoreSpotlight.h>
+#import <CoreSpotlight/CoreSpotlight.h>
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <UserNotifications/UserNotifications.h>
 
@@ -224,7 +224,7 @@ void InitLocalizedStrings() {
                        true /* recreateContextDependentResources */);
   }
   [MWMLocationManager applicationDidBecomeActive];
-//  [MWMSearch addCategoriesToSpotlight];
+  [MWMSearch addCategoriesToSpotlight];
 //  [MWMKeyboard applicationDidBecomeActive];
 //  [MWMTextToSpeech applicationDidBecomeActive];
   LOG(LINFO, ("applicationDidBecomeActive - end"));
