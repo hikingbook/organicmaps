@@ -53,6 +53,7 @@
 #import "MWMRoutingManager.h"
 #import "MWMRoutingOptions.h"
 #import "MWMSearchItemType.h"
+#import "MWMSearchObserver.h"
 //#import "MWMSearchNoResults.h"
 #import "MWMSettings.h"
 //#import "MWMSideButtons.h"
