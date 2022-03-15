@@ -12,18 +12,18 @@ std::string GetLocalizedTypeName(std::string const & type)
   std::replace(key.begin(), key.end(), '-', '.');
   std::replace(key.begin(), key.end(), ':', '_');
 
-  return [NSLocalizedString(@(key.c_str()), @"") UTF8String];
+  return [NSLocalizedStringFromTable(@(key.c_str()), @"OrganicMaps-Localizable", @"") UTF8String];
 }
 
 std::string GetLocalizedBrandName(std::string const & brand)
 {
   auto const key = "brand." + brand;
-  return [NSLocalizedString(@(key.c_str()), @"") UTF8String];
+  return [NSLocalizedStringFromTable(@(key.c_str()), @"OrganicMaps-Localizable", @"") UTF8String];
 }
 
 std::string GetLocalizedString(std::string const & key)
 {
-  return [NSLocalizedString(@(key.c_str()), @"") UTF8String];
+  return [NSLocalizedStringFromTable(@(key.c_str()), @"OrganicMaps-Localizable", @"") UTF8String];
 }
 
 std::string GetCurrencySymbol(std::string const & currencyCode)
