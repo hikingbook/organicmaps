@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "geometry/point2d.hpp"
@@ -196,8 +197,9 @@ public:
   void SetSizesToIncludePoint(Point<T> const & pt)
   {
     Point<T> const c = Center();
-    T const dx = base::Abs(pt.x - c.x);
-    T const dy = base::Abs(pt.y - c.y);
+    // Modified by Zheng-Xiang Ke
+    T const dx = base::Abs(pt.x - c.x) + 0.1;
+    T const dy = base::Abs(pt.y - c.y) + 1;
 
     m_minX = c.x - dx;
     m_minY = c.y - dy;
