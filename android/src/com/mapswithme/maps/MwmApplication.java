@@ -25,7 +25,7 @@ import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.maplayer.subway.SubwayManager;
 //import com.mapswithme.maps.maplayer.traffic.TrafficManager;
 //import com.mapswithme.maps.routing.RoutingController;
-//import com.mapswithme.maps.search.SearchEngine;
+import com.mapswithme.maps.search.SearchEngine;
 import com.mapswithme.maps.settings.StoragePathManager;
 //import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.util.Config;
@@ -240,7 +240,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 
     initNativeStrings();
 //    ThemeSwitcher.INSTANCE.initialize(this);
-//    SearchEngine.INSTANCE.initialize(null);
+    SearchEngine.INSTANCE.initialize(null);
     BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
 //    ThemeSwitcher.INSTANCE.restart(false);
