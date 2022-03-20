@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps.search;
 
 import android.content.Context;
@@ -208,6 +209,13 @@ public enum SearchEngine implements NativeSearchListener,
     nativeShowResult(index);
   }
 
+  @MainThread
+  public void showResults()
+  {
+    mQuery = "";
+    nativeShowResults();
+  }
+
   @Override
   public void initialize(@Nullable Void aVoid)
   {
@@ -246,4 +254,6 @@ public enum SearchEngine implements NativeSearchListener,
   private static native void nativeCancelEverywhereSearch();
 
   private static native void nativeCancelAllSearches();
+
+  private static native void nativeShowResults();
 }

@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 #include "com/mapswithme/maps/SearchEngine.hpp"
 #include "com/mapswithme/maps/Framework.hpp"
 #include "com/mapswithme/maps/UserMarkHelper.hpp"
@@ -378,4 +379,10 @@ extern "C"
   {
     g_framework->NativeFramework()->GetSearchAPI().CancelAllSearches();
   }
+
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_search_SearchEngine_nativeShowResults(JNIEnv * env, jclass clazz)
+{
+  g_framework->NativeFramework()->ShowSearchResults(g_results);
+}
 } // extern "C"
