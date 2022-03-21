@@ -436,4 +436,9 @@ public enum OrganicmapsFrameworkAdapter {
     public void isLargeFontsSize() {
         Config.isLargeFontsSize();
     }
+
+    public boolean showLocation(Location location) {
+        String geoUrl = Framework.nativeGetGe0Url(location.getLatitude(), location.getLongitude(), 15, "");
+        return MapFragment.nativeShowMapForUrl(geoUrl);
+    }
 }
