@@ -1,6 +1,6 @@
 import Foundation
 
-private func IPAD() -> Bool { return UI_USER_INTERFACE_IDIOM() == .pad }
+private func IPAD() -> Bool { return UIDevice.current.userInterfaceIdiom == .pad }
 
 func L(_ key: String) -> String { return NSLocalizedString(key, tableName: "OrganicMaps-Localizable", comment: "") }
 
