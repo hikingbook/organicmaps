@@ -1,9 +1,7 @@
 #pragma once
 
 #include "routing/road_graph.hpp"
-#include "routing/routing_callbacks.hpp"
 
-#include "routing_common/maxspeed_conversion.hpp"
 #include "routing_common/vehicle_model.hpp"
 
 #include "indexer/altitude_loader.hpp"
@@ -37,7 +35,7 @@ private:
 
     // VehicleModelInterface overrides:
     SpeedKMpH GetSpeed(FeatureType & f, SpeedParams const & speedParams) const override;
-    HighwayType GetHighwayType(FeatureType & f) const override;
+    std::optional<HighwayType> GetHighwayType(FeatureType & f) const override;
     double GetMaxWeightSpeed() const override { return m_maxSpeed; }
     SpeedKMpH const & GetOffroadSpeed() const override;
     bool IsOneWay(FeatureType & f) const override;

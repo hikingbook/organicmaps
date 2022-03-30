@@ -7,6 +7,7 @@
 
 #include "coding/reader.hpp"
 
+#include "base/assert.hpp"
 #include "base/exception.hpp"
 #include "base/macros.hpp"
 #include "base/task_loop.hpp"
@@ -96,8 +97,6 @@ protected:
   /// Writable directory to store downloaded map data
   /// @note on some systems it can point to external ejectable storage
   std::string m_writableDir;
-  /// Application private directory.
-  std::string m_privateDir;
   /// Temporary directory, can be cleaned up by the system
   std::string m_tmpDir;
   /// Writable directory to store persistent application data
@@ -132,17 +131,25 @@ public:
   /// @note In case of an error returns an empty std::string.
   static std::string GetCurrentWorkingDirectory() noexcept;
   /// @return always the same writable dir for current user with slash at the end
-  std::string const & WritableDir() const { return m_writableDir; }
+  std::string const & WritableDir() const
+  {
+    ASSERT(!m_writableDir.empty(), ());
+    return m_writableDir;
+  }
   /// Set writable dir — use for testing and linux stuff only
   void SetWritableDirForTests(std::string const & path);
   /// @return full path to file in user's writable directory
-  std::string WritablePathForFile(std::string const & file) const { return WritableDir() + file; }
+  std::string WritablePathForFile(std::string const & file) const;
   /// Uses m_writeableDir [w], m_resourcesDir [r], m_settingsDir [s].
   std::string ReadPathForFile(std::string const & file,
                               std::string searchScope = std::string()) const;
 
   /// @return resource dir (on some platforms it's differ from Writable dir)
-  std::string const & ResourcesDir() const { return m_resourcesDir; }
+  std::string const & ResourcesDir() const
+  {
+    ASSERT(!m_resourcesDir.empty(), ());
+    return m_resourcesDir;
+  }
   /// @note! This function is used in generator_tool and unit tests.
   /// Client app should not replace default resource dir.
   void SetResourceDir(std::string const & path);
@@ -187,10 +194,7 @@ public:
   std::string const & SettingsDir() const { return m_settingsDir; }
   void SetSettingsDir(std::string const & path);
   /// @return full path to file in the settings directory
-  std::string SettingsPathForFile(std::string const & file) const { return SettingsDir() + file; }
-
-  /// Returns application private directory.
-  std::string const & PrivateDir() const { return m_privateDir; }
+  std::string SettingsPathForFile(std::string const & file) const;
 
   /// @return reader for file decriptor.
   /// @throws FileAbsentException

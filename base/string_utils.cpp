@@ -81,7 +81,7 @@ SimpleDelimiter::SimpleDelimiter(char delim) { m_delims.push_back(delim); }
 
 bool SimpleDelimiter::operator()(UniChar c) const
 {
-  return std::find(m_delims.begin(), m_delims.end(), c) != m_delims.end();
+  return base::IsExist(m_delims, c);
 }
 
 UniChar LastUniChar(std::string const & s)
@@ -313,6 +313,11 @@ bool StartsWith(std::string const & s1, char const * s2)
   return (s1.compare(0, strlen(s2), s2) == 0);
 }
 
+bool StartsWith(std::string const & s, std::string::value_type c)
+{
+  return s.empty() ? false : s.front() == c;
+}
+
 bool StartsWith(std::string const & s1, std::string const & s2)
 {
   return (s1.compare(0, s2.length(), s2) == 0);
@@ -333,6 +338,11 @@ bool EndsWith(std::string const & s1, char const * s2)
   if (n < m)
     return false;
   return (s1.compare(n - m, m, s2) == 0);
+}
+
+bool EndsWith(std::string const & s, std::string::value_type c)
+{
+  return s.empty() ? false : s.back() == c;
 }
 
 bool EndsWith(std::string const & s1, std::string const & s2)

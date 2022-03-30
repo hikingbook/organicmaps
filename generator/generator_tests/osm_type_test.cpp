@@ -1,4 +1,3 @@
-
 #include "testing/testing.hpp"
 
 #include "generator/generator_tests/types_helper.hpp"
@@ -7,13 +6,17 @@
 #include "generator/osm2type.hpp"
 #include "generator/tag_admixer.hpp"
 
+#include "routing_common/bicycle_model.hpp"
 #include "routing_common/car_model.hpp"
+#include "routing_common/pedestrian_model.hpp"
 
 #include "indexer/feature_data.hpp"
 #include "indexer/classificator.hpp"
 #include "indexer/classificator_loader.hpp"
 
 #include "platform/platform.hpp"
+
+#include "base/file_name_utils.hpp"
 
 #include <iostream>
 #include <string>
@@ -58,7 +61,7 @@ FeatureBuilderParams GetFeatureBuilderParams(Tags const & tags)
   FillXmlElement(tags, &e);
   FeatureBuilderParams params;
 
-  static TagReplacer tagReplacer(GetPlatform().ResourcesDir() + REPLACED_TAGS_FILE);
+  static TagReplacer tagReplacer(base::JoinPath(GetPlatform().ResourcesDir(), REPLACED_TAGS_FILE));
   tagReplacer.Process(e);
 
   ftype::GetNameAndType(&e, params);
@@ -81,7 +84,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SkipDummy)
   TEST_EQUAL(params.m_types[0], GetType({"highway", "primary"}), ());
 }
 
-UNIT_CLASS_TEST(TestWithClassificator, OsmType_Check)
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_Oneway)
 {
   {
     Tags const tags = {
@@ -112,18 +115,47 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Check)
     TEST(params.IsTypeExist(GetType({"highway", "primary"})), ());
     TEST(params.IsTypeExist(GetType({"hwtag", "oneway"})), ());
   }
+}
+
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_Location)
+{
+  {
+    Tags const tags = {
+      { "power", "line" },
+      { "location", "underground" },
+      { "man_made", "pipeline" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 0, (params));
+  }
 
   {
     Tags const tags = {
-      { "admin_level", "4" },
-      { "border_type", "state" },
-      { "boundary", "administrative" }
+      { "power", "line" },
+      { "man_made", "pipeline" },
     };
 
     auto const params = GetFeatureBuilderParams(tags);
 
     TEST_EQUAL(params.m_types.size(), 1, (params));
-    TEST(params.IsTypeExist(GetType({"boundary", "administrative", "4"})), ());
+    TEST(params.IsTypeExist(GetType({"power", "line"})), ());
+    // We don't have drawing rules now for pipeline.
+    //TEST(params.IsTypeExist(GetType({"man_made", "pipeline"})), ());
+  }
+
+  {
+    Tags const tags = {
+      { "power", "line" },
+      { "location", "overground" },
+      { "man_made", "pipeline" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    /// @todo Mapcss understands only [!location] syntax now. Make it possible to set [!location=underground]
+    TEST_EQUAL(params.m_types.size(), 0, (params));
   }
 }
 
@@ -550,7 +582,10 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Surface)
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
 {
-  routing::CarModel const & carModel = routing::CarModel::AllLimitsInstance();
+  uint32_t const ferryType = GetType({"route", "ferry"});
+  TEST(routing::PedestrianModel::AllLimitsInstance().IsRoadType(ferryType), ());
+  TEST(routing::BicycleModel::AllLimitsInstance().IsRoadType(ferryType), ());
+  TEST(routing::CarModel::AllLimitsInstance().IsRoadType(ferryType), ());
 
   {
     Tags const tags = {
@@ -560,78 +595,52 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
     auto const params = GetFeatureBuilderParams(tags);
 
     TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(ferryType), (params));
+    TEST(params.IsTypeExist(GetType({"hwtag", "nocar"})), ());
+  }
 
-    uint32_t type = GetType({"route", "ferry"});
+  {
+    Tags const tags = {
+      { "railway", "rail" },
+      { "motor_vehicle", "yes" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    uint32_t const type = GetType({"railway", "rail", "motor_vehicle"});
     TEST(params.IsTypeExist(type), (params));
-    TEST(carModel.IsRoadType(type), ());
+    TEST(routing::CarModel::AllLimitsInstance().IsRoadType(type), ());
+  }
 
-    type = GetType({"hwtag", "nocar"});
-    TEST(params.IsTypeExist(type), ());
+  {
+    Tags const tags = {
+      { "route", "shuttle_train" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    uint32_t const type = GetType({"route", "shuttle_train"});
+    TEST(params.IsTypeExist(type), (params));
+    TEST(routing::CarModel::AllLimitsInstance().IsRoadType(type), ());
   }
 
   {
     Tags const tags = {
       { "foot", "no" },
+      { "bicycle", "no" },
       { "motorcar", "yes" },
       { "route", "ferry" },
     };
 
     auto const params = GetFeatureBuilderParams(tags);
 
-    TEST_EQUAL(params.m_types.size(), 3, (params));
-
-    uint32_t type = GetType({"route", "ferry"});
-    TEST(params.IsTypeExist(type), (params));
-    TEST(carModel.IsRoadType(type), ());
-
-    type = GetType({"hwtag", "yescar"});
-    TEST(params.IsTypeExist(type), ());
-
-    type = GetType({"hwtag", "nofoot"});
-    TEST(params.IsTypeExist(type), ());
-  }
-}
-
-UNIT_CLASS_TEST(TestWithClassificator, OsmType_YesCarNoCar)
-{
-  routing::CarModel const & carModel = routing::CarModel::AllLimitsInstance();
-
-  {
-    Tags const tags = {
-        {"highway", "secondary"},
-    };
-
-    auto const params = GetFeatureBuilderParams(tags);
-
-    TEST_EQUAL(params.m_types.size(), 1, (params));
-    TEST(!params.IsTypeExist(carModel.GetNoCarTypeForTesting()), ());
-    TEST(!params.IsTypeExist(carModel.GetYesCarTypeForTesting()), ());
-  }
-
-  {
-    Tags const tags = {
-        {"highway", "cycleway"},
-        {"motorcar", "yes"},
-    };
-
-    auto const params = GetFeatureBuilderParams(tags);
-
-    TEST_EQUAL(params.m_types.size(), 2, (params));
-    TEST(!params.IsTypeExist(carModel.GetNoCarTypeForTesting()), ());
-    TEST(params.IsTypeExist(carModel.GetYesCarTypeForTesting()), ());
-  }
-
-  {
-    Tags const tags = {
-        {"highway", "secondary"},
-        {"motor_vehicle", "no"},
-    };
-
-    auto const params = GetFeatureBuilderParams(tags);
-
-    TEST_EQUAL(params.m_types.size(), 2, (params));
-    TEST(params.IsTypeExist(carModel.GetNoCarTypeForTesting()), ());
-    TEST(!params.IsTypeExist(carModel.GetYesCarTypeForTesting()), ());
+    TEST_EQUAL(params.m_types.size(), 4, (params));
+    TEST(params.IsTypeExist(ferryType), (params));
+    TEST(params.IsTypeExist(GetType({"hwtag", "yescar"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nofoot"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nobicycle"})), ());
   }
 }
 
@@ -1400,6 +1409,34 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Cliff)
   }
 }
 
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_Organic)
+{
+  {
+    Tags const tags = {
+      {"organic", "only"},
+      {"amenity", "cafe" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "cafe"})), (params));
+    TEST(params.IsTypeExist(GetType({"organic", "only"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      {"organic", "no"},
+      {"shop", "bakery" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"shop", "bakery"})), (params));
+  }
+}
+
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
 {
   Tags const oneTypes = {
@@ -1763,6 +1800,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"man_made", "chimney"},
     {"man_made", "cutline"},
     {"man_made", "lighthouse"},
+    {"man_made", "survey_point"},
     {"man_made", "pier"},
     {"man_made", "silo"},
     {"man_made", "storage_tank"},
@@ -1797,6 +1835,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"office", "lawyer"},
     {"office", "ngo"},
     {"office", "telecommunication"},
+    {"organic", "only"},
+    {"organic", "yes"},
     {"piste:lift", "j-bar"},
     {"piste:lift", "magic_carpet"},
     {"piste:lift", "platter"},
@@ -1970,11 +2010,12 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"wheelchair", "yes"},
   };
 
+  auto const & cl = classif();
   for (auto const & type : oneTypes)
   {
     auto const params = GetFeatureBuilderParams({type});
     TEST_EQUAL(params.m_types.size(), 1, (type, params));
-    TEST(params.IsTypeExist(classif().GetTypeByPath({type.m_key, type.m_value})), (type, params));
+    TEST(params.IsTypeExist(cl.GetTypeByPath({type.m_key, type.m_value})), (type, params));
   }
 
   Tags const exTypes = {
@@ -1985,7 +2026,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
   {
     auto const params = GetFeatureBuilderParams({type});
     TEST_GREATER(params.m_types.size(), 1, (type, params));
-    TEST(params.IsTypeExist(classif().GetTypeByPath({type.m_key, type.m_value})), (type, params));
+    TEST(params.IsTypeExist(cl.GetTypeByPath({type.m_key, type.m_value})), (type, params));
   }
 }
 
@@ -2214,7 +2255,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"place", "state", "USA"}, {{"place", "state"}, {"is_in", "USA"}}},
     {{"place", "state", "USA"}, {{"place", "state"}, {"is_in:country", "USA"}}},
     {{"place", "state", "USA"}, {{"place", "state"}, {"is_in:country_code", "us"}}},
-    {{"power", "line", "underground"}, {{"power", "line"}, {"location", "underground"}}},
     {{"railway", "abandoned", "bridge"}, {{"railway", "abandoned"}, {"bridge", "any_value"}}},
     {{"railway", "abandoned", "tunnel"}, {{"railway", "abandoned"}, {"tunnel", "any_value"}}},
     {{"railway", "funicular", "bridge"}, {{"railway", "funicular"}, {"bridge", "any_value"}}},

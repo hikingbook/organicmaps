@@ -3,7 +3,6 @@ package com.mapswithme.maps.widget.placepage;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.location.Location;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -565,7 +564,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     }
     else
     {
-      getActivity().startLocationToPoint(getMapObject(), true);
+      getActivity().startLocationToPoint(getMapObject());
     }
   }
 
@@ -920,7 +919,9 @@ public class PlacePageView extends NestedScrollViewClickFixed
     }
 
     // Show whole week time table.
-    mOpeningHoursAdapter.setTimetables(timetables);
+    Locale locale = getResources().getConfiguration().locale;
+    int firstDayOfWeek = Calendar.getInstance(locale).getFirstDayOfWeek();
+    mOpeningHoursAdapter.setTimetables(timetables, firstDayOfWeek);
     UiUtils.show(mFullWeekOpeningHours);
 
     // Show today's open time + non-business time.

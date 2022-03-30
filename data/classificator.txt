@@ -222,6 +222,7 @@ world  +
         beef_bowl  -
         brazilian  -
         breakfast  -
+        bubble_tea  -
         burger  -
         buschenschank  -
         cake  -
@@ -575,12 +576,11 @@ world  +
         lighthouse  -
         mast  -
         pier  -
-        pipeline  +
-            overground  -
-            {}
+        pipeline  -
         silo  -
         storage_tank  -
         surveillance  -
+        survey_point  -
         tower  -
         wastewater_plant  -
         water_tap  -
@@ -645,6 +645,10 @@ world  +
         ngo  -
         telecommunication  -
         {}
+    organic  +
+        only  -
+        yes  -
+        {}
     piste:lift  +
         j-bar  -
         magic_carpet  -
@@ -702,9 +706,7 @@ world  +
         {}
     power  +
         generator  -
-        line  +
-            underground  -
-            {}
+        line  -
         minor_line  -
         pole  -
         station  -
