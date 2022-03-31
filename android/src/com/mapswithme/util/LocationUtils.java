@@ -5,18 +5,13 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
 
-import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
-
-import java.util.List;
 
 public class LocationUtils
 {
@@ -24,6 +19,7 @@ public class LocationUtils
 
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.LOCATION);
   private static final String TAG = LocationUtils.class.getSimpleName();
+  private static final double DEFAULT_SPEED_MPS = 5;
 
   /**
    * Correct compass angles due to display orientation.
@@ -63,40 +59,46 @@ public class LocationUtils
     return res;
   }
 
-  public static boolean isExpired(Location l, long millis, long expirationMillis)
+  public static double getTimeDiff(@NonNull Location lastLocation, @NonNull Location newLocation)
   {
-    long timeDiff;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-      timeDiff = (SystemClock.elapsedRealtimeNanos() - l.getElapsedRealtimeNanos()) / 1000000;
-    else
-      timeDiff = System.currentTimeMillis() - millis;
-    return (timeDiff > expirationMillis);
+    return (newLocation.getElapsedRealtimeNanos() - lastLocation.getElapsedRealtimeNanos()) * 1.0E-9;
   }
 
-  public static double getDiff(Location lastLocation, Location newLocation)
+  public static boolean isFromGpsProvider(@NonNull Location location)
   {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-      return (newLocation.getElapsedRealtimeNanos() - lastLocation.getElapsedRealtimeNanos()) * 1.0E-9;
-    else
-    {
-      long time = newLocation.getTime();
-      long lastTime = lastLocation.getTime();
-      if (!isSameLocationProvider(newLocation.getProvider(), lastLocation.getProvider()))
-      {
-        // Do compare current and previous system times in case when
-        // we have incorrect time settings on a device.
-        time = System.currentTimeMillis();
-        lastTime = LocationHelper.INSTANCE.getSavedLocationTime();
-      }
-
-      return (time - lastTime) * 1.0E-3;
-    }
+    return LocationManager.GPS_PROVIDER.equals(location.getProvider());
   }
 
-  private static boolean isSameLocationProvider(String p1, String p2)
+  public static boolean isFromFusedProvider(@NonNull Location location)
   {
-    return (p1 != null && p1.equals(p2));
+    return LocationManager.FUSED_PROVIDER.equals(location.getProvider());
   }
+
+  public static boolean isAccuracySatisfied(@NonNull Location location)
+  {
+    // If it's a gps location then we completely ignore an accuracy checking,
+    // because there are cases on some devices (https://jira.mail.ru/browse/MAPSME-3789)
+    // when location is good, but it doesn't contain an accuracy for some reasons.
+    if (isFromGpsProvider(location))
+      return true;
+
+    // Completely ignore locations without lat and lon.
+    return location.getAccuracy() > 0.0f;
+  }
+
+  public static boolean isLocationBetterThanLast(@NonNull Location newLocation, @NonNull Location lastLocation)
+  {
+    if (isFromFusedProvider(newLocation))
+      return true;
+
+    if (isFromGpsProvider(lastLocation) && lastLocation.getAccuracy() == 0.0f)
+      return true;
+
+    double speed = Math.max(DEFAULT_SPEED_MPS, (newLocation.getSpeed() + lastLocation.getSpeed()) / 2.0);
+    double lastAccuracy = lastLocation.getAccuracy() + speed * LocationUtils.getTimeDiff(lastLocation, newLocation);
+    return newLocation.getAccuracy() < lastAccuracy;
+  }
+
 
   @SuppressLint("InlinedApi")
   @SuppressWarnings("deprecation")
@@ -112,38 +114,5 @@ public class LocationUtils
       e.printStackTrace();
       return false;
     }
-  }
-
-  private static void logAvailableProviders(@NonNull Context context)
-  {
-    LocationManager locMngr = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-    List<String> providers = locMngr.getProviders(true);
-    StringBuilder sb;
-    if (!providers.isEmpty())
-    {
-      sb = new StringBuilder("Available location providers:");
-      for (String provider : providers)
-        sb.append(" ").append(provider);
-    }
-    else
-    {
-      sb = new StringBuilder("There are no enabled location providers!");
-    }
-    LOGGER.i(TAG, sb.toString());
-  }
-
-  public static boolean checkProvidersAvailability(@NonNull Context context)
-  {
-    LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-    if (locationManager == null)
-    {
-      LOGGER.e(TAG, "This device doesn't support the location service.");
-      return false;
-    }
-
-    boolean networkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-    LocationUtils.logAvailableProviders(context);
-    return networkEnabled || gpsEnabled;
   }
 }

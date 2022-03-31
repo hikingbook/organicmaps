@@ -24,13 +24,13 @@
 	<string name="gb">ГБ</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
 	<string name="miles">Мілі</string>
-	<!-- View and button titles for accessibility -->
+	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Маё месцазнаходжанне</string>
 	<!-- Update maps later/Buy pro version later button text -->
 	<string name="later">Потым</string>
 	<!-- View and button titles for accessibility -->
 	<string name="search">Шукаць</string>
-	<!-- Search box placeholder text -->
+	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">Шукаць на мапе</string>
 	<!-- Location services are disabled by user alert - message -->
 	<string name="location_is_disabled_long_text">У вас выключана геалакацыя для гэтай прылады альбо дадатку. Калі ласка, уключыце яе ў Наладах.</string>
@@ -253,6 +253,8 @@
 	<string name="downloader_delete_map">Выдаліць мапу</string>
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Абнавіць мапу</string>
+	<!-- Preference title -->
+	<string name="google_play_services">Сэрвісы Google Play</string>
 	<!-- Preference text -->
 	<string name="pref_use_google_play">Ужываць службы Google Play для вызначэння месцазнаходжання</string>
 	<!-- Text for routing error dialog -->
@@ -458,6 +460,7 @@
 	<string name="kilometer">км</string>
 	<string name="kilometers_per_hour">км/г</string>
 	<string name="mile">міля</string>
+	<!-- A unit of measure -->
 	<string name="foot">фут</string>
 	<string name="miles_per_hour">міль/г</string>
 	<string name="hour">г</string>
@@ -563,6 +566,7 @@
 	  <item quantity="one">%d сцежка</item>
 	  <item quantity="other">%d сцежак</item>
 	</plurals>
+	<!-- used to choose between the Google and Android location services -->
 	<string name="subtittle_opt_out">Налады адсочвання</string>
 	<string name="crash_reports">Справаздача аб памылцы</string>
 	<string name="crash_reports_description">Мы можам выкарыстоўваць вашы дадзеныя, каб палепшыць Organic Maps. Змены набудуць сілу пасля перапуску дататка.</string>
@@ -715,11 +719,104 @@
 	<string name="type.barrier.chain">Ланцуг</string>
 	<string name="type.barrier.lift_gate">Шлагбаўм</string>
 	<string name="type.barrier.swing_gate">Шлагбаўм</string>
+	<string name="type.craft.metal_construction">Металаканструкцыі</string>
+	<string name="type.cuisine.bubble_tea">Чай з бурбалкамі</string>
 	<string name="type.emergency.defibrillator">Дэфібрылятар</string>
 	<string name="type.emergency.fire_hydrant">Пажарны гідрант</string>
 	<string name="type.healthcare.laboratory">Медыцынская лабараторыя</string>
 
+	<!-- SECTION: Types: Roads -->
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.bridleway.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.bridleway.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.cycleway.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.cycleway.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.footway.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.footway.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.living_street.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.living_street.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.motorway.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.motorway.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.motorway_link.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.motorway_link.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.path.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.path.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.pedestrian.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.pedestrian.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.primary.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.primary.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.primary_link.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.primary_link.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.residential.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.residential.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.road.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.road.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.secondary.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.secondary.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.secondary_link.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.secondary_link.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.service.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.service.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.steps.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.steps.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.tertiary.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.tertiary.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.tertiary_link.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.tertiary_link.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.track.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.track.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.trunk.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.trunk.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.trunk_link.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.trunk_link.tunnel">Тунэль</string>
+	<!-- These translations are used for all type.highway.*.bridge. -->
+	<string name="type.highway.unclassified.bridge">Мост</string>
+	<!-- These translations are used for all type.highway.*.tunnel. -->
+	<string name="type.highway.unclassified.tunnel">Тунэль</string>
+
 	<!-- SECTION: Types: Historic -->
+	<string name="type.historic.archaeological_site">Археалагічны помнік</string>
 	<string name="type.landuse.basin">Рэзервуар</string>
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Могілкі</string>
@@ -727,6 +824,7 @@
 	<string name="type.landuse.cemetery.christian">Хрысціянскія могілкі</string>
 	<string name="type.leisure.marina">Прычал</string>
 	<string name="type.leisure.picnic_table">Стол для пікніка</string>
+	<string name="type.man_made.survey_point">Геадэзічны пункт</string>
 	<string name="type.man_made.flagpole">Флагшток</string>
 	<string name="type.man_made.mast">Мачта/вышка</string>
 	<string name="type.man_made.silo">Сілас</string>
@@ -744,9 +842,13 @@
 	<string name="type.natural.peak">Вяршыня</string>
 	<string name="type.natural.saddle">Седлавіна</string>
 	<string name="type.natural.water">Вадаём</string>
+	<string name="type.office.telecommunication">Тэлекамунікацыйная кампанія</string>
+	<string name="type.organic.only">Эка</string>
+	<string name="type.organic.yes">Эка</string>
 	<string name="type.railway.platform">Чыгуначная платформа</string>
 	<string name="type.shop.beverages">Напоі</string>
 	<string name="type.shop.caravan">Продаж аўтадамоў</string>
+	<string name="type.shop.cosmetics">Касметыка</string>
 	<string name="type.shop.funeral_directors">Рытуальныя паслугі</string>
 	<string name="type.tourism.caravan_site">Кемпінг для аўтадамоў</string>
 	<string name="type.waterway.river">Рака</string>

@@ -28,8 +28,8 @@ public class NavMenu extends BaseMenu
   private final int mAnimationDuration;
   @NonNull
   private final ImageView mTts;
-  @NonNull
-  private final ImageView mTraffic;
+//  @NonNull
+//  private final ImageView mTraffic;
 
   ImageView mToggle;
 
@@ -48,8 +48,8 @@ public class NavMenu extends BaseMenu
     TOGGLE(R.id.toggle),
     TTS_VOLUME(R.id.tts_volume),
     STOP(R.id.stop),
-    SETTINGS(R.id.settings),
-    TRAFFIC(R.id.traffic);
+    SETTINGS(R.id.settings);
+//    TRAFFIC(R.id.traffic);
 
     private final int mViewId;
 
@@ -98,7 +98,7 @@ public class NavMenu extends BaseMenu
     mapItem(Item.SETTINGS, mFrame);
 
     mTts = (ImageView) mapItem(Item.TTS_VOLUME, mFrame);
-    mTraffic = (ImageView) mapItem(Item.TRAFFIC, mFrame);
+//    mTraffic = (ImageView) mapItem(Item.TRAFFIC, mFrame);
   }
 
   @Override

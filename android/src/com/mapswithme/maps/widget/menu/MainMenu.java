@@ -48,7 +48,8 @@ public class MainMenu
 
 //  private final View mButtonsFrame;
 //  private final View mRoutePlanFrame;
-//
+//  private final View mNewsMarker;
+
 //  private final MenuToggle mToggle;
 
 //  public enum Item implements BaseMenu.Item
@@ -63,16 +64,6 @@ public class MainMenu
 //            return new MwmActivity.MenuClickDelegate(activity, item);
 //          }
 //        },
-//    ADD_PLACE(R.id.add_place)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-//          }
-//        },
 //    SEARCH(R.id.search)
 //        {
 //          @NonNull
@@ -83,14 +74,14 @@ public class MainMenu
 //            return new MwmActivity.SearchClickDelegate(activity, item);
 //          }
 //        },
-//    POINT_TO_POINT(R.id.p2p)
+//    HELP(R.id.help)
 //        {
 //          @NonNull
 //          @Override
 //          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
 //                                                       @NonNull Item item)
 //          {
-//            return new MwmActivity.PointToPointDelegate(activity, item);
+//            return new MwmActivity.HelpDelegate(activity, item);
 //          }
 //        },
 //    BOOKMARKS(R.id.bookmarks)
@@ -101,26 +92,6 @@ public class MainMenu
 //                                                       @NonNull Item item)
 //          {
 //            return new MwmActivity.BookmarksDelegate(activity, item);
-//          }
-//        },
-//    SHARE_MY_LOCATION(R.id.share)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-//          }
-//        },
-//    DOWNLOAD_MAPS(R.id.download_maps)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
 //          }
 //        },
 //    SETTINGS(R.id.settings)
@@ -135,12 +106,12 @@ public class MainMenu
 //        };
 
 //    private final int mViewId;
-//
+
 //    Item(int viewId)
 //    {
 //      mViewId = viewId;
 //    }
-//
+
 //    @Override
 //    public int getViewId()
 //    {
@@ -169,7 +140,7 @@ public class MainMenu
 //    UiUtils.showIf(!RoutingController.get().isNavigating(), mFrame);
 //    super.afterLayoutMeasured(procAfterCorrection);
 //  }
-//
+
 //  @Override
 //  public void onResume(@Nullable Runnable procAfterMeasurement)
 //  {
@@ -201,13 +172,35 @@ public class MainMenu
 //      onCloseListener.run();
 //    return false;
 //  }
-//
+
 //  @Override
 //  public void toggle(boolean animate)
 //  {
 //    // Do nothing.
 //  }
 //
+//  @Override
+//  public void updateMarker()
+//  {
+//    final UpdateInfo info = MapManager.nativeGetUpdateInfo(null);
+//    final int count = (info == null ? 0 : info.filesCount);
+//    final boolean show = (count > 0 && !isOpen());
+//
+//    UiUtils.showIf(show, mNewsMarker);
+
+    // if (show)
+    //   return;
+
+    // for (Mode mode : Mode.values())
+    // {
+    //   show = SharedPropertiesUtils.shouldShowNewMarkerForLayerMode(mFrame.getContext(), mode);
+    //   if (show)
+    //     break;
+    // }
+
+    // UiUtils.showIf(show, mNewsMarker);
+//  }
+
 //  @Override
 //  protected void setToggleState(boolean open, boolean animate)
 //  {
@@ -216,14 +209,11 @@ public class MainMenu
 
 //  private void init()
 //  {
-//    mapItem(Item.ADD_PLACE);
 //    mapItem(Item.SEARCH);
-//    mapItem(Item.POINT_TO_POINT);
+//    mapItem(Item.HELP);
 //    mapItem(Item.BOOKMARKS);
-//    mapItem(Item.SHARE_MY_LOCATION);
-//    mapItem(Item.DOWNLOAD_MAPS);
 //    mapItem(Item.SETTINGS);
-
+//
 //    setState(State.MENU, false);
 //  }
 
@@ -233,10 +223,11 @@ public class MainMenu
 //
 //    mButtonsFrame = mLineFrame.findViewById(R.id.buttons_frame);
 //    mRoutePlanFrame = mLineFrame.findViewById(R.id.routing_plan_frame);
+//    mNewsMarker = mButtonsFrame.findViewById(R.id.marker);
 //
 //    mToggle = new MenuToggle(mLineFrame, getHeightResId());
 //    mapItem(Item.MENU, mLineFrame);
-
+//
 //    init();
 //  }
 
@@ -265,8 +256,6 @@ public class MainMenu
 //        if (isRouting)
 //          mToggle.hide();
 //      }
-//
-//      setVisible(Item.ADD_PLACE, !isRouting);
 //    }
 //
 //    show(state != State.NAVIGATION && !isFullScreen);

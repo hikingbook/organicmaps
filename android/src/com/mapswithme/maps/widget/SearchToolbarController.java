@@ -25,7 +25,7 @@ import com.mapswithme.util.StringUtils;
 import com.mapswithme.util.UiUtils;
 
 public class SearchToolbarController extends ToolbarController
-                                  implements View.OnClickListener
+                                  implements View.OnClickListener, View.OnFocusChangeListener
 {
   private static final int REQUEST_VOICE_RECOGNITION = 0xCA11;
   @Nullable
@@ -67,7 +67,7 @@ public class SearchToolbarController extends ToolbarController
     mSearchContainer = getToolbar().findViewById(R.id.search_container);
     mBack = mSearchContainer.findViewById(R.id.back);
     mQuery = mSearchContainer.findViewById(R.id.query);
-    mQuery.setOnClickListener(this);
+    mQuery.setOnFocusChangeListener(this);
     mQuery.addTextChangedListener(mTextWatcher);
     mQuery.setOnEditorActionListener(
         (v, actionId, event) ->
@@ -191,12 +191,17 @@ public class SearchToolbarController extends ToolbarController
   }
 
   @Override
+  public void onFocusChange(View view, boolean b)
+  {
+    if (view.getId()== R.id.query && b)
+        onQueryClick(getQuery());
+  }
+
+  @Override
   public void onClick(View v)
   {
     int id = v.getId();
-    if (id == R.id.query) {
-      onQueryClick(getQuery());
-    } else if (id == R.id.clear) {
+    if (id == R.id.clear) {
       onClearClick();
     } else if (id == R.id.voice_input) {
       onVoiceInputClick();

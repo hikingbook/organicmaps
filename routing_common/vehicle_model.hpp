@@ -68,15 +68,16 @@ using HighwayBasedSpeeds = base::SmallMap<HighwayType, InOutCitySpeedKMpH>;
 /// \brief Params for calculation of an approximate speed on a feature.
 struct SpeedParams
 {
-  SpeedParams(bool forward, bool inCity, Maxspeed maxspeed)
-    : m_forward(forward), m_inCity(inCity), m_maxspeed(std::move(maxspeed))
+  SpeedParams(bool forward, bool inCity, Maxspeed const & maxspeed)
+    : m_maxspeed(maxspeed), m_forward(forward), m_inCity(inCity)
   {
   }
 
-  bool m_forward;
-  // |m_inCity| == true if a corresponding feature lies inside a city of a town.
-  bool m_inCity;
   Maxspeed m_maxspeed;
+  // Retrieve forward (true) or backward (false) speed.
+  bool m_forward;
+  // If a corresponding feature lies inside a city of a town.
+  bool m_inCity;
 };
 
 /// \brief Speeds which are used for edge weight and ETA estimations.
@@ -206,7 +207,7 @@ public:
   /// @param inCity is true if |f| lies in a city of town.
   virtual SpeedKMpH GetSpeed(FeatureType & f, SpeedParams const & speedParams) const = 0;
 
-  virtual HighwayType GetHighwayType(FeatureType & f) const = 0;
+  virtual std::optional<HighwayType> GetHighwayType(FeatureType & f) const = 0;
 
   /// @return Maximum model weight speed.
   /// All speeds which the model returns must be less than or equal to this speed.
@@ -274,7 +275,7 @@ public:
   /// @name VehicleModelInterface overrides.
   /// @{
   SpeedKMpH GetSpeed(FeatureType & f, SpeedParams const & speedParams) const override;
-  HighwayType GetHighwayType(FeatureType & f) const override;
+  std::optional<HighwayType> GetHighwayType(FeatureType & f) const override;
   double GetMaxWeightSpeed() const override;
   bool IsOneWay(FeatureType & f) const override;
   bool IsRoad(FeatureType & f) const override;
@@ -296,6 +297,8 @@ public:
     return false;
   }
 
+  SpeedKMpH GetTypeSpeed(feature::TypesHolder const & types, SpeedParams const & speedParams) const;
+
   bool EqualsForTests(VehicleModel const & rhs) const
   {
     return (m_roadTypes == rhs.m_roadTypes) && (m_addRoadTypes == rhs.m_addRoadTypes) &&
@@ -308,7 +311,7 @@ protected:
 
   void AddAdditionalRoadTypes(Classificator const & classif, AdditionalRoadsList const & roads);
 
-  static uint32_t PrepareToMatchType(uint32_t type);
+  uint32_t PrepareToMatchType(uint32_t type) const;
 
   /// \returns true if |types| is a oneway feature.
   /// \note According to OSM, tag "oneway" could have value "-1". That means it's a oneway feature
@@ -319,12 +322,10 @@ protected:
 
   bool HasPassThroughType(feature::TypesHolder const & types) const;
 
-  SpeedKMpH GetTypeSpeed(feature::TypesHolder const & types, SpeedParams const & speedParams) const;
-
   SpeedKMpH GetSpeedWihtoutMaxspeed(FeatureType & f, SpeedParams const & speedParams) const;
 
-  /// \brief maximum within all the speed limits set in a model (car model, bicycle model and so on).
-  /// It shouldn't be mixed with maxspeed value tag which defines maximum legal speed on a feature.
+  /// \brief Maximum within all the speed limits set in a model (car model, bicycle model and so on).
+  /// Do not mix with maxspeed value tag, which defines maximum legal speed on a feature.
   InOutCitySpeedKMpH m_maxModelSpeed;
 
 private:
@@ -341,6 +342,7 @@ private:
   // HW type -> speed and factor.
   HighwayBasedInfo m_highwayBasedInfo;
   uint32_t m_onewayType;
+  uint32_t m_railwayVehicleType;  ///< The only 3-arity type
 
   // HW type -> allow pass through.
   base::SmallMap<uint32_t, bool> m_roadTypes;

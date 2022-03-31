@@ -35,7 +35,7 @@
 
 Platform::Platform()
 {
-  m_isTablet = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+  m_isTablet = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
 
   NSBundle * bundle = NSBundle.mainBundle;
   NSString * path = [bundle resourcePath];
@@ -48,11 +48,6 @@ Platform::Platform()
   m_writableDir = docsDir.UTF8String;
   m_writableDir += "/";
   m_settingsDir = m_writableDir;
-
-  auto privatePaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                                          NSUserDomainMask, YES);
-  m_privateDir = privatePaths.firstObject.UTF8String;
-  m_privateDir +=  "/";
 
   NSString * tmpDir = NSTemporaryDirectory();
   if (tmpDir)

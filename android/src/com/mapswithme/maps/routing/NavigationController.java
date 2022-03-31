@@ -183,7 +183,8 @@ public class NavigationController implements Application.ActivityLifecycleCallba
       stop(parent);
       break;
     case SETTINGS:
-//      parent.closeMenu(() -> parent.startActivity(new Intent(parent, SettingsActivity.class)));
+//      parent.closeFloatingPanels();
+//      parent.startActivity(new Intent(parent, SettingsActivity.class));
       break;
     case TTS_VOLUME:
 //      TtsPlayer.setEnabled(!TtsPlayer.isEnabled());
@@ -196,13 +197,11 @@ public class NavigationController implements Application.ActivityLifecycleCallba
 //      break;
     case TOGGLE:
       mNavMenu.toggle(true);
-//      parent.refreshFade();
     }
   }
 
   public void stop(MwmActivity parent)
   {
-//    parent.refreshFade();
     mSearchWheel.reset();
 
     if (mBound)
@@ -304,7 +303,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
 
   private void updateSpeedView(@NonNull RoutingInfo info)
   {
-    final Location last = LocationHelper.INSTANCE.getLastKnownLocation();
+    final Location last = LocationHelper.INSTANCE.getSavedLocation();
     if (last == null)
       return;
 

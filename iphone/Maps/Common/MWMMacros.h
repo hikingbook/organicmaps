@@ -1,3 +1,3 @@
-#define IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 #define L(str) NSLocalizedStringFromTable(str, @"OrganicMaps-Localizable", nil)

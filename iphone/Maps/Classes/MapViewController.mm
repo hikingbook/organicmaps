@@ -131,7 +131,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  if (!PlacePageData.hasData) {
 //    return;
 //  }
-// 
+//  
 //  self.controlsManager.trafficButtonHidden = YES;
 //  [self showRegularPlacePage];
 //}
