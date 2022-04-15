@@ -590,10 +590,10 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JN
 
   auto const path = localFile->GetPath(MapFileType::Map);
   feature::DataHeader const header(path);
-//  if (header.GetFormat() < version::Format::v11) { // More details: FeaturesVector::InitRecordsReader()
+  if (header.GetFormat() < version::Format::v11) { // More details: FeaturesVector::InitRecordsReader()
     Java_com_mapswithme_maps_downloader_MapManager_nativeDelete(env, clazz, root);
     return true;
-//  }
-//  return false;
+  }
+  return false;
 }
 } // extern "C"
