@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/country.hpp"
@@ -552,6 +553,12 @@ public:
   bool IsPossibleToAutoupdate() const;
 
   void SetStartDownloadingCallback(StartDownloadingCallback const & cb);
+    
+  // protected => public by Zheng-Xiang Ke
+  // Tries to register disk files for a real (listed in countries.txt)
+  // country. If map files of the same version were already
+  // registered, does nothing.
+  void RegisterCountryFiles(LocalFilePtr localFile);
 
 protected:
   void OnFinishDownloading();
@@ -576,7 +583,7 @@ private:
   // Tries to register disk files for a real (listed in countries.txt)
   // country. If map files of the same version were already
   // registered, does nothing.
-  void RegisterCountryFiles(LocalFilePtr localFile);
+  // void RegisterCountryFiles(LocalFilePtr localFile);
 
   // Registers disk files for a country. This method must be used only
   // for real (listed in countries.txt) countries.
