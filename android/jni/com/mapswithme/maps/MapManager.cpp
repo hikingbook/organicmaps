@@ -596,4 +596,46 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JN
   }
   return false;
 }
+
+// static @Nullable void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
+JNIEXPORT void JNICALL
+Java_com_mapswithme_maps_downloader_MapManager_nativeUpdateLocalMapRegistration(JNIEnv * env, jclass clazz, jboolean isPro, jboolean isActivatedUser, jint freeLimitNumDownloadedMaps)
+{
+  auto f = g_framework->NativeFramework();
+  f->RegisterAllMaps();
+  if (!isPro) {
+    jint availableRegisteredMaps = 0;
+    if (isActivatedUser) {
+      availableRegisteredMaps = freeLimitNumDownloadedMaps;
+    }
+
+    auto & s = GetStorage();
+    std::vector<std::shared_ptr<platform::LocalCountryFile>> maps;
+    s.GetLocalMaps(maps);
+
+    f->DeregisterAllMaps();
+    for (auto const & localFile : maps) {
+      auto countryId = localFile->GetCountryName();
+      bool isWorldMap = countryId.find("World") != std::string::npos;
+      if (isWorldMap || availableRegisteredMaps > 0) {
+        s.RegisterCountryFiles(localFile);
+        f->RegisterMap(*(localFile.get()));
+      }
+      if (!isWorldMap) {
+        if (g_countryChangedListener != nullptr) {
+          JNIEnv *env = jni::GetEnv();
+          jmethodID methodID = jni::GetMethodID(env, g_countryChangedListener,
+                                              "onCurrentCountryChanged",
+                                              "(Ljava/lang/String;)V");
+          env->CallVoidMethod(g_countryChangedListener, methodID,
+                                jni::TScopedLocalRef(env, jni::ToJavaString(env, countryId)).get());
+        }
+        availableRegisteredMaps--;
+      }
+    }
+
+    m2::RectD rect = mercator::Bounds::FullRect();
+    f->InvalidateRect(rect);
+  }
+}
 } // extern "C"

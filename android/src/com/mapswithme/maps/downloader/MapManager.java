@@ -416,4 +416,9 @@ public final class MapManager
    * Removes latest map version for the given node {@code root}.
    */
   public static native boolean nativeDeleteAllUnsupportedMaps(String root);
+
+  /**
+   * Update local map registration.
+   */
+  public static native void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
 }
