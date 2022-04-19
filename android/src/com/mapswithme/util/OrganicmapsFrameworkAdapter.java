@@ -238,10 +238,6 @@ public enum OrganicmapsFrameworkAdapter {
         mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
     }
 
-    public  void drawCirlce(Location location, float radius, int color, int width) {
-
-    }
-
     /**
      * Bookmark CRUD
      */
