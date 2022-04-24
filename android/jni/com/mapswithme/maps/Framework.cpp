@@ -1796,6 +1796,6 @@ Java_com_mapswithme_maps_Framework_nativeHasPlacePageInfo(JNIEnv *, jclass)
 JNIEXPORT void JNICALL
 Java_com_mapswithme_maps_Framework_nativeDeactivateMapSelection(JNIEnv * env, jclass)
 {
-  return g_framework->DeactivatePopup();
+  return g_framework->DeactivateMapSelection();
 }
 }  // extern "C"
