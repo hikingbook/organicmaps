@@ -1035,11 +1035,14 @@ Java_com_mapswithme_maps_bookmarks_data_BookmarkManager_nativeAddBookmark(
 
   bmData.m_color.m_predefinedColor = kml::PredefinedColor(color);
   bmData.m_point = mercator::FromLatLon(lat, lon);
-  bmData.m_viewportScale = MAX(scales::GetUpperComfortScale(), frm()->GetDrawScale());
-  auto const * createdBookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
+  auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                                        static_cast<kml::MarkGroupId>(groupId));
+  if (bookmark == nullptr) {
+      return LLONG_MAX;
+  }
 
-  return createdBookmark ? static_cast<jlong>(createdBookmark->GetId()) : LLONG_MAX;
+  bookmark->SetScale(MAX(scales::GetUpperComfortScale(), frm()->GetDrawScale()));
+  return static_cast<jlong>(bookmark->GetId());
 }
 
 /**
