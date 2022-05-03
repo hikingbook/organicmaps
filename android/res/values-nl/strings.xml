@@ -38,9 +38,10 @@
 	<string name="connection_settings">Verbindingsinstellingen</string>
 	<string name="close">Sluiten</string>
 	<string name="unsupported_phone">Een hardware geaccellereerde OpenGL is nodig. Jammer genoeg wordt uw apparaat niet ondersteund.</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Verwijder de USB kabel of plaats een geheugenkaart om Organic Maps te gebruiken</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Maak eerst ruimte vrij op de SD-kaart/USB-opslag om de app te gebruiken</string>
-	<string name="not_enough_memory">Niet genoeg geheugen om de app te starten</string>
 	<string name="download_resources">Voordat u start, laten we de algemene wereldkaart naar uw apparaat downloaden.\nDeze neemt %s in beslag.</string>
 	<string name="download_resources_continue">Ga naar de kaart</string>
 	<string name="downloading_country_can_proceed">%s aan het downloaden. U kunt nu\ndoorgaan naar de kaart.</string>
@@ -120,6 +121,8 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Politie</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Recycling</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -205,6 +208,8 @@
 	<string name="search_show_on_map">Op kaart bekijken</string>
 	<!-- Text in menu -->
 	<string name="website">Website</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Nieuws</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Feedback</string>
 	<!-- Text in menu -->
@@ -219,8 +224,6 @@
 	<string name="copyright">Auteursrechten</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Meld een fout</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Update alles</string>
 	<!-- Cancel all button text -->
@@ -292,8 +295,6 @@
 	<string name="gray">Grijs</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Grijsblauw</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Ja</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Belangrijk bij het volgen van een route:</string>
@@ -597,6 +598,14 @@
 	<string name="avoid_toll_roads_placepage">Tolwegen vermijden</string>
 	<string name="avoid_unpaved_roads_placepage">Aardewegen vermijden</string>
 	<string name="avoid_ferry_crossing_placepage">Ferries vermijden</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Ja</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nee</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Ja</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nee</string>
 	<string name="ok">Goed</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sorteer…</string>

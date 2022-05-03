@@ -44,9 +44,10 @@
 	<string name="close">Затваряне</string>
 	<string name="unsupported_phone">Приложението изисква хардуерно ускорение на OpenGL. За съжаление вашето устройство не се поддържа.</string>
 	<string name="download">Изтегляне</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Моля, изключете USB кабела или поставете карта с памет.</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Моля, първо освободете място на SD картата/USB паметта, за да можете да използвате приложението.</string>
-	<string name="not_enough_memory">Няма достатъчно памет за стартиране на приложението</string>
 	<string name="download_resources">Преди да започнете да използвате приложението, позволете ни да изтеглим общата карта на света на вашето устройство.\nТова ще използва %s от паметта.</string>
 	<string name="download_resources_continue">Към картата</string>
 	<string name="downloading_country_can_proceed">Изтегляне на %s. Вече можете да преминете към картата.</string>
@@ -126,6 +127,8 @@
 	<string name="post">Поща</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Полиция</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Рециклиране</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -210,6 +213,8 @@
 	<string name="search_show_on_map">Преглед на картата</string>
 	<!-- Text in menu -->
 	<string name="website">Уебсайт</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Новини</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Обратна връзка</string>
 	<!-- Text in menu -->
@@ -224,8 +229,6 @@
 	<string name="copyright">Авторски права</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Докладване на проблем</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Обновяване на всичко</string>
 	<!-- Cancel all button text -->
@@ -281,8 +284,6 @@
 	<string name="brown">Кафяво</string>
 	<!-- pink color -->
 	<string name="pink">Розово</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Да</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Когато следвате маршрута, моля, имайте предвид:</string>
@@ -587,6 +588,14 @@
 	<string name="avoid_toll_roads_placepage">Избягване на платени пътища</string>
 	<string name="avoid_unpaved_roads_placepage">Избягвайте неасфалтирани пътища</string>
 	<string name="avoid_ferry_crossing_placepage">Избягване на преходи с ферибот</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Да</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Не</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Да</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Не</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сортиране…</string>
@@ -619,7 +628,9 @@
 	<string name="elevation_profile_time">Време:</string>
 	<string name="isolines_toast_zooms_1_10">Увеличете мащаба, за да разгледате изолиниите</string>
 	<string name="download_map_title">Изтегляне на картата на света</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Неуспешно свързване</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Изключване на USB кабел</string>
 	<string name="enable_screen_sleep">Позволяване на екрана да заспи</string>
 	<!-- Description in preferences -->

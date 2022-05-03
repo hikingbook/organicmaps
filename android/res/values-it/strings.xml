@@ -41,9 +41,10 @@
 	<string name="close">Chiudi</string>
 	<string name="unsupported_phone">È necessaria una accelerazione hardware OpenGL. Purtroppo, il tuo dispositivo non è supportato.</string>
 	<string name="download">Scarica</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Si prega di scollegare il cavo USB o inserire la scheda di memoria per utilizzare Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Libera prima dello spazio sulla scheda Sd/ memoria USB per usare l\'app</string>
-	<string name="not_enough_memory">Memoria insufficiente per lanciare l\'app</string>
 	<string name="download_resources">Prima di iniziare è necessario scaricare la mappa generale del mondo sul tuo dispositivo.\nLa dimensione del download è di %s.</string>
 	<string name="download_resources_continue">Vai alla mappa</string>
 	<string name="downloading_country_can_proceed">Sto scaricando %s. Puoi ora\nprocedere con la mappa.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Posta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polizia</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">Wi-Fi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Riciclo</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -208,6 +211,8 @@
 	<string name="search_show_on_map">Visualizza sulla mappa</string>
 	<!-- Text in menu -->
 	<string name="website">Sito web</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Notizia</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Feedback</string>
 	<!-- Text in menu -->
@@ -222,8 +227,6 @@
 	<string name="copyright">Copyright</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Segnala un errore</string>
-	<!-- Search category -->
-	<string name="wifi">Wi-Fi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Aggiorna tutte</string>
 	<!-- Cancel all button text -->
@@ -293,8 +296,6 @@
 	<string name="gray">Grigio</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Grigiazzurro</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Sì</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Quando segui il percorso, ricorda che:</string>
@@ -612,6 +613,14 @@
 	<string name="avoid_toll_roads_placepage">Evitare strade a pedaggio</string>
 	<string name="avoid_unpaved_roads_placepage">Evitare le strade non asfaltate</string>
 	<string name="avoid_ferry_crossing_placepage">Evitare i traghetti</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Sì</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">No</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Sì</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">No</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Ordina…</string>
@@ -665,7 +674,9 @@
 	<string name="elevation_profile_time">Tempo:</string>
 	<string name="isolines_toast_zooms_1_10">Ingrandisci mappa per vedere l\'isolinea</string>
 	<string name="download_map_title">Scarica la mappa del mondo</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Errore di connessione</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Scollegare il cavo USB</string>
 	<string name="enable_screen_sleep">Consenti allo schermo di dormire</string>
 	<!-- Description in preferences -->
@@ -774,9 +785,14 @@
 	<string name="type.amenity.townhall">Municipio</string>
 	<string name="type.amenity.university">Università</string>
 	<string name="type.amenity.vending_machine.cigarettes">Distributore automatico di sigarette</string>
+	<string name="type.amenity.vending_machine.coffee">Distributore di caffè</string>
+	<string name="type.amenity.vending_machine.condoms">Distributore di profilattici</string>
 	<string name="type.amenity.vending_machine.drinks">Distributore automatico di bibite</string>
+	<string name="type.amenity.vending_machine.food">Distributore di alimenti</string>
+	<string name="type.amenity.vending_machine.newspapers">Distributore di giornali</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Parcometro</string>
 	<string name="type.amenity.vending_machine.public_transport_tickets">Distributore automatico biglietti di trasporto</string>
+	<string name="type.amenity.vending_machine.sweets">Distributore di dolciumi</string>
 	<string name="type.amenity.veterinary">Veterinario</string>
 	<string name="type.amenity.waste_basket">Contenitore per rifiuti</string>
 	<string name="type.amenity.waste_disposal">Spazzatura</string>
@@ -1078,6 +1094,7 @@
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Cimitero</string>
 	<string name="type.landuse.churchyard">Sagrato della chiesa</string>
+	<string name="type.landuse.education">Strutture didattiche</string>
 	<string name="type.landuse.farmland">Terreno agricolo</string>
 	<string name="type.landuse.forest">Foresta</string>
 	<string name="type.landuse.forest.coniferous">Foresta</string>

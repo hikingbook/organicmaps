@@ -43,9 +43,10 @@
 	<string name="close">Tutup</string>
 	<string name="unsupported_phone">OpenGL yang dipercepat oleh OpenGL diperlukan. Sayangnya, perangkat Anda tidak mendukung.</string>
 	<string name="download">Unduh</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Mohon lepas kabel USB atau masukkan kartu memori untuk menggunakan Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Mohon bebaskan sejumlah ruang pada kartu SD/penyimpanan USB terlebih dahulu untuk menggunakan aplikasi</string>
-	<string name="not_enough_memory">Memori tidak cukup untuk meluncurkan aplikasi</string>
 	<string name="download_resources">Sebelum Anda mulai izinkan kami mengunduh peta dunia secara umum ke perangkat Anda.\nHal ini memerlukan data %s.</string>
 	<string name="download_resources_continue">Pergi ke Peta</string>
 	<string name="downloading_country_can_proceed">Sedang mengunduh %s. Sekarang Anda dapat melanjutkan ke peta.</string>
@@ -125,6 +126,8 @@
 	<string name="post">Pos</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polisi</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Mendaur ulang</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -205,6 +208,8 @@
 	<string name="search_show_on_map">Tampilkan pada peta</string>
 	<!-- Text in menu -->
 	<string name="website">Situs Web</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Berita</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Umpan balik</string>
 	<!-- Text in menu -->
@@ -219,8 +224,6 @@
 	<string name="copyright">Hak cipta</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Laporkan gangguan</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Perbarui semua</string>
 	<!-- Cancel all button text -->
@@ -290,8 +293,6 @@
 	<string name="gray">Abu-abu</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Biru Keabu-abuan</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Ya</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Saat mengikuti rute, harap diingat:</string>
@@ -595,6 +596,14 @@
 	<string name="avoid_toll_roads_placepage">Hindari jalan tol</string>
 	<string name="avoid_unpaved_roads_placepage">Hindari jalan tanah</string>
 	<string name="avoid_ferry_crossing_placepage">Hindari penyeberangan kapal feri</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Ya</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Tidak</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Ya</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Tidak</string>
 	<string name="ok">Oke</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Urutkan…</string>

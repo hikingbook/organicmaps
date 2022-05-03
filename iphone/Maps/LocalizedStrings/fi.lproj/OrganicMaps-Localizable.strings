@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Poliisi";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Kierrätys";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Kotisivut";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Uutiset";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompassin kalibrointi";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Päivitä kaikki";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Harmaan sininen";
-
-/* Wi-Fi available */
-"WiFi_available" = "Kyllä";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Haluatko luoda reitin uudelleen?";
 
-"redirect_route_yes" = "Kyllä";
+/* A generic "Yes" button in dialogs */
+"yes" = "Kyllä";
 
-"redirect_route_no" = "Ei";
+/* A generic "No" button in dialogs */
+"no" = "Ei";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Kyllä";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Ei";
 
 "trip_finished" = "Olet saapunut!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Savukeautomaatti";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Juoma-automaatti";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Pysäköintimaksuautomaatti";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Julkisen liikenteen lippuautomaatti";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 

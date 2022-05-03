@@ -44,8 +44,8 @@
 	<string name="close">بستن</string>
 	<string name="unsupported_phone">نیازمند است. متاسفانه دستگاه شما از ان پشتیبانی نمی کندOpenGLبرنامه برای اجرا به</string>
 	<string name="download">دانلود</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">لطفا مقداری از فضای ذخیره سازی را آزاد نمایید</string>
-	<string name="not_enough_memory">حافظه کافی برای اجرای برنامه وجود ندارد</string>
 	<string name="download_resources">قبل از استفاده از اپلیکیشن, اجازه دهید تا ما نقشه جهانی را بر روی موبایل شما دانلود کنیم.\nمقدار %s از حافظه شما اشغال می شود.</string>
 	<string name="download_resources_continue">برو به نقشه</string>
 	<string name="downloading_country_can_proceed">درحال دانلود %s. شما اکنون می توانید\nبه نقشه بروید.</string>
@@ -123,6 +123,8 @@
 	<string name="post">صندوق پست</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">پلیس</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">وای فای</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">بازیافت</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -197,6 +199,8 @@
 	<string name="search_show_on_map">مشاهده بر روی نقشه</string>
 	<!-- Text in menu -->
 	<string name="website">وب سایت</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">ﺭﺎﺒﺧﺍ</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">بازخورد</string>
 	<!-- Text in menu -->
@@ -211,8 +215,6 @@
 	<string name="copyright">حق نشر و کپی رایت</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">گزارش خطا</string>
-	<!-- Search category -->
-	<string name="wifi">وای فای</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">اپدیت همه</string>
 	<!-- Cancel all button text -->
@@ -284,8 +286,6 @@
 	<string name="gray">خاکستری</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">خاکستری کبود</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">بلی</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">زمانی که مسیری را دنبال می کنید لطفا به یاد داشته باشید:</string>
@@ -596,6 +596,14 @@
 	<string name="avoid_toll_roads_placepage">اجتناب از جاده های دارای عوارض</string>
 	<string name="avoid_unpaved_roads_placepage">اجتناب از جاده های آسفالت نشده</string>
 	<string name="avoid_ferry_crossing_placepage">اجتناب از گذرگاه های کشتی</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">بله</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">خیر</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">بلی</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">خیر</string>
 	<string name="ok">موافقت کردن</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">مرتب سازی…</string>

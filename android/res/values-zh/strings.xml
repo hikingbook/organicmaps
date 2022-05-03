@@ -41,9 +41,10 @@
 	<string name="close">关闭</string>
 	<string name="unsupported_phone">硬件加速的 OpenGL 是必需的。遗憾的是您的设备不支持此功能。</string>
 	<string name="download">下载</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">请断开 USB 线或插入存储卡以使用 Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">请在存储卡/ USB 储存设备上释放一些空间以 使用此应用</string>
-	<string name="not_enough_memory">没有足够的内存来启动应用程序</string>
 	<string name="download_resources">在您开始前请让我们下载通用世界地图至您的设备中。\n它需要%s的 数据。</string>
 	<string name="download_resources_continue">前往地图</string>
 	<string name="downloading_country_can_proceed">下载 %s。您现在可\n前往地图。</string>
@@ -123,6 +124,8 @@
 	<string name="post">邮政</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">无线网络</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">回收</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -207,6 +210,8 @@
 	<string name="search_show_on_map">在地图上查看</string>
 	<!-- Text in menu -->
 	<string name="website">网站</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">新闻</string>
 	<!-- Text in menu -->
 	<string name="facebook">脸书</string>
 	<!-- Text in menu -->
@@ -225,8 +230,6 @@
 	<string name="copyright">版权</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">报告漏洞</string>
-	<!-- Search category -->
-	<string name="wifi">无线网络</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">更新全部</string>
 	<!-- Cancel all button text -->
@@ -298,8 +301,6 @@
 	<string name="gray">灰色</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">蓝灰色</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">是</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">按照路线行进时，请谨记：</string>
@@ -604,6 +605,14 @@
 	<string name="avoid_toll_roads_placepage">规避收费公路</string>
 	<string name="avoid_unpaved_roads_placepage">规避土路</string>
 	<string name="avoid_ferry_crossing_placepage">规避渡輪渡口</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">是</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">否</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">是</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">否</string>
 	<string name="ok">好的</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">分类……</string>

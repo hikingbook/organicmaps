@@ -41,9 +41,10 @@
 	<string name="close">閉じる</string>
 	<string name="unsupported_phone">ハードウェアアクセラレーションされたOpenGLが必要です。残念ながらご利用中のデバイスではサポートされていません。</string>
 	<string name="download">ダウンロード</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Organic Mapsを利用するにはUSBケーブルを抜くかメモリーカードを挿入してください</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">アプリを起動するにはSDカード/USBストレージの空き容量を確保する必要があります</string>
-	<string name="not_enough_memory">メモリ不足のためアプリを起動できません</string>
 	<string name="download_resources">利用を開始する前におおまかな世界地図をダウンロードします。これには%sの空き容量が必要です。</string>
 	<string name="download_resources_continue">マップを表示</string>
 	<string name="downloading_country_can_proceed">%sをダウンロードしました\nマップを表示可能です</string>
@@ -123,6 +124,8 @@
 	<string name="post">郵便局</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">無線LAN</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">リサイクル</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -201,6 +204,8 @@
 	<string name="search_show_on_map">地図に表示</string>
 	<!-- Text in menu -->
 	<string name="website">ウェブサイト</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">ニュース</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">フィードバック</string>
 	<!-- Text in menu -->
@@ -215,8 +220,6 @@
 	<string name="copyright">著作権</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">バグを報告</string>
-	<!-- Search category -->
-	<string name="wifi">無線LAN</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">全てをアップデート</string>
 	<!-- Cancel all button text -->
@@ -288,8 +291,6 @@
 	<string name="gray">グレイ</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">ブルーグレイ</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">はい</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">案内ルートに従う際は、以下の点にご留意ください：</string>
@@ -592,6 +593,14 @@
 	<string name="avoid_toll_roads_placepage">有料道路を回避</string>
 	<string name="avoid_unpaved_roads_placepage">未舗装道路を回避</string>
 	<string name="avoid_ferry_crossing_placepage">フェリー航路を回避</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">はい</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">いいえ</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">はい</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">いいえ</string>
 	<string name="ok">OK</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">並び替え中…</string>

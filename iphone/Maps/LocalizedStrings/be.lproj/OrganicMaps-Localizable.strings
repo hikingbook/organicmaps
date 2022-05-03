@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Паліцыя";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Перапрацоўка";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Вэб-сайт";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Навіны";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Каліброўка компаса";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Абнавіць усё";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Блакітна-шэры";
-
-/* Wi-Fi available */
-"WiFi_available" = "Так";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Хочаце перапракласці маршрут?";
 
-"redirect_route_yes" = "Так";
+/* A generic "Yes" button in dialogs */
+"yes" = "Так";
 
-"redirect_route_no" = "Не";
+/* A generic "No" button in dialogs */
+"no" = "Не";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Ёсць";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Няма";
 
 "trip_finished" = "Вы прыбылі!";
 
@@ -1435,7 +1443,7 @@
 
 "type.amenity.toilets" = "Toilet";
 
-"type.amenity.townhall" = "Town Hall";
+"type.amenity.townhall" = "Адміністрацыя";
 
 "type.amenity.university" = "University";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Аўтамат з цыгарэтамі";
 
+"type.amenity.vending_machine.coffee" = "Кававы аўтамат";
+
+"type.amenity.vending_machine.condoms" = "Аўтамат з прэзерватывамі";
+
 "type.amenity.vending_machine.drinks" = "Аўтамат з напоямі";
+
+"type.amenity.vending_machine.food" = "Аўтамат з ежай";
+
+"type.amenity.vending_machine.newspapers" = "Газетны аўтамат";
 
 "type.amenity.vending_machine.parking_tickets" = "Паркамат";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Аўтамат па продажы білетаў";
+
+"type.amenity.vending_machine.sweets" = "Аўтамат з прысмакамі";
 
 "type.amenity.vending_machine.excrement_bags" = "Мяшкі дзеля экскрыментаў";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Адукацыйныя ўстановы";
 
 "type.landuse.farm" = "Farm";
 

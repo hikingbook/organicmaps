@@ -41,9 +41,10 @@
 	<string name="close">Bezár</string>
 	<string name="unsupported_phone">Hardware-s gyorsítású OpenGL szükséges. Sajnos az Ön eszköze nem támogatott.</string>
 	<string name="download">Letöltés</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Kérjük bontsa az USB kapcsolatot vagy helyezzen be memóriakártyát a Organic Maps használatához</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Kérjük szabadítson fel helyet az SD kártyán / USB tárolón az alkalmazás használatához!</string>
-	<string name="not_enough_memory">Nincs elegendő memória az alkalmazás futtatásához</string>
 	<string name="download_resources">Első használat előtt letöltjük a világtérképet.\n%s tárolóhely szükséges.</string>
 	<string name="download_resources_continue">Térképhez ugrás</string>
 	<string name="downloading_country_can_proceed">%s letöltése. Mos továbbléphet\na térképhez.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Posta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Rendőrség</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Újrahasznosítás</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -203,6 +206,8 @@
 	<string name="search_show_on_map">Megtekintés a térképen</string>
 	<!-- Text in menu -->
 	<string name="website">Honlap</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Hírek</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Visszajelzés</string>
 	<!-- Text in menu -->
@@ -217,8 +222,6 @@
 	<string name="copyright">Szerzői jog</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Hibabejelentés</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Mindegyik frissítése</string>
 	<!-- Cancel all button text -->
@@ -290,8 +293,6 @@
 	<string name="gray">Szürke</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Kékes Szürke</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Igen</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Az útvonal követése során, kérjük, vegye figyelembe az alábbiakat:</string>
@@ -595,6 +596,14 @@
 	<string name="avoid_toll_roads_placepage">Fizetős utak elkerülése</string>
 	<string name="avoid_unpaved_roads_placepage">Kövezetlen utak elkerülése</string>
 	<string name="avoid_ferry_crossing_placepage">Kompátkelők elkerülése</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Igen</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nem</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Igen</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nem</string>
 	<string name="ok">Oké</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Rendezd…</string>

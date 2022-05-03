@@ -41,9 +41,10 @@
 	<string name="close">Zavrieť</string>
 	<string name="unsupported_phone">Je vyžadovaná hardwarová akcelerácia OpenGL. Bohužial, vaše zariadenie nie je podporované.</string>
 	<string name="download">Stiahnuť</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Prosím, odpojte USB kábel alebo vložte pamäťovú kartu pre použitie s Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Prosím, uvoľnite najprv miesto na SD karte/USB úložisku</string>
-	<string name="not_enough_memory">Nedostatok pamäti k spusteniu aplikácie</string>
 	<string name="download_resources">Skôr ako začnete, bude treba stiahnuť základnú mapu sveta.\nZaberie to %s.</string>
 	<string name="download_resources_continue">Prejsť na mapu</string>
 	<string name="downloading_country_can_proceed">Sťahovanie %s. Teraz môžete\nprejsť na mapu.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Pošta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Polícia</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Recyklácia</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -203,6 +206,8 @@
 	<string name="search_show_on_map">Zobraziť na mape</string>
 	<!-- Text in menu -->
 	<string name="website">Webové stránky</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Správy</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Spätná väzba</string>
 	<!-- Text in menu -->
@@ -217,8 +222,6 @@
 	<string name="copyright">Autorské práva</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Nahlásiť chybu</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Aktualizovať všetko</string>
 	<!-- Cancel all button text -->
@@ -288,8 +291,6 @@
 	<string name="gray">Sivá</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Modro sivá</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Áno</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Pri sledovaní trasy majte na pamäti nasledujúce:</string>
@@ -594,6 +595,14 @@
 	<string name="avoid_toll_roads_placepage">Vyhnúť sa spoplatneným cestám</string>
 	<string name="avoid_unpaved_roads_placepage">Vyhnúť sa nespevneným cestám</string>
 	<string name="avoid_ferry_crossing_placepage">Vyhnúť sa prechodom na trajekte</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Áno</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nie</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Áno</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nie</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Zoradiť…</string>

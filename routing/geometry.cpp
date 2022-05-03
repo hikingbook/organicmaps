@@ -21,7 +21,7 @@ namespace routing
 {
 using namespace std;
 
-double CalcFerryDurationHours(string const & durationHours, double roadLenKm)
+double CalcFerryDurationHours(string_view durationHours, double roadLenKm)
 {
   // Look for more info: https://confluence.mail.ru/display/MAPSME/Ferries
   // Shortly: the coefs were received from statistic about ferries with durations in OSM.
@@ -32,11 +32,10 @@ double CalcFerryDurationHours(string const & durationHours, double roadLenKm)
     return kIntercept + kSlope * roadLenKm;
 
   double durationH = 0.0;
-  CHECK(strings::to_double(durationHours.c_str(), durationH), (durationHours));
+  CHECK(strings::to_double(durationHours, durationH), (durationHours));
 
   // See: https://confluence.mail.ru/download/attachments/249123157/image2019-8-22_16-15-53.png
-  // Shortly: we drop some points: (x: lengthKm, y: durationH), that are upper or lower these two
-  // lines.
+  // Shortly: we drop some points: (x: lengthKm, y: durationH), that are upper or lower these two lines.
   double constexpr kUpperBoundIntercept = 4.0;
   double constexpr kUpperBoundSlope = 0.037;
   if (kUpperBoundIntercept + kUpperBoundSlope * roadLenKm - durationH < 0)
@@ -90,7 +89,7 @@ private:
   RoadAttrsGetter m_attrsGetter;
   FeaturesLoaderGuard m_guard;
   string const m_country;
-  feature::AltitudeLoader m_altitudeLoader;
+  feature::AltitudeLoaderBase m_altitudeLoader;
   bool const m_loadAltitudes;
 };
 
@@ -119,15 +118,11 @@ void GeometryLoaderImpl::Load(uint32_t featureId, RoadGeometry & road)
 
   feature->ParseGeometry(FeatureType::BEST_GEOMETRY);
 
-  geometry::Altitudes const * altitudes = nullptr;
+  geometry::Altitudes altitudes;
   if (m_loadAltitudes)
-    altitudes = &(m_altitudeLoader.GetAltitudes(featureId, feature->GetPointsCount()));
+    altitudes = m_altitudeLoader.GetAltitudes(featureId, feature->GetPointsCount());
 
-  road.Load(*m_vehicleModel, *feature, altitudes, m_attrsGetter);
-
-  /// @todo Hm, if RoadGeometry will be cached in a caller, need to reconsider this logic,
-  /// because it's strange to clear cache after each Load call :)
-  m_altitudeLoader.ClearCache();
+  road.Load(*m_vehicleModel, *feature, altitudes.empty() ? nullptr : &altitudes, m_attrsGetter);
 }
 
 // FileGeometryLoader ------------------------------------------------------------------------------
@@ -167,10 +162,8 @@ void FileGeometryLoader::Load(uint32_t featureId, RoadGeometry & road)
 // RoadGeometry ------------------------------------------------------------------------------------
 RoadGeometry::RoadGeometry(bool oneWay, double weightSpeedKMpH, double etaSpeedKMpH,
                            Points const & points)
-  : m_forwardSpeed{weightSpeedKMpH, etaSpeedKMpH}
-  , m_backwardSpeed(m_forwardSpeed)
-  , m_isOneWay(oneWay)
-  , m_valid(true)
+  : m_forwardSpeed{weightSpeedKMpH, etaSpeedKMpH}, m_backwardSpeed(m_forwardSpeed)
+  , m_isOneWay(oneWay), m_valid(true), m_isPassThroughAllowed(false), m_inCity(false)
 {
   ASSERT_GREATER(weightSpeedKMpH, 0.0, ());
   ASSERT_GREATER(etaSpeedKMpH, 0.0, ());
@@ -185,16 +178,22 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
 {
   CHECK(altitudes == nullptr || altitudes->size() == feature.GetPointsCount(), ());
 
+  m_highwayType = vehicleModel.GetHighwayType(feature);
+
   m_valid = vehicleModel.IsRoad(feature);
   m_isOneWay = vehicleModel.IsOneWay(feature);
-  m_highwayType = vehicleModel.GetHighwayType(feature);
   m_isPassThroughAllowed = vehicleModel.IsPassThroughAllowed(feature);
 
   uint32_t const fID = feature.GetID().m_index;
-  bool const inCity = attrs.m_cityRoads.IsCityRoad(fID);
-  Maxspeed const maxSpeed = attrs.m_maxSpeeds.GetMaxspeed(fID);
-  m_forwardSpeed = vehicleModel.GetSpeed(feature, {true /* forward */, inCity, maxSpeed});
-  m_backwardSpeed = vehicleModel.GetSpeed(feature, {false /* forward */, inCity, maxSpeed});
+  m_inCity = attrs.m_cityRoads.IsCityRoad(fID);
+
+  SpeedParams params(attrs.m_maxSpeeds.GetMaxspeed(fID),
+                     m_highwayType ? attrs.m_maxSpeeds.GetDefaultSpeed(m_inCity, *m_highwayType) : kInvalidSpeed,
+                     m_inCity);
+  params.m_forward = true;
+  m_forwardSpeed = vehicleModel.GetSpeed(feature, params);
+  params.m_forward = false;
+  m_backwardSpeed = vehicleModel.GetSpeed(feature, params);
 
   feature::TypesHolder types(feature);
   auto const & optionsClassfier = RoutingOptionsClassifier::Instance();
@@ -214,10 +213,8 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
 
   if (m_routingOptions.Has(RoutingOptions::Road::Ferry))
   {
-    auto const durationHours = feature.GetMetadata(feature::Metadata::FMD_DURATION);
     auto const roadLenKm = GetRoadLengthM() / 1000.0;
-    double const durationH = CalcFerryDurationHours(durationHours, roadLenKm);
-
+    double const durationH = CalcFerryDurationHours(feature.GetMetadata(feature::Metadata::FMD_DURATION), roadLenKm);
     CHECK(!base::AlmostEqualAbs(durationH, 0.0, 1e-5), (durationH));
 
     if (roadLenKm != 0.0)

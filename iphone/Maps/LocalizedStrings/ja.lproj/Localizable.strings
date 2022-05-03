@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "警察";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "無線LAN";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "リサイクル";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "ウェブサイト";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "ニュース";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "コンパスの調整";
-
-/* Search category */
-"wifi" = "無線LAN";
 
 /* Update all button text */
 "downloader_update_all_button" = "全てをアップデート";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "ブルーグレイ";
-
-/* Wi-Fi available */
-"WiFi_available" = "はい";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "ルートを再構築しますか?";
 
-"redirect_route_yes" = "はい";
+/* A generic "Yes" button in dialogs */
+"yes" = "はい";
 
-"redirect_route_no" = "いいえ";
+/* A generic "No" button in dialogs */
+"no" = "いいえ";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "はい";
+
+/* E.g. "WiFi:No" */
+"no_available" = "いいえ";
 
 "trip_finished" = "到着しました!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "たばこ自動販売機";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "飲料自動販売機";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "駐車券支払機";
 
 "type.amenity.vending_machine.public_transport_tickets" = "公共交通機関の券売機";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "商業用地";
 
 "type.landuse.construction" = "建設工事中";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "農地";
 

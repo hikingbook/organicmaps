@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Polícia";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Reciclagem";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Site";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Notícias";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -295,7 +301,7 @@
 "faq" = "Perguntas e respostas";
 
 /* Button in the main Help dialog */
-"how_to_support_us" = "How to support us?";
+"how_to_support_us" = "Como nos apoiar?";
 
 /* Button in the main Help dialog */
 "copyright" = "Direitos autorais";
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Calibração da bússola";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Atualizar tudo";
@@ -419,9 +422,6 @@
 /* blue gray color */
 "blue_gray" = "Azul escuro";
 
-/* Wi-Fi available */
-"WiFi_available" = "Sim";
-
 
 /********** Routing dialogs strings **********/
 
@@ -467,7 +467,7 @@
 
 "dialog_routing_select_closer_end" = "Selecione um ponto de chegada mais perto de uma estrada.";
 
-"dialog_routing_change_intermediate" = "Unable to locate the intermediate point.";
+"dialog_routing_change_intermediate" = "Não foi possível localizar o ponto intermédio.";
 
 "dialog_routing_intermediate_not_determined" = "Ajuste seu ponto intermédio.";
 
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Você deseja retraçar a rota?";
 
-"redirect_route_yes" = "Sim";
+/* A generic "Yes" button in dialogs */
+"yes" = "Sim";
 
-"redirect_route_no" = "Não";
+/* A generic "No" button in dialogs */
+"no" = "Não";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Sim";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Não";
 
 "trip_finished" = "Você chegou!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Máquina de venda de cigarros";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Máquina de venda de bebidas";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Máquina venda de tíquetes de estacionamento";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Máquinas automáticas de venda de passagens de transporte público";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2157,6 +2175,8 @@
 
 "type.landuse.construction" = "Construção";
 
+"type.landuse.education" = "Educational Facilities";
+
 "type.landuse.farm" = "Fazenda";
 
 "type.landuse.farmland" = "Campo agrícola";
@@ -2361,7 +2381,7 @@
 
 "type.natural.water.pond" = "Lagoa";
 
-"type.natural.water.reservoir" = "Reservoir";
+"type.natural.water.reservoir" = "Reservatório";
 
 "type.natural.water.basin" = "Reservatório";
 

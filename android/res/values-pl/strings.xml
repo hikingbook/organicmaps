@@ -41,9 +41,10 @@
 	<string name="close">Zamknij</string>
 	<string name="unsupported_phone">Wymagana jest sprzętowa akceleracja OpenGL. Aktualne urządzenie nie jest obsługiwane.</string>
 	<string name="download">Pobierz</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Proszę odłączyć kabel USB albo włożyć kartę pamięci, aby korzystać z Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Proszę zwolnić trochę pamięci na karcie SD/pamięci USB, aby korzystać z aplikacji</string>
-	<string name="not_enough_memory">Za mało pamięci, aby uruchomić aplikację</string>
 	<string name="download_resources">Przed rozpoczęciem prosimy o pobranie ogólnej mapy świata na urządzenie.\nWymaga to %s danych.</string>
 	<string name="download_resources_continue">Przejdź do mapy</string>
 	<string name="downloading_country_can_proceed">Pobieranie %s. Można teraz\nprzejść do mapy.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Poczta</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Policja</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Recykling</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -208,6 +211,8 @@
 	<string name="search_show_on_map">Wyświetl na mapie</string>
 	<!-- Text in menu -->
 	<string name="website">Strona internetowa</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Wiadomości</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Opinia</string>
 	<!-- Text in menu -->
@@ -222,8 +227,6 @@
 	<string name="copyright">Prawa autorskie</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Zgłoś błąd</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Aktualizuj wszystkie</string>
 	<!-- Cancel all button text -->
@@ -295,8 +298,6 @@
 	<string name="gray">Szary</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Szaroniebieski</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Tak</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Jadąc wyznaczoną trasą, pamiętaj, że:</string>
@@ -608,6 +609,14 @@
 	<string name="avoid_toll_roads_placepage">Unikać dróg płatnych</string>
 	<string name="avoid_unpaved_roads_placepage">Unikać dróg gruntowych</string>
 	<string name="avoid_ferry_crossing_placepage">Unikać przepraw promowych</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Tak</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nie</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Tak</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nie</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sortuj…</string>
@@ -661,7 +670,9 @@
 	<string name="elevation_profile_time">Trasa:</string>
 	<string name="isolines_toast_zooms_1_10">Powiększ mapę, aby zobaczyć izolinie</string>
 	<string name="download_map_title">Pobierz mapę świata</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Błąd połączenia</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Odłącz kabel USB</string>
 	<string name="enable_screen_sleep">Pozwól ekranowi spać</string>
 	<!-- Description in preferences -->
@@ -1415,7 +1426,7 @@
 	<string name="type.tourism.artwork.statue">Rzeźba</string>
 	<string name="type.tourism.attraction">Atrakcja turystyczna</string>
 	<string name="type.tourism.attraction.animal">Atrakcje zwierzęce</string>
-	<string name="type.tourism.attraction.specified">Atrakcje</string>
+	<string name="type.tourism.attraction.specified">Atrakcja turystyczna</string>
 	<string name="type.tourism.camp_site">Kamping</string>
 	<string name="type.tourism.caravan_site">Pole namiotowe</string>
 	<string name="type.tourism.chalet">Domek letniskowy</string>

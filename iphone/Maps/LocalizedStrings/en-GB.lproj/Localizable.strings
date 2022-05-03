@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Police";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Recycling";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Website";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "News";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Compass calibration";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Update All";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Blue Gray";
-
-/* Wi-Fi available */
-"WiFi_available" = "Yes";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Do you want to rebuild the route?";
 
-"redirect_route_yes" = "Yes";
+/* A generic "Yes" button in dialogs */
+"yes" = "Yes";
 
-"redirect_route_no" = "No";
+/* A generic "No" button in dialogs */
+"no" = "No";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Yes";
+
+/* E.g. "WiFi:No" */
+"no_available" = "No";
 
 "trip_finished" = "You have arrived!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Cigarette Dispenser";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Drinks Dispenser";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parking Tickets";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Ticket Machine";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 

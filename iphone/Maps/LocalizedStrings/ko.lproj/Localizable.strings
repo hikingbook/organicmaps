@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "치안대";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi 인터넷";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "재활용";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "웹사이트";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "소식";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "나침반 보정";
-
-/* Search category */
-"wifi" = "WiFi 인터넷";
 
 /* Update all button text */
 "downloader_update_all_button" = "모두 업데이트";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "청회색";
-
-/* Wi-Fi available */
-"WiFi_available" = "네";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "루트를 재구축하길 원하시나요?";
 
-"redirect_route_yes" = "네";
+/* A generic "Yes" button in dialogs */
+"yes" = "네";
 
-"redirect_route_no" = "아니오";
+/* A generic "No" button in dialogs */
+"no" = "아니오";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "네";
+
+/* E.g. "WiFi:No" */
+"no_available" = "아니오";
 
 "trip_finished" = "도착했습니다!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "담배자판기";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "음료자동판매기";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "주차티켓판매기";
 
 "type.amenity.vending_machine.public_transport_tickets" = "대중교통표 자동판매기";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 

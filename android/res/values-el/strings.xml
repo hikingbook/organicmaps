@@ -42,9 +42,10 @@
 	<string name="close">Κλείσιμο</string>
 	<string name="unsupported_phone">Η εφαρμογή απαιτεί OpenGL με επιτάχυνση υλικού. Δυστυχώς, η συσκευή σας δεν το υποστηρίζει.</string>
 	<string name="download">Λήψη</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Αποσυνδέστε το καλώδιο USB ή τοποθετήστε την κάρτα μνήμης για να χρησιμοποιήσετε το Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Ελευθερώσετε  χώρο αποθήκευσης στην SD κάρτα/USB πρώτα προκειμένου να χρησιμοποιήσετε την εφαρμογή</string>
-	<string name="not_enough_memory">Δεν υπάρχει αρκετή μνήμη για την έναρξη εφαρμογής</string>
 	<string name="download_resources">Πριν ξεκινήσετε τη χρήση της εφαρμογής, επιτρέψτε μας να κατεβάσουμε το γενικό παγκόσμιο χάρτη στη συσκευή σας. \nIt θα χρησιμοποιήσει %s αποθηκευτικού χώρου.</string>
 	<string name="download_resources_continue">Μετάβαση στο χάρτη</string>
 	<string name="downloading_country_can_proceed">Λήψη %s. Μπορείτε τώρα να\nμεταβείτε στο χάρτη.</string>
@@ -124,6 +125,8 @@
 	<string name="post">Ταχυδρομείο</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Αστυνομία</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Ανακύκλωση</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -204,6 +207,8 @@
 	<string name="search_show_on_map">Προβολή στο χάρτη</string>
 	<!-- Text in menu -->
 	<string name="website">Ιστότοπος</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Νέα</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Σχόλια</string>
 	<!-- Text in menu -->
@@ -218,8 +223,6 @@
 	<string name="copyright">Πνευματικά δικαιώματα</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Αναφορά σφάλματος</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Ενημέρωση όλων</string>
 	<!-- Cancel all button text -->
@@ -291,8 +294,6 @@
 	<string name="gray">Γκρι</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Γκρίζο μπλε</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Ναι</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Όταν ακολουθείτε την διαδρομή, να θυμάστε:</string>
@@ -589,6 +590,14 @@
 	<string name="avoid_toll_roads_placepage">Αποφυγή των δρόμων με διόδια</string>
 	<string name="avoid_unpaved_roads_placepage">Αποφυγή των χωματόδρομων</string>
 	<string name="avoid_ferry_crossing_placepage">Αποφυγή των πορθμείων</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Ναι</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Όχι</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Ναι</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Όχι</string>
 	<string name="ok">Καλώς</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Ταξινόμηση</string>

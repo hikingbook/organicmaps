@@ -44,9 +44,10 @@
 	<string name="close">Закрыть</string>
 	<string name="unsupported_phone">Для работы приложения необходим аппаратно ускоренный OpenGL. К сожалению, ваше устройство не поддерживается.</string>
 	<string name="download">Загрузить</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Отключите USB кабель или вставьте SD-карту</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Недостаточно свободного места на SD карте/в памяти устройства для использования программы</string>
-	<string name="not_enough_memory">Недостаточно памяти для запуска программы</string>
 	<string name="download_resources">Перед началом работы разрешите нам загрузить общую карту мира на ваше устройство.\nЭто потребует %s данных.</string>
 	<string name="download_resources_continue">Перейти на карту</string>
 	<string name="downloading_country_can_proceed">Пока загружается %s,\nвы можете пользоваться картой.</string>
@@ -105,7 +106,7 @@
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Гостиница</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Достопримечательность</string>
+	<string name="tourism">Достопримечательности</string>
 	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
 	<string name="entertainment">Развлечения</string>
 	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
@@ -126,6 +127,8 @@
 	<string name="post">Почта</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Полиция</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Переработка</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -213,6 +216,8 @@
 	<string name="search_show_on_map">Посмотреть на карте</string>
 	<!-- Text in menu -->
 	<string name="website">Вебсайт</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Новости</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Связаться с нами</string>
 	<!-- Text in menu -->
@@ -227,8 +232,6 @@
 	<string name="copyright">Копирайт</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Сообщить о проблеме</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Обновить все</string>
 	<!-- Cancel all button text -->
@@ -300,8 +303,6 @@
 	<string name="gray">Серый</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Серо-голубой</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Есть</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">При движении по маршруту помните:</string>
@@ -626,6 +627,14 @@
 	<string name="avoid_toll_roads_placepage">Избегать платных дорог</string>
 	<string name="avoid_unpaved_roads_placepage">Избегать грунтовых дорог</string>
 	<string name="avoid_ferry_crossing_placepage">Избегать паромных переправ</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Да</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Нет</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Есть</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Нет</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сортировать…</string>
@@ -679,7 +688,13 @@
 	<string name="elevation_profile_time">В пути:</string>
 	<string name="isolines_toast_zooms_1_10">Увеличьте карту, чтобы увидеть изолинии</string>
 	<string name="download_map_title">Скачать карту мира</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="disk_error">Не могу создать папку и переместить файлы на устройстве</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="disk_error_title">Ошибка диска</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Ошибка подключения</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Отсоедините USB кабель</string>
 	<string name="enable_screen_sleep">Разрешить экрану спать</string>
 	<!-- Description in preferences -->
@@ -811,13 +826,18 @@
 	<string name="type.amenity.telephone">Телефон</string>
 	<string name="type.amenity.theatre">Театр</string>
 	<string name="type.amenity.toilets">Туалет</string>
-	<string name="type.amenity.townhall">Ратуша</string>
+	<string name="type.amenity.townhall">Администрация</string>
 	<string name="type.amenity.university">Университет</string>
 	<string name="type.amenity.vending_machine">Торговый автомат</string>
 	<string name="type.amenity.vending_machine.cigarettes">Автомат с сигаретами</string>
+	<string name="type.amenity.vending_machine.coffee">Кофейный автомат</string>
+	<string name="type.amenity.vending_machine.condoms">Автомат с презервативами</string>
 	<string name="type.amenity.vending_machine.drinks">Автомат с напитками</string>
+	<string name="type.amenity.vending_machine.food">Автомат с едой</string>
+	<string name="type.amenity.vending_machine.newspapers">Газетный автомат</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Паркомат</string>
 	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат по продаже билетов</string>
+	<string name="type.amenity.vending_machine.sweets">Автомат со сладостями</string>
 	<string name="type.amenity.vending_machine.excrement_bags">Пакеты для экскрементов</string>
 	<string name="type.amenity.parcel_locker">Почтомат</string>
 	<string name="type.amenity.vending_machine.fuel">Топливная колонка</string>
@@ -1181,6 +1201,7 @@
 	<string name="type.landuse.churchyard">Церковный двор</string>
 	<string name="type.landuse.commercial">Коммерческая застройка</string>
 	<string name="type.landuse.construction">Стройка</string>
+	<string name="type.landuse.education">Образовательные учреждения</string>
 	<string name="type.landuse.farm">Ферма</string>
 	<string name="type.landuse.farmland">Сельскохозяйственная земля</string>
 	<string name="type.landuse.farmyard">Сельскохозяйственная земля</string>

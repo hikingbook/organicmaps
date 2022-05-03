@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Поліція";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Переробка відходів";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Вебсайт";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Новини";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Калібрування компаса";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Оновити всі";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Сіро-блакитний";
-
-/* Wi-Fi available */
-"WiFi_available" = "Так";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Бажаєте перебудувати маршрут?";
 
-"redirect_route_yes" = "Так";
+/* A generic "Yes" button in dialogs */
+"yes" = "Так";
 
-"redirect_route_no" = "Ні";
+/* A generic "No" button in dialogs */
+"no" = "Ні";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Так";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Ні";
 
 "trip_finished" = "Ви прибули!";
 
@@ -1435,7 +1443,7 @@
 
 "type.amenity.toilets" = "Туалет";
 
-"type.amenity.townhall" = "Ратуша";
+"type.amenity.townhall" = "Адміністрація";
 
 "type.amenity.university" = "Університет";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Автомат з цигарками";
 
+"type.amenity.vending_machine.coffee" = "Кавовий автомат";
+
+"type.amenity.vending_machine.condoms" = "Автомат з презервативами";
+
 "type.amenity.vending_machine.drinks" = "Автомат з напоями";
+
+"type.amenity.vending_machine.food" = "Автомат з їжею";
+
+"type.amenity.vending_machine.newspapers" = "Газетний автомат";
 
 "type.amenity.vending_machine.parking_tickets" = "Паркомат";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Автомат з продажу квитків";
+
+"type.amenity.vending_machine.sweets" = "Автомат із солодощами";
 
 "type.amenity.vending_machine.excrement_bags" = "Мішки для екскрементів";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Комерційні ділянки";
 
 "type.landuse.construction" = "Будівництво";
+
+"type.landuse.education" = "Освітній заклади";
 
 "type.landuse.farm" = "Ферма";
 
@@ -2867,11 +2887,11 @@
 
 "type.tourism.artwork.statue" = "Витвір мистецтва";
 
-"type.tourism.attraction" = "Пам’ятка";
+"type.tourism.attraction" = "Пам’ятне місце";
 
-"type.tourism.attraction.animal" = "Пам’ятка";
+"type.tourism.attraction.animal" = "Пам’ятне місце";
 
-"type.tourism.attraction.specified" = "Пам’ятка";
+"type.tourism.attraction.specified" = "Пам’ятне місце";
 
 "type.tourism.camp_site" = "Кемпінг";
 

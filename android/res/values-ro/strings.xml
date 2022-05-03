@@ -41,9 +41,10 @@
 	<string name="close">Închide</string>
 	<string name="unsupported_phone">Această aplicație necesită accelerarea hardware OpenGL. Din păcate, dispozitivul tău nu este compatibil.</string>
 	<string name="download">Descarcă</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Deconectează cablul USB sau introdu un card de memorie pentru a utiliza Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Spațiul de stocare de pe cardul SD/memoria USB este insuficient pentru a putea utiliza aplicația</string>
-	<string name="not_enough_memory">Memorie insuficientă pentru a porni aplicația</string>
 	<string name="download_resources">Înainte de a începe, trebuie descărcată harta generală a lumii în dispozitivul tău.\nSe vor descărca %s.</string>
 	<string name="download_resources_continue">Mergi la hartă</string>
 	<string name="downloading_country_can_proceed">Se descarcă %s. Acum poți\ntrece la hartă.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Poştă</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Poliția</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">Wi-Fi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Reciclare</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -210,6 +213,8 @@
 	<string name="search_show_on_map">Vezi pe hartă</string>
 	<!-- Text in menu -->
 	<string name="website">Site web</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Știri</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Părere</string>
 	<!-- Text in menu -->
@@ -224,8 +229,6 @@
 	<string name="copyright">Drepturi de autor</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Raportează o eroare</string>
-	<!-- Search category -->
-	<string name="wifi">Wi-Fi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualizează tot</string>
 	<!-- Cancel all button text -->
@@ -297,8 +300,6 @@
 	<string name="gray">Gri</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Gri albăstriu</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Da</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Când parcurgi traseul, ai în vedere următoarele:</string>
@@ -616,6 +617,14 @@
 	<string name="avoid_toll_roads_placepage">Evită drumurile cu plată</string>
 	<string name="avoid_unpaved_roads_placepage">Evită drumurile neasfaltate</string>
 	<string name="avoid_ferry_crossing_placepage">Evită trecerile cu bac</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Da</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nu</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Da</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nu</string>
 	<string name="ok">Bine</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sortare…</string>
@@ -669,7 +678,9 @@
 	<string name="elevation_profile_time">Timp:</string>
 	<string name="isolines_toast_zooms_1_10">Mărește harta pentru a vedea izoliniile</string>
 	<string name="download_map_title">Descarcă harta lumii</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Eroare de conectare</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Deconectează cablul USB</string>
 	<string name="enable_screen_sleep">Permite ecranului să se stingă</string>
 	<!-- Description in preferences -->

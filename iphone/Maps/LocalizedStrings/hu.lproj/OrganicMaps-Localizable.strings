@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Rendőrség";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Újrahasznosítás";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Honlap";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Hírek";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Iránytű kalibrálás";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Mindegyik frissítése";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Kékes Szürke";
-
-/* Wi-Fi available */
-"WiFi_available" = "Igen";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Szeretnél újratervezni egy útvonalat?";
 
-"redirect_route_yes" = "Igen";
+/* A generic "Yes" button in dialogs */
+"yes" = "Igen";
 
-"redirect_route_no" = "Nem";
+/* A generic "No" button in dialogs */
+"no" = "Nem";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Igen";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Nem";
 
 "trip_finished" = "Megérkeztél!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Cigarettaautomata";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Italautomata";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parkolóautomata";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Automata jegykiadó tömegközlekedési eszközökhöz";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 
