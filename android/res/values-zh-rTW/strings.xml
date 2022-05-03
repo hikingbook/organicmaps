@@ -41,9 +41,10 @@
 	<string name="close">關閉</string>
 	<string name="unsupported_phone">需要 OpenGL 硬體加速功能的支援。但很不幸的，您的裝置並不支援此功能！</string>
 	<string name="download">下載</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">請拔除 USB 線或插入 SD 卡以使用 Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">如要繼續使用，請先釋放一些 SD 卡/ USB 儲存空間</string>
-	<string name="not_enough_memory">沒有足夠的記憶體以啟動應用程式</string>
 	<string name="download_resources">在您開始之前，先讓我們下載世界地圖到您的裝置中以便瀏覽。\n這需要資料的 %s。</string>
 	<string name="download_resources_continue">跳到地圖</string>
 	<string name="downloading_country_can_proceed">正在下載 %s。您現在 可以繼續使用地圖了</string>
@@ -123,6 +124,8 @@
 	<string name="post">郵局</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">警察局</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">無線網路</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">回收</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -208,6 +211,8 @@
 	<string name="search_show_on_map">在地圖上查看</string>
 	<!-- Text in menu -->
 	<string name="website">網站</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">消息</string>
 	<!-- Text in menu -->
 	<string name="facebook">臉書</string>
 	<!-- Text in menu -->
@@ -228,8 +233,6 @@
 	<string name="copyright">版權</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">報告錯誤</string>
-	<!-- Search category -->
-	<string name="wifi">無線網路</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">更新全部</string>
 	<!-- Cancel all button text -->
@@ -301,8 +304,6 @@
 	<string name="gray">灰色</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">藍灰色</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">是</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">依照路線行進時，請牢記：</string>
@@ -614,6 +615,14 @@
 	<string name="avoid_toll_roads_placepage">規避收費公路</string>
 	<string name="avoid_unpaved_roads_placepage">規避土路</string>
 	<string name="avoid_ferry_crossing_placepage">規避渡輪渡口</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">是</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">否</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">是</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">否</string>
 	<string name="ok">好</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">分類……</string>
@@ -666,6 +675,7 @@
 	<string name="elevation_profile_distance">距離：</string>
 	<string name="elevation_profile_time">時間：</string>
 	<string name="isolines_toast_zooms_1_10">放大地圖以查看等高線</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">拔除 USB 線</string>
 	<string name="enable_screen_sleep">允许螢幕進入休眠狀態</string>
 	<!-- Description in preferences -->

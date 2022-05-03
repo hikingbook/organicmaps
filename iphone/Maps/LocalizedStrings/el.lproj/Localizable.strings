@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Αστυνομία";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Ανακύκλωση";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Ιστότοπος";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Νέα";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Βαθμονόμηση πυξίδας";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Ενημέρωση όλων";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Γκρίζο μπλε";
-
-/* Wi-Fi available */
-"WiFi_available" = "Ναι";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Θα θέλατε να τροποποιήσετε τη διαδρομή;";
 
-"redirect_route_yes" = "Ναι";
+/* A generic "Yes" button in dialogs */
+"yes" = "Ναι";
 
-"redirect_route_no" = "Όχι";
+/* A generic "No" button in dialogs */
+"no" = "Όχι";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Ναι";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Όχι";
 
 "trip_finished" = "Έχετε φτάσει!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Αυτόματος πωλητής τσιγάρων";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Αυτόματος πωλητής ποτών";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Εισιτήρια στάθμευσης";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Μηχάνημα αυτόματης πώλησης εισιτηρίων για τα μέσα μαζικής μεταφοράς";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 

@@ -41,9 +41,10 @@
 	<string name="close">Luk</string>
 	<string name="unsupported_phone">En hardware accelereret OpenGL er påkrævet. Din enhed er desværre ikke understøttet.</string>
 	<string name="download">Download</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Frakobl venligst USB-kabel eller indsæt et memory kort for at bruge Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Frigør venligst plads på dit SD-kort/USB lager først for at bruge denne app</string>
-	<string name="not_enough_memory">Ikke nok hukommelse til at åbne app</string>
 	<string name="download_resources">Før du starter, så lad os downloade det generelle verdenskort til din enhed.\nIt behøver %s af data.</string>
 	<string name="download_resources_continue">Gå til kort</string>
 	<string name="downloading_country_can_proceed">Downloader %s. Du kan nu\nfortsætte til kortet.</string>
@@ -123,6 +124,8 @@
 	<string name="post">Post</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Politi</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Genbrug</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -203,6 +206,8 @@
 	<string name="search_show_on_map">Vis på kortet</string>
 	<!-- Text in menu -->
 	<string name="website">Hjemmeside</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Nyheder</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Feedback</string>
 	<!-- Text in menu -->
@@ -217,8 +222,6 @@
 	<string name="copyright">Copyright</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Rapportér fejl</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Opdatér alle</string>
 	<!-- Cancel all button text -->
@@ -290,8 +293,6 @@
 	<string name="gray">Grå</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Blågrå</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Ja</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Når du følger en rute, skal du være opmærksom på følgende:</string>
@@ -597,6 +598,14 @@
 	<string name="avoid_toll_roads_placepage">Undgå betalingsveje</string>
 	<string name="avoid_unpaved_roads_placepage">Undgå grusveje</string>
 	<string name="avoid_ferry_crossing_placepage">Undgå færgeoverfarter</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Ja</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Nej</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Ja</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Nej</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sort…</string>

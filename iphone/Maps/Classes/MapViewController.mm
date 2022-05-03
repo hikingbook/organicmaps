@@ -339,23 +339,24 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
         MWMMyPositionModeNotFollowNoPosition : MWMMyPositionModePendingPosition];
   }
 
-//  if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
 //  if (isLaunchedByDeeplink)
 //    (void)[DeepLinkHandler.shared handleDeepLink];
-//  else {
-    // TODO(vng): Uncomment update dialog when we're ready to handle more traffic.
-//  auto const todo = GetFramework().ToDoAfterUpdate();
-//  switch (todo) {
-//    case Framework::DoAfterUpdate::Migrate:
-//    case Framework::DoAfterUpdate::Nothing:
-//      break;
-//    case Framework::DoAfterUpdate::AutoupdateMaps:
-//    case Framework::DoAfterUpdate::AskForUpdateMaps:
-//      [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
-//      break;
-//  }
+//  else
+//  {
+//    /// @todo: Uncomment update dialog when will be ready to handle big traffic bursts.
+//    /*
+//    auto const todo = GetFramework().ToDoAfterUpdate();
+//    switch (todo) {
+//      case Framework::DoAfterUpdate::Migrate:
+//      case Framework::DoAfterUpdate::Nothing:
+//        break;
+//      case Framework::DoAfterUpdate::AutoupdateMaps:
+//      case Framework::DoAfterUpdate::AskForUpdateMaps:
+//        [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
+//        break;
+//    }
+//    */
 //  }
 }
 

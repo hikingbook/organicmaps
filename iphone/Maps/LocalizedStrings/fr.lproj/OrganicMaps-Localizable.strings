@@ -114,7 +114,7 @@
 "hotel" = "Hôtel";
 
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Site touristique";
+"tourism" = "Sites touristiques";
 
 /* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
 "entertainment" = "Divertissement";
@@ -145,6 +145,9 @@
 
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Police";
+
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
 
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Recyclage";
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Site internet";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Nouvelles";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Étalonnage de la boussole";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Tout mettre à jour";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Gris-bleu";
-
-/* Wi-Fi available */
-"WiFi_available" = "Oui";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Voulez-vous reconstruire l'itinéraire ?";
 
-"redirect_route_yes" = "Oui";
+/* A generic "Yes" button in dialogs */
+"yes" = "Oui";
 
-"redirect_route_no" = "Non";
+/* A generic "No" button in dialogs */
+"no" = "Non";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Oui";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Non";
 
 "trip_finished" = "Vous êtes arrivé !";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Distributeur de cigarettes";
 
+"type.amenity.vending_machine.coffee" = "Distributeur de café";
+
+"type.amenity.vending_machine.condoms" = "Distributeur de préservatifs";
+
 "type.amenity.vending_machine.drinks" = "Distributeur de boissons";
+
+"type.amenity.vending_machine.food" = "Distributeur de aliments";
+
+"type.amenity.vending_machine.newspapers" = "Distributeur de journaux";
 
 "type.amenity.vending_machine.parking_tickets" = "Horodateur";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Distributeur de billets de transport en commun";
+
+"type.amenity.vending_machine.sweets" = "Distributeur de bonbons";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Zone commerciale";
 
 "type.landuse.construction" = "Chantier de construction";
+
+"type.landuse.education" = "Établissements éducatifs";
 
 "type.landuse.farm" = "Farm";
 

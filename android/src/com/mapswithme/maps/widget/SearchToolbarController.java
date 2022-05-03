@@ -8,6 +8,7 @@ package com.mapswithme.maps.widget;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -24,8 +25,7 @@ import com.mapswithme.util.InputUtils;
 import com.mapswithme.util.StringUtils;
 import com.mapswithme.util.UiUtils;
 
-public class SearchToolbarController extends ToolbarController
-                                  implements View.OnClickListener, View.OnFocusChangeListener
+public class SearchToolbarController extends ToolbarController implements View.OnClickListener
 {
   private static final int REQUEST_VOICE_RECOGNITION = 0xCA11;
   @Nullable
@@ -67,7 +67,7 @@ public class SearchToolbarController extends ToolbarController
     mSearchContainer = getToolbar().findViewById(R.id.search_container);
     mBack = mSearchContainer.findViewById(R.id.back);
     mQuery = mSearchContainer.findViewById(R.id.query);
-    mQuery.setOnFocusChangeListener(this);
+    mQuery.setOnClickListener(this);
     mQuery.addTextChangedListener(mTextWatcher);
     mQuery.setOnEditorActionListener(
         (v, actionId, event) ->
@@ -151,6 +151,13 @@ public class SearchToolbarController extends ToolbarController
     return R.string.search;
   }
 
+  protected void disableQueryEditing()
+  {
+    mQuery.setFocusable(false);
+    mQuery.setLongClickable(false);
+    mQuery.setInputType(InputType.TYPE_NULL);
+  }
+
   public String getQuery()
   {
     return (UiUtils.isVisible(mSearchContainer) ? mQuery.getText().toString() : "");
@@ -191,18 +198,13 @@ public class SearchToolbarController extends ToolbarController
   }
 
   @Override
-  public void onFocusChange(View view, boolean b)
-  {
-    if (view.getId()== R.id.query && b)
-        onQueryClick(getQuery());
-  }
-
-  @Override
   public void onClick(View v)
   {
     int id = v.getId();
     if (id == R.id.clear) {
       onClearClick();
+    } else if (id == R.id.query) {
+      onQueryClick(getQuery());
     } else if (id == R.id.voice_input) {
       onVoiceInputClick();
     }

@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.mapswithme.maps.BuildConfig;
 import com.mapswithme.maps.R;
 import com.mapswithme.util.Constants;
 import com.mapswithme.util.UiUtils;
@@ -97,12 +96,8 @@ public class ProfileFragment extends AuthFragment implements View.OnClickListene
       showBottomSheet();
     } else if (id == R.id.about_osm) {
       startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(Constants.Url.OSM_ABOUT)));
-    } else if (id == R.id.osm_history) {// Debug builds use dev OSM playground for APIs.
-      final String url = BuildConfig.DEBUG
-              ? "https://master.apis.dev.openstreetmap.org/user/%s/history"
-              : "https://www.openstreetmap.org/user/%s/history";
-      startActivity(new Intent((Intent.ACTION_VIEW),
-              Uri.parse(String.format(url, OsmOAuth.getUsername(requireContext())))));
+    } else if (id == R.id.osm_history) {
+      startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(OsmOAuth.getHistoryUrl(requireContext()))));
     }
   }
 

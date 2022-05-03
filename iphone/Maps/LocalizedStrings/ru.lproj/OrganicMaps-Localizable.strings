@@ -114,7 +114,7 @@
 "hotel" = "Гостиница";
 
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Достопримечательность";
+"tourism" = "Достопримечательности";
 
 /* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
 "entertainment" = "Развлечения";
@@ -145,6 +145,9 @@
 
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Полиция";
+
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
 
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Переработка";
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Вебсайт";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Новости";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Калибровка компаса";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Обновить все";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Серо-голубой";
-
-/* Wi-Fi available */
-"WiFi_available" = "Есть";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Хотите перестроить маршрут?";
 
-"redirect_route_yes" = "Да";
+/* A generic "Yes" button in dialogs */
+"yes" = "Да";
 
-"redirect_route_no" = "Нет";
+/* A generic "No" button in dialogs */
+"no" = "Нет";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Есть";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Нет";
 
 "trip_finished" = "Вы прибыли!";
 
@@ -1435,7 +1443,7 @@
 
 "type.amenity.toilets" = "Туалет";
 
-"type.amenity.townhall" = "Ратуша";
+"type.amenity.townhall" = "Администрация";
 
 "type.amenity.university" = "Университет";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Автомат с сигаретами";
 
+"type.amenity.vending_machine.coffee" = "Кофейный автомат";
+
+"type.amenity.vending_machine.condoms" = "Автомат с презервативами";
+
 "type.amenity.vending_machine.drinks" = "Автомат с напитками";
+
+"type.amenity.vending_machine.food" = "Автомат с едой";
+
+"type.amenity.vending_machine.newspapers" = "Газетный автомат";
 
 "type.amenity.vending_machine.parking_tickets" = "Паркомат";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Автомат по продаже билетов";
+
+"type.amenity.vending_machine.sweets" = "Автомат со сладостями";
 
 "type.amenity.vending_machine.excrement_bags" = "Пакеты для экскрементов";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Коммерческая застройка";
 
 "type.landuse.construction" = "Стройка";
+
+"type.landuse.education" = "Образовательные учреждения";
 
 "type.landuse.farm" = "Ферма";
 

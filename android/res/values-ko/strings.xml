@@ -41,9 +41,10 @@
 	<string name="close">닫기</string>
 	<string name="unsupported_phone">하드웨어 촉진 OpenGL이 요구됩니다. 애석하게도 귀하의 장치는 지원되지 않습니다.</string>
 	<string name="download">다운로드</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Organic Maps를 사용하려면 USB 케이블이나 삽입 메모리 카드를 분리하십시오</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">응용 프로그램을 사용하기 위해서는 첫째 SD 카드 / USB 저장 장치에 여유 공간을 확보하십시오</string>
-	<string name="not_enough_memory">응용 프로그램을 실행하기위한 메모리가 충분하지 않다</string>
 	<string name="download_resources">시작하시기 전에 일반 세계 지도를 귀하의 장치로 다운로드하겠습니다.\n%s 데이터가 필요합니다.</string>
 	<string name="download_resources_continue">지도로 이동</string>
 	<string name="downloading_country_can_proceed">%s다운로드. 이제지도를 진행할 수 있습니다.</string>
@@ -123,6 +124,8 @@
 	<string name="post">우편</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">치안대</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi 인터넷</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">재활용</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -203,6 +206,8 @@
 	<string name="search_show_on_map">지도 보기</string>
 	<!-- Text in menu -->
 	<string name="website">웹사이트</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">소식</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">피드백</string>
 	<!-- Text in menu -->
@@ -217,8 +222,6 @@
 	<string name="copyright">저작권</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">오류 신고</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi 인터넷</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">모두 업데이트</string>
 	<!-- Cancel all button text -->
@@ -290,8 +293,6 @@
 	<string name="gray">회색</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">청회색</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">네</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">경로를 따라갈 때는 다음 사항에 주의해 주세요:</string>
@@ -594,6 +595,14 @@
 	<string name="avoid_toll_roads_placepage">유료 도로 피하기</string>
 	<string name="avoid_unpaved_roads_placepage">비포장 도로 피하기</string>
 	<string name="avoid_ferry_crossing_placepage">여객선 횡단길 피하기</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">네</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">아니오</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">네</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">아니오</string>
 	<string name="ok">OK</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">분류…</string>

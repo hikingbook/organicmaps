@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Polizeistation";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WLAN";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Recycling";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Webseite";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Nachrichten";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompass-Kalibrierung";
-
-/* Search category */
-"wifi" = "WLAN";
 
 /* Update all button text */
 "downloader_update_all_button" = "Alle aktualisieren";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Graublau";
-
-/* Wi-Fi available */
-"WiFi_available" = "Ja";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Möchten Sie die Route neu erstellen?";
 
-"redirect_route_yes" = "Ja";
+/* A generic "Yes" button in dialogs */
+"yes" = "Ja";
 
-"redirect_route_no" = "Nein";
+/* A generic "No" button in dialogs */
+"no" = "Nein";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Ja";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Nein";
 
 "trip_finished" = "Sie sind angekommen!";
 
@@ -1443,15 +1451,25 @@
 
 "type.amenity.vending_machine.cigarettes" = "Zigarettenautomat";
 
+"type.amenity.vending_machine.coffee" = "Kaffeeautomat";
+
+"type.amenity.vending_machine.condoms" = "Kondomautomat";
+
 "type.amenity.vending_machine.drinks" = "Getränkeautomat";
+
+"type.amenity.vending_machine.food" = "Essensautomat";
+
+"type.amenity.vending_machine.newspapers" = "Zeitungsautomat";
 
 "type.amenity.vending_machine.parking_tickets" = "Parkautomat";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Fahrkartenautomat";
 
-"type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
+"type.amenity.vending_machine.sweets" = "Süßigkeitenautomat";
 
-"type.amenity.parcel_locker" = "Parcel Locker";
+"type.amenity.vending_machine.excrement_bags" = "Hundekotbeutelspender";
+
+"type.amenity.parcel_locker" = "Paketstation";
 
 "type.amenity.vending_machine.fuel" = "Tankautomat";
 
@@ -1461,7 +1479,7 @@
 
 "type.amenity.waste_disposal" = "Müllcontainer";
 
-"type.amenity.waste_transfer_station" = "Waste Transfer Station";
+"type.amenity.waste_transfer_station" = "Müllumladestation";
 
 "type.amenity.water_point" = "Wasseranschluss";
 
@@ -2157,6 +2175,8 @@
 
 "type.landuse.construction" = "Baustelle";
 
+"type.landuse.education" = "Educational Facilities";
+
 "type.landuse.farm" = "Bauernhof";
 
 "type.landuse.farmland" = "Agrarland";
@@ -2187,7 +2207,7 @@
 
 "type.landuse.meadow" = "Wiese";
 
-"type.landuse.military" = "Militärisch genutztes Gebiet";
+"type.landuse.military" = "Militärgebiet";
 
 "type.landuse.orchard" = "Obstplantage";
 

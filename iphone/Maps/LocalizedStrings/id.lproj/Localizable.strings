@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Polisi";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Mendaur ulang";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Situs Web";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Berita";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kalibrasi kompas";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Perbarui semua";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Biru Keabu-abuan";
-
-/* Wi-Fi available */
-"WiFi_available" = "Ya";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "Anda ingin membuat ulang rute?";
 
-"redirect_route_yes" = "Ya";
+/* A generic "Yes" button in dialogs */
+"yes" = "Ya";
 
-"redirect_route_no" = "Tidak";
+/* A generic "No" button in dialogs */
+"no" = "Tidak";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Ya";
+
+/* E.g. "WiFi:No" */
+"no_available" = "Tidak";
 
 "trip_finished" = "Anda telah tiba!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Mesin rokok";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "Mesin penjual minuman";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Mesin pembayaran tiket parkir";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Mesin penjual otomatis tiket transportasi umum";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "Farm";
 

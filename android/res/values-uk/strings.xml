@@ -44,9 +44,10 @@
 	<string name="close">Закрити</string>
 	<string name="unsupported_phone">Для роботи програми необхідний апаратно прискорений OpenGL. На жаль, ваш пристрій не підтримується.</string>
 	<string name="download">Завантажити</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Вимкніть USB кабель або вставте SD-карту</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Недостатньо вільного місця на SD карті / в пам\'яті пристрою для використання програми</string>
-	<string name="not_enough_memory">Недостатньо пам\'яті для запуску програми</string>
 	<string name="download_resources">Перш ніж розпочати дозвольте нам завантажити мапу світу на ваш пристрій.\nВона потребує %s даних.</string>
 	<string name="download_resources_continue">Перейти на мапу</string>
 	<string name="downloading_country_can_proceed">Поки завантажується %s\nви можете користуватися програмою.</string>
@@ -126,6 +127,8 @@
 	<string name="post">Пошта</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Поліція</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Переробка відходів</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -208,6 +211,8 @@
 	<string name="search_show_on_map">Подивитись на мапі</string>
 	<!-- Text in menu -->
 	<string name="website">Вебсайт</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Новини</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Відгук</string>
 	<!-- Text in menu -->
@@ -222,8 +227,6 @@
 	<string name="copyright">Копірайт</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Сповістити про помилку</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Оновити всі</string>
 	<!-- Cancel all button text -->
@@ -295,8 +298,6 @@
 	<string name="gray">Сірий</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Сіро-блакитний</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Так</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Під час руху за маршрутом пам\'ятайте:</string>
@@ -612,6 +613,14 @@
 	<string name="avoid_toll_roads_placepage">Уникати платних доріг</string>
 	<string name="avoid_unpaved_roads_placepage">Уникати ґрунтових доріг</string>
 	<string name="avoid_ferry_crossing_placepage">Уникати поромних переправ</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Так</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Ні</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Так</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Ні</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сортувати</string>
@@ -794,13 +803,18 @@
 	<string name="type.amenity.telephone">Телефон</string>
 	<string name="type.amenity.theatre">Театр</string>
 	<string name="type.amenity.toilets">Туалет</string>
-	<string name="type.amenity.townhall">Ратуша</string>
+	<string name="type.amenity.townhall">Адміністрація</string>
 	<string name="type.amenity.university">Університет</string>
 	<string name="type.amenity.vending_machine">Торговий автомат</string>
 	<string name="type.amenity.vending_machine.cigarettes">Автомат з цигарками</string>
+	<string name="type.amenity.vending_machine.coffee">Кавовий автомат</string>
+	<string name="type.amenity.vending_machine.condoms">Автомат з презервативами</string>
 	<string name="type.amenity.vending_machine.drinks">Автомат з напоями</string>
+	<string name="type.amenity.vending_machine.food">Автомат з їжею</string>
+	<string name="type.amenity.vending_machine.newspapers">Газетний автомат</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Паркомат</string>
 	<string name="type.amenity.vending_machine.public_transport_tickets">Автомат з продажу квитків</string>
+	<string name="type.amenity.vending_machine.sweets">Автомат із солодощами</string>
 	<string name="type.amenity.vending_machine.excrement_bags">Мішки для екскрементів</string>
 	<string name="type.amenity.parcel_locker">Поштомат</string>
 	<string name="type.amenity.vending_machine.fuel">Паливна колонка</string>
@@ -1159,6 +1173,7 @@
 	<string name="type.landuse.churchyard">Церковний двір</string>
 	<string name="type.landuse.commercial">Комерційні ділянки</string>
 	<string name="type.landuse.construction">Будівництво</string>
+	<string name="type.landuse.education">Освітній заклади</string>
 	<string name="type.landuse.farm">Ферма</string>
 	<string name="type.landuse.farmland">Сільськогосподарська земля</string>
 	<string name="type.landuse.farmyard">Сільськогосподарська земля</string>
@@ -1503,9 +1518,9 @@
 	<string name="type.tourism.artwork.painting">Витвір мистецтва</string>
 	<string name="type.tourism.artwork.sculpture">Витвір мистецтва</string>
 	<string name="type.tourism.artwork.statue">Витвір мистецтва</string>
-	<string name="type.tourism.attraction">Пам’ятка</string>
-	<string name="type.tourism.attraction.animal">Пам’ятка</string>
-	<string name="type.tourism.attraction.specified">Пам’ятка</string>
+	<string name="type.tourism.attraction">Пам’ятне місце</string>
+	<string name="type.tourism.attraction.animal">Пам’ятне місце</string>
+	<string name="type.tourism.attraction.specified">Пам’ятне місце</string>
 	<string name="type.tourism.camp_site">Кемпінг</string>
 	<string name="type.tourism.caravan_site">Кемпінг для автобудинків</string>
 	<string name="type.tourism.chalet">Шале</string>

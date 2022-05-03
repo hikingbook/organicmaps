@@ -43,9 +43,10 @@
 	<string name="close">ปิด</string>
 	<string name="unsupported_phone">จำเป็นต้องใช้ฮาร์ดแวร์ที่เพิ่มความเร็ว OpenGL โชคไม่ดีที่อุปกรณ์ของคุณไม่รองรับ</string>
 	<string name="download">ดาวน์โหลด</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">โปรดยกเลิกการเชื่อมต่อสาย USB หรือใส่การ์ดหน่วยความจำเพื่อใช้ Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">โปรดเพิ่มพื้นที่บางส่วนบนการ์ด SD /พื้นที่จัดเก็บ USB ก่อนเพื่อใช้แอป</string>
-	<string name="not_enough_memory">มีหน่วยความจำไม่เพียงพอสำหรับการเปิดแอป</string>
 	<string name="download_resources">ก่อนที่คุณจะเริ่มต้น โปรดให้เราดาวน์โหลดแผนที่โลกลงในอุปกรณ์ของคุณ\nจำเป็นต้องใช้ %s ของข้อมูล</string>
 	<string name="download_resources_continue">ไปยังแผนที่</string>
 	<string name="downloading_country_can_proceed">กำลังดาวน์โหลด %s ตอนนี้คุณสามารถ\nดำเนินการต่อไปยังแผนที่</string>
@@ -125,6 +126,8 @@
 	<string name="post">ไปรษณีย์</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">ตำรวจ</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">การรีไซเคิล</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -205,6 +208,8 @@
 	<string name="search_show_on_map">ดูบนแผนที่</string>
 	<!-- Text in menu -->
 	<string name="website">เว็บไซต์</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">ข่าว</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">ข้อเสนอแนะ</string>
 	<!-- Text in menu -->
@@ -219,8 +224,6 @@
 	<string name="copyright">ลิขสิทธิ์</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">แจ้งข้อผิดพลาด</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">อัปเดตทั้งหมด</string>
 	<!-- Cancel all button text -->
@@ -292,8 +295,6 @@
 	<string name="gray">สีเทา</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">สีฟ้าอมเทา</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">ใช่</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">ขณะกำลังเดินทางตามเส้นทาง โปรดจำไว้ว่า:</string>
@@ -596,6 +597,14 @@
 	<string name="avoid_toll_roads_placepage">เลี่ยงทางที่ต้องเสียเงินทั้งหมด</string>
 	<string name="avoid_unpaved_roads_placepage">เลี่ยงถนนดินทั้งหมด</string>
 	<string name="avoid_ferry_crossing_placepage">เลี่ยงการข้ามฟากด้วยเรือ</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">ใช่</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">ไม่ใช่</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">ใช่</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">ไม่ใช่</string>
 	<string name="ok">โอเค</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">เรียง…</string>

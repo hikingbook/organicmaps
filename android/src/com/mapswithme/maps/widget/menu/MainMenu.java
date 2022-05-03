@@ -5,278 +5,111 @@
 package com.mapswithme.maps.widget.menu;
 
 import android.view.View;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.mapswithme.maps.ClickMenuDelegate;
-import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.downloader.MapManager;
 import com.mapswithme.maps.downloader.UpdateInfo;
-import com.mapswithme.maps.routing.RoutingController;
 import com.mapswithme.util.UiUtils;
 
-//public class MainMenu extends BaseMenu
 public class MainMenu
 {
+  private final View mFrame;
+  private final View mButtonsFrame;
+  private final View mRoutePlanFrame;
+  private final View mNewsMarker;
+  private final ItemClickListener mItemClickListener;
 
-    public enum State
+  public MainMenu(View frame, ItemClickListener itemClickListener)
   {
-    MENU
-        {
-          @Override
-          boolean showToggle()
-          {
-            return true;
-          }
-        },
-    NAVIGATION,
-    ROUTE_PREPARE
-        {
-          @Override
-          boolean showToggle()
-          {
-            return false;
-          }
-        };
+    mFrame = frame;
+    mItemClickListener = itemClickListener;
 
-    boolean showToggle()
-    {
-      return true;
-    }
+    mButtonsFrame = mFrame.findViewById(R.id.buttons_frame);
+    mRoutePlanFrame = mFrame.findViewById(R.id.routing_plan_frame);
+    mNewsMarker = mButtonsFrame.findViewById(R.id.marker);
+    init();
   }
 
-//  private final View mButtonsFrame;
-//  private final View mRoutePlanFrame;
-//  private final View mNewsMarker;
+  void mapItem(Item item, int viewId)
+  {
+    View res = mButtonsFrame.findViewById(viewId);
+    if (res != null)
+      res.setOnClickListener(v -> mItemClickListener.onItemClick(item));
+  }
 
-//  private final MenuToggle mToggle;
+  public void onResume()
+  {
+    updateMarker();
+  }
 
-//  public enum Item implements BaseMenu.Item
-//  {
-//    MENU(R.id.toggle)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            return new MwmActivity.MenuClickDelegate(activity, item);
-//          }
-//        },
-//    SEARCH(R.id.search)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            return new MwmActivity.SearchClickDelegate(activity, item);
-//          }
-//        },
-//    HELP(R.id.help)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            return new MwmActivity.HelpDelegate(activity, item);
-//          }
-//        },
-//    BOOKMARKS(R.id.bookmarks)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            return new MwmActivity.BookmarksDelegate(activity, item);
-//          }
-//        },
-//    SETTINGS(R.id.settings)
-//        {
-//          @NonNull
-//          @Override
-//          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                       @NonNull Item item)
-//          {
-//            throw new UnsupportedOperationException("Main menu option doesn't support it!");
-//          }
-//        };
+  public void updateMarker()
+  {
+    final UpdateInfo info = MapManager.nativeGetUpdateInfo(null);
+    final int count = (info == null ? 0 : info.filesCount);
+    final boolean show = count > 0;
 
-//    private final int mViewId;
+    UiUtils.showIf(show, mNewsMarker);
+  }
 
-//    Item(int viewId)
-//    {
-//      mViewId = viewId;
-//    }
+  private void init()
+  {
+    mapItem(Item.HELP, R.id.help);
+    mapItem(Item.SEARCH, R.id.search);
+    mapItem(Item.BOOKMARKS, R.id.bookmarks);
+    mapItem(Item.MENU, R.id.toggle);
 
-//    @Override
-//    public int getViewId()
-//    {
-//      return mViewId;
-//    }
+    setState(State.MENU, false);
+  }
 
-//    public void onClicked(@NonNull MwmActivity activity, @NonNull Item item)
-//    {
-//      ClickMenuDelegate delegate = createClickDelegate(activity, item);
-//      delegate.onMenuItemClick();
-//    }
+  public void setState(State state, boolean isFullScreen)
+  {
+    if (state != State.NAVIGATION)
+    {
+      boolean isRouting = state == State.ROUTE_PREPARE;
+      if (mRoutePlanFrame == null)
+        UiUtils.show(mButtonsFrame);
+      else
+      {
+        UiUtils.showIf(state == State.MENU, mButtonsFrame);
+        UiUtils.showIf(isRouting, mRoutePlanFrame);
+      }
+    }
 
-//    @NonNull
-//    public abstract ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
-//                                                          @NonNull Item item);
-//  }
+    show(state != State.NAVIGATION && !isFullScreen);
+    UiUtils.showIf(state == State.MENU, mButtonsFrame);
+    UiUtils.showIf(state == State.ROUTE_PREPARE, mRoutePlanFrame);
+  }
 
-//  private void mapItem(MainMenu.Item item)
-//  {
-//    mapItem(item, mButtonsFrame);
-//  }
+  public void show(boolean show)
+  {
+    if (show && mFrame.isShown())
+      return;
 
-//  @Override
-//  void afterLayoutMeasured(Runnable procAfterCorrection)
-//  {
-//    UiUtils.showIf(!RoutingController.get().isNavigating(), mFrame);
-//    super.afterLayoutMeasured(procAfterCorrection);
-//  }
+    UiUtils.showIf(show, mFrame);
+  }
 
-//  @Override
-//  public void onResume(@Nullable Runnable procAfterMeasurement)
-//  {
-//    updateMarker();
-//  }
-//
-//  @Override
-//  public boolean isOpen()
-//  {
-//    return false;
-//  }
-//
-//  @Override
-//  public boolean isAnimating()
-//  {
-//    return false;
-//  }
-//
-//  @Override
-//  public boolean open(boolean animate)
-//  {
-//    return false;
-//  }
-//
-//  @Override
-//  public boolean close(boolean animate, @Nullable Runnable onCloseListener)
-//  {
-//    if (onCloseListener != null)
-//      onCloseListener.run();
-//    return false;
-//  }
+  public View getFrame()
+  {
+    return mFrame;
+  }
 
-//  @Override
-//  public void toggle(boolean animate)
-//  {
-//    // Do nothing.
-//  }
-//
-//  @Override
-//  public void updateMarker()
-//  {
-//    final UpdateInfo info = MapManager.nativeGetUpdateInfo(null);
-//    final int count = (info == null ? 0 : info.filesCount);
-//    final boolean show = (count > 0 && !isOpen());
-//
-//    UiUtils.showIf(show, mNewsMarker);
+  public enum State
+  {
+    MENU,
+    NAVIGATION,
+    ROUTE_PREPARE
+  }
 
-    // if (show)
-    //   return;
+  public enum Item
+  {
+    MENU,
+    SEARCH,
+    HELP,
+    BOOKMARKS
+  }
 
-    // for (Mode mode : Mode.values())
-    // {
-    //   show = SharedPropertiesUtils.shouldShowNewMarkerForLayerMode(mFrame.getContext(), mode);
-    //   if (show)
-    //     break;
-    // }
-
-    // UiUtils.showIf(show, mNewsMarker);
-//  }
-
-//  @Override
-//  protected void setToggleState(boolean open, boolean animate)
-//  {
-//    // Do nothing.
-//  }
-
-//  private void init()
-//  {
-//    mapItem(Item.SEARCH);
-//    mapItem(Item.HELP);
-//    mapItem(Item.BOOKMARKS);
-//    mapItem(Item.SETTINGS);
-//
-//    setState(State.MENU, false);
-//  }
-
-//  public MainMenu(View frame, ItemClickListener<Item> itemClickListener)
-//  {
-//    super(frame, itemClickListener);
-//
-//    mButtonsFrame = mLineFrame.findViewById(R.id.buttons_frame);
-//    mRoutePlanFrame = mLineFrame.findViewById(R.id.routing_plan_frame);
-//    mNewsMarker = mButtonsFrame.findViewById(R.id.marker);
-//
-//    mToggle = new MenuToggle(mLineFrame, getHeightResId());
-//    mapItem(Item.MENU, mLineFrame);
-//
-//    init();
-//  }
-
-//  @Override
-//  protected int getHeightResId()
-//  {
-//    return R.dimen.menu_line_height;
-//  }
-
-//  public void setState(State state, boolean isFullScreen)
-//  {
-//    if (state != State.NAVIGATION)
-//    {
-//      mToggle.show(state.showToggle());
-//      mToggle.setOpen(false, false);
-//
-//      boolean isRouting = state == State.ROUTE_PREPARE;
-//      if (mRoutePlanFrame == null)
-//      {
-//        UiUtils.show(mButtonsFrame);
-//      }
-//      else
-//      {
-//        UiUtils.showIf(state == State.MENU, mButtonsFrame);
-//        UiUtils.showIf(isRouting, mRoutePlanFrame);
-//        if (isRouting)
-//          mToggle.hide();
-//      }
-//    }
-//
-//    show(state != State.NAVIGATION && !isFullScreen);
-//    UiUtils.showIf(state == State.MENU, mButtonsFrame);
-//    UiUtils.showIf(state == State.ROUTE_PREPARE, mRoutePlanFrame);
-//  }
-
-//  public void setEnabled(Item item, boolean enable)
-//  {
-//    View button = mButtonsFrame.findViewById(item.mViewId);
-//    if (button == null)
-//      return;
-//
-//    button.setAlpha(enable ? 1.0f : 0.4f);
-//    button.setEnabled(enable);
-//  }
-
-//  private void setVisible(@NonNull Item item, boolean show)
-//  {
-//    final View itemInButtonsFrame = mButtonsFrame.findViewById(item.mViewId);
-//    if (itemInButtonsFrame != null)
-//      UiUtils.showIf(show, itemInButtonsFrame);
-//  }
+  public interface ItemClickListener
+  {
+    void onItemClick(Item item);
+  }
 }

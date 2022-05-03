@@ -43,9 +43,10 @@
 	<string name="close">Fermer</string>
 	<string name="unsupported_phone">L\'accélération OpenGL matérielle est exigée. Malheureusement, votre appareil n\'est pas pris en charge.</string>
 	<string name="download">Télécharger</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Veuillez débrancher le câble USB ou insérer la carte SD pour utiliser Organic Maps</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="not_enough_free_space_on_sdcard">Veuillez d\'abord libérer de l\'espace sur la carte SD/le stockage USB afin d\'utiliser l\'appli</string>
-	<string name="not_enough_memory">Mémoire insuffisante pour lancer l\'appli</string>
 	<string name="download_resources">Avant de commencer, permettez-nous de télécharger la carte générale du monde dans votre appareil.\n%s de données sont nécessaires.</string>
 	<string name="download_resources_continue">Aller sur la carte</string>
 	<string name="downloading_country_can_proceed">%s en téléchargement. Vous pouvez\nmaintenant aller sur la carte.</string>
@@ -104,7 +105,7 @@
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hôtel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Site touristique</string>
+	<string name="tourism">Sites touristiques</string>
 	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
 	<string name="entertainment">Divertissement</string>
 	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
@@ -125,6 +126,8 @@
 	<string name="post">Poste</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
 	<string name="police">Police</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
+	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
 	<string name="recycling">Recyclage</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
@@ -210,6 +213,8 @@
 	<string name="search_show_on_map">Voir sur la carte</string>
 	<!-- Text in menu -->
 	<string name="website">Site internet</string>
+	<!-- Text in About menu, opens Organic Maps news website -->
+	<string name="news">Nouvelles</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Feedback</string>
 	<!-- Text in menu -->
@@ -224,8 +229,6 @@
 	<string name="copyright">Tous droits réservés</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Signaler un bug</string>
-	<!-- Search category -->
-	<string name="wifi">WiFi</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Tout mettre à jour</string>
 	<!-- Cancel all button text -->
@@ -297,8 +300,6 @@
 	<string name="gray">Gris</string>
 	<!-- blue gray color -->
 	<string name="blue_gray">Gris-bleu</string>
-	<!-- Wi-Fi available -->
-	<string name="WiFi_available">Oui</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">Lorsque vous suivez l\'itinéraire, gardez à l\'esprit les points suivants :</string>
@@ -611,6 +612,14 @@
 	<string name="avoid_toll_roads_placepage">Éviter les routes à péage</string>
 	<string name="avoid_unpaved_roads_placepage">Éviter les routes non revêtues</string>
 	<string name="avoid_ferry_crossing_placepage">Éviter les traversées en ferry</string>
+	<!-- A generic "Yes" button in dialogs -->
+	<string name="yes">Oui</string>
+	<!-- A generic "No" button in dialogs -->
+	<string name="no">Non</string>
+	<!-- E.g. "WiFi:Yes" -->
+	<string name="yes_available">Oui</string>
+	<!-- E.g. "WiFi:No" -->
+	<string name="no_available">Non</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Trier…</string>
@@ -664,7 +673,9 @@
 	<string name="elevation_profile_time">Temps:</string>
 	<string name="isolines_toast_zooms_1_10">Zoomez pour voir les courbes de niveaux</string>
 	<string name="download_map_title">Télécharcher la carte du monde</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Erreur de connexion</string>
+	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Déconnectez le câble USB</string>
 	<string name="enable_screen_sleep">Autoriser l\'écran à dormir</string>
 	<!-- Description in preferences -->
@@ -778,9 +789,14 @@
 	<string name="type.amenity.university">Université</string>
 	<string name="type.amenity.vending_machine">Distributeur automatique</string>
 	<string name="type.amenity.vending_machine.cigarettes">Distributeur de cigarettes</string>
+	<string name="type.amenity.vending_machine.coffee">Distributeur de café</string>
+	<string name="type.amenity.vending_machine.condoms">Distributeur de préservatifs</string>
 	<string name="type.amenity.vending_machine.drinks">Distributeur de boissons</string>
+	<string name="type.amenity.vending_machine.food">Distributeur de aliments</string>
+	<string name="type.amenity.vending_machine.newspapers">Distributeur de journaux</string>
 	<string name="type.amenity.vending_machine.parking_tickets">Horodateur</string>
 	<string name="type.amenity.vending_machine.public_transport_tickets">Distributeur de billets de transport en commun</string>
+	<string name="type.amenity.vending_machine.sweets">Distributeur de bonbons</string>
 	<string name="type.amenity.veterinary">Docteur vétérinaire</string>
 	<string name="type.amenity.waste_basket">Poubelle</string>
 	<string name="type.amenity.waste_disposal">Déchets</string>
@@ -1110,6 +1126,7 @@
 	<string name="type.landuse.churchyard">Cour d\'église</string>
 	<string name="type.landuse.commercial">Zone commerciale</string>
 	<string name="type.landuse.construction">Chantier de construction</string>
+	<string name="type.landuse.education">Établissements éducatifs</string>
 	<string name="type.landuse.farmland">Terrains agricoles</string>
 	<string name="type.landuse.farmyard">Ferme</string>
 	<string name="type.landuse.field">Champ</string>

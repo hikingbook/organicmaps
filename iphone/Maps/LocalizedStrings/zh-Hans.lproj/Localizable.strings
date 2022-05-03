@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "警察";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "无线网络";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "回收";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "网站";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "新闻";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "指南针校准";
-
-/* Search category */
-"wifi" = "无线网络";
 
 /* Update all button text */
 "downloader_update_all_button" = "更新全部";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "蓝灰色";
-
-/* Wi-Fi available */
-"WiFi_available" = "是";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "想重建路线?";
 
-"redirect_route_yes" = "是";
+/* A generic "Yes" button in dialogs */
+"yes" = "是";
 
-"redirect_route_no" = "否";
+/* A generic "No" button in dialogs */
+"no" = "否";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "是";
+
+/* E.g. "WiFi:No" */
+"no_available" = "否";
 
 "trip_finished" = "您已到达!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "香烟售货机";
 
+"type.amenity.vending_machine.coffee" = "Coffee Dispenser";
+
+"type.amenity.vending_machine.condoms" = "Condoms Dispenser";
+
 "type.amenity.vending_machine.drinks" = "饮料售货机";
+
+"type.amenity.vending_machine.food" = "Food Dispenser";
+
+"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "停车缴费机";
 
 "type.amenity.vending_machine.public_transport_tickets" = "公共交通售票机";
+
+"type.amenity.vending_machine.sweets" = "Sweets Dispenser";
 
 "type.amenity.vending_machine.excrement_bags" = "Excrement Bags Dispenser";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "商务办公用地";
 
 "type.landuse.construction" = "建设区域";
+
+"type.landuse.education" = "Educational Facilities";
 
 "type.landuse.farm" = "农田";
 

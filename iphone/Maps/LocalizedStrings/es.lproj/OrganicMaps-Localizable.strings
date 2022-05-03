@@ -146,6 +146,9 @@
 /* Search category for police; any changes should be duplicated in categories.txt @police! */
 "police" = "Policía";
 
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
+"wifi" = "WiFi";
+
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
 "recycling" = "Reciclaje";
 
@@ -261,6 +264,9 @@
 /* Text in menu */
 "website" = "Sitio web";
 
+/* Text in About menu, opens Organic Maps news website */
+"news" = "Noticias";
+
 /* Text in menu */
 "github" = "GitHub";
 
@@ -311,9 +317,6 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Calibración de la brújula";
-
-/* Search category */
-"wifi" = "WiFi";
 
 /* Update all button text */
 "downloader_update_all_button" = "Actualizar todos";
@@ -418,9 +421,6 @@
 
 /* blue gray color */
 "blue_gray" = "Gris azulado";
-
-/* Wi-Fi available */
-"WiFi_available" = "Sí";
 
 
 /********** Routing dialogs strings **********/
@@ -1026,9 +1026,17 @@
 
 "redirect_route_alert" = "¿Quieres reconstruir la ruta?";
 
-"redirect_route_yes" = "Si";
+/* A generic "Yes" button in dialogs */
+"yes" = "Sí";
 
-"redirect_route_no" = "No";
+/* A generic "No" button in dialogs */
+"no" = "No";
+
+/* E.g. "WiFi:Yes" */
+"yes_available" = "Sí";
+
+/* E.g. "WiFi:No" */
+"no_available" = "No";
 
 "trip_finished" = "¡Llegaste!";
 
@@ -1443,11 +1451,21 @@
 
 "type.amenity.vending_machine.cigarettes" = "Máquina expendedora de tabaco";
 
+"type.amenity.vending_machine.coffee" = "Máquina expendedora de café";
+
+"type.amenity.vending_machine.condoms" = "Máquina expendedora de condones";
+
 "type.amenity.vending_machine.drinks" = "Máquina expendedora de bebidas";
+
+"type.amenity.vending_machine.food" = "Máquina expendedora de comida";
+
+"type.amenity.vending_machine.newspapers" = "Máquina expendedora de periódicos";
 
 "type.amenity.vending_machine.parking_tickets" = "Máquina de pago de tique de aparcamiento";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Máquina expendedora de boletos para el transporte público";
+
+"type.amenity.vending_machine.sweets" = "Máquina expendedora de dulces";
 
 "type.amenity.vending_machine.excrement_bags" = "Maquina expendedora de bolsas para excrementos";
 
@@ -2156,6 +2174,8 @@
 "type.landuse.commercial" = "Commercial Area";
 
 "type.landuse.construction" = "Construction";
+
+"type.landuse.education" = "Instalaciones educativas";
 
 "type.landuse.farm" = "Farm";
 
