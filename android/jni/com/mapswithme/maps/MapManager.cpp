@@ -608,16 +608,23 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeUpdateLocalMapRegistration(
   auto f = g_framework->NativeFramework();
   f->RegisterAllMaps();
   if (!isPro) {
-    jint availableRegisteredMaps = 0;
-    if (isActivatedUser) {
-      availableRegisteredMaps = freeLimitNumDownloadedMaps;
-    }
-
     auto & s = GetStorage();
     std::vector<std::shared_ptr<platform::LocalCountryFile>> maps;
     s.GetLocalMaps(maps);
 
+    auto numDownloadedMaps = std::count_if(maps.begin(), maps.end(), [](std::shared_ptr<platform::LocalCountryFile> map){
+        return map->GetCountryName().find("World") == std::string::npos;
+    });
+    if (numDownloadedMaps <= 0) {
+        return;
+    }
+
     f->DeregisterAllMaps();
+
+    jint availableRegisteredMaps = 0;
+    if (isActivatedUser) {
+      availableRegisteredMaps = freeLimitNumDownloadedMaps;
+    }
     for (auto const & localFile : maps) {
       auto countryId = localFile->GetCountryName();
       bool isWorldMap = countryId.find("World") != std::string::npos;
