@@ -129,9 +129,9 @@ public class StorageUtils
   }
 
   @NonNull
-  private static String addTrailingSeparator(@NonNull String dir)
+  public static String addTrailingSeparator(@NonNull String dir)
   {
-    if (!dir.endsWith("/"))
+    if (!dir.endsWith(File.separator))
       return dir + File.separator;
     return dir;
   }
@@ -254,20 +254,6 @@ public class StorageUtils
       if (filter.accept(dir, name))
         relPaths.add(prefix + name);
     }
-  }
-
-  public static long getFreeBytesAtPath(String path)
-  {
-    long size = 0;
-    try
-    {
-      size = new File(path).getFreeSpace();
-    } catch (RuntimeException e)
-    {
-      e.printStackTrace();
-    }
-
-    return size;
   }
 
   public static long getDirSizeRecursively(File file, FilenameFilter fileFilter)
