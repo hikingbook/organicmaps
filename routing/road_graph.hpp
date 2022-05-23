@@ -37,10 +37,10 @@ public:
 
   using JunctionPointT = geometry::PointWithAltitude;
 
-  static Edge MakeReal(FeatureID const & featureId, bool forward, uint32_t segId,
+  static Edge MakeReal(FeatureID featureId, bool forward, uint32_t segId,
                        JunctionPointT const & startJunction,
                        JunctionPointT const & endJunction);
-  static Edge MakeFakeWithRealPart(FeatureID const & featureId, uint32_t fakeSegmentId,
+  static Edge MakeFakeWithRealPart(FeatureID featureId, uint32_t fakeSegmentId,
                                    bool forward, uint32_t segId,
                                    JunctionPointT const & startJunction,
                                    JunctionPointT const & endJunction);
@@ -79,7 +79,7 @@ public:
   bool operator<(Edge const & r) const;
 
 private:
-  Edge(Type type, FeatureID const & featureId, uint32_t fakeSegmentId, bool forward, uint32_t segId,
+  Edge(Type type, FeatureID featureId, uint32_t fakeSegmentId, bool forward, uint32_t segId,
        JunctionPointT const & startJunction, JunctionPointT const & endJunction);
 
   friend std::string DebugPrint(Edge const & r);
@@ -303,8 +303,9 @@ public:
   /// Finds the closest edges to the center of |rect|.
   /// @return Array of pairs of Edge and projection point on the Edge. If there is no the closest edges
   /// then returns empty array.
+  using EdgeProjectionT = std::pair<Edge, JunctionPointT>;
   virtual void FindClosestEdges(m2::RectD const & /*rect*/, uint32_t /*count*/,
-      std::vector<std::pair<Edge, JunctionPointT>> & /*vicinities*/) const {};
+                                std::vector<EdgeProjectionT> & /*vicinities*/) const {};
 
   /// \returns Vector of pairs FeatureID and corresponding RoadInfo for road features
   /// lying in |rect|.
