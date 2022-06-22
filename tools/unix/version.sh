@@ -19,7 +19,7 @@ EOF
 # Note: other ways to get date use the "when commit was rebased" date.
 # This approach counts a number of commits each day based on author's commit date.
 COUNT_AND_DATE=( $(git log --date=short --pretty=format:%ad --date=format:'%Y.%m.%d' --since="30 days ago" | sort | uniq -c | tail -1) )
-if [ -z "$COUNT_AND_DATE" ]; then
+if [ -z "${COUNT_AND_DATE-}" ]; then
   # Fallback: use today's date if there were no commits since last month.
   COUNT_AND_DATE=( 0 $(date +%Y.%m.%d) )
 fi
