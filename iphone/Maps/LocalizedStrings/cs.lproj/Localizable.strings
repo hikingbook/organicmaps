@@ -503,6 +503,10 @@
 
 "history" = "Historie";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Zavřeno";
 
 "search_not_found" = "Omlouvám se, nic nenalezeno.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Půjčovna kol";
 
+"type.amenity.bicycle_repair_station" = "Stanice na opravu jízdních kol";
+
 "type.amenity.biergarten" = "Hospoda se zahrádkou";
 
 "type.amenity.brothel" = "Nevěstinec";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Hrob";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Pivovar";
 
 "type.craft.carpenter" = "Truhlář";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Elektrikář";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Zahradník";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "HVAC";
 
 "type.craft.metal_construction" = "Kovodílna";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Instalatér";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Opravna obuvi";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Krejčí";
 
@@ -2361,7 +2384,11 @@
 
 "type.natural.cave_entrance" = "Jeskyně";
 
-"type.natural.cliff" = "Cliff";
+"type.natural.cliff" = "Útes";
+
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Násyp";
 
 "type.natural.coastline" = "Coastline";
 
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Jezero";
+
+"type.natural.water.lock" = "Zámková komora";
 
 "type.natural.water.pond" = "Rybník";
 
@@ -2825,15 +2854,15 @@
 
 "type.shop.wine" = "Vinařství";
 
-"type.sport" = "sport";
+"type.sport" = "Sport";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "Americký fotbal";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "Lukostřelba";
 
 "type.sport.athletics" = "Atletika";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Australský fotbal";
 
 "type.sport.baseball" = "Baseball";
 
@@ -2841,31 +2870,30 @@
 
 "type.sport.bowls" = "Bowls";
 
-"type.sport.cricket" = "Cricket";
+"type.sport.cricket" = "Kriket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Curling";
 
 "type.sport.equestrian" = "Koňské sporty";
 
 "type.sport.golf" = "Golf";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Gymnastika";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "Házená";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Různé sporty";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Potápění";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Střílení";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Lyžování";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Fotbal";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Plavání";
 
 "type.sport.tennis" = "Tenisový kurt";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Nástěnka";
 
-"type.tourism.information.guidepost" = "Infocentrum";
+"type.tourism.information.guidepost" = "Rozcestník";
 
 "type.tourism.information.map" = "Turistická mapa";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Stavidlo";
 

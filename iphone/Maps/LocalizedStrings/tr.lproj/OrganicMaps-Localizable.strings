@@ -503,6 +503,10 @@
 
 "history" = "Geçmiş";
 
+"opens_in" = "%@ sonra açılıyor";
+
+"closes_in" = "%@ sonra kapanıyor";
+
 "closed" = "Kapalı";
 
 "search_not_found" = "Üzgünüz, hiç bir şey bulamadık.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Bisiklet Kiralama";
 
+"type.amenity.bicycle_repair_station" = "Bisiklet tamir istasyonu";
+
 "type.amenity.biergarten" = "Bira Bahçesi";
 
 "type.amenity.brothel" = "Genelev";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Depo";
 
+"type.cemetery.grave" = "Mezar";
+
 "type.craft" = "Zanaat";
+
+"type.craft.beekeeper" = "Arıcı";
+
+"type.craft.blacksmith" = "Demirci";
 
 "type.craft.brewery" = "Bira Fabrikası";
 
 "type.craft.carpenter" = "Marangoz";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Elektrikçi";
+
+"type.craft.electronics_repair" = "Elektronik Tamircisi";
 
 "type.craft.gardener" = "Bahçe Düzenleyici";
 
+"type.craft.handicraft" = "El İşi";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Klimacı";
 
 "type.craft.metal_construction" = "Dökümcü";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Tesisatçı";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Ayakkabı Tamircisi";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Terzi";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Uçurum";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Kıyı Şeridi";
 
 "type.natural.geyser" = "Gayzer";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Kaplıca";
 
 "type.natural.water.lake" = "Göl";
+
+"type.natural.water.lock" = "Kilit Odası";
 
 "type.natural.water.pond" = "Gölet";
 
@@ -2833,7 +2862,7 @@
 
 "type.sport.athletics" = "Atletizm";
 
-"type.sport.australian_football" = "Ragbi";
+"type.sport.australian_football" = "Avustralya futbolu";
 
 "type.sport.baseball" = "Beyzbol";
 
@@ -2843,9 +2872,7 @@
 
 "type.sport.cricket" = "Kriket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Dalış";
+"type.sport.curling" = "Körling";
 
 "type.sport.equestrian" = "Binicilik Sporları";
 
@@ -2857,11 +2884,12 @@
 
 "type.sport.multi" = "Çeşitli Sporlar";
 
+/* Used to tag a scuba diving site. */
 "type.sport.scuba_diving" = "Tüplü Dalış";
 
-"type.sport.shooting" = "Atış Sporları";
+"type.sport.shooting" = "Çekim";
 
-"type.sport.skiing" = "Kayak";
+"type.sport.skiing" = "Kayak yapmak";
 
 "type.sport.soccer" = "Futbol";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Bilgi Panosu";
 
-"type.tourism.information.guidepost" = "Turist Bilgilendirme";
+"type.tourism.information.guidepost" = "Kılavuz direği";
 
 "type.tourism.information.map" = "Turist Haritası";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Lağım";
 
 "type.waterway.drain.tunnel" = "Lağım";
-
-"type.waterway.lock" = "Kanal Havuzu";
 
 "type.waterway.lock_gate" = "Kilit Kapısı";
 

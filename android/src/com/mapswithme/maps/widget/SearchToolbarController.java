@@ -36,6 +36,7 @@ public class SearchToolbarController extends ToolbarController implements View.O
   private final View mBack;
   @NonNull
   private final EditText mQuery;
+  private boolean mFromCategory = false;
   @NonNull
   private final View mProgress;
   @NonNull
@@ -162,13 +163,16 @@ public class SearchToolbarController extends ToolbarController implements View.O
   {
     return (UiUtils.isVisible(mSearchContainer) ? mQuery.getText().toString() : "");
   }
+  public boolean isCategory() { return mFromCategory; }
 
-  public void setQuery(CharSequence query)
+  public void setQuery(CharSequence query, boolean fromCategory)
   {
+    mFromCategory = fromCategory;
     mQuery.setText(query);
     if (!TextUtils.isEmpty(query))
       mQuery.setSelection(query.length());
   }
+  public void setQuery(CharSequence query) { setQuery(query, false); }
 
   public void clear()
   {

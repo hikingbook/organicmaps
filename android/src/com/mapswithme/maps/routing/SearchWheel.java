@@ -285,7 +285,8 @@ class SearchWheel
   {
     mCurrentOption = searchOption;
     final String query = mFrame.getContext().getString(searchOption.mQueryId);
-    SearchEngine.INSTANCE.searchInteractive(mFrame.getContext(), query, System.nanoTime(), false /* isMapAndTable */);
+    // Category request from navigation search wheel.
+    SearchEngine.INSTANCE.searchInteractive(mFrame.getContext(), query, true, System.nanoTime(), false);
     SearchEngine.INSTANCE.setQuery(query);
 //    refreshSearchButtonImage();
     toggleSearchLayout();

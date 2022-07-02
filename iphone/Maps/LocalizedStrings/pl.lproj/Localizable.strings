@@ -503,6 +503,10 @@
 
 "history" = "Historia";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Zamknięte";
 
 "search_not_found" = "Przepraszamy, nic nie znaleziono.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Wynajem rowerów";
 
+"type.amenity.bicycle_repair_station" = "Stacja naprawy rowerów";
+
 "type.amenity.biergarten" = "Ogródek piwny";
 
 "type.amenity.brothel" = "Burdel";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Mogiła";
+
 "type.craft" = "Rzemiosło";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Browar";
 
 "type.craft.carpenter" = "Stolarz";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Elektryk";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Ogrodnik";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Klimatyzacja";
 
 "type.craft.metal_construction" = "Ślusarz, obrabiacz metalu";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Hydraulik";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Szewc";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Krawiec";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Klif";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Linia brzegowa";
 
 "type.natural.geyser" = "Gejzer";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Gorące źródło";
 
 "type.natural.water.lake" = "Jezioro";
+
+"type.natural.water.lock" = "Komora zamka";
 
 "type.natural.water.pond" = "Staw";
 
@@ -2825,15 +2854,15 @@
 
 "type.shop.wine" = "Sklep monopolowy";
 
-"type.sport" = "sport";
+"type.sport" = "Sport";
 
 "type.sport.american_football" = "Futbol amerykański";
 
-"type.sport.archery" = "Łucznictwo sportowe";
+"type.sport.archery" = "Łucznictwo";
 
 "type.sport.athletics" = "Lekka atletyka";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Futbol australijski";
 
 "type.sport.baseball" = "Baseball";
 
@@ -2843,9 +2872,7 @@
 
 "type.sport.cricket" = "Krykiet";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Curling";
 
 "type.sport.equestrian" = "Jeździectwo";
 
@@ -2853,17 +2880,18 @@
 
 "type.sport.gymnastics" = "Gimnastyka";
 
-"type.sport.handball" = "Piłka ręczna";
+"type.sport.handball" = "Gra w piłkę ręczną";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Różne sporty";
 
+/* Used to tag a scuba diving site. */
 "type.sport.scuba_diving" = "Nurkowanie";
 
 "type.sport.shooting" = "Strzelectwo sportowe";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Jazda na nartach";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Piłka nożna";
 
 "type.sport.swimming" = "Pływanie";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Tablica informacyjna";
 
-"type.tourism.information.guidepost" = "Informacja turystyczna";
+"type.tourism.information.guidepost" = "Drogowskaz";
 
 "type.tourism.information.map" = "Mapa turystyczna";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Wrota śluzy";
 

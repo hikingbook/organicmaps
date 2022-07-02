@@ -503,6 +503,10 @@
 
 "history" = "Lịch sử";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Đã đóng";
 
 "search_not_found" = "Xin lỗi, tôi không tìm thấy kết quả nào.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Cho thuê xe đạp";
 
+"type.amenity.bicycle_repair_station" = "trạm sửa xe đạp";
+
 "type.amenity.biergarten" = "Vườn bia";
 
 "type.amenity.brothel" = "Giải trí";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Phần mộ";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Nhà máy bia";
 
 "type.craft.carpenter" = "Thợ mộc";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Thợ điện";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Người thiết kế và xây dựng cảnh quan";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Điều hòa nhiệt độ";
 
 "type.craft.metal_construction" = "Nhà kim khí";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Thợ đường ống";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Sửa giày";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Thợ may";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Suối nước nóng";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Hồ";
+
+"type.natural.water.lock" = "Khoang khóa";
 
 "type.natural.water.pond" = "Ao";
 
@@ -2825,17 +2854,17 @@
 
 "type.shop.wine" = "Rượu";
 
-"type.sport" = "sport";
+"type.sport" = "Thể thao";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "Bóng bầu dục Mỹ";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "Bắn cung";
 
 "type.sport.athletics" = "Điền kinh";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Bóng bầu dục Úc";
 
-"type.sport.baseball" = "Baseball";
+"type.sport.baseball" = "Bóng chày";
 
 "type.sport.basketball" = "Bóng rổ";
 
@@ -2843,29 +2872,28 @@
 
 "type.sport.cricket" = "Cricket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Bi đá trên băng";
 
 "type.sport.equestrian" = "Thể thao cưỡi ngựa";
 
 "type.sport.golf" = "Golf";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Thể dục";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "bóng ném";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Các môn thể thao khác nhau";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Môn lặn";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Chụp";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Trượt tuyết";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Bóng đá";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Bơi";
 
 "type.sport.tennis" = "Sân tenis";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Bảng Thông Tin";
 
-"type.tourism.information.guidepost" = "Thông tin du lịch";
+"type.tourism.information.guidepost" = "Hướng dẫn";
 
 "type.tourism.information.map" = "Bản Đồ Du Lịch";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Cổng Khóa";
 

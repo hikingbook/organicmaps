@@ -29,7 +29,7 @@ import com.mapswithme.maps.bookmarks.data.MapObject;
 import com.mapswithme.maps.downloader.OnmapDownloader;
 import com.mapswithme.maps.location.CompassData;
 import com.mapswithme.maps.location.LocationHelper;
-import com.mapswithme.util.log.LoggerFactory;
+import com.mapswithme.util.log.LogsManager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public enum OrganicmapsFrameworkAdapter {
     private SharedPreferences sharedPreferences;
 
     public void initApplication(Application application) {
-        initLoggerFactory();
+        LogsManager.INSTANCE.initFileLogging(application);
         if (this.application == null) {
             this.application = application;
             if (application instanceof MwmApplication) {
@@ -112,10 +112,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     public AppBackgroundTracker getBackgroundTracker() {
         return this.mBackgroundTracker;
-    }
-
-    private void initLoggerFactory() {
-        LoggerFactory.INSTANCE.initialize(this.application);
     }
 
     private void onCreateMwmApplication() {

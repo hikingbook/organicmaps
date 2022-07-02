@@ -503,6 +503,10 @@
 
 "history" = "Cronologia";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Închis";
 
 "search_not_found" = "Nu s-a găsit nimic.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Închiriere de biciclete";
 
+"type.amenity.bicycle_repair_station" = "Bicycle Repair Station";
+
 "type.amenity.biergarten" = "Berărie";
 
 "type.amenity.brothel" = "Bordel";
@@ -1569,17 +1575,30 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Mormânt";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Berărie";
 
 "type.craft.carpenter" = "Tâmplar";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Electrician";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Peisagist";
 
-"type.craft.hvac" = "Hvac";
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
+"type.craft.hvac" = "HVAC";
 
 "type.craft.metal_construction" = "Metalurgist";
 
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Instalator";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Reparații încălțăminte";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Croitor";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Gheizer";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Lac";
+
+"type.natural.water.lock" = "Camera de blocare";
 
 "type.natural.water.pond" = "Heleșteu";
 
@@ -2825,15 +2854,15 @@
 
 "type.shop.wine" = "Vinărie";
 
-"type.sport" = "sport";
+"type.sport" = "Sport";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "Fotbal american";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "TIR cu arcul";
 
 "type.sport.athletics" = "Atletica ușoară";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Fotbal australian";
 
 "type.sport.baseball" = "Baseball";
 
@@ -2843,29 +2872,28 @@
 
 "type.sport.cricket" = "Cricket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Curling";
 
 "type.sport.equestrian" = "Sport ecvestru";
 
 "type.sport.golf" = "Golf";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Gimnastică";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "Handbal";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Sporturi Diverse";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Scufundări";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Filmare";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Schi";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Fotbal";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Natație";
 
 "type.sport.tennis" = "Teren de tenis";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Panou de informații";
 
-"type.tourism.information.guidepost" = "Informații turistice";
+"type.tourism.information.guidepost" = "Postul de ghidare";
 
 "type.tourism.information.map" = "Hartă turistică";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Ecluză";
 

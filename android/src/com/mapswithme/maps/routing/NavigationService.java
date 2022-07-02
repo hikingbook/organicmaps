@@ -4,8 +4,6 @@
  */
 package com.mapswithme.maps.routing;
 
-import static androidx.core.app.NotificationCompat.Builder;
-
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -24,7 +22,6 @@ import android.widget.RemoteViews;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
@@ -33,21 +30,21 @@ import com.mapswithme.maps.location.LocationListener;
 import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.log.Logger;
-import com.mapswithme.util.log.LoggerFactory;
+
+import static androidx.core.app.NotificationCompat.Builder;
 
 public class NavigationService extends Service
 {
   private static final String TAG = NavigationService.class.getSimpleName();
+
   public static final String PACKAGE_NAME = NavigationService.class.getPackage().getName();
-  public static final String PACKAGE_NAME_WITH_SERVICE_NAME = PACKAGE_NAME.concat(".")
-                                                                          .concat(TAG.toLowerCase());
+  public static final String PACKAGE_NAME_WITH_SERVICE_NAME = PACKAGE_NAME + "." +
+                                                              NavigationService.class.getSimpleName().toLowerCase();
   private static final String EXTRA_STOP_SERVICE = PACKAGE_NAME_WITH_SERVICE_NAME + "finish";
 
   private static final String CHANNEL_ID = "LOCATION_CHANNEL";
   private static final int NOTIFICATION_ID = 12345678;
 
-  @NonNull
-  private final Logger mLogger = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.LOCATION);
   @NonNull
   private final IBinder mBinder = new LocalBinder();
   @SuppressWarnings("NotNullFieldNotInitialized")
@@ -69,7 +66,7 @@ public class NavigationService extends Service
     @Override
     public void onLocationUpdated(Location location)
     {
-      mLogger.d(TAG, "onLocationUpdated()");
+      Logger.d(TAG, "onLocationUpdated()");
       RoutingInfo routingInfo = Framework.nativeGetRouteFollowingInfo();
       if (serviceIsRunningInForeground(getApplicationContext()))
       {
@@ -81,7 +78,7 @@ public class NavigationService extends Service
     @Override
     public void onLocationError(int errorCode)
     {
-      mLogger.e(TAG, "onLocationError() errorCode: " + errorCode);
+      Logger.e(TAG, "onLocationError() errorCode: " + errorCode);
     }
   };
 
@@ -122,13 +119,13 @@ public class NavigationService extends Service
   public void onLowMemory()
   {
     super.onLowMemory();
-    mLogger.d(TAG, "onLowMemory()");
+    Logger.d(TAG, "onLowMemory()");
   }
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId)
   {
-    mLogger.i(TAG, "Service started");
+    Logger.i(TAG, "Service started");
     LocationHelper.INSTANCE.addListener(mLocationListener);
     boolean finishedFromNotification = intent.getBooleanExtra(EXTRA_STOP_SERVICE,
                                                               false);
@@ -151,7 +148,7 @@ public class NavigationService extends Service
   @Override
   public IBinder onBind(Intent intent)
   {
-    mLogger.i(TAG, "in onBind()");
+    Logger.i(TAG, "in onBind()");
     stopForeground(true);
     mChangingConfiguration = false;
     return mBinder;
@@ -160,7 +157,7 @@ public class NavigationService extends Service
   @Override
   public void onRebind(Intent intent)
   {
-    mLogger.i(TAG, "in onRebind()");
+    Logger.i(TAG, "in onRebind()");
     stopForeground(true);
     mChangingConfiguration = false;
     super.onRebind(intent);
@@ -169,7 +166,7 @@ public class NavigationService extends Service
   @Override
   public boolean onUnbind(Intent intent)
   {
-    mLogger.i(TAG, "Last client unbound from service");
+    Logger.i(TAG, "Last client unbound from service");
 
     // Called when the last client unbinds from this
     // service. If this method is called due to a configuration change in activity, we
@@ -177,7 +174,7 @@ public class NavigationService extends Service
     removeLocationUpdates();
     if (!mChangingConfiguration)
     {
-      mLogger.i(TAG, "Starting foreground service");
+      Logger.i(TAG, "Starting foreground service");
       startForeground(NOTIFICATION_ID, getNotification());
     }
     return true;
@@ -187,7 +184,7 @@ public class NavigationService extends Service
   {
     if(!serviceIsRunningInForeground(this))
     {
-      mLogger.i(TAG, "Starting foreground service");
+      Logger.i(TAG, "Starting foreground service");
       startForeground(NOTIFICATION_ID, getNotification());
     }
   }
@@ -256,7 +253,7 @@ public class NavigationService extends Service
 
   private void removeLocationUpdates()
   {
-    mLogger.i(TAG, "Removing location updates");
+    Logger.i(TAG, "Removing location updates");
     LocationHelper.INSTANCE.removeListener(mLocationListener);
     stopSelf();
   }

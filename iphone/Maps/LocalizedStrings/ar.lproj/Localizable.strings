@@ -503,6 +503,10 @@
 
 "history" = "السجل";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "مغلق";
 
 "search_not_found" = "المعذرة، لم أعثر على أي شيء.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "تأجير دراجات";
 
+"type.amenity.bicycle_repair_station" = "محطة تصليح الدراجات";
+
 "type.amenity.biergarten" = "متجر بيرة";
 
 "type.amenity.brothel" = "دعارة";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "ﺮﻴﻄﺧ";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "مصنع جعة";
 
 "type.craft.carpenter" = "نجار";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "كهربائي";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "مهندس مناظر";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "تكييف";
 
 "type.craft.metal_construction" = "عامل معادن";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "سمكري";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "تصليح الاحذية";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "خياط";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "نبع ماء حار";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "بحيرة";
+
+"type.natural.water.lock" = "ﻞﻔﻘﻟﺍ ﺔﻓﺮﻏ";
 
 "type.natural.water.pond" = "بركة";
 
@@ -2825,47 +2854,46 @@
 
 "type.shop.wine" = "متجر مشروبات روحية";
 
-"type.sport" = "sport";
+"type.sport" = "رياضة";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "كرة القدم الأمريكية";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "الرماية";
 
 "type.sport.athletics" = "العاب رياضية";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "كرة القدم الأسترالية";
 
-"type.sport.baseball" = "Baseball";
+"type.sport.baseball" = "البيسبول";
 
 "type.sport.basketball" = "كرة السلة";
 
-"type.sport.bowls" = "Bowls";
+"type.sport.bowls" = "لعبة البولينج";
 
-"type.sport.cricket" = "Cricket";
+"type.sport.cricket" = "كريكت";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "كيرلنغ";
 
 "type.sport.equestrian" = "رياضة الفروسية";
 
-"type.sport.golf" = "Golf";
+"type.sport.golf" = "الجولف";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "رياضة بدنية";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "كرة اليد";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "رياضات متنوعة";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "الغوص";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "رماية";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "التزحلق";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "كرة القدم";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "سباحة";
 
 "type.sport.tennis" = "ملعب تنس";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "لوحة معلومات";
 
-"type.tourism.information.guidepost" = "معلومات سياحية";
+"type.tourism.information.guidepost" = "دليل";
 
 "type.tourism.information.map" = "خريطة سياحية";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "بوابة هويس";
 

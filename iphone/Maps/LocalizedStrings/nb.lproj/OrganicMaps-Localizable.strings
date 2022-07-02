@@ -503,6 +503,10 @@
 
 "history" = "Historikk";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Stengt";
 
 "search_not_found" = "Beklager, jeg fant ingenting.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Sykkelutleie";
 
+"type.amenity.bicycle_repair_station" = "Sykkelreparasjonsstasjon";
+
 "type.amenity.biergarten" = "Uteservering";
 
 "type.amenity.brothel" = "Bordell";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Grav";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Bryggeri";
 
 "type.craft.carpenter" = "Snekker";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Elektriker";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Anleggsgartner";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Klimaanlegg";
 
 "type.craft.metal_construction" = "Metallarbeider";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Rørlegger";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Skoreparasjon";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Skredder";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Gaysir";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Innsjø";
+
+"type.natural.water.lock" = "Låsekammer";
 
 "type.natural.water.pond" = "Dam";
 
@@ -2825,15 +2854,15 @@
 
 "type.shop.wine" = "Alkoholutsalg";
 
-"type.sport" = "sport";
+"type.sport" = "Sport";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "Amerikansk fotball";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "Bueskyting";
 
 "type.sport.athletics" = "Friidrett";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Australsk fotball";
 
 "type.sport.baseball" = "Baseball";
 
@@ -2843,29 +2872,28 @@
 
 "type.sport.cricket" = "Cricket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Curling";
 
 "type.sport.equestrian" = "Hestesport";
 
 "type.sport.golf" = "Golf";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Gymnastikk";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "Håndball";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Ulike idretter";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Dykking";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Skyting";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Stå på ski";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Fotball";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Svømming";
 
 "type.sport.tennis" = "Tennisbane";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Informasjonstavle";
 
-"type.tourism.information.guidepost" = "Turistinformasjon";
+"type.tourism.information.guidepost" = "Guidepost";
 
 "type.tourism.information.map" = "Turistkart";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Sluseport";
 

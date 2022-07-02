@@ -36,7 +36,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollViewClickFixed;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
@@ -69,7 +68,6 @@ import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.concurrency.UiThread;
 import com.mapswithme.util.log.Logger;
-import com.mapswithme.util.log.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,8 +82,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
                EditBookmarkFragment.EditBookmarkListener
 
 {
-  private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = PlacePageView.class.getSimpleName();
+
   private static final String PREF_COORDINATES_FORMAT = "coordinates_format";
   private static final List<CoordinatesFormat> visibleCoordsFormat =
       Arrays.asList(CoordinatesFormat.LatLonDMS,
@@ -510,7 +508,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     if (mMapObject == null)
     {
-      LOGGER.e(TAG, "Bookmark cannot be managed, mMapObject is null!");
+      Logger.e(TAG, "Bookmark cannot be managed, mMapObject is null!");
       return;
     }
     toggleIsBookmark(mMapObject);
@@ -520,7 +518,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     if (mMapObject == null)
     {
-      LOGGER.e(TAG, "A map object cannot be shared, it's null!");
+      Logger.e(TAG, "A map object cannot be shared, it's null!");
       return;
     }
     SharingUtils.shareMapObject(getContext(), mMapObject);
@@ -530,7 +528,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     if (mMapObject == null)
     {
-      LOGGER.e(TAG, "A mwm request cannot be handled, mMapObject is null!");
+      Logger.e(TAG, "A mwm request cannot be handled, mMapObject is null!");
       getActivity().finish();
       return;
     }
@@ -750,7 +748,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
   {
     if (mMapObject == null)
     {
-      LOGGER.e(TAG, "A place page views cannot be refreshed, mMapObject is null");
+      Logger.e(TAG, "A place page views cannot be refreshed, mMapObject is null");
       return;
     }
     refreshPreview(mMapObject);
@@ -1185,7 +1183,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     if (mMapObject == null)
     {
       // TODO: This method is constantly called even when nothing is selected on the map.
-      //LOGGER.e(TAG, "A location cannot be refreshed, mMapObject is null!");
+      //Logger.e(TAG, "A location cannot be refreshed, mMapObject is null!");
       return;
     }
 
@@ -1294,17 +1292,22 @@ public class PlacePageView extends NestedScrollViewClickFixed
       }
     } else if (id == R.id.ll__place_editor) {
       if (mMapObject == null) {
-        LOGGER.e(TAG, "Cannot start editor, map object is null!");
+        Logger.e(TAG, "Cannot start editor, map object is null!");
+        return;
       }
-//        getActivity().showEditor();
-    } else if (id == R.id.ll__add_organisation) {//        addOrganisation();
-    } else if (id == R.id.ll__place_add) {//        addPlace();
-    } else if (id == R.id.ll__place_latlon) {
+      getActivity().showEditor();
+    }
+//    else if (id == R.id.ll__add_organisation) {
+//      addOrganisation();
+//    } else if (id == R.id.ll__place_add) {
+//      addPlace();
+//    }
+    else if (id == R.id.ll__place_latlon) {
       final int formatIndex = visibleCoordsFormat.indexOf(mCoordsFormat);
       mCoordsFormat = visibleCoordsFormat.get((formatIndex + 1) % visibleCoordsFormat.size());
       MwmApplication.prefs(getContext()).edit().putInt(PREF_COORDINATES_FORMAT, mCoordsFormat.getId()).apply();
       if (mMapObject == null) {
-        LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
+        Logger.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
         return;
       }
       refreshLatLon(mMapObject);
@@ -1330,7 +1333,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
         Utils.openUrl(getContext(), "https://line.me/R/ti/p/@" + linePage);
     } else if (id == R.id.ll__place_wiki) {// TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
       if (mMapObject == null) {
-        LOGGER.e(TAG, "Cannot follow url, mMapObject is null!");
+        Logger.e(TAG, "Cannot follow url, mMapObject is null!");
         return;
       }
       Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
@@ -1360,12 +1363,10 @@ public class PlacePageView extends NestedScrollViewClickFixed
   @Override
   public boolean onLongClick(View v)
   {
-    final Object tag = v.getTag();
-
     final List<String> items = new ArrayList<>();
 //    switch (v.getId())
 //    {
-//      case R.id.tv__title:
+//     case R.id.tv__title:
 //        items.add(mTvTitle.getText().toString());
 //        break;
 //      case R.id.tv__secondary_title:
@@ -1383,7 +1384,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
 //      case R.id.ll__place_latlon:
 //        if (mMapObject == null)
 //        {
-//          LOGGER.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
+//          Logger.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
 //          break;
 //        }
 //        final double lat = mMapObject.getLat();
@@ -1443,6 +1444,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
 //        items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
 //        break;
 //    }
+//        break;
 
     final Context ctx = getContext();
     if (items.size() == 1)
@@ -1588,7 +1590,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     {
       if (mMapObject == null)
       {
-        LOGGER.e(TAG, "A bookmark cannot be edited, mMapObject is null!");
+        Logger.e(TAG, "A bookmark cannot be edited, mMapObject is null!");
         return;
       }
       Bookmark bookmark = (Bookmark) mMapObject;

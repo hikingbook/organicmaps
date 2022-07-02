@@ -11,15 +11,13 @@ import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-
 //import com.mapswithme.util.CrashlyticsUtils;
 import com.mapswithme.util.OrganicmapsFrameworkAdapter;
 import com.mapswithme.util.log.Logger;
-import com.mapswithme.util.log.LoggerFactory;
 
 public abstract class MwmBroadcastReceiver extends BroadcastReceiver
 {
-  private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
+  private static final String TAG = MwmBroadcastReceiver.class.getSimpleName();
 
   @NonNull
   protected String getTag()
@@ -34,12 +32,12 @@ public abstract class MwmBroadcastReceiver extends BroadcastReceiver
   {
 //    MwmApplication app = MwmApplication.from(context);
     String msg = "onReceive: " + intent;
-    LOGGER.i(getTag(), msg);
+    Logger.i(TAG, msg);
 //    CrashlyticsUtils.INSTANCE.log(Log.INFO, getTag(), msg);
 //    if (!app.arePlatformAndCoreInitialized())
     if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
-      LOGGER.w(getTag(), "Application is not initialized, ignoring " + intent);
+      Logger.w(TAG, "Application is not initialized, ignoring " + intent);
       return;
     }
 

@@ -503,6 +503,10 @@
 
 "history" = "Riwayat";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Tutup";
 
 "search_not_found" = "Maaf, saya tidak menemukan apa pun.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Penyewaan Sepeda";
 
+"type.amenity.bicycle_repair_station" = "Bicycle Repair Station";
+
 "type.amenity.biergarten" = "Biergarten";
 
 "type.amenity.brothel" = "Hiburan";
@@ -1569,17 +1575,30 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Kuburan";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Toko minuman";
 
 "type.craft.carpenter" = "Tukang kayu";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Tukang listrik";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Tukang kebun";
 
-"type.craft.hvac" = "Hvac";
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
+"type.craft.hvac" = "HVAC";
 
 "type.craft.metal_construction" = "Tukang besi";
 
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Tukang pipa";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Tukang sepatu";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Tukang jahit";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Geiser";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Danau";
+
+"type.natural.water.lock" = "Ruang Kunci";
 
 "type.natural.water.pond" = "Kolam";
 
@@ -2825,47 +2854,46 @@
 
 "type.shop.wine" = "Toko anggur";
 
-"type.sport" = "sport";
+"type.sport" = "Olahraga";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "Sepak Bola Amerika";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "Panahan";
 
 "type.sport.athletics" = "Atletik";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Sepak bola Australia";
 
 "type.sport.baseball" = "Baseball";
 
 "type.sport.basketball" = "Bola basket";
 
-"type.sport.bowls" = "Bowls";
+"type.sport.bowls" = "Boling lapangan";
 
-"type.sport.cricket" = "Cricket";
+"type.sport.cricket" = "Kriket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Curling";
 
 "type.sport.equestrian" = "Olahraga Berkuda";
 
 "type.sport.golf" = "Golf";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Olahraga senam";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "Bola tangan";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Berbagai Olahraga";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Selam scuba";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Penembakan";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Bermain ski";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Sepak bola";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Berenang";
 
 "type.sport.tennis" = "Lapangan tenis";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Papan informasi";
 
-"type.tourism.information.guidepost" = "Informasi turis";
+"type.tourism.information.guidepost" = "Tongkat petunjuk jalan";
 
 "type.tourism.information.map" = "Peta wisata";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Gerbang pengunci";
 

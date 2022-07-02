@@ -10,7 +10,7 @@
 
 #import <CoreApi/CoreApi-swift.h>
 
-//#import "DeepLinkRouteStrategyAdapter.h"
+#import "DeepLinkRouteStrategyAdapter.h"
 #import "EAGLView.h"
 #import "FirstSession.h"
 #import "MWMActionBarButton.h"
