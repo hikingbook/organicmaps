@@ -503,6 +503,10 @@
 
 "history" = "내역";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "닫음";
 
 "search_not_found" = "죄송합니다. 아무것도 찾지 못했습니다.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "자전거 대여";
 
+"type.amenity.bicycle_repair_station" = "자전거 수리소";
+
 "type.amenity.biergarten" = "비어가르텐";
 
 "type.amenity.brothel" = "사창가";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "무덤";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "양조장";
 
 "type.craft.carpenter" = "목수";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "전기기술자";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "조경사";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "냉난방기";
 
 "type.craft.metal_construction" = "금속공";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "배관공";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "구두수선";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "양복점";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "간헐천";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "호수";
+
+"type.natural.water.lock" = "잠금 챔버";
 
 "type.natural.water.pond" = "연못이";
 
@@ -2825,47 +2854,46 @@
 
 "type.shop.wine" = "와인 샵";
 
-"type.sport" = "sport";
+"type.sport" = "스포츠";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "미식 축구";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "양궁";
 
 "type.sport.athletics" = "육상 경기장";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "오스트레일리안 풋볼";
 
-"type.sport.baseball" = "Baseball";
+"type.sport.baseball" = "야구";
 
 "type.sport.basketball" = "야구";
 
-"type.sport.bowls" = "Bowls";
+"type.sport.bowls" = "론볼";
 
-"type.sport.cricket" = "Cricket";
+"type.sport.cricket" = "크리켓";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "컬링";
 
 "type.sport.equestrian" = "승마 경기장";
 
-"type.sport.golf" = "Golf";
+"type.sport.golf" = "골프";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "체조";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "핸드볼";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "다양한 스포츠";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "스쿠버 다이빙";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "사격 경기";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "스키 타기";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "축구";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "수영";
 
 "type.sport.tennis" = "테니스 코트";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "정보 게시판";
 
-"type.tourism.information.guidepost" = "관광 정보";
+"type.tourism.information.guidepost" = "도표";
 
 "type.tourism.information.map" = "관광안내도";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "수문";
 

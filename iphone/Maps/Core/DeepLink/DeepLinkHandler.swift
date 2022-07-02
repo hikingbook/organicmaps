@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 @objc @objcMembers class DeepLinkHandler: NSObject {
   static let shared = DeepLinkHandler()
 
@@ -102,11 +103,11 @@
                   sd.onViewportChanged(kSearchInViewportZoom)
                 }
               }
-              if (sd.isSearchOnMap) {
-                MWMMapViewControlsManager.manager()?.searchText(onMap: sd.query, forInputLocale: sd.locale)
-              } else {
-                MWMMapViewControlsManager.manager()?.searchText(sd.query, forInputLocale: sd.locale)
-              }
+//              if (sd.isSearchOnMap) {
+//                MWMMapViewControlsManager.manager()?.searchText(onMap: sd.query, forInputLocale: sd.locale)
+//              } else {
+//                MWMMapViewControlsManager.manager()?.searchText(sd.query, forInputLocale: sd.locale)
+//              }
               return true
             }
 

@@ -503,6 +503,10 @@
 
 "history" = "История";
 
+"opens_in" = "Открывается через %@";
+
+"closes_in" = "Закроется через %@";
+
 "closed" = "Закрыто";
 
 "search_not_found" = "К сожалению, мы ничего не нашли.";
@@ -810,7 +814,7 @@
 "recent_track_background_dialog_message" = "Organic Maps использует вашу геопозицию в фоновом режиме для записи недавно пройденного пути.";
 
 /* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps — быстрые и бесплатные карты, которые работают без Интернета. Все картографические данные берутся из OpenStreetMap.org, там можно самостоятельно исправлять ошибки и добавлять новые объекты. В Organic Maps нет рекламы и сбора пресональных данных. Это проект с открытым исходным кодом, создаваемый энтузиастами в свободное время. Будем рады вашей поддержке и обратной связи!";
+"about_description" = "Organic Maps — быстрые и бесплатные карты, которые работают без Интернета. Все картографические данные берутся из OpenStreetMap.org, там можно самостоятельно исправлять ошибки и добавлять новые объекты. В Organic Maps нет рекламы и сбора персональных данных. Это проект с открытым исходным кодом, создаваемый энтузиастами в свободное время. Будем рады вашей поддержке и обратной связи!";
 
 "general_settings" = "Общие настройки";
 
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Велопрокат";
 
+"type.amenity.bicycle_repair_station" = "Станция ремонта велосипедов";
+
 "type.amenity.biergarten" = "Пивная под открытым небом";
 
 "type.amenity.brothel" = "Бордель";
@@ -1569,17 +1575,30 @@
 
 "type.building.warehouse" = "Склад";
 
+"type.cemetery.grave" = "Могила";
+
 "type.craft" = "Мастерская";
 
-"type.craft.brewery" = "Крафтовое пиво";
+"type.craft.beekeeper" = "Пчеловод";
+
+"type.craft.blacksmith" = "Кузница";
+
+"type.craft.brewery" = "Крафтовая пивоварня";
 
 "type.craft.carpenter" = "Столяр";
 
+"type.craft.confectionery" = "Кондитер";
+
 "type.craft.electrician" = "Электрик";
+
+"type.craft.electronics_repair" = "Ремонт электроники";
 
 "type.craft.gardener" = "Садовник";
 
-"type.craft.hvac" = "Кондиционеры";
+"type.craft.handicraft" = "Ремесленная мастерская";
+
+/* Heating, Ventilation, and Air Conditioning */
+"type.craft.hvac" = "Отопление, вентиляция и кондиционирование";
 
 "type.craft.metal_construction" = "Металлоконструкции";
 
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Сантехник";
 
+"type.craft.sawmill" = "Лесопилка";
+
 "type.craft.shoemaker" = "Ремонт обуви";
+
+"type.craft.winery" = "Винодельня";
 
 "type.craft.tailor" = "Ателье";
 
@@ -2361,7 +2384,11 @@
 
 "type.natural.cave_entrance" = "Пещера";
 
-"type.natural.cliff" = "Обрыв";
+"type.natural.cliff" = "Утёс";
+
+"type.natural.earth_bank" = "Обрыв";
+
+"type.man_made.embankment" = "Насыпь";
 
 "type.natural.coastline" = "Береговая линия";
 
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Горячий источник";
 
 "type.natural.water.lake" = "Озеро";
+
+"type.natural.water.lock" = "Шлюзовая камера";
 
 "type.natural.water.pond" = "Пруд";
 
@@ -2833,19 +2862,17 @@
 
 "type.sport.athletics" = "Лёгкая атлетика";
 
-"type.sport.australian_football" = "Регби";
+"type.sport.australian_football" = "Австралийский футбол";
 
 "type.sport.baseball" = "Бейсбол";
 
 "type.sport.basketball" = "Баскетбол";
 
-"type.sport.bowls" = "Кегли";
+"type.sport.bowls" = "Боулз";
 
 "type.sport.cricket" = "Крикет";
 
-"type.sport.curling" = "Керлинг";
-
-"type.sport.diving" = "Подводное плавание";
+"type.sport.curling" = "Кёрлинг";
 
 "type.sport.equestrian" = "Конный спорт";
 
@@ -2857,7 +2884,8 @@
 
 "type.sport.multi" = "Различные виды спорта";
 
-"type.sport.scuba_diving" = "Акваланг";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Место для дайвинга";
 
 "type.sport.shooting" = "Стрельба";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Информационный щит";
 
-"type.tourism.information.guidepost" = "Туринформация";
+"type.tourism.information.guidepost" = "Указательный столб";
 
 "type.tourism.information.map" = "Карта";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Водоотвод";
 
 "type.waterway.drain.tunnel" = "Водоотвод";
-
-"type.waterway.lock" = "Шлюз";
 
 "type.waterway.lock_gate" = "Шлюз";
 

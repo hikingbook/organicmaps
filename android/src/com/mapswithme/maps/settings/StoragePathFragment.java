@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import com.mapswithme.maps.BuildConfig;
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.base.OnBackPressListener;
 import com.mapswithme.maps.dialog.DialogUtils;
+import com.mapswithme.util.Config;
 import com.mapswithme.util.StorageUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.concurrency.ThreadPool;
@@ -28,7 +28,6 @@ public class StoragePathFragment extends BaseSettingsFragment
     implements OnBackPressListener
 {
   private TextView mHeader;
-  private ListView mList;
 
   private StoragePathAdapter mAdapter;
   private StoragePathManager mPathManager;
@@ -47,9 +46,9 @@ public class StoragePathFragment extends BaseSettingsFragment
     mAdapter = new StoragePathAdapter(mPathManager, requireActivity());
 
     mHeader = root.findViewById(R.id.header);
-    mList = root.findViewById(R.id.list);
-    mList.setOnItemClickListener((parent, view, position, id) -> changeStorage(position));
-    mList.setAdapter(mAdapter);
+    final ListView list = root.findViewById(R.id.list);
+    list.setOnItemClickListener((parent, view, position, id) -> changeStorage(position));
+    list.setAdapter(mAdapter);
 
     return root;
   }
@@ -70,23 +69,10 @@ public class StoragePathFragment extends BaseSettingsFragment
     super.onPause();
   }
 
-  static long getWritableDirSize()
-  {
-    final File writableDir = new File(Framework.nativeGetWritableDir());
-    if (BuildConfig.DEBUG)
-    {
-      if (!writableDir.exists())
-        throw new IllegalStateException("Writable directory doesn't exits, can't get size.");
-      if (!writableDir.isDirectory())
-        throw new IllegalStateException("Writable directory isn't a directory, can't get size.");
-    }
-
-    return StorageUtils.getDirSizeRecursively(writableDir, StoragePathManager.MOVABLE_FILES_FILTER);
-  }
-
   private void updateList()
   {
-    long dirSize = getWritableDirSize();
+    final long dirSize = StorageUtils.getDirSizeRecursively(new File(Framework.nativeGetWritableDir()),
+                                                            StoragePathManager.MOVABLE_FILES_FILTER);
     mHeader.setText(getString(R.string.maps_storage_downloaded) + ": " + Formatter.formatShortFileSize(getActivity(), dirSize));
     mAdapter.update(dirSize);
   }
@@ -125,7 +111,7 @@ public class StoragePathFragment extends BaseSettingsFragment
     dialog.show();
 
     ThreadPool.getStorage().execute(() -> {
-      final boolean result = mPathManager.moveStorage(newPath, oldPath);
+      final boolean result = StoragePathManager.moveStorage(newPath, oldPath);
 
       UiThread.run(() -> {
         if (dialog.isShowing())
@@ -139,6 +125,8 @@ public class StoragePathFragment extends BaseSettingsFragment
                                  (dlg, which) -> Utils.sendBugReport(requireActivity(), "Error moving map files"))
               .show();
         }
+        Framework.nativeChangeWritableDir(newPath);
+        Config.setStoragePath(newPath);
         mPathManager.scanAvailableStorages();
         updateList();
       });

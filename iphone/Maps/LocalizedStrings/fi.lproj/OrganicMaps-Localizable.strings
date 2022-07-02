@@ -503,6 +503,10 @@
 
 "history" = "Historia";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Suljettu";
 
 "search_not_found" = "Pahoittelut, hakutuloksia ei ole.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Polkupyöränvuokraus";
 
+"type.amenity.bicycle_repair_station" = "Polkupyörän korjausasema";
+
 "type.amenity.biergarten" = "Biergarten";
 
 "type.amenity.brothel" = "Bordelli";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Hauta";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Panimo";
 
 "type.craft.carpenter" = "Puuseppä";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Sähkömies";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Puutarhuri";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Ilmastointilaite";
 
 "type.craft.metal_construction" = "Metallimies";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Putkimies";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Suutari";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Räätäli";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Geysir";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Järvi";
+
+"type.natural.water.lock" = "Lukko kammio";
 
 "type.natural.water.pond" = "Lampi";
 
@@ -2833,19 +2862,17 @@
 
 "type.sport.athletics" = "Yleisurheilu";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Australialainen jalkapallo";
 
 "type.sport.baseball" = "Baseball";
 
 "type.sport.basketball" = "Koripallo";
 
-"type.sport.bowls" = "Bowls";
+"type.sport.bowls" = "Nurmikeilailu";
 
 "type.sport.cricket" = "Kriketti";
 
 "type.sport.curling" = "Curling";
-
-"type.sport.diving" = "Diving";
 
 "type.sport.equestrian" = "Hevosurheilu";
 
@@ -2855,9 +2882,10 @@
 
 "type.sport.handball" = "Käsipallo";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Erilaisia urheilulajeja";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Sukellus";
 
 "type.sport.shooting" = "Ammunta";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Informaatio";
 
-"type.tourism.information.guidepost" = "Turisti-informaatio";
+"type.tourism.information.guidepost" = "Tienviitta";
 
 "type.tourism.information.map" = "Turistikartta";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Kanavasulku";
 

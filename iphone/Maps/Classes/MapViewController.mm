@@ -159,23 +159,26 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)onMapObjectDeselected:(bool)switchFullScreenMode {
   [self hidePlacePage];
 
-//  BOOL const isSearchResult = [MWMSearchManager manager].state == MWMSearchManagerStateResult;
+//  MWMSearchManager * searchManager = MWMSearchManager.manager;
+//  BOOL const isSearchResult = searchManager.state == MWMSearchManagerStateResult;
 //  BOOL const isNavigationDashboardHidden = [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
 //  if (isSearchResult) {
 //    if (isNavigationDashboardHidden) {
-//      [MWMSearchManager manager].state = MWMSearchManagerStateMapSearch;
+//      searchManager.state = MWMSearchManagerStateMapSearch;
 //    } else {
-//      [MWMSearchManager manager].state = MWMSearchManagerStateHidden;
+//      searchManager.state = MWMSearchManagerStateHidden;
 //    }
 //  }
 //
 //  if (!switchFullScreenMode)
 //    return;
 //
+//  // TODO(AB): Switch to full screen mode directly from the tap, in one place, instead of
+//  // every call to onMapObjectDeselected.
 //  if (DeepLinkHandler.shared.isLaunchedByDeeplink)
 //    return;
 //
-//  BOOL const isSearchHidden = [MWMSearchManager manager].state == MWMSearchManagerStateHidden;
+//  BOOL const isSearchHidden = searchManager.state == MWMSearchManagerStateHidden;
 //  if (isSearchHidden && isNavigationDashboardHidden) {
 //    self.controlsManager.hidden = !self.controlsManager.hidden;
 //  }
@@ -319,8 +322,6 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if (self.needDeferFocusNotification)
     [self onGetFocus:self.deferredFocusValue];
 
-//  BOOL const isLaunchedByDeeplink = DeepLinkHandler.shared.isLaunchedByDeeplink;
-//  [self.mapView setLaunchByDeepLink:isLaunchedByDeeplink];
 //  [MWMRouter restoreRouteIfNeeded];
 
   self.view.clipsToBounds = YES;
@@ -340,12 +341,10 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   }
 
 
-//  if (isLaunchedByDeeplink)
-//    (void)[DeepLinkHandler.shared handleDeepLink];
-//  else
+  /// @todo: Uncomment update dialog when will be ready to handle big traffic bursts.
+  /*
+//  if (!DeepLinkHandler.shared.isLaunchedByDeeplink)
 //  {
-//    /// @todo: Uncomment update dialog when will be ready to handle big traffic bursts.
-//    /*
 //    auto const todo = GetFramework().ToDoAfterUpdate();
 //    switch (todo) {
 //      case Framework::DoAfterUpdate::Migrate:
@@ -356,8 +355,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //        [self presentViewController:[MWMAutoupdateController instanceWithPurpose:todo] animated:YES completion:nil];
 //        break;
 //    }
-//    */
 //  }
+  */
 }
 
 - (void)viewDidLayoutSubviews {

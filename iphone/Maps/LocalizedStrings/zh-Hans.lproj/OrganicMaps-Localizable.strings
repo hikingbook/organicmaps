@@ -503,6 +503,10 @@
 
 "history" = "历史";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "已关闭";
 
 "search_not_found" = "抱歉，没有找到任何东西。";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "自行车出租点";
 
+"type.amenity.bicycle_repair_station" = "自行车维修站";
+
 "type.amenity.biergarten" = "啤酒花园";
 
 "type.amenity.brothel" = "妓院";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "仓库";
 
+"type.cemetery.grave" = "墓穴";
+
 "type.craft" = "工艺作坊";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "酿酒厂";
 
 "type.craft.carpenter" = "木匠";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "电工";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "园艺工";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "暖通工程师";
 
 "type.craft.metal_construction" = "金属制造工";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "管道工";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "鞋匠";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "裁缝";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "峭壁";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "海岸线";
 
 "type.natural.geyser" = "间歇泉";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "温泉";
 
 "type.natural.water.lake" = "湖";
+
+"type.natural.water.lock" = "锁室";
 
 "type.natural.water.pond" = "池塘";
 
@@ -2825,27 +2854,25 @@
 
 "type.shop.wine" = "酒品商店";
 
-"type.sport" = "sport";
+"type.sport" = "体育运动";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "美式足球";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "射箭";
 
-"type.sport.athletics" = "田径";
+"type.sport.athletics" = "竞技";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "澳式足球";
 
 "type.sport.baseball" = "棒球";
 
 "type.sport.basketball" = "篮球";
 
-"type.sport.bowls" = "保龄球";
+"type.sport.bowls" = "草地滾球";
 
 "type.sport.cricket" = "板球";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "跳水";
+"type.sport.curling" = "冰壶";
 
 "type.sport.equestrian" = "马术运动";
 
@@ -2855,13 +2882,14 @@
 
 "type.sport.handball" = "手球";
 
-"type.sport.multi" = "多元";
+"type.sport.multi" = "各种运动";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "水肺潜水";
 
 "type.sport.shooting" = "射击";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "滑雪";
 
 "type.sport.soccer" = "足球";
 
@@ -2907,9 +2935,9 @@
 
 "type.tourism.information" = "旅游问询处";
 
-"type.tourism.information.board" = "公告板";
+"type.tourism.information.board" = "标示";
 
-"type.tourism.information.guidepost" = "旅游信息";
+"type.tourism.information.guidepost" = "指路牌";
 
 "type.tourism.information.map" = "旅游地图";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "渠";
 
 "type.waterway.drain.tunnel" = "渠";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "闸门";
 

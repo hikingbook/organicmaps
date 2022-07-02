@@ -121,7 +121,7 @@ UNIT_TEST(SmallMap_Benchmark1)
 
   // 3. Run unordered_map.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
       sum1 += (uMap.find(i) != uMap.end() ? 1 : 0);
     t1 = timer.ElapsedMilliseconds();
@@ -129,7 +129,7 @@ UNIT_TEST(SmallMap_Benchmark1)
 
   // 4. Run SmallMap.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
       sum2 += (sMap.Find(i) ? 1 : 0);
     t2 = timer.ElapsedMilliseconds();
@@ -137,15 +137,17 @@ UNIT_TEST(SmallMap_Benchmark1)
 
   TEST_EQUAL(sum1, sum2, ());
   // At this moment, we have rare t2 > t1 on Linux CI.
-  TEST(BenchmarkTimeLessOrNear(t2, t1, 0.1), (t2, t1));
+  TEST(BenchmarkTimeLessOrNear(t2, t1, 0.3), (t2, t1));
   LOG(LINFO, ("unordered_map time =", t1, "SmallMap time =", t2));
 }
 
 UNIT_TEST(SmallMap_Benchmark2)
 {
+  using namespace std;
+
   uint32_t i = 0;
   // Dataset is similar to routing::VehicleModelFactory.
-  std::unordered_map<std::string, std::shared_ptr<int>> uMap = {
+  unordered_map<string, shared_ptr<int>> uMap = {
     {"", make_shared<int>(i++)},
     {"Australia", make_shared<int>(i++)},
     {"Austria", make_shared<int>(i++)},
@@ -191,7 +193,7 @@ UNIT_TEST(SmallMap_Benchmark2)
 
   // 3. Run unordered_map.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
     {
       auto const it = uMap.find(keys[i]);
@@ -203,7 +205,7 @@ UNIT_TEST(SmallMap_Benchmark2)
 
   // 4. Run SmallMap.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
     {
       auto const * p = sMap.Find(keys[i]);
@@ -240,7 +242,7 @@ UNIT_TEST(SmallMap_Benchmark3)
 
   // 3. Run unordered_map.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
       sum1 += uMap.find(keys[i])->second;
     t1 = timer.ElapsedMilliseconds();
@@ -248,7 +250,7 @@ UNIT_TEST(SmallMap_Benchmark3)
 
   // 4. Run SmallMap.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
       sum2 += *sMap.Find(keys[i]);
     t2 = timer.ElapsedMilliseconds();
@@ -256,7 +258,7 @@ UNIT_TEST(SmallMap_Benchmark3)
 
   // 5. Run SmallMapBase.
   {
-    base::Timer timer;
+    base::HighResTimer timer;
     for (auto i : indices)
       sum3 += *sbMap.Find(keys[i]);
     t3 = timer.ElapsedMilliseconds();

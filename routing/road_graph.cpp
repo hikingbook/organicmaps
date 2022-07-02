@@ -286,15 +286,6 @@ void IRoadGraph::AddIngoingFakeEdge(Edge const & e)
   AddEdge(e.GetEndJunction(), e, m_fakeIngoingEdges);
 }
 
-double IRoadGraph::GetSpeedKMpH(Edge const & edge, SpeedParams const & speedParams) const
-{
-  double const speedKMpH =
-      (edge.IsFake() ? GetMaxSpeedKMpH()
-                     : GetSpeedKMpH(edge.GetFeatureId(), speedParams));
-  ASSERT_LESS_OR_EQUAL(speedKMpH, GetMaxSpeedKMpH(), ());
-  return speedKMpH;
-}
-
 void IRoadGraph::GetEdgeTypes(Edge const & edge, feature::TypesHolder & types) const
 {
   if (edge.IsFake())
@@ -322,14 +313,11 @@ IRoadGraph::RoadInfo MakeRoadInfoForTesting(bool bidirectional, double speedKMPH
 
   return ri;
 }
+
 // RoadGraphBase ------------------------------------------------------------------
 void RoadGraphBase::GetRouteEdges(EdgeVector & routeEdges) const
 {
   NOTIMPLEMENTED()
 }
 
-void RoadGraphBase::GetRouteSegments(std::vector<Segment> &) const
-{
-  NOTIMPLEMENTED()
-}
 }  // namespace routing

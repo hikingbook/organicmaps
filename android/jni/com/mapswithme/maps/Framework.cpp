@@ -1036,6 +1036,12 @@ Java_com_mapswithme_maps_Framework_nativeGetSettingsDir(JNIEnv * env, jclass)
   return jni::ToJavaString(env, GetPlatform().SettingsDir().c_str());
 }
 
+JNIEXPORT jstring JNICALL
+Java_com_mapswithme_maps_Framework_nativeGetDataFileExt(JNIEnv * env, jclass)
+{
+  return jni::ToJavaString(env, DATA_FILE_EXTENSION);
+}
+
 JNIEXPORT jobjectArray JNICALL
 Java_com_mapswithme_maps_Framework_nativeGetMovableFilesExts(JNIEnv * env, jclass)
 {
@@ -1052,7 +1058,7 @@ Java_com_mapswithme_maps_Framework_nativeGetBookmarksFilesExts(JNIEnv * env, jcl
 }
 
 JNIEXPORT void JNICALL
-Java_com_mapswithme_maps_Framework_nativeSetWritableDir(JNIEnv * env, jclass, jstring jNewPath)
+Java_com_mapswithme_maps_Framework_nativeChangeWritableDir(JNIEnv * env, jclass, jstring jNewPath)
 {
   string newPath = jni::ToNativeString(env, jNewPath);
   g_framework->RemoveLocalMaps();

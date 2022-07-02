@@ -503,6 +503,10 @@
 
 "history" = "Ιστορικό";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Κλειστό";
 
 "search_not_found" = "Ωχ, δεν βρέθηκαν αποτελέσματα.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Ενοικιάσεις ποδηλάτων";
 
+"type.amenity.bicycle_repair_station" = "Bicycle Repair Station";
+
 "type.amenity.biergarten" = "Μπυραρία";
 
 "type.amenity.brothel" = "Πορνείο";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Τάφος";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Ζυθοποιείο";
 
 "type.craft.carpenter" = "Ξυλουργός";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Ηλεκτρολόγος";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Κηπουρός";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Ψυκτικός";
 
 "type.craft.metal_construction" = "Μεταλλουργός";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Υδραυλικός";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Υποδηματοποιός";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Ράφτης";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Cliff";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Coastline";
 
 "type.natural.geyser" = "Θερμοπίδακας";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Hot Spring";
 
 "type.natural.water.lake" = "Λίμνη";
+
+"type.natural.water.lock" = "Θάλαμος κλειδαριάς";
 
 "type.natural.water.pond" = "Δεξαμενή";
 
@@ -2825,17 +2854,17 @@
 
 "type.shop.wine" = "Οινοπωλείο";
 
-"type.sport" = "sport";
+"type.sport" = "Αθλητισμός";
 
-"type.sport.american_football" = "American Football";
+"type.sport.american_football" = "αμερικάνικο ποδόσφαιρο";
 
-"type.sport.archery" = "Archery";
+"type.sport.archery" = "Τοξοβολία";
 
 "type.sport.athletics" = "Στίβος";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Αυστραλιανό ποδόσφαιρο";
 
-"type.sport.baseball" = "Baseball";
+"type.sport.baseball" = "Μπέιζμπολ";
 
 "type.sport.basketball" = "Μπάσκετ";
 
@@ -2843,29 +2872,28 @@
 
 "type.sport.cricket" = "Cricket";
 
-"type.sport.curling" = "Сurling";
-
-"type.sport.diving" = "Diving";
+"type.sport.curling" = "Κέρλινγκ";
 
 "type.sport.equestrian" = "Ιππασία";
 
-"type.sport.golf" = "Golf";
+"type.sport.golf" = "Γκολφ";
 
-"type.sport.gymnastics" = "Gymnastics";
+"type.sport.gymnastics" = "Γυμναστική";
 
-"type.sport.handball" = "Handball";
+"type.sport.handball" = "Τόπι";
 
-"type.sport.multi" = "Various Sport";
+"type.sport.multi" = "Διάφορα αθλήματα";
 
-"type.sport.scuba_diving" = "Scuba Diving";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Κατάδυση";
 
-"type.sport.shooting" = "Shooting";
+"type.sport.shooting" = "Κυνήγι";
 
-"type.sport.skiing" = "Skiing";
+"type.sport.skiing" = "Χιονοδρόμια";
 
-"type.sport.soccer" = "Soccer (Football)";
+"type.sport.soccer" = "Ποδόσφαιρο";
 
-"type.sport.swimming" = "Swimming";
+"type.sport.swimming" = "Κολύμβηση";
 
 "type.sport.tennis" = "Γήπεδο τένις";
 
@@ -2909,7 +2937,7 @@
 
 "type.tourism.information.board" = "Πίνακας πληροφοριών";
 
-"type.tourism.information.guidepost" = "Τουριστικές πληροφορίες";
+"type.tourism.information.guidepost" = "Οδηγός";
 
 "type.tourism.information.map" = "Τουριστικός χάρτης";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
-
-"type.waterway.lock" = "Waterway Lock";
 
 "type.waterway.lock_gate" = "Φράγμα";
 

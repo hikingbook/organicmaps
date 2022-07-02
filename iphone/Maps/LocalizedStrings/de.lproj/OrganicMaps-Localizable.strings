@@ -503,6 +503,10 @@
 
 "history" = "Verlauf";
 
+"opens_in" = "Opens in %@";
+
+"closes_in" = "Closes in %@";
+
 "closed" = "Geschlossen";
 
 "search_not_found" = "Leider wurde nichts gefunden.";
@@ -1252,6 +1256,8 @@
 
 "type.amenity.bicycle_rental" = "Fahrradverleih";
 
+"type.amenity.bicycle_repair_station" = "Fahrrad-Reparaturstation";
+
 "type.amenity.biergarten" = "Biergarten";
 
 "type.amenity.brothel" = "Bordell";
@@ -1569,16 +1575,29 @@
 
 "type.building.warehouse" = "Warehouse";
 
+"type.cemetery.grave" = "Grab";
+
 "type.craft" = "Craft";
+
+"type.craft.beekeeper" = "Beekeeper";
+
+"type.craft.blacksmith" = "Blacksmith";
 
 "type.craft.brewery" = "Brauerei";
 
 "type.craft.carpenter" = "Zimmermann";
 
+"type.craft.confectionery" = "Confectionery";
+
 "type.craft.electrician" = "Elektriker";
+
+"type.craft.electronics_repair" = "Electronics Repair";
 
 "type.craft.gardener" = "Landschaftsgärtner";
 
+"type.craft.handicraft" = "Handicraft";
+
+/* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Heizung";
 
 "type.craft.metal_construction" = "Schlosser";
@@ -1589,7 +1608,11 @@
 
 "type.craft.plumber" = "Installateur";
 
+"type.craft.sawmill" = "Sawmill";
+
 "type.craft.shoemaker" = "Schuhmacher";
+
+"type.craft.winery" = "Winery";
 
 "type.craft.tailor" = "Schneider";
 
@@ -2363,6 +2386,10 @@
 
 "type.natural.cliff" = "Klippe";
 
+"type.natural.earth_bank" = "Earth Bank";
+
+"type.man_made.embankment" = "Embankment";
+
 "type.natural.coastline" = "Küstenlinie";
 
 "type.natural.geyser" = "Geysir";
@@ -2376,6 +2403,8 @@
 "type.natural.hot_spring" = "Thermalquelle";
 
 "type.natural.water.lake" = "See";
+
+"type.natural.water.lock" = "Schleusenkammer";
 
 "type.natural.water.pond" = "Teich";
 
@@ -2833,7 +2862,7 @@
 
 "type.sport.athletics" = "Leichtathletik";
 
-"type.sport.australian_football" = "Rugby";
+"type.sport.australian_football" = "Australian Football";
 
 "type.sport.baseball" = "Baseball";
 
@@ -2845,9 +2874,7 @@
 
 "type.sport.curling" = "Curling";
 
-"type.sport.diving" = "Tauchen";
-
-"type.sport.equestrian" = "Reiten";
+"type.sport.equestrian" = "Reitsport";
 
 "type.sport.golf" = "Golf";
 
@@ -2855,13 +2882,14 @@
 
 "type.sport.handball" = "Handball";
 
-"type.sport.multi" = "verschiedene Sportarten";
+"type.sport.multi" = "Verschiedene Sportarten";
 
-"type.sport.scuba_diving" = "Sporttauchen";
+/* Used to tag a scuba diving site. */
+"type.sport.scuba_diving" = "Gerätetauchen";
 
-"type.sport.shooting" = "Sportschießen";
+"type.sport.shooting" = "Schießen";
 
-"type.sport.skiing" = "Skisport";
+"type.sport.skiing" = "Skifahren";
 
 "type.sport.soccer" = "Fußball";
 
@@ -2871,7 +2899,7 @@
 
 "type.tourism" = "Tourismus";
 
-"type.tourism.alpine_hut" = "Berghütte";
+"type.tourism.alpine_hut" = "bewirtschaftete Schutzhütte";
 
 "type.tourism.apartment" = "Ferienwohnung";
 
@@ -2927,7 +2955,7 @@
 
 "type.tourism.viewpoint" = "Aussichtspunkt";
 
-"type.tourism.wilderness_hut" = "Wildnishütte";
+"type.tourism.wilderness_hut" = "unbewirtschaftete Schutzhütte";
 
 "type.tourism.zoo" = "Zoo";
 
@@ -2954,8 +2982,6 @@
 "type.waterway.drain" = "Abfluss";
 
 "type.waterway.drain.tunnel" = "Abfluss";
-
-"type.waterway.lock" = "Schleuse";
 
 "type.waterway.lock_gate" = "Schleusentor";
 
