@@ -59,6 +59,8 @@
 #include <utility>
 #include <vector>
 
+#include <android/api-level.h>
+
 using namespace std;
 using namespace std::placeholders;
 
@@ -174,7 +176,8 @@ bool Framework::CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi
   // Vulkan is supported only since Android 8.0, because some Android devices with Android 7.x
   // have fatal driver issue, which can lead to process termination and whole OS destabilization.
   int constexpr kMinSdkVersionForVulkan = 26;
-  int const sdkVersion = GetAndroidSdkVersion();
+  int const sdkVersion = android_get_device_api_level();
+  LOG(LINFO, ("Android SDK version in the Drape Engine:", sdkVersion));
   auto const vulkanForbidden = sdkVersion < kMinSdkVersionForVulkan ||
                                dp::SupportManager::Instance().IsVulkanForbidden();
   if (vulkanForbidden)
@@ -825,6 +828,12 @@ Java_com_mapswithme_maps_Framework_nativeGetParsedSearchRequest(JNIEnv * env, jc
   static jmethodID const ctor = jni::GetConstructorID(env, cl, "(Ljava/lang/String;Ljava/lang/String;DDZ)V");
   auto const & r = frm()->GetParsedSearchRequest();
   return env->NewObject(cl, ctor, jni::ToJavaString(env, r.m_query), jni::ToJavaString(env, r.m_locale), r.m_centerLat, r.m_centerLon, r.m_isSearchOnMap);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_mapswithme_maps_Framework_nativeGetParsedAppName(JNIEnv * env, jclass)
+{
+  return jni::ToJavaString(env, frm()->GetParsedAppName());
 }
 
 JNIEXPORT void JNICALL

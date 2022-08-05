@@ -750,6 +750,8 @@
 
 "miles_per_hour" = "mph";
 
+"minute" = "min";
+
 "placepage_place_description" = "Beskrivelse";
 
 "placepage_more_button" = "Mer";
@@ -2368,39 +2370,39 @@
 
 "type.mountain_pass" = "Mountain Pass";
 
-"type.natural" = "Natural";
+"type.natural" = "Natur";
 
-"type.natural.bare_rock" = "Bare Rock";
+"type.natural.bare_rock" = "Bar stein";
 
 "type.natural.bay" = "Bukt";
 
 "type.natural.beach" = "Strand";
 
-"type.natural.beach.sand" = "Sandy Beach";
+"type.natural.beach.sand" = "Sandstrand";
 
-"type.natural.beach.gravel" = "Gravel Beach";
+"type.natural.beach.gravel" = "Grusstrand";
 
 "type.natural.cape" = "Kapp";
 
 "type.natural.cave_entrance" = "Grotte";
 
-"type.natural.cliff" = "Cliff";
+"type.natural.cliff" = "Klippe";
 
-"type.natural.earth_bank" = "Earth Bank";
+"type.natural.earth_bank" = "Klippe";
 
-"type.man_made.embankment" = "Embankment";
+"type.man_made.embankment" = "Fylling";
 
-"type.natural.coastline" = "Coastline";
+"type.natural.coastline" = "Kyst";
 
 "type.natural.geyser" = "Gaysir";
 
 "type.natural.glacier" = "Isbre";
 
-"type.natural.grassland" = "Slette";
+"type.natural.grassland" = "Sletteland";
 
 "type.natural.heath" = "Heath";
 
-"type.natural.hot_spring" = "Hot Spring";
+"type.natural.hot_spring" = "Varm kilde";
 
 "type.natural.water.lake" = "Innsjø";
 
@@ -2416,15 +2418,15 @@
 
 "type.natural.land" = "Land";
 
-"type.natural.meadow" = "Meadow";
+"type.natural.meadow" = "Eng";
 
-"type.natural.orchard" = "Orchard";
+"type.natural.orchard" = "Frukthage";
 
 "type.natural.peak" = "Høydepunkt";
 
-"type.natural.saddle" = "Mountain Saddle";
+"type.natural.saddle" = "Fjellsadel";
 
-"type.natural.rock" = "Rock";
+"type.natural.rock" = "Bergart";
 
 "type.natural.scrub" = "Myr";
 
@@ -2434,9 +2436,9 @@
 
 "type.natural.tree" = "Tre";
 
-"type.natural.tree_row" = "Tree Row";
+"type.natural.tree_row" = "Trerekke";
 
-"type.natural.vineyard" = "Vineyard";
+"type.natural.vineyard" = "Vingård";
 
 "type.natural.volcano" = "Vulkan";
 
@@ -2444,9 +2446,9 @@
 
 "type.natural.wetland" = "Våtmarksområde";
 
-"type.natural.wetland.bog" = "Wetland";
+"type.natural.wetland.bog" = "Myr";
 
-"type.natural.wetland.marsh" = "Wetland";
+"type.natural.wetland.marsh" = "Sump";
 
 "type.noexit" = "Dead End";
 
@@ -2764,6 +2766,8 @@
 
 "type.shop.cosmetics" = "Kosmetikk";
 
+"type.shop.deli" = "Delikatessebutikk";
+
 "type.shop.department_store" = "Varehus";
 
 "type.shop.doityourself" = "Jernvareforretning";
@@ -2775,6 +2779,8 @@
 "type.shop.erotic" = "Erotisk butikk";
 
 "type.shop.fabric" = "Butikk";
+
+"type.shop.farm" = "Gårdsmatbutikk";
 
 "type.shop.florist" = "Blomsterhandler";
 
@@ -2788,13 +2794,21 @@
 
 "type.shop.greengrocer" = "Frukt- og grønnsakshandler";
 
+"type.shop.grocery" = "Dagligvare";
+
 "type.shop.hairdresser" = "Frisør";
 
 "type.shop.hardware" = "Jernvareforretning";
 
+"type.shop.health_food" = "Helsekostbutikk";
+
+"type.shop.houseware" = "Husholdningsbutikk";
+
 "type.shop.jewelry" = "Gullsmed";
 
 "type.shop.kiosk" = "Butikk";
+
+"type.shop.kitchen" = "Kjøkkenbutikk";
 
 "type.shop.laundry" = "Vaskeri";
 
@@ -2818,6 +2832,8 @@
 
 "type.shop.outdoor" = "Fritidsutstyr";
 
+"type.shop.pastry" = "Kake";
+
 "type.shop.pawnbroker" = "Pantelåner";
 
 "type.shop.pet" = "Dyrebutikk";
@@ -2825,6 +2841,8 @@
 "type.shop.photo" = "Fotobutikk";
 
 "type.shop.seafood" = "Fiskehandler";
+
+"type.shop.second_hand" = "Bruktbutikk";
 
 "type.shop.shoes" = "Skobutikk";
 
@@ -2853,6 +2871,52 @@
 "type.shop.video_games" = "Videospillbutikken";
 
 "type.shop.wine" = "Alkoholutsalg";
+
+"type.shop.antiques" = "Antikviteter";
+
+"type.shop.art" = "Kunstbutikk";
+
+"type.shop.baby_goods" = "Barnebutikk";
+
+"type.shop.bag" = "Veskerbutikk";
+
+"type.shop.boutique" = "Boutique";
+
+"type.shop.charity" = "Veldedighetsbutikk";
+
+"type.shop.cheese" = "Ostebutikk";
+
+"type.shop.craft" = "Kunst og Håndverk";
+
+"type.shop.dairy" = "Meieriprodukter";
+
+"type.shop.electrical" = "Elektronisk butikk";
+
+"type.shop.fishing" = "Fiskebutikk";
+
+"type.shop.interior_decoration" = "Interiørdekorasjoner";
+
+"type.shop.lottery" = "Lotteribilletter";
+
+"type.shop.medical_supply" = "Medisinsk utstyr";
+
+"type.shop.nutrition_supplements" = "Kosttilskudd";
+
+"type.shop.paint" = "Maling";
+
+"type.shop.perfumery" = "Parfymeri";
+
+"type.shop.sewing" = "Syutstyr";
+
+"type.shop.storage_rental" = "Utleie av lager";
+
+"type.shop.tobacco" = "Tobakk";
+
+"type.shop.trade" = "Handler rekvisita";
+
+"type.shop.watches" = "Klokker";
+
+"type.shop.wholesale" = "Engrosbutikk";
 
 "type.sport" = "Sport";
 
@@ -3045,3 +3109,5 @@
 "type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "Bygning";
+
+"type.amenity.events_venue" = "Arrangementssted";

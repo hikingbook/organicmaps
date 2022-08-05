@@ -30,6 +30,10 @@ size_t PedestrianDirectionsEngine::GetTurnDirection(IRoutingResult const & resul
     return 0;
   }
 
+  // See comment for the same in CarDirectionsEngine::GetTurnDirection().
+  if (outgoingSegmentIndex == 2) // The same as turnItem.m_index == 2.
+    return 0;
+
   TurnInfo turnInfo;
   if (!GetTurnInfo(result, outgoingSegmentIndex, vehicleSettings, turnInfo))
     return 0;
@@ -104,15 +108,6 @@ void PedestrianDirectionsEngine::FixupTurns(vector<RouteSegment> & routeSegments
         routeSegments[idx - 1].ClearTurn();
     }
   }
-
-#ifdef DEBUG
-  for (auto const & r : routeSegments)
-  {
-    auto const & t = r.GetTurn();
-    if (!t.IsTurnNone())
-      LOG(LDEBUG, (GetTurnString(t.m_turn), ":", t.m_index));
-  }
-#endif
 }
 
 }  // namespace routing

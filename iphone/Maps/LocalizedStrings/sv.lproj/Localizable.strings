@@ -750,6 +750,8 @@
 
 "miles_per_hour" = "mph";
 
+"minute" = "min";
+
 "placepage_place_description" = "Beskrivning";
 
 "placepage_more_button" = "Mer";
@@ -2368,39 +2370,39 @@
 
 "type.mountain_pass" = "Mountain Pass";
 
-"type.natural" = "Natural";
+"type.natural" = "Natur";
 
-"type.natural.bare_rock" = "Bare Rock";
+"type.natural.bare_rock" = "Kala stenar";
 
 "type.natural.bay" = "Bukt";
 
 "type.natural.beach" = "Strand";
 
-"type.natural.beach.sand" = "Sandy Beach";
+"type.natural.beach.sand" = "Sandig strand";
 
-"type.natural.beach.gravel" = "Gravel Beach";
+"type.natural.beach.gravel" = "Grusstrand";
 
 "type.natural.cape" = "Udde";
 
 "type.natural.cave_entrance" = "Grotta";
 
-"type.natural.cliff" = "Cliff";
+"type.natural.cliff" = "Klint";
 
-"type.natural.earth_bank" = "Earth Bank";
+"type.natural.earth_bank" = "Klippa";
 
-"type.man_made.embankment" = "Embankment";
+"type.man_made.embankment" = "Vägbank";
 
-"type.natural.coastline" = "Coastline";
+"type.natural.coastline" = "Kust";
 
 "type.natural.geyser" = "Gejser";
 
 "type.natural.glacier" = "Glaciär";
 
-"type.natural.grassland" = "Fältet";
+"type.natural.grassland" = "Gräsmarker";
 
-"type.natural.heath" = "Heath";
+"type.natural.heath" = "Hed";
 
-"type.natural.hot_spring" = "Hot Spring";
+"type.natural.hot_spring" = "Het källa";
 
 "type.natural.water.lake" = "Sjö";
 
@@ -2414,17 +2416,17 @@
 
 "type.natural.water.river" = "Flod";
 
-"type.natural.land" = "Land";
+"type.natural.land" = "Landa";
 
-"type.natural.meadow" = "Meadow";
+"type.natural.meadow" = "Äng";
 
-"type.natural.orchard" = "Orchard";
+"type.natural.orchard" = "Fruktodling";
 
 "type.natural.peak" = "Bergstopp";
 
-"type.natural.saddle" = "Mountain Saddle";
+"type.natural.saddle" = "Fjällsadel";
 
-"type.natural.rock" = "Rock";
+"type.natural.rock" = "Bergart";
 
 "type.natural.scrub" = "Ruggen";
 
@@ -2434,9 +2436,9 @@
 
 "type.natural.tree" = "Träd";
 
-"type.natural.tree_row" = "Tree Row";
+"type.natural.tree_row" = "Trädrad";
 
-"type.natural.vineyard" = "Vineyard";
+"type.natural.vineyard" = "Vingård";
 
 "type.natural.volcano" = "Vulkan";
 
@@ -2444,9 +2446,9 @@
 
 "type.natural.wetland" = "Sumpmarken";
 
-"type.natural.wetland.bog" = "Wetland";
+"type.natural.wetland.bog" = "Myr";
 
-"type.natural.wetland.marsh" = "Wetland";
+"type.natural.wetland.marsh" = "Kärr";
 
 "type.noexit" = "Dead End";
 
@@ -2764,6 +2766,8 @@
 
 "type.shop.cosmetics" = "Kosmetika";
 
+"type.shop.deli" = "Delikatessbutik";
+
 "type.shop.department_store" = "Varuhus";
 
 "type.shop.doityourself" = "Järnhandel";
@@ -2775,6 +2779,8 @@
 "type.shop.erotic" = "Erotisk butik";
 
 "type.shop.fabric" = "Butik";
+
+"type.shop.farm" = "Gårdsmataffär";
 
 "type.shop.florist" = "Blomsteraffär";
 
@@ -2788,13 +2794,21 @@
 
 "type.shop.greengrocer" = "Grönsakshandlare";
 
+"type.shop.grocery" = "Livsmedel";
+
 "type.shop.hairdresser" = "Frisör";
 
-"type.shop.hardware" = "Järnhandel";
+"type.shop.hardware" = "Järnaffär";
+
+"type.shop.health_food" = "Hälsokostbutik";
+
+"type.shop.houseware" = "Husgerådsbutik";
 
 "type.shop.jewelry" = "Smycken";
 
 "type.shop.kiosk" = "Kiosk";
+
+"type.shop.kitchen" = "Köksbutik";
 
 "type.shop.laundry" = "Tvättstuga";
 
@@ -2818,6 +2832,8 @@
 
 "type.shop.outdoor" = "Fritidsutrustning";
 
+"type.shop.pastry" = "Bakverk";
+
 "type.shop.pawnbroker" = "Pantbank";
 
 "type.shop.pet" = "Djuraffär";
@@ -2825,6 +2841,8 @@
 "type.shop.photo" = "Fotoaffär";
 
 "type.shop.seafood" = "Fiskhandlare";
+
+"type.shop.second_hand" = "Andrahandsaffär";
 
 "type.shop.shoes" = "Skobutik";
 
@@ -2853,6 +2871,52 @@
 "type.shop.video_games" = "Videospel butik";
 
 "type.shop.wine" = "Vinhandel";
+
+"type.shop.antiques" = "Antikviteter";
+
+"type.shop.art" = "Konstaffär";
+
+"type.shop.baby_goods" = "Barnbutik";
+
+"type.shop.bag" = "Väskor butik";
+
+"type.shop.boutique" = "Boutique";
+
+"type.shop.charity" = "Välgörenhetsbutik";
+
+"type.shop.cheese" = "Ostaffär";
+
+"type.shop.craft" = "Konst och hantverk";
+
+"type.shop.dairy" = "Mejeriprodukter";
+
+"type.shop.electrical" = "Elektronik affär";
+
+"type.shop.fishing" = "Fiskeaffär";
+
+"type.shop.interior_decoration" = "Inredningsdekorationer";
+
+"type.shop.lottery" = "Lotter";
+
+"type.shop.medical_supply" = "Medicinska förnödenheter";
+
+"type.shop.nutrition_supplements" = "Kosttillskott";
+
+"type.shop.paint" = "Färger";
+
+"type.shop.perfumery" = "Parfymer";
+
+"type.shop.sewing" = "Sytillbehör";
+
+"type.shop.storage_rental" = "Uthyrning av förråd";
+
+"type.shop.tobacco" = "Tobak";
+
+"type.shop.trade" = "Handlar förnödenheter";
+
+"type.shop.watches" = "Klockor";
+
+"type.shop.wholesale" = "Grossistbutik";
 
 "type.sport" = "Sport";
 
@@ -3045,3 +3109,5 @@
 "type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "Byggnad";
+
+"type.amenity.events_venue" = "Evenemangslokal";
