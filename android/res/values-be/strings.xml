@@ -704,6 +704,7 @@
 	<string name="enable_show_on_lock_screen_description">Калі ўключана, вам не трэба разблакіраваць прыладу кожны раз падчас працы дадатку.</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.amenity.bicycle_parking">Велапаркоўка</string>
 	<string name="type.amenity.fire_station">Пажарная частка</string>
 	<string name="type.amenity.fuel">АЗС</string>
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
@@ -867,11 +868,24 @@
 	<string name="type.man_made.silo">Сілас</string>
 	<string name="type.man_made.storage_tank">Рэзервуар</string>
 	<string name="type.mountain_pass">Перавал</string>
+	<string name="type.natural">Прырода</string>
+	<string name="type.natural.bare_rock">Голая скала</string>
+	<string name="type.natural.bay">Заліў</string>
+	<string name="type.natural.beach">Пляж</string>
 	<string name="type.natural.beach.sand">Пяшчаны пляж</string>
 	<string name="type.natural.beach.gravel">Галечны пляж</string>
+	<string name="type.natural.cape">Мыс</string>
+	<string name="type.natural.cave_entrance">Пячора</string>
 	<string name="type.natural.cliff">Уцёс</string>
 	<string name="type.natural.earth_bank">Абрыў</string>
 	<string name="type.man_made.embankment">Насып</string>
+	<string name="type.natural.coastline">Узбярэжжа</string>
+	<string name="type.natural.geyser">Гейзер</string>
+	<string name="type.natural.glacier">Ледавік</string>
+	<string name="type.natural.grassland">Луг</string>
+	<string name="type.natural.heath">Пустка</string>
+	<string name="type.natural.hot_spring">Геатэрмальная крыніца</string>
+	<string name="type.natural.water.lake">Возера</string>
 	<string name="type.natural.water.lock">Шлюзавая камера</string>
 	<string name="type.natural.water.pond">Сажалка</string>
 	<string name="type.natural.water.reservoir">Вадасховішча</string>
@@ -882,7 +896,18 @@
 	<string name="type.natural.orchard">Сад</string>
 	<string name="type.natural.peak">Вяршыня</string>
 	<string name="type.natural.saddle">Седлавіна</string>
+	<string name="type.natural.rock">Горная парода</string>
+	<string name="type.natural.scrub">Зараснікі</string>
+	<string name="type.natural.spring">Крыніца</string>
+	<string name="type.natural.strait">Праліў</string>
+	<string name="type.natural.tree">Дрэва</string>
+	<string name="type.natural.tree_row">Шэраг дрэў</string>
+	<string name="type.natural.vineyard">Вінаграднік</string>
+	<string name="type.natural.volcano">Вулкан</string>
 	<string name="type.natural.water">Вадаём</string>
+	<string name="type.natural.wetland">Балоцістая мясцовасць</string>
+	<string name="type.natural.wetland.bog">Тарфянік</string>
+	<string name="type.natural.wetland.marsh">Балота</string>
 	<string name="type.office.telecommunication">Тэлекамунікацыйная кампанія</string>
 	<string name="type.organic.only">Эка</string>
 	<string name="type.organic.yes">Эка</string>
@@ -890,7 +915,39 @@
 	<string name="type.shop.beverages">Напоі</string>
 	<string name="type.shop.caravan">Продаж аўтадамоў</string>
 	<string name="type.shop.cosmetics">Касметыка</string>
+	<string name="type.shop.deli">Дэлікатэсная крама</string>
+	<string name="type.shop.farm">Сельскагаспадарчыя прадукты</string>
 	<string name="type.shop.funeral_directors">Рытуальныя паслугі</string>
+	<string name="type.shop.grocery">Бакалея</string>
+	<string name="type.shop.hardware">Будаўнічы магазін</string>
+	<string name="type.shop.health_food">Крама здаровай ежы</string>
+	<string name="type.shop.houseware">Крама посуду</string>
+	<string name="type.shop.kitchen">Крама для кухні</string>
+	<string name="type.shop.pastry">Кандытарскія вырабы</string>
+	<string name="type.shop.second_hand">Крама сэканд-хэнд</string>
+	<string name="type.shop.antiques">Антыкварыят</string>
+	<string name="type.shop.art">Крама мастацтваў</string>
+	<string name="type.shop.baby_goods">Дзіцячая крама</string>
+	<string name="type.shop.bag">Крама сумак</string>
+	<string name="type.shop.boutique">Буцік</string>
+	<string name="type.shop.charity">Дабрачынная крама</string>
+	<string name="type.shop.cheese">Сырны магазін</string>
+	<string name="type.shop.craft">Мастацтва і рамёствы</string>
+	<string name="type.shop.dairy">Малочныя прадукты</string>
+	<string name="type.shop.electrical">Крама электратэхнікі</string>
+	<string name="type.shop.fishing">Рыбалоўны магазін</string>
+	<string name="type.shop.interior_decoration">Ўпрыгажэнні інтэр\'еру</string>
+	<string name="type.shop.lottery">Латарэйныя білеты</string>
+	<string name="type.shop.medical_supply">Медыцынскія прыналежнасці</string>
+	<string name="type.shop.nutrition_supplements">Харчовыя дабаўкі</string>
+	<string name="type.shop.paint">Фарбы</string>
+	<string name="type.shop.perfumery">Парфумерыя</string>
+	<string name="type.shop.sewing">Швейныя прыналежнасці</string>
+	<string name="type.shop.storage_rental">Арэнда сховішчаў</string>
+	<string name="type.shop.tobacco">Тытунь</string>
+	<string name="type.shop.trade">Гандлёвая прыналежнасць</string>
+	<string name="type.shop.watches">Гадзіннік</string>
+	<string name="type.shop.wholesale">Аптовая крама</string>
 	<string name="type.sport">Спорт</string>
 	<string name="type.sport.american_football">Амерыканскі футбол</string>
 	<string name="type.sport.archery">Стральба з лука</string>
@@ -924,4 +981,5 @@
 	<string name="type.waterway.stream.ephemeral">Рака</string>
 	<string name="type.waterway.stream.intermittent">Рака</string>
 	<string name="type.waterway.stream.tunnel">Рака</string>
+	<string name="type.amenity.events_venue">Месца правядзення мерапрыемстваў</string>
 </resources>

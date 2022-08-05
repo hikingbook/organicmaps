@@ -591,24 +591,7 @@
           android:scheme="mapsme"/>
       </intent-filter>
 
-      <!-- API CALL -->
       <intent-filter>
-        <action android:name="com.mapswithme.maps.api.request"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-      </intent-filter>
-
-      <intent-filter>
-        <action android:name="com.mapswithme.maps.pro.action.SHOW_ON_MAP"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-      </intent-filter>
-
-      <intent-filter>
-        <action android:name="com.mapswithme.maps.pro.action.BUILD_ROUTE"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-      </intent-filter>
-
-      <intent-filter android:scheme="http"
-          tools:ignore="AppLinkUrlError">
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <data

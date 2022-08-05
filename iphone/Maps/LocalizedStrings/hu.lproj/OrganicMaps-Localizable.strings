@@ -750,6 +750,8 @@
 
 "miles_per_hour" = "mph";
 
+"minute" = "p";
+
 "placepage_place_description" = "Leírás";
 
 "placepage_more_button" = "Még";
@@ -2368,17 +2370,17 @@
 
 "type.mountain_pass" = "Mountain Pass";
 
-"type.natural" = "Natural";
+"type.natural" = "Természet";
 
-"type.natural.bare_rock" = "Bare Rock";
+"type.natural.bare_rock" = "Csupasz szikla";
 
 "type.natural.bay" = "Öböl";
 
 "type.natural.beach" = "Strand";
 
-"type.natural.beach.sand" = "Sandy Beach";
+"type.natural.beach.sand" = "Homokos part";
 
-"type.natural.beach.gravel" = "Gravel Beach";
+"type.natural.beach.gravel" = "Kavicsos strand";
 
 "type.natural.cape" = "Hegytető";
 
@@ -2386,21 +2388,21 @@
 
 "type.natural.cliff" = "Szikla";
 
-"type.natural.earth_bank" = "Earth Bank";
+"type.natural.earth_bank" = "Szikla";
 
 "type.man_made.embankment" = "Töltés";
 
-"type.natural.coastline" = "Coastline";
+"type.natural.coastline" = "Tengerpart";
 
 "type.natural.geyser" = "Gejzír";
 
 "type.natural.glacier" = "Gleccser";
 
-"type.natural.grassland" = "Mező";
+"type.natural.grassland" = "Füves puszta";
 
-"type.natural.heath" = "Heath";
+"type.natural.heath" = "Fenyér";
 
-"type.natural.hot_spring" = "Hot Spring";
+"type.natural.hot_spring" = "Termálvíz";
 
 "type.natural.water.lake" = "Tó";
 
@@ -2414,17 +2416,17 @@
 
 "type.natural.water.river" = "Folyó";
 
-"type.natural.land" = "Land";
+"type.natural.land" = "Föld";
 
-"type.natural.meadow" = "Meadow";
+"type.natural.meadow" = "Rét";
 
-"type.natural.orchard" = "Orchard";
+"type.natural.orchard" = "Gyümölcsöskert";
 
 "type.natural.peak" = "Csúcs";
 
-"type.natural.saddle" = "Mountain Saddle";
+"type.natural.saddle" = "Hegyi nyereg";
 
-"type.natural.rock" = "Rock";
+"type.natural.rock" = "Kőzet";
 
 "type.natural.scrub" = "Cserjés";
 
@@ -2434,9 +2436,9 @@
 
 "type.natural.tree" = "Fa";
 
-"type.natural.tree_row" = "Tree Row";
+"type.natural.tree_row" = "Fa sor";
 
-"type.natural.vineyard" = "Vineyard";
+"type.natural.vineyard" = "Szőlőskert";
 
 "type.natural.volcano" = "Tűzhányó";
 
@@ -2444,9 +2446,9 @@
 
 "type.natural.wetland" = "Vizes terület";
 
-"type.natural.wetland.bog" = "Wetland";
+"type.natural.wetland.bog" = "Láp";
 
-"type.natural.wetland.marsh" = "Wetland";
+"type.natural.wetland.marsh" = "Mocsár";
 
 "type.noexit" = "Dead End";
 
@@ -2764,6 +2766,8 @@
 
 "type.shop.cosmetics" = "Kozmetikum";
 
+"type.shop.deli" = "Csemegebolt";
+
 "type.shop.department_store" = "Áruház";
 
 "type.shop.doityourself" = "Vaskereskedés";
@@ -2775,6 +2779,8 @@
 "type.shop.erotic" = "Erotikus bolt";
 
 "type.shop.fabric" = "Bolt";
+
+"type.shop.farm" = "Farm Food Shop";
 
 "type.shop.florist" = "Virágos";
 
@@ -2788,13 +2794,21 @@
 
 "type.shop.greengrocer" = "Zöldséges";
 
+"type.shop.grocery" = "Élelmiszerbolt";
+
 "type.shop.hairdresser" = "Fodrász";
 
-"type.shop.hardware" = "Vaskereskedés";
+"type.shop.hardware" = "Hardver üzlet";
+
+"type.shop.health_food" = "Egészségügyi élelmiszerbolt";
+
+"type.shop.houseware" = "Háztartási bolt";
 
 "type.shop.jewelry" = "Ékszer";
 
 "type.shop.kiosk" = "Trafik";
+
+"type.shop.kitchen" = "Konyhabolt";
 
 "type.shop.laundry" = "Mosoda";
 
@@ -2818,6 +2832,8 @@
 
 "type.shop.outdoor" = "Kültéri felszerelés";
 
+"type.shop.pastry" = "Cukrászsütemény";
+
 "type.shop.pawnbroker" = "Zálogház";
 
 "type.shop.pet" = "Házikedvenc-üzlet";
@@ -2825,6 +2841,8 @@
 "type.shop.photo" = "Fénykép üzlet";
 
 "type.shop.seafood" = "Halüzlet";
+
+"type.shop.second_hand" = "Second Hand Store";
 
 "type.shop.shoes" = "Cipőbolt";
 
@@ -2853,6 +2871,52 @@
 "type.shop.video_games" = "Videojáték bolt";
 
 "type.shop.wine" = "Szeszesital-üzlet";
+
+"type.shop.antiques" = "Régiségek";
+
+"type.shop.art" = "Művészeti Bolt";
+
+"type.shop.baby_goods" = "Gyermekbolt";
+
+"type.shop.bag" = "Táskák bolt";
+
+"type.shop.boutique" = "Butik";
+
+"type.shop.charity" = "Jótékonysági Bolt";
+
+"type.shop.cheese" = "Sajtbolt";
+
+"type.shop.craft" = "Művészetek és kézművesség";
+
+"type.shop.dairy" = "Tejtermékek";
+
+"type.shop.electrical" = "Elektronikai üzlet";
+
+"type.shop.fishing" = "Horgászbolt";
+
+"type.shop.interior_decoration" = "Belső dekorációk";
+
+"type.shop.lottery" = "Sorsjegyek";
+
+"type.shop.medical_supply" = "Orvosi eszközök";
+
+"type.shop.nutrition_supplements" = "Táplálékkiegészítők";
+
+"type.shop.paint" = "Festékek";
+
+"type.shop.perfumery" = "Illatszerek";
+
+"type.shop.sewing" = "Varrás kellékek";
+
+"type.shop.storage_rental" = "Tárhely bérlés";
+
+"type.shop.tobacco" = "Dohány";
+
+"type.shop.trade" = "Kellékekkel kereskedik";
+
+"type.shop.watches" = "Órák";
+
+"type.shop.wholesale" = "Nagykereskedelmi üzlet";
 
 "type.sport" = "Sport";
 
@@ -3045,3 +3109,5 @@
 "type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "Épület";
+
+"type.amenity.events_venue" = "Rendezvények helyszíne";
