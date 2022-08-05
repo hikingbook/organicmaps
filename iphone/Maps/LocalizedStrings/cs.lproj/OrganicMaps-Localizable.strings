@@ -750,6 +750,8 @@
 
 "miles_per_hour" = "mil/h";
 
+"minute" = "min";
+
 "placepage_place_description" = "Popis";
 
 "placepage_more_button" = "Více";
@@ -2368,17 +2370,17 @@
 
 "type.mountain_pass" = "Mountain Pass";
 
-"type.natural" = "Natural";
+"type.natural" = "Příroda";
 
-"type.natural.bare_rock" = "Bare Rock";
+"type.natural.bare_rock" = "Holá skála";
 
 "type.natural.bay" = "Záliv";
 
 "type.natural.beach" = "Pláž";
 
-"type.natural.beach.sand" = "Sandy Beach";
+"type.natural.beach.sand" = "Písečná pláž";
 
-"type.natural.beach.gravel" = "Gravel Beach";
+"type.natural.beach.gravel" = "Štěrková pláž";
 
 "type.natural.cape" = "Mys";
 
@@ -2386,21 +2388,21 @@
 
 "type.natural.cliff" = "Útes";
 
-"type.natural.earth_bank" = "Earth Bank";
+"type.natural.earth_bank" = "Útes";
 
 "type.man_made.embankment" = "Násyp";
 
-"type.natural.coastline" = "Coastline";
+"type.natural.coastline" = "Pobřeží";
 
 "type.natural.geyser" = "Gejzír";
 
 "type.natural.glacier" = "Ledovec";
 
-"type.natural.grassland" = "Pole";
+"type.natural.grassland" = "Louky a pastviny";
 
-"type.natural.heath" = "Heath";
+"type.natural.heath" = "Vřesoviště";
 
-"type.natural.hot_spring" = "Hot Spring";
+"type.natural.hot_spring" = "Termální pramen";
 
 "type.natural.water.lake" = "Jezero";
 
@@ -2414,17 +2416,17 @@
 
 "type.natural.water.river" = "Řeka";
 
-"type.natural.land" = "Land";
+"type.natural.land" = "Země";
 
-"type.natural.meadow" = "Meadow";
+"type.natural.meadow" = "Louka";
 
-"type.natural.orchard" = "Orchard";
+"type.natural.orchard" = "Sad";
 
 "type.natural.peak" = "Hora";
 
-"type.natural.saddle" = "Mountain Saddle";
+"type.natural.saddle" = "Sedlo";
 
-"type.natural.rock" = "Rock";
+"type.natural.rock" = "Hornina";
 
 "type.natural.scrub" = "Křoviny";
 
@@ -2434,9 +2436,9 @@
 
 "type.natural.tree" = "Strom";
 
-"type.natural.tree_row" = "Tree Row";
+"type.natural.tree_row" = "Řada stromů";
 
-"type.natural.vineyard" = "Vineyard";
+"type.natural.vineyard" = "Vinice";
 
 "type.natural.volcano" = "Sopka";
 
@@ -2444,9 +2446,9 @@
 
 "type.natural.wetland" = "Mokřadní oblast";
 
-"type.natural.wetland.bog" = "Wetland";
+"type.natural.wetland.bog" = "Rašeliniště";
 
-"type.natural.wetland.marsh" = "Wetland";
+"type.natural.wetland.marsh" = "Bažina";
 
 "type.noexit" = "Dead End";
 
@@ -2764,6 +2766,8 @@
 
 "type.shop.cosmetics" = "Kosmetika";
 
+"type.shop.deli" = "Prodejna lahůdek";
+
 "type.shop.department_store" = "Obchodní dům";
 
 "type.shop.doityourself" = "Železářství";
@@ -2775,6 +2779,8 @@
 "type.shop.erotic" = "Obchod s erotickými pomůckami";
 
 "type.shop.fabric" = "Obchod";
+
+"type.shop.farm" = "Prodejna farmářských potravin";
 
 "type.shop.florist" = "Květinářství";
 
@@ -2788,13 +2794,21 @@
 
 "type.shop.greengrocer" = "Ovoce a zelenina";
 
+"type.shop.grocery" = "Potraviny";
+
 "type.shop.hairdresser" = "Kadeřnictví";
 
 "type.shop.hardware" = "Železářství";
 
+"type.shop.health_food" = "Prodejna zdravé výživy";
+
+"type.shop.houseware" = "Obchod s domácími potřebami";
+
 "type.shop.jewelry" = "Klenotnictví";
 
 "type.shop.kiosk" = "Kiosk";
+
+"type.shop.kitchen" = "Prodejna kuchyní";
 
 "type.shop.laundry" = "Prádelna";
 
@@ -2818,6 +2832,8 @@
 
 "type.shop.outdoor" = "Venkovní vybavení";
 
+"type.shop.pastry" = "Pečivo";
+
 "type.shop.pawnbroker" = "Zastavárna";
 
 "type.shop.pet" = "Zverimex";
@@ -2825,6 +2841,8 @@
 "type.shop.photo" = "Fotografický obchod";
 
 "type.shop.seafood" = "Prodej ryb";
+
+"type.shop.second_hand" = "Obchod z druhé ruky";
 
 "type.shop.shoes" = "Obuv";
 
@@ -2853,6 +2871,52 @@
 "type.shop.video_games" = "Obchod s videohrami";
 
 "type.shop.wine" = "Vinařství";
+
+"type.shop.antiques" = "Starožitnosti";
+
+"type.shop.art" = "Obchod s uměním";
+
+"type.shop.baby_goods" = "Dětský obchod";
+
+"type.shop.bag" = "Obchod s taškami";
+
+"type.shop.boutique" = "Butik";
+
+"type.shop.charity" = "Charitativní obchod";
+
+"type.shop.cheese" = "Prodejna sýrů";
+
+"type.shop.craft" = "Umění a řemesla";
+
+"type.shop.dairy" = "Mléčné výrobky";
+
+"type.shop.electrical" = "Elektro obchod";
+
+"type.shop.fishing" = "Rybářský obchod";
+
+"type.shop.interior_decoration" = "Interiérové dekorace";
+
+"type.shop.lottery" = "Loterijní lístky";
+
+"type.shop.medical_supply" = "Zdravotní zásoby";
+
+"type.shop.nutrition_supplements" = "Doplňky výživy";
+
+"type.shop.paint" = "Barvy";
+
+"type.shop.perfumery" = "Parfumerie";
+
+"type.shop.sewing" = "Šicí potřeby";
+
+"type.shop.storage_rental" = "Pronájem skladu";
+
+"type.shop.tobacco" = "Tabák";
+
+"type.shop.trade" = "Obchod se zásobami";
+
+"type.shop.watches" = "Hodinky";
+
+"type.shop.wholesale" = "Velkoobchodní prodejna";
 
 "type.sport" = "Sport";
 
@@ -3045,3 +3109,5 @@
 "type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "Stavba";
+
+"type.amenity.events_venue" = "Místo konání akcí";

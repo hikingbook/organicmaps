@@ -750,6 +750,8 @@
 
 "miles_per_hour" = "英里每小时";
 
+"minute" = "分鐘";
+
 "placepage_place_description" = "说明";
 
 "placepage_more_button" = "更多";
@@ -2376,19 +2378,19 @@
 
 "type.natural.beach" = "海滩";
 
-"type.natural.beach.sand" = "Sandy Beach";
+"type.natural.beach.sand" = "沙滩";
 
-"type.natural.beach.gravel" = "Gravel Beach";
+"type.natural.beach.gravel" = "砾石海滩";
 
 "type.natural.cape" = "海角";
 
 "type.natural.cave_entrance" = "洞口";
 
-"type.natural.cliff" = "峭壁";
+"type.natural.cliff" = "悬崖";
 
-"type.natural.earth_bank" = "Earth Bank";
+"type.natural.earth_bank" = "悬崖";
 
-"type.man_made.embankment" = "Embankment";
+"type.man_made.embankment" = "路堤";
 
 "type.natural.coastline" = "海岸线";
 
@@ -2398,13 +2400,13 @@
 
 "type.natural.grassland" = "草原";
 
-"type.natural.heath" = "荒野";
+"type.natural.heath" = "石楠荒原";
 
 "type.natural.hot_spring" = "温泉";
 
 "type.natural.water.lake" = "湖";
 
-"type.natural.water.lock" = "锁室";
+"type.natural.water.lock" = "船闸";
 
 "type.natural.water.pond" = "池塘";
 
@@ -2414,15 +2416,15 @@
 
 "type.natural.water.river" = "河流";
 
-"type.natural.land" = "Land";
+"type.natural.land" = "陆地";
 
-"type.natural.meadow" = "Meadow";
+"type.natural.meadow" = "草甸";
 
-"type.natural.orchard" = "Orchard";
+"type.natural.orchard" = "果园";
 
 "type.natural.peak" = "峰";
 
-"type.natural.saddle" = "Mountain Saddle";
+"type.natural.saddle" = "山坳";
 
 "type.natural.rock" = "岩石";
 
@@ -2436,7 +2438,7 @@
 
 "type.natural.tree_row" = "树列";
 
-"type.natural.vineyard" = "Vineyard";
+"type.natural.vineyard" = "葡萄园";
 
 "type.natural.volcano" = "火山";
 
@@ -2446,7 +2448,7 @@
 
 "type.natural.wetland.bog" = "泥炭地";
 
-"type.natural.wetland.marsh" = "沼泽地";
+"type.natural.wetland.marsh" = "草沼";
 
 "type.noexit" = "Dead End";
 
@@ -2764,6 +2766,8 @@
 
 "type.shop.cosmetics" = "化妝品店";
 
+"type.shop.deli" = "熟食店";
+
 "type.shop.department_store" = "百货商场";
 
 "type.shop.doityourself" = "家居用品店";
@@ -2775,6 +2779,8 @@
 "type.shop.erotic" = "成人用品店";
 
 "type.shop.fabric" = "商店";
+
+"type.shop.farm" = "农场食品店";
 
 "type.shop.florist" = "花店";
 
@@ -2788,13 +2794,21 @@
 
 "type.shop.greengrocer" = "蔬果零售店";
 
+"type.shop.grocery" = "杂货店";
+
 "type.shop.hairdresser" = "理发师";
 
-"type.shop.hardware" = "硬件店";
+"type.shop.hardware" = "五金店";
+
+"type.shop.health_food" = "保健食品店";
+
+"type.shop.houseware" = "家居用品店";
 
 "type.shop.jewelry" = "珠宝店";
 
 "type.shop.kiosk" = "商店";
+
+"type.shop.kitchen" = "厨房用品店";
 
 "type.shop.laundry" = "洗衣店";
 
@@ -2818,6 +2832,8 @@
 
 "type.shop.outdoor" = "室外设备";
 
+"type.shop.pastry" = "糕点";
+
 "type.shop.pawnbroker" = "典当商铺";
 
 "type.shop.pet" = "宠物店";
@@ -2825,6 +2841,8 @@
 "type.shop.photo" = "照片店";
 
 "type.shop.seafood" = "鱼商";
+
+"type.shop.second_hand" = "二手店";
 
 "type.shop.shoes" = "鞋店";
 
@@ -2853,6 +2871,52 @@
 "type.shop.video_games" = "电子游戏店";
 
 "type.shop.wine" = "酒品商店";
+
+"type.shop.antiques" = "古董";
+
+"type.shop.art" = "艺术商店";
+
+"type.shop.baby_goods" = "儿童商店";
+
+"type.shop.bag" = "箱包店";
+
+"type.shop.boutique" = "精品店";
+
+"type.shop.charity" = "慈善商店";
+
+"type.shop.cheese" = "奶酪店";
+
+"type.shop.craft" = "美术和工艺";
+
+"type.shop.dairy" = "乳制品";
+
+"type.shop.electrical" = "电器商城";
+
+"type.shop.fishing" = "钓鱼店";
+
+"type.shop.interior_decoration" = "室内装饰";
+
+"type.shop.lottery" = "彩票";
+
+"type.shop.medical_supply" = "医疗用品";
+
+"type.shop.nutrition_supplements" = "营养补充剂";
+
+"type.shop.paint" = "油漆";
+
+"type.shop.perfumery" = "香水";
+
+"type.shop.sewing" = "缝纫用品";
+
+"type.shop.storage_rental" = "存储租赁";
+
+"type.shop.tobacco" = "烟草";
+
+"type.shop.trade" = "贸易用品";
+
+"type.shop.watches" = "手表";
+
+"type.shop.wholesale" = "批发店";
 
 "type.sport" = "体育运动";
 
@@ -3045,3 +3109,5 @@
 "type.piste_type.sled" = "Sledding Piste";
 
 "type.building_part" = "建筑部分";
+
+"type.amenity.events_venue" = "活动场所";
