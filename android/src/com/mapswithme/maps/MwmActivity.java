@@ -1080,7 +1080,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   protected void onStart()
   {
     super.onStart();
-    Framework.nativePlacePageActivationListener(this);
+//    Framework.nativePlacePageActivationListener(this);
     BookmarkManager.INSTANCE.addLoadingListener(this);
 //    RoutingController.get().attach(this);
 //    IsolinesManager.from(getApplicationContext()).attach(this::onIsolinesStateChanged);
