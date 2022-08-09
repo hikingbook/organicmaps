@@ -18,7 +18,7 @@ std::string_view const kTypeZero = "zero";
 
 std::string GetIsolineName(int altitude, int step, int minAltitude, int maxAltitude)
 {
-  if (step > 10 ||
+  if (step >= 10 ||
       abs(altitude) % kNamedAltStep == 0 ||
       maxAltitude - minAltitude <= kNamedAltRange)
   {

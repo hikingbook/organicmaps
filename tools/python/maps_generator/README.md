@@ -27,6 +27,12 @@ git checkout release-92
 The app version can be found in the "About" section in the settings menu of OMaps.
 
 1. [Build and install generator_tool.](https://github.com/organicmaps/organicmaps/blob/master/docs/INSTALL.md#desktop-app)
+```sh
+tools/unix/build_omim.sh -r generator/generator_tool/install
+tools/unix/build_omim.sh -r generator/world_roads_builder/world_roads_builder_tool/install
+tools/unix/build_omim.sh -r topography_generator/install
+```
+
 2. Change directory:
 
 ```sh
@@ -35,8 +41,16 @@ $ cd omim/tools/python/maps_generator
 
 3. Install dependencies:
 
+- Dev
+
 ```sh
 maps_generator$ pip3 install -r requirements_dev.txt
+```
+
+- Release
+
+```sh
+maps_generator$ pip3 install -r requirements.txt
 ```
 
 4. Make ini file:
@@ -143,7 +157,7 @@ STATS_TYPES_CONFIG: ${Developer:OMIM_PATH}/tools/python/maps_generator/var/etc/s
 
 ```sh
 $ cd omim/tools/python
-python$ python3.6 -m maps_generator -h
+python$ python3 -m maps_generator -h
 ```
 
 ```
@@ -242,7 +256,7 @@ For example, you changed routing code in omim project and want to regenerate map
 You must have previous generation. You may regenerate from stage routing only for two mwms:
 
 ```sh
-python$ python3.6 -m maps_generator -c --from_stage="Routing" --countries="Japan_Kinki Region_Osaka_Osaka, Japan_Chugoku Region_Tottori"
+python$ python3 -m maps_generator -c --from_stage="Routing" --countries="Japan_Kinki Region_Osaka_Osaka, Japan_Chugoku Region_Tottori"
 ```
 
 ##### Note: To generate maps with the coastline, you need more time and you need the planet to contain a continuous coastline.
@@ -252,7 +266,16 @@ python$ python3.6 -m maps_generator -c --from_stage="Routing" --countries="Japan
 If you want to generate maps for Moscow you must complete the following steps:
 
 1. Open https://download.geofabrik.de/russia/central-fed-district.html and copy url of osm.pbf and md5sum files.
-2. Edit ini file:
+2. Download SRTM/ASTER data of your interested regions: https://search.earthdata.nasa.gov/search/ or https://step.esa.int/auxdata/dem/SRTMGL1/
+3. Build isolines:
+
+```sh
+organicmaps$ ../omim-build-release/topography_generator_tool --profiles_path=data/conf/isolines/isolines-profiles.json --countries_to_generate_path=data/conf/isolines/countries-to-generate.json --tiles_isolines_out_dir=../isolines_build/tiles_isolines --countries_isolines_out_dir=../isolines_build/countries_isolines --data_dir=data --srtm_path=data/srtm
+```
+
+Reference: https://github.com/mapsme/omim/issues/4179
+
+4. Edit ini file:
 
 ```sh
 maps_generator$ vim var/etc/map_generator.ini
@@ -267,12 +290,15 @@ DEBUG: 0
 PLANET_URL: https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf
 PLANET_MD5_URL: https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf.md5
 ...
+SRTM_PATH: ${Generator tool:USER_RESOURCE_PATH}/srtm
+ISOLINES_PATH: ${Developer:OMIM_PATH}/../isolines_build/countries_isolines
+...
 ```
 
-3. Run
+5. Run
 
 ```sh
-python$ python3.6 -m maps_generator --countries="Russia_Moscow" --skip="Coastline"
+python$ python3 -m maps_generator --countries="Russia_Moscow" --skip="Coastline"
 ```
 
 #### Generate all possible mwms from .osm.pbf file
@@ -337,7 +363,7 @@ osmium extract -p borders.geojson germany-latest.osm.pbf -o germany_part.osm.pbf
 5. Run the `maps_generator` tool:
 
 ```sh
-python$ python3.6 -m maps_generator --skip="Coastline" --without_countries="World*"
+python$ python3 -m maps_generator --skip="Coastline" --without_countries="World*"
 ```
 
 In this example we skipped generation of the World\* files because they are ones of the most time- and resources-consuming mwms.
