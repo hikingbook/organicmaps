@@ -220,47 +220,6 @@ The order from: var/etc/mwm_generation_order.txt is used by default.
 You can override this behavior with the option --order=/path/to/mwm_generation_order.txt
 You can calculate this list yourself from the statistics, which is calculated with each generation.
 
-## Customize POIs
-
-1. add type to `data/mapcss-mapping.csv` (the same way is others added)
-
-    ex: 
-    ```
-    tourism|information|mobile;[tourism=information][information=mobile];;name;int_name;1355;
-    ```
-
-2. add type to `data/strings/types_strings.txt`
-    
-    ex: 
-    ```
-    [type.tourism.information.mobile]
-    en = Mobile
-    zh-Hans = 通讯点
-    zh-Hant = 通訊點
-    ```
-
-3. add icon to `data/styles/*/*/symbols/`
-
-    ex:
-    ```
-    organicmaps/data/styles/clear/style-clear/symbols/phone-vibrate-fill.svg
-    
-    organicmaps/data/styles/clear/style-clear/symbols/phone-vibrate-fill.svg
-    ```
-
-4. add styles to `data/styles/*/include/Icons.mapcss` (the easiest way is to find some object with the same displacement priority and copy-paste style
-    
-    ex:
-    ```
-    node|z16-[tourism=information][information=mobile]
-{icon-image: phone-vibrate-fill.svg;text-offset: 1;icon-min-distance: 10;}
-    ```
-
-5. run `unix/generate_styles.sh`
-6. run `unix/generate_localizations.sh`
-
-Reference: https://github.com/mapsme/omim/issues/12397
-
 ### Examples
 
 #### Non-standard planet with coastlines
