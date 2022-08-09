@@ -70545,6 +70545,81 @@ cont {
   }
 }
 cont {
+  name: "tourism-information-mobile"
+  element {
+    scale: 16
+    symbol {
+      name: "phone-vibrate-fill"
+      apply_for_type: 1
+      priority: 16596
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15596
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "phone-vibrate-fill"
+      apply_for_type: 1
+      priority: 16596
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15596
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "phone-vibrate-fill"
+      apply_for_type: 1
+      priority: 16605
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 11
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15605
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "phone-vibrate-fill"
+      apply_for_type: 1
+      priority: 16605
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 11
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15605
+    }
+  }
+}
+cont {
   name: "tourism-information-office"
   element {
     scale: 16
@@ -71565,6 +71640,14 @@ cont {
   element {
     scale: 16
     lines {
+      width: 5.0
+      color: 10592406
+      dashdot {
+      }
+      priority: 1970
+      cap: BUTTCAP
+    }
+    lines {
       width: 3.0
       color: 1304608947
       priority: 1971
@@ -71587,6 +71670,14 @@ cont {
   }
   element {
     scale: 17
+    lines {
+      width: 6.5
+      color: 10197647
+      dashdot {
+      }
+      priority: 1970
+      cap: BUTTCAP
+    }
     lines {
       width: 4.5
       color: 1304608947
@@ -71611,6 +71702,14 @@ cont {
   element {
     scale: 18
     lines {
+      width: 8.0
+      color: 10197647
+      dashdot {
+      }
+      priority: 1970
+      cap: BUTTCAP
+    }
+    lines {
       width: 6.0
       color: 1304608947
       priority: 1971
@@ -71633,6 +71732,14 @@ cont {
   }
   element {
     scale: 19
+    lines {
+      width: 10.0
+      color: 10197647
+      dashdot {
+      }
+      priority: 1970
+      cap: BUTTCAP
+    }
     lines {
       width: 8.0
       color: 1304608947
