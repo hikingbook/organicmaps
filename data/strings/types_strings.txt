@@ -8572,6 +8572,30 @@
   [type.highway.footway.permissive]
     ref = type.highway.footway
 
+  [type.highway.footway.trail_visibility_bad]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
+  [type.highway.footway.trail_visibility_excellent]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
+  [type.highway.footway.trail_visibility_good]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
+  [type.highway.footway.trail_visibility_horrible]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
+  [type.highway.footway.trail_visibility_intermediate]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
+  [type.highway.footway.trail_visibility_no]
+    ref = type.highway.path
+    zh-Hans = 步行道路
+
   [type.highway.footway.tunnel]
     ref = type.highway.road.tunnel
     en = Pedestrian Tunnel
@@ -8850,6 +8874,24 @@
     pt-BR = Caminho pedonal
 
   [type.highway.path.permissive]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_bad]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_excellent]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_good]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_horrible]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_intermediate]
+    ref = type.highway.path
+
+  [type.highway.path.trail_visibility_no]
     ref = type.highway.path
 
   [type.highway.path.tunnel]
@@ -21473,6 +21515,11 @@
     zh-Hans = 旅游地图
     zh-Hant = 旅遊地圖
 
+  [type.tourism.information.mobile]
+    en = Mobile
+    zh-Hans = 通讯点
+    zh-Hant = 通訊點
+
   [type.tourism.information.office]
     en = Tourist Office
     ar = مكتب سياحة
@@ -22613,8 +22660,3 @@
     vi = Địa điểm tổ chức sự kiện
     zh-Hans = 活动场所
     zh-Hant = 活動場所
-
-  [type.tourism.information.mobile]
-    en = Mobile
-    zh-Hans = 通讯点
-    zh-Hant = 通訊點
