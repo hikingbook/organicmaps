@@ -5,15 +5,11 @@
 
 #include "map/place_page_info.hpp"
 
+#include "geometry/mercator.hpp"
+
 #include "platform/localization.hpp"
 #include "platform/measurement_utils.hpp"
-namespace
-{
-bool PopularityHasHigherPriority(bool hasPosition, double distanceInMeters)
-{
-  return !hasPosition || distanceInMeters > search::Result::kPopularityHighPriorityMinDistance;
-}
-}  // namespace
+
 
 @interface MWMSearchCommonCell ()
 
@@ -81,8 +77,9 @@ bool PopularityHasHigherPriority(bool hasPosition, double distanceInMeters)
     }
   }
 
-  bool showPopular = result.GetRankingInfo().m_popularity > 0;
-  self.popularView.hidden = !showPopular;
+  /// @todo Restore "TOP" badge in future, when popularity will be available.
+  //self.popularView.hidden = result.GetRankingInfo().m_popularity == 0;
+  self.popularView.hidden = YES;
   
   switch (result.IsOpenNow())
   {

@@ -503,12 +503,6 @@
 
 "history" = "इतिहास";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "बंद";
-
 "search_not_found" = "अरेच्चा, काहीच सापडले नाही.";
 
 "search_not_found_query" = "तुमचे शोध निकष बदलण्याचा प्रयत्न करा.";
@@ -578,6 +572,20 @@
 
 "today" = "आज";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "बंद";
+
 "add_opening_hours" = "उघडण्याची वेळ जोड";
 
 "no_osm_account" = "OpenStreetMap खाते नाही?";
@@ -629,6 +637,8 @@
 "email_or_username" = "ईमेल किंवा वापरकर्तानाव";
 
 "phone" = "फोन";
+
+"level" = "मजला";
 
 "please_note" = "कृपया नोंद घ्या";
 
@@ -749,6 +759,8 @@
 "foot" = "फूट";
 
 "miles_per_hour" = "mph";
+
+"hour" = "तास";
 
 "minute" = "मिनिट";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "वाहनतळ";
 
+"type.amenity.parking_entrance.private" = "Parking entrance";
+
+"type.amenity.parking_entrance.permissive" = "Parking entrance";
+
+"type.amenity.parking_entrance" = "Parking entrance";
+
 "type.amenity.parking_space" = "पार्किंगची जागा";
 
 "type.amenity.parking_space.permissive" = "पार्किंगची जागा";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "पार्किंगची जागा";
 
 "type.amenity.parking_space.underground" = "पार्किंगची जागा";
+
+"type.amenity.parking_space.disabled" = "Disabled Parking Space";
 
 "type.amenity.payment_terminal" = "पेमेंट टर्मिनल";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "क्रीडासंकुल";
 
-"type.leisure.sports_centre.climbing" = "चढण केंद्र";
+"type.sport.climbing" = "चढण केंद्र";
 
-"type.leisure.sports_centre.shooting" = "चांदमारी(बंदूक पल्ला)";
-
-"type.leisure.sports_centre.swimming" = "जलतरण केंद्र";
-
-"type.leisure.sports_centre.yoga" = "योगासन केंद्र";
+"type.sport.yoga" = "योगासन केंद्र";
 
 "type.leisure.stadium" = "क्रीडागार(स्टेडियम)";
 
@@ -2471,8 +2487,6 @@
 "type.organic.only" = "सेंद्रिय";
 
 "type.organic.yes" = "सेंद्रिय";
-
-"type.place" = "जागा";
 
 "type.place.city" = "शहर";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "बास्केटबॉल";
 
+"type.sport.beachvolleyball" = "बीच व्हॉलीबॉल";
+
 "type.sport.bowls" = "लॉन बोलिंग";
+
+"type.sport.chess" = "बुद्धिबळ";
 
 "type.sport.cricket" = "क्रिकेट";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "शूटिंग";
 
+"type.sport.skateboard" = "स्केट बोर्डिंग";
+
 "type.sport.skiing" = "स्कीइंग";
 
 "type.sport.soccer" = "सॉकर";
 
 "type.sport.swimming" = "जलतरण";
 
+"type.sport.table_tennis" = "टेबल टेनिस";
+
 "type.sport.tennis" = "टेनिस प्रांगण";
+
+"type.sport.volleyball" = "व्हॉलीबॉल";
+
+"type.sport.9pin" = "गोलंदाजी";
+
+"type.sport.10pin" = "गोलंदाजी";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Ice Hockey";
+
+"type.sport.field_hockey" = "Field Hockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Basque pelota";
 
 "type.tourism" = "पर्यटन";
 

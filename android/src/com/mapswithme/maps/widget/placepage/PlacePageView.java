@@ -136,8 +136,12 @@ public class PlacePageView extends NestedScrollViewClickFixed
   private TextView mTvWiFi;
   private View mEmail;
   private TextView mTvEmail;
+  private View mWikimedia;
+  private TextView mTvWikimedia;
   private View mOperator;
   private TextView mTvOperator;
+  private View mLevel;
+  private TextView mTvLevel;
   private View mCuisine;
   private TextView mTvCuisine;
   private View mWiki;
@@ -341,6 +345,10 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mWebsite = findViewById(R.id.ll__place_website);
     mWebsite.setOnClickListener(this);
     mTvWebsite = findViewById(R.id.tv__place_website);
+    // Wikimedia Commons link
+    mWikimedia = findViewById(R.id.ll__place_wikimedia);
+    mTvWikimedia = findViewById(R.id.tv__place_wikimedia);
+    mWikimedia.setOnClickListener(this);
     //Social links
     mFacebookPage = findViewById(R.id.ll__place_facebook);
     mFacebookPage.setOnClickListener(this);
@@ -384,6 +392,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
     mOperator = findViewById(R.id.ll__place_operator);
     mOperator.setOnClickListener(this);
     mTvOperator = findViewById(R.id.tv__place_operator);
+    mLevel = findViewById(R.id.ll__place_level);
+    mTvLevel = findViewById(R.id.tv__place_level);
     mCuisine = findViewById(R.id.ll__place_cuisine);
     mTvCuisine = findViewById(R.id.tv__place_cuisine);
     mWiki = findViewById(R.id.ll__place_wiki);
@@ -400,9 +410,11 @@ public class PlacePageView extends NestedScrollViewClickFixed
     latlon.setOnLongClickListener(this);
     address.setOnLongClickListener(this);
     mWebsite.setOnLongClickListener(this);
+    mWikimedia.setOnLongClickListener(this);
     mOpeningHours.setOnLongClickListener(this);
     mEmail.setOnLongClickListener(this);
     mOperator.setOnLongClickListener(this);
+    mLevel.setOnLongClickListener(this);
     mWiki.setOnLongClickListener(this);
 
     mBookmarkFrame = findViewById(R.id.bookmark_frame);
@@ -853,15 +865,21 @@ public class PlacePageView extends NestedScrollViewClickFixed
     String website = mapObject.getMetadata(Metadata.MetadataType.FMD_WEBSITE);
     String url = mapObject.getMetadata(Metadata.MetadataType.FMD_URL);
     refreshMetadataOrHide(TextUtils.isEmpty(website) ? url : website, mWebsite, mTvWebsite);
+    String wikimedia_commons = mapObject.getMetadata(Metadata.MetadataType.FMD_WIKIMEDIA_COMMONS);
+    String wikimedia_commons_text =  TextUtils.isEmpty(wikimedia_commons) ? "" : "WIKIMEDIA COMMONS";
+    refreshMetadataOrHide(wikimedia_commons_text, mWikimedia, mTvWikimedia);
     refreshPhoneNumberList(mapObject.getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_EMAIL), mEmail, mTvEmail);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_OPERATOR), mOperator, mTvOperator);
+    /// @todo I don't like it when we take all data from mapObject, but for cuisines, we should
+    /// go into JNI Framework and rely on some "active object".
     refreshMetadataOrHide(Framework.nativeGetActiveObjectFormattedCuisine(), mCuisine, mTvCuisine);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA), mWiki, null);
     refreshWiFi(mapObject);
     refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_FLATS), mEntrance, mTvEntrance);
     refreshOpeningHours(mapObject);
     refreshSocialLinks(mapObject);
+    refreshMetadataOrHide(mapObject.getMetadata(Metadata.MetadataType.FMD_LEVEL), mLevel, mTvLevel);
 
 //    showTaxiOffer(mapObject);
 
@@ -1289,6 +1307,11 @@ public class PlacePageView extends NestedScrollViewClickFixed
 //    getActivity().showPositionChooserForEditor(false, true);
 //  }
 
+  /// @todo
+  /// - Why ll__place_editor and ll__place_latlon check if (mMapObject == null)
+  /// - Unify urls processing: fb, twitter, instagram, .. add prefix here while
+  /// wiki, website, wikimedia, ... already have full url. Better to make it in the same way and in Core.
+
   @Override
   public void onClick(View v)
   {
@@ -1320,6 +1343,8 @@ public class PlacePageView extends NestedScrollViewClickFixed
       refreshLatLon(mMapObject);
     } else if (id == R.id.ll__place_website) {
       Utils.openUrl(getContext(), mTvWebsite.getText().toString());
+    } else if (id == R.id.ll__place_wikimedia) {
+      Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIMEDIA_COMMONS));
     } else if (id == R.id.ll__place_facebook) {
       final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
       Utils.openUrl(getContext(), "https://m.facebook.com/" + facebookPage);
@@ -1338,11 +1363,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
         Utils.openUrl(getContext(), "https://" + linePage);
       else
         Utils.openUrl(getContext(), "https://line.me/R/ti/p/@" + linePage);
-    } else if (id == R.id.ll__place_wiki) {// TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
-      if (mMapObject == null) {
-        Logger.e(TAG, "Cannot follow url, mMapObject is null!");
-        return;
-      }
+    } else if (id == R.id.ll__place_wiki) {
       Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
     } else if (id == R.id.direction_frame) {
       showBigDirection();
@@ -1367,91 +1388,99 @@ public class PlacePageView extends NestedScrollViewClickFixed
     fragment.show(getActivity().getSupportFragmentManager(), null);
   }
 
+  /// @todo Unify urls processing (fb, twitter, instagram, ...).
+  /// onLongClick behaviour differs even from onClick function several lines above.
+
   @Override
   public boolean onLongClick(View v)
   {
     final List<String> items = new ArrayList<>();
-//    switch (v.getId())
-//    {
-//     case R.id.tv__title:
-//        items.add(mTvTitle.getText().toString());
-//        break;
-//      case R.id.tv__secondary_title:
-//        items.add(mTvSecondaryTitle.getText().toString());
-//        break;
-//      case R.id.tv__address:
-//        items.add(mTvAddress.getText().toString());
-//        break;
-//      case R.id.tv__bookmark_notes:
-//        items.add(mTvBookmarkNote.getText().toString());
-//        break;
-//      case R.id.poi_description:
-//        items.add(mPlaceDescriptionView.getText().toString());
-//        break;
-//      case R.id.ll__place_latlon:
-//        if (mMapObject == null)
-//        {
-//          Logger.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
-//          break;
-//        }
-//        final double lat = mMapObject.getLat();
-//        final double lon = mMapObject.getLon();
-//        for(CoordinatesFormat format: visibleCoordsFormat)
-//          items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
-//        break;
-//      case R.id.ll__place_website:
-//        items.add(mTvWebsite.getText().toString());
-//        break;
-//      case R.id.ll__place_facebook:
-//        final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
-//        if (facebookPage.indexOf('/') == -1)
-//          items.add(facebookPage); // Show username along with URL.
-//        items.add("https://m.facebook.com/" + facebookPage);
-//        break;
-//      case R.id.ll__place_instagram:
-//        final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
-//        if (instagramPage.indexOf('/') == -1)
-//          items.add(instagramPage); // Show username along with URL.
-//        items.add("https://instagram.com/" + instagramPage);
-//        break;
-//      case R.id.ll__place_twitter:
-//        final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
-//        if (twitterPage.indexOf('/') == -1)
-//          items.add(twitterPage); // Show username along with URL.
-//        items.add("https://mobile.twitter.com/" + twitterPage);
-//        break;
-//      case R.id.ll__place_vk:
-//        final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
-//        if (vkPage.indexOf('/') == -1)
-//          items.add(vkPage); // Show username along with URL.
-//        items.add("https://vk.com/" + vkPage);
-//        break;
-//      case R.id.ll__place_line:
-//        final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
-//        if (linePage.indexOf('/') >= 0)
-//          items.add("https://" + linePage);
-//        else
-//        {
-//          items.add(linePage); // Show username along with URL.
-//          items.add("https://line.me/R/ti/p/@" + linePage);
-//        }
-//        break;
-//      case R.id.ll__place_email:
-//        items.add(mTvEmail.getText().toString());
-//        break;
-//      case R.id.ll__place_schedule:
-//        final String ohStr = mMapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
-//        final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
-//        items.add(TimeFormatUtils.formatTimetables(getResources(), ohStr, timetables));
-//        break;
-//      case R.id.ll__place_operator:
-//        items.add(mTvOperator.getText().toString());
-//        break;
-//      case R.id.ll__place_wiki:
-//        items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
-//        break;
-//    }
-//        break;
+    // switch (v.getId())
+    // {
+    //   case R.id.tv__title:
+    //     items.add(mTvTitle.getText().toString());
+    //     break;
+    //   case R.id.tv__secondary_title:
+    //     items.add(mTvSecondaryTitle.getText().toString());
+    //     break;
+    //   case R.id.tv__address:
+    //     items.add(mTvAddress.getText().toString());
+    //     break;
+    //   case R.id.tv__bookmark_notes:
+    //     items.add(mTvBookmarkNote.getText().toString());
+    //     break;
+    //   case R.id.poi_description:
+    //     items.add(mPlaceDescriptionView.getText().toString());
+    //     break;
+    //   case R.id.ll__place_latlon:
+    //     if (mMapObject == null)
+    //     {
+    //       Logger.e(TAG, "A long click tap on LatLon cannot be handled, mMapObject is null!");
+    //       break;
+    //     }
+    //     final double lat = mMapObject.getLat();
+    //     final double lon = mMapObject.getLon();
+    //     for(CoordinatesFormat format: visibleCoordsFormat)
+    //       items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
+    //     break;
+    //   case R.id.ll__place_website:
+    //     items.add(mTvWebsite.getText().toString());
+    //     break;
+    //   case R.id.ll__place_wikimedia:
+    //     items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIMEDIA_COMMONS));
+    //     break;
+    //   case R.id.ll__place_facebook:
+    //     final String facebookPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_FACEBOOK);
+    //     if (facebookPage.indexOf('/') == -1)
+    //       items.add(facebookPage); // Show username along with URL.
+    //     items.add("https://m.facebook.com/" + facebookPage);
+    //     break;
+    //   case R.id.ll__place_instagram:
+    //     final String instagramPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
+    //     if (instagramPage.indexOf('/') == -1)
+    //       items.add(instagramPage); // Show username along with URL.
+    //     items.add("https://instagram.com/" + instagramPage);
+    //     break;
+    //   case R.id.ll__place_twitter:
+    //     final String twitterPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
+    //     if (twitterPage.indexOf('/') == -1)
+    //       items.add(twitterPage); // Show username along with URL.
+    //     items.add("https://mobile.twitter.com/" + twitterPage);
+    //     break;
+    //   case R.id.ll__place_vk:
+    //     final String vkPage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_VK);
+    //     if (vkPage.indexOf('/') == -1)
+    //       items.add(vkPage); // Show username along with URL.
+    //     items.add("https://vk.com/" + vkPage);
+    //     break;
+    //   case R.id.ll__place_line:
+    //     final String linePage = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_LINE);
+    //     if (linePage.indexOf('/') >= 0)
+    //       items.add("https://" + linePage);
+    //     else
+    //     {
+    //       items.add(linePage); // Show username along with URL.
+    //       items.add("https://line.me/R/ti/p/@" + linePage);
+    //     }
+    //     break;
+    //   case R.id.ll__place_email:
+    //     items.add(mTvEmail.getText().toString());
+    //     break;
+    //   case R.id.ll__place_schedule:
+    //     final String ohStr = mMapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
+    //     final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
+    //     items.add(TimeFormatUtils.formatTimetables(getResources(), ohStr, timetables));
+    //     break;
+    //   case R.id.ll__place_operator:
+    //     items.add(mTvOperator.getText().toString());
+    //     break;
+    //   case R.id.ll__place_wiki:
+    //     items.add(mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+    //     break;
+    //   case R.id.ll__place_level:
+    //     items.add(mTvLevel.getText().toString());
+    //     break;
+    // }
 
     final Context ctx = getContext();
     if (items.size() == 1)

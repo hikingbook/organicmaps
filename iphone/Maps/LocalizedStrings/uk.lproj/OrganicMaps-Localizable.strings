@@ -503,12 +503,6 @@
 
 "history" = "Історія";
 
-"opens_in" = "Відкривається через %@";
-
-"closes_in" = "Зачиняється через %@";
-
-"closed" = "Зачинено";
-
 "search_not_found" = "На жаль, нічого не знайдено.";
 
 "search_not_found_query" = "Спробуйте змінити запит.";
@@ -578,6 +572,20 @@
 
 "today" = "Сьогодні";
 
+"opens_tomorrow_at" = "Відкриття завтра о %@";
+
+"opens_dayoftheweek_at" = "Відчиняється в %1$@ о %2$@";
+
+"opens_at" = "Відкриття о %@";
+
+"opens_in" = "Відкривається через %@";
+
+"closes_at" = "Закривається о %@";
+
+"closes_in" = "Зачиняється через %@";
+
+"closed" = "Зачинено";
+
 "add_opening_hours" = "Додати години роботи";
 
 "no_osm_account" = "Не зареєстровані в OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Ел. пошта або ім'я користувача";
 
 "phone" = "Телефон";
+
+"level" = "Поверх";
 
 "please_note" = "Будь ласка, зверніть увагу";
 
@@ -749,6 +759,8 @@
 "foot" = "фут";
 
 "miles_per_hour" = "ми/год";
+
+"hour" = "год";
 
 "minute" = "хв";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Парковка";
 
+"type.amenity.parking_entrance.private" = "Вхід на паркінг";
+
+"type.amenity.parking_entrance.permissive" = "Вхід на паркінг";
+
+"type.amenity.parking_entrance" = "Вхід на паркінг";
+
 "type.amenity.parking_space" = "Паркувальне місце";
 
 "type.amenity.parking_space.permissive" = "Паркувальне місце";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Паркувальне місце";
 
 "type.amenity.parking_space.underground" = "Паркувальне місце";
+
+"type.amenity.parking_space.disabled" = "Паркомісце для інвалідів";
 
 "type.amenity.payment_terminal" = "Платіжний термінал";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Спорткомплекс";
 
-"type.leisure.sports_centre.climbing" = "Скеледром";
+"type.sport.climbing" = "Скеледром";
 
-"type.leisure.sports_centre.shooting" = "Тир";
-
-"type.leisure.sports_centre.swimming" = "Басейн для плавання";
-
-"type.leisure.sports_centre.yoga" = "Студія йоги";
+"type.sport.yoga" = "Студія йоги";
 
 "type.leisure.stadium" = "Стадіон";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Еко";
 
-"type.place" = "Мicце";
-
 "type.place.city" = "Місто";
 
 "type.place.city.capital" = "Столиця";
@@ -2512,9 +2526,9 @@
 
 "type.place.islet" = "Острів";
 
-"type.place.isolated_dwelling" = "Житло";
+"type.place.isolated_dwelling" = "Хутір";
 
-"type.place.locality" = "Місцевість";
+"type.place.locality" = "Місце";
 
 "type.place.neighbourhood" = "Мiкрорайон";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Баскетбол";
 
+"type.sport.beachvolleyball" = "Пляжний волейбол";
+
 "type.sport.bowls" = "Боулз";
+
+"type.sport.chess" = "Шахи";
 
 "type.sport.cricket" = "Крикет";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Стрільба";
 
+"type.sport.skateboard" = "Скейтбординг";
+
 "type.sport.skiing" = "Лижi";
 
 "type.sport.soccer" = "Футбол";
 
 "type.sport.swimming" = "Плавання";
 
+"type.sport.table_tennis" = "Настільний теніс";
+
 "type.sport.tennis" = "Тенісний корт";
+
+"type.sport.volleyball" = "Волейбол";
+
+"type.sport.9pin" = "Боулінг";
+
+"type.sport.10pin" = "Боулінг";
+
+"type.sport.padel" = "Падель";
+
+"type.sport.futsal" = "Футзал";
+
+"type.sport.ice_hockey" = "Хокей із шайбою";
+
+"type.sport.field_hockey" = "Хокей на траві";
+
+"type.sport.badminton" = "Бадмінтон";
+
+"type.sport.pelota" = "Баскська пелота";
 
 "type.tourism" = "Туризм";
 

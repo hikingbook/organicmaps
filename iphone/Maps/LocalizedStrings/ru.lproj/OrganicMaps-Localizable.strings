@@ -503,12 +503,6 @@
 
 "history" = "История";
 
-"opens_in" = "Открывается через %@";
-
-"closes_in" = "Закроется через %@";
-
-"closed" = "Закрыто";
-
 "search_not_found" = "К сожалению, мы ничего не нашли.";
 
 "search_not_found_query" = "Попробуйте изменить условия поиска.";
@@ -578,6 +572,20 @@
 
 "today" = "Сегодня";
 
+"opens_tomorrow_at" = "Откроется завтра в %@";
+
+"opens_dayoftheweek_at" = "Открывается в %1$@ в %2$@";
+
+"opens_at" = "Открывается в %@";
+
+"opens_in" = "Открывается через %@";
+
+"closes_at" = "Закрывается в %@";
+
+"closes_in" = "Закроется через %@";
+
+"closed" = "Закрыто";
+
 "add_opening_hours" = "Добавить время работы";
 
 "no_osm_account" = "Не зарегистрированы в OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Эл. почта или имя пользователя";
 
 "phone" = "Телефон";
+
+"level" = "Этаж";
 
 "please_note" = "Обратите внимание";
 
@@ -749,6 +759,8 @@
 "foot" = "фут";
 
 "miles_per_hour" = "ми/ч";
+
+"hour" = "ч";
 
 "minute" = "мин";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Парковка";
 
+"type.amenity.parking_entrance.private" = "Въезд на парковку";
+
+"type.amenity.parking_entrance.permissive" = "Въезд на парковку";
+
+"type.amenity.parking_entrance" = "Въезд на парковку";
+
 "type.amenity.parking_space" = "Парковочное место";
 
 "type.amenity.parking_space.permissive" = "Парковочное место";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Парковочное место";
 
 "type.amenity.parking_space.underground" = "Парковочное место";
+
+"type.amenity.parking_space.disabled" = "Парковочное место для инвалидов";
 
 "type.amenity.payment_terminal" = "Терминал оплаты";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Спорткомплекс";
 
-"type.leisure.sports_centre.climbing" = "Скалодром";
+"type.sport.climbing" = "Скалодром";
 
-"type.leisure.sports_centre.shooting" = "Тир";
-
-"type.leisure.sports_centre.swimming" = "Плавательный бассейн";
-
-"type.leisure.sports_centre.yoga" = "Йога-центр";
+"type.sport.yoga" = "Йога-центр";
 
 "type.leisure.stadium" = "Стадион";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Эко";
 
-"type.place" = "Место";
-
 "type.place.city" = "Город";
 
 "type.place.city.capital" = "Столица";
@@ -2512,7 +2526,7 @@
 
 "type.place.islet" = "Остров";
 
-"type.place.isolated_dwelling" = "Жилище";
+"type.place.isolated_dwelling" = "Хутор";
 
 "type.place.locality" = "Местность";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Баскетбол";
 
+"type.sport.beachvolleyball" = "Пляжный волейбол";
+
 "type.sport.bowls" = "Боулз";
+
+"type.sport.chess" = "Шахматы";
 
 "type.sport.cricket" = "Крикет";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Стрельба";
 
+"type.sport.skateboard" = "Скейтбординг";
+
 "type.sport.skiing" = "Лыжи";
 
 "type.sport.soccer" = "Футбол";
 
 "type.sport.swimming" = "Плавание";
 
+"type.sport.table_tennis" = "Настольный теннис";
+
 "type.sport.tennis" = "Теннисный корт";
+
+"type.sport.volleyball" = "Волейбол";
+
+"type.sport.9pin" = "Боулинг";
+
+"type.sport.10pin" = "Боулинг";
+
+"type.sport.padel" = "Падель";
+
+"type.sport.futsal" = "Футзал";
+
+"type.sport.ice_hockey" = "Хоккей с шайбой";
+
+"type.sport.field_hockey" = "Хоккей на траве";
+
+"type.sport.badminton" = "Бадминтон";
+
+"type.sport.pelota" = "Баскская пелота";
 
 "type.tourism" = "Туризм";
 

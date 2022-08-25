@@ -503,12 +503,6 @@
 
 "history" = "Archív";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Zatvorené";
-
 "search_not_found" = "Ľutujeme, ale nič sme nenašli.";
 
 "search_not_found_query" = "Vyskúšajte, prosím, iný hľadaný výraz.";
@@ -578,6 +572,20 @@
 
 "today" = "Dnes";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Zatvorené";
+
 "add_opening_hours" = "Pridať otváracie hodiny";
 
 "no_osm_account" = "Nemáte účet v OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email alebo používateľské meno";
 
 "phone" = "Telefón";
+
+"level" = "Podlaha";
 
 "please_note" = "Upozorňujeme vás, že";
 
@@ -749,6 +759,8 @@
 "foot" = "stopa";
 
 "miles_per_hour" = "mph";
+
+"hour" = "hod";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parkovisko";
 
+"type.amenity.parking_entrance.private" = "Vstup na parkovisko";
+
+"type.amenity.parking_entrance.permissive" = "Vstup na parkovisko";
+
+"type.amenity.parking_entrance" = "Vstup na parkovisko";
+
 "type.amenity.parking_space" = "Parkovacie miesto";
 
 "type.amenity.parking_space.permissive" = "Parkovacie miesto";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parkovacie miesto";
 
 "type.amenity.parking_space.underground" = "Parkovacie miesto";
+
+"type.amenity.parking_space.disabled" = "Parkovacie miesto pre invalidov";
 
 "type.amenity.payment_terminal" = "Platobný terminál";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Športové centrum";
 
-"type.leisure.sports_centre.climbing" = "Lezecké centrum";
+"type.sport.climbing" = "Lezecké centrum";
 
-"type.leisure.sports_centre.shooting" = "Strelnica";
-
-"type.leisure.sports_centre.swimming" = "Plavecký areál";
-
-"type.leisure.sports_centre.yoga" = "Štúdio jogy";
+"type.sport.yoga" = "Štúdio jogy";
 
 "type.leisure.stadium" = "Štadión";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "Mesto";
 
 "type.place.city.capital" = "Hlavné mesto";
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "Ostrov";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Izolované obydlie";
 
 "type.place.locality" = "Lokalita";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Susedstvo";
 
 "type.place.ocean" = "Oceán";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "More";
 
-"type.place.square" = "Square";
+"type.place.square" = "Námestie";
 
 "type.place.state" = "Štát";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basketbal";
 
+"type.sport.beachvolleyball" = "Plážový volejbal";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Šach";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Streľba";
 
+"type.sport.skateboard" = "Skejtbording";
+
 "type.sport.skiing" = "Lyžovanie";
 
 "type.sport.soccer" = "Futbal";
 
 "type.sport.swimming" = "Plávanie";
 
+"type.sport.table_tennis" = "Stolný tenis";
+
 "type.sport.tennis" = "Tenisový kurt";
+
+"type.sport.volleyball" = "Volejbal";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Ľadový hokej";
+
+"type.sport.field_hockey" = "Pozemný hokej";
+
+"type.sport.badminton" = "Bedminton";
+
+"type.sport.pelota" = "Baskická pelota";
 
 "type.tourism" = "Tourism";
 

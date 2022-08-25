@@ -503,12 +503,6 @@
 
 "history" = "Lịch sử";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Đã đóng";
-
 "search_not_found" = "Xin lỗi, tôi không tìm thấy kết quả nào.";
 
 "search_not_found_query" = "Vui lòng thử câu hỏi khác.";
@@ -578,6 +572,20 @@
 
 "today" = "Hôm nay";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Đã đóng";
+
 "add_opening_hours" = "Thêm giờ làm việc";
 
 "no_osm_account" = "Bạn chưa có tài khoản tại OpenStreetMap ư?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email hoặc tên người dùng";
 
 "phone" = "Điện thoại";
+
+"level" = "Tầng";
 
 "please_note" = "Xin lưu ý";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "giờ";
 
 "minute" = "phút";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "đỗ xe";
 
+"type.amenity.parking_entrance.private" = "Lối vào bãi đậu xe";
+
+"type.amenity.parking_entrance.permissive" = "Lối vào bãi đậu xe";
+
+"type.amenity.parking_entrance" = "Lối vào bãi đậu xe";
+
 "type.amenity.parking_space" = "Chỗ để xe";
 
 "type.amenity.parking_space.permissive" = "Chỗ để xe";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Chỗ để xe";
 
 "type.amenity.parking_space.underground" = "Chỗ để xe";
+
+"type.amenity.parking_space.disabled" = "Chỗ đậu xe dành cho người khuyết tật";
 
 "type.amenity.payment_terminal" = "Thiết bị thanh toán";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Thể thao";
 
-"type.leisure.sports_centre.climbing" = "Trung tâm leo núi";
+"type.sport.climbing" = "Trung tâm leo núi";
 
-"type.leisure.sports_centre.shooting" = "Nơi bắn súng";
-
-"type.leisure.sports_centre.swimming" = "Trung tâm Bơi lội";
-
-"type.leisure.sports_centre.yoga" = "Phòng tập yoga";
+"type.sport.yoga" = "Phòng tập yoga";
 
 "type.leisure.stadium" = "Sân vận động";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "Đất nước";
 
 "type.place.city.capital" = "Thủ đô";
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "Tỉnh";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Nhà ở Biệt lập";
 
 "type.place.locality" = "Thôn";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Vùng lân cận";
 
 "type.place.ocean" = "Đại dương";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "Biển";
 
-"type.place.square" = "Square";
+"type.place.square" = "Quảng trường";
 
 "type.place.state" = "Hạt";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Bóng rổ";
 
+"type.sport.beachvolleyball" = "Bóng chuyền bãi biển";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Cờ vua";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Chụp";
 
+"type.sport.skateboard" = "Trượt ván";
+
 "type.sport.skiing" = "Trượt tuyết";
 
 "type.sport.soccer" = "Bóng đá";
 
 "type.sport.swimming" = "Bơi";
 
+"type.sport.table_tennis" = "Bóng bàn";
+
 "type.sport.tennis" = "Sân tenis";
+
+"type.sport.volleyball" = "Bóng chuyền";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Khúc côn cầu trên băng";
+
+"type.sport.field_hockey" = "Khúc côn cầu";
+
+"type.sport.badminton" = "Cầu lông";
+
+"type.sport.pelota" = "Pơ mu Basque";
 
 "type.tourism" = "Tourism";
 

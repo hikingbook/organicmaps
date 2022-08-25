@@ -503,12 +503,6 @@
 
 "history" = "Historique";
 
-"opens_in" = "Ouvert dans %@";
-
-"closes_in" = "Fermé dans %@";
-
-"closed" = "Fermé";
-
 "search_not_found" = "Désolé, je n'ai rien trouvé.";
 
 "search_not_found_query" = "Veuillez essayer un autre mot-clé.";
@@ -578,6 +572,20 @@
 
 "today" = "Aujourd'hui";
 
+"opens_tomorrow_at" = "Ouvre demain à %@";
+
+"opens_dayoftheweek_at" = "Ouvre le %1$@ à %2$@";
+
+"opens_at" = "Ouvre à %@";
+
+"opens_in" = "Ouvert dans %@";
+
+"closes_at" = "Ferme à %@";
+
+"closes_in" = "Fermé dans %@";
+
+"closed" = "Fermé";
+
 "add_opening_hours" = "Ajouter les heures d'ouverture";
 
 "no_osm_account" = "Vous n'avez pas de compte sur OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email ou nom d'utilisateur";
 
 "phone" = "Numéro de téléphone";
+
+"level" = "Étage";
 
 "please_note" = "À noter";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "h";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parking souterrain";
 
+"type.amenity.parking_entrance.private" = "Entrée du stationnement";
+
+"type.amenity.parking_entrance.permissive" = "Entrée du stationnement";
+
+"type.amenity.parking_entrance" = "Entrée du stationnement";
+
 "type.amenity.parking_space" = "Place de stationnement";
 
 "type.amenity.parking_space.permissive" = "Place de stationnement";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Place de stationnement";
 
 "type.amenity.parking_space.underground" = "Place de stationnement";
+
+"type.amenity.parking_space.disabled" = "Place de stationnement handicapé";
 
 "type.amenity.payment_terminal" = "Terminal de paiement";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Centre sportif";
 
-"type.leisure.sports_centre.climbing" = "Centre d'escalade";
+"type.sport.climbing" = "Centre d'escalade";
 
-"type.leisure.sports_centre.shooting" = "Centre de tir";
-
-"type.leisure.sports_centre.swimming" = "Piscine";
-
-"type.leisure.sports_centre.yoga" = "Yoga";
+"type.sport.yoga" = "Yoga";
 
 "type.leisure.stadium" = "Stade";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Biologique";
 
-"type.place" = "place";
-
 "type.place.city" = "Ville";
 
 "type.place.city.capital" = "Capitale";
@@ -2516,7 +2530,7 @@
 
 "type.place.locality" = "Lieu-dit";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Quartier";
 
 "type.place.ocean" = "Océan";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basket-ball";
 
+"type.sport.beachvolleyball" = "Beach-volley";
+
 "type.sport.bowls" = "Boulingrin";
+
+"type.sport.chess" = "Échecs";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Tir sportif";
 
+"type.sport.skateboard" = "Skateboard";
+
 "type.sport.skiing" = "Ski";
 
 "type.sport.soccer" = "Football";
 
 "type.sport.swimming" = "Natation";
 
+"type.sport.table_tennis" = "Tennis de table";
+
 "type.sport.tennis" = "Court de tennis";
+
+"type.sport.volleyball" = "Volley-ball";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Hockey sur glace";
+
+"type.sport.field_hockey" = "Hockey sur gazon";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Pelote basque";
 
 "type.tourism" = "Tourism";
 

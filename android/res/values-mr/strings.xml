@@ -338,7 +338,6 @@
 	<string name="routing_arrive">%s वाजता आगमन</string>
 	<string name="categories">प्रवर्ग</string>
 	<string name="history">इतिहास</string>
-	<string name="closed">बंद</string>
 	<string name="search_not_found">अरेच्चा, काहीच सापडले नाही.</string>
 	<string name="search_not_found_query">तुमचे शोध निकष बदलण्याचा प्रयत्न करा.</string>
 	<string name="search_history_title">शोध इतिहास</string>
@@ -382,6 +381,7 @@
 	<string name="day_off_today">आज बंद</string>
 	<string name="day_off">बंद</string>
 	<string name="today">आज</string>
+	<string name="closed">बंद</string>
 	<string name="edit_opening_hours">व्यवसायाची वेळ संपादित करा</string>
 	<string name="no_osm_account">OpenStreetMap खाते नाही?</string>
 	<string name="register_at_openstreetmap">OpenStreetMap वर नोंदणी करा</string>
@@ -408,6 +408,7 @@
 	<!-- login text field -->
 	<string name="email_or_username">ईमेल किंवा वापरकर्तानाव</string>
 	<string name="editor_add_phone">फोन जोडा</string>
+	<string name="level">मजला</string>
 	<string name="downloader_delete_map_dialog">तुमचे सर्व नकाशा संपादने नकाशासह पुसले जातील.</string>
 	<string name="downloader_update_maps">नकाशे अद्ययावत करा</string>
 	<string name="downloader_mwm_migration_dialog">मार्ग तयार करण्यासाठी तुम्हाला सर्व नकाशे अद्ययावत करावे लागतील आणि मग मार्ग नियोजन करता येईल.</string>
@@ -515,7 +516,7 @@
 	<string name="on">चालू</string>
 	<string name="off">बंद</string>
 	<string name="prefs_languages_information">आम्ही ध्वनी निर्देशांसाठी \"सिस्टम TTS\" वापरतो. अनेक Android उपकरणे \"Google TTS\" वापरतात, जे तुम्ही Google Play वरून डाउनलोड किंवा अद्ययावत करू शकता (https://play.google.com/store/apps/details?idu003dcom.google.android.tts)</string>
-	<string name="prefs_languages_information_off">काही भाषांसाठी, तुम्हाला अँप स्टोअर (Google Play, Samsung Apps, App Gallery, FDroid) वरून स्पीच मिश्रक किंवा अतिरिक्त भाषा संच इन्स्टॉल करावे लागतील.\nतुमच्या उपकरणाची सेटिंग → भाषा आणि इनपुट → स्पीच → \"टेक्स्ट टू स्पीच आउटपुट\" उघडा.\nयेथे तुम्ही स्पीच मिश्रणासाठी सेटिंग व्यवस्थापित करू शकता (उदाहरणार्थ, ऑफलाइन वापरासाठी भाषा संच डाउनलोड करा) आणि दुसरे टेक्स्ट-टू-स्पीच इंजिन निवडा.</string>
+	<string name="prefs_languages_information_off">काही भाषांसाठी, तुम्हाला अँप स्टोअर (Google Play, Galaxy Store, App Gallery, FDroid) वरून स्पीच मिश्रक किंवा अतिरिक्त भाषा संच इन्स्टॉल करावे लागतील.\nतुमच्या उपकरणाची सेटिंग → भाषा आणि इनपुट → स्पीच → \"टेक्स्ट टू स्पीच आउटपुट\" उघडा.\nयेथे तुम्ही स्पीच मिश्रणासाठी सेटिंग व्यवस्थापित करू शकता (उदाहरणार्थ, ऑफलाइन वापरासाठी भाषा संच डाउनलोड करा) आणि दुसरे टेक्स्ट-टू-स्पीच इंजिन निवडा.</string>
 	<string name="prefs_languages_information_off_link">अधिक माहितीसाठी कृपया ही मार्गदर्शिका पहा.</string>
 	<string name="transliteration_title">लॅटिनमध्ये (इंग्रजीची अक्षरे) लिप्यंतरण</string>
 	<string name="learn_more">अधिक जाणून घ्या</string>
@@ -1147,10 +1148,8 @@
 	<string name="type.leisure.playground">खेळाचे मैदान</string>
 	<string name="type.leisure.recreation_ground">मनोरंजन मैदान</string>
 	<string name="type.leisure.sports_centre">क्रीडासंकुल</string>
-	<string name="type.leisure.sports_centre.climbing">चढण केंद्र</string>
-	<string name="type.leisure.sports_centre.shooting">चांदमारी(बंदूक पल्ला)</string>
-	<string name="type.leisure.sports_centre.swimming">जलतरण केंद्र</string>
-	<string name="type.leisure.sports_centre.yoga">योगासन केंद्र</string>
+	<string name="type.sport.climbing">चढण केंद्र</string>
+	<string name="type.sport.yoga">योगासन केंद्र</string>
 	<string name="type.leisure.stadium">क्रीडागार(स्टेडियम)</string>
 	<string name="type.leisure.swimming_pool">जलतरण तलाव</string>
 	<string name="type.leisure.swimming_pool.private">जलतरण तलाव</string>
@@ -1230,7 +1229,6 @@
 	<string name="type.office.telecommunication">दूरसंचार कंपनी</string>
 	<string name="type.organic.only">सेंद्रिय</string>
 	<string name="type.organic.yes">सेंद्रिय</string>
-	<string name="type.place">जागा</string>
 	<string name="type.place.city">शहर</string>
 	<string name="type.place.city.capital">राजधानी</string>
 	<string name="type.place.city.capital.10">शहर</string>
@@ -1403,7 +1401,9 @@
 	<string name="type.sport.australian_football">रग्बी</string>
 	<string name="type.sport.baseball">बेसबॉल</string>
 	<string name="type.sport.basketball">बास्केटबॉल</string>
+	<string name="type.sport.beachvolleyball">बीच व्हॉलीबॉल</string>
 	<string name="type.sport.bowls">लॉन बोलिंग</string>
+	<string name="type.sport.chess">बुद्धिबळ</string>
 	<string name="type.sport.cricket">क्रिकेट</string>
 	<string name="type.sport.curling">कर्लिंग</string>
 	<string name="type.sport.equestrian">घोडेस्वार खेळ</string>
@@ -1414,10 +1414,15 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">स्कूबा डायव्हिंग</string>
 	<string name="type.sport.shooting">शूटिंग</string>
+	<string name="type.sport.skateboard">स्केट बोर्डिंग</string>
 	<string name="type.sport.skiing">स्कीइंग</string>
 	<string name="type.sport.soccer">सॉकर</string>
 	<string name="type.sport.swimming">जलतरण</string>
+	<string name="type.sport.table_tennis">टेबल टेनिस</string>
 	<string name="type.sport.tennis">टेनिस प्रांगण</string>
+	<string name="type.sport.volleyball">व्हॉलीबॉल</string>
+	<string name="type.sport.9pin">गोलंदाजी</string>
+	<string name="type.sport.10pin">गोलंदाजी</string>
 	<string name="type.tourism">पर्यटन</string>
 	<string name="type.tourism.apartment">सदनिका</string>
 	<string name="type.tourism.artwork">कलाकृती</string>

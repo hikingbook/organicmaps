@@ -503,12 +503,6 @@
 
 "history" = "ประวัติ";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "ปิด";
-
 "search_not_found" = "ขออภัย ฉันไม่พบสิ่งใด";
 
 "search_not_found_query" = "โปรดลองใช้คำถามอื่น";
@@ -578,6 +572,20 @@
 
 "today" = "วันนี้";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "ปิด";
+
 "add_opening_hours" = "เพิ่มชั่วโมงทำการ";
 
 "no_osm_account" = "ไม่มีบัญชีใน OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "อีเมลหรือชื่อผู้ใช้";
 
 "phone" = "โทรศัพท์";
+
+"level" = "ชั้น";
 
 "please_note" = "โปรดทราบ";
 
@@ -749,6 +759,8 @@
 "foot" = "ฟุต";
 
 "miles_per_hour" = "ไมล์/ชม.";
+
+"hour" = "ชม.";
 
 "minute" = "น.";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "ที่จอดรถ";
 
+"type.amenity.parking_entrance.private" = "ทางเข้าที่จอดรถ";
+
+"type.amenity.parking_entrance.permissive" = "ทางเข้าที่จอดรถ";
+
+"type.amenity.parking_entrance" = "ทางเข้าที่จอดรถ";
+
 "type.amenity.parking_space" = "พื้นที่จอดรถ";
 
 "type.amenity.parking_space.permissive" = "พื้นที่จอดรถ";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "พื้นที่จอดรถ";
 
 "type.amenity.parking_space.underground" = "พื้นที่จอดรถ";
+
+"type.amenity.parking_space.disabled" = "ที่จอดรถสำหรับผู้พิการ";
 
 "type.amenity.payment_terminal" = "จุดชำระเงิน";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "กีฬา";
 
-"type.leisure.sports_centre.climbing" = "ศูนย์ปีนเขา";
+"type.sport.climbing" = "ศูนย์ปีนเขา";
 
-"type.leisure.sports_centre.shooting" = "สนามยิงปืน";
-
-"type.leisure.sports_centre.swimming" = "ศูนย์ว่ายน้ำ";
-
-"type.leisure.sports_centre.yoga" = "โยคะสตูดิโอ";
+"type.sport.yoga" = "โยคะสตูดิโอ";
 
 "type.leisure.stadium" = "สนามกีฬา";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "เมือง";
 
 "type.place.city.capital" = "เมือง";
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "เกาะ";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "ที่อยู่อาศัยโดดเดี่ยว";
 
 "type.place.locality" = "ท้องถิ่น";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "ละแวกบ้าน";
 
 "type.place.ocean" = "มหาสมุทร";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "เห็น";
 
-"type.place.square" = "Square";
+"type.place.square" = "ช่องว่าง";
 
 "type.place.state" = "รัฐ";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "บาสเก็ตบอล";
 
+"type.sport.beachvolleyball" = "วอลเลย์บอลชายหาด";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "หมากรุกสากล";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "ยิงปืน";
 
+"type.sport.skateboard" = "สเกตบอร์ด";
+
 "type.sport.skiing" = "เล่นสกี";
 
 "type.sport.soccer" = "ฟุตบอล";
 
 "type.sport.swimming" = "การว่ายน้ำ";
 
+"type.sport.table_tennis" = "เทเบิลเทนนิส";
+
 "type.sport.tennis" = "คอร์ทเทนนิส";
+
+"type.sport.volleyball" = "วอลเลย์บอล";
+
+"type.sport.9pin" = "โบว์ลิ่ง";
+
+"type.sport.10pin" = "โบว์ลิ่ง";
+
+"type.sport.padel" = "พาเดล";
+
+"type.sport.futsal" = "ฟุตซอล";
+
+"type.sport.ice_hockey" = "ฮอคกี้น้ำแข็ง";
+
+"type.sport.field_hockey" = "กีฬาฮอกกี้";
+
+"type.sport.badminton" = "แบดมินตัน";
+
+"type.sport.pelota" = "Basque pelota";
 
 "type.tourism" = "Tourism";
 

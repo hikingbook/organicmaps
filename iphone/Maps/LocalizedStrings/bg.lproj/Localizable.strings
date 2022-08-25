@@ -503,12 +503,6 @@
 
 "history" = "История";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Затворено";
-
 "search_not_found" = "За съжаление не са намерени резултати.";
 
 "search_not_found_query" = "Опитайте да промените критериите за търсене.";
@@ -578,6 +572,20 @@
 
 "today" = "Днес";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Затворено";
+
 "add_opening_hours" = "Добавяне на работно време";
 
 "no_osm_account" = "Нямате акаунт в OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Имейл или потребителско име";
 
 "phone" = "Телефон";
+
+"level" = "Етаж";
 
 "please_note" = "Моля, имайте предвид";
 
@@ -749,6 +759,8 @@
 "foot" = "фут";
 
 "miles_per_hour" = "mph";
+
+"hour" = "ч";
 
 "minute" = "мин";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parking";
 
+"type.amenity.parking_entrance.private" = "Вход за паркинг";
+
+"type.amenity.parking_entrance.permissive" = "Вход за паркинг";
+
+"type.amenity.parking_entrance" = "Вход за паркинг";
+
 "type.amenity.parking_space" = "Parking Space";
 
 "type.amenity.parking_space.permissive" = "Parking Space";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parking Space";
 
 "type.amenity.parking_space.underground" = "Parking Space";
+
+"type.amenity.parking_space.disabled" = "Паркомясто за инвалиди";
 
 "type.amenity.payment_terminal" = "Payment Terminal";
 
@@ -2296,19 +2316,15 @@
 
 "type.leisure.sports_centre" = "Sports Center";
 
-"type.leisure.sports_centre.climbing" = "Climbing Centre";
+"type.sport.climbing" = "Катерене";
 
-"type.leisure.sports_centre.shooting" = "Shooting Range";
-
-"type.leisure.sports_centre.swimming" = "Swimming Centre";
-
-"type.leisure.sports_centre.yoga" = "Yoga Studio";
+"type.sport.yoga" = "Йога";
 
 "type.leisure.stadium" = "Stadium";
 
-"type.leisure.swimming_pool" = "Swimming Pool";
+"type.leisure.swimming_pool" = "Басейн";
 
-"type.leisure.swimming_pool.private" = "Swimming Pool";
+"type.leisure.swimming_pool.private" = "Басейн";
 
 "type.leisure.track" = "Track";
 
@@ -2472,69 +2488,67 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
+"type.place.city" = "Град";
 
-"type.place.city" = "City";
+"type.place.city.capital" = "Столица";
 
-"type.place.city.capital" = "Capital";
+"type.place.city.capital.10" = "Град";
 
-"type.place.city.capital.10" = "City";
+"type.place.city.capital.11" = "Град";
 
-"type.place.city.capital.11" = "City";
+"type.place.city.capital.2" = "Столица";
 
-"type.place.city.capital.2" = "Capital";
+"type.place.city.capital.3" = "Град";
 
-"type.place.city.capital.3" = "City";
+"type.place.city.capital.4" = "Град";
 
-"type.place.city.capital.4" = "City";
+"type.place.city.capital.5" = "Град";
 
-"type.place.city.capital.5" = "City";
+"type.place.city.capital.6" = "Град";
 
-"type.place.city.capital.6" = "City";
+"type.place.city.capital.7" = "Град";
 
-"type.place.city.capital.7" = "City";
+"type.place.city.capital.8" = "Град";
 
-"type.place.city.capital.8" = "City";
+"type.place.city.capital.9" = "Град";
 
-"type.place.city.capital.9" = "City";
+"type.place.continent" = "Континент";
 
-"type.place.continent" = "Continent";
+"type.place.country" = "Страна";
 
-"type.place.country" = "Country";
+"type.place.county" = "Графство";
 
-"type.place.county" = "County";
+"type.place.farm" = "Ферма";
 
-"type.place.farm" = "Farm";
+"type.place.hamlet" = "Cело";
 
-"type.place.hamlet" = "Hamlet";
+"type.place.island" = "Остров";
 
-"type.place.island" = "Island";
+"type.place.islet" = "Острови";
 
-"type.place.islet" = "Island";
+"type.place.isolated_dwelling" = "Изолирано жилище";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.locality" = "Място";
 
-"type.place.locality" = "Locality";
+"type.place.neighbourhood" = "Съседство";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.ocean" = "Океан";
 
-"type.place.ocean" = "Ocean";
+"type.place.region" = "Регион";
 
-"type.place.region" = "Region";
+"type.place.sea" = "Море";
 
-"type.place.sea" = "Sea";
+"type.place.square" = "Площад";
 
-"type.place.square" = "Square";
+"type.place.state" = "Федерален щат";
 
-"type.place.state" = "State";
+"type.place.state.USA" = "Държава";
 
-"type.place.state.USA" = "State";
+"type.place.suburb" = "Предградие";
 
-"type.place.suburb" = "Suburb";
+"type.place.town" = "Касаба";
 
-"type.place.town" = "Town";
-
-"type.place.village" = "Village";
+"type.place.village" = "Село";
 
 "type.power" = "Power";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "Плажен волейбол";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Шахмат";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Shooting";
 
+"type.sport.skateboard" = "Скейтбординг";
+
 "type.sport.skiing" = "Skiing";
 
 "type.sport.soccer" = "Soccer";
 
 "type.sport.swimming" = "Плуване";
 
+"type.sport.table_tennis" = "Тенис на маса";
+
 "type.sport.tennis" = "Тенис корт";
+
+"type.sport.volleyball" = "Волейбол";
+
+"type.sport.9pin" = "Боулинг";
+
+"type.sport.10pin" = "Боулинг";
+
+"type.sport.padel" = "Падел";
+
+"type.sport.futsal" = "Футзал";
+
+"type.sport.ice_hockey" = "Хокей на лед";
+
+"type.sport.field_hockey" = "Хокей на трева";
+
+"type.sport.badminton" = "Бадминтон";
+
+"type.sport.pelota" = "Баска пелота";
 
 "type.tourism" = "Tourism";
 

@@ -338,8 +338,9 @@ void InitLocalizedStrings() {
   auto obj = [(UINavigationController *)self.window.rootViewController viewControllers].firstObject;
   if ([obj isKindOfClass:[MapViewController class]])
     return obj;
-  else
-    return nil;
+
+  NSAssert(false, @"Please check the logic");
+  return nil;
 }
 
 //- (MWMCarPlayService *)carplayService {

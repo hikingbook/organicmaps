@@ -589,8 +589,9 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JN
   }
 
   auto const path = localFile->GetPath(MapFileType::Map);
-  feature::DataHeader const header(path);
-  if (header.GetFormat() < version::Format::v11) { // More details: FeaturesVector::InitRecordsReader()
+  Platform & pl = GetPlatform();
+  auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
+  if (version.GetFormat() < version::Format::v11) {
     Java_com_mapswithme_maps_downloader_MapManager_nativeDelete(env, clazz, root);
     return true;
   }
