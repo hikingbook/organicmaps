@@ -209,6 +209,8 @@
 	<string name="help">کمک</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">ﺦﺳﺎﭘ ﻭ ﺶﺳﺮﭘ</string>
+	<!-- Button in the main menu -->
+	<string name="donate">ﺪﯿﻨﮐ ﺍﺪﻫﺍ</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">چگونه از ما حمایت کنیم؟</string>
 	<!-- Button in the main Help dialog -->
@@ -328,7 +330,6 @@
 	<string name="routing_arrive">ورود به: %s</string>
 	<string name="categories">دسته بندی ها</string>
 	<string name="history">تاریخچه</string>
-	<string name="closed">تعطیل</string>
 	<string name="search_not_found">متاسفانه چیزی پیدا نشد</string>
 	<string name="search_not_found_query">با تغییر در معیار های جست و جو دوباره امتحان کنید</string>
 	<string name="search_history_title">سوابق جست وجو</string>
@@ -372,6 +373,7 @@
 	<string name="day_off_today">امروز تعطیل است</string>
 	<string name="day_off">تعطیل است</string>
 	<string name="today">امروز</string>
+	<string name="closed">تعطیل</string>
 	<string name="edit_opening_hours">ویرایش ساعت کاری</string>
 	<string name="no_osm_account">ایا حساب OpenStreetMap ندارید؟</string>
 	<string name="register_at_openstreetmap">ثبت نام در OSM</string>
@@ -397,6 +399,7 @@
 	<string name="select_cuisine">انتخاب غذاخوری</string>
 	<!-- login text field -->
 	<string name="email_or_username">ایمیل یا نام کاربری</string>
+	<string name="level">طبقه</string>
 	<string name="downloader_delete_map_dialog">تمام ویرایش های که بر روی نقشه انجام داده اید به همراه نقشه حذف شد.</string>
 	<string name="downloader_update_maps">بروزرسانی نقشه ها</string>
 	<string name="downloader_mwm_migration_dialog">برای ایجاد مسیر شما نیازمند بروزرسانی تمامی  نقشه ها هستید سپس می توانید دوباره مسیرتان را برنامه ریزی کنید</string>
@@ -499,7 +502,7 @@
 	<string name="on">روشن</string>
 	<string name="off">خاموش</string>
 	<string name="prefs_languages_information">ما از TTS سیستم برای دستورالعمل های صوتی استفاده می کنیم. بسیاری از دستگاه های Android از Google TTS استفاده می کنند، شما می توانید آن را از Google Play دانلود کنید (https://play.google.com/store/apps/details؟id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">برای بعضی از زبان ها، شما باید speech synthesizer یا یک بسته زبان دیگر را از فروشگاه برنامه (بازار Google Play، Samsung Apps) نصب کنید. \n تنظیمات دستگاه خود را باز کنید. → زبان و ورودی → گفتار → خروجی متن به گفتار. می توانید تنظیمات برای ترکیب گفتار (به عنوان مثال، بسته های زبان را برای استفاده آفلاین دانلود کنید) را مدیریت کنید و یک موتور دیگر متن به گفتار را انتخاب کنید.</string>
+	<string name="prefs_languages_information_off">برای بعضی از زبان ها، شما باید speech synthesizer یا یک بسته زبان دیگر را از فروشگاه برنامه (بازار Google Play، Galaxy Store) نصب کنید. \n تنظیمات دستگاه خود را باز کنید. → زبان و ورودی → گفتار → خروجی متن به گفتار. می توانید تنظیمات برای ترکیب گفتار (به عنوان مثال، بسته های زبان را برای استفاده آفلاین دانلود کنید) را مدیریت کنید و یک موتور دیگر متن به گفتار را انتخاب کنید.</string>
 	<string name="prefs_languages_information_off_link">برای اطلاعات بیشتر لطفا این راهنما را بررسی کنید.</string>
 	<string name="transliteration_title">ترجمه به لاتین</string>
 	<string name="learn_more">بیشتر بدانید</string>
@@ -660,6 +663,8 @@
 	<string name="enable_screen_sleep">اجازه دهید صفحه نمایش بخوابد</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">درصورت فعال بودن ، بعد از یک دوره عدم فعالیت به صفحه اجازه خواب داده می شود.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">OpenStreetMap ﺯﺍ ﻪﺸﻘﻧ ﯼﺎﻫ ﻩﺩﺍﺩ</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aeroway.aerodrome">فرودگاه</string>
@@ -722,10 +727,14 @@
 	<string name="type.amenity.parking.permissive">پارکینگ</string>
 	<string name="type.amenity.parking.private">پارکینگ</string>
 	<string name="type.amenity.parking.underground">پارکینگ</string>
+	<string name="type.amenity.parking_entrance.private">ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ</string>
+	<string name="type.amenity.parking_entrance.permissive">ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ</string>
+	<string name="type.amenity.parking_entrance">ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ</string>
 	<string name="type.amenity.parking_space">جای پارک</string>
 	<string name="type.amenity.parking_space.permissive">جای پارک</string>
 	<string name="type.amenity.parking_space.private">جای پارک</string>
 	<string name="type.amenity.parking_space.underground">جای پارک</string>
+	<string name="type.amenity.parking_space.disabled">ﻦﯿﻟﻮﻠﻌﻣ ﮎﺭﺎﭘ ﯼﺎﺟ</string>
 	<string name="type.amenity.payment_terminal">دستگاه کارتخوان</string>
 	<string name="type.amenity.pharmacy">داروخانه</string>
 	<string name="type.amenity.place_of_worship">گردشگری</string>
@@ -1009,10 +1018,8 @@
 	<string name="type.leisure.playground">زمین بازی</string>
 	<string name="type.leisure.sauna">سونا</string>
 	<string name="type.leisure.sports_centre">مرکزورزشی</string>
-	<string name="type.leisure.sports_centre.climbing">مرکز صعود</string>
-	<string name="type.leisure.sports_centre.shooting">محل تیراندازی</string>
-	<string name="type.leisure.sports_centre.swimming">استخرشنا</string>
-	<string name="type.leisure.sports_centre.yoga">سالن یوگا</string>
+	<string name="type.sport.climbing">مرکز صعود</string>
+	<string name="type.sport.yoga">سالن یوگا</string>
 	<string name="type.leisure.stadium">استادیوم</string>
 	<string name="type.leisure.swimming_pool">استخرشنا</string>
 	<string name="type.leisure.swimming_pool.private">استخرشنا</string>
@@ -1092,10 +1099,13 @@
 	<string name="type.place.hamlet">روستا</string>
 	<string name="type.place.island">جزیره</string>
 	<string name="type.place.islet">جزیره</string>
+	<string name="type.place.isolated_dwelling">مسکن منزوی</string>
 	<string name="type.place.locality">محله</string>
+	<string name="type.place.neighbourhood">محله</string>
 	<string name="type.place.ocean">اقیانوس</string>
 	<string name="type.place.region">منطقه</string>
 	<string name="type.place.sea">دریا</string>
+	<string name="type.place.square">میدان</string>
 	<string name="type.place.state">ایالت</string>
 	<string name="type.place.state.USA">ایالت</string>
 	<string name="type.place.suburb">حومه</string>
@@ -1240,7 +1250,9 @@
 	<string name="type.sport.australian_football">فوتبال استرالیایی</string>
 	<string name="type.sport.baseball">بیسبال</string>
 	<string name="type.sport.basketball">بسکتبال</string>
+	<string name="type.sport.beachvolleyball">والیبال ساحلی</string>
 	<string name="type.sport.bowls">لعبة البولينج</string>
+	<string name="type.sport.chess">شطرنج</string>
 	<string name="type.sport.cricket">کریکت</string>
 	<string name="type.sport.curling">کرلینگ</string>
 	<string name="type.sport.equestrian">ورزش های سوارکاری</string>
@@ -1251,10 +1263,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">غواصی</string>
 	<string name="type.sport.shooting">ورزش تیراندازی</string>
+	<string name="type.sport.skateboard">اسکیت‌بردینگ</string>
 	<string name="type.sport.skiing">اسکی</string>
 	<string name="type.sport.soccer">فوتبال</string>
 	<string name="type.sport.swimming">شنا</string>
+	<string name="type.sport.table_tennis">تنیس روی میز</string>
 	<string name="type.sport.tennis">زمین تنیس</string>
+	<string name="type.sport.volleyball">والیبال</string>
+	<string name="type.sport.9pin">بولینگ</string>
+	<string name="type.sport.10pin">بولینگ</string>
+	<string name="type.sport.padel">ﻝﺩﺎﭘ</string>
+	<string name="type.sport.futsal">ﻝﺎﺴﺗﻮﻓ</string>
+	<string name="type.sport.ice_hockey">ﺦﯾ ﯼﻭﺭ ﯽﮐﺎﻫ</string>
+	<string name="type.sport.field_hockey">ﻦﻤﭼ ﯼﻭﺭ ﯽﮐﺎﻫ</string>
+	<string name="type.sport.badminton">ﻥﻮﺘﻨﯿﻣﺪﺑ</string>
+	<string name="type.sport.pelota">ﯽﮑﺳﺎﺑ ﯼﺎﺗﻮﻠﭘ</string>
 	<string name="type.tourism.apartment">اپارتمان</string>
 	<string name="type.tourism.artwork">گردشگری</string>
 	<string name="type.tourism.artwork.architecture">گردشگری</string>

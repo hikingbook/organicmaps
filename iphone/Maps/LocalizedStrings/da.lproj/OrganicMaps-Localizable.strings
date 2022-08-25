@@ -503,12 +503,6 @@
 
 "history" = "Historik";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Lukket";
-
 "search_not_found" = "Desværre, jeg fandt ikke noget.";
 
 "search_not_found_query" = "Prøv en anden forespørgsel.";
@@ -578,6 +572,20 @@
 
 "today" = "I dag";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Lukket";
+
 "add_opening_hours" = "Tilføj arbejdstid";
 
 "no_osm_account" = "Ingen konto på OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email eller brugernavn";
 
 "phone" = "Telefon";
+
+"level" = "Etage";
 
 "please_note" = "Bemærk venligst";
 
@@ -749,6 +759,8 @@
 "foot" = "fod";
 
 "miles_per_hour" = "mph";
+
+"hour" = "time";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parkering";
 
+"type.amenity.parking_entrance.private" = "Parkeringsindgang";
+
+"type.amenity.parking_entrance.permissive" = "Parkeringsindgang";
+
+"type.amenity.parking_entrance" = "Parkeringsindgang";
+
 "type.amenity.parking_space" = "Parkeringsplads";
 
 "type.amenity.parking_space.permissive" = "Parkeringsplads";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parkeringsplads";
 
 "type.amenity.parking_space.underground" = "Parkeringsplads";
+
+"type.amenity.parking_space.disabled" = "Handicapparkeringsplads";
 
 "type.amenity.payment_terminal" = "Betalingsautomat";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Idrætscenter";
 
-"type.leisure.sports_centre.climbing" = "Klatrecenter";
+"type.sport.climbing" = "Klatrecenter";
 
-"type.leisure.sports_centre.shooting" = "Skydebane";
-
-"type.leisure.sports_centre.swimming" = "Svømmecenter";
-
-"type.leisure.sports_centre.yoga" = "Yoga center";
+"type.sport.yoga" = "Yoga center";
 
 "type.leisure.stadium" = "Stadium";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "By";
 
 "type.place.city.capital" = "Kapital";
@@ -2512,19 +2526,19 @@
 
 "type.place.islet" = "Ø";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Isoleret bolig";
 
 "type.place.locality" = "Lokalitet";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Kvarter";
 
-"type.place.ocean" = "Ocean";
+"type.place.ocean" = "Verdenshave";
 
 "type.place.region" = "Region";
 
 "type.place.sea" = "Er";
 
-"type.place.square" = "Square";
+"type.place.square" = "Torv";
 
 "type.place.state" = "Stat";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "Beachvolley";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Skak";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Skydning";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Stå på ski";
 
 "type.sport.soccer" = "Fodbold";
 
 "type.sport.swimming" = "Svømning";
 
+"type.sport.table_tennis" = "Bordtennis";
+
 "type.sport.tennis" = "Tennisbane";
+
+"type.sport.volleyball" = "Volleyball";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Ishockey";
+
+"type.sport.field_hockey" = "Landhockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Baskisk pelota";
 
 "type.tourism" = "Tourism";
 

@@ -216,6 +216,8 @@
 	<string name="help">Segítség</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Kérdések és válaszok</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Adományoz</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Hogyan támogat minket?</string>
 	<!-- Button in the main Help dialog -->
@@ -335,7 +337,6 @@
 	<string name="routing_arrive">Megérkezik: %s</string>
 	<string name="categories">Kategóriák</string>
 	<string name="history">Előzmények</string>
-	<string name="closed">Zárva</string>
 	<string name="search_not_found">Sajnos, semmit nem találtam.</string>
 	<string name="search_not_found_query">Próbáljon másik lekérdezést.</string>
 	<string name="search_history_title">Előző keresések</string>
@@ -377,6 +378,7 @@
 	<string name="day_off_today">Ma zárva</string>
 	<string name="day_off">Zárva</string>
 	<string name="today">Ma</string>
+	<string name="closed">Zárva</string>
 	<string name="edit_opening_hours">Nyitvatartás szerkesztése</string>
 	<string name="no_osm_account">Nem rendelkezel még OpenStreetMap-felhasználói fiókkal?</string>
 	<string name="register_at_openstreetmap">Regisztráció</string>
@@ -400,6 +402,7 @@
 	<string name="select_cuisine">Válassz Konyhát</string>
 	<!-- login text field -->
 	<string name="email_or_username">Email vagy felhasználónév</string>
+	<string name="level">Szint</string>
 	<string name="downloader_delete_map_dialog">A térképekkel együtt minden rajtuk végzett módosítás is törlésre kerül.</string>
 	<string name="downloader_update_maps">Térképek frissítése</string>
 	<string name="downloader_mwm_migration_dialog">Útvonal létrehozásához frissítsd az összes térképet, majd tervezd meg újra az útvonalat.</string>
@@ -502,7 +505,7 @@
 	<string name="on">Be</string>
 	<string name="off">Ki</string>
 	<string name="prefs_languages_information">TTS rendszert használunk a hangnavigációhoz. Sok Android-os készülék használja a Google TTS-t; töltse le vagy frissítse a Google Play áruházból (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Egyes nyelveknél másik beszédszintetizátort vagy további nyelvi csomagot kell telepítenie az alkalmazás-áruházból (Google Play, Samsung Apps, App Gallery, FDroid). Nyissa meg a készülék beállításait → Nyelv és bevitel → Beszéd → Szöveg-beszéd átalakító kimenet. Itt kezelheti a beszédszintézis beállításokat (például nyelvi csomag letöltése kapcsolat nélküli használatra) és másik szövegfelolvasót jelölhe tki.</string>
+	<string name="prefs_languages_information_off">Egyes nyelveknél másik beszédszintetizátort vagy további nyelvi csomagot kell telepítenie az alkalmazás-áruházból (Google Play, Galaxy Store, App Gallery, FDroid). Nyissa meg a készülék beállításait → Nyelv és bevitel → Beszéd → Szöveg-beszéd átalakító kimenet. Itt kezelheti a beszédszintézis beállításokat (például nyelvi csomag letöltése kapcsolat nélküli használatra) és másik szövegfelolvasót jelölhe tki.</string>
 	<string name="prefs_languages_information_off_link">További tájékoztatást találhat még ebben az útmutatóban.</string>
 	<string name="transliteration_title">Átírás latin nyelvre</string>
 	<string name="learn_more">Tudjon meg többet</string>
@@ -660,6 +663,8 @@
 	<string name="enable_screen_sleep">Hagyja aludni a képernyőt</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Ha engedélyezve van, akkor a képernyő inaktivitás után alszik.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Térképadatok az OpenStreetMapből</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.station">Felvonóállomás</string>
@@ -723,10 +728,14 @@
 	<string name="type.amenity.parking.permissive">Parkoló</string>
 	<string name="type.amenity.parking.private">Parkoló</string>
 	<string name="type.amenity.parking.underground">Parkoló</string>
+	<string name="type.amenity.parking_entrance.private">Parkoló bejárata</string>
+	<string name="type.amenity.parking_entrance.permissive">Parkoló bejárata</string>
+	<string name="type.amenity.parking_entrance">Parkoló bejárata</string>
 	<string name="type.amenity.parking_space">Parkolóhely</string>
 	<string name="type.amenity.parking_space.permissive">Parkolóhely</string>
 	<string name="type.amenity.parking_space.private">Parkolóhely</string>
 	<string name="type.amenity.parking_space.underground">Parkolóhely</string>
+	<string name="type.amenity.parking_space.disabled">Mozgássérült parkolóhely</string>
 	<string name="type.amenity.payment_terminal">Fizető terminál</string>
 	<string name="type.amenity.pharmacy">Gyógyszertár</string>
 	<string name="type.amenity.place_of_worship">Templom</string>
@@ -1097,10 +1106,8 @@
 	<string name="type.leisure.playground">Játszótér</string>
 	<string name="type.leisure.sauna">Szauna</string>
 	<string name="type.leisure.sports_centre">Sportközpont</string>
-	<string name="type.leisure.sports_centre.climbing">Hegymászó központ</string>
-	<string name="type.leisure.sports_centre.shooting">Lőtér</string>
-	<string name="type.leisure.sports_centre.swimming">Uszoda</string>
-	<string name="type.leisure.sports_centre.yoga">Jógastúdió</string>
+	<string name="type.sport.climbing">Hegymászó központ</string>
+	<string name="type.sport.yoga">Jógastúdió</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Úszómedence</string>
 	<string name="type.leisure.swimming_pool.private">Úszómedence</string>
@@ -1180,10 +1187,13 @@
 	<string name="type.place.hamlet">Tanya</string>
 	<string name="type.place.island">Sziget</string>
 	<string name="type.place.islet">Sziget</string>
+	<string name="type.place.isolated_dwelling">Elszigetelt lakás</string>
 	<string name="type.place.locality">Falu</string>
+	<string name="type.place.neighbourhood">Szomszédság</string>
 	<string name="type.place.ocean">Óceán</string>
 	<string name="type.place.region">Régió</string>
 	<string name="type.place.sea">Tenger</string>
+	<string name="type.place.square">Tér</string>
 	<string name="type.place.state">Állam</string>
 	<string name="type.place.state.USA">Állam</string>
 	<string name="type.place.suburb">Kerület</string>
@@ -1329,6 +1339,8 @@
 	<string name="type.sport.australian_football">Ausztrál futball</string>
 	<string name="type.sport.baseball">Baseball</string>
 	<string name="type.sport.basketball">Kosárlabda</string>
+	<string name="type.sport.beachvolleyball">Strandröplabda</string>
+	<string name="type.sport.chess">Sakk</string>
 	<string name="type.sport.cricket">Krikett</string>
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Lovas sportok</string>
@@ -1339,10 +1351,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Búvárkodás</string>
 	<string name="type.sport.shooting">Lövés</string>
+	<string name="type.sport.skateboard">Gördeszkázás</string>
 	<string name="type.sport.skiing">Síelés</string>
 	<string name="type.sport.soccer">Futball</string>
 	<string name="type.sport.swimming">Úszás</string>
+	<string name="type.sport.table_tennis">Asztalitenisz</string>
 	<string name="type.sport.tennis">Teniszpálya</string>
+	<string name="type.sport.volleyball">Röplabda</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Futsal</string>
+	<string name="type.sport.ice_hockey">Jéghoki</string>
+	<string name="type.sport.field_hockey">Gyeplabda</string>
+	<string name="type.sport.badminton">Tollaslabda</string>
+	<string name="type.sport.pelota">Baszk pelota</string>
 	<string name="type.tourism.alpine_hut">Hegyi menedék</string>
 	<string name="type.tourism.apartment">Apartmanok</string>
 	<string name="type.tourism.artwork">Szobor</string>

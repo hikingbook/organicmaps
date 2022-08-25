@@ -503,12 +503,6 @@
 
 "history" = "Verlauf";
 
-"opens_in" = "Öffnet in %@";
-
-"closes_in" = "Schließt in %@";
-
-"closed" = "Geschlossen";
-
 "search_not_found" = "Leider wurde nichts gefunden.";
 
 "search_not_found_query" = "Versuchen Sie bitte eine andere Suchanfrage.";
@@ -578,6 +572,20 @@
 
 "today" = "Heute";
 
+"opens_tomorrow_at" = "Öffnet morgen um %@";
+
+"opens_dayoftheweek_at" = "Öffnet %1$@ um %2$@";
+
+"opens_at" = "Öffnet um %@";
+
+"opens_in" = "Öffnet in %@";
+
+"closes_at" = "Schließt um %@";
+
+"closes_in" = "Schließt in %@";
+
+"closed" = "Geschlossen";
+
 "add_opening_hours" = "Geschäftszeiten hinzufügen";
 
 "no_osm_account" = "Kein Konto bei OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email oder Benutzername";
 
 "phone" = "Telefon";
+
+"level" = "Stockwerk";
 
 "please_note" = "Bitte beachten";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "h";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Tiefgarage";
 
+"type.amenity.parking_entrance.private" = "Parkplatzeinfahrt";
+
+"type.amenity.parking_entrance.permissive" = "Parkplatzeinfahrt";
+
+"type.amenity.parking_entrance" = "Parkplatzeinfahrt";
+
 "type.amenity.parking_space" = "Parkplatz";
 
 "type.amenity.parking_space.permissive" = "Parkplatz";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parkplatz";
 
 "type.amenity.parking_space.underground" = "Parkplatz";
+
+"type.amenity.parking_space.disabled" = "Behindertenparkplatz";
 
 "type.amenity.payment_terminal" = "Bezahlterminal";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Sportzentrum";
 
-"type.leisure.sports_centre.climbing" = "Kletterhalle";
+"type.sport.climbing" = "Kletterhalle";
 
-"type.leisure.sports_centre.shooting" = "Schießanlage";
-
-"type.leisure.sports_centre.swimming" = "Schwimmhalle";
-
-"type.leisure.sports_centre.yoga" = "Yoga Studio";
+"type.sport.yoga" = "Yoga Studio";
 
 "type.leisure.stadium" = "Stadion";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Bio";
 
-"type.place" = "Ort";
-
 "type.place.city" = "Großstadt";
 
 "type.place.city.capital" = "Hauptstadt";
@@ -2510,7 +2524,7 @@
 
 "type.place.island" = "Insel";
 
-"type.place.islet" = "kleine Insel";
+"type.place.islet" = "Kleine Insel";
 
 "type.place.isolated_dwelling" = "Kleinstsiedlung";
 
@@ -2530,9 +2544,9 @@
 
 "type.place.state.USA" = "Bundesstaat";
 
-"type.place.suburb" = "Stadtteil";
+"type.place.suburb" = "Vorort";
 
-"type.place.town" = "Stadt";
+"type.place.town" = "Kleinstadt";
 
 "type.place.village" = "Dorf";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "Beachvolleyball";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Schach";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,17 +2971,39 @@
 
 "type.sport.shooting" = "Schießen";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Skifahren";
 
 "type.sport.soccer" = "Fußball";
 
 "type.sport.swimming" = "Schwimmen";
 
+"type.sport.table_tennis" = "Tischtennis";
+
 "type.sport.tennis" = "Tennisspielfeld";
+
+"type.sport.volleyball" = "Volleyball";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Eishockey";
+
+"type.sport.field_hockey" = "Feldhockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Pelota Vasca";
 
 "type.tourism" = "Tourismus";
 
-"type.tourism.alpine_hut" = "bewirtschaftete Schutzhütte";
+"type.tourism.alpine_hut" = "Berghütte";
 
 "type.tourism.apartment" = "Ferienwohnung";
 
@@ -3019,7 +3059,7 @@
 
 "type.tourism.viewpoint" = "Aussichtspunkt";
 
-"type.tourism.wilderness_hut" = "unbewirtschaftete Schutzhütte";
+"type.tourism.wilderness_hut" = "Waldhütte";
 
 "type.tourism.zoo" = "Zoo";
 

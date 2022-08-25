@@ -2188,6 +2188,49 @@
     zh-Hans = 停车场
     zh-Hant = 停車場
 
+  [type.amenity.parking_entrance.private]
+    ref = type.amenity.parking_entrance
+
+  [type.amenity.parking_entrance.permissive]
+    ref = type.amenity.parking_entrance
+
+  [type.amenity.parking_entrance]
+    en = Parking entrance
+    ar = ﺕﺍﺭﺎﻴﺴﻟﺍ ﻑﻮﻗﻭ ﻞﺧﺪﻣ
+    be = Уваход на паркоўку
+    bg = Вход за паркинг
+    cs = Vjezd na parkoviště
+    da = Parkeringsindgang
+    de = Parkplatzeinfahrt
+    el = Είσοδος στάθμευσης
+    es = Entrada al aparcamiento
+    eu = Aparkalekuaren sarrera
+    fa = ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ
+    fi = Pysäköinti sisäänkäynti
+    fr = Entrée du stationnement
+    he = הינחל הסינכ
+    hu = Parkoló bejárata
+    id = Pintu masuk parkir
+    it = Ingresso parcheggio
+    ja = 駐車場入口
+    ko = 주차장 입구
+    nb = Parkeringsinngang
+    nl = Parkeeringang
+    pl = Wejście na parking
+    pt = Entrada do estacionamento
+    pt-BR = Entrada do estacionamento
+    ro = Intrare parcare
+    ru = Въезд на парковку
+    sk = Vstup na parkovisko
+    sv = Parkering entré
+    sw = Mlango wa maegesho
+    th = ทางเข้าที่จอดรถ
+    tr = Otopark girişi
+    uk = Вхід на паркінг
+    vi = Lối vào bãi đậu xe
+    zh-Hans = 停车场入口
+    zh-Hant = 停車場入口
+
   [type.amenity.parking_space]
     en = Parking Space
     ar = مكان لوقوف السيارات
@@ -2331,6 +2374,42 @@
     vi = Chỗ để xe
     zh-Hans = 停车位
     zh-Hant = 停車地點
+
+  [type.amenity.parking_space.disabled]
+    en = Disabled Parking Space
+    ar = ﺔﺻﺎﺨﻟﺍ ﺕﺎﺟﺎﻴﺘﺣﻻ﻿ﺍ ﻱﻭﺬﻟ ﺕﺍﺭﺎﻴﺴﻟﺍ ﻑﻮﻗﻮﻟ ﻦﻛﺎﻣﺃ
+    be = Паркоўка для інвалідаў
+    bg = Паркомясто за инвалиди
+    cs = Parkovací místo pro invalidy
+    da = Handicapparkeringsplads
+    de = Behindertenparkplatz
+    el = Χώρος στάθμευσης για ΑΜΕΑ
+    es = Plaza de aparcamiento para discapacitados
+    eu = Ezinduentzako aparkalekua
+    fa = ﻦﯿﻟﻮﻠﻌﻣ ﮎﺭﺎﭘ ﯼﺎﺟ
+    fi = Vammaispysäköinti
+    fr = Place de stationnement handicapé
+    he = םיכנל הינח
+    hu = Mozgássérült parkolóhely
+    id = Tempat parkir penyandang cacat
+    it = Posto auto per disabili
+    ja = 身障者用駐車スペース
+    ko = 장애인 주차 공간
+    nb = Parkeringsplass for funksjonshemmede
+    nl = Invalide parkeerplaats
+    pl = Miejsce parkingowe dla niepełnosprawnych
+    pt = Estacionamento para deficientes
+    ro = Loc de parcare pentru persoane cu handicap
+    ru = Парковочное место для инвалидов
+    sk = Parkovacie miesto pre invalidov
+    sv = Handikappparkeringsplats
+    sw = Nafasi ya maegesho iliyozimwa
+    th = ที่จอดรถสำหรับผู้พิการ
+    tr = Engelli park yeri
+    uk = Паркомісце для інвалідів
+    vi = Chỗ đậu xe dành cho người khuyết tật
+    zh-Hans = 残疾人停车位
+    zh-Hant = 殘疾人停車位
 
   [type.amenity.payment_terminal]
     en = Payment Terminal
@@ -5555,7 +5634,7 @@
 
   [type.cuisine.barbecue]
     en = Barbecue
-    ar = مشويات
+    ar = شواء
     cs = Grilované pokrmy
     da = Barbecue
     de = Grill
@@ -5722,6 +5801,7 @@
 
   [type.cuisine.bubble_tea]
     en = Bubble Tea
+    ar = شاي الفقاعات
     be = Чай з бурбалкамі
     es = Té de burbujas
     eu = Burbuila tea
@@ -5764,7 +5844,7 @@
 
   [type.cuisine.buschenschank]
     en = Buschenschank
-    ar = البيرة
+    ar = مطبخ هنغاري
     cs = Buschenschank
     da = Buschenschank
     de = Buschenschank
@@ -5932,7 +6012,7 @@
 
   [type.cuisine.coffee_shop]
     en = Coffee
-    ar = ﺓﻮﻬﻗ
+    ar = قهوة
     cs = Káva
     da = Kaffe
     de = Kaffee
@@ -6100,7 +6180,7 @@
 
   [type.cuisine.diner]
     en = Diner
-    ar = العشاء
+    ar = عشاء
     cs = Večeře
     da = Diner
     de = Diner
@@ -6299,7 +6379,7 @@
 
   [type.cuisine.fish_and_chips]
     en = Fish and Chips
-    ar = سمك و رقائق البطاطس
+    ar = سمك ورقائق البطاطا
     cs = Ryba a hranolky
     da = Fish and chips
     de = Fish and Chips
@@ -6365,7 +6445,7 @@
 
   [type.cuisine.friture]
     en = Friture
-    ar = وجبات سريعة
+    ar = وجبات مقلية
     cs = Smažené pokrmy
     da = Friture
     de = Pommes
@@ -6530,7 +6610,6 @@
 
   [type.cuisine.heuriger]
     en = Heuriger
-    ar = البيرة
     cs = Heuriger
     da = Heuriger
     de = Heuriger
@@ -6596,7 +6675,7 @@
 
   [type.cuisine.hungarian]
     en = Hungarian
-    ar = مطبخ مجري
+    ar = مطبخ هنغاري
     cs = Maďarská kuchyně
     da = Ungarsk
     de = Ungarisch
@@ -6831,7 +6910,7 @@
 
   [type.cuisine.italian_pizza]
     en = Italian, Pizza
-    ar = مطبخ إيطالي؛بيتزا
+    ar = مطبخ إيطالي، بيتزا
     cs = Italská, pizza
     da = Italiensk, pizza
     de = Italienisch; Pizza
@@ -7065,7 +7144,7 @@
 
   [type.cuisine.malagasy]
     en = Malagasy
-    ar = مدغشقر
+    ar = مطبخ مدغشقري
     cs = Madagaskarská kuchyně
     da = Madagaskisk
     de = Madegassisch
@@ -7397,7 +7476,7 @@
 
   [type.cuisine.peruvian]
     en = Peruvian
-    ar = بيرو
+    ar = مطبخ من دولة بيرو
     cs = Peruánská kuchyně
     da = Peruviansk
     de = Peruanisch
@@ -8129,6 +8208,7 @@
 
   [type.emergency]
     en = Emergency
+    ar = طوارئ
     de = Notfall
     fr = Urgence
     mr = आणीबाणी
@@ -8277,7 +8357,7 @@
 
   [type.healthcare.laboratory]
     en = Medical Laboratory
-    ar = ﺔﻴﺒﻄﻟﺍ ﺕﺍﺮﺒﺘﺨﻤﻟﺍ
+    ar = مختبر طبي
     be = Медыцынская лабараторыя
     bg = Медицинска лаборатория
     cs = Lékařská laboratoř
@@ -8317,6 +8397,7 @@
 
   [type.highway]
     en = Highway
+    ar = طريق السريع
     de = Straße
     ja = 道路
     mr = महामार्ग
@@ -8430,6 +8511,7 @@
 
   [type.highway.cycleway]
     en = Cycle Path
+    ar = مسار للدراجات
     de = Radweg
     es = Ciclovía
     eu = Bizikletabidea
@@ -8464,6 +8546,7 @@
   [type.highway.elevator]
     en = Elevator
     en-GB = Lift
+    ar = مِصعَد
     de = Aufzug
     es = Ascensor
     eu = Igogailua
@@ -8476,7 +8559,7 @@
 
   [type.highway.footway]
     en = Foot Path
-    ar = مسار
+    ar = مسار للمشي
     cs = Cesta
     da = Sti
     de = Fußweg
@@ -8519,6 +8602,7 @@
   [type.highway.footway.area]
     ref = type.highway.footway
     en = Pedestrian Zone
+    ar = منطقة مشاة
     mr = पादचारी झोन
     pl = Obszar chodnika
     pt-BR = Área de pedestres
@@ -8529,6 +8613,7 @@
   [type.highway.footway.bridge]
     ref = type.highway.road.bridge
     en = Pedestrian Bridge
+    ar = جسر للمشاة
     mr = पादचारी पूल
     pl = Most dla pieszych
     pt-BR = Ponte para pedestres
@@ -8575,6 +8660,7 @@
   [type.highway.footway.tunnel]
     ref = type.highway.road.tunnel
     en = Pedestrian Tunnel
+    ar = نفق للمشاة
     de = Fußgängertunnel
     mr = पादचारी बोगदा
     pl = Tunel dla pieszych
@@ -8660,7 +8746,7 @@
 
   [type.highway.motorway]
     en = Motorway
-    ar = شارع
+    ar = طريق سريع
     cs = Ulice
     da = Gade
     de = Autobahn
@@ -8804,6 +8890,7 @@
   [type.highway.path.bicycle]
     ref = type.highway.path
     en = Cycle & Foot Path
+    ar = مسار للمشاة والدراجات معاً
     de = Radweg
     mr = सायकल आणि पाऊलवाट
     pl = Ścieżka dla rowerów
@@ -8857,7 +8944,7 @@
 
   [type.highway.pedestrian]
     en = Pedestrian Street
-    ar = شارع
+    ar = شارع للمشاة
     cs = Ulice
     da = Gade
     de = Fußgängerzone
@@ -8917,7 +9004,7 @@
 
   [type.highway.primary]
     en = Primary Road
-    ar = شارع
+    ar = شارع رئيسي
     cs = Ulice
     da = Gade
     de = Hauptstraße
@@ -9123,7 +9210,7 @@
   [type.highway.road.bridge]
     comment = These translations are used for all type.highway.*.bridge.
     en = Bridge
-    ar = كوبري
+    ar = جسر
     be = Мост
     bg = Мост
     cs = Most
@@ -9202,7 +9289,7 @@
 
   [type.highway.secondary]
     en = Secondary Road
-    ar = شارع
+    ar = شارع ثانوي
     cs = Ulice
     da = Gade
     de = Straße
@@ -9385,7 +9472,7 @@
 
   [type.highway.steps]
     en = Stairs
-    ar = مسار
+    ar = درج
     cs = Cesta
     da = Sti
     de = Stufen
@@ -9589,7 +9676,7 @@
 
   [type.highway.trunk]
     en = National Highway
-    ar = شارع
+    ar = شارع وطني
     cs = Ulice
     da = Gade
     de = Schnellstraße
@@ -9649,7 +9736,7 @@
 
   [type.highway.unclassified]
     en = Minor Road
-    ar = شارع
+    ar = شارع صغير
     cs = Ulice
     da = Gade
     de = Straße
@@ -9761,6 +9848,7 @@
 
   [type.historic]
     en = Historic
+    ar = مكان تاريخي
     de = Historisches Objekt
     ja = 史跡
     mr = ऐतिहासिक
@@ -9811,6 +9899,7 @@
 
   [type.historic.battlefield]
     en = Battlefield
+    ar = ساحة معركة تاريخية
     de = Schlachtfeld
     fr = Champ de bataille
     ja = 古戦場
@@ -9826,6 +9915,7 @@
 
   [type.historic.boundary_stone]
     en = Boundary Stone
+    ar = حجر لتحديد الحدود
     de = Grenzstein
     fr = Borne frontière
     ja = 境界標
@@ -9873,7 +9963,7 @@
 
   [type.historic.castle.defensive]
     en = Castle
-    ar = قلعة
+    ar = قلعة دفاعية
     cs = Zámek
     da = Slot
     de = Burg
@@ -9939,6 +10029,7 @@
 
   [type.historic.citywalls]
     en = City Wall
+    ar = جدار المدينة
     de = Stadtmauer
     fr = Muraille
     ja = 歴史的な城壁
@@ -9954,6 +10045,7 @@
 
   [type.historic.fort]
     en = Fort
+    ar = قلعة
     de = Festung
     fr = Fort militaire
     ja = 歴史的な要塞
@@ -10001,7 +10093,7 @@
 
   [type.historic.memorial.plaque]
     en = Commemorative plaque
-    ar = نصب تذكاري
+    ar = لوحة تذكارية
     cs = Pomník
     da = Mindesmærke
     de = Gedenktafel
@@ -10032,7 +10124,7 @@
 
   [type.historic.memorial.sculpture]
     en = Sculpture
-    ar = نصب تذكاري
+    ar = منحوتة تذكارية
     cs = Pomník
     da = Mindesmærke
     de = Skulptur
@@ -10064,7 +10156,7 @@
 
   [type.historic.memorial.statue]
     en = Statue
-    ar = نصب تذكاري
+    ar = تمثال تذكاري
     cs = Pomník
     da = Mindesmærke
     de = Statue
@@ -10157,7 +10249,7 @@
 
   [type.historic.ship]
     en = Ship
-    ar = سياحة
+    ar = سفينة تاريخية
     cs = Pamětihodnost
     da = Turisme
     de = Schiff
@@ -10191,7 +10283,7 @@
 
   [type.historic.tomb]
     en = Tomb
-    ar = سياحة
+    ar = قبر
     cs = Pamětihodnost
     da = Turisme
     de = Grabstätte
@@ -10225,6 +10317,7 @@
 
   [type.historic.wayside_cross]
     en = Christian Cross
+    ar = صليب مسيحي
     de = Wegkreuz
     fr = Croix
     ja = 歴史的な十字架
@@ -10240,6 +10333,7 @@
 
   [type.historic.wayside_shrine]
     en = Shrine
+    ar = ضريح
     de = Bildstock
     fr = Oratoire
     ja = 歴史的な祠
@@ -10294,7 +10388,7 @@
 
   [type.internet_access]
     en = Internet
-    ar = واي فاي
+    ar = إنترنت
     el = Ίντερνετ
     fa = وای فای
     ja = インターネット
@@ -10311,7 +10405,7 @@
 
   [type.internet_access.wlan]
     en = Internet
-    ar = واي فاي
+    ar = إنترنت لا سلكي
     el = Ίντερνετ
     fa = وای فای
     ja = インターネット
@@ -10328,6 +10422,7 @@
 
   [type.junction]
     en = Junction
+    ar = تقاطع
     ja = 交差点
     mr = जंक्शन
     pl = Skrzyżowanie
@@ -10340,6 +10435,7 @@
 
   [type.junction.roundabout]
     en = Roundabout
+    ar = دوّار
     de = Kreisverkehr
     es = Rotonda
     eu = Biribilgunea
@@ -10478,6 +10574,7 @@
 
   [type.landuse.commercial]
     en = Commercial Area
+    ar = منطقة تجارية
     de = Gewerbegebiet
     fr = Zone commerciale
     ja = 商業用地
@@ -10492,6 +10589,7 @@
 
   [type.landuse.construction]
     en = Construction
+    ar = منطقة بناء
     de = Baustelle
     fr = Chantier de construction
     ja = 建設工事中
@@ -10506,6 +10604,7 @@
 
   [type.landuse.education]
     en = Educational Facilities
+    ar = مؤسسات تعليمية
     be = Адукацыйныя ўстановы
     es = Instalaciones educativas
     fr = Établissements éducatifs
@@ -10517,6 +10616,7 @@
 
   [type.landuse.farm]
     en = Farm
+    ar = مزرعة
     de = Bauernhof
     ja = 農地
     mr = शेत
@@ -10579,6 +10679,7 @@
 
   [type.landuse.field]
     en = Field
+    ar = حقل
     de = Feld
     fr = Champ
     mr = क्षेत्र
@@ -10625,7 +10726,7 @@
 
   [type.landuse.forest.coniferous]
     en = Coniferous Forest
-    ar = غابة
+    ar = غابة صنوبرية
     cs = Les
     da = Skov
     de = Nadelwald
@@ -10659,7 +10760,7 @@
 
   [type.landuse.forest.deciduous]
     en = Deciduous Forest
-    ar = غابة
+    ar = غابة تتساقط أوراقها
     cs = Les
     da = Skov
     de = Laubwald
@@ -10693,7 +10794,7 @@
 
   [type.landuse.forest.mixed]
     en = Mixed Forest
-    ar = غابة
+    ar = غابة مختلطة
     cs = Les
     da = Skov
     de = Mischwald
@@ -10740,7 +10841,7 @@
 
   [type.landuse.grass]
     en = Lawn
-    ar = حديقة
+    ar = عشب
     cs = Trávník
     da = Græsplæne
     de = Wiese
@@ -10776,6 +10877,7 @@
 
   [type.landuse.greenfield]
     en = Greenfield
+    ar = مساحة خضراء
     de = Rohbauland
     fr = Terrain vierge
     ja = 建設予定地
@@ -10803,6 +10905,7 @@
 
   [type.landuse.industrial]
     en = Industrial Land
+    ar = منطقة صناعية
     de = Industriegebiet
     fr = Zone industrielle
     ja = 工業用地
@@ -10867,6 +10970,7 @@
 
   [type.landuse.military]
     en = Military Area
+    ar = منطقة عسكرية
     de = Militärgebiet
     fr = Terrain militaire
     ja = 軍用地
@@ -10881,6 +10985,7 @@
 
   [type.landuse.orchard]
     en = Orchard
+    ar = بستان
     de = Obstplantage
     fr = Vergers
     ja = 果樹園
@@ -10991,6 +11096,7 @@
 
   [type.landuse.residential]
     en = Residential Land
+    ar = منطقة سكنية
     de = Wohngebiet
     fr = Zone résidentielle
     ja = 住宅地
@@ -11005,6 +11111,7 @@
 
   [type.landuse.retail]
     en = Retail Land
+    ar = منطقة متاجر
     de = Einzelhandelsgebiet
     fr = Zone commerciale
     ja = 小売店エリア
@@ -11019,6 +11126,7 @@
 
   [type.landuse.salt_pond]
     en = Pond
+    ar = مستنقع
     de = Saline
     fr = Marais salant
     ja = 塩田
@@ -11044,6 +11152,7 @@
 
   [type.landuse.vineyard]
     en = Vineyard
+    ar = حقل عنب
     de = Weinberg
     fr = Vignes
     ja = ブドウ園
@@ -11187,7 +11296,7 @@
 
   [type.leisure.garden]
     en = Garden
-    ar = بستان
+    ar = حديقة
     cs = Zahrada
     da = Have
     de = Garten
@@ -11291,7 +11400,7 @@
 
   [type.leisure.nature_reserve]
     en = Nature Reserve
-    ar = محمية
+    ar = محمية طبيعية
     cs = Rezervace
     da = Reservat
     de = Naturschutzgebiet
@@ -11434,7 +11543,7 @@
 
   [type.leisure.park.private]
     en = Park
-    ar = موقف سيارات
+    ar = موقف سيارات خاص
     cs = Park
     da = Park
     de = Park
@@ -11635,7 +11744,7 @@
 
   [type.leisure.sports_centre]
     en = Sports Center
-    ar = رياضة
+    ar = مركز رياضي
     cs = Sportovní centrum
     da = Idrætscenter
     de = Sportzentrum
@@ -11667,9 +11776,11 @@
     zh-Hans = 体育中心
     zh-Hant = 體育中心
 
-  [type.leisure.sports_centre.climbing]
+  [type.sport.climbing]
     en = Climbing Centre
     ar = مركز تسلق
+    be = Скаладром
+    bg = Катерене
     cs = Horolezecké centrum
     da = Klatrecenter
     de = Kletterhalle
@@ -11701,77 +11812,11 @@
     zh-Hans = 攀登中心
     zh-Hant = 攀登中心
 
-  [type.leisure.sports_centre.shooting]
-    en = Shooting Range
-    ar = ملعب رماية
-    cs = Střelnice
-    da = Skydebane
-    de = Schießanlage
-    el = Σκοπευτήριο
-    es = Campo de tiro
-    eu = Tiro eremua
-    fa = محل تیراندازی
-    fi = Ampumarata
-    fr = Centre de tir
-    hu = Lőtér
-    id = Lapangan tembak
-    it = Poligono di tiro
-    ja = 射撃場
-    ko = 발사 범위
-    mr = चांदमारी(बंदूक पल्ला)
-    nb = Skytebane
-    nl = Schietbaan
-    pl = Strzelnica
-    pt = Campo de tiro
-    pt-BR = Clube de tiro
-    ro = Tir
-    ru = Тир
-    sk = Strelnica
-    sv = Skjutbana
-    th = สนามยิงปืน
-    tr = Poligon
-    uk = Тир
-    vi = Nơi bắn súng
-    zh-Hans = 射击场
-    zh-Hant = 射擊場
-
-  [type.leisure.sports_centre.swimming]
-    en = Swimming Centre
-    ar = مركز سباحة
-    cs = Plavecký bazén
-    da = Svømmecenter
-    de = Schwimmhalle
-    el = Κολυμβητήριο
-    es = Centro de natación
-    eu = Igeriketa zentroa
-    fa = استخرشنا
-    fi = Uimahalli
-    fr = Piscine
-    hu = Uszoda
-    id = Kolam Renang
-    it = Centro natatorio
-    ja = スイミングセンター
-    ko = 수영 센터
-    mr = जलतरण केंद्र
-    nb = Svømmehall
-    nl = Zwembad
-    pl = Pływalnia
-    pt = Centro de natação
-    pt-BR = Centro de natação
-    ro = Piscină
-    ru = Плавательный бассейн
-    sk = Plavecký areál
-    sv = Simhall
-    th = ศูนย์ว่ายน้ำ
-    tr = Yüzme Merkezi
-    uk = Басейн для плавання
-    vi = Trung tâm Bơi lội
-    zh-Hans = 游泳中心
-    zh-Hant = 遊泳中心
-
-  [type.leisure.sports_centre.yoga]
+  [type.sport.yoga]
     en = Yoga Studio
     ar = نادي يوغا
+    be = Ёга
+    bg = Йога
     cs = Studio jógy
     da = Yoga center
     el = Στούντιο γιόγκα
@@ -11804,7 +11849,7 @@
 
   [type.leisure.stadium]
     en = Stadium
-    ar = استاد
+    ar = استاد أو مدّرج
     cs = Stadion
     de = Stadion
     el = Γήπεδο
@@ -11836,7 +11881,9 @@
 
   [type.leisure.swimming_pool]
     en = Swimming Pool
-    ar = حوض سباحة
+    ar = مسبح
+    be = Басейн
+    bg = Басейн
     cs = Koupaliště
     da = Svømmebassin
     de = Schwimmbecken
@@ -11870,6 +11917,7 @@
 
   [type.leisure.swimming_pool.private]
     ref = type.leisure.swimming_pool
+    ar = مسبح خاص
 
   [type.leisure.track]
     en = Track
@@ -11920,6 +11968,7 @@
 
   [type.leisure.beach_resort]
     en = Beach Resort
+    ar = منتجع شاطئي
     mr = समुद्री रिसॉर्ट
     ru = Пляжный курорт
     tr = Sahil Tatil Yeri
@@ -12021,6 +12070,7 @@
 
   [type.man_made.flagpole]
     en = Flagpole
+    ar = سارية علم
     be = Флагшток
     fr = Mât de drapeau
     mr = ध्वजस्तंभ
@@ -12073,6 +12123,7 @@
 
   [type.man_made.pier]
     en = Pier
+    ar = رصيف بحري
     de = Anlegestelle
     fr = Jetée
     ja = 桟橋
@@ -12113,6 +12164,7 @@
 
   [type.man_made.silo]
     en = Silo
+    ar = صومعة
     be = Сілас
     de = Silo
     mr = पेव(धान्यसाठा)
@@ -12370,6 +12422,7 @@
 
   [type.military]
     en = Military
+    ar = جيش
     de = Militärisches Objekt
     ja = 軍事
     mr = लष्करी
@@ -12382,7 +12435,7 @@
 
   [type.military.bunker]
     en = Bunker
-    ar = مأوى
+    ar = ملجأ
     cs = Bunkr
     de = Bunker
     el = Στρατιωτική αποθήκη
@@ -14206,22 +14259,11 @@
   [type.organic.yes]
     ref = type.organic.only
 
-  [type.place]
-    en = place
-    de = Ort
-    ja = 地名
-    mr = जागा
-    pl = Miejsce
-    pt = Local
-    pt-BR = Local
-    ru = Место
-    tr = Yer
-    uk = Мicце
-    zh-Hans = 地点
-
   [type.place.city]
     en = City
     ar = مدينة
+    be = Горад
+    bg = Град
     cs = Velkoměsto
     da = By
     de = Großstadt
@@ -14231,6 +14273,7 @@
     fa = شهر
     fi = Kaupunki
     fr = Ville
+    he = עיר
     hu = Város
     id = Kota
     it = Città
@@ -14241,11 +14284,11 @@
     nl = Stad
     pl = Miasto
     pt = Cidade
-    pt-BR = Cidade
     ro = Municipiu
     ru = Город
     sk = Mesto
     sv = Stad
+    sw = Jiji
     th = เมือง
     tr = Şehir
     uk = Місто
@@ -14256,13 +14299,18 @@
   [type.place.city.capital]
     en = Capital
     ar = عاصمة
+    be = Сталіца
+    bg = Столица
     cs = Hlavní město
     da = Kapital
     de = Hauptstadt
     el = Πρωτεύουσα
+    es = Capital
+    eu = Hiriburu
     fa = پایتخت
     fi = Pääkaupunki
     fr = Capitale
+    he = עיר בירה
     hu = Főváros
     id = Ibu kota
     it = Capitale
@@ -14273,11 +14321,11 @@
     nl = Hoofdstad
     pl = Stolica
     pt = Capital
-    pt-BR = Capital
     ro = Capitală
     ru = Столица
     sk = Hlavné mesto
     sv = Huvudstad
+    sw = Mji mkuu
     th = เมือง
     tr = Başkent
     uk = Столиця
@@ -14318,6 +14366,8 @@
   [type.place.continent]
     en = Continent
     ar = قارة
+    be = Кантынент
+    bg = Континент
     cs = Kontinent
     da = Kontinent
     de = Kontinent
@@ -14326,6 +14376,8 @@
     eu = Kontinentea
     fa = قاره
     fi = Maanosa
+    fr = Continent
+    he = יבשת
     hu = Kontinens
     id = Benua
     it = Continente
@@ -14333,12 +14385,14 @@
     ko = 대륙
     mr = खंड
     nb = Kontinent
+    nl = Continent
     pl = Kontynent
     pt = Continente
-    pt-BR = Continente
+    ro = Continent
     ru = Континент
     sk = Kontinent
     sv = Kontinent
+    sw = Bara
     th = ทวีป
     tr = Kıta
     uk = Континент
@@ -14349,6 +14403,8 @@
   [type.place.country]
     en = Country
     ar = دولة
+    be = Краіна
+    bg = Страна
     cs = Země
     da = Land
     de = Staat
@@ -14358,6 +14414,7 @@
     fa = کشور
     fi = Maa
     fr = Pays
+    he = ארץ
     hu = Ország
     id = Benua
     it = Paese
@@ -14368,11 +14425,11 @@
     nl = Land
     pl = Kraj
     pt = País
-    pt-BR = País
     ro = Continent
     ru = Страна
     sk = Krajina
     sv = Land
+    sw = Nchi
     th = ประเทศ
     tr = Ülke
     uk = Країна
@@ -14383,6 +14440,8 @@
   [type.place.county]
     en = County
     ar = مقاطعة
+    be = Графства
+    bg = Графство
     cs = Země
     da = Amt
     de = Kreis
@@ -14392,6 +14451,7 @@
     fa = بخش
     fi = Lääni
     fr = Comté
+    he = נפה
     hu = Kerület
     id = Kabupaten
     it = Contea
@@ -14402,11 +14462,11 @@
     nl = Graafschap
     pl = Wieś
     pt = Condado
-    pt-BR = Condado
     ro = Județ
     ru = Округ
     sk = Krajina
     sv = Län
+    sw = Wilaya
     th = เขต
     tr = Kırsal kesim
     uk = Округ
@@ -14417,6 +14477,8 @@
   [type.place.farm]
     en = Farm
     ar = مزرعة
+    be = Ферма
+    bg = Ферма
     cs = Farma
     da = Gård
     de = Bauernhof
@@ -14426,6 +14488,7 @@
     fa = مزرعه
     fi = Maatila
     fr = Ferme
+    he = חווה חקלאית
     hu = Tanya
     id = Ladang
     it = Fattoria
@@ -14441,6 +14504,7 @@
     ru = Ферма
     sk = Farma
     sv = Bondgård
+    sw = Shamba
     th = ฟาร์ม
     tr = Çiftlik
     uk = Ферма
@@ -14451,6 +14515,8 @@
   [type.place.hamlet]
     en = Hamlet
     ar = قرية صغيرة
+    be = Вёска
+    bg = Cело
     cs = Vesnička
     da = Landsby
     de = Weiler
@@ -14460,6 +14526,7 @@
     fa = روستا
     fi = Pieni kylä
     fr = Hameau
+    he = כְּפָר קָטָן
     hu = Tanya
     id = Dusun
     it = Piccolo villaggio
@@ -14475,6 +14542,7 @@
     ru = Посёлок
     sk = Dedina
     sv = By
+    sw = Hamlet
     th = หมู่บ้านเล็ก ๆ
     tr = Mezra
     uk = Поселення
@@ -14485,6 +14553,8 @@
   [type.place.island]
     en = Island
     ar = جزيرة
+    be = Востраў
+    bg = Остров
     cs = Ostrov
     da = Ø
     de = Insel
@@ -14494,6 +14564,7 @@
     fa = جزیره
     fi = Saari
     fr = Île
+    he = אי
     hu = Sziget
     id = Pulau
     it = Isola
@@ -14504,11 +14575,11 @@
     nl = Eilandje
     pl = Wyspa
     pt = Ilha
-    pt-BR = Ilha
     ro = Insulă
     ru = Остров
     sk = Ostrov
     sv = Ö
+    sw = Kisiwa
     th = เกาะ
     tr = Ada
     uk = Острів
@@ -14519,15 +14590,18 @@
   [type.place.islet]
     en = Island
     ar = جزيرة
+    be = Астравок
+    bg = Острови
     cs = Ostrov
     da = Ø
-    de = kleine Insel
+    de = Kleine Insel
     el = Νησί
     es = Isla
     eu = Uhartea
     fa = جزیره
     fi = Saari
     fr = Île
+    he = איון
     hu = Sziget
     id = Pulau
     it = Isola
@@ -14538,11 +14612,11 @@
     nl = Eilandje
     pl = Wyspa
     pt = Ilhéu
-    pt-BR = Ilhéu
-    ro = Insulă
+    ro = Insult
     ru = Остров
     sk = Ostrov
     sv = Ö
+    sw = Kisiwa
     th = เกาะ
     tr = Ada
     uk = Острів
@@ -14551,22 +14625,47 @@
     zh-Hant = 島
 
   [type.place.isolated_dwelling]
-    en = Dwelling
+    en = Isolated Dwelling
+    ar = مسكن منعزل
+    be = Хутар
+    bg = Изолирано жилище
+    cs = Izolované obydlí
+    da = Isoleret bolig
     de = Kleinstsiedlung
+    el = Απομονωμένη κατοικία
+    es = Vivienda aislada
+    eu = Etxebizitza Isolatua
+    fa = مسکن منزوی
+    fi = Erillinen asunto
     fr = Lieu-dit
+    he = דירת מגורים מבודדת
+    hu = Elszigetelt lakás
+    id = Tempat Tinggal Terisolasi
+    it = Abitazione isolata
     ja = 小規模な村
+    ko = 고립된 주거
     mr = निवासस्थान
+    nb = Isolert bolig
+    nl = Geïsoleerde woning
     pl = Mała osada
     pt = Habitação isolada
-    pt-BR = Habitação isolada
-    ru = Жилище
+    ro = Locuință izolată
+    ru = Хутор
+    sk = Izolované obydlie
+    sv = Isolerade bostäder
+    sw = Makao ya Pekee
+    th = ที่อยู่อาศัยโดดเดี่ยว
     tr = Konut
-    uk = Житло
+    uk = Хутір
+    vi = Nhà ở Biệt lập
     zh-Hans = 孤立居所
+    zh-Hant = 孤立居所
 
   [type.place.locality]
     en = Locality
     ar = منطقة مجاورة
+    be = Місце
+    bg = Място
     cs = Lokalita
     da = Lokalitet
     de = Örtlichkeit
@@ -14576,6 +14675,7 @@
     fa = محله
     fi = Paikkakunta
     fr = Lieu-dit
+    he = מקום
     hu = Falu
     id = Wilayah
     it = Località
@@ -14586,35 +14686,63 @@
     nl = Plaats
     pl = Lokalne
     pt = Localidade
-    pt-BR = Localidade
     ro = Localitate
     ru = Местность
     sk = Lokalita
     sv = Lokalitet
+    sw = Eneo
     th = ท้องถิ่น
     tr = Semt
-    uk = Місцевість
+    uk = Місце
     vi = Thôn
     zh-Hans = 地方
     zh-Hant = 當地
 
   [type.place.neighbourhood]
     en = Neighbourhood
+    ar = حي سكني
+    be = Мікрараён
+    bg = Съседство
+    cs = Čtvrť
+    da = Kvarter
     de = Stadtviertel
+    el = Γειτονιά
+    es = Vecindario
+    eu = Auzo
+    fa = محله
+    fi = Naapurusto
+    fr = Quartier
+    he = שכונה
+    hu = Szomszédság
+    id = Lingkungan
+    it = Quartiere
     ja = 地域
+    ko = 동네
     mr = शेजार
+    nb = Strøk
+    nl = Buurt
     pl = Sąsiedztwo
     pt = Bairro
-    pt-BR = Bairro
+    pt-BR = Vizinhança
+    ro = Cartier
     ru = Микрорайон
+    sk = Susedstvo
+    sv = Grannskap
+    sw = Mtaa
+    th = ละแวกบ้าน
     tr = Mahalle
     uk = Мiкрорайон
-    zh-Hans = 街坊社区/小区
+    vi = Vùng lân cận
+    zh-Hans = 邻里社区
+    zh-Hant = 鄰里社區
 
   [type.place.ocean]
     en = Ocean
     ar = المحيط
+    be = Акіян
+    bg = Океан
     cs = Oceán
+    da = Verdenshave
     de = Ozean
     el = Ωκεανός
     es = Océano
@@ -14622,6 +14750,7 @@
     fa = اقیانوس
     fi = Valtameri
     fr = Océan
+    he = אוקיינוס
     hu = Óceán
     id = Samudra
     it = Oceano
@@ -14630,10 +14759,13 @@
     mr = महासागर
     nb = Hav
     nl = Oceaan
+    pl = Ocean
     pt = Oceano
-    pt-BR = Oceano
+    ro = Ocean
     ru = Океан
     sk = Oceán
+    sv = Ocean
+    sw = Bahari kuu
     th = มหาสมุทร
     tr = Okyanus
     uk = Океан
@@ -14644,6 +14776,10 @@
   [type.place.region]
     en = Region
     ar = منطقة
+    be = Рэгіён
+    bg = Регион
+    cs = Region
+    da = Region
     de = Region
     el = Περιοχή
     es = Región
@@ -14651,18 +14787,22 @@
     fa = منطقه
     fi = Alue
     fr = Région
+    he = חבל ארץ
     hu = Régió
     id = Wilayah
     it = Regione
     ja = 地方
     ko = 지역
     mr = प्रदेश
+    nb = Region
     nl = Regio
+    pl = Region
     pt = Região
-    pt-BR = Região
     ro = Regiune
     ru = Район
     sk = Región
+    sv = Region
+    sw = Mkoa
     th = ภูมิภาค
     tr = Bölge
     uk = Район
@@ -14673,6 +14813,8 @@
   [type.place.sea]
     en = Sea
     ar = يكون
+    be = Мора
+    bg = Море
     cs = Moře
     da = Er
     de = Meer
@@ -14682,6 +14824,7 @@
     fa = دریا
     fi = Meri
     fr = Mer
+    he = ים
     hu = Tenger
     id = Laut
     it = Mare
@@ -14692,11 +14835,11 @@
     nl = Zee
     pl = Morze
     pt = Mar
-    pt-BR = Mar
     ro = Mare
     ru = Море
     sk = More
     sv = Hav
+    sw = Bahari
     th = เห็น
     tr = Deniz
     uk = Море
@@ -14706,21 +14849,46 @@
 
   [type.place.square]
     en = Square
+    ar = ميدان
+    be = Плошча
+    bg = Площад
+    cs = Náměstí
+    da = Torv
     de = Platz
+    el = Πλατεία
+    es = Plaza
+    eu = Plaza
+    fa = میدان
+    fi = Tori
     fr = Place
+    he = כיכר עירונית
+    hu = Tér
+    id = Lapangan kota
+    it = Piazza
     ja = 広場
+    ko = 광장
     mr = चौरस
+    nb = Torg
+    nl = Plein
     pl = Plac
     pt = Praça ou largo
-    pt-BR = Praça ou largo
+    ro = Spațiu
     ru = Площадь
+    sk = Námestie
+    sv = Torg
+    sw = Nafasi
+    th = ช่องว่าง
     tr = Meydan
     uk = Площа
+    vi = Quảng trường
     zh-Hans = 广场
+    zh-Hant = 廣場
 
   [type.place.state]
     en = State
     ar = محافظة
+    be = Штат
+    bg = Федерален щат
     cs = Země
     da = Stat
     de = Bundesland
@@ -14730,6 +14898,7 @@
     fa = ایالت
     fi = Lääni
     fr = État
+    he = מדינה פדרלית
     hu = Állam
     id = Negara bagian
     it = Provincia
@@ -14740,11 +14909,11 @@
     nl = Deelstaat
     pl = Stan
     pt = Estado
-    pt-BR = Estado
     ro = Stat
     ru = Штат
     sk = Štát
     sv = Stat
+    sw = Jimbo la Shirikisho
     th = รัฐ
     tr = Eyalet
     uk = Штат
@@ -14755,6 +14924,8 @@
   [type.place.state.USA]
     en = State
     ar = محافظة
+    be = Штат
+    bg = Държава
     cs = Země
     da = Stat
     de = Bundesstaat
@@ -14764,6 +14935,7 @@
     fa = ایالت
     fi = Lääni
     fr = État
+    he = מדינה
     hu = Állam
     id = Negara bagian
     it = Provincia
@@ -14774,11 +14946,11 @@
     nl = Deelstaat
     pl = Stan
     pt = Estado
-    pt-BR = Estado
     ro = Stat
     ru = Штат
     sk = Štát
     sv = Stat
+    sw = Jimbo
     th = รัฐ
     tr = Eyalet
     uk = Штат
@@ -14789,15 +14961,18 @@
   [type.place.suburb]
     en = Suburb
     ar = حي سكني
+    be = Раён
+    bg = Предградие
     cs = Předměstí
     da = Forstad
-    de = Stadtteil
+    de = Vorort
     el = Προάστιο
     es = Barrio
     eu = Auzoa
     fa = حومه
     fi = Esikaupunki
     fr = Quartier
+    he = פרוור
     hu = Kerület
     id = Pinggiran kota
     it = Quartiere
@@ -14808,11 +14983,11 @@
     nl = Buitenwijken
     pl = Przedmieścia
     pt = Subúrbio
-    pt-BR = Subúrbio
     ro = Suburbie
     ru = Район
     sk = Predmestie
     sv = Förort
+    sw = Pambizo
     th = ชานเมือง
     tr = Banliyö
     uk = Район
@@ -14823,15 +14998,18 @@
   [type.place.town]
     en = Town
     ar = بلدة
+    be = Мястэчка
+    bg = Касаба
     cs = Město
     da = By
-    de = Stadt
+    de = Kleinstadt
     el = Κωμόπολη
     es = Pueblo
     eu = Herria
     fa = شهر
     fi = Kaupunki
     fr = Ville
+    he = עיירה
     hu = Város
     id = Kota
     it = Città
@@ -14842,11 +15020,11 @@
     nl = Stad
     pl = Miasteczko
     pt = Cidade
-    pt-BR = Cidade
     ro = Oraș
     ru = Город
     sk = Mesto
     sv = Stad
+    sw = Mji
     th = เมือง
     tr = Kasaba
     uk = Місто
@@ -14857,6 +15035,8 @@
   [type.place.village]
     en = Village
     ar = قرية
+    be = Вёска
+    bg = Село
     cs = Vesnice
     da = Landsby
     de = Dorf
@@ -14865,6 +15045,8 @@
     eu = Herria
     fa = روستا
     fi = Kylä
+    fr = Village
+    he = כפר
     hu = Falu
     id = Desa
     it = Villaggio
@@ -14875,11 +15057,12 @@
     nl = Dorp
     pl = Wioska
     pt = Vila
-    pt-BR = Povoado
+    pt-BR = Aldeia
     ro = Sat
     ru = Деревня
     sk = Dedina
     sv = By
+    sw = Kijiji
     th = หมู่บ้าน
     tr = Köy
     uk = Село
@@ -20315,6 +20498,43 @@
     zh-Hans = 篮球
     zh-Hant = 籃球
 
+  [type.sport.beachvolleyball]
+    en = Beachvolleyball
+    ar = كرة طائرة شاطئية
+    be = Пляжны валейбол
+    bg = Плажен волейбол
+    cs = Plážový volejbal
+    da = Beachvolley
+    de = Beachvolleyball
+    el = Μπιτς βόλεϊ
+    es = Voleibol de playa
+    eu = Hondartza-bolei
+    fa = والیبال ساحلی
+    fi = Rantalentopallo
+    fr = Beach-volley
+    he = כדורעף חופים
+    hu = Strandröplabda
+    id = Voli pantai
+    it = Beach volley
+    ja = ビーチバレー
+    ko = 비치발리볼
+    mr = बीच व्हॉलीबॉल
+    nb = Sandvolleyball
+    nl = Beachvolleybal
+    pl = Siatkówka plażowa
+    pt = Voleibol de praia
+    ro = Volei de plajă
+    ru = Пляжный волейбол
+    sk = Plážový volejbal
+    sv = Beachvolleyboll
+    sw = Mpira wa wavu wa pwani
+    th = วอลเลย์บอลชายหาด
+    tr = Plaj voleybolu
+    uk = Пляжний волейбол
+    vi = Bóng chuyền bãi biển
+    zh-Hans = 沙滩排球
+    zh-Hant = 沙灘排球
+
   [type.sport.bowls]
     en = Bowls
     ar = لعبة البولينج
@@ -20340,6 +20560,43 @@
     uk = Боулз
     zh-Hans = 草地滾球
     zh-Hant = 草地滾球
+
+  [type.sport.chess]
+    en = Chess
+    ar = شطرنج
+    be = Шахматы
+    bg = Шахмат
+    cs = Šachy
+    da = Skak
+    de = Schach
+    el = Σκάκι
+    es = Ajedrez
+    eu = Xake
+    fa = شطرنج
+    fi = Shakki
+    fr = Échecs
+    he = שחמט
+    hu = Sakk
+    id = Catur
+    it = Scacchi
+    ja = チェス
+    ko = 체스
+    mr = बुद्धिबळ
+    nb = Sjakk
+    nl = Schaken
+    pl = Szachy
+    pt = Xadrez
+    ro = Șah
+    ru = Шахматы
+    sk = Šach
+    sv = Schack
+    sw = Sataranji
+    th = หมากรุกสากล
+    tr = Satranç
+    uk = Шахи
+    vi = Cờ vua
+    zh-Hans = 国际象棋
+    zh-Hant = 國際象棋
 
   [type.sport.cricket]
     en = Cricket
@@ -20671,6 +20928,43 @@
     zh-Hans = 射击
     zh-Hant = 射擊
 
+  [type.sport.skateboard]
+    en = Skateboarding
+    ar = تزلج على اللوح
+    be = Скейтбордынг
+    bg = Скейтбординг
+    cs = Skateboarding
+    da = Skateboarding
+    de = Skateboarding
+    el = Σκέιτμπορντινγκ
+    es = Monopatinaje
+    eu = Skateboarding
+    fa = اسکیت‌بردینگ
+    fi = Rullalautailu
+    fr = Skateboard
+    he = סקייטבורדינג
+    hu = Gördeszkázás
+    id = Seluncur papan
+    it = Skateboard
+    ja = スケートボード
+    ko = 스케이트보딩
+    mr = स्केट बोर्डिंग
+    nb = Rullebrettkjøring
+    nl = Skateboarden
+    pl = Skateboarding
+    pt = Skate
+    ro = Skateboarding
+    ru = Скейтбординг
+    sk = Skejtbording
+    sv = Skateboarding
+    sw = Skateboarding
+    th = สเกตบอร์ด
+    tr = Kaykay
+    uk = Скейтбординг
+    vi = Trượt ván
+    zh-Hans = 滑板活动
+    zh-Hant = 滑板活動
+
   [type.sport.skiing]
     en = Skiing
     ar = التزحلق
@@ -20783,6 +21077,44 @@
     zh-Hans = 游泳
     zh-Hant = 游泳
 
+  [type.sport.table_tennis]
+    en = Table tennis
+    ar = كرة الطاولة
+    be = Настольны тэніс
+    bg = Тенис на маса
+    cs = Stolní tenis
+    da = Bordtennis
+    de = Tischtennis
+    el = Επιτραπέζια αντισφαίριση
+    es = Tenis de mesa
+    eu = Mahai-tenis
+    fa = تنیس روی میز
+    fi = Pöytätennis
+    fr = Tennis de table
+    he = טניס שולחן
+    hu = Asztalitenisz
+    id = Tenis meja
+    it = Tennistavolo
+    ja = 卓球
+    ko = 탁구
+    mr = टेबल टेनिस
+    nb = Bordtennis
+    nl = Tafeltennis
+    pl = Tenis stołowy
+    pt = Ténis de mesa
+    pt-BR = Tênis de mesa
+    ro = Tenis de masă
+    ru = Настольный теннис
+    sk = Stolný tenis
+    sv = Bordtennis
+    sw = Tenisi ya meza
+    th = เทเบิลเทนนิส
+    tr = Masa tenisi
+    uk = Настільний теніс
+    vi = Bóng bàn
+    zh-Hans = 乒乓球
+    zh-Hant = 乒乓球
+
   [type.sport.tennis]
     en = Tennis Court
     ar = ملعب تنس
@@ -20821,6 +21153,299 @@
     vi = Sân tenis
     zh-Hans = 网球场
     zh-Hant = 網球場
+
+  [type.sport.volleyball]
+    en = Volleyball
+    ar = كرة الطائرة
+    be = Валейбол
+    bg = Волейбол
+    cs = Volejbal
+    da = Volleyball
+    de = Volleyball
+    el = Πετοσφαίριση
+    es = Voleibol
+    eu = Boleibol
+    fa = والیبال
+    fi = Lentopallo
+    fr = Volley-ball
+    he = כדורעף
+    hu = Röplabda
+    id = Bola voli
+    it = Pallavolo
+    ja = バレーボール
+    ko = 배구
+    mr = व्हॉलीबॉल
+    nb = Volleyball
+    nl = Volleyball
+    pl = Piłka siatkowa
+    pt = Voleibol
+    ro = Volei
+    ru = Волейбол
+    sk = Volejbal
+    sv = Volleyboll
+    sw = Voliboli
+    th = วอลเลย์บอล
+    tr = Voleybol
+    uk = Волейбол
+    vi = Bóng chuyền
+    zh-Hans = 排球
+    zh-Hant = 排球
+
+  [type.sport.9pin]
+    ref = type.sport.10pin
+
+  [type.sport.10pin]
+    en = Bowling
+    ar = بولينج بعشرة دبابيس
+    be = Боўлінг
+    bg = Боулинг
+    cs = Bowling
+    da = Bowling
+    de = Bowling
+    el = Μπόουλινγκ
+    es = Bowling
+    eu = Bowling
+    fa = بولینگ
+    fi = Keilailu
+    fr = Bowling
+    he = בָּאוּלִינְג
+    hu = Bowling
+    id = Boling
+    it = Bowling
+    ja = ボウリング
+    ko = 볼링
+    mr = गोलंदाजी
+    nb = Bowling
+    nl = Bowlen
+    pl = Bowling
+    pt = Boliche
+    ro = Bowling
+    ru = Боулинг
+    sk = Bowling
+    sv = Bowling
+    sw = Bowling
+    th = โบว์ลิ่ง
+    tr = Bowling
+    uk = Боулінг
+    vi = Bowling
+    zh-Hans = 保龄球
+    zh-Hant = 保齡球
+
+  [type.sport.padel]
+    en = Padel
+    ar = ﻞﻳﺩﺎﺑ
+    be = Падэль
+    bg = Падел
+    cs = Padel
+    da = Padel
+    de = Padel
+    el = Padel
+    es = Pádel
+    eu = Padel
+    fa = ﻝﺩﺎﭘ
+    fi = Padel
+    fr = Padel
+    he = לדאפ
+    hu = Padel
+    id = Padel
+    it = Padel
+    ja = パデル
+    ko = 파델
+    nb = Padel
+    nl = Padel
+    pl = Padel
+    pt = Padel
+    ro = Padel
+    ru = Падель
+    sk = Padel
+    sv = Padel
+    sw = Padel
+    th = พาเดล
+    tr = Padel
+    uk = Падель
+    vi = Padel
+    zh-Hans = 帕德尔
+    zh-Hant = 帕德爾
+
+  [type.sport.futsal]
+    en = Futsal
+    ar = كرة الصالات
+    be = Футзал
+    bg = Футзал
+    cs = Futsal
+    da = Futsal
+    de = Futsal
+    el = Futsal
+    es = Futsal
+    eu = Areto-futbola
+    fa = ﻝﺎﺴﺗﻮﻓ
+    fi = Futsal
+    fr = Futsal
+    he = לסטופ
+    hu = Futsal
+    id = Futsal
+    it = Futsal
+    ja = フットサル
+    ko = 풋살
+    nb = Futsal
+    nl = Futsal
+    pl = Futsal
+    pt = Futsal
+    ro = Futsal
+    ru = Футзал
+    sk = Futsal
+    sv = Futsal
+    sw = Futsal
+    th = ฟุตซอล
+    tr = Futsal
+    uk = Футзал
+    vi = Futsal
+    zh-Hans = 五人制足球
+    zh-Hant = 五人制足球
+
+  [type.sport.ice_hockey]
+    en = Ice Hockey
+    ar = هوكي الجليد
+    be = Хакей з шайбай
+    bg = Хокей на лед
+    cs = Lední hokej
+    da = Ishockey
+    de = Eishockey
+    el = Χόκεϊ στον παγο
+    es = Hockey sobre hielo
+    eu = Izotz hockey
+    fa = ﺦﯾ ﯼﻭﺭ ﯽﮐﺎﻫ
+    fi = Jääkiekko
+    fr = Hockey sur glace
+    he = חרק יקוה
+    hu = Jéghoki
+    id = Hoki es
+    it = Hockey su ghiaccio
+    ja = アイスホッケー
+    ko = 아이스 하키
+    nb = Ishockey
+    nl = Ijshockey
+    pl = Hokej na lodzie
+    pt = Hóquei no gelo
+    ro = Hochei pe gheata
+    ru = Хоккей с шайбой
+    sk = Ľadový hokej
+    sv = Ishockey
+    sw = Hoki ya barafu
+    th = ฮอคกี้น้ำแข็ง
+    tr = Buz Hokeyi
+    uk = Хокей із шайбою
+    vi = Khúc côn cầu trên băng
+    zh-Hans = 冰球
+    zh-Hant = 冰球
+
+  [type.sport.field_hockey]
+    en = Field Hockey
+    ar = ﻥﺍﺪﻴﻤﻟﺍ ﻲﻛﻮﻫ
+    be = Хакей на траве
+    bg = Хокей на трева
+    cs = Pozemní hokej
+    da = Landhockey
+    de = Feldhockey
+    el = Χόκεϊ επί χόρτου
+    es = Hockey sobre césped
+    eu = Belar hockey
+    fa = ﻦﻤﭼ ﯼﻭﺭ ﯽﮐﺎﻫ
+    fi = Maahockey
+    fr = Hockey sur gazon
+    he = הדש יקוה
+    hu = Gyeplabda
+    id = Hoki Lapangan
+    it = Hockey su prato
+    ja = フィールドホッケー
+    ko = 필드 하키
+    nb = Landhockey
+    nl = Veld hockey
+    pl = Hokej na trawie
+    pt = Hóquei em campo
+    ro = Hochei pe iarbă
+    ru = Хоккей на траве
+    sk = Pozemný hokej
+    sv = Landhockey
+    sw = Hoki ya shamba
+    th = กีฬาฮอกกี้
+    tr = Çim Hokeyi
+    uk = Хокей на траві
+    vi = Khúc côn cầu
+    zh-Hans = 曲棍球
+    zh-Hant = 曲棍球
+
+  [type.sport.badminton]
+    en = Badminton
+    ar = ﺔﺸﻳﺮﻟﺍ ﺲﻨﺗ
+    be = Бадмінтон
+    bg = Бадминтон
+    cs = Badminton
+    da = Badminton
+    de = Badminton
+    el = Αντιπτέριση
+    es = Bádminton
+    eu = Badminton
+    fa = ﻥﻮﺘﻨﯿﻣﺪﺑ
+    fi = Sulkapallo
+    fr = Badminton
+    he = תיצונ
+    hu = Tollaslabda
+    id = Bulu tangkis
+    it = Badminton
+    ja = バドミントン
+    ko = 배드민턴
+    nb = Badminton
+    nl = Badminton
+    pl = Badminton
+    pt = Badminton
+    ro = Badminton
+    ru = Бадминтон
+    sk = Bedminton
+    sv = Badminton
+    sw = Badminton
+    th = แบดมินตัน
+    tr = Badminton
+    uk = Бадмінтон
+    vi = Cầu lông
+    zh-Hans = 羽毛球
+    zh-Hant = 羽毛球
+
+  [type.sport.pelota]
+    en = Basque pelota
+    ar = ﻚﺳﺎﺒﻟﺍ ﺎﺗﻮﻠﻴﺑ
+    be = Баскская пелота
+    bg = Баска пелота
+    cs = Baskická pelota
+    da = Baskisk pelota
+    de = Pelota Vasca
+    el = Βασκική πελότα
+    es = Pelota vasca
+    eu = Eusko pilota
+    fa = ﯽﮑﺳﺎﺑ ﯼﺎﺗﻮﻠﭘ
+    fi = Baskimaan pelota
+    fr = Pelote basque
+    he = תיקסאב הטלפ
+    hu = Baszk pelota
+    id = Basque pelota
+    it = Palla basca
+    ja = バスクペロタ
+    ko = 바스크 펠로타
+    nb = Baskisk pelota
+    nl = Baskische peloton
+    pl = Pelota baskijska
+    pt = Pelota basca
+    ro = Pilota bascilor
+    ru = Баскская пелота
+    sk = Baskická pelota
+    sv = Baskisk pelota
+    sw = Basque pelota
+    th = Basque pelota
+    tr = Bask pelotası
+    uk = Баскська пелота
+    vi = Pơ mu Basque
+    zh-Hans = 巴斯克回力球
+    zh-Hant = 巴斯克回力球
 
   [type.tourism]
     en = Tourism
@@ -22223,7 +22848,7 @@
 
   [type.waterway.waterfall]
     en = Waterfall
-    ar = شلال
+    ar = شلّال
     cs = Vodopád
     da = Vandfald
     de = Wasserfall

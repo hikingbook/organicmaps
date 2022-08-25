@@ -503,12 +503,6 @@
 
 "history" = "Grabatu";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Itxita";
-
 "search_not_found" = "Barkatu, ez dut ezer aurkitu.";
 
 "search_not_found_query" = "Mesedez, saiatu beste kontsulta bat.";
@@ -578,6 +572,20 @@
 
 "today" = "Gaur";
 
+"opens_tomorrow_at" = "Bihar %@ean irekiko da";
+
+"opens_dayoftheweek_at" = "%1$@ean %2$@ean irekiko da";
+
+"opens_at" = "%@ean irekiko da";
+
+"opens_in" = "%@ barru irekitzen da";
+
+"closes_at" = "%@ean itxiko da";
+
+"closes_in" = "%@ barru ixten da";
+
+"closed" = "Itxita";
+
 "add_opening_hours" = "Gehitu ordutegia";
 
 "no_osm_account" = "Ez al duzu OpenStreetMap konturik?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Posta elektronikoa edo erabiltzailea";
 
 "phone" = "Telefonoa";
+
+"level" = "Solairua";
 
 "please_note" = "Abisua";
 
@@ -749,6 +759,8 @@
 "foot" = "oina";
 
 "miles_per_hour" = "mph";
+
+"hour" = "h";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Aparkalekua";
 
+"type.amenity.parking_entrance.private" = "Aparkalekuaren sarrera";
+
+"type.amenity.parking_entrance.permissive" = "Aparkalekuaren sarrera";
+
+"type.amenity.parking_entrance" = "Aparkalekuaren sarrera";
+
 "type.amenity.parking_space" = "Aparkaleku";
 
 "type.amenity.parking_space.permissive" = "Aparkaleku";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Aparkaleku";
 
 "type.amenity.parking_space.underground" = "Aparkaleku";
+
+"type.amenity.parking_space.disabled" = "Ezinduentzako aparkalekua";
 
 "type.amenity.payment_terminal" = "Ordainketa terminala";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Kiroldegia";
 
-"type.leisure.sports_centre.climbing" = "Eskalada zentroa";
+"type.sport.climbing" = "Eskalada zentroa";
 
-"type.leisure.sports_centre.shooting" = "Tiro eremua";
-
-"type.leisure.sports_centre.swimming" = "Igeriketa zentroa";
-
-"type.leisure.sports_centre.yoga" = "Yoga zentroa";
+"type.sport.yoga" = "Yoga zentroa";
 
 "type.leisure.stadium" = "Estadioa";
 
@@ -2472,17 +2488,15 @@
 
 "type.organic.yes" = "Organikoa";
 
-"type.place" = "place";
-
 "type.place.city" = "Herria";
 
-"type.place.city.capital" = "Capital";
+"type.place.city.capital" = "Hiriburu";
 
 "type.place.city.capital.10" = "Herria";
 
 "type.place.city.capital.11" = "Herria";
 
-"type.place.city.capital.2" = "Capital";
+"type.place.city.capital.2" = "Hiriburu";
 
 "type.place.city.capital.3" = "Herria";
 
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "Uhartea";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Etxebizitza Isolatua";
 
 "type.place.locality" = "Kokapena";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Auzo";
 
 "type.place.ocean" = "Ozeanoa";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "Itsasoa";
 
-"type.place.square" = "Square";
+"type.place.square" = "Plaza";
 
 "type.place.state" = "Baldintza";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Saskibaloia";
 
+"type.sport.beachvolleyball" = "Hondartza-bolei";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Xake";
 
 "type.sport.cricket" = "Kilkerra";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Tiroketa";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Eskia";
 
 "type.sport.soccer" = "Futbola";
 
 "type.sport.swimming" = "Igeriketa";
 
+"type.sport.table_tennis" = "Mahai-tenis";
+
 "type.sport.tennis" = "Tenis kantxa";
+
+"type.sport.volleyball" = "Boleibol";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Areto-futbola";
+
+"type.sport.ice_hockey" = "Izotz hockey";
+
+"type.sport.field_hockey" = "Belar hockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Eusko pilota";
 
 "type.tourism" = "Turismoa";
 

@@ -503,12 +503,6 @@
 
 "history" = "Historia";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Suljettu";
-
 "search_not_found" = "Pahoittelut, hakutuloksia ei ole.";
 
 "search_not_found_query" = "Yritä jotain toista hakusanaa.";
@@ -578,6 +572,20 @@
 
 "today" = "Tänään";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Suljettu";
+
 "add_opening_hours" = "Lisää aukioloajat";
 
 "no_osm_account" = "Eikö sinulla ole OpenStreetMap tiliä?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Sähköposti tai käyttäjätunnus";
 
 "phone" = "Puhelinnumero";
+
+"level" = "Kerros";
 
 "please_note" = "Huomaathan, että";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "t";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parkkipaikka";
 
+"type.amenity.parking_entrance.private" = "Pysäköinti sisäänkäynti";
+
+"type.amenity.parking_entrance.permissive" = "Pysäköinti sisäänkäynti";
+
+"type.amenity.parking_entrance" = "Pysäköinti sisäänkäynti";
+
 "type.amenity.parking_space" = "Parkkipaikka";
 
 "type.amenity.parking_space.permissive" = "Parkkipaikka";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parkkipaikka";
 
 "type.amenity.parking_space.underground" = "Parkkipaikka";
+
+"type.amenity.parking_space.disabled" = "Vammaispysäköinti";
 
 "type.amenity.payment_terminal" = "Maksupääte";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Urheilukeskus";
 
-"type.leisure.sports_centre.climbing" = "Kiipeilykeskus";
+"type.sport.climbing" = "Kiipeilykeskus";
 
-"type.leisure.sports_centre.shooting" = "Ampumarata";
-
-"type.leisure.sports_centre.swimming" = "Uimahalli";
-
-"type.leisure.sports_centre.yoga" = "Joogastudio";
+"type.sport.yoga" = "Joogastudio";
 
 "type.leisure.stadium" = "Stadion";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "Kaupunki";
 
 "type.place.city.capital" = "Pääkaupunki";
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "Saari";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Erillinen asunto";
 
 "type.place.locality" = "Paikkakunta";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Naapurusto";
 
 "type.place.ocean" = "Valtameri";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "Meri";
 
-"type.place.square" = "Square";
+"type.place.square" = "Tori";
 
 "type.place.state" = "Lääni";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Koripallo";
 
+"type.sport.beachvolleyball" = "Rantalentopallo";
+
 "type.sport.bowls" = "Nurmikeilailu";
+
+"type.sport.chess" = "Shakki";
 
 "type.sport.cricket" = "Kriketti";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Ammunta";
 
+"type.sport.skateboard" = "Rullalautailu";
+
 "type.sport.skiing" = "Hiihto";
 
 "type.sport.soccer" = "Jalkapallo";
 
 "type.sport.swimming" = "Uinti";
 
+"type.sport.table_tennis" = "Pöytätennis";
+
 "type.sport.tennis" = "Tenniskenttä";
+
+"type.sport.volleyball" = "Lentopallo";
+
+"type.sport.9pin" = "Keilailu";
+
+"type.sport.10pin" = "Keilailu";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Jääkiekko";
+
+"type.sport.field_hockey" = "Maahockey";
+
+"type.sport.badminton" = "Sulkapallo";
+
+"type.sport.pelota" = "Baskimaan pelota";
 
 "type.tourism" = "Turismi";
 

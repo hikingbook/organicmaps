@@ -221,6 +221,8 @@
 	<string name="help">Laguntza</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Maiz galderak</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Dohaintza eman</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Nola lagundu diguzu?</string>
 	<!-- Button in the main Help dialog -->
@@ -340,7 +342,6 @@
 	<string name="routing_arrive">Iritsiera: %s</string>
 	<string name="categories">Kategoriak</string>
 	<string name="history">Grabatu</string>
-	<string name="closed">Itxita</string>
 	<string name="search_not_found">Barkatu, ez dut ezer aurkitu.</string>
 	<string name="search_not_found_query">Mesedez, saiatu beste kontsulta bat.</string>
 	<string name="search_history_title">Bilaketa-historia</string>
@@ -382,6 +383,13 @@
 	<string name="day_off_today">Gaur atseden eguna</string>
 	<string name="day_off">Egun librea</string>
 	<string name="today">Gaur</string>
+	<string name="opens_tomorrow_at">Bihar %sean irekiko da</string>
+	<string name="opens_dayoftheweek_at">%1$sean %2$sean irekiko da</string>
+	<string name="opens_at">%sean irekiko da</string>
+	<string name="opens_in">%s barru irekitzen da</string>
+	<string name="closes_at">%sean itxiko da</string>
+	<string name="closes_in">%s barru ixten da</string>
+	<string name="closed">Itxita</string>
 	<string name="edit_opening_hours">Editatu ordutegia</string>
 	<string name="no_osm_account">Ez al duzu OpenStreetMap konturik?</string>
 	<string name="register_at_openstreetmap">Eman izena OSM</string>
@@ -407,6 +415,7 @@
 	<string name="select_cuisine">Aukeratu sukaldea</string>
 	<!-- login text field -->
 	<string name="email_or_username">Posta elektronikoa edo erabiltzailea</string>
+	<string name="level">Solairua</string>
 	<string name="downloader_delete_map_dialog">Maparen aldaketa guztiak maparekin batera ezabatuko dira.</string>
 	<string name="downloader_update_maps">Mapak deskargatu automatikoki</string>
 	<string name="downloader_mwm_migration_dialog">Ibilbide bat sortzeko, beharrezkoa da mapa guztiak eguneratzea eta ibilbidea berriro planifikatzea.</string>
@@ -513,7 +522,7 @@
 	<string name="on">Ekin.</string>
 	<string name="off">Itzali</string>
 	<string name="prefs_languages_information">TTS sistema erabiltzen dugu ahots-argibideetarako. Android gailu askok Google TTS erabiltzen dute. Google Play-tik deskargatu edo egunera dezakezu (https://play.google.com/store/apps/details?idu003dcom.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Zenbait hizkuntzatan, beste ahots-sintetizadore bat edo hizkuntza-pakete gehigarri bat instalatu behar duzu aplikazio-dendatik (Google Play, Samsung Apps, App Gallery, FDroid). Ireki gailua Ezarpenak > Hizkuntza eta sarrera > Hizkera > Hizketarako testurako aukerak. Hemen ahots-sintesiaren ezarpenak kudea ditzakezu (adibidez, hizkuntza pakete bat deskargatu, konexiorik gabe erabiltzeko) edo testu-hizketarako beste motor bat hauta dezakezu.</string>
+	<string name="prefs_languages_information_off">Zenbait hizkuntzatan, beste ahots-sintetizadore bat edo hizkuntza-pakete gehigarri bat instalatu behar duzu aplikazio-dendatik (Google Play, Galaxy Store, App Gallery, FDroid). Ireki gailua Ezarpenak > Hizkuntza eta sarrera > Hizkera > Hizketarako testurako aukerak. Hemen ahots-sintesiaren ezarpenak kudea ditzakezu (adibidez, hizkuntza pakete bat deskargatu, konexiorik gabe erabiltzeko) edo testu-hizketarako beste motor bat hauta dezakezu.</string>
 	<string name="prefs_languages_information_off_link">Informazio gehiago lortzeko, ikusi gida hau.</string>
 	<string name="transliteration_title">Latinezko transliterazioa</string>
 	<string name="learn_more">Irakurri gehiago</string>
@@ -665,6 +674,8 @@
 	<string name="enable_screen_sleep">Utzi pantailari lo egiten</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Gaituta dagoenean, pantailak lo egin ahal izango du jarduerarik gabe egon ondoren.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Maparen datuak OpenStreetMap-en</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Aire Garraioa</string>
@@ -740,10 +751,14 @@
 	<string name="type.amenity.parking.permissive">Aparkalekua</string>
 	<string name="type.amenity.parking.private">Aparkalekua</string>
 	<string name="type.amenity.parking.underground">Aparkalekua</string>
+	<string name="type.amenity.parking_entrance.private">Aparkalekuaren sarrera</string>
+	<string name="type.amenity.parking_entrance.permissive">Aparkalekuaren sarrera</string>
+	<string name="type.amenity.parking_entrance">Aparkalekuaren sarrera</string>
 	<string name="type.amenity.parking_space">Aparkaleku</string>
 	<string name="type.amenity.parking_space.permissive">Aparkaleku</string>
 	<string name="type.amenity.parking_space.private">Aparkaleku</string>
 	<string name="type.amenity.parking_space.underground">Aparkaleku</string>
+	<string name="type.amenity.parking_space.disabled">Ezinduentzako aparkalekua</string>
 	<string name="type.amenity.payment_terminal">Ordainketa terminala</string>
 	<string name="type.amenity.pharmacy">Farmazia</string>
 	<string name="type.amenity.place_of_worship">Kultu lekua</string>
@@ -1160,10 +1175,8 @@
 	<string name="type.leisure.playground">Jolastokia</string>
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.sports_centre">Kiroldegia</string>
-	<string name="type.leisure.sports_centre.climbing">Eskalada zentroa</string>
-	<string name="type.leisure.sports_centre.shooting">Tiro eremua</string>
-	<string name="type.leisure.sports_centre.swimming">Igeriketa zentroa</string>
-	<string name="type.leisure.sports_centre.yoga">Yoga zentroa</string>
+	<string name="type.sport.climbing">Eskalada zentroa</string>
+	<string name="type.sport.yoga">Yoga zentroa</string>
 	<string name="type.leisure.stadium">Estadioa</string>
 	<string name="type.leisure.swimming_pool">Igerilekua</string>
 	<string name="type.leisure.swimming_pool.private">Igerilekua</string>
@@ -1228,8 +1241,10 @@
 	<string name="type.organic.only">Organikoa</string>
 	<string name="type.organic.yes">Organikoa</string>
 	<string name="type.place.city">Herria</string>
+	<string name="type.place.city.capital">Hiriburu</string>
 	<string name="type.place.city.capital.10">Herria</string>
 	<string name="type.place.city.capital.11">Herria</string>
+	<string name="type.place.city.capital.2">Hiriburu</string>
 	<string name="type.place.city.capital.3">Herria</string>
 	<string name="type.place.city.capital.4">Herria</string>
 	<string name="type.place.city.capital.5">Herria</string>
@@ -1244,10 +1259,13 @@
 	<string name="type.place.hamlet">Herria</string>
 	<string name="type.place.island">Uhartea</string>
 	<string name="type.place.islet">Uhartea</string>
+	<string name="type.place.isolated_dwelling">Etxebizitza Isolatua</string>
 	<string name="type.place.locality">Kokapena</string>
+	<string name="type.place.neighbourhood">Auzo</string>
 	<string name="type.place.ocean">Ozeanoa</string>
 	<string name="type.place.region">Eskualdea</string>
 	<string name="type.place.sea">Itsasoa</string>
+	<string name="type.place.square">Plaza</string>
 	<string name="type.place.state">Baldintza</string>
 	<string name="type.place.state.USA">Baldintza</string>
 	<string name="type.place.suburb">Auzoa</string>
@@ -1394,6 +1412,8 @@
 	<string name="type.sport.australian_football">Australiako futbol araua</string>
 	<string name="type.sport.baseball">Beisbol</string>
 	<string name="type.sport.basketball">Saskibaloia</string>
+	<string name="type.sport.beachvolleyball">Hondartza-bolei</string>
+	<string name="type.sport.chess">Xake</string>
 	<string name="type.sport.cricket">Kilkerra</string>
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Zaldi-lasterketa</string>
@@ -1404,10 +1424,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Urpekaritza</string>
 	<string name="type.sport.shooting">Tiroketa</string>
+	<string name="type.sport.skateboard">Skateboarding</string>
 	<string name="type.sport.skiing">Eskia</string>
 	<string name="type.sport.soccer">Futbola</string>
 	<string name="type.sport.swimming">Igeriketa</string>
+	<string name="type.sport.table_tennis">Mahai-tenis</string>
 	<string name="type.sport.tennis">Tenis kantxa</string>
+	<string name="type.sport.volleyball">Boleibol</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Areto-futbola</string>
+	<string name="type.sport.ice_hockey">Izotz hockey</string>
+	<string name="type.sport.field_hockey">Belar hockey</string>
+	<string name="type.sport.badminton">Badminton</string>
+	<string name="type.sport.pelota">Eusko pilota</string>
 	<string name="type.tourism">Turismoa</string>
 	<string name="type.tourism.alpine_hut">Kabina</string>
 	<string name="type.tourism.apartment">Apartamentuak</string>

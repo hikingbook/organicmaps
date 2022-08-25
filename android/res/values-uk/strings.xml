@@ -231,6 +231,8 @@
 	<string name="help">Допомога</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Питання та відповіді</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Пожертвувати</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Як нас підтримати?</string>
 	<!-- Button in the main Help dialog -->
@@ -350,9 +352,6 @@
 	<string name="routing_arrive">Прибуття в %s</string>
 	<string name="categories">Категорії</string>
 	<string name="history">Історія</string>
-	<string name="opens_in">Відкривається через %s</string>
-	<string name="closes_in">Зачиняється через %s</string>
-	<string name="closed">Зачинено</string>
 	<string name="search_not_found">На жаль, нічого не знайдено.</string>
 	<string name="search_not_found_query">Спробуйте змінити запит.</string>
 	<string name="search_history_title">Історія пошуку</string>
@@ -396,6 +395,13 @@
 	<string name="day_off_today">Сьогодні зачинено</string>
 	<string name="day_off">Зачинено</string>
 	<string name="today">Сьогодні</string>
+	<string name="opens_tomorrow_at">Відкриття завтра о %s</string>
+	<string name="opens_dayoftheweek_at">Відчиняється в %1$s о %2$s</string>
+	<string name="opens_at">Відкриття о %s</string>
+	<string name="opens_in">Відкривається через %s</string>
+	<string name="closes_at">Закривається о %s</string>
+	<string name="closes_in">Зачиняється через %s</string>
+	<string name="closed">Зачинено</string>
 	<string name="edit_opening_hours">Редагувати години роботи</string>
 	<string name="no_osm_account">Не зареєстровані в OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Зареєструватися</string>
@@ -421,6 +427,7 @@
 	<string name="select_cuisine">Вибрати кухню</string>
 	<!-- login text field -->
 	<string name="email_or_username">Ел. пошта або ім\'я користувача</string>
+	<string name="level">Поверх</string>
 	<string name="downloader_delete_map_dialog">Разом з мапою будуть видалені й внесені Вами правки на цій мапі.</string>
 	<string name="downloader_update_maps">Оновити мапи</string>
 	<string name="downloader_mwm_migration_dialog">Для побудови маршруту необхідно оновити усі мапи та побудувати маршрут заново.</string>
@@ -530,7 +537,7 @@
 	<string name="on">Увімкн.</string>
 	<string name="off">Вимкн.</string>
 	<string name="prefs_languages_information">Для озвучування голосових інструкцій ми використовуємо систему TTS. Більшість Android-пристроїв підтримують систему Google TTS. Для завантаження або оновлення перейдіть до магазину Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Для деяких мов вам знадобиться встановити інший додаток для синтезу мовлення або додатковий мовний пакет з магазину додатків (Google Play, Samsung Apps, App Gallery, FDroid).\nВідкрийте налаштування пристрою → Мови та введення → Мовлення → Синтез мовлення.\nТут ви можете здійснювати управління налаштуваннями синтезу мовлення (наприклад, завантажити мовний пакет для використання офлайн) або вибрати інший програмний рушій для синтезу мовлення.</string>
+	<string name="prefs_languages_information_off">Для деяких мов вам знадобиться встановити інший додаток для синтезу мовлення або додатковий мовний пакет з магазину додатків (Google Play, Galaxy Store, App Gallery, FDroid).\nВідкрийте налаштування пристрою → Мови та введення → Мовлення → Синтез мовлення.\nТут ви можете здійснювати управління налаштуваннями синтезу мовлення (наприклад, завантажити мовний пакет для використання офлайн) або вибрати інший програмний рушій для синтезу мовлення.</string>
 	<string name="prefs_languages_information_off_link">Додаткову інформацію див. у цьому керівництві.</string>
 	<string name="transliteration_title">Транслітерація латинськими літерами</string>
 	<string name="learn_more">Докладніше</string>
@@ -693,6 +700,8 @@
 	<string name="enable_show_on_lock_screen">Показувати на заблокованому екрані</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Якщо ввімкнено, вам не потрібно щоразу розблоковувати пристрій під час роботи програми.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Картографічні дані з OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Канатна дорога</string>
@@ -770,10 +779,14 @@
 	<string name="type.amenity.parking.permissive">Парковка</string>
 	<string name="type.amenity.parking.private">Парковка</string>
 	<string name="type.amenity.parking.underground">Парковка</string>
+	<string name="type.amenity.parking_entrance.private">Вхід на паркінг</string>
+	<string name="type.amenity.parking_entrance.permissive">Вхід на паркінг</string>
+	<string name="type.amenity.parking_entrance">Вхід на паркінг</string>
 	<string name="type.amenity.parking_space">Паркувальне місце</string>
 	<string name="type.amenity.parking_space.permissive">Паркувальне місце</string>
 	<string name="type.amenity.parking_space.private">Паркувальне місце</string>
 	<string name="type.amenity.parking_space.underground">Паркувальне місце</string>
+	<string name="type.amenity.parking_space.disabled">Паркомісце для інвалідів</string>
 	<string name="type.amenity.payment_terminal">Платіжний термінал</string>
 	<string name="type.amenity.pharmacy">Аптека</string>
 	<string name="type.amenity.place_of_worship">Храм</string>
@@ -1240,10 +1253,8 @@
 	<string name="type.leisure.sauna">Сауна</string>
 	<string name="type.leisure.slipway">Шлюпковий спуск</string>
 	<string name="type.leisure.sports_centre">Спорткомплекс</string>
-	<string name="type.leisure.sports_centre.climbing">Скеледром</string>
-	<string name="type.leisure.sports_centre.shooting">Тир</string>
-	<string name="type.leisure.sports_centre.swimming">Басейн для плавання</string>
-	<string name="type.leisure.sports_centre.yoga">Студія йоги</string>
+	<string name="type.sport.climbing">Скеледром</string>
+	<string name="type.sport.yoga">Студія йоги</string>
 	<string name="type.leisure.stadium">Стадіон</string>
 	<string name="type.leisure.swimming_pool">Басейн для плавання</string>
 	<string name="type.leisure.swimming_pool.private">Басейн для плавання</string>
@@ -1324,7 +1335,6 @@
 	<string name="type.office.telecommunication">Телекомунікаційна компанія</string>
 	<string name="type.organic.only">Еко</string>
 	<string name="type.organic.yes">Еко</string>
-	<string name="type.place">Мicце</string>
 	<string name="type.place.city">Місто</string>
 	<string name="type.place.city.capital">Столиця</string>
 	<string name="type.place.city.capital.10">Місто</string>
@@ -1344,8 +1354,8 @@
 	<string name="type.place.hamlet">Поселення</string>
 	<string name="type.place.island">Острів</string>
 	<string name="type.place.islet">Острів</string>
-	<string name="type.place.isolated_dwelling">Житло</string>
-	<string name="type.place.locality">Місцевість</string>
+	<string name="type.place.isolated_dwelling">Хутір</string>
+	<string name="type.place.locality">Місце</string>
 	<string name="type.place.neighbourhood">Мiкрорайон</string>
 	<string name="type.place.ocean">Океан</string>
 	<string name="type.place.region">Район</string>
@@ -1547,7 +1557,9 @@
 	<string name="type.sport.australian_football">Австралійський футбол</string>
 	<string name="type.sport.baseball">Бейсбол</string>
 	<string name="type.sport.basketball">Баскетбол</string>
+	<string name="type.sport.beachvolleyball">Пляжний волейбол</string>
 	<string name="type.sport.bowls">Боулз</string>
+	<string name="type.sport.chess">Шахи</string>
 	<string name="type.sport.cricket">Крикет</string>
 	<string name="type.sport.curling">Керлінг</string>
 	<string name="type.sport.equestrian">Кінний спорт</string>
@@ -1558,10 +1570,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Місце для дайвінгу</string>
 	<string name="type.sport.shooting">Стрільба</string>
+	<string name="type.sport.skateboard">Скейтбординг</string>
 	<string name="type.sport.skiing">Лижi</string>
 	<string name="type.sport.soccer">Футбол</string>
 	<string name="type.sport.swimming">Плавання</string>
+	<string name="type.sport.table_tennis">Настільний теніс</string>
 	<string name="type.sport.tennis">Тенісний корт</string>
+	<string name="type.sport.volleyball">Волейбол</string>
+	<string name="type.sport.9pin">Боулінг</string>
+	<string name="type.sport.10pin">Боулінг</string>
+	<string name="type.sport.padel">Падель</string>
+	<string name="type.sport.futsal">Футзал</string>
+	<string name="type.sport.ice_hockey">Хокей із шайбою</string>
+	<string name="type.sport.field_hockey">Хокей на траві</string>
+	<string name="type.sport.badminton">Бадмінтон</string>
+	<string name="type.sport.pelota">Баскська пелота</string>
 	<string name="type.tourism">Туризм</string>
 	<string name="type.tourism.alpine_hut">Гірський готель</string>
 	<string name="type.tourism.apartment">Апартаменти</string>

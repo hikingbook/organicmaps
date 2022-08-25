@@ -503,12 +503,6 @@
 
 "history" = "تاریخچه";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "تعطیل";
-
 "search_not_found" = "متاسفانه چیزی پیدا نشد";
 
 "search_not_found_query" = "با تغییر در معیار های جست و جو دوباره امتحان کنید";
@@ -578,6 +572,20 @@
 
 "today" = "امروز";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "تعطیل";
+
 "add_opening_hours" = "اضافه کردن ساعت بازگشایی";
 
 "no_osm_account" = "ایا حساب OpenStreetMap ندارید؟";
@@ -629,6 +637,8 @@
 "email_or_username" = "ایمیل یا نام کاربری";
 
 "phone" = "تلفن";
+
+"level" = "طبقه";
 
 "please_note" = "لطفا توجه داشته باشد";
 
@@ -749,6 +759,8 @@
 "foot" = "فوت";
 
 "miles_per_hour" = "مایل بر ساعت (mph)";
+
+"hour" = "ساعت";
 
 "minute" = "دقیقه";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "پارکینگ";
 
+"type.amenity.parking_entrance.private" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
+
+"type.amenity.parking_entrance.permissive" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
+
+"type.amenity.parking_entrance" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
+
 "type.amenity.parking_space" = "جای پارک";
 
 "type.amenity.parking_space.permissive" = "جای پارک";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "جای پارک";
 
 "type.amenity.parking_space.underground" = "جای پارک";
+
+"type.amenity.parking_space.disabled" = "ﻦﯿﻟﻮﻠﻌﻣ ﮎﺭﺎﭘ ﯼﺎﺟ";
 
 "type.amenity.payment_terminal" = "دستگاه کارتخوان";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "مرکزورزشی";
 
-"type.leisure.sports_centre.climbing" = "مرکز صعود";
+"type.sport.climbing" = "مرکز صعود";
 
-"type.leisure.sports_centre.shooting" = "محل تیراندازی";
-
-"type.leisure.sports_centre.swimming" = "استخرشنا";
-
-"type.leisure.sports_centre.yoga" = "سالن یوگا";
+"type.sport.yoga" = "سالن یوگا";
 
 "type.leisure.stadium" = "استادیوم";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "شهر";
 
 "type.place.city.capital" = "پایتخت";
@@ -2512,11 +2526,11 @@
 
 "type.place.islet" = "جزیره";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "مسکن منزوی";
 
 "type.place.locality" = "محله";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "محله";
 
 "type.place.ocean" = "اقیانوس";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "دریا";
 
-"type.place.square" = "Square";
+"type.place.square" = "میدان";
 
 "type.place.state" = "ایالت";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "بسکتبال";
 
+"type.sport.beachvolleyball" = "والیبال ساحلی";
+
 "type.sport.bowls" = "لعبة البولينج";
+
+"type.sport.chess" = "شطرنج";
 
 "type.sport.cricket" = "کریکت";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "ورزش تیراندازی";
 
+"type.sport.skateboard" = "اسکیت‌بردینگ";
+
 "type.sport.skiing" = "اسکی";
 
 "type.sport.soccer" = "فوتبال";
 
 "type.sport.swimming" = "شنا";
 
+"type.sport.table_tennis" = "تنیس روی میز";
+
 "type.sport.tennis" = "زمین تنیس";
+
+"type.sport.volleyball" = "والیبال";
+
+"type.sport.9pin" = "بولینگ";
+
+"type.sport.10pin" = "بولینگ";
+
+"type.sport.padel" = "ﻝﺩﺎﭘ";
+
+"type.sport.futsal" = "ﻝﺎﺴﺗﻮﻓ";
+
+"type.sport.ice_hockey" = "ﺦﯾ ﯼﻭﺭ ﯽﮐﺎﻫ";
+
+"type.sport.field_hockey" = "ﻦﻤﭼ ﯼﻭﺭ ﯽﮐﺎﻫ";
+
+"type.sport.badminton" = "ﻥﻮﺘﻨﯿﻣﺪﺑ";
+
+"type.sport.pelota" = "ﯽﮑﺳﺎﺑ ﯼﺎﺗﻮﻠﭘ";
 
 "type.tourism" = "Tourism";
 

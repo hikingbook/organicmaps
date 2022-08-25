@@ -749,7 +749,7 @@ UNIT_TEST(Netherlands_Barneveld_TurnTest)
 
   TEST_EQUAL(result, RouterResultCode::NoError, ());
   /// @todo Reasonable solution from GraphHopper:
-  // https://www.openstreetmap.org/directions?engine=graphhopper_car&route=52.16783%2C5.56589%3B52.16940%2C5.56270#map=19/52.16916/5.56537
+  // https://www.openstreetmap.org/directions?engine=graphhopper_car&route=52.15866%2C5.56538%3B52.17042%2C5.55834
   integration::TestTurnCount(route, 1);
   integration::GetNthTurn(route, 0).TestValid().TestDirection(CarDirection::TurnSlightLeft);
 }
@@ -1155,6 +1155,26 @@ UNIT_TEST(Cyprus_A1AlphaMega_TurnTest)
   integration::GetNthTurn(route, 0).TestValid().TestDirection(CarDirection::TurnLeft);
   // No extra GoStraight caused by possible turn to parking.
 }
+
+UNIT_TEST(Crimea_Roundabout_test)
+{
+  TRouteResult const routeResult =
+      integration::CalculateRoute(integration::GetVehicleComponents(VehicleType::Car),
+                                  mercator::FromLatLon(45.20895, 33.32677), {0., 0.},
+                                  mercator::FromLatLon(45.20899, 33.32840));
+
+  Route const & route = *routeResult.first;
+  RouterResultCode const result = routeResult.second;
+
+  // Issue #2536.
+  TEST_EQUAL(result, RouterResultCode::NoError, ());
+  integration::TestTurnCount(route, 2 /* expectedTurnCount */);
+  integration::GetNthTurn(route, 0).TestValid().TestDirection(CarDirection::EnterRoundAbout);
+  integration::GetNthTurn(route, 0).TestValid().TestRoundAboutExitNum(3);
+  integration::GetNthTurn(route, 1).TestValid().TestDirection(CarDirection::LeaveRoundAbout);
+  integration::GetNthTurn(route, 1).TestValid().TestRoundAboutExitNum(3);
+}
+
 
 UNIT_TEST(Russia_Moscow_OnlyUTurnTest1_TurnTest)
 {

@@ -503,12 +503,6 @@
 
 "history" = "History";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Closed";
-
 "search_not_found" = "Oops, no results found.";
 
 "search_not_found_query" = "Try changing your search criteria.";
@@ -578,6 +572,20 @@
 
 "today" = "Today";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Closed";
+
 "add_opening_hours" = "Add opening hours";
 
 "no_osm_account" = "Don't have an OpenStreetMap account?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email or username";
 
 "phone" = "Phone";
+
+"level" = "קוֹמָה";
 
 "please_note" = "Please note";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "h";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parking";
 
+"type.amenity.parking_entrance.private" = "הינחל הסינכ";
+
+"type.amenity.parking_entrance.permissive" = "הינחל הסינכ";
+
+"type.amenity.parking_entrance" = "הינחל הסינכ";
+
 "type.amenity.parking_space" = "Parking Space";
 
 "type.amenity.parking_space.permissive" = "Parking Space";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Parking Space";
 
 "type.amenity.parking_space.underground" = "Parking Space";
+
+"type.amenity.parking_space.disabled" = "םיכנל הינח";
 
 "type.amenity.payment_terminal" = "Payment Terminal";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Sports Center";
 
-"type.leisure.sports_centre.climbing" = "Climbing Centre";
+"type.sport.climbing" = "Climbing Centre";
 
-"type.leisure.sports_centre.shooting" = "Shooting Range";
-
-"type.leisure.sports_centre.swimming" = "Swimming Centre";
-
-"type.leisure.sports_centre.yoga" = "Yoga Studio";
+"type.sport.yoga" = "Yoga Studio";
 
 "type.leisure.stadium" = "Stadium";
 
@@ -2472,69 +2488,67 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
+"type.place.city" = "עיר";
 
-"type.place.city" = "City";
+"type.place.city.capital" = "עיר בירה";
 
-"type.place.city.capital" = "Capital";
+"type.place.city.capital.10" = "עיר";
 
-"type.place.city.capital.10" = "City";
+"type.place.city.capital.11" = "עיר";
 
-"type.place.city.capital.11" = "City";
+"type.place.city.capital.2" = "עיר בירה";
 
-"type.place.city.capital.2" = "Capital";
+"type.place.city.capital.3" = "עיר";
 
-"type.place.city.capital.3" = "City";
+"type.place.city.capital.4" = "עיר";
 
-"type.place.city.capital.4" = "City";
+"type.place.city.capital.5" = "עיר";
 
-"type.place.city.capital.5" = "City";
+"type.place.city.capital.6" = "עיר";
 
-"type.place.city.capital.6" = "City";
+"type.place.city.capital.7" = "עיר";
 
-"type.place.city.capital.7" = "City";
+"type.place.city.capital.8" = "עיר";
 
-"type.place.city.capital.8" = "City";
+"type.place.city.capital.9" = "עיר";
 
-"type.place.city.capital.9" = "City";
+"type.place.continent" = "יבשת";
 
-"type.place.continent" = "Continent";
+"type.place.country" = "ארץ";
 
-"type.place.country" = "Country";
+"type.place.county" = "נפה";
 
-"type.place.county" = "County";
+"type.place.farm" = "חווה חקלאית";
 
-"type.place.farm" = "Farm";
+"type.place.hamlet" = "כְּפָר קָטָן";
 
-"type.place.hamlet" = "Hamlet";
+"type.place.island" = "אי";
 
-"type.place.island" = "Island";
+"type.place.islet" = "איון";
 
-"type.place.islet" = "Island";
+"type.place.isolated_dwelling" = "דירת מגורים מבודדת";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.locality" = "מקום";
 
-"type.place.locality" = "Locality";
+"type.place.neighbourhood" = "שכונה";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.ocean" = "אוקיינוס";
 
-"type.place.ocean" = "Ocean";
+"type.place.region" = "חבל ארץ";
 
-"type.place.region" = "Region";
+"type.place.sea" = "ים";
 
-"type.place.sea" = "Sea";
+"type.place.square" = "כיכר עירונית";
 
-"type.place.square" = "Square";
+"type.place.state" = "מדינה פדרלית";
 
-"type.place.state" = "State";
+"type.place.state.USA" = "מדינה";
 
-"type.place.state.USA" = "State";
+"type.place.suburb" = "פרוור";
 
-"type.place.suburb" = "Suburb";
+"type.place.town" = "עיירה";
 
-"type.place.town" = "Town";
-
-"type.place.village" = "Village";
+"type.place.village" = "כפר";
 
 "type.power" = "Power";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "כדורעף חופים";
+
 "type.sport.bowls" = "כדורת דשא";
+
+"type.sport.chess" = "שחמט";
 
 "type.sport.cricket" = "קריקט";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "ירי ספורטיבי";
 
+"type.sport.skateboard" = "סקייטבורדינג";
+
 "type.sport.skiing" = "סקי";
 
 "type.sport.soccer" = "כדורגל";
 
 "type.sport.swimming" = "שחייה";
 
+"type.sport.table_tennis" = "טניס שולחן";
+
 "type.sport.tennis" = "טֶנִיס";
+
+"type.sport.volleyball" = "כדורעף";
+
+"type.sport.9pin" = "בָּאוּלִינְג";
+
+"type.sport.10pin" = "בָּאוּלִינְג";
+
+"type.sport.padel" = "לדאפ";
+
+"type.sport.futsal" = "לסטופ";
+
+"type.sport.ice_hockey" = "חרק יקוה";
+
+"type.sport.field_hockey" = "הדש יקוה";
+
+"type.sport.badminton" = "תיצונ";
+
+"type.sport.pelota" = "תיקסאב הטלפ";
 
 "type.tourism" = "Tourism";
 

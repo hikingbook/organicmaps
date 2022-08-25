@@ -235,6 +235,8 @@
 	<string name="help">Hilfe</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Fragen und Antworten</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Spenden</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Wie unterstützen Sie uns?</string>
 	<!-- Button in the main Help dialog -->
@@ -354,9 +356,6 @@
 	<string name="routing_arrive">Ankunft: %s</string>
 	<string name="categories">Kategorien</string>
 	<string name="history">Verlauf</string>
-	<string name="opens_in">Öffnet in %s</string>
-	<string name="closes_in">Schließt in %s</string>
-	<string name="closed">Geschlossen</string>
 	<string name="search_not_found">Leider wurde nichts gefunden.</string>
 	<string name="search_not_found_query">Versuchen Sie bitte eine andere Suchanfrage.</string>
 	<string name="search_history_title">Suchverlauf</string>
@@ -398,6 +397,13 @@
 	<string name="day_off_today">Heute geschlossen</string>
 	<string name="day_off">Geschlossen</string>
 	<string name="today">Heute</string>
+	<string name="opens_tomorrow_at">Öffnet morgen um %s</string>
+	<string name="opens_dayoftheweek_at">Öffnet %1$s um %2$s</string>
+	<string name="opens_at">Öffnet um %s</string>
+	<string name="opens_in">Öffnet in %s</string>
+	<string name="closes_at">Schließt um %s</string>
+	<string name="closes_in">Schließt in %s</string>
+	<string name="closed">Geschlossen</string>
 	<string name="edit_opening_hours">Geschäftszeiten bearbeiten</string>
 	<string name="no_osm_account">Kein Konto bei OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Registrieren</string>
@@ -424,6 +430,7 @@
 	<!-- login text field -->
 	<string name="email_or_username">Email oder Benutzername</string>
 	<string name="editor_add_phone">Telefon hinzufügen</string>
+	<string name="level">Stockwerk</string>
 	<string name="downloader_delete_map_dialog">Alle Kartenänderungen werden zusammen mit der Karte gelöscht.</string>
 	<string name="downloader_update_maps">Karten aktualisieren</string>
 	<string name="downloader_mwm_migration_dialog">Um eine Strecke zu erstellen, müssen Sie alle Karten aktualisieren und dann die Strecken erneut planen.</string>
@@ -533,7 +540,7 @@
 	<string name="on">An</string>
 	<string name="off">Aus</string>
 	<string name="prefs_languages_information">Wir verwenden Text-to-Speech-Systeme für Sprachanweisungen. Viele Android-Geräte nutzen Google-TTS, das Sie bei Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts) herunterladen oder aktualisieren können.</string>
-	<string name="prefs_languages_information_off">Für einige Sprachen müssen Sie einen anderen Sprachgenerator oder ein zusätzliches Sprachpaket aus dem App Store installieren (Google Play, Samsung Apps, App Gallery, FDroid). \nÖffnen Sie die Einstellungen Ihres Gerätes → Sprache und Eingabe → Sprache → Text-to-Speech-Ausgabe. Hier können Sie die Einstellungen für Sprachsynthese verwalten (beispielsweise ein Sprachpaket für die Offline-Verwendung herunterladen) und ein anderes Sprachausgabeprogramm auswählen.</string>
+	<string name="prefs_languages_information_off">Für einige Sprachen müssen Sie einen anderen Sprachgenerator oder ein zusätzliches Sprachpaket aus dem App Store installieren (Google Play, Galaxy Store, App Gallery, FDroid). \nÖffnen Sie die Einstellungen Ihres Gerätes → Sprache und Eingabe → Sprache → Text-to-Speech-Ausgabe. Hier können Sie die Einstellungen für Sprachsynthese verwalten (beispielsweise ein Sprachpaket für die Offline-Verwendung herunterladen) und ein anderes Sprachausgabeprogramm auswählen.</string>
 	<string name="prefs_languages_information_off_link">Weitere Informationen finden Sie in dieser Anleitung.</string>
 	<string name="transliteration_title">Transliteration ins Lateinische</string>
 	<string name="learn_more">Weitere Informationen</string>
@@ -709,6 +716,8 @@
 	<string name="enable_show_on_lock_screen">Auf dem Sperrbildschirm anzeigen</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Wenn aktiviert, muss das Gerät nicht jedes Mal entsperrt werden, wenn die App ausgeführt wird.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Kartendaten von OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Seilbahn</string>
@@ -780,10 +789,14 @@
 	<string name="type.amenity.parking.permissive">Parkplatz</string>
 	<string name="type.amenity.parking.private">Parkplatz</string>
 	<string name="type.amenity.parking.underground">Tiefgarage</string>
+	<string name="type.amenity.parking_entrance.private">Parkplatzeinfahrt</string>
+	<string name="type.amenity.parking_entrance.permissive">Parkplatzeinfahrt</string>
+	<string name="type.amenity.parking_entrance">Parkplatzeinfahrt</string>
 	<string name="type.amenity.parking_space">Parkplatz</string>
 	<string name="type.amenity.parking_space.permissive">Parkplatz</string>
 	<string name="type.amenity.parking_space.private">Parkplatz</string>
 	<string name="type.amenity.parking_space.underground">Parkplatz</string>
+	<string name="type.amenity.parking_space.disabled">Behindertenparkplatz</string>
 	<string name="type.amenity.payment_terminal">Bezahlterminal</string>
 	<string name="type.amenity.pharmacy">Apotheke</string>
 	<string name="type.amenity.place_of_worship">Anbetungsstätte</string>
@@ -1232,9 +1245,7 @@
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.slipway">Bootsrampe</string>
 	<string name="type.leisure.sports_centre">Sportzentrum</string>
-	<string name="type.leisure.sports_centre.climbing">Kletterhalle</string>
-	<string name="type.leisure.sports_centre.shooting">Schießanlage</string>
-	<string name="type.leisure.sports_centre.swimming">Schwimmhalle</string>
+	<string name="type.sport.climbing">Kletterhalle</string>
 	<string name="type.leisure.stadium">Stadion</string>
 	<string name="type.leisure.swimming_pool">Schwimmbecken</string>
 	<string name="type.leisure.swimming_pool.private">Schwimmbecken</string>
@@ -1311,7 +1322,6 @@
 	<string name="type.office.telecommunication">Mobilfunkbetreiber</string>
 	<string name="type.organic.only">Bio</string>
 	<string name="type.organic.yes">Bio</string>
-	<string name="type.place">Ort</string>
 	<string name="type.place.city">Großstadt</string>
 	<string name="type.place.city.capital">Hauptstadt</string>
 	<string name="type.place.city.capital.10">Großstadt</string>
@@ -1330,7 +1340,7 @@
 	<string name="type.place.farm">Bauernhof</string>
 	<string name="type.place.hamlet">Weiler</string>
 	<string name="type.place.island">Insel</string>
-	<string name="type.place.islet">kleine Insel</string>
+	<string name="type.place.islet">Kleine Insel</string>
 	<string name="type.place.isolated_dwelling">Kleinstsiedlung</string>
 	<string name="type.place.locality">Örtlichkeit</string>
 	<string name="type.place.neighbourhood">Stadtviertel</string>
@@ -1340,8 +1350,8 @@
 	<string name="type.place.square">Platz</string>
 	<string name="type.place.state">Bundesland</string>
 	<string name="type.place.state.USA">Bundesstaat</string>
-	<string name="type.place.suburb">Stadtteil</string>
-	<string name="type.place.town">Stadt</string>
+	<string name="type.place.suburb">Vorort</string>
+	<string name="type.place.town">Kleinstadt</string>
 	<string name="type.place.village">Dorf</string>
 	<string name="type.power">Energie</string>
 	<string name="type.power.generator">Generator</string>
@@ -1533,7 +1543,9 @@
 	<string name="type.sport.australian_football">Australian Football</string>
 	<string name="type.sport.baseball">Baseball</string>
 	<string name="type.sport.basketball">Basketball</string>
+	<string name="type.sport.beachvolleyball">Beachvolleyball</string>
 	<string name="type.sport.bowls">Bowls</string>
+	<string name="type.sport.chess">Schach</string>
 	<string name="type.sport.cricket">Cricket</string>
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Reitsport</string>
@@ -1544,12 +1556,23 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Gerätetauchen</string>
 	<string name="type.sport.shooting">Schießen</string>
+	<string name="type.sport.skateboard">Skateboarding</string>
 	<string name="type.sport.skiing">Skifahren</string>
 	<string name="type.sport.soccer">Fußball</string>
 	<string name="type.sport.swimming">Schwimmen</string>
+	<string name="type.sport.table_tennis">Tischtennis</string>
 	<string name="type.sport.tennis">Tennisspielfeld</string>
+	<string name="type.sport.volleyball">Volleyball</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Futsal</string>
+	<string name="type.sport.ice_hockey">Eishockey</string>
+	<string name="type.sport.field_hockey">Feldhockey</string>
+	<string name="type.sport.badminton">Badminton</string>
+	<string name="type.sport.pelota">Pelota Vasca</string>
 	<string name="type.tourism">Tourismus</string>
-	<string name="type.tourism.alpine_hut">bewirtschaftete Schutzhütte</string>
+	<string name="type.tourism.alpine_hut">Berghütte</string>
 	<string name="type.tourism.apartment">Ferienwohnung</string>
 	<string name="type.tourism.artwork">Kunstwerk</string>
 	<string name="type.tourism.artwork.architecture">Kunstwerk</string>
@@ -1577,7 +1600,7 @@
 	<string name="type.tourism.resort">Resort</string>
 	<string name="type.tourism.theme_park">Freizeitpark</string>
 	<string name="type.tourism.viewpoint">Aussichtspunkt</string>
-	<string name="type.tourism.wilderness_hut">unbewirtschaftete Schutzhütte</string>
+	<string name="type.tourism.wilderness_hut">Waldhütte</string>
 	<string name="type.tourism.zoo">Zoo</string>
 	<string name="type.traffic_calming">Verkehrsberuhigung</string>
 	<string name="type.traffic_calming.bump">kurze Bodenwelle</string>

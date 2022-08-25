@@ -503,12 +503,6 @@
 
 "history" = "Cronologia";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Închis";
-
 "search_not_found" = "Nu s-a găsit nimic.";
 
 "search_not_found_query" = "Încearcă să modifici condițiile căutării.";
@@ -578,6 +572,20 @@
 
 "today" = "Azi";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Închis";
+
 "add_opening_hours" = "Adaugă orele de funcționare";
 
 "no_osm_account" = "Nu ai un cont OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "E-mail sau nume de utilizator";
 
 "phone" = "Telefon";
+
+"level" = "Etaj";
 
 "please_note" = "Reține";
 
@@ -749,6 +759,8 @@
 "foot" = "ft";
 
 "miles_per_hour" = "mph";
+
+"hour" = "h";
 
 "minute" = "min";
 
@@ -1356,6 +1368,12 @@
 
 "type.amenity.parking.underground" = "Parcare";
 
+"type.amenity.parking_entrance.private" = "Intrare parcare";
+
+"type.amenity.parking_entrance.permissive" = "Intrare parcare";
+
+"type.amenity.parking_entrance" = "Intrare parcare";
+
 "type.amenity.parking_space" = "Loc de parcare";
 
 "type.amenity.parking_space.permissive" = "Loc de parcare";
@@ -1363,6 +1381,8 @@
 "type.amenity.parking_space.private" = "Loc de parcare";
 
 "type.amenity.parking_space.underground" = "Loc de parcare";
+
+"type.amenity.parking_space.disabled" = "Loc de parcare pentru persoane cu handicap";
 
 "type.amenity.payment_terminal" = "Terminal de plăți";
 
@@ -2296,13 +2316,9 @@
 
 "type.leisure.sports_centre" = "Sport";
 
-"type.leisure.sports_centre.climbing" = "Centru cățărare";
+"type.sport.climbing" = "Centru cățărare";
 
-"type.leisure.sports_centre.shooting" = "Tir";
-
-"type.leisure.sports_centre.swimming" = "Piscină";
-
-"type.leisure.sports_centre.yoga" = "Studio yoga";
+"type.sport.yoga" = "Studio yoga";
 
 "type.leisure.stadium" = "Stadion";
 
@@ -2472,8 +2488,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "Municipiu";
 
 "type.place.city.capital" = "Capitală";
@@ -2510,13 +2524,13 @@
 
 "type.place.island" = "Insulă";
 
-"type.place.islet" = "Insulă";
+"type.place.islet" = "Insult";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Locuință izolată";
 
 "type.place.locality" = "Localitate";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Cartier";
 
 "type.place.ocean" = "Ocean";
 
@@ -2524,7 +2538,7 @@
 
 "type.place.sea" = "Mare";
 
-"type.place.square" = "Square";
+"type.place.square" = "Spațiu";
 
 "type.place.state" = "Stat";
 
@@ -2932,7 +2946,11 @@
 
 "type.sport.basketball" = "Baschetbal";
 
+"type.sport.beachvolleyball" = "Volei de plajă";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Șah";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2953,13 +2971,35 @@
 
 "type.sport.shooting" = "Filmare";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Schi";
 
 "type.sport.soccer" = "Fotbal";
 
 "type.sport.swimming" = "Natație";
 
+"type.sport.table_tennis" = "Tenis de masă";
+
 "type.sport.tennis" = "Teren de tenis";
+
+"type.sport.volleyball" = "Volei";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Hochei pe gheata";
+
+"type.sport.field_hockey" = "Hochei pe iarbă";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Pilota bascilor";
 
 "type.tourism" = "Tourism";
 

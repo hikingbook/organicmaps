@@ -231,6 +231,8 @@
 	<string name="help">Ajuda</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Perguntas e respostas</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Doar</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">Direitos autorais</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -345,9 +347,6 @@
 	<string name="routing_arrive">Chegada: %s</string>
 	<string name="categories">Categorias</string>
 	<string name="history">Histórico</string>
-	<string name="opens_in">Abre em %s</string>
-	<string name="closes_in">Fecha em %s</string>
-	<string name="closed">Fechado</string>
 	<string name="search_not_found">Sinto muito, nenhum resultado foi encontrado.</string>
 	<string name="search_not_found_query">Por favor, tente outro termo de busca.</string>
 	<string name="search_history_title">Histórico de busca</string>
@@ -391,6 +390,9 @@
 	<string name="day_off_today">Fechado hoje</string>
 	<string name="day_off">Fechado</string>
 	<string name="today">Hoje</string>
+	<string name="opens_in">Abre em %s</string>
+	<string name="closes_in">Fecha em %s</string>
+	<string name="closed">Fechado</string>
 	<string name="edit_opening_hours">Editar horário de funcionamento</string>
 	<string name="no_osm_account">Sem conta no OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Abra uma conta no OSM</string>
@@ -695,6 +697,8 @@
 	<string name="enable_show_on_lock_screen">Mostrar na tela de bloqueio</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Quando ativado, você não precisará debloquear seu dispositivo toda vez que o aplicativo estiver funcionando</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Dados do mapa do OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Transporte aéreo</string>
@@ -772,6 +776,9 @@
 	<string name="type.amenity.parking.permissive">Estacionamento</string>
 	<string name="type.amenity.parking.private">Estacionamento privado</string>
 	<string name="type.amenity.parking.underground">Estacionamento subterrâneo</string>
+	<string name="type.amenity.parking_entrance.private">Entrada do estacionamento</string>
+	<string name="type.amenity.parking_entrance.permissive">Entrada do estacionamento</string>
+	<string name="type.amenity.parking_entrance">Entrada do estacionamento</string>
 	<string name="type.amenity.parking_space">Lugar de estacionamento</string>
 	<string name="type.amenity.parking_space.permissive">Lugar de estacionamento</string>
 	<string name="type.amenity.parking_space.private">Lugar de estacionamento privado</string>
@@ -1228,10 +1235,8 @@
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.slipway">Rampa de barcos</string>
 	<string name="type.leisure.sports_centre">Centro esportivo</string>
-	<string name="type.leisure.sports_centre.climbing">Ginásio de escalada</string>
-	<string name="type.leisure.sports_centre.shooting">Clube de tiro</string>
-	<string name="type.leisure.sports_centre.swimming">Centro de natação</string>
-	<string name="type.leisure.sports_centre.yoga">Estúdio de ioga</string>
+	<string name="type.sport.climbing">Ginásio de escalada</string>
+	<string name="type.sport.yoga">Estúdio de ioga</string>
 	<string name="type.leisure.stadium">Estádio</string>
 	<string name="type.leisure.swimming_pool">Piscina</string>
 	<string name="type.leisure.swimming_pool.private">Piscina</string>
@@ -1271,38 +1276,10 @@
 	<string name="type.office.telecommunication">Operadora de telecomunicações</string>
 	<string name="type.organic.only">Orgânico</string>
 	<string name="type.organic.yes">Orgânico</string>
-	<string name="type.place">Local</string>
-	<string name="type.place.city">Cidade</string>
-	<string name="type.place.city.capital">Capital</string>
-	<string name="type.place.city.capital.10">Cidade</string>
-	<string name="type.place.city.capital.11">Cidade</string>
-	<string name="type.place.city.capital.2">Capital</string>
-	<string name="type.place.city.capital.3">Cidade</string>
-	<string name="type.place.city.capital.4">Cidade</string>
-	<string name="type.place.city.capital.5">Cidade</string>
-	<string name="type.place.city.capital.6">Cidade</string>
-	<string name="type.place.city.capital.7">Cidade</string>
-	<string name="type.place.city.capital.8">Cidade</string>
-	<string name="type.place.city.capital.9">Cidade</string>
-	<string name="type.place.continent">Continente</string>
-	<string name="type.place.country">País</string>
-	<string name="type.place.county">Condado</string>
 	<string name="type.place.farm">Fazenda</string>
 	<string name="type.place.hamlet">Lugarejo</string>
-	<string name="type.place.island">Ilha</string>
-	<string name="type.place.islet">Ilhéu</string>
-	<string name="type.place.isolated_dwelling">Habitação isolada</string>
-	<string name="type.place.locality">Localidade</string>
-	<string name="type.place.neighbourhood">Bairro</string>
-	<string name="type.place.ocean">Oceano</string>
-	<string name="type.place.region">Região</string>
-	<string name="type.place.sea">Mar</string>
-	<string name="type.place.square">Praça ou largo</string>
-	<string name="type.place.state">Estado</string>
-	<string name="type.place.state.USA">Estado</string>
-	<string name="type.place.suburb">Subúrbio</string>
-	<string name="type.place.town">Cidade</string>
-	<string name="type.place.village">Povoado</string>
+	<string name="type.place.neighbourhood">Vizinhança</string>
+	<string name="type.place.village">Aldeia</string>
 	<string name="type.power">Energia</string>
 	<string name="type.power.generator">Gerador de energia</string>
 	<string name="type.power.line">Linha de transmissão de energia</string>
@@ -1501,6 +1478,7 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Mergulho autônomo</string>
 	<string name="type.sport.swimming">Natação esportiva</string>
+	<string name="type.sport.table_tennis">Tênis de mesa</string>
 	<string name="type.sport.tennis">Quadra de tênis</string>
 	<string name="type.tourism">Turismo</string>
 	<string name="type.tourism.alpine_hut">Abrigo de montanha</string>

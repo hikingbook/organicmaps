@@ -221,6 +221,8 @@
 	<string name="help">Aiuto</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Domande frequenti</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Donare</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Come sostenerci?</string>
 	<!-- Button in the main Help dialog -->
@@ -338,9 +340,6 @@
 	<string name="routing_arrive">Arrivo a %s</string>
 	<string name="categories">Categorie</string>
 	<string name="history">Cronologia</string>
-	<string name="opens_in">Apre tra %s</string>
-	<string name="closes_in">Chiude tra %s</string>
-	<string name="closed">Chiuso</string>
 	<string name="search_not_found">Non ho trovato nulla.</string>
 	<string name="search_not_found_query">Prova con un\'altra ricerca.</string>
 	<string name="search_history_title">Cronologia delle ricerche</string>
@@ -384,6 +383,13 @@
 	<string name="day_off_today">Oggi chiuso</string>
 	<string name="day_off">Chiuso</string>
 	<string name="today">Oggi</string>
+	<string name="opens_tomorrow_at">Apre domani alle %s</string>
+	<string name="opens_dayoftheweek_at">Apre %1$s alle %2$s</string>
+	<string name="opens_at">Apre alle %s</string>
+	<string name="opens_in">Apre tra %s</string>
+	<string name="closes_at">Chiude alle %s</string>
+	<string name="closes_in">Chiude tra %s</string>
+	<string name="closed">Chiuso</string>
 	<string name="edit_opening_hours">Modifica orari di apertura</string>
 	<string name="no_osm_account">Non hai un account OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Iscriviti</string>
@@ -410,6 +416,7 @@
 	<!-- login text field -->
 	<string name="email_or_username">E-mail o nome utente</string>
 	<string name="editor_add_phone">Aggiungi numero</string>
+	<string name="level">Piano</string>
 	<string name="downloader_delete_map_dialog">Tutte le tue modifiche alla mappa saranno cancellate insieme alla mappa.</string>
 	<string name="downloader_update_maps">Aggiorna mappe</string>
 	<string name="downloader_mwm_migration_dialog">Per creare un percorso, devi aggiornare tutte le mappe e pianificare nuovamente il percorso.</string>
@@ -516,7 +523,7 @@
 	<string name="on">Acceso</string>
 	<string name="off">Spento</string>
 	<string name="prefs_languages_information">Usiamo il TTS di sistema per le istruzioni vocali. Molti dispositivi Android utilizzano Google TTS, che puoi scaricare o aggiornare da Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Per alcune lingue, sarà necessario installare un altro sintetizzatore vocale o un language pack aggiuntivo dall\'app store (Google Play, Samsung Apps, App Gallery, FDroid).\nApri le impostazioni del tuo dispositivo → Lingua e inserimento → Da testo a voce → Motore sintesi vocale.\nQui puoi gestire le impostazioni di sintesi vocale (ad esempio, scaricare una lingua per l\'utilizzo offline) e selezionare un altro motore di sintesi vocale.</string>
+	<string name="prefs_languages_information_off">Per alcune lingue, sarà necessario installare un altro sintetizzatore vocale o un language pack aggiuntivo dall\'app store (Google Play, Galaxy Store, App Gallery, FDroid).\nApri le impostazioni del tuo dispositivo → Lingua e inserimento → Da testo a voce → Motore sintesi vocale.\nQui puoi gestire le impostazioni di sintesi vocale (ad esempio, scaricare una lingua per l\'utilizzo offline) e selezionare un altro motore di sintesi vocale.</string>
 	<string name="prefs_languages_information_off_link">Per maggiori informazioni, consulta questa guida.</string>
 	<string name="transliteration_title">Trascrizione in latino</string>
 	<string name="learn_more">Scopri di più</string>
@@ -688,6 +695,8 @@
 	<string name="enable_show_on_lock_screen">Mostra sulla schermata di blocco</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Quando è abilitata, non è necessario sbloccare il dispositivo ogni volta mentre l\'app è in esecuzione.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Dati della mappa da OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.station">Funivia</string>
@@ -747,10 +756,14 @@
 	<string name="type.amenity.parking.permissive">Parcheggio</string>
 	<string name="type.amenity.parking.private">Parcheggio</string>
 	<string name="type.amenity.parking.underground">Parcheggio</string>
+	<string name="type.amenity.parking_entrance.private">Ingresso parcheggio</string>
+	<string name="type.amenity.parking_entrance.permissive">Ingresso parcheggio</string>
+	<string name="type.amenity.parking_entrance">Ingresso parcheggio</string>
 	<string name="type.amenity.parking_space">Parcheggio</string>
 	<string name="type.amenity.parking_space.permissive">Parcheggio</string>
 	<string name="type.amenity.parking_space.private">Parcheggio</string>
 	<string name="type.amenity.parking_space.underground">Parcheggio</string>
+	<string name="type.amenity.parking_space.disabled">Posto auto per disabili</string>
 	<string name="type.amenity.payment_terminal">Terminale di pagamento</string>
 	<string name="type.amenity.pharmacy">Farmacia</string>
 	<string name="type.amenity.place_of_worship">Tempio</string>
@@ -1130,10 +1143,8 @@
 	<string name="type.leisure.playground">Campo giochi</string>
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.sports_centre">Centro sportivo</string>
-	<string name="type.leisure.sports_centre.climbing">Centro di arrampicata</string>
-	<string name="type.leisure.sports_centre.shooting">Poligono di tiro</string>
-	<string name="type.leisure.sports_centre.swimming">Centro natatorio</string>
-	<string name="type.leisure.sports_centre.yoga">Centro Yoga</string>
+	<string name="type.sport.climbing">Centro di arrampicata</string>
+	<string name="type.sport.yoga">Centro Yoga</string>
 	<string name="type.leisure.stadium">Stadio</string>
 	<string name="type.leisure.swimming_pool">Piscina</string>
 	<string name="type.leisure.swimming_pool.private">Piscina</string>
@@ -1216,10 +1227,13 @@
 	<string name="type.place.hamlet">Piccolo villaggio</string>
 	<string name="type.place.island">Isola</string>
 	<string name="type.place.islet">Isola</string>
+	<string name="type.place.isolated_dwelling">Abitazione isolata</string>
 	<string name="type.place.locality">Località</string>
+	<string name="type.place.neighbourhood">Quartiere</string>
 	<string name="type.place.ocean">Oceano</string>
 	<string name="type.place.region">Regione</string>
 	<string name="type.place.sea">Mare</string>
+	<string name="type.place.square">Piazza</string>
 	<string name="type.place.state">Provincia</string>
 	<string name="type.place.state.USA">Provincia</string>
 	<string name="type.place.suburb">Quartiere</string>
@@ -1365,7 +1379,9 @@
 	<string name="type.sport.australian_football">Football australiano</string>
 	<string name="type.sport.baseball">Baseball</string>
 	<string name="type.sport.basketball">Pallacanestro</string>
+	<string name="type.sport.beachvolleyball">Beach volley</string>
 	<string name="type.sport.bowls">Bowls</string>
+	<string name="type.sport.chess">Scacchi</string>
 	<string name="type.sport.cricket">Cricket</string>
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Equitazione</string>
@@ -1376,10 +1392,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Immersioni in subacquea</string>
 	<string name="type.sport.shooting">Tiro</string>
+	<string name="type.sport.skateboard">Skateboard</string>
 	<string name="type.sport.skiing">Sciare</string>
 	<string name="type.sport.soccer">Calcio</string>
 	<string name="type.sport.swimming">Nuoto</string>
+	<string name="type.sport.table_tennis">Tennistavolo</string>
 	<string name="type.sport.tennis">Campo da tennis</string>
+	<string name="type.sport.volleyball">Pallavolo</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Futsal</string>
+	<string name="type.sport.ice_hockey">Hockey su ghiaccio</string>
+	<string name="type.sport.field_hockey">Hockey su prato</string>
+	<string name="type.sport.badminton">Badminton</string>
+	<string name="type.sport.pelota">Palla basca</string>
 	<string name="type.tourism.alpine_hut">Hotel di montagna</string>
 	<string name="type.tourism.apartment">Residence</string>
 	<string name="type.tourism.artwork">Opere d\'arte</string>
