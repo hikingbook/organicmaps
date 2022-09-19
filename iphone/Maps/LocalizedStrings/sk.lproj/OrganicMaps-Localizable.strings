@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Odoslať všetkým používateľom?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Nezadávajte žiadne osobné udaje.";
 
-"editor_share_to_all_dialog_message_2" = "Skontrolujeme zmeny. V prípade otázok vás budeme kontaktovať emailom.";
+"editor_share_to_all_dialog_message_2" = "Redaktori OpenStreetMap skontrolujú zmeny a budú vás kontaktovať, ak budú mať nejaké otázky.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Šľapaj Stopy";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Pitná voda";
 
 "type.amenity.driving_school" = "Autoškola";
+
+"type.amenity.music_school" = "Hudobná škola";
+
+"type.amenity.language_school" = "Jazyková škola";
 
 "type.office.diplomatic" = "Veľvyslanectvo";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Hrob";
 
-"type.craft" = "Craft";
+"type.craft" = "Remeslo";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Včelár";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Kováč";
 
 "type.craft.brewery" = "Pivovar";
 
 "type.craft.carpenter" = "Tesár";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Cukráreň";
 
 "type.craft.electrician" = "Elektrikár";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Oprava elektroniky";
 
 "type.craft.gardener" = "Záhradníctvo";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Ručné práce";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Vzduchotechnika";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Klampiarstvo";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Píla";
 
 "type.craft.shoemaker" = "Oprava obuvy";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Vinárstvo";
 
 "type.craft.tailor" = "Krajčírstvo";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Zámok";
+"type.historic.castle" = "Hrad";
 
-"type.historic.castle.defensive" = "Zámok";
+"type.historic.castle.castrum" = "Kastrum";
+
+"type.historic.castle.defensive" = "Hrad";
+
+"type.historic.castle.fortified_church" = "Opevnený kostol";
+
+"type.historic.castle.fortress" = "Pevnosť";
+
+"type.historic.castle.hillfort" = "Hradisko";
+
+"type.historic.castle.kremlin" = "Kremeľ";
+
+"type.historic.castle.manor" = "Kaštieľ";
+
+"type.historic.castle.palace" = "Palác";
+
+"type.historic.castle.shiro" = "Japonský hrad";
 
 "type.historic.castle.stately" = "Zámok";
+
+"type.historic.city_gate" = "Mestská brána";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness";
 
 "type.leisure.garden" = "Záhrada";
+
+"type.leisure.garden.residential" = "Záhrada";
 
 "type.leisure.golf_course" = "Golf";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volejbal";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

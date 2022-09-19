@@ -401,13 +401,18 @@
 	<string name="day_off_today">Bugün kapalı</string>
 	<string name="day_off">Kapalı</string>
 	<string name="today">Bugün</string>
+	<string name="opens_tomorrow_at">Açılış yarın %s</string>
+	<string name="opens_dayoftheweek_at">Açılış %1$s %2$s</string>
+	<string name="opens_at">Açılış %s</string>
 	<string name="opens_in">%s sonra açılıyor</string>
+	<string name="closes_at">Kapanış %s</string>
 	<string name="closes_in">%s sonra kapanıyor</string>
 	<string name="closed">Kapalı</string>
-	<string name="edit_opening_hours">İş saatlerini düzenle</string>
-	<string name="no_osm_account">OpenStreetMap hesabın yok mu?</string>
+	<string name="edit_opening_hours">Çalışma saatlerini düzenle</string>
+	<string name="no_osm_account">OpenStreetMap hesabınız yok mu?</string>
 	<string name="register_at_openstreetmap">Kaydol</string>
 	<string name="login">Oturum aç</string>
+	<string name="login_osm">OpenStreetMap\'e giriş yapın</string>
 	<string name="password">Şifre</string>
 	<string name="forgot_password">Şifreni mi unuttun?</string>
 	<string name="logout">Oturumu kapat</string>
@@ -449,6 +454,7 @@
 	<string name="editor_report_problem_other_title">Farklı bir sorun</string>
 	<string name="placepage_add_business_button">Kuruluş ekle</string>
 	<string name="message_invalid_feature_position">Buraya bir nesne konumlandırılamıyor</string>
+	<string name="osm_presentation">Tüm harita verileri OpenStreetMap projesinden gelir. Yer ekleyebileceğiniz veya düzenleyebileceğiniz haritalar için Wikipedia gibidir ve bunlar tüm dünyada milyonlarca kullanıcı tarafından kullanılabilir hale gelir.</string>
 	<string name="login_to_make_edits_visible">Diğer kullanıcıların yaptığınız değişiklikleri görebilmesi için oturum açın</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d/%2$d</string>
@@ -509,9 +515,9 @@
 	<string name="placepage_add_place_button">Haritaya bir yer ekle</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Bunu tüm kullanıcılara göndermek ister misiniz?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Herhangi bir kişisel bilgi girmediğinizden emin olun.</string>
-	<string name="editor_share_to_all_dialog_message_2">Değişikliği kontrol edeceğiz. Eğer herhangi bir sorumuz olursa sizinle e-posta aracılığıyla iletişime geçeceğiz.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap editörleri değişiklikleri kontrol edecek ve soruları olursa sizinle iletişime geçecektir.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps, reklam ve izleyici içermeyen hızlı ve ücretsiz bir çevrimdışı harita uygulamasıdır. Haritalar kitle kaynaklı OpenStreetMap.org verilerine dayanmaktadır, böylece kendiniz harita hatalarını düzeltebilir ve haritaya yeni nesneler ekleyebilirsiniz. Organic Maps, teknoloji tutkunlarının boş zamanlarında oluşturduğu açık kaynaklı bir projedir. Geri bildirim ve desteğinize çok değer veriyoruz!</string>
 	<!-- For the first routing -->
@@ -714,6 +720,10 @@
 	<string name="enable_show_on_lock_screen_description">Etkinleştirildiğinde, uygulama çalışırken her seferinde cihazınızın kilidini açmanıza gerek kalmaz.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Harita verileri OpenStreetMap\'ten</string>
+	<!-- Telegram group url for the help page -->
+	<string name="telegram_url">https://t.me/OrganicMapsTR</string>
+	<!-- Instagram account url for the help page -->
+	<string name="instagram_url">https://www.instagram.com/organicmapstr</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Teleferik</string>
@@ -762,6 +772,8 @@
 	<string name="type.amenity.doctors">Doktor</string>
 	<string name="type.amenity.drinking_water">İçme Suyu</string>
 	<string name="type.amenity.driving_school">Sürücü Kursu</string>
+	<string name="type.amenity.music_school">Müzik Okulu</string>
+	<string name="type.amenity.language_school">Dil Okulu</string>
 	<string name="type.office.diplomatic">Büyükelçilik</string>
 	<string name="type.amenity.fast_food">Hazır Yemek</string>
 	<string name="type.amenity.ferry_terminal">Feribot</string>
@@ -907,6 +919,7 @@
 	<string name="type.craft.blacksmith">Demirci</string>
 	<string name="type.craft.brewery">Bira Fabrikası</string>
 	<string name="type.craft.carpenter">Marangoz</string>
+	<string name="type.craft.confectionery">Şekerlemeci</string>
 	<string name="type.craft.electrician">Elektrikçi</string>
 	<string name="type.craft.electronics_repair">Elektronik Tamircisi</string>
 	<string name="type.craft.gardener">Bahçe Düzenleyici</string>
@@ -917,7 +930,9 @@
 	<string name="type.craft.painter">Boyacı</string>
 	<string name="type.craft.photographer">Fotoğraf Stüdyosu</string>
 	<string name="type.craft.plumber">Tesisatçı</string>
+	<string name="type.craft.sawmill">Kereste Fabrikası</string>
 	<string name="type.craft.shoemaker">Ayakkabı Tamircisi</string>
+	<string name="type.craft.winery">Şaraphane</string>
 	<string name="type.craft.tailor">Terzi</string>
 	<string name="type.cuisine.african">Afrika mutfağı</string>
 	<string name="type.cuisine.american">Amerikan mutfağı</string>
@@ -1187,9 +1202,18 @@
 	<string name="type.historic.archaeological_site">Sit Alanı</string>
 	<string name="type.historic.battlefield">Harp Meydanı</string>
 	<string name="type.historic.boundary_stone">Sınır Taşı</string>
-	<string name="type.historic.castle">Kale</string>
-	<string name="type.historic.castle.defensive">Kale</string>
-	<string name="type.historic.castle.stately">Kale</string>
+	<string name="type.historic.castle">Müstahkem şato</string>
+	<string name="type.historic.castle.castrum">Castra</string>
+	<string name="type.historic.castle.defensive">Müstahkem şato</string>
+	<string name="type.historic.castle.fortified_church">Müstahkem kilise</string>
+	<string name="type.historic.castle.fortress">Kale</string>
+	<string name="type.historic.castle.hillfort">Tepe Kalesi</string>
+	<string name="type.historic.castle.kremlin">Kremlin</string>
+	<string name="type.historic.castle.manor">Malikane</string>
+	<string name="type.historic.castle.palace">Saray</string>
+	<string name="type.historic.castle.shiro">Japon kalesi</string>
+	<string name="type.historic.castle.stately">Şato</string>
+	<string name="type.historic.city_gate">Şehir kapısı</string>
 	<string name="type.historic.citywalls">Şehir Duvarı</string>
 	<string name="type.historic.fort">Hisar</string>
 	<string name="type.historic.memorial">Abide</string>
@@ -1249,6 +1273,7 @@
 	<string name="type.leisure.fitness_centre">Fitness Merkezi</string>
 	<string name="type.leisure.fitness_station">Fitness Salonu</string>
 	<string name="type.leisure.garden">Bahçe</string>
+	<string name="type.leisure.garden.residential">Konut Bahçesi</string>
 	<string name="type.leisure.golf_course">Golf Sahası</string>
 	<string name="type.leisure.ice_rink">Buz Pateni Pisti</string>
 	<string name="type.leisure.landscape_reserve">Peyzaj Rezervi</string>
@@ -1590,8 +1615,8 @@
 	<string name="type.sport.table_tennis">Masa tenisi</string>
 	<string name="type.sport.tennis">Tenis Kortu</string>
 	<string name="type.sport.volleyball">Voleybol</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Buz Hokeyi</string>

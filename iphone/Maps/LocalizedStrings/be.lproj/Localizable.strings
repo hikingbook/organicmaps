@@ -680,7 +680,7 @@
 
 "message_invalid_feature_position" = "Аб'ект не можа знаходзіцца тут";
 
-"login_to_make_edits_visible" = "Аўтарызуйцеся, каб іншыя карыстальнікі бачылі вашыя змены.";
+"login_to_make_edits_visible" = "Аўтарызуйцеся ў OpenStreetMap.org, каб іншыя карыстальнікі бачылі вашыя змены.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "Каб спампаваць, трэба больш месца. Выдаліце непатрэбныя дадзеныя.";
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Хочаце адправіць усім карыстальнікам?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Упэўніцеся, што вы не ўвялі ніякіх асабістых дадзеных.";
 
-"editor_share_to_all_dialog_message_2" = "Мы праверым змены. Калі ў нас з'явяцца пытанні, мы з вамі звяжамся праз email.";
+"editor_share_to_all_dialog_message_2" = "Рэдактары OpenStreetMap правераць змены і звяжуцца з вамі, калі ў іх узнікнуць пытанні.";
 
 "navigation_stop_button" = "спыніць";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Сцежка";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsRu";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1310,7 +1316,11 @@
 
 "type.amenity.drinking_water" = "Drinking Water";
 
-"type.amenity.driving_school" = "Driving School";
+"type.amenity.driving_school" = "Аўташкола";
+
+"type.amenity.music_school" = "Музычная школа";
+
+"type.amenity.language_school" = "Моўная школа";
 
 "type.office.diplomatic" = "Embassy";
 
@@ -1599,7 +1609,7 @@
 
 "type.cemetery.grave" = "Магіла";
 
-"type.craft" = "Craft";
+"type.craft" = "Рамяство";
 
 "type.craft.beekeeper" = "Пчаляр";
 
@@ -1607,36 +1617,36 @@
 
 "type.craft.brewery" = "Крафтавы бровар";
 
-"type.craft.carpenter" = "Carpenter";
+"type.craft.carpenter" = "Цясляр";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Кандытар";
 
-"type.craft.electrician" = "Electrician";
+"type.craft.electrician" = "Электрык";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Рамонт электронікі";
 
-"type.craft.gardener" = "Gardener";
+"type.craft.gardener" = "Садоўнік";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Рамесніцтва";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Ацяпленне, вентыляцыя і кандыцыянаванне";
 
 "type.craft.metal_construction" = "Металаканструкцыі";
 
-"type.craft.painter" = "Painter";
+"type.craft.painter" = "Мастак";
 
-"type.craft.photographer" = "Photographer";
+"type.craft.photographer" = "Фатограф";
 
-"type.craft.plumber" = "Plumber";
+"type.craft.plumber" = "Вадаправодчык";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Лесапільня";
 
-"type.craft.shoemaker" = "Shoe Repair";
+"type.craft.shoemaker" = "Шавец";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Вінакурня";
 
-"type.craft.tailor" = "Tailor";
+"type.craft.tailor" = "Кравец";
 
 "type.cuisine.african" = "African";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Castle";
+"type.historic.castle" = "Замак";
 
-"type.historic.castle.defensive" = "Castle";
+"type.historic.castle.castrum" = "Каструм";
 
-"type.historic.castle.stately" = "Castle";
+"type.historic.castle.defensive" = "Замак";
+
+"type.historic.castle.fortified_church" = "Абарончы храм";
+
+"type.historic.castle.fortress" = "Крэпасць";
+
+"type.historic.castle.hillfort" = "Гарадзішча";
+
+"type.historic.castle.kremlin" = "Крэмль";
+
+"type.historic.castle.manor" = "Сядзіба";
+
+"type.historic.castle.palace" = "Палац";
+
+"type.historic.castle.shiro" = "Японскі замак";
+
+"type.historic.castle.stately" = "Замак";
+
+"type.historic.city_gate" = "Гарадская брама";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness Station";
 
 "type.leisure.garden" = "Garden";
+
+"type.leisure.garden.residential" = "Частный сад";
 
 "type.leisure.golf_course" = "Golf Course";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Валейбол";
 
-"type.sport.9pin" = "Боўлінг";
-
 "type.sport.10pin" = "Боўлінг";
+
+"type.sport.9pin" = "Боўлінг";
 
 "type.sport.padel" = "Падэль";
 

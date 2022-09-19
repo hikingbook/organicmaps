@@ -383,6 +383,7 @@
 	<string name="no_osm_account">Tidak ada akun di OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Mendaftar</string>
 	<string name="login">Masuk</string>
+	<string name="login_osm">Masuk ke OpenStreetMap</string>
 	<string name="password">Kata sandi</string>
 	<string name="forgot_password">Lupa kata sandi?</string>
 	<string name="logout">Keluar</string>
@@ -421,6 +422,7 @@
 	<string name="editor_report_problem_other_title">Masalah yang berbeda</string>
 	<string name="placepage_add_business_button">Tambahkan organisasi</string>
 	<string name="message_invalid_feature_position">Objek tidak dapat diletakkan di sini</string>
+	<string name="osm_presentation">Semua data peta berasal dari proyek OpenStreetMap. Ini seperti Wikipedia untuk peta tempat Anda dapat menambahkan atau mengedit tempat, dan peta tersebut tersedia bagi jutaan pengguna di seluruh Dunia.</string>
 	<string name="login_to_make_edits_visible">Masuk agar pengguna lain dapat melihat perubahan yang Anda buat.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d dari %2$d</string>
@@ -474,9 +476,9 @@
 	<string name="placepage_add_place_button">Tambahkan tempat ke peta</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Apakah Anda ingin mengirimkannya ke semua pengguna?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Pastikan Anda tidak memasukkan data pribadi apa pun.</string>
-	<string name="editor_share_to_all_dialog_message_2">Kami akan memeriksa perubahan tersebut. Jika kami memiliki pertanyaan maka kami akan menghubungi Anda melalui surel.</string>
+	<string name="editor_share_to_all_dialog_message_2">Editor OpenStreetMap akan memeriksa perubahan dan menghubungi Anda jika ada pertanyaan.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps adalah aplikasi peta offline sumber terbuka dan gratis. Tanpa iklan. Tidak ada pelacakan. Jika Anda melihat kesalahan pada peta, harap perbaiki di OpenStreetMap. Proyek ini dibuat oleh para penggemar di waktu luang kami, jadi kami membutuhkan masukan dan dukungan Anda.</string>
 	<!-- For the first routing -->
@@ -696,6 +698,8 @@
 	<string name="type.amenity.doctors">Praktik dokter</string>
 	<string name="type.amenity.drinking_water">Air minum</string>
 	<string name="type.amenity.driving_school">Sekolah Mengemudi</string>
+	<string name="type.amenity.music_school">Sekolah musik</string>
+	<string name="type.amenity.language_school">Sekolah bahasa</string>
 	<string name="type.office.diplomatic">Kedutaan</string>
 	<string name="type.amenity.fast_food">Cepat saji</string>
 	<string name="type.amenity.ferry_terminal">Terminal</string>
@@ -792,15 +796,25 @@
 	<string name="type.building.has_parts">Gedung</string>
 	<string name="type.building.train_station">Rel kereta api</string>
 	<string name="type.cemetery.grave">Kuburan</string>
+	<string name="type.craft">Kerajinan</string>
+	<string name="type.craft.beekeeper">Peternak lebah</string>
+	<string name="type.craft.blacksmith">Pandai Besi</string>
 	<string name="type.craft.brewery">Toko minuman</string>
 	<string name="type.craft.carpenter">Tukang kayu</string>
+	<string name="type.craft.confectionery">Penganan</string>
 	<string name="type.craft.electrician">Tukang listrik</string>
+	<string name="type.craft.electronics_repair">Perbaikan Elektronik</string>
 	<string name="type.craft.gardener">Tukang kebun</string>
+	<string name="type.craft.handicraft">Kriya</string>
+	<!-- Heating, Ventilation, and Air Conditioning -->
+	<string name="type.craft.hvac">HVAC</string>
 	<string name="type.craft.metal_construction">Tukang besi</string>
 	<string name="type.craft.painter">Tukang cat</string>
 	<string name="type.craft.photographer">Juru foto</string>
 	<string name="type.craft.plumber">Tukang pipa</string>
+	<string name="type.craft.sawmill">Penggergajian kayu</string>
 	<string name="type.craft.shoemaker">Tukang sepatu</string>
+	<string name="type.craft.winery">Kilang Anggur</string>
 	<string name="type.craft.tailor">Tukang jahit</string>
 	<string name="type.cuisine.african">Masakan afrika</string>
 	<string name="type.cuisine.american">Masakan amerika</string>
@@ -1059,8 +1073,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Situs arkeologi</string>
 	<string name="type.historic.castle">Kastel</string>
+	<string name="type.historic.castle.castrum">Benteng Romawi</string>
 	<string name="type.historic.castle.defensive">Kastel</string>
+	<string name="type.historic.castle.fortified_church">Gereja yang dibentengi</string>
+	<string name="type.historic.castle.fortress">Benteng</string>
+	<string name="type.historic.castle.hillfort">Benteng bukit</string>
+	<string name="type.historic.castle.kremlin">Kremlin</string>
+	<string name="type.historic.castle.manor">Rumah bangsawan</string>
+	<string name="type.historic.castle.palace">Istana</string>
+	<string name="type.historic.castle.shiro">Istana Jepang</string>
 	<string name="type.historic.castle.stately">Kastel</string>
+	<string name="type.historic.city_gate">Gerbang kota</string>
 	<string name="type.historic.memorial">Tugu peringatan</string>
 	<string name="type.historic.memorial.plaque">Tugu peringatan</string>
 	<string name="type.historic.memorial.sculpture">Tugu peringatan</string>
@@ -1088,6 +1111,7 @@
 	<string name="type.leisure.fitness_centre">Pusat kebugaran</string>
 	<string name="type.leisure.fitness_station">Stasiun Kebugaran</string>
 	<string name="type.leisure.garden">Situs arkeologi</string>
+	<string name="type.leisure.garden.residential">Situs arkeologi</string>
 	<string name="type.leisure.golf_course">Lapangan golf</string>
 	<string name="type.leisure.nature_reserve">Cagar Alam</string>
 	<string name="type.leisure.park">Taman</string>
@@ -1350,8 +1374,8 @@
 	<string name="type.sport.table_tennis">Tenis meja</string>
 	<string name="type.sport.tennis">Lapangan tenis</string>
 	<string name="type.sport.volleyball">Bola voli</string>
-	<string name="type.sport.9pin">Boling</string>
 	<string name="type.sport.10pin">Boling</string>
+	<string name="type.sport.9pin">Boling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Hoki es</string>

@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Don't have an OpenStreetMap account?";
 
-"register_at_openstreetmap" = "Register at OSM";
+"register_at_openstreetmap" = "Register at OpenStreetMap";
 
 "password_8_chars_min" = "Password (8 characters minimum)";
 
@@ -680,7 +680,7 @@
 
 "message_invalid_feature_position" = "No object can be located here";
 
-"login_to_make_edits_visible" = "Log in so other users can see the changes that you have made";
+"login_to_make_edits_visible" = "Log in to OpenStreetMap.org so other users can see the changes you have made.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "To download, you need more space. Please delete any unnecessary data.";
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Do you want to send it to all users?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Make sure you did not enter any personal data.";
 
-"editor_share_to_all_dialog_message_2" = "We will check the changes. If we have any questions we will contact you via email.";
+"editor_share_to_all_dialog_message_2" = "Wahariri wa OpenStreetMap watakagua mabadiliko na kuwasiliana nawe ikiwa wana maswali yoyote.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Track";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Drinking Water";
 
 "type.amenity.driving_school" = "Driving School";
+
+"type.amenity.music_school" = "Shule ya Muziki";
+
+"type.amenity.language_school" = "Shule ya Lugha";
 
 "type.office.diplomatic" = "Embassy";
 
@@ -1599,44 +1609,44 @@
 
 "type.cemetery.grave" = "Kaburi";
 
-"type.craft" = "Craft";
+"type.craft" = "Ufundi";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Mfugaji nyuki";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Mhunzi";
 
-"type.craft.brewery" = "Craft Brewery";
+"type.craft.brewery" = "Kiwanda cha pombe";
 
-"type.craft.carpenter" = "Carpenter";
+"type.craft.carpenter" = "Seremala";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Confectioner";
 
-"type.craft.electrician" = "Electrician";
+"type.craft.electrician" = "Fundi umeme";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Urekebishaji wa Elektroniki";
 
-"type.craft.gardener" = "Gardener";
+"type.craft.gardener" = "Mtunza bustani";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Kazi za mikono";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "HVAC";
+"type.craft.hvac" = "Kiyoyozi";
 
-"type.craft.metal_construction" = "Metal Worker";
+"type.craft.metal_construction" = "Mfanyikazi wa chuma";
 
-"type.craft.painter" = "Painter";
+"type.craft.painter" = "Mchoraji";
 
-"type.craft.photographer" = "Photographer";
+"type.craft.photographer" = "Mpiga picha";
 
-"type.craft.plumber" = "Plumber";
+"type.craft.plumber" = "Fundi bomba";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Sumel";
 
-"type.craft.shoemaker" = "Shoe Repair";
+"type.craft.shoemaker" = "Mtengeneza viatu";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Mvinyo";
 
-"type.craft.tailor" = "Tailor";
+"type.craft.tailor" = "Mshonaji nguo";
 
 "type.cuisine.african" = "African";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Castle";
+"type.historic.castle" = "Ngome";
 
-"type.historic.castle.defensive" = "Castle";
+"type.historic.castle.castrum" = "Ngome ya Kirumi";
 
-"type.historic.castle.stately" = "Castle";
+"type.historic.castle.defensive" = "Ngome";
+
+"type.historic.castle.fortified_church" = "Kanisa lililoimarishwa";
+
+"type.historic.castle.fortress" = "Ngome";
+
+"type.historic.castle.hillfort" = "Hillfort";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Nyumba ya manor";
+
+"type.historic.castle.palace" = "Ikulu";
+
+"type.historic.castle.shiro" = "Ngome ya Kijapani";
+
+"type.historic.castle.stately" = "Ngome";
+
+"type.historic.city_gate" = "Lango la jiji";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness Station";
 
 "type.leisure.garden" = "Garden";
+
+"type.leisure.garden.residential" = "Garden";
 
 "type.leisure.golf_course" = "Golf Course";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Voliboli";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

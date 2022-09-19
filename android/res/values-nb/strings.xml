@@ -385,6 +385,7 @@
 	<string name="no_osm_account">Har du ingen konto hos OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Registrer deg</string>
 	<string name="login">Logg inn</string>
+	<string name="login_osm">Logg på OpenStreetMap</string>
 	<string name="password">Passord</string>
 	<string name="forgot_password">Glemt passordet?</string>
 	<string name="logout">Logg ut</string>
@@ -423,6 +424,7 @@
 	<string name="editor_report_problem_other_title">Et annet problem</string>
 	<string name="placepage_add_business_button">Legg til organisasjon</string>
 	<string name="message_invalid_feature_position">Et objekt kan ikke plasseres her</string>
+	<string name="osm_presentation">Alle kartdata kommer fra OpenStreetMap-prosjektet. Det er som Wikipedia for kart hvor du kan legge til eller redigere steder, og de blir tilgjengelige for millioner av brukere over hele verden.</string>
 	<string name="login_to_make_edits_visible">Logg inn slik at andre brukere kan se endringene du har utført.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d av %2$d</string>
@@ -474,9 +476,9 @@
 	<string name="placepage_add_place_button">Legg til en plass på kartet</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Vil du sende det til alle brukere?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Sørg for at du ikke har skrevet noe personlig informasjon.</string>
-	<string name="editor_share_to_all_dialog_message_2">Vi vil sjekke endringene. Vi kontakter deg via e-post dersom vi har spørsmål.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-redaktører vil sjekke endringene og ta kontakt med deg hvis de har spørsmål.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps er en gratis og åpen kildekode-app for offline kart. Ingen annonser. Ingen sporing. Hvis du ser en feil på kartet, må du rette den i OpenStreetMap. Prosjektet er laget av entusiaster på fritiden vår, så vi trenger din tilbakemelding og støtte.</string>
 	<!-- For the first routing -->
@@ -698,6 +700,8 @@
 	<string name="type.amenity.doctors">Legekontor</string>
 	<string name="type.amenity.drinking_water">Drikkevann</string>
 	<string name="type.amenity.driving_school">Kjøreskole</string>
+	<string name="type.amenity.music_school">Musikkskole</string>
+	<string name="type.amenity.language_school">Språkskole</string>
 	<string name="type.office.diplomatic">Ambassade</string>
 	<string name="type.amenity.fast_food">Hurtigmat</string>
 	<string name="type.amenity.ferry_terminal">Ferje</string>
@@ -794,17 +798,25 @@
 	<string name="type.building.has_parts">Bygning</string>
 	<string name="type.building.train_station">Togstasjon</string>
 	<string name="type.cemetery.grave">Grav</string>
+	<string name="type.craft">Håndverk</string>
+	<string name="type.craft.beekeeper">Birøkter</string>
+	<string name="type.craft.blacksmith">Smed</string>
 	<string name="type.craft.brewery">Bryggeri</string>
 	<string name="type.craft.carpenter">Snekker</string>
+	<string name="type.craft.confectionery">Konditor</string>
 	<string name="type.craft.electrician">Elektriker</string>
+	<string name="type.craft.electronics_repair">Elektronikk reparasjon</string>
 	<string name="type.craft.gardener">Anleggsgartner</string>
+	<string name="type.craft.handicraft">Kunsthåndverk</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Klimaanlegg</string>
 	<string name="type.craft.metal_construction">Metallarbeider</string>
 	<string name="type.craft.painter">Maler</string>
 	<string name="type.craft.photographer">Fotograf</string>
 	<string name="type.craft.plumber">Rørlegger</string>
+	<string name="type.craft.sawmill">Sagbruk</string>
 	<string name="type.craft.shoemaker">Skoreparasjon</string>
+	<string name="type.craft.winery">Vingård</string>
 	<string name="type.craft.tailor">Skredder</string>
 	<string name="type.cuisine.african">Afrikansk mat</string>
 	<string name="type.cuisine.american">Amerikansk mat</string>
@@ -1062,9 +1074,18 @@
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Arkeologisk område</string>
-	<string name="type.historic.castle">Slott</string>
-	<string name="type.historic.castle.defensive">Slott</string>
+	<string name="type.historic.castle">Borg</string>
+	<string name="type.historic.castle.castrum">Romersk fort</string>
+	<string name="type.historic.castle.defensive">Borg</string>
+	<string name="type.historic.castle.fortified_church">Befestet kirke</string>
+	<string name="type.historic.castle.fortress">Festning</string>
+	<string name="type.historic.castle.hillfort">Bygdeborg</string>
+	<string name="type.historic.castle.kremlin">Kreml</string>
+	<string name="type.historic.castle.manor">Herregård</string>
+	<string name="type.historic.castle.palace">Palass</string>
+	<string name="type.historic.castle.shiro">Japanske borger</string>
 	<string name="type.historic.castle.stately">Slott</string>
+	<string name="type.historic.city_gate">Byport</string>
 	<string name="type.historic.memorial">Minnesmerke</string>
 	<string name="type.historic.memorial.plaque">Minnesmerke</string>
 	<string name="type.historic.memorial.sculpture">Minnesmerke</string>
@@ -1091,6 +1112,7 @@
 	<string name="type.leisure.fitness_centre">Treningssenter</string>
 	<string name="type.leisure.fitness_station">Treningssenter</string>
 	<string name="type.leisure.garden">Hage</string>
+	<string name="type.leisure.garden.residential">Hage</string>
 	<string name="type.leisure.golf_course">Golfbane</string>
 	<string name="type.leisure.nature_reserve">Reservat</string>
 	<string name="type.leisure.park">Park</string>
@@ -1354,8 +1376,8 @@
 	<string name="type.sport.table_tennis">Bordtennis</string>
 	<string name="type.sport.tennis">Tennisbane</string>
 	<string name="type.sport.volleyball">Volleyball</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Ishockey</string>

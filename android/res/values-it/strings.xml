@@ -394,6 +394,7 @@
 	<string name="no_osm_account">Non hai un account OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Iscriviti</string>
 	<string name="login">Accedi</string>
+	<string name="login_osm">Accedi a OpenStreetMap</string>
 	<string name="password">Password</string>
 	<string name="forgot_password">Hai dimenticato la password?</string>
 	<string name="logout">Esci</string>
@@ -435,6 +436,7 @@
 	<string name="editor_report_problem_other_title">Un problema diverso</string>
 	<string name="placepage_add_business_button">Aggiungi attività</string>
 	<string name="message_invalid_feature_position">Nessun oggetto può essere posizionato qui</string>
+	<string name="osm_presentation">Tutti i dati della mappa provengono dal progetto OpenStreetMap. È come Wikipedia per le mappe in cui puoi aggiungere o modificare luoghi e diventano disponibili per milioni di utenti in tutto il mondo.</string>
 	<string name="login_to_make_edits_visible">Accedi per consentire ad altri utenti di vedere le modifiche apportate.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d di %2$d</string>
@@ -492,9 +494,9 @@
 	<string name="placepage_add_place_button">Aggiungi un luogo sulla mappa</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Vuoi inviarlo a tutti gli utenti?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Assicurati di non aver inserito alcun dato personale.</string>
-	<string name="editor_share_to_all_dialog_message_2">Controlleremo le modifiche. Se avremo delle domande, ti contatteremo via e-mail.</string>
+	<string name="editor_share_to_all_dialog_message_2">Gli editori di OpenStreetMap controlleranno le modifiche e si metteranno in contatto con te in caso di domande.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps è un\'applicazione gratuita e open-source di mappe offline. Nessuna pubblicità. Nessun tracciamento. Se vedi un errore sulla mappa, correggilo in OpenStreetMap. Il progetto è creato da appassionati nel nostro tempo libero, quindi abbiamo bisogno del vostro parere e sostegno.</string>
 	<!-- For the first routing -->
@@ -729,6 +731,8 @@
 	<string name="type.amenity.doctors">Studio medico</string>
 	<string name="type.amenity.drinking_water">Acqua potabile</string>
 	<string name="type.amenity.driving_school">Scuola guida</string>
+	<string name="type.amenity.music_school">Scuola di Musica</string>
+	<string name="type.amenity.language_school">Scuola di lingue</string>
 	<string name="type.office.diplomatic">Ambasciata</string>
 	<string name="type.amenity.fast_food">Fast food</string>
 	<string name="type.amenity.ferry_terminal">Traghetto</string>
@@ -834,6 +838,7 @@
 	<string name="type.craft.blacksmith">Fabbro</string>
 	<string name="type.craft.brewery">Birrificio</string>
 	<string name="type.craft.carpenter">Falegname</string>
+	<string name="type.craft.confectionery">Pasticciere</string>
 	<string name="type.craft.electrician">Elettricista</string>
 	<string name="type.craft.electronics_repair">Riparazioni elettroniche</string>
 	<string name="type.craft.gardener">Giardiniere</string>
@@ -844,7 +849,9 @@
 	<string name="type.craft.painter">Imbianchino</string>
 	<string name="type.craft.photographer">Fotografo</string>
 	<string name="type.craft.plumber">Idraulico</string>
+	<string name="type.craft.sawmill">Segheria</string>
 	<string name="type.craft.shoemaker">Calzolaio</string>
+	<string name="type.craft.winery">Casa vinicola</string>
 	<string name="type.craft.tailor">Sarto</string>
 	<string name="type.cuisine.african">Cucina africana</string>
 	<string name="type.cuisine.american">Cucina americana</string>
@@ -942,7 +949,7 @@
 	<string name="type.highway.bridleway.bridge">Ponte</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.bridleway.tunnel">Tunnel</string>
-	<string name="type.highway.bus_stop">Fermata</string>
+	<string name="type.highway.bus_stop">Fermata dell\'autobus</string>
 	<string name="type.highway.construction">Strada in costruzione</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.cycleway.bridge">Ponte</string>
@@ -967,12 +974,12 @@
 	<string name="type.highway.living_street.bridge">Ponte</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.living_street.tunnel">Tunnel</string>
-	<string name="type.highway.motorway">Via</string>
+	<string name="type.highway.motorway">Autostrada</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.motorway.bridge">Ponte</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.motorway.tunnel">Tunnel</string>
-	<string name="type.highway.motorway_link">Via</string>
+	<string name="type.highway.motorway_link">Autostrada</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.motorway_link.bridge">Ponte</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
@@ -1086,7 +1093,7 @@
 	<string name="type.highway.unclassified.tunnel">Tunnel</string>
 	<string name="type.area_highway.footway">Sentiero</string>
 	<string name="type.area_highway.living_street">Via</string>
-	<string name="type.area_highway.motorway">Via</string>
+	<string name="type.area_highway.motorway">Autostrada</string>
 	<string name="type.area_highway.path">Sentiero</string>
 	<string name="type.area_highway.pedestrian">Via</string>
 	<string name="type.area_highway.primary">Via</string>
@@ -1102,8 +1109,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Sito archeologico</string>
 	<string name="type.historic.castle">Castello</string>
+	<string name="type.historic.castle.castrum">Castra</string>
 	<string name="type.historic.castle.defensive">Castello</string>
+	<string name="type.historic.castle.fortified_church">Chiesa fortificata</string>
+	<string name="type.historic.castle.fortress">Fortezza</string>
+	<string name="type.historic.castle.hillfort">Fortezza di collina</string>
+	<string name="type.historic.castle.kremlin">Cremlino</string>
+	<string name="type.historic.castle.manor">Maniero</string>
+	<string name="type.historic.castle.palace">Palazzo</string>
+	<string name="type.historic.castle.shiro">Castello giapponese</string>
 	<string name="type.historic.castle.stately">Castello</string>
+	<string name="type.historic.city_gate">Porta cittadina</string>
 	<string name="type.historic.memorial">Memoriale</string>
 	<string name="type.historic.memorial.plaque">Memoriale</string>
 	<string name="type.historic.memorial.sculpture">Memoriale</string>
@@ -1132,6 +1148,7 @@
 	<string name="type.leisure.fitness_centre">Centro benessere</string>
 	<string name="type.leisure.fitness_station">Centro fitness</string>
 	<string name="type.leisure.garden">Giardino</string>
+	<string name="type.leisure.garden.residential">Giardino</string>
 	<string name="type.leisure.golf_course">Campo da golf</string>
 	<string name="type.leisure.nature_reserve">Riserva</string>
 	<string name="type.leisure.park">Parco</string>
@@ -1273,7 +1290,7 @@
 	<string name="type.railway.subway_entrance.paris">Metrò</string>
 	<string name="type.railway.subway_entrance.roma">Metrò</string>
 	<string name="type.railway.subway_entrance.spb">Metrò</string>
-	<string name="type.railway.tram_stop">Fermata</string>
+	<string name="type.railway.tram_stop">Fermata del tram</string>
 	<string name="type.shop">Negozio</string>
 	<string name="type.shop.alcohol">Enoteca</string>
 	<string name="type.shop.bakery">Panetteria</string>
@@ -1399,8 +1416,8 @@
 	<string name="type.sport.table_tennis">Tennistavolo</string>
 	<string name="type.sport.tennis">Campo da tennis</string>
 	<string name="type.sport.volleyball">Pallavolo</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Hockey su ghiaccio</string>

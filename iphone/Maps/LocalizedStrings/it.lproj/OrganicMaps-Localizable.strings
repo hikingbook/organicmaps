@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Vuoi inviarlo a tutti gli utenti?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Assicurati di non aver inserito alcun dato personale.";
 
-"editor_share_to_all_dialog_message_2" = "Controlleremo le modifiche. Se avremo delle domande, ti contatteremo via e-mail.";
+"editor_share_to_all_dialog_message_2" = "Gli editori di OpenStreetMap controlleranno le modifiche e si metteranno in contatto con te in caso di domande.";
 
 "navigation_stop_button" = "ferma";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Percorso";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Acqua potabile";
 
 "type.amenity.driving_school" = "Scuola guida";
+
+"type.amenity.music_school" = "Scuola di Musica";
+
+"type.amenity.language_school" = "Scuola di lingue";
 
 "type.office.diplomatic" = "Ambasciata";
 
@@ -1609,7 +1619,7 @@
 
 "type.craft.carpenter" = "Falegname";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Pasticciere";
 
 "type.craft.electrician" = "Elettricista";
 
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Idraulico";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Segheria";
 
 "type.craft.shoemaker" = "Calzolaio";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Casa vinicola";
 
 "type.craft.tailor" = "Sarto";
 
@@ -1837,7 +1847,7 @@
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.bridleway.tunnel" = "Tunnel";
 
-"type.highway.bus_stop" = "Fermata";
+"type.highway.bus_stop" = "Fermata dell'autobus";
 
 "type.highway.construction" = "Strada in costruzione";
 
@@ -1887,7 +1897,7 @@
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.living_street.tunnel" = "Tunnel";
 
-"type.highway.motorway" = "Via";
+"type.highway.motorway" = "Autostrada";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.motorway.bridge" = "Ponte";
@@ -1897,7 +1907,7 @@
 
 "type.highway.motorway_junction" = "Road Exit";
 
-"type.highway.motorway_link" = "Via";
+"type.highway.motorway_link" = "Autostrada";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.motorway_link.bridge" = "Ponte";
@@ -2095,7 +2105,7 @@
 
 "type.area_highway.living_street" = "Via";
 
-"type.area_highway.motorway" = "Via";
+"type.area_highway.motorway" = "Autostrada";
 
 "type.area_highway.path" = "Sentiero";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Castello";
 
+"type.historic.castle.castrum" = "Castra";
+
 "type.historic.castle.defensive" = "Castello";
 
+"type.historic.castle.fortified_church" = "Chiesa fortificata";
+
+"type.historic.castle.fortress" = "Fortezza";
+
+"type.historic.castle.hillfort" = "Fortezza di collina";
+
+"type.historic.castle.kremlin" = "Cremlino";
+
+"type.historic.castle.manor" = "Maniero";
+
+"type.historic.castle.palace" = "Palazzo";
+
+"type.historic.castle.shiro" = "Castello giapponese";
+
 "type.historic.castle.stately" = "Castello";
+
+"type.historic.city_gate" = "Porta cittadina";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Centro fitness";
 
 "type.leisure.garden" = "Giardino";
+
+"type.leisure.garden.residential" = "Giardino";
 
 "type.leisure.golf_course" = "Campo da golf";
 
@@ -2720,7 +2750,7 @@
 
 "type.railway.tram.tunnel" = "Tram Line";
 
-"type.railway.tram_stop" = "Fermata";
+"type.railway.tram_stop" = "Fermata del tram";
 
 "type.railway.yard" = "Railway Yard";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Pallavolo";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

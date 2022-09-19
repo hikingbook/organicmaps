@@ -1002,6 +1002,8 @@ node|z12-[historic=fort],
 area|z12-[historic=fort],
 node|z12-[historic=castle],
 area|z12-[historic=castle],
+node|z13-[historic=city_gate],
+area|z13-[historic=city_gate],
 node|z13-[historic=monument],
 area|z13-[historic=monument],
 node|z13-[tourism=museum],
@@ -1062,10 +1064,13 @@ area|z17-[historic=ruins][name],
 node|z17-[historic=fort],
 area|z17-[historic=fort],
 node|z17-[historic=castle],
-area|z17-[historic=castle],
+area|z17-[historic=castle]
+{icon-image: remains-m.svg;}
+
 node|z17-[historic=archaeological_site],
 area|z17-[historic=archaeological_site]
-{icon-image: remains-m.svg;}
+{icon-image: archaeological-site-m.svg;}
+
 
 node|z19-[historic=ruins][!name],
 area|z19-[historic=ruins][!name],
@@ -1091,6 +1096,16 @@ area|z15-[historic=memorial][memorial=plaque],
 node|z18-[historic=memorial][memorial=plaque],
 area|z18-[historic=memorial][memorial=plaque]
 {icon-image: plaque.svg;icon-min-distance: 12;}
+
+node|z13-14[historic=city_gate],
+area|z13-14[historic=city_gate]
+{icon-image: remains-s.svg;text-offset: 1;icon-min-distance: 12;}
+node|z15[historic=city_gate],
+area|z15[historic=city_gate],
+{icon-image: remains-m.svg;icon-min-distance: 24;}
+node|z16-[historic=city_gate],
+area|z16-[historic=city_gate],
+{icon-image: remains-m.svg;icon-min-distance: 12;}
 
 node|z13-14[tourism=museum],
 area|z13-14[tourism=museum]
@@ -1671,6 +1686,16 @@ node|z18-[amenity=school],
 area|z18-[amenity=school]
 {font-size: 11;text-optional: true;}
 
+node|z17-[amenity=music_school],
+area|z17-[amenity=music_school]
+{icon-image: music_school-m.svg;}
+node|z17-[amenity=driving_school],
+area|z17-[amenity=driving_school]
+{icon-image: driving_school-m.svg;}
+node|z17-[amenity=language_school],
+area|z17-[amenity=language_school]
+{icon-image: language_school-m.svg;}
+
 /* 5.3 Sport */
 
 node|z13-14[leisure=stadium]
@@ -2090,6 +2115,13 @@ area|z17-[amenity=vending_machine][vending=parking_tickets]
 node|z17-[amenity=parcel_locker],
 area|z17-[amenity=parcel_locker],
 {icon-image: mail-m.svg;icon-min-distance: 20;}
+
+node|z17[amenity=vending_machine][vending=fuel],
+area|z17[amenity=vending_machine][vending=fuel]
+{icon-image: zero-icon.svg;text: none;}
+node|z18-[amenity=vending_machine][vending=fuel],
+area|z18-[amenity=vending_machine][vending=fuel]
+{icon-image: fuel-dispenser-m.svg;}
 
 node|z17-[aeroway=gate],
 area|z17-[aeroway=gate]

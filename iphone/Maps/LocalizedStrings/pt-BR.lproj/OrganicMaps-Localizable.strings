@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Sem conta no OpenStreetMap?";
 
-"register_at_openstreetmap" = "Abra uma conta no OSM";
+"register_at_openstreetmap" = "Abra uma conta no OpenStreetMap";
 
 "password_8_chars_min" = "Senha (mínimo de 8 caracteres)";
 
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Deseja enviar para todos os usuários?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Certifique-se de não ter incluído nenhum dado pessoal.";
 
-"editor_share_to_all_dialog_message_2" = "Verificaremos as alterações. Se tivermos perguntas, entraremos em contato com você por email.";
+"editor_share_to_all_dialog_message_2" = "Os editores do OpenStreetMap verificarão as mudanças e entrarão em contato com você se tiverem alguma dúvida.";
 
 "navigation_stop_button" = "parar";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Percurso";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Água potável";
 
 "type.amenity.driving_school" = "Autoescola";
+
+"type.amenity.music_school" = "Escola de música";
+
+"type.amenity.language_school" = "Escola de idiomas";
 
 "type.office.diplomatic" = "Embaixada ou consulado";
 
@@ -1601,26 +1611,26 @@
 
 "type.craft" = "Ofícios";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Apicultor";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Ferreiro";
 
 "type.craft.brewery" = "Cervejaria artesanal";
 
 "type.craft.carpenter" = "Carpinteiro";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Confeitaria";
 
 "type.craft.electrician" = "Eletricista";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Reparo de eletrônicos";
 
 "type.craft.gardener" = "Jardineiro";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Artesanato";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "Ar-condicionado";
+"type.craft.hvac" = "Aquecimento, Ventilação e Ar Condicionado";
 
 "type.craft.metal_construction" = "Serralheiro metálico";
 
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Encanador";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Serraria";
 
 "type.craft.shoemaker" = "Sapateiro";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Vinícola";
 
 "type.craft.tailor" = "Alfaiate";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Castelo";
 
-"type.historic.castle.defensive" = "Castelo defensivo";
+"type.historic.castle.castrum" = "Castro";
+
+"type.historic.castle.defensive" = "Castelo";
+
+"type.historic.castle.fortified_church" = "Igreja fortificada";
+
+"type.historic.castle.fortress" = "Fortaleza";
+
+"type.historic.castle.hillfort" = "Castro";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Solar";
+
+"type.historic.castle.palace" = "Palácio";
+
+"type.historic.castle.shiro" = "Castelo japonês";
 
 "type.historic.castle.stately" = "Château";
+
+"type.historic.city_gate" = "Portas da cidade";
 
 "type.historic.citywalls" = "Muralha de cidade";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Estação de fitness";
 
 "type.leisure.garden" = "Jardim";
+
+"type.leisure.garden.residential" = "Jardim residencial";
 
 "type.leisure.golf_course" = "Campo de golfe";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Voleibol";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Boliche";
+
+"type.sport.9pin" = "Boliche";
 
 "type.sport.padel" = "Padel";
 

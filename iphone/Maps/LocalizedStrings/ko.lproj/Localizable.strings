@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "이를 모든 사용자에게 전송하시겠습니까?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "개인 정보를 입력하지 않았는지 확인하십시오.";
 
-"editor_share_to_all_dialog_message_2" = "저희가 변경 사항을 확인할 것입니다. 질문이 있으신 경우, 저희에게 이메일을 통해 연락하십시오.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap 편집자가 변경 사항을 확인하고 질문이 있는 경우 귀하에게 연락할 것입니다.";
 
 "navigation_stop_button" = "중지";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "길";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "음수대";
 
 "type.amenity.driving_school" = "운전학원";
+
+"type.amenity.music_school" = "음악 학교";
+
+"type.amenity.language_school" = "언어 학교";
 
 "type.office.diplomatic" = "대사관";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "무덤";
 
-"type.craft" = "Craft";
+"type.craft" = "공예";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "양봉가";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "대장장이";
 
 "type.craft.brewery" = "양조장";
 
 "type.craft.carpenter" = "목수";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "과자 장수";
 
 "type.craft.electrician" = "전기기술자";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "전자제품 수리";
 
 "type.craft.gardener" = "조경사";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "수예";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "냉난방기";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "배관공";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "제재소";
 
 "type.craft.shoemaker" = "구두수선";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "포도주 양조장";
 
 "type.craft.tailor" = "양복점";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "성";
 
+"type.historic.castle.castrum" = "로마 요새";
+
 "type.historic.castle.defensive" = "성";
 
+"type.historic.castle.fortified_church" = "요새화된 교회";
+
+"type.historic.castle.fortress" = "요새";
+
+"type.historic.castle.hillfort" = "힐포트";
+
+"type.historic.castle.kremlin" = "크렘린";
+
+"type.historic.castle.manor" = "매너하우스";
+
+"type.historic.castle.palace" = "궁전";
+
+"type.historic.castle.shiro" = "일본의 성";
+
 "type.historic.castle.stately" = "성";
+
+"type.historic.city_gate" = "성문";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "피트니스 스테이션";
 
 "type.leisure.garden" = "정원";
+
+"type.leisure.garden.residential" = "정원";
 
 "type.leisure.golf_course" = "골프장";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "배구";
 
-"type.sport.9pin" = "볼링";
-
 "type.sport.10pin" = "볼링";
+
+"type.sport.9pin" = "볼링";
 
 "type.sport.padel" = "파델";
 

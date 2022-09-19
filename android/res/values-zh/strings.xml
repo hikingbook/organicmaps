@@ -393,6 +393,7 @@
 	<string name="no_osm_account">在OpenStreetMap上没有账户吗？</string>
 	<string name="register_at_openstreetmap">注册</string>
 	<string name="login">登录</string>
+	<string name="login_osm">登录 OpenStreetMap</string>
 	<string name="password">密码</string>
 	<string name="forgot_password">忘记密码</string>
 	<string name="logout">登出</string>
@@ -431,6 +432,7 @@
 	<string name="editor_report_problem_other_title">一个不同的问题</string>
 	<string name="placepage_add_business_button">添加组织</string>
 	<string name="message_invalid_feature_position">对象无法设置在这里</string>
+	<string name="osm_presentation">所有地图数据均来自 OpenStreetMap 项目。它就像 Wikipedia 中的地图，您可以在其中添加或编辑地点，并且它们可供全球数百万用户使用。</string>
 	<string name="login_to_make_edits_visible">登录，让其他用户能看到您所作出的修改。</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d个/共%2$d个</string>
@@ -484,9 +486,9 @@
 	<string name="placepage_add_place_button">添加地点到地图上</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">您想要发给所有用户吗？</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">确保您没有输入任何个人数据。</string>
-	<string name="editor_share_to_all_dialog_message_2">我们会检查更改。如果我们有任何问题，我们会邮件与您联系。</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap 编辑人员将检查更改并在有任何问题时与您联系。</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps 是一款免费的开源离线地图应用程序。无广告。没有跟踪。如果您在地图上看到错误，请在 OpenStreetMap 中修复它。该项目由爱好者在我们的空闲时间创建，因此我们需要您的反馈和支持。</string>
 	<!-- For the first routing -->
@@ -722,6 +724,8 @@
 	<string name="type.amenity.doctors">医师办公室</string>
 	<string name="type.amenity.drinking_water">饮用水</string>
 	<string name="type.amenity.driving_school">驾校</string>
+	<string name="type.amenity.music_school">音乐学校</string>
+	<string name="type.amenity.language_school">语言学校</string>
 	<string name="type.office.diplomatic">大使馆</string>
 	<string name="type.amenity.fast_food">快餐店</string>
 	<string name="type.amenity.ferry_terminal">轮渡码头</string>
@@ -851,17 +855,24 @@
 	<string name="type.building.warehouse">仓库</string>
 	<string name="type.cemetery.grave">墓穴</string>
 	<string name="type.craft">工艺作坊</string>
+	<string name="type.craft.beekeeper">蜂农</string>
+	<string name="type.craft.blacksmith">铁匠</string>
 	<string name="type.craft.brewery">酿酒厂</string>
 	<string name="type.craft.carpenter">木匠</string>
+	<string name="type.craft.confectionery">糖果商</string>
 	<string name="type.craft.electrician">电工</string>
+	<string name="type.craft.electronics_repair">电子产品维修</string>
 	<string name="type.craft.gardener">园艺工</string>
+	<string name="type.craft.handicraft">手工艺</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">暖通工程师</string>
 	<string name="type.craft.metal_construction">金属制造工</string>
 	<string name="type.craft.painter">油漆匠</string>
 	<string name="type.craft.photographer">摄影棚</string>
 	<string name="type.craft.plumber">管道工</string>
+	<string name="type.craft.sawmill">锯木厂</string>
 	<string name="type.craft.shoemaker">鞋匠</string>
+	<string name="type.craft.winery">酒庄</string>
 	<string name="type.craft.tailor">裁缝</string>
 	<string name="type.cuisine.african">非洲菜</string>
 	<string name="type.cuisine.american">美国菜</string>
@@ -1131,8 +1142,17 @@
 	<string name="type.historic.battlefield">古战场</string>
 	<string name="type.historic.boundary_stone">界碑</string>
 	<string name="type.historic.castle">城堡</string>
+	<string name="type.historic.castle.castrum">古罗马兵营</string>
 	<string name="type.historic.castle.defensive">城堡</string>
-	<string name="type.historic.castle.stately">宫殿</string>
+	<string name="type.historic.castle.fortified_church">坚固的教堂</string>
+	<string name="type.historic.castle.fortress">要塞</string>
+	<string name="type.historic.castle.hillfort">丘堡</string>
+	<string name="type.historic.castle.kremlin">克里姆林</string>
+	<string name="type.historic.castle.manor">庄园大屋</string>
+	<string name="type.historic.castle.palace">宮殿</string>
+	<string name="type.historic.castle.shiro">城</string>
+	<string name="type.historic.castle.stately">法式城堡</string>
+	<string name="type.historic.city_gate">城门</string>
 	<string name="type.historic.citywalls">历史城墙</string>
 	<string name="type.historic.fort">历史要塞</string>
 	<string name="type.historic.memorial">纪念物</string>
@@ -1189,6 +1209,7 @@
 	<string name="type.leisure.fitness_centre">健身中心</string>
 	<string name="type.leisure.fitness_station">健身驿站</string>
 	<string name="type.leisure.garden">花园</string>
+	<string name="type.leisure.garden.residential">居民区花园</string>
 	<string name="type.leisure.golf_course">高尔夫球场</string>
 	<string name="type.leisure.ice_rink">滑冰场</string>
 	<string name="type.leisure.marina">游艇码头</string>
@@ -1503,8 +1524,8 @@
 	<string name="type.sport.table_tennis">乒乓球</string>
 	<string name="type.sport.tennis">网球场</string>
 	<string name="type.sport.volleyball">排球</string>
-	<string name="type.sport.9pin">保龄球</string>
 	<string name="type.sport.10pin">保龄球</string>
+	<string name="type.sport.9pin">保龄球</string>
 	<string name="type.sport.padel">帕德尔</string>
 	<string name="type.sport.futsal">五人制足球</string>
 	<string name="type.sport.ice_hockey">冰球</string>

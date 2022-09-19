@@ -413,6 +413,7 @@
 	<string name="no_osm_account">Не зарегистрированы в OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Зарегистрироваться</string>
 	<string name="login">Войти</string>
+	<string name="login_osm">Войти в OpenStreetMap</string>
 	<string name="password">Пароль</string>
 	<string name="forgot_password">Забыли пароль?</string>
 	<string name="logout">Выйти</string>
@@ -454,7 +455,8 @@
 	<string name="editor_report_problem_other_title">Другая проблема</string>
 	<string name="placepage_add_business_button">Добавить организацию</string>
 	<string name="message_invalid_feature_position">Объект не может находиться в этом месте</string>
-	<string name="login_to_make_edits_visible">Войдите, чтобы ваши изменения увидели другие пользователи.</string>
+	<string name="osm_presentation">Все данные карты поступают из проекта OpenStreetMap. Это как Википедия для карт, где вы можете добавлять или редактировать места, и они становятся доступными для миллионов пользователей по всему миру.</string>
+	<string name="login_to_make_edits_visible">Авторизуйтесь в OpenStreetMap.org, чтобы ваши изменения увидели другие пользователи.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d из %2$d</string>
 	<string name="download_over_mobile_header">Загрузить через сотовую связь?</string>
@@ -514,9 +516,9 @@
 	<string name="placepage_add_place_button">Добавить место на карту</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Отправить всем пользователям?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Убедитесь, что вы не ввели личные данные.</string>
-	<string name="editor_share_to_all_dialog_message_2">Если при проверке изменений возникнут вопросы, мы напишем вам на email.</string>
+	<string name="editor_share_to_all_dialog_message_2">Редакторы OpenStreetMap проверят изменения и свяжутся с вами, если у них возникнут вопросы.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps — быстрые и бесплатные карты, которые работают без Интернета. Все картографические данные берутся из OpenStreetMap.org, там можно самостоятельно исправлять ошибки и добавлять новые объекты. В Organic Maps нет рекламы и сбора персональных данных. Это проект с открытым исходным кодом, создаваемый энтузиастами в свободное время. Будем рады вашей поддержке и обратной связи!</string>
 	<!-- For the first routing -->
@@ -727,6 +729,8 @@
 	<string name="enable_show_on_lock_screen_description">Если эта функция включена, вам не нужно каждый раз разблокировать устройство во время работы приложения.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Картографические данные из OpenStreetMap</string>
+	<!-- Telegram group url for the help page -->
+	<string name="telegram_url">https://t.me/OrganicMapsRu</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">Канатная дорога</string>
@@ -775,6 +779,8 @@
 	<string name="type.amenity.doctors">Врач</string>
 	<string name="type.amenity.drinking_water">Питьевая вода</string>
 	<string name="type.amenity.driving_school">Автошкола</string>
+	<string name="type.amenity.music_school">Музыкальная школа</string>
+	<string name="type.amenity.language_school">Языковая школа</string>
 	<string name="type.office.diplomatic">Посольство</string>
 	<string name="type.amenity.fast_food">Фастфуд</string>
 	<string name="type.amenity.ferry_terminal">Паром</string>
@@ -1210,8 +1216,17 @@
 	<string name="type.historic.battlefield">Поле боя</string>
 	<string name="type.historic.boundary_stone">Пограничный камень</string>
 	<string name="type.historic.castle">Замок</string>
+	<string name="type.historic.castle.castrum">Каструм</string>
 	<string name="type.historic.castle.defensive">Замок</string>
-	<string name="type.historic.castle.stately">Замок</string>
+	<string name="type.historic.castle.fortified_church">Укреплённая церковь</string>
+	<string name="type.historic.castle.fortress">Крепость</string>
+	<string name="type.historic.castle.hillfort">Городище</string>
+	<string name="type.historic.castle.kremlin">Кремль</string>
+	<string name="type.historic.castle.manor">Усадьба</string>
+	<string name="type.historic.castle.palace">Дворец</string>
+	<string name="type.historic.castle.shiro">Замки Японии</string>
+	<string name="type.historic.castle.stately">Шато</string>
+	<string name="type.historic.city_gate">Городские ворота</string>
 	<string name="type.historic.citywalls">Городская стена</string>
 	<string name="type.historic.fort">Форт</string>
 	<string name="type.historic.memorial">Мемориал</string>
@@ -1272,6 +1287,7 @@
 	<string name="type.leisure.fitness_centre">Фитнес-клуб</string>
 	<string name="type.leisure.fitness_station">Спортивные снаряды</string>
 	<string name="type.leisure.garden">Сад</string>
+	<string name="type.leisure.garden.residential">Частный сад</string>
 	<string name="type.leisure.golf_course">Площадка для гольфа</string>
 	<string name="type.leisure.ice_rink">Каток</string>
 	<string name="type.leisure.landscape_reserve">Ландшафтный заповедник</string>
@@ -1621,8 +1637,8 @@
 	<string name="type.sport.table_tennis">Настольный теннис</string>
 	<string name="type.sport.tennis">Теннисный корт</string>
 	<string name="type.sport.volleyball">Волейбол</string>
-	<string name="type.sport.9pin">Боулинг</string>
 	<string name="type.sport.10pin">Боулинг</string>
+	<string name="type.sport.9pin">Боулинг</string>
 	<string name="type.sport.padel">Падель</string>
 	<string name="type.sport.futsal">Футзал</string>
 	<string name="type.sport.ice_hockey">Хоккей с шайбой</string>

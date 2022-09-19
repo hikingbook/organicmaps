@@ -392,6 +392,7 @@
 	<string name="no_osm_account">Nu ai un cont OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Înscrie-te</string>
 	<string name="login">Autentificare</string>
+	<string name="login_osm">Conectați-vă la OpenStreetMap</string>
 	<string name="password">Parola</string>
 	<string name="forgot_password">Ai uitat parola?</string>
 	<string name="logout">Deconectare</string>
@@ -433,6 +434,7 @@
 	<string name="editor_report_problem_other_title">Altă problemă</string>
 	<string name="placepage_add_business_button">Adaugă o firmă</string>
 	<string name="message_invalid_feature_position">Niciun obiect nu poate fi poziționat aici</string>
+	<string name="osm_presentation">Toate datele hărții provin din proiectul OpenStreetMap. Este ca Wikipedia pentru hărți în care puteți adăuga sau edita locuri și acestea devin disponibile pentru milioane de utilizatori din întreaga lume.</string>
 	<string name="login_to_make_edits_visible">Autentifică-te pentru ca modificările pe care le-ai făcut să poată fi văzute și de alți utilizatori.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d din %2$d</string>
@@ -490,9 +492,9 @@
 	<string name="placepage_add_place_button">Adaugă un loc pe hartă</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Vrei să-l trimiți tuturor utilizatorilor?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Asigură-te că nu ai introdus niciun fel de date personale.</string>
-	<string name="editor_share_to_all_dialog_message_2">Vom verifica modificările. Dacă vor apărea întrebări, te vom contacta prin e-mail.</string>
+	<string name="editor_share_to_all_dialog_message_2">Editorii OpenStreetMap vor verifica modificările și vor lua legătura cu dvs. dacă au întrebări.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps este o aplicație rapidă și gratuită fără reclame și urmărire. Hărțile sunt bazate pe datele OpenStreetMap.org oferite de utilizatori, de aceea chiar și tu poți corecta erorile și adăuga obiecte noi pe hartă. Organic Maps este un proiect creat de entuziaști în timpul lor liber. Părerea și sprijinul tău sunt foarte importante pentru noi</string>
 	<!-- For the first routing -->
@@ -725,6 +727,8 @@
 	<string name="type.amenity.courthouse">Judecătorie</string>
 	<string name="type.amenity.drinking_water">Apă de băut</string>
 	<string name="type.amenity.driving_school">Școală de șoferi</string>
+	<string name="type.amenity.music_school">Scoala de Muzica</string>
+	<string name="type.amenity.language_school">Școala de limbi străine</string>
 	<string name="type.office.diplomatic">Ambasadă</string>
 	<string name="type.amenity.fast_food">Fast food</string>
 	<string name="type.amenity.ferry_terminal">Feribot</string>
@@ -819,14 +823,25 @@
 	<string name="type.building.has_parts">Clădire</string>
 	<string name="type.building.train_station">Feroviar</string>
 	<string name="type.cemetery.grave">Mormânt</string>
+	<string name="type.craft">Meșteșuguri</string>
+	<string name="type.craft.beekeeper">Apicultor</string>
+	<string name="type.craft.blacksmith">Fierar</string>
 	<string name="type.craft.brewery">Berărie</string>
 	<string name="type.craft.carpenter">Tâmplar</string>
+	<string name="type.craft.confectionery">Cofetar</string>
+	<string name="type.craft.electrician">Electrician</string>
+	<string name="type.craft.electronics_repair">Reparații electronice</string>
 	<string name="type.craft.gardener">Peisagist</string>
+	<string name="type.craft.handicraft">Tehnici de lucru manual</string>
+	<!-- Heating, Ventilation, and Air Conditioning -->
+	<string name="type.craft.hvac">Încălzire, ventilație și aer condiționat</string>
 	<string name="type.craft.metal_construction">Metalurgist</string>
 	<string name="type.craft.painter">Pictor</string>
 	<string name="type.craft.photographer">Fotograf</string>
 	<string name="type.craft.plumber">Instalator</string>
+	<string name="type.craft.sawmill">Fabrica de cherestea</string>
 	<string name="type.craft.shoemaker">Reparații încălțăminte</string>
+	<string name="type.craft.winery">Vinărie</string>
 	<string name="type.craft.tailor">Croitor</string>
 	<string name="type.cuisine.african">Bucătărie african</string>
 	<string name="type.cuisine.american">Bucătărie american</string>
@@ -1085,8 +1100,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Sit arheologic</string>
 	<string name="type.historic.castle">Castel</string>
+	<string name="type.historic.castle.castrum">Castru</string>
 	<string name="type.historic.castle.defensive">Castel</string>
+	<string name="type.historic.castle.fortified_church">Biserică fortificată</string>
+	<string name="type.historic.castle.fortress">Cetate</string>
+	<string name="type.historic.castle.hillfort">Castrul de deal</string>
+	<string name="type.historic.castle.kremlin">Kremlin</string>
+	<string name="type.historic.castle.manor">Conac</string>
+	<string name="type.historic.castle.palace">Palat</string>
+	<string name="type.historic.castle.shiro">Castelul japonez</string>
 	<string name="type.historic.castle.stately">Castel</string>
+	<string name="type.historic.city_gate">Poarta orașului</string>
 	<string name="type.historic.memorial">Comemorare</string>
 	<string name="type.historic.memorial.plaque">Comemorare</string>
 	<string name="type.historic.memorial.sculpture">Comemorare</string>
@@ -1113,6 +1137,7 @@
 	<string name="type.leisure.fitness_centre">Centru fitness</string>
 	<string name="type.leisure.fitness_station">Sală de fitness</string>
 	<string name="type.leisure.garden">Sit arheologic</string>
+	<string name="type.leisure.garden.residential">Sit arheologic</string>
 	<string name="type.leisure.golf_course">Teren de golf</string>
 	<string name="type.leisure.nature_reserve">Rezervație naturală</string>
 	<string name="type.leisure.park">Parc</string>
@@ -1375,8 +1400,8 @@
 	<string name="type.sport.table_tennis">Tenis de masă</string>
 	<string name="type.sport.tennis">Teren de tenis</string>
 	<string name="type.sport.volleyball">Volei</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Hochei pe gheata</string>

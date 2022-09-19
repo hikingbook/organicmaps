@@ -680,7 +680,7 @@
 
 "message_invalid_feature_position" = "Об'єкт не може перебувати в цьому місцезнаходженні";
 
-"login_to_make_edits_visible" = "Увійдіть, щоб ваші зміни побачили інші користувачі.";
+"login_to_make_edits_visible" = "Увійдіть у OpenStreetMap.org, щоб ваші зміни побачили інші користувачі.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "Для завантаження потрібно більше вільного місця. Будь ласка, видаліть непотрібні дані.";
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Надіслати усім користувачам?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Переконайтеся, що ви не ввели особисті дані.";
 
-"editor_share_to_all_dialog_message_2" = "Якщо при перевірці змін виникнуть питання, ми напишемо вам на email.";
+"editor_share_to_all_dialog_message_2" = "Редактори OpenStreetMap перевірять зміни та зв’яжуться з вами, якщо у них виникнуть запитання.";
 
 "navigation_stop_button" = "стоп";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Маршрут";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Питна вода";
 
 "type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.music_school" = "Музична школа ім";
+
+"type.amenity.language_school" = "Мовна школа";
 
 "type.office.diplomatic" = "Посольство";
 
@@ -1609,15 +1619,15 @@
 
 "type.craft.carpenter" = "Столяр";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Кондитер";
 
 "type.craft.electrician" = "Електрик";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Ремонт електроніки";
 
 "type.craft.gardener" = "Садівник";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Народні художні промисли";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Опалення, вентиляція та кондиціювання повітря";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Сантехнік";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Лісопильня";
 
 "type.craft.shoemaker" = "Ремонт взуття";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Виноробний завод";
 
 "type.craft.tailor" = "Ательє";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Замок";
 
+"type.historic.castle.castrum" = "Каструм";
+
 "type.historic.castle.defensive" = "Замок";
 
-"type.historic.castle.stately" = "Замок";
+"type.historic.castle.fortified_church" = "Оборонний храм";
+
+"type.historic.castle.fortress" = "Фортеця";
+
+"type.historic.castle.hillfort" = "Городище";
+
+"type.historic.castle.kremlin" = "Кремль";
+
+"type.historic.castle.manor" = "Садиба";
+
+"type.historic.castle.palace" = "Палац";
+
+"type.historic.castle.shiro" = "Японський замок";
+
+"type.historic.castle.stately" = "Шато";
+
+"type.historic.city_gate" = "Міська брама";
 
 "type.historic.citywalls" = "Міська стіна";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Спортивні знаряддя";
 
 "type.leisure.garden" = "Садок";
+
+"type.leisure.garden.residential" = "Частный сад";
 
 "type.leisure.golf_course" = "Майданчик для гольфу";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Волейбол";
 
-"type.sport.9pin" = "Боулінг";
-
 "type.sport.10pin" = "Боулінг";
+
+"type.sport.9pin" = "Боулінг";
 
 "type.sport.padel" = "Падель";
 

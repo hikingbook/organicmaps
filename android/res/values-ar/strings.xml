@@ -411,6 +411,7 @@
 	<string name="no_osm_account">ليس لديك حساب في خريطة الشارع المفتوحة؟</string>
 	<string name="register_at_openstreetmap">التسجيل في حريطة الشارع المفتوحة</string>
 	<string name="login">تسجيل الدخول</string>
+	<string name="login_osm">OpenStreetMap ﻰﻟﺇ ﻝﻮﺧﺪﻟﺍ ﻞﻴﺠﺴﺗ</string>
 	<string name="password">كلمة المرور</string>
 	<string name="forgot_password">هل نسيت كلمة المرور؟</string>
 	<string name="logout">تسجيل الخروج</string>
@@ -452,6 +453,7 @@
 	<string name="editor_report_problem_other_title">مشكلة أخرى</string>
 	<string name="placepage_add_business_button">إضافة مؤسسة</string>
 	<string name="message_invalid_feature_position">لا يمكن تحديد موقع الكائن هنا</string>
+	<string name="osm_presentation">.ﻢﻟﺎﻌﻟﺍ ءﺎﺤﻧﺃ ﻊﻴﻤﺟ ﻲﻓ ﻦﻴﻣﺪﺨﺘﺴﻤﻟﺍ ﻦﻴﻳﻼﻤﻟ ﺔﺣﺎﺘﻣ ﺢﺒﺼﺗﻭ ، ﺎﻬﻠﻳﺪﻌﺗ ﻭﺃ ﻦﻛﺎﻣﻷﺍ ﺔﻓﺎﺿﺇ</string>
 	<string name="login_to_make_edits_visible">قم بتسجيل الدخول حتى يتمكن باقي المستخدمين من رؤية التغييرات التي قمت بها.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d من%2$d</string>
@@ -512,9 +514,9 @@
 	<string name="placepage_add_place_button">إضافة مكان ما للخريطة</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">هل ترغب في إرساله لجميع المستخدمين؟</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">تأكد من أنك لم تقم بإدخال أية بيانات شخصية.</string>
-	<string name="editor_share_to_all_dialog_message_2">سنقوم بمراجعة هذه التغييرات. إذا كانت لدينا أي أسئلة فسننتواصل معك عبر البريد الإلكتروني.</string>
+	<string name="editor_share_to_all_dialog_message_2">.ﺔﻠﺌﺳﺃ ﻱﺃ ﻢﻬﻳﺪﻟ ﻥﺎﻛ ﺍﺫﺇ ﻚﻌﻣ ﻥﻮﻠﺻﺍﻮﺘﻳﻭ ﺕﺍﺮﻴﻴﻐﺘﻟﺍ ﻦﻣ OpenStreetMap ﻭﺭﺮﺤﻣ ﻖﻘﺤﺘﻴﺳ</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps هو تطبيق سريع ومجاني للوصول إلى الخرائط بدون اتصال بالانترنت، وهو بدون إعلانات ومتتبعات. إن الخرائط هي مصدرها بيانات خريطة الشارع المفتوحة التي يستطيع الجميع تعديلها، لذلك يمكنك إصلاح أخطاء الخريطة وإضافة الميزات بنفسك. Organic Maps هو مشروع مفتوح المصدر أُنشأ من قبل مجموعة من الهواة في وقت فراغهم. نقدّر جداً مساهماتك ودعمك.</string>
 	<!-- For the first routing -->
@@ -751,6 +753,8 @@
 	<string name="type.amenity.doctors">طبيب</string>
 	<string name="type.amenity.drinking_water">مياه شرب</string>
 	<string name="type.amenity.driving_school">مدرسة قيادة</string>
+	<string name="type.amenity.music_school">ﻰﻘﻴﺳﻮﻣ ﺔﺳﺭﺪﻣ</string>
+	<string name="type.amenity.language_school">ﺔﻐﻟ ﺔﺳﺭﺪﻣ</string>
 	<string name="type.office.diplomatic">سفارة</string>
 	<string name="type.amenity.fast_food">وجبات سريعة</string>
 	<string name="type.amenity.ferry_terminal">محطة عبّارات</string>
@@ -849,17 +853,25 @@
 	<string name="type.building.has_parts">مبنى</string>
 	<string name="type.building.train_station">محطة سكك حديدية</string>
 	<string name="type.cemetery.grave">ﺮﻴﻄﺧ</string>
+	<string name="type.craft">حرفة</string>
+	<string name="type.craft.beekeeper">نحال</string>
+	<string name="type.craft.blacksmith">حداد</string>
 	<string name="type.craft.brewery">مصنع جعة</string>
 	<string name="type.craft.carpenter">نجار</string>
+	<string name="type.craft.confectionery">حلواني</string>
 	<string name="type.craft.electrician">كهربائي</string>
+	<string name="type.craft.electronics_repair">إصلاح الإلكترونيات</string>
 	<string name="type.craft.gardener">مهندس مناظر</string>
+	<string name="type.craft.handicraft">مشغولات يدوية</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">تكييف</string>
 	<string name="type.craft.metal_construction">عامل معادن</string>
 	<string name="type.craft.painter">رسام</string>
 	<string name="type.craft.photographer">مصور فوتوغرافي</string>
 	<string name="type.craft.plumber">سمكري</string>
+	<string name="type.craft.sawmill">منشرة</string>
 	<string name="type.craft.shoemaker">تصليح الاحذية</string>
+	<string name="type.craft.winery">مصنع الخمرة</string>
 	<string name="type.craft.tailor">خياط</string>
 	<string name="type.cuisine.african">مطبخ أفريقي</string>
 	<string name="type.cuisine.american">مطبخ أمريكي</string>
@@ -1127,8 +1139,17 @@
 	<string name="type.historic.battlefield">ساحة معركة تاريخية</string>
 	<string name="type.historic.boundary_stone">حجر لتحديد الحدود</string>
 	<string name="type.historic.castle">قلعة</string>
-	<string name="type.historic.castle.defensive">قلعة دفاعية</string>
-	<string name="type.historic.castle.stately">قلعة</string>
+	<string name="type.historic.castle.castrum">كاسترا</string>
+	<string name="type.historic.castle.defensive">قلعة</string>
+	<string name="type.historic.castle.fortified_church">الكنيسة المحصنة</string>
+	<string name="type.historic.castle.fortress">قلعة</string>
+	<string name="type.historic.castle.hillfort">حصون التلال</string>
+	<string name="type.historic.castle.kremlin">كرملين</string>
+	<string name="type.historic.castle.manor">قصر مالك العزبة</string>
+	<string name="type.historic.castle.palace">قصر</string>
+	<string name="type.historic.castle.shiro">قلعة يابانية</string>
+	<string name="type.historic.castle.stately">شاتو</string>
+	<string name="type.historic.city_gate">بوابة مدينة</string>
 	<string name="type.historic.citywalls">جدار المدينة</string>
 	<string name="type.historic.fort">قلعة</string>
 	<string name="type.historic.memorial">نصب تذكاري</string>
@@ -1177,6 +1198,7 @@
 	<string name="type.leisure.fitness_centre">مركز للياقة البدنية، نادي رياضي</string>
 	<string name="type.leisure.fitness_station">مركز لياقة</string>
 	<string name="type.leisure.garden">حديقة</string>
+	<string name="type.leisure.garden.residential">حديقة</string>
 	<string name="type.leisure.golf_course">ملعب جولف</string>
 	<string name="type.leisure.nature_reserve">محمية طبيعية</string>
 	<string name="type.leisure.park">موقف سيارات</string>
@@ -1447,8 +1469,8 @@
 	<string name="type.sport.table_tennis">كرة الطاولة</string>
 	<string name="type.sport.tennis">ملعب تنس</string>
 	<string name="type.sport.volleyball">كرة الطائرة</string>
-	<string name="type.sport.9pin">بولينج بعشرة دبابيس</string>
 	<string name="type.sport.10pin">بولينج بعشرة دبابيس</string>
+	<string name="type.sport.9pin">بولينج بعشرة دبابيس</string>
 	<string name="type.sport.padel">ﻞﻳﺩﺎﺑ</string>
 	<string name="type.sport.futsal">كرة الصالات</string>
 	<string name="type.sport.ice_hockey">هوكي الجليد</string>

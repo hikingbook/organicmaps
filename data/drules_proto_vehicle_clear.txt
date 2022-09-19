@@ -3742,23 +3742,15 @@ cont {
   element {
     scale: 17
     symbol {
-      name: "vending-m"
+      name: "zero-icon"
       priority: 16000
       min_distance: 20
-    }
-    caption {
-      primary {
-        height: 11
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15300
     }
   }
   element {
     scale: 18
     symbol {
-      name: "vending-m"
+      name: "fuel-dispenser-m"
       priority: 16000
       min_distance: 20
     }
@@ -3774,7 +3766,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "vending-m"
+      name: "fuel-dispenser-m"
       priority: 16000
       min_distance: 20
     }
@@ -18390,7 +18382,7 @@ cont {
   element {
     scale: 17
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16755
     }
     caption {
@@ -18405,7 +18397,7 @@ cont {
   element {
     scale: 18
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16755
     }
     caption {
@@ -18420,7 +18412,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16755
     }
     caption {
@@ -18502,6 +18494,106 @@ cont {
 }
 cont {
   name: "historic-castle"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-castrum"
   element {
     scale: 12
     symbol {
@@ -18701,6 +18793,706 @@ cont {
   }
 }
 cont {
+  name: "historic-castle-fortified_church"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-fortress"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-hillfort"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-kremlin"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-manor"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-palace"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-castle-shiro"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16837
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16837
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15837
+    }
+  }
+}
+cont {
   name: "historic-castle-stately"
   element {
     scale: 12
@@ -18797,6 +19589,103 @@ cont {
         offset_y: 1
       }
       priority: 15837
+    }
+  }
+}
+cont {
+  name: "historic-city_gate"
+  element {
+    scale: 13
+    symbol {
+      name: "remains-m"
+      priority: 16779
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-m"
+      priority: 16779
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16779
+      min_distance: 24
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15779
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16779
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15779
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16779
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15779
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16779
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15779
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16779
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15779
     }
   }
 }

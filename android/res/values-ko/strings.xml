@@ -383,6 +383,7 @@
 	<string name="no_osm_account">OpenStreetMap에서 계정이 없습니까?</string>
 	<string name="register_at_openstreetmap">등록</string>
 	<string name="login">로그인</string>
+	<string name="login_osm">OpenStreetMap에 로그인</string>
 	<string name="password">암호</string>
 	<string name="forgot_password">암호를 잊으 셨나요?</string>
 	<string name="logout">로그 아웃</string>
@@ -421,6 +422,7 @@
 	<string name="editor_report_problem_other_title">다른 문제</string>
 	<string name="placepage_add_business_button">조직 추가</string>
 	<string name="message_invalid_feature_position">목적지를 이곳에서 찾을 수 없습니다</string>
+	<string name="osm_presentation">모든 지도 데이터는 OpenStreetMap 프로젝트에서 가져옵니다. \"\"장소를 추가하거나 편집할 수 있는 지도용 Wikipedia와 같으며 전 세계 수백만 사용자가 사용할 수 있습니다.</string>
 	<string name="login_to_make_edits_visible">로그인하여 다른 사용자가 변경한 내용을 볼 수 있도록 하십시오.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%2$d중의 %1$d</string>
@@ -474,9 +476,9 @@
 	<string name="placepage_add_place_button">지도에 장소 추가</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">이를 모든 사용자에게 전송하시겠습니까?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">개인 정보를 입력하지 않았는지 확인하십시오.</string>
-	<string name="editor_share_to_all_dialog_message_2">저희가 변경 사항을 확인할 것입니다. 질문이 있으신 경우, 저희에게 이메일을 통해 연락하십시오.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap 편집자가 변경 사항을 확인하고 질문이 있는 경우 귀하에게 연락할 것입니다.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps는 무료 오픈 소스 오프라인 지도 애플리케이션입니다. 광고 없음. 추적이 없습니다. 지도에 오류가 표시되면 OpenStreetMap에서 수정하세요. 이 프로젝트는 여가 시간에 열광자들에 의해 만들어지므로 여러분의 피드백과 지원이 필요합니다.</string>
 	<!-- For the first routing -->
@@ -699,6 +701,8 @@
 	<string name="type.amenity.doctors">개인병원</string>
 	<string name="type.amenity.drinking_water">음수대</string>
 	<string name="type.amenity.driving_school">운전학원</string>
+	<string name="type.amenity.music_school">음악 학교</string>
+	<string name="type.amenity.language_school">언어 학교</string>
 	<string name="type.office.diplomatic">대사관</string>
 	<string name="type.amenity.fast_food">패스트 푸드</string>
 	<string name="type.amenity.ferry_terminal">페리</string>
@@ -797,17 +801,25 @@
 	<string name="type.building.has_parts">건물</string>
 	<string name="type.building.train_station">기차역</string>
 	<string name="type.cemetery.grave">무덤</string>
+	<string name="type.craft">공예</string>
+	<string name="type.craft.beekeeper">양봉가</string>
+	<string name="type.craft.blacksmith">대장장이</string>
 	<string name="type.craft.brewery">양조장</string>
 	<string name="type.craft.carpenter">목수</string>
+	<string name="type.craft.confectionery">과자 장수</string>
 	<string name="type.craft.electrician">전기기술자</string>
+	<string name="type.craft.electronics_repair">전자제품 수리</string>
 	<string name="type.craft.gardener">조경사</string>
+	<string name="type.craft.handicraft">수예</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">냉난방기</string>
 	<string name="type.craft.metal_construction">금속공</string>
 	<string name="type.craft.painter">페인트공</string>
 	<string name="type.craft.photographer">사진작가</string>
 	<string name="type.craft.plumber">배관공</string>
+	<string name="type.craft.sawmill">제재소</string>
 	<string name="type.craft.shoemaker">구두수선</string>
+	<string name="type.craft.winery">포도주 양조장</string>
 	<string name="type.craft.tailor">양복점</string>
 	<string name="type.cuisine.african">아프리카식 음식</string>
 	<string name="type.cuisine.american">미국식 음식</string>
@@ -1065,8 +1077,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">발굴</string>
 	<string name="type.historic.castle">성</string>
+	<string name="type.historic.castle.castrum">로마 요새</string>
 	<string name="type.historic.castle.defensive">성</string>
+	<string name="type.historic.castle.fortified_church">요새화된 교회</string>
+	<string name="type.historic.castle.fortress">요새</string>
+	<string name="type.historic.castle.hillfort">힐포트</string>
+	<string name="type.historic.castle.kremlin">크렘린</string>
+	<string name="type.historic.castle.manor">매너하우스</string>
+	<string name="type.historic.castle.palace">궁전</string>
+	<string name="type.historic.castle.shiro">일본의 성</string>
 	<string name="type.historic.castle.stately">성</string>
+	<string name="type.historic.city_gate">성문</string>
 	<string name="type.historic.memorial">기념비</string>
 	<string name="type.historic.memorial.plaque">기념비</string>
 	<string name="type.historic.memorial.sculpture">기념비</string>
@@ -1096,6 +1117,7 @@
 	<string name="type.leisure.fitness_centre">피트니스센터</string>
 	<string name="type.leisure.fitness_station">피트니스 스테이션</string>
 	<string name="type.leisure.garden">정원</string>
+	<string name="type.leisure.garden.residential">정원</string>
 	<string name="type.leisure.golf_course">골프장</string>
 	<string name="type.leisure.nature_reserve">천연보호구역</string>
 	<string name="type.leisure.park">공원</string>
@@ -1361,8 +1383,8 @@
 	<string name="type.sport.table_tennis">탁구</string>
 	<string name="type.sport.tennis">테니스 코트</string>
 	<string name="type.sport.volleyball">배구</string>
-	<string name="type.sport.9pin">볼링</string>
 	<string name="type.sport.10pin">볼링</string>
+	<string name="type.sport.9pin">볼링</string>
 	<string name="type.sport.padel">파델</string>
 	<string name="type.sport.futsal">풋살</string>
 	<string name="type.sport.ice_hockey">아이스 하키</string>

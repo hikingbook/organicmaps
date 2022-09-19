@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Vill du skicka det till alla användare?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Se till att du inte angett någon personinformation";
 
-"editor_share_to_all_dialog_message_2" = "Vi kommer att kontrollera ändringar. Om vi har några frågor kontaktar vi dig via e-post.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap-redigerare kommer att kontrollera ändringarna och kontakta dig om de har några frågor.";
 
 "navigation_stop_button" = "stopp";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Rutt";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Dricksvatten";
 
 "type.amenity.driving_school" = "Körskola";
+
+"type.amenity.music_school" = "Musikskola";
+
+"type.amenity.language_school" = "Språkskola";
 
 "type.office.diplomatic" = "Ambassad";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Grav";
 
-"type.craft" = "Craft";
+"type.craft" = "Hantverk";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Biodlare";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Smedja";
 
 "type.craft.brewery" = "Bryggeri";
 
 "type.craft.carpenter" = "Snickare";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Konditor";
 
 "type.craft.electrician" = "Elektriker";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Reparation av elektronik";
 
 "type.craft.gardener" = "Trädgårdsmästare";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Konsthantverk";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Vvs";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Vvs-montör";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Sågverk";
 
 "type.craft.shoemaker" = "Skomakare";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Vineri";
 
 "type.craft.tailor" = "Skräddare";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Slott";
+"type.historic.castle" = "Borg";
 
-"type.historic.castle.defensive" = "Slott";
+"type.historic.castle.castrum" = "Castrum";
+
+"type.historic.castle.defensive" = "Borg";
+
+"type.historic.castle.fortified_church" = "Försvarskyrka";
+
+"type.historic.castle.fortress" = "Fästning";
+
+"type.historic.castle.hillfort" = "Fornborg";
+
+"type.historic.castle.kremlin" = "Kreml";
+
+"type.historic.castle.manor" = "Herrgård";
+
+"type.historic.castle.palace" = "Palats";
+
+"type.historic.castle.shiro" = "Japanskt slott";
 
 "type.historic.castle.stately" = "Slott";
+
+"type.historic.city_gate" = "Stadsport";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitnesstation";
 
 "type.leisure.garden" = "Trädgård";
+
+"type.leisure.garden.residential" = "Trädgård";
 
 "type.leisure.golf_course" = "Golfbana";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volleyboll";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

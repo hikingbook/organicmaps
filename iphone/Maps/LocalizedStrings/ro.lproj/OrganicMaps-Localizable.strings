@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Vrei să-l trimiți tuturor utilizatorilor?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Asigură-te că nu ai introdus niciun fel de date personale.";
 
-"editor_share_to_all_dialog_message_2" = "Vom verifica modificările. Dacă vor apărea întrebări, te vom contacta prin e-mail.";
+"editor_share_to_all_dialog_message_2" = "Editorii OpenStreetMap vor verifica modificările și vor lua legătura cu dvs. dacă au întrebări.";
 
 "navigation_stop_button" = "oprește";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Traseu";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Apă de băut";
 
 "type.amenity.driving_school" = "Școală de șoferi";
+
+"type.amenity.music_school" = "Scoala de Muzica";
+
+"type.amenity.language_school" = "Școala de limbi străine";
 
 "type.office.diplomatic" = "Ambasadă";
 
@@ -1599,28 +1609,28 @@
 
 "type.cemetery.grave" = "Mormânt";
 
-"type.craft" = "Craft";
+"type.craft" = "Meșteșuguri";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Apicultor";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Fierar";
 
 "type.craft.brewery" = "Berărie";
 
 "type.craft.carpenter" = "Tâmplar";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Cofetar";
 
 "type.craft.electrician" = "Electrician";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Reparații electronice";
 
 "type.craft.gardener" = "Peisagist";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Tehnici de lucru manual";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "HVAC";
+"type.craft.hvac" = "Încălzire, ventilație și aer condiționat";
 
 "type.craft.metal_construction" = "Metalurgist";
 
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Instalator";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Fabrica de cherestea";
 
 "type.craft.shoemaker" = "Reparații încălțăminte";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Vinărie";
 
 "type.craft.tailor" = "Croitor";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Castel";
 
+"type.historic.castle.castrum" = "Castru";
+
 "type.historic.castle.defensive" = "Castel";
 
+"type.historic.castle.fortified_church" = "Biserică fortificată";
+
+"type.historic.castle.fortress" = "Cetate";
+
+"type.historic.castle.hillfort" = "Castrul de deal";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Conac";
+
+"type.historic.castle.palace" = "Palat";
+
+"type.historic.castle.shiro" = "Castelul japonez";
+
 "type.historic.castle.stately" = "Castel";
+
+"type.historic.city_gate" = "Poarta orașului";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Sală de fitness";
 
 "type.leisure.garden" = "Sit arheologic";
+
+"type.leisure.garden.residential" = "Sit arheologic";
 
 "type.leisure.golf_course" = "Teren de golf";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volei";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

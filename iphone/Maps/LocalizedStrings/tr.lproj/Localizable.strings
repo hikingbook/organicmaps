@@ -572,15 +572,15 @@
 
 "today" = "Bugün";
 
-"opens_tomorrow_at" = "Opens tomorrow at %@";
+"opens_tomorrow_at" = "Açılış yarın %@";
 
-"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+"opens_dayoftheweek_at" = "Açılış %1$@ %2$@";
 
-"opens_at" = "Opens at %@";
+"opens_at" = "Açılış %@";
 
 "opens_in" = "%@ sonra açılıyor";
 
-"closes_at" = "Closes at %@";
+"closes_at" = "Kapanış %@";
 
 "closes_in" = "%@ sonra kapanıyor";
 
@@ -588,7 +588,7 @@
 
 "add_opening_hours" = "Açılış saatlerini ekle";
 
-"no_osm_account" = "OpenStreetMap hesabın yok mu?";
+"no_osm_account" = "OpenStreetMap hesabınız yok mu?";
 
 "register_at_openstreetmap" = "Kaydol";
 
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Bunu tüm kullanıcılara göndermek ister misiniz?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Herhangi bir kişisel bilgi girmediğinizden emin olun.";
 
-"editor_share_to_all_dialog_message_2" = "Değişikliği kontrol edeceğiz. Eğer herhangi bir sorumuz olursa sizinle e-posta aracılığıyla iletişime geçeceğiz.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap editörleri değişiklikleri kontrol edecek ve soruları olursa sizinle iletişime geçecektir.";
 
 "navigation_stop_button" = "dur";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Kayıt";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsTR";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmapstr";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "İçme Suyu";
 
 "type.amenity.driving_school" = "Sürücü Kursu";
+
+"type.amenity.music_school" = "Müzik Okulu";
+
+"type.amenity.language_school" = "Dil Okulu";
 
 "type.office.diplomatic" = "Büyükelçilik";
 
@@ -1609,7 +1619,7 @@
 
 "type.craft.carpenter" = "Marangoz";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Şekerlemeci";
 
 "type.craft.electrician" = "Elektrikçi";
 
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Tesisatçı";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Kereste Fabrikası";
 
 "type.craft.shoemaker" = "Ayakkabı Tamircisi";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Şaraphane";
 
 "type.craft.tailor" = "Terzi";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Sınır Taşı";
 
-"type.historic.castle" = "Kale";
+"type.historic.castle" = "Müstahkem şato";
 
-"type.historic.castle.defensive" = "Kale";
+"type.historic.castle.castrum" = "Castra";
 
-"type.historic.castle.stately" = "Kale";
+"type.historic.castle.defensive" = "Müstahkem şato";
+
+"type.historic.castle.fortified_church" = "Müstahkem kilise";
+
+"type.historic.castle.fortress" = "Kale";
+
+"type.historic.castle.hillfort" = "Tepe Kalesi";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Malikane";
+
+"type.historic.castle.palace" = "Saray";
+
+"type.historic.castle.shiro" = "Japon kalesi";
+
+"type.historic.castle.stately" = "Şato";
+
+"type.historic.city_gate" = "Şehir kapısı";
 
 "type.historic.citywalls" = "Şehir Duvarı";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness Salonu";
 
 "type.leisure.garden" = "Bahçe";
+
+"type.leisure.garden.residential" = "Konut Bahçesi";
 
 "type.leisure.golf_course" = "Golf Sahası";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Voleybol";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

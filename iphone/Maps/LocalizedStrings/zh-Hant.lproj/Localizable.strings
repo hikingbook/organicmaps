@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "您想要發給所有用戶嗎？";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "確保您沒有輸入任何個人資料。";
 
-"editor_share_to_all_dialog_message_2" = "我們會檢查更改。如果我們有任何問題，我們會郵件與您聯絡。";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap 編輯人員將檢查更改並在有任何問題時與您聯繫。";
 
 "navigation_stop_button" = "停止";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "追踪";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "飲用水";
 
 "type.amenity.driving_school" = "駕訓班";
+
+"type.amenity.music_school" = "音樂學校";
+
+"type.amenity.language_school" = "語言學校";
 
 "type.office.diplomatic" = "大使館";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "墓穴";
 
-"type.craft" = "Craft";
+"type.craft" = "工藝作坊";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "蜂農";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "鐵匠";
 
 "type.craft.brewery" = "釀酒廠";
 
 "type.craft.carpenter" = "木工";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "糖果商";
 
 "type.craft.electrician" = "電工";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "電子產品維修";
 
 "type.craft.gardener" = "園藝師";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "手工藝";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "空調設備";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "水管工人";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "鋸木廠";
 
 "type.craft.shoemaker" = "修鞋工";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "酒莊";
 
 "type.craft.tailor" = "裁縫師";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "城堡";
 
+"type.historic.castle.castrum" = "古羅馬兵營";
+
 "type.historic.castle.defensive" = "城堡";
 
-"type.historic.castle.stately" = "宮殿";
+"type.historic.castle.fortified_church" = "堅固的教堂";
+
+"type.historic.castle.fortress" = "要塞";
+
+"type.historic.castle.hillfort" = "丘堡";
+
+"type.historic.castle.kremlin" = "克里姆林";
+
+"type.historic.castle.manor" = "莊園大屋";
+
+"type.historic.castle.palace" = "宮殿";
+
+"type.historic.castle.shiro" = "城";
+
+"type.historic.castle.stately" = "法式城堡";
+
+"type.historic.city_gate" = "城門";
 
 "type.historic.citywalls" = "歷史城牆";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "健身房";
 
 "type.leisure.garden" = "花園";
+
+"type.leisure.garden.residential" = "花園";
 
 "type.leisure.golf_course" = "高爾夫球場";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "排球";
 
-"type.sport.9pin" = "保齡球";
-
 "type.sport.10pin" = "保齡球";
+
+"type.sport.9pin" = "保齡球";
 
 "type.sport.padel" = "帕德爾";
 
