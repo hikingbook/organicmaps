@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "คุณต้องการส่งมันให้ผู้ใช้ทั้งหมดหรือไม่?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "ตรวจสอบว่าคุณไม่ได้กรอกข้อมูลส่วนตัวใด ๆ";
 
-"editor_share_to_all_dialog_message_2" = "เราจะตรวจสอบการเปลี่ยนแปลง หากเรามีคำถามใด ๆ เราจะติดต่อคุณผ่านทางอีเมล";
+"editor_share_to_all_dialog_message_2" = "ผู้แก้ไข OpenStreetMap จะตรวจสอบการเปลี่ยนแปลงและติดต่อคุณหากมีคำถามใดๆ";
 
 "navigation_stop_button" = "หยุด";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "ติดตาม";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "น้ำดื่ม";
 
 "type.amenity.driving_school" = "โรงเรียนสอนขับรถ";
+
+"type.amenity.music_school" = "โรงเรียนดนตรี";
+
+"type.amenity.language_school" = "โรงเรียนภาษา";
 
 "type.office.diplomatic" = "สถานทูต";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "หลุมฝังศพ";
 
-"type.craft" = "Craft";
+"type.craft" = "งานฝีมือ";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "คนเลี้ยงผึ้ง";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "ช่างตีเหล็ก";
 
 "type.craft.brewery" = "โรงเบียร์";
 
 "type.craft.carpenter" = "ช่างไม้";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "ลูกกวาด";
 
 "type.craft.electrician" = "ช่างไฟฟ้า";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "ซ่อมเครื่องใช้ไฟฟ้า";
 
 "type.craft.gardener" = "คนจัดสวน";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "หัตถกรรม";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "ระบบปรับอากาศ";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "ช่างประปา";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "ซูเมล";
 
 "type.craft.shoemaker" = "ช่างซ่อมรองเท้า";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "โรงกลั่นเหล้าองุ่น";
 
 "type.craft.tailor" = "ช่างตัดเสื้อ";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "ปราสาท";
 
+"type.historic.castle.castrum" = "ป้อมโรมัน";
+
 "type.historic.castle.defensive" = "ปราสาท";
 
+"type.historic.castle.fortified_church" = "โบสถ์เสริมความแข็งแกร่ง";
+
+"type.historic.castle.fortress" = "ป้อม";
+
+"type.historic.castle.hillfort" = "ป้อมเนิน";
+
+"type.historic.castle.kremlin" = "เครมลิน";
+
+"type.historic.castle.manor" = "คฤหาสน์";
+
+"type.historic.castle.palace" = "วัง";
+
+"type.historic.castle.shiro" = "ปราสาทญี่ปุ่น";
+
 "type.historic.castle.stately" = "ปราสาท";
+
+"type.historic.city_gate" = "ประตูเมือง";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "ศูนย์ฟิตเนส";
 
 "type.leisure.garden" = "สวน";
+
+"type.leisure.garden.residential" = "สวน";
 
 "type.leisure.golf_course" = "สนามกอล์ฟ";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "วอลเลย์บอล";
 
-"type.sport.9pin" = "โบว์ลิ่ง";
-
 "type.sport.10pin" = "โบว์ลิ่ง";
+
+"type.sport.9pin" = "โบว์ลิ่ง";
 
 "type.sport.padel" = "พาเดล";
 

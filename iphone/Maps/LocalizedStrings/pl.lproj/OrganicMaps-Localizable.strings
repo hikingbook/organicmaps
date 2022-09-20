@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Czy chcesz wysłać je wszystkim użytkownikom?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Upewnij się, że nie podałeś osobistych danych.";
 
-"editor_share_to_all_dialog_message_2" = "Zapoznamy się ze zmianami. W przypadku pytań skontaktujemy się z Tobą przez email.";
+"editor_share_to_all_dialog_message_2" = "Redaktorzy OpenStreetMap sprawdzą zmiany i skontaktują się z Tobą, jeśli będą mieli jakiekolwiek pytania.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Trasa";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Woda pitna";
 
 "type.amenity.driving_school" = "Szkoła nauki jazdy";
+
+"type.amenity.music_school" = "Szkoła Muzyczna";
+
+"type.amenity.language_school" = "Szkoła językowa";
 
 "type.office.diplomatic" = "Ambasada";
 
@@ -1601,23 +1611,23 @@
 
 "type.craft" = "Rzemiosło";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Pszczelarz";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Kowal";
 
 "type.craft.brewery" = "Browar";
 
 "type.craft.carpenter" = "Stolarz";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Cukiernik";
 
 "type.craft.electrician" = "Elektryk";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Naprawa elektroniki";
 
 "type.craft.gardener" = "Ogrodnik";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Rzemiosło artystyczne";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Klimatyzacja";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Hydraulik";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Tartak";
 
 "type.craft.shoemaker" = "Szewc";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Winiarnia";
 
 "type.craft.tailor" = "Krawiec";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Zamek";
 
-"type.historic.castle.defensive" = "Zamek obronny";
+"type.historic.castle.castrum" = "Castrum Romanum";
+
+"type.historic.castle.defensive" = "Zamek";
+
+"type.historic.castle.fortified_church" = "Kościół obronny";
+
+"type.historic.castle.fortress" = "Twierdza";
+
+"type.historic.castle.hillfort" = "Grodzisko";
+
+"type.historic.castle.kremlin" = "Kreml";
+
+"type.historic.castle.manor" = "Manoir";
+
+"type.historic.castle.palace" = "Pałac";
+
+"type.historic.castle.shiro" = "Japoński zamek";
 
 "type.historic.castle.stately" = "Zamek";
+
+"type.historic.city_gate" = "Brama miejska";
 
 "type.historic.citywalls" = "Historyczne mury miasta";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Stacja fitness";
 
 "type.leisure.garden" = "Ogród";
+
+"type.leisure.garden.residential" = "Ogród przydomowy";
 
 "type.leisure.golf_course" = "Kurs golfowy";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Piłka siatkowa";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

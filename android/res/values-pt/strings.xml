@@ -392,8 +392,9 @@
 	<string name="closed">Fechado</string>
 	<string name="edit_opening_hours">Editar horário de funcionamento</string>
 	<string name="no_osm_account">Não tem uma conta no OpenStreetMap?</string>
-	<string name="register_at_openstreetmap">Crie uma conta no OSM</string>
+	<string name="register_at_openstreetmap">Crie uma conta no OpenStreetMap</string>
 	<string name="login">Iniciar sessão</string>
+	<string name="login_osm">Entrar no OpenStreetMap</string>
 	<string name="password">Palavra-chave</string>
 	<string name="forgot_password">Esqueceu-se da palavra-chave?</string>
 	<string name="logout">Terminar sessão</string>
@@ -432,6 +433,7 @@
 	<string name="editor_report_problem_other_title">Um problema diferente</string>
 	<string name="placepage_add_business_button">Adicionar uma organização</string>
 	<string name="message_invalid_feature_position">Nenhum objeto pode ser posicionado aqui</string>
+	<string name="osm_presentation">Todos os dados cartográficos provêm do projecto OpenStreetMap. É como a Wikipedia para mapas onde se podem adicionar ou editar locais, e estes ficam disponíveis para milhões de utilizadores em todo o mundo.</string>
 	<string name="login_to_make_edits_visible">Inicie a sessão para que outros utilizadores vejam as alterações que fez.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d de %2$d</string>
@@ -485,9 +487,9 @@
 	<string name="placepage_add_place_button">Adicionar um local ao mapa</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Quer enviar para todos os utilizadores?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Certifique-se que não incluiu nenhuns dados pessoais.</string>
-	<string name="editor_share_to_all_dialog_message_2">Vamos verificar as alterações. Se tivermos alguma pergunta, vamos contactá-lo por email.</string>
+	<string name="editor_share_to_all_dialog_message_2">Os editores do OpenStreetMap verificarão as alterações e entrarão em contacto consigo se tiverem alguma dúvida.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps é uma aplicação gratuita e de código aberto de mapas offline. Sem anúncios. Sem seguimento. Se vir um erro no mapa, por favor repare-o em OpenStreetMap. O projecto é criado por entusiastas no nosso tempo livre, por isso precisamos do seu feedback e apoio.</string>
 	<!-- For the first routing -->
@@ -732,6 +734,8 @@
 	<string name="type.amenity.doctors">Consultório médico</string>
 	<string name="type.amenity.drinking_water">Água potável</string>
 	<string name="type.amenity.driving_school">Escola de condução</string>
+	<string name="type.amenity.music_school">Escola de música</string>
+	<string name="type.amenity.language_school">Escola de idiomas</string>
 	<string name="type.office.diplomatic">Embaixada ou consulado</string>
 	<string name="type.amenity.fast_food">Comida rápida</string>
 	<string name="type.amenity.ferry_terminal">Termina de ferry</string>
@@ -862,17 +866,24 @@
 	<string name="type.building.warehouse">Armazém</string>
 	<string name="type.cemetery.grave">Túmulo</string>
 	<string name="type.craft">Ofícios</string>
+	<string name="type.craft.beekeeper">Apicultor</string>
+	<string name="type.craft.blacksmith">Ferreiro</string>
 	<string name="type.craft.brewery">Cervejaria artesanal</string>
 	<string name="type.craft.carpenter">Carpinteiro</string>
+	<string name="type.craft.confectionery">Confeitaria</string>
 	<string name="type.craft.electrician">Eletricista</string>
+	<string name="type.craft.electronics_repair">Reparação electrónica</string>
 	<string name="type.craft.gardener">Jardineiro</string>
+	<string name="type.craft.handicraft">Artesanato</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Instalador de ar-condicionado</string>
 	<string name="type.craft.metal_construction">Serralheiro metálico</string>
 	<string name="type.craft.painter">Pintor</string>
 	<string name="type.craft.photographer">Fotógrafo</string>
 	<string name="type.craft.plumber">Picheleiro</string>
+	<string name="type.craft.sawmill">Serraria</string>
 	<string name="type.craft.shoemaker">Sapateiro</string>
+	<string name="type.craft.winery">Adega</string>
 	<string name="type.craft.tailor">Alfaiate</string>
 	<string name="type.cuisine.african">Cozinha africana</string>
 	<string name="type.cuisine.american">Cozinha americana</string>
@@ -1142,8 +1153,17 @@
 	<string name="type.historic.battlefield">Campo de batalha</string>
 	<string name="type.historic.boundary_stone">Marco fronteiriço</string>
 	<string name="type.historic.castle">Castelo</string>
-	<string name="type.historic.castle.defensive">Castelo defensivo</string>
+	<string name="type.historic.castle.castrum">Castro</string>
+	<string name="type.historic.castle.defensive">Castelo</string>
+	<string name="type.historic.castle.fortified_church">Igreja fortificada</string>
+	<string name="type.historic.castle.fortress">Fortaleza</string>
+	<string name="type.historic.castle.hillfort">Castro</string>
+	<string name="type.historic.castle.kremlin">Kremlin</string>
+	<string name="type.historic.castle.manor">Solar</string>
+	<string name="type.historic.castle.palace">Palácio</string>
+	<string name="type.historic.castle.shiro">Castelo japonês</string>
 	<string name="type.historic.castle.stately">Château</string>
+	<string name="type.historic.city_gate">Portas da cidade</string>
 	<string name="type.historic.citywalls">Muralha de cidade</string>
 	<string name="type.historic.fort">Forte histórico</string>
 	<string name="type.historic.memorial">Memorial</string>
@@ -1203,6 +1223,7 @@
 	<string name="type.leisure.fitness_centre">Academia de fitness</string>
 	<string name="type.leisure.fitness_station">Dispositivo público de exercícios</string>
 	<string name="type.leisure.garden">Jardim</string>
+	<string name="type.leisure.garden.residential">Jardim residencial</string>
 	<string name="type.leisure.golf_course">Campo de golfe</string>
 	<string name="type.leisure.ice_rink">Rinque de patinagem</string>
 	<string name="type.leisure.landscape_reserve">Reserva natural</string>
@@ -1539,8 +1560,8 @@
 	<string name="type.sport.table_tennis">Ténis de mesa</string>
 	<string name="type.sport.tennis">Campo de ténis</string>
 	<string name="type.sport.volleyball">Voleibol</string>
-	<string name="type.sport.9pin">Boliche</string>
 	<string name="type.sport.10pin">Boliche</string>
+	<string name="type.sport.9pin">Boliche</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Hóquei no gelo</string>

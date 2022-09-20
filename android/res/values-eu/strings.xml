@@ -392,8 +392,9 @@
 	<string name="closed">Itxita</string>
 	<string name="edit_opening_hours">Editatu ordutegia</string>
 	<string name="no_osm_account">Ez al duzu OpenStreetMap konturik?</string>
-	<string name="register_at_openstreetmap">Eman izena OSM</string>
+	<string name="register_at_openstreetmap">Eman izena OpenStreetMap</string>
 	<string name="login">Saioa hasi</string>
+	<string name="login_osm">Hasi saioa OpenStreetMap-en</string>
 	<string name="password">Pasahitza</string>
 	<string name="forgot_password">Pasahitza ahaztu al duzu?</string>
 	<string name="logout">Saioa itxi</string>
@@ -434,6 +435,7 @@
 	<string name="editor_report_problem_other_title">Beste arazo bat</string>
 	<string name="placepage_add_business_button">Negozioa gehitu</string>
 	<string name="message_invalid_feature_position">Hemen ezin da objekturik jarri</string>
+	<string name="osm_presentation">Maparen datu guztiak OpenStreetMap proiektutik datoz. Tokiak gehitu edo edita ditzakezun mapetarako Wikipedia bezalakoa da, eta mundu osoko milioika erabiltzaileren eskura jartzen dira.</string>
 	<string name="login_to_make_edits_visible">Hasi saioa beste erabiltzaileek zuk egindako aldaketak ikus ditzaten.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d/%2$d</string>
@@ -491,9 +493,9 @@
 	<string name="placepage_add_place_button">Gehitu toki bat mapan</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Erabiltzaile guztiei bidali nahi diezu?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Ziurtatu ez duzula datu pertsonalik sartu.</string>
-	<string name="editor_share_to_all_dialog_message_2">Aldaketak egiaztatuko ditugu. Edozein zalantza izanez gero, zurekin harremanetan jarriko gara posta elektronikoz.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap editoreek aldaketak egiaztatuko dituzte eta zurekin harremanetan jarriko dira zalantzaren bat izanez gero.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps lineaz kanpoko mapa aplikazio doako eta irekia da. Iragarkirik ez. Ez dago jarraipenik. Mapan errore bat ikusten baduzu, konpondu OpenStreetMap-en. Proiektua zaleek sortu dute gure aisialdian, beraz, zure iritzia eta laguntza behar dugu.</string>
 	<!-- For the first routing -->
@@ -722,6 +724,8 @@
 	<string name="type.amenity.doctors">Kontsulta medikoa</string>
 	<string name="type.amenity.drinking_water">Ur edangarria</string>
 	<string name="type.amenity.driving_school">Autoeskola</string>
+	<string name="type.amenity.music_school">Musika Eskola</string>
+	<string name="type.amenity.language_school">Hizkuntza Eskola</string>
 	<string name="type.office.diplomatic">Enbaxada</string>
 	<string name="type.amenity.fast_food">Janari azkarra</string>
 	<string name="type.amenity.ferry_terminal">Espazio-ontzia</string>
@@ -864,17 +868,25 @@
 	<string name="type.building.train_station">Tren geltokian</string>
 	<string name="type.building.warehouse">Denda</string>
 	<string name="type.cemetery.grave">Hilobia</string>
+	<string name="type.craft">Artisautza</string>
+	<string name="type.craft.beekeeper">Erlezaina</string>
+	<string name="type.craft.blacksmith">Errementari</string>
 	<string name="type.craft.brewery">Garagardo fabrika</string>
 	<string name="type.craft.carpenter">Arotza</string>
+	<string name="type.craft.confectionery">Gozogilea</string>
 	<string name="type.craft.electrician">Elektrizista teknikaria</string>
+	<string name="type.craft.electronics_repair">Elektronika Konponketa</string>
 	<string name="type.craft.gardener">Paisaia</string>
+	<string name="type.craft.handicraft">Eskulangintza</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Aire girotua</string>
 	<string name="type.craft.metal_construction">Metalgintzako langilea</string>
 	<string name="type.craft.painter">Margolaria</string>
 	<string name="type.craft.photographer">Argazkilaria</string>
 	<string name="type.craft.plumber">Iturgina</string>
+	<string name="type.craft.sawmill">Zerrategi</string>
 	<string name="type.craft.shoemaker">Zapataria</string>
+	<string name="type.craft.winery">Upategi</string>
 	<string name="type.craft.tailor">Jostun</string>
 	<string name="type.cuisine.african">Afrikako sukaldaritza</string>
 	<string name="type.cuisine.american">Sukalde amerikarra</string>
@@ -1137,9 +1149,18 @@
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Aztarnategi arkeologikoa</string>
-	<string name="type.historic.castle">Gaztelua</string>
-	<string name="type.historic.castle.defensive">Gaztelua</string>
+	<string name="type.historic.castle">Gaztelu</string>
+	<string name="type.historic.castle.castrum">Castrum</string>
+	<string name="type.historic.castle.defensive">Gaztelu</string>
+	<string name="type.historic.castle.fortified_church">Eliza-gotorleku</string>
+	<string name="type.historic.castle.fortress">Gotorlekua</string>
+	<string name="type.historic.castle.hillfort">Kastro</string>
+	<string name="type.historic.castle.kremlin">Kremlina</string>
+	<string name="type.historic.castle.manor">Jauregitxo</string>
+	<string name="type.historic.castle.palace">Jauregi</string>
+	<string name="type.historic.castle.shiro">Japoniar gaztelu</string>
 	<string name="type.historic.castle.stately">Gaztelua</string>
+	<string name="type.historic.city_gate">Portale</string>
 	<string name="type.historic.monument">Monumentua</string>
 	<string name="type.historic.ruins">Hondakinak</string>
 	<string name="type.historic.ship">Turismoa</string>
@@ -1164,6 +1185,7 @@
 	<string name="type.leisure.fitness_centre">Fitness zentroa</string>
 	<string name="type.leisure.fitness_station">Gimnasioa</string>
 	<string name="type.leisure.garden">Lorategi</string>
+	<string name="type.leisure.garden.residential">Lorategi</string>
 	<string name="type.leisure.golf_course">Golf kurtsoa</string>
 	<string name="type.leisure.nature_reserve">Erreserbatutako lurraldea</string>
 	<string name="type.leisure.park">Parkea</string>
@@ -1431,8 +1453,8 @@
 	<string name="type.sport.table_tennis">Mahai-tenis</string>
 	<string name="type.sport.tennis">Tenis kantxa</string>
 	<string name="type.sport.volleyball">Boleibol</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Areto-futbola</string>
 	<string name="type.sport.ice_hockey">Izotz hockey</string>

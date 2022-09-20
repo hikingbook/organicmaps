@@ -20,8 +20,10 @@ import com.mapswithme.maps.bookmarks.data.MapObject;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.maps.location.LocationListener;
 import com.mapswithme.util.UiUtils;
+import com.mapswithme.util.bottomsheet.MenuBottomSheetItem;
 import com.mapswithme.util.log.Logger;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class RichPlacePageController implements PlacePageController, LocationListener,
@@ -139,6 +141,18 @@ public class RichPlacePageController implements PlacePageController, LocationLis
     LocationHelper.INSTANCE.addListener(this);
   }
 
+  public int getPlacePageWidth()
+  {
+    return mPlacePage.getWidth();
+  }
+
+  @Override
+  @Nullable
+  public ArrayList<MenuBottomSheetItem> getMenuBottomSheetItems()
+  {
+    return mPlacePage.getMenuBottomSheetItems();
+  }
+
   @Override
   public void destroy()
   {
@@ -244,7 +258,10 @@ public class RichPlacePageController implements PlacePageController, LocationLis
 
   private int calculatePeekHeight()
   {
-    final int organicPeekHeight = mPlacePage.getPreviewHeight() + mButtonsLayout.getHeight();
+    // Buttons layout padding is the navigation bar height.
+    // Bottom sheets are displayed above it so we need to remove it from the computed size
+    final int organicPeekHeight = mPlacePage.getPreviewHeight() +
+                                  mButtonsLayout.getHeight() - mButtonsLayout.getPaddingBottom();
     final MapObject object = mPlacePage.getMapObject();
     if (object != null)
     {

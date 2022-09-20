@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Нямате акаунт в OpenStreetMap?";
 
-"register_at_openstreetmap" = "Регистриране в OSM";
+"register_at_openstreetmap" = "Регистриране в OpenStreetMap";
 
 "password_8_chars_min" = "Парола (поне 8 символа)";
 
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Искате ли да го изпратите на всички потребители?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Уверете се, че не сте въвели никакви лични данни.";
 
-"editor_share_to_all_dialog_message_2" = "Ще проверим промените. Ако имаме някакви въпроси, ще се свържем с вас по имейл.";
+"editor_share_to_all_dialog_message_2" = "Редакторите на OpenStreetMap ще проверят промените и ще се свържат с вас, ако имат въпроси.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Пътека";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1310,7 +1316,11 @@
 
 "type.amenity.drinking_water" = "Drinking Water";
 
-"type.amenity.driving_school" = "Driving School";
+"type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.music_school" = "Музикално училище";
+
+"type.amenity.language_school" = "Езиково училище";
 
 "type.office.diplomatic" = "Embassy";
 
@@ -1599,44 +1609,44 @@
 
 "type.cemetery.grave" = "Гроб";
 
-"type.craft" = "Craft";
+"type.craft" = "Занаяти";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Пчелар";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Ковачница";
 
-"type.craft.brewery" = "Craft Brewery";
+"type.craft.brewery" = "Пивоварна";
 
-"type.craft.carpenter" = "Carpenter";
+"type.craft.carpenter" = "Марангоз";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Сладкарски изделия";
 
-"type.craft.electrician" = "Electrician";
+"type.craft.electrician" = "Електротехник";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Ремонт на електроника";
 
-"type.craft.gardener" = "Gardener";
+"type.craft.gardener" = "Градинар";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Занаят";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Отопление, вентилация и климатизация";
 
 "type.craft.metal_construction" = "Метални конструкции";
 
-"type.craft.painter" = "Painter";
+"type.craft.painter" = "Художник";
 
-"type.craft.photographer" = "Photographer";
+"type.craft.photographer" = "Фотограф";
 
-"type.craft.plumber" = "Plumber";
+"type.craft.plumber" = "Водопроводчик";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Дъскорезница";
 
-"type.craft.shoemaker" = "Shoe Repair";
+"type.craft.shoemaker" = "Обущар";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Винарна";
 
-"type.craft.tailor" = "Tailor";
+"type.craft.tailor" = "Шивач";
 
 "type.cuisine.african" = "African";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Castle";
+"type.historic.castle" = "Замък";
 
-"type.historic.castle.defensive" = "Castle";
+"type.historic.castle.castrum" = "Каструм";
 
-"type.historic.castle.stately" = "Castle";
+"type.historic.castle.defensive" = "Замък";
+
+"type.historic.castle.fortified_church" = "Укрепена църква";
+
+"type.historic.castle.fortress" = "Крепост";
+
+"type.historic.castle.hillfort" = "Градище";
+
+"type.historic.castle.kremlin" = "Кремъл";
+
+"type.historic.castle.manor" = "Усадба";
+
+"type.historic.castle.palace" = "Дворец";
+
+"type.historic.castle.shiro" = "Японски замък";
+
+"type.historic.castle.stately" = "Замък";
+
+"type.historic.city_gate" = "Градска порта";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness Station";
 
 "type.leisure.garden" = "Garden";
+
+"type.leisure.garden.residential" = "Garden";
 
 "type.leisure.golf_course" = "Golf Course";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Волейбол";
 
-"type.sport.9pin" = "Боулинг";
-
 "type.sport.10pin" = "Боулинг";
+
+"type.sport.9pin" = "Боулинг";
 
 "type.sport.padel" = "Падел";
 

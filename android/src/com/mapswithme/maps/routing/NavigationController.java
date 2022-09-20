@@ -23,28 +23,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.mapswithme.maps.Framework;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.base.MediaPlayerWrapper;
+import com.mapswithme.maps.maplayer.MapButtonsController;
 import com.mapswithme.maps.maplayer.traffic.TrafficManager;
 import com.mapswithme.maps.sound.TtsPlayer;
 import com.mapswithme.maps.widget.menu.NavMenu;
-import com.mapswithme.util.Graphics;
 import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.Utils;
 
-
 public class NavigationController implements Application.ActivityLifecycleCallbacks,
-    TrafficManager.TrafficCallback,
-    NavMenu.NavMenuListener
+                                             TrafficManager.TrafficCallback,
+                                             NavMenu.NavMenuListener
 {
   private static final String STATE_BOUND = "Bound";
 
   private final View mFrame;
-  private final View mSearchButtonFrame;
 
   private final ImageView mNextTurnImage;
   private final TextView mNextTurnDistance;
@@ -57,14 +54,13 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   private final TextView mNextStreet;
 
   @NonNull
-  private final SearchWheel mSearchWheel;
+  private final MapButtonsController mMapButtonsController;
 
   @NonNull
   private final MediaPlayer.OnCompletionListener mSpeedCamSignalCompletionListener;
 
   private final NavMenu mNavMenu;
   View.OnClickListener mOnSettingsClickListener;
-  View.OnClickListener mOnBookmarkClickListener;
   @Nullable
   private NavigationService mService = null;
   private boolean mBound = false;
@@ -88,13 +84,19 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     }
   };
 
-
-  public NavigationController(AppCompatActivity activity, View.OnClickListener onSettingsClickListener, View.OnClickListener onBookmarkClickListener)
+  public NavigationController(AppCompatActivity activity, @NonNull MapButtonsController mapButtonsController, View.OnClickListener onSettingsClickListener)
   {
     mFrame = activity.findViewById(R.id.navigation_frame);
     mNavMenu = new NavMenu(activity, this);
     mOnSettingsClickListener = onSettingsClickListener;
-    mOnBookmarkClickListener = onBookmarkClickListener;
+    mMapButtonsController = mapButtonsController;
+
+    // Show a blank view below the navbar to hide the menu content
+    mFrame.findViewById(R.id.nav_bottom_sheet_nav_bar).setOnApplyWindowInsetsListener((view, windowInsets) -> {
+      view.getLayoutParams().height = windowInsets.getSystemWindowInsetBottom();
+      view.getLayoutParams().width = mFrame.findViewById(R.id.nav_bottom_sheet).getWidth();
+      return windowInsets;
+    });
 
     // Top frame
     View topFrame = mFrame.findViewById(R.id.nav_top_frame);
@@ -102,6 +104,12 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mNextTurnImage = turnFrame.findViewById(R.id.turn);
     mNextTurnDistance = turnFrame.findViewById(R.id.distance);
     mCircleExit = turnFrame.findViewById(R.id.circle_exit);
+
+    topFrame.findViewById(R.id.nav_next_turn_container).setOnApplyWindowInsetsListener((view, windowInsets) -> {
+      view.setPadding(windowInsets.getSystemWindowInsetLeft(), view.getPaddingTop(),
+                      view.getPaddingRight(), view.getPaddingBottom());
+      return windowInsets;
+    });
 
     mNextNextTurnFrame = topFrame.findViewById(R.id.nav_next_next_turn_frame);
     mNextNextTurnImage = mNextNextTurnFrame.findViewById(R.id.turn);
@@ -114,20 +122,13 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     UiUtils.extendViewWithStatusBar(mStreetFrame);
     UiUtils.extendViewMarginWithStatusBar(turnFrame);
 
-    mSearchButtonFrame = activity.findViewById(R.id.search_button_frame);
-    mSearchWheel = new SearchWheel(mSearchButtonFrame);
-
-    ImageView bookmarkButton = mSearchButtonFrame.findViewById(R.id.btn_bookmarks);
-    bookmarkButton.setImageDrawable(Graphics.tint(bookmarkButton.getContext(),
-        R.drawable.ic_menu_bookmarks));
-    bookmarkButton.setOnClickListener(mOnBookmarkClickListener);
-    Application app = (Application) bookmarkButton.getContext().getApplicationContext();
+    final Application app = (Application) mFrame.getContext().getApplicationContext();
     mSpeedCamSignalCompletionListener = new CameraWarningSignalCompletionListener(app);
   }
 
   public void stop(MwmActivity parent)
   {
-    mSearchWheel.reset();
+    mMapButtonsController.resetSearch();
 
     if (mBound)
     {
@@ -222,51 +223,15 @@ public class NavigationController implements Application.ActivityLifecycleCallba
       mNextStreet.setText(info.nextStreet);
   }
 
-
 //  private void playbackSpeedCamWarning(@NonNull RoutingInfo info)
 //  {
-//    final long hours = TimeUnit.SECONDS.toHours(seconds);
-//    final long minutes = TimeUnit.SECONDS.toMinutes(seconds) % 60;
-//    UiUtils.setTextAndShow(mTimeMinuteValue, String.valueOf(minutes));
-//    String min = mFrame.getResources().getString(R.string.minute);
-//    UiUtils.setTextAndShow(mTimeMinuteUnits, min);
-//    if (hours == 0)
-//    {
-//      UiUtils.hide(mTimeHourUnits, mTimeHourValue);
 //    if (!info.shouldPlayWarningSignal() || TtsPlayer.INSTANCE.isSpeaking())
 //      return;
-//    }
-//    UiUtils.setTextAndShow(mTimeHourValue, String.valueOf(hours));
-//    String hour = mFrame.getResources().getString(R.string.hour);
-//    UiUtils.setTextAndShow(mTimeHourUnits, hour);
+//
+//    Context context = mFrame.getContext();
+//    MediaPlayerWrapper player = MediaPlayerWrapper.from(context);
+//    player.playback(R.raw.speed_cams_beep, mSpeedCamSignalCompletionListener);
 //  }
-
-  public void showSearchButtons(boolean show)
-  {
-    UiUtils.showIf(show, mSearchButtonFrame);
-  }
-
-  public void adjustSearchButtons(int width)
-  {
-    ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mSearchButtonFrame.getLayoutParams();
-    params.setMargins(width, params.topMargin, params.rightMargin, params.bottomMargin);
-    mSearchButtonFrame.requestLayout();
-  }
-
-  public void updateSearchButtonsTranslation(float translation)
-  {
-    mSearchButtonFrame.setTranslationY(translation);
-  }
-
-  public void fadeInSearchButtons()
-  {
-    UiUtils.show(mSearchButtonFrame);
-  }
-
-  public void fadeOutSearchButtons()
-  {
-    UiUtils.invisible(mSearchButtonFrame);
-  }
 
 
   public void show(boolean show)
@@ -276,9 +241,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     else if (!show && UiUtils.isVisible(mFrame))
       mNavMenu.hideNavBottomSheet();
     UiUtils.showIf(show, mFrame);
-    UiUtils.showIf(show, mSearchButtonFrame);
   }
-
 
   public boolean isNavMenuCollapsed()
   {
@@ -293,11 +256,6 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   public void collapseNavMenu()
   {
     mNavMenu.collapseNavBottomSheet();
-  }
-
-  public void resetSearchWheel()
-  {
-    mSearchWheel.reset();
   }
 
   @Override
@@ -316,7 +274,6 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   public void onActivityResumed(@NonNull Activity activity)
   {
 //    mNavMenu.refreshTts();
-    mSearchWheel.onResume();
     if (mBound)
       doBackground();
   }
@@ -337,7 +294,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState)
   {
     outState.putBoolean(STATE_BOUND, mBound);
-    mSearchWheel.saveState(outState);
+    mMapButtonsController.saveNavSearchState(outState);
   }
 
   public void onRestoreState(@NonNull Bundle savedInstanceState, @NonNull MwmActivity parent)
@@ -345,7 +302,7 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mBound = savedInstanceState.getBoolean(STATE_BOUND);
     if (mBound)
       start(parent);
-    mSearchWheel.restoreState(savedInstanceState);
+    mMapButtonsController.restoreNavSearchState(savedInstanceState);
   }
 
   @Override

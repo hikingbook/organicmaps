@@ -389,6 +389,7 @@
 	<string name="no_osm_account">Eikö sinulla ole OpenStreetMap tiliä?</string>
 	<string name="register_at_openstreetmap">Rekisteröidy</string>
 	<string name="login">Kirjaudu sisään</string>
+	<string name="login_osm">Kirjaudu OpenStreetMapiin</string>
 	<string name="password">Salasana</string>
 	<string name="forgot_password">Unohtuiko salasana?</string>
 	<string name="logout">Kirjaudu ulos</string>
@@ -427,6 +428,7 @@
 	<string name="editor_report_problem_other_title">Eri ongelma</string>
 	<string name="placepage_add_business_button">Lisää organisaatio</string>
 	<string name="message_invalid_feature_position">Kohdetta ei voida asettaa tänne</string>
+	<string name="osm_presentation">Kaikki karttatiedot tulevat OpenStreetMap-projektista. Se on kuin karttojen Wikipedia, jossa voit lisätä tai muokata paikkoja, ja ne ovat miljoonien käyttäjien saatavilla kaikkialla maailmassa.</string>
 	<string name="login_to_make_edits_visible">Kirjaudu sisään jotta muut käyttäjät voivat nähdä tekemäsi muokkaukset.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d/%2$d</string>
@@ -480,9 +482,9 @@
 	<string name="placepage_add_place_button">Lisää paikka kartalle</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Haluatko lähettää sen kaikille käyttäjille?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Varmistat, ettet syöttänyt henkilökohtaisia tietojasi.</string>
-	<string name="editor_share_to_all_dialog_message_2">Tarkistamme muutokset. Otamme sinuun yhteyttä sähköpostitse, jos meillä on kysyttävää.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-editorit tarkistavat muutokset ja ottavat sinuun yhteyttä, jos heillä on kysyttävää.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps on ilmainen ja avoimen lähdekoodin offline-karttasovellus. Ei mainoksia. Ei seurantaa. Jos näet virheen kartalla, korjaa se OpenStreetMapissa. Hankkeen ovat luoneet harrastajat vapaa-ajallamme, joten tarvitsemme palautettasi ja tukeasi.</string>
 	<!-- For the first routing -->
@@ -712,6 +714,8 @@
 	<string name="type.amenity.doctors">Lääkärin vastaanotto</string>
 	<string name="type.amenity.drinking_water">Juomavesi</string>
 	<string name="type.amenity.driving_school">Autokoulu</string>
+	<string name="type.amenity.music_school">Musiikkikoulu</string>
+	<string name="type.amenity.language_school">Kielikoulu</string>
 	<string name="type.office.diplomatic">Suurlähetystö</string>
 	<string name="type.amenity.fast_food">Pikaruokala</string>
 	<string name="type.amenity.ferry_terminal">Lautta</string>
@@ -810,17 +814,25 @@
 	<string name="type.building.has_parts">Rakennus</string>
 	<string name="type.building.train_station">Rautatieasema</string>
 	<string name="type.cemetery.grave">Hauta</string>
+	<string name="type.craft">Käsityö</string>
+	<string name="type.craft.beekeeper">Mehiläishoitaja</string>
+	<string name="type.craft.blacksmith">Seppä</string>
 	<string name="type.craft.brewery">Panimo</string>
 	<string name="type.craft.carpenter">Puuseppä</string>
+	<string name="type.craft.confectionery">Kondiittori</string>
 	<string name="type.craft.electrician">Sähkömies</string>
+	<string name="type.craft.electronics_repair">Elektroniikan korjaus</string>
 	<string name="type.craft.gardener">Puutarhuri</string>
+	<string name="type.craft.handicraft">Käsityö</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Ilmastointilaite</string>
 	<string name="type.craft.metal_construction">Metallimies</string>
 	<string name="type.craft.painter">Maalari</string>
 	<string name="type.craft.photographer">Valokuvaaja</string>
 	<string name="type.craft.plumber">Putkimies</string>
+	<string name="type.craft.sawmill">Saha</string>
 	<string name="type.craft.shoemaker">Suutari</string>
+	<string name="type.craft.winery">Viinitila</string>
 	<string name="type.craft.tailor">Räätäli</string>
 	<string name="type.cuisine.african">Afrikkalainen keittiö</string>
 	<string name="type.cuisine.american">Amerikkalainen keittiö</string>
@@ -1080,8 +1092,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Arkeologinen kohde</string>
 	<string name="type.historic.castle">Linna</string>
+	<string name="type.historic.castle.castrum">Castra</string>
 	<string name="type.historic.castle.defensive">Linna</string>
+	<string name="type.historic.castle.fortified_church">Linnoitettu kirkko</string>
+	<string name="type.historic.castle.fortress">Linnoitus</string>
+	<string name="type.historic.castle.hillfort">Linnavuori</string>
+	<string name="type.historic.castle.kremlin">Kreml</string>
+	<string name="type.historic.castle.manor">Kartano</string>
+	<string name="type.historic.castle.palace">Palatsi</string>
+	<string name="type.historic.castle.shiro">Japanilainen linna</string>
 	<string name="type.historic.castle.stately">Linna</string>
+	<string name="type.historic.city_gate">Kaupungin portti</string>
 	<string name="type.historic.memorial">Muistomerkki</string>
 	<string name="type.historic.memorial.plaque">Muistomerkki</string>
 	<string name="type.historic.memorial.sculpture">Muistomerkki</string>
@@ -1109,6 +1130,7 @@
 	<string name="type.leisure.fitness_centre">Kuntosali</string>
 	<string name="type.leisure.fitness_station">Kuntokeskus</string>
 	<string name="type.leisure.garden">Puutarha</string>
+	<string name="type.leisure.garden.residential">Puutarha</string>
 	<string name="type.leisure.golf_course">Golf-rata</string>
 	<string name="type.leisure.nature_reserve">Luonnonsuojelualue</string>
 	<string name="type.leisure.park">Puisto</string>
@@ -1374,8 +1396,8 @@
 	<string name="type.sport.table_tennis">Pöytätennis</string>
 	<string name="type.sport.tennis">Tenniskenttä</string>
 	<string name="type.sport.volleyball">Lentopallo</string>
-	<string name="type.sport.9pin">Keilailu</string>
 	<string name="type.sport.10pin">Keilailu</string>
+	<string name="type.sport.9pin">Keilailu</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Jääkiekko</string>

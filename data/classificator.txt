@@ -63,10 +63,12 @@ world  +
         ice_cream  -
         internet_cafe  -
         kindergarten  -
+        language_school  -
         library  -
         loading_dock  -
         marketplace  -
         motorcycle_parking  -
+        music_school  -
         nightclub  -
         nursing_home  -
         parcel_locker  -
@@ -470,9 +472,18 @@ world  +
         battlefield  -
         boundary_stone  -
         castle  +
+            castrum  -
             defensive  -
+            fortified_church  -
+            fortress  -
+            hillfort  -
+            kremlin  -
+            manor  -
+            palace  -
+            shiro  -
             stately  -
             {}
+        city_gate  -
         citywalls  -
         fort  -
         memorial  +
@@ -586,7 +597,9 @@ world  +
         swimming_pool  +
             private  -
             {}
-        track  -
+        track  +
+            area  -
+            {}
         water_park  -
         {}
     man_made  +

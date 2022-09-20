@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Ez al duzu OpenStreetMap konturik?";
 
-"register_at_openstreetmap" = "Eman izena OSM";
+"register_at_openstreetmap" = "Eman izena OpenStreetMap";
 
 "password_8_chars_min" = "Pasahitza (gutxienez 8 karaktere)";
 
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Erabiltzaile guztiei bidali nahi diezu?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Ziurtatu ez duzula datu pertsonalik sartu.";
 
-"editor_share_to_all_dialog_message_2" = "Aldaketak egiaztatuko ditugu. Edozein zalantza izanez gero, zurekin harremanetan jarriko gara posta elektronikoz.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap editoreek aldaketak egiaztatuko dituzte eta zurekin harremanetan jarriko dira zalantzaren bat izanez gero.";
 
 "navigation_stop_button" = "gelditu";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Ibilbidea";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Ur edangarria";
 
 "type.amenity.driving_school" = "Autoeskola";
+
+"type.amenity.music_school" = "Musika Eskola";
+
+"type.amenity.language_school" = "Hizkuntza Eskola";
 
 "type.office.diplomatic" = "Enbaxada";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Hilobia";
 
-"type.craft" = "Craft";
+"type.craft" = "Artisautza";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Erlezaina";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Errementari";
 
 "type.craft.brewery" = "Garagardo fabrika";
 
 "type.craft.carpenter" = "Arotza";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Gozogilea";
 
 "type.craft.electrician" = "Elektrizista teknikaria";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Elektronika Konponketa";
 
 "type.craft.gardener" = "Paisaia";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Eskulangintza";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Aire girotua";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Iturgina";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Zerrategi";
 
 "type.craft.shoemaker" = "Zapataria";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Upategi";
 
 "type.craft.tailor" = "Jostun";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Gaztelua";
+"type.historic.castle" = "Gaztelu";
 
-"type.historic.castle.defensive" = "Gaztelua";
+"type.historic.castle.castrum" = "Castrum";
+
+"type.historic.castle.defensive" = "Gaztelu";
+
+"type.historic.castle.fortified_church" = "Eliza-gotorleku";
+
+"type.historic.castle.fortress" = "Gotorlekua";
+
+"type.historic.castle.hillfort" = "Kastro";
+
+"type.historic.castle.kremlin" = "Kremlina";
+
+"type.historic.castle.manor" = "Jauregitxo";
+
+"type.historic.castle.palace" = "Jauregi";
+
+"type.historic.castle.shiro" = "Japoniar gaztelu";
 
 "type.historic.castle.stately" = "Gaztelua";
+
+"type.historic.city_gate" = "Portale";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Gimnasioa";
 
 "type.leisure.garden" = "Lorategi";
+
+"type.leisure.garden.residential" = "Lorategi";
 
 "type.leisure.golf_course" = "Golf kurtsoa";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Boleibol";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Don't have an OpenStreetMap account?";
 
-"register_at_openstreetmap" = "Register at OSM";
+"register_at_openstreetmap" = "Register at OpenStreetMap";
 
 "password_8_chars_min" = "Password (8 characters minimum)";
 
@@ -680,7 +680,7 @@
 
 "message_invalid_feature_position" = "No object can be located here";
 
-"login_to_make_edits_visible" = "Log in so other users can see the changes that you have made";
+"login_to_make_edits_visible" = "Log in to OpenStreetMap.org so other users can see the changes you have made.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "To download, you need more space. Please delete any unnecessary data.";
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Do you want to send it to all users?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Make sure you did not enter any personal data.";
 
-"editor_share_to_all_dialog_message_2" = "We will check the changes. If we have any questions we will contact you via email.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap editors will check the changes and get in contact with you if they have any questions.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Track";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Drinking Water";
 
 "type.amenity.driving_school" = "Driving School";
+
+"type.amenity.music_school" = "Music School";
+
+"type.amenity.language_school" = "Language School";
 
 "type.office.diplomatic" = "Embassy";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Castle";
 
+"type.historic.castle.castrum" = "Roman fort";
+
 "type.historic.castle.defensive" = "Castle";
 
+"type.historic.castle.fortified_church" = "Fortified church";
+
+"type.historic.castle.fortress" = "Fortress";
+
+"type.historic.castle.hillfort" = "Hillfort";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Manor house";
+
+"type.historic.castle.palace" = "Palace";
+
+"type.historic.castle.shiro" = "Japanese castle";
+
 "type.historic.castle.stately" = "Castle";
+
+"type.historic.city_gate" = "City gate";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness Station";
 
 "type.leisure.garden" = "Garden";
+
+"type.leisure.garden.residential" = "Residential Garden";
 
 "type.leisure.golf_course" = "Golf Course";
 
@@ -2946,7 +2976,7 @@
 
 "type.sport.basketball" = "Basketball";
 
-"type.sport.beachvolleyball" = "Beachvolleyball";
+"type.sport.beachvolleyball" = "Beach volleyball";
 
 "type.sport.bowls" = "Bowls";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volleyball";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

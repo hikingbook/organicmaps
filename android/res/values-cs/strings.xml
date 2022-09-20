@@ -383,6 +383,7 @@
 	<string name="no_osm_account">Nemáte účet u OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Registrace</string>
 	<string name="login">Přihlásit se</string>
+	<string name="login_osm">Přihlaste se do OpenStreetMap</string>
 	<string name="password">Heslo</string>
 	<string name="forgot_password">Zapomenuté heslo?</string>
 	<string name="logout">Odhlášení</string>
@@ -423,6 +424,7 @@
 	<string name="editor_report_problem_other_title">Jiný problém</string>
 	<string name="placepage_add_business_button">Přidat organizaci</string>
 	<string name="message_invalid_feature_position">Objekt zde nemůže být umístěn</string>
+	<string name="osm_presentation">Všechna mapová data pocházejí z projektu OpenStreetMap. Je to jako Wikipedie s mapami, kde můžete přidávat nebo upravovat místa a jsou dostupné milionům uživatelů po celém světě.</string>
 	<string name="login_to_make_edits_visible">Přihlaste se, aby ostatní uživatelé mohli vidět změny, které jste provedli.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d z %2$d</string>
@@ -476,9 +478,9 @@
 	<string name="placepage_add_place_button">Přidat místo na mapu</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Chcete jej poslat všem uživatelům?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Ujistěte se, že jste nezadali žádná osobní data.</string>
-	<string name="editor_share_to_all_dialog_message_2">Změny ověříme. Budeme-li k vám mít jakékoli dotazy, budeme vás kontaktovat prostřednictvím emailu.</string>
+	<string name="editor_share_to_all_dialog_message_2">Redaktoři OpenStreetMap zkontrolují změny a budou vás kontaktovat, pokud budou mít nějaké dotazy.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps jsou bezplatná offline mapová aplikace s otevřeným zdrojovým kódem. Žádné reklamy. Žádné sledování. Pokud na mapě vidíte chybu, opravte ji v OpenStreetMap. Projekt vytvářejí nadšenci v našem volném čase, takže potřebujeme vaši zpětnou vazbu a podporu.</string>
 	<!-- For the first routing -->
@@ -701,6 +703,8 @@
 	<string name="type.amenity.doctors">Lékařská ordinace</string>
 	<string name="type.amenity.drinking_water">Pitná voda</string>
 	<string name="type.amenity.driving_school">Autoškola</string>
+	<string name="type.amenity.music_school">Hudební škola</string>
+	<string name="type.amenity.language_school">Jazyková škola</string>
 	<string name="type.office.diplomatic">Velvyslanectví</string>
 	<string name="type.amenity.fast_food">Rychlé občerstvení</string>
 	<string name="type.amenity.ferry_terminal">Trajekt</string>
@@ -798,17 +802,25 @@
 	<string name="type.building.has_parts">Stavba</string>
 	<string name="type.building.train_station">Železniční stanice</string>
 	<string name="type.cemetery.grave">Hrob</string>
+	<string name="type.craft">Řemeslo</string>
+	<string name="type.craft.beekeeper">Včelař</string>
+	<string name="type.craft.blacksmith">Kovář</string>
 	<string name="type.craft.brewery">Pivovar</string>
 	<string name="type.craft.carpenter">Truhlář</string>
+	<string name="type.craft.confectionery">Cukrářské výrobky</string>
 	<string name="type.craft.electrician">Elektrikář</string>
+	<string name="type.craft.electronics_repair">Opravy elektroniky</string>
 	<string name="type.craft.gardener">Zahradník</string>
+	<string name="type.craft.handicraft">Ruční práce</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">HVAC</string>
 	<string name="type.craft.metal_construction">Kovodílna</string>
 	<string name="type.craft.painter">Malíř</string>
 	<string name="type.craft.photographer">Fotograf</string>
 	<string name="type.craft.plumber">Instalatér</string>
+	<string name="type.craft.sawmill">Pila</string>
 	<string name="type.craft.shoemaker">Opravna obuvi</string>
+	<string name="type.craft.winery">Vinařství</string>
 	<string name="type.craft.tailor">Krejčí</string>
 	<string name="type.cuisine.african">Africká kuchyně</string>
 	<string name="type.cuisine.american">Americká kuchyně</string>
@@ -1066,9 +1078,18 @@
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Vykopávky</string>
-	<string name="type.historic.castle">Zámek</string>
-	<string name="type.historic.castle.defensive">Zámek</string>
+	<string name="type.historic.castle">Hrad</string>
+	<string name="type.historic.castle.castrum">Castrum</string>
+	<string name="type.historic.castle.defensive">Hrad</string>
+	<string name="type.historic.castle.fortified_church">Opevněný kostel</string>
+	<string name="type.historic.castle.fortress">Pevnost</string>
+	<string name="type.historic.castle.hillfort">Hradiště</string>
+	<string name="type.historic.castle.kremlin">Kreml</string>
+	<string name="type.historic.castle.manor">Panský dům</string>
+	<string name="type.historic.castle.palace">Palác</string>
+	<string name="type.historic.castle.shiro">Japonský hrad</string>
 	<string name="type.historic.castle.stately">Zámek</string>
+	<string name="type.historic.city_gate">Městská brána</string>
 	<string name="type.historic.memorial">Pomník</string>
 	<string name="type.historic.memorial.plaque">Pomník</string>
 	<string name="type.historic.memorial.sculpture">Pomník</string>
@@ -1096,6 +1117,7 @@
 	<string name="type.leisure.fitness_centre">Fitness</string>
 	<string name="type.leisure.fitness_station">Posilovna</string>
 	<string name="type.leisure.garden">Zahrada</string>
+	<string name="type.leisure.garden.residential">Zahrada</string>
 	<string name="type.leisure.golf_course">Golf</string>
 	<string name="type.leisure.nature_reserve">Rezervace</string>
 	<string name="type.leisure.park">Park</string>
@@ -1358,8 +1380,8 @@
 	<string name="type.sport.table_tennis">Stolní tenis</string>
 	<string name="type.sport.tennis">Tenisový kurt</string>
 	<string name="type.sport.volleyball">Volejbal</string>
-	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
 	<string name="type.sport.padel">Padel</string>
 	<string name="type.sport.futsal">Futsal</string>
 	<string name="type.sport.ice_hockey">Lední hokej</string>

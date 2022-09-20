@@ -46,7 +46,8 @@
     <attr name="myPositionButtonAnimation" format="reference" />
     <attr name="wheelPendingAnimation" format="reference" />
     <attr name="trafficLoadingAnimation" format="reference" />
-    <attr name="navButtonsTheme" format="reference" />
+    <attr name="navButtonsThemeRect" format="reference" />
+    <attr name="navButtonsThemeRound" format="reference" />
     <attr name="downloaderTheme" format="reference" />
     <attr name="navigationTheme" format="reference" />
     <attr name="fabAdd" format="reference" />
@@ -70,11 +71,9 @@
     <attr name="filterPropertyBackground" format="reference" />
     <attr name="adChoicesIcon" format="reference" />
     <attr name="saleIcon" format="reference" />
-    <attr name="toggleMapLayerBtnBg" format="reference" />
     <attr name="tipsBgColor" format="color" />
     <attr name="tipsPrimaryTextColor" format="color" />
     <attr name="tipsSecondaryTextColor" format="color" />
-    <attr name="bgCrown" format="reference" />
     <attr name="bgDogBtn" format="reference" />
     <attr name="guidesTime" format="reference" />
     <attr name="guidesAltitude" format="reference" />
@@ -84,11 +83,6 @@
     <attr name="bgRectangleView" format="reference" />
     <attr name="bgRoundedCard" format="reference" />
     <attr name="tintLonelyPlanetLogo" format="color" />
-  </declare-styleable>
-  <declare-styleable name="ThemeAttrs.NavButtons">
-    <attr name="nav_background" format="reference" />
-    <attr name="nav_bg_subway" format="reference" />
-    <attr name="nav_bg_isolines" format="reference" />
   </declare-styleable>
   <declare-styleable name="ThemeAttrs.Downloader">
     <attr name="status_done" format="reference" />

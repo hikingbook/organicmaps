@@ -590,7 +590,7 @@
 
 "no_osm_account" = "ایا حساب OpenStreetMap ندارید؟";
 
-"register_at_openstreetmap" = "ثبت نام در OSM";
+"register_at_openstreetmap" = "ثبت نام در OpenStreetMap";
 
 "password_8_chars_min" = "رمز عبور (حداقل 8 عدد یا حرف)";
 
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "ایا می خواهید ان را برای دیگر کاربران ارسال کنید؟";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "مطمئن شوید که هیچ اطلاعات شخصی وارد نکرده باشد.";
 
-"editor_share_to_all_dialog_message_2" = "ما تغییرات را بررسی می کنیم.اگر سوالی بود با ایمیل با شما تماس می گیریم.";
+"editor_share_to_all_dialog_message_2" = ".ﺖﻓﺮﮔ ﺪﻨﻫﺍﻮﺧ ﺱﺎﻤﺗ ﺎﻤﺷ ﺎﺑ ﻝﺍﻮﺳ ﻪﻧﻮﮔﺮﻫ ﻦﺘﺷﺍﺩ ﺕﺭﻮﺻ ﺭﺩ ﻭ ﻩﺩﺮﮐ ﯽﺳﺭﺮﺑ ﺍﺭ ﺕﺍﺮﯿﯿﻐﺗ Ope";
 
 "navigation_stop_button" = "توقف";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "مسیر";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsIR";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "اب اشامیدنی";
 
 "type.amenity.driving_school" = "اموزشگاه رانندگی";
+
+"type.amenity.music_school" = "ﯽﻘﯿﺳﻮﻣ ﻩﺎﮕﺷﺯﻮﻣﺁ";
+
+"type.amenity.language_school" = "ﻥﺎﺑﺯ ﻪﺳﺭﺪﻣ";
 
 "type.office.diplomatic" = "سفارت";
 
@@ -1599,28 +1609,28 @@
 
 "type.cemetery.grave" = "ﺮﺒﻗ";
 
-"type.craft" = "Craft";
+"type.craft" = "صنعت‌گری";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "زنبوردار";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "آهنگر";
 
 "type.craft.brewery" = "کارخانه ابجوسازی";
 
 "type.craft.carpenter" = "نجار";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "قنادی";
 
 "type.craft.electrician" = "برق کار";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "تعمیرات الکترونیک";
 
 "type.craft.gardener" = "باغبان";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "صنایع دستی";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "HVAC";
+"type.craft.hvac" = "گرمایش و تهویه‌هوا";
 
 "type.craft.metal_construction" = "اهن کار";
 
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "لوله کش";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "کارخانه چوب‌بری";
 
 "type.craft.shoemaker" = "کفاش";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "شراب‌خانه";
 
 "type.craft.tailor" = "خیاطی";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "گردشگری";
+"type.historic.castle" = "قلعه";
 
-"type.historic.castle.defensive" = "گردشگری";
+"type.historic.castle.castrum" = "قلعه رومی";
+
+"type.historic.castle.defensive" = "قلعه";
+
+"type.historic.castle.fortified_church" = "کلیسای مستحکم";
+
+"type.historic.castle.fortress" = "قلعه";
+
+"type.historic.castle.hillfort" = "تپه‌قلعه";
+
+"type.historic.castle.kremlin" = "کرملین";
+
+"type.historic.castle.manor" = "خانه ارباب یا صاحب تیول";
+
+"type.historic.castle.palace" = "کاخ";
+
+"type.historic.castle.shiro" = "قلعه ژاپنی";
 
 "type.historic.castle.stately" = "گردشگری";
+
+"type.historic.city_gate" = "دروازه شهر";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "پارک سلامت";
 
 "type.leisure.garden" = "گردشگری";
+
+"type.leisure.garden.residential" = "گردشگری";
 
 "type.leisure.golf_course" = "زمین گلف";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "والیبال";
 
-"type.sport.9pin" = "بولینگ";
-
 "type.sport.10pin" = "بولینگ";
+
+"type.sport.9pin" = "بولینگ";
 
 "type.sport.padel" = "ﻝﺩﺎﭘ";
 

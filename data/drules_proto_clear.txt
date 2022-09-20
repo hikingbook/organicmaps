@@ -3478,6 +3478,13 @@ cont {
 cont {
   name: "amenity-college"
   element {
+    scale: 15
+    area {
+      color: 16311482
+      priority: -15982
+    }
+  }
+  element {
     scale: 16
     area {
       color: 16311482
@@ -3902,7 +3909,25 @@ cont {
 cont {
   name: "amenity-driving_school"
   element {
+    scale: 17
+    symbol {
+      name: "driving_school-m"
+      priority: 16000
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "driving_school-m"
+      priority: 16000
+    }
+  }
+  element {
     scale: 19
+    symbol {
+      name: "driving_school-m"
+      priority: 16000
+    }
     caption {
       primary {
         height: 10
@@ -4850,6 +4875,20 @@ cont {
 cont {
   name: "amenity-kindergarten"
   element {
+    scale: 15
+    area {
+      color: 16311482
+      priority: -15982
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 16311482
+      priority: -15982
+    }
+  }
+  element {
     scale: 17
     area {
       color: 16311482
@@ -4906,6 +4945,38 @@ cont {
         is_optional: true
       }
       priority: 16000
+    }
+  }
+}
+cont {
+  name: "amenity-language_school"
+  element {
+    scale: 17
+    symbol {
+      name: "language_school-m"
+      priority: 16000
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "language_school-m"
+      priority: 16000
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "language_school-m"
+      priority: 16000
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+      }
+      priority: 15300
     }
   }
 }
@@ -5099,6 +5170,38 @@ cont {
         color: 4473924
         offset_y: 1
         is_optional: true
+      }
+      priority: 15300
+    }
+  }
+}
+cont {
+  name: "amenity-music_school"
+  element {
+    scale: 17
+    symbol {
+      name: "music_school-m"
+      priority: 16000
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "music_school-m"
+      priority: 16000
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "music_school-m"
+      priority: 16000
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
       }
       priority: 15300
     }
@@ -7681,6 +7784,20 @@ cont {
 cont {
   name: "amenity-school"
   element {
+    scale: 15
+    area {
+      color: 16311482
+      priority: -15982
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 16311482
+      priority: -15982
+    }
+  }
+  element {
     scale: 17
     area {
       color: 16311482
@@ -8683,23 +8800,15 @@ cont {
   element {
     scale: 17
     symbol {
-      name: "vending-m"
+      name: "zero-icon"
       priority: 16594
       min_distance: 20
-    }
-    caption {
-      primary {
-        height: 10
-        color: 4473924
-        offset_y: 1
-      }
-      priority: 15594
     }
   }
   element {
     scale: 18
     symbol {
-      name: "vending-m"
+      name: "fuel-dispenser-m"
       priority: 16594
       min_distance: 20
     }
@@ -8715,7 +8824,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "vending-m"
+      name: "fuel-dispenser-m"
       priority: 16594
       min_distance: 20
     }
@@ -29613,7 +29722,7 @@ cont {
   element {
     scale: 17
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16660
     }
     caption {
@@ -29629,7 +29738,7 @@ cont {
   element {
     scale: 18
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16660
     }
     caption {
@@ -29645,7 +29754,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "remains-m"
+      name: "archaeological-site-m"
       priority: 16660
     }
     caption {
@@ -29732,6 +29841,141 @@ cont {
 }
 cont {
   name: "historic-castle"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-castrum"
   element {
     scale: 12
     symbol {
@@ -30001,6 +30245,951 @@ cont {
   }
 }
 cont {
+  name: "historic-castle-fortified_church"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-fortress"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-hillfort"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-kremlin"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-manor"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-palace"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-castle-shiro"
+  element {
+    scale: 12
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16867
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16867
+      min_distance: 5
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16867
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15867
+    }
+  }
+}
+cont {
   name: "historic-castle-stately"
   element {
     scale: 12
@@ -30132,6 +31321,128 @@ cont {
         is_optional: true
       }
       priority: 15867
+    }
+  }
+}
+cont {
+  name: "historic-city_gate"
+  element {
+    scale: 13
+    symbol {
+      name: "remains-s"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "remains-s"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "remains-m"
+      priority: 16000
+      min_distance: 24
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "remains-m"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "remains-m"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "remains-m"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "remains-m"
+      priority: 16000
+      min_distance: 12
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15000
     }
   }
 }
@@ -32330,6 +33641,20 @@ cont {
 }
 cont {
   name: "landuse-education"
+  element {
+    scale: 15
+    area {
+      color: 16311482
+      priority: -15991
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 16311482
+      priority: -15991
+    }
+  }
   element {
     scale: 17
     area {
@@ -37660,6 +38985,13 @@ cont {
 cont {
   name: "leisure-playground"
   element {
+    scale: 16
+    area {
+      color: 13749671
+      priority: -15963
+    }
+  }
+  element {
     scale: 17
     area {
       color: 13749671
@@ -38230,19 +39562,10 @@ cont {
 cont {
   name: "leisure-track"
   element {
-    scale: 14
-    lines {
-      width: 1.0
-      color: 6510384
-      priority: 1320
-      cap: BUTTCAP
-    }
-  }
-  element {
     scale: 15
     lines {
       width: 1.5
-      color: 6510384
+      color: 13749671
       priority: 1320
       cap: BUTTCAP
     }
@@ -38251,7 +39574,7 @@ cont {
     scale: 16
     lines {
       width: 1.8
-      color: 6510384
+      color: 13749671
       priority: 1320
     }
     caption {
@@ -38267,7 +39590,7 @@ cont {
     scale: 17
     lines {
       width: 3.0
-      color: 6510384
+      color: 13749671
       priority: 1047
     }
     caption {
@@ -38284,7 +39607,7 @@ cont {
     scale: 18
     lines {
       width: 3.0
-      color: 6510384
+      color: 13749671
       priority: 1047
     }
     caption {
@@ -38301,7 +39624,7 @@ cont {
     scale: 19
     lines {
       width: 4.0
-      color: 6510384
+      color: 13749671
       priority: 1047
     }
     caption {
@@ -38312,6 +39635,76 @@ cont {
         offset_y: 1
       }
       priority: 15047
+    }
+  }
+}
+cont {
+  name: "leisure-track-area"
+  element {
+    scale: 15
+    area {
+      color: 13749671
+      priority: -15680
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 13749671
+      priority: -15680
+    }
+    caption {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 15320
+    }
+  }
+  element {
+    scale: 17
+    area {
+      color: 13749671
+      priority: -15680
+    }
+    caption {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 15320
+    }
+  }
+  element {
+    scale: 18
+    area {
+      color: 13749671
+      priority: -15680
+    }
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 15320
+    }
+  }
+  element {
+    scale: 19
+    area {
+      color: 13749671
+      priority: -15680
+    }
+    caption {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 15320
     }
   }
 }
@@ -68828,6 +70221,20 @@ cont {
 cont {
   name: "sport-multi"
   element {
+    scale: 15
+    area {
+      color: 13749671
+      priority: -15387
+    }
+  }
+  element {
+    scale: 16
+    area {
+      color: 13749671
+      priority: -15387
+    }
+  }
+  element {
     scale: 17
     area {
       color: 13749671
@@ -69210,6 +70617,13 @@ cont {
 }
 cont {
   name: "sport-soccer"
+  element {
+    scale: 15
+    area {
+      color: 13749671
+      priority: -15387
+    }
+  }
   element {
     scale: 16
     area {

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.mapswithme.maps.MwmApplication;
@@ -25,6 +26,7 @@ import java.util.List;
 
 public final class PlacePageButtons
 {
+  public static final String PLACEPAGE_MORE_MENU_ID = "PLACEPAGE_MORE_MENU_BOTTOM_SHEET";
   private final int mMaxButtons;
 
   private final PlacePageView mPlacePage;
@@ -32,6 +34,7 @@ public final class PlacePageButtons
   private final ItemListener mItemListener;
 
   private List<PlacePageButton> mPrevItems;
+  private List<PlacePageButton>  mMoreItems;
 
   interface PlacePageButton
   {
@@ -109,7 +112,7 @@ public final class PlacePageButtons
     ROUTE_AVOID_FERRY,
     ROUTE_AVOID_UNPAVED,
     SHARE,
-//    MORE,
+    MORE,
     CALL
   }
 
@@ -179,10 +182,10 @@ public final class PlacePageButtons
         ButtonType.SHARE),
 
     // Must not be used outside
-//    MORE(
-//        R.string.placepage_more_button,
-//        new ImageResources(R.drawable.ic_more),
-//        ButtonType.MORE),
+    MORE(
+        R.string.placepage_more_button,
+        new ImageResources(R.drawable.ic_more),
+        ButtonType.MORE),
 
     CALL(
         R.string.placepage_call_button,
@@ -308,22 +311,25 @@ public final class PlacePageButtons
     }
   }
 
-  private ArrayList<MenuBottomSheetItem> getMenuItems(final List<PlacePageButton> buttons)
+  @Nullable
+  public ArrayList<MenuBottomSheetItem> getMenuBottomSheetItems()
   {
+    if (mMoreItems == null)
+      return null;
     ArrayList<MenuBottomSheetItem> items = new ArrayList<>();
-    for (int i = mMaxButtons; i < buttons.size(); i++)
+    for (int i = mMaxButtons; i < mMoreItems.size(); i++)
     {
-      PlacePageButton bsItem = buttons.get(i);
+      final PlacePageButton bsItem = mMoreItems.get(i);
       int iconRes = bsItem.getIcon().getEnabledStateResId(mPlacePage.getContext());
       items.add(new MenuBottomSheetItem(bsItem.getTitle(), iconRes, () -> mItemListener.onItemClick(bsItem)));
     }
     return items;
   }
 
-  private void showPopup(final List<PlacePageButton> buttons)
+  private void showPopup()
   {
-    new MenuBottomSheetFragment(getMenuItems(buttons))
-        .show(mPlacePage.getActivity().getSupportFragmentManager(), "moreBottomSheet");
+    MenuBottomSheetFragment.newInstance(PLACEPAGE_MORE_MENU_ID)
+        .show(mPlacePage.getActivity().getSupportFragmentManager(), PLACEPAGE_MORE_MENU_ID);
   }
 
   private View createButton(@NonNull final List<PlacePageButton> items,
@@ -339,7 +345,9 @@ public final class PlacePageButtons
     title.setText(current.getTitle());
     icon.setImageResource(current.getIcon().getEnabledStateResId(context));
     mItemListener.onPrepareVisibleView(current, parent, icon, title);
-    parent.setOnClickListener(new ShowPopupClickListener(current, items));
+    if (current == Item.MORE)
+      mMoreItems = items;
+    parent.setOnClickListener(new ShowPopupClickListener(current));
     return parent;
   }
 
@@ -361,23 +369,19 @@ public final class PlacePageButtons
   {
     @NonNull
     private final PlacePageButton mCurrent;
-    @NonNull
-    private final List<PlacePageButton> mItems;
 
-    public ShowPopupClickListener(@NonNull PlacePageButton current,
-                                  @NonNull List<PlacePageButton> items)
+    public ShowPopupClickListener(@NonNull PlacePageButton current)
     {
       mCurrent = current;
-      mItems = items;
     }
 
     @Override
     public void onClick(View v)
     {
 //      if (mCurrent == Item.MORE)
-//        showPopup(mItems);
-//      else
-//        mItemListener.onItemClick(mCurrent);
+ //       showPopup();
+ //     else
+ //       mItemListener.onItemClick(mCurrent);
     }
   }
 }

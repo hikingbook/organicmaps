@@ -372,8 +372,9 @@
 	<string name="closed">Затворено</string>
 	<string name="edit_opening_hours">Редакция на работното време</string>
 	<string name="no_osm_account">Нямате акаунт в OpenStreetMap?</string>
-	<string name="register_at_openstreetmap">Регистриране в OSM</string>
+	<string name="register_at_openstreetmap">Регистриране в OpenStreetMap</string>
 	<string name="login">Вход</string>
+	<string name="login_osm">Влезте в OpenStreetMap</string>
 	<string name="password">Парола</string>
 	<string name="forgot_password">Забравили сте паролата си?</string>
 	<string name="logout">Изход</string>
@@ -414,6 +415,7 @@
 	<string name="editor_report_problem_other_title">Друг проблем</string>
 	<string name="placepage_add_business_button">Добавяне на бизнес</string>
 	<string name="message_invalid_feature_position">Тук не може да бъде намерен обект</string>
+	<string name="osm_presentation">Всички картографски данни идват от проекта OpenStreetMap. Това е като Wikipedia за карти, където можете да добавяте или редактирате места и те стават достъпни за милиони потребители по целия свят.</string>
 	<string name="login_to_make_edits_visible">Влезте в системата, за да могат другите потребители да видят направените от вас промени</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d от %2$d</string>
@@ -465,9 +467,9 @@
 	<string name="placepage_add_place_button">Добавяне на място в картата</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Искате ли да го изпратите на всички потребители?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Уверете се, че не сте въвели никакви лични данни.</string>
-	<string name="editor_share_to_all_dialog_message_2">Ще проверим промените. Ако имаме някакви въпроси, ще се свържем с вас по имейл.</string>
+	<string name="editor_share_to_all_dialog_message_2">Редакторите на OpenStreetMap ще проверят промените и ще се свържат с вас, ако имат въпроси.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps е безплатно приложение за офлайн карти с отворен код. Без реклами. Без проследяване. Ако видите грешка на картата, моля, поправете я в OpenStreetMap. Проектът е създаден от ентусиасти в свободното ни време, така че имаме нужда от вашата отзиви и подкрепа.</string>
 	<!-- For the first routing -->
@@ -643,6 +645,9 @@
 	<string name="splash_subtitle">Картографски данни от OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.amenity.driving_school">Автошкола</string>
+	<string name="type.amenity.music_school">Музикално училище</string>
+	<string name="type.amenity.language_school">Езиково училище</string>
 	<string name="type.amenity.parking_entrance.private">Вход за паркинг</string>
 	<string name="type.amenity.parking_entrance.permissive">Вход за паркинг</string>
 	<string name="type.amenity.parking_entrance">Вход за паркинг</string>
@@ -651,9 +656,26 @@
 	<!-- SECTION: Types: Recycling -->
 	<string name="type.recycling.batteries">Батерии</string>
 	<string name="type.cemetery.grave">Гроб</string>
+	<string name="type.craft">Занаяти</string>
+	<string name="type.craft.beekeeper">Пчелар</string>
+	<string name="type.craft.blacksmith">Ковачница</string>
+	<string name="type.craft.brewery">Пивоварна</string>
+	<string name="type.craft.carpenter">Марангоз</string>
+	<string name="type.craft.confectionery">Сладкарски изделия</string>
+	<string name="type.craft.electrician">Електротехник</string>
+	<string name="type.craft.electronics_repair">Ремонт на електроника</string>
+	<string name="type.craft.gardener">Градинар</string>
+	<string name="type.craft.handicraft">Занаят</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Отопление, вентилация и климатизация</string>
 	<string name="type.craft.metal_construction">Метални конструкции</string>
+	<string name="type.craft.painter">Художник</string>
+	<string name="type.craft.photographer">Фотограф</string>
+	<string name="type.craft.plumber">Водопроводчик</string>
+	<string name="type.craft.sawmill">Дъскорезница</string>
+	<string name="type.craft.shoemaker">Обущар</string>
+	<string name="type.craft.winery">Винарна</string>
+	<string name="type.craft.tailor">Шивач</string>
 	<string name="type.healthcare.laboratory">Медицинска лаборатория</string>
 
 	<!-- SECTION: Types: Roads -->
@@ -748,6 +770,18 @@
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Археологически сайт</string>
+	<string name="type.historic.castle">Замък</string>
+	<string name="type.historic.castle.castrum">Каструм</string>
+	<string name="type.historic.castle.defensive">Замък</string>
+	<string name="type.historic.castle.fortified_church">Укрепена църква</string>
+	<string name="type.historic.castle.fortress">Крепост</string>
+	<string name="type.historic.castle.hillfort">Градище</string>
+	<string name="type.historic.castle.kremlin">Кремъл</string>
+	<string name="type.historic.castle.manor">Усадба</string>
+	<string name="type.historic.castle.palace">Дворец</string>
+	<string name="type.historic.castle.shiro">Японски замък</string>
+	<string name="type.historic.castle.stately">Замък</string>
+	<string name="type.historic.city_gate">Градска порта</string>
 	<string name="type.landuse.basin">Резервоар</string>
 	<string name="type.leisure.picnic_table">Маса за пикник</string>
 	<string name="type.sport.climbing">Катерене</string>
@@ -871,8 +905,8 @@
 	<string name="type.sport.table_tennis">Тенис на маса</string>
 	<string name="type.sport.tennis">Тенис корт</string>
 	<string name="type.sport.volleyball">Волейбол</string>
-	<string name="type.sport.9pin">Боулинг</string>
 	<string name="type.sport.10pin">Боулинг</string>
+	<string name="type.sport.9pin">Боулинг</string>
 	<string name="type.sport.padel">Падел</string>
 	<string name="type.sport.futsal">Футзал</string>
 	<string name="type.sport.ice_hockey">Хокей на лед</string>

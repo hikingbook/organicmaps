@@ -107,6 +107,8 @@ node[tourism=attraction],
 area[tourism=attraction],
 node[historic=monument],
 area[historic=monument],
+node[historic=city_gate],
+area[historic=city_gate],
 node[historic=memorial],
 area[historic=memorial],
 node[tourism=theme_park],
@@ -406,6 +408,8 @@ node|z15-[historic=castle],
 area|z15-[historic=castle],
 node|z15-[historic=monument],
 area|z15-[historic=monument],
+node|z15-[historic=city_gate],
+area|z15-[historic=city_gate],
 node|z15-[tourism=museum],
 area|z15-[tourism=museum],
 node|z15-[tourism=zoo],
@@ -462,10 +466,12 @@ area|z17-[historic=ruins][name],
 node|z17-[historic=fort],
 area|z17-[historic=fort],
 node|z17-[historic=castle],
-area|z17-[historic=castle],
+area|z17-[historic=castle]
+{icon-image: remains-m.svg;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
+
 node|z17-[historic=archaeological_site],
 area|z17-[historic=archaeological_site]
-{icon-image: remains-m.svg;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
+{icon-image: archaeological-site-m.svg;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
 
 node|z19-[historic=ruins][!name],
 area|z19-[historic=ruins][!name],
@@ -484,6 +490,16 @@ area|z16-[historic=monument],
 node|z16-[historic=memorial],
 area|z16-[historic=memorial],
 {icon-image: monument-m.svg;icon-min-distance: 12;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
+
+node|z13-14[historic=city_gate],
+area|z13-14[historic=city_gate]
+{icon-image: remains-m.svg;}
+node|z15[historic=city_gate],
+area|z15[historic=city_gate],
+{icon-image: remains-m.svg;icon-min-distance: 24;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
+node|z16-[historic=city_gate],
+area|z16-[historic=city_gate],
+{icon-image: remains-m.svg;icon-min-distance: 12;text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
 
 node|z15-[historic=memorial][memorial=plaque],
 area|z15-[historic=memorial][memorial=plaque],
@@ -823,6 +839,13 @@ area|z17-[amenity=vending_machine],
 node|z17-[amenity=vending_machine][vending=parking_tickets],
 area|z17-[amenity=vending_machine][vending=parking_tickets]
 {icon-image: parking-meter-m.svg;font-size: 13.5;}
+
+node|z17[amenity=vending_machine][vending=fuel],
+area|z17[amenity=vending_machine][vending=fuel]
+{icon-image: zero-icon.svg;text: none;}
+node|z18-[amenity=vending_machine][vending=fuel],
+area|z18-[amenity=vending_machine][vending=fuel]
+{icon-image: fuel-dispenser-m.svg;}
 
 node|z17-[amenity=parcel_locker],
 area|z17-[amenity=parcel_locker],

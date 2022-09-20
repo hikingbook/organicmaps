@@ -590,7 +590,7 @@
 
 "no_osm_account" = "Vous n'avez pas de compte sur OpenStreetMap?";
 
-"register_at_openstreetmap" = "Inscription";
+"register_at_openstreetmap" = "S'inscrire sur OpenStreetMap";
 
 "password_8_chars_min" = "Mot de passe (8 caractères minimum)";
 
@@ -680,7 +680,7 @@
 
 "message_invalid_feature_position" = "Aucun objet ne peut être localisé ici";
 
-"login_to_make_edits_visible" = "Se connecter pour que d'autres utilisateurs puissent voir les changements que vous avez effectués.";
+"login_to_make_edits_visible" = "Connectez vous à votre compte openstreetmap.org pour que d'autres utilisateurs puissent voir vos changements.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "Pour télécharger, vous avez besoin de plus d'espace. Veuillez supprimer les données non nécessaires.";
@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Souhaitez-vous l’envoyer à tous les utilisateurs ?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Assurez-vous de n’avoir saisi aucunes données personnelles.";
 
-"editor_share_to_all_dialog_message_2" = "Nous vérifierons les changements. Si nous avons des questions quelles qu’elles soient, nous vous contacterons par courriel.";
+"editor_share_to_all_dialog_message_2" = "Les éditeurs d'OpenStreetMap vérifieront vos modifications et vous contacteront s'ils ont des questions.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Route";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Eau potable";
 
 "type.amenity.driving_school" = "Auto-école";
+
+"type.amenity.music_school" = "École de musique";
+
+"type.amenity.language_school" = "École de langue";
 
 "type.office.diplomatic" = "Ambassade";
 
@@ -1617,7 +1627,7 @@
 
 "type.craft.gardener" = "Paysagiste";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Artisanat";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Chauffage, ventilation et climatisation";
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Borne frontière";
 
-"type.historic.castle" = "Château";
+"type.historic.castle" = "Château fort";
 
-"type.historic.castle.defensive" = "Château";
+"type.historic.castle.castrum" = "Camp romain";
+
+"type.historic.castle.defensive" = "Château fort";
+
+"type.historic.castle.fortified_church" = "Église fortifiée";
+
+"type.historic.castle.fortress" = "Forteresse";
+
+"type.historic.castle.hillfort" = "Colline fortifiée";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Manoir";
+
+"type.historic.castle.palace" = "Palais";
+
+"type.historic.castle.shiro" = "Château japonais";
 
 "type.historic.castle.stately" = "Château";
+
+"type.historic.city_gate" = "Porte de ville";
 
 "type.historic.citywalls" = "Muraille";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Station de fitness";
 
 "type.leisure.garden" = "Jardin";
+
+"type.leisure.garden.residential" = "Jardin";
 
 "type.leisure.golf_course" = "Terrain de golf";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volley-ball";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

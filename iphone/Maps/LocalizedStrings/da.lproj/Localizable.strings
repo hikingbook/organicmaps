@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Ønsker du at sende det til alle brugere?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Sørg for at du ikke indtastede personlige oplysninger.";
 
-"editor_share_to_all_dialog_message_2" = "Vi vil kigge på ændringerne. Hvis vi har spørgsmål, vil vi kontakte dig via email.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap-redaktører vil tjekke ændringerne og kontakte dig, hvis de har spørgsmål.";
 
 "navigation_stop_button" = "stop";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Rute";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Vand";
 
 "type.amenity.driving_school" = "Køreskole";
+
+"type.amenity.music_school" = "Musikskolen";
+
+"type.amenity.language_school" = "Sprogskole";
 
 "type.office.diplomatic" = "Ambassade";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Grav";
 
-"type.craft" = "Craft";
+"type.craft" = "Håndværk";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Biavler";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Smed";
 
 "type.craft.brewery" = "Bryggeri";
 
 "type.craft.carpenter" = "Tømrer";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Konfekture";
 
 "type.craft.electrician" = "Elektriker";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Reparation af elektronik";
 
 "type.craft.gardener" = "Gartner";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Kunsthåndværk";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Blikkenslager";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "VVS-mand";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Savværk";
 
 "type.craft.shoemaker" = "Skomager";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Vingård";
 
 "type.craft.tailor" = "Skrædder";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Slot";
 
+"type.historic.castle.castrum" = "Romersk fort";
+
 "type.historic.castle.defensive" = "Slot";
 
+"type.historic.castle.fortified_church" = "Befæstet kirke";
+
+"type.historic.castle.fortress" = "Fæstningsværk";
+
+"type.historic.castle.hillfort" = "Voldsted";
+
+"type.historic.castle.kremlin" = "Kreml";
+
+"type.historic.castle.manor" = "Herregård";
+
+"type.historic.castle.palace" = "Palads";
+
+"type.historic.castle.shiro" = "Japansk slot";
+
 "type.historic.castle.stately" = "Slot";
+
+"type.historic.city_gate" = "Byport";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Fitness-station";
 
 "type.leisure.garden" = "Have";
+
+"type.leisure.garden.residential" = "Have";
 
 "type.leisure.golf_course" = "Golf";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Volleyball";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 

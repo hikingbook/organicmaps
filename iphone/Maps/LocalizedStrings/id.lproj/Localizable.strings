@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Apakah Anda ingin mengirimkannya ke semua pengguna?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Pastikan Anda tidak memasukkan data pribadi apa pun.";
 
-"editor_share_to_all_dialog_message_2" = "Kami akan memeriksa perubahan tersebut. Jika kami memiliki pertanyaan maka kami akan menghubungi Anda melalui surel.";
+"editor_share_to_all_dialog_message_2" = "Editor OpenStreetMap akan memeriksa perubahan dan menghubungi Anda jika ada pertanyaan.";
 
 "navigation_stop_button" = "berhenti";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Trek";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Air minum";
 
 "type.amenity.driving_school" = "Sekolah Mengemudi";
+
+"type.amenity.music_school" = "Sekolah musik";
+
+"type.amenity.language_school" = "Sekolah bahasa";
 
 "type.office.diplomatic" = "Kedutaan";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Kuburan";
 
-"type.craft" = "Craft";
+"type.craft" = "Kerajinan";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Peternak lebah";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Pandai Besi";
 
 "type.craft.brewery" = "Toko minuman";
 
 "type.craft.carpenter" = "Tukang kayu";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Penganan";
 
 "type.craft.electrician" = "Tukang listrik";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Perbaikan Elektronik";
 
 "type.craft.gardener" = "Tukang kebun";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Kriya";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "HVAC";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Tukang pipa";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Penggergajian kayu";
 
 "type.craft.shoemaker" = "Tukang sepatu";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Kilang Anggur";
 
 "type.craft.tailor" = "Tukang jahit";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "Kastel";
 
+"type.historic.castle.castrum" = "Benteng Romawi";
+
 "type.historic.castle.defensive" = "Kastel";
 
+"type.historic.castle.fortified_church" = "Gereja yang dibentengi";
+
+"type.historic.castle.fortress" = "Benteng";
+
+"type.historic.castle.hillfort" = "Benteng bukit";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Rumah bangsawan";
+
+"type.historic.castle.palace" = "Istana";
+
+"type.historic.castle.shiro" = "Istana Jepang";
+
 "type.historic.castle.stately" = "Kastel";
+
+"type.historic.city_gate" = "Gerbang kota";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Stasiun Kebugaran";
 
 "type.leisure.garden" = "Situs arkeologi";
+
+"type.leisure.garden.residential" = "Situs arkeologi";
 
 "type.leisure.golf_course" = "Lapangan golf";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Bola voli";
 
-"type.sport.9pin" = "Boling";
-
 "type.sport.10pin" = "Boling";
+
+"type.sport.9pin" = "Boling";
 
 "type.sport.padel" = "Padel";
 

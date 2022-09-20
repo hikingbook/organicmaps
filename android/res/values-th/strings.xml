@@ -385,6 +385,7 @@
 	<string name="no_osm_account">ไม่มีบัญชีใน OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">ลงทะเบียน</string>
 	<string name="login">ล็อกอิน</string>
+	<string name="login_osm">เข้าสู่ระบบ OpenStreetMap</string>
 	<string name="password">รหัสผ่าน</string>
 	<string name="forgot_password">ลืมรหัสผ่าน?</string>
 	<string name="logout">ออกจากระบบ</string>
@@ -423,6 +424,7 @@
 	<string name="editor_report_problem_other_title">ปัญหาอีกอย่างหนึ่ง</string>
 	<string name="placepage_add_business_button">เพิ่มองค์กร</string>
 	<string name="message_invalid_feature_position">ไม่สามารถตั้งวัตถุได้ที่นี่</string>
+	<string name="osm_presentation">ข้อมูลแผนที่ทั้งหมดมาจากโครงการ OpenStreetMap เหมือนกับวิกิพีเดียสำหรับแผนที่ที่คุณสามารถเพิ่มหรือแก้ไขสถานที่ได้ และพวกเขาพร้อมให้ผู้ใช้หลายล้านคนทั่วโลกใช้งานได้</string>
 	<string name="login_to_make_edits_visible">ล็อกอินเพื่อให้ผู้ใช้คนอื่นสามารถเห็นการเปลี่ยนแปลงของคุณได้</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d จาก %2$d</string>
@@ -476,9 +478,9 @@
 	<string name="placepage_add_place_button">เพิ่มสถานที่ไปยังแผนที่</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">คุณต้องการส่งมันให้ผู้ใช้ทั้งหมดหรือไม่?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">ตรวจสอบว่าคุณไม่ได้กรอกข้อมูลส่วนตัวใด ๆ</string>
-	<string name="editor_share_to_all_dialog_message_2">เราจะตรวจสอบการเปลี่ยนแปลง หากเรามีคำถามใด ๆ เราจะติดต่อคุณผ่านทางอีเมล</string>
+	<string name="editor_share_to_all_dialog_message_2">ผู้แก้ไข OpenStreetMap จะตรวจสอบการเปลี่ยนแปลงและติดต่อคุณหากมีคำถามใดๆ</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps เป็นแอปพลิเคชันแผนที่ออฟไลน์แบบโอเพนซอร์สฟรี ไม่มีโฆษณา ไม่มีการติดตาม. หากคุณเห็นข้อผิดพลาดบนแผนที่ โปรดแก้ไขใน OpenStreetMap โครงการนี้สร้างขึ้นโดยผู้ที่ชื่นชอบในเวลาว่าง เราจึงต้องการความคิดเห็นและการสนับสนุนจากคุณ</string>
 	<!-- For the first routing -->
@@ -702,6 +704,8 @@
 	<string name="type.amenity.doctors">ห้องแพทย์</string>
 	<string name="type.amenity.drinking_water">น้ำดื่ม</string>
 	<string name="type.amenity.driving_school">โรงเรียนสอนขับรถ</string>
+	<string name="type.amenity.music_school">โรงเรียนดนตรี</string>
+	<string name="type.amenity.language_school">โรงเรียนภาษา</string>
 	<string name="type.office.diplomatic">สถานทูต</string>
 	<string name="type.amenity.fast_food">อาหารจานด่วน</string>
 	<string name="type.amenity.ferry_terminal">เฟอร์รี่</string>
@@ -800,17 +804,25 @@
 	<string name="type.building.has_parts">อาคาร</string>
 	<string name="type.building.train_station">สถานีรถไฟ</string>
 	<string name="type.cemetery.grave">หลุมฝังศพ</string>
+	<string name="type.craft">งานฝีมือ</string>
+	<string name="type.craft.beekeeper">คนเลี้ยงผึ้ง</string>
+	<string name="type.craft.blacksmith">ช่างตีเหล็ก</string>
 	<string name="type.craft.brewery">โรงเบียร์</string>
 	<string name="type.craft.carpenter">ช่างไม้</string>
+	<string name="type.craft.confectionery">ลูกกวาด</string>
 	<string name="type.craft.electrician">ช่างไฟฟ้า</string>
+	<string name="type.craft.electronics_repair">ซ่อมเครื่องใช้ไฟฟ้า</string>
 	<string name="type.craft.gardener">คนจัดสวน</string>
+	<string name="type.craft.handicraft">หัตถกรรม</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">ระบบปรับอากาศ</string>
 	<string name="type.craft.metal_construction">ช่างเหล็ก</string>
 	<string name="type.craft.painter">ช่างทาสี</string>
 	<string name="type.craft.photographer">ช่างภาพ</string>
 	<string name="type.craft.plumber">ช่างประปา</string>
+	<string name="type.craft.sawmill">ซูเมล</string>
 	<string name="type.craft.shoemaker">ช่างซ่อมรองเท้า</string>
+	<string name="type.craft.winery">โรงกลั่นเหล้าองุ่น</string>
 	<string name="type.craft.tailor">ช่างตัดเสื้อ</string>
 	<string name="type.cuisine.african">อาหารแอฟริกัน</string>
 	<string name="type.cuisine.american">อาหารอเมริกัน</string>
@@ -1069,8 +1081,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">โบราณสถาน</string>
 	<string name="type.historic.castle">ปราสาท</string>
+	<string name="type.historic.castle.castrum">ป้อมโรมัน</string>
 	<string name="type.historic.castle.defensive">ปราสาท</string>
+	<string name="type.historic.castle.fortified_church">โบสถ์เสริมความแข็งแกร่ง</string>
+	<string name="type.historic.castle.fortress">ป้อม</string>
+	<string name="type.historic.castle.hillfort">ป้อมเนิน</string>
+	<string name="type.historic.castle.kremlin">เครมลิน</string>
+	<string name="type.historic.castle.manor">คฤหาสน์</string>
+	<string name="type.historic.castle.palace">วัง</string>
+	<string name="type.historic.castle.shiro">ปราสาทญี่ปุ่น</string>
 	<string name="type.historic.castle.stately">ปราสาท</string>
+	<string name="type.historic.city_gate">ประตูเมือง</string>
 	<string name="type.historic.memorial">ที่ระลึก</string>
 	<string name="type.historic.memorial.plaque">ที่ระลึก</string>
 	<string name="type.historic.memorial.sculpture">ที่ระลึก</string>
@@ -1100,6 +1121,7 @@
 	<string name="type.leisure.fitness_centre">ฟิตเนสเซ็นเตอร์</string>
 	<string name="type.leisure.fitness_station">ศูนย์ฟิตเนส</string>
 	<string name="type.leisure.garden">สวน</string>
+	<string name="type.leisure.garden.residential">สวน</string>
 	<string name="type.leisure.golf_course">สนามกอล์ฟ</string>
 	<string name="type.leisure.nature_reserve">เขตอนุรักษ์ธรรมชาติ</string>
 	<string name="type.leisure.park">สวนสาธารณะ</string>
@@ -1362,8 +1384,8 @@
 	<string name="type.sport.table_tennis">เทเบิลเทนนิส</string>
 	<string name="type.sport.tennis">คอร์ทเทนนิส</string>
 	<string name="type.sport.volleyball">วอลเลย์บอล</string>
-	<string name="type.sport.9pin">โบว์ลิ่ง</string>
 	<string name="type.sport.10pin">โบว์ลิ่ง</string>
+	<string name="type.sport.9pin">โบว์ลิ่ง</string>
 	<string name="type.sport.padel">พาเดล</string>
 	<string name="type.sport.futsal">ฟุตซอล</string>
 	<string name="type.sport.ice_hockey">ฮอคกี้น้ำแข็ง</string>

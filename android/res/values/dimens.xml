@@ -75,8 +75,7 @@
   <!-- map widgets -->
   <dimen name="margin_compass">32dp</dimen>
   <dimen name="margin_compass_top">26dp</dimen>
-  <dimen name="margin_ruler_left">10dp</dimen>
-  <dimen name="margin_ruler_bottom">58dp</dimen>
+  <dimen name="margin_ruler">10dp</dimen>
   <dimen name="compass_height">40dp</dimen>
   <dimen name="button_big_corner_radius">20dp</dimen>
   <dimen name="button_small_corner_radius">2dp</dimen>
@@ -90,6 +89,9 @@
   <dimen name="elevation_profile_height">108dp</dimen>
   <dimen name="elevation_profile_half_height">54dp</dimen>
   <dimen name="elevation_profile_dot_levels_margin">3dp</dimen>
+  <dimen name="map_button_size">48dp</dimen>
+  <dimen name="map_button_icon_size">28dp</dimen>
+  <dimen name="map_button_arrow_icon_size">34dp</dimen>
 
   <!-- routing layout -->
   <dimen name="routing_info_height">48dp</dimen>
@@ -134,17 +136,15 @@
   <dimen name="nav_icon_size">48dp</dimen>
   <dimen name="nav_bottom_gap">12dp</dimen>
   <dimen name="nav_menu_top_offset">0dp</dimen>
+  <dimen name="nav_menu_height">70sp</dimen>
   <dimen name="nav_numbers_height">54sp</dimen>
   <dimen name="nav_menu_content_height">64dp</dimen>
   <dimen name="nav_menu_landscape_width">360dp</dimen>
 
-  <dimen name="nav_frame_padding">@dimen/margin_eighth</dimen>
-  <dimen name="nav_button">28dp</dimen>
-  <dimen name="nav_zoom_bottom">160dp</dimen>
-  <dimen name="nav_zoom_top">258dp</dimen>
-  <dimen name="nav_button_top_limit">68dp</dimen>
-  <dimen name="nav_my_position_bottom">136dp</dimen>
-  <dimen name="nav_search_frame_offset">28dp</dimen>
+  <dimen name="nav_frame_padding">@dimen/margin_half</dimen>
+  <dimen name="zoom_buttons_margin">64dp</dimen>
+  <dimen name="map_buttons_bottom_margin">136dp</dimen>
+  <dimen name="map_buttons_bottom_max_width">300dp</dimen>
 
   <dimen name="panel_elevation">12dp</dimen>
   <dimen name="appbar_elevation">4dp</dimen>
@@ -166,6 +166,9 @@
   <dimen name="editor_margin_left_plus">72dp</dimen>
   <dimen name="editor_auth_btn_height">@dimen/primary_button_min_height</dimen>
   <dimen name="editor_margin_timetable_left">50dp</dimen>
+
+  <!-- Login -->
+  <dimen name="login_osm_logo">64dp</dimen>
 
   <!-- Altitude chart -->
   <dimen name="altitude_chart_container_padding_left">16dp</dimen>

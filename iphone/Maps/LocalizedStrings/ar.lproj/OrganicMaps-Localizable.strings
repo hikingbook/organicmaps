@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "هل ترغب في إرساله لجميع المستخدمين؟";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "تأكد من أنك لم تقم بإدخال أية بيانات شخصية.";
 
-"editor_share_to_all_dialog_message_2" = "سنقوم بمراجعة هذه التغييرات. إذا كانت لدينا أي أسئلة فسننتواصل معك عبر البريد الإلكتروني.";
+"editor_share_to_all_dialog_message_2" = ".ﺔﻠﺌﺳﺃ ﻱﺃ ﻢﻬﻳﺪﻟ ﻥﺎﻛ ﺍﺫﺇ ﻚﻌﻣ ﻥﻮﻠﺻﺍﻮﺘﻳﻭ ﺕﺍﺮﻴﻴﻐﺘﻟﺍ ﻦﻣ OpenStreetMap ﻭﺭﺮﺤﻣ ﻖﻘﺤﺘﻴﺳ";
 
 "navigation_stop_button" = "توقف";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "مسار";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "مياه شرب";
 
 "type.amenity.driving_school" = "مدرسة قيادة";
+
+"type.amenity.music_school" = "ﻰﻘﻴﺳﻮﻣ ﺔﺳﺭﺪﻣ";
+
+"type.amenity.language_school" = "ﺔﻐﻟ ﺔﺳﺭﺪﻣ";
 
 "type.office.diplomatic" = "سفارة";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "ﺮﻴﻄﺧ";
 
-"type.craft" = "Craft";
+"type.craft" = "حرفة";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "نحال";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "حداد";
 
 "type.craft.brewery" = "مصنع جعة";
 
 "type.craft.carpenter" = "نجار";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "حلواني";
 
 "type.craft.electrician" = "كهربائي";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "إصلاح الإلكترونيات";
 
 "type.craft.gardener" = "مهندس مناظر";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "مشغولات يدوية";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "تكييف";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "سمكري";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "منشرة";
 
 "type.craft.shoemaker" = "تصليح الاحذية";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "مصنع الخمرة";
 
 "type.craft.tailor" = "خياط";
 
@@ -2136,9 +2146,27 @@
 
 "type.historic.castle" = "قلعة";
 
-"type.historic.castle.defensive" = "قلعة دفاعية";
+"type.historic.castle.castrum" = "كاسترا";
 
-"type.historic.castle.stately" = "قلعة";
+"type.historic.castle.defensive" = "قلعة";
+
+"type.historic.castle.fortified_church" = "الكنيسة المحصنة";
+
+"type.historic.castle.fortress" = "قلعة";
+
+"type.historic.castle.hillfort" = "حصون التلال";
+
+"type.historic.castle.kremlin" = "كرملين";
+
+"type.historic.castle.manor" = "قصر مالك العزبة";
+
+"type.historic.castle.palace" = "قصر";
+
+"type.historic.castle.shiro" = "قلعة يابانية";
+
+"type.historic.castle.stately" = "شاتو";
+
+"type.historic.city_gate" = "بوابة مدينة";
 
 "type.historic.citywalls" = "جدار المدينة";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "مركز لياقة";
 
 "type.leisure.garden" = "حديقة";
+
+"type.leisure.garden.residential" = "حديقة";
 
 "type.leisure.golf_course" = "ملعب جولف";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "كرة الطائرة";
 
-"type.sport.9pin" = "بولينج بعشرة دبابيس";
-
 "type.sport.10pin" = "بولينج بعشرة دبابيس";
+
+"type.sport.9pin" = "بولينج بعشرة دبابيس";
 
 "type.sport.padel" = "ﻞﻳﺩﺎﺑ";
 

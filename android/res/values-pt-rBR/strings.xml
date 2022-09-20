@@ -395,8 +395,9 @@
 	<string name="closed">Fechado</string>
 	<string name="edit_opening_hours">Editar horário de funcionamento</string>
 	<string name="no_osm_account">Sem conta no OpenStreetMap?</string>
-	<string name="register_at_openstreetmap">Abra uma conta no OSM</string>
+	<string name="register_at_openstreetmap">Abra uma conta no OpenStreetMap</string>
 	<string name="login">Login</string>
+	<string name="login_osm">Entrar no OpenStreetMap</string>
 	<string name="password">Senha</string>
 	<string name="forgot_password">Esqueceu sua senha?</string>
 	<string name="logout">Encerrar sessão</string>
@@ -436,6 +437,7 @@
 	<string name="editor_report_problem_other_title">Um problema diferente</string>
 	<string name="placepage_add_business_button">Adicionar uma empresa</string>
 	<string name="message_invalid_feature_position">Nenhum objeto pode ser posicionado aqui</string>
+	<string name="osm_presentation">Todos os dados do mapa são provenientes do projeto OpenStreetMap. É como a Wikipedia para mapas onde você pode adicionar ou editar lugares, e eles ficam disponíveis para milhões de usuários em todo o mundo.</string>
 	<string name="login_to_make_edits_visible">Fazer login para que outros usuários vejam as mudanças que você fez.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d de %2$d</string>
@@ -491,9 +493,9 @@
 	<string name="placepage_add_place_button">Adicionar um local ao mapa</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Deseja enviar para todos os usuários?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Certifique-se de não ter incluído nenhum dado pessoal.</string>
-	<string name="editor_share_to_all_dialog_message_2">Verificaremos as alterações. Se tivermos perguntas, entraremos em contato com você por email.</string>
+	<string name="editor_share_to_all_dialog_message_2">Os editores do OpenStreetMap verificarão as mudanças e entrarão em contato com você se tiverem alguma dúvida.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps é um aplicativo gratuito e de código aberto de mapas offline. Sem anúncios. Sem rastreamento. Se você vir um erro no mapa, por favor, corrija em OpenStreetMap. O projeto é criado por entusiastas em seu tempo livre, então precisamos de seu feedback e suporte.</string>
 	<!-- For the first routing -->
@@ -875,19 +877,11 @@
 	<string name="type.building.train_station">Estação de trem</string>
 	<string name="type.building.warehouse">Armazém</string>
 	<string name="type.cemetery.grave">Túmulo</string>
-	<string name="type.craft">Ofícios</string>
-	<string name="type.craft.brewery">Cervejaria artesanal</string>
-	<string name="type.craft.carpenter">Carpinteiro</string>
-	<string name="type.craft.electrician">Eletricista</string>
-	<string name="type.craft.gardener">Jardineiro</string>
+	<string name="type.craft.electronics_repair">Reparo de eletrônicos</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
-	<string name="type.craft.hvac">Ar-condicionado</string>
-	<string name="type.craft.metal_construction">Serralheiro metálico</string>
-	<string name="type.craft.painter">Pintor</string>
-	<string name="type.craft.photographer">Fotógrafo</string>
+	<string name="type.craft.hvac">Aquecimento, Ventilação e Ar Condicionado</string>
 	<string name="type.craft.plumber">Encanador</string>
-	<string name="type.craft.shoemaker">Sapateiro</string>
-	<string name="type.craft.tailor">Alfaiate</string>
+	<string name="type.craft.winery">Vinícola</string>
 	<string name="type.cuisine.african">Cozinha africana</string>
 	<string name="type.cuisine.american">Cozinha americana</string>
 	<string name="type.cuisine.arab">Cozinha árabe</string>
@@ -1156,9 +1150,6 @@
 	<string name="type.historic.archaeological_site">Sítio arqueológico</string>
 	<string name="type.historic.battlefield">Campo de batalha</string>
 	<string name="type.historic.boundary_stone">Marco fronteiriço</string>
-	<string name="type.historic.castle">Castelo</string>
-	<string name="type.historic.castle.defensive">Castelo defensivo</string>
-	<string name="type.historic.castle.stately">Château</string>
 	<string name="type.historic.citywalls">Muralha de cidade</string>
 	<string name="type.historic.fort">Forte histórico</string>
 	<string name="type.historic.memorial">Memorial</string>
@@ -1219,6 +1210,7 @@
 	<string name="type.leisure.fitness_centre">Academia de ginástica</string>
 	<string name="type.leisure.fitness_station">Estação de fitness</string>
 	<string name="type.leisure.garden">Jardim</string>
+	<string name="type.leisure.garden.residential">Jardim residencial</string>
 	<string name="type.leisure.golf_course">Campo de golfe</string>
 	<string name="type.leisure.ice_rink">Rinque de patinação</string>
 	<string name="type.leisure.landscape_reserve">Reserva natural</string>

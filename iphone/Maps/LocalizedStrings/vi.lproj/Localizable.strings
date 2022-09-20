@@ -810,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Bạn có muốn gửi cho toàn bộ người dùng?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Chắc chắn rằng bạn không nhập bất kỳ thông tin cá nhân nào.";
 
-"editor_share_to_all_dialog_message_2" = "Chúng tôi sẽ kiểm tra những thay đổi. Nếu chúng tôi có câu hỏi nào, chúng tôi sẽ liên lạc với bạn qua email.";
+"editor_share_to_all_dialog_message_2" = "Các biên tập viên của OpenStreetMap sẽ kiểm tra các thay đổi và liên hệ với bạn nếu họ có bất kỳ câu hỏi nào.";
 
 "navigation_stop_button" = "dừng";
 
@@ -1217,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Dấu chân";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1311,6 +1317,10 @@
 "type.amenity.drinking_water" = "Nước uống";
 
 "type.amenity.driving_school" = "Trường lái xe";
+
+"type.amenity.music_school" = "Trường âm nhạc";
+
+"type.amenity.language_school" = "Ngôn ngữ Trường học";
 
 "type.office.diplomatic" = "Đại sứ quán";
 
@@ -1599,25 +1609,25 @@
 
 "type.cemetery.grave" = "Phần mộ";
 
-"type.craft" = "Craft";
+"type.craft" = "Thủ công";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Người nuôi ong";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Thợ rèn";
 
 "type.craft.brewery" = "Nhà máy bia";
 
 "type.craft.carpenter" = "Thợ mộc";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Người làm bánh kẹo";
 
 "type.craft.electrician" = "Thợ điện";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Sửa chữa điện tử";
 
 "type.craft.gardener" = "Người thiết kế và xây dựng cảnh quan";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Thủ công mỹ nghệ";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Điều hòa nhiệt độ";
@@ -1630,11 +1640,11 @@
 
 "type.craft.plumber" = "Thợ đường ống";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Sumel";
 
 "type.craft.shoemaker" = "Sửa giày";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Nhà máy rượu";
 
 "type.craft.tailor" = "Thợ may";
 
@@ -2134,11 +2144,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Pháo đài";
+"type.historic.castle" = "Lâu đài";
 
-"type.historic.castle.defensive" = "Pháo đài";
+"type.historic.castle.castrum" = "Pháo đài La mã";
+
+"type.historic.castle.defensive" = "Lâu đài";
+
+"type.historic.castle.fortified_church" = "Nhà thờ kiên cố";
+
+"type.historic.castle.fortress" = "Pháo đài";
+
+"type.historic.castle.hillfort" = "Hillfort";
+
+"type.historic.castle.kremlin" = "Kremli";
+
+"type.historic.castle.manor" = "Trang viên";
+
+"type.historic.castle.palace" = "Cung điện";
+
+"type.historic.castle.shiro" = "Lâu đài nhật bản";
 
 "type.historic.castle.stately" = "Pháo đài";
+
+"type.historic.city_gate" = "Cổng thành";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2283,6 +2311,8 @@
 "type.leisure.fitness_station" = "Trạm tập thể hình";
 
 "type.leisure.garden" = "Điểm khảo cổ";
+
+"type.leisure.garden.residential" = "Điểm khảo cổ";
 
 "type.leisure.golf_course" = "Sân gôn";
 
@@ -2985,9 +3015,9 @@
 
 "type.sport.volleyball" = "Bóng chuyền";
 
-"type.sport.9pin" = "Bowling";
-
 "type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
 
 "type.sport.padel" = "Padel";
 
