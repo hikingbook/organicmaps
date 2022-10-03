@@ -178,7 +178,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onLocationNotFound() {
-        mwmActivity.showLocationNotFoundDialog();
+        mwmActivity.onLocationNotFound();
     }
 
     public void onCompassUpdated(@NonNull CompassData compass) {
