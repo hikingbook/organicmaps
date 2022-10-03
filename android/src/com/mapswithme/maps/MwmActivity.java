@@ -1,5 +1,7 @@
 package com.mapswithme.maps;
 
+import static com.mapswithme.maps.widget.placepage.PlacePageButtons.PLACEPAGE_MORE_MENU_ID;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,7 +15,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 import android.view.WindowManager;
@@ -25,11 +26,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.mapswithme.maps.Framework.PlacePageActivationListener;
 import com.mapswithme.maps.api.Const;
 import com.mapswithme.maps.background.AppBackgroundTracker;
@@ -103,8 +104,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Stack;
 
-import static com.mapswithme.maps.widget.placepage.PlacePageButtons.PLACEPAGE_MORE_MENU_ID;
-
 public class MwmActivity extends BaseMwmFragmentActivity
     implements PlacePageActivationListener,
                View.OnTouchListener,
@@ -160,7 +159,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     NONE,
     EDITOR,
     API
-  };
+  }
   @NonNull
   private PointChooserMode mPointChooserMode = PointChooserMode.NONE;
 
@@ -411,6 +410,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     boolean isLaunchByDeepLink = getIntent().getBooleanExtra(EXTRA_LAUNCH_BY_DEEP_LINK, false);
     initViews(isLaunchByDeepLink);
+    updateViewsInsets();
 
     boolean isConsumed = savedInstanceState == null && processIntent(getIntent());
     boolean isFirstLaunch = Counters.isFirstLaunch(this);
@@ -422,20 +422,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     if (savedInstanceState == null && RoutingController.get().hasSavedRoute())
       addTask(new Factory.RestoreRouteTask());
-
-    updateViewsInsets();
   }
 
   private void updateViewsInsets()
   {
-    findViewById(R.id.map_ui_container).setOnApplyWindowInsetsListener(this::setViewInsets);
-    findViewById(R.id.pp_buttons_layout).setOnApplyWindowInsetsListener(this::setViewInsets);
-    findViewById(R.id.toolbar).setOnApplyWindowInsetsListener(this::setViewInsets);
-    findViewById(R.id.menu_frame).setOnApplyWindowInsetsListener(this::setViewInsets);
-    findViewById(R.id.routing_plan_frame).findViewById(R.id.toolbar)
-                                         .setOnApplyWindowInsetsListener(this::setViewInsetsSides);
-
-    findViewById(R.id.map_fragment_container).setOnApplyWindowInsetsListener((view, windowInsets) -> {
+    findViewById(R.id.map_ui_container).setOnApplyWindowInsetsListener((view, windowInsets) -> {
+      setViewInsets(findViewById(R.id.map_ui_container), windowInsets);
+      setViewInsets(findViewById(R.id.pp_buttons_layout), windowInsets);
+      setViewInsets(findViewById(R.id.toolbar), windowInsets);
+      setViewInsets(findViewById(R.id.menu_frame), windowInsets);
+      setViewInsetsSides(findViewById(R.id.routing_plan_frame).findViewById(R.id.toolbar), windowInsets);
       navBarHeight = windowInsets.getSystemWindowInsetBottom();
       adjustCompass(-1, windowInsets.getSystemWindowInsetRight());
       adjustBottomWidgets(windowInsets.getSystemWindowInsetLeft());
@@ -443,18 +439,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
     });
   }
 
-  private WindowInsets setViewInsets(View view, WindowInsets windowInsets)
+  private void setViewInsets(View view, WindowInsets windowInsets)
   {
     view.setPadding(windowInsets.getSystemWindowInsetLeft(), view.getPaddingTop(),
                     windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
-    return windowInsets;
   }
 
-  private WindowInsets setViewInsetsSides(View view, WindowInsets windowInsets)
+  private void setViewInsetsSides(View view, WindowInsets windowInsets)
   {
     view.setPadding(windowInsets.getSystemWindowInsetLeft(), view.getPaddingTop(),
                     windowInsets.getSystemWindowInsetRight(), view.getPaddingBottom());
-    return windowInsets;
   }
 
   private int getDownloadMapsCounter()
@@ -1440,7 +1434,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void showRoutePlan(boolean show, @Nullable Runnable completionListener)
   {
-    Context context = getApplicationContext();
     if (show)
     {
       if (mIsTabletLayout)
@@ -1453,7 +1446,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
             fragment.restoreRoutingPanelState(mSavedForTabletState);
         }
         showAddStartOrFinishFrame(RoutingController.get(), false);
-        int width = UiUtils.dimen(context, R.dimen.panel_width);
       }
       else
       {
@@ -1657,6 +1649,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onLocationUpdated(@NonNull Location location)
   {
+    if (mLocationErrorDialog != null && mLocationErrorDialog.isShowing())
+      mLocationErrorDialog.dismiss();
+
     if (!RoutingController.get().isNavigating())
       return;
 
@@ -1687,6 +1682,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     AlertDialog.Builder builder = new AlertDialog.Builder(this)
         .setTitle(R.string.enable_location_services)
         .setMessage(R.string.location_is_disabled_long_text)
+        .setOnDismissListener(dialog -> mLocationErrorDialog = null)
         .setOnCancelListener(dialog -> mLocationErrorDialogAnnoying = true)
         .setNegativeButton(R.string.close, (dialog, which) -> mLocationErrorDialogAnnoying = true);
     final Intent intent = Utils.makeSystemLocationSettingIntent(this);
@@ -1703,38 +1699,33 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onLocationNotFound()
   {
-    showLocationNotFoundDialog();
+    if (mLocationErrorDialogAnnoying || (mLocationErrorDialog != null && mLocationErrorDialog.isShowing()))
+      return;
+
+    final String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
+        getString(R.string.current_location_unknown_title));
+    mLocationErrorDialog = new AlertDialog.Builder(this)
+        .setMessage(message)
+        .setOnDismissListener(dialog -> mLocationErrorDialog = null)
+        .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
+        {
+          LocationHelper.INSTANCE.setStopLocationUpdateByUser(true);
+          LocationHelper.INSTANCE.stop();
+        })
+        .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
+        {
+          if (!LocationHelper.INSTANCE.isActive())
+            LocationHelper.INSTANCE.start();
+          LocationHelper.INSTANCE.switchToNextMode();
+          // TODO(AB): Leads to inconsistent UX: dialog won't appear later if user cancels and starts location search again.
+          mLocationErrorDialogAnnoying = true;
+        })
+        .show();
   }
 
   @Override
   public void onRoutingFinish()
   {
-  }
-
-  private void showLocationNotFoundDialog()
-  {
-    String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
-                                   getString(R.string.current_location_unknown_title));
-
-    DialogInterface.OnClickListener stopClickListener = (dialog, which) ->
-    {
-      LocationHelper.INSTANCE.setStopLocationUpdateByUser(true);
-      LocationHelper.INSTANCE.stop();
-    };
-
-    DialogInterface.OnClickListener continueClickListener = (dialog, which) ->
-    {
-      if (!LocationHelper.INSTANCE.isActive())
-        LocationHelper.INSTANCE.start();
-      LocationHelper.INSTANCE.switchToNextMode();
-    };
-
-    new AlertDialog.Builder(this)
-        .setMessage(message)
-        .setNegativeButton(R.string.current_location_unknown_stop_button, stopClickListener)
-        .setPositiveButton(R.string.current_location_unknown_continue_button, continueClickListener)
-        .setCancelable(false)
-        .show();
   }
 
   @Override
@@ -1871,21 +1862,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void showBookmarkCategoryOnMap(long categoryId)
   {
     BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(categoryId);
-  }
-
-  private class CurrentPositionClickListener implements OnClickListener
-  {
-    @Override
-    public void onClick(View v)
-    {
-      if (!PermissionsUtils.isFineLocationGranted(getApplicationContext()))
-      {
-        PermissionsUtils.requestLocationPermission(MwmActivity.this, REQ_CODE_LOCATION_PERMISSION_ON_CLICK);
-        return;
-      }
-
-      myPositionClick();
-    }
   }
 
   private class ToolbarLayoutChangeListener implements ViewTreeObserver.OnGlobalLayoutListener
