@@ -503,12 +503,6 @@
 
 "history" = "History";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Closed";
-
 "search_not_found" = "Oops, no results found.";
 
 "search_not_found_query" = "Try changing your search criteria.";
@@ -578,11 +572,25 @@
 
 "today" = "Today";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Closed";
+
 "add_opening_hours" = "Add opening hours";
 
 "no_osm_account" = "Don't have an OpenStreetMap account?";
 
-"register_at_openstreetmap" = "Register at OSM";
+"register_at_openstreetmap" = "Register at OpenStreetMap";
 
 "password_8_chars_min" = "Password (8 characters minimum)";
 
@@ -630,6 +638,8 @@
 
 "phone" = "Phone";
 
+"level" = "Floor";
+
 "please_note" = "Please note";
 
 "downloader_delete_map_dialog" = "All of your map edits will be deleted together with the map.";
@@ -670,7 +680,7 @@
 
 "message_invalid_feature_position" = "No object can be located here";
 
-"login_to_make_edits_visible" = "Log in so other users can see the changes that you have made";
+"login_to_make_edits_visible" = "Log in to OpenStreetMap.org so other users can see the changes you have made.";
 
 /* Error dialog no space */
 "migration_no_space_message" = "To download, you need more space. Please delete any unnecessary data.";
@@ -750,6 +760,8 @@
 
 "miles_per_hour" = "mph";
 
+"hour" = "h";
+
 "minute" = "min";
 
 "placepage_place_description" = "Description";
@@ -798,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Do you want to send it to all users?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Make sure you did not enter any personal data.";
 
-"editor_share_to_all_dialog_message_2" = "We will check the changes. If we have any questions we will contact you via email.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap editors will check the changes and get in contact with you if they have any questions.";
 
 "navigation_stop_button" = "stop";
 
@@ -1205,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Track";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1300,6 +1318,10 @@
 
 "type.amenity.driving_school" = "Driving School";
 
+"type.amenity.music_school" = "Music School";
+
+"type.amenity.language_school" = "Language School";
+
 "type.office.diplomatic" = "Embassy";
 
 "type.amenity.fast_food" = "Fast Food";
@@ -1356,6 +1378,12 @@
 
 "type.amenity.parking.underground" = "Parking";
 
+"type.amenity.parking_entrance.private" = "Parking entrance";
+
+"type.amenity.parking_entrance.permissive" = "Parking entrance";
+
+"type.amenity.parking_entrance" = "Parking entrance";
+
 "type.amenity.parking_space" = "Parking Space";
 
 "type.amenity.parking_space.permissive" = "Parking Space";
@@ -1363,6 +1391,8 @@
 "type.amenity.parking_space.private" = "Parking Space";
 
 "type.amenity.parking_space.underground" = "Parking Space";
+
+"type.amenity.parking_space.disabled" = "Disabled Parking Space";
 
 "type.amenity.payment_terminal" = "Payment Terminal";
 
@@ -2140,9 +2170,27 @@
 
 "type.historic.castle" = "Castle";
 
+"type.historic.castle.castrum" = "Roman fort";
+
 "type.historic.castle.defensive" = "Castle";
 
+"type.historic.castle.fortified_church" = "Fortified church";
+
+"type.historic.castle.fortress" = "Fortress";
+
+"type.historic.castle.hillfort" = "Hillfort";
+
+"type.historic.castle.kremlin" = "Kremlin";
+
+"type.historic.castle.manor" = "Manor house";
+
+"type.historic.castle.palace" = "Palace";
+
+"type.historic.castle.shiro" = "Japanese castle";
+
 "type.historic.castle.stately" = "Castle";
+
+"type.historic.city_gate" = "City gate";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2288,6 +2336,8 @@
 
 "type.leisure.garden" = "Garden";
 
+"type.leisure.garden.residential" = "Residential Garden";
+
 "type.leisure.golf_course" = "Golf Course";
 
 "type.leisure.ice_rink" = "Ice Rink";
@@ -2320,13 +2370,9 @@
 
 "type.leisure.sports_centre" = "Sports Center";
 
-"type.leisure.sports_centre.climbing" = "Climbing Centre";
+"type.sport.climbing" = "Climbing Centre";
 
-"type.leisure.sports_centre.shooting" = "Shooting Range";
-
-"type.leisure.sports_centre.swimming" = "Swimming Centre";
-
-"type.leisure.sports_centre.yoga" = "Yoga Studio";
+"type.sport.yoga" = "Yoga Studio";
 
 "type.leisure.stadium" = "Stadium";
 
@@ -2496,8 +2542,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "City";
 
 "type.place.city.capital" = "Capital";
@@ -2536,7 +2580,7 @@
 
 "type.place.islet" = "Island";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Isolated Dwelling";
 
 "type.place.locality" = "Locality";
 
@@ -2956,7 +3000,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "Beach volleyball";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Chess";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2977,13 +3025,35 @@
 
 "type.sport.shooting" = "Shooting";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Skiing";
 
 "type.sport.soccer" = "Soccer";
 
 "type.sport.swimming" = "Swimming";
 
+"type.sport.table_tennis" = "Table tennis";
+
 "type.sport.tennis" = "Tennis Court";
+
+"type.sport.volleyball" = "Volleyball";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Ice Hockey";
+
+"type.sport.field_hockey" = "Field Hockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Basque pelota";
 
 "type.tourism" = "Tourism";
 

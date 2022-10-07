@@ -6,21 +6,25 @@
   <style name="MwmTheme.Splash">
     <item name="android:windowBackground">@color/bg_primary</item>
     <item name="android:textColorPrimary">@color/white_primary</item>
+    <item name="android:navigationBarColor">@color/bg_primary</item>
   </style>
 
   <style name="MwmTheme.Night.Splash">
     <item name="android:windowBackground">@color/bg_primary_night</item>
     <item name="android:textColorPrimary">@color/white_primary</item>
+    <item name="android:navigationBarColor">@color/bg_primary_night</item>
   </style>
 
   <style name="MwmTheme.MainActivity">
     <item name="android:colorPrimaryDark">@android:color/black</item>
     <item name="android:windowBackground">@null</item>
+    <item name="android:windowTranslucentNavigation">true</item>
   </style>
 
   <style name="MwmTheme.Night.MainActivity">
     <item name="android:colorPrimaryDark">@android:color/black</item>
     <item name="android:windowBackground">@null</item>
+    <item name="android:windowTranslucentNavigation">true</item>
   </style>
 
   <style name="MwmTheme.Settings">
@@ -160,14 +164,20 @@
     <item name="status_folder_done">@drawable/ic_downloader_folder_done_night</item>
   </style>
 
-  <style name="MwmTheme.NavButtons">
-    <item name="nav_background">@drawable/button_navigation_circle</item>
-    <item name="searchLayoutBackground">@drawable/bg_circle_panel</item>
+  <style name="MwmTheme.NavButtonsRound">
+    <item name="searchLayoutBackground">@drawable/bg_search_wheel_background_round</item>
   </style>
 
-  <style name="MwmTheme.NavButtons.Night" parent="MwmTheme.Night">
-    <item name="nav_background">@drawable/button_navigation_circle_night</item>
-    <item name="searchLayoutBackground">@drawable/bg_circle_panel_night</item>
+  <style name="MwmTheme.NavButtonsRound.Night" parent="MwmTheme.Night">
+    <item name="searchLayoutBackground">@drawable/bg_search_wheel_background_round_night</item>
+  </style>
+
+  <style name="MwmTheme.NavButtonsRect">
+    <item name="searchLayoutBackground">@drawable/bg_search_wheel_background_rect</item>
+  </style>
+
+  <style name="MwmTheme.NavButtonsRect.Night" parent="MwmTheme.Night">
+    <item name="searchLayoutBackground">@drawable/bg_search_wheel_background_rect_night</item>
   </style>
 
   <style name="MwmTheme.Navigation">

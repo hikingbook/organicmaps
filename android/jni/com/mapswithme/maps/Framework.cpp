@@ -920,7 +920,7 @@ Java_com_mapswithme_maps_Framework_nativeGetDistanceAndAzimuthFromLatLon(
   return Java_com_mapswithme_maps_Framework_nativeGetDistanceAndAzimuth(env, clazz, merX, merY, cLat, cLon, north);
 }
 
-JNIEXPORT jobject JNICALL
+JNIEXPORT jstring JNICALL
 Java_com_mapswithme_maps_Framework_nativeFormatLatLon(JNIEnv * env, jclass, jdouble lat, jdouble lon, int coordsFormat)
 {
   switch (static_cast<android::CoordinatesFormat>(coordsFormat))
@@ -937,15 +937,14 @@ Java_com_mapswithme_maps_Framework_nativeFormatLatLon(JNIEnv * env, jclass, jdou
   }
 }
 
-JNIEXPORT jobject JNICALL
+JNIEXPORT jstring JNICALL
 Java_com_mapswithme_maps_Framework_nativeFormatAltitude(JNIEnv * env, jclass, jdouble alt)
 {
   auto const localizedUnits = platform::GetLocalizedAltitudeUnits();
-  return jni::ToJavaString(env, measurement_utils::FormatAltitudeWithLocalization(alt,
-                                                                                  localizedUnits.m_low));
+  return jni::ToJavaString(env, measurement_utils::FormatAltitudeWithLocalization(alt, localizedUnits.m_low));
 }
 
-JNIEXPORT jobject JNICALL
+JNIEXPORT jstring JNICALL
 Java_com_mapswithme_maps_Framework_nativeFormatSpeed(JNIEnv * env, jclass, jdouble speed)
 {
   return jni::ToJavaString(env, measurement_utils::FormatSpeed(speed));
@@ -1202,7 +1201,7 @@ Java_com_mapswithme_maps_Framework_nativeGetRouteFollowingInfo(JNIEnv * env, jcl
   }
 
   auto const & rm = frm()->GetRoutingManager();
-  auto const isSpeedLimitExceeded = rm.IsRoutingActive() ? rm.IsSpeedLimitExceeded() : false;
+  auto const isSpeedCamLimitExceeded = rm.IsRoutingActive() ? rm.IsSpeedCamLimitExceeded() : false;
   auto const shouldPlaySignal = frm()->GetRoutingManager().GetSpeedCamManager().ShouldPlayBeepSignal();
   jobject const result = env->NewObject(
       klass, ctorRouteInfoID, jni::ToJavaString(env, info.m_distToTarget),
@@ -1210,7 +1209,7 @@ Java_com_mapswithme_maps_Framework_nativeGetRouteFollowingInfo(JNIEnv * env, jcl
       jni::ToJavaString(env, info.m_turnUnitsSuffix), jni::ToJavaString(env, info.m_sourceName),
       jni::ToJavaString(env, info.m_displayedStreetName), info.m_completionPercent, info.m_turn,
       info.m_nextTurn, info.m_pedestrianTurn, info.m_exitNum, info.m_time, jLanes,
-      static_cast<jboolean>(isSpeedLimitExceeded), static_cast<jboolean>(shouldPlaySignal));
+      static_cast<jboolean>(isSpeedCamLimitExceeded), static_cast<jboolean>(shouldPlaySignal));
   ASSERT(result, (jni::DescribeException()));
   return result;
 }
@@ -1230,12 +1229,12 @@ Java_com_mapswithme_maps_Framework_nativeGenerateRouteAltitudeChartBits(JNIEnv *
   }
 
   vector<uint8_t> imageRGBAData;
-  int32_t minRouteAltitude = 0;
-  int32_t maxRouteAltitude = 0;
+  uint32_t totalAscent = 0;
+  uint32_t totalDescent = 0;
   measurement_utils::Units units = measurement_utils::Units::Metric;
   if (!fr->GetRoutingManager().GenerateRouteAltitudeChart(
         width, height, altitudes, routePointDistanceM, imageRGBAData,
-        minRouteAltitude, maxRouteAltitude, units))
+        totalAscent, totalDescent, units))
   {
     LOG(LWARNING, ("Can't generate route altitude image."));
     return nullptr;
@@ -1245,13 +1244,13 @@ Java_com_mapswithme_maps_Framework_nativeGenerateRouteAltitudeChartBits(JNIEnv *
   jclass const routeAltitudeLimitsClass = env->GetObjectClass(routeAltitudeLimits);
   ASSERT(routeAltitudeLimitsClass, ());
 
-  static jfieldID const minRouteAltitudeField = env->GetFieldID(routeAltitudeLimitsClass, "minRouteAltitude", "I");
-  ASSERT(minRouteAltitudeField, ());
-  env->SetIntField(routeAltitudeLimits, minRouteAltitudeField, minRouteAltitude);
+  static jfieldID const totalAscentField = env->GetFieldID(routeAltitudeLimitsClass, "totalAscent", "I");
+  ASSERT(totalAscentField, ());
+  env->SetIntField(routeAltitudeLimits, totalAscentField, static_cast<jint>(totalAscent));
 
-  static jfieldID const maxRouteAltitudeField = env->GetFieldID(routeAltitudeLimitsClass, "maxRouteAltitude", "I");
-  ASSERT(maxRouteAltitudeField, ());
-  env->SetIntField(routeAltitudeLimits, maxRouteAltitudeField, maxRouteAltitude);
+  static jfieldID const totalDescentField = env->GetFieldID(routeAltitudeLimitsClass, "totalDescent", "I");
+  ASSERT(totalDescentField, ());
+  env->SetIntField(routeAltitudeLimits, totalDescentField, static_cast<jint>(totalDescent));
 
   static jfieldID const isMetricUnitsField = env->GetFieldID(routeAltitudeLimitsClass, "isMetricUnits", "Z");
   ASSERT(isMetricUnitsField, ());
@@ -1347,7 +1346,7 @@ Java_com_mapswithme_maps_Framework_nativeSetMapStyle(JNIEnv * env, jclass, jint 
 }
 
 JNIEXPORT jint JNICALL
-Java_com_mapswithme_maps_Framework_nativeGetMapStyle(JNIEnv * env, jclass, jint mapStyle)
+Java_com_mapswithme_maps_Framework_nativeGetMapStyle(JNIEnv * env, jclass)
 {
   return g_framework->GetMapStyle();
 }
@@ -1706,25 +1705,25 @@ Java_com_mapswithme_maps_Framework_nativeInvalidRoutePointsTransactionId(JNIEnv 
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_mapswithme_maps_Framework_nativeHasSavedRoutePoints()
+Java_com_mapswithme_maps_Framework_nativeHasSavedRoutePoints(JNIEnv *, jclass)
 {
   return frm()->GetRoutingManager().HasSavedRoutePoints();
 }
 
 JNIEXPORT void JNICALL
-Java_com_mapswithme_maps_Framework_nativeLoadRoutePoints()
+Java_com_mapswithme_maps_Framework_nativeLoadRoutePoints(JNIEnv *, jclass)
 {
   frm()->GetRoutingManager().LoadRoutePoints(g_loadRouteHandler);
 }
 
 JNIEXPORT void JNICALL
-Java_com_mapswithme_maps_Framework_nativeSaveRoutePoints()
+Java_com_mapswithme_maps_Framework_nativeSaveRoutePoints(JNIEnv *, jclass)
 {
   frm()->GetRoutingManager().SaveRoutePoints();
 }
 
 JNIEXPORT void JNICALL
-Java_com_mapswithme_maps_Framework_nativeDeleteSavedRoutePoints()
+Java_com_mapswithme_maps_Framework_nativeDeleteSavedRoutePoints(JNIEnv *, jclass)
 {
   frm()->GetRoutingManager().DeleteSavedRoutePoints();
 }

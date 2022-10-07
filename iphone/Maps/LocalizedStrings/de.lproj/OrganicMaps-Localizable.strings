@@ -503,12 +503,6 @@
 
 "history" = "Verlauf";
 
-"opens_in" = "Öffnet in %@";
-
-"closes_in" = "Schließt in %@";
-
-"closed" = "Geschlossen";
-
 "search_not_found" = "Leider wurde nichts gefunden.";
 
 "search_not_found_query" = "Versuchen Sie bitte eine andere Suchanfrage.";
@@ -578,6 +572,20 @@
 
 "today" = "Heute";
 
+"opens_tomorrow_at" = "Öffnet morgen um %@";
+
+"opens_dayoftheweek_at" = "Öffnet %1$@ um %2$@";
+
+"opens_at" = "Öffnet um %@";
+
+"opens_in" = "Öffnet in %@";
+
+"closes_at" = "Schließt um %@";
+
+"closes_in" = "Schließt in %@";
+
+"closed" = "Geschlossen";
+
 "add_opening_hours" = "Geschäftszeiten hinzufügen";
 
 "no_osm_account" = "Kein Konto bei OpenStreetMap?";
@@ -629,6 +637,8 @@
 "email_or_username" = "Email oder Benutzername";
 
 "phone" = "Telefon";
+
+"level" = "Stockwerk";
 
 "please_note" = "Bitte beachten";
 
@@ -750,6 +760,8 @@
 
 "miles_per_hour" = "mph";
 
+"hour" = "h";
+
 "minute" = "min";
 
 "placepage_place_description" = "Beschreibung";
@@ -798,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "An alle Benutzer senden?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Stellen Sie sicher, dass Sie keine persönlichen Daten eingegeben haben.";
 
-"editor_share_to_all_dialog_message_2" = "Wir werden die Änderungen prüfen. Wenn wir Fragen haben, werden wir Sie per Email kontaktieren.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap-Redakteure werden die Änderungen prüfen und sich bei Fragen mit Ihnen in Verbindung setzen.";
 
 "navigation_stop_button" = "Stopp";
 
@@ -1205,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Strecke";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1300,6 +1318,10 @@
 
 "type.amenity.driving_school" = "Fahrschule";
 
+"type.amenity.music_school" = "Musikschule";
+
+"type.amenity.language_school" = "Sprachschule";
+
 "type.office.diplomatic" = "Botschaft";
 
 "type.amenity.fast_food" = "Fast-Food";
@@ -1356,6 +1378,12 @@
 
 "type.amenity.parking.underground" = "Tiefgarage";
 
+"type.amenity.parking_entrance.private" = "Parkplatzeinfahrt";
+
+"type.amenity.parking_entrance.permissive" = "Parkplatzeinfahrt";
+
+"type.amenity.parking_entrance" = "Parkplatzeinfahrt";
+
 "type.amenity.parking_space" = "Parkplatz";
 
 "type.amenity.parking_space.permissive" = "Parkplatz";
@@ -1363,6 +1391,8 @@
 "type.amenity.parking_space.private" = "Parkplatz";
 
 "type.amenity.parking_space.underground" = "Parkplatz";
+
+"type.amenity.parking_space.disabled" = "Behindertenparkplatz";
 
 "type.amenity.payment_terminal" = "Bezahlterminal";
 
@@ -1579,28 +1609,28 @@
 
 "type.cemetery.grave" = "Grab";
 
-"type.craft" = "Craft";
+"type.craft" = "Handwerk";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Imker";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Schmied";
 
 "type.craft.brewery" = "Brauerei";
 
 "type.craft.carpenter" = "Zimmermann";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Konditor";
 
 "type.craft.electrician" = "Elektriker";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Elektrogerätereparatur";
 
 "type.craft.gardener" = "Landschaftsgärtner";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Kunsthandwerk";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "Heizung";
+"type.craft.hvac" = "Heizung, Lüftung und Klimatisierung";
 
 "type.craft.metal_construction" = "Schlosser";
 
@@ -1610,11 +1640,11 @@
 
 "type.craft.plumber" = "Installateur";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Sägewerk";
 
 "type.craft.shoemaker" = "Schuhmacher";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Weingut";
 
 "type.craft.tailor" = "Schneider";
 
@@ -2140,9 +2170,27 @@
 
 "type.historic.castle" = "Burg";
 
+"type.historic.castle.castrum" = "Römisches Militärlager";
+
 "type.historic.castle.defensive" = "Burg";
 
+"type.historic.castle.fortified_church" = "Wehrkirche";
+
+"type.historic.castle.fortress" = "Festung";
+
+"type.historic.castle.hillfort" = "Wallburg";
+
+"type.historic.castle.kremlin" = "Kreml";
+
+"type.historic.castle.manor" = "Herrenhaus";
+
+"type.historic.castle.palace" = "Palais";
+
+"type.historic.castle.shiro" = "Japanische Burg";
+
 "type.historic.castle.stately" = "Schloss";
+
+"type.historic.city_gate" = "Stadttor";
 
 "type.historic.citywalls" = "Stadtmauer";
 
@@ -2288,6 +2336,8 @@
 
 "type.leisure.garden" = "Garten";
 
+"type.leisure.garden.residential" = "Garten";
+
 "type.leisure.golf_course" = "Golfplatz";
 
 "type.leisure.ice_rink" = "Eislaufplatz";
@@ -2320,13 +2370,9 @@
 
 "type.leisure.sports_centre" = "Sportzentrum";
 
-"type.leisure.sports_centre.climbing" = "Kletterhalle";
+"type.sport.climbing" = "Kletterhalle";
 
-"type.leisure.sports_centre.shooting" = "Schießanlage";
-
-"type.leisure.sports_centre.swimming" = "Schwimmhalle";
-
-"type.leisure.sports_centre.yoga" = "Yoga Studio";
+"type.sport.yoga" = "Yoga Studio";
 
 "type.leisure.stadium" = "Stadion";
 
@@ -2496,8 +2542,6 @@
 
 "type.organic.yes" = "Bio";
 
-"type.place" = "Ort";
-
 "type.place.city" = "Großstadt";
 
 "type.place.city.capital" = "Hauptstadt";
@@ -2534,7 +2578,7 @@
 
 "type.place.island" = "Insel";
 
-"type.place.islet" = "kleine Insel";
+"type.place.islet" = "Kleine Insel";
 
 "type.place.isolated_dwelling" = "Kleinstsiedlung";
 
@@ -2554,9 +2598,9 @@
 
 "type.place.state.USA" = "Bundesstaat";
 
-"type.place.suburb" = "Stadtteil";
+"type.place.suburb" = "Vorort";
 
-"type.place.town" = "Stadt";
+"type.place.town" = "Kleinstadt";
 
 "type.place.village" = "Dorf";
 
@@ -2956,7 +3000,11 @@
 
 "type.sport.basketball" = "Basketball";
 
+"type.sport.beachvolleyball" = "Beachvolleyball";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Schach";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2977,13 +3025,35 @@
 
 "type.sport.shooting" = "Schießen";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Skifahren";
 
 "type.sport.soccer" = "Fußball";
 
 "type.sport.swimming" = "Schwimmen";
 
+"type.sport.table_tennis" = "Tischtennis";
+
 "type.sport.tennis" = "Tennisspielfeld";
+
+"type.sport.volleyball" = "Volleyball";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Eishockey";
+
+"type.sport.field_hockey" = "Feldhockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Pelota Vasca";
 
 "type.tourism" = "Tourismus";
 

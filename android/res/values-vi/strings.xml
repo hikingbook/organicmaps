@@ -216,6 +216,8 @@
 	<string name="help">Trợ giúp</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Câu hỏi và trả lời</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Quyên tặng</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Làm thế nào để hỗ trợ chúng tôi?</string>
 	<!-- Button in the main Help dialog -->
@@ -335,7 +337,6 @@
 	<string name="routing_arrive">Đến: %s</string>
 	<string name="categories">Thể loại</string>
 	<string name="history">Lịch sử</string>
-	<string name="closed">Đã đóng</string>
 	<string name="search_not_found">Xin lỗi, tôi không tìm thấy kết quả nào.</string>
 	<string name="search_not_found_query">Vui lòng thử câu hỏi khác.</string>
 	<string name="search_history_title">Lịch sử tìm kiếm</string>
@@ -377,10 +378,12 @@
 	<string name="day_off_today">Nghỉ hôm nay</string>
 	<string name="day_off">Ngày nghỉ</string>
 	<string name="today">Hôm nay</string>
+	<string name="closed">Đã đóng</string>
 	<string name="edit_opening_hours">Sửa giờ làm việc</string>
 	<string name="no_osm_account">Bạn chưa có tài khoản tại OpenStreetMap ư?</string>
 	<string name="register_at_openstreetmap">Đăng ký</string>
 	<string name="login">Đăng nhập</string>
+	<string name="login_osm">Đăng nhập vào OpenStreetMap</string>
 	<string name="password">Mật khẩu</string>
 	<string name="forgot_password">Quên mật khẩu?</string>
 	<string name="logout">Đăng xuất</string>
@@ -400,6 +403,7 @@
 	<string name="select_cuisine">Chọn Ẩm thực</string>
 	<!-- login text field -->
 	<string name="email_or_username">Email hoặc tên người dùng</string>
+	<string name="level">Tầng</string>
 	<string name="downloader_delete_map_dialog">Tất cả những thay đổi của bản đồ sẽ bị xóa cùng với bản đồ đó.</string>
 	<string name="downloader_update_maps">Cập nhật các bản đồ</string>
 	<string name="downloader_mwm_migration_dialog">Để tạo một tuyến đường, bạn cần cập nhật tất cả các bản đồ và sau đó lập lại tuyến đường.</string>
@@ -418,6 +422,7 @@
 	<string name="editor_report_problem_other_title">Một vấn đề khác</string>
 	<string name="placepage_add_business_button">Thêm tổ chức</string>
 	<string name="message_invalid_feature_position">Một đối tượng không thể đặt được ở đây</string>
+	<string name="osm_presentation">Tất cả dữ liệu bản đồ đến từ dự án OpenStreetMap. Nó giống như Wikipedia dành cho bản đồ nơi bạn có thể thêm hoặc chỉnh sửa các địa điểm và chúng có sẵn cho hàng triệu người dùng trên khắp Thế giới.</string>
 	<string name="login_to_make_edits_visible">Đăng nhập để người dùng khác có thể nhìn thấy những thay đổi bạn đã thực hiện.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d trên %2$d</string>
@@ -471,9 +476,9 @@
 	<string name="placepage_add_place_button">Thêm địa điểm vào bản đồ</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Bạn có muốn gửi cho toàn bộ người dùng?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Chắc chắn rằng bạn không nhập bất kỳ thông tin cá nhân nào.</string>
-	<string name="editor_share_to_all_dialog_message_2">Chúng tôi sẽ kiểm tra những thay đổi. Nếu chúng tôi có câu hỏi nào, chúng tôi sẽ liên lạc với bạn qua email.</string>
+	<string name="editor_share_to_all_dialog_message_2">Các biên tập viên của OpenStreetMap sẽ kiểm tra các thay đổi và liên hệ với bạn nếu họ có bất kỳ câu hỏi nào.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps là một ứng dụng bản đồ ngoại tuyến mã nguồn mở và miễn phí. Không quảng cáo. Không theo dõi. Nếu bạn thấy lỗi trên bản đồ, hãy sửa lỗi đó trong OpenStreetMap. Dự án được tạo ra bởi những người đam mê trong thời gian rảnh của chúng tôi, vì vậy chúng tôi cần phản hồi và hỗ trợ của bạn.</string>
 	<!-- For the first routing -->
@@ -502,7 +507,7 @@
 	<string name="on">Bật</string>
 	<string name="off">Tắt</string>
 	<string name="prefs_languages_information">Chúng tôi sử dụng TTS hệ thống để hướng dẫn bằng giọng nói. Rất nhiều thiết bị Android sử dụng Google TTS, bạn có thể tải về hoặc cập nhật nó từ Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play, Samsung Apps, App Gallery, FDroid).\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
+	<string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play, Galaxy Store, App Gallery, FDroid).\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
 	<string name="prefs_languages_information_off_link">Để biết thêm thông tin, vui lòng kiểm tra bài hướng dẫn này.</string>
 	<string name="transliteration_title">Chuyển ngữ sang chữ Latinh</string>
 	<string name="learn_more">Tìm hiểu thêm</string>
@@ -660,6 +665,8 @@
 	<string name="enable_screen_sleep">Cho phép màn hình ở chế độ ngủ</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Khi được bật, màn hình sẽ được phép ở chế độ ngủ sau một thời gian không hoạt động.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Dữ liệu bản đồ từ OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.station">Trạm Cáp Treo</string>
@@ -695,6 +702,8 @@
 	<string name="type.amenity.doctors">Bác sĩ</string>
 	<string name="type.amenity.drinking_water">Nước uống</string>
 	<string name="type.amenity.driving_school">Trường lái xe</string>
+	<string name="type.amenity.music_school">Trường âm nhạc</string>
+	<string name="type.amenity.language_school">Ngôn ngữ Trường học</string>
 	<string name="type.office.diplomatic">Đại sứ quán</string>
 	<string name="type.amenity.fast_food">Thức ăn nhanh</string>
 	<string name="type.amenity.ferry_terminal">Phà</string>
@@ -723,10 +732,14 @@
 	<string name="type.amenity.parking.permissive">đỗ xe</string>
 	<string name="type.amenity.parking.private">đỗ xe</string>
 	<string name="type.amenity.parking.underground">đỗ xe</string>
+	<string name="type.amenity.parking_entrance.private">Lối vào bãi đậu xe</string>
+	<string name="type.amenity.parking_entrance.permissive">Lối vào bãi đậu xe</string>
+	<string name="type.amenity.parking_entrance">Lối vào bãi đậu xe</string>
 	<string name="type.amenity.parking_space">Chỗ để xe</string>
 	<string name="type.amenity.parking_space.permissive">Chỗ để xe</string>
 	<string name="type.amenity.parking_space.private">Chỗ để xe</string>
 	<string name="type.amenity.parking_space.underground">Chỗ để xe</string>
+	<string name="type.amenity.parking_space.disabled">Chỗ đậu xe dành cho người khuyết tật</string>
 	<string name="type.amenity.payment_terminal">Thiết bị thanh toán</string>
 	<string name="type.amenity.pharmacy">3Hiệu thuốc</string>
 	<string name="type.amenity.place_of_worship">Chùa</string>
@@ -788,17 +801,25 @@
 	<string name="type.building.has_parts">Tòa nhà</string>
 	<string name="type.building.train_station">Đường tàu hỏa</string>
 	<string name="type.cemetery.grave">Phần mộ</string>
+	<string name="type.craft">Thủ công</string>
+	<string name="type.craft.beekeeper">Người nuôi ong</string>
+	<string name="type.craft.blacksmith">Thợ rèn</string>
 	<string name="type.craft.brewery">Nhà máy bia</string>
 	<string name="type.craft.carpenter">Thợ mộc</string>
+	<string name="type.craft.confectionery">Người làm bánh kẹo</string>
 	<string name="type.craft.electrician">Thợ điện</string>
+	<string name="type.craft.electronics_repair">Sửa chữa điện tử</string>
 	<string name="type.craft.gardener">Người thiết kế và xây dựng cảnh quan</string>
+	<string name="type.craft.handicraft">Thủ công mỹ nghệ</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Điều hòa nhiệt độ</string>
 	<string name="type.craft.metal_construction">Nhà kim khí</string>
 	<string name="type.craft.painter">Họa sỹ</string>
 	<string name="type.craft.photographer">Thợ chụp ảnh</string>
 	<string name="type.craft.plumber">Thợ đường ống</string>
+	<string name="type.craft.sawmill">Sumel</string>
 	<string name="type.craft.shoemaker">Sửa giày</string>
+	<string name="type.craft.winery">Nhà máy rượu</string>
 	<string name="type.craft.tailor">Thợ may</string>
 	<string name="type.cuisine.african">Ẩm thực châu phi</string>
 	<string name="type.cuisine.american">Ẩm thực mỹ</string>
@@ -1068,9 +1089,18 @@
 
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Điểm khảo cổ</string>
-	<string name="type.historic.castle">Pháo đài</string>
-	<string name="type.historic.castle.defensive">Pháo đài</string>
+	<string name="type.historic.castle">Lâu đài</string>
+	<string name="type.historic.castle.castrum">Pháo đài La mã</string>
+	<string name="type.historic.castle.defensive">Lâu đài</string>
+	<string name="type.historic.castle.fortified_church">Nhà thờ kiên cố</string>
+	<string name="type.historic.castle.fortress">Pháo đài</string>
+	<string name="type.historic.castle.hillfort">Hillfort</string>
+	<string name="type.historic.castle.kremlin">Kremli</string>
+	<string name="type.historic.castle.manor">Trang viên</string>
+	<string name="type.historic.castle.palace">Cung điện</string>
+	<string name="type.historic.castle.shiro">Lâu đài nhật bản</string>
 	<string name="type.historic.castle.stately">Pháo đài</string>
+	<string name="type.historic.city_gate">Cổng thành</string>
 	<string name="type.historic.memorial">Đài tưởng niệm</string>
 	<string name="type.historic.memorial.plaque">Đài tưởng niệm</string>
 	<string name="type.historic.memorial.sculpture">Đài tưởng niệm</string>
@@ -1098,6 +1128,7 @@
 	<string name="type.leisure.fitness_centre">Phòng Tập</string>
 	<string name="type.leisure.fitness_station">Trạm tập thể hình</string>
 	<string name="type.leisure.garden">Điểm khảo cổ</string>
+	<string name="type.leisure.garden.residential">Điểm khảo cổ</string>
 	<string name="type.leisure.golf_course">Sân gôn</string>
 	<string name="type.leisure.nature_reserve">Giữ chỗ</string>
 	<string name="type.leisure.park">Công viên</string>
@@ -1109,10 +1140,8 @@
 	<string name="type.leisure.playground">Sân chơi</string>
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.sports_centre">Thể thao</string>
-	<string name="type.leisure.sports_centre.climbing">Trung tâm leo núi</string>
-	<string name="type.leisure.sports_centre.shooting">Nơi bắn súng</string>
-	<string name="type.leisure.sports_centre.swimming">Trung tâm Bơi lội</string>
-	<string name="type.leisure.sports_centre.yoga">Phòng tập yoga</string>
+	<string name="type.sport.climbing">Trung tâm leo núi</string>
+	<string name="type.sport.yoga">Phòng tập yoga</string>
 	<string name="type.leisure.stadium">Sân vận động</string>
 	<string name="type.leisure.swimming_pool">Bể bơi</string>
 	<string name="type.leisure.swimming_pool.private">Bể bơi</string>
@@ -1193,10 +1222,13 @@
 	<string name="type.place.hamlet">Quận</string>
 	<string name="type.place.island">Tỉnh</string>
 	<string name="type.place.islet">Tỉnh</string>
+	<string name="type.place.isolated_dwelling">Nhà ở Biệt lập</string>
 	<string name="type.place.locality">Thôn</string>
+	<string name="type.place.neighbourhood">Vùng lân cận</string>
 	<string name="type.place.ocean">Đại dương</string>
 	<string name="type.place.region">Vùng</string>
 	<string name="type.place.sea">Biển</string>
+	<string name="type.place.square">Quảng trường</string>
 	<string name="type.place.state">Hạt</string>
 	<string name="type.place.state.USA">Hạt</string>
 	<string name="type.place.suburb">Đảo</string>
@@ -1342,6 +1374,8 @@
 	<string name="type.sport.australian_football">Bóng bầu dục Úc</string>
 	<string name="type.sport.baseball">Bóng chày</string>
 	<string name="type.sport.basketball">Bóng rổ</string>
+	<string name="type.sport.beachvolleyball">Bóng chuyền bãi biển</string>
+	<string name="type.sport.chess">Cờ vua</string>
 	<string name="type.sport.cricket">Cricket</string>
 	<string name="type.sport.curling">Bi đá trên băng</string>
 	<string name="type.sport.equestrian">Thể thao cưỡi ngựa</string>
@@ -1352,10 +1386,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Môn lặn</string>
 	<string name="type.sport.shooting">Chụp</string>
+	<string name="type.sport.skateboard">Trượt ván</string>
 	<string name="type.sport.skiing">Trượt tuyết</string>
 	<string name="type.sport.soccer">Bóng đá</string>
 	<string name="type.sport.swimming">Bơi</string>
+	<string name="type.sport.table_tennis">Bóng bàn</string>
 	<string name="type.sport.tennis">Sân tenis</string>
+	<string name="type.sport.volleyball">Bóng chuyền</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Futsal</string>
+	<string name="type.sport.ice_hockey">Khúc côn cầu trên băng</string>
+	<string name="type.sport.field_hockey">Khúc côn cầu</string>
+	<string name="type.sport.badminton">Cầu lông</string>
+	<string name="type.sport.pelota">Pơ mu Basque</string>
 	<string name="type.tourism.alpine_hut">Nhà ở trên núi</string>
 	<string name="type.tourism.apartment">Căn hộ</string>
 	<string name="type.tourism.artwork">Du lịch</string>

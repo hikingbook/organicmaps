@@ -503,12 +503,6 @@
 
 "history" = "Ιστορικό";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Κλειστό";
-
 "search_not_found" = "Ωχ, δεν βρέθηκαν αποτελέσματα.";
 
 "search_not_found_query" = "Δοκιμάστε να αλλάξετε τα κριτήρια αναζήτησής σας.";
@@ -578,11 +572,25 @@
 
 "today" = "Σήμερα";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "Κλειστό";
+
 "add_opening_hours" = "Προσθέστε ώρες λειτουργίας";
 
 "no_osm_account" = "Δεν έχετε λογαριασμό OpenStreetMap;";
 
-"register_at_openstreetmap" = "Εγγραφείτε στο OSM";
+"register_at_openstreetmap" = "Εγγραφείτε στο OpenStreetMap";
 
 "password_8_chars_min" = "Κωδικός πρόσβασης (8 χαρακτήρες ελάχιστο)";
 
@@ -629,6 +637,8 @@
 "email_or_username" = "Email ή όνομα χρήστη";
 
 "phone" = "Τηλέφωνο";
+
+"level" = "Όροφος";
 
 "please_note" = "Λάβετε υπόψη";
 
@@ -750,6 +760,8 @@
 
 "miles_per_hour" = "mph";
 
+"hour" = "h";
+
 "minute" = "min";
 
 "placepage_place_description" = "Description";
@@ -798,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Θέλετε να το στείλετε σε όλους τους χρήστες;";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Βεβαιωθείτε ότι δεν έχετε εισάγει προσωπικά δεδομένα.";
 
-"editor_share_to_all_dialog_message_2" = "Θα ελέγξουμε τις αλλαγές. Εάν έχουμε οποιαδήποτε απορία θα επικοινωνήσουμε μαζί σας μέσω email.";
+"editor_share_to_all_dialog_message_2" = "Οι συντάκτες του OpenStreetMap θα ελέγξουν τις αλλαγές και θα επικοινωνήσουν μαζί σας εάν έχουν απορίες.";
 
 "navigation_stop_button" = "stop";
 
@@ -1205,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Τροχιά";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1300,6 +1318,10 @@
 
 "type.amenity.driving_school" = "Σχολή οδήγησης";
 
+"type.amenity.music_school" = "Μουσική Σχολή";
+
+"type.amenity.language_school" = "Σχολή Γλωσσών";
+
 "type.office.diplomatic" = "Πρεσβεία";
 
 "type.amenity.fast_food" = "Ταχυφαγίο";
@@ -1356,6 +1378,12 @@
 
 "type.amenity.parking.underground" = "Χώρος στάθμευσης";
 
+"type.amenity.parking_entrance.private" = "Είσοδος στάθμευσης";
+
+"type.amenity.parking_entrance.permissive" = "Είσοδος στάθμευσης";
+
+"type.amenity.parking_entrance" = "Είσοδος στάθμευσης";
+
 "type.amenity.parking_space" = "Χώρος στάθμευσης";
 
 "type.amenity.parking_space.permissive" = "Χώρος στάθμευσης";
@@ -1363,6 +1391,8 @@
 "type.amenity.parking_space.private" = "Χώρος στάθμευσης";
 
 "type.amenity.parking_space.underground" = "Χώρος στάθμευσης";
+
+"type.amenity.parking_space.disabled" = "Χώρος στάθμευσης για ΑΜΕΑ";
 
 "type.amenity.payment_terminal" = "Τερματικό πληρωμών";
 
@@ -1579,25 +1609,25 @@
 
 "type.cemetery.grave" = "Τάφος";
 
-"type.craft" = "Craft";
+"type.craft" = "Τεχνική";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Μελισσοκόμος";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Σιδηρουργός";
 
 "type.craft.brewery" = "Ζυθοποιείο";
 
 "type.craft.carpenter" = "Ξυλουργός";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Ζαχαροπλάστης";
 
 "type.craft.electrician" = "Ηλεκτρολόγος";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Επισκευή ηλεκτρονικών";
 
 "type.craft.gardener" = "Κηπουρός";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Χειροτεχνία";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Ψυκτικός";
@@ -1610,11 +1640,11 @@
 
 "type.craft.plumber" = "Υδραυλικός";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Πριστήριο";
 
 "type.craft.shoemaker" = "Υποδηματοποιός";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Οινοποιείο";
 
 "type.craft.tailor" = "Ράφτης";
 
@@ -2140,9 +2170,27 @@
 
 "type.historic.castle" = "Κάστρο";
 
+"type.historic.castle.castrum" = "Ρωμαϊκό κάστρο";
+
 "type.historic.castle.defensive" = "Κάστρο";
 
+"type.historic.castle.fortified_church" = "Οχυρωμένη εκκλησία";
+
+"type.historic.castle.fortress" = "Φρούριο";
+
+"type.historic.castle.hillfort" = "Φρούριο";
+
+"type.historic.castle.kremlin" = "Κρεμλίνο";
+
+"type.historic.castle.manor" = "Αρχοντικό";
+
+"type.historic.castle.palace" = "Παλάτι";
+
+"type.historic.castle.shiro" = "Ιαπωνικό κάστρο";
+
 "type.historic.castle.stately" = "Κάστρο";
+
+"type.historic.city_gate" = "Πύλη της πόλης";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2288,6 +2336,8 @@
 
 "type.leisure.garden" = "Κήπος αναψυχής";
 
+"type.leisure.garden.residential" = "Κήπος αναψυχής";
+
 "type.leisure.golf_course" = "Γήπεδο γκολφ";
 
 "type.leisure.ice_rink" = "Ice Rink";
@@ -2320,13 +2370,9 @@
 
 "type.leisure.sports_centre" = "Αθλητικό κέντρο";
 
-"type.leisure.sports_centre.climbing" = "Κέντρο αναρρίχησης";
+"type.sport.climbing" = "Κέντρο αναρρίχησης";
 
-"type.leisure.sports_centre.shooting" = "Σκοπευτήριο";
-
-"type.leisure.sports_centre.swimming" = "Κολυμβητήριο";
-
-"type.leisure.sports_centre.yoga" = "Στούντιο γιόγκα";
+"type.sport.yoga" = "Στούντιο γιόγκα";
 
 "type.leisure.stadium" = "Γήπεδο";
 
@@ -2496,8 +2542,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "Πόλη";
 
 "type.place.city.capital" = "Πρωτεύουσα";
@@ -2536,11 +2580,11 @@
 
 "type.place.islet" = "Νησί";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Απομονωμένη κατοικία";
 
 "type.place.locality" = "Τοποθεσία";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Γειτονιά";
 
 "type.place.ocean" = "Ωκεανός";
 
@@ -2548,7 +2592,7 @@
 
 "type.place.sea" = "Θάλασσα";
 
-"type.place.square" = "Square";
+"type.place.square" = "Πλατεία";
 
 "type.place.state" = "Πολιτεία";
 
@@ -2956,7 +3000,11 @@
 
 "type.sport.basketball" = "Μπάσκετ";
 
+"type.sport.beachvolleyball" = "Μπιτς βόλεϊ";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Σκάκι";
 
 "type.sport.cricket" = "Cricket";
 
@@ -2977,13 +3025,35 @@
 
 "type.sport.shooting" = "Κυνήγι";
 
+"type.sport.skateboard" = "Σκέιτμπορντινγκ";
+
 "type.sport.skiing" = "Χιονοδρόμια";
 
 "type.sport.soccer" = "Ποδόσφαιρο";
 
 "type.sport.swimming" = "Κολύμβηση";
 
+"type.sport.table_tennis" = "Επιτραπέζια αντισφαίριση";
+
 "type.sport.tennis" = "Γήπεδο τένις";
+
+"type.sport.volleyball" = "Πετοσφαίριση";
+
+"type.sport.10pin" = "Μπόουλινγκ";
+
+"type.sport.9pin" = "Μπόουλινγκ";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Futsal";
+
+"type.sport.ice_hockey" = "Χόκεϊ στον παγο";
+
+"type.sport.field_hockey" = "Χόκεϊ επί χόρτου";
+
+"type.sport.badminton" = "Αντιπτέριση";
+
+"type.sport.pelota" = "Βασκική πελότα";
 
 "type.tourism" = "Tourism";
 

@@ -118,11 +118,10 @@ bool is_finite(double d)
   return IsFinite(d);
 }
 
-UniString MakeLowerCase(UniString const & s)
+UniString MakeLowerCase(UniString s)
 {
-  UniString result(s);
-  MakeLowerCaseInplace(result);
-  return result;
+  MakeLowerCaseInplace(s);
+  return s;
 }
 
 void MakeLowerCaseInplace(std::string & s)
@@ -134,18 +133,16 @@ void MakeLowerCaseInplace(std::string & s)
   utf8::unchecked::utf32to8(uniStr.begin(), uniStr.end(), back_inserter(s));
 }
 
-std::string MakeLowerCase(std::string const & s)
+std::string MakeLowerCase(std::string s)
 {
-  std::string result(s);
-  MakeLowerCaseInplace(result);
-  return result;
+  MakeLowerCaseInplace(s);
+  return s;
 }
 
-UniString Normalize(UniString const & s)
+UniString Normalize(UniString s)
 {
-  UniString result(s);
-  NormalizeInplace(result);
-  return result;
+  NormalizeInplace(s);
+  return s;
 }
 
 std::string Normalize(std::string const & s)
@@ -314,6 +311,11 @@ bool StartsWith(UniString const & s, UniString const & p)
 bool StartsWith(std::string const & s1, char const * s2)
 {
   return (s1.compare(0, strlen(s2), s2) == 0);
+}
+
+bool StartsWith(std::string const & s1, std::string_view s2)
+{
+  return (s1.compare(0, s2.length(), s2) == 0);
 }
 
 bool StartsWith(std::string const & s, std::string::value_type c)

@@ -503,12 +503,6 @@
 
 "history" = "Grabatu";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "Itxita";
-
 "search_not_found" = "Barkatu, ez dut ezer aurkitu.";
 
 "search_not_found_query" = "Mesedez, saiatu beste kontsulta bat.";
@@ -578,11 +572,25 @@
 
 "today" = "Gaur";
 
+"opens_tomorrow_at" = "Bihar %@ean irekiko da";
+
+"opens_dayoftheweek_at" = "%1$@ean %2$@ean irekiko da";
+
+"opens_at" = "%@ean irekiko da";
+
+"opens_in" = "%@ barru irekitzen da";
+
+"closes_at" = "%@ean itxiko da";
+
+"closes_in" = "%@ barru ixten da";
+
+"closed" = "Itxita";
+
 "add_opening_hours" = "Gehitu ordutegia";
 
 "no_osm_account" = "Ez al duzu OpenStreetMap konturik?";
 
-"register_at_openstreetmap" = "Eman izena OSM";
+"register_at_openstreetmap" = "Eman izena OpenStreetMap";
 
 "password_8_chars_min" = "Pasahitza (gutxienez 8 karaktere)";
 
@@ -629,6 +637,8 @@
 "email_or_username" = "Posta elektronikoa edo erabiltzailea";
 
 "phone" = "Telefonoa";
+
+"level" = "Solairua";
 
 "please_note" = "Abisua";
 
@@ -750,6 +760,8 @@
 
 "miles_per_hour" = "mph";
 
+"hour" = "h";
+
 "minute" = "min";
 
 "placepage_place_description" = "Deskribapena";
@@ -798,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Erabiltzaile guztiei bidali nahi diezu?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Ziurtatu ez duzula datu pertsonalik sartu.";
 
-"editor_share_to_all_dialog_message_2" = "Aldaketak egiaztatuko ditugu. Edozein zalantza izanez gero, zurekin harremanetan jarriko gara posta elektronikoz.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap editoreek aldaketak egiaztatuko dituzte eta zurekin harremanetan jarriko dira zalantzaren bat izanez gero.";
 
 "navigation_stop_button" = "gelditu";
 
@@ -1205,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "Ibilbidea";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1300,6 +1318,10 @@
 
 "type.amenity.driving_school" = "Autoeskola";
 
+"type.amenity.music_school" = "Musika Eskola";
+
+"type.amenity.language_school" = "Hizkuntza Eskola";
+
 "type.office.diplomatic" = "Enbaxada";
 
 "type.amenity.fast_food" = "Janari azkarra";
@@ -1356,6 +1378,12 @@
 
 "type.amenity.parking.underground" = "Aparkalekua";
 
+"type.amenity.parking_entrance.private" = "Aparkalekuaren sarrera";
+
+"type.amenity.parking_entrance.permissive" = "Aparkalekuaren sarrera";
+
+"type.amenity.parking_entrance" = "Aparkalekuaren sarrera";
+
 "type.amenity.parking_space" = "Aparkaleku";
 
 "type.amenity.parking_space.permissive" = "Aparkaleku";
@@ -1363,6 +1391,8 @@
 "type.amenity.parking_space.private" = "Aparkaleku";
 
 "type.amenity.parking_space.underground" = "Aparkaleku";
+
+"type.amenity.parking_space.disabled" = "Ezinduentzako aparkalekua";
 
 "type.amenity.payment_terminal" = "Ordainketa terminala";
 
@@ -1579,25 +1609,25 @@
 
 "type.cemetery.grave" = "Hilobia";
 
-"type.craft" = "Craft";
+"type.craft" = "Artisautza";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "Erlezaina";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "Errementari";
 
 "type.craft.brewery" = "Garagardo fabrika";
 
 "type.craft.carpenter" = "Arotza";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Gozogilea";
 
 "type.craft.electrician" = "Elektrizista teknikaria";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "Elektronika Konponketa";
 
 "type.craft.gardener" = "Paisaia";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "Eskulangintza";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Aire girotua";
@@ -1610,11 +1640,11 @@
 
 "type.craft.plumber" = "Iturgina";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "Zerrategi";
 
 "type.craft.shoemaker" = "Zapataria";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "Upategi";
 
 "type.craft.tailor" = "Jostun";
 
@@ -2138,11 +2168,29 @@
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
-"type.historic.castle" = "Gaztelua";
+"type.historic.castle" = "Gaztelu";
 
-"type.historic.castle.defensive" = "Gaztelua";
+"type.historic.castle.castrum" = "Castrum";
+
+"type.historic.castle.defensive" = "Gaztelu";
+
+"type.historic.castle.fortified_church" = "Eliza-gotorleku";
+
+"type.historic.castle.fortress" = "Gotorlekua";
+
+"type.historic.castle.hillfort" = "Kastro";
+
+"type.historic.castle.kremlin" = "Kremlina";
+
+"type.historic.castle.manor" = "Jauregitxo";
+
+"type.historic.castle.palace" = "Jauregi";
+
+"type.historic.castle.shiro" = "Japoniar gaztelu";
 
 "type.historic.castle.stately" = "Gaztelua";
+
+"type.historic.city_gate" = "Portale";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2288,6 +2336,8 @@
 
 "type.leisure.garden" = "Lorategi";
 
+"type.leisure.garden.residential" = "Lorategi";
+
 "type.leisure.golf_course" = "Golf kurtsoa";
 
 "type.leisure.ice_rink" = "Ice Rink";
@@ -2320,13 +2370,9 @@
 
 "type.leisure.sports_centre" = "Kiroldegia";
 
-"type.leisure.sports_centre.climbing" = "Eskalada zentroa";
+"type.sport.climbing" = "Eskalada zentroa";
 
-"type.leisure.sports_centre.shooting" = "Tiro eremua";
-
-"type.leisure.sports_centre.swimming" = "Igeriketa zentroa";
-
-"type.leisure.sports_centre.yoga" = "Yoga zentroa";
+"type.sport.yoga" = "Yoga zentroa";
 
 "type.leisure.stadium" = "Estadioa";
 
@@ -2496,17 +2542,15 @@
 
 "type.organic.yes" = "Organikoa";
 
-"type.place" = "place";
-
 "type.place.city" = "Herria";
 
-"type.place.city.capital" = "Capital";
+"type.place.city.capital" = "Hiriburu";
 
 "type.place.city.capital.10" = "Herria";
 
 "type.place.city.capital.11" = "Herria";
 
-"type.place.city.capital.2" = "Capital";
+"type.place.city.capital.2" = "Hiriburu";
 
 "type.place.city.capital.3" = "Herria";
 
@@ -2536,11 +2580,11 @@
 
 "type.place.islet" = "Uhartea";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "Etxebizitza Isolatua";
 
 "type.place.locality" = "Kokapena";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "Auzo";
 
 "type.place.ocean" = "Ozeanoa";
 
@@ -2548,7 +2592,7 @@
 
 "type.place.sea" = "Itsasoa";
 
-"type.place.square" = "Square";
+"type.place.square" = "Plaza";
 
 "type.place.state" = "Baldintza";
 
@@ -2956,7 +3000,11 @@
 
 "type.sport.basketball" = "Saskibaloia";
 
+"type.sport.beachvolleyball" = "Hondartza-bolei";
+
 "type.sport.bowls" = "Bowls";
+
+"type.sport.chess" = "Xake";
 
 "type.sport.cricket" = "Kilkerra";
 
@@ -2977,13 +3025,35 @@
 
 "type.sport.shooting" = "Tiroketa";
 
+"type.sport.skateboard" = "Skateboarding";
+
 "type.sport.skiing" = "Eskia";
 
 "type.sport.soccer" = "Futbola";
 
 "type.sport.swimming" = "Igeriketa";
 
+"type.sport.table_tennis" = "Mahai-tenis";
+
 "type.sport.tennis" = "Tenis kantxa";
+
+"type.sport.volleyball" = "Boleibol";
+
+"type.sport.10pin" = "Bowling";
+
+"type.sport.9pin" = "Bowling";
+
+"type.sport.padel" = "Padel";
+
+"type.sport.futsal" = "Areto-futbola";
+
+"type.sport.ice_hockey" = "Izotz hockey";
+
+"type.sport.field_hockey" = "Belar hockey";
+
+"type.sport.badminton" = "Badminton";
+
+"type.sport.pelota" = "Eusko pilota";
 
 "type.tourism" = "Turismoa";
 

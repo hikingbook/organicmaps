@@ -503,12 +503,6 @@
 
 "history" = "내역";
 
-"opens_in" = "Opens in %@";
-
-"closes_in" = "Closes in %@";
-
-"closed" = "닫음";
-
 "search_not_found" = "죄송합니다. 아무것도 찾지 못했습니다.";
 
 "search_not_found_query" = "다른 쿼리를 시도하십시오.";
@@ -578,6 +572,20 @@
 
 "today" = "오늘";
 
+"opens_tomorrow_at" = "Opens tomorrow at %@";
+
+"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+
+"opens_at" = "Opens at %@";
+
+"opens_in" = "Opens in %@";
+
+"closes_at" = "Closes at %@";
+
+"closes_in" = "Closes in %@";
+
+"closed" = "닫음";
+
 "add_opening_hours" = "영업일 추가";
 
 "no_osm_account" = "OpenStreetMap에서 계정이 없습니까?";
@@ -629,6 +637,8 @@
 "email_or_username" = "이메일 또는 사용자 이름";
 
 "phone" = "전화";
+
+"level" = "층";
 
 "please_note" = "참고 사항";
 
@@ -750,6 +760,8 @@
 
 "miles_per_hour" = "mph";
 
+"hour" = "t";
+
 "minute" = "min";
 
 "placepage_place_description" = "설명";
@@ -798,10 +810,10 @@
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "이를 모든 사용자에게 전송하시겠습니까?";
 
-/* iOS Dialog before publishing the modifications to the public map. */
+/* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "개인 정보를 입력하지 않았는지 확인하십시오.";
 
-"editor_share_to_all_dialog_message_2" = "저희가 변경 사항을 확인할 것입니다. 질문이 있으신 경우, 저희에게 이메일을 통해 연락하십시오.";
+"editor_share_to_all_dialog_message_2" = "OpenStreetMap 편집자가 변경 사항을 확인하고 질문이 있는 경우 귀하에게 연락할 것입니다.";
 
 "navigation_stop_button" = "중지";
 
@@ -1205,6 +1217,12 @@
 /* edit track screen title */
 "track_title" = "길";
 
+/* Telegram group url for the help page */
+"telegram_url" = "https://t.me/OrganicMapsApp";
+
+/* Instagram account url for the help page */
+"instagram_url" = "https://www.instagram.com/organicmaps.app";
+
 
 /********** Types **********/
 
@@ -1300,6 +1318,10 @@
 
 "type.amenity.driving_school" = "운전학원";
 
+"type.amenity.music_school" = "음악 학교";
+
+"type.amenity.language_school" = "언어 학교";
+
 "type.office.diplomatic" = "대사관";
 
 "type.amenity.fast_food" = "패스트 푸드";
@@ -1356,6 +1378,12 @@
 
 "type.amenity.parking.underground" = "주차";
 
+"type.amenity.parking_entrance.private" = "주차장 입구";
+
+"type.amenity.parking_entrance.permissive" = "주차장 입구";
+
+"type.amenity.parking_entrance" = "주차장 입구";
+
 "type.amenity.parking_space" = "주차장";
 
 "type.amenity.parking_space.permissive" = "주차장";
@@ -1363,6 +1391,8 @@
 "type.amenity.parking_space.private" = "주차장";
 
 "type.amenity.parking_space.underground" = "주차장";
+
+"type.amenity.parking_space.disabled" = "장애인 주차 공간";
 
 "type.amenity.payment_terminal" = "결제 단말기";
 
@@ -1579,25 +1609,25 @@
 
 "type.cemetery.grave" = "무덤";
 
-"type.craft" = "Craft";
+"type.craft" = "공예";
 
-"type.craft.beekeeper" = "Beekeeper";
+"type.craft.beekeeper" = "양봉가";
 
-"type.craft.blacksmith" = "Blacksmith";
+"type.craft.blacksmith" = "대장장이";
 
 "type.craft.brewery" = "양조장";
 
 "type.craft.carpenter" = "목수";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "과자 장수";
 
 "type.craft.electrician" = "전기기술자";
 
-"type.craft.electronics_repair" = "Electronics Repair";
+"type.craft.electronics_repair" = "전자제품 수리";
 
 "type.craft.gardener" = "조경사";
 
-"type.craft.handicraft" = "Handicraft";
+"type.craft.handicraft" = "수예";
 
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "냉난방기";
@@ -1610,11 +1640,11 @@
 
 "type.craft.plumber" = "배관공";
 
-"type.craft.sawmill" = "Sawmill";
+"type.craft.sawmill" = "제재소";
 
 "type.craft.shoemaker" = "구두수선";
 
-"type.craft.winery" = "Winery";
+"type.craft.winery" = "포도주 양조장";
 
 "type.craft.tailor" = "양복점";
 
@@ -2140,9 +2170,27 @@
 
 "type.historic.castle" = "성";
 
+"type.historic.castle.castrum" = "로마 요새";
+
 "type.historic.castle.defensive" = "성";
 
+"type.historic.castle.fortified_church" = "요새화된 교회";
+
+"type.historic.castle.fortress" = "요새";
+
+"type.historic.castle.hillfort" = "힐포트";
+
+"type.historic.castle.kremlin" = "크렘린";
+
+"type.historic.castle.manor" = "매너하우스";
+
+"type.historic.castle.palace" = "궁전";
+
+"type.historic.castle.shiro" = "일본의 성";
+
 "type.historic.castle.stately" = "성";
+
+"type.historic.city_gate" = "성문";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2288,6 +2336,8 @@
 
 "type.leisure.garden" = "정원";
 
+"type.leisure.garden.residential" = "정원";
+
 "type.leisure.golf_course" = "골프장";
 
 "type.leisure.ice_rink" = "Ice Rink";
@@ -2320,13 +2370,9 @@
 
 "type.leisure.sports_centre" = "스포츠 센터";
 
-"type.leisure.sports_centre.climbing" = "등반 센터";
+"type.sport.climbing" = "등반 센터";
 
-"type.leisure.sports_centre.shooting" = "발사 범위";
-
-"type.leisure.sports_centre.swimming" = "수영 센터";
-
-"type.leisure.sports_centre.yoga" = "요가 스튜디오";
+"type.sport.yoga" = "요가 스튜디오";
 
 "type.leisure.stadium" = "경기장";
 
@@ -2496,8 +2542,6 @@
 
 "type.organic.yes" = "Organic";
 
-"type.place" = "place";
-
 "type.place.city" = "도시";
 
 "type.place.city.capital" = "수도";
@@ -2536,11 +2580,11 @@
 
 "type.place.islet" = "섬";
 
-"type.place.isolated_dwelling" = "Dwelling";
+"type.place.isolated_dwelling" = "고립된 주거";
 
 "type.place.locality" = "장소";
 
-"type.place.neighbourhood" = "Neighbourhood";
+"type.place.neighbourhood" = "동네";
 
 "type.place.ocean" = "대양";
 
@@ -2548,7 +2592,7 @@
 
 "type.place.sea" = "바다";
 
-"type.place.square" = "Square";
+"type.place.square" = "광장";
 
 "type.place.state" = "주";
 
@@ -2956,7 +3000,11 @@
 
 "type.sport.basketball" = "야구";
 
+"type.sport.beachvolleyball" = "비치발리볼";
+
 "type.sport.bowls" = "론볼";
+
+"type.sport.chess" = "체스";
 
 "type.sport.cricket" = "크리켓";
 
@@ -2977,13 +3025,35 @@
 
 "type.sport.shooting" = "사격 경기";
 
+"type.sport.skateboard" = "스케이트보딩";
+
 "type.sport.skiing" = "스키 타기";
 
 "type.sport.soccer" = "축구";
 
 "type.sport.swimming" = "수영";
 
+"type.sport.table_tennis" = "탁구";
+
 "type.sport.tennis" = "테니스 코트";
+
+"type.sport.volleyball" = "배구";
+
+"type.sport.10pin" = "볼링";
+
+"type.sport.9pin" = "볼링";
+
+"type.sport.padel" = "파델";
+
+"type.sport.futsal" = "풋살";
+
+"type.sport.ice_hockey" = "아이스 하키";
+
+"type.sport.field_hockey" = "필드 하키";
+
+"type.sport.badminton" = "배드민턴";
+
+"type.sport.pelota" = "바스크 펠로타";
 
 "type.tourism" = "Tourism";
 

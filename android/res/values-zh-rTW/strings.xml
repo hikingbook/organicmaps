@@ -227,6 +227,8 @@
 	<string name="help">幫助</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">問題和解答</string>
+	<!-- Button in the main menu -->
+	<string name="donate">捐</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">如何支持我們？</string>
 	<!-- Button in the main Help dialog -->
@@ -346,7 +348,6 @@
 	<string name="routing_arrive">抵達:%s</string>
 	<string name="categories">類別</string>
 	<string name="history">記錄</string>
-	<string name="closed">已關閉</string>
 	<string name="search_not_found">很抱歉，找不到任何東西。</string>
 	<string name="search_not_found_query">請嘗試其他搜尋字詞。</string>
 	<string name="search_history_title">搜尋歷史紀錄</string>
@@ -390,10 +391,12 @@
 	<string name="day_off_today">今天沒有營業</string>
 	<string name="day_off">沒有營業</string>
 	<string name="today">今天</string>
+	<string name="closed">已關閉</string>
 	<string name="edit_opening_hours">編輯營業時間</string>
 	<string name="no_osm_account">沒有 OpenStreetMap 帳號嗎？</string>
 	<string name="register_at_openstreetmap">註冊</string>
 	<string name="login">登入</string>
+	<string name="login_osm">登錄 OpenStreetMap</string>
 	<string name="password">密碼</string>
 	<string name="forgot_password">忘記密碼</string>
 	<string name="logout">登出</string>
@@ -414,6 +417,7 @@
 	<!-- login text field -->
 	<string name="email_or_username">電子郵件或使用者名稱</string>
 	<string name="editor_add_phone">新增電話</string>
+	<string name="level">樓層</string>
 	<string name="downloader_delete_map_dialog">所有對地圖的修改都將與地圖一起被刪除。</string>
 	<string name="downloader_update_maps">更新地圖</string>
 	<string name="downloader_mwm_migration_dialog">為了建立路線，您需要更新全部地圖並重新規劃路線。</string>
@@ -432,6 +436,7 @@
 	<string name="editor_report_problem_other_title">不同的問題</string>
 	<string name="placepage_add_business_button">添加組織</string>
 	<string name="message_invalid_feature_position">物件無法設置在這裡</string>
+	<string name="osm_presentation">所有地圖數據均來自 OpenStreetMap 項目。它就像 Wikipedia 中的地圖，您可以在其中添加或編輯地點，並且它們可供全球數百萬用戶使用。</string>
 	<string name="login_to_make_edits_visible">登入來讓其他使用者能看到您所作出的修改。</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d個/共%2$d個</string>
@@ -489,9 +494,9 @@
 	<string name="placepage_add_place_button">增加地點到地圖上</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">您想要發給所有用戶嗎？</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">確保您沒有輸入任何個人資料。</string>
-	<string name="editor_share_to_all_dialog_message_2">我們會檢查更改。如果我們有任何問題，我們會郵件與您聯絡。</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap 編輯人員將檢查更改並在有任何問題時與您聯繫。</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps 是一款免費的開源離線地圖 app。沒有廣告，不會追蹤。如果您在地圖上看到錯誤，請在 OpenStreetMap 中修復吧。這個專案由愛好者在我們的空閒時間創建，因此我們需要您的回饋和支援。</string>
 	<!-- For the first routing -->
@@ -520,7 +525,7 @@
 	<string name="on">開</string>
 	<string name="off">關</string>
 	<string name="prefs_languages_information">我們使用系統 TTS 提供語音指示。許多 Android 裝置使用 Google TTS，您可從 Google Play 下載或更新 (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">對於某些語言，您將需要從 App 商店 (Google Play 商店, Samsung Apps) 安裝其他語音合成器或額外的語言套件。\n開啟您裝置的設定 → 語言與輸入 → 語音 → 文字轉換語音輸出。\n在這裡，您可以管理語音合成器的設定（例如，下載語言套件以供離線使用），並選取其他文字轉換語音引擎。</string>
+	<string name="prefs_languages_information_off">對於某些語言，您將需要從 App 商店 (Google Play 商店, Galaxy Store) 安裝其他語音合成器或額外的語言套件。\n開啟您裝置的設定 → 語言與輸入 → 語音 → 文字轉換語音輸出。\n在這裡，您可以管理語音合成器的設定（例如，下載語言套件以供離線使用），並選取其他文字轉換語音引擎。</string>
 	<string name="prefs_languages_information_off_link">如需更多資訊，請參閱本指南。</string>
 	<string name="transliteration_title">音譯為拉丁文</string>
 	<string name="learn_more">瞭解更多資訊</string>
@@ -681,6 +686,8 @@
 	<string name="enable_screen_sleep">允许螢幕進入休眠狀態</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">啟用後，螢幕將在一段時間不活動後進入休眠狀態。</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">來自 OpenStreetMap 的地圖數據</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway">纜車要素</string>
@@ -728,6 +735,8 @@
 	<string name="type.amenity.doctors">醫師診間</string>
 	<string name="type.amenity.drinking_water">飲用水</string>
 	<string name="type.amenity.driving_school">駕訓班</string>
+	<string name="type.amenity.music_school">音樂學校</string>
+	<string name="type.amenity.language_school">語言學校</string>
 	<string name="type.office.diplomatic">大使館</string>
 	<string name="type.amenity.fast_food">速食店</string>
 	<string name="type.amenity.ferry_terminal">渡船</string>
@@ -756,10 +765,14 @@
 	<string name="type.amenity.parking.permissive">停車場</string>
 	<string name="type.amenity.parking.private">停車場</string>
 	<string name="type.amenity.parking.underground">停車場</string>
+	<string name="type.amenity.parking_entrance.private">停車場入口</string>
+	<string name="type.amenity.parking_entrance.permissive">停車場入口</string>
+	<string name="type.amenity.parking_entrance">停車場入口</string>
 	<string name="type.amenity.parking_space">停車地點</string>
 	<string name="type.amenity.parking_space.permissive">停車地點</string>
 	<string name="type.amenity.parking_space.private">停車地點</string>
 	<string name="type.amenity.parking_space.underground">停車地點</string>
+	<string name="type.amenity.parking_space.disabled">殘疾人停車位</string>
 	<string name="type.amenity.payment_terminal">付款終端</string>
 	<string name="type.amenity.pharmacy">藥局</string>
 	<string name="type.amenity.place_of_worship">寺廟</string>
@@ -823,17 +836,25 @@
 	<string name="type.building.has_parts">建築物</string>
 	<string name="type.building.train_station">鐵道</string>
 	<string name="type.cemetery.grave">墓穴</string>
+	<string name="type.craft">工藝作坊</string>
+	<string name="type.craft.beekeeper">蜂農</string>
+	<string name="type.craft.blacksmith">鐵匠</string>
 	<string name="type.craft.brewery">釀酒廠</string>
 	<string name="type.craft.carpenter">木工</string>
+	<string name="type.craft.confectionery">糖果商</string>
 	<string name="type.craft.electrician">電工</string>
+	<string name="type.craft.electronics_repair">電子產品維修</string>
 	<string name="type.craft.gardener">園藝師</string>
+	<string name="type.craft.handicraft">手工藝</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">空調設備</string>
 	<string name="type.craft.metal_construction">鐵工</string>
 	<string name="type.craft.painter">油漆工</string>
 	<string name="type.craft.photographer">攝影師</string>
 	<string name="type.craft.plumber">水管工人</string>
+	<string name="type.craft.sawmill">鋸木廠</string>
 	<string name="type.craft.shoemaker">修鞋工</string>
+	<string name="type.craft.winery">酒莊</string>
 	<string name="type.craft.tailor">裁縫師</string>
 	<string name="type.cuisine.african">非洲料理</string>
 	<string name="type.cuisine.american">美國料理</string>
@@ -1108,8 +1129,17 @@
 	<string name="type.historic.battlefield">古戰場</string>
 	<string name="type.historic.boundary_stone">界碑</string>
 	<string name="type.historic.castle">城堡</string>
+	<string name="type.historic.castle.castrum">古羅馬兵營</string>
 	<string name="type.historic.castle.defensive">城堡</string>
-	<string name="type.historic.castle.stately">宮殿</string>
+	<string name="type.historic.castle.fortified_church">堅固的教堂</string>
+	<string name="type.historic.castle.fortress">要塞</string>
+	<string name="type.historic.castle.hillfort">丘堡</string>
+	<string name="type.historic.castle.kremlin">克里姆林</string>
+	<string name="type.historic.castle.manor">莊園大屋</string>
+	<string name="type.historic.castle.palace">宮殿</string>
+	<string name="type.historic.castle.shiro">城</string>
+	<string name="type.historic.castle.stately">法式城堡</string>
+	<string name="type.historic.city_gate">城門</string>
 	<string name="type.historic.citywalls">歷史城牆</string>
 	<string name="type.historic.fort">歷史要塞</string>
 	<string name="type.historic.memorial">紀念館</string>
@@ -1143,6 +1173,7 @@
 	<string name="type.leisure.fitness_centre">健身中心</string>
 	<string name="type.leisure.fitness_station">健身房</string>
 	<string name="type.leisure.garden">花園</string>
+	<string name="type.leisure.garden.residential">花園</string>
 	<string name="type.leisure.golf_course">高爾夫球場</string>
 	<string name="type.leisure.nature_reserve">自然保護區</string>
 	<string name="type.leisure.park">公園</string>
@@ -1154,10 +1185,8 @@
 	<string name="type.leisure.playground">遊樂場</string>
 	<string name="type.leisure.sauna">桑拿</string>
 	<string name="type.leisure.sports_centre">體育中心</string>
-	<string name="type.leisure.sports_centre.climbing">攀登中心</string>
-	<string name="type.leisure.sports_centre.shooting">射擊場</string>
-	<string name="type.leisure.sports_centre.swimming">遊泳中心</string>
-	<string name="type.leisure.sports_centre.yoga">瑜伽工作室</string>
+	<string name="type.sport.climbing">攀登中心</string>
+	<string name="type.sport.yoga">瑜伽工作室</string>
 	<string name="type.leisure.stadium">體育場</string>
 	<string name="type.leisure.swimming_pool">游泳池</string>
 	<string name="type.leisure.swimming_pool.private">游泳池</string>
@@ -1238,10 +1267,13 @@
 	<string name="type.place.hamlet">村</string>
 	<string name="type.place.island">島</string>
 	<string name="type.place.islet">島</string>
+	<string name="type.place.isolated_dwelling">孤立居所</string>
 	<string name="type.place.locality">當地</string>
+	<string name="type.place.neighbourhood">鄰里社區</string>
 	<string name="type.place.ocean">海洋</string>
 	<string name="type.place.region">地區</string>
 	<string name="type.place.sea">海</string>
+	<string name="type.place.square">廣場</string>
 	<string name="type.place.state">州/省</string>
 	<string name="type.place.state.USA">州</string>
 	<string name="type.place.suburb">郊區</string>
@@ -1395,7 +1427,9 @@
 	<string name="type.sport.australian_football">澳式足球</string>
 	<string name="type.sport.baseball">棒球</string>
 	<string name="type.sport.basketball">籃球</string>
+	<string name="type.sport.beachvolleyball">沙灘排球</string>
 	<string name="type.sport.bowls">草地滾球</string>
+	<string name="type.sport.chess">國際象棋</string>
 	<string name="type.sport.cricket">板球</string>
 	<string name="type.sport.curling">冰壺</string>
 	<string name="type.sport.equestrian">馬術運動</string>
@@ -1406,10 +1440,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">水肺潛水</string>
 	<string name="type.sport.shooting">射擊</string>
+	<string name="type.sport.skateboard">滑板活動</string>
 	<string name="type.sport.skiing">滑雪</string>
 	<string name="type.sport.soccer">足球</string>
 	<string name="type.sport.swimming">游泳</string>
+	<string name="type.sport.table_tennis">乒乓球</string>
 	<string name="type.sport.tennis">網球場</string>
+	<string name="type.sport.volleyball">排球</string>
+	<string name="type.sport.10pin">保齡球</string>
+	<string name="type.sport.9pin">保齡球</string>
+	<string name="type.sport.padel">帕德爾</string>
+	<string name="type.sport.futsal">五人制足球</string>
+	<string name="type.sport.ice_hockey">冰球</string>
+	<string name="type.sport.field_hockey">曲棍球</string>
+	<string name="type.sport.badminton">羽毛球</string>
+	<string name="type.sport.pelota">巴斯克回力球</string>
 	<string name="type.tourism.alpine_hut">山上住宿</string>
 	<string name="type.tourism.apartment">公寓</string>
 	<string name="type.tourism.artwork">藝術品</string>

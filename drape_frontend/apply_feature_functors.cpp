@@ -51,9 +51,6 @@ namespace
 {
 double const kMinVisibleFontSize = 8.0;
 
-std::string const kStarSymbol = "★";
-std::string const kPriceSymbol = "$";
-
 df::ColorConstant const kPoiDeletedMaskColor = "PoiDeletedMask";
 df::ColorConstant const kPoiHotelTextOutlineColor = "PoiHotelTextOutline";
 df::ColorConstant const kRoadShieldBlackTextColor = "RoadShieldBlackText";
@@ -152,7 +149,7 @@ void Extract(::LineDefProto const * lineRule, df::LineViewParams & params)
       params.m_pattern.push_back(dp::PatternFloat2Pixel(dd.dd(i) * scale));
   }
 
-  switch(lineRule->cap())
+  switch (lineRule->cap())
   {
   case ::ROUNDCAP : params.m_cap = dp::RoundCap;
     break;
@@ -161,7 +158,7 @@ void Extract(::LineDefProto const * lineRule, df::LineViewParams & params)
   case ::SQUARECAP: params.m_cap = dp::SquareCap;
     break;
   default:
-    ASSERT(false, ());
+    CHECK(false, ());
   }
 
   switch (lineRule->join())
@@ -173,7 +170,7 @@ void Extract(::LineDefProto const * lineRule, df::LineViewParams & params)
   case ::BEVELJOIN : params.m_join = dp::BevelJoin;
     break;
   default:
-    ASSERT(false, ());
+    CHECK(false, ());
   }
 }
 
@@ -781,7 +778,7 @@ ApplyLineFeatureGeometry::ApplyLineFeatureGeometry(TileKey const & tileKey,
                                                    size_t pointsCount, bool smooth)
   : TBase(tileKey, insertShape, id, minVisibleScale, rank, CaptionDescription())
   , m_currentScaleGtoP(static_cast<float>(currentScaleGtoP))
-  , m_sqrScale(currentScaleGtoP * currentScaleGtoP)
+  , m_minSegmentSqrLength(base::Pow2(4.0 * df::VisualParams::Instance().GetVisualScale() / currentScaleGtoP))
   , m_simplify(tileKey.m_zoomLevel >= kLineSimplifyLevelStart &&
                tileKey.m_zoomLevel <= kLineSimplifyLevelEnd)
   , m_smooth(smooth)
@@ -807,9 +804,8 @@ void ApplyLineFeatureGeometry::operator() (m2::PointD const & point)
   }
   else
   {
-    static double minSegmentLength = base::Pow2(4.0 * df::VisualParams::Instance().GetVisualScale());
     if (m_simplify &&
-        ((m_spline->GetSize() > 1 && point.SquaredLength(m_lastAddedPoint) * m_sqrScale < minSegmentLength) ||
+        ((m_spline->GetSize() > 1 && point.SquaredLength(m_lastAddedPoint) < m_minSegmentSqrLength) ||
         m_spline->IsPrelonging(point)))
     {
       m_spline->ReplacePoint(point);

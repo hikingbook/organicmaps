@@ -216,6 +216,8 @@
 	<string name="help">Hjælp</string>
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Spørgsmål og svar</string>
+	<!-- Button in the main menu -->
+	<string name="donate">Doner</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Sådan støtter vi os?</string>
 	<!-- Button in the main Help dialog -->
@@ -335,7 +337,6 @@
 	<string name="routing_arrive">Ankomst: %s</string>
 	<string name="categories">Kategorier</string>
 	<string name="history">Historik</string>
-	<string name="closed">Lukket</string>
 	<string name="search_not_found">Desværre, jeg fandt ikke noget.</string>
 	<string name="search_not_found_query">Prøv en anden forespørgsel.</string>
 	<string name="search_history_title">Søgehistorik</string>
@@ -377,10 +378,12 @@
 	<string name="day_off_today">Fridag i dag</string>
 	<string name="day_off">Fridag</string>
 	<string name="today">I dag</string>
+	<string name="closed">Lukket</string>
 	<string name="edit_opening_hours">Rediger arbejdstid</string>
 	<string name="no_osm_account">Ingen konto på OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Tilmeld dig</string>
 	<string name="login">Log ind</string>
+	<string name="login_osm">Log ind på OpenStreetMap</string>
 	<string name="password">Adgangskode</string>
 	<string name="forgot_password">Glemt adgangskode?</string>
 	<string name="logout">Log ud</string>
@@ -402,6 +405,7 @@
 	<string name="select_cuisine">Vælg køkken</string>
 	<!-- login text field -->
 	<string name="email_or_username">Email eller brugernavn</string>
+	<string name="level">Etage</string>
 	<string name="downloader_delete_map_dialog">Alle kortændringer vil blive slettet sammen med kortet.</string>
 	<string name="downloader_update_maps">Opdatér kort</string>
 	<string name="downloader_mwm_migration_dialog">For at oprette en rute skal du opdatere alle kort og så planlægge ruten igen.</string>
@@ -420,6 +424,7 @@
 	<string name="editor_report_problem_other_title">Et anderledes problem</string>
 	<string name="placepage_add_business_button">Tilføj organisationen</string>
 	<string name="message_invalid_feature_position">Et objekt kan ikke placeres her</string>
+	<string name="osm_presentation">Alle kortdata kommer fra OpenStreetMap-projektet. Det er ligesom Wikipedia for kort, hvor du kan tilføje eller redigere steder, og de bliver tilgængelige for millioner af brugere over hele verden.</string>
 	<string name="login_to_make_edits_visible">Log på så andre brugere kan se ændringerne som du har foretaget.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d af %2$d</string>
@@ -473,9 +478,9 @@
 	<string name="placepage_add_place_button">Tilføj et sted på kortet</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Ønsker du at sende det til alle brugere?</string>
-	<!-- iOS Dialog before publishing the modifications to the public map. -->
+	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Sørg for at du ikke indtastede personlige oplysninger.</string>
-	<string name="editor_share_to_all_dialog_message_2">Vi vil kigge på ændringerne. Hvis vi har spørgsmål, vil vi kontakte dig via email.</string>
+	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-redaktører vil tjekke ændringerne og kontakte dig, hvis de har spørgsmål.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps er en gratis og open source offline kortapplikation. Ingen annoncer. Ingen sporing. Hvis du ser en fejl på kortet, skal du rette den i OpenStreetMap. Projektet er skabt af entusiaster i vores fritid, så vi har brug for din feedback og support.</string>
 	<!-- For the first routing -->
@@ -504,7 +509,7 @@
 	<string name="on">Til</string>
 	<string name="off">Fra</string>
 	<string name="prefs_languages_information">Vi bruger systemets TTS til stemmevejledning. Mange Android-enheder bruger Google TTS, du kan hente eller opdatere det via Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-	<string name="prefs_languages_information_off">For nogle sprog skal du installere en anden talesyntese eller en yderligere sprogpakke fra appbutiken (Google Play, Samsung Apps, App Gallery, FDroid).\nÅbn enhedens indstillinger → Sprog og input → Tale → Tekst til tale. Her kan du administrere indstillingerne for talesyntese (f. eks downloade en sprogpakke til brug offline) og vælge et andet tekst-til-tale program.</string>
+	<string name="prefs_languages_information_off">For nogle sprog skal du installere en anden talesyntese eller en yderligere sprogpakke fra appbutiken (Google Play, Galaxy Store, App Gallery, FDroid).\nÅbn enhedens indstillinger → Sprog og input → Tale → Tekst til tale. Her kan du administrere indstillingerne for talesyntese (f. eks downloade en sprogpakke til brug offline) og vælge et andet tekst-til-tale program.</string>
 	<string name="prefs_languages_information_off_link">Se denne vejledning for flere oplysninger.</string>
 	<string name="transliteration_title">Translitteration til latinsk</string>
 	<string name="learn_more">Flere oplysninger</string>
@@ -662,6 +667,8 @@
 	<string name="enable_screen_sleep">Lad skærmen sove</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Når den er aktiveret, får skærmen lov til at sove efter en periode med inaktivitet.</string>
+	<!-- OpenStreetMap text on splash screen -->
+	<string name="splash_subtitle">Kortdata fra OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.station">Kabelbanestation</string>
@@ -695,6 +702,8 @@
 	<string name="type.amenity.doctors">Lægekontor</string>
 	<string name="type.amenity.drinking_water">Vand</string>
 	<string name="type.amenity.driving_school">Køreskole</string>
+	<string name="type.amenity.music_school">Musikskolen</string>
+	<string name="type.amenity.language_school">Sprogskole</string>
 	<string name="type.office.diplomatic">Ambassade</string>
 	<string name="type.amenity.fast_food">Fastfood</string>
 	<string name="type.amenity.ferry_terminal">Færge</string>
@@ -722,10 +731,14 @@
 	<string name="type.amenity.parking.permissive">Parkering</string>
 	<string name="type.amenity.parking.private">Parkering</string>
 	<string name="type.amenity.parking.underground">Parkering</string>
+	<string name="type.amenity.parking_entrance.private">Parkeringsindgang</string>
+	<string name="type.amenity.parking_entrance.permissive">Parkeringsindgang</string>
+	<string name="type.amenity.parking_entrance">Parkeringsindgang</string>
 	<string name="type.amenity.parking_space">Parkeringsplads</string>
 	<string name="type.amenity.parking_space.permissive">Parkeringsplads</string>
 	<string name="type.amenity.parking_space.private">Parkeringsplads</string>
 	<string name="type.amenity.parking_space.underground">Parkeringsplads</string>
+	<string name="type.amenity.parking_space.disabled">Handicapparkeringsplads</string>
 	<string name="type.amenity.payment_terminal">Betalingsautomat</string>
 	<string name="type.amenity.pharmacy">Apotek</string>
 	<string name="type.amenity.place_of_worship">Tempel</string>
@@ -783,17 +796,25 @@
 	<string name="type.building.has_parts">Bygning</string>
 	<string name="type.building.train_station">Togstation</string>
 	<string name="type.cemetery.grave">Grav</string>
+	<string name="type.craft">Håndværk</string>
+	<string name="type.craft.beekeeper">Biavler</string>
+	<string name="type.craft.blacksmith">Smed</string>
 	<string name="type.craft.brewery">Bryggeri</string>
 	<string name="type.craft.carpenter">Tømrer</string>
+	<string name="type.craft.confectionery">Konfekture</string>
 	<string name="type.craft.electrician">Elektriker</string>
+	<string name="type.craft.electronics_repair">Reparation af elektronik</string>
 	<string name="type.craft.gardener">Gartner</string>
+	<string name="type.craft.handicraft">Kunsthåndværk</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Blikkenslager</string>
 	<string name="type.craft.metal_construction">Metalarbejder</string>
 	<string name="type.craft.painter">Maler</string>
 	<string name="type.craft.photographer">Fotograf</string>
 	<string name="type.craft.plumber">VVS-mand</string>
+	<string name="type.craft.sawmill">Savværk</string>
 	<string name="type.craft.shoemaker">Skomager</string>
+	<string name="type.craft.winery">Vingård</string>
 	<string name="type.craft.tailor">Skrædder</string>
 	<string name="type.cuisine.african">Afrikansk</string>
 	<string name="type.cuisine.american">Amerikansk</string>
@@ -1064,8 +1085,17 @@
 	<!-- SECTION: Types: Historic -->
 	<string name="type.historic.archaeological_site">Arkæologisk sted</string>
 	<string name="type.historic.castle">Slot</string>
+	<string name="type.historic.castle.castrum">Romersk fort</string>
 	<string name="type.historic.castle.defensive">Slot</string>
+	<string name="type.historic.castle.fortified_church">Befæstet kirke</string>
+	<string name="type.historic.castle.fortress">Fæstningsværk</string>
+	<string name="type.historic.castle.hillfort">Voldsted</string>
+	<string name="type.historic.castle.kremlin">Kreml</string>
+	<string name="type.historic.castle.manor">Herregård</string>
+	<string name="type.historic.castle.palace">Palads</string>
+	<string name="type.historic.castle.shiro">Japansk slot</string>
 	<string name="type.historic.castle.stately">Slot</string>
+	<string name="type.historic.city_gate">Byport</string>
 	<string name="type.historic.memorial">Mindesmærke</string>
 	<string name="type.historic.memorial.plaque">Mindesmærke</string>
 	<string name="type.historic.memorial.sculpture">Mindesmærke</string>
@@ -1092,6 +1122,7 @@
 	<string name="type.leisure.fitness_centre">Trænings- og motionscenter</string>
 	<string name="type.leisure.fitness_station">Fitness-station</string>
 	<string name="type.leisure.garden">Have</string>
+	<string name="type.leisure.garden.residential">Have</string>
 	<string name="type.leisure.golf_course">Golf</string>
 	<string name="type.leisure.nature_reserve">Reservat</string>
 	<string name="type.leisure.park">Park</string>
@@ -1103,10 +1134,8 @@
 	<string name="type.leisure.playground">Legeplads</string>
 	<string name="type.leisure.sauna">Sauna</string>
 	<string name="type.leisure.sports_centre">Idrætscenter</string>
-	<string name="type.leisure.sports_centre.climbing">Klatrecenter</string>
-	<string name="type.leisure.sports_centre.shooting">Skydebane</string>
-	<string name="type.leisure.sports_centre.swimming">Svømmecenter</string>
-	<string name="type.leisure.sports_centre.yoga">Yoga center</string>
+	<string name="type.sport.climbing">Klatrecenter</string>
+	<string name="type.sport.yoga">Yoga center</string>
 	<string name="type.leisure.swimming_pool">Svømmebassin</string>
 	<string name="type.leisure.swimming_pool.private">Svømmebassin</string>
 	<string name="type.leisure.water_park">Vandpark</string>
@@ -1185,8 +1214,13 @@
 	<string name="type.place.hamlet">Landsby</string>
 	<string name="type.place.island">Ø</string>
 	<string name="type.place.islet">Ø</string>
+	<string name="type.place.isolated_dwelling">Isoleret bolig</string>
 	<string name="type.place.locality">Lokalitet</string>
+	<string name="type.place.neighbourhood">Kvarter</string>
+	<string name="type.place.ocean">Verdenshave</string>
+	<string name="type.place.region">Region</string>
 	<string name="type.place.sea">Er</string>
+	<string name="type.place.square">Torv</string>
 	<string name="type.place.state">Stat</string>
 	<string name="type.place.state.USA">Stat</string>
 	<string name="type.place.suburb">Forstad</string>
@@ -1330,6 +1364,8 @@
 	<string name="type.sport.australian_football">Australsk fodbold</string>
 	<string name="type.sport.baseball">Baseball</string>
 	<string name="type.sport.basketball">Basketball</string>
+	<string name="type.sport.beachvolleyball">Beachvolley</string>
+	<string name="type.sport.chess">Skak</string>
 	<string name="type.sport.curling">Curling</string>
 	<string name="type.sport.equestrian">Ridesport</string>
 	<string name="type.sport.golf">Golf</string>
@@ -1339,10 +1375,21 @@
 	<!-- Used to tag a scuba diving site. -->
 	<string name="type.sport.scuba_diving">Scuba dykning</string>
 	<string name="type.sport.shooting">Skydning</string>
+	<string name="type.sport.skateboard">Skateboarding</string>
 	<string name="type.sport.skiing">Stå på ski</string>
 	<string name="type.sport.soccer">Fodbold</string>
 	<string name="type.sport.swimming">Svømning</string>
+	<string name="type.sport.table_tennis">Bordtennis</string>
 	<string name="type.sport.tennis">Tennisbane</string>
+	<string name="type.sport.volleyball">Volleyball</string>
+	<string name="type.sport.10pin">Bowling</string>
+	<string name="type.sport.9pin">Bowling</string>
+	<string name="type.sport.padel">Padel</string>
+	<string name="type.sport.futsal">Futsal</string>
+	<string name="type.sport.ice_hockey">Ishockey</string>
+	<string name="type.sport.field_hockey">Landhockey</string>
+	<string name="type.sport.badminton">Badminton</string>
+	<string name="type.sport.pelota">Baskisk pelota</string>
 	<string name="type.tourism.alpine_hut">Bjerg logi</string>
 	<string name="type.tourism.apartment">Lejligheder</string>
 	<string name="type.tourism.artwork">Kunstværk</string>

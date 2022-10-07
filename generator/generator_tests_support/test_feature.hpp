@@ -132,7 +132,7 @@ public:
   TestStreet(std::vector<m2::PointD> const & points, std::string const & name, std::string const & lang);
   TestStreet(std::vector<m2::PointD> const & points, StringUtf8Multilang const & name);
 
-  void SetHighwayType(std::string const & type) { m_highwayType = type; }
+  void SetType(base::StringIL const & e);
   void SetRoadNumber(std::string const & roadNumber) { m_roadNumber = roadNumber; }
 
   // TestFeature overrides:
@@ -141,7 +141,7 @@ public:
 
 private:
   std::vector<m2::PointD> m_points;
-  std::string m_highwayType;
+  uint32_t m_highwayType;
   std::string m_roadNumber;
 };
 
@@ -216,7 +216,6 @@ public:
   void AddType(std::vector<std::string> const & path) { m_types.push_back(path); }
 
 private:
-  std::vector<m2::PointD> const m_boundary;
   std::string const m_houseNumber;
   std::string const m_streetName;
 
@@ -231,9 +230,6 @@ public:
   // TestFeature overrides:
   void Serialize(feature::FeatureBuilder & fb) const override;
   std::string ToDebugString() const override;
-
-private:
-  std::vector<m2::PointD> m_boundary;
 };
 
 class TestRoad : public TestFeature

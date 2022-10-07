@@ -63,10 +63,12 @@ world  +
         ice_cream  -
         internet_cafe  -
         kindergarten  -
+        language_school  -
         library  -
         loading_dock  -
         marketplace  -
         motorcycle_parking  -
+        music_school  -
         nightclub  -
         nursing_home  -
         parcel_locker  -
@@ -79,7 +81,12 @@ world  +
             private  -
             underground  -
             {}
+        parking_entrance  +
+            permissive  -
+            private  -
+            {}
         parking_space  +
+            disabled  -
             permissive  -
             private  -
             underground  -
@@ -191,6 +198,7 @@ world  +
             state  -
             suburb  -
             {}
+        military  -
         national_park  -
         {}
     building  +
@@ -476,9 +484,18 @@ world  +
         battlefield  -
         boundary_stone  -
         castle  +
+            castrum  -
             defensive  -
+            fortified_church  -
+            fortress  -
+            hillfort  -
+            kremlin  -
+            manor  -
+            palace  -
+            shiro  -
             stately  -
             {}
+        city_gate  -
         citywalls  -
         fort  -
         memorial  +
@@ -548,7 +565,9 @@ world  +
         industrial  -
         landfill  -
         meadow  -
-        military  -
+        military  +
+            danger_area  -
+            {}
         orchard  -
         quarry  -
         railway  -
@@ -566,7 +585,9 @@ world  +
         dog_park  -
         fitness_centre  -
         fitness_station  -
-        garden  -
+        garden  +
+            residential  -
+            {}
         golf_course  -
         ice_rink  -
         landscape_reserve  -
@@ -583,17 +604,14 @@ world  +
         recreation_ground  -
         sauna  -
         slipway  -
-        sports_centre  +
-            climbing  -
-            shooting  -
-            swimming  -
-            yoga  -
-            {}
+        sports_centre  -
         stadium  -
         swimming_pool  +
             private  -
             {}
-        track  -
+        track  +
+            area  -
+            {}
         water_park  -
         {}
     man_made  +
@@ -965,27 +983,42 @@ world  +
         wine  -
         {}
     sport  +
+        10pin  -
+        9pin  -
         american_football  -
         archery  -
         athletics  -
         australian_football  -
+        badminton  -
         baseball  -
         basketball  -
+        beachvolleyball  -
         bowls  -
+        chess  -
+        climbing  -
         cricket  -
         curling  -
         diving  -
         equestrian  -
+        field_hockey  -
+        futsal  -
         golf  -
         gymnastics  -
         handball  -
+        ice_hockey  -
         multi  -
+        padel  -
+        pelota  -
         scuba_diving  -
         shooting  -
+        skateboard  -
         skiing  -
         soccer  -
         swimming  -
+        table_tennis  -
         tennis  -
+        volleyball  -
+        yoga  -
         {}
     tourism  +
         alpine_hut  -

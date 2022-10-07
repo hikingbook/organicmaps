@@ -339,6 +339,7 @@ void MwmSet::UnlockValueImpl(MwmId const & id, unique_ptr<MwmValue> p, EventList
     m_cache.push_back(make_pair(id, move(p)));
     if (m_cache.size() > m_cacheSize)
     {
+      LOG(LDEBUG, ("MwmValue max cache size reached! Added", id, "removed", m_cache.front().first));
       ASSERT_EQUAL(m_cache.size(), m_cacheSize + 1, ());
       m_cache.pop_front();
     }
@@ -413,9 +414,6 @@ MwmValue::MwmValue(LocalCountryFile const & localFile)
 
 void MwmValue::SetTable(MwmInfoEx & info)
 {
-  auto const version = GetHeader().GetFormat();
-  CHECK_GREATER(version, version::Format::v5, ("Old maps should not be registered."));
-
   m_table = info.m_table.lock();
   if (m_table)
     return;
