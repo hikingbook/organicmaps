@@ -227,7 +227,24 @@ You can calculate this list yourself from the statistics, which is calculated wi
 If you want to generate maps for Japan you must complete the following steps:
 
 1. Open https://download.geofabrik.de/asia/japan.html and copy url of osm.pbf and md5sum files.
-2. Edit ini file:
+2. Download SRTM/ASTER data of your interested regions: https://search.earthdata.nasa.gov/search/ or https://step.esa.int/auxdata/dem/SRTMGL1/
+3. Build isolines:
+
+```sh
+organicmaps$ ../omim-build-release/topography_generator_tool --profiles_path=data/conf/isolines/isolines-profiles.json --countries_to_generate_path=data/conf/isolines/countries-to-generate.json --tiles_isolines_out_dir=../isolines_build/tiles_isolines --countries_isolines_out_dir=../isolines_build/countries_isolines --data_dir=data --srtm_path=data/srtms
+```
+
+Reference: https://github.com/mapsme/omim/issues/4179
+
+4. Build coastlines in the world
+
+Ensure `PLANET_URL` and `PLANET_MD5_URL` are commented in the map_generator.ini to build costlines in the world.
+
+```sh
+python$ python3 -m maps_generator --coasts
+```
+
+5. Edit ini file:
 
 ```sh
 maps_generator$ vim var/etc/map_generator.ini
@@ -241,14 +258,23 @@ DEBUG: 0
 [External]
 PLANET_URL: https://download.geofabrik.de/asia/japan-latest.osm.pbf
 PLANET_MD5_URL: https://download.geofabrik.de/asia/japan-latest.osm.pbf.md5
+PLANET_COASTS_URL: files://path/to/WorldCoasts.geom
+...
+SRTM_PATH: ${Generator tool:USER_RESOURCE_PATH}/srtms
+ISOLINES_PATH: ${Developer:OMIM_PATH}/../isolines_build/countries_isolines
 ...
 ```
 
-3. Run
+6. Run
 
 ```sh
-python$ python3.6 -m maps_generator --countries="World, WorldCoasts, Japan_*"
+python$ python3 -m maps_generator --countries="World, WorldCoasts, Japan_*"
 ```
+
+7. Rename files
+
+Rename `WorldCoasts.geom` as `latest_coasts.geom`.
+Rename `WorldCoasts.rawgeom` as `latest_coasts.rawgeom`.
 
 #### Rebuild stages:
 
@@ -270,7 +296,7 @@ If you want to generate maps for Moscow you must complete the following steps:
 3. Build isolines:
 
 ```sh
-organicmaps$ ../omim-build-release/topography_generator_tool --profiles_path=data/conf/isolines/isolines-profiles.json --countries_to_generate_path=data/conf/isolines/countries-to-generate.json --tiles_isolines_out_dir=../isolines_build/tiles_isolines --countries_isolines_out_dir=../isolines_build/countries_isolines --data_dir=data --srtm_path=data/srtm
+organicmaps$ ../omim-build-release/topography_generator_tool --profiles_path=data/conf/isolines/isolines-profiles.json --countries_to_generate_path=data/conf/isolines/countries-to-generate.json --tiles_isolines_out_dir=../isolines_build/tiles_isolines --countries_isolines_out_dir=../isolines_build/countries_isolines --data_dir=data --srtm_path=data/srtms
 ```
 
 Reference: https://github.com/mapsme/omim/issues/4179
@@ -290,7 +316,7 @@ DEBUG: 0
 PLANET_URL: https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf
 PLANET_MD5_URL: https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf.md5
 ...
-SRTM_PATH: ${Generator tool:USER_RESOURCE_PATH}/srtm
+SRTM_PATH: ${Generator tool:USER_RESOURCE_PATH}/srtms
 ISOLINES_PATH: ${Developer:OMIM_PATH}/../isolines_build/countries_isolines
 ...
 ```
