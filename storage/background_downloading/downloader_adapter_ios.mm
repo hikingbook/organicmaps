@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #import "storage/background_downloading/downloader_adapter_ios.h"
 
 #import "platform/background_downloader_ios.h"
@@ -68,7 +69,7 @@ void BackgroundDownloaderAdapter::Download(QueuedCountry && queuedCountry)
   }
 
   auto const countryId = queuedCountry.GetCountryId();
-  auto urls = MakeUrlList(queuedCountry.GetRelativeUrl());
+  auto urls = MakeUrlList(queuedCountry.GetMapSource(), queuedCountry.GetRelativeUrl());
   // Get urls order from worst to best.
   std::reverse(urls.begin(), urls.end());
   auto const path = queuedCountry.GetFileDownloadPath();

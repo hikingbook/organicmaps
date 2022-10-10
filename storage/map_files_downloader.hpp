@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/downloader_queue_universal.hpp"
@@ -28,7 +29,7 @@ class MapFilesDownloader
 public:
   // Denotes bytes downloaded and total number of bytes.
   using ServersList = std::vector<std::string>;
-  using MetaConfigCallback = platform::SafeCallback<void(MetaConfig const & metaConfig)>;
+  using MetaConfigCallback = platform::SafeCallback<void(std::map<MapSource, MetaConfig> const & metaConfigMap)>;
 
   virtual ~MapFilesDownloader() = default;
 
@@ -56,24 +57,24 @@ public:
    * @param[in]  url        Final url part like "index.json" or "maps/210415/countries.txt".
    * @param[in]  forceReset True - force reset current request, if any.
    */
-  void DownloadAsString(std::string url, std::function<bool (std::string const &)> && callback, bool forceReset = false);
+  void DownloadAsString(std::string url, MapSource mapSource, std::function<bool (std::string const &)> && callback, bool forceReset = false);
 
-  void SetServersList(ServersList const & serversList);
+  void SetServersList(MapSource mapSource, ServersList const & serversList);
   void SetDownloadingPolicy(DownloadingPolicy * policy);
   void SetDataVersion(int64_t version) { m_dataVersion = version; }
 
   /// @name Legacy functions for Android resourses downloading routine.
   /// @{
-  void EnsureMetaConfigReady(std::function<void ()> && callback);
-  std::vector<std::string> MakeUrlListLegacy(std::string const & fileName) const;
+  void EnsureMetaConfigReady(MapSource mapSource, std::function<void ()> && callback);
+  std::vector<std::string> MakeUrlListLegacy(MapSource mapSource, std::string const & fileName) const;
   /// @}
 
 protected:
   bool IsDownloadingAllowed() const;
-  std::vector<std::string> MakeUrlList(std::string const & relativeUrl) const;
+  std::vector<std::string> MakeUrlList(MapSource mapSource, std::string const & relativeUrl) const;
 
   // Synchronously loads list of servers by http client.
-  MetaConfig LoadMetaConfig();
+  std::map<MapSource, MetaConfig> LoadMetaConfigMap();
 
 private:
   /**
@@ -92,7 +93,7 @@ private:
   using RequestT = downloader::HttpRequest;
   std::unique_ptr<RequestT> m_fileRequest;
 
-  ServersList m_serversList;
+  std::map<MapSource, ServersList> m_serversList;
   int64_t m_dataVersion = 0;
 
   /// Used as guard for m_serversList assign.

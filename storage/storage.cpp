@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #include "storage/storage.hpp"
 
 #include "storage/country_tree_helpers.hpp"
@@ -489,7 +490,7 @@ void Storage::SaveDownloadQueue()
   ostringstream ss;
   m_downloader->GetQueue().ForEachCountry([&ss](QueuedCountry const & country)
   {
-    ss << (ss.str().empty() ? "" : ";") << country.GetCountryId();
+    ss << (ss.str().empty() ? "" : ";") << country.GetCountryId() << "|" << static_cast<uint8_t>(country.GetMapSource());
   });
 
   settings::Set(kDownloadQueueKey, ss.str());
@@ -514,12 +515,25 @@ void Storage::RestoreDownloadQueue()
       string const s(v);
       auto localFile = GetLatestLocalFile(s);
       auto isUpdate = localFile && localFile->OnDisk(MapFileType::Map);
-      DownloadNode(s, isUpdate);
+        
+        auto mapSource = MapSource::Organicmaps;
+        auto pos = s.find("|");
+        if (pos != std::string::npos) {
+            try {
+                auto mapSourceString = s.substr(pos + 1);
+                if (!mapSourceString.empty()) {
+                    uint8_t mapSourceUInt8 = stoi(mapSourceString);
+                    mapSource = static_cast<MapSource>(mapSourceUInt8);
+                }
+            }
+            catch(...) {}
+        }
+      DownloadNode(s, mapSource, isUpdate);
     }
   });
 }
 
-void Storage::DownloadCountry(CountryId const & countryId, MapFileType type)
+void Storage::DownloadCountry(CountryId const & countryId, MapFileType type, MapSource mapSource)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
@@ -533,18 +547,22 @@ void Storage::DownloadCountry(CountryId const & countryId, MapFileType type)
   // country.
   if (!PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile))
   {
-    OnMapDownloadFinished(countryId, DownloadStatus::Failed, type);
+    OnMapDownloadFinished(countryId, DownloadStatus::Failed, type, mapSource);
     return;
   }
 
   if (IsFileDownloaded(GetFileDownloadPath(countryId, type), type))
   {
-    OnMapDownloadFinished(countryId, DownloadStatus::Completed, type);
+    OnMapDownloadFinished(countryId, DownloadStatus::Completed, type, mapSource);
     return;
   }
 
   QueuedCountry queuedCountry(countryFile, countryId, type, m_currentVersion, m_dataDir,
-                              m_diffsDataSource);
+                              m_diffsDataSource, mapSource);
+    if (!queuedCountry.isMapAvaliable()) {
+        OnMapDownloadFinished(countryId, DownloadStatus::Failed, type, mapSource);
+        return;
+    }
   queuedCountry.Subscribe(*this);
 
   m_downloader->DownloadMapFile(std::move(queuedCountry));
@@ -715,10 +733,11 @@ void Storage::OnDownloadFinished(QueuedCountry const & queuedCountry, DownloadSt
 
   auto const & countryId = queuedCountry.GetCountryId();
   auto const fileType = queuedCountry.GetFileType();
-  auto const finishFn = [this, countryId, fileType] (DownloadStatus status)
+    auto const mapSource = queuedCountry.GetMapSource();
+  auto const finishFn = [this, countryId, fileType, mapSource] (DownloadStatus status)
   {
-    OnMapDownloadFinished(countryId, status, fileType);
-    OnFinishDownloading();
+    OnMapDownloadFinished(countryId, status, fileType, mapSource);
+    OnFinishDownloading(mapSource);
   };
 
   if (status == DownloadStatus::Completed && m_integrityValidationEnabled)
@@ -730,11 +749,13 @@ void Storage::OnDownloadFinished(QueuedCountry const & queuedCountry, DownloadSt
 
     GetPlatform().RunTask(Platform::Thread::File, [path = GetFileDownloadPath(countryId, fileType),
                                                    sha1 = GetCountryFile(countryId).GetSha1(),
+                                                   hikingbookTopoMapSha1 = GetCountryFile(countryId).GetHikingbookTopoMapSha1(),
                                                    fn = std::move(finishFn)]()
     {
       DownloadStatus status = DownloadStatus::Completed;
 
-      if (coding::SHA1::CalculateBase64(path) != sha1)
+        auto calculatedSha1 = coding::SHA1::CalculateBase64(path);
+      if (calculatedSha1 != sha1 && calculatedSha1 != hikingbookTopoMapSha1)
       {
         LOG(LERROR, ("SHA check error for", path));
         base::DeleteFileX(path);
@@ -754,7 +775,7 @@ void Storage::OnDownloadFinished(QueuedCountry const & queuedCountry, DownloadSt
     finishFn(status);
 }
 
-void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType type)
+void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType type, MapSource mapSource)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
@@ -787,7 +808,7 @@ void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType t
 
   if (type == MapFileType::Diff)
   {
-    ApplyDiff(countryId, fn);
+    ApplyDiff(countryId, mapSource, fn);
     return;
   }
   ASSERT_EQUAL(type, MapFileType::Map, ());
@@ -824,7 +845,7 @@ void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType t
 }
 
 void Storage::OnMapDownloadFinished(CountryId const & countryId, DownloadStatus status,
-                                    MapFileType type)
+                                    MapFileType type, MapSource mapSource)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   ASSERT(m_didDownload != nullptr, ("Storage::Init wasn't called"));
@@ -842,7 +863,7 @@ void Storage::OnMapDownloadFinished(CountryId const & countryId, DownloadStatus 
   }
 
   m_justDownloaded.insert(countryId);
-  RegisterDownloadedFiles(countryId, type);
+  RegisterDownloadedFiles(countryId, type, mapSource);
 }
 
 /*
@@ -892,9 +913,9 @@ void Storage::SetCurrentDataVersionForTesting(int64_t currentVersion)
   m_downloader->SetDataVersion(m_currentVersion);
 }
 
-void Storage::SetDownloadingServersForTesting(vector<string> const & downloadingUrls)
+void Storage::SetDownloadingServersForTesting(MapSource mapSource, vector<string> const & downloadingUrls)
 {
-  m_downloader->SetServersList(downloadingUrls);
+  m_downloader->SetServersList(mapSource, downloadingUrls);
 }
 
 void Storage::SetLocaleForTesting(string const & jsonBuffer, string const & locale)
@@ -1024,9 +1045,9 @@ bool Storage::CheckFailedCountries(CountriesVec const & countries) const
   return false;
 }
 
-void Storage::RunCountriesCheckAsync()
+void Storage::RunCountriesCheckAsync(MapSource mapSource)
 {
-  m_downloader->DownloadAsString(SERVER_DATAVERSION_FILE, [this](std::string const & buffer)
+  m_downloader->DownloadAsString(SERVER_DATAVERSION_FILE, mapSource, [this, mapSource](std::string const & buffer)
   {
     LOG(LDEBUG, (SERVER_DATAVERSION_FILE, "downloaded"));
 
@@ -1036,7 +1057,7 @@ void Storage::RunCountriesCheckAsync()
 
     LOG(LDEBUG, ("Try download", COUNTRIES_FILE, "for", dataVersion));
 
-    m_downloader->DownloadAsString(downloader::GetFileDownloadUrl(COUNTRIES_FILE, dataVersion),
+    m_downloader->DownloadAsString(downloader::GetFileDownloadUrl(COUNTRIES_FILE, dataVersion), mapSource,
       [this, dataVersion](std::string const & buffer)
       {
         LOG(LDEBUG, (COUNTRIES_FILE, "downloaded"));
@@ -1283,7 +1304,7 @@ int64_t Storage::GetVersion(CountryId const & countryId) const
   return localMap->GetVersion();
 }
 
-void Storage::DownloadNode(CountryId const & countryId, bool isUpdate /* = false */)
+void Storage::DownloadNode(CountryId const & countryId, MapSource mapSource, bool isUpdate /* = false */)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
@@ -1297,7 +1318,7 @@ void Storage::DownloadNode(CountryId const & countryId, bool isUpdate /* = false
   if (GetNodeStatus(*node).status == NodeStatus::OnDisk)
     return;
 
-  auto downloadAction = [this, isUpdate](CountryTree::Node const & descendantNode) {
+  auto downloadAction = [this, mapSource, isUpdate](CountryTree::Node const & descendantNode) {
     if (descendantNode.ChildrenCount() == 0 &&
         GetNodeStatus(descendantNode).status != NodeStatus::OnDisk)
     {
@@ -1307,7 +1328,7 @@ void Storage::DownloadNode(CountryId const & countryId, bool isUpdate /* = false
               ? MapFileType::Diff
               : MapFileType::Map;
 
-      DownloadCountry(countryId, fileType);
+      DownloadCountry(countryId, fileType, mapSource);
     }
   };
 
@@ -1386,7 +1407,7 @@ void Storage::LoadDiffScheme()
 }
 */
 
-void Storage::ApplyDiff(CountryId const & countryId, function<void(bool isSuccess)> const & fn)
+void Storage::ApplyDiff(CountryId const & countryId, MapSource mapSource, function<void(bool isSuccess)> const & fn)
 {
   LOG(LINFO, ("Applying diff for", countryId));
 
@@ -1416,7 +1437,7 @@ void Storage::ApplyDiff(CountryId const & countryId, function<void(bool isSucces
   LocalFilePtr & diffFile = params.m_diffFile;
   diffs::ApplyDiff(
       move(params), *emplaceResult.first->second,
-      [this, fn, countryId, diffFile](DiffApplicationResult result)
+      [this, fn, countryId, diffFile, mapSource](DiffApplicationResult result)
       {
         CHECK_THREAD_CHECKER(m_threadChecker, ());
         if (result == DiffApplicationResult::Ok && m_integrityValidationEnabled &&
@@ -1454,23 +1475,23 @@ void Storage::ApplyDiff(CountryId const & countryId, function<void(bool isSucces
         }
         }
 
-        OnFinishDownloading();
+        OnFinishDownloading(mapSource);
       });
 }
 
 void Storage::SetMapSchemeForCountriesWithAbsentDiffs(IsDiffAbsentForCountry const & isAbsent)
 {
-  std::vector<CountryId> countriesToReplace;
+  std::vector<QueuedCountry> countriesToReplace;
   m_downloader->GetQueue().ForEachCountry([&countriesToReplace, &isAbsent](QueuedCountry const & queuedCountry)
   {
     if (queuedCountry.GetFileType() == MapFileType::Diff && isAbsent(queuedCountry.GetCountryId()))
-      countriesToReplace.push_back(queuedCountry.GetCountryId());
+      countriesToReplace.push_back(queuedCountry);
   });
 
-  for (auto const & countryId : countriesToReplace)
+  for (auto const & queuedCountry : countriesToReplace)
   {
-    DeleteCountryFilesFromDownloader(countryId);
-    DownloadCountry(countryId, MapFileType::Map);
+    DeleteCountryFilesFromDownloader(queuedCountry.GetCountryId());
+    DownloadCountry(queuedCountry.GetCountryId(), MapFileType::Map, queuedCountry.GetMapSource());
   }
 }
 
@@ -1511,25 +1532,25 @@ void Storage::SetStartDownloadingCallback(StartDownloadingCallback const & cb)
   m_startDownloadingCallback = cb;
 }
 
-void Storage::OnFinishDownloading()
+void Storage::OnFinishDownloading(MapSource mapSource)
 {
   if (!m_diffsBeingApplied.empty() || !m_downloader->GetQueue().IsEmpty())
     return;
 
   m_justDownloaded.clear();
 
-  m_downloadingPolicy->ScheduleRetry(m_failedCountries, [this](CountriesSet const & needReload) {
+  m_downloadingPolicy->ScheduleRetry(m_failedCountries, [this, mapSource](CountriesSet const & needReload) {
     for (auto const & country : needReload)
     {
       NodeStatuses status;
       GetNodeStatuses(country, status);
       if (status.m_error == NodeErrorCode::NoInetConnection)
-        RetryDownloadNode(country);
+        RetryDownloadNode(country, mapSource);
     }
   });
 }
 
-void Storage::OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs)
+void Storage::OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs, MapSource mapSource)
 {
   m_diffsDataSource->SetDiffInfo(move(diffs));
 
@@ -1546,7 +1567,7 @@ void Storage::OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs)
     auto const countryId = FindCountryIdByFile(localDiff.GetCountryName());
 
     if (m_diffsDataSource->HasDiffFor(countryId))
-      UpdateNode(countryId);
+      UpdateNode(countryId, mapSource);
     else
       localDiff.DeleteFromDisk(MapFileType::Diff);
   }
@@ -1755,11 +1776,11 @@ Progress Storage::CalculateProgress(CountriesVec const & descendants) const
   return result;
 }
 
-void Storage::UpdateNode(CountryId const & countryId)
+void Storage::UpdateNode(CountryId const & countryId, MapSource mapSource)
 {
-  ForEachInSubtree(countryId, [this](CountryId const & descendantId, bool groupNode) {
+  ForEachInSubtree(countryId, [this, mapSource](CountryId const & descendantId, bool groupNode) {
     if (!groupNode && m_localFiles.find(descendantId) != m_localFiles.end())
-      DownloadNode(descendantId, true /* isUpdate */);
+      DownloadNode(descendantId, mapSource, true /* isUpdate */);
   });
 }
 
@@ -1786,13 +1807,13 @@ void Storage::CancelDownloadNode(CountryId const & countryId)
   });
 }
 
-void Storage::RetryDownloadNode(CountryId const & countryId)
+void Storage::RetryDownloadNode(CountryId const & countryId, MapSource mapSource)
 {
-  ForEachInSubtree(countryId, [this](CountryId const & descendantId, bool groupNode) {
+  ForEachInSubtree(countryId, [this, mapSource](CountryId const & descendantId, bool groupNode) {
     if (!groupNode && m_failedCountries.count(descendantId) != 0)
     {
       bool const isUpdateRequest = m_diffsDataSource->HasDiffFor(descendantId);
-      DownloadNode(descendantId, isUpdateRequest);
+      DownloadNode(descendantId, mapSource, isUpdateRequest);
     }
   });
 }

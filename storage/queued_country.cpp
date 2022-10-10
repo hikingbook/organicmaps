@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #include "storage/queued_country.hpp"
 
 #include "storage/storage_helpers.hpp"
@@ -12,13 +13,15 @@ namespace storage
 QueuedCountry::QueuedCountry(platform::CountryFile const & countryFile, CountryId const & countryId,
                              MapFileType type, int64_t currentDataVersion,
                              std::string const & dataDir,
-                             diffs::DiffsSourcePtr const & diffs)
+                             diffs::DiffsSourcePtr const & diffs,
+                             MapSource mapSource)
   : m_countryFile(countryFile)
   , m_countryId(countryId)
   , m_fileType(type)
   , m_currentDataVersion(currentDataVersion)
   , m_dataDir(dataDir)
   , m_diffsDataSource(diffs)
+  , m_mapSource(mapSource)
 {
   ASSERT(IsCountryIdValid(GetCountryId()), ("Only valid countries may be downloaded."));
   ASSERT(m_diffsDataSource != nullptr, ());
@@ -75,6 +78,18 @@ uint64_t QueuedCountry::GetDownloadSize() const
   }
 
   return GetRemoteSize(*m_diffsDataSource, m_countryFile);
+}
+
+bool QueuedCountry::isMapAvaliable() const
+{
+    switch (m_mapSource) {
+        case MapSource::Organicmaps:
+            return m_countryFile.GetRemoteSize() > 0 && !m_countryFile.GetSha1().empty();
+        case MapSource::HikingbookTopoMaps:
+            return m_countryFile.GetHikingbookTopoMapRemoteSize() > 0 && !m_countryFile.GetHikingbookTopoMapSha1().empty();
+        default:
+            return false;
+    }
 }
 
 void QueuedCountry::OnCountryInQueue() const

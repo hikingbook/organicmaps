@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -27,20 +28,25 @@ NS_SWIFT_NAME(StorageObserver)
 
 @end
 
+typedef NS_ENUM(UInt8, MWMMapSource) {
+    Organicmaps = 0,
+    HikingbookTopoMaps = 1
+};
+
 NS_SWIFT_NAME(Storage)
 @interface MWMStorage : NSObject
 
 + (instancetype)sharedStorage;
 
-- (BOOL)downloadNode:(NSString *)countryId error:(NSError * __autoreleasing _Nullable *)error;
-- (void)retryDownloadNode:(NSString *)countryId;
-- (BOOL)updateNode:(NSString *)countryId error:(NSError * __autoreleasing _Nullable *)error;
+- (BOOL)downloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource error:(NSError * __autoreleasing _Nullable *)error;
+- (void)retryDownloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource;
+- (BOOL)updateNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource error:(NSError * __autoreleasing _Nullable *)error;
 - (BOOL)deleteNode:(NSString *)countryId
 ignoreUnsavedEdits:(BOOL)force
              error:(NSError * __autoreleasing _Nullable *)error;
 - (void)cancelDownloadNode:(NSString *)countryId;
 - (void)showNode:(NSString *)countryId;
-- (BOOL)downloadNodes:(NSArray<NSString *> *)countryIds error:(NSError * __autoreleasing _Nullable *)error;
+- (BOOL)downloadNodes:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources error:(NSError * __autoreleasing _Nullable *)error;
 
 - (BOOL)haveDownloadedCountries;
 - (BOOL)downloadInProgress;

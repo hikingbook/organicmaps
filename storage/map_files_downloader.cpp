@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #include "storage/map_files_downloader.hpp"
 
 #include "storage/queued_country.hpp"
@@ -17,7 +18,11 @@ namespace storage
 {
 void MapFilesDownloader::DownloadMapFile(QueuedCountry && queuedCountry)
 {
-  if (!m_serversList.empty())
+    if (!queuedCountry.isMapAvaliable()) {
+        return;
+    }
+    auto pos = m_serversList.find(queuedCountry.GetMapSource());
+  if (pos != m_serversList.end() && !pos->second.empty())
   {
     Download(std::move(queuedCountry));
     return;
@@ -45,10 +50,12 @@ void MapFilesDownloader::RunMetaConfigAsync(std::function<void()> && callback)
 
   GetPlatform().RunTask(Platform::Thread::Network, [this, callback = std::move(callback)]()
   {
-    GetMetaConfig([this, callback = std::move(callback)](MetaConfig const & metaConfig)
+    GetMetaConfig([this, callback = std::move(callback)](std::map<MapSource, MetaConfig> const & metaConfigMap)
     {
-      m_serversList = metaConfig.m_serversList;
-      settings::Update(metaConfig.m_settings);
+        for (auto const & [mapSource, metaConfig] : metaConfigMap) {
+            m_serversList[mapSource] = metaConfig.m_serversList;
+            settings::Update(metaConfig.m_settings);
+        }
 
       callback();
 
@@ -74,16 +81,17 @@ QueueInterface const & MapFilesDownloader::GetQueue() const
   return m_pendingRequests;
 }
 
-void MapFilesDownloader::DownloadAsString(std::string url, std::function<bool (std::string const &)> && callback,
+void MapFilesDownloader::DownloadAsString(std::string url, MapSource mapSource, std::function<bool (std::string const &)> && callback,
                                           bool forceReset /* = false */)
 {
-  EnsureMetaConfigReady([this, forceReset, url = std::move(url), callback = std::move(callback)]()
+  EnsureMetaConfigReady(mapSource, [this, forceReset, mapSource, url = std::move(url), callback = std::move(callback)]()
   {
-    if ((m_fileRequest && !forceReset) || m_serversList.empty())
+    auto pos = m_serversList.find(mapSource);
+    if ((m_fileRequest && !forceReset) || pos == m_serversList.end() || pos->second.empty())
       return;
 
     // Servers are sorted from best to worst.
-    m_fileRequest.reset(RequestT::Get(url::Join(m_serversList.front(), url),
+    m_fileRequest.reset(RequestT::Get(url::Join(pos->second.front(), url),
       [this, callback = std::move(callback)](RequestT & request)
       {
         bool deleteRequest = true;
@@ -101,11 +109,12 @@ void MapFilesDownloader::DownloadAsString(std::string url, std::function<bool (s
   });
 }
 
-void MapFilesDownloader::EnsureMetaConfigReady(std::function<void ()> && callback)
+void MapFilesDownloader::EnsureMetaConfigReady(MapSource mapSource, std::function<void ()> && callback)
 {
+    auto pos = m_serversList.find(mapSource);
   /// @todo Implement logic if m_metaConfig is "outdated".
   /// Fetch new servers list on each download request?
-  if (!m_serversList.empty())
+  if (pos != m_serversList.end() && !pos->second.empty())
   {
     callback();
   }
@@ -119,14 +128,14 @@ void MapFilesDownloader::EnsureMetaConfigReady(std::function<void ()> && callbac
   }
 }
 
-std::vector<std::string> MapFilesDownloader::MakeUrlListLegacy(std::string const & fileName) const
+std::vector<std::string> MapFilesDownloader::MakeUrlListLegacy(MapSource mapSource, std::string const & fileName) const
 {
-  return MakeUrlList(downloader::GetFileDownloadUrl(fileName, m_dataVersion));
+  return MakeUrlList(mapSource, downloader::GetFileDownloadUrl(fileName, m_dataVersion));
 }
 
-void MapFilesDownloader::SetServersList(ServersList const & serversList)
+void MapFilesDownloader::SetServersList(MapSource mapSource, ServersList const & serversList)
 {
-  m_serversList = serversList;
+  m_serversList[mapSource] = serversList;
 }
 
 void MapFilesDownloader::SetDownloadingPolicy(DownloadingPolicy * policy)
@@ -139,45 +148,53 @@ bool MapFilesDownloader::IsDownloadingAllowed() const
   return m_downloadingPolicy == nullptr || m_downloadingPolicy->IsDownloadingAllowed();
 }
 
-std::vector<std::string> MapFilesDownloader::MakeUrlList(std::string const & relativeUrl) const
+std::vector<std::string> MapFilesDownloader::MakeUrlList(MapSource mapSource, std::string const & relativeUrl) const
 {
   std::vector<std::string> urls;
-  urls.reserve(m_serversList.size());
-  for (auto const & server : m_serversList)
-    urls.emplace_back(url::Join(server, relativeUrl));
+    auto pos = m_serversList.find(mapSource);
+    if (pos != m_serversList.end()) {
+        auto serversList = pos->second;
+        urls.reserve(serversList.size());
+        for (auto const & server : serversList)
+          urls.emplace_back(url::Join(server, relativeUrl));
+    }
 
   return urls;
 }
 
 // static
-MetaConfig MapFilesDownloader::LoadMetaConfig()
+std::map<MapSource, MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
 {
-  std::string const metaServerUrl = GetPlatform().MetaServerUrl();
-  std::string httpResult;
+    std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, GetPlatform().MetaServerUrl() }, { MapSource::HikingbookTopoMaps, GetPlatform().HikingbookTopoMapsMetaServerUrl() }};
+    std::map<MapSource, MetaConfig> metaConfigMap;
+    for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
+        std::string httpResult;
 
-  if (!metaServerUrl.empty())
-  {
-    platform::HttpClient request(metaServerUrl);
-    request.SetRawHeader("X-OM-DataVersion", std::to_string(m_dataVersion));
-    request.SetRawHeader("X-OM-AppVersion", GetPlatform().Version());
-    request.SetTimeout(10.0); // timeout in seconds
-    request.RunHttpRequest(httpResult);
-  }
-
-  std::optional<MetaConfig> metaConfig = downloader::ParseMetaConfig(httpResult);
-  if (!metaConfig)
-  {
-    metaConfig = downloader::ParseMetaConfig(GetPlatform().DefaultUrlsJSON());
-    CHECK(metaConfig, ());
-    LOG(LWARNING, ("Can't get meta configuration from request, using default servers:", metaConfig->m_serversList));
-  }
-  CHECK(!metaConfig->m_serversList.empty(), ());
-  return *metaConfig;
+        if (!metaServerUrl.empty())
+        {
+          platform::HttpClient request(metaServerUrl);
+          request.SetRawHeader("X-OM-DataVersion", std::to_string(m_dataVersion));
+          request.SetRawHeader("X-OM-AppVersion", GetPlatform().Version());
+          request.SetTimeout(10.0); // timeout in seconds
+          request.RunHttpRequest(httpResult);
+        }
+        
+        std::optional<MetaConfig> metaConfig = downloader::ParseMetaConfig(httpResult);
+        if (!metaConfig)
+        {
+          metaConfig = downloader::ParseMetaConfig(GetPlatform().DefaultUrlsJSON(metaServerUrl));
+          CHECK(metaConfig, ());
+          LOG(LWARNING, ("Can't get meta configuration from request, using default servers:", metaConfig->m_serversList));
+        }
+        CHECK(!metaConfig->m_serversList.empty(), ());
+        metaConfigMap[mapSource] = *metaConfig;
+    }
+    return metaConfigMap;
 }
 
 void MapFilesDownloader::GetMetaConfig(MetaConfigCallback const & callback)
 {
-  callback(LoadMetaConfig());
+  callback(LoadMetaConfigMap());
 }
 
 }  // namespace storage

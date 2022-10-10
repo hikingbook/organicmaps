@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #include "platform/country_file.hpp"
 
 #include "platform/mwm_version.hpp"
@@ -26,15 +27,15 @@ string GetFileName(string const & countryName, MapFileType type)
   UNREACHABLE();
 }
 
-CountryFile::CountryFile() : m_mapSize(0) {}
+CountryFile::CountryFile() : m_mapSize(0), m_hikingbookTopoMapSize(0) {}
 
 CountryFile::CountryFile(std::string name)
-: m_name(std::move(name)), m_mapSize(0)
+: m_name(std::move(name)), m_mapSize(0), m_hikingbookTopoMapSize(0)
 {
 }
 
-CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1)
-: m_name(std::move(name)), m_mapSize(size), m_sha1(sha1)
+CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookTopoMapSize, std::string hikingbookTopoMapSha1)
+: m_name(std::move(name)), m_mapSize(size), m_sha1(sha1), m_hikingbookTopoMapSize(hikingbookTopoMapSize), m_hikingbookTopoMapSha1(hikingbookTopoMapSha1)
 {
 }
 

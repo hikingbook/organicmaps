@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/country_defines.hpp"
@@ -21,7 +22,7 @@ class CountryFile
 public:
   CountryFile();
   explicit CountryFile(std::string name);
-  CountryFile(std::string name, MwmSize size, std::string sha1);
+  CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookTopoMapSize, std::string hikingbookTopoMapSha1);
 
   std::string GetFileName(MapFileType type) const
   {
@@ -34,6 +35,9 @@ public:
   std::string const & GetName() const { return m_name; }
   MwmSize GetRemoteSize() const { return m_mapSize; }
   std::string const & GetSha1() const { return m_sha1; }
+    // Hikingbook Topo Maps
+    MwmSize GetHikingbookTopoMapRemoteSize() const { return m_hikingbookTopoMapSize; }
+    std::string const & GetHikingbookTopoMapSha1() const { return m_hikingbookTopoMapSha1; }
 
   inline bool operator<(const CountryFile & rhs) const { return m_name < rhs.m_name; }
   inline bool operator==(const CountryFile & rhs) const { return m_name == rhs.m_name; }
@@ -47,6 +51,9 @@ private:
   MwmSize m_mapSize = 0;
   /// \note SHA1 is encoded to base64.
   std::string m_sha1;
+    // Hikingbook Topo Maps
+    MwmSize m_hikingbookTopoMapSize = 0;
+    std::string m_hikingbookTopoMapSha1;
 };
 
 std::string DebugPrint(CountryFile const & file);
