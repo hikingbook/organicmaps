@@ -38,6 +38,9 @@ public:
     // Hikingbook Topo Maps
     MwmSize GetHikingbookTopoMapRemoteSize() const { return m_hikingbookTopoMapSize; }
     std::string const & GetHikingbookTopoMapSha1() const { return m_hikingbookTopoMapSha1; }
+    
+    bool IsOrganicMapAvailable() const { return m_mapSize > 0 && !m_sha1.empty(); }
+    bool IsHikingbookTopoMapAvailable() const { return m_hikingbookTopoMapSize > 0 && !m_hikingbookTopoMapSha1.empty(); }
 
   inline bool operator<(const CountryFile & rhs) const { return m_name < rhs.m_name; }
   inline bool operator==(const CountryFile & rhs) const { return m_name == rhs.m_name; }

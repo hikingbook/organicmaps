@@ -84,9 +84,9 @@ bool QueuedCountry::isMapAvaliable() const
 {
     switch (m_mapSource) {
         case MapSource::Organicmaps:
-            return m_countryFile.GetRemoteSize() > 0 && !m_countryFile.GetSha1().empty();
+            return m_countryFile.IsOrganicMapAvailable();
         case MapSource::HikingbookTopoMaps:
-            return m_countryFile.GetHikingbookTopoMapRemoteSize() > 0 && !m_countryFile.GetHikingbookTopoMapSha1().empty();
+            return m_countryFile.IsHikingbookTopoMapAvailable();
         default:
             return false;
     }
