@@ -114,6 +114,12 @@ bool LocalCountryFile::ValidateIntegrity() const
   return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookTopoMapSha1();
 }
 
+bool LocalCountryFile::ValidateHikingbookTopoMapIntegrity() const
+{
+  auto calculatedSha1 = coding::SHA1::CalculateBase64(GetPath(MapFileType::Map));
+  return calculatedSha1 == m_countryFile.GetHikingbookTopoMapSha1();
+}
+
 // static
 LocalCountryFile LocalCountryFile::MakeForTesting(string countryFileName, int64_t version)
 {
