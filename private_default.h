@@ -12,4 +12,4 @@
 
 // Hikingbook Topo Maps
 #define HIKINGBOOK_TOPO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-topo-maps/cdns"
-#define HIKINGBOOK_TOPO_MAPS_DEFAULT_URLS_JSON "[\"https://storage.googleapis.com/hikingbook-topo-maps/\"]"
+#define HIKINGBOOK_TOPO_MAPS_DEFAULT_URLS_JSON "[\"https://assets.hikingbook.net/hikingbook-topo-maps/\"]"
