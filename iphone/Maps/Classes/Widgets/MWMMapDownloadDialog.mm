@@ -146,8 +146,7 @@ using namespace storage;
   if (self.superview)
     return;
   MapViewController *controller = self.controller;
-//  [controller.view insertSubview:self aboveSubview:controller.controlsView];
-  [controller.view insertSubview:self belowSubview:controller.controlsView];
+  [controller.view insertSubview:self aboveSubview:controller.controlsView];
   [[MWMStorage sharedStorage] addObserver:self];
 
   // Center dialog in the parent view.
