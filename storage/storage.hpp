@@ -124,6 +124,10 @@ struct NodeAttrs
   /// Can be used to distinguish downloadable and updatable maps.
   /// m_present == false for group mwms.
   bool m_present;
+    
+    // Hikingbook Topo Maps
+    MwmSize m_hikingbookTopoMapSize;
+    NodeStatus m_hikingbookTopoMapStatus;
 };
 
 /// \brief Statuses for a node in the country tree.

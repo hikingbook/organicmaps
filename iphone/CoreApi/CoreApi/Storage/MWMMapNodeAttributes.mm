@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
 #import "MWMMapNodeAttributes+Core.h"
 #include <CoreApi/Framework.h>
 
@@ -77,6 +78,10 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
     _nodeStatus = convertStatus(attributes.m_status);
     _hasChildren = hasChildren;
     _hasParent = hasParent;
+      
+      // Hikingbook Topo Maps
+      _totalHikingbookTopoMapSize = attributes.m_hikingbookTopoMapSize;
+      _hikingbookTopoMapNodeStatus = convertStatus(attributes.m_hikingbookTopoMapStatus);
 
     storage::Storage::UpdateInfo updateInfo;
     if (GetFramework().GetStorage().GetUpdateInfo([countryId UTF8String], updateInfo)) {

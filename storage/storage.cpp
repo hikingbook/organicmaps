@@ -1643,6 +1643,17 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   nodeAttrs.m_nodeLocalName = m_countryNameGetter(countryId);
   nodeAttrs.m_nodeLocalDescription =
       m_countryNameGetter.Get(countryId + LOCALIZATION_DESCRIPTION_SUFFIX);
+    
+    // Hikingbook Topo Maps
+    nodeAttrs.m_hikingbookTopoMapSize = nodeAttrs.m_mwmSize;
+    nodeAttrs.m_hikingbookTopoMapStatus = nodeAttrs.m_status;
+    if (node->ChildrenCount() == 0) {
+        nodeAttrs.m_hikingbookTopoMapSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
+        LocalFilePtr const localFile = GetLatestLocalFile(countryId);
+        if (nodeAttrs.m_hikingbookTopoMapStatus == NodeStatus::OnDisk && localFile != nullptr && !localFile->IsHikingbookTopoMap()) {
+            nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
+        }
+    }
 
   // Progress.
   if (nodeAttrs.m_status == NodeStatus::OnDisk)
