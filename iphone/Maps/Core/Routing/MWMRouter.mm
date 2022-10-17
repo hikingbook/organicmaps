@@ -515,7 +515,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
         NSMutableArray *mapSources = [NSMutableArray arrayWithCapacity:downloadCountries.size()];
         for (auto const &cid : downloadCountries) {
           [array addObject:@(cid.c_str())];
-            [mapSources addObject:[NSNumber numberWithShort:Organicmaps]];
+            [mapSources addObject:[NSNumber numberWithShort:organicmaps]];
         }
         [[MWMStorage sharedStorage] downloadNodes:array mapSources:mapSources onSuccess:onSuccess];
       }

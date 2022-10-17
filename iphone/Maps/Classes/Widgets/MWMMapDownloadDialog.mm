@@ -247,7 +247,7 @@ using namespace storage;
 
 
 - (MWMMapSource) mapSourceForCountry:(NSString *)countryId {
-    MWMMapSource mapSource = Organicmaps;
+    MWMMapSource mapSource = organicmaps;
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(downloadDialog:mapSourceForCountry:)]) {
         mapSource = [delegate downloadDialog:self mapSourceForCountry:countryId];
