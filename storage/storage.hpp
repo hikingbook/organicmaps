@@ -387,7 +387,7 @@ public:
 
   /// \brief Gets a short list of node attributes by its |countriId|.
   /// \note This method works quicklier than GetNodeAttrs().
-  void GetNodeStatuses(CountryId const & countryId, NodeStatuses & nodeStatuses) const;
+  void GetNodeStatuses(CountryId const & countryId, MapSource const mapSource, NodeStatuses & nodeStatuses) const;
 
   std::string GetNodeLocalName(CountryId const & countryId) const
   {
@@ -628,7 +628,7 @@ private:
   Status CountryStatus(CountryId const & countryId) const;
 
   /// Returns status for a node (group node or not).
-  StatusAndError GetNodeStatus(CountryTree::Node const & node) const;
+  StatusAndError GetNodeStatus(CountryTree::Node const & node, MapSource const mapSource) const;
 
   /// Returns status for a node (group node or not).
   /// Fills |disputedTeritories| with all disputed teritories in subtree with the root == |node|.

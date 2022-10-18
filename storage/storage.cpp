@@ -818,6 +818,15 @@ void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType t
 
   if (!localFile || localFile->IsInBundle())
     localFile = PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile);
+  else if (localFile->GetMapSource() != mapSource) {
+      string const path = localFile->GetPath(type);
+      string const newPath = path + std::to_string(static_cast<uint8_t>(localFile->GetMapSource()));
+      if (!base::RenameFileX(path, newPath)) {
+          base::DeleteFileX(newPath);
+          fn(false);
+          return;
+      }
+  }
   else
   {
     /// @todo If localFile already exists, we will remove it from disk below?
@@ -951,8 +960,14 @@ void Storage::RegisterCountryFiles(LocalFilePtr localFile)
     else
       ASSERT_EQUAL(localFile.get(), existingFile.get(), ());
   }
-  else
-    m_localFiles[countryId].push_front(localFile);
+  else {
+      // Prevent from localFile's CountryFile is empty
+      auto localFilePtr = localFile;
+      if (localFilePtr->GetCountryFile().GetRemoteSize() <= 0) {
+          localFilePtr = std::make_shared<LocalCountryFile>(LocalCountryFile(localFile->GetDirectory(), GetCountryFile(countryId), localFile->GetVersion()));
+      }
+      m_localFiles[countryId].push_front(localFilePtr);
+  }
 }
 
 void Storage::RegisterLocalFile(platform::LocalCountryFile const & localFile)
@@ -981,8 +996,12 @@ void Storage::RegisterLocalFile(platform::LocalCountryFile const & localFile)
 
   /// Funny, but ptr->GetCountryFile() has valid name only. Size and sha1 are not initialized.
   /// @todo Store only name (CountryId) in LocalCountryFile instead of CountryFile?
-  if (m_currentVersion == ptr->GetVersion() && size != GetCountryFile(countryId).GetRemoteSize())
-    LOG(LERROR, ("Inconsistent MWM and version for", *ptr));
+    if (m_currentVersion == ptr->GetVersion()) {
+        auto countryFile = GetCountryFile(countryId);
+        if (size != countryFile.GetRemoteSize() && size != countryFile.GetHikingbookProMapRemoteSize()) {
+            LOG(LERROR, ("Inconsistent MWM and version for", *ptr));
+        }
+    }
 }
 
 void Storage::DeleteCountryFiles(CountryId const & countryId, MapFileType type, bool deferredDelete)
@@ -1314,13 +1333,13 @@ void Storage::DownloadNode(CountryId const & countryId, MapSource mapSource, boo
 
   if (!node)
     return;
-
-  if (GetNodeStatus(*node).status == NodeStatus::OnDisk)
-    return;
+    
+    if (GetNodeStatus(*node, mapSource).status == NodeStatus::OnDisk)
+      return;
 
   auto downloadAction = [this, mapSource, isUpdate](CountryTree::Node const & descendantNode) {
     if (descendantNode.ChildrenCount() == 0 &&
-        GetNodeStatus(descendantNode).status != NodeStatus::OnDisk)
+        GetNodeStatus(descendantNode, mapSource).status != NodeStatus::OnDisk)
     {
       auto const countryId = descendantNode.Value().Name();
       auto const fileType =
@@ -1352,10 +1371,44 @@ void Storage::DeleteNode(CountryId const & countryId)
   node->ForEachInSubtree(deleteAction);
 }
 
-StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node) const
+StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource const mapSource) const
 {
   vector<pair<CountryId, NodeStatus>> disputedTerritories;
-  return GetNodeStatusInfo(node, disputedTerritories, false /* isDisputedTerritoriesCounted */);
+  StatusAndError statusAndError = GetNodeStatusInfo(node, disputedTerritories, false /* isDisputedTerritoriesCounted */);
+    switch (mapSource) {
+    case MapSource::HikingbookProMaps:
+        if (node.ChildrenCount() == 0) {
+            switch (statusAndError.status) {
+                case NodeStatus::OnDisk: {
+                    LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
+                    if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookProMaps) {
+                        statusAndError.status = NodeStatus::NotDownloaded;
+                    }
+                }
+                    break;
+                case NodeStatus::Downloading:
+                case NodeStatus::InQueue:
+                case NodeStatus::Applying: {
+                    CountriesVec subtree;
+                    node.ForEachInSubtree(
+                        [&subtree](CountryTree::Node const & d) { subtree.push_back(d.Value().Name()); });
+
+                    auto const downloadingProgress = CalculateProgress(subtree);
+                    auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
+                    if (hikingbookProMapRemoteSize != downloadingProgress.m_bytesTotal) {
+                        statusAndError.status = NodeStatus::NotDownloaded;
+                    }
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+        break;
+    default:
+        break;
+    }
+    return statusAndError;
 }
 
 bool Storage::IsDisputed(CountryTree::Node const & node) const
@@ -1543,7 +1596,7 @@ void Storage::OnFinishDownloading(MapSource mapSource)
     for (auto const & country : needReload)
     {
       NodeStatuses status;
-      GetNodeStatuses(country, status);
+      GetNodeStatuses(country, mapSource, status);
       if (status.m_error == NodeErrorCode::NoInetConnection)
         RetryDownloadNode(country, mapSource);
     }
@@ -1637,7 +1690,7 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   Country const & nodeValue = node->Value();
   nodeAttrs.m_mwmCounter = nodeValue.GetSubtreeMwmCounter();
   nodeAttrs.m_mwmSize = nodeValue.GetSubtreeMwmSizeBytes();
-  StatusAndError statusAndErr = GetNodeStatus(*node);
+  StatusAndError statusAndErr = GetNodeStatus(*node, MapSource::Organicmaps);
   nodeAttrs.m_status = statusAndErr.status;
   nodeAttrs.m_error = statusAndErr.error;
   nodeAttrs.m_nodeLocalName = m_countryNameGetter(countryId);
@@ -1663,31 +1716,11 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
     
     // Hikingbook Topo Maps
     nodeAttrs.m_hikingbookProMapSize = nodeAttrs.m_mwmSize;
-    nodeAttrs.m_hikingbookProMapStatus = nodeAttrs.m_status;
     if (node->ChildrenCount() == 0) {
         nodeAttrs.m_hikingbookProMapSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
-        switch (nodeAttrs.m_hikingbookProMapStatus) {
-            case NodeStatus::OnDisk: {
-                LocalFilePtr const localFile = GetLatestLocalFile(countryId);
-                if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookProMaps) {
-                    nodeAttrs.m_hikingbookProMapStatus = NodeStatus::NotDownloaded;
-                }
-            }
-                break;
-            case NodeStatus::Downloading:
-            case NodeStatus::InQueue:
-            case NodeStatus::Applying: {
-                auto const hikingbookProMapRemoteSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
-                if (hikingbookProMapRemoteSize != nodeAttrs.m_downloadingProgress.m_bytesTotal) {
-                    nodeAttrs.m_hikingbookProMapStatus = NodeStatus::NotDownloaded;
-                }
-            }
-                break;
-            default:
-                break;
-        }
     }
-
+    nodeAttrs.m_hikingbookProMapStatus = GetNodeStatus(*node, MapSource::HikingbookProMaps).status;
+    
   // Local mwm information and information about downloading mwms.
   nodeAttrs.m_localMwmCounter = 0;
   nodeAttrs.m_localMwmSize = 0;
@@ -1701,7 +1734,7 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
       return;
 
     // Downloading mwm information.
-    StatusAndError const statusAndErr = GetNodeStatus(d);
+    StatusAndError const statusAndErr = GetNodeStatus(d, MapSource::Organicmaps);
     ASSERT_NOT_EQUAL(statusAndErr.status, NodeStatus::Undefined, ());
     if (statusAndErr.status != NodeStatus::NotDownloaded &&
         statusAndErr.status != NodeStatus::Partly && d.ChildrenCount() == 0)
@@ -1743,14 +1776,14 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
       });
 }
 
-void Storage::GetNodeStatuses(CountryId const & countryId, NodeStatuses & nodeStatuses) const
+void Storage::GetNodeStatuses(CountryId const & countryId, MapSource const mapSource, NodeStatuses & nodeStatuses) const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   CountryTree::Node const * const node = m_countries.FindFirst(countryId);
   CHECK(node, (countryId));
 
-  StatusAndError statusAndErr = GetNodeStatus(*node);
+  StatusAndError statusAndErr = GetNodeStatus(*node, mapSource);
   nodeStatuses.m_status = statusAndErr.status;
   nodeStatuses.m_error = statusAndErr.error;
   nodeStatuses.m_groupNode = (node->ChildrenCount() != 0);
@@ -1866,19 +1899,24 @@ bool Storage::GetUpdateInfo(CountryId const & countryId, UpdateInfo & updateInfo
 
   auto const updateInfoAccumulator = [&updateInfo, this](CountryTree::Node const & node)
   {
-    if (node.ChildrenCount() != 0 || GetNodeStatus(node).status != NodeStatus::OnDiskOutOfDate)
+    if (node.ChildrenCount() != 0)
       return;
-
-    // Here the node is a leaf describing one mwm file (not a group node).
-
-    CountryId const & countryId = node.Value().Name();
-    updateInfo.m_numberOfMwmFilesToUpdate += 1;
-
+      
+      CountryId const & countryId = node.Value().Name();
+      
       MapSource mapSource = MapSource::Organicmaps;
       auto localFile = GetLatestLocalFile(countryId);
       if (localFile) {
           mapSource = localFile->GetMapSource();
       }
+      
+      if (GetNodeStatus(node, mapSource).status != NodeStatus::OnDiskOutOfDate)
+          return;
+
+    // Here the node is a leaf describing one mwm file (not a group node).
+
+    updateInfo.m_numberOfMwmFilesToUpdate += 1;
+
     LocalAndRemoteSize const sizes = CountrySizeInBytes(countryId, mapSource);
     updateInfo.m_maxFileSizeInBytes = std::max(updateInfo.m_maxFileSizeInBytes, sizes.second);
 
@@ -1949,7 +1987,7 @@ void Storage::GetQueuedChildren(CountryId const & parent, CountriesVec & queuedC
 
   queuedChildren.clear();
   node->ForEachChild([&queuedChildren, this](CountryTree::Node const & child) {
-    NodeStatus status = GetNodeStatus(child).status;
+    NodeStatus status = GetNodeStatus(child, MapSource::Organicmaps).status;
     ASSERT_NOT_EQUAL(status, NodeStatus::Undefined, ());
     if (status == NodeStatus::Downloading || status == NodeStatus::InQueue)
       queuedChildren.push_back(child.Value().Name());

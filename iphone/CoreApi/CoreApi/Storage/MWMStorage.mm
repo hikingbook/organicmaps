@@ -299,7 +299,7 @@ using namespace storage;
   NSMutableArray *nearmeCountries = [NSMutableArray array];
   for (auto const &countryId : closestCoutryIds) {
     storage::NodeStatuses nodeStatuses;
-    f.GetStorage().GetNodeStatuses(countryId, nodeStatuses);
+    f.GetStorage().GetNodeStatuses(countryId, MapSource::Organicmaps, nodeStatuses);
     if (nodeStatuses.m_status != storage::NodeStatus::OnDisk)
       [nearmeCountries addObject:@(countryId.c_str())];
   }
