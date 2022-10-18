@@ -165,7 +165,7 @@ std::vector<std::string> MapFilesDownloader::MakeUrlList(MapSource mapSource, st
 // static
 std::map<MapSource, MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
 {
-    std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, GetPlatform().MetaServerUrl() }, { MapSource::HikingbookTopoMaps, GetPlatform().HikingbookTopoMapsMetaServerUrl() }};
+    std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, GetPlatform().MetaServerUrl() }, { MapSource::HikingbookProMaps, GetPlatform().HikingbookProMapsMetaServerUrl() }};
     std::map<MapSource, MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;

@@ -126,8 +126,8 @@ struct NodeAttrs
   bool m_present;
     
     // Hikingbook Topo Maps
-    MwmSize m_hikingbookTopoMapSize;
-    NodeStatus m_hikingbookTopoMapStatus;
+    MwmSize m_hikingbookProMapSize;
+    NodeStatus m_hikingbookProMapStatus;
 };
 
 /// \brief Statuses for a node in the country tree.

@@ -177,7 +177,7 @@ string Platform::DefaultUrlsJSON(string const & meatServerUrl) const
   return meatServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : HIKINGBOOK_TOPO_MAPS_DEFAULT_URLS_JSON;
 }
 
-string Platform::HikingbookTopoMapsMetaServerUrl() const
+string Platform::HikingbookProMapsMetaServerUrl() const
 {
   return HIKINGBOOK_TOPO_MAPS_METASERVER_URL;
 }

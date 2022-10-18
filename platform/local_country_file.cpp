@@ -111,12 +111,12 @@ bool LocalCountryFile::ValidateIntegrity() const
 {
   auto calculatedSha1 = coding::SHA1::CalculateBase64(GetPath(MapFileType::Map));
 //  ASSERT_EQUAL(calculatedSha1, m_countryFile.GetSha1(), ("Integrity failure"));
-  return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookTopoMapSha1();
+  return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookProMapSha1();
 }
 
 MapSource LocalCountryFile::GetMapSource() const
 {
-  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookTopoMapRemoteSize() ? MapSource::HikingbookTopoMaps : MapSource::Organicmaps;
+  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookProMapRemoteSize() ? MapSource::HikingbookProMaps : MapSource::Organicmaps;
 }
 
 // static

@@ -275,7 +275,7 @@ public:
     
     /// @return url for clients to download Hikingbook topo maps
     //@{
-    std::string HikingbookTopoMapsMetaServerUrl() const;
+    std::string HikingbookProMapsMetaServerUrl() const;
     //@}
 
   bool IsTablet() const { return m_isTablet; }

@@ -24,7 +24,7 @@ std::string DebugPrint(MapFileType type);
 enum class MapSource : uint8_t
 {
   Organicmaps,
-  HikingbookTopoMaps,
+  HikingbookProMaps,
 
   Count
 };

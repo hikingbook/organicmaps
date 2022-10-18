@@ -30,7 +30,7 @@ NS_SWIFT_NAME(StorageObserver)
 
 typedef NS_ENUM(UInt8, MWMMapSource) {
     organicmaps = 0,
-    hikingbookTopoMaps = 1
+    hikingbookProMaps = 1
 };
 
 NS_SWIFT_NAME(Storage)

@@ -749,13 +749,13 @@ void Storage::OnDownloadFinished(QueuedCountry const & queuedCountry, DownloadSt
 
     GetPlatform().RunTask(Platform::Thread::File, [path = GetFileDownloadPath(countryId, fileType),
                                                    sha1 = GetCountryFile(countryId).GetSha1(),
-                                                   hikingbookTopoMapSha1 = GetCountryFile(countryId).GetHikingbookTopoMapSha1(),
+                                                   hikingbookProMapSha1 = GetCountryFile(countryId).GetHikingbookProMapSha1(),
                                                    fn = std::move(finishFn)]()
     {
       DownloadStatus status = DownloadStatus::Completed;
 
         auto calculatedSha1 = coding::SHA1::CalculateBase64(path);
-      if (calculatedSha1 != sha1 && calculatedSha1 != hikingbookTopoMapSha1)
+      if (calculatedSha1 != sha1 && calculatedSha1 != hikingbookProMapSha1)
       {
         LOG(LERROR, ("SHA check error for", path));
         base::DeleteFileX(path);
@@ -1662,24 +1662,24 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   }
     
     // Hikingbook Topo Maps
-    nodeAttrs.m_hikingbookTopoMapSize = nodeAttrs.m_mwmSize;
-    nodeAttrs.m_hikingbookTopoMapStatus = nodeAttrs.m_status;
+    nodeAttrs.m_hikingbookProMapSize = nodeAttrs.m_mwmSize;
+    nodeAttrs.m_hikingbookProMapStatus = nodeAttrs.m_status;
     if (node->ChildrenCount() == 0) {
-        nodeAttrs.m_hikingbookTopoMapSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
-        switch (nodeAttrs.m_hikingbookTopoMapStatus) {
+        nodeAttrs.m_hikingbookProMapSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
+        switch (nodeAttrs.m_hikingbookProMapStatus) {
             case NodeStatus::OnDisk: {
                 LocalFilePtr const localFile = GetLatestLocalFile(countryId);
-                if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookTopoMaps) {
-                    nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
+                if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookProMaps) {
+                    nodeAttrs.m_hikingbookProMapStatus = NodeStatus::NotDownloaded;
                 }
             }
                 break;
             case NodeStatus::Downloading:
             case NodeStatus::InQueue:
             case NodeStatus::Applying: {
-                auto const hikingbookTopoMapRemoteSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
-                if (hikingbookTopoMapRemoteSize != nodeAttrs.m_downloadingProgress.m_bytesTotal) {
-                    nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
+                auto const hikingbookProMapRemoteSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
+                if (hikingbookProMapRemoteSize != nodeAttrs.m_downloadingProgress.m_bytesTotal) {
+                    nodeAttrs.m_hikingbookProMapStatus = NodeStatus::NotDownloaded;
                 }
             }
                 break;

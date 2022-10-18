@@ -33,8 +33,8 @@ class StoreInterface
 public:
   virtual ~StoreInterface() = default;
   virtual Country * InsertToCountryTree(CountryId const & id, MwmSize mapSize,
-                                        string const & mapSha1, MwmSize hikingbookTopoMapSize,
-                                        string const & hikingbookTopoMapSha1, size_t depth,
+                                        string const & mapSha1, MwmSize hikingbookProMapSize,
+                                        string const & hikingbookProMapSha1, size_t depth,
                                         CountryId const & parent) = 0;
   virtual void InsertOldMwmMapping(CountryId const & newId, CountryId const & oldId) = 0;
   virtual void InsertAffiliation(CountryId const & countryId, string const & affilation) = 0;
@@ -74,12 +74,12 @@ public:
   }
 
   // StoreInterface overrides:
-  Country * InsertToCountryTree(CountryId const & id, MwmSize mapSize, string const & mapSha1,  MwmSize hikingbookTopoMapSize, string const & hikingbookTopoMapSha1,
+  Country * InsertToCountryTree(CountryId const & id, MwmSize mapSize, string const & mapSha1,  MwmSize hikingbookProMapSize, string const & hikingbookProMapSha1,
                                 size_t depth, CountryId const & parent) override
   {
     Country country(id, parent);
     if (mapSize)
-      country.SetFile(CountryFile{id, mapSize, mapSha1, hikingbookTopoMapSize, hikingbookTopoMapSha1});
+      country.SetFile(CountryFile{id, mapSize, mapSha1, hikingbookProMapSize, hikingbookProMapSha1});
     return &m_countries.AddAtDepth(depth, std::move(country));
   }
 
@@ -138,8 +138,8 @@ public:
   }
   // StoreInterface overrides:
   Country * InsertToCountryTree(CountryId const & id, MwmSize /* mapSize */,
-                                string const & /* mapSha1 */, MwmSize /* hikingbookTopoMapSize */,
-                                string const & /* hikingbookTopoMapSha1 */, size_t /* depth */,
+                                string const & /* mapSha1 */, MwmSize /* hikingbookProMapSize */,
+                                string const & /* hikingbookProMapSha1 */, size_t /* depth */,
                                 CountryId const & /* parent */) override
   {
     CountryInfo info(id);
@@ -371,14 +371,14 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   string nodeHash;
   FromJSONObjectOptionalField(node, "sha1_base64", nodeHash);
     
-    int hikingbookTopoMapNodeSize;
-    FromJSONObjectOptionalField(node, "hikingbook_topo_map_s", hikingbookTopoMapNodeSize);
+    int hikingbookProMapNodeSize;
+    FromJSONObjectOptionalField(node, "hikingbook_topo_map_s", hikingbookProMapNodeSize);
     
-    string hikingbookTopoMapNodeHash;
-    FromJSONObjectOptionalField(node, "hikingbook_topo_map_sha1_base64", hikingbookTopoMapNodeHash);
+    string hikingbookProMapNodeHash;
+    FromJSONObjectOptionalField(node, "hikingbook_topo_map_sha1_base64", hikingbookProMapNodeHash);
 
   // We expect that mwm and routing files should be less than 2GB.
-  Country * addedNode = store.InsertToCountryTree(id, nodeSize, nodeHash, hikingbookTopoMapNodeSize, hikingbookTopoMapNodeHash, depth, parent);
+  Country * addedNode = store.InsertToCountryTree(id, nodeSize, nodeHash, hikingbookProMapNodeSize, hikingbookProMapNodeHash, depth, parent);
 
   MwmCounter mwmCounter = 0;
   MwmSize mwmSize = 0;

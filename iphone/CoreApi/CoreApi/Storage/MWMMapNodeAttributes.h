@@ -45,8 +45,8 @@ NS_SWIFT_NAME(MapNodeAttributes)
 @property(nonatomic, readonly, nullable) NSArray<MWMCountryIdAndName *> *topmostParentInfo;
 
 // Hikingbook Topo Maps
-@property(nonatomic, readonly) uint64_t totalHikingbookTopoMapSize;
-@property(nonatomic, readonly) MWMMapNodeStatus hikingbookTopoMapNodeStatus;
+@property(nonatomic, readonly) uint64_t totalHikingbookProMapSize;
+@property(nonatomic, readonly) MWMMapNodeStatus hikingbookProMapNodeStatus;
 
 @end
 

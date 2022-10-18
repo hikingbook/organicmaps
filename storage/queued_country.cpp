@@ -85,8 +85,8 @@ bool QueuedCountry::isMapAvaliable() const
     switch (m_mapSource) {
         case MapSource::Organicmaps:
             return m_countryFile.IsOrganicMapAvailable();
-        case MapSource::HikingbookTopoMaps:
-            return m_countryFile.IsHikingbookTopoMapAvailable();
+        case MapSource::HikingbookProMaps:
+            return m_countryFile.IsHikingbookProMapAvailable();
         default:
             return false;
     }

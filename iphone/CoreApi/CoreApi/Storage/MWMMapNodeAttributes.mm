@@ -80,8 +80,8 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
     _hasParent = hasParent;
       
       // Hikingbook Topo Maps
-      _totalHikingbookTopoMapSize = attributes.m_hikingbookTopoMapSize;
-      _hikingbookTopoMapNodeStatus = convertStatus(attributes.m_hikingbookTopoMapStatus);
+      _totalHikingbookProMapSize = attributes.m_hikingbookProMapSize;
+      _hikingbookProMapNodeStatus = convertStatus(attributes.m_hikingbookProMapStatus);
 
     storage::Storage::UpdateInfo updateInfo;
     if (GetFramework().GetStorage().GetUpdateInfo([countryId UTF8String], updateInfo)) {

@@ -22,7 +22,7 @@ class CountryFile
 public:
   CountryFile();
   explicit CountryFile(std::string name);
-  CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookTopoMapSize, std::string hikingbookTopoMapSha1);
+  CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1);
 
   std::string GetFileName(MapFileType type) const
   {
@@ -36,11 +36,11 @@ public:
   MwmSize GetRemoteSize() const { return m_mapSize; }
   std::string const & GetSha1() const { return m_sha1; }
     // Hikingbook Topo Maps
-    MwmSize GetHikingbookTopoMapRemoteSize() const { return m_hikingbookTopoMapSize; }
-    std::string const & GetHikingbookTopoMapSha1() const { return m_hikingbookTopoMapSha1; }
+    MwmSize GetHikingbookProMapRemoteSize() const { return m_hikingbookProMapSize; }
+    std::string const & GetHikingbookProMapSha1() const { return m_hikingbookProMapSha1; }
     
     bool IsOrganicMapAvailable() const { return m_mapSize > 0 && !m_sha1.empty(); }
-    bool IsHikingbookTopoMapAvailable() const { return m_hikingbookTopoMapSize > 0 && !m_hikingbookTopoMapSha1.empty(); }
+    bool IsHikingbookProMapAvailable() const { return m_hikingbookProMapSize > 0 && !m_hikingbookProMapSha1.empty(); }
 
   inline bool operator<(const CountryFile & rhs) const { return m_name < rhs.m_name; }
   inline bool operator==(const CountryFile & rhs) const { return m_name == rhs.m_name; }
@@ -55,8 +55,8 @@ private:
   /// \note SHA1 is encoded to base64.
   std::string m_sha1;
     // Hikingbook Topo Maps
-    MwmSize m_hikingbookTopoMapSize = 0;
-    std::string m_hikingbookTopoMapSha1;
+    MwmSize m_hikingbookProMapSize = 0;
+    std::string m_hikingbookProMapSha1;
 };
 
 std::string DebugPrint(CountryFile const & file);

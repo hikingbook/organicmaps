@@ -88,6 +88,6 @@ MwmSize GetRemoteSize(diffs::DiffsDataSource const & diffsDataSource,
   uint64_t size;
   if (diffsDataSource.SizeFor(file.GetName(), size))
     return size;
-  return mapSource == MapSource::HikingbookTopoMaps ? file.GetHikingbookTopoMapRemoteSize() : file.GetRemoteSize();
+  return mapSource == MapSource::HikingbookProMaps ? file.GetHikingbookProMapRemoteSize() : file.GetRemoteSize();
 }
 } // namespace storage

@@ -27,15 +27,15 @@ string GetFileName(string const & countryName, MapFileType type)
   UNREACHABLE();
 }
 
-CountryFile::CountryFile() : m_mapSize(0), m_hikingbookTopoMapSize(0) {}
+CountryFile::CountryFile() : m_mapSize(0), m_hikingbookProMapSize(0) {}
 
 CountryFile::CountryFile(std::string name)
-: m_name(std::move(name)), m_mapSize(0), m_hikingbookTopoMapSize(0)
+: m_name(std::move(name)), m_mapSize(0), m_hikingbookProMapSize(0)
 {
 }
 
-CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookTopoMapSize, std::string hikingbookTopoMapSha1)
-: m_name(std::move(name)), m_mapSize(size), m_sha1(sha1), m_hikingbookTopoMapSize(hikingbookTopoMapSize), m_hikingbookTopoMapSha1(hikingbookTopoMapSha1)
+CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1)
+: m_name(std::move(name)), m_mapSize(size), m_sha1(sha1), m_hikingbookProMapSize(hikingbookProMapSize), m_hikingbookProMapSha1(hikingbookProMapSha1)
 {
 }
 
