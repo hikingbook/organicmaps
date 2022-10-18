@@ -119,6 +119,11 @@ MapSource LocalCountryFile::GetMapSource() const
   return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookProMapRemoteSize() ? MapSource::HikingbookProMaps : MapSource::Organicmaps;
 }
 
+void LocalCountryFile::SetCountryFile(CountryFile const & countryFile)
+{
+    m_countryFile = countryFile;
+}
+
 // static
 LocalCountryFile LocalCountryFile::MakeForTesting(string countryFileName, int64_t version)
 {

@@ -961,10 +961,10 @@ void Storage::RegisterCountryFiles(LocalFilePtr localFile)
       ASSERT_EQUAL(localFile.get(), existingFile.get(), ());
   }
   else {
-      // Prevent from localFile's CountryFile is empty
       auto localFilePtr = localFile;
+      // Set localFile's CountryFile if it is empty
       if (localFilePtr->GetCountryFile().GetRemoteSize() <= 0) {
-          localFilePtr = std::make_shared<LocalCountryFile>(LocalCountryFile(localFile->GetDirectory(), GetCountryFile(countryId), localFile->GetVersion()));
+          localFilePtr->SetCountryFile(GetCountryFile(countryId));
       }
       m_localFiles[countryId].push_front(localFilePtr);
   }

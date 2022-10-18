@@ -77,6 +77,8 @@ public:
     
     // Hikingbook Topo Maps
     MapSource GetMapSource() const;
+    
+    void SetCountryFile(CountryFile const & countryFile);
 
   // Creates LocalCountryFile for test purposes, for a country region
   // with countryFileName (without any extensions). Automatically performs sync with disk.
