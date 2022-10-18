@@ -29,7 +29,7 @@ public:
 
   QueuedCountry(platform::CountryFile const & countryFile, CountryId const & m_countryId,
                 MapFileType type, int64_t currentDataVersion, std::string const & dataDir,
-                diffs::DiffsSourcePtr const & diffs, MapSource mapSource);
+                diffs::DiffsSourcePtr const & diffs, MapSource const mapSource);
 
   void Subscribe(Subscriber & subscriber);
   void Unsubscribe();

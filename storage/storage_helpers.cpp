@@ -82,11 +82,12 @@ m2::RectD CalcLimitRect(CountryId const & countryId, Storage const & storage,
 }
 
 MwmSize GetRemoteSize(diffs::DiffsDataSource const & diffsDataSource,
-                      platform::CountryFile const & file)
+                      platform::CountryFile const & file,
+                      MapSource const mapSource)
 {
   uint64_t size;
   if (diffsDataSource.SizeFor(file.GetName(), size))
     return size;
-  return file.GetHikingbookTopoMapRemoteSize() > 0 ? file.GetHikingbookTopoMapRemoteSize() : file.GetRemoteSize();
+  return mapSource == MapSource::HikingbookTopoMaps ? file.GetHikingbookTopoMapRemoteSize() : file.GetRemoteSize();
 }
 } // namespace storage

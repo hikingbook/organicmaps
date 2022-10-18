@@ -114,9 +114,9 @@ bool LocalCountryFile::ValidateIntegrity() const
   return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookTopoMapSha1();
 }
 
-bool LocalCountryFile::IsHikingbookTopoMap() const
+MapSource LocalCountryFile::GetMapSource() const
 {
-  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookTopoMapRemoteSize();
+  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookTopoMapRemoteSize() ? MapSource::HikingbookTopoMaps : MapSource::Organicmaps;
 }
 
 // static

@@ -535,8 +535,8 @@ public:
   // Returns true iff |countryId| is an inner node of the tree.
   bool IsInnerNode(CountryId const & countryId) const;
 
-  LocalAndRemoteSize CountrySizeInBytes(CountryId const & countryId) const;
-  MwmSize GetRemoteSize(platform::CountryFile const & file) const;
+  LocalAndRemoteSize CountrySizeInBytes(CountryId const & countryId, MapSource const mapSource) const;
+  MwmSize GetRemoteSize(platform::CountryFile const & file, MapSource const mapSource) const;
   platform::CountryFile const & GetCountryFile(CountryId const & countryId) const;
   LocalFilePtr GetLatestLocalFile(platform::CountryFile const & countryFile) const;
   LocalFilePtr GetLatestLocalFile(CountryId const & countryId) const;

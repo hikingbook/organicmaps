@@ -14,7 +14,7 @@ QueuedCountry::QueuedCountry(platform::CountryFile const & countryFile, CountryI
                              MapFileType type, int64_t currentDataVersion,
                              std::string const & dataDir,
                              diffs::DiffsSourcePtr const & diffs,
-                             MapSource mapSource)
+                             MapSource const mapSource)
   : m_countryFile(countryFile)
   , m_countryId(countryId)
   , m_fileType(type)
@@ -77,7 +77,7 @@ uint64_t QueuedCountry::GetDownloadSize() const
     return size;
   }
 
-  return GetRemoteSize(*m_diffsDataSource, m_countryFile);
+  return GetRemoteSize(*m_diffsDataSource, m_countryFile, m_mapSource);
 }
 
 bool QueuedCountry::isMapAvaliable() const

@@ -383,11 +383,11 @@ bool Storage::IsInnerNode(CountryId const & countryId) const
   return node != nullptr && node->ChildrenCount() != 0;
 }
 
-LocalAndRemoteSize Storage::CountrySizeInBytes(CountryId const & countryId) const
+LocalAndRemoteSize Storage::CountrySizeInBytes(CountryId const & countryId, MapSource const mapSource) const
 {
   LocalFilePtr localFile = GetLatestLocalFile(countryId);
   CountryFile const & countryFile = GetCountryFile(countryId);
-  LocalAndRemoteSize sizes(0, GetRemoteSize(countryFile));
+  LocalAndRemoteSize sizes(0, GetRemoteSize(countryFile, mapSource));
 
   if (!IsCountryInQueue(countryId) && !IsDiffApplyingInProgressToCountry(countryId))
     sizes.first = localFile ? localFile->GetSize(MapFileType::Map) : 0;
@@ -475,7 +475,7 @@ Status Storage::CountryStatusEx(CountryId const & countryId) const
     return Status::NotDownloaded;
 
   auto const & countryFile = GetCountryFile(countryId);
-  if (GetRemoteSize(countryFile) == 0)
+  if (GetRemoteSize(countryFile, localFile->GetMapSource()) == 0)
     return Status::UnknownError;
 
   if (localFile->GetVersion() != m_currentVersion)
@@ -1644,17 +1644,6 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   nodeAttrs.m_nodeLocalDescription =
       m_countryNameGetter.Get(countryId + LOCALIZATION_DESCRIPTION_SUFFIX);
     
-    // Hikingbook Topo Maps
-    nodeAttrs.m_hikingbookTopoMapSize = nodeAttrs.m_mwmSize;
-    nodeAttrs.m_hikingbookTopoMapStatus = nodeAttrs.m_status;
-    if (node->ChildrenCount() == 0) {
-        nodeAttrs.m_hikingbookTopoMapSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
-        LocalFilePtr const localFile = GetLatestLocalFile(countryId);
-        if (nodeAttrs.m_hikingbookTopoMapStatus == NodeStatus::OnDisk && localFile != nullptr && !localFile->IsHikingbookTopoMap()) {
-            nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
-        }
-    }
-
   // Progress.
   if (nodeAttrs.m_status == NodeStatus::OnDisk)
   {
@@ -1671,6 +1660,33 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
 
     nodeAttrs.m_downloadingProgress = CalculateProgress(subtree);
   }
+    
+    // Hikingbook Topo Maps
+    nodeAttrs.m_hikingbookTopoMapSize = nodeAttrs.m_mwmSize;
+    nodeAttrs.m_hikingbookTopoMapStatus = nodeAttrs.m_status;
+    if (node->ChildrenCount() == 0) {
+        nodeAttrs.m_hikingbookTopoMapSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
+        switch (nodeAttrs.m_hikingbookTopoMapStatus) {
+            case NodeStatus::OnDisk: {
+                LocalFilePtr const localFile = GetLatestLocalFile(countryId);
+                if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookTopoMaps) {
+                    nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
+                }
+            }
+                break;
+            case NodeStatus::Downloading:
+            case NodeStatus::InQueue:
+            case NodeStatus::Applying: {
+                auto const hikingbookTopoMapRemoteSize = nodeValue.GetFile().GetHikingbookTopoMapRemoteSize();
+                if (hikingbookTopoMapRemoteSize != nodeAttrs.m_downloadingProgress.m_bytesTotal) {
+                    nodeAttrs.m_hikingbookTopoMapStatus = NodeStatus::NotDownloaded;
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
 
   // Local mwm information and information about downloading mwms.
   nodeAttrs.m_localMwmCounter = 0;
@@ -1770,15 +1786,30 @@ Progress Storage::CalculateProgress(CountriesVec const & descendants) const
       if (!downloadingIt->second.IsUnknown())
         result.m_bytesDownloaded += downloadingIt->second.m_bytesDownloaded;
 
-      result.m_bytesTotal += GetRemoteSize(GetCountryFile(d));
+        m_downloader->GetQueue().ForEachCountry([this, d, &result](QueuedCountry const & country)
+        {
+            if (country.GetCountryId() == d) {
+                result.m_bytesTotal += GetRemoteSize(GetCountryFile(d), country.GetMapSource());
+            }
+        });
     }
     else if (mwmsInQueue.count(d) != 0)
     {
-      result.m_bytesTotal += GetRemoteSize(GetCountryFile(d));
+        m_downloader->GetQueue().ForEachCountry([this, d, &result](QueuedCountry const & country)
+        {
+            if (country.GetCountryId() == d) {
+                result.m_bytesTotal += GetRemoteSize(GetCountryFile(d), country.GetMapSource());
+            }
+        });
     }
     else if (m_justDownloaded.count(d) != 0)
     {
-      MwmSize const localCountryFileSz = GetRemoteSize(GetCountryFile(d));
+        MapSource mapSource = MapSource::Organicmaps;
+        LocalFilePtr localFile = GetLatestLocalFile(d);
+        if (localFile) {
+            mapSource = localFile->GetMapSource();
+        }
+      MwmSize const localCountryFileSz = GetRemoteSize(GetCountryFile(d), mapSource);
       result.m_bytesDownloaded += localCountryFileSz;
       result.m_bytesTotal += localCountryFileSz;
     }
@@ -1843,7 +1874,12 @@ bool Storage::GetUpdateInfo(CountryId const & countryId, UpdateInfo & updateInfo
     CountryId const & countryId = node.Value().Name();
     updateInfo.m_numberOfMwmFilesToUpdate += 1;
 
-    LocalAndRemoteSize const sizes = CountrySizeInBytes(countryId);
+      MapSource mapSource = MapSource::Organicmaps;
+      auto localFile = GetLatestLocalFile(countryId);
+      if (localFile) {
+          mapSource = localFile->GetMapSource();
+      }
+    LocalAndRemoteSize const sizes = CountrySizeInBytes(countryId, mapSource);
     updateInfo.m_maxFileSizeInBytes = std::max(updateInfo.m_maxFileSizeInBytes, sizes.second);
 
     if (m_diffsDataSource->HasDiffFor(countryId))
@@ -1999,10 +2035,10 @@ CountryId const Storage::GetTopmostParentFor(CountryId const & countryId) const
   return ::storage::GetTopmostParentFor(m_countries, countryId);
 }
 
-MwmSize Storage::GetRemoteSize(CountryFile const & file) const
+MwmSize Storage::GetRemoteSize(CountryFile const & file, MapSource const mapSource) const
 {
   ASSERT(m_diffsDataSource != nullptr, ());
-  return storage::GetRemoteSize(*m_diffsDataSource, file);
+  return storage::GetRemoteSize(*m_diffsDataSource, file, mapSource);
 }
 
 void Storage::OnMapDownloadFailed(CountryId const & countryId)

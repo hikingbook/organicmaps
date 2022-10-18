@@ -76,7 +76,7 @@ public:
   bool ValidateIntegrity() const;
     
     // Hikingbook Topo Maps
-    bool IsHikingbookTopoMap() const;
+    MapSource GetMapSource() const;
 
   // Creates LocalCountryFile for test purposes, for a country region
   // with countryFileName (without any extensions). Automatically performs sync with disk.
