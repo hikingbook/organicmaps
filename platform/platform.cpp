@@ -174,12 +174,12 @@ string Platform::MetaServerUrl() const
 
 string Platform::DefaultUrlsJSON(string const & meatServerUrl) const
 {
-  return meatServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : HIKINGBOOK_TOPO_MAPS_DEFAULT_URLS_JSON;
+  return meatServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON;
 }
 
 string Platform::HikingbookProMapsMetaServerUrl() const
 {
-  return HIKINGBOOK_TOPO_MAPS_METASERVER_URL;
+  return HIKINGBOOK_PRO_MAPS_METASERVER_URL;
 }
 
 bool Platform::RemoveFileIfExists(string const & filePath)

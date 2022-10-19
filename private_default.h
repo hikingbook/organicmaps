@@ -10,6 +10,6 @@
 #define USER_BINDING_PKCS12 ""
 #define USER_BINDING_PKCS12_PASSWORD ""
 
-// Hikingbook Topo Maps
-#define HIKINGBOOK_TOPO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-topo-maps/cdns"
-#define HIKINGBOOK_TOPO_MAPS_DEFAULT_URLS_JSON "[\"https://assets.hikingbook.net/hikingbook-topo-maps/\"]"
+// Hikingbook Pro Maps
+#define HIKINGBOOK_PRO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-pro-maps/cdns"
+#define HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON "[\"https://assets.hikingbook.net/hikingbook-pro-maps/\"]"
