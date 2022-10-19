@@ -1375,39 +1375,55 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
 {
   vector<pair<CountryId, NodeStatus>> disputedTerritories;
   StatusAndError statusAndError = GetNodeStatusInfo(node, disputedTerritories, false /* isDisputedTerritoriesCounted */);
-    switch (mapSource) {
-    case MapSource::HikingbookProMaps:
-        if (node.ChildrenCount() == 0) {
-            switch (statusAndError.status) {
-                case NodeStatus::OnDisk: {
-                    LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
-                    if (localFile != nullptr && localFile->GetMapSource() != MapSource::HikingbookProMaps) {
-                        statusAndError.status = NodeStatus::NotDownloaded;
-                    }
+    
+    if (node.ChildrenCount() == 0) {
+        switch (statusAndError.status) {
+            case NodeStatus::OnDisk: {
+                LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
+                if (localFile && localFile->GetMapSource() != mapSource) {
+                    statusAndError.status = NodeStatus::NotDownloaded;
                 }
-                    break;
-                case NodeStatus::Downloading:
-                case NodeStatus::InQueue:
-                case NodeStatus::Applying: {
-                    CountriesVec subtree;
-                    node.ForEachInSubtree(
-                        [&subtree](CountryTree::Node const & d) { subtree.push_back(d.Value().Name()); });
-
-                    auto const downloadingProgress = CalculateProgress(subtree);
-                    auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
-                    if (hikingbookProMapRemoteSize != downloadingProgress.m_bytesTotal) {
-                        statusAndError.status = NodeStatus::NotDownloaded;
-                    }
-                }
-                    break;
-                default:
-                    break;
             }
+                break;
+            case NodeStatus::Downloading:
+            case NodeStatus::InQueue:
+            case NodeStatus::Applying: {
+                CountriesVec subtree;
+                node.ForEachInSubtree(
+                    [&subtree](CountryTree::Node const & d) { subtree.push_back(d.Value().Name()); });
+
+                auto const downloadingProgress = CalculateProgress(subtree);
+                switch (mapSource) {
+                    case MapSource::Organicmaps: {
+                        auto const remoteSize = node.Value().GetFile().GetRemoteSize();
+                        if (remoteSize != downloadingProgress.m_bytesTotal) {
+                            LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
+                            if (localFile) {
+                                statusAndError.status = localFile->GetMapSource() == mapSource ? NodeStatus::OnDisk : NodeStatus::NotDownloaded;
+                            }
+                        }
+                    }
+                        break;
+                    case MapSource::HikingbookProMaps: {
+                        auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
+                        if (hikingbookProMapRemoteSize != downloadingProgress.m_bytesTotal) {
+                            LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
+                            if (localFile) {
+                                statusAndError.status = localFile->GetMapSource() == mapSource ? NodeStatus::OnDisk : NodeStatus::NotDownloaded;
+                            }
+                        }
+                    }
+                        break;
+                    default:
+                        break;
+                }
+            }
+                break;
+            default:
+                break;
         }
-        break;
-    default:
-        break;
     }
+    
     return statusAndError;
 }
 
