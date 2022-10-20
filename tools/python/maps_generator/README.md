@@ -236,15 +236,7 @@ organicmaps$ ../omim-build-release/topography_generator_tool --profiles_path=dat
 
 Reference: https://github.com/mapsme/omim/issues/4179
 
-4. Build coastlines in the world
-
-Ensure `PLANET_URL` and `PLANET_MD5_URL` are commented in the map_generator.ini to build costlines in the world.
-
-```sh
-python$ python3 -m maps_generator --coasts
-```
-
-5. Edit ini file:
+4. Edit ini file:
 
 ```sh
 maps_generator$ vim var/etc/map_generator.ini
@@ -265,13 +257,13 @@ ISOLINES_PATH: ${Developer:OMIM_PATH}/../isolines_build/countries_isolines
 ...
 ```
 
-6. Run
+5. Run
 
 ```sh
 python$ python3 -m maps_generator --countries="World, WorldCoasts, Japan_*"
 ```
 
-7. Rename files
+6. Rename files
 
 Rename `WorldCoasts.geom` as `latest_coasts.geom`.
 Rename `WorldCoasts.rawgeom` as `latest_coasts.rawgeom`.
