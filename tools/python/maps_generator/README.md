@@ -324,7 +324,7 @@ ISOLINES_PATH: ${Developer:OMIM_PATH}/../isolines_build/countries_isolines
 5. Run
 
 ```sh
-python$ python3 -m maps_generator --countries="Russia_Moscow" --skip="Coastline"
+python$ python3 -m maps_generator --countries="Taiwan_South" --skip="Coastline"
 ```
 
 #### Generate all possible mwms from .osm.pbf file
