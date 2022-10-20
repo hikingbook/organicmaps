@@ -372,10 +372,10 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   FromJSONObjectOptionalField(node, "sha1_base64", nodeHash);
     
     int hikingbookProMapNodeSize;
-    FromJSONObjectOptionalField(node, "hikingbook_topo_map_s", hikingbookProMapNodeSize);
+    FromJSONObjectOptionalField(node, "hikingbook_pro_map_s", hikingbookProMapNodeSize);
     
     string hikingbookProMapNodeHash;
-    FromJSONObjectOptionalField(node, "hikingbook_topo_map_sha1_base64", hikingbookProMapNodeHash);
+    FromJSONObjectOptionalField(node, "hikingbook_pro_map_sha1_base64", hikingbookProMapNodeHash);
 
   // We expect that mwm and routing files should be less than 2GB.
   Country * addedNode = store.InsertToCountryTree(id, nodeSize, nodeHash, hikingbookProMapNodeSize, hikingbookProMapNodeHash, depth, parent);
