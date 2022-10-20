@@ -559,7 +559,7 @@ void Storage::DownloadCountry(CountryId const & countryId, MapFileType type, Map
 
   QueuedCountry queuedCountry(countryFile, countryId, type, m_currentVersion, m_dataDir,
                               m_diffsDataSource, mapSource);
-    if (!queuedCountry.isMapAvaliable()) {
+    if (!queuedCountry.isMapAvailable()) {
         OnMapDownloadFinished(countryId, DownloadStatus::Failed, type, mapSource);
         return;
     }

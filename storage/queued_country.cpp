@@ -80,7 +80,7 @@ uint64_t QueuedCountry::GetDownloadSize() const
   return GetRemoteSize(*m_diffsDataSource, m_countryFile, m_mapSource);
 }
 
-bool QueuedCountry::isMapAvaliable() const
+bool QueuedCountry::isMapAvailable() const
 {
     switch (m_mapSource) {
         case MapSource::Organicmaps:

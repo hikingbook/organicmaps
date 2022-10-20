@@ -45,7 +45,7 @@ public:
     
     // Hikingbook Pro Maps
     MapSource GetMapSource() const { return m_mapSource; }
-    bool isMapAvaliable() const;
+    bool isMapAvailable() const;
 
   void OnCountryInQueue() const;
   void OnStartDownloading() const;

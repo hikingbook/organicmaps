@@ -18,7 +18,7 @@ namespace storage
 {
 void MapFilesDownloader::DownloadMapFile(QueuedCountry && queuedCountry)
 {
-    if (!queuedCountry.isMapAvaliable()) {
+    if (!queuedCountry.isMapAvailable()) {
         return;
     }
     auto pos = m_serversList.find(queuedCountry.GetMapSource());
