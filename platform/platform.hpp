@@ -1,4 +1,4 @@
-// This file is updated by Zheng-Xiang Ke on 2022 for Hikingbook Topo Maps.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/battery_tracker.hpp"
@@ -273,7 +273,7 @@ public:
   /// @return JSON-encoded list of urls if metaserver is unreachable
   std::string DefaultUrlsJSON(std::string const & meatServerUrl) const;
     
-    /// @return url for clients to download Hikingbook topo maps
+    /// @return url for clients to download Hikingbook Pro maps
     //@{
     std::string HikingbookProMapsMetaServerUrl() const;
     //@}

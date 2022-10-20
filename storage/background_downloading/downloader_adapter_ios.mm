@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "storage/background_downloading/downloader_adapter_ios.h"
 
 #import "platform/background_downloader_ios.h"

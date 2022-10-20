@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMRouter.h"
 #import "MWMAlertViewController+CPP.h"
 #import "MWMCoreRouterType.h"

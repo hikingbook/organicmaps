@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMMapNodeAttributes+Core.h"
 #include <CoreApi/Framework.h>
 
@@ -79,7 +79,7 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
     _hasChildren = hasChildren;
     _hasParent = hasParent;
       
-      // Hikingbook Topo Maps
+      // Hikingbook Pro Maps
       _totalHikingbookProMapSize = attributes.m_hikingbookProMapSize;
       _hikingbookProMapNodeStatus = convertStatus(attributes.m_hikingbookProMapStatus);
 

@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include <cstdint>
@@ -20,7 +20,7 @@ using LocalAndRemoteSize = std::pair<MwmSize, MwmSize>;
 
 std::string DebugPrint(MapFileType type);
 
-// Hikingbook Topo Maps
+// Hikingbook Pro Maps
 enum class MapSource : uint8_t
 {
   Organicmaps,

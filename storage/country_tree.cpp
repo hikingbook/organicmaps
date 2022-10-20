@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "storage/country_tree.hpp"
 
 #include "platform/mwm_version.hpp"

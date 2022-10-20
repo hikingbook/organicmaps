@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/country.hpp"
@@ -125,7 +125,7 @@ struct NodeAttrs
   /// m_present == false for group mwms.
   bool m_present;
     
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MwmSize m_hikingbookProMapSize;
     NodeStatus m_hikingbookProMapStatus;
 };

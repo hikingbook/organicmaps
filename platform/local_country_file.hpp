@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/country_file.hpp"
@@ -75,7 +75,7 @@ public:
 
   bool ValidateIntegrity() const;
     
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MapSource GetMapSource() const;
     
     void SetCountryFile(CountryFile const & countryFile);

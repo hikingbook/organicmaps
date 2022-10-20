@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, MWMMapNodeStatus) {
@@ -44,7 +44,7 @@ NS_SWIFT_NAME(MapNodeAttributes)
 @property(nonatomic, readonly) NSArray<MWMCountryIdAndName *> *parentInfo;
 @property(nonatomic, readonly, nullable) NSArray<MWMCountryIdAndName *> *topmostParentInfo;
 
-// Hikingbook Topo Maps
+// Hikingbook Pro Maps
 @property(nonatomic, readonly) uint64_t totalHikingbookProMapSize;
 @property(nonatomic, readonly) MWMMapNodeStatus hikingbookProMapNodeStatus;
 

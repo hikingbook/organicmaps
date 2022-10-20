@@ -1,4 +1,4 @@
-// This file is updated by Zheng-Xiang Ke on 2022 for Hikingbook Topo Maps.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "platform/platform.hpp"
 
 #include "coding/internal/file_data.hpp"

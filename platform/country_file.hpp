@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/country_defines.hpp"
@@ -35,7 +35,7 @@ public:
   std::string const & GetName() const { return m_name; }
   MwmSize GetRemoteSize() const { return m_mapSize; }
   std::string const & GetSha1() const { return m_sha1; }
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MwmSize GetHikingbookProMapRemoteSize() const { return m_hikingbookProMapSize; }
     std::string const & GetHikingbookProMapSha1() const { return m_hikingbookProMapSha1; }
     
@@ -54,7 +54,7 @@ private:
   MwmSize m_mapSize = 0;
   /// \note SHA1 is encoded to base64.
   std::string m_sha1;
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MwmSize m_hikingbookProMapSize = 0;
     std::string m_hikingbookProMapSha1;
 };

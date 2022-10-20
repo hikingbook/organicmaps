@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/diff_scheme/diffs_data_source.hpp"
@@ -43,7 +43,7 @@ public:
   std::string GetFileDownloadPath() const;
   uint64_t GetDownloadSize() const;
     
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MapSource GetMapSource() const { return m_mapSource; }
     bool isMapAvaliable() const;
 
@@ -64,7 +64,7 @@ private:
 
   Subscriber * m_subscriber = nullptr;
     
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     MapSource m_mapSource;
 };
 }  // namespace storage

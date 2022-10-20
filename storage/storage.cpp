@@ -1,4 +1,4 @@
-// This file is updated for Hikingbook Topo Maps by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "storage/storage.hpp"
 
 #include "storage/country_tree_helpers.hpp"
@@ -1730,7 +1730,7 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
     nodeAttrs.m_downloadingProgress = CalculateProgress(subtree);
   }
     
-    // Hikingbook Topo Maps
+    // Hikingbook Pro Maps
     nodeAttrs.m_hikingbookProMapSize = nodeAttrs.m_mwmSize;
     if (node->ChildrenCount() == 0) {
         nodeAttrs.m_hikingbookProMapSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
