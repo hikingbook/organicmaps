@@ -28,9 +28,9 @@ The app version can be found in the "About" section in the settings menu of OMap
 
 1. [Build and install generator_tool.](https://github.com/organicmaps/organicmaps/blob/master/docs/INSTALL.md#desktop-app)
 ```sh
-tools/unix/build_omim.sh -r generator/generator_tool/install
-tools/unix/build_omim.sh -r generator/world_roads_builder/world_roads_builder_tool/install
-tools/unix/build_omim.sh -r topography_generator/install
+tools/unix/build_omim.sh -r generator_tool
+tools/unix/build_omim.sh -r world_roads_builder_tool
+tools/unix/build_omim.sh -r topography_generator_tool
 ```
 
 2. Change directory:
