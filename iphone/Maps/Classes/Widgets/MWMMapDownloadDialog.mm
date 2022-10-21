@@ -87,7 +87,14 @@ using namespace storage;
     self.node.textColor = [UIColor blackPrimaryText];
     self.nodeSize.hidden = NO;
     self.nodeSize.textColor = [UIColor blackSecondaryText];
-    self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+      switch ([self mapSourceForCountry:@(self->m_countryId.c_str())]) {
+      case hikingbookProMaps:
+          self.nodeSize.text = formattedSize(nodeAttrs.m_hikingbookProMapSize);
+          break;
+      default:
+          self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+          break;
+      }
 
     switch (nodeAttrs.m_status) {
       case NodeStatus::NotDownloaded:
