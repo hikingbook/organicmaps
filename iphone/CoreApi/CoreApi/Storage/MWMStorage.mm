@@ -300,8 +300,12 @@ using namespace storage;
   for (auto const &countryId : closestCoutryIds) {
     storage::NodeStatuses nodeStatuses;
     f.GetStorage().GetNodeStatuses(countryId, MapSource::Organicmaps, nodeStatuses);
-    if (nodeStatuses.m_status != storage::NodeStatus::OnDisk)
-      [nearmeCountries addObject:@(countryId.c_str())];
+      
+      storage::NodeStatuses hikingbookProMapNodeStatuses;
+      f.GetStorage().GetNodeStatuses(countryId, MapSource::HikingbookProMaps, hikingbookProMapNodeStatuses);
+      if (nodeStatuses.m_status != storage::NodeStatus::OnDisk && hikingbookProMapNodeStatuses.m_status != storage::NodeStatus::OnDisk) {
+          [nearmeCountries addObject:@(countryId.c_str())];
+      }
   }
 
   return nearmeCountries.count > 0 ? [nearmeCountries copy] : nil;
