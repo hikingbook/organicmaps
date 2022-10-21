@@ -819,6 +819,7 @@ void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType t
   if (!localFile || localFile->IsInBundle())
     localFile = PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile);
   else if (localFile->GetMapSource() != mapSource) {
+      localFile = PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile);
       string const path = localFile->GetPath(type);
       string const newPath = path + std::to_string(static_cast<uint8_t>(localFile->GetMapSource()));
       if (!base::RenameFileX(path, newPath)) {
@@ -952,21 +953,20 @@ void Storage::RegisterCountryFiles(LocalFilePtr localFile)
   localFile->SyncWithDisk();
 
   CountryId const & countryId = FindCountryId(*localFile);
+    // Set localFile's CountryFile if it is empty
+    if (localFile->GetCountryFile().GetRemoteSize() <= 0) {
+        localFile->SetCountryFile(GetCountryFile(countryId));
+    }
   LocalFilePtr existingFile = GetLocalFile(countryId, localFile->GetVersion());
   if (existingFile)
   {
-    if (existingFile->IsInBundle())
+    if (existingFile->IsInBundle() || existingFile->GetMapSource() != localFile->GetMapSource())
       *existingFile = *localFile;
     else
       ASSERT_EQUAL(localFile.get(), existingFile.get(), ());
   }
   else {
-      auto localFilePtr = localFile;
-      // Set localFile's CountryFile if it is empty
-      if (localFilePtr->GetCountryFile().GetRemoteSize() <= 0) {
-          localFilePtr->SetCountryFile(GetCountryFile(countryId));
-      }
-      m_localFiles[countryId].push_front(localFilePtr);
+      m_localFiles[countryId].push_front(localFile);
   }
 }
 
