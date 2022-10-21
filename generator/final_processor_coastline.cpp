@@ -32,7 +32,8 @@ void CoastlineFinalProcessor::Process()
 
   FeaturesAndRawGeometryCollector collector(m_coastlineGeomFilename, m_coastlineRawGeomFilename);
   // Check and stop if some coasts were not merged.
-  CHECK(m_generator.Finish(), ());
+//  CHECK(m_generator.Finish(), ());
+    m_generator.Finish();
   LOG(LINFO, ("Generating coastline polygons."));
   size_t totalFeatures = 0;
   size_t totalPoints = 0;
