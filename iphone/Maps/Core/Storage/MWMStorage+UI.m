@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMStorage+UI.h"
 #import "MWMAlertViewController.h"
 
@@ -15,19 +16,19 @@
   }
 }
 
-- (void)downloadNode:(NSString *)countryId {
-  [self downloadNode:countryId onSuccess:nil];
+- (void)downloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
+  [self downloadNode:countryId mapSource:mapSource onSuccess:nil];
 }
 
-- (void)downloadNode:(NSString *)countryId onSuccess:(MWMVoidBlock)success {
+- (void)downloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource onSuccess:(MWMVoidBlock)success {
   NSError *error;
-  [self downloadNode:countryId error:&error];
+  [self downloadNode:countryId mapSource:mapSource error:&error];
   if (error) {
     if (error.code == kStorageCellularForbidden) {
       __weak __typeof(self) ws = self;
       [[MWMAlertViewController activeAlertController] presentNoWiFiAlertWithOkBlock:^{
         [self enableCellularDownload:YES];
-        [ws downloadNode:countryId];
+        [ws downloadNode:countryId mapSource:mapSource];
       } andCancelBlock:nil];
     } else {
       [self handleError:error];
@@ -39,19 +40,19 @@
   }
 }
 
-- (void)updateNode:(NSString *)countryId {
-  [self updateNode:countryId onCancel:nil];
+- (void)updateNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
+  [self updateNode:countryId mapSource:mapSource onCancel:nil];
 }
 
-- (void)updateNode:(NSString *)countryId onCancel:(MWMVoidBlock)cancel {
+- (void)updateNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource onCancel:(MWMVoidBlock)cancel {
   NSError *error;
-  [self updateNode:countryId error:&error];
+  [self updateNode:countryId mapSource:mapSource error:&error];
   if (error) {
     if (error.code == kStorageCellularForbidden) {
       __weak __typeof(self) ws = self;
       [[MWMAlertViewController activeAlertController] presentNoWiFiAlertWithOkBlock:^{
         [self enableCellularDownload:YES];
-        [ws updateNode:countryId onCancel:cancel];
+        [ws updateNode:countryId mapSource:mapSource onCancel:cancel];
       } andCancelBlock:cancel];
     } else {
       [self handleError:error];
@@ -86,15 +87,15 @@
   }
 }
 
-- (void)downloadNodes:(NSArray<NSString *> *)countryIds onSuccess:(nullable MWMVoidBlock)success {
+- (void)downloadNodes:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources onSuccess:(nullable MWMVoidBlock)success {
   NSError *error;
-  [self downloadNodes:countryIds error:&error];
+    [self downloadNodes:countryIds mapSources:mapSources error:&error];
   if (error) {
     if (error.code == kStorageCellularForbidden) {
       __weak __typeof(self) ws = self;
       [[MWMAlertViewController activeAlertController] presentNoWiFiAlertWithOkBlock:^{
         [self enableCellularDownload:YES];
-        [ws downloadNodes:countryIds onSuccess:success];
+          [ws downloadNodes:countryIds mapSources:mapSources onSuccess:success];
       } andCancelBlock:nil];
     } else {
       [self handleError:error];

@@ -44,7 +44,10 @@ static const NSTimeInterval kTimeoutIntervalInSeconds = 10;
 @implementation MapFileSaveStrategy
 
 - (NSURL *)getLocationForWebUrl:(NSURL *)webUrl {
-  NSString *normalizedPath = [webUrl.path stringByReplacingOccurrencesOfString:@"/hikingbook-maps" withString:@""];
+    NSArray *urlComponents = [[webUrl.path componentsSeparatedByString:@"/"] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *item, NSDictionary *bindings) {
+        return ![item containsString:@"hikingbook"];
+    }]];
+    NSString *normalizedPath = [urlComponents componentsJoinedByString:@"/"];
   NSString *path = @(downloader::GetFilePathByUrl(normalizedPath.UTF8String).c_str());
   return [NSURL fileURLWithPath:path];
 }

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "indexer/mwm_set.hpp"
 
 #include "indexer/features_offsets_table.hpp"
@@ -118,6 +119,12 @@ pair<MwmSet::MwmId, MwmSet::RegResult> MwmSet::Register(LocalCountryFile const &
       result = RegisterImpl(localFile, events);
       return;
     }
+
+      if (info->GetLocalFile().GetMapSource() != localFile.GetMapSource())
+      {
+          result = RegisterImpl(localFile, events);
+          return;
+      }
 
     string const name = countryFile.GetName();
     // Update the status of the mwm with the same version.

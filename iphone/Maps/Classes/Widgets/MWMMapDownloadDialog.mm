@@ -87,7 +87,14 @@ using namespace storage;
     self.node.textColor = [UIColor blackPrimaryText];
     self.nodeSize.hidden = NO;
     self.nodeSize.textColor = [UIColor blackSecondaryText];
-    self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+      switch ([self mapSourceForCountry:@(self->m_countryId.c_str())]) {
+      case hikingbookProMaps:
+          self.nodeSize.text = formattedSize(nodeAttrs.m_hikingbookProMapSize);
+          break;
+      default:
+          self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+          break;
+      }
 
     switch (nodeAttrs.m_status) {
       case NodeStatus::NotDownloaded:
@@ -101,7 +108,7 @@ using namespace storage;
           }
         if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap) {
           m_autoDownloadCountryId = m_countryId;
-          [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str())
+          [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
                                          onSuccess:^{
                                                       [self showInQueue];
                                                     }];
@@ -146,8 +153,7 @@ using namespace storage;
   if (self.superview)
     return;
   MapViewController *controller = self.controller;
-//  [controller.view insertSubview:self aboveSubview:controller.controlsView];
-  [controller.view insertSubview:self belowSubview:controller.controlsView];
+  [controller.view insertSubview:self aboveSubview:controller.controlsView];
   [[MWMStorage sharedStorage] addObserver:self];
 
   // Center dialog in the parent view.
@@ -175,7 +181,7 @@ using namespace storage;
   [self addToSuperview];
   auto const retryBlock = ^{
     [self showInQueue];
-    [[MWMStorage sharedStorage] retryDownloadNode:@(self->m_countryId.c_str())];
+    [[MWMStorage sharedStorage] retryDownloadNode:@(self->m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(self->m_countryId.c_str())]];
   };
   auto const cancelBlock = ^{
     [[MWMStorage sharedStorage] cancelDownloadNode:@(self->m_countryId.c_str())];
@@ -246,6 +252,16 @@ using namespace storage;
     [self configDialog];
 }
 
+
+- (MWMMapSource) mapSourceForCountry:(NSString *)countryId {
+    MWMMapSource mapSource = organicmaps;
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:mapSourceForCountry:)]) {
+        mapSource = [delegate downloadDialog:self mapSourceForCountry:countryId];
+    }
+    return mapSource;
+}
+
 #pragma mark - MWMStorageObserver
 
 - (void)processCountryEvent:(NSString *)countryId {
@@ -269,7 +285,7 @@ using namespace storage;
 - (void)progressButtonPressed:(nonnull MWMCircularProgress *)progress {
   if (progress.state == MWMCircularProgressStateFailed) {
     [self showInQueue];
-    [[MWMStorage sharedStorage] retryDownloadNode:@(m_countryId.c_str())];
+    [[MWMStorage sharedStorage] retryDownloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]];
   } else {
     if (m_autoDownloadCountryId == m_countryId)
       self.isAutoDownloadCancelled = YES;
@@ -287,7 +303,7 @@ using namespace storage;
             return;
         }
     }
-  [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str())
+  [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
                                  onSuccess:^{ [self showInQueue]; }];
 }
 

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/country_defines.hpp"
@@ -21,7 +22,7 @@ class CountryFile
 public:
   CountryFile();
   explicit CountryFile(std::string name);
-  CountryFile(std::string name, MwmSize size, std::string sha1);
+  CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1);
 
   std::string GetFileName(MapFileType type) const
   {
@@ -34,6 +35,12 @@ public:
   std::string const & GetName() const { return m_name; }
   MwmSize GetRemoteSize() const { return m_mapSize; }
   std::string const & GetSha1() const { return m_sha1; }
+    // Hikingbook Pro Maps
+    MwmSize GetHikingbookProMapRemoteSize() const { return m_hikingbookProMapSize; }
+    std::string const & GetHikingbookProMapSha1() const { return m_hikingbookProMapSha1; }
+    
+    bool IsOrganicMapAvailable() const { return m_mapSize > 0 && !m_sha1.empty(); }
+    bool IsHikingbookProMapAvailable() const { return m_hikingbookProMapSize > 0 && !m_hikingbookProMapSha1.empty(); }
 
   inline bool operator<(const CountryFile & rhs) const { return m_name < rhs.m_name; }
   inline bool operator==(const CountryFile & rhs) const { return m_name == rhs.m_name; }
@@ -47,6 +54,9 @@ private:
   MwmSize m_mapSize = 0;
   /// \note SHA1 is encoded to base64.
   std::string m_sha1;
+    // Hikingbook Pro Maps
+    MwmSize m_hikingbookProMapSize = 0;
+    std::string m_hikingbookProMapSha1;
 };
 
 std::string DebugPrint(CountryFile const & file);

@@ -1,4 +1,4 @@
-// This file is modified by Zheng-Xiang Ke on 2021.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMRouter.h"
 #import "MWMAlertViewController+CPP.h"
 #import "MWMCoreRouterType.h"
@@ -512,10 +512,12 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
       }
       downloadBlock:^(storage::CountriesVec const &downloadCountries, MWMVoidBlock onSuccess) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:downloadCountries.size()];
+        NSMutableArray *mapSources = [NSMutableArray arrayWithCapacity:downloadCountries.size()];
         for (auto const &cid : downloadCountries) {
           [array addObject:@(cid.c_str())];
+            [mapSources addObject:[NSNumber numberWithShort:organicmaps]];
         }
-        [[MWMStorage sharedStorage] downloadNodes:array onSuccess:onSuccess];
+        [[MWMStorage sharedStorage] downloadNodes:array mapSources:mapSources onSuccess:onSuccess];
       }
       downloadCompleteBlock:^{
         [MWMRouter rebuildWithBestRouter:NO];

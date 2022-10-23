@@ -5,7 +5,11 @@
 #define MWM_GEOLOCATION_SERVER ""
 #define METASERVER_URL "https://hikingbook.net/maps/cdns"
 #define DIFF_LIST_URL ""
-#define DEFAULT_URLS_JSON "[\"https://storage.googleapis.com/hikingbook-maps/\", \"https://cdn-fi1.organicmaps.app/\", \"https://cdn-uk1.organicmaps.app/\", \"https://cdn-nl1.organicmaps.app/\", \"https://cdn-eu2.organicmaps.app/\", \"https://cdn.organicmaps.app/\"]"
+#define DEFAULT_URLS_JSON "[\"https://cdn-fi1.organicmaps.app/\", \"https://cdn-uk1.organicmaps.app/\", \"https://cdn-nl1.organicmaps.app/\", \"https://cdn-eu2.organicmaps.app/\", \"https://cdn.organicmaps.app/\"]"
 #define TRAFFIC_DATA_BASE_URL ""
 #define USER_BINDING_PKCS12 ""
 #define USER_BINDING_PKCS12_PASSWORD ""
+
+// Hikingbook Pro Maps
+#define HIKINGBOOK_PRO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-pro-maps/cdns"
+#define HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON "[\"https://assets.hikingbook.net/hikingbook-pro-maps/\"]"

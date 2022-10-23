@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include <cstdint>
@@ -18,3 +19,12 @@ using MwmSize = uint64_t;
 using LocalAndRemoteSize = std::pair<MwmSize, MwmSize>;
 
 std::string DebugPrint(MapFileType type);
+
+// Hikingbook Pro Maps
+enum class MapSource : uint8_t
+{
+  Organicmaps,
+  HikingbookProMaps,
+
+  Count
+};

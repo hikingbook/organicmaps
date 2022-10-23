@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMMapNodeAttributes+Core.h"
 #include <CoreApi/Framework.h>
 
@@ -71,12 +72,16 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
     _downloadingMwmCount = attributes.m_downloadingMwmCounter - attributes.m_localMwmCounter;
     _totalSize = attributes.m_mwmSize;
     _downloadedSize = attributes.m_localMwmSize;
-    _downloadingSize = attributes.m_downloadingMwmSize - attributes.m_localMwmSize;
+    _downloadingSize = attributes.m_downloadingMwmSize >= attributes.m_localMwmSize ? attributes.m_downloadingMwmSize - attributes.m_localMwmSize : 0;
     _nodeName = @(attributes.m_nodeLocalName.c_str());
     _nodeDescription = @(attributes.m_nodeLocalDescription.c_str());
     _nodeStatus = convertStatus(attributes.m_status);
     _hasChildren = hasChildren;
     _hasParent = hasParent;
+      
+      // Hikingbook Pro Maps
+      _totalHikingbookProMapSize = attributes.m_hikingbookProMapSize;
+      _hikingbookProMapNodeStatus = convertStatus(attributes.m_hikingbookProMapStatus);
 
     storage::Storage::UpdateInfo updateInfo;
     if (GetFramework().GetStorage().GetUpdateInfo([countryId UTF8String], updateInfo)) {

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #import "MWMStorage.h"
 #import "MWMMapNodeAttributes+Core.h"
 #import "MWMMapUpdateInfo+Core.h"
@@ -71,11 +72,11 @@ using namespace storage;
 }
 
 
-- (BOOL)downloadNode:(NSString *)countryId error:(NSError *__autoreleasing _Nullable *)error {
+- (BOOL)downloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource error:(NSError *__autoreleasing _Nullable *)error {
   if (IsEnoughSpaceForDownload(countryId.UTF8String, GetFramework().GetStorage())) {
     NSError *connectionError;
     if ([self checkConnection:&connectionError]) {
-      GetFramework().GetStorage().DownloadNode(countryId.UTF8String);
+      GetFramework().GetStorage().DownloadNode(countryId.UTF8String, static_cast<MapSource>(mapSource));
       return YES;
     } else if (error) {
       *error = connectionError;
@@ -87,17 +88,17 @@ using namespace storage;
   return NO;
 }
 
-- (void)retryDownloadNode:(NSString *)countryId {
+- (void)retryDownloadNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
   if ([self checkConnection:nil]) {
-    GetFramework().GetStorage().RetryDownloadNode(countryId.UTF8String);
+    GetFramework().GetStorage().RetryDownloadNode(countryId.UTF8String, static_cast<MapSource>(mapSource));
   }
 }
 
-- (BOOL)updateNode:(NSString *)countryId error:(NSError *__autoreleasing _Nullable *)error {
+- (BOOL)updateNode:(NSString *)countryId mapSource:(MWMMapSource)mapSource error:(NSError *__autoreleasing _Nullable *)error {
   if (IsEnoughSpaceForUpdate(countryId.UTF8String, GetFramework().GetStorage())) {
     NSError *connectionError;
     if ([self checkConnection:&connectionError]) {
-      GetFramework().GetStorage().UpdateNode(countryId.UTF8String);
+      GetFramework().GetStorage().UpdateNode(countryId.UTF8String, static_cast<MapSource>(mapSource));
       return YES;
     } else if (error) {
       *error = connectionError;
@@ -140,7 +141,7 @@ using namespace storage;
   GetFramework().ShowNode(countryId.UTF8String);
 }
 
-- (BOOL)downloadNodes:(NSArray<NSString *> *)countryIds error:(NSError *__autoreleasing _Nullable *)error {
+- (BOOL)downloadNodes:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources error:(NSError *__autoreleasing _Nullable *)error {
   auto &s = GetFramework().GetStorage();
 
   MwmSize requiredSize = 0;
@@ -153,8 +154,14 @@ using namespace storage;
   if (storage::IsEnoughSpaceForDownload(requiredSize)) {
     NSError *connectionError;
     if ([self checkConnection:&connectionError]) {
+        NSUInteger index = 0;
       for (NSString *countryId in countryIds) {
-        s.DownloadNode(countryId.UTF8String);
+          auto mapSource = MapSource::Organicmaps;
+          if (index < [mapSources count]) {
+              mapSource = static_cast<MapSource>(mapSources[index].unsignedShortValue);
+          }
+          s.DownloadNode(countryId.UTF8String, mapSource);
+          ++index;
       }
       return YES;
     } else if (error) {
@@ -292,9 +299,13 @@ using namespace storage;
   NSMutableArray *nearmeCountries = [NSMutableArray array];
   for (auto const &countryId : closestCoutryIds) {
     storage::NodeStatuses nodeStatuses;
-    f.GetStorage().GetNodeStatuses(countryId, nodeStatuses);
-    if (nodeStatuses.m_status != storage::NodeStatus::OnDisk)
-      [nearmeCountries addObject:@(countryId.c_str())];
+    f.GetStorage().GetNodeStatuses(countryId, MapSource::Organicmaps, nodeStatuses);
+      
+      storage::NodeStatuses hikingbookProMapNodeStatuses;
+      f.GetStorage().GetNodeStatuses(countryId, MapSource::HikingbookProMaps, hikingbookProMapNodeStatuses);
+      if (nodeStatuses.m_status != storage::NodeStatus::OnDisk && hikingbookProMapNodeStatuses.m_status != storage::NodeStatus::OnDisk) {
+          [nearmeCountries addObject:@(countryId.c_str())];
+      }
   }
 
   return nearmeCountries.count > 0 ? [nearmeCountries copy] : nil;

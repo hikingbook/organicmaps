@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "platform/country_file.hpp"
@@ -73,6 +74,11 @@ public:
   bool operator!=(LocalCountryFile const & rhs) const { return !(*this == rhs); }
 
   bool ValidateIntegrity() const;
+    
+    // Hikingbook Pro Maps
+    MapSource GetMapSource() const;
+    
+    void SetCountryFile(CountryFile const & countryFile);
 
   // Creates LocalCountryFile for test purposes, for a country region
   // with countryFileName (without any extensions). Automatically performs sync with disk.

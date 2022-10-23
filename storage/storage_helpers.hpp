@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/diff_scheme/diffs_data_source.hpp"
@@ -32,5 +33,6 @@ m2::RectD CalcLimitRect(CountryId const & countryId, Storage const & storage,
                         CountryInfoGetter const & countryInfoGetter);
 
 MwmSize GetRemoteSize(diffs::DiffsDataSource const & diffsDataSource,
-                      platform::CountryFile const & file);
+                      platform::CountryFile const & file,
+                      MapSource const mapSource);
 }  // namespace storage

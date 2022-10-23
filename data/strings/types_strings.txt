@@ -8993,11 +8993,13 @@
 
   [type.highway.footway.alpine_hiking]
     ref = type.highway.path
+    en = alpine_hiking
     de = Alpinwanderweg
     pl = Ścieżka wspinaczkowa
     pt = Caminho pedonal
     pt-BR = Caminho pedonal
-    zh-Hans = 步行道路
+    zh-Hans = alpine_hiking
+    zh-Hant = alpine_hiking
 
   [type.highway.footway.area]
     ref = type.highway.footway
@@ -9021,42 +9023,88 @@
 
   [type.highway.footway.demanding_alpine_hiking]
     ref = type.highway.path
+    en = demanding_alpine_hiking
     de = Anspruchsvoller Alpinwanderweg
     pt = Caminho pedonal
     pt-BR = Caminho pedonal difícil
-    zh-Hans = 步行道路
+    zh-Hans = demanding_alpine_hiking
+    zh-Hant = demanding_alpine_hiking
 
   [type.highway.footway.demanding_mountain_hiking]
     ref = type.highway.path
+    en = demanding_mountain_hiking
     de = Anspruchsvoller Bergwanderweg
     pt = Caminho pedonal
     pt-BR = Caminho pedonal difícil
-    zh-Hans = 步行道路
+    zh-Hans = demanding_mountain_hiking
+    zh-Hant = demanding_mountain_hiking
 
   [type.highway.footway.difficult_alpine_hiking]
     ref = type.highway.path
+    en = difficult_alpine_hiking
     de = Schwieriger Alpinwanderweg
     pt = Caminho pedonal
     pt-BR = Caminho pedonal difícil
-    zh-Hans = 步行道路
+    zh-Hans = difficult_alpine_hiking
+    zh-Hant = difficult_alpine_hiking
 
   [type.highway.footway.hiking]
     ref = type.highway.path
+    en = hiking
     de = Wanderweg
     pt = Caminho pedonal
     pt-BR = Caminho pedonal
-    zh-Hans = 步行道路
+    zh-Hans = hiking
+    zh-Hant = hiking
 
   [type.highway.footway.mountain_hiking]
     ref = type.highway.path
+    en = mountain_hiking
     de = Bergwanderweg
     nl = Bergpad
     pt = Caminho pedonal
     pt-BR = Caminho pedonal
-    zh-Hans = 步行道路
+    zh-Hans = mountain_hiking
+    zh-Hant = mountain_hiking
 
   [type.highway.footway.permissive]
     ref = type.highway.footway
+
+  [type.highway.footway.trail_visibility_bad]
+    ref = type.highway.path
+    en = trail_visibility_bad
+    zh-Hans = trail_visibility_bad
+    zh-Hant = trail_visibility_bad
+
+  [type.highway.footway.trail_visibility_excellent]
+    ref = type.highway.path
+    en = trail_visibility_excellent
+    zh-Hans = trail_visibility_excellent
+    zh-Hant = trail_visibility_excellent
+
+  [type.highway.footway.trail_visibility_good]
+    ref = type.highway.path
+    en = trail_visibility_good
+    zh-Hans = trail_visibility_good
+    zh-Hant = trail_visibility_good
+
+  [type.highway.footway.trail_visibility_horrible]
+    ref = type.highway.path
+    en = trail_visibility_horrible
+    zh-Hans = trail_visibility_horrible
+    zh-Hant = trail_visibility_horrible
+
+  [type.highway.footway.trail_visibility_intermediate]
+    ref = type.highway.path
+    en = trail_visibility_intermediate
+    zh-Hans = trail_visibility_intermediate
+    zh-Hant = trail_visibility_intermediate
+
+  [type.highway.footway.trail_visibility_no]
+    ref = type.highway.path
+    en = trail_visibility_no
+    zh-Hans = trail_visibility_no
+    zh-Hant = trail_visibility_no
 
   [type.highway.footway.tunnel]
     ref = type.highway.road.tunnel
@@ -9287,9 +9335,12 @@
 
   [type.highway.path.alpine_hiking]
     ref = type.highway.path
+    en = alpine_hiking
     de = Alpinwanderweg
     pl = Ścieżka wspinaczkowa
     pt-BR = Caminho pedonal
+    zh-Hans = alpine_hiking
+    zh-Hant = alpine_hiking
 
   [type.highway.path.bicycle]
     ref = type.highway.path
@@ -9308,23 +9359,35 @@
 
   [type.highway.path.demanding_alpine_hiking]
     ref = type.highway.path
+    en = demanding_alpine_hiking
     de = Anspruchsvoller Alpinwanderweg
     pt-BR = Caminho pedonal difícil
+    zh-Hans = demanding_alpine_hiking
+    zh-Hant = demanding_alpine_hiking
 
   [type.highway.path.demanding_mountain_hiking]
     ref = type.highway.path
+    en = demanding_mountain_hiking
     de = Anspruchsvoller Bergwanderweg
     pt-BR = Caminho pedonal difícil
+    zh-Hans = demanding_mountain_hiking
+    zh-Hant = demanding_mountain_hiking
 
   [type.highway.path.difficult_alpine_hiking]
     ref = type.highway.path
+    en = difficult_alpine_hiking
     de = Schwieriger Alpinwanderweg
     pt-BR = Caminho pedonal difícil
+    zh-Hans = difficult_alpine_hiking
+    zh-Hant = difficult_alpine_hiking
 
   [type.highway.path.hiking]
     ref = type.highway.path
+    en = hiking
     de = Wanderweg
     pt-BR = Caminho pedonal
+    zh-Hans = hiking
+    zh-Hant = hiking
 
   [type.highway.path.horse]
     ref = type.highway.path
@@ -9337,12 +9400,51 @@
 
   [type.highway.path.mountain_hiking]
     ref = type.highway.path
+    en = mountain_hiking
     de = Bergwanderweg
     nl = Bergpad
     pt-BR = Caminho pedonal
+    zh-Hans = mountain_hiking
+    zh-Hant = mountain_hiking
 
   [type.highway.path.permissive]
     ref = type.highway.path
+
+  [type.highway.path.trail_visibility_bad]
+    ref = type.highway.path
+    en = trail_visibility_bad
+    zh-Hans = trail_visibility_bad
+    zh-Hant = trail_visibility_bad
+
+  [type.highway.path.trail_visibility_excellent]
+    ref = type.highway.path
+    en = trail_visibility_excellent
+    zh-Hans = trail_visibility_excellent
+    zh-Hant = trail_visibility_excellent
+
+  [type.highway.path.trail_visibility_good]
+    ref = type.highway.path
+    en = trail_visibility_good
+    zh-Hans = trail_visibility_good
+    zh-Hant = trail_visibility_good
+
+  [type.highway.path.trail_visibility_horrible]
+    ref = type.highway.path
+    en = trail_visibility_horrible
+    zh-Hans = trail_visibility_horrible
+    zh-Hant = trail_visibility_horrible
+
+  [type.highway.path.trail_visibility_intermediate]
+    ref = type.highway.path
+    en = trail_visibility_intermediate
+    zh-Hans = trail_visibility_intermediate
+    zh-Hant = trail_visibility_intermediate
+
+  [type.highway.path.trail_visibility_no]
+    ref = type.highway.path
+    en = trail_visibility_no
+    zh-Hans = trail_visibility_no
+    zh-Hant = trail_visibility_no
 
   [type.highway.path.tunnel]
     ref = type.highway.road.tunnel
@@ -22982,6 +23084,11 @@
     vi = Bản Đồ Du Lịch
     zh-Hans = 旅游地图
     zh-Hant = 旅遊地圖
+
+  [type.tourism.information.mobile]
+    en = Cellular Signal
+    zh-Hans = 手机通讯点
+    zh-Hant = 手機通訊點
 
   [type.tourism.information.office]
     en = Tourist Office

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/diff_scheme/diffs_data_source.hpp"
@@ -28,7 +29,7 @@ public:
 
   QueuedCountry(platform::CountryFile const & countryFile, CountryId const & m_countryId,
                 MapFileType type, int64_t currentDataVersion, std::string const & dataDir,
-                diffs::DiffsSourcePtr const & diffs);
+                diffs::DiffsSourcePtr const & diffs, MapSource const mapSource);
 
   void Subscribe(Subscriber & subscriber);
   void Unsubscribe();
@@ -41,6 +42,10 @@ public:
   std::string GetRelativeUrl() const;
   std::string GetFileDownloadPath() const;
   uint64_t GetDownloadSize() const;
+    
+    // Hikingbook Pro Maps
+    MapSource GetMapSource() const { return m_mapSource; }
+    bool isMapAvailable() const;
 
   void OnCountryInQueue() const;
   void OnStartDownloading() const;
@@ -58,5 +63,8 @@ private:
   diffs::DiffsSourcePtr m_diffsDataSource;
 
   Subscriber * m_subscriber = nullptr;
+    
+    // Hikingbook Pro Maps
+    MapSource m_mapSource;
 };
 }  // namespace storage

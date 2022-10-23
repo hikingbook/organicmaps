@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "platform/local_country_file.hpp"
 
 #include "platform/mwm_version.hpp"
@@ -109,8 +110,18 @@ bool LocalCountryFile::operator==(LocalCountryFile const & rhs) const
 bool LocalCountryFile::ValidateIntegrity() const
 {
   auto calculatedSha1 = coding::SHA1::CalculateBase64(GetPath(MapFileType::Map));
-  ASSERT_EQUAL(calculatedSha1, m_countryFile.GetSha1(), ("Integrity failure"));
-  return calculatedSha1 == m_countryFile.GetSha1();
+//  ASSERT_EQUAL(calculatedSha1, m_countryFile.GetSha1(), ("Integrity failure"));
+  return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookProMapSha1();
+}
+
+MapSource LocalCountryFile::GetMapSource() const
+{
+  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookProMapRemoteSize() ? MapSource::HikingbookProMaps : MapSource::Organicmaps;
+}
+
+void LocalCountryFile::SetCountryFile(CountryFile const & countryFile)
+{
+    m_countryFile = countryFile;
 }
 
 // static

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "platform/platform.hpp"
 
 #include "coding/internal/file_data.hpp"
@@ -171,9 +172,14 @@ string Platform::MetaServerUrl() const
   return METASERVER_URL;
 }
 
-string Platform::DefaultUrlsJSON() const
+string Platform::DefaultUrlsJSON(string const & meatServerUrl) const
 {
-  return DEFAULT_URLS_JSON;
+  return meatServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON;
+}
+
+string Platform::HikingbookProMapsMetaServerUrl() const
+{
+  return HIKINGBOOK_PRO_MAPS_METASERVER_URL;
 }
 
 bool Platform::RemoveFileIfExists(string const & filePath)

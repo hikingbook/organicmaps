@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "storage/storage_helpers.hpp"
 
 #include "storage/country_info_getter.hpp"
@@ -81,11 +82,12 @@ m2::RectD CalcLimitRect(CountryId const & countryId, Storage const & storage,
 }
 
 MwmSize GetRemoteSize(diffs::DiffsDataSource const & diffsDataSource,
-                      platform::CountryFile const & file)
+                      platform::CountryFile const & file,
+                      MapSource const mapSource)
 {
   uint64_t size;
   if (diffsDataSource.SizeFor(file.GetName(), size))
     return size;
-  return file.GetRemoteSize();
+  return mapSource == MapSource::HikingbookProMaps ? file.GetHikingbookProMapRemoteSize() : file.GetRemoteSize();
 }
 } // namespace storage

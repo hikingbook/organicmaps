@@ -1,4 +1,4 @@
-// This file is modified by Zheng-Xiang Ke on 2022.
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "storage/country.hpp"
@@ -124,6 +124,10 @@ struct NodeAttrs
   /// Can be used to distinguish downloadable and updatable maps.
   /// m_present == false for group mwms.
   bool m_present;
+    
+    // Hikingbook Pro Maps
+    MwmSize m_hikingbookProMapSize;
+    NodeStatus m_hikingbookProMapStatus;
 };
 
 /// \brief Statuses for a node in the country tree.
@@ -271,10 +275,10 @@ private:
   void OnDownloadProgress(QueuedCountry const & queuedCountry,
                           downloader::Progress const & progress) override;
 
-  void RegisterDownloadedFiles(CountryId const & countryId, MapFileType type);
+  void RegisterDownloadedFiles(CountryId const & countryId, MapFileType type, MapSource mapSource);
 
   void OnMapDownloadFinished(CountryId const & countryId, downloader::DownloadStatus status,
-                             MapFileType type);
+                             MapFileType type, MapSource mapSource);
 
   /// Dummy ctor for private use only.
   explicit Storage(int);
@@ -307,7 +311,7 @@ public:
 
   /// @name Countries update functions. Public for unit tests.
   /// @{
-  void RunCountriesCheckAsync();
+  void RunCountriesCheckAsync(MapSource mapSource);
   /// @return 0 If error.
   int64_t ParseIndexAndGetDataVersion(std::string const & index) const;
   void ApplyCountries(std::string const & countriesBuffer, Storage & storage);
@@ -383,7 +387,7 @@ public:
 
   /// \brief Gets a short list of node attributes by its |countriId|.
   /// \note This method works quicklier than GetNodeAttrs().
-  void GetNodeStatuses(CountryId const & countryId, NodeStatuses & nodeStatuses) const;
+  void GetNodeStatuses(CountryId const & countryId, MapSource const mapSource, NodeStatuses & nodeStatuses) const;
 
   std::string GetNodeLocalName(CountryId const & countryId) const
   {
@@ -393,7 +397,7 @@ public:
   /// \brief Downloads/update one node (expandable or not) by countryId.
   /// If node is expandable downloads/update all children (grandchildren) by the node
   /// until they haven't been downloaded before.
-  void DownloadNode(CountryId const & countryId, bool isUpdate = false);
+  void DownloadNode(CountryId const & countryId, MapSource mapSource, bool isUpdate = false);
 
   /// \brief Delete node with all children (expandable or not).
   void DeleteNode(CountryId const & countryId);
@@ -401,7 +405,7 @@ public:
   /// \brief Updates one node. It works for leaf and group mwms.
   /// \note If you want to update all the maps and this update is without changing
   /// borders or hierarchy just call UpdateNode(GetRootId()).
-  void UpdateNode(CountryId const & countryId);
+  void UpdateNode(CountryId const & countryId, MapSource mapSource);
 
   /// \brief If the downloading a new node is in process cancels downloading the node and deletes
   /// the downloaded part of the map. If the map is in queue, remove the map from the queue.
@@ -417,7 +421,7 @@ public:
   /// In case of a group mwm this method retries downloading all mwm in m_failedCountries list
   /// which in the subtree with root |countryId|.
   /// It means the call RetryDownloadNode(GetRootId()) retries all the failed mwms.
-  void RetryDownloadNode(CountryId const & countryId);
+  void RetryDownloadNode(CountryId const & countryId, MapSource mapSource);
 
   struct UpdateInfo
   {
@@ -531,8 +535,8 @@ public:
   // Returns true iff |countryId| is an inner node of the tree.
   bool IsInnerNode(CountryId const & countryId) const;
 
-  LocalAndRemoteSize CountrySizeInBytes(CountryId const & countryId) const;
-  MwmSize GetRemoteSize(platform::CountryFile const & file) const;
+  LocalAndRemoteSize CountrySizeInBytes(CountryId const & countryId, MapSource const mapSource) const;
+  MwmSize GetRemoteSize(platform::CountryFile const & file, MapSource const mapSource) const;
   platform::CountryFile const & GetCountryFile(CountryId const & countryId) const;
   LocalFilePtr GetLatestLocalFile(platform::CountryFile const & countryFile) const;
   LocalFilePtr GetLatestLocalFile(CountryId const & countryId) const;
@@ -543,7 +547,7 @@ public:
   /// Puts country denoted by countryId into the downloader's queue.
   /// During downloading process notifies observers about downloading
   /// progress and status changes.
-  void DownloadCountry(CountryId const & countryId, MapFileType type);
+  void DownloadCountry(CountryId const & countryId, MapFileType type, MapSource mapSource);
 
   /// Removes country files (for all versions) from the device.
   /// Notifies observers about country status change.
@@ -566,7 +570,7 @@ public:
   void SetEnabledIntegrityValidationForTesting(bool enabled);
   void SetDownloaderForTesting(std::unique_ptr<MapFilesDownloader> downloader);
   void SetCurrentDataVersionForTesting(int64_t currentVersion);
-  void SetDownloadingServersForTesting(std::vector<std::string> const & downloadingUrls);
+  void SetDownloadingServersForTesting(MapSource mapSource, std::vector<std::string> const & downloadingUrls);
   void SetLocaleForTesting(std::string const & jsonBuffer, std::string const & locale);
 
   /// Returns true if the diff scheme is available and all local outdated maps can be updated via diffs.
@@ -583,7 +587,7 @@ public:
   std::string GetFilePath(CountryId const & countryId, MapFileType file) const;
 
 protected:
-  void OnFinishDownloading();
+  void OnFinishDownloading(MapSource mapSource);
 
 private:
   friend struct UnitClass_StorageTest_DeleteCountry;
@@ -624,7 +628,7 @@ private:
   Status CountryStatus(CountryId const & countryId) const;
 
   /// Returns status for a node (group node or not).
-  StatusAndError GetNodeStatus(CountryTree::Node const & node) const;
+  StatusAndError GetNodeStatus(CountryTree::Node const & node, MapSource const mapSource) const;
 
   /// Returns status for a node (group node or not).
   /// Fills |disputedTeritories| with all disputed teritories in subtree with the root == |node|.
@@ -654,7 +658,7 @@ private:
   void OnMapDownloadFailed(CountryId const & countryId);
 
   //void LoadDiffScheme();
-  void ApplyDiff(CountryId const & countryId, std::function<void(bool isSuccess)> const & fn);
+  void ApplyDiff(CountryId const & countryId, MapSource mapSource, std::function<void(bool isSuccess)> const & fn);
 
   using IsDiffAbsentForCountry = std::function<bool(CountryId const & id)>;
   void SetMapSchemeForCountriesWithAbsentDiffs(IsDiffAbsentForCountry const & isAbsent);
@@ -662,7 +666,7 @@ private:
 
   // Should be called once on startup, downloading process should be suspended until this method
   // was not called. Do not call this method manually.
-  void OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs);
+  void OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs, MapSource mapSource);
 };
 
 CountriesSet GetQueuedCountries(QueueInterface const & queue);

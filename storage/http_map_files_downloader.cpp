@@ -54,7 +54,7 @@ void HttpMapFilesDownloader::Download()
 
   auto const & queuedCountry = m_queue.GetFirstCountry();
 
-  auto const urls = MakeUrlList(queuedCountry.GetRelativeUrl());
+  auto const urls = MakeUrlList(queuedCountry.GetMapSource(), queuedCountry.GetRelativeUrl());
   auto const path = queuedCountry.GetFileDownloadPath();
   auto const size = queuedCountry.GetDownloadSize();
 
