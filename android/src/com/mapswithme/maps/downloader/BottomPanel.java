@@ -1,9 +1,11 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps.downloader;
 
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.R;
 import com.mapswithme.util.StringUtils;
 import com.mapswithme.util.UiUtils;
@@ -21,7 +23,7 @@ class BottomPanel
     @Override
     public void onClick(View v)
     {
-      MapManager.warn3gAndDownload(mFragment.getActivity(), mFragment.getCurrentRoot(), null);
+      MapManager.warn3gAndDownload(mFragment.getActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
     }
   };
 
@@ -36,7 +38,7 @@ class BottomPanel
         @Override
         public void run()
         {
-          MapManager.nativeUpdate(country);
+          MapManager.nativeUpdate(country, MapSource.ORGANIC_MAPS.getValue());
         }
       });
     }
@@ -100,7 +102,7 @@ class BottomPanel
     if (show)
     {
       String root = adapter.getCurrentRootId();
-      int status = MapManager.nativeGetStatus(root);
+      int status = MapManager.nativeGetStatus(root, MapSource.ORGANIC_MAPS.getValue());
       if (adapter.isMyMapsMode())
       {
         switch (status)

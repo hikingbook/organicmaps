@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps.downloader;
 
 import android.app.Activity;
@@ -11,6 +12,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AlertDialog;
 
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.R;
 import com.mapswithme.util.ConnectionState;
 import com.mapswithme.util.Utils;
@@ -25,14 +27,16 @@ public final class MapManager
   public static class StorageCallbackData
   {
     public final String countryId;
-    public final int newStatus;
+    public final int newOrganicMapStatus;
+    public final int newHikingbookProMapStatus;
     public final int errorCode;
     public final boolean isLeafNode;
 
-    public StorageCallbackData(String countryId, int newStatus, int errorCode, boolean isLeafNode)
+    public StorageCallbackData(String countryId, int newOrganicMapStatus, int newHikingbookProMapStatus, int errorCode, boolean isLeafNode)
     {
       this.countryId = countryId;
-      this.newStatus = newStatus;
+      this.newOrganicMapStatus = newOrganicMapStatus;
+      this.newHikingbookProMapStatus = newHikingbookProMapStatus;
       this.errorCode = errorCode;
       this.isLeafNode = isLeafNode;
     }
@@ -110,7 +114,7 @@ public final class MapManager
                                          Application app = activity.getApplication();
                                          RetryFailedDownloadConfirmationListener listener
                                              = new ExpandRetryConfirmationListener(app, dialogClickListener);
-                                         warn3gAndRetry(activity, errorData.countryId, listener);
+                                         warn3gAndRetry(activity, errorData.countryId, MapSource.ORGANIC_MAPS, listener);
                                        }
                                      }).create();
     dlg.setCanceledOnTouchOutside(false);
@@ -211,7 +215,7 @@ public final class MapManager
     return !notifyNoSpace(activity, size) && warnOn3gInternal(activity, onAcceptListener);
   }
 
-  public static boolean warn3gAndDownload(Activity activity, final String countryId, @Nullable final Runnable onAcceptListener)
+  public static boolean warn3gAndDownload(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
   {
     return warnOn3g(activity, countryId, new Runnable()
     {
@@ -220,12 +224,12 @@ public final class MapManager
       {
         if (onAcceptListener != null)
           onAcceptListener.run();
-        nativeDownload(countryId);
+        nativeDownload(countryId, mapSource.getValue());
       }
     });
   }
 
-  static boolean warn3gAndRetry(Activity activity, final String countryId, @Nullable final Runnable onAcceptListener)
+  static boolean warn3gAndRetry(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
   {
     return warnOn3g(activity, countryId, new Runnable()
     {
@@ -234,7 +238,7 @@ public final class MapManager
       {
         if (onAcceptListener != null)
           onAcceptListener.run();
-        nativeRetry(countryId);
+        nativeRetry(countryId, mapSource.getValue());
       }
     });
   }
@@ -307,12 +311,12 @@ public final class MapManager
   /**
    * Returns status for given {@code root} node.
    */
-  public static native int nativeGetStatus(String root);
+  public static native int nativeGetStatus(String root, int mapSourceValue);
 
   /**
    * Returns downloading error for given {@code root} node.
    */
-  public static native int nativeGetError(String root);
+  public static native int nativeGetError(String root, int mapSourceValue);
 
   /**
    * Returns localized name for given {@code root} node.
@@ -332,17 +336,17 @@ public final class MapManager
   /**
    * Enqueues given {@code root} node and its children in downloader.
    */
-  public static native void nativeDownload(String root);
+  public static native void nativeDownload(String root, int mapSourceValue);
 
   /**
    * Enqueues failed items under given {@code root} node in downloader.
    */
-  public static native void nativeRetry(String root);
+  public static native void nativeRetry(String root, int mapSourceValue);
 
   /**
    * Enqueues given {@code root} node with its children in downloader.
    */
-  public static native void nativeUpdate(String root);
+  public static native void nativeUpdate(String root, int mapSourceValue);
 
   /**
    * Removes given currently downloading {@code root} node and its children from downloader.
@@ -421,4 +425,6 @@ public final class MapManager
    * Update local map registration.
    */
   public static native void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
+
+  public static native int nativeGetHikingbookProMapSize(String root);
 }

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "Framework.hpp"
 
 #include "defines.hpp"
@@ -149,7 +150,7 @@ extern "C"
   }
 
   JNIEXPORT jint JNICALL
-  Java_com_mapswithme_maps_DownloadResourcesLegacyActivity_nativeStartNextFileDownload(JNIEnv * env, jclass clazz, jobject listener)
+  Java_com_mapswithme_maps_DownloadResourcesLegacyActivity_nativeStartNextFileDownload(JNIEnv * env, jclass clazz, jint mapSourceValue, jobject listener)
   {
     if (g_filesToDownload.empty())
       return ERR_NO_MORE_FILES;
@@ -159,14 +160,15 @@ extern "C"
     storage::Storage const & storage = g_framework->GetStorage();
     downloader->SetDataVersion(storage.GetCurrentDataVersion());
 
-    downloader->EnsureMetaConfigReady([&storage, ptr = jni::make_global_ref(listener)]()
+    MapSource mapSource = static_cast<MapSource>(mapSourceValue);
+    downloader->EnsureMetaConfigReady(mapSource, [&storage, mapSource, ptr = jni::make_global_ref(listener)]()
     {
       auto const & curFile = g_filesToDownload.back();
       auto const fileName = curFile.GetFileName(MapFileType::Map);
       LOG(LINFO, ("Downloading file", fileName));
 
       g_currentRequest.reset(HttpRequest::GetFile(
-          downloader->MakeUrlListLegacy(fileName),
+          downloader->MakeUrlListLegacy(mapSource, fileName),
           storage.GetFilePath(curFile.GetName(), MapFileType::Map),
           curFile.GetRemoteSize(),
           std::bind(&DownloadFileFinished, ptr, _1),

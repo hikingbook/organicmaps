@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps;
 
 import android.annotation.SuppressLint;
@@ -114,7 +115,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
         return;
       }
 
-      int status = MapManager.nativeGetStatus(mCurrentCountry);
+      int status = MapManager.nativeGetStatus(mCurrentCountry, MapSource.ORGANIC_MAPS.getValue());
       String name = MapManager.nativeGetName(mCurrentCountry);
 
       if (status != CountryItem.STATUS_DONE)
@@ -150,7 +151,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
 
       if (errorCode == ERR_DOWNLOAD_SUCCESS)
       {
-        final int res = nativeStartNextFileDownload(mResourcesDownloadListener);
+        final int res = nativeStartNextFileDownload(MapSource.ORGANIC_MAPS.getValue(), mResourcesDownloadListener);
         if (res == ERR_NO_MORE_FILES)
           finishFilesDownload(res);
       }
@@ -169,7 +170,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
         if (!item.isLeafNode)
           continue;
 
-        switch (item.newStatus)
+        switch (item.newOrganicMapStatus)
         {
         case CountryItem.STATUS_DONE:
           mAreResourcesDownloaded = true;
@@ -305,7 +306,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
 
   private void doDownload()
   {
-    if (nativeStartNextFileDownload(mResourcesDownloadListener) == ERR_NO_MORE_FILES)
+    if (nativeStartNextFileDownload(MapSource.ORGANIC_MAPS.getValue(), mResourcesDownloadListener) == ERR_NO_MORE_FILES)
       finishFilesDownload(ERR_NO_MORE_FILES);
   }
 
@@ -431,7 +432,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
         mProgress.setProgress(0);
 
         mCountryDownloadListenerSlot = MapManager.nativeSubscribe(mCountryDownloadListener);
-        MapManager.nativeDownload(mCurrentCountry);
+        MapManager.nativeDownload(mCurrentCountry, MapSource.ORGANIC_MAPS.getValue());
         setAction(PROCEED_TO_MAP);
       }
       else
@@ -500,6 +501,6 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity imp
   }
 
   private static native int nativeGetBytesToDownload();
-  private static native int nativeStartNextFileDownload(Listener listener);
+  private static native int nativeStartNextFileDownload(int mapSourceValue, Listener listener);
   private static native void nativeCancelCurrentFile();
 }

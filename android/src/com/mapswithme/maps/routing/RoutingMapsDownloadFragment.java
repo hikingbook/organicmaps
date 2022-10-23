@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps.routing;
 
 import android.content.Context;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.downloader.CountryItem;
 import com.mapswithme.maps.downloader.MapManager;
@@ -43,7 +45,7 @@ public class RoutingMapsDownloadFragment extends BaseRoutingErrorDialogFragment
     }
 
     for (String map : mMaps)
-      MapManager.nativeDownload(map);
+      MapManager.nativeDownload(map, MapSource.ORGANIC_MAPS.getValue());
   }
 
   private View setupFrame(View frame)
@@ -135,7 +137,7 @@ public class RoutingMapsDownloadFragment extends BaseRoutingErrorDialogFragment
         for (MapManager.StorageCallbackData item : data)
           if (mMaps.contains(item.countryId))
           {
-            if (item.newStatus == CountryItem.STATUS_DONE)
+            if (item.newOrganicMapStatus == CountryItem.STATUS_DONE || item.newHikingbookProMapStatus == CountryItem.STATUS_DONE)
             {
               mMaps.remove(item.countryId);
               if (mMaps.isEmpty())

@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 /**
  * Author by robin, Date on 11/30/21.
  * Comment: if-else instead switch-case
@@ -69,7 +70,7 @@ public class CountrySuggestFragment extends BaseMwmFragment implements View.OnCl
                     else if (!item.countryId.equals(mDownloadingCountry.id))
                         continue;
 
-                    switch (item.newStatus) {
+                    switch (item.newOrganicMapStatus) {
                         case CountryItem.STATUS_FAILED:
                             updateViews();
                             return;

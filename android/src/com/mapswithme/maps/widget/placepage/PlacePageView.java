@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 /**
  * Author by robin, Date on 11/30/21.
  * Comment: swith-case view id instead to if-else
@@ -39,6 +40,7 @@ import androidx.core.widget.NestedScrollViewClickFixed;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mapswithme.maps.Framework;
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.maps.R;
@@ -237,7 +239,7 @@ public class PlacePageView extends NestedScrollViewClickFixed
     @Override
     public void onClick(View v)
     {
-      MapManager.warn3gAndDownload(getActivity(), mCurrentCountry.id, null);
+      MapManager.warn3gAndDownload(getActivity(), mCurrentCountry.id, MapSource.ORGANIC_MAPS, null);
     }
   };
 

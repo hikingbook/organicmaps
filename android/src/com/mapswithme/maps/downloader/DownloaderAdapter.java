@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 /**
  * Author by robin, Date on 11/30/21.
  * Comment: Comment unused code
@@ -25,6 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.intent.Factory;
@@ -78,7 +80,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
 
   private void onDownloadActionSelected(final CountryItem item, DownloaderAdapter adapter)
   {
-    MapManager.warn3gAndDownload(adapter.mActivity, item.id, null);
+    MapManager.warn3gAndDownload(adapter.mActivity, item.id, MapSource.ORGANIC_MAPS, null);
   }
 
   private void onUpdateActionSelected(final CountryItem item, DownloaderAdapter adapter)
@@ -86,7 +88,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     item.update();
     if (item.status != CountryItem.STATUS_UPDATABLE)
       return;
-    MapManager.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManager.nativeUpdate(item.id));
+    MapManager.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManager.nativeUpdate(item.id, MapSource.ORGANIC_MAPS.getValue()));
   }
 
   private void onExploreActionSelected(CountryItem item, DownloaderAdapter adapter)
@@ -201,7 +203,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     {
       for (MapManager.StorageCallbackData item : data)
       {
-        if (item.isLeafNode && item.newStatus == CountryItem.STATUS_FAILED)
+        if (item.isLeafNode && (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED))
         {
           MapManager.showError(mActivity, item, null);
           break;
@@ -385,7 +387,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
       case CountryItem.STATUS_FAILED:
         RetryFailedDownloadConfirmationListener listener =
             new RetryFailedDownloadConfirmationListener(mActivity.getApplication());
-        MapManager.warn3gAndRetry(mActivity, mItem.id, listener);
+        MapManager.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, listener);
         break;
 
       case CountryItem.STATUS_UPDATABLE:
@@ -394,7 +396,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
           @Override
           public void run()
           {
-            MapManager.nativeUpdate(mItem.id);
+            MapManager.nativeUpdate(mItem.id, MapSource.ORGANIC_MAPS.getValue());
           }
         });
         break;

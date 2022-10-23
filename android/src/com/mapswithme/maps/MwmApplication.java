@@ -300,7 +300,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     {
       Notifier notifier = Notifier.from(MwmApplication.this);
       for (MapManager.StorageCallbackData item : data)
-        if (item.isLeafNode && item.newStatus == CountryItem.STATUS_FAILED)
+        if (item.isLeafNode && (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED))
         {
           if (MapManager.nativeIsAutoretryFailed())
           {

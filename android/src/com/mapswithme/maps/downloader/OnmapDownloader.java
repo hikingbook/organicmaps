@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package com.mapswithme.maps.downloader;
 
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.mapswithme.maps.MapSource;
 import com.mapswithme.maps.MwmActivity;
 import com.mapswithme.maps.R;
 import com.mapswithme.maps.background.Notifier;
@@ -57,7 +59,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         if (!item.isLeafNode)
           continue;
 
-        if (item.newStatus == CountryItem.STATUS_FAILED)
+        if (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED)
           MapManager.showError(mActivity, item, null);
 
         if (mCurrentCountry.id.equals(item.countryId))
@@ -171,7 +173,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
                 if (TextUtils.equals(mCurrentCountry.id, country) &&
                     MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
-                  MapManager.nativeDownload(mCurrentCountry.id);
+                  MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
                 }
               }
             }
@@ -186,6 +188,14 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     }
 
     UiUtils.showIf(showFrame, mFrame);
+  }
+
+  private MapSource getMapSource() {
+    MapSource mapSource = MapSource.ORGANIC_MAPS;
+    if (downloaderDelegate != null) {
+      mapSource = downloaderDelegate.getMapSourceForCountry(mCurrentCountry);
+    }
+    return mapSource;
   }
 
   public OnmapDownloader(Fragment fragment)
@@ -231,10 +241,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       if (retry)
       {
         notifier.cancelNotification(Notifier.ID_DOWNLOAD_FAILED);
-        MapManager.nativeRetry(mCurrentCountry.id);
+        MapManager.nativeRetry(mCurrentCountry.id, getMapSource().getValue());
       }
       else
-        MapManager.nativeDownload(mCurrentCountry.id);
+        MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
     }));
   }
 
@@ -292,5 +302,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
   public interface IDownloaderDelegate {
     boolean shouldDownloadMap(CountryItem countryItem);
+    MapSource getMapSourceForCountry(CountryItem countryItem);
   }
 }
