@@ -48,6 +48,7 @@ public final class CountryItem implements Comparable<CountryItem>
   public long size;
   public long enqueuedSize;
   public long totalSize;
+  public long hikingbookProMapSize;
 
   public int childCount;
   public int totalChildCount;

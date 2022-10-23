@@ -158,7 +158,11 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
           }
           else
           {
-            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), mCurrentCountry.totalSize);
+            long size = mCurrentCountry.size;
+            if (getMapSource() == MapSource.HIKINGBOOK_PRO_MAPS) {
+              size = mCurrentCountry.hikingbookProMapSize;
+            }
+            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), size);
 
             if (shouldAutoDownload &&
                 Config.isAutodownloadEnabled() &&

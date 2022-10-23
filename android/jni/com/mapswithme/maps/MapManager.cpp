@@ -192,6 +192,8 @@ static void UpdateItem(JNIEnv *env, jobject item, NodeAttrs const &attrs) {
                                                                             "downloadedBytes", "J");
     static jfieldID const countryItemFieldBytesToDownload = env->GetFieldID(g_countryItemClass,
                                                                             "bytesToDownload", "J");
+    static jfieldID const countryItemFieldHikingbookProMapSize = env->GetFieldID(g_countryItemClass,
+                                                                      "hikingbookProMapSize", "J");
 
     // Localized name
     jni::TScopedLocalRef const name(env, jni::ToJavaString(env, attrs.m_nodeLocalName));
@@ -235,6 +237,7 @@ static void UpdateItem(JNIEnv *env, jobject item, NodeAttrs const &attrs) {
     env->SetLongField(item, countryItemFieldSize, attrs.m_localMwmSize);
     env->SetLongField(item, countryItemFieldEnqueuedSize, attrs.m_downloadingMwmSize);
     env->SetLongField(item, countryItemFieldTotalSize, attrs.m_mwmSize);
+    env->SetLongField(item, countryItemFieldHikingbookProMapSize, attrs.m_hikingbookProMapSize);
 
     // Child counts
     env->SetIntField(item, countryItemFieldChildCount, attrs.m_downloadingMwmCounter);
