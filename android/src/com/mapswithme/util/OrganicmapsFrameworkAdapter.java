@@ -194,7 +194,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onRenderingCreated() {
-        mwmActivity.checkMeasurementSystem();
+        MwmActivity.checkMeasurementSystem();
         LocationHelper.INSTANCE.attach((LocationHelper.UiCallback) getFragment());
     }
     public void nativeDeactivatePopup() {
@@ -231,6 +231,9 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void setDownloaderDelegate(OnmapDownloader.IDownloaderDelegate downloaderDelegate) {
+        if (mwmActivity.mOnmapDownloader == null) {
+            return;
+        }
         mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
     }
 
