@@ -719,4 +719,19 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeGetHikingbookProMapSize(JNI
     }
     return GetStorage().GetCountryFile(countryID).GetHikingbookProMapRemoteSize();
 }
+
+JNIEXPORT jboolean JNICALL
+Java_com_mapswithme_maps_downloader_MapManager_nativeIsHikingbookProMapDownloaded(JNIEnv *env,
+                                                                                          jclass clazz, jstring root) {
+    if (!root) {
+        return false;
+    }
+
+    auto const countryID = GetRootId(env, root);
+    auto localFile = GetStorage().GetLatestLocalFile(countryID);
+    if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
+        return false;
+    }
+    return localFile->GetMapSource() == MapSource::HikingbookProMaps;
+}
 } // extern "C"
