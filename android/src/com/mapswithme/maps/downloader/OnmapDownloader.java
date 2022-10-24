@@ -90,6 +90,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     {
       mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
       updateState(false);
+      if (downloaderDelegate != null) {
+        downloaderDelegate.onCurrentCountryChanged(countryId);
+      }
     }
   };
 
@@ -307,5 +310,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   public interface IDownloaderDelegate {
     boolean shouldDownloadMap(CountryItem countryItem);
     MapSource getMapSourceForCountry(CountryItem countryItem);
+    void onCurrentCountryChanged(String countryId);
   }
 }
