@@ -147,14 +147,17 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeGetUpdateInfo(JNIEnv *env, 
 }
 
 static void
-UpdateItemShort(JNIEnv *env, jobject item, NodeStatus const status, NodeErrorCode const error) {
+UpdateItemShort(JNIEnv *env, jobject item, NodeStatus const status, NodeErrorCode const error, NodeStatus const hikingbookProMapStatus) {
     static jfieldID const countryItemFieldStatus = env->GetFieldID(g_countryItemClass, "status",
                                                                    "I");
     static jfieldID const countryItemFieldErrorCode = env->GetFieldID(g_countryItemClass,
                                                                       "errorCode", "I");
+    static jfieldID const countryItemFieldHikingbookProMapStatus = env->GetFieldID(g_countryItemClass,
+                                                                      "hikingbookProMapStatus", "I");
 
     env->SetIntField(item, countryItemFieldStatus, static_cast<jint>(status));
     env->SetIntField(item, countryItemFieldErrorCode, static_cast<jint>(error));
+    env->SetIntField(item, countryItemFieldHikingbookProMapStatus, static_cast<jint>(hikingbookProMapStatus));
 }
 
 static void UpdateItem(JNIEnv *env, jobject item, NodeAttrs const &attrs) {
@@ -184,6 +187,8 @@ static void UpdateItem(JNIEnv *env, jobject item, NodeAttrs const &attrs) {
                                                                        "childCount", "I");
     static jfieldID const countryItemFieldTotalChildCount = env->GetFieldID(g_countryItemClass,
                                                                             "totalChildCount", "I");
+    static jfieldID const countryItemFieldDownloadedChildCount = env->GetFieldID(g_countryItemClass,
+                                                                            "downloadedChildCount", "I");
     static jfieldID const countryItemFieldPresent = env->GetFieldID(g_countryItemClass, "present",
                                                                     "Z");
     static jfieldID const countryItemFieldProgress = env->GetFieldID(g_countryItemClass, "progress",
@@ -242,9 +247,10 @@ static void UpdateItem(JNIEnv *env, jobject item, NodeAttrs const &attrs) {
     // Child counts
     env->SetIntField(item, countryItemFieldChildCount, attrs.m_downloadingMwmCounter);
     env->SetIntField(item, countryItemFieldTotalChildCount, attrs.m_mwmCounter);
+    env->SetIntField(item, countryItemFieldDownloadedChildCount, attrs.m_localMwmCounter);
 
     // Status and error code
-    UpdateItemShort(env, item, attrs.m_status, attrs.m_error);
+    UpdateItemShort(env, item, attrs.m_status, attrs.m_error, attrs.m_hikingbookProMapStatus);
 
     // Presence flag
     env->SetBooleanField(item, countryItemFieldPresent, attrs.m_present);

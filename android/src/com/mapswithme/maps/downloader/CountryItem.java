@@ -52,11 +52,13 @@ public final class CountryItem implements Comparable<CountryItem>
 
   public int childCount;
   public int totalChildCount;
+  public int downloadedChildCount;
 
   public int category;
   public int status;
   public int errorCode;
   public boolean present;
+  public int hikingbookProMapStatus;
 
   // Progress
   public float progress;
