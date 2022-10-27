@@ -311,7 +311,7 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeListItems(JNIEnv *env, jcla
                 mercator::FromLatLon(lat, lon), near);
         PutItemsToList(env, result, near, ItemCategory::NEAR_ME,
                        [](CountryId const &countryId, NodeAttrs const &attrs) -> bool {
-                           return !attrs.m_present;
+                           return !attrs.m_present || attrs.m_hikingbookProMapStatus != NodeStatus::OnDisk;
                        });
     }
 
