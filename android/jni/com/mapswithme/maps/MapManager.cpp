@@ -659,56 +659,76 @@ Java_com_mapswithme_maps_downloader_MapManager_nativeUpdateLocalMapRegistration(
                                                                                 jboolean isPro,
                                                                                 jboolean isActivatedUser,
                                                                                 jint freeLimitNumDownloadedMaps) {
-    if (GetStorage().IsDownloadInProgress()) {
+    auto &s = GetStorage();
+    if (s.IsDownloadInProgress() || s.GetDownloadedFilesCount() <= 0) {
         return;
     }
 
+    std::vector<std::shared_ptr<platform::LocalCountryFile>> maps;
+    s.GetLocalMaps(maps);
+
     auto f = g_framework->NativeFramework();
-    f->RegisterAllMaps();
-    if (!isPro) {
-        auto &s = GetStorage();
-        std::vector<std::shared_ptr<platform::LocalCountryFile>> maps;
-        s.GetLocalMaps(maps);
+    f->DeregisterAllMaps();
 
-        auto numDownloadedMaps = std::count_if(maps.begin(), maps.end(),
-                                               [](std::shared_ptr<platform::LocalCountryFile> map) {
-                                                   return map->GetCountryName().find("World") ==
-                                                          std::string::npos;
-                                               });
-        if (numDownloadedMaps <= 0) {
-            return;
+    auto currentRegisteredMapsCapacity = isPro ? INT_MAX : isActivatedUser ? freeLimitNumDownloadedMaps : 0;
+    auto registerCountryFile = [&s, &f, &currentRegisteredMapsCapacity](storage::LocalFilePtr localFile, bool isComsumeCapacity) {
+        s.RegisterCountryFiles(localFile);
+        f->RegisterMap(*(localFile.get()));
+
+        if (isComsumeCapacity) {
+            currentRegisteredMapsCapacity--;
         }
-
-        f->DeregisterAllMaps();
-
-        jint availableRegisteredMaps = 0;
-        if (isActivatedUser) {
-            availableRegisteredMaps = freeLimitNumDownloadedMaps;
+    };
+    for (auto const & localFile : maps) {
+        bool isWorldMap = localFile->GetCountryName().find("World") != std::string::npos;
+        if (isWorldMap) {
+            registerCountryFile(localFile, false);
         }
-        for (auto const &localFile: maps) {
-            auto countryId = localFile->GetCountryName();
-            bool isWorldMap = countryId.find("World") != std::string::npos;
-            if (isWorldMap || availableRegisteredMaps > 0) {
-                s.RegisterCountryFiles(localFile);
-                f->RegisterMap(*(localFile.get()));
+        else if (currentRegisteredMapsCapacity > 0) {
+            auto const mapSource = localFile->GetMapSource();
+            switch (mapSource) {
+                case MapSource::Organicmaps:
+                    if (isPro) {
+                        auto const path = localFile->GetPath(MapFileType::Map);
+                        auto const hikingbookProMapPath = path + std::to_string(static_cast<uint8_t>(MapSource::HikingbookProMaps));
+                        if (GetPlatform().IsFileExistsByFullPath(hikingbookProMapPath)) {
+                            auto const newPath = path + std::to_string(static_cast<uint8_t>(mapSource));
+                            if (GetPlatform().IsFileExistsByFullPath(newPath)) {
+                                base::DeleteFileX(newPath);
+                            }
+                            if (!base::RenameFileX(path, newPath) || !base::RenameFileX(hikingbookProMapPath, path)) {
+                                break;
+                            }
+                            localFile->SyncWithDisk();
+                        }
+                    }
+                    registerCountryFile(localFile, !isPro);
+                    break;
+                default:
+                    if (isPro) {
+                        registerCountryFile(localFile, !isPro);
+                    }
+                    else {
+                        auto const path = localFile->GetPath(MapFileType::Map);
+                        auto const organicmapPath = path + std::to_string(static_cast<uint8_t>(MapSource::Organicmaps));
+                        if (GetPlatform().IsFileExistsByFullPath(organicmapPath)) {
+                            auto const newPath = path + std::to_string(static_cast<uint8_t>(mapSource));
+                            if (GetPlatform().IsFileExistsByFullPath(newPath)) {
+                                base::DeleteFileX(newPath);
+                            }
+                            if (!base::RenameFileX(path, newPath) || !base::RenameFileX(organicmapPath, path)) {
+                                break;
+                            }
+                            localFile->SyncWithDisk();
+                            registerCountryFile(localFile, !isPro);
+                        }
+                    }
+                    break;
             }
-            if (!isWorldMap) {
-                if (g_countryChangedListener != nullptr) {
-                    JNIEnv *env = jni::GetEnv();
-                    jmethodID methodID = jni::GetMethodID(env, g_countryChangedListener,
-                                                          "onCurrentCountryChanged",
-                                                          "(Ljava/lang/String;)V");
-                    env->CallVoidMethod(g_countryChangedListener, methodID,
-                                        jni::TScopedLocalRef(env, jni::ToJavaString(env,
-                                                                                    countryId)).get());
-                }
-                availableRegisteredMaps--;
-            }
         }
-
-        m2::RectD rect = mercator::Bounds::FullRect();
-        f->InvalidateRect(rect);
     }
+    m2::RectD rect = mercator::Bounds::FullRect();
+    f->InvalidateRect(rect);
 }
 
 JNIEXPORT jint JNICALL
