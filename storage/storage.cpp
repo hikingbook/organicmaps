@@ -1397,9 +1397,10 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
                     case MapSource::Organicmaps: {
                         auto const remoteSize = node.Value().GetFile().GetRemoteSize();
                         if (remoteSize != static_cast<uint64_t>(downloadingProgress.m_bytesTotal)) {
+                            statusAndError.status = NodeStatus::NotDownloaded;
                             LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
-                            if (localFile) {
-                                statusAndError.status = localFile->GetMapSource() == mapSource ? NodeStatus::OnDisk : NodeStatus::NotDownloaded;
+                            if (localFile && localFile->GetMapSource() == mapSource) {
+                                statusAndError.status = NodeStatus::OnDisk;
                             }
                         }
                     }
@@ -1407,9 +1408,10 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
                     case MapSource::HikingbookProMaps: {
                         auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
                         if (hikingbookProMapRemoteSize != static_cast<uint64_t>(downloadingProgress.m_bytesTotal)) {
+                            statusAndError.status = NodeStatus::NotDownloaded;
                             LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
-                            if (localFile) {
-                                statusAndError.status = localFile->GetMapSource() == mapSource ? NodeStatus::OnDisk : NodeStatus::NotDownloaded;
+                            if (localFile && localFile->GetMapSource() == mapSource) {
+                                statusAndError.status = NodeStatus::OnDisk;
                             }
                         }
                     }
