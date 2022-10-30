@@ -1577,9 +1577,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (mLocationErrorDialogAnnoying || (mLocationErrorDialog != null && mLocationErrorDialog.isShowing()))
       return;
 
-    final String message = String.format("%s\n\n%s", getString(R.string.current_location_unknown_message),
-        getString(R.string.current_location_unknown_title));
-    mLocationErrorDialog = new AlertDialog.Builder(this)
+    final String message = String.format("%s\n\n%s", OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getString(R.string.current_location_unknown_message),
+            OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getString(R.string.current_location_unknown_title));
+    mLocationErrorDialog = new AlertDialog.Builder(OrganicmapsFrameworkAdapter.INSTANCE.getActivity())
         .setMessage(message)
         .setOnDismissListener(dialog -> mLocationErrorDialog = null)
         .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
