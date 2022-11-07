@@ -325,6 +325,9 @@ public enum OrganicmapsFrameworkAdapter {
      * Track CRUD
      */
     public long createTrack(long catId, String name, String description, Double[][] locations, int color, double lineWidth) {
+        if (locations.length <= 1) {
+            return Long.MAX_VALUE;
+        }
         double[][] doubleLocations = new double[locations.length][2];
         for (int i = 0; i < locations.length; i++) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -378,6 +381,9 @@ public enum OrganicmapsFrameworkAdapter {
      * Track Line CRUD
      */
     public int drawLineWithLocations(Double[][] locations, int color, double lineWidth) {
+        if (locations.length <= 1) {
+            return 0;
+        }
         double[][] doubleLocations = new double[locations.length][2];
         for (int i = 0; i < locations.length; i++) {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
