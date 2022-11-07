@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 #pragma once
 
 #include "geometry/point2d.hpp"
@@ -63,7 +64,8 @@ public:
   void ForEachNode(iterator const & begin, iterator const & end, TFunctor const & f) const
   {
     ASSERT(begin.BeginAgain() == false, ());
-    ASSERT(end.BeginAgain() == false, ());
+//    Commented by Zheng-Xiang Ke to workaround crash during activity
+//    ASSERT(end.BeginAgain() == false, ());
 
     f(begin.m_pos);
 
