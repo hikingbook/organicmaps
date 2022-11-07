@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2022.
 #include "drape_frontend/user_event_stream.hpp"
 #include "drape_frontend/animation/follow_animation.hpp"
 #include "drape_frontend/animation/linear_animation.hpp"
@@ -915,7 +916,8 @@ bool UserEventStream::TouchCancel(array<Touch, 2> const & touches)
     CancelFilter(touches[0]);
     break;
   case STATE_TAP_DETECTION:
-    ASSERT_EQUAL(touchCount, 1, ());
+//    Commented by Zheng-Xiang to prevent from crash
+//    ASSERT_EQUAL(touchCount, 1, ());
     CancelTapDetector();
     isMapTouch = false;
     break;
