@@ -78,14 +78,6 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 //    return mIsolinesManager;
 //  }
 
-  public MwmApplication()
-  {
-    super();
-    if (OrganicmapsFrameworkAdapter.INSTANCE.getApplication() == null) {
-      OrganicmapsFrameworkAdapter.INSTANCE.initApplication(this);
-    }
-  }
-
   @NonNull
   public static Application from(@NonNull Context context)
   {
@@ -119,6 +111,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
   {
     super.onCreate();
     Logger.i(TAG, "Initializing application");
+    OrganicmapsFrameworkAdapter.INSTANCE.initApplication(this);
     LogsManager.INSTANCE.initFileLogging(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
     // Set configuration directory as early as possible.

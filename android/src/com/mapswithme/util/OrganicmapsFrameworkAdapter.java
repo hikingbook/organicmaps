@@ -2,13 +2,11 @@ package com.mapswithme.util;
 
 import static com.mapswithme.maps.MwmActivity.EXTRA_LOCATION_DIALOG_IS_ANNOYING;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,14 +23,12 @@ import com.mapswithme.maps.R;
 import com.mapswithme.maps.background.AppBackgroundTracker;
 import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
-import com.mapswithme.maps.bookmarks.data.MapObject;
 import com.mapswithme.maps.downloader.OnmapDownloader;
 import com.mapswithme.maps.location.CompassData;
 import com.mapswithme.maps.location.LocationHelper;
 import com.mapswithme.util.log.LogsManager;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -41,8 +37,8 @@ public enum OrganicmapsFrameworkAdapter {
 
     private static final String TAG = OrganicmapsFrameworkAdapter.class.getName();
     private static final int SEARCH_IN_VIEWPORT_ZOOM = 16;
-    private MwmApplication mwmApplication;
-    private MwmActivity mwmActivity;
+    private MwmApplication mwmApplication = new MwmApplication();
+    private final MwmActivity mwmActivity = new MwmActivity();
     private Application application;
     private String applicationID;
     private FragmentActivity activity;
@@ -52,18 +48,20 @@ public enum OrganicmapsFrameworkAdapter {
     private SharedPreferences sharedPreferences;
 
     public void initApplication(Application application) {
-        LogsManager.INSTANCE.initFileLogging(application);
         if (this.application == null) {
             this.application = application;
+
+            try {
+                LogsManager.INSTANCE.initFileLogging(application);
+            }
+            catch (Throwable e) {
+                Log.e(TAG, e.getLocalizedMessage());
+            }
+
             if (application instanceof MwmApplication) {
                 mwmApplication = (MwmApplication) application;
-                Log.d("initApplication", "is MwmApplication:"+mwmApplication);
-            } else {
-                mwmApplication = new MwmApplication();
-                Log.d("initApplication", "is new MwmApplication:"+mwmApplication);
             }
         }
-        mwmActivity = new MwmActivity();
     }
 
     public Application getApplication() {
@@ -72,6 +70,7 @@ public enum OrganicmapsFrameworkAdapter {
 
     public void setActivity(FragmentActivity activity) {
         this.activity = activity;
+        initApplication(activity.getApplication());
     }
 
     public FragmentActivity getActivity() {
@@ -173,8 +172,6 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onLocationError() {
-        if (mwmActivity.mLocationErrorDialogAnnoying)
-            return;
     }
 
     public void onLocationNotFound() {
@@ -417,14 +414,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     public void toggleIsoLines() {
         Framework.nativeSetIsolinesLayerEnabled(!Framework.nativeIsIsolinesLayerEnabled());
-    }
-
-    /**
-     * Calculate Distance
-     */
-    public String getFlatDistance(double dstLatitude, double dstLongitude, double v) {
-        MapObject myPosition = LocationHelper.INSTANCE.getMyPosition();
-        return Framework.nativeGetDistanceAndAzimuthFromLatLon(dstLatitude, dstLongitude, myPosition.getLat(), myPosition.getLon(), v).getDistance();
     }
 
     /**
