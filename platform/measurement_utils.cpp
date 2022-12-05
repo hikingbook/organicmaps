@@ -15,12 +15,12 @@
 #include <iomanip>
 #include <sstream>
 
+namespace measurement_utils
+{
 using namespace settings;
 using namespace std;
 using namespace strings;
 
-namespace measurement_utils
-{
 namespace
 {
 string ToStringPrecision(double d, int pr)
@@ -73,6 +73,13 @@ std::string DebugPrint(Units units)
   UNREACHABLE();
 }
 
+Units GetMeasurementUnits()
+{
+  Units units = measurement_utils::Units::Metric;
+  settings::TryGet(settings::kMeasurementUnits, units);
+  return units;
+}
+
 double ToSpeedKmPH(double speed, Units units)
 {
   switch (units)
@@ -85,9 +92,7 @@ double ToSpeedKmPH(double speed, Units units)
 
 std::string FormatDistanceWithLocalization(double m, OptionalStringRef high, OptionalStringRef low)
 {
-  auto units = Units::Metric;
-  TryGet(kMeasurementUnits, units);
-
+  Units const units = GetMeasurementUnits();
   switch (units)
   {
   case Units::Imperial: return FormatDistanceImpl(units, m, low ? *low : "ft", high ? *high : "mi");
@@ -203,9 +208,7 @@ string FormatAltitude(double altitudeInMeters)
 
 string FormatAltitudeWithLocalization(double altitudeInMeters, OptionalStringRef localizedUnits)
 {
-  Units units = Units::Metric;
-  TryGet(kMeasurementUnits, units);
-
+  Units const units = GetMeasurementUnits();
   switch (units)
   {
   case Units::Imperial:
@@ -214,14 +217,6 @@ string FormatAltitudeWithLocalization(double altitudeInMeters, OptionalStringRef
     return FormatAltitudeImpl(units, altitudeInMeters, localizedUnits ? *localizedUnits : "m");
   }
   UNREACHABLE();
-}
-
-string FormatSpeed(double metersPerSecond)
-{
-  auto units = Units::Metric;
-  TryGet(kMeasurementUnits, units);
-
-  return FormatSpeedNumeric(metersPerSecond, units) + " " + FormatSpeedUnits(units);
 }
 
 double MpsToUnits(double metersPerSecond, Units units)
@@ -238,16 +233,6 @@ string FormatSpeedNumeric(double metersPerSecond, Units units)
 {
   double const unitsPerHour = MpsToUnits(metersPerSecond, units);
   return ToStringPrecision(unitsPerHour, unitsPerHour >= 10.0 ? 0 : 1);
-}
-
-string FormatSpeedUnits(Units units)
-{
-  switch (units)
-  {
-  case Units::Imperial: return "mph";
-  case Units::Metric: return "km/h";
-  }
-  UNREACHABLE();
 }
 
 string FormatOsmLink(double lat, double lon, int zoom)
@@ -307,7 +292,7 @@ bool OSMDistanceToMeters(string const & osmRawValue, double & outMeters)
     break;
 
   // Inches.
-  case '\"': outMeters = InchesToMeters(outMeters); return true;
+  case '"': outMeters = InchesToMeters(outMeters); return true;
 
   // It's probably a range. Use maximum value (if possible) for a range.
   case '-':
@@ -334,9 +319,7 @@ bool OSMDistanceToMeters(string const & osmRawValue, double & outMeters)
     outMeters = NauticalMilesToMeters(outMeters);
   else if (strstr(stop, "mi") == stop)
     outMeters = MilesToMeters(outMeters);
-  else if (strstr(stop, "ft") == stop)
-    outMeters = FeetToMeters(outMeters);
-  else if (strstr(stop, "feet") == stop)
+  else if (strstr(stop, "ft") == stop || strstr(stop, "feet") == stop)
     outMeters = FeetToMeters(outMeters);
   else if (strstr(stop, "km") == stop)
     outMeters = outMeters * 1000;

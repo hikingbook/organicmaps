@@ -32,4 +32,6 @@
 + (BOOL)isTrackWarningAlertShown;
 + (void)setTrackWarningAlertShown:(BOOL)shown;
 
++ (NSString *)donateUrl;
+
 @end

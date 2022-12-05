@@ -274,6 +274,9 @@
 "matrix" = "[matrix]";
 
 /* Text in menu */
+"mastodon" = "Mastodon";
+
+/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -282,11 +285,11 @@
 /* Text in menu */
 "instagram" = "Instagram";
 
+/* Text in the editor */
+"vk" = "VK";
+
 /* Text in menu */
 "openstreetmap" = "OpenStreetMap";
-
-/* Settings: Send feedback button and dialog title */
-"feedback" = "Feedback";
 
 /* Text in menu */
 "rate_the_app" = "App beoordelen";
@@ -296,6 +299,9 @@
 
 /* Button in the main Help dialog */
 "faq" = "Vragen en antwoorden";
+
+/* Button in the main menu */
+"donate" = "Doneren";
 
 /* Button in the main Help dialog */
 "how_to_support_us" = "Hoe ons te steunen?";
@@ -512,6 +518,12 @@
 "search_history_text" = "Snel toegang tot recente zoekopdrachten.";
 
 "clear_search" = "Zoekgeschiedenis wissen";
+
+/* Place Page link to Wikipedia article (if map object has it). */
+"read_in_wikipedia" = "Wikipedia";
+
+/* Place Page link to Wikimedia Commons. */
+"wikimedia_commons" = "Wikimedia Commons";
 
 "p2p_your_location" = "Uw locatie";
 
@@ -868,16 +880,14 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Verkeersgegevens zijn niet beschikbaar";
 
-/* Settings: "Send general feedback" button */
-"feedback_general" = "Algemene Feedback";
-
 "on" = "Aan";
 
 "off" = "Uit";
 
 "transliteration_title" = "Transliteratie in het Latijn";
 
-"core_exit" = "Verlaten";
+/* Subway exits for public transport marks on the map */
+"core_exit" = "Uitgang";
 
 "routing_add_start_point" = "Voeg beginpunt toe om een route te plannen";
 
@@ -1049,10 +1059,10 @@
 "no" = "Nee";
 
 /* E.g. "WiFi:Yes" */
-"yes_available" = "Ja";
+"yes_available" = "ja";
 
 /* E.g. "WiFi:No" */
-"no_available" = "Nee";
+"no_available" = "nee";
 
 "trip_finished" = "U bent aangekomen!";
 
@@ -1217,11 +1227,14 @@
 /* edit track screen title */
 "track_title" = "Track";
 
-/* Telegram group url for the help page */
+/* Telegram group url for the "?" About page */
 "telegram_url" = "https://t.me/OrganicMapsApp";
 
-/* Instagram account url for the help page */
+/* Instagram account url for the "?" About page */
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
+
+/* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
+"translated_om_site_url" = "https://organicmaps.app/";
 
 
 /********** Types **********/
@@ -1240,7 +1253,7 @@
 
 "type.aerialway.station" = "Kabelwagenstation";
 
-"type.aeroway" = "Luchtvaartinfrastructuurfv";
+"type.aeroway" = "Luchtvaartinfrastructuur";
 
 "type.aeroway.aerodrome" = "Vliegveld";
 
@@ -1366,17 +1379,17 @@
 
 "type.amenity.parking.fee" = "Betaald parkeren";
 
-"type.amenity.parking.multi.storey" = "Parkeerplaats";
+"type.amenity.parking.multi.storey" = "Parkeren met meerdere verdiepingen";
 
 "type.amenity.parking.no.access" = "Privé parkeerplaats";
 
-"type.amenity.parking.park_and_ride" = "Parkeerplaats";
-
-"type.amenity.parking.permissive" = "Parkeerplaats";
+"type.amenity.parking.permissive" = "Privé parkeerplaats";
 
 "type.amenity.parking.private" = "Privé parkeerplaats";
 
-"type.amenity.parking.underground" = "Ondergrondse parkeerplaats";
+"type.amenity.parking.park_and_ride" = "Parkeerplaats P+R";
+
+"type.amenity.parking.underground" = "Ondergrondse parking";
 
 "type.amenity.parking_entrance.private" = "Parkeeringang";
 
@@ -1533,6 +1546,8 @@
 
 "type.barrier.cycle_barrier" = "Fietsbarrière";
 
+"type.barrier.ditch" = "Gracht";
+
 "type.barrier.entrance" = "Ingang";
 
 "type.barrier.fence" = "Hek";
@@ -1540,6 +1555,8 @@
 "type.barrier.gate" = "Poort";
 
 "type.barrier.hedge" = "Heg";
+
+"type.barrier.kissing_gate" = "Voetgangershek";
 
 "type.barrier.lift_gate" = "Slagboom";
 
@@ -1832,6 +1849,8 @@
 
 "type.healthcare.laboratory" = "Medisch laboratorium";
 
+"type.healthcare.physiotherapist" = "Fysiotherapeut";
+
 
 /********** Types: Roads **********/
 
@@ -1854,31 +1873,31 @@
 "type.highway.cycleway" = "Fietspad";
 
 /* These translations are used for all type.highway.*.bridge. */
-"type.highway.cycleway.bridge" = "Brug";
+"type.highway.cycleway.bridge" = "Fietsbrug";
 
 "type.highway.cycleway.permissive" = "Fietspad";
 
 /* These translations are used for all type.highway.*.tunnel. */
-"type.highway.cycleway.tunnel" = "Tunnel";
+"type.highway.cycleway.tunnel" = "Fietstunnel";
 
 "type.highway.elevator" = "Lift";
 
 "type.highway.footway" = "Voetpad";
 
-"type.highway.footway.alpine_hiking" = "Pad";
+"type.highway.footway.alpine_hiking" = "Alpine wandelpad";
 
-"type.highway.footway.area" = "Voetpad";
+"type.highway.footway.area" = "Voetgangerszone";
 
 /* These translations are used for all type.highway.*.bridge. */
-"type.highway.footway.bridge" = "Brug";
+"type.highway.footway.bridge" = "Voetgangersbrug";
 
-"type.highway.footway.demanding_alpine_hiking" = "Pad";
+"type.highway.footway.demanding_alpine_hiking" = "Uitdagend alpine bergklimpad";
 
-"type.highway.footway.demanding_mountain_hiking" = "Pad";
+"type.highway.footway.demanding_mountain_hiking" = "Uitdagend bergwandelpad";
 
-"type.highway.footway.difficult_alpine_hiking" = "Pad";
+"type.highway.footway.difficult_alpine_hiking" = "Moeilijk alpine bergklimpad";
 
-"type.highway.footway.hiking" = "Pad";
+"type.highway.footway.hiking" = "Wandelpad";
 
 "type.highway.footway.mountain_hiking" = "Bergpad";
 
@@ -1919,7 +1938,7 @@
 
 "type.highway.motorway_junction" = "Afrit";
 
-"type.highway.motorway_link" = "Snelweg";
+"type.highway.motorway_link" = "Snelwegoprit";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.motorway_link.bridge" = "Brug";
@@ -1929,9 +1948,9 @@
 
 "type.highway.path" = "Pad";
 
-"type.highway.path.alpine_hiking" = "Pad";
+"type.highway.path.alpine_hiking" = "Alpine wandelpad";
 
-"type.highway.path.bicycle" = "Pad";
+"type.highway.path.bicycle" = "Fietspad";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Brug";
@@ -1942,9 +1961,9 @@
 
 "type.highway.path.difficult_alpine_hiking" = "Pad";
 
-"type.highway.path.hiking" = "Pad";
+"type.highway.path.hiking" = "Wandelpad";
 
-"type.highway.path.horse" = "Pad";
+"type.highway.path.horse" = "Ruiterpad";
 
 "type.highway.path.mountain_hiking" = "Bergpad";
 
@@ -2145,7 +2164,7 @@
 
 "type.area_highway.tertiary" = "Tertiaire weg";
 
-"type.area_highway.steps" = "Trap";
+"type.area_highway.steps" = "Trappen";
 
 "type.area_highway.track" = "Straat";
 
@@ -2196,15 +2215,25 @@
 
 "type.historic.fort" = "Fort";
 
+"type.historic.gallows" = "Galg";
+
 "type.historic.memorial" = "Gedenkteken";
 
-"type.historic.memorial.plaque" = "Plaquette";
+"type.historic.memorial.cross" = "Herdenkingskruis";
 
-"type.historic.memorial.sculpture" = "Beeldhouwwerk";
+"type.historic.memorial.plaque" = "Gedenkplaat";
+
+"type.historic.memorial.sculpture" = "Sculptuur";
 
 "type.historic.memorial.statue" = "Standbeeld";
 
+"type.historic.memorial.stolperstein" = "Stolperstein";
+
+"type.historic.memorial.war_memorial" = "Oorlogsmonument";
+
 "type.historic.monument" = "Monument";
+
+"type.historic.pillory" = "Schandpaal";
 
 "type.historic.ruins" = "Ruïne";
 
@@ -2212,9 +2241,9 @@
 
 "type.historic.tomb" = "Graftombe";
 
-"type.historic.wayside_cross" = "Kruis";
+"type.historic.wayside_cross" = "Wegkruis";
 
-"type.historic.wayside_shrine" = "Altaar";
+"type.historic.wayside_shrine" = "Kruisbeeld";
 
 "type.hwtag" = "hwtag";
 
@@ -2333,6 +2362,8 @@
 "type.leisure.fitness_centre" = "Fitnesscentrum";
 
 "type.leisure.fitness_station" = "Fitness-Station";
+
+"type.leisure.dance" = "Danszaal";
 
 "type.leisure.garden" = "Tuin";
 
@@ -2463,6 +2494,8 @@
 "type.man_made.embankment" = "Baanlichaam";
 
 "type.natural.coastline" = "Kustlijn";
+
+"type.natural.desert" = "Woestijn";
 
 "type.natural.geyser" = "Geiser";
 
@@ -2618,7 +2651,7 @@
 
 "type.power.station" = "Transformatorstation";
 
-"type.power.substation" = "Substation";
+"type.power.substation" = "Transformatorstation";
 
 "type.power.tower" = "Elektriciteitsmast";
 
@@ -2690,7 +2723,7 @@
 
 "type.railway.rail.bridge" = "Treinspoorbrug";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.motor_vehicle" = "Spoorweg";
 
 "type.railway.rail.tunnel" = "Spoortunnel";
 
@@ -2716,27 +2749,221 @@
 
 "type.railway.station.subway" = "Metrostation";
 
-"type.railway.station.subway.barcelona" = "Metro";
+"type.railway.station.subway.adana" = "Metrostation";
 
-"type.railway.station.subway.berlin" = "Metro";
+"type.railway.station.subway.algiers" = "Metrostation";
 
-"type.railway.station.subway.kiev" = "Metro";
+"type.railway.station.subway.almaty" = "Metrostation";
 
-"type.railway.station.subway.london" = "Metro";
+"type.railway.station.subway.amsterdam" = "Metrostation";
 
-"type.railway.station.subway.madrid" = "Metro";
+"type.railway.station.subway.ankara" = "Metrostation";
 
-"type.railway.station.subway.minsk" = "Metro";
+"type.railway.station.subway.athens" = "Metrostation";
 
-"type.railway.station.subway.moscow" = "Metro";
+"type.railway.station.subway.baku" = "Metrostation";
 
-"type.railway.station.subway.newyork" = "Metro";
+"type.railway.station.subway.bangkok" = "Metrostation";
 
-"type.railway.station.subway.paris" = "Metro";
+"type.railway.station.subway.barcelona" = "Metrostation";
 
-"type.railway.station.subway.roma" = "Metro";
+"type.railway.station.subway.beijing" = "Metrostation";
 
-"type.railway.station.subway.spb" = "Metro";
+"type.railway.station.subway.bengalore" = "Metrostation";
+
+"type.railway.station.subway.berlin" = "Metrostation";
+
+"type.railway.station.subway.brasilia" = "Metrostation";
+
+"type.railway.station.subway.brescia" = "Metrostation";
+
+"type.railway.station.subway.brussels" = "Metrostation";
+
+"type.railway.station.subway.bucharest" = "Metrostation";
+
+"type.railway.station.subway.budapest" = "Metrostation";
+
+"type.railway.station.subway.buenos_aires" = "Metrostation";
+
+"type.railway.station.subway.bursa" = "Metrostation";
+
+"type.railway.station.subway.cairo" = "Metrostation";
+
+"type.railway.station.subway.caracas" = "Metrostation";
+
+"type.railway.station.subway.catania" = "Metrostation";
+
+"type.railway.station.subway.changchun" = "Metrostation";
+
+"type.railway.station.subway.chengdu" = "Metrostation";
+
+"type.railway.station.subway.chicago" = "Metrostation";
+
+"type.railway.station.subway.chongqing" = "Metrostation";
+
+"type.railway.station.subway.dalian" = "Metrostation";
+
+"type.railway.station.subway.delhi" = "Metrostation";
+
+"type.railway.station.subway.dnepro" = "Metrostation";
+
+"type.railway.station.subway.dubai" = "Metrostation";
+
+"type.railway.station.subway.ekb" = "Metrostation";
+
+"type.railway.station.subway.fukuoka" = "Metrostation";
+
+"type.railway.station.subway.glasgow" = "Metrostation";
+
+"type.railway.station.subway.guangzhou" = "Metrostation";
+
+"type.railway.station.subway.hamburg" = "Metrostation";
+
+"type.railway.station.subway.helsinki" = "Metrostation";
+
+"type.railway.station.subway.hiroshima" = "Metrostation";
+
+"type.railway.station.subway.isfahan" = "Metrostation";
+
+"type.railway.station.subway.istanbul" = "Metrostation";
+
+"type.railway.station.subway.izmir" = "Metrostation";
+
+"type.railway.station.subway.kazan" = "Metrostation";
+
+"type.railway.station.subway.kharkiv" = "Metrostation";
+
+"type.railway.station.subway.kiev" = "Metrostation";
+
+"type.railway.station.subway.kobe" = "Metrostation";
+
+"type.railway.station.subway.kolkata" = "Metrostation";
+
+"type.railway.station.subway.kunming" = "Metrostation";
+
+"type.railway.station.subway.kyoto" = "Metrostation";
+
+"type.railway.station.subway.la" = "Metrostation";
+
+"type.railway.station.subway.lausanne" = "Metrostation";
+
+"type.railway.station.subway.lille" = "Metrostation";
+
+"type.railway.station.subway.lima" = "Metrostation";
+
+"type.railway.station.subway.lisboa" = "Metrostation";
+
+"type.railway.station.subway.london" = "Metrostation";
+
+"type.railway.station.subway.lyon" = "Metrostation";
+
+"type.railway.station.subway.madrid" = "Metrostation";
+
+"type.railway.station.subway.malaga" = "Metrostation";
+
+"type.railway.station.subway.manila" = "Metrostation";
+
+"type.railway.station.subway.maracaibo" = "Metrostation";
+
+"type.railway.station.subway.mashhad" = "Metrostation";
+
+"type.railway.station.subway.mecca" = "Metrostation";
+
+"type.railway.station.subway.medellin" = "Metrostation";
+
+"type.railway.station.subway.mexico" = "Metrostation";
+
+"type.railway.station.subway.milan" = "Metrostation";
+
+"type.railway.station.subway.minsk" = "Metrostation";
+
+"type.railway.station.subway.montreal" = "Metrostation";
+
+"type.railway.station.subway.moscow" = "Metrostation";
+
+"type.railway.station.subway.munchen" = "Metrostation";
+
+"type.railway.station.subway.nagoya" = "Metrostation";
+
+"type.railway.station.subway.newyork" = "Metrostation";
+
+"type.railway.station.subway.nnov" = "Metrostation";
+
+"type.railway.station.subway.novosibirsk" = "Metrostation";
+
+"type.railway.station.subway.osaka" = "Metrostation";
+
+"type.railway.station.subway.oslo" = "Metrostation";
+
+"type.railway.station.subway.palma" = "Metrostation";
+
+"type.railway.station.subway.panama" = "Metrostation";
+
+"type.railway.station.subway.paris" = "Metrostation";
+
+"type.railway.station.subway.philadelphia" = "Metrostation";
+
+"type.railway.station.subway.pyongyang" = "Metrostation";
+
+"type.railway.station.subway.rennes" = "Metrostation";
+
+"type.railway.station.subway.rio" = "Metrostation";
+
+"type.railway.station.subway.roma" = "Metrostation";
+
+"type.railway.station.subway.rotterdam" = "Metrostation";
+
+"type.railway.station.subway.samara" = "Metrostation";
+
+"type.railway.station.subway.santiago" = "Metrostation";
+
+"type.railway.station.subway.santo_domingo" = "Metrostation";
+
+"type.railway.station.subway.saopaulo" = "Metrostation";
+
+"type.railway.station.subway.sapporo" = "Metrostation";
+
+"type.railway.station.subway.sendai" = "Metrostation";
+
+"type.railway.station.subway.sf" = "Metrostation";
+
+"type.railway.station.subway.shanghai" = "Metrostation";
+
+"type.railway.station.subway.shiraz" = "Metrostation";
+
+"type.railway.station.subway.sofia" = "Metrostation";
+
+"type.railway.station.subway.spb" = "Metrostation";
+
+"type.railway.station.subway.stockholm" = "Metrostation";
+
+"type.railway.station.subway.tabriz" = "Metrostation";
+
+"type.railway.station.subway.taipei" = "Metrostation";
+
+"type.railway.station.subway.taoyuan" = "Metrostation";
+
+"type.railway.station.subway.tashkent" = "Metrostation";
+
+"type.railway.station.subway.tbilisi" = "Metrostation";
+
+"type.railway.station.subway.tianjin" = "Metrostation";
+
+"type.railway.station.subway.tokyo" = "Metrostation";
+
+"type.railway.station.subway.valencia" = "Metrostation";
+
+"type.railway.station.subway.vienna" = "Metrostation";
+
+"type.railway.station.subway.warszawa" = "Metrostation";
+
+"type.railway.station.subway.washington" = "Metrostation";
+
+"type.railway.station.subway.wuhan" = "Metrostation";
+
+"type.railway.station.subway.yerevan" = "Metrostation";
+
+"type.railway.station.subway.yokohama" = "Metrostation";
 
 "type.railway.subway" = "Metro";
 
@@ -2746,27 +2973,221 @@
 
 "type.railway.subway_entrance" = "Metro ingang";
 
-"type.railway.subway_entrance.barcelona" = "Metro";
+"type.railway.subway_entrance.adana" = "Metro ingang";
 
-"type.railway.subway_entrance.berlin" = "Metro";
+"type.railway.subway_entrance.algiers" = "Metro ingang";
 
-"type.railway.subway_entrance.kiev" = "Metro";
+"type.railway.subway_entrance.almaty" = "Metro ingang";
 
-"type.railway.subway_entrance.london" = "Metro";
+"type.railway.subway_entrance.amsterdam" = "Metro ingang";
 
-"type.railway.subway_entrance.madrid" = "Metro";
+"type.railway.subway_entrance.ankara" = "Metro ingang";
 
-"type.railway.subway_entrance.minsk" = "Metro";
+"type.railway.subway_entrance.athens" = "Metro ingang";
 
-"type.railway.subway_entrance.moscow" = "Metro";
+"type.railway.subway_entrance.baku" = "Metro ingang";
 
-"type.railway.subway_entrance.newyork" = "Metro";
+"type.railway.subway_entrance.bangkok" = "Metro ingang";
 
-"type.railway.subway_entrance.paris" = "Metro";
+"type.railway.subway_entrance.barcelona" = "Metro ingang";
 
-"type.railway.subway_entrance.roma" = "Metro";
+"type.railway.subway_entrance.beijing" = "Metro ingang";
 
-"type.railway.subway_entrance.spb" = "Metro";
+"type.railway.subway_entrance.bengalore" = "Metro ingang";
+
+"type.railway.subway_entrance.berlin" = "Metro ingang";
+
+"type.railway.subway_entrance.brasilia" = "Metro ingang";
+
+"type.railway.subway_entrance.brescia" = "Metro ingang";
+
+"type.railway.subway_entrance.brussels" = "Metro ingang";
+
+"type.railway.subway_entrance.bucharest" = "Metro ingang";
+
+"type.railway.subway_entrance.budapest" = "Metro ingang";
+
+"type.railway.subway_entrance.buenos_aires" = "Metro ingang";
+
+"type.railway.subway_entrance.bursa" = "Metro ingang";
+
+"type.railway.subway_entrance.cairo" = "Metro ingang";
+
+"type.railway.subway_entrance.caracas" = "Metro ingang";
+
+"type.railway.subway_entrance.catania" = "Metro ingang";
+
+"type.railway.subway_entrance.changchun" = "Metro ingang";
+
+"type.railway.subway_entrance.chengdu" = "Metro ingang";
+
+"type.railway.subway_entrance.chicago" = "Metro ingang";
+
+"type.railway.subway_entrance.chongqing" = "Metro ingang";
+
+"type.railway.subway_entrance.dalian" = "Metro ingang";
+
+"type.railway.subway_entrance.delhi" = "Metro ingang";
+
+"type.railway.subway_entrance.dnepro" = "Metro ingang";
+
+"type.railway.subway_entrance.dubai" = "Metro ingang";
+
+"type.railway.subway_entrance.ekb" = "Metro ingang";
+
+"type.railway.subway_entrance.fukuoka" = "Metro ingang";
+
+"type.railway.subway_entrance.glasgow" = "Metro ingang";
+
+"type.railway.subway_entrance.guangzhou" = "Metro ingang";
+
+"type.railway.subway_entrance.hamburg" = "Metro ingang";
+
+"type.railway.subway_entrance.helsinki" = "Metro ingang";
+
+"type.railway.subway_entrance.hiroshima" = "Metro ingang";
+
+"type.railway.subway_entrance.isfahan" = "Metro ingang";
+
+"type.railway.subway_entrance.istanbul" = "Metro ingang";
+
+"type.railway.subway_entrance.izmir" = "Metro ingang";
+
+"type.railway.subway_entrance.kazan" = "Metro ingang";
+
+"type.railway.subway_entrance.kharkiv" = "Metro ingang";
+
+"type.railway.subway_entrance.kiev" = "Metro ingang";
+
+"type.railway.subway_entrance.kobe" = "Metro ingang";
+
+"type.railway.subway_entrance.kolkata" = "Metro ingang";
+
+"type.railway.subway_entrance.kunming" = "Metro ingang";
+
+"type.railway.subway_entrance.kyoto" = "Metro ingang";
+
+"type.railway.subway_entrance.la" = "Metro ingang";
+
+"type.railway.subway_entrance.lausanne" = "Metro ingang";
+
+"type.railway.subway_entrance.lille" = "Metro ingang";
+
+"type.railway.subway_entrance.lima" = "Metro ingang";
+
+"type.railway.subway_entrance.lisboa" = "Metro ingang";
+
+"type.railway.subway_entrance.london" = "Metro ingang";
+
+"type.railway.subway_entrance.lyon" = "Metro ingang";
+
+"type.railway.subway_entrance.madrid" = "Metro ingang";
+
+"type.railway.subway_entrance.malaga" = "Metro ingang";
+
+"type.railway.subway_entrance.manila" = "Metro ingang";
+
+"type.railway.subway_entrance.maracaibo" = "Metro ingang";
+
+"type.railway.subway_entrance.mashhad" = "Metro ingang";
+
+"type.railway.subway_entrance.mecca" = "Metro ingang";
+
+"type.railway.subway_entrance.medellin" = "Metro ingang";
+
+"type.railway.subway_entrance.mexico" = "Metro ingang";
+
+"type.railway.subway_entrance.milan" = "Metro ingang";
+
+"type.railway.subway_entrance.minsk" = "Metro ingang";
+
+"type.railway.subway_entrance.montreal" = "Metro ingang";
+
+"type.railway.subway_entrance.moscow" = "Metro ingang";
+
+"type.railway.subway_entrance.munchen" = "Metro ingang";
+
+"type.railway.subway_entrance.nagoya" = "Metro ingang";
+
+"type.railway.subway_entrance.newyork" = "Metro ingang";
+
+"type.railway.subway_entrance.nnov" = "Metro ingang";
+
+"type.railway.subway_entrance.novosibirsk" = "Metro ingang";
+
+"type.railway.subway_entrance.osaka" = "Metro ingang";
+
+"type.railway.subway_entrance.oslo" = "Metro ingang";
+
+"type.railway.subway_entrance.palma" = "Metro ingang";
+
+"type.railway.subway_entrance.panama" = "Metro ingang";
+
+"type.railway.subway_entrance.paris" = "Metro ingang";
+
+"type.railway.subway_entrance.philadelphia" = "Metro ingang";
+
+"type.railway.subway_entrance.pyongyang" = "Metro ingang";
+
+"type.railway.subway_entrance.rennes" = "Metro ingang";
+
+"type.railway.subway_entrance.rio" = "Metro ingang";
+
+"type.railway.subway_entrance.roma" = "Metro ingang";
+
+"type.railway.subway_entrance.rotterdam" = "Metro ingang";
+
+"type.railway.subway_entrance.samara" = "Metro ingang";
+
+"type.railway.subway_entrance.santiago" = "Metro ingang";
+
+"type.railway.subway_entrance.santo_domingo" = "Metro ingang";
+
+"type.railway.subway_entrance.saopaulo" = "Metro ingang";
+
+"type.railway.subway_entrance.sapporo" = "Metro ingang";
+
+"type.railway.subway_entrance.sendai" = "Metro ingang";
+
+"type.railway.subway_entrance.sf" = "Metro ingang";
+
+"type.railway.subway_entrance.shanghai" = "Metro ingang";
+
+"type.railway.subway_entrance.shiraz" = "Metro ingang";
+
+"type.railway.subway_entrance.sofia" = "Metro ingang";
+
+"type.railway.subway_entrance.spb" = "Metro ingang";
+
+"type.railway.subway_entrance.stockholm" = "Metro ingang";
+
+"type.railway.subway_entrance.tabriz" = "Metro ingang";
+
+"type.railway.subway_entrance.taipei" = "Metro ingang";
+
+"type.railway.subway_entrance.taoyuan" = "Metro ingang";
+
+"type.railway.subway_entrance.tashkent" = "Metro ingang";
+
+"type.railway.subway_entrance.tbilisi" = "Metro ingang";
+
+"type.railway.subway_entrance.tianjin" = "Metro ingang";
+
+"type.railway.subway_entrance.tokyo" = "Metro ingang";
+
+"type.railway.subway_entrance.valencia" = "Metro ingang";
+
+"type.railway.subway_entrance.vienna" = "Metro ingang";
+
+"type.railway.subway_entrance.warszawa" = "Metro ingang";
+
+"type.railway.subway_entrance.washington" = "Metro ingang";
+
+"type.railway.subway_entrance.wuhan" = "Metro ingang";
+
+"type.railway.subway_entrance.yerevan" = "Metro ingang";
+
+"type.railway.subway_entrance.yokohama" = "Metro ingang";
 
 "type.railway.tram" = "Tram";
 
@@ -2800,7 +3221,7 @@
 
 "type.shop.bicycle" = "Fietsenwinkel";
 
-"type.shop.bookmaker" = "Bookmaker";
+"type.shop.bookmaker" = "Boekbinder";
 
 "type.shop.books" = "Boekenwinkel";
 
@@ -2944,7 +3365,7 @@
 
 "type.shop.art" = "Kunstwinkel";
 
-"type.shop.baby_goods" = "Kinderwinkel";
+"type.shop.baby_goods" = "Babyspullenwinkel";
 
 "type.shop.bag" = "Tassenwinkel";
 
@@ -3067,13 +3488,13 @@
 
 "type.tourism.artwork.painting" = "Schilderij";
 
-"type.tourism.artwork.sculpture" = "Beeldhouwwerk";
+"type.tourism.artwork.sculpture" = "Kunstwerk";
 
 "type.tourism.artwork.statue" = "Standbeeld";
 
 "type.tourism.attraction" = "Attractie";
 
-"type.tourism.attraction.animal" = "Attractie";
+"type.tourism.attraction.animal" = "Dierenverblijf";
 
 "type.tourism.attraction.specified" = "Attractie";
 
@@ -3081,13 +3502,13 @@
 
 "type.tourism.caravan_site" = "Caravan site";
 
-"type.tourism.chalet" = "Chalet";
+"type.tourism.chalet" = "Vakantiehuis";
 
 "type.tourism.gallery" = "Galerij";
 
 "type.tourism.guest_house" = "Gasthuis";
 
-"type.tourism.hostel" = "Hostel";
+"type.tourism.hostel" = "Herberg";
 
 "type.tourism.hotel" = "Hotel";
 
@@ -3135,13 +3556,13 @@
 
 "type.waterway.ditch" = "Sloot";
 
-"type.waterway.ditch.tunnel" = "Duiker";
+"type.waterway.ditch.tunnel" = "Sloot";
 
 "type.waterway.dock" = "Dok";
 
 "type.waterway.drain" = "Afvoer";
 
-"type.waterway.drain.tunnel" = "Afvoer tunnel";
+"type.waterway.drain.tunnel" = "Afvoer";
 
 "type.waterway.lock_gate" = "Sluisdeur";
 
@@ -3171,18 +3592,15 @@
 
 "type.wheelchair.yes" = "Uitgerust voor gehandicapten";
 
-/* en.wikipedia.org/wiki/Surface_lift */
-"type.piste_lift" = "Sleeplift";
+"type.aerialway.j.bar" = "Sleeplift (J)";
 
-"type.piste_lift.j.bar" = "Sleeplift (J)";
+"type.aerialway.magic_carpet" = "Loopband";
 
-"type.piste_lift.magic_carpet" = "Loopband";
+"type.aerialway.platter" = "Sleeplift";
 
-"type.piste_lift.platter" = "Sleeplift";
+"type.aerialway.rope_tow" = "Touwlift";
 
-"type.piste_lift.rope_tow" = "Touwlift";
-
-"type.piste_lift.t.bar" = "Sleeplift (T-beugel)";
+"type.aerialway.t.bar" = "Sleeplift (T-beugel)";
 
 "type.piste_type" = "Pistesoort";
 

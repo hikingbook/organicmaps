@@ -9,7 +9,7 @@ set -euo pipefail
 # number of today's commits stays the same.
 # Force git with TZ variable and local dates to print the UTC date.
 COUNT_AND_DATE=( $(TZ=UTC0 git log --pretty=format:%cd --date=iso-local --since="30 days ago" | cut -d' ' -f 1 | sed 's/-/./g' | sort | uniq -c | tail -1) )
-if [ -z "$COUNT_AND_DATE" ]; then
+if [ -z "${COUNT_AND_DATE+x}" ]; then
   # Fallback: use today's date if there were no commits since last month.
   COUNT_AND_DATE=( 0 $(date +%Y.%m.%d) )
 fi

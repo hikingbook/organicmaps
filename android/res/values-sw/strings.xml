@@ -22,8 +22,8 @@
 	<string name="hospital">Hospitali</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
 	<string name="water">Maji</string>
-	<!-- Prints version number in About dialog -->
-	<string name="version">Toleo: %s</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">Kwa RV</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
 	<string name="data_version">Data ya OpenStreetMap: %s</string>
 	<!-- Text in About menu, opens Organic Maps news website -->
@@ -62,7 +62,6 @@
 	<string name="level">Ghorofa</string>
 	<string name="osm_presentation">Data yote ya ramani inatoka kwa mradi wa OpenStreetMap. Ni kama Wikipedia ya ramani ambapo unaweza kuongeza au kuhariri maeneo, na yanapatikana kwa mamilioni ya watumiaji duniani kote.</string>
 	<string name="editor_other_info">Tuma ujumbe kwenye vihariri vya OSM</string>
-	<string name="placepage_more_reviews_button">Maoni Zaidi</string>
 	<string name="editor_share_to_all_dialog_message_2">Wahariri wa OpenStreetMap watakagua mabadiliko na kuwasiliana nawe ikiwa wana maswali yoyote.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
 	<string name="about_description">Organic Maps ni programu huria na ya chanzo huria ya ramani za nje ya mtandao. Hakuna matangazo. Hakuna ufuatiliaji. Ukiona hitilafu kwenye ramani, tafadhali irekebishe katika OpenStreetMap. Mradi huu umeundwa na wapendaji katika wakati wetu wa bure, kwa hivyo tunahitaji maoni na usaidizi wako.</string>
@@ -75,6 +74,7 @@
 	<string name="prefs_languages_information_off_link">Kwa maelezo zaidi tafadhali tazama mwongozo huu.</string>
 	<string name="transliteration_title">Tafsiri kwa lugha ya Kilatini</string>
 	<string name="learn_more">Jua mengi zaidi</string>
+	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Toka</string>
 	<string name="routing_add_start_point">Ongeza eneo la kuanzia ili kupanga njia ya kufuata</string>
 	<string name="routing_add_finish_point">Ongeza eneo la kumalizia ili kupanga njia ya kufuata</string>
@@ -234,6 +234,13 @@
 	<string name="type.amenity.bicycle_repair_station">Cykelreparationsstation</string>
 	<string name="type.amenity.music_school">Shule ya Muziki</string>
 	<string name="type.amenity.language_school">Shule ya Lugha</string>
+	<string name="type.amenity.parking">Maegesho</string>
+	<string name="type.amenity.parking.fee">Maegesho ya Kulipwa</string>
+	<string name="type.amenity.parking.multi.storey">Maegesho ya Hifadhi nyingi</string>
+	<string name="type.amenity.parking.no.access">Maegesho ya Kibinafsi</string>
+	<string name="type.amenity.parking.permissive">Maegesho ya Kibinafsi</string>
+	<string name="type.amenity.parking.private">Maegesho ya Kibinafsi</string>
+	<string name="type.amenity.parking.underground">Maegesho ya chini ya ardhi</string>
 	<string name="type.amenity.parking_entrance.private">Mlango wa maegesho</string>
 	<string name="type.amenity.parking_entrance.permissive">Mlango wa maegesho</string>
 	<string name="type.amenity.parking_entrance">Mlango wa maegesho</string>
@@ -247,6 +254,8 @@
 	<!-- SECTION: Types: Recycling -->
 	<string name="type.recycling.batteries">Betri</string>
 	<string name="type.amenity.vending_machine.public_transport_tickets">Mashine ya kuuzia tiketi za usafiri wa umma</string>
+	<string name="type.barrier.city_wall">Ukuta wa jiji</string>
+	<string name="type.barrier.ditch">Moti</string>
 	<string name="type.boundary.national_park">Hifadhi ya taifa</string>
 	<string name="type.cemetery.grave">Kaburi</string>
 	<string name="type.craft">Ufundi</string>
@@ -271,6 +280,7 @@
 	<string name="type.craft.tailor">Mshonaji nguo</string>
 	<string name="type.cuisine.coffee_shop">Kahawa</string>
 	<string name="type.healthcare.laboratory">Maabara ya Matibabu</string>
+	<string name="type.healthcare.physiotherapist">Mtaalamu wa Physiotherapist</string>
 
 	<!-- SECTION: Types: Roads -->
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -364,6 +374,10 @@
 	<string name="type.highway.unclassified.tunnel">Mtaro</string>
 
 	<!-- SECTION: Types: Historic -->
+	<string name="type.historic">Kitu cha kihistoria</string>
+	<string name="type.historic.archaeological_site">Tovuti ya Akiolojia</string>
+	<string name="type.historic.battlefield">Uwanja wa vita</string>
+	<string name="type.historic.boundary_stone">Jiwe la mpaka</string>
 	<string name="type.historic.castle">Ngome</string>
 	<string name="type.historic.castle.castrum">Ngome ya Kirumi</string>
 	<string name="type.historic.castle.defensive">Ngome</string>
@@ -376,6 +390,23 @@
 	<string name="type.historic.castle.shiro">Ngome ya Kijapani</string>
 	<string name="type.historic.castle.stately">Ngome</string>
 	<string name="type.historic.city_gate">Lango la jiji</string>
+	<string name="type.historic.citywalls">Ukuta wa jiji</string>
+	<string name="type.historic.fort">Ngome</string>
+	<string name="type.historic.gallows">Kunyongea</string>
+	<string name="type.historic.memorial">Ukumbusho</string>
+	<string name="type.historic.memorial.cross">Msalaba wa kumbukumbu</string>
+	<string name="type.historic.memorial.plaque">Plaque</string>
+	<string name="type.historic.memorial.sculpture">Uchongaji</string>
+	<string name="type.historic.memorial.statue">Sanamu</string>
+	<string name="type.historic.memorial.stolperstein">Kikwazo</string>
+	<string name="type.historic.memorial.war_memorial">Kumbukumbu ya vita</string>
+	<string name="type.historic.monument">Mnara</string>
+	<string name="type.historic.pillory">Pillory</string>
+	<string name="type.historic.ruins">Gofu</string>
+	<string name="type.historic.ship">Meli</string>
+	<string name="type.historic.tomb">Kaburi</string>
+	<string name="type.historic.wayside_cross">Msalaba wa njiani</string>
+	<string name="type.historic.wayside_shrine">Kaburi la njia</string>
 	<string name="type.landuse.basin">Bonde la Maji</string>
 	<string name="type.landuse.churchyard">Sehemu ya kanisa</string>
 	<string name="type.landuse.farmland">Shamba</string>
@@ -383,6 +414,7 @@
 	<string name="type.landuse.landfill">Shamba la Taka</string>
 	<string name="type.landuse.railway">Eneo la njia ya reli</string>
 	<string name="type.leisure.dog_park">Eneo la mbwa</string>
+	<string name="type.leisure.dance">Ukumbi wa Ngoma</string>
 	<string name="type.leisure.nature_reserve">Hifadhi</string>
 	<string name="type.leisure.park">Hifadhi</string>
 	<string name="type.leisure.park.no.access">Hifadhi</string>
@@ -465,6 +497,114 @@
 	<string name="type.railway.monorail">Mfumo wa reli moja</string>
 	<string name="type.railway.rail">Njia ya Reli</string>
 	<string name="type.railway.subway_entrance">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.adana">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.algiers">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.almaty">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.amsterdam">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.ankara">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.athens">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.baku">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.bangkok">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.barcelona">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.beijing">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.bengalore">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.berlin">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.brasilia">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.brescia">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.brussels">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.bucharest">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.budapest">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.buenos_aires">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.bursa">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.cairo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.caracas">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.catania">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.changchun">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.chengdu">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.chicago">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.chongqing">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.dalian">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.delhi">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.dnepro">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.dubai">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.ekb">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.fukuoka">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.glasgow">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.guangzhou">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.hamburg">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.helsinki">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.hiroshima">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.isfahan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.istanbul">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.izmir">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kazan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kharkiv">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kiev">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kobe">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kolkata">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kunming">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.kyoto">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.la">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.lausanne">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.lille">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.lima">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.lisboa">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.london">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.lyon">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.madrid">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.malaga">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.manila">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.maracaibo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.mashhad">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.mecca">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.medellin">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.mexico">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.milan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.minsk">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.montreal">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.moscow">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.munchen">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.nagoya">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.newyork">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.nnov">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.novosibirsk">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.osaka">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.oslo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.palma">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.panama">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.paris">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.philadelphia">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.pyongyang">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.rennes">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.rio">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.roma">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.rotterdam">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.samara">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.santiago">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.santo_domingo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.saopaulo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.sapporo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.sendai">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.sf">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.shanghai">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.shiraz">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.sofia">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.spb">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.stockholm">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.tabriz">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.taipei">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.taoyuan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.tashkent">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.tbilisi">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.tianjin">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.tokyo">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.valencia">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.vienna">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.warszawa">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.washington">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.wuhan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.yerevan">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.yokohama">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.shop.deli">Duka la Delicatessen</string>
 	<string name="type.shop.farm">Duka la Chakula cha shambani</string>
 	<string name="type.shop.grocery">Chakula cha mboga</string>

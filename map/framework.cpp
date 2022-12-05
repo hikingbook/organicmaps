@@ -732,6 +732,19 @@ void Framework::FillRouteMarkInfo(RouteMarkPoint const & rmp, place_page::Info &
   info.SetIntermediateIndex(rmp.GetIntermediateIndex());
 }
 
+void Framework::FillSpeedCameraMarkInfo(SpeedCameraMark const & speedCameraMark, place_page::Info & info) const
+{
+  info.SetCanEditOrAdd(false);
+  info.SetMercator(speedCameraMark.GetPivot());
+
+  // Title is a speed limit, if any.
+  auto title = speedCameraMark.GetTitle();
+  if (!title.empty())
+    title = title + " " + platform::GetLocalizedSpeedUnits(measurement_utils::GetMeasurementUnits());
+
+  info.SetCustomNames(title, platform::GetLocalizedTypeName("highway-speed_camera"));
+}
+
 void Framework::FillTransitMarkInfo(TransitMark const & transitMark, place_page::Info & info) const
 {
   FillFeatureInfo(transitMark.GetFeatureID(), info);
@@ -911,11 +924,6 @@ void Framework::ShowAll()
                                      false /* useVisibleViewport */);
 }
 
-m2::PointD Framework::GetPixelCenter() const
-{
-  return m_currentModelView.PixelRectIn3d().Center();
-}
-
 m2::PointD Framework::GetVisiblePixelCenter() const
 {
   return m_visibleViewport.Center();
@@ -998,6 +1006,11 @@ void Framework::OnSize(int w, int h)
 {
   if (m_drapeEngine != nullptr)
     m_drapeEngine->Resize(std::max(w, 2), std::max(h, 2));
+
+  /// @todo Expected that DrapeEngine::Resize does all the work, but nope ..
+  /// - Strange, but seems like iOS works fine without it.
+  /// - Test Android screen orientation and position mark in map and navigation modes.
+  SetVisibleViewport(m2::RectD(0, 0, w, h));
 }
 
 namespace
@@ -1362,20 +1375,19 @@ void Framework::FillSearchResultsMarks(SearchResultsIterT beg, SearchResultsIter
       continue;
 
     auto * mark = editSession.CreateUserMark<SearchMarkPoint>(r.GetFeatureCenter());
-    auto const isFeature = r.GetResultType() == search::Result::Type::Feature;
-    if (isFeature)
-      mark->SetFoundFeature(r.GetFeatureID());
-
     mark->SetMatchedName(r.GetString());
 
-    if (isFeature)
+    if (r.GetResultType() == search::Result::Type::Feature)
     {
+      auto const fID = r.GetFeatureID();
+      mark->SetFoundFeature(fID);
+
       if (r.m_details.m_isHotel)
         mark->SetHotelType();
       else
         mark->SetFromType(r.GetFeatureType());
-      mark->SetVisited(m_searchMarks.IsVisited(mark->GetFeatureID()));
-      mark->SetSelected(m_searchMarks.IsSelected(mark->GetFeatureID()));
+      mark->SetVisited(m_searchMarks.IsVisited(fID));
+      mark->SetSelected(m_searchMarks.IsSelected(fID));
     }
   }
 }
@@ -1507,9 +1519,8 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
   OnSize(params.m_surfaceWidth, params.m_surfaceHeight);
 
   Allow3dMode(allow3d, allow3dBuildings);
-  LoadViewport();
 
-  SetVisibleViewport(m2::RectD(0, 0, params.m_surfaceWidth, params.m_surfaceHeight));
+  LoadViewport();
 
   if (m_connectToGpsTrack)
     GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2));
@@ -1699,10 +1710,7 @@ void Framework::SetupMeasurementSystem()
 {
   GetPlatform().SetupMeasurementSystem();
 
-  auto units = measurement_utils::Units::Metric;
-  settings::TryGet(settings::kMeasurementUnits, units);
-
-  m_routingManager.SetTurnNotificationsUnits(units);
+  m_routingManager.SetTurnNotificationsUnits(measurement_utils::GetMeasurementUnits());
 }
 
 void Framework::SetWidgetLayout(gui::TWidgetsLayoutInfo && layout)
@@ -1823,6 +1831,11 @@ url_scheme::SearchRequest Framework::GetParsedSearchRequest() const
 std::string const & Framework::GetParsedAppName() const
 {
   return m_parsedMapApi.GetAppName();
+}
+
+ms::LatLon Framework::GetParsedCenterLatLon() const
+{
+  return m_parsedMapApi.GetCenterLatLon();
 }
 
 FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator,
@@ -1965,10 +1978,10 @@ void Framework::ActivateMapSelection()
                                 bi.m_needAnimationOnSelection, bi.m_isGeometrySelectionAllowed, true);
   }
 
+  /// @todo Current android logic is strange (see SetPlacePageListeners comments), so skip assert.
+  //ASSERT(m_onPlacePageOpen, ());
   if (m_onPlacePageOpen)
     m_onPlacePageOpen();
-  else
-    LOG(LWARNING, ("m_onPlacePageOpen has not been set up."));
 }
 
 void Framework::DeactivateMapSelection(bool notifyUI)
@@ -2148,6 +2161,11 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
       case UserMark::Type::TRANSIT:
       {
         FillTransitMarkInfo(*static_cast<TransitMark const *>(mark), outInfo);
+        break;
+      }
+      case UserMark::Type::SPEED_CAM:
+      {
+        FillSpeedCameraMarkInfo(*static_cast<SpeedCameraMark const *>(mark), outInfo);
         break;
       }
       default:
@@ -2671,10 +2689,13 @@ bool Framework::ParseEditorDebugCommand(search::SearchParams const & params)
         return true;
       }
 
-      feature::TypesHolder const types(*ft);
-      results.AddResultNoChecks(search::Result(fid, feature::GetCenter(*ft), string(ft->GetReadableName()),
-                                               move(edit.second), types.GetBestType(), {}));
+      search::Result res(feature::GetCenter(*ft), string(ft->GetReadableName()));
+      res.SetAddress(move(edit.second));
+      res.FromFeature(fid, feature::TypesHolder(*ft).GetBestType(), {});
+
+      results.AddResultNoChecks(std::move(res));
     }
+
     params.m_onResults(results);
 
     results.SetEndMarker(false /* isCancelled */);

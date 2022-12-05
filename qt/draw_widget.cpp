@@ -93,13 +93,25 @@ DrawWidget::DrawWidget(Framework & framework, bool apiOpenGLES3, std::unique_ptr
   auto & routingManager = m_framework.GetRoutingManager();
 
   routingManager.SetRouteBuildingListener(
-      [&routingManager, this](routing::RouterResultCode, storage::CountriesSet const &) {
+      [&routingManager, this](routing::RouterResultCode, storage::CountriesSet const &)
+      {
         auto & drapeApi = m_framework.GetDrapeApi();
 
         m_turnsVisualizer.ClearTurns(drapeApi);
 
         if (RoutingSettings::TurnsEnabled())
           m_turnsVisualizer.Visualize(routingManager, drapeApi);
+
+        RoutingManager::DistanceAltitude da;
+        if (!routingManager.GetRouteAltitudesAndDistancesM(da))
+          return;
+
+        da.Simplify();
+        LOG(LDEBUG, ("Altitudes:", da));
+
+        uint32_t totalAscent, totalDescent;
+        da.CalculateAscentDescent(totalAscent, totalDescent);
+        LOG(LINFO, ("Ascent:", totalAscent, "Descent:", totalDescent));
       });
 
   routingManager.SetRouteRecommendationListener(
@@ -224,7 +236,10 @@ void DrawWidget::mouseMoveEvent(QMouseEvent * e)
   QOpenGLWidget::mouseMoveEvent(e);
 
   if (IsLeftButton(e) && !IsAltModifier(e))
+  {
     m_framework.TouchEvent(GetTouchEvent(e, df::TouchEvent::TOUCH_MOVE));
+    e->accept();
+  }
 
   if (m_selectionMode && m_rubberBand != nullptr && m_rubberBand->isVisible())
     m_rubberBand->setGeometry(QRect(m_rubberBandOrigin, e->pos()).normalized());
@@ -462,18 +477,19 @@ void DrawWidget::SubmitFakeLocationPoint(m2::PointD const & pt)
 
   m_framework.OnLocationUpdate(qt::common::MakeGpsInfo(point));
 
-  if (m_framework.GetRoutingManager().IsRoutingActive())
+  auto & routingManager = m_framework.GetRoutingManager();
+  if (routingManager.IsRoutingActive())
   {
     /// Immediate update of the position in Route to get updated FollowingInfo state for visual debugging.
     /// m_framework.OnLocationUpdate calls RoutingSession::OnLocationPositionChanged
     /// with delay several times according to interpolation.
     /// @todo Write log when the final point will be reached and
     /// RoutingSession::OnLocationPositionChanged will be called the last time.
-    m_framework.GetRoutingManager().RoutingSession().OnLocationPositionChanged(qt::common::MakeGpsInfo(point));
+    routingManager.RoutingSession().OnLocationPositionChanged(qt::common::MakeGpsInfo(point));
 
     routing::FollowingInfo loc;
-    m_framework.GetRoutingManager().GetRouteFollowingInfo(loc);
-    if (m_framework.GetRoutingManager().GetCurrentRouterType() == routing::RouterType::Pedestrian)
+    routingManager.GetRouteFollowingInfo(loc);
+    if (routingManager.GetCurrentRouterType() == routing::RouterType::Pedestrian)
     {
       LOG(LDEBUG, ("Distance:", loc.m_distToTarget + loc.m_targetUnitsSuffix, "Time:", loc.m_time,
                    DebugPrint(loc.m_pedestrianTurn),
@@ -482,8 +498,11 @@ void DrawWidget::SubmitFakeLocationPoint(m2::PointD const & pt)
     }
     else
     {
-      LOG(LDEBUG, ("Distance:", loc.m_distToTarget + loc.m_targetUnitsSuffix, "Time:", loc.m_time,
-                   loc.m_speedLimitMps < 0 ? "" : "SpeedLimit: " + measurement_utils::FormatSpeed(loc.m_speedLimitMps),
+      std::string speed;
+      if (loc.m_speedLimitMps > 0)
+        speed = "SpeedLimit: " + measurement_utils::FormatSpeedNumeric(loc.m_speedLimitMps, measurement_utils::Units::Metric);
+
+      LOG(LDEBUG, ("Distance:", loc.m_distToTarget + loc.m_targetUnitsSuffix, "Time:", loc.m_time, speed,
                    GetTurnString(loc.m_turn), (loc.m_exitNum != 0 ? ":" + std::to_string(loc.m_exitNum) : ""),
                    "in", loc.m_distToTurn + loc.m_turnUnitsSuffix,
                    loc.m_targetName.empty() ? "" : "to " + loc.m_targetName ));

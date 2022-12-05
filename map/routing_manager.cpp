@@ -26,6 +26,7 @@
 #include "platform/socket.hpp"
 
 #include "geometry/mercator.hpp"  // kPointEqualityEps
+#include "geometry/simplification.hpp"
 
 #include "coding/file_reader.hpp"
 #include "coding/file_writer.hpp"
@@ -361,10 +362,7 @@ RoutingManager::RoutingManager(Callbacks && callbacks, Delegate & delegate)
         return;
 
       double speed = cameraSpeedKmPH;
-      measurement_utils::Units units = measurement_utils::Units::Metric;
-      settings::TryGet(settings::kMeasurementUnits, units);
-
-      if (units == measurement_utils::Units::Imperial)
+      if (measurement_utils::GetMeasurementUnits() == measurement_utils::Units::Imperial)
         speed = measurement_utils::KmphToMiph(cameraSpeedKmPH);
 
       mark->SetTitle(strings::to_string(static_cast<int>(speed + 0.5)));
@@ -574,16 +572,18 @@ void RoutingManager::CollectRoadWarnings(vector<routing::RouteSegment> const & s
 {
   auto const isWarnedType = [](RoutingOptions::Road roadType)
   {
-    return roadType == RoutingOptions::Road::Toll || roadType == RoutingOptions::Road::Ferry ||
-      roadType == RoutingOptions::Road::Dirty;
+    return (roadType == RoutingOptions::Road::Toll || roadType == RoutingOptions::Road::Ferry ||
+            roadType == RoutingOptions::Road::Dirty);
   };
+
+  bool const isCarRouter = (m_currentRouterType == RouterType::Vehicle);
 
   double currentDistance = baseDistance;
   double startDistance = baseDistance;
   RoutingOptions::Road lastType = RoutingOptions::Road::Usual;
   for (size_t i = 0; i < segments.size(); ++i)
   {
-    auto const currentType = ChooseMainRoutingOptionRoad(segments[i].GetRoadTypes());
+    auto const currentType = ChooseMainRoutingOptionRoad(segments[i].GetRoadTypes(), isCarRouter);
     if (currentType != lastType)
     {
       if (isWarnedType(lastType))
@@ -650,7 +650,7 @@ bool RoutingManager::InsertRoute(Route const & route)
 
   RoadWarningsCollection roadWarnings;
 
-  auto const isTransitRoute = m_currentRouterType == RouterType::Transit;
+  bool const isTransitRoute = (m_currentRouterType == RouterType::Transit);
   shared_ptr<TransitRouteDisplay> transitRouteDisplay;
   if (isTransitRoute)
   {
@@ -680,8 +680,6 @@ bool RoutingManager::InsertRoute(Route const & route)
           subroute->AddStyle(df::SubrouteStyle(df::kRouteColor, df::kRouteOutlineColor));
           FillTrafficForRendering(segments, subroute->m_traffic);
           FillTurnsDistancesForRendering(segments, subroute->m_baseDistance, subroute->m_turns);
-          if (m_currentRouterType == RouterType::Vehicle)
-            CollectRoadWarnings(segments, startPt, subroute->m_baseDistance, getMwmId, roadWarnings);
           break;
         }
       case RouterType::Transit:
@@ -707,6 +705,8 @@ bool RoutingManager::InsertRoute(Route const & route)
       default: CHECK(false, ("Unknown router type"));
     }
 
+    CollectRoadWarnings(segments, startPt, subroute->m_baseDistance, getMwmId, roadWarnings);
+
     auto const subrouteId = m_drapeEngine.SafeCallWithResult(&df::DrapeEngine::AddSubroute,
                                                              df::SubrouteConstPtr(subroute.release()));
 
@@ -729,12 +729,11 @@ bool RoutingManager::InsertRoute(Route const & route)
     });
   }
 
-  if (!roadWarnings.empty())
-  {
+  bool const hasWarnings = !roadWarnings.empty();
+  if (hasWarnings && m_currentRouterType == RouterType::Vehicle)
     CreateRoadWarningMarks(move(roadWarnings));
-    return true;
-  }
-  return false;
+
+  return hasWarnings;
 }
 
 void RoutingManager::FollowRoute()
@@ -1138,58 +1137,97 @@ bool RoutingManager::HasRouteAltitude() const
   return m_loadAltitudes && m_routingSession.HasRouteAltitude();
 }
 
-bool RoutingManager::GetRouteAltitudesAndDistancesM(vector<double> & routePointDistanceM,
-                                                    geometry::Altitudes & altitudes) const
+bool RoutingManager::GetRouteAltitudesAndDistancesM(DistanceAltitude & da) const
 {
-  if (!m_routingSession.GetRouteAltitudesAndDistancesM(routePointDistanceM, altitudes))
-    return false;
-
-  routePointDistanceM.insert(routePointDistanceM.begin(), 0.0);
-  return true;
+  return m_routingSession.GetRouteAltitudesAndDistancesM(da.m_distances, da.m_altitudes);
 }
 
-bool RoutingManager::GenerateRouteAltitudeChart(uint32_t width, uint32_t height,
-                                                geometry::Altitudes const & altitudes,
-                                                vector<double> const & routePointDistanceM,
-                                                vector<uint8_t> & imageRGBAData,
-                                                uint32_t & totalAscent,
-                                                uint32_t & totalDescent,
-                                                measurement_utils::Units & altitudeUnits) const
+void RoutingManager::DistanceAltitude::Simplify(double altitudeDeviation)
 {
-  CHECK_EQUAL(altitudes.size(), routePointDistanceM.size(), ());
-  if (altitudes.empty())
-    return false;
-
-  if (!maps::GenerateChart(width, height, routePointDistanceM, altitudes,
-                           GetStyleReader().GetCurrentStyle(), imageRGBAData))
-    return false;
-
-  uint32_t totalAscentM = 0;
-  uint32_t totalDescentM = 0;
-  for (size_t i = 1; i < altitudes.size(); i++)
+  class IterT
   {
-    int16_t const delta = altitudes[i] - altitudes[i - 1];
+    DistanceAltitude const & m_da;
+    size_t m_ind = 0;
+
+  public:
+    IterT(DistanceAltitude const & da, bool isBeg) : m_da(da)
+    {
+      m_ind = isBeg ? 0 : m_da.GetSize();
+    }
+
+    IterT(IterT const & rhs) = default;
+    IterT & operator=(IterT const & rhs) { m_ind = rhs.m_ind; return *this; }
+
+    bool operator!=(IterT const & rhs) const { return m_ind != rhs.m_ind; }
+
+    IterT & operator++() { ++m_ind; return *this; }
+    IterT operator+(size_t inc) const
+    {
+      IterT res = *this;
+      res.m_ind += inc;
+      return res;
+    }
+    int64_t operator-(IterT const & rhs) const { return int64_t(m_ind) - int64_t(rhs.m_ind); }
+
+    m2::PointD operator*() const { return { m_da.m_distances[m_ind], double(m_da.m_altitudes[m_ind]) }; }
+  };
+
+  std::vector<m2::PointD> out;
+
+  // 1. Deviation from approximated altitude.
+//  double constexpr eps = 1.415; // ~sqrt(2)
+//  struct DeviationFromApproxY
+//  {
+//    double operator()(m2::PointD const & a, m2::PointD const & b, m2::PointD const & x) const
+//    {
+//      double f = (x.x - a.x) / (b.x - a.x);
+//      ASSERT(0 <= f && f <= 1, (f));  // distance is an icreasing function
+//      double const approxY = (1 - f) * a.y + f * b.y;
+//      return fabs(approxY - x.y);
+//    }
+//  } distFn;
+//  SimplifyNearOptimal(20 /* maxFalseLookAhead */, IterT(*this, true), IterT(*this, false),
+//                      eps, distFn, AccumulateSkipSmallTrg(distFn, out, eps));
+
+  // 2. Default square distance from segment.
+  SimplifyDefault(IterT(*this, true), IterT(*this, false), base::Pow2(altitudeDeviation), out);
+
+  size_t const count = out.size();
+  m_distances.resize(count);
+  m_altitudes.resize(count);
+  for (size_t i = 0; i < count; ++i)
+  {
+    m_distances[i] = out[i].x;
+    m_altitudes[i] = geometry::Altitude(out[i].y);
+  }
+}
+
+bool RoutingManager::DistanceAltitude::GenerateRouteAltitudeChart(
+      uint32_t width, uint32_t height, vector<uint8_t> & imageRGBAData) const
+{
+  if (GetSize() == 0)
+    return false;
+
+  return maps::GenerateChart(width, height, m_distances, m_altitudes, GetStyleReader().GetCurrentStyle(), imageRGBAData);
+}
+
+void RoutingManager::DistanceAltitude::CalculateAscentDescent(uint32_t & totalAscentM, uint32_t & totalDescentM) const
+{
+  totalAscentM = 0;
+  totalDescentM = 0;
+  for (size_t i = 1; i < m_altitudes.size(); i++)
+  {
+    int16_t const delta = m_altitudes[i] - m_altitudes[i - 1];
     if (delta > 0)
       totalAscentM += delta;
     else
       totalDescentM += -delta;
   }
+}
 
-  if (!settings::Get(settings::kMeasurementUnits, altitudeUnits))
-    altitudeUnits = measurement_utils::Units::Metric;
-
-  switch (altitudeUnits)
-  {
-  case measurement_utils::Units::Imperial:
-    totalAscent = measurement_utils::MetersToFeet(totalAscentM);
-    totalDescent = measurement_utils::MetersToFeet(totalDescentM);
-    break;
-  case measurement_utils::Units::Metric:
-    totalAscent = totalAscentM;
-    totalDescent = totalDescentM;
-    break;
-  }
-  return true;
+std::string DebugPrint(RoutingManager::DistanceAltitude const & da)
+{
+  return DebugPrint(da.m_altitudes);
 }
 
 void RoutingManager::SetRouter(RouterType type)

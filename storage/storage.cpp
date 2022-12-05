@@ -1378,6 +1378,7 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
     
     if (node.ChildrenCount() == 0) {
         switch (statusAndError.status) {
+            case NodeStatus::OnDiskOutOfDate:
             case NodeStatus::OnDisk: {
                 LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
                 if (localFile && localFile->GetMapSource() != mapSource) {

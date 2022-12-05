@@ -116,7 +116,14 @@ bool LocalCountryFile::ValidateIntegrity() const
 
 MapSource LocalCountryFile::GetMapSource() const
 {
-  return GetSize(MapFileType::Map) == m_countryFile.GetHikingbookProMapRemoteSize() ? MapSource::HikingbookProMaps : MapSource::Organicmaps;
+    if (m_countryFile.IsHikingbookProMapAvailable()) {
+        auto size = GetSize(MapFileType::Map);
+        if (size <= m_countryFile.GetRemoteSize()) {
+            return MapSource::Organicmaps;
+        }
+        return MapSource::HikingbookProMaps;
+    }
+    return MapSource::Organicmaps;
 }
 
 void LocalCountryFile::SetCountryFile(CountryFile const & countryFile)

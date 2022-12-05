@@ -130,6 +130,8 @@
 	<string name="recycling">Újrahasznosítás</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
 	<string name="water">Víz</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
+	<string name="rv">RV számára</string>
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Jegyzetek</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -164,8 +166,6 @@
 	<string name="copied_to_clipboard">A vágólapra másolva: %1$s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Kész</string>
-	<!-- Prints version number in About dialog -->
-	<string name="version">Verzió: %s</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
 	<string name="data_version">OpenStreetMap adatok: %s</string>
 	<!-- Confirmation in downloading countries dialog -->
@@ -187,16 +187,16 @@
 	<!-- «Map style» entry value -->
 	<string name="pref_map_style_auto">Automatikus</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
-	<string name="pref_map_3d_title">Távlati kép</string>
+	<string name="pref_map_3d_title">Perspektivikus nézet</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D-s épületek</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Hangutasítások</string>
 	<!-- Settings «Route» category: «Tts language» title -->
-	<string name="pref_tts_language_title">A hang nyelve</string>
+	<string name="pref_tts_language_title">A hangutasítások nyelve</string>
 	<!-- Settings «Route» category: «Tts unavailable» subtitle -->
 	<string name="pref_tts_unavailable">Nem áll rendelkezésre</string>
-	<string name="pref_map_auto_zoom">Auto-zoom</string>
+	<string name="pref_map_auto_zoom">Automatikus nagyítás</string>
 	<string name="duration_disabled">Kikapcsolva</string>
 	<string name="duration_1_hour">1 óra</string>
 	<string name="duration_2_hours">2 óra</string>
@@ -217,13 +217,13 @@
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Kérdések és válaszok</string>
 	<!-- Button in the main menu -->
-	<string name="donate">Adományoz</string>
+	<string name="donate">Adományozni</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">Hogyan támogat minket?</string>
+	<string name="how_to_support_us">Hogyan támogathatsz minket?</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">Szerzői jog</string>
 	<!-- Text in menu + Button in the main Help dialog -->
-	<string name="report_a_bug">Hibabejelentés</string>
+	<string name="report_a_bug">Hiba jelentése</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Mindegyik frissítése</string>
 	<!-- Cancel all button text -->
@@ -387,7 +387,6 @@
 	<string name="password">Jelszó</string>
 	<string name="forgot_password">Elfelejtett jelszó?</string>
 	<string name="logout">Kijelentkezés</string>
-	<string name="thank_you">Köszönjük</string>
 	<string name="edit_place">Hely szerkesztése</string>
 	<string name="add_language">Nyelv hozzáadása</string>
 	<string name="street">Utca</string>
@@ -460,7 +459,6 @@
 	<string name="minute">p</string>
 	<string name="placepage_place_description">Leírás</string>
 	<string name="placepage_more_button">Még</string>
-	<string name="placepage_more_reviews_button">További vélemények</string>
 	<string name="placepage_call_button">Hívás</string>
 	<string name="placepage_edit_bookmark_button">Könyvjelző szerkesztése</string>
 	<string name="editor_comment_hint">Megjegyzés…</string>
@@ -480,13 +478,11 @@
 	<string name="editor_share_to_all_dialog_message_1">Győződj meg arról, hogy nem adsz meg semmilyen személyes információt.</string>
 	<string name="editor_share_to_all_dialog_message_2">Az OpenStreetMap szerkesztői ellenőrzik a változásokat, és felveszik Önnel a kapcsolatot, ha kérdéseik vannak.</string>
 	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Az Organic Maps egy ingyenes, nyílt forráskódú offline térképalkalmazás. Nincsenek hirdetések. Nincs nyomkövetés. Ha hibát lát a térképen, javítsa ki az OpenStreetMap segítségével. A projektet a lelkesek készítik szabadidőnkben, ezért szükségünk van az Ön visszajelzésére és támogatására.</string>
+	<string name="about_description">Az Organic Maps egy gyors és ingyenes offline térképalkalmazás hirdetések és nyomkövetés nélkül. A térképek az OpenStreetMap.org közösség által fenntartott adatain alapulnak, így a térképen megtalálható hibákat te is javíthatod, és adhatsz hozzá új helyeket. Az Organic Maps egy nyílt forráskódú projekt, amelyet lelkes fejlesztők hoztak létre szabadidejükben. Visszajelzéseidet és támogatásodat nagyra értékeljük!</string>
 	<!-- For the first routing -->
-	<string name="accept">Elfogadja</string>
+	<string name="accept">Elfogad</string>
 	<!-- For the first routing -->
-	<string name="decline">Elutasítja</string>
-	<!-- A noun - a button name used to show search results in list form -->
-	<string name="search_in_table">Lista</string>
+	<string name="decline">Elutasít</string>
 	<string name="mobile_data_dialog">Részletes információk megjelenítése a mobil internet segítségével?</string>
 	<string name="mobile_data_option_always">Mindig használja</string>
 	<string name="mobile_data_option_today">Csak ma</string>
@@ -511,6 +507,7 @@
 	<string name="prefs_languages_information_off_link">További tájékoztatást találhat még ebben az útmutatóban.</string>
 	<string name="transliteration_title">Átírás latin nyelvre</string>
 	<string name="learn_more">Tudjon meg többet</string>
+	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Kilépés</string>
 	<string name="routing_add_start_point">Adjon hozzá kiindulási pontot az útvonal megtervezéséhez</string>
 	<string name="routing_add_finish_point">Adjon hozzá végpontot az útvonal tervezéséhez</string>
@@ -586,21 +583,21 @@
 	<string name="power_managment_setting_manual_max">Maximális energiatakarékosság</string>
 	<string name="enable_logging_warning_message">Az opció bekapcsolja a diagnosztikai célú naplózást. Hasznos lehet a support csapatunknak, akik elhárítják az alkalmazás hibáit. Csak a Organic Maps support kérésére kapcsold be ezt az opciót.</string>
 	<string name="access_rules_author_only">Online szerkesztés</string>
-	<string name="driving_options_title">Vezetési lehetőségek</string>
+	<string name="driving_options_title">Útvonaltervezési lehetőségek</string>
 	<string name="driving_options_subheader">Elkerülés minden útvonalon</string>
-	<string name="avoid_tolls">Fizetős utak</string>
-	<string name="avoid_unpaved">Kövezetlen utak</string>
+	<string name="avoid_tolls">Díjköteles utak</string>
+	<string name="avoid_unpaved">Burkolatlan utak</string>
 	<string name="avoid_ferry">Kompátkelők</string>
 	<string name="avoid_motorways">Autópályák</string>
 	<string name="unable_to_calc_alert_title">Nem lehet útvonalat számítani</string>
 	<string name="unable_to_calc_alert_subtitle">Sajnos nem találunk útvonalat, valószínűleg az általad meghatározott lehetőségek miatt. Kérjük változtass a beállításokon és próbáld újra</string>
 	<string name="define_to_avoid_btn">Elkerülendő utak meghatározása</string>
-	<string name="change_driving_options_btn">Vezetési lehetőségek bekapcsolva</string>
-	<string name="toll_road">Fizetős utak</string>
-	<string name="unpaved_road">Kövezetlen utak</string>
+	<string name="change_driving_options_btn">Útvonaltervezési lehetőségek bekapcsolva</string>
+	<string name="toll_road">Díjköteles utak</string>
+	<string name="unpaved_road">Burkolatlan utak</string>
 	<string name="ferry_crossing">Kompátkelők</string>
-	<string name="avoid_toll_roads_placepage">Fizetős utak elkerülése</string>
-	<string name="avoid_unpaved_roads_placepage">Kövezetlen utak elkerülése</string>
+	<string name="avoid_toll_roads_placepage">Díjköteles utak elkerülése</string>
+	<string name="avoid_unpaved_roads_placepage">Burkolatlan utak elkerülése</string>
 	<string name="avoid_ferry_crossing_placepage">Kompátkelők elkerülése</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Igen</string>
@@ -665,6 +662,10 @@
 	<string name="enable_screen_sleep">Hagyja aludni a képernyőt</string>
 	<!-- Description in preferences -->
 	<string name="enable_screen_sleep_description">Ha engedélyezve van, akkor a képernyő inaktivitás után alszik.</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">Megjelenítés a zárolt képernyőn</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">Ha engedélyezve van, nem kell minden alkalommal feloldanod a telefonod, amíg az alkalmazás fut.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Térképadatok az OpenStreetMapből</string>
 
@@ -725,13 +726,13 @@
 	<string name="type.amenity.nightclub">Éjszakai mulató</string>
 	<string name="type.amenity.nursing_home">Idősek otthona</string>
 	<string name="type.amenity.parking">Parkoló</string>
-	<string name="type.amenity.parking.fee">Parkoló</string>
-	<string name="type.amenity.parking.multi.storey">Parkoló</string>
-	<string name="type.amenity.parking.no.access">Parkoló</string>
+	<string name="type.amenity.parking.fee">Fizetős parkolás</string>
+	<string name="type.amenity.parking.multi.storey">Többszintes parkoló</string>
+	<string name="type.amenity.parking.no.access">Saját parkoló</string>
+	<string name="type.amenity.parking.permissive">Saját parkoló</string>
+	<string name="type.amenity.parking.private">Saját parkoló</string>
 	<string name="type.amenity.parking.park_and_ride">Parkoló</string>
-	<string name="type.amenity.parking.permissive">Parkoló</string>
-	<string name="type.amenity.parking.private">Parkoló</string>
-	<string name="type.amenity.parking.underground">Parkoló</string>
+	<string name="type.amenity.parking.underground">Mélygarázs</string>
 	<string name="type.amenity.parking_entrance.private">Parkoló bejárata</string>
 	<string name="type.amenity.parking_entrance.permissive">Parkoló bejárata</string>
 	<string name="type.amenity.parking_entrance">Parkoló bejárata</string>
@@ -788,8 +789,11 @@
 	<string name="type.barrier.block">Blokk</string>
 	<string name="type.barrier.bollard">Oszlop</string>
 	<string name="type.barrier.border_control">Határállomás</string>
+	<string name="type.barrier.city_wall">Városi fal</string>
+	<string name="type.barrier.ditch">Várárok</string>
 	<string name="type.barrier.entrance">Bejárat</string>
 	<string name="type.barrier.gate">Kapu</string>
+	<string name="type.barrier.kissing_gate">Kapu</string>
 	<string name="type.barrier.lift_gate">Sorompó</string>
 	<string name="type.barrier.stile">Átjáró</string>
 	<string name="type.barrier.swing_gate">Sorompó</string>
@@ -911,6 +915,7 @@
 	<string name="type.emergency.phone">Sürgősségi telefon</string>
 	<string name="type.entrance">Bejárat</string>
 	<string name="type.healthcare.laboratory">Orvosi laboratórium</string>
+	<string name="type.healthcare.physiotherapist">Fizioterapeuta</string>
 
 	<!-- SECTION: Types: Roads -->
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1088,7 +1093,10 @@
 	<string name="type.area_highway.unclassified">Utca</string>
 
 	<!-- SECTION: Types: Historic -->
+	<string name="type.historic">Történelmi tárgy</string>
 	<string name="type.historic.archaeological_site">Ásatás</string>
+	<string name="type.historic.battlefield">Csatatér</string>
+	<string name="type.historic.boundary_stone">Határkő</string>
 	<string name="type.historic.castle">Kastély</string>
 	<string name="type.historic.castle.castrum">Castrum</string>
 	<string name="type.historic.castle.defensive">Kastély</string>
@@ -1101,14 +1109,23 @@
 	<string name="type.historic.castle.shiro">Japán várkastélyai</string>
 	<string name="type.historic.castle.stately">Kastély</string>
 	<string name="type.historic.city_gate">Városi kapu</string>
+	<string name="type.historic.citywalls">Városi fal</string>
+	<string name="type.historic.fort">Fort</string>
+	<string name="type.historic.gallows">Akasztófa</string>
 	<string name="type.historic.memorial">Emlékmű</string>
+	<string name="type.historic.memorial.cross">Emlékkereszt</string>
 	<string name="type.historic.memorial.plaque">Emlékmű</string>
 	<string name="type.historic.memorial.sculpture">Emlékmű</string>
 	<string name="type.historic.memorial.statue">Emlékmű</string>
+	<string name="type.historic.memorial.stolperstein">Botlatókő</string>
+	<string name="type.historic.memorial.war_memorial">Háborús emlékmű</string>
 	<string name="type.historic.monument">Műemlék</string>
+	<string name="type.historic.pillory">Pellengér</string>
 	<string name="type.historic.ruins">Romok</string>
 	<string name="type.historic.ship">Túrizmus</string>
-	<string name="type.historic.tomb">Túrizmus</string>
+	<string name="type.historic.tomb">Sír</string>
+	<string name="type.historic.wayside_cross">Útszéli kereszt</string>
+	<string name="type.historic.wayside_shrine">Útmenti szentély</string>
 	<string name="type.landuse.basin">Vízgyűjtő</string>
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery">Temető</string>
@@ -1127,6 +1144,7 @@
 	<string name="type.leisure.dog_park">Kutyás terület</string>
 	<string name="type.leisure.fitness_centre">Fitnesz-terem</string>
 	<string name="type.leisure.fitness_station">Fitness állomás</string>
+	<string name="type.leisure.dance">Táncterem</string>
 	<string name="type.leisure.garden">Kert</string>
 	<string name="type.leisure.garden.residential">Kert</string>
 	<string name="type.leisure.golf_course">Golfpálya</string>
@@ -1166,6 +1184,7 @@
 	<string name="type.natural.earth_bank">Szikla</string>
 	<string name="type.man_made.embankment">Töltés</string>
 	<string name="type.natural.coastline">Tengerpart</string>
+	<string name="type.natural.desert">Sivatag</string>
 	<string name="type.natural.geyser">Gejzír</string>
 	<string name="type.natural.glacier">Gleccser</string>
 	<string name="type.natural.grassland">Füves puszta</string>
@@ -1244,29 +1263,223 @@
 	<string name="type.railway.station.light_rail">Vonatmegálló</string>
 	<string name="type.railway.station.monorail">Vonatmegálló</string>
 	<string name="type.railway.station.subway">Földalatti</string>
+	<string name="type.railway.station.subway.adana">Földalatti</string>
+	<string name="type.railway.station.subway.algiers">Földalatti</string>
+	<string name="type.railway.station.subway.almaty">Földalatti</string>
+	<string name="type.railway.station.subway.amsterdam">Földalatti</string>
+	<string name="type.railway.station.subway.ankara">Földalatti</string>
+	<string name="type.railway.station.subway.athens">Földalatti</string>
+	<string name="type.railway.station.subway.baku">Földalatti</string>
+	<string name="type.railway.station.subway.bangkok">Földalatti</string>
 	<string name="type.railway.station.subway.barcelona">Földalatti</string>
+	<string name="type.railway.station.subway.beijing">Földalatti</string>
+	<string name="type.railway.station.subway.bengalore">Földalatti</string>
 	<string name="type.railway.station.subway.berlin">Földalatti</string>
+	<string name="type.railway.station.subway.brasilia">Földalatti</string>
+	<string name="type.railway.station.subway.brescia">Földalatti</string>
+	<string name="type.railway.station.subway.brussels">Földalatti</string>
+	<string name="type.railway.station.subway.bucharest">Földalatti</string>
+	<string name="type.railway.station.subway.budapest">Földalatti</string>
+	<string name="type.railway.station.subway.buenos_aires">Földalatti</string>
+	<string name="type.railway.station.subway.bursa">Földalatti</string>
+	<string name="type.railway.station.subway.cairo">Földalatti</string>
+	<string name="type.railway.station.subway.caracas">Földalatti</string>
+	<string name="type.railway.station.subway.catania">Földalatti</string>
+	<string name="type.railway.station.subway.changchun">Földalatti</string>
+	<string name="type.railway.station.subway.chengdu">Földalatti</string>
+	<string name="type.railway.station.subway.chicago">Földalatti</string>
+	<string name="type.railway.station.subway.chongqing">Földalatti</string>
+	<string name="type.railway.station.subway.dalian">Földalatti</string>
+	<string name="type.railway.station.subway.delhi">Földalatti</string>
+	<string name="type.railway.station.subway.dnepro">Földalatti</string>
+	<string name="type.railway.station.subway.dubai">Földalatti</string>
+	<string name="type.railway.station.subway.ekb">Földalatti</string>
+	<string name="type.railway.station.subway.fukuoka">Földalatti</string>
+	<string name="type.railway.station.subway.glasgow">Földalatti</string>
+	<string name="type.railway.station.subway.guangzhou">Földalatti</string>
+	<string name="type.railway.station.subway.hamburg">Földalatti</string>
+	<string name="type.railway.station.subway.helsinki">Földalatti</string>
+	<string name="type.railway.station.subway.hiroshima">Földalatti</string>
+	<string name="type.railway.station.subway.isfahan">Földalatti</string>
+	<string name="type.railway.station.subway.istanbul">Földalatti</string>
+	<string name="type.railway.station.subway.izmir">Földalatti</string>
+	<string name="type.railway.station.subway.kazan">Földalatti</string>
+	<string name="type.railway.station.subway.kharkiv">Földalatti</string>
 	<string name="type.railway.station.subway.kiev">Földalatti</string>
+	<string name="type.railway.station.subway.kobe">Földalatti</string>
+	<string name="type.railway.station.subway.kolkata">Földalatti</string>
+	<string name="type.railway.station.subway.kunming">Földalatti</string>
+	<string name="type.railway.station.subway.kyoto">Földalatti</string>
+	<string name="type.railway.station.subway.la">Földalatti</string>
+	<string name="type.railway.station.subway.lausanne">Földalatti</string>
+	<string name="type.railway.station.subway.lille">Földalatti</string>
+	<string name="type.railway.station.subway.lima">Földalatti</string>
+	<string name="type.railway.station.subway.lisboa">Földalatti</string>
 	<string name="type.railway.station.subway.london">Földalatti</string>
+	<string name="type.railway.station.subway.lyon">Földalatti</string>
 	<string name="type.railway.station.subway.madrid">Földalatti</string>
+	<string name="type.railway.station.subway.malaga">Földalatti</string>
+	<string name="type.railway.station.subway.manila">Földalatti</string>
+	<string name="type.railway.station.subway.maracaibo">Földalatti</string>
+	<string name="type.railway.station.subway.mashhad">Földalatti</string>
+	<string name="type.railway.station.subway.mecca">Földalatti</string>
+	<string name="type.railway.station.subway.medellin">Földalatti</string>
+	<string name="type.railway.station.subway.mexico">Földalatti</string>
+	<string name="type.railway.station.subway.milan">Földalatti</string>
 	<string name="type.railway.station.subway.minsk">Földalatti</string>
+	<string name="type.railway.station.subway.montreal">Földalatti</string>
 	<string name="type.railway.station.subway.moscow">Földalatti</string>
+	<string name="type.railway.station.subway.munchen">Földalatti</string>
+	<string name="type.railway.station.subway.nagoya">Földalatti</string>
 	<string name="type.railway.station.subway.newyork">Földalatti</string>
+	<string name="type.railway.station.subway.nnov">Földalatti</string>
+	<string name="type.railway.station.subway.novosibirsk">Földalatti</string>
+	<string name="type.railway.station.subway.osaka">Földalatti</string>
+	<string name="type.railway.station.subway.oslo">Földalatti</string>
+	<string name="type.railway.station.subway.palma">Földalatti</string>
+	<string name="type.railway.station.subway.panama">Földalatti</string>
 	<string name="type.railway.station.subway.paris">Földalatti</string>
+	<string name="type.railway.station.subway.philadelphia">Földalatti</string>
+	<string name="type.railway.station.subway.pyongyang">Földalatti</string>
+	<string name="type.railway.station.subway.rennes">Földalatti</string>
+	<string name="type.railway.station.subway.rio">Földalatti</string>
 	<string name="type.railway.station.subway.roma">Földalatti</string>
+	<string name="type.railway.station.subway.rotterdam">Földalatti</string>
+	<string name="type.railway.station.subway.samara">Földalatti</string>
+	<string name="type.railway.station.subway.santiago">Földalatti</string>
+	<string name="type.railway.station.subway.santo_domingo">Földalatti</string>
+	<string name="type.railway.station.subway.saopaulo">Földalatti</string>
+	<string name="type.railway.station.subway.sapporo">Földalatti</string>
+	<string name="type.railway.station.subway.sendai">Földalatti</string>
+	<string name="type.railway.station.subway.sf">Földalatti</string>
+	<string name="type.railway.station.subway.shanghai">Földalatti</string>
+	<string name="type.railway.station.subway.shiraz">Földalatti</string>
+	<string name="type.railway.station.subway.sofia">Földalatti</string>
 	<string name="type.railway.station.subway.spb">Földalatti</string>
+	<string name="type.railway.station.subway.stockholm">Földalatti</string>
+	<string name="type.railway.station.subway.tabriz">Földalatti</string>
+	<string name="type.railway.station.subway.taipei">Földalatti</string>
+	<string name="type.railway.station.subway.taoyuan">Földalatti</string>
+	<string name="type.railway.station.subway.tashkent">Földalatti</string>
+	<string name="type.railway.station.subway.tbilisi">Földalatti</string>
+	<string name="type.railway.station.subway.tianjin">Földalatti</string>
+	<string name="type.railway.station.subway.tokyo">Földalatti</string>
+	<string name="type.railway.station.subway.valencia">Földalatti</string>
+	<string name="type.railway.station.subway.vienna">Földalatti</string>
+	<string name="type.railway.station.subway.warszawa">Földalatti</string>
+	<string name="type.railway.station.subway.washington">Földalatti</string>
+	<string name="type.railway.station.subway.wuhan">Földalatti</string>
+	<string name="type.railway.station.subway.yerevan">Földalatti</string>
+	<string name="type.railway.station.subway.yokohama">Földalatti</string>
 	<string name="type.railway.subway_entrance">Földalatti bejárat</string>
-	<string name="type.railway.subway_entrance.barcelona">Földalatti</string>
-	<string name="type.railway.subway_entrance.berlin">Földalatti</string>
-	<string name="type.railway.subway_entrance.kiev">Földalatti</string>
-	<string name="type.railway.subway_entrance.london">Földalatti</string>
-	<string name="type.railway.subway_entrance.madrid">Földalatti</string>
-	<string name="type.railway.subway_entrance.minsk">Földalatti</string>
-	<string name="type.railway.subway_entrance.moscow">Földalatti</string>
-	<string name="type.railway.subway_entrance.newyork">Földalatti</string>
-	<string name="type.railway.subway_entrance.paris">Földalatti</string>
-	<string name="type.railway.subway_entrance.roma">Földalatti</string>
-	<string name="type.railway.subway_entrance.spb">Földalatti</string>
+	<string name="type.railway.subway_entrance.adana">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.algiers">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.almaty">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.amsterdam">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.ankara">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.athens">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.baku">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.bangkok">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.barcelona">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.beijing">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.bengalore">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.berlin">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.brasilia">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.brescia">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.brussels">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.bucharest">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.budapest">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.buenos_aires">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.bursa">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.cairo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.caracas">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.catania">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.changchun">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.chengdu">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.chicago">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.chongqing">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.dalian">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.delhi">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.dnepro">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.dubai">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.ekb">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.fukuoka">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.glasgow">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.guangzhou">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.hamburg">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.helsinki">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.hiroshima">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.isfahan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.istanbul">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.izmir">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kazan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kharkiv">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kiev">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kobe">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kolkata">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kunming">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.kyoto">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.la">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.lausanne">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.lille">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.lima">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.lisboa">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.london">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.lyon">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.madrid">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.malaga">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.manila">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.maracaibo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.mashhad">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.mecca">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.medellin">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.mexico">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.milan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.minsk">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.montreal">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.moscow">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.munchen">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.nagoya">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.newyork">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.nnov">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.novosibirsk">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.osaka">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.oslo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.palma">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.panama">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.paris">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.philadelphia">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.pyongyang">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.rennes">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.rio">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.roma">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.rotterdam">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.samara">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.santiago">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.santo_domingo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.saopaulo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.sapporo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.sendai">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.sf">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.shanghai">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.shiraz">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.sofia">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.spb">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.stockholm">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.tabriz">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.taipei">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.taoyuan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.tashkent">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.tbilisi">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.tianjin">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.tokyo">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.valencia">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.vienna">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.warszawa">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.washington">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.wuhan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.yerevan">Földalatti bejárat</string>
+	<string name="type.railway.subway_entrance.yokohama">Földalatti bejárat</string>
 	<string name="type.railway.tram_stop">Villamosmegálló</string>
 	<string name="type.shop">Bolt</string>
 	<string name="type.shop.alcohol">Italbolt</string>
@@ -1345,7 +1558,7 @@
 	<string name="type.shop.wine">Szeszesital-üzlet</string>
 	<string name="type.shop.antiques">Régiségek</string>
 	<string name="type.shop.art">Művészeti Bolt</string>
-	<string name="type.shop.baby_goods">Gyermekbolt</string>
+	<string name="type.shop.baby_goods">Bababolt</string>
 	<string name="type.shop.bag">Táskák bolt</string>
 	<string name="type.shop.boutique">Butik</string>
 	<string name="type.shop.charity">Jótékonysági Bolt</string>
@@ -1355,7 +1568,7 @@
 	<string name="type.shop.electrical">Elektronikai üzlet</string>
 	<string name="type.shop.fishing">Horgászbolt</string>
 	<string name="type.shop.interior_decoration">Belső dekorációk</string>
-	<string name="type.shop.lottery">Sorsjegyek</string>
+	<string name="type.shop.lottery">Lottózó</string>
 	<string name="type.shop.medical_supply">Orvosi eszközök</string>
 	<string name="type.shop.nutrition_supplements">Táplálékkiegészítők</string>
 	<string name="type.shop.paint">Festékek</string>
