@@ -229,7 +229,7 @@ public final class MapManager
     });
   }
 
-  static boolean warn3gAndRetry(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
+  public static boolean warn3gAndRetry(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
   {
     return warnOn3g(activity, countryId, new Runnable()
     {
