@@ -94,11 +94,16 @@ QTableWidgetItem * CreateItem(QString const & s)
 }
 }  // namespace
 
-void SearchPanel::ClearResults()
+void SearchPanel::ClearTable()
 {
   m_pTable->clear();
   m_pTable->setRowCount(0);
-  m_results.clear();
+}
+
+void SearchPanel::ClearResults()
+{
+  ClearTable();
+  m_results.Clear();
   m_pDrawWidget->GetFramework().GetBookmarkManager().GetEditSession().ClearGroup(UserMark::Type::SEARCH);
 }
 
@@ -120,18 +125,16 @@ void SearchPanel::StopBusyIndicator()
 void SearchPanel::OnEverywhereSearchResults(uint64_t timestamp, search::Results results)
 {
   CHECK(m_threadChecker.CalledOnOriginalThread(), ());
-  CHECK_LESS_OR_EQUAL(timestamp, m_timestamp, ());
 
+  CHECK_LESS_OR_EQUAL(timestamp, m_timestamp, ());
   if (timestamp != m_timestamp)
     return;
 
-  CHECK_LESS_OR_EQUAL(m_results.size(), results.GetCount(), ());
+  m_results = std::move(results);
+  ClearTable();
 
-  auto const sizeBeforeUpdate = m_results.size();
-
-  for (size_t i = m_results.size(); i < results.GetCount(); ++i)
+  for (auto const & res : m_results)
   {
-    auto & res = results[i];
     QString const name = QString::fromStdString(res.GetString());
     QString strHigh;
     int pos = 0;
@@ -158,14 +161,11 @@ void SearchPanel::OnEverywhereSearchResults(uint64_t timestamp, search::Results 
       m_pTable->setItem(rowCount, 0, CreateItem(QString::fromStdString(readableType)));
       m_pTable->setItem(rowCount, 3, CreateItem(m_pDrawWidget->GetDistance(res).c_str()));
     }
-
-    m_results.push_back(std::move(res));
   }
 
-  m_pDrawWidget->GetFramework().FillSearchResultsMarks(m_results.begin() + sizeBeforeUpdate,
-                                                       m_results.end(), false /* clear */);
+  m_pDrawWidget->GetFramework().FillSearchResultsMarks(true /* clear */, m_results);
 
-  if (results.IsEndMarker())
+  if (m_results.IsEndMarker())
     StopBusyIndicator();
 }
 
@@ -233,8 +233,6 @@ void SearchPanel::OnSearchTextChanged(QString const & str)
   }
 
   bool const isCategory = m_isCategory->isChecked();
-
-  bool started = false;
   auto const timestamp = ++m_timestamp;
 
   using namespace search;
@@ -250,7 +248,8 @@ void SearchPanel::OnSearchTextChanged(QString const & str)
       }
     };
 
-    started = m_pDrawWidget->GetFramework().GetSearchAPI().SearchEverywhere(std::move(params));
+    if (m_pDrawWidget->GetFramework().GetSearchAPI().SearchEverywhere(std::move(params)))
+      StartBusyIndicator();
   }
   else if (m_mode == Mode::Viewport)
   {
@@ -258,7 +257,10 @@ void SearchPanel::OnSearchTextChanged(QString const & str)
     {
       normalized, GetCurrentInputLocale(), {} /* timeout */, isCategory,
       // m_onStarted
-      {},
+      [this]()
+      {
+        StartBusyIndicator();
+      },
       // m_onCompleted
       [this](search::Results results)
       {
@@ -273,11 +275,8 @@ void SearchPanel::OnSearchTextChanged(QString const & str)
       }
     };
 
-    started = m_pDrawWidget->GetFramework().GetSearchAPI().SearchInViewport(std::move(params));
+    m_pDrawWidget->GetFramework().GetSearchAPI().SearchInViewport(std::move(params));
   }
-
-  if (started)
-    StartBusyIndicator();
 }
 
 void SearchPanel::OnSearchModeChanged(int mode)
@@ -308,7 +307,7 @@ void SearchPanel::RunSearch()
 
 void SearchPanel::OnSearchPanelItemClicked(int row, int)
 {
-  ASSERT_EQUAL(m_results.size(), static_cast<size_t>(m_pTable->rowCount()), ());
+  ASSERT_EQUAL(m_results.GetCount(), static_cast<size_t>(m_pTable->rowCount()), ());
 
   if (m_results[row].IsSuggest())
   {

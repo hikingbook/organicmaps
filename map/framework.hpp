@@ -488,7 +488,6 @@ public:
   /// Show all model by it's world rect.
   void ShowAll();
 
-  m2::PointD GetPixelCenter() const;
   m2::PointD GetVisiblePixelCenter() const;
 
   m2::PointD const & GetViewportCenter() const;
@@ -560,6 +559,7 @@ public:
   ParsedRoutingData GetParsedRoutingData() const;
   url_scheme::SearchRequest GetParsedSearchRequest() const;
   std::string const & GetParsedAppName() const;
+  ms::LatLon GetParsedCenterLatLon() const;
 
   using FeatureMatcher = std::function<bool(FeatureType & ft)>;
 
@@ -588,6 +588,7 @@ private:
   void FillSearchResultInfo(SearchMarkPoint const & smp, place_page::Info & info) const;
   void FillMyPositionInfo(place_page::Info & info, place_page::BuildInfo const & buildInfo) const;
   void FillRouteMarkInfo(RouteMarkPoint const & rmp, place_page::Info & info) const;
+  void FillSpeedCameraMarkInfo(SpeedCameraMark const & speedCameraMark, place_page::Info & info) const;
   void FillTransitMarkInfo(TransitMark const & transitMark, place_page::Info & info) const;
   void FillRoadTypeMarkInfo(RoadWarningMark const & roadTypeMark, place_page::Info & info) const;
   void FillPointInfoForBookmark(Bookmark const & bmk, place_page::Info & info) const;

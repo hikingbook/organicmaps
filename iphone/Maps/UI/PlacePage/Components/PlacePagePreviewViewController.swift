@@ -135,8 +135,9 @@ final class PlacePagePreviewViewController: UIViewController {
   private func configSchedule() {
     let now = time_t(Date().timeIntervalSince1970);
     
-    let hourFormatter = DateFormatter();
-    hourFormatter.dateFormat = "HH:mm";
+    let hourFormatter = DateFormatter()
+    hourFormatter.locale = Locale.current
+    hourFormatter.timeStyle = .short
     
     switch placePagePreviewData.schedule.state {
     case .allDay:
@@ -215,7 +216,7 @@ final class PlacePagePreviewViewController: UIViewController {
   
   private func getTimeIntervalString(minutes: Int) -> String {
     var str = "";
-    if (minutes > 60)
+    if (minutes >= 60)
     {
       str = String(minutes / 60) + " " + L("hour") + " ";
     }

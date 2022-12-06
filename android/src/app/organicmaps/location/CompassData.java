@@ -1,0 +1,33 @@
+package app.organicmaps.location;
+
+import android.app.Activity;
+import android.content.Context;
+
+import androidx.annotation.NonNull;
+
+import app.organicmaps.MwmApplication;
+import app.organicmaps.util.LocationUtils;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
+
+
+public final class CompassData
+{
+  private double mNorth;
+
+  public void update(@NonNull Context context, double north)
+  {
+//    Activity top = MwmApplication.backgroundTracker(context).getTopActivity();
+    Activity top = OrganicmapsFrameworkAdapter.INSTANCE.getBackgroundTracker().getTopActivity();
+    if (top == null)
+      return;
+
+    int rotation = top.getWindowManager().getDefaultDisplay().getRotation();
+    mNorth = LocationUtils.correctCompassAngle(rotation, north);
+  }
+
+  public double getNorth()
+  {
+    return mNorth;
+  }
+}
+

@@ -30,8 +30,8 @@
           android:layout_centerVertical="true"
           android:layout_marginEnd="@dimen/margin_half_plus"
           android:layout_marginStart="@dimen/margin_quarter"
-          android:tint="?iconTint"
-          tools:src="@drawable/ic_operator"/>
+          tools:src="@drawable/ic_operator"
+          app:tint="?iconTint" />
 
         <TextView
           android:id="@+id/title"
@@ -271,7 +271,7 @@
           android:layout_height="32dp"
           android:text="@string/editor_other_info"
           android:textAppearance="@style/MwmTextAppearance.Body2"/>
-        <com.mapswithme.maps.widget.CustomTextInputLayout
+        <app.organicmaps.widget.CustomTextInputLayout
           android:id="@+id/custom_input"
           style="@style/MwmWidget.Editor.CustomTextInput"
           android:gravity="center_vertical"
@@ -282,7 +282,7 @@
             style="@style/MwmWidget.Editor.FieldLayout.EditText"
             android:inputType="textMultiLine"
             android:hint="@string/editor_detailed_description_hint"/>
-        </com.mapswithme.maps.widget.CustomTextInputLayout>
+        </app.organicmaps.widget.CustomTextInputLayout>
         <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
