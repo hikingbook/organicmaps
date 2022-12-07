@@ -818,16 +818,8 @@ void Storage::RegisterDownloadedFiles(CountryId const & countryId, MapFileType t
 
   if (!localFile || localFile->IsInBundle())
     localFile = PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile);
-  else if (localFile->GetMapSource() != mapSource) {
-      localFile = PreparePlaceForCountryFiles(m_currentVersion, m_dataDir, countryFile);
-      string const path = localFile->GetPath(type);
-      string const newPath = path + std::to_string(static_cast<uint8_t>(localFile->GetMapSource()));
-      if (!base::RenameFileX(path, newPath)) {
-          base::DeleteFileX(newPath);
-          fn(false);
-          return;
-      }
-  }
+  else if (localFile->GetMapSource() != mapSource)
+      base::DeleteFileX(localFile->GetPath(type));
   else
   {
     /// @todo If localFile already exists, we will remove it from disk below?
