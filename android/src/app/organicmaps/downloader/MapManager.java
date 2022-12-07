@@ -412,4 +412,6 @@ public final class MapManager
   public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser);
 
   public static native int nativeGetHikingbookProMapSize(String root);
+
+  public static native int nativeSetRenderingEnabled(boolean enabled);
 }

@@ -707,4 +707,14 @@ Java_app_organicmaps_downloader_MapManager_nativeGetHikingbookProMapSize(JNIEnv 
     }
     return GetStorage().GetCountryFile(countryID).GetHikingbookProMapRemoteSize();
 }
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_downloader_MapManager_nativeSetRenderingEnabled(JNIEnv *env, jclass clazz, jboolean enabled) {
+    if (enabled) {
+        g_framework->NativeFramework()->SetRenderingEnabled();
+    }
+    else {
+        g_framework->NativeFramework()->SetRenderingDisabled(false);
+    }
+}
 } // extern "C"
