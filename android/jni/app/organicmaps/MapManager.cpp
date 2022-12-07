@@ -654,81 +654,43 @@ Java_app_organicmaps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JNIEnv
 
 // static @Nullable void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
 JNIEXPORT void JNICALL
-Java_app_organicmaps_downloader_MapManager_nativeUpdateLocalMapRegistration(JNIEnv *env,
+Java_app_organicmaps_downloader_MapManager_nativeUpdateAllMapsRegistration(JNIEnv *env,
                                                                                 jclass clazz,
-                                                                                jboolean isPro,
-                                                                                jboolean isActivatedUser,
-                                                                                jint freeLimitNumDownloadedMaps) {
+                                                                                jboolean isActivatedUser) {
     auto &s = GetStorage();
-    if (s.IsDownloadInProgress() || s.GetDownloadedFilesCount() <= 0) {
+    if (s.IsDownloadInProgress()) {
         return;
     }
 
-    std::vector<std::shared_ptr<platform::LocalCountryFile>> maps;
-    s.GetLocalMaps(maps);
-
+    auto isUpdated = false;
+    auto const numDownloadedCountries = s.GetDownloadedFilesCount();
     auto f = g_framework->NativeFramework();
-    f->DeregisterAllMaps();
-
-    auto currentRegisteredMapsCapacity = isPro ? INT_MAX : isActivatedUser ? freeLimitNumDownloadedMaps : 0;
-    auto registerCountryFile = [&s, &f, &currentRegisteredMapsCapacity](storage::LocalFilePtr localFile, bool isComsumeCapacity) {
-        s.RegisterCountryFiles(localFile);
-        f->RegisterMap(*(localFile.get()));
-
-        if (isComsumeCapacity) {
-            currentRegisteredMapsCapacity--;
-        }
-    };
-    for (auto const & localFile : maps) {
-        bool isWorldMap = localFile->GetCountryName().find("World") != std::string::npos;
-        if (isWorldMap) {
-            registerCountryFile(localFile, false);
-        }
-        else if (currentRegisteredMapsCapacity > 0) {
-            auto const mapSource = localFile->GetMapSource();
-            switch (mapSource) {
-                case MapSource::Organicmaps:
-                    if (isPro) {
-                        auto const path = localFile->GetPath(MapFileType::Map);
-                        auto const hikingbookProMapPath = path + std::to_string(static_cast<uint8_t>(MapSource::HikingbookProMaps));
-                        if (GetPlatform().IsFileExistsByFullPath(hikingbookProMapPath)) {
-                            auto const newPath = path + std::to_string(static_cast<uint8_t>(mapSource));
-                            if (GetPlatform().IsFileExistsByFullPath(newPath)) {
-                                base::DeleteFileX(newPath);
-                            }
-                            if (!base::RenameFileX(path, newPath) || !base::RenameFileX(hikingbookProMapPath, path)) {
-                                break;
-                            }
-                            localFile->SyncWithDisk();
-                        }
-                    }
-                    registerCountryFile(localFile, !isPro);
-                    break;
-                default:
-                    if (isPro) {
-                        registerCountryFile(localFile, !isPro);
-                    }
-                    else {
-                        auto const path = localFile->GetPath(MapFileType::Map);
-                        auto const organicmapPath = path + std::to_string(static_cast<uint8_t>(MapSource::Organicmaps));
-                        if (GetPlatform().IsFileExistsByFullPath(organicmapPath)) {
-                            auto const newPath = path + std::to_string(static_cast<uint8_t>(mapSource));
-                            if (GetPlatform().IsFileExistsByFullPath(newPath)) {
-                                base::DeleteFileX(newPath);
-                            }
-                            if (!base::RenameFileX(path, newPath) || !base::RenameFileX(organicmapPath, path)) {
-                                break;
-                            }
-                            localFile->SyncWithDisk();
-                            registerCountryFile(localFile, !isPro);
-                        }
-                    }
-                    break;
-            }
+    if (isActivatedUser) {
+        // World.mwm & WorldCoasts.mwm
+        if (numDownloadedCountries <= 2) {
+            f->RegisterAllMaps();
+            isUpdated = true;
         }
     }
-    m2::RectD rect = mercator::Bounds::FullRect();
-    f->InvalidateRect(rect);
+    else if (numDownloadedCountries > 0) {
+        std::vector<std::shared_ptr<platform::LocalCountryFile>> localCountryFiles;
+        s.GetLocalMaps(localCountryFiles);
+
+        f->DeregisterAllMaps();
+        for (auto const & localCountryFile : localCountryFiles) {
+            bool isWorldMap = localCountryFile->GetCountryName().find("World") != std::string::npos;
+            if (isWorldMap) {
+                s.RegisterCountryFiles(localCountryFile);
+                f->RegisterMap(*(localCountryFile.get()));
+            }
+        }
+        isUpdated = true;
+    }
+
+    if (isUpdated) {
+        m2::RectD rect = mercator::Bounds::FullRect();
+        f->InvalidateRect(rect);
+    }
 }
 
 JNIEXPORT jint JNICALL
