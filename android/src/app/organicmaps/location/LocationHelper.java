@@ -567,6 +567,13 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
     manager.sendExtraCommand(LocationManager.GPS_PROVIDER, "force_time_injection", null);
   }
 
+  public void registerForActivityResults(FragmentActivity activity) {
+    mPermissionRequest = activity.registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
+                    result -> onRequestPermissionsResult());
+    mResolutionRequest = activity.registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(),
+                    result -> onLocationResolutionResult(result.getResultCode()));
+  }
+
   /**
    * Attach UI to helper.
    */
@@ -583,12 +590,9 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
 
     mUiCallback = callback;
 
-    mPermissionRequest = mUiCallback.requireActivity()
-        .registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
-            result -> onRequestPermissionsResult());
-    mResolutionRequest = mUiCallback.requireActivity()
-        .registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(),
-            result -> onLocationResolutionResult(result.getResultCode()));
+    if (mPermissionRequest == null || mResolutionRequest == null) {
+      registerForActivityResults(mUiCallback.requireActivity());
+    }
 
     if (!Config.isScreenSleepEnabled())
       Utils.keepScreenOn(true, mUiCallback.requireActivity().getWindow());
