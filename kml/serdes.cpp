@@ -15,20 +15,23 @@
 
 #include <sstream>
 
-using namespace std::string_literals;
-
 namespace kml
 {
 namespace
 {
-std::string const kPlacemark = "Placemark";
-std::string const kStyle = "Style";
-std::string const kDocument = "Document";
-std::string const kStyleMap = "StyleMap";
-std::string const kStyleUrl = "styleUrl";
-std::string const kPair = "Pair";
-std::string const kExtendedData = "ExtendedData";
+std::string_view const kPlacemark = "Placemark";
+std::string_view const kStyle = "Style";
+std::string_view const kDocument = "Document";
+std::string_view const kStyleMap = "StyleMap";
+std::string_view const kStyleUrl = "styleUrl";
+std::string_view const kPair = "Pair";
+std::string_view const kExtendedData = "ExtendedData";
 std::string const kCompilation = "mwm:compilation";
+
+std::string_view const kCoordinates = "coordinates";
+std::string_view const kTrack = "Track";
+std::string_view const gxTrack = "gx:Track";
+std::string_view const gxCoord = "gx:coord";
 
 std::string const kKmlHeader =
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -54,19 +57,15 @@ auto const kDefaultTrackColor = 0x006ec7ff;
 
 std::string Indent(size_t count)
 {
-  static std::string const kIndent = " ";
-  std::ostringstream indent;
-  for (size_t i = 0; i < count; ++i)
-    indent << kIndent;
-  return indent.str();
+  return std::string(count, ' ');
 }
 
-static std::string const kIndent0 = Indent(0);
-static std::string const kIndent2 = Indent(2);
-static std::string const kIndent4 = Indent(4);
-static std::string const kIndent6 = Indent(6);
-static std::string const kIndent8 = Indent(8);
-static std::string const kIndent10 = Indent(10);
+std::string const kIndent0 = Indent(0);
+std::string const kIndent2 = Indent(2);
+std::string const kIndent4 = Indent(4);
+std::string const kIndent6 = Indent(6);
+std::string const kIndent8 = Indent(8);
+std::string const kIndent10 = Indent(10);
 
 std::string PointToString(m2::PointD const & org)
 {
@@ -217,7 +216,7 @@ void SaveColorToABGR(KmlWriter::WriterWrapper & writer, uint32_t rgba)
 std::string TimestampToString(Timestamp const & timestamp)
 {
   auto const ts = TimestampClock::to_time_t(timestamp);
-  std::string const strTimeStamp = base::TimestampToString(ts);
+  std::string strTimeStamp = base::TimestampToString(ts);
   if (strTimeStamp.size() != 20)
     MYTHROW(KmlWriter::WriteKmlException, ("We always generate fixed length UTC-format timestamp."));
   return strTimeStamp;
@@ -510,6 +509,43 @@ void SaveTrackLayer(KmlWriter::WriterWrapper & writer, TrackLayer const & layer,
   writer << offsetStr << "<width>" << strings::to_string(layer.m_lineWidth) << "</width>\n";
 }
 
+void SaveTrackGeometry(KmlWriter::WriterWrapper & writer, MultiGeometry const & geom)
+{
+  size_t const sz = geom.m_lines.size();
+  if (sz == 0)
+  {
+    ASSERT(false, ());
+    return;
+  }
+
+  auto linesIndent = kIndent4;
+  if (sz > 1)
+  {
+    linesIndent = kIndent8;
+    writer << kIndent4 << "<MultiGeometry>\n";
+  }
+
+  for (auto const & e : geom.m_lines)
+  {
+    if (e.empty())
+    {
+      ASSERT(false, ());
+      continue;
+    }
+
+    writer << linesIndent << "<LineString><coordinates>";
+
+    writer << PointToString(e[0]);
+    for (size_t i = 1; i < e.size(); ++i)
+      writer << " " << PointToString(e[i]);
+
+    writer << "</coordinates></LineString>\n";
+  }
+
+  if (sz > 1)
+    writer << kIndent4 << "</MultiGeometry>\n";
+}
+
 void SaveTrackExtendedData(KmlWriter::WriterWrapper & writer, TrackData const & trackData)
 {
   writer << kIndent4 << kExtendedDataHeader;
@@ -564,14 +600,7 @@ void SaveTrackData(KmlWriter::WriterWrapper & writer, TrackData const & trackDat
            << "</when></TimeStamp>\n";
   }
 
-  writer << kIndent4 << "<LineString><coordinates>";
-  for (size_t i = 0; i < trackData.m_pointsWithAltitudes.size(); ++i)
-  {
-    writer << PointToString(trackData.m_pointsWithAltitudes[i]);
-    if (i + 1 != trackData.m_pointsWithAltitudes.size())
-      writer << " ";
-  }
-  writer << "</coordinates></LineString>\n";
+  SaveTrackGeometry(writer, trackData.m_geometry);
 
   SaveTrackExtendedData(writer, trackData);
 
@@ -682,7 +711,7 @@ void KmlParser::ResetPoint()
   m_trackWidth = kDefaultTrackWidth;
   m_icon = BookmarkIcon::None;
 
-  m_pointsWithAltitudes.clear();
+  m_geometry.Clear();
   m_geometryType = GEOMETRY_TYPE_UNKNOWN;
 }
 
@@ -695,20 +724,31 @@ void KmlParser::SetOrigin(std::string const & s)
     m_org = pt;
 }
 
-void KmlParser::ParseLineCoordinates(std::string const & s, char const * blockSeparator,
-                                     char const * coordSeparator)
+void KmlParser::ParseAndAddPoint(MultiGeometry::LineT & line, std::string_view v, char const * separator)
+{
+  geometry::PointWithAltitude point;
+  if (ParsePointWithAltitude(v, separator, point))
+  {
+    // We dont't expect vertical surfaces, so do not compare heights here.
+    // Will get a lot of duplicating points otherwise after import some user KMLs.
+    // https://github.com/organicmaps/organicmaps/issues/3895
+    if (line.empty() || !AlmostEqualAbs(line.back().GetPoint(), point.GetPoint(), kMwmPointAccuracy))
+      line.emplace_back(point);
+  }
+}
+
+void KmlParser::ParseLineCoordinates(std::string const & s, char const * blockSeparator, char const * coordSeparator)
 {
   m_geometryType = GEOMETRY_TYPE_LINE;
 
+  MultiGeometry::LineT line;
   strings::Tokenize(s, blockSeparator, [&](std::string_view v)
   {
-    geometry::PointWithAltitude point;
-    if (ParsePointWithAltitude(v, coordSeparator, point))
-    {
-      if (m_pointsWithAltitudes.empty() || !AlmostEqualAbs(m_pointsWithAltitudes.back(), point, kMwmPointAccuracy))
-        m_pointsWithAltitudes.emplace_back(point);
-    }
+    ParseAndAddPoint(line, v, coordSeparator);
   });
+
+  if (line.size() > 1)
+    m_geometry.m_lines.push_back(std::move(line));
 }
 
 bool KmlParser::MakeValid()
@@ -731,7 +771,7 @@ bool KmlParser::MakeValid()
   }
   else if (GEOMETRY_TYPE_LINE == m_geometryType)
   {
-    return m_pointsWithAltitudes.size() > 1;
+    return m_geometry.IsValid();
   }
 
   return false;
@@ -783,6 +823,11 @@ bool KmlParser::Push(std::string const & tag)
     m_categoryData = &m_compilationData;
     m_compilationData.m_accessRules = m_data.m_categoryData.m_accessRules;
   }
+  else if (IsProcessTrackTag())
+  {
+    m_geometryType = GEOMETRY_TYPE_LINE;
+    m_geometry.m_lines.push_back({});
+  }
   return true;
 }
 
@@ -832,7 +877,7 @@ void KmlParser::AddAttr(std::string const & attr, std::string const & value)
   }
 }
 
-bool KmlParser::IsValidAttribute(std::string const & type, std::string const & value,
+bool KmlParser::IsValidAttribute(std::string_view const & type, std::string const & value,
                                  std::string const & attrInLowerCase) const
 {
   return (GetTagFromEnd(0) == type && !value.empty() && attrInLowerCase == "id");
@@ -842,6 +887,12 @@ std::string const & KmlParser::GetTagFromEnd(size_t n) const
 {
   ASSERT_LESS(n, m_tags.size(), ());
   return m_tags[m_tags.size() - n - 1];
+}
+
+bool KmlParser::IsProcessTrackTag() const
+{
+  size_t const n = m_tags.size();
+  return n >= 3 && m_tags[n - 1] == kTrack && (m_tags[n - 2] == kPlacemark || m_tags[n - 3] == kPlacemark);
 }
 
 void KmlParser::Pop(std::string const & tag)
@@ -889,7 +940,7 @@ void KmlParser::Pop(std::string const & tag)
         data.m_description = std::move(m_description);
         data.m_layers = std::move(m_trackLayers);
         data.m_timestamp = m_timestamp;
-        data.m_pointsWithAltitudes = m_pointsWithAltitudes;
+        data.m_geometry = std::move(m_geometry);
         data.m_visible = m_visible;
         data.m_nearestToponyms = std::move(m_nearestToponyms);
         data.m_properties = std::move(m_properties);
@@ -931,6 +982,14 @@ void KmlParser::Pop(std::string const & tag)
     m_data.m_compilationsData.push_back(std::move(m_compilationData));
     m_categoryData = &m_data.m_categoryData;
   }
+  else if (IsProcessTrackTag())
+  {
+    // Simple line validation.
+    auto & lines = m_geometry.m_lines;
+    ASSERT(!lines.empty(), ());
+    if (lines.back().size() < 2)
+      lines.pop_back();
+  }
 
   m_tags.pop_back();
 }
@@ -947,6 +1006,20 @@ void KmlParser::CharData(std::string value)
     std::string const ppTag = count > 2 ? m_tags[count - 3] : std::string();
     std::string const pppTag = count > 3 ? m_tags[count - 4] : std::string();
     std::string const ppppTag = count > 4 ? m_tags[count - 5] : std::string();
+
+    auto const TrackTag = [this, &prevTag, &currTag, &value]()
+    {
+      if (prevTag != kTrack)
+        return false;
+
+      if (currTag == "coord")
+      {
+        auto & lines = m_geometry.m_lines;
+        ASSERT(!lines.empty(), ());
+        ParseAndAddPoint(lines.back(), value, " ");
+      }
+      return true;
+    };
 
     if (prevTag == kDocument)
     {
@@ -1121,18 +1194,22 @@ void KmlParser::CharData(std::string value)
     {
       if (prevTag == "Point")
       {
-        if (currTag == "coordinates")
+        if (currTag == kCoordinates)
           SetOrigin(value);
       }
       else if (prevTag == "LineString")
       {
-        if (currTag == "coordinates")
+        if (currTag == kCoordinates)
           ParseLineCoordinates(value, " \n\r\t", ",");
       }
-      else if (prevTag == "gx:Track")
+      else if (prevTag == gxTrack)
       {
-        if (currTag == "gx:coord")
+        if (currTag == gxCoord)
           ParseLineCoordinates(value, "\n\r\t", " ");
+      }
+      else if (TrackTag())
+      {
+        // noop
       }
       else if (prevTag == kExtendedData)
       {
@@ -1202,68 +1279,75 @@ void KmlParser::CharData(std::string value)
     {
       if (prevTag == "Point")
       {
-        if (currTag == "coordinates")
+        if (currTag == kCoordinates)
           SetOrigin(value);
       }
       else if (prevTag == "LineString")
       {
-        if (currTag == "coordinates")
+        if (currTag == kCoordinates)
           ParseLineCoordinates(value, " \n\r\t", ",");
       }
-      else if (prevTag == "gx:Track")
+      else if (prevTag == gxTrack)
       {
-        if (currTag == "gx:coord")
+        if (currTag == gxCoord)
           ParseLineCoordinates(value, "\n\r\t", " ");
       }
     }
     else if (ppTag == "gx:MultiTrack")
     {
-      if (prevTag == "gx:Track")
+      if (prevTag == gxTrack)
       {
-        if (currTag == "gx:coord")
+        if (currTag == gxCoord)
           ParseLineCoordinates(value, "\n\r\t", " ");
       }
     }
-    else if (pppTag == kPlacemark && ppTag == kExtendedData)
+    else if (pppTag == kPlacemark)
     {
-      if (currTag == "mwm:lang")
+      if (ppTag == kExtendedData)
       {
-        if (prevTag == "mwm:name" && m_attrCode >= 0)
-          m_name[m_attrCode] = value;
-        else if (prevTag == "mwm:description" && m_attrCode >= 0)
-          m_description[m_attrCode] = value;
-        else if (prevTag == "mwm:customName" && m_attrCode >= 0)
-          m_customName[m_attrCode] = value;
-        m_attrCode = StringUtf8Multilang::kUnsupportedLanguageCode;
-      }
-      else if (currTag == "mwm:value")
-      {
-        uint32_t i;
-        if (prevTag == "mwm:featureTypes")
+        if (currTag == "mwm:lang")
         {
-          auto const & c = classif();
-          if (!c.HasTypesMapping())
-            MYTHROW(DeserializerKml::DeserializeException, ("Types mapping is not loaded."));
-          auto const type = c.GetTypeByReadableObjectName(value);
-          if (c.IsTypeValid(type))
+          if (prevTag == "mwm:name" && m_attrCode >= 0)
+            m_name[m_attrCode] = value;
+          else if (prevTag == "mwm:description" && m_attrCode >= 0)
+            m_description[m_attrCode] = value;
+          else if (prevTag == "mwm:customName" && m_attrCode >= 0)
+            m_customName[m_attrCode] = value;
+          m_attrCode = StringUtf8Multilang::kUnsupportedLanguageCode;
+        }
+        else if (currTag == "mwm:value")
+        {
+          uint32_t i;
+          if (prevTag == "mwm:featureTypes")
           {
-            auto const typeInd = c.GetIndexForType(type);
-            m_featureTypes.push_back(typeInd);
+            auto const & c = classif();
+            if (!c.HasTypesMapping())
+              MYTHROW(DeserializerKml::DeserializeException, ("Types mapping is not loaded."));
+            auto const type = c.GetTypeByReadableObjectName(value);
+            if (c.IsTypeValid(type))
+            {
+              auto const typeInd = c.GetIndexForType(type);
+              m_featureTypes.push_back(typeInd);
+            }
+          }
+          else if (prevTag == "mwm:boundTracks" && strings::to_uint(value, i))
+          {
+            m_boundTracks.push_back(static_cast<LocalId>(i));
+          }
+          else if (prevTag == "mwm:nearestToponyms")
+          {
+            m_nearestToponyms.push_back(value);
+          }
+          else if (prevTag == "mwm:properties" && !m_attrKey.empty())
+          {
+            m_properties[m_attrKey] = value;
+            m_attrKey.clear();
           }
         }
-        else if (prevTag == "mwm:boundTracks" && strings::to_uint(value, i))
-        {
-          m_boundTracks.push_back(static_cast<LocalId>(i));
-        }
-        else if (prevTag == "mwm:nearestToponyms")
-        {
-          m_nearestToponyms.push_back(value);
-        }
-        else if (prevTag == "mwm:properties" && !m_attrKey.empty())
-        {
-          m_properties[m_attrKey] = value;
-          m_attrKey.clear();
-        }
+      }
+      else if (ppTag == "MultiTrack" && TrackTag())
+      {
+        // noop
       }
     }
   }

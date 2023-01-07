@@ -375,7 +375,10 @@ using namespace std;
 
     CHECK(routeResult.first, ());
     Route const & route = *routeResult.first;
-    integration::TestRouteTime(route, 19053.0);
+
+    // New time is closer to GraphHopper timing:
+    // https://www.openstreetmap.org/directions?engine=graphhopper_car&route=52.51172%2C13.39468%3B48.13294%2C11.60352
+    integration::TestRouteTime(route, 19321.7);
   }
 
   // Test on roads with tag route=shuttle_train. This train has defined maxspeed=100.
@@ -391,7 +394,7 @@ using namespace std;
     CHECK(routeResult.first, ());
     Route const & route = *routeResult.first;
     integration::TestRouteLength(route, 44116.7);
-    integration::TestRouteTime(route, 2580.82);
+    integration::TestRouteTime(route, 2529.63);
   }
 
   UNIT_TEST(TolyattiFeatureThatCrossSeveralMwmsTest)
@@ -757,6 +760,11 @@ using namespace std;
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(48.4101446, 11.5892265), {0., 0.},
         mercator::FromLatLon(45.7662964, 10.8111554), 427135);
+
+    integration::CalculateRouteAndTestRouteLength(
+        integration::GetVehicleComponents(VehicleType::Car),
+        mercator::FromLatLon(45.7662964, 10.8111554), {0., 0.},
+        mercator::FromLatLon(48.4101446, 11.5892265), 431341);
   }
 
   // https://github.com/organicmaps/organicmaps/issues/3363
@@ -766,5 +774,17 @@ using namespace std;
         integration::GetVehicleComponents(VehicleType::Car),
         mercator::FromLatLon(55.1187744, 26.8460319), {0., 0.},
         mercator::FromLatLon(55.6190911, 27.0938092), 86239.8);
+  }
+
+  // https://github.com/organicmaps/organicmaps/issues/3257
+  UNIT_TEST(Turkey_AvoidMountainsSecondary)
+  {
+    using namespace integration;
+    TRouteResult const res = CalculateRoute(GetVehicleComponents(VehicleType::Car),
+                                mercator::FromLatLon(41.0027, 27.6752), {0., 0.},
+                                mercator::FromLatLon(40.6119, 27.1136));
+
+    TestRouteLength(*res.first, 100329.0);
+    TestRouteTime(*res.first, 5342.23);
   }
 } // namespace route_test

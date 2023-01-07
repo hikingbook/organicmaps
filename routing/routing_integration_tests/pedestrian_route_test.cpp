@@ -602,3 +602,11 @@ UNIT_TEST(NoTurnOnForkingRoad2_TurnTest)
   TEST_EQUAL(t[0].m_pedestrianTurn, PedestrianDirection::TurnRight, ());
   TEST_EQUAL(t[1].m_pedestrianTurn, PedestrianDirection::TurnRight, ());
 }
+
+UNIT_TEST(Hungary_UseFootways)
+{
+  integration::CalculateRouteAndTestRouteLength(
+      integration::GetVehicleComponents(VehicleType::Pedestrian),
+      mercator::FromLatLon(45.8587043, 18.2863972), {0., 0.},
+      mercator::FromLatLon(45.858625, 18.285348), 95.7657, 0.02 /* relativeError */);
+}

@@ -17,39 +17,21 @@ import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmFragment;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.Constants;
+import app.organicmaps.util.DateUtils;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.Utils;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class HelpFragment extends BaseMwmFragment implements View.OnClickListener
 {
   private String mDonateUrl;
 
-  private void setupItem(@IdRes int id, boolean tint, @NonNull View frame)
+  private TextView setupItem(@IdRes int id, boolean tint, @NonNull View frame)
   {
-    TextView view = frame.findViewById(id);
+    final TextView view = frame.findViewById(id);
     view.setOnClickListener(this);
     if (tint)
       Graphics.tint(view);
-  }
-
-  // Converts 220131 to locale-dependent date (e.g. 31 January 2022),
-  private String localDate(long v)
-  {
-    final SimpleDateFormat format = new SimpleDateFormat("yyMMdd", Locale.getDefault());
-    final String strVersion = String.valueOf(v);
-    try {
-      final Date date = format.parse(strVersion);
-      if (date == null)
-        return strVersion;
-      return java.text.DateFormat.getDateInstance().format(date);
-    } catch (java.text.ParseException e) {
-      e.printStackTrace();
-      return strVersion;
-    }
+    return view;
   }
 
   @Override
@@ -62,7 +44,7 @@ public class HelpFragment extends BaseMwmFragment implements View.OnClickListene
         .setText(BuildConfig.VERSION_NAME);
 
     ((TextView) root.findViewById(R.id.data_version))
-        .setText(getString(R.string.data_version, localDate(Framework.nativeGetDataVersion())));
+        .setText(getString(R.string.data_version, DateUtils.getLocalDate(Framework.nativeGetDataVersion())));
 
     setupItem(R.id.news, true, root);
     setupItem(R.id.web, true, root);
@@ -79,14 +61,25 @@ public class HelpFragment extends BaseMwmFragment implements View.OnClickListene
     setupItem(R.id.report, true, root);
     if (TextUtils.isEmpty(mDonateUrl))
     {
-      TextView donateView = root.findViewById(R.id.donate);
+      final TextView donateView = root.findViewById(R.id.donate);
       donateView.setVisibility(View.GONE);
-      TextView supportUsView = root.findViewById(R.id.support_us);
-      supportUsView.setVisibility(View.GONE);
+      if (BuildConfig.FLAVOR.equals("google"))
+      {
+        final TextView supportUsView = root.findViewById(R.id.support_us);
+        supportUsView.setVisibility(View.GONE);
+      }
+      else
+        setupItem(R.id.support_us, true, root);
     }
     else
     {
-      setupItem(R.id.donate, true, root);
+      if (Config.isNY())
+      {
+        final TextView textView = setupItem(R.id.donate, false, root);
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_christmas_tree, 0, R.drawable.ic_christmas_tree, 0);
+      }
+      else
+        setupItem(R.id.donate, true, root);
       setupItem(R.id.support_us, true, root);
     }
     if (BuildConfig.REVIEW_URL.isEmpty())
@@ -109,7 +102,7 @@ public class HelpFragment extends BaseMwmFragment implements View.OnClickListene
 
   private void onPrivacyPolicyClick()
   {
-    openLink(getResources().getString(R.string.translated_om_site_url) + "policy/");
+    openLink(getResources().getString(R.string.translated_om_site_url) + "privacy/");
   }
 
   private void onTermOfUseClick()
