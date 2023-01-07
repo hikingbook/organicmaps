@@ -241,18 +241,17 @@ public class RichPlacePageController implements PlacePageController, LocationLis
   }
 
   @Override
-  public void onLocationUpdated(Location location)
+  public void onLocationUpdated(@NonNull Location location)
   {
     mPlacePage.refreshLocation(location);
   }
 
   @Override
-  public void onCompassUpdated(long time, double north)
+  public void onCompassUpdated(double north)
   {
     @BottomSheetBehavior.State
     int currentState = mPlacePageBehavior.getState();
-    if (PlacePageUtils.isHiddenState(currentState) || PlacePageUtils.isDraggingState(currentState)
-        || PlacePageUtils.isSettlingState(currentState))
+    if (PlacePageUtils.isHiddenState(currentState))
       return;
 
     mPlacePage.refreshAzimuth(north);

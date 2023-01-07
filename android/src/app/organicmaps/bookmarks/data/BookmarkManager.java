@@ -943,9 +943,6 @@ public enum BookmarkManager
   public native void nativeDeleteAllTracksInCategory(long catId);
 
   @NonNull
-  public native long nativeAddLocationIntoTrack(double lat, double lon, long trackId);
-
-  @NonNull
   public native int nativeDrawLineWithLocations(double[][] locations, int color, double width);
 
   @NonNull

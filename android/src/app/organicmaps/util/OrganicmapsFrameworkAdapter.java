@@ -1,7 +1,5 @@
 package app.organicmaps.util;
 
-import static app.organicmaps.MwmActivity.EXTRA_LOCATION_DIALOG_IS_ANNOYING;
-
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -12,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -25,8 +24,9 @@ import app.organicmaps.background.AppBackgroundTracker;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.downloader.OnmapDownloader;
-import app.organicmaps.location.CompassData;
 import app.organicmaps.location.LocationHelper;
+import app.organicmaps.location.LocationListener;
+import app.organicmaps.location.LocationState;
 import app.organicmaps.maplayer.MapButtonsController;
 import app.organicmaps.util.log.LogsManager;
 
@@ -43,7 +43,7 @@ public enum OrganicmapsFrameworkAdapter {
     private final MwmActivity mwmActivity = new MwmActivity();
     private Application application;
     private String applicationID;
-    private FragmentActivity activity;
+    private AppCompatActivity activity;
     private Fragment fragment;
     private AppBackgroundTracker mBackgroundTracker;
     private SharedPreferences sharedPreferences;
@@ -69,7 +69,7 @@ public enum OrganicmapsFrameworkAdapter {
         return this.application;
     }
 
-    public void setActivity(FragmentActivity activity) {
+    public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
         initApplication(activity.getApplication());
     }
@@ -134,15 +134,12 @@ public enum OrganicmapsFrameworkAdapter {
         LocationHelper.INSTANCE.restart();
     }
 
-    public void initActivity(FragmentActivity activity, Fragment fragment) {
+    public void initActivity(AppCompatActivity activity, Fragment fragment) {
         setActivity(activity);
         setFragment(fragment);
     }
 
     public void onCreateMwmActivity(Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            LocationHelper.INSTANCE.setLocationErrorDialogAnnoying(savedInstanceState.getBoolean(EXTRA_LOCATION_DIALOG_IS_ANNOYING));
-        }
         mwmActivity.mIsTabletLayout = getApplication().getResources().getBoolean(R.bool.tabletLayout);
         if (!mwmActivity.mIsTabletLayout)
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -160,9 +157,10 @@ public enum OrganicmapsFrameworkAdapter {
             mwmActivity.mOnmapDownloader.onPause();
     }
 
-    public void onStartMwmActivity(LocationHelper.UiCallback uiCallback) {
-        Framework.nativePlacePageActivationListener((Framework.PlacePageActivationListener) getFragment());
-        LocationHelper.INSTANCE.attach(uiCallback);
+    public  void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
+        Framework.nativePlacePageActivationListener(placePageActivationListener);
+        LocationState.nativeSetListener(modeChangeListener);
+        LocationHelper.INSTANCE.addListener(locationListener);
     }
 
     public void onStopMwmActivity() {
@@ -174,12 +172,8 @@ public enum OrganicmapsFrameworkAdapter {
         mwmActivity.onLocationUpdated(location);
     }
 
-    public void onRoutingFinish() {
-        mwmActivity.onRoutingFinish();
-    }
-
-    public void onCompassUpdated(@NonNull CompassData compass) {
-        Map.onCompassUpdated(compass.getNorth(), false);
+    public void onCompassUpdated(double north) {
+        Map.onCompassUpdated(north, false);
     }
 
     public void onRenderingRestored() {
@@ -206,7 +200,9 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void myPositionClick() {
-        LocationHelper.INSTANCE.onLocationButtonClicked();
+        LocationState.nativeSwitchToNextMode();
+        if (!LocationHelper.INSTANCE.isActive())
+            LocationHelper.INSTANCE.start();
     }
 
     public void setViewportCenter(double lat, double lon) {
@@ -339,13 +335,6 @@ public enum OrganicmapsFrameworkAdapter {
                 color,
                 lineWidth
         );
-    }
-
-    public long addLocationIntoTrack(Location location, long catId) {
-        return BookmarkManager.INSTANCE.nativeAddLocationIntoTrack(
-                location.getLatitude(),
-                location.getLongitude(),
-                catId);
     }
 
     public boolean isTrackExistedInCategory(long catId) {

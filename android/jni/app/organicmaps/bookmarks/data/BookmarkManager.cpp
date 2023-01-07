@@ -1089,6 +1089,7 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
     return LLONG_MAX;
   }
 
+  std::vector<m2::PointD> points;
   for (jsize i = 0; i < size; ++i) {
     jobject jlocationArray = env->GetObjectArrayElement(locations, i);
     jdoubleArray * latlonData = reinterpret_cast<jdoubleArray *>(&jlocationArray);
@@ -1096,9 +1097,10 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
     double lat = latlon[0];
     double lon = latlon[1];
     m2::PointD const point(mercator::FromLatLon(lat, lon));
-    trackData.m_pointsWithAltitudes.emplace_back(geometry::PointWithAltitude(point, 0 /* altitude */));
+    points.emplace_back(point);
     env->DeleteLocalRef(jlocationArray);
   }
+  trackData.m_geometry.FromPoints(points);
 
   kml::ColorData colorData;
   colorData.m_predefinedColor = kml::PredefinedColor(color);
@@ -1130,22 +1132,6 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeDeleteAllTracksInCateg
   for (auto const trackId : trackIds) {
     frm()->GetBookmarkManager().GetEditSession().DeleteTrack(trackId);
   }
-}
-
-JNIEXPORT jlong JNICALL
-Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddLocationIntoTrack(
-        JNIEnv * env, jobject thiz, double lat, double lon, jlong trackId)
-{
-  auto const track = frm()->GetBookmarkManager().GetTrack(trackId);
-  if (track == nullptr) {
-    return LLONG_MAX;
-  }
-
-  m2::PointD const point(mercator::FromLatLon(lat, lon));
-  auto trackData = track->GetData();
-  trackData.m_pointsWithAltitudes.emplace_back(geometry::PointWithAltitude(point, 0 /* altitude */));
-
-  return track->GetId();
 }
 
 JNIEXPORT jint JNICALL

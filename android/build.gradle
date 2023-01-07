@@ -168,6 +168,8 @@ android {
     buildConfigField 'String','VERSION_NAME',"\"${versionName}\""
     // Should be customized in flavors.
     buildConfigField 'String', 'REVIEW_URL', '""'
+    
+    resConfigs project.ext.supportedLocalizations
 
     multiDexEnabled true
     multiDexKeepFile file('multidex-config.txt')

@@ -99,9 +99,11 @@ kml::FileData GenerateKmlFileData()
   trackData.m_layers = {{6.0, {kml::PredefinedColor::None, 0xff0000ff}},
                         {7.0, {kml::PredefinedColor::None, 0x00ff00ff}}};
   trackData.m_timestamp = kml::TimestampClock::from_time_t(900);
-  trackData.m_pointsWithAltitudes = {{m2::PointD(45.9242, 56.8679), 1},
-                                     {m2::PointD(45.2244, 56.2786), 2},
-                                     {m2::PointD(45.1964, 56.9832), 3}};
+
+  trackData.m_geometry.Assign({
+    {{45.9242, 56.8679}, 1}, {{45.2244, 56.2786}, 2}, {{45.1964, 56.9832}, 3}
+  });
+
   trackData.m_visible = false;
   trackData.m_nearestToponyms = {"12345", "54321", "98765"};
   trackData.m_properties = {{"tr_property1", "value1"}, {"tr_property2", "value2"}};
@@ -789,4 +791,47 @@ UNIT_TEST(Kml_Deserialization_From_Bin_V6_And_V7)
   }
 
   TEST_EQUAL(dataFromBinV6, dataFromBinV7, ());
+}
+
+UNIT_TEST(Kml_Ver_2_3)
+{
+  char const * data = R"(<?xml version="1.0" encoding="UTF-8"?>
+    <kml xmlns="http://www.opengis.net/kml/2.2" version="2.3">
+      <Placemark id="PM005">
+        <Track>
+          <when>2010-05-28T02:02:09Z</when>
+          <when>2010-05-28T02:02:35Z</when>
+          <when>2010-05-28T02:02:44Z</when>
+          <when>2010-05-28T02:02:53Z</when>
+          <when>2010-05-28T02:02:54Z</when>
+          <when>2010-05-28T02:02:55Z</when>
+          <when>2010-05-28T02:02:56Z</when>
+          <coord>-122.207881 37.371915 156.000000</coord>
+          <coord>-122.205712 37.373288 152.000000</coord>
+          <coord>-122.204678 37.373939 147.000000</coord>
+          <coord>-122.203572 37.374630 142.199997</coord>
+          <coord>-122.203451 37.374706 141.800003</coord>
+          <coord>-122.203329 37.374780 141.199997</coord>
+          <coord>-122.203207 37.374857 140.199997</coord>
+        </Track>
+      </Placemark>
+    </kml>
+  )";
+
+  kml::FileData fData;
+  try
+  {
+    MemReader reader(data, strlen(data));
+    kml::DeserializerKml des(fData);
+    des.Deserialize(reader);
+  }
+  catch (kml::DeserializerKml::DeserializeException const & ex)
+  {
+    TEST(false, ("Exception raised", ex.Msg()));
+  }
+
+  TEST_EQUAL(fData.m_tracksData.size(), 1, ());
+  auto const & lines = fData.m_tracksData[0].m_geometry.m_lines;
+  TEST_EQUAL(lines.size(), 1, ());
+  TEST_EQUAL(lines[0].size(), 7, ());
 }

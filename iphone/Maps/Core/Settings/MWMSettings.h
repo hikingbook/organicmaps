@@ -33,5 +33,6 @@
 + (void)setTrackWarningAlertShown:(BOOL)shown;
 
 + (NSString *)donateUrl;
++ (BOOL)isNY;
 
 @end

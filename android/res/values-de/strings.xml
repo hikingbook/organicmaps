@@ -23,7 +23,7 @@
 	<string name="core_my_position">Mein Standort</string>
 	<!-- Update maps later/Buy pro version later button text -->
 	<string name="later">Später</string>
-	<!-- View and button titles for accessibility -->
+	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Suche</string>
 	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">Auf der Karte suchen</string>
@@ -60,7 +60,7 @@
 	<string name="bookmark_color">Lesezeichenfarbe</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Name des Lesezeichens</string>
-	<!-- "Bookmarks" dialog title -->
+	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
 	<string name="bookmarks">Lesezeichen</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Meine Orte</string>
@@ -731,7 +731,7 @@
 	<string name="type.amenity">Infrastrukturobjekte</string>
 	<string name="type.amenity.arts_centre">Kunststätte</string>
 	<string name="type.amenity.atm">Geldautomat</string>
-	<string name="type.amenity.bbq">Picknickplatz</string>
+	<string name="type.amenity.bbq">Grillplatz</string>
 	<string name="type.amenity.bench">Parkbank</string>
 	<string name="type.amenity.bicycle_parking">Fahrradständer</string>
 	<string name="type.amenity.bicycle_rental">Fahrradverleih</string>
@@ -894,7 +894,7 @@
 	<string name="type.craft.blacksmith">Schmied</string>
 	<string name="type.craft.brewery">Brauerei</string>
 	<string name="type.craft.carpenter">Zimmermann</string>
-	<string name="type.craft.confectionery">Konditor</string>
+	<string name="type.craft.confectionery">Süßwarenladen</string>
 	<string name="type.craft.electrician">Elektriker</string>
 	<string name="type.craft.electronics_repair">Elektrogerätereparatur</string>
 	<string name="type.craft.gardener">Landschaftsgärtner</string>
@@ -1353,7 +1353,7 @@
 	<string name="type.office.estate_agent">Immobilienmakler</string>
 	<string name="type.office.government">Regierungsstelle</string>
 	<string name="type.office.insurance">Versicherungsbüro</string>
-	<string name="type.office.lawyer">Anwaltsbüro</string>
+	<string name="type.office.lawyer">Anwaltskanzlei</string>
 	<string name="type.office.ngo">Nichtregierungsorganisation</string>
 	<string name="type.office.telecommunication">Mobilfunkbetreiber</string>
 	<string name="type.organic.only">Bio</string>
@@ -1673,44 +1673,45 @@
 	<string name="type.shop.alcohol">Spirituosengeschäft</string>
 	<string name="type.shop.bakery">Bäckerei</string>
 	<string name="type.shop.beauty">Schönheitssalon</string>
-	<string name="type.shop.beverages">Getränke</string>
+	<string name="type.shop.beverages">Getränkemarkt</string>
 	<string name="type.shop.bicycle">Fahrradladen</string>
 	<string name="type.shop.bookmaker">Wettbüro</string>
-	<string name="type.shop.books">Büchergeschäft</string>
+	<string name="type.shop.books">Buchhandlung</string>
 	<string name="type.shop.butcher">Metzgerei</string>
 	<string name="type.shop.car">Autohaus</string>
 	<string name="type.shop.car_parts">Autoteile</string>
 	<string name="type.shop.car_repair">Autowerkstatt</string>
 	<string name="type.shop.car_repair.tyres">Reifenservice</string>
+	<string name="type.shop.caravan">Wohnmobilhändler</string>
 	<string name="type.shop.chemist">Drogerie</string>
 	<string name="type.shop.chocolate">Schokoladengeschäft</string>
 	<string name="type.shop.clothes">Bekleidungsgeschäft</string>
 	<string name="type.shop.coffee">Kaffeegeschäft</string>
-	<string name="type.shop.computer">Computergeschäft</string>
+	<string name="type.shop.computer">Computerfachgeschäft</string>
 	<string name="type.shop.confectionery">Süßwarengeschäft</string>
 	<string name="type.shop.convenience">Gemischtwarenladen</string>
 	<string name="type.shop.copyshop">Kopierladen</string>
 	<string name="type.shop.cosmetics">Kosmetikgeschäft</string>
-	<string name="type.shop.deli">Feinkostgeschäft</string>
+	<string name="type.shop.deli">Feinkostladen</string>
 	<string name="type.shop.department_store">Kaufhaus</string>
 	<string name="type.shop.doityourself">Baumarkt</string>
 	<string name="type.shop.dry_cleaning">Chemische Reinigung</string>
-	<string name="type.shop.electronics">Elektronik</string>
+	<string name="type.shop.electronics">Elektrofachgeschäft</string>
 	<string name="type.shop.erotic">Erotikladen</string>
 	<string name="type.shop.fabric">Textilgeschäft</string>
-	<string name="type.shop.farm">Hoflebensmittelladen</string>
+	<string name="type.shop.farm">Hofladen</string>
 	<string name="type.shop.florist">Florist</string>
 	<string name="type.shop.funeral_directors">Bestattungsinstitut</string>
-	<string name="type.shop.furniture">Möbelgeschäft</string>
+	<string name="type.shop.furniture">Möbelhaus</string>
 	<string name="type.shop.garden_centre">Gärtnerei</string>
-	<string name="type.shop.gift">Geschenkladen</string>
+	<string name="type.shop.gift">Geschenkeladen</string>
 	<string name="type.shop.greengrocer">Gemüseladen</string>
 	<string name="type.shop.grocery">Lebensmittelgeschäft</string>
 	<string name="type.shop.hairdresser">Friseur</string>
 	<string name="type.shop.hardware">Baumarkt</string>
 	<string name="type.shop.health_food">Reformhaus</string>
 	<string name="type.shop.houseware">Haushaltswarengeschäft</string>
-	<string name="type.shop.jewelry">Juweliergeschäft</string>
+	<string name="type.shop.jewelry">Juwelier</string>
 	<string name="type.shop.kitchen">Küchengeschäft</string>
 	<string name="type.shop.laundry">Wäscherei</string>
 	<string name="type.shop.mall">Einkaufszentrum</string>
@@ -1723,7 +1724,7 @@
 	<string name="type.shop.newsagent">Zeitungsstand</string>
 	<string name="type.shop.optician">Optiker</string>
 	<string name="type.shop.outdoor">Outdoor-Ausrüstung</string>
-	<string name="type.shop.pastry">Gebäck</string>
+	<string name="type.shop.pastry">Konditorei</string>
 	<string name="type.shop.pawnbroker">Pfandleihe</string>
 	<string name="type.shop.pet">Tierhandlung</string>
 	<string name="type.shop.photo">Fotofachgeschäft</string>
@@ -1742,7 +1743,7 @@
 	<string name="type.shop.variety_store">Billigladen</string>
 	<string name="type.shop.video">Videothek</string>
 	<string name="type.shop.video_games">Gameshop</string>
-	<string name="type.shop.wine">Wein- und Spirituosengeschäft</string>
+	<string name="type.shop.wine">Weinhandlung</string>
 	<string name="type.shop.antiques">Antiquitäten</string>
 	<string name="type.shop.art">Kunstgeschäft</string>
 	<string name="type.shop.baby_goods">Babybedarf</string>
@@ -1754,7 +1755,7 @@
 	<string name="type.shop.dairy">Milchprodukte</string>
 	<string name="type.shop.electrical">Elektrogeschäft</string>
 	<string name="type.shop.fishing">Angelgeschäft</string>
-	<string name="type.shop.interior_decoration">Innendekorationen</string>
+	<string name="type.shop.interior_decoration">Einrichtungsgeschäft</string>
 	<string name="type.shop.lottery">Lotteriescheine</string>
 	<string name="type.shop.medical_supply">Medizinische Versorgung</string>
 	<string name="type.shop.nutrition_supplements">Nahrungsergänzungsmittel</string>
