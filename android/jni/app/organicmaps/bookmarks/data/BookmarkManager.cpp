@@ -1142,10 +1142,6 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeDrawLineWithLocations(
         JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width)
 {
   const jsize size = env->GetArrayLength(locations);
-  if (size <= 1) {
-    return 0;
-  }
-
   std::vector<m2::PointD> points;
   for (jsize i = 0; i < size; ++i) {
     auto jlocationArray = (env->GetObjectArrayElement(locations, i));
@@ -1153,8 +1149,20 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeDrawLineWithLocations(
     double lat = latlonData[0];
     double lon = latlonData[1];
     m2::PointD const point(mercator::FromLatLon(lat, lon));
-    points.emplace_back(point);
+
+    auto shouldAdd = true;
+    if (!points.empty()) {
+      auto lastPoint = points.back();
+      shouldAdd = lastPoint.x != point.x || lastPoint.y != point.y;
+    }
+    if (shouldAdd) {
+      points.emplace_back(geometry::PointWithAltitude(point, 0));
+    }
+
     env->DeleteLocalRef(jlocationArray);
+  }
+  if (points.size() < 2) {
+      return 0;
   }
 
   dp::Color dpcolor = initDpColor(color);
