@@ -1068,26 +1068,8 @@ JNIEXPORT jlong JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
         JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray locations, jint color, double width)
 {
-  if (env->GetArrayLength(locations) <= 0) {
-    return LLONG_MAX;
-  }
-
   kml::TrackData trackData;
-  trackData.m_timestamp = std::chrono::time_point<std::chrono::system_clock>::max();
-
-  kml::LocalizableString trackName;
-  kml::SetDefaultStr(trackName, ToNativeString(env, name));
-  trackData.m_name = trackName;
-
-  kml::LocalizableString trackDescription;
-  kml::SetDefaultStr(trackDescription, ToNativeString(env, description));
-  trackData.m_description = trackDescription;
-
   const jsize size = env->GetArrayLength(locations);
-
-  if (size < 2) {
-    return LLONG_MAX;
-  }
 
   std::vector<m2::PointD> points;
   for (jsize i = 0; i < size; ++i) {
@@ -1108,9 +1090,20 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
     }
     env->DeleteLocalRef(jlocationArray);
   }
-  if (!points.empty()) {
-    trackData.m_geometry.FromPoints(points);
+  if (points.size() < 2) {
+    return kml::kInvalidTrackId;
   }
+  trackData.m_geometry.FromPoints(points);
+
+  trackData.m_timestamp = std::chrono::time_point<std::chrono::system_clock>::max();
+
+  kml::LocalizableString trackName;
+  kml::SetDefaultStr(trackName, ToNativeString(env, name));
+  trackData.m_name = trackName;
+
+  kml::LocalizableString trackDescription;
+  kml::SetDefaultStr(trackDescription, ToNativeString(env, description));
+  trackData.m_description = trackDescription;
 
   kml::ColorData colorData;
   colorData.m_predefinedColor = kml::PredefinedColor(color);
@@ -1126,7 +1119,7 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
   auto editSession = frm()->GetBookmarkManager().GetEditSession();
   auto track = editSession.CreateTrack(std::move(trackData));
   if (track == nullptr) {
-    return LLONG_MAX;
+    return kml::kInvalidTrackId;
   }
   long trackId = track->GetId();
   editSession.AttachTrack(trackId, catId);
