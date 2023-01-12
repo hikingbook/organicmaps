@@ -1097,10 +1097,20 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
     double lat = latlon[0];
     double lon = latlon[1];
     m2::PointD const point(mercator::FromLatLon(lat, lon));
-    points.emplace_back(point);
+
+    auto shouldAdd = true;
+    if (!points.empty()) {
+        auto lastPoint = points.back();
+        shouldAdd = lastPoint.x != point.x || lastPoint.y != point.y;
+    }
+    if (shouldAdd) {
+        points.emplace_back(geometry::PointWithAltitude(point, 0));
+    }
     env->DeleteLocalRef(jlocationArray);
   }
-  trackData.m_geometry.FromPoints(points);
+  if (!points.empty()) {
+    trackData.m_geometry.FromPoints(points);
+  }
 
   kml::ColorData colorData;
   colorData.m_predefinedColor = kml::PredefinedColor(color);
