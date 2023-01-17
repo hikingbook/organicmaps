@@ -157,15 +157,16 @@ public enum OrganicmapsFrameworkAdapter {
             mwmActivity.mOnmapDownloader.onPause();
     }
 
-    public  void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
+    public void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
         Framework.nativePlacePageActivationListener(placePageActivationListener);
         LocationState.nativeSetListener(modeChangeListener);
         LocationHelper.INSTANCE.addListener(locationListener);
     }
 
-    public void onStopMwmActivity() {
+    public void onStopMwmActivity(LocationListener locationListener) {
         Framework.nativeRemovePlacePageActivationListener();
-        LocationHelper.INSTANCE.detach();
+        LocationState.nativeRemoveListener();
+        LocationHelper.INSTANCE.removeListener(locationListener);
     }
 
     public void onLocationUpdated(Location location) {
