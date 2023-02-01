@@ -77,7 +77,7 @@ UNIT_TEST(EditableMapObject_ValidateBuildingLevels)
   TEST(EditableMapObject::ValidateBuildingLevels("25"), ());
   TEST(!EditableMapObject::ValidateBuildingLevels("0"), ());
   TEST(!EditableMapObject::ValidateBuildingLevels("005"), ());
-  TEST(!EditableMapObject::ValidateBuildingLevels("26"), ());
+  TEST(!EditableMapObject::ValidateBuildingLevels(std::to_string(EditableMapObject::kMaximumLevelsEditableByUsers + 1)), ());
   TEST(!EditableMapObject::ValidateBuildingLevels("22a"), ());
   TEST(!EditableMapObject::ValidateBuildingLevels("a22"), ());
   TEST(!EditableMapObject::ValidateBuildingLevels("2a22"), ());
@@ -199,8 +199,8 @@ UNIT_TEST(EditableMapObject_ValidateEmail)
 UNIT_TEST(EditableMapObject_ValidateName)
 {
   vector<string> correctNames = {"abc", "абв", "ᆺᆯㅕ", "꫞ꪺꫀꪸ", "a b?c", "a!b.c", "a(b)c", "a,b.c",
-                                 "a$bc", "a%bc", "a#bc", "a№bc", "c&a"};
-  vector<string> incorrectNames = {"a^bc", "a~bc", "a§bc", "a>bc", "a<bc", "a{bc", "a[bc", "*",
+                                 "a$bc", "a%bc", "a#bc", "a№bc", "c&a", "a[bc"};
+  vector<string> incorrectNames = {"a^bc", "a~bc", "a§bc", "a>bc", "a<bc", "a{bc", "*",
                                    "a*bc", "a=bc", "a_bc", "a±bc", "a\nbc", "a\tbc", "a\rbc",
                                    "a\vbc", "a\fbc", "a|bc", "N√", "Hello World!\U0001F600",
                                    "Exit →", "∫0dx = C", "\U0001210A"};

@@ -6,6 +6,7 @@
 #define METASERVER_URL "https://hikingbook.net/maps/cdns"
 #define DIFF_LIST_URL ""
 #define DEFAULT_URLS_JSON "[\"https://cdn-fi1.organicmaps.app/\", \"https://cdn-uk1.organicmaps.app/\", \"https://cdn-nl1.organicmaps.app/\", \"https://cdn-eu2.organicmaps.app/\", \"https://cdn.organicmaps.app/\"]"
+#define DEFAULT_CONNECTION_CHECK_IP "140.82.121.4"  // For now the IP of cdn.organicmaps.app
 #define TRAFFIC_DATA_BASE_URL ""
 #define USER_BINDING_PKCS12 ""
 #define USER_BINDING_PKCS12_PASSWORD ""
