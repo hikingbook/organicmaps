@@ -52,6 +52,7 @@ if (NOT DEFINED ENV{COLORS_DISABLE} AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang
   add_link_options($<$<CXX_COMPILER_ID:GNU>:-fdiagnostics-color=always> $<$<CXX_COMPILER_ID:Clang,AppleClang>:-fcolor-diagnostics>)
 endif()
 
+option(WITH_SYSTEM_PROVIDED_3PARTY "Enable compilation with system provided dependencies" OFF)
 set(OMIM_ROOT ${CMAKE_SOURCE_DIR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${OMIM_ROOT}/cmake")
@@ -239,8 +240,13 @@ if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
   if (NOT SKIP_DESKTOP)
     list(APPEND qt_components Gui Xml Svg)
   endif()
+  if (DEFINED ENV{HOMEBREW_PREFIX})
+    set(HOMEBREW_PREFIX $ENV{HOMEBREW_PREFIX})
+  else()
+    set(HOMEBREW_PREFIX /opt/homebrew)
+  endif()
   # PATHS are hard-coded hints where to look for qt5 in addition to other places.
-  find_package(Qt5 COMPONENTS REQUIRED ${qt_components} PATHS $ENV{QT_PATH} /opt/homebrew/opt/qt@5 /usr/local/opt/qt@5 /usr/lib/x86_64-linux-gnu/qt5)
+  find_package(Qt5 COMPONENTS REQUIRED ${qt_components} PATHS $ENV{QT_PATH} ${HOMEBREW_PREFIX}/opt/qt@5 /usr/local/opt/qt@5 /usr/lib/x86_64-linux-gnu/qt5)
   if (Qt5_VERSION VERSION_LESS 5.5.0)
     message(FATAL_ERROR "Minimum supported Qt5 version is 5.5")
   endif()
@@ -286,18 +292,31 @@ if (USE_PCH)
 endif()
 # Include 3party dependencies.
 
-# Configure expat library.
-# Suppress "Policy CMP0077 is not set: option() honors normal variables"
-# for the expat options below.
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-set(EXPAT_BUILD_TOOLS OFF)
-set(EXPAT_BUILD_EXAMPLES OFF)
-set(EXPAT_BUILD_TESTS OFF)
-set(EXPAT_BUILD_DOCS OFF)
-set(EXPAT_BUILD_PKGCONFIG OFF)
-set(EXPAT_ENABLE_INSTALL OFF)
-set(EXPAT_SHARED_LIBS OFF)
-find_package_or_fallback_to_3party(EXPAT 2.5.0 3party/expat/expat)
+if (NOT WITH_SYSTEM_PROVIDED_3PARTY)
+  # Configure expat library.
+  # Suppress "Policy CMP0077 is not set: option() honors normal variables"
+  # for the expat options below.
+  set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+  set(EXPAT_BUILD_TOOLS OFF)
+  set(EXPAT_BUILD_EXAMPLES OFF)
+  set(EXPAT_BUILD_TESTS OFF)
+  set(EXPAT_BUILD_DOCS OFF)
+  set(EXPAT_BUILD_PKGCONFIG OFF)
+  set(EXPAT_ENABLE_INSTALL OFF)
+  set(EXPAT_SHARED_LIBS OFF)
+  add_subdirectory(3party/expat/expat)
+
+  # Configure Jansson library.
+  set(JANSSON_BUILD_DOCS OFF)
+  set(JANSSON_BUILD_MAN OFF)
+  set(JANSSON_EXAMPLES OFF)
+  set(JANSSON_INSTALL OFF)
+  set(JANSSON_WITHOUT_TESTS ON)
+  add_subdirectory(3party/jansson/jansson/)
+  target_include_directories(jansson INTERFACE "${PROJECT_BINARY_DIR}/3party/jansson/jansson/include")
+
+  add_subdirectory(3party/pugixml)
+endif()
 
 add_subdirectory(3party/agg)
 add_subdirectory(3party/bsdiff-courgette)
@@ -317,11 +336,10 @@ else()
   add_subdirectory(3party/freetype)
   add_subdirectory(3party/icu)
 endif()
-add_subdirectory(3party/jansson)
+
 add_subdirectory(3party/liboauthcpp)
 add_subdirectory(3party/minizip)
 add_subdirectory(3party/opening_hours)
-add_subdirectory(3party/pugixml)
 add_subdirectory(3party/sdf_image)
 add_subdirectory(3party/stb_image)
 add_subdirectory(3party/succinct)
@@ -351,6 +369,7 @@ add_subdirectory(geometry)
 add_subdirectory(indexer)
 add_subdirectory(kml)
 add_subdirectory(map)
+add_subdirectory(cppjansson)
 add_subdirectory(platform)
 add_subdirectory(routing)
 add_subdirectory(routing_common)

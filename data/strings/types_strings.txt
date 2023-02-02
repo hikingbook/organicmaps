@@ -342,7 +342,7 @@
     pt = Pista de aeroporto ou aeródromo
     pt-BR = Pista de aeroporto ou aeródromo
     ru = Взлётно-посадочная полоса
-    tr = Koşu yolu
+    tr = Pist
     uk = Злітно-посадкова смуга
     zh-Hans = 机场跑道
     zh-Hant = 機場跑道
@@ -1026,7 +1026,7 @@
     eu = Kargatzeko geltokia
     fa = ایستگاه شارژ
     fi = Latausasema
-    fr = Station de recharge
+    fr = Borne de recharge
     hu = Töltő állomás
     id = Pusat Pengisian Daya
     it = Stazione di ricarica
@@ -1048,6 +1048,9 @@
     vi = Trạm Sạc điện
     zh-Hans = 充电站
     zh-Hant = 充電站
+
+  [type.amenity.charging_station.motorcar]
+    ref = type.amenity.charging_station
 
   [type.amenity.childcare]
     en = Nursery
@@ -1117,6 +1120,46 @@
     vi = Rạp chiếu phim
     zh-Hans = 电影院
     zh-Hant = 電影院
+
+  [type.leisure.bowling_alley]
+    en = Bowling Alley
+    ar = ﺞﻨﻴﻟﻮﺑ ﺔﻟﺎﺻ
+    be = Боўлінг
+    bg = Боулинг писта
+    ca = Bolera
+    cs = Bowlingová dráha
+    da = Bowling bane
+    de = Bowlingbahn
+    el = Αίθουσα σφαιρίσεως
+    es = Bolera
+    et = Bowlingusaal
+    eu = Bolatokia
+    fa = ﮓﻨﯿﻟﻮﺑ ﻦﻟﺎﺳ
+    fi = Keilarata
+    fr = Salle de bowling
+    he = גנילואב םלוא
+    hu = Tekepálya
+    id = Arena Bowling
+    it = Sala da bowling
+    ja = ボーリング場
+    ko = 볼링장
+    mr = गोलंदाजी गल्ली
+    nb = Bowlinghall
+    nl = Bowlingbaan
+    pl = Kręgielnia
+    pt = Pista de bowling
+    pt-BR = Pista de boliche
+    ro = Popicărie
+    ru = Боулинг
+    sk = Bowlingová dráha
+    sv = Bowlinghall
+    sw = Njia ya Bowling
+    th = ลานโบว์ลิ่ง
+    tr = Bowling pisti
+    uk = Боулінг
+    vi = Sân chơi bowling
+    zh-Hans = 保龄球馆
+    zh-Hant = 保齡球館
 
   [type.amenity.clinic]
     en = Clinic
@@ -1593,7 +1636,7 @@
     fr = Caserne de pompiers
     hu = Tűzoltóság
     id = Kantor pemadam kebakaran
-    it = Scuadra antincendio
+    it = Squadra antincendio
     ja = 消防署
     ko = 소방서
     mr = अग्निशमन केंद्र
@@ -2335,12 +2378,6 @@
     zh-Hans = 地下停车场
     zh-Hant = 地下停車場
 
-  [type.amenity.parking_entrance.private]
-    ref = type.amenity.parking_entrance
-
-  [type.amenity.parking_entrance.permissive]
-    ref = type.amenity.parking_entrance
-
   [type.amenity.parking_entrance]
     en = Parking entrance
     ar = ﺕﺍﺭﺎﻴﺴﻟﺍ ﻑﻮﻗﻭ ﻞﺧﺪﻣ
@@ -2351,7 +2388,6 @@
     de = Parkplatzeinfahrt
     el = Είσοδος στάθμευσης
     es = Entrada al aparcamiento
-    es-MX = Entrada al aparcamiento
     et = Parkla sissepääs
     eu = Aparkalekuaren sarrera
     fa = ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ
@@ -2378,6 +2414,12 @@
     vi = Lối vào bãi đậu xe
     zh-Hans = 停车场入口
     zh-Hant = 停車場入口
+
+  [type.amenity.parking_entrance.private]
+    ref = type.amenity.parking_entrance
+
+  [type.amenity.parking_entrance.permissive]
+    ref = type.amenity.parking_entrance
 
   [type.amenity.parking_space]
     en = Parking Space
@@ -12323,7 +12365,6 @@
 
   [type.landuse.cemetery.christian]
     ref = type.amenity.grave_yard.christian
-    en = Cementerio cristiano
     nl = Christelijke begraafplaats
 
   [type.landuse.churchyard]
@@ -13905,6 +13946,9 @@
     tr = Pist
     uk = Бігова доріжка
     zh-Hans = 賽道
+
+  [type.leisure.track.area]
+    ref = type.leisure.track
 
   [type.leisure.water_park]
     en = Water Park
@@ -19551,7 +19595,7 @@
     fa = فروشگاه
     fi = Kauppa
     fr = Chocolatier
-    hu = Bolt
+    hu = Csokoládébolt
     id = Toko
     it = Choccolateria
     ja = チョコレート屋

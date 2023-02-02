@@ -1,10 +1,11 @@
 // This file is modified by Zheng-Xiang Ke on 2021.
 #import "platform/background_downloader_ios.h"
 
+#include "base/logging.hpp"
 #include "platform/downloader_utils.hpp"
 
 // How many seconds to wait before the request fails.
-static const NSTimeInterval kTimeoutIntervalInSeconds = 10;
+static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
 
 @interface TaskInfo : NSObject
 
