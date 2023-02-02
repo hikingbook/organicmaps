@@ -118,10 +118,12 @@ MapSource LocalCountryFile::GetMapSource() const
 {
     if (m_countryFile.IsHikingbookProMapAvailable()) {
         auto size = GetSize(MapFileType::Map);
-        if (size <= m_countryFile.GetRemoteSize()) {
+        if (size == m_countryFile.GetRemoteSize()) {
             return MapSource::Organicmaps;
         }
-        return MapSource::HikingbookProMaps;
+        else if (size == m_countryFile.GetHikingbookProMapRemoteSize()) {
+            return MapSource::HikingbookProMaps;
+        }
     }
     return MapSource::Organicmaps;
 }
