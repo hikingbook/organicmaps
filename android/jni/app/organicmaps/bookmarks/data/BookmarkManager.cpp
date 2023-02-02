@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2023.
 #include "app/organicmaps/core/jni_helper.hpp"
 #include "app/organicmaps/Framework.hpp"
 #include "app/organicmaps/UserMarkHelper.hpp"
@@ -315,7 +316,7 @@ void OnCategorySortingResults(JNIEnv * env, long long timestamp,
 Bookmark const * getBookmark(jlong bokmarkId)
 {
   Bookmark const * pBmk = frm()->GetBookmarkManager().GetBookmark(static_cast<kml::MarkId>(bokmarkId));
-  ASSERT(pBmk, ("Bookmark not found, id", bokmarkId));
+//  ASSERT(pBmk, ("Bookmark not found, id", bokmarkId));
   return pBmk;
 }
 
@@ -797,22 +798,25 @@ JNIEXPORT jstring JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkName(
   JNIEnv * env, jclass, jlong bmk)
 {
-  return jni::ToJavaString(env, getBookmark(bmk)->GetPreferredName());
+  auto const * mark = getBookmark(bmk);
+  return jni::ToJavaString(env, mark != nullptr ? mark->GetPreferredName() : "");
 }
 
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkFeatureType(
   JNIEnv * env, jclass, jlong bmk)
 {
-  return jni::ToJavaString(env,
-    kml::GetLocalizedFeatureType(getBookmark(bmk)->GetData().m_featureTypes));
+  auto const * mark = getBookmark(bmk);
+  return jni::ToJavaString(env, mark != nullptr ?
+    kml::GetLocalizedFeatureType(mark->GetData().m_featureTypes) : "");
 }
 
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkDescription(
   JNIEnv * env, jclass, jlong bmk)
 {
-  return jni::ToJavaString(env, getBookmark(bmk)->GetDescription());
+  auto const * mark = getBookmark(bmk);
+  return jni::ToJavaString(env, mark != nullptr ? mark->GetDescription() : "");
 }
 
 JNIEXPORT jint JNICALL
@@ -864,28 +868,35 @@ JNIEXPORT jobject JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkXY(
   JNIEnv * env, jclass, jlong bmk)
 {
-  return jni::GetNewParcelablePointD(env, getBookmark(bmk)->GetPivot());
+  auto const * mark = getBookmark(bmk);
+  return jni::GetNewParcelablePointD(env, mark != nullptr ? mark->GetPivot() : mercator::FromLatLon(0, 0));
 }
 
 JNIEXPORT jdouble JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkScale(
   JNIEnv *, jclass, jlong bmk)
 {
-  return getBookmark(bmk)->GetScale();
+  auto const * mark = getBookmark(bmk);
+  return mark != nullptr ? mark->GetScale() : scales::GetUpperComfortScale();
 }
 
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeEncode2Ge0Url(
   JNIEnv * env, jclass, jlong bmk, jboolean addName)
 {
-  return jni::ToJavaString(env, frm()->CodeGe0url(getBookmark(bmk), addName));
+  auto const * mark = getBookmark(bmk);
+  return jni::ToJavaString(env, mark != nullptr ? frm()->CodeGe0url(mark, addName) : "");
 }
 
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetBookmarkAddress(
   JNIEnv * env, jclass, jlong bmkId)
 {
-  auto const address = frm()->GetAddressAtPoint(getBookmark(bmkId)->GetPivot()).FormatAddress();
+  auto const * mark = getBookmark(bmkId);
+  if (mark == nullptr) {
+    return jni::ToJavaString(env, "");
+  }
+  auto const address = frm()->GetAddressAtPoint(mark->GetPivot()).FormatAddress();
   return jni::ToJavaString(env, address);
 }
 
