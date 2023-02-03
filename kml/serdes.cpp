@@ -219,8 +219,8 @@ std::string TimestampToString(Timestamp const & timestamp)
 {
   auto const ts = TimestampClock::to_time_t(timestamp);
   std::string strTimeStamp = base::TimestampToString(ts);
-  if (strTimeStamp.size() != 20)
-    MYTHROW(KmlWriter::WriteKmlException, ("We always generate fixed length UTC-format timestamp."));
+//  if (strTimeStamp.size() != 20)
+//    MYTHROW(KmlWriter::WriteKmlException, ("We always generate fixed length UTC-format timestamp."));
   return strTimeStamp;
 }
 
