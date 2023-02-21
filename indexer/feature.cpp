@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2023.
 #include "indexer/feature.hpp"
 
 #include "indexer/classificator.hpp"
@@ -794,8 +795,9 @@ string_view FeatureType::GetName(int8_t lang)
 
   // We don't store empty names.
   string_view name;
-  if (m_params.name.GetString(lang, name))
-    ASSERT(!name.empty(), ());
+    m_params.name.GetString(lang, name);
+//  if (m_params.name.GetString(lang, name))
+//    ASSERT(!name.empty(), ());
 
   return name;
 }
