@@ -429,8 +429,8 @@
 	<string name="download_over_mobile_message">Như vậy sẽ rất đắt tiền với một số gói dữ liệu hoặc khi chuyển vùng.</string>
 	<string name="error_enter_correct_house_number">Nhập số nhà chính xác</string>
 	<string name="editor_storey_number">Số tầng (tối đa %d)</string>
-	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than 25 -->
-	<string name="error_enter_correct_storey_number">Sửa tòa nhà có tối đa 25 tầng</string>
+	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
+	<string name="error_enter_correct_storey_number">Sửa tòa nhà có tối đa %d tầng</string>
 	<string name="editor_zip_code">Mã ZIP</string>
 	<string name="error_enter_correct_zip_code">Nhập Mã ZIP chính xác</string>
 	<!-- Place Page title for long tap -->
@@ -911,7 +911,10 @@
 	<string name="type.emergency.defibrillator">Máy khử rung tim</string>
 	<string name="type.emergency.fire_hydrant">Vòi chữa cháy</string>
 	<string name="type.emergency.phone">Điện thoại khẩn cấp</string>
+	<!-- This is for secondary entrances, for main entrances see type.entrance.main -->
 	<string name="type.entrance">Lối vào</string>
+	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
+	<string name="type.entrance.main">Lối vào chính</string>
 	<string name="type.healthcare.laboratory">Phòng thí nghiệm y tế</string>
 	<string name="type.healthcare.physiotherapist">Nhà vật lý trị liệu</string>
 

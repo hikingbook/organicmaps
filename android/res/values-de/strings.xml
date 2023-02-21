@@ -451,8 +451,8 @@
 	<string name="download_over_mobile_message">Das könnte mit einigen Tarifen oder beim Roaming sehr teuer werden.</string>
 	<string name="error_enter_correct_house_number">Richtige Hausnummer eingeben</string>
 	<string name="editor_storey_number">Anzahl der Etagen (maximal %d)</string>
-	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than 25 -->
-	<string name="error_enter_correct_storey_number">Das Gebäude kann nicht mehr als 25 Etagen haben</string>
+	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
+	<string name="error_enter_correct_storey_number">Das Gebäude kann nicht mehr als %d Etagen haben</string>
 	<string name="editor_zip_code">Postleitzahl</string>
 	<string name="error_enter_correct_zip_code">Geben Sie die korrekte Postleitzahl ein</string>
 	<!-- Place Page title for long tap -->
@@ -963,7 +963,7 @@
 	<string name="type.cuisine.korean">Koreanisch</string>
 	<string name="type.cuisine.lao">Laotisch</string>
 	<string name="type.cuisine.lebanese">Libanesisch</string>
-	<string name="type.cuisine.local">Regional</string>
+	<string name="type.cuisine.local">Lokale Küche</string>
 	<string name="type.cuisine.malagasy">Madegassisch</string>
 	<string name="type.cuisine.malaysian">Malaysisch</string>
 	<string name="type.cuisine.mediterranean">Mediterran</string>
@@ -979,7 +979,7 @@
 	<string name="type.cuisine.polish">Polnisch</string>
 	<string name="type.cuisine.portuguese">Portugiesisch</string>
 	<string name="type.cuisine.ramen">Ramen</string>
-	<string name="type.cuisine.regional">Regional</string>
+	<string name="type.cuisine.regional">Regionale Küche</string>
 	<string name="type.cuisine.russian">Russisch</string>
 	<string name="type.cuisine.sandwich">Sandwich</string>
 	<string name="type.cuisine.sausage">Wurst</string>
@@ -1000,7 +1000,10 @@
 	<string name="type.emergency.defibrillator">Defibrillator</string>
 	<string name="type.emergency.fire_hydrant">Hydrant</string>
 	<string name="type.emergency.phone">Notruftelefon</string>
+	<!-- This is for secondary entrances, for main entrances see type.entrance.main -->
 	<string name="type.entrance">Eingang</string>
+	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
+	<string name="type.entrance.main">Haupteingang</string>
 	<string name="type.healthcare.laboratory">Medizinisches Labor</string>
 	<string name="type.healthcare.physiotherapist">Physiotherapeut</string>
 

@@ -453,8 +453,8 @@
 	<string name="download_over_mobile_message">See võib mõningate lepingute või roamingu korral olla märgatavalt kallim.</string>
 	<string name="error_enter_correct_house_number">Sisesta kehtiv majanumber</string>
 	<string name="editor_storey_number">Korruste arv (maks. %d)</string>
-	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than 25 -->
-	<string name="error_enter_correct_storey_number">Korruste arv ei või olla üle 25</string>
+	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
+	<string name="error_enter_correct_storey_number">Korruste arv ei või olla üle %d</string>
 	<string name="editor_zip_code">Postiindeks</string>
 	<string name="error_enter_correct_zip_code">Sisesta korrektne postiindeks</string>
 	<!-- Place Page title for long tap -->
@@ -1021,7 +1021,10 @@
 	<string name="type.emergency.defibrillator">Defibrillaator</string>
 	<string name="type.emergency.fire_hydrant">Tuletõrjehüdrant</string>
 	<string name="type.emergency.phone">Hädaabi telefon</string>
+	<!-- This is for secondary entrances, for main entrances see type.entrance.main -->
 	<string name="type.entrance">Sissepääs</string>
+	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
+	<string name="type.entrance.main">Peasissekäik</string>
 	<string name="type.healthcare.laboratory">Meditsiinilabor</string>
 	<string name="type.healthcare.physiotherapist">Füsioterapeut</string>
 

@@ -443,8 +443,8 @@
 	<string name="download_over_mobile_message">用某些方案或漫遊的話這可能相當昂貴。</string>
 	<string name="error_enter_correct_house_number">輸入正確的門牌號碼</string>
 	<string name="editor_storey_number">樓層數（最大 %d）</string>
-	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than 25 -->
-	<string name="error_enter_correct_storey_number">編輯最多 25 層的建築</string>
+	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
+	<string name="error_enter_correct_storey_number">編輯最多 %d 層的建築</string>
 	<string name="editor_zip_code">郵遞區號</string>
 	<string name="error_enter_correct_zip_code">輸入正確的郵遞區號</string>
 	<!-- Place Page title for long tap -->
@@ -946,7 +946,10 @@
 	<string name="type.emergency.defibrillator">心臟電擊器</string>
 	<string name="type.emergency.fire_hydrant">消防栓</string>
 	<string name="type.emergency.phone">緊急電話</string>
+	<!-- This is for secondary entrances, for main entrances see type.entrance.main -->
 	<string name="type.entrance">入口</string>
+	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
+	<string name="type.entrance.main">主要入口</string>
 	<string name="type.healthcare.laboratory">醫學實驗室</string>
 	<string name="type.healthcare.physiotherapist">物理治療師</string>
 

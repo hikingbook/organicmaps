@@ -90,7 +90,7 @@ public class OsmLoginFragment extends BaseMwmToolbarFragment
 
     enableInput(true);
     UiUtils.hide(mProgress);
-    mLoginButton.setText(R.string.login);
+    mLoginButton.setText(R.string.login_osm);
     if (auth == null)
       onAuthFail();
     else
