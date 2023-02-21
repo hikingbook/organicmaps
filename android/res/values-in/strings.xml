@@ -429,8 +429,8 @@
 	<string name="download_over_mobile_message">Ini bisa menjadi jauh mahal pada beberapa paket atau jika roaming.</string>
 	<string name="error_enter_correct_house_number">Masukkan nomor rumah yang benar</string>
 	<string name="editor_storey_number">Jumlah lantai (maksimum %d)</string>
-	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than 25 -->
-	<string name="error_enter_correct_storey_number">Edit bangunan dengan maksimum 25 lantai</string>
+	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
+	<string name="error_enter_correct_storey_number">Edit bangunan dengan maksimum %d lantai</string>
 	<string name="editor_zip_code">Kode Pos</string>
 	<string name="error_enter_correct_zip_code">Masukkan Kode Pos yang benar</string>
 	<!-- Place Page title for long tap -->
@@ -906,7 +906,10 @@
 	<string name="type.emergency.defibrillator">Defibrilator</string>
 	<string name="type.emergency.fire_hydrant">Keran Kebakaran</string>
 	<string name="type.emergency.phone">Telepon darurat</string>
+	<!-- This is for secondary entrances, for main entrances see type.entrance.main -->
 	<string name="type.entrance">Pintu masuk</string>
+	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
+	<string name="type.entrance.main">Pintu masuk utama</string>
 	<string name="type.healthcare.laboratory">Laboratorium medis</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapis</string>
 

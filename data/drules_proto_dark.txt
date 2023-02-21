@@ -13914,9 +13914,34 @@ cont {
 cont {
   name: "entrance"
   element {
-    scale: 18
+    scale: 19
     symbol {
       name: "entrance-s"
+      apply_for_type: 1
+      priority: 16038
+    }
+    caption {
+      primary {
+        height: 10
+        color: 5592405
+        offset_x: 1
+        text: "ref"
+      }
+      secondary {
+        height: 12
+        offset_y: 10
+        text: "addr:flats"
+      }
+      priority: 15038
+    }
+  }
+}
+cont {
+  name: "entrance-main"
+  element {
+    scale: 18
+    symbol {
+      name: "main_entrance-s"
       apply_for_type: 1
       priority: 16038
     }
@@ -13933,7 +13958,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "entrance-s"
+      name: "main_entrance-s"
       apply_for_type: 1
       priority: 16038
     }
@@ -61391,6 +61416,175 @@ cont {
     scale: 19
     symbol {
       name: "subway-ubahn-m"
+      apply_for_type: 1
+      priority: 16952
+    }
+    caption {
+      primary {
+        height: 13
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 11
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+}
+cont {
+  name: "railway-station-subway-bilbao"
+  element {
+    scale: 13
+    symbol {
+      name: "subway-bilbao-s"
+      apply_for_type: 1
+      priority: 16952
+      min_distance: 1
+    }
+  }
+  element {
+    scale: 14
+    symbol {
+      name: "subway-bilbao-s"
+      apply_for_type: 1
+      priority: 16952
+      min_distance: 1
+    }
+    caption {
+      primary {
+        height: 11
+        color: 8947848
+        stroke_color: 1292964096
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 9
+        color: 8947848
+        stroke_color: 1292964096
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+  element {
+    scale: 15
+    symbol {
+      name: "subway-bilbao-m"
+      apply_for_type: 1
+      priority: 16952
+    }
+    caption {
+      primary {
+        height: 12
+        color: 8947848
+        stroke_color: 856756480
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 10
+        color: 8947848
+        stroke_color: 856756480
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "subway-bilbao-m"
+      apply_for_type: 1
+      priority: 16952
+    }
+    caption {
+      primary {
+        height: 13
+        color: 8947848
+        stroke_color: 856756480
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 11
+        color: 8947848
+        stroke_color: 856756480
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "subway-bilbao-m"
+      apply_for_type: 1
+      priority: 16952
+    }
+    caption {
+      primary {
+        height: 13
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 11
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "subway-bilbao-m"
+      apply_for_type: 1
+      priority: 16952
+    }
+    caption {
+      primary {
+        height: 13
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        is_optional: true
+      }
+      secondary {
+        height: 11
+        color: 8947848
+        stroke_color: 437326080
+        offset_y: 1
+        text: "int_name"
+        is_optional: true
+      }
+      priority: 15952
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "subway-bilbao-m"
       apply_for_type: 1
       priority: 16952
     }

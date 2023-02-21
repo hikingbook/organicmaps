@@ -19,6 +19,16 @@ inline constexpr size_t GetMaxErrorsForTokenLength(size_t length)
     return 1;
   return 2;
 }
+
+inline constexpr size_t GetMaxErrorsForToken_Category(size_t length)
+{
+  if (length < 7)
+    return 0;
+  if (length < 10)
+    return 1;
+  return 2;
+}
+
 size_t GetMaxErrorsForToken(strings::UniString const & token);
 
 strings::LevenshteinDFA BuildLevenshteinDFA(strings::UniString const & s);
@@ -115,14 +125,6 @@ public:
   void Put(strings::UniString const & token, bool isPrefix, size_t tag);
 
 private:
-  using Cell = std::pair<strings::UniString, size_t>;
-
-  inline void EmitToken(strings::UniString const & token, size_t tag) { m_callback(token, tag); }
-
-  strings::UniString m_delayedToken;
-  size_t m_delayedTag = 0;
-  size_t m_numSynonyms = 0;
-
   Callback m_callback;
   bool m_withMisprints = false;
 };
