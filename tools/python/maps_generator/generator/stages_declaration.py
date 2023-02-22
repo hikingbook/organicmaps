@@ -73,23 +73,23 @@ class StageCoastline(Stage):
     def apply(self, env: Env, use_old_if_fail=True):
         coasts_geom = "WorldCoasts.geom"
         coasts_rawgeom = "WorldCoasts.rawgeom"
-        try:
-            coastline.make_coastline(env)
-        except BadExitStatusError as e:
-            if not use_old_if_fail:
-                raise e
+        # try:
+        #     coastline.make_coastline(env)
+        # except BadExitStatusError as e:
+        #     if not use_old_if_fail:
+        #         raise e
 
-            logger.info("Build costs failed. Try to download the costs...")
-            download_files(
-                {
-                    settings.PLANET_COASTS_GEOM_URL: os.path.join(
-                        env.paths.coastline_path, coasts_geom
-                    ),
-                    settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
-                        env.paths.coastline_path, coasts_rawgeom
-                    ),
-                }
-            )
+        # logger.info("Build costs failed. Try to download the costs...")
+        download_files(
+            {
+                settings.PLANET_COASTS_GEOM_URL: os.path.join(
+                    env.paths.coastline_path, coasts_geom
+                ),
+                settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
+                    env.paths.coastline_path, coasts_rawgeom
+                ),
+            }
+        )
 
         for f in [coasts_geom, coasts_rawgeom]:
             path = os.path.join(env.paths.coastline_path, f)
