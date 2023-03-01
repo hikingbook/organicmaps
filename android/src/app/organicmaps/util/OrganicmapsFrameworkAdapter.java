@@ -110,17 +110,10 @@ public enum OrganicmapsFrameworkAdapter {
         return this.mBackgroundTracker;
     }
 
-    private void onCreateMwmApplication() {
-        mwmApplication.onCreate();
-    }
-
     public void initCore() {
         try {
-            onCreateMwmApplication();
+            mwmApplication.onCreate();
             mwmApplication.init();
-            LocationHelper.INSTANCE.onEnteredIntoFirstRun();
-            if (!LocationHelper.INSTANCE.isActive())
-                LocationHelper.INSTANCE.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
