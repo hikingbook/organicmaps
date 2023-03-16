@@ -31,13 +31,24 @@
 	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">جست‌وجوی نقشه</string>
 	<!-- Location services are disabled by user alert - message -->
-	<string name="location_is_disabled_long_text">سرویس موقعیت مکانی شما غیر فعال است .لطفا جهت کارکرد صحیح نرم افزار آن را فعال کنید.</string>
+	<string name="location_is_disabled_long_text">سرویس موقعیت مکانی شما غیر فعال است. لطفا جهت کارکرد صحیح نرم افزار آن را فعال کنید.</string>
 	<!-- View and button titles for accessibility -->
 	<string name="zoom_to_country">بر روی نقشه نمایش بده</string>
 	<!-- Message to display at the center of the screen when the country download has failed -->
 	<string name="country_status_download_failed">دانلود با شکست مواجه شد</string>
 	<!-- Button text for the button under the country_status_download_failed message -->
 	<string name="try_again">تلاش مجدد</string>
+	<string name="about_menu_title">Organic Maps درباره‌ی</string>
+	<!-- Text in About screen -->
+	<string name="about_headline">رایگان برای همه ، ساخته شده با عشق</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_1">• بدون تبلیغات ، ردیابی ، جمع آوری داده ها</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_2">• باتری را ذخیره می کند، از داده های پس زمینه استفاده نمی کند</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• سریع ، مینیمالیستی ، بدون آشغال</string>
+	<!-- Text in About screen -->
+	<string name="about_developed_by_enthusiasts">برنامه منبع باز ایجاد شده توسط علاقه مندان و داوطلبان.</string>
 	<string name="connection_settings">تنظیمات اتصال</string>
 	<string name="close">بستن</string>
 	<string name="unsupported_phone">نیازمند است. متاسفانه دستگاه شما از آن پشتیبانی نمی‌کندOpenGLبرنامه برای اجرا به</string>
@@ -212,7 +223,7 @@
 	<!-- Button in the main menu -->
 	<string name="donate">حمایت مالی</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">چگونه از ما حمایت کنیم؟</string>
+	<string name="how_to_support_us">ﺪﯿﻨﮐ ﺖﯾﺎﻤﺣ ﻩﮊﻭﺮﭘ ﺯﺍ</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">حق نشر و کپی رایت</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -418,7 +429,8 @@
 	<string name="editor_report_problem_other_title">مشکلی دیگر</string>
 	<string name="placepage_add_business_button">اضافه کردن یک تجارت</string>
 	<string name="message_invalid_feature_position">نمی توان شی ای در این مکان باشد</string>
-	<string name="osm_presentation">تمام داده‌های نقشه از پروژه OpenStreetMap می‌آید. این مثل ویکی‌پدیا برای نقشه‌هاست که شما می‌توانید مکان را اضافه یا ویرایش کنید ﻭ ﺁنها ﺑﺮﺍﯼ ﻣﯿﻠﯿﻮن‌ها ﮐﺎﺭﺑﺮ ﺩﺭ ﺳﺮﺍﺳﺮ ﺟﻬﺎﻥ ﺩﺭ ﺩﺳﺘﺮﺱ ﻗﺮﺍﺭ ﻣﯽﮔﯿﺮﻧﺪ.</string>
+	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">داده های نقشه برداری از OpenStreetMap از %s. این مانند ویکی پدیا است که می توانید مکانهایی را برای همه کاربران در سراسر جهان اضافه یا ویرایش کنید.</string>
 	<string name="login_to_make_edits_visible">وارد شوید تا دیگر کاربران نیز بتوانند تغییرات ایجاد شده توسط شما را ببینند</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d  از  %2$d</string>
@@ -720,6 +732,7 @@
 	<string name="type.amenity.internet_cafe">کافی نت</string>
 	<string name="type.amenity.kindergarten">مهدکودک</string>
 	<string name="type.amenity.library">کتابخانه</string>
+	<string name="type.amenity.loading_dock">اسکله بارگیری</string>
 	<string name="type.amenity.marketplace">فروشگاه</string>
 	<string name="type.amenity.motorcycle_parking">پارکینگ موتورسیکلت</string>
 	<string name="type.amenity.nightclub">کلوپ شبانه</string>
@@ -833,12 +846,21 @@
 	<string name="type.entrance.main">ﯽﻠﺻﺍ ﯼﺩﻭﺭﻭ</string>
 	<string name="type.healthcare.laboratory">ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ</string>
 	<string name="type.healthcare.physiotherapist">فیزیوتراپیست</string>
+	<string name="type.healthcare.alternative">طب جایگزین</string>
+	<string name="type.healthcare.audiologist">شنوایی شناسی</string>
+	<string name="type.healthcare.blood_donation">مرکز اهدای خون</string>
+	<string name="type.healthcare.optometrist">بینایی سنجی</string>
+	<string name="type.healthcare.podiatrist">پزشکی پا</string>
+	<string name="type.healthcare.psychotherapist">روان درمانی</string>
+	<string name="type.healthcare.sample_collection">نمونه برداری</string>
+	<string name="type.healthcare.speech_therapist">گفتار درمانی</string>
 
 	<!-- SECTION: Types: Roads -->
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.bridleway.bridge">پل</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.bridleway.tunnel">تونل</string>
+	<string name="type.highway.busway">ﺱﻮﺑﻮﺗﺍ ﯽﺻﺎﺼﺘﺧﺍ ﻩﺩﺎﺟ</string>
 	<string name="type.highway.bus_stop">حمل و نقل</string>
 	<string name="type.highway.construction">جاده در دست ساخت است</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1084,6 +1106,7 @@
 	<string name="type.man_made.lighthouse">گردشگری</string>
 	<string name="type.man_made.surveillance">دوربین نظارتی</string>
 	<string name="type.man_made.tower">برج</string>
+	<string name="type.man_made.tower.communication">برج ارتباطات</string>
 	<string name="type.man_made.water_tap">شیراب</string>
 	<string name="type.man_made.water_tower">منبع اب</string>
 	<string name="type.man_made.water_well">چاه اب</string>
@@ -1169,6 +1192,10 @@
 	<string name="type.place.suburb">حومه</string>
 	<string name="type.place.town">شهر</string>
 	<string name="type.place.village">روستا</string>
+	<string name="type.power.generator.solar">ژنراتور خورشیدی</string>
+	<string name="type.power.generator.wind">مولد باد</string>
+	<string name="type.power.generator.gas">نیروگاه توربین گاز</string>
+	<string name="type.power.generator.hydro">نیروگاه برق آبی</string>
 	<string name="type.power.pole">برج قدرت</string>
 	<string name="type.power.tower">برج قدرت</string>
 	<string name="type.railway.halt">ایستگاه قطار</string>
@@ -1191,6 +1218,7 @@
 	<string name="type.railway.station.subway.beijing">حمل و نقل</string>
 	<string name="type.railway.station.subway.bengalore">حمل و نقل</string>
 	<string name="type.railway.station.subway.berlin">حمل و نقل</string>
+	<string name="type.railway.station.subway.bilbao">حمل و نقل</string>
 	<string name="type.railway.station.subway.brasilia">حمل و نقل</string>
 	<string name="type.railway.station.subway.brescia">حمل و نقل</string>
 	<string name="type.railway.station.subway.brussels">حمل و نقل</string>
@@ -1300,6 +1328,7 @@
 	<string name="type.railway.subway_entrance.beijing">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.bengalore">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.berlin">ورودی مترو</string>
+	<string name="type.railway.subway_entrance.bilbao">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.brasilia">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.brescia">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.brussels">ورودی مترو</string>

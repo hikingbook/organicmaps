@@ -342,8 +342,16 @@ world  +
         main  -
         {}
     healthcare  +
+        alternative  -
+        audiologist  -
+        blood_donation  -
         laboratory  -
+        optometrist  -
         physiotherapist  -
+        podiatrist  -
+        psychotherapist  -
+        sample_collection  -
+        speech_therapist  -
         {}
     highway  +
         bridleway  +
@@ -654,7 +662,9 @@ world  +
         storage_tank  -
         surveillance  -
         survey_point  -
-        tower  -
+        tower  +
+            communication  -
+            {}
         wastewater_plant  -
         water_tap  -
         water_tower  -
@@ -775,7 +785,12 @@ world  +
         village  -
         {}
     power  +
-        generator  -
+        generator  +
+            gas  -
+            hydro  -
+            solar  -
+            wind  -
+            {}
         line  -
         minor_line  -
         pole  -
@@ -969,6 +984,7 @@ world  +
             beijing  -
             bengalore  -
             berlin  -
+            bilbao  -
             brasilia  -
             brescia  -
             brussels  -

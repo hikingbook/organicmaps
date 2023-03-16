@@ -94,7 +94,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       new Factory.KmzKmlProcessor(this),
   };
 
-  private final LocationListener mLocationListener = new LocationListener.Simple()
+  private final LocationListener mLocationListener = new LocationListener()
   {
     @Override
     public void onLocationUpdated(Location location)
@@ -359,7 +359,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       if (ParsedMwmRequest.getCurrentRequest() != null)
       {
         // Wait for the result from MwmActivity for API callers.
-        startActivityForResult(intent, REQ_CODE_API_RESULT);
+        UiUtils.startActivityForResult(this, intent, REQ_CODE_API_RESULT);
         return;
       }
     }

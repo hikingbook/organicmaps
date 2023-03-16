@@ -37,6 +37,17 @@
 	<string name="country_status_download_failed">Échec lors du téléchargement</string>
 	<!-- Button text for the button under the country_status_download_failed message -->
 	<string name="try_again">Réessayer</string>
+	<string name="about_menu_title">À propos de Organic Maps</string>
+	<!-- Text in About screen -->
+	<string name="about_headline">Gratuit pour tout le monde, fait avec amour</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_1">• Pas d\'annonces, pas de suivi, pas de collecte de données</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_2">• Ne draine pas la batterie, ni les données mobile</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• Rapide, minimaliste, pas de superflu</string>
+	<!-- Text in About screen -->
+	<string name="about_developed_by_enthusiasts">Application open source créée par des amateurs et des bénévoles.</string>
 	<string name="connection_settings">Paramètres de connexion</string>
 	<string name="close">Fermer</string>
 	<string name="unsupported_phone">L\'accélération OpenGL matérielle est exigée. Malheureusement, votre appareil n\'est pas pris en charge.</string>
@@ -240,7 +251,7 @@
 	<!-- Button in the main menu -->
 	<string name="donate">Faire un don</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">Comment nous soutenir?</string>
+	<string name="how_to_support_us">Soutenir le projet</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">Tous droits réservés</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -449,7 +460,8 @@
 	<string name="editor_report_problem_other_title">Autre problème</string>
 	<string name="placepage_add_business_button">Ajouter une entreprise</string>
 	<string name="message_invalid_feature_position">Aucun objet ne peut être localisé ici</string>
-	<string name="osm_presentation">Toutes les données géographiques proviennent du projet OpenStreetMap. Le principe est similaire à Wikipedia: vous pouvez ajouter et modifier des lieux et ils deviendront accessibles à des millions d\'utilisateurs partout dans le monde.</string>
+	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Données cartographiques provenant d\'OpenStreetMap en date du %s. OSM est comme Wikipedia pour les cartes, où vous pouvez ajouter ou modifier des lieux.</string>
 	<string name="login_to_make_edits_visible">Connectez vous à votre compte openstreetmap.org pour que d\'autres utilisateurs puissent voir vos changements.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d de %2$d</string>
@@ -780,6 +792,7 @@
 	<string name="type.amenity.internet_cafe">Cybercafé</string>
 	<string name="type.amenity.kindergarten">Maternelle</string>
 	<string name="type.amenity.library">Bibliothèque</string>
+	<string name="type.amenity.loading_dock">Quai de chargement</string>
 	<string name="type.amenity.marketplace">Marché</string>
 	<string name="type.amenity.motorcycle_parking">Parking moto</string>
 	<string name="type.amenity.nightclub">Discothèque</string>
@@ -1012,6 +1025,14 @@
 	<string name="type.entrance.main">Entrée principale</string>
 	<string name="type.healthcare.laboratory">Laboratoire médical</string>
 	<string name="type.healthcare.physiotherapist">Physiothérapeute</string>
+	<string name="type.healthcare.alternative">Médecine alternative</string>
+	<string name="type.healthcare.audiologist">Audiologie</string>
+	<string name="type.healthcare.blood_donation">Centre de don du sang</string>
+	<string name="type.healthcare.optometrist">Optométrie</string>
+	<string name="type.healthcare.podiatrist">Podologie</string>
+	<string name="type.healthcare.psychotherapist">Psychothérapie</string>
+	<string name="type.healthcare.sample_collection">Prélèvements biologiques</string>
+	<string name="type.healthcare.speech_therapist">Logopédie</string>
 
 	<!-- SECTION: Types: Roads -->
 	<string name="type.highway.bridleway">Chemin pour cavalier</string>
@@ -1020,6 +1041,7 @@
 	<string name="type.highway.bridleway.permissive">Chemin pour cavalier</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.bridleway.tunnel">Tunnel</string>
+	<string name="type.highway.busway">Route réservée aux bus</string>
 	<string name="type.highway.bus_stop">Arrêt de bus</string>
 	<string name="type.highway.construction">Route en construction</string>
 	<string name="type.highway.cycleway">Piste cyclable</string>
@@ -1301,6 +1323,7 @@
 	<string name="type.man_made.storage_tank">Réservoir</string>
 	<string name="type.man_made.surveillance">Caméra de surveillance</string>
 	<string name="type.man_made.tower">Tour</string>
+	<string name="type.man_made.tower.communication">Tour de communication</string>
 	<string name="type.man_made.wastewater_plant">Station d\'épuration</string>
 	<string name="type.man_made.water_tap">Robinet d\'eau</string>
 	<string name="type.man_made.water_tower">Château d\'eau</string>
@@ -1389,6 +1412,10 @@
 	<string name="type.place.suburb">Quartier</string>
 	<string name="type.place.town">Ville</string>
 	<string name="type.place.village">Village</string>
+	<string name="type.power.generator.solar">Générateur solaire</string>
+	<string name="type.power.generator.wind">Générateur de vent</string>
+	<string name="type.power.generator.gas">Centrale à turbine à gaz</string>
+	<string name="type.power.generator.hydro">Centrale hydroélectrique</string>
 	<string name="type.power.pole">Poteau électrique</string>
 	<string name="type.power.substation">Poste électrique</string>
 	<string name="type.power.tower">Poteau électrique</string>
@@ -1428,6 +1455,7 @@
 	<string name="type.railway.station.subway.beijing">Station de métro</string>
 	<string name="type.railway.station.subway.bengalore">Station de métro</string>
 	<string name="type.railway.station.subway.berlin">Station de métro</string>
+	<string name="type.railway.station.subway.bilbao">Station de métro</string>
 	<string name="type.railway.station.subway.brasilia">Station de métro</string>
 	<string name="type.railway.station.subway.brescia">Station de métro</string>
 	<string name="type.railway.station.subway.brussels">Station de métro</string>
@@ -1540,6 +1568,7 @@
 	<string name="type.railway.subway_entrance.beijing">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.bengalore">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.berlin">Entrée du métro</string>
+	<string name="type.railway.subway_entrance.bilbao">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.brasilia">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.brescia">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.brussels">Entrée du métro</string>

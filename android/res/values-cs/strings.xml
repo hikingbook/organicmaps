@@ -35,6 +35,17 @@
 	<string name="country_status_download_failed">Stahování selhalo</string>
 	<!-- Button text for the button under the country_status_download_failed message -->
 	<string name="try_again">Zkusit znovu</string>
+	<string name="about_menu_title">O aplikaci Organic Maps</string>
+	<!-- Text in About screen -->
+	<string name="about_headline">Zdarma pro všechny, vyrobené s láskou</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_1">• Žádné reklamy, žádné sledování, žádné sběr dat</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_2">• Šetří baterii, nevyužívá data na pozadí</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• Rychlý, minimalistický, žádný haraburdí</string>
+	<!-- Text in About screen -->
+	<string name="about_developed_by_enthusiasts">Otevřená aplikace vytvořená nadšenci a dobrovolníky.</string>
 	<string name="connection_settings">Nastavení připojení</string>
 	<string name="close">Zavřít</string>
 	<string name="unsupported_phone">Je vyžadována hardwarová akcelerace OpenGL. Bohužel, vaše zařízení není podporováno.</string>
@@ -223,7 +234,7 @@
 	<!-- Button in the main menu -->
 	<string name="donate">Darovat</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">Jak nás podpořit?</string>
+	<string name="how_to_support_us">Podpořte projekt</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">Autorská práva</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -427,7 +438,8 @@
 	<string name="editor_report_problem_other_title">Jiný problém</string>
 	<string name="placepage_add_business_button">Přidat organizaci</string>
 	<string name="message_invalid_feature_position">Objekt zde nemůže být umístěn</string>
-	<string name="osm_presentation">Všechna mapová data pocházejí z projektu OpenStreetMap. Je to jako Wikipedie s mapami, kde můžete přidávat nebo upravovat místa a jsou dostupné milionům uživatelů po celém světě.</string>
+	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Kartografické údaje z OpenStreetMap od roku %s. Je to jako Wikipedia, kde můžete přidat nebo upravovat místa pro všechny uživatele po celém světě.</string>
 	<string name="login_to_make_edits_visible">Přihlaste se, aby ostatní uživatelé mohli vidět změny, které jste provedli.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d z %2$d</string>
@@ -732,6 +744,7 @@
 	<string name="type.amenity.internet_cafe">Internetová kavárna</string>
 	<string name="type.amenity.kindergarten">Školka</string>
 	<string name="type.amenity.library">Knihovna</string>
+	<string name="type.amenity.loading_dock">Nakládaci dok</string>
 	<string name="type.amenity.marketplace">Tržiště</string>
 	<string name="type.amenity.motorcycle_parking">Parkování pro motocykly</string>
 	<string name="type.amenity.nightclub">Noční klub</string>
@@ -930,12 +943,21 @@
 	<string name="type.entrance.main">Hlavní vchod</string>
 	<string name="type.healthcare.laboratory">Lékařská laboratoř</string>
 	<string name="type.healthcare.physiotherapist">Fyzioterapeut</string>
+	<string name="type.healthcare.alternative">Alternativní medicína</string>
+	<string name="type.healthcare.audiologist">Audiologie</string>
+	<string name="type.healthcare.blood_donation">Centrum dárcovství krve</string>
+	<string name="type.healthcare.optometrist">Optometrie</string>
+	<string name="type.healthcare.podiatrist">Podiatrie</string>
+	<string name="type.healthcare.psychotherapist">Psychoterapie</string>
+	<string name="type.healthcare.sample_collection">Odběr vzorků</string>
+	<string name="type.healthcare.speech_therapist">Logopedie</string>
 
 	<!-- SECTION: Types: Roads -->
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.bridleway.bridge">Most</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.bridleway.tunnel">Tunel</string>
+	<string name="type.highway.busway">Vyhrazená autobusová silnice</string>
 	<string name="type.highway.bus_stop">Autobusová zastávka</string>
 	<string name="type.highway.construction">Silnice v rekonstrukci</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1182,6 +1204,7 @@
 	<string name="type.man_made.lighthouse">Maják</string>
 	<string name="type.man_made.surveillance">Bezpečnostní kamera</string>
 	<string name="type.man_made.tower">Věž</string>
+	<string name="type.man_made.tower.communication">Komunikační věž</string>
 	<string name="type.man_made.water_tap">Vodovodní kohoutek</string>
 	<string name="type.man_made.water_tower">Vodárna</string>
 	<string name="type.man_made.water_well">Studna</string>
@@ -1267,6 +1290,10 @@
 	<string name="type.place.suburb">Předměstí</string>
 	<string name="type.place.town">Město</string>
 	<string name="type.place.village">Vesnice</string>
+	<string name="type.power.generator.solar">Solární generátor</string>
+	<string name="type.power.generator.wind">Větrný generátor</string>
+	<string name="type.power.generator.gas">Elektrárna s plynovou turbínou</string>
+	<string name="type.power.generator.hydro">Vodní elektrárna</string>
 	<string name="type.power.pole">Sloup elektrického vedení</string>
 	<string name="type.power.substation">Rozvodna</string>
 	<string name="type.power.tower">Sloup elektrického vedení</string>
@@ -1290,6 +1317,7 @@
 	<string name="type.railway.station.subway.beijing">Metro</string>
 	<string name="type.railway.station.subway.bengalore">Metro</string>
 	<string name="type.railway.station.subway.berlin">Metro</string>
+	<string name="type.railway.station.subway.bilbao">Metro</string>
 	<string name="type.railway.station.subway.brasilia">Metro</string>
 	<string name="type.railway.station.subway.brescia">Metro</string>
 	<string name="type.railway.station.subway.brussels">Metro</string>
@@ -1399,6 +1427,7 @@
 	<string name="type.railway.subway_entrance.beijing">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.bengalore">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.berlin">Vchod do podchodu</string>
+	<string name="type.railway.subway_entrance.bilbao">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.brasilia">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.brescia">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.brussels">Vchod do podchodu</string>
