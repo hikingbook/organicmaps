@@ -16,7 +16,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -27,6 +26,8 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
@@ -82,16 +83,9 @@ import app.organicmaps.settings.RoadType;
 import app.organicmaps.settings.SettingsActivity;
 import app.organicmaps.settings.UnitLocale;
 import app.organicmaps.sound.TtsPlayer;
-import app.organicmaps.util.log.Logger;
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
-import app.organicmaps.widget.menu.MainMenu;
-import app.organicmaps.widget.placepage.PlacePageController;
-import app.organicmaps.widget.placepage.PlacePageData;
-import app.organicmaps.widget.placepage.PlacePageFactory;
-import app.organicmaps.widget.placepage.RoutingModeListener;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.Counters;
-import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.ThemeUtils;
@@ -99,6 +93,12 @@ import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
+import app.organicmaps.util.log.Logger;
+import app.organicmaps.widget.menu.MainMenu;
+import app.organicmaps.widget.placepage.PlacePageButtons;
+import app.organicmaps.widget.placepage.PlacePageController;
+import app.organicmaps.widget.placepage.PlacePageData;
+import app.organicmaps.widget.placepage.PlacePageView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -119,10 +119,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
                BookmarkManager.BookmarksLoadingListener,
                FloatingSearchToolbarController.SearchToolbarListener,
                PlacePageController.SlideListener,
-               RoutingModeListener,
                NoConnectionListener,
                MenuBottomSheetFragment.MenuBottomSheetInterfaceWithHeader,
-               ToggleMapLayerFragment.LayerItemClickListener
+               ToggleMapLayerFragment.LayerItemClickListener,
+               PlacePageButtons.PlacePageButtonClickListener,
+               PlacePageView.PlacePageViewListener
 {
   private static final String TAG = MwmActivity.class.getSimpleName();
 
@@ -157,6 +158,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private View mPointChooser;
   private Toolbar mPointChooserToolbar;
+
   enum PointChooserMode
   {
     NONE,
@@ -199,7 +201,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private int mNavBarHeight;
 
-  private WindowInsets mCurrentWindowInsets;
+  @Nullable
+  private WindowInsetsCompat mCurrentWindowInsets;
 
   public interface LeftAnimationTrackListener
   {
@@ -393,11 +396,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
     UiUtils.setupTransparentStatusBar(this);
 
     OrganicmapsFrameworkAdapter.INSTANCE.initActivity(this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()));
-
-    mPlacePageController = PlacePageFactory.createCompositePlacePageController(
-        this, this);
+    mPlacePageController = new PlacePageController(this, this);
     mPlacePageController.initialize(this);
-    mPlacePageController.onActivityCreated(this, savedInstanceState);
 
     mSearchController = new FloatingSearchToolbarController(this, this);
     mSearchController.getToolbar()
@@ -430,18 +430,19 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void updateViewsInsets()
   {
-    mPointChooser.setOnApplyWindowInsetsListener((view, windowInsets) -> {
+    ViewCompat.setOnApplyWindowInsetsListener(mPointChooser, (view, windowInsets) -> {
       UiUtils.setViewInsetsPaddingBottom(mPointChooser, windowInsets);
-      UiUtils.extendViewWithStatusBar(mPointChooserToolbar, windowInsets);
+      UiUtils.setViewInsetsPaddingNoBottom(mPointChooserToolbar, windowInsets);
 
-      mNavBarHeight = mIsFullscreen ? 0 : windowInsets.getSystemWindowInsetBottom();
+      mNavBarHeight = mIsFullscreen ? 0 : windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
       // For the first loading, set compass top margin to status bar size
+      // The top inset will be then be updated by the routing controller
       if (mCurrentWindowInsets == null)
-        adjustCompass(windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight());
+        adjustCompass(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top, windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right);
       else
-        adjustCompass(-1, windowInsets.getSystemWindowInsetRight());
+        adjustCompass(-1, windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right);
       refreshLightStatusBar();
-      adjustBottomWidgets(windowInsets.getSystemWindowInsetLeft());
+      adjustBottomWidgets(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).left);
       mCurrentWindowInsets = windowInsets;
       return windowInsets;
     });
@@ -635,7 +636,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       mMapButtonsController = new MapButtonsController();
       mMapButtonsController.init(
           layoutMode,
-          LocationHelper.INSTANCE.getMyPositionMode(),
+          LocationState.nativeGetMode(),
           this::onMapButtonClick,
           (v) -> closeSearchToolbar(true, true),
           mPlacePageController,
@@ -923,14 +924,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     RoutingController.get().rebuildLastRoute();
   }
 
-  @Override
-  public void toggleRouteSettings(@NonNull RoadType roadType)
-  {
-    closePlacePage();
-    RoutingOptions.addOption(roadType);
-    rebuildLastRouteInternal();
-  }
-
   private void onIsolinesStateChanged(@NonNull IsolinesState type)
   {
     if (type != IsolinesState.EXPIREDDATA)
@@ -1020,7 +1013,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
       mOnmapDownloader.onResume();
 
     mNavigationController.onActivityResumed(this);
-    mPlacePageController.onActivityResumed(this);
     refreshLightStatusBar();
   }
 
@@ -1047,8 +1039,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
       TtsPlayer.INSTANCE.stop();
     if (mOnmapDownloader != null)
       mOnmapDownloader.onPause();
-    mPlacePageController.onActivityPaused(this);
     mNavigationController.onActivityPaused(this);
+    LocationHelper.INSTANCE.closeLocationDialog();
     super.onPause();
   }
 
@@ -1064,7 +1056,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    LocationState.nativeSetListener(this);
 //    LocationHelper.INSTANCE.addListener(this);
 //    onMyPositionModeChanged(LocationState.nativeGetMode());
-    mPlacePageController.onActivityStarted(this);
     mSearchController.attach(this);
     if (!Config.isScreenSleepEnabled())
       Utils.keepScreenOn(true, getWindow());
@@ -1080,7 +1071,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     LocationState.nativeRemoveListener();
     LocationHelper.INSTANCE.detach();
     RoutingController.get().detach();
-    mPlacePageController.onActivityStopped(this);
 //    IsolinesManager.from(getApplicationContext()).detach();
     mSearchController.detach();
     Utils.keepScreenOn(false, getWindow());
@@ -1416,7 +1406,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  @Override
 //  public void onRoutingPlanStartAnimate(boolean show)
 //  {
-//    int offset = mCurrentWindowInsets.getSystemWindowInsetTop();
+//    // TODO This code section may be called when insets are not yet initialized
+//    // This is only a workaround to prevent crashes but a proper fix should be implemented
+//    if (mCurrentWindowInsets == null) {
+//      return;
+//    }
+//    int offset = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
 //    if (show && mRoutingPlanInplaceController != null)
 //    {
 //      final int height = mRoutingPlanInplaceController.calcHeight();
@@ -1425,7 +1420,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    }
 //    adjustCompassAndTraffic(offset);
 //  }
-//
+
 //  @Override
 //  public void showRoutePlan(boolean show, @Nullable Runnable completionListener)
 //  {
@@ -1451,14 +1446,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    }
 //    else
 //    {
-//      if (mIsTabletLayout)
-//      {
-//        adjustCompassAndTraffic(mCurrentWindowInsets.getSystemWindowInsetTop());
-//      }
-//      else
-//      {
+//      if (mIsTabletLayout && mCurrentWindowInsets != null)
+//        adjustCompassAndTraffic(mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
+//      else if (!mIsTabletLayout)
 //        mRoutingPlanInplaceController.show(false);
-//      }
 //
 //      closeAllFloatingPanelsTablet();
 //
@@ -1831,7 +1822,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       return items;
     }
     else if (id.equals(PLACEPAGE_MORE_MENU_ID))
-      return mPlacePageController.getMenuBottomSheetItems();
+      return mPlacePageController.getMenuBottomSheetItems(id);
     return null;
   }
 
@@ -1842,5 +1833,37 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (id.equals(LAYERS_MENU_ID))
       return new ToggleMapLayerFragment();
     return null;
+  }
+
+  @Override
+  public void onPlacePageButtonClick(PlacePageButtons.ButtonType item)
+  {
+    mPlacePageController.onPlacePageButtonClick(item);
+  }
+
+  @Override
+  public void onPlacePageContentChanged(int previewHeight, int frameHeight)
+  {
+    mPlacePageController.onPlacePageContentChanged(previewHeight, frameHeight);
+  }
+
+  @Override
+  public void onPlacePageRequestClose()
+  {
+    mPlacePageController.onPlacePageRequestClose();
+  }
+
+  @Override
+  public void onPlacePageRequestToggleState()
+  {
+    mPlacePageController.onPlacePageRequestToggleState();
+  }
+
+  @Override
+  public void onPlacePageRequestToggleRouteSettings(@NonNull RoadType roadType)
+  {
+    closePlacePage();
+    RoutingOptions.addOption(roadType);
+    rebuildLastRouteInternal();
   }
 }

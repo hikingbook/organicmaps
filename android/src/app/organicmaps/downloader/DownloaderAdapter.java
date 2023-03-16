@@ -488,7 +488,6 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
       String found = null;
       if (mSearchResultsMode)
       {
-        mName.setMaxLines(1);
         mName.setText(mItem.name);
 
         String searchResultName = mItem.searchResultName;
@@ -509,7 +508,6 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
       }
       else
       {
-        mName.setMaxLines(2);
         mName.setText(mItem.name);
         if (!mItem.isExpandable())
           UiUtils.setTextAndHideIfEmpty(mSubtitle, mItem.description);

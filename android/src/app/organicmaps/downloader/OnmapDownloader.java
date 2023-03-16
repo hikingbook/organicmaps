@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import androidx.core.view.ViewCompat;
 import app.organicmaps.MapSource;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.R;
@@ -272,7 +273,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
     }));
 
-    mFrame.setOnApplyWindowInsetsListener((view, windowInsets) -> {
+    ViewCompat.setOnApplyWindowInsetsListener(mFrame, (view, windowInsets) -> {
       UiUtils.setViewInsetsPadding(view, windowInsets);
       return windowInsets;
     });

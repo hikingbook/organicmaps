@@ -467,12 +467,7 @@ void setShowLocationAlert(BOOL needShow) {
   } else {
     _started = NO;
     [self stop];
-    [notificationCenter removeObserver:self
-                                  name:UIDeviceOrientationDidChangeNotification
-                                object:nil];
-    [notificationCenter removeObserver:self
-                                  name:UIDeviceBatteryStateDidChangeNotification
-                                object:nil];
+    [notificationCenter removeObserver:self];
   }
 }
 

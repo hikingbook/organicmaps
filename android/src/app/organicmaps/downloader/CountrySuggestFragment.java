@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import app.organicmaps.MapSource;
 import app.organicmaps.R;
@@ -214,8 +215,10 @@ public class CountrySuggestFragment extends BaseMwmFragment implements View.OnCl
     }
     else if (id == R.id.btn__select_map)
     {
-      BaseMwmFragmentActivity activity = Utils.castTo(requireActivity());
-      activity.replaceFragment(DownloaderFragment.class, null, null);
+      final FragmentActivity fragmentActivity = requireActivity();
+      if (!(fragmentActivity instanceof BaseMwmFragmentActivity))
+        throw new IllegalStateException("Activity is not instance of BaseMwmFragmentActivity");
+      ((BaseMwmFragmentActivity) fragmentActivity).replaceFragment(DownloaderFragment.class, null, null);
     }
     else if (id == R.id.wpv__download_progress)
       MapManager.nativeCancel(mDownloadingCountry.id);

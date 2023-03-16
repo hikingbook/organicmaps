@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Build;
 import android.widget.RemoteViews;
@@ -63,7 +64,7 @@ public class NavigationService extends Service
   private boolean mChangingConfiguration = false;
 
   @NonNull
-  private final LocationListener mLocationListener = new LocationListener.Simple()
+  private final LocationListener mLocationListener = new LocationListener()
   {
     @Override
     public void onLocationUpdated(Location location)
@@ -190,17 +191,14 @@ public class NavigationService extends Service
   {
     Intent stopSelf = new Intent(this, NavigationService.class);
     stopSelf.putExtra(EXTRA_STOP_SERVICE, true);
-    int flags = PendingIntent.FLAG_CANCEL_CURRENT;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      flags = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
-    }
-    PendingIntent pStopSelf = PendingIntent.getService(this, 0,
-                                                       stopSelf, flags);
+    final int FLAG_IMMUTABLE = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? 0 : PendingIntent.FLAG_IMMUTABLE;
+    PendingIntent pStopSelf = PendingIntent.getService(this, 0, stopSelf,
+        PendingIntent.FLAG_CANCEL_CURRENT | FLAG_IMMUTABLE);
 
     // TODO (@velichkomarija): restore navigation from notification.
     PendingIntent activityPendingIntent = PendingIntent
         .getActivity(this, 0,
-                     new Intent(this, MwmActivity.class), 0);
+                     new Intent(this, MwmActivity.class), FLAG_IMMUTABLE);
 
     Builder builder = new Builder(this, CHANNEL_ID)
         .addAction(R.drawable.ic_cancel, getString(R.string.button_exit),
