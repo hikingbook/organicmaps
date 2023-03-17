@@ -21,7 +21,7 @@ using namespace std;
 // Mwm subtree attributes. They can be calculated based on information contained in countries.txt.
 // The first in the pair is number of mwms in a subtree. The second is sum of sizes of
 // all mwms in a subtree.
-using MwmSubtreeAttrs = pair<MwmCounter, MwmSize>;
+using MwmSubtreeAttrs = tuple<MwmCounter, MwmSize, MwmSize>;
 
 namespace
 {
@@ -379,27 +379,30 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
 
   MwmCounter mwmCounter = 0;
   MwmSize mwmSize = 0;
+  MwmSize hikingbookProMwmSize = 0;
   vector<json_t *> children;
   FromJSONObjectOptionalField(node, "g", children);
   if (children.empty())
   {
     mwmCounter = 1;  // It's a leaf. Any leaf contains one mwm.
     mwmSize = nodeSize;
+    hikingbookProMwmSize = hikingbookProMapNodeSize;
   }
   else
   {
     for (json_t * child : children)
     {
       MwmSubtreeAttrs const childAttr = LoadGroupImpl(depth + 1, child, id, store);
-      mwmCounter += childAttr.first;
-      mwmSize += childAttr.second;
+      mwmCounter += std::get<0>(childAttr);
+      mwmSize += std::get<1>(childAttr);
+      hikingbookProMwmSize += std::get<2>(childAttr);
     }
   }
 
   if (addedNode != nullptr)
-    addedNode->SetSubtreeAttrs(mwmCounter, mwmSize);
+    addedNode->SetSubtreeAttrs(mwmCounter, mwmSize, hikingbookProMwmSize);
 
-  return make_pair(mwmCounter, mwmSize);
+  return make_tuple(mwmCounter, mwmSize, hikingbookProMwmSize);
 }
 
 bool LoadCountriesImpl(string const & jsonBuffer, StoreInterface & store)

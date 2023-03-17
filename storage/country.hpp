@@ -1,3 +1,4 @@
+// This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2023.
 #pragma once
 
 #include "storage/country_decl.hpp"
@@ -39,13 +40,15 @@ public:
   }
 
   void SetFile(platform::CountryFile && file) { m_file = std::move(file); }
-  void SetSubtreeAttrs(MwmCounter subtreeMwmNumber, MwmSize subtreeMwmSizeBytes)
+  void SetSubtreeAttrs(MwmCounter subtreeMwmNumber, MwmSize subtreeMwmSizeBytes, MwmSize subtreeHikingbookProMwmSizeBytes)
   {
     m_subtreeMwmNumber = subtreeMwmNumber;
     m_subtreeMwmSizeBytes = subtreeMwmSizeBytes;
+    m_subtreeHikingbookProMwmSizeBytes = subtreeHikingbookProMwmSizeBytes;
   }
   MwmCounter GetSubtreeMwmCounter() const { return m_subtreeMwmNumber; }
   MwmSize GetSubtreeMwmSizeBytes() const { return m_subtreeMwmSizeBytes; }
+  MwmSize GetSubtreeHikingbookProMwmSizeBytes() const { return m_subtreeHikingbookProMwmSizeBytes; }
 
   platform::CountryFile const & GetFile() const { return m_file; }
   CountryId const & Name() const { return m_name; }
@@ -65,5 +68,7 @@ private:
   /// Size of descendant mwm files of |m_name|.
   /// If |m_name| is a mwm file name |m_subtreeMwmSizeBytes| is equal to size of the mwm.
   MwmSize m_subtreeMwmSizeBytes = 0;
+    
+  MwmSize m_subtreeHikingbookProMwmSizeBytes = 0;
 };
 }  // namespace storage

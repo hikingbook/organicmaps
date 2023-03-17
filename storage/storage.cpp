@@ -1726,10 +1726,7 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   }
     
     // Hikingbook Pro Maps
-    nodeAttrs.m_hikingbookProMapSize = nodeAttrs.m_mwmSize;
-    if (node->ChildrenCount() == 0) {
-        nodeAttrs.m_hikingbookProMapSize = nodeValue.GetFile().GetHikingbookProMapRemoteSize();
-    }
+    nodeAttrs.m_hikingbookProMapSize = nodeValue.GetSubtreeHikingbookProMwmSizeBytes();
     nodeAttrs.m_hikingbookProMapStatus = GetNodeStatus(*node, MapSource::HikingbookProMaps).status;
     
   // Local mwm information and information about downloading mwms.
