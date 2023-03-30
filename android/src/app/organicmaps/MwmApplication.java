@@ -9,38 +9,29 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+
 import androidx.annotation.NonNull;
+
+import java.io.IOException;
+import java.util.List;
+
 import app.organicmaps.background.AppBackgroundTracker;
 import app.organicmaps.background.NotificationChannelFactory;
 import app.organicmaps.background.NotificationChannelProvider;
 import app.organicmaps.background.Notifier;
-import app.organicmaps.base.MediaPlayerWrapper;
-import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.downloader.CountryItem;
 import app.organicmaps.downloader.MapManager;
-import app.organicmaps.editor.Editor;
 import app.organicmaps.location.LocationHelper;
-import app.organicmaps.maplayer.isolines.IsolinesManager;
-import app.organicmaps.maplayer.subway.SubwayManager;
-import app.organicmaps.maplayer.traffic.TrafficManager;
-import app.organicmaps.routing.RoutingController;
 import app.organicmaps.search.SearchEngine;
 import app.organicmaps.settings.StoragePathManager;
-import app.organicmaps.sound.TtsPlayer;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.ConnectionState;
-import app.organicmaps.util.Counters;
-import app.organicmaps.util.CrashlyticsUtils;
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.SharedPropertiesUtils;
 import app.organicmaps.util.StorageUtils;
-import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.log.Logger;
 import app.organicmaps.util.log.LogsManager;
-
-import java.io.IOException;
-import java.util.List;
 
 public class MwmApplication extends Application implements AppBackgroundTracker.OnTransitionListener
 {
@@ -210,7 +201,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     initNativeStrings();
 //    ThemeSwitcher.INSTANCE.initialize(this);
     SearchEngine.INSTANCE.initialize(null);
-    BookmarkManager.loadBookmarks();
+//    BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
 //    ThemeSwitcher.INSTANCE.restart(false);
     LocationHelper.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
