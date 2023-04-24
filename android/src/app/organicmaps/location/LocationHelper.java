@@ -11,7 +11,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 
@@ -23,10 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import app.organicmaps.Framework;
-import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.background.AppBackgroundTracker;
 import app.organicmaps.base.Initializable;
@@ -37,7 +34,6 @@ import app.organicmaps.util.Config;
 import app.organicmaps.util.Listeners;
 import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.NetworkPolicy;
-import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.Logger;
 
 public enum LocationHelper implements Initializable<Context>, AppBackgroundTracker.OnTransitionListener, BaseLocationProvider.Listener
@@ -303,20 +299,20 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
       return;
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.enable_location_services)
-        .setMessage(R.string.location_is_disabled_long_text)
-        .setOnDismissListener(dialog -> mErrorDialog = null)
-        .setNegativeButton(R.string.close, null);
-    final Intent intent = Utils.makeSystemLocationSettingIntent(mActivity);
-    if (intent != null)
-    {
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-      intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-      builder.setPositiveButton(R.string.connection_settings, (dialog, which) -> mActivity.startActivity(intent));
-    }
-    mErrorDialog = builder.show();
+//    AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.MwmTheme_AlertDialog)
+//        .setTitle(R.string.enable_location_services)
+//        .setMessage(R.string.location_is_disabled_long_text)
+//        .setOnDismissListener(dialog -> mErrorDialog = null)
+//        .setNegativeButton(R.string.close, null);
+//    final Intent intent = Utils.makeSystemLocationSettingIntent(mActivity);
+//    if (intent != null)
+//    {
+//      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//      intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//      intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//      builder.setPositiveButton(R.string.connection_settings, (dialog, which) -> mActivity.startActivity(intent));
+//    }
+//    mErrorDialog = builder.show();
   }
 
   @UiThread
@@ -341,12 +337,12 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
       return;
     }
 
-    mErrorDialog = new AlertDialog.Builder(mActivity, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.enable_location_services)
-        .setMessage(R.string.location_is_disabled_long_text)
-        .setOnDismissListener(dialog -> mErrorDialog = null)
-        .setNegativeButton(R.string.close, null)
-        .show();
+//    mErrorDialog = new AlertDialog.Builder(mActivity, R.style.MwmTheme_AlertDialog)
+//        .setTitle(R.string.enable_location_services)
+//        .setMessage(R.string.location_is_disabled_long_text)
+//        .setOnDismissListener(dialog -> mErrorDialog = null)
+//        .setNegativeButton(R.string.close, null)
+//        .show();
   }
 
   @UiThread
