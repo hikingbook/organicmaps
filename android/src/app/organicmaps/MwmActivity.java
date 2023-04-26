@@ -442,7 +442,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       else
         adjustCompass(-1, windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right);
       refreshLightStatusBar();
-      adjustBottomWidgets(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).left);
+      adjustBottomWidgets(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).left, 0);
       mCurrentWindowInsets = windowInsets;
       return windowInsets;
     });
@@ -1236,10 +1236,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void adjustBottomWidgets()
   {
-    adjustBottomWidgets(-1);
+    adjustBottomWidgets(-1, 0);
   }
 
-  public void adjustBottomWidgets(int offsetX)
+  // Modified by Ke, Zheng-Xiang
+  public void adjustBottomWidgets(int offsetX, int offsetY)
   {
     if (mMapFragment == null || !mMapFragment.isAdded())
       return;
@@ -1253,7 +1254,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     final int y = Math.max(Math.max(mapButtonsHeight, mainMenuHeight), mNavBarHeight);
 
-    mMapFragment.adjustBottomWidgets(offsetX, y);
+    mMapFragment.adjustBottomWidgets(offsetX, y + offsetY);
   }
 
 //  @Override

@@ -6,7 +6,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -14,9 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Stream;
+
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
-import app.organicmaps.MapFragment;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -27,12 +29,7 @@ import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.location.LocationState;
-import app.organicmaps.maplayer.MapButtonsController;
 import app.organicmaps.util.log.LogsManager;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Stream;
 
 public enum OrganicmapsFrameworkAdapter {
     INSTANCE;
@@ -219,6 +216,14 @@ public enum OrganicmapsFrameworkAdapter {
             return;
         }
         mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
+    }
+
+    public void adjustCompass(int offsetY, int offsetX) {
+        mwmActivity.adjustCompass(offsetY, offsetX);
+    }
+
+    public void adjustBottomWidgets(int offsetX, int offsetY) {
+        mwmActivity.adjustBottomWidgets(offsetX, offsetY);
     }
 
     /**
