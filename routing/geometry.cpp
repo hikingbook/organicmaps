@@ -235,7 +235,7 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
       /// - Remove assert, but update A* algo heuristic somehow;
       /// - Reconsider ferry defaults;
       /// - Make _very big_ bicycle/pedestrian maxspeed;
-      ASSERT_LESS_OR_EQUAL(speed, vehicleModel.GetMaxWeightSpeed(), (roadLenKm, durationH));
+      ASSERT_LESS_OR_EQUAL(speed, vehicleModel.GetMaxWeightSpeed(), (roadLenKm, durationH, fID));
       m_forwardSpeed = m_backwardSpeed = SpeedKMpH(speed);
     }
   }
@@ -281,7 +281,7 @@ double RoadGeometry::GetRoadLengthM() const
 
 // Geometry ----------------------------------------------------------------------------------------
 Geometry::Geometry(unique_ptr<GeometryLoader> loader, size_t roadsCacheSize)
-  : m_loader(move(loader))
+  : m_loader(std::move(loader))
 {
   CHECK(m_loader, ());
 

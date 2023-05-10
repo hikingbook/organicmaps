@@ -12,7 +12,7 @@
 	<string name="delete">삭제하기</string>
 	<string name="download_maps">지도 다운로드받기</string>
 	<!-- Settings/Downloader - info for country when download fails -->
-	<string name="download_has_failed">다운로드에 실패하였습니다. 다시 두드려 시도하여 주십시요.</string>
+	<string name="download_has_failed">다운로드에 실패하였습니다. 다시 시도하려면 터치하세요.</string>
 	<!-- Settings/Downloader - info for country which started downloading -->
 	<string name="downloading">다운로드 중…</string>
 	<!-- Choose measurement on first launch alert - choose metric system button -->
@@ -22,13 +22,13 @@
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">나의 위치</string>
 	<!-- Update maps later/Buy pro version later button text -->
-	<string name="later">후</string>
+	<string name="later">나중에</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">검색하기</string>
 	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">지도 검색하기</string>
 	<!-- Location services are disabled by user alert - message -->
-	<string name="location_is_disabled_long_text">현재 이 장치나 애플리케이션을 위한 전 위치 서비스를 불능시키셨습니다. 설정에서 이를 작동시켜 주시기 바랍니다.</string>
+	<string name="location_is_disabled_long_text">현재 이 기기 또는 애플리케이션에 대한 모든 위치 서비스가 비활성화되어 있습니다. 설정에서 활성화하십시오.</string>
 	<!-- View and button titles for accessibility -->
 	<string name="zoom_to_country">지도에 표시</string>
 	<!-- Message to display at the center of the screen when the country download has failed -->
@@ -53,7 +53,7 @@
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable">Organic Maps를 사용하려면 USB 케이블이나 삽입 메모리 카드를 분리하십시오</string>
 	<!-- Used in DownloadResources startup screen -->
-	<string name="not_enough_free_space_on_sdcard">응용 프로그램을 사용하기 위해서는 첫째 SD 카드 / USB 저장 장치에 여유 공간을 확보하십시오</string>
+	<string name="not_enough_free_space_on_sdcard">앱을 사용하려면 먼저 SD 카드/USB 저장소의 여유 공간을 확보하세요</string>
 	<string name="download_resources">시작하시기 전에 일반 세계 지도를 귀하의 장치로 다운로드하겠습니다.\n%s 데이터가 필요합니다.</string>
 	<string name="download_resources_continue">지도로 이동</string>
 	<string name="downloading_country_can_proceed">%s다운로드. 이제지도를 진행할 수 있습니다.</string>
@@ -66,7 +66,7 @@
 	<!-- Show popup notification on top of the map when country download has failed. -->
 	<string name="download_country_failed">%s다운로드가 실패했습니다</string>
 	<!-- "Add new bookmark list" dialog title -->
-	<string name="add_new_set">새로운 세트 추가</string>
+	<string name="add_new_set">새로운 목록 추가</string>
 	<!-- Bookmark Color dialog title -->
 	<string name="bookmark_color">색상 즐겨찾기에 추가</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
@@ -201,6 +201,8 @@
 	<string name="pref_map_3d_title">원근 보기</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">주변 건물 3D</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D 빌딩은 절전 모드에서 꺼집니다.</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">음성 지침</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -675,8 +677,13 @@
 	<string name="enable_screen_sleep_description">활성화되면 일정 시간 동안 활동이 없으면 화면이 절전 모드로 전환됩니다.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">OpenStreetMap의 지도 데이터</string>
+	<!-- Link to OSM wiki for Editor, Profile and About pages -->
+	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ko:OpenStreetMap_소개</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">주소/블록</string>
+	<string name="type.addr_interpolation.even">주소/블록</string>
+	<string name="type.addr_interpolation.odd">주소/블록</string>
 	<string name="type.aerialway.station">케이블카 역</string>
 	<string name="type.aeroway.aerodrome">공항</string>
 	<string name="type.aeroway.aerodrome.international">공항</string>
@@ -700,7 +707,8 @@
 	<string name="type.amenity.car_wash">세차</string>
 	<string name="type.amenity.casino">카지노</string>
 	<string name="type.amenity.charging_station">충전 역</string>
-	<string name="type.amenity.charging_station.motorcar">충전 역</string>
+	<string name="type.amenity.charging_station.bicycle">자전거 충전소</string>
+	<string name="type.amenity.charging_station.motorcar">자동차 충전소</string>
 	<string name="type.amenity.childcare">보육</string>
 	<string name="type.amenity.cinema">영화관</string>
 	<string name="type.leisure.bowling_alley">볼링장</string>
@@ -712,6 +720,7 @@
 	<string name="type.amenity.doctors">개인병원</string>
 	<string name="type.amenity.drinking_water">음수대</string>
 	<string name="type.amenity.driving_school">운전학원</string>
+	<string name="type.amenity.money_transfer">송금</string>
 	<string name="type.amenity.music_school">음악 학교</string>
 	<string name="type.amenity.language_school">언어 학교</string>
 	<string name="type.office.diplomatic">대사관</string>
@@ -828,9 +837,12 @@
 	<string name="type.craft.handicraft">수예</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">냉난방기</string>
+	<string name="type.craft.key_cutter">키 커팅</string>
+	<string name="type.craft.locksmith">자물쇠 제조공</string>
 	<string name="type.craft.metal_construction">금속공</string>
 	<string name="type.craft.painter">페인트공</string>
 	<string name="type.craft.photographer">사진작가</string>
+	<string name="type.shop.camera">카메라 샵</string>
 	<string name="type.craft.plumber">배관공</string>
 	<string name="type.craft.sawmill">제재소</string>
 	<string name="type.craft.shoemaker">구두수선</string>
@@ -1282,6 +1294,12 @@
 	<string name="type.power.generator.wind">풍력 발전기</string>
 	<string name="type.power.generator.gas">가스 터빈 발전소</string>
 	<string name="type.power.generator.hydro">수력 발전소</string>
+	<string name="type.power.plant">발전소</string>
+	<string name="type.power.plant.coal">석탄 발전소</string>
+	<string name="type.power.plant.gas">가스 터빈 발전소</string>
+	<string name="type.power.plant.hydro">수력 발전소</string>
+	<string name="type.power.plant.solar">태양광 발전소</string>
+	<string name="type.power.plant.wind">풍력 발전소</string>
 	<string name="type.power.pole">전봇대</string>
 	<string name="type.power.substation">변전소</string>
 	<string name="type.power.tower">전봇대</string>
@@ -1516,16 +1534,19 @@
 	<string name="type.shop">가게</string>
 	<string name="type.shop.alcohol">주류 샵</string>
 	<string name="type.shop.bakery">베이커리</string>
+	<string name="type.shop.bathroom_furnishing">욕실 가구</string>
 	<string name="type.shop.beauty">미용실</string>
 	<string name="type.shop.beverages">음료</string>
 	<string name="type.shop.bicycle">자전거 가게</string>
 	<string name="type.shop.bookmaker">마권판매소</string>
 	<string name="type.shop.books">서점</string>
 	<string name="type.shop.butcher">정육점</string>
+	<string name="type.shop.cannabis">대마초 판매점</string>
 	<string name="type.shop.car">자동차 대리점</string>
 	<string name="type.shop.car_parts">차 부품 가게</string>
 	<string name="type.shop.car_repair">자동차 수리</string>
 	<string name="type.shop.car_repair.tyres">타이어수리점</string>
+	<string name="type.shop.carpet">카펫</string>
 	<string name="type.shop.chemist">화학물질 가게</string>
 	<string name="type.shop.chocolate">가게</string>
 	<string name="type.shop.clothes">옷 가게</string>
@@ -1535,6 +1556,7 @@
 	<string name="type.shop.convenience">편의점</string>
 	<string name="type.shop.copyshop">복사가게</string>
 	<string name="type.shop.cosmetics">화장품</string>
+	<string name="type.shop.curtain">커튼</string>
 	<string name="type.shop.deli">델리카트슨 숍</string>
 	<string name="type.shop.department_store">백화점</string>
 	<string name="type.shop.doityourself">철물점</string>
@@ -1543,16 +1565,20 @@
 	<string name="type.shop.erotic">성인용품 가게</string>
 	<string name="type.shop.fabric">가게</string>
 	<string name="type.shop.farm">\"농장 식품 가게\"</string>
+	<string name="type.shop.fashion_accessories">패션 악세사리</string>
 	<string name="type.shop.florist">꽃가게</string>
 	<string name="type.shop.funeral_directors">장의사</string>
 	<string name="type.shop.furniture">가구 상점</string>
 	<string name="type.shop.garden_centre">식물 상점</string>
+	<string name="type.shop.gas">주유소</string>
 	<string name="type.shop.gift">선물 가게</string>
 	<string name="type.shop.greengrocer">청과상</string>
 	<string name="type.shop.grocery">\"식료품점\"</string>
 	<string name="type.shop.hairdresser">이발사</string>
 	<string name="type.shop.hardware">철물점</string>
 	<string name="type.shop.health_food">\"건강식품 가게\"</string>
+	<string name="type.shop.herbalist">허브 가게</string>
+	<string name="type.shop.hifi">하이파이 오디오</string>
 	<string name="type.shop.houseware">\"가정용품 가게\"</string>
 	<string name="type.shop.jewelry">보석류</string>
 	<string name="type.shop.kiosk">정자</string>
@@ -1563,14 +1589,17 @@
 	<string name="type.shop.mobile_phone">휴대폰 대리점</string>
 	<string name="type.shop.money_lender">가게</string>
 	<string name="type.shop.motorcycle">오토바이 가게</string>
+	<string name="type.shop.motorcycle_repair">오토바이 수리</string>
 	<string name="type.shop.music">가게</string>
 	<string name="type.shop.musical_instrument">가게</string>
 	<string name="type.shop.newsagent">신문 가판대</string>
 	<string name="type.shop.optician">안경점 의</string>
 	<string name="type.shop.outdoor">아웃도어 장비</string>
+	<string name="type.shop.outpost">픽업 장소</string>
 	<string name="type.shop.pastry">패스트리</string>
 	<string name="type.shop.pawnbroker">전당포</string>
 	<string name="type.shop.pet">펫샵</string>
+	<string name="type.shop.pet_grooming">애완동물 미용</string>
 	<string name="type.shop.photo">사진 가게</string>
 	<string name="type.shop.seafood">생선가게</string>
 	<string name="type.shop.second_hand">중고 판매점</string>
@@ -1588,10 +1617,13 @@
 	<string name="type.shop.video">비디오 가게</string>
 	<string name="type.shop.video_games">비디오 게임 가게</string>
 	<string name="type.shop.wine">와인 샵</string>
+	<string name="type.shop.agrarian">농산물 가게</string>
 	<string name="type.shop.antiques">고물</string>
+	<string name="type.shop.appliance">가전제품 매장</string>
 	<string name="type.shop.art">아트샵</string>
 	<string name="type.shop.baby_goods">어린이 가게</string>
 	<string name="type.shop.bag">가방 판매점</string>
+	<string name="type.shop.bed">침대 가게</string>
 	<string name="type.shop.boutique">부티크</string>
 	<string name="type.shop.charity">자선 상점</string>
 	<string name="type.shop.cheese">치즈 가게</string>

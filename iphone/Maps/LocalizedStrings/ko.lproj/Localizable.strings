@@ -24,7 +24,7 @@
 "kilometres" = "킬로미터";
 
 /* Leave Review dialog - Review button */
-"leave_a_review" = "평 남기기";
+"leave_a_review" = "리뷰 남기기";
 
 /* Choose measurement on first launch alert - choose imperial system button */
 "miles" = "마일";
@@ -33,7 +33,7 @@
 "core_my_position" = "나의 위치";
 
 /* Update maps later/Buy pro version later button text */
-"later" = "후";
+"later" = "나중에";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
 "search" = "검색하기";
@@ -60,7 +60,7 @@
 "continue_download" = "계속";
 
 /* "Add new bookmark list" dialog title */
-"add_new_set" = "새로운 세트 추가";
+"add_new_set" = "새로운 목록 추가";
 
 /* Bookmark Color dialog title */
 "bookmark_color" = "색상 즐겨찾기에 추가";
@@ -225,6 +225,9 @@
 
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "주변 건물 3D";
+
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "3D 빌딩은 절전 모드에서 꺼집니다.";
 
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "음성 지침";
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ko:OpenStreetMap_소개";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "주소/블록";
+
+"type.addr_interpolation.even" = "주소/블록";
+
+"type.addr_interpolation.odd" = "주소/블록";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "충전 역";
 
-"type.amenity.charging_station.motorcar" = "충전 역";
+"type.amenity.charging_station.bicycle" = "자전거 충전소";
+
+"type.amenity.charging_station.motorcar" = "자동차 충전소";
 
 "type.amenity.childcare" = "보육";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "음수대";
 
 "type.amenity.driving_school" = "운전학원";
+
+"type.amenity.money_transfer" = "송금";
 
 "type.amenity.music_school" = "음악 학교";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "냉난방기";
 
+"type.craft.key_cutter" = "키 커팅";
+
+"type.craft.locksmith" = "자물쇠 제조공";
+
 "type.craft.metal_construction" = "금속공";
 
 "type.craft.painter" = "페인트공";
 
 "type.craft.photographer" = "사진작가";
+
+"type.shop.camera" = "카메라 샵";
 
 "type.craft.plumber" = "배관공";
 
@@ -2375,7 +2397,7 @@
 
 "type.landuse.retail" = "Retail Area";
 
-"type.landuse.salt_pond" = "Pond";
+"type.landuse.salt_pond" = "Salt Pond";
 
 "type.landuse.village_green" = "Land";
 
@@ -2686,6 +2708,18 @@
 "type.power.line.underground" = "Underground Power Line";
 
 "type.power.minor_line" = "Minor Power Line";
+
+"type.power.plant" = "발전소";
+
+"type.power.plant.coal" = "석탄 발전소";
+
+"type.power.plant.gas" = "가스 터빈 발전소";
+
+"type.power.plant.hydro" = "수력 발전소";
+
+"type.power.plant.solar" = "태양광 발전소";
+
+"type.power.plant.wind" = "풍력 발전소";
 
 "type.power.pole" = "전봇대";
 
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "베이커리";
 
+"type.shop.bathroom_furnishing" = "욕실 가구";
+
 "type.shop.beauty" = "미용실";
 
 "type.shop.beverages" = "음료";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "정육점";
 
+"type.shop.cannabis" = "대마초 판매점";
+
 "type.shop.car" = "자동차 대리점";
 
 "type.shop.car_parts" = "차 부품 가게";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "타이어수리점";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "카펫";
 
 "type.shop.chemist" = "화학물질 가게";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "화장품";
 
+"type.shop.curtain" = "커튼";
+
 "type.shop.deli" = "델리카트슨 숍";
 
 "type.shop.department_store" = "백화점";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "\"농장 식품 가게\"";
 
+"type.shop.fashion_accessories" = "패션 악세사리";
+
 "type.shop.florist" = "꽃가게";
 
 "type.shop.funeral_directors" = "장의사";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "가구 상점";
 
 "type.shop.garden_centre" = "식물 상점";
+
+"type.shop.gas" = "주유소";
 
 "type.shop.gift" = "선물 가게";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "철물점";
 
 "type.shop.health_food" = "\"건강식품 가게\"";
+
+"type.shop.herbalist" = "허브 가게";
+
+"type.shop.hifi" = "하이파이 오디오";
 
 "type.shop.houseware" = "\"가정용품 가게\"";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "오토바이 가게";
 
+"type.shop.motorcycle_repair" = "오토바이 수리";
+
 "type.shop.music" = "가게";
 
 "type.shop.musical_instrument" = "가게";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "아웃도어 장비";
 
+"type.shop.outpost" = "픽업 장소";
+
 "type.shop.pastry" = "패스트리";
 
 "type.shop.pawnbroker" = "전당포";
 
 "type.shop.pet" = "펫샵";
+
+"type.shop.pet_grooming" = "애완동물 미용";
 
 "type.shop.photo" = "사진 가게";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "와인 샵";
 
+"type.shop.agrarian" = "농산물 가게";
+
 "type.shop.antiques" = "고물";
+
+"type.shop.appliance" = "가전제품 매장";
 
 "type.shop.art" = "아트샵";
 
 "type.shop.baby_goods" = "어린이 가게";
 
 "type.shop.bag" = "가방 판매점";
+
+"type.shop.bed" = "침대 가게";
 
 "type.shop.boutique" = "부티크";
 

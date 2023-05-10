@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "3D hooned";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "3D-hooned lülitatakse energiasäästurežiimis välja";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Hääljuhised";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Aadress/plokk";
+
+"type.addr_interpolation.even" = "Aadress/plokk";
+
+"type.addr_interpolation.odd" = "Aadress/plokk";
 
 "type.aerialway" = "Õhutee";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Laadimisjaam";
 
-"type.amenity.charging_station.motorcar" = "Laadimisjaam";
+"type.amenity.charging_station.bicycle" = "Jalgratta laadimisjaam";
+
+"type.amenity.charging_station.motorcar" = "Autode laadimisjaam";
 
 "type.amenity.childcare" = "Lasteaed";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Joogivesi";
 
 "type.amenity.driving_school" = "Autokool";
+
+"type.amenity.money_transfer" = "Raha ülekanne";
 
 "type.amenity.music_school" = "Muusikakool";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Õhkkonditsioneer";
 
+"type.craft.key_cutter" = "Võtme lõikamine";
+
+"type.craft.locksmith" = "Lukksepp";
+
 "type.craft.metal_construction" = "Metallitööline";
 
 "type.craft.painter" = "Maaler";
 
 "type.craft.photographer" = "Fotograaf";
+
+"type.shop.camera" = "Kaamerapood";
 
 "type.craft.plumber" = "Santehnik";
 
@@ -2687,6 +2709,18 @@
 
 "type.power.minor_line" = "Madal-/Keskpinge elektriliin";
 
+"type.power.plant" = "Elektrijaam";
+
+"type.power.plant.coal" = "Söeelektrijaam";
+
+"type.power.plant.gas" = "Gaasiturbiini elektrijaam";
+
+"type.power.plant.hydro" = "Hüdroelektrijaam";
+
+"type.power.plant.solar" = "Päikeseelektrijaam";
+
+"type.power.plant.wind" = "Tuuleelektrijaam";
+
 "type.power.pole" = "Elektripost";
 
 "type.power.station" = "Elektrijaam";
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Pagar";
 
+"type.shop.bathroom_furnishing" = "Vannitoa sisustus";
+
 "type.shop.beauty" = "Ilupood";
 
 "type.shop.beverages" = "Joogid";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "Lihunik";
 
+"type.shop.cannabis" = "Kanepipood";
+
 "type.shop.car" = "Autopood";
 
 "type.shop.car_parts" = "Autovaruosad";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Rehviparandus";
 
 "type.shop.caravan" = "Haagiselamute müük";
+
+"type.shop.carpet" = "Vaibad";
 
 "type.shop.chemist" = "Apteegipood";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Kosmeetika";
 
+"type.shop.curtain" = "Kardinad";
+
 "type.shop.deli" = "Delikatessipood";
 
 "type.shop.department_store" = "Kaubamaja";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Talutoitude pood";
 
+"type.shop.fashion_accessories" = "Moodsad aksessuaarid";
+
 "type.shop.florist" = "Lillepood";
 
 "type.shop.funeral_directors" = "Matusekorraldajad";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Mööblipood";
 
 "type.shop.garden_centre" = "Aianduspood";
+
+"type.shop.gas" = "Gaasipood";
 
 "type.shop.gift" = "Kingipood";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Isetegemise tööriistad";
 
 "type.shop.health_food" = "Tervisetoitude pood";
+
+"type.shop.herbalist" = "Maitsetaimede pood";
+
+"type.shop.hifi" = "HiFi heli";
 
 "type.shop.houseware" = "Majatarbed";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Mootorrattapood";
 
+"type.shop.motorcycle_repair" = "Mootorrataste remont";
+
 "type.shop.music" = "Plaadipood";
 
 "type.shop.musical_instrument" = "Muusikariistad";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Välisvarustus";
 
+"type.shop.outpost" = "Vastuvõtupunkt";
+
 "type.shop.pastry" = "Pagar";
 
 "type.shop.pawnbroker" = "Pandimaja";
 
 "type.shop.pet" = "Lemmikloomapood";
+
+"type.shop.pet_grooming" = "Lemmikloomade hooldamine";
 
 "type.shop.photo" = "Fotopood";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Veinipood";
 
+"type.shop.agrarian" = "Põllumajanduspood";
+
 "type.shop.antiques" = "Antikvariaat";
+
+"type.shop.appliance" = "Tehnikapood";
 
 "type.shop.art" = "Kunstipood";
 
 "type.shop.baby_goods" = "Lastekaubad";
 
 "type.shop.bag" = "Kotipood";
+
+"type.shop.bed" = "Voodipood";
 
 "type.shop.boutique" = "Butiik";
 

@@ -207,13 +207,13 @@ std::unique_ptr<FeatureType> FeatureType::CreateFromMapObject(osm::MapObject con
     break;
   case feature::GeomType::Line:
     headerGeomType = HeaderGeomType::Line;
-    ft->m_points = FeatureType::Points(emo.GetPoints().begin(), emo.GetPoints().end());
+    assign_range(ft->m_points, emo.GetPoints());
     for (auto const & p : ft->m_points)
       ft->m_limitRect.Add(p);
     break;
   case feature::GeomType::Area:
     headerGeomType = HeaderGeomType::Area;
-    ft->m_triangles = FeatureType::Points(emo.GetTriangesAsPoints().begin(), emo.GetTriangesAsPoints().end());
+    assign_range(ft->m_triangles, emo.GetTriangesAsPoints());
     for (auto const & p : ft->m_triangles)
       ft->m_limitRect.Add(p);
     break;
@@ -448,7 +448,7 @@ void FeatureType::ParseGeometry(int scale)
       {
         // filter inner geometry
 
-        FeatureType::Points points;
+        PointsBufferT points;
         points.reserve(pointsCount);
 
         int const scaleIndex = GetScaleIndex(*m_loadInfo, scale);
@@ -489,7 +489,7 @@ FeatureType::GeomStat FeatureType::GetOuterGeometryStats()
       // Outer geometry present.
       ASSERT_EQUAL(pointsCount, 1, ());
 
-      FeatureType::Points points;
+      PointsBufferT points;
 
       for (size_t ind = 0; ind < scalesCount; ++ind)
       {
@@ -692,7 +692,7 @@ m2::RectD FeatureType::GetLimitRect(int scale)
 
   if (m_triangles.empty() && m_points.empty() && (GetGeomType() != GeomType::Point))
   {
-    ASSERT(false, ());
+    ASSERT(false, (m_id));
 
     // This function is called during indexing, when we need
     // to check visibility according to feature sizes.
@@ -705,9 +705,8 @@ m2::RectD FeatureType::GetLimitRect(int scale)
 
 m2::RectD const & FeatureType::GetLimitRectChecked() const
 {
-  /// @todo Replace with ASSERTs later.
-  CHECK(m_parsed.m_points && m_parsed.m_triangles, (m_id));
-  CHECK(m_limitRect.IsValid(), (m_id));
+  ASSERT(m_parsed.m_points && m_parsed.m_triangles, (m_id));
+  ASSERT(m_limitRect.IsValid(), (m_id));
   return m_limitRect;
 }
 
@@ -736,10 +735,16 @@ m2::PointD const & FeatureType::GetPoint(size_t i) const
   return m_points[i];
 }
 
-vector<m2::PointD> FeatureType::GetTrianglesAsPoints(int scale)
+FeatureType::PointsBufferT const & FeatureType::GetPoints(int scale)
+{
+  ParseGeometry(scale);
+  return m_points;
+}
+
+FeatureType::PointsBufferT const & FeatureType::GetTrianglesAsPoints(int scale)
 {
   ParseTriangles(scale);
-  return {m_triangles.begin(), m_triangles.end()};
+  return m_triangles;
 }
 
 void FeatureType::ParseGeometryAndTriangles(int scale)
@@ -819,7 +824,7 @@ uint8_t FeatureType::GetRank()
 
 uint64_t FeatureType::GetPopulation() { return feature::RankToPopulation(GetRank()); }
 
-string const & FeatureType::GetRoadNumber()
+string const & FeatureType::GetRef()
 {
   ParseCommon();
   return m_params.ref;

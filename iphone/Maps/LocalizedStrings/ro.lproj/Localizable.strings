@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "Clădiri 3D";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "Clădirile 3D sunt oprite în modul de economisire a energiei";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instrucțiuni vocale";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Adresă/Bloc";
+
+"type.addr_interpolation.even" = "Adresă/Bloc";
+
+"type.addr_interpolation.odd" = "Adresă/Bloc";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Stație încărcare";
 
-"type.amenity.charging_station.motorcar" = "Stație încărcare";
+"type.amenity.charging_station.bicycle" = "Stație de încărcare pentru biciclete";
+
+"type.amenity.charging_station.motorcar" = "Stație de încărcare autoturisme";
 
 "type.amenity.childcare" = "De îngrijire a copilului";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Apă de băut";
 
 "type.amenity.driving_school" = "Școală de șoferi";
+
+"type.amenity.money_transfer" = "Transfer de bani";
 
 "type.amenity.music_school" = "Scoala de Muzica";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Încălzire, ventilație și aer condiționat";
 
+"type.craft.key_cutter" = "Tăierea cheilor";
+
+"type.craft.locksmith" = "Lăcătuș";
+
 "type.craft.metal_construction" = "Metalurgist";
 
 "type.craft.painter" = "Pictor";
 
 "type.craft.photographer" = "Fotograf";
+
+"type.shop.camera" = "Magazin de aparate foto";
 
 "type.craft.plumber" = "Instalator";
 
@@ -2375,7 +2397,7 @@
 
 "type.landuse.retail" = "Retail Area";
 
-"type.landuse.salt_pond" = "Pond";
+"type.landuse.salt_pond" = "Salt Pond";
 
 "type.landuse.village_green" = "Land";
 
@@ -2686,6 +2708,18 @@
 "type.power.line.underground" = "Underground Power Line";
 
 "type.power.minor_line" = "Minor Power Line";
+
+"type.power.plant" = "Centrală electrică";
+
+"type.power.plant.coal" = "Centrală electrică pe cărbune";
+
+"type.power.plant.gas" = "Centrala electrica cu turbina cu gaz";
+
+"type.power.plant.hydro" = "Centrală hidroelectrică";
+
+"type.power.plant.solar" = "Centrală solară";
+
+"type.power.plant.wind" = "Centrală eoliană";
 
 "type.power.pole" = "Stâlp de electricitate";
 
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Brutărie";
 
+"type.shop.bathroom_furnishing" = "Mobilier pentru baie";
+
 "type.shop.beauty" = "Salon de înfrumusețare";
 
 "type.shop.beverages" = "Băuturi";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "Măcelărie";
 
+"type.shop.cannabis" = "Magazin de canabis";
+
 "type.shop.car" = "Magazin auto";
 
 "type.shop.car_parts" = "Piese auto";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Vulcanizare";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "Covoare";
 
 "type.shop.chemist" = "Mercerie";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Cosmetică";
 
+"type.shop.curtain" = "Perdele";
+
 "type.shop.deli" = "Magazin de delicatese";
 
 "type.shop.department_store" = "Magazin universal";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Magazin alimentar la fermă";
 
+"type.shop.fashion_accessories" = "Acesorii de modă";
+
 "type.shop.florist" = "Florărie";
 
 "type.shop.funeral_directors" = "Pompe funebre";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Magazin de mobilă";
 
 "type.shop.garden_centre" = "Pepinieră";
+
+"type.shop.gas" = "Magazin de gaze";
 
 "type.shop.gift" = "Magazin de suveniruri";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Magazin de hardware";
 
 "type.shop.health_food" = "Magazin de alimente naturiste";
+
+"type.shop.herbalist" = "Magazin de ierburi";
+
+"type.shop.hifi" = "Audio HiFi";
 
 "type.shop.houseware" = "Magazin de articole de uz casnic";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Magazin moto";
 
+"type.shop.motorcycle_repair" = "Reparatie motociclete";
+
 "type.shop.music" = "Magazin";
 
 "type.shop.musical_instrument" = "Magazin";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Echipament de exterior";
 
+"type.shop.outpost" = "Punct de ridicare";
+
 "type.shop.pastry" = "Patiserie";
 
 "type.shop.pawnbroker" = "Amanet";
 
 "type.shop.pet" = "Pet shop";
+
+"type.shop.pet_grooming" = "Îngrijirea animalelor de companie";
 
 "type.shop.photo" = "Centru fotografii";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Vinărie";
 
+"type.shop.agrarian" = "Magazin agricol";
+
 "type.shop.antiques" = "Antichități";
+
+"type.shop.appliance" = "Magazin de electrocasnice";
 
 "type.shop.art" = "Magazin de arte";
 
 "type.shop.baby_goods" = "Magazin pentru copii";
 
 "type.shop.bag" = "Magazin de genti";
+
+"type.shop.bed" = "Magazin de paturi";
 
 "type.shop.boutique" = "Butic";
 
@@ -3542,7 +3604,7 @@
 
 "type.tourism.attraction.specified" = "Punct de atracție";
 
-"type.tourism.camp_site" = "Camping";
+"type.tourism.camp_site" = "Camp Site";
 
 "type.tourism.caravan_site" = "Teren pentru campare";
 
@@ -3594,7 +3656,7 @@
 
 "type.waterway.canal" = "Canal";
 
-"type.waterway.canal.tunnel" = "Canal";
+"type.waterway.canal.tunnel" = "Canal Tunnel";
 
 "type.waterway.dam" = "Dam";
 

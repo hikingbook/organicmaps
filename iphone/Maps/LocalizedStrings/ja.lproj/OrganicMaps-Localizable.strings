@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "3Dビルディング";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "省電力モードで建物の 3D 表示がオフになっている";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "音声指示";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/JA:参加する";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "アドレス/ブロック";
+
+"type.addr_interpolation.even" = "アドレス/ブロック";
+
+"type.addr_interpolation.odd" = "アドレス/ブロック";
 
 "type.aerialway" = "索道";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "充電ステーション";
 
-"type.amenity.charging_station.motorcar" = "充電ステーション";
+"type.amenity.charging_station.bicycle" = "自転車充電ステーション";
+
+"type.amenity.charging_station.motorcar" = "自動車充電ステーション";
 
 "type.amenity.childcare" = "託児所";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "水飲み場";
 
 "type.amenity.driving_school" = "自動車教習所";
+
+"type.amenity.money_transfer" = "送金";
 
 "type.amenity.music_school" = "音楽学校";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "冷暖房空調";
 
+"type.craft.key_cutter" = "キーカット";
+
+"type.craft.locksmith" = "錠前屋";
+
 "type.craft.metal_construction" = "金属工";
 
 "type.craft.painter" = "塗装工";
 
 "type.craft.photographer" = "写真家";
+
+"type.shop.camera" = "カメラショップ";
 
 "type.craft.plumber" = "配管工";
 
@@ -2687,6 +2709,18 @@
 
 "type.power.minor_line" = "低圧電力線";
 
+"type.power.plant" = "発電所";
+
+"type.power.plant.coal" = "石炭火力発電所";
+
+"type.power.plant.gas" = "ガスタービン発電所";
+
+"type.power.plant.hydro" = "水力発電所";
+
+"type.power.plant.solar" = "太陽光発電所";
+
+"type.power.plant.wind" = "風力発電所";
+
 "type.power.pole" = "電柱";
 
 "type.power.station" = "変電所";
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "パン屋";
 
+"type.shop.bathroom_furnishing" = "バスルームの備品";
+
 "type.shop.beauty" = "ビューティーサロン";
 
 "type.shop.beverages" = "ドリンク";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "肉屋";
 
+"type.shop.cannabis" = "大麻店";
+
 "type.shop.car" = "カーディーラー";
 
 "type.shop.car_parts" = "車両部品";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "タイヤ修理";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "カーペット";
 
 "type.shop.chemist" = "化学薬品店";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "化粧品";
 
+"type.shop.curtain" = "カーテン";
+
 "type.shop.deli" = "デリカテッセンショップ";
 
 "type.shop.department_store" = "デパート";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "ファームフードショップ";
 
+"type.shop.fashion_accessories" = "ファッションアクセサリー";
+
 "type.shop.florist" = "フローリスト/花屋";
 
 "type.shop.funeral_directors" = "葬儀屋";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "家具店";
 
 "type.shop.garden_centre" = "ガーデンセンター";
+
+"type.shop.gas" = "ガス屋";
 
 "type.shop.gift" = "ギフトショップ";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "ホームセンター";
 
 "type.shop.health_food" = "健康食品店";
+
+"type.shop.herbalist" = "ハーブ店";
+
+"type.shop.hifi" = "ハイファイオーディオ";
 
 "type.shop.houseware" = "家庭用品店";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "バイクショップ";
 
+"type.shop.motorcycle_repair" = "オートバイの修理";
+
 "type.shop.music" = "CDショップ";
 
 "type.shop.musical_instrument" = "楽器店";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "アウトドア用品店";
 
+"type.shop.outpost" = "集荷場";
+
 "type.shop.pastry" = "ペストリー";
 
 "type.shop.pawnbroker" = "質屋";
 
 "type.shop.pet" = "ペットショップ";
+
+"type.shop.pet_grooming" = "ペットグルーミング";
 
 "type.shop.photo" = "写真屋";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "ワイン店";
 
+"type.shop.agrarian" = "農産物直売所";
+
 "type.shop.antiques" = "骨董品";
+
+"type.shop.appliance" = "家電店";
 
 "type.shop.art" = "アートショップ";
 
 "type.shop.baby_goods" = "キッズストア";
 
 "type.shop.bag" = "バッグストア";
+
+"type.shop.bed" = "ベッドショップ";
 
 "type.shop.boutique" = "ブティック";
 

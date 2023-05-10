@@ -205,6 +205,8 @@
 	<string name="pref_map_3d_title">透视图</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D 建筑</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D 建筑在省电模式下关闭</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">语音指导</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -687,6 +689,9 @@
 	<string name="splash_subtitle">地图数据来自OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">地址/区块</string>
+	<string name="type.addr_interpolation.even">地址/区块</string>
+	<string name="type.addr_interpolation.odd">地址/区块</string>
 	<string name="type.aerialway">缆车要素</string>
 	<string name="type.aerialway.cable_car">缆车</string>
 	<string name="type.aerialway.chair_lift">登山吊椅</string>
@@ -723,7 +728,8 @@
 	<string name="type.amenity.car_wash">洗车</string>
 	<string name="type.amenity.casino">赌场</string>
 	<string name="type.amenity.charging_station">充电站</string>
-	<string name="type.amenity.charging_station.motorcar">充电站</string>
+	<string name="type.amenity.charging_station.bicycle">自行车充电站</string>
+	<string name="type.amenity.charging_station.motorcar">汽车充电站</string>
 	<string name="type.amenity.childcare">托儿所</string>
 	<string name="type.amenity.cinema">电影院</string>
 	<string name="type.leisure.bowling_alley">保龄球馆</string>
@@ -735,6 +741,7 @@
 	<string name="type.amenity.doctors">医师办公室</string>
 	<string name="type.amenity.drinking_water">饮用水</string>
 	<string name="type.amenity.driving_school">驾校</string>
+	<string name="type.amenity.money_transfer">汇款</string>
 	<string name="type.amenity.music_school">音乐学校</string>
 	<string name="type.amenity.language_school">语言学校</string>
 	<string name="type.office.diplomatic">大使馆</string>
@@ -880,9 +887,12 @@
 	<string name="type.craft.handicraft">手工艺</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">暖通工程师</string>
+	<string name="type.craft.key_cutter">钥匙切割</string>
+	<string name="type.craft.locksmith">锁匠</string>
 	<string name="type.craft.metal_construction">金属制造工</string>
 	<string name="type.craft.painter">油漆匠</string>
 	<string name="type.craft.photographer">摄影棚</string>
+	<string name="type.shop.camera">相机店</string>
 	<string name="type.craft.plumber">管道工</string>
 	<string name="type.craft.sawmill">锯木厂</string>
 	<string name="type.craft.shoemaker">鞋匠</string>
@@ -1384,6 +1394,12 @@
 	<string name="type.power.line">超高压输电线</string>
 	<string name="type.power.line.underground">超高压输电线</string>
 	<string name="type.power.minor_line">超高压输电线</string>
+	<string name="type.power.plant">发电厂</string>
+	<string name="type.power.plant.coal">燃煤电厂</string>
+	<string name="type.power.plant.gas">燃气轮机发电厂</string>
+	<string name="type.power.plant.hydro">水力发电厂</string>
+	<string name="type.power.plant.solar">太阳能发电厂</string>
+	<string name="type.power.plant.wind">风力发电厂</string>
 	<string name="type.power.pole">电线杆</string>
 	<string name="type.power.substation">变电站</string>
 	<string name="type.power.tower">高压电塔</string>
@@ -1649,16 +1665,19 @@
 	<string name="type.shop">商店</string>
 	<string name="type.shop.alcohol">烈酒</string>
 	<string name="type.shop.bakery">烘培店</string>
+	<string name="type.shop.bathroom_furnishing">卫浴摆设</string>
 	<string name="type.shop.beauty">美容店</string>
 	<string name="type.shop.beverages">饮料店</string>
 	<string name="type.shop.bicycle">自行车店</string>
 	<string name="type.shop.bookmaker">博彩公司</string>
 	<string name="type.shop.books">书店</string>
 	<string name="type.shop.butcher">肉商</string>
+	<string name="type.shop.cannabis">大麻商店</string>
 	<string name="type.shop.car">车店</string>
 	<string name="type.shop.car_parts">汽车零件</string>
 	<string name="type.shop.car_repair">汽车修理店</string>
 	<string name="type.shop.car_repair.tyres">轮胎修理</string>
+	<string name="type.shop.carpet">地毯</string>
 	<string name="type.shop.chemist">药妆店</string>
 	<string name="type.shop.chocolate">商店</string>
 	<string name="type.shop.clothes">服装店</string>
@@ -1668,6 +1687,7 @@
 	<string name="type.shop.convenience">便利店</string>
 	<string name="type.shop.copyshop">复印店</string>
 	<string name="type.shop.cosmetics">化妝品店</string>
+	<string name="type.shop.curtain">窗帘</string>
 	<string name="type.shop.deli">熟食店</string>
 	<string name="type.shop.department_store">百货商场</string>
 	<string name="type.shop.doityourself">家居用品店</string>
@@ -1676,16 +1696,20 @@
 	<string name="type.shop.erotic">成人用品店</string>
 	<string name="type.shop.fabric">商店</string>
 	<string name="type.shop.farm">农场食品店</string>
+	<string name="type.shop.fashion_accessories">时尚配饰</string>
 	<string name="type.shop.florist">花店</string>
 	<string name="type.shop.funeral_directors">殡仪馆</string>
 	<string name="type.shop.furniture">家具店</string>
 	<string name="type.shop.garden_centre">幼儿园</string>
+	<string name="type.shop.gas">燃气站</string>
 	<string name="type.shop.gift">礼品店</string>
 	<string name="type.shop.greengrocer">蔬果零售店</string>
 	<string name="type.shop.grocery">杂货店</string>
 	<string name="type.shop.hairdresser">理发师</string>
 	<string name="type.shop.hardware">五金店</string>
 	<string name="type.shop.health_food">保健食品店</string>
+	<string name="type.shop.herbalist">草药店</string>
+	<string name="type.shop.hifi">HiFi</string>
 	<string name="type.shop.houseware">家居用品店</string>
 	<string name="type.shop.jewelry">珠宝店</string>
 	<string name="type.shop.kiosk">商店</string>
@@ -1696,14 +1720,17 @@
 	<string name="type.shop.mobile_phone">手机商店</string>
 	<string name="type.shop.money_lender">商店</string>
 	<string name="type.shop.motorcycle">摩托车商店</string>
+	<string name="type.shop.motorcycle_repair">摩托车维修</string>
 	<string name="type.shop.music">商店</string>
 	<string name="type.shop.musical_instrument">商店</string>
 	<string name="type.shop.newsagent">报刊亭</string>
 	<string name="type.shop.optician">眼镜店</string>
 	<string name="type.shop.outdoor">室外设备</string>
+	<string name="type.shop.outpost">自提点</string>
 	<string name="type.shop.pastry">糕点</string>
 	<string name="type.shop.pawnbroker">典当商铺</string>
 	<string name="type.shop.pet">宠物店</string>
+	<string name="type.shop.pet_grooming">宠物美容</string>
 	<string name="type.shop.photo">照片店</string>
 	<string name="type.shop.seafood">鱼商</string>
 	<string name="type.shop.second_hand">二手店</string>
@@ -1721,10 +1748,13 @@
 	<string name="type.shop.video">影像店</string>
 	<string name="type.shop.video_games">电子游戏店</string>
 	<string name="type.shop.wine">酒品商店</string>
+	<string name="type.shop.agrarian">农产品店</string>
 	<string name="type.shop.antiques">古董</string>
+	<string name="type.shop.appliance">家电店</string>
 	<string name="type.shop.art">艺术商店</string>
 	<string name="type.shop.baby_goods">儿童商店</string>
 	<string name="type.shop.bag">箱包店</string>
+	<string name="type.shop.bed">寝具</string>
 	<string name="type.shop.boutique">精品店</string>
 	<string name="type.shop.charity">慈善商店</string>
 	<string name="type.shop.cheese">奶酪店</string>

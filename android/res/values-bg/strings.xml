@@ -208,6 +208,8 @@
 	<string name="pref_map_3d_title">Перспективен изглед</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D сгради</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D сградите са изключени в режим на пестене на енергия</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Гласови инструкции</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -654,8 +656,14 @@
 	<string name="splash_subtitle">Картографски данни от OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Адрес/Блок</string>
+	<string name="type.addr_interpolation.even">Адрес/Блок</string>
+	<string name="type.addr_interpolation.odd">Адрес/Блок</string>
+	<string name="type.amenity.charging_station.bicycle">Станция за зареждане на велосипеди</string>
+	<string name="type.amenity.charging_station.motorcar">Станция за зареждане на автомобили</string>
 	<string name="type.leisure.bowling_alley">Боулинг писта</string>
 	<string name="type.amenity.driving_school">Автошкола</string>
+	<string name="type.amenity.money_transfer">Паричен превод</string>
 	<string name="type.amenity.music_school">Музикално училище</string>
 	<string name="type.amenity.language_school">Езиково училище</string>
 	<string name="type.amenity.loading_dock">Товарен док</string>
@@ -688,9 +696,12 @@
 	<string name="type.craft.handicraft">Занаят</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Отопление, вентилация и климатизация</string>
+	<string name="type.craft.key_cutter">Рязане на ключове</string>
+	<string name="type.craft.locksmith">Ключар</string>
 	<string name="type.craft.metal_construction">Метални конструкции</string>
 	<string name="type.craft.painter">Художник</string>
 	<string name="type.craft.photographer">Фотограф</string>
+	<string name="type.shop.camera">Магазин за фотоапарати</string>
 	<string name="type.craft.plumber">Водопроводчик</string>
 	<string name="type.craft.sawmill">Дъскорезница</string>
 	<string name="type.craft.shoemaker">Обущар</string>
@@ -920,19 +931,39 @@
 	<string name="type.power.generator.wind">Вятърен генератор</string>
 	<string name="type.power.generator.gas">Газотурбинна електроцентрала</string>
 	<string name="type.power.generator.hydro">Водноелектрическа централа</string>
+	<string name="type.power.plant">Електроцентрала</string>
+	<string name="type.power.plant.coal">Въглищна централа</string>
+	<string name="type.power.plant.gas">Газотурбинна електроцентрала</string>
+	<string name="type.power.plant.hydro">Водноелектрическа централа</string>
+	<string name="type.power.plant.solar">Слънчева електроцентрала</string>
+	<string name="type.power.plant.wind">Вятърна електроцентрала</string>
+	<string name="type.shop.bathroom_furnishing">Обзавеждане за баня</string>
+	<string name="type.shop.cannabis">Магазин за канабис</string>
+	<string name="type.shop.carpet">Килими</string>
+	<string name="type.shop.curtain">Пердета</string>
 	<string name="type.shop.deli">Магазин за деликатеси</string>
 	<string name="type.shop.farm">Магазин за селскостопански храни</string>
+	<string name="type.shop.fashion_accessories">Модни аксесоари</string>
+	<string name="type.shop.gas">Магазин за газ</string>
 	<string name="type.shop.grocery">Хранителни стоки</string>
 	<string name="type.shop.hardware">Магазин за хардуер</string>
 	<string name="type.shop.health_food">Магазин за здравословни храни</string>
+	<string name="type.shop.herbalist">Магазин за билки</string>
+	<string name="type.shop.hifi">HiFi аудио</string>
 	<string name="type.shop.houseware">Магазин за домакински принадлежности</string>
 	<string name="type.shop.kitchen">Магазин за кухня</string>
+	<string name="type.shop.motorcycle_repair">Ремонт на мотоциклети</string>
+	<string name="type.shop.outpost">Точка на вземане</string>
 	<string name="type.shop.pastry">Тестени изделия</string>
+	<string name="type.shop.pet_grooming">Грижа за домашни любимци</string>
 	<string name="type.shop.second_hand">Магазин втора употреба</string>
+	<string name="type.shop.agrarian">Селскостопански магазин</string>
 	<string name="type.shop.antiques">Антики</string>
+	<string name="type.shop.appliance">Магазин за техника</string>
 	<string name="type.shop.art">Магазин за изкуства</string>
 	<string name="type.shop.baby_goods">Детски магазин</string>
 	<string name="type.shop.bag">Магазин за чанти</string>
+	<string name="type.shop.bed">Магазин за легла</string>
 	<string name="type.shop.boutique">Бутик</string>
 	<string name="type.shop.charity">Благотворителен магазин</string>
 	<string name="type.shop.cheese">Магазин за сирене</string>

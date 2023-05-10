@@ -1,4 +1,4 @@
-package app.organicmaps.widget.placepage;
+package app.organicmaps.widget.placepage.sections;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +26,8 @@ import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
+import app.organicmaps.widget.placepage.EditBookmarkFragment;
+import app.organicmaps.widget.placepage.PlacePageViewModel;
 
 public class PlacePageBookmarkFragment extends Fragment implements View.OnClickListener,
                                                                    View.OnLongClickListener,
@@ -59,8 +61,6 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
     mTvBookmarkNote.setOnLongClickListener(this);
     final View editBookmarkBtn = mFrame.findViewById(R.id.tv__bookmark_edit);
     editBookmarkBtn.setOnClickListener(this);
-
-    mViewModel.getMapObject().observe(requireActivity(), this);
   }
 
   private void initWebView()
@@ -75,9 +75,16 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
   }
 
   @Override
-  public void onDestroyView()
+  public void onStart()
   {
-    super.onDestroyView();
+    super.onStart();
+    mViewModel.getMapObject().observe(requireActivity(), this);
+  }
+
+  @Override
+  public void onStop()
+  {
+    super.onStop();
     mViewModel.getMapObject().removeObserver(this);
   }
 
@@ -136,12 +143,12 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
   }
 
   @Override
-  public void onChanged(MapObject mapObject)
+  public void onChanged(@Nullable MapObject mapObject)
   {
     // MapObject could be something else than a bookmark if the user already has the place page
     // opened and clicks on a non-bookmarked POI.
     // This callback would be called before the fragment had time to be destroyed
-    if (mapObject.getMapObjectType() == MapObject.BOOKMARK)
+    if (mapObject != null && mapObject.getMapObjectType() == MapObject.BOOKMARK)
     {
       currentBookmark = (Bookmark) mapObject;
       updateBookmarkDetails();

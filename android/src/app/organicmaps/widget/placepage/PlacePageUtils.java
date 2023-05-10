@@ -1,10 +1,8 @@
 package app.organicmaps.widget.placepage;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
@@ -15,51 +13,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.List;
 
-class PlacePageUtils
+public class PlacePageUtils
 {
-  static void moveViewportUp(@NonNull View placePageView, int viewportMinHeight)
+  static void updateMapViewport(@NonNull View parent, int placePageDistanceToTop, int viewportMinHeight)
   {
-    placePageView.post(() -> {
-      View coordinatorLayout = (ViewGroup) placePageView.getParent();
-      int viewPortWidth = coordinatorLayout.getWidth();
-      int viewPortHeight = coordinatorLayout.getHeight();
-      Rect sheetRect = new Rect();
-      placePageView.getGlobalVisibleRect(sheetRect);
-      if (sheetRect.top < viewportMinHeight)
-        return;
-
-      if (sheetRect.top >= viewPortHeight)
-      {
-        Framework.nativeSetVisibleRect(0, 0, viewPortWidth, viewPortHeight);
-        return;
-      }
-      viewPortHeight -= sheetRect.height();
-      Framework.nativeSetVisibleRect(0, 0, viewPortWidth, viewPortHeight);
-    });
-  }
-
-  static void moveViewPortRight(@NonNull View bootomSheet, int viewportMinWidth)
-  {
-    bootomSheet.post(() -> {
-      View coordinatorLayout = (ViewGroup) bootomSheet.getParent();
-      int viewPortWidth = coordinatorLayout.getWidth();
-      int viewPortHeight = coordinatorLayout.getHeight();
-      Rect sheetRect = new Rect();
-      bootomSheet.getGlobalVisibleRect(sheetRect);
-      if ((viewPortWidth - sheetRect.right) < viewportMinWidth)
-      {
-        Framework.nativeSetVisibleRect((viewPortWidth - viewportMinWidth), 0, viewPortWidth,
-                                       viewPortHeight);
-        return;
-      }
-
-      if (sheetRect.top >= viewPortHeight)
-      {
-        Framework.nativeSetVisibleRect(0, 0, viewPortWidth, viewPortHeight);
-        return;
-      }
-
-      Framework.nativeSetVisibleRect(sheetRect.right, 0, viewPortWidth, viewPortHeight);
+    parent.post(() -> {
+      final int screenWidth = parent.getWidth();
+      if (placePageDistanceToTop >= viewportMinHeight)
+        Framework.nativeSetVisibleRect(0, 0, screenWidth, placePageDistanceToTop);
     });
   }
 
@@ -115,7 +76,7 @@ class PlacePageUtils
     }
   }
 
-  static void copyToClipboard(Context context, View frame, String text)
+  public static void copyToClipboard(Context context, View frame, String text)
   {
     Utils.copyTextToClipboard(context, text);
     Utils.showSnackbarAbove(frame,
@@ -123,7 +84,7 @@ class PlacePageUtils
                             context.getString(R.string.copied_to_clipboard, text));
   }
 
-  static void showCopyPopup(Context context, View popupAnchor, View frame, List<String> items)
+  public static void showCopyPopup(Context context, View popupAnchor, View frame, List<String> items)
   {
     final PopupMenu popup = new PopupMenu(context, popupAnchor);
     final Menu menu = popup.getMenu();

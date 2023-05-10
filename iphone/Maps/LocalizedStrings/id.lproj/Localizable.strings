@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "Bangunan 3D";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "Bangunan 3D dimatikan dalam mode hemat daya";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Petunjuk Suara";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Alamat/Blokir";
+
+"type.addr_interpolation.even" = "Alamat/Blokir";
+
+"type.addr_interpolation.odd" = "Alamat/Blokir";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Pusat Pengisian Daya";
 
-"type.amenity.charging_station.motorcar" = "Pusat Pengisian Daya";
+"type.amenity.charging_station.bicycle" = "Stasiun Pengisian Sepeda";
+
+"type.amenity.charging_station.motorcar" = "Stasiun Pengisian Mobil";
 
 "type.amenity.childcare" = "Penitipan Anak";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Air minum";
 
 "type.amenity.driving_school" = "Sekolah Mengemudi";
+
+"type.amenity.money_transfer" = "Transfer uang";
 
 "type.amenity.music_school" = "Sekolah musik";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "HVAC";
 
+"type.craft.key_cutter" = "Pemotongan Kunci";
+
+"type.craft.locksmith" = "Tukang kunci";
+
 "type.craft.metal_construction" = "Tukang besi";
 
 "type.craft.painter" = "Tukang cat";
 
 "type.craft.photographer" = "Juru foto";
+
+"type.shop.camera" = "Toko Kamera";
 
 "type.craft.plumber" = "Tukang pipa";
 
@@ -2375,7 +2397,7 @@
 
 "type.landuse.retail" = "Retail Area";
 
-"type.landuse.salt_pond" = "Pond";
+"type.landuse.salt_pond" = "Salt Pond";
 
 "type.landuse.village_green" = "Land";
 
@@ -2686,6 +2708,18 @@
 "type.power.line.underground" = "Underground Power Line";
 
 "type.power.minor_line" = "Minor Power Line";
+
+"type.power.plant" = "Pembangkit listrik";
+
+"type.power.plant.coal" = "Pembangkit listrik batubara";
+
+"type.power.plant.gas" = "Pembangkit listrik turbin gas";
+
+"type.power.plant.hydro" = "Pembangkit listrik tenaga air";
+
+"type.power.plant.solar" = "Pembangkit listrik tenaga surya";
+
+"type.power.plant.wind" = "Pembangkit listrik tenaga angin";
 
 "type.power.pole" = "Menara listrik";
 
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Toko roti";
 
+"type.shop.bathroom_furnishing" = "Perabot Kamar Mandi";
+
 "type.shop.beauty" = "Salon kecantikan";
 
 "type.shop.beverages" = "Minuman";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "Tukang daging";
 
+"type.shop.cannabis" = "Toko ganja";
+
 "type.shop.car" = "Toko mobil";
 
 "type.shop.car_parts" = "Bagian mobil";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Tambal ban";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "Karpet";
 
 "type.shop.chemist" = "Toko Bahan Kimia";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Kosmetik";
 
+"type.shop.curtain" = "Tirai";
+
 "type.shop.deli" = "Toko Kue";
 
 "type.shop.department_store" = "Toko serba ada";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Toko Makanan Pertanian";
 
+"type.shop.fashion_accessories" = "Aksesoris Fashion";
+
 "type.shop.florist" = "Tukang bunga";
 
 "type.shop.funeral_directors" = "Direktur Pemakaman";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Toko mebel";
 
 "type.shop.garden_centre" = "Penitipan anak";
+
+"type.shop.gas" = "Toko gas";
 
 "type.shop.gift" = "Toko hadiah";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Toko perangkat keras";
 
 "type.shop.health_food" = "Toko Makanan Kesehatan";
+
+"type.shop.herbalist" = "Toko jamu";
+
+"type.shop.hifi" = "Audio HI FI";
 
 "type.shop.houseware" = "Toko Peralatan Rumah Tangga";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Toko Sepeda Motor";
 
+"type.shop.motorcycle_repair" = "Bengkel Sepeda Motor";
+
 "type.shop.music" = "Toko";
 
 "type.shop.musical_instrument" = "Toko";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Peralatan Outdoor";
 
+"type.shop.outpost" = "Titik penjemputan";
+
 "type.shop.pastry" = "Kue-kue";
 
 "type.shop.pawnbroker" = "Rumah Gadai";
 
 "type.shop.pet" = "Toko hewan";
+
+"type.shop.pet_grooming" = "Perawatan Hewan Peliharaan";
 
 "type.shop.photo" = "Studio Foto";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Toko anggur";
 
+"type.shop.agrarian" = "Toko pertanian";
+
 "type.shop.antiques" = "Barang antik";
+
+"type.shop.appliance" = "Toko peralatan";
 
 "type.shop.art" = "Toko Seni";
 
 "type.shop.baby_goods" = "Toko anak-anak";
 
 "type.shop.bag" = "Toko Tas";
+
+"type.shop.bed" = "Toko tempat tidur";
 
 "type.shop.boutique" = "Butik";
 

@@ -4,6 +4,7 @@
 #include "indexer/feature_algo.hpp"
 #include "indexer/feature_utils.hpp"
 #include "indexer/ftypes_matcher.hpp"
+#include "indexer/road_shields_parser.hpp"
 
 #include "geometry/mercator.hpp"
 
@@ -58,20 +59,14 @@ void MapObject::SetFromFeatureType(FeatureType & ft)
 
   m_metadata = ft.GetMetadata();
   m_houseNumber = ft.GetHouseNumber();
-  m_roadNumber = ft.GetRoadNumber();
+  m_roadShields = ftypes::GetRoadShieldsNames(ft);
   m_featureID = ft.GetID();
   m_geomType = ft.GetGeomType();
+
   if (m_geomType == feature::GeomType::Area)
-  {
-    m_triangles = ft.GetTrianglesAsPoints(FeatureType::BEST_GEOMETRY);
-  }
+    assign_range(m_triangles, ft.GetTrianglesAsPoints(FeatureType::BEST_GEOMETRY));
   else if (m_geomType == feature::GeomType::Line)
-  {
-    ft.ParseGeometry(FeatureType::BEST_GEOMETRY);
-    m_points.reserve(ft.GetPointsCount());
-    ft.ForEachPoint([this](m2::PointD const & p) { m_points.push_back(p); },
-                    FeatureType::BEST_GEOMETRY);
-  }
+    assign_range(m_points, ft.GetPoints(FeatureType::BEST_GEOMETRY));
 
 #ifdef DEBUG
   if (ftypes::IsWifiChecker::Instance()(ft))
@@ -111,7 +106,7 @@ string MapObject::GetLocalizedType() const
   feature::TypesHolder copy(m_types);
   copy.SortBySpec();
 
-  return platform::GetLocalizedTypeName(classif().GetReadableObjectName(*copy.begin()));
+  return platform::GetLocalizedTypeName(classif().GetReadableObjectName(copy.GetBestType()));
 }
 
 std::string_view MapObject::GetMetadata(MetadataID type) const
@@ -165,14 +160,9 @@ string MapObject::FormatCuisines() const
   return strings::JoinStrings(GetLocalizedCuisines(), kFieldsSeparator);
 }
 
-vector<string> MapObject::GetRoadShields() const
-{
-  return feature::GetRoadShieldsNames(m_roadNumber);
-}
-
 string MapObject::FormatRoadShields() const
 {
-  return strings::JoinStrings(GetRoadShields(), kFieldsSeparator);
+  return strings::JoinStrings(m_roadShields, kFieldsSeparator);
 }
 
 int MapObject::GetStars() const

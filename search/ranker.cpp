@@ -15,8 +15,8 @@
 #include "indexer/data_source.hpp"
 #include "indexer/feature_algo.hpp"
 #include "indexer/feature_data.hpp"
-#include "indexer/feature_utils.hpp"
 #include "indexer/ftypes_matcher.hpp"
+#include "indexer/road_shields_parser.hpp"
 #include "indexer/search_string_utils.hpp"
 
 #include "coding/string_utf8_multilang.hpp"
@@ -37,7 +37,7 @@ namespace
 template <typename Slice>
 void UpdateNameScores(string_view name, uint8_t lang, Slice const & slice, NameScores & bestScores)
 {
-  if (lang == StringUtf8Multilang::kAltNameCode || lang == StringUtf8Multilang::kOldNameCode)
+  if (StringUtf8Multilang::IsAltOrOldName(lang))
   {
     strings::Tokenize(name, ";", [&](string_view n)
     {
@@ -129,7 +129,7 @@ NameScores GetNameScores(FeatureType & ft, Geocoder::Params const & params,
       }
     };
 
-    if (lang == StringUtf8Multilang::kAltNameCode || lang == StringUtf8Multilang::kOldNameCode)
+    if (StringUtf8Multilang::IsAltOrOldName(lang))
     {
       strings::Tokenize(name, ";", [&updateScore](string_view n)
       {
@@ -170,7 +170,7 @@ NameScores GetNameScores(FeatureType & ft, Geocoder::Params const & params,
 
   if (type == Model::TYPE_STREET)
   {
-    for (auto const & shield : feature::GetRoadShieldsNames(ft.GetRoadNumber()))
+    for (auto const & shield : ftypes::GetRoadShieldsNames(ft))
       UpdateNameScores(shield, StringUtf8Multilang::kDefaultCode, sliceNoCategories, bestScores);
   }
 
@@ -278,7 +278,8 @@ string FormatStreetAndHouse(ReverseGeocoder::Address const & addr)
 // TODO: Share common formatting code for search results and place page.
 string FormatFullAddress(ReverseGeocoder::Address const & addr, string const & region)
 {
-  // TODO: Print "near" for not exact addresses.
+  /// @todo Print "near" for not exact addresses.
+  /// Add some threshold for addr:interpolation or refactor ReverseGeocoder?
   if (addr.GetDistance() != 0)
     return region;
 
@@ -305,47 +306,6 @@ bool ResultExists(RankerResult const & p, vector<RankerResult> const & results,
   return find_if(results.begin(), results.end(), equalCmp) != results.cend();
 }
 
-class LazyAddressGetter
-{
-public:
-  LazyAddressGetter(ReverseGeocoder const & reverseGeocoder, m2::PointD const & center)
-    : m_reverseGeocoder(reverseGeocoder), m_center(center)
-  {
-  }
-
-  ReverseGeocoder::Address const & GetNearbyAddress()
-  {
-    if (m_computedNearby)
-      return m_address;
-    m_reverseGeocoder.GetNearbyAddress(m_center, m_address);
-    m_computedNearby = true;
-    return m_address;
-  }
-
-  bool GetExactAddress(ReverseGeocoder::Address & address)
-  {
-    if (m_computedExact)
-    {
-      address = m_address;
-      return true;
-    }
-    m_reverseGeocoder.GetNearbyAddress(m_center, 0.0, m_address);
-    if (m_address.IsValid())
-    {
-      m_computedExact = true;
-      m_computedNearby = true;
-      address = m_address;
-    }
-    return m_computedExact;
-  }
-
-private:
-  ReverseGeocoder const & m_reverseGeocoder;
-  m2::PointD const m_center;
-  ReverseGeocoder::Address m_address;
-  bool m_computedExact = false;
-  bool m_computedNearby = false;
-};
 }  // namespace
 
 class RankerResultMaker
@@ -453,6 +413,15 @@ private:
     return ft;
   }
 
+  bool GetExactAddress(FeatureType & ft, m2::PointD const & center, ReverseGeocoder::Address & addr) const
+  {
+    if (m_reverseGeocoder.GetExactAddress(ft, addr))
+      return true;
+
+    m_reverseGeocoder.GetNearbyAddress(center, 0.0 /* maxDistanceM */, addr);
+    return addr.IsValid();
+  }
+
   // For the best performance, incoming ids should be sorted by id.first (mwm file id).
   unique_ptr<FeatureType> LoadFeature(FeatureID const & id, m2::PointD & center, string & name,
                                       string & country)
@@ -475,7 +444,7 @@ private:
     if (name.empty())
     {
       ReverseGeocoder::Address addr;
-      if (LazyAddressGetter(m_reverseGeocoder, center).GetExactAddress(addr))
+      if (GetExactAddress(*ft, center, addr))
       {
         unique_ptr<FeatureType> streetFeature;
 
@@ -721,7 +690,13 @@ Result Ranker::MakeResult(RankerResult const & rankerResult, bool needAddress, b
 
     // Format full address only for suitable results.
     if (ftypes::IsAddressObjectChecker::Instance()(rankerResult.GetTypes()))
-      address = FormatFullAddress(LazyAddressGetter(m_reverseGeocoder, rankerResult.GetCenter()).GetNearbyAddress(), address);
+    {
+      ReverseGeocoder::Address addr;
+      if (!(rankerResult.GetID().IsValid() && m_reverseGeocoder.GetExactAddress(rankerResult.GetID(), addr)))
+        m_reverseGeocoder.GetNearbyAddress(rankerResult.GetCenter(), addr);
+
+      address = FormatFullAddress(addr, address);
+    }
 
     res.SetAddress(std::move(address));
   }
@@ -752,7 +727,7 @@ Result Ranker::MakeResult(RankerResult const & rankerResult, bool needAddress, b
   res.SetRankingInfo(rankerResult.m_dbgInfo);
 
 #ifdef SEARCH_USE_PROVENANCE
-  res.SetProvenance(move(rankerResult.m_provenance));
+  res.SetProvenance(std::move(rankerResult.m_provenance));
 #endif
 
   return res;
@@ -831,12 +806,12 @@ void Ranker::UpdateResults(bool lastUpdate)
 
     if (m_params.m_viewportSearch)
     {
-      m_emitter.AddResultNoChecks(move(result));
+      m_emitter.AddResultNoChecks(std::move(result));
       ++count;
     }
     else
     {
-      if (m_emitter.AddResult(move(result)))
+      if (m_emitter.AddResult(std::move(result)))
         ++count;
     }
   }
@@ -876,7 +851,7 @@ void Ranker::MakeRankerResults()
 
     /// @todo Is it ok to make duplication check for O(N) here? Especially when we make RemoveDuplicatingLinear later.
     if (isViewportMode || !ResultExists(*p, m_tentativeResults, m_params.m_minDistanceBetweenResultsM))
-      m_tentativeResults.push_back(move(*p));
+      m_tentativeResults.push_back(std::move(*p));
   };
 
   m_preRankerResults.clear();
@@ -900,7 +875,7 @@ void Ranker::GetBestMatchName(FeatureType & f, string & name) const
 
   auto bestNameFinder = [&](int8_t lang, string_view s)
   {
-    if (lang == StringUtf8Multilang::kAltNameCode || lang == StringUtf8Multilang::kOldNameCode)
+    if (StringUtf8Multilang::IsAltOrOldName(lang))
     {
       strings::Tokenize(s, ";", [lang, &updateScore](std::string_view n)
       {
@@ -924,8 +899,7 @@ void Ranker::GetBestMatchName(FeatureType & f, string & name) const
   };
   UNUSED_VALUE(f.ForEachName(bestNameFinder));
 
-  if (bestLang == StringUtf8Multilang::kAltNameCode ||
-      bestLang == StringUtf8Multilang::kOldNameCode)
+  if (StringUtf8Multilang::IsAltOrOldName(bestLang))
   {
     string_view const readableName = f.GetReadableName();
     // Do nothing if alt/old name is the only name we have.
@@ -948,7 +922,7 @@ void Ranker::MatchForSuggestions(strings::UniString const & token, int8_t locale
       string const utf8Str = strings::ToUtf8(s);
       Result r(utf8Str, prologue + utf8Str + " ");
       HighlightResult(m_params.m_tokens, m_params.m_prefix, r);
-      m_emitter.AddResult(move(r));
+      m_emitter.AddResult(std::move(r));
     }
   }
 }
@@ -972,7 +946,7 @@ void Ranker::ProcessSuggestions(vector<RankerResult> const & vec) const
       {
         // todo(@m) RankingInfo is lost here. Should it be?
         if (m_emitter.AddResult(Result(MakeResult(r, false /* needAddress */, true /* needHighlighting */),
-                                       move(suggestion))))
+                                       std::move(suggestion))))
         {
           ++added;
         }
@@ -991,4 +965,5 @@ string Ranker::GetLocalizedRegionInfoForResult(RankerResult const & result) cons
 
   return m_regionInfoGetter.GetLocalizedFullName(id);
 }
+
 }  // namespace search

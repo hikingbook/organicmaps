@@ -1,5 +1,51 @@
 [[Types]]
 
+  [type.addr_interpolation]
+    en = Address/Block
+    ar = العنوان / البلوك
+    be = Адрас/Блок
+    bg = Адрес/Блок
+    ca = Adreça/Bloc
+    cs = Adresa/blok
+    da = Adresse/blok
+    de = Adresse/Block
+    el = Διεύθυνση/Μπλοκ
+    es = Dirección/Bloque
+    et = Aadress/plokk
+    eu = Helbidea/Blokea
+    fa = آدرس/بلاک
+    fi = Osoite/lohko
+    fr = Adresse/Bloc
+    he = כתובת/חסימה
+    hu = Cím/blokk
+    id = Alamat/Blokir
+    it = Indirizzo/Blocco
+    ja = アドレス/ブロック
+    ko = 주소/블록
+    mr = पत्ता/ब्लॉक
+    nb = Adresse/blokk
+    nl = Adres/blok
+    pl = Adres/Blok
+    pt = Endereço/Bloco
+    pt-BR = Endereço/Bloco
+    ro = Adresă/Bloc
+    ru = Адрес/Блок
+    sk = Adresa/blok
+    sv = Adress/Block
+    sw = Anwani/Zuia
+    th = ที่อยู่/บล็อค
+    tr = Adres/Blok
+    uk = Адреса/блок
+    vi = Địa chỉ/Khối
+    zh-Hans = 地址/区块
+    zh-Hant = 地址/區塊
+
+  [type.addr_interpolation.even]
+    ref = type.addr_interpolation
+
+  [type.addr_interpolation.odd]
+    ref = type.addr_interpolation
+
   [type.aerialway]
     en = Aerialway
     de = Seilbahn
@@ -391,7 +437,7 @@
     ar = أثر
     cs = Prostor
     da = Rekreative område
-    de = Infrastrukturobjekte
+    de = Infrastrukturobjekt
     el = Εγκαταστάσεις υποδομής
     es = Infraestructura
     es-MX = Infraestructura
@@ -425,6 +471,7 @@
 
   [type.amenity.arts_centre]
     en = Art Center
+    en-GB = Art Centre
     ar = مركز فن
     cs = Umělecké centrum
     da = Kunsthus
@@ -1050,8 +1097,85 @@
     zh-Hans = 充电站
     zh-Hant = 充電站
 
+  [type.amenity.charging_station.bicycle]
+    en = Bicycle Charging Station
+    ar = محطة شحن الدراجات
+    be = Станцыя для зарадкі ровараў
+    bg = Станция за зареждане на велосипеди
+    ca = Estació de recàrrega de bicicletes
+    cs = Nabíjecí stanice pro jízdní kola
+    da = Cykel ladestation
+    de = Fahrrad Ladestation
+    el = Σταθμός φόρτισης ποδηλάτων
+    es = Estación de carga de bicicletas
+    et = Jalgratta laadimisjaam
+    eu = Bizikletak kargatzeko geltokia
+    fa = ایستگاه شارژ دوچرخه
+    fi = Polkupyörän latausasema
+    fr = Borne de recharge pour vélo
+    he = תחנת טעינה לאופניים
+    hu = Kerékpártöltő állomás
+    id = Stasiun Pengisian Sepeda
+    it = Stazione di ricarica per biciclette
+    ja = 自転車充電ステーション
+    ko = 자전거 충전소
+    mr = सायकल चार्जिंग स्टेशन
+    nb = Ladestasjon for sykkel
+    nl = Oplaadstation voor fietsen
+    pl = Stacja ładowania rowerów
+    pt = Estação de carregamento de bicicletas
+    pt-BR = Estação de carregamento de bicicletas
+    ro = Stație de încărcare pentru biciclete
+    ru = Станция зарядки велосипедов
+    sk = Nabíjacia stanica pre bicykle
+    sv = Laddningsstation för cykel
+    sw = Kituo cha Kuchaji Baiskeli
+    th = สถานีชาร์จจักรยาน
+    tr = Bisiklet Şarj İstasyonu
+    uk = Велосипедна зарядна станція
+    vi = Trạm sạc xe đạp
+    zh-Hans = 自行车充电站
+    zh-Hant = 自行車充電站
+
   [type.amenity.charging_station.motorcar]
-    ref = type.amenity.charging_station
+    en = Motorcar Charging Station
+    ar = محطة شحن Motorcar
+    be = Аўтамабільная зарадная станцыя
+    bg = Станция за зареждане на автомобили
+    ca = Estació de recàrrega de cotxes
+    cs = Nabíjecí stanice pro automobily
+    da = Ladestation for biler
+    de = Kfz-Ladestation
+    el = Σταθμός φόρτισης αυτοκινήτων
+    es = Estación de carga de automóviles
+    et = Autode laadimisjaam
+    eu = Autoak kargatzeko geltokia
+    fa = ایستگاه شارژ موتور
+    fi = Auton latausasema
+    fr = Borne de recharge pour voiture
+    he = תחנת טעינה למכוניות
+    hu = Autó töltőállomás
+    id = Stasiun Pengisian Mobil
+    it = Stazione di ricarica per autoveicoli
+    ja = 自動車充電ステーション
+    ko = 자동차 충전소
+    mr = मोटार कार चार्जिंग स्टेशन
+    nb = Ladestasjon for biler
+    nl = Oplaadstation voor auto's
+    pl = Stacja ładowania samochodów
+    pt = Posto de carregamento de veículo elétrico
+    pt-BR = Eletroposto
+    ro = Stație de încărcare autoturisme
+    ru = Зарядная станция для автомобилей
+    sk = Nabíjacia stanica pre motorové vozidlá
+    sv = Laddningsstation för bilar
+    sw = Kituo cha Kuchaji Magari
+    th = สถานีชาร์จรถยนต์
+    tr = Otomobil Şarj İstasyonu
+    uk = Автомобільна зарядна станція
+    vi = Trạm sạc xe máy
+    zh-Hans = 汽车充电站
+    zh-Hant = 汽車充電站
 
   [type.amenity.childcare]
     en = Nursery
@@ -1441,6 +1565,46 @@
     vi = Trường lái xe
     zh-Hans = 驾校
     zh-Hant = 駕訓班
+
+  [type.amenity.money_transfer]
+    en = Money Transfer
+    ar = تحويل المال
+    be = Грашовыя пераводы
+    bg = Паричен превод
+    ca = Transferència de diners
+    cs = Převod peněz
+    da = Pengeoverførsel
+    de = Geldtransfer
+    el = Μεταφορά χρημάτων
+    es = Transferencia de dinero
+    et = Raha ülekanne
+    eu = Diru transferentzia
+    fa = انتقال پول
+    fi = Rahansiirto
+    fr = Transfert d'argent
+    he = העברת כספים
+    hu = Pénz átutalás
+    id = Transfer uang
+    it = Trasferimento di denaro
+    ja = 送金
+    ko = 송금
+    mr = पैसे हस्तांतरण
+    nb = Pengeoverføring
+    nl = Overschrijving
+    pl = Transfer pieniędzy
+    pt = Transferência de dinheiro
+    pt-BR = Transferência de dinheiro
+    ro = Transfer de bani
+    ru = Денежные переводы
+    sk = Prevod peňazí
+    sv = Pengaöverföring
+    sw = Uhamisho wa pesa
+    th = การโอนเงิน
+    tr = Para transferi
+    uk = Грошовий переказ
+    vi = Chuyển tiền
+    zh-Hans = 汇款
+    zh-Hant = 匯款
 
   [type.amenity.music_school]
     en = Music School
@@ -3186,6 +3350,7 @@
 
   [type.amenity.recycling.centre]
     en = Recycling Center
+    en-GB = Recycling Centre
     ar = مركز إعادة تدوير
     be = Прыём другсыравіны
     cs = Recyklační středisko
@@ -4320,6 +4485,7 @@
 
   [type.amenity.waste_basket]
     en = Trash Bin
+    en-GB = Rubbish Bin
     ar = صندوق قمامة
     cs = Odpadkový koš
     da = Skraldespand
@@ -5834,6 +6000,86 @@
     zh-Hans = 暖通工程师
     zh-Hant = 空調設備
 
+  [type.craft.key_cutter]
+    en = Key Cutting
+    ar = قطع المفاتيح
+    be = Выраб ключоў
+    bg = Рязане на ключове
+    ca = Tall de claus
+    cs = Řezání klíčů
+    da = Nøgleskæring
+    de = Schlüssel-Nachmachdienst
+    el = Κοπή κλειδιού
+    es = Copista de llaves
+    et = Võtme lõikamine
+    eu = Giltza-mozketa
+    fa = برش کلید
+    fi = Avaimen leikkaaminen
+    fr = Reproduction de clé
+    he = חיתוך מפתח
+    hu = Kulcsvágás
+    id = Pemotongan Kunci
+    it = Taglio chiave
+    ja = キーカット
+    ko = 키 커팅
+    mr = की कटिंग
+    nb = Key Cutting
+    nl = Sleutel snijden
+    pl = Cięcie kluczy
+    pt = Chaveiro
+    pt-BR = Chaveiro
+    ro = Tăierea cheilor
+    ru = Изготовление ключей
+    sk = Rezanie kľúčov
+    sv = Nyckelklippning
+    sw = Kukata Muhimu
+    th = ตัดกุญแจ
+    tr = Anahtar kesme
+    uk = Нарізка ключів
+    vi = Cắt chính
+    zh-Hans = 钥匙切割
+    zh-Hant = 鍵切割
+
+  [type.craft.locksmith]
+    en = Locksmith
+    ar = قفال
+    be = Слесар
+    bg = Ключар
+    ca = Serraller
+    cs = Zámečník
+    da = Låsesmed
+    de = Schlosser
+    el = Κλειδαράς
+    es = Cerrajero
+    et = Lukksepp
+    eu = Sarrailagilea
+    fa = قفل ساز
+    fi = Lukkoseppä
+    fr = Serrurier
+    he = פורץ מנעולים
+    hu = Lakatos
+    id = Tukang kunci
+    it = Fabbro
+    ja = 錠前屋
+    ko = 자물쇠 제조공
+    mr = लॉकस्मिथ
+    nb = Låsesmed
+    nl = Slotenmaker
+    pl = Ślusarz
+    pt = Serralheiro
+    pt-BR = Serralheiro
+    ro = Lăcătuș
+    ru = Слесарь
+    sk = Zámočník
+    sv = Låssmed
+    sw = Fundi wa kufuli
+    th = ช่างกุญแจ
+    tr = Çilingir
+    uk = Слюсар
+    vi = Thợ khóa
+    zh-Hans = 锁匠
+    zh-Hant = 鎖匠
+
   [type.craft.metal_construction]
     en = Metal Worker
     ar = عامل معادن
@@ -5947,6 +6193,46 @@
     vi = Thợ chụp ảnh
     zh-Hans = 摄影棚
     zh-Hant = 攝影師
+
+  [type.shop.camera]
+    en = Camera Shop
+    ar = متجر الكاميرا
+    be = Крама фотаапаратаў
+    bg = Магазин за фотоапарати
+    ca = Botiga de càmeres
+    cs = Obchod s fotoaparáty
+    da = Kamera butik
+    de = Kamerageschäft
+    el = Κατάστημα φωτογραφικών μηχανών
+    es = Tienda de cámaras
+    et = Kaamerapood
+    eu = Kamera Denda
+    fa = فروشگاه دوربین
+    fi = Kamerakauppa
+    fr = Boutique d'appareils photo
+    he = חנות מצלמות
+    hu = Fényképezőgép bolt
+    id = Toko Kamera
+    it = Negozio di macchine fotografiche
+    ja = カメラショップ
+    ko = 카메라 샵
+    mr = कॅमेरा शॉप
+    nb = Kamerabutikk
+    nl = Camerawinkel
+    pl = Sklep z aparatami
+    pt = Loja de câmeras
+    pt-BR = Loja de câmeras
+    ro = Magazin de aparate foto
+    ru = Магазин фотоаппаратов
+    sk = Obchod s fotoaparátmi
+    sv = Kameraaffär
+    sw = Duka la Kamera
+    th = ร้านกล้อง
+    tr = Kamera Dükkanı
+    uk = Магазин фотоапаратів
+    vi = Cửa hàng máy ảnh
+    zh-Hans = 相机店
+    zh-Hant = 相機店
 
   [type.craft.plumber]
     en = Plumber
@@ -9312,7 +9598,7 @@
     bg = Физиотерапевт
     cs = Fyzioterapeut
     da = Fysioterapeut
-    de = Physiotherapeut
+    de = Physiotherapie
     el = Φυσικοθεραπευτής
     es = Fisioterapeuta
     et = Füsioterapeut
@@ -9624,7 +9910,7 @@
     bg = Логопедия
     cs = Logopedie
     da = Tale terapi
-    de = Logopedie
+    de = Logopädie
     el = Λογοθεραπεία
     es = Logopedia
     et = Logopeedia
@@ -9934,7 +10220,7 @@
 
   [type.highway.footway.area]
     ref = type.highway.footway
-    en = Pedestrian Zone
+    en = Pedestrian Area
     ar = منطقة مشاة
     es = Zona peatonal
     et = Jalakäijate ala
@@ -10455,7 +10741,7 @@
 
   [type.highway.pedestrian.area]
     ref = type.highway.pedestrian
-    en = Pedestrian Zone
+    en = Pedestrian Area
     es = Zona peatonal
     et = Jalakäijate ala
     it = Area pedonale
@@ -12700,6 +12986,7 @@
   [type.junction]
     en = Junction
     ar = تقاطع
+    de = Straßenknotenpunkt
     et = Ristmik
     it = Incrocio
     ja = 交差点
@@ -13163,7 +13450,7 @@
     zh-Hans = 车库用地
 
   [type.landuse.grass]
-    en = Lawn
+    en = Grass
     ar = عشب
     cs = Trávník
     da = Græsplæne
@@ -13417,7 +13704,7 @@
     zh-Hans = 康体场地
 
   [type.landuse.reservoir]
-    en = Water
+    en = Reservoir
     ar = مياه
     cs = Voda
     da = Vand
@@ -13489,7 +13776,7 @@
     zh-Hans = 零售用地
 
   [type.landuse.salt_pond]
-    en = Pond
+    en = Salt Pond
     ar = مستنقع
     de = Saline
     es = Estanque
@@ -14070,7 +14357,7 @@
     zh-Hant = 野餐桌
 
   [type.leisure.pitch]
-    en = Sports Ground
+    en = Sport Pitch
     ar = ملعب رياضي
     cs = Sportovní hřiště
     da = Sportsplads
@@ -14207,6 +14494,7 @@
 
   [type.leisure.sports_centre]
     en = Sports Center
+    en-GB = Sports Centre
     ar = مركز رياضي
     cs = Sportovní centrum
     da = Idrætscenter
@@ -14572,6 +14860,7 @@
     en = Flagpole
     ar = سارية علم
     be = Флагшток
+    de = Fahnenmast
     es = Mástil de bandera
     et = Lipumast
     fr = Mât de drapeau
@@ -16460,7 +16749,7 @@
     zh-Hant = 火山
 
   [type.natural.water]
-    en = Waterbody
+    en = Water
     ar = مسطح مائي
     be = Вадаём
     bg = Воден басейн
@@ -16639,7 +16928,7 @@
     fa = اداره
     fi = Toimisto
     fr = Bureau
-    hu = Hivatal
+    hu = Iroda
     id = Kantor
     it = Ufficio
     ja = オフィス
@@ -16736,7 +17025,7 @@
     ar = مكتب حكومي
     cs = Úřad vlády
     da = Regeringskontor
-    de = Regierungsstelle
+    de = Behörde
     el = Κυβερνητικό γραφείο
     es = Oficina gubernamental
     et = Riigikantselei
@@ -18000,6 +18289,172 @@
     uk = Лінія електропередач низької напруги
     zh-Hans = 超高压输电线
 
+  [type.power.plant]
+    en = Power Plant
+    ar = محطة توليد الكهرباء
+    be = Электрастанцыя
+    bg = Електроцентрала
+    ca = Central elèctrica
+    cs = Elektrárna
+    da = Kraftværk
+    de = Kraftwerk
+    el = Εργοστάσιο ηλεκτρισμού
+    es = Planta de energía
+    et = Elektrijaam
+    eu = Elektrizitate-parkea
+    fa = نیروگاه
+    fi = Voimalaitos
+    fr = Centrale électrique
+    he = תחנת כוח
+    hu = Erőmű
+    id = Pembangkit listrik
+    it = Centrale elettrica
+    ja = 発電所
+    ko = 발전소
+    mr = वीज प्रकल्प
+    nb = Kraftverk
+    nl = Energiecentrale
+    pl = Elektrownia
+    pt = Usina elétrica
+    pt-BR = Usina elétrica
+    ro = Centrală electrică
+    ru = Электростанция
+    sk = Elektráreň
+    sv = Kraftverk
+    sw = Kiwanda cha nguvu
+    th = โรงไฟฟ้า
+    tr = Enerji santrali
+    uk = Електростанція
+    vi = Nhà máy điện
+    zh-Hans = 发电厂
+    zh-Hant = 發電廠
+
+  [type.power.plant.coal]
+    en = Coal Power Plant
+    ar = محطة لتوليد الطاقه من الفحم
+    be = Вугальная электрастанцыя
+    bg = Въглищна централа
+    ca = Central elèctrica de carbó
+    cs = Uhelná elektrárna
+    da = Kulkraftværk
+    de = Kohlekraftwerk
+    el = Εργοστάσιο παραγωγής ενέργειας από άνθρακα
+    es = Central eléctrica de carbón
+    et = Söeelektrijaam
+    eu = Ikatz zentrala
+    fa = نیروگاه زغال سنگ
+    fi = Hiilivoimala
+    fr = Centrale au charbon
+    he = תחנת כוח פחמית
+    hu = Szénerőmű
+    id = Pembangkit listrik batubara
+    it = Centrale elettrica a carbone
+    ja = 石炭火力発電所
+    ko = 석탄 발전소
+    mr = कोळसा ऊर्जा प्रकल्प
+    nb = Kullkraftverk
+    nl = Kolen elektriciteitscentrale
+    pl = Elektrownia węglowa
+    pt = Usina de carvão
+    pt-BR = Usina de carvão
+    ro = Centrală electrică pe cărbune
+    ru = Угольная электростанция
+    sk = Uhoľná elektráreň
+    sv = Kolkraftverk
+    sw = Kiwanda cha nguvu cha makaa ya mawe
+    th = โรงไฟฟ้าถ่านหิน
+    tr = Kömür santrali
+    uk = Вугільна електростанція
+    vi = Nhà máy điện than
+    zh-Hans = 燃煤电厂
+    zh-Hant = 燃煤電廠
+
+  [type.power.plant.gas]
+    ref = type.power.generator.gas
+
+  [type.power.plant.hydro]
+    ref = type.power.generator.hydro
+
+  [type.power.plant.solar]
+    en = Solar Power Plant
+    ar = محطة للطاقة الشمسية
+    be = Сонечная электрастанцыя
+    bg = Слънчева електроцентрала
+    ca = Central d'energia solar
+    cs = Solární elektrárna
+    da = Solcelleanlæg
+    de = Solarkraftwerk
+    el = Ηλιακός σταθμός παραγωγής ενέργειας
+    es = Planta de energía solar
+    et = Päikeseelektrijaam
+    eu = Eguzki-zentrala
+    fa = نیروگاه خورشیدی
+    fi = Aurinkovoimala
+    fr = Centrale solaire
+    he = תחנת כוח סולארית
+    hu = Naperőmű
+    id = Pembangkit listrik tenaga surya
+    it = Centrale solare
+    ja = 太陽光発電所
+    ko = 태양광 발전소
+    mr = सौर ऊर्जा संयंत्र
+    nb = Solkraftverk
+    nl = Zonne-energiecentrale
+    pl = Elektrownia słoneczna
+    pt = Planta de energia solar
+    pt-BR = Planta de energia solar
+    ro = Centrală solară
+    ru = Солнечная электростанция
+    sk = Solárna elektráreň
+    sv = Solkraftverk
+    sw = Kiwanda cha nishati ya jua
+    th = โรงไฟฟ้าพลังงานแสงอาทิตย์
+    tr = Güneş enerjili elektrik santrali
+    uk = Сонячна електростанція
+    vi = Nhà máy điện mặt trời
+    zh-Hans = 太阳能发电厂
+    zh-Hant = 太陽能發電廠
+
+  [type.power.plant.wind]
+    en = Wind Power Plant
+    ar = محطة طاقة الرياح
+    be = Ветраэлектрастанцыя
+    bg = Вятърна електроцентрала
+    ca = Central eòlica
+    cs = Větrná elektrárna
+    da = Vindkraftværk
+    de = Windkraftanlage
+    el = Αιολική μονάδα παραγωγής ενέργειας
+    es = Planta eólica
+    et = Tuuleelektrijaam
+    eu = Zentral eolikoa
+    fa = نیروگاه بادی
+    fi = Tuulivoimala
+    fr = Centrale éolienne
+    he = תחנת כוח רוח
+    hu = Szélerőmű
+    id = Pembangkit listrik tenaga angin
+    it = Centrale eolica
+    ja = 風力発電所
+    ko = 풍력 발전소
+    mr = पवन ऊर्जा संयंत्र
+    nb = Vindkraftverk
+    nl = Windkrachtcentrale
+    pl = Elektrownia wiatrowa
+    pt = Usina de energia eólica
+    pt-BR = Usina de energia eólica
+    ro = Centrală eoliană
+    ru = Ветряная электростанция
+    sk = Veterná elektráreň
+    sv = Vindkraftverk
+    sw = Kiwanda cha nguvu cha upepo
+    th = โรงไฟฟ้าพลังงานลม
+    tr = Rüzgar santrali
+    uk = Вітрова електростанція
+    vi = Nhà máy điện gió
+    zh-Hans = 风力发电厂
+    zh-Hant = 風力發電廠
+
   [type.power.pole]
     en = Power Tower
     ar = عمود كهرباء
@@ -18596,7 +19051,7 @@
     ar = خط سكة حديد
     cs = Železnice
     da = Jernbane
-    de = S-Bahn
+    de = Eisenbahn
     el = Σιδηρόδρομος
     es = Ferrocarril
     es-MX = Línea de ferrocarril
@@ -18812,7 +19267,7 @@
     ar = محطة مترو
     cs = Metro
     da = Metro
-    de = U-Bahnstation
+    de = U-Bahn-Station
     el = Μετρό
     es = Metro
     et = Metroo
@@ -19787,7 +20242,7 @@
     zh-Hant = 購物
 
   [type.shop.alcohol]
-    en = Liquor Store
+    en = Liquor Shop
     ar = متجر مشروبات كحولية
     cs = Obchod s alkoholem
     da = Alkohol
@@ -19855,6 +20310,46 @@
     vi = Hiệu bánh
     zh-Hans = 烘培店
     zh-Hant = 麵包店
+
+  [type.shop.bathroom_furnishing]
+    en = Bathroom Furnishings
+    ar = أثاث الحمام
+    be = Мэбля для ванных пакояў
+    bg = Обзавеждане за баня
+    ca = Mobles de bany
+    cs = Vybavení koupelny
+    da = Badeværelsesindretning
+    de = Badezimmerausstattung
+    el = Έπιπλα μπάνιου
+    es = Equipamiento de baño
+    et = Vannitoa sisustus
+    eu = Bainugelako altzariak
+    fa = مبلمان حمام
+    fi = Kylpyhuoneen kalusteet
+    fr = Mobilier de salle de bain
+    he = ריהוט חדר רחצה
+    hu = Fürdőszoba berendezési tárgyak
+    id = Perabot Kamar Mandi
+    it = Arredo Bagno
+    ja = バスルームの備品
+    ko = 욕실 가구
+    mr = स्नानगृह सामान
+    nb = Baderomsmøbler
+    nl = Badkamerinrichting
+    pl = Meble łazienkowe
+    pt = Loja de móveis de casa de banho
+    pt-BR = Loja de móveis de banheiro
+    ro = Mobilier pentru baie
+    ru = Мебель для ванной
+    sk = Vybavenie kúpeľne
+    sv = Badrumsinredning
+    sw = Vyombo vya Bafuni
+    th = ตกแต่งห้องน้ำ
+    tr = Banyo Mobilyaları
+    uk = Меблі для ванної кімнати
+    vi = Nội thất phòng tắm
+    zh-Hans = 卫浴摆设
+    zh-Hant = 衛浴擺設
 
   [type.shop.beauty]
     en = Beauty Shop
@@ -19994,6 +20489,7 @@
 
   [type.shop.books]
     en = Bookstore
+    en-GB = Bookshop
     ar = مكتبة لبيع الكتب
     cs = Knihkupectví
     da = Boghandel
@@ -20028,7 +20524,7 @@
     zh-Hant = 書店
 
   [type.shop.butcher]
-    en = Butcher’s
+    en = Butcher
     ar = جزار
     cs = Řeznictví
     da = Slagter
@@ -20061,6 +20557,46 @@
     vi = Cửa hàng thịt
     zh-Hans = 肉商
     zh-Hant = 肉商
+
+  [type.shop.cannabis]
+    en = Cannabis Store
+    ar = متجر القنب
+    be = Крама канабіса
+    bg = Магазин за канабис
+    ca = Botiga de cànnabis
+    cs = Obchod s konopím
+    da = Cannabis butik
+    de = Cannabis-Laden
+    el = Κατάστημα κάνναβης
+    es = Tienda de cánnabis
+    et = Kanepipood
+    eu = Cannabis denda
+    fa = فروشگاه شاهدانه
+    fi = Kannabiskauppa
+    fr = Magasin de cannabis
+    he = חנות קנאביס
+    hu = Cannabis Store
+    id = Toko ganja
+    it = Negozio di cannabis
+    ja = 大麻店
+    ko = 대마초 판매점
+    mr = गांजाचे दुकान
+    nb = Cannabisbutikk
+    nl = Cannabis Winkel
+    pl = Sklep z konopiami indyjskimi
+    pt = Loja de canábis
+    pt-BR = Loja de cannabis
+    ro = Magazin de canabis
+    ru = Магазин каннабиса
+    sk = Obchod s kanabisom
+    sv = Cannabisbutik
+    sw = Duka la Bangi
+    th = ร้านขายกัญชา
+    tr = Kenevir dükkanı
+    uk = Магазин конопель
+    vi = Cửa hàng cần sa
+    zh-Hans = 大麻商店
+    zh-Hant = 大麻商店
 
   [type.shop.car]
     en = Car Dealership
@@ -20214,8 +20750,48 @@
     tr = Karavan Bayiliği
     uk = Продаж автобудинків
 
+  [type.shop.carpet]
+    en = Carpet Shop
+    ar = السجاد
+    be = Дываны
+    bg = Килими
+    ca = Catifes
+    cs = Koberce
+    da = Tæpper
+    de = Teppichgeschäft
+    el = Χαλιά
+    es = Alfombras
+    et = Vaibad
+    eu = Alfonbrak
+    fa = فرش
+    fi = Matot
+    fr = Magasin de tapis
+    he = שטיחים
+    hu = Szőnyegek
+    id = Karpet
+    it = Tappeti
+    ja = カーペット
+    ko = 카펫
+    mr = कार्पेट्स
+    nb = Tepper
+    nl = Tapijten
+    pl = Dywany
+    pt = Loja de tapetes
+    pt-BR = Loja de tapetes
+    ro = Covoare
+    ru = Ковры
+    sk = Koberce
+    sv = Mattor
+    sw = Mazulia
+    th = พรม
+    tr = Halılar
+    uk = Килими
+    vi = Những cái thảm
+    zh-Hans = 地毯
+    zh-Hant = 地毯
+
   [type.shop.chemist]
-    en = Chemist Shop
+    en = Chemist
     ar = متجر كيماويات
     cs = Drogerie
     da = Materialist
@@ -20321,7 +20897,7 @@
     zh-Hant = 買衣服
 
   [type.shop.coffee]
-    en = Coffee Store
+    en = Coffee Shop
     ar = متجر
     be = Крама кавы
     cs = Obchod
@@ -20392,7 +20968,7 @@
     zh-Hant = 電腦商店
 
   [type.shop.confectionery]
-    en = Sweets
+    en = Sweet Shop
     ar = متجر حلويات
     cs = Cukrárna
     da = Slikbutik
@@ -20531,8 +21107,48 @@
     zh-Hans = 化妝品店
     zh-Hant = 化妆品
 
+  [type.shop.curtain]
+    en = Curtain Shop
+    ar = ستائر
+    be = Шторы
+    bg = Пердета
+    ca = Cortines
+    cs = Závěsy
+    da = Gardiner
+    de = Gardinengeschäft
+    el = Κουρτίνες
+    es = Cortinas
+    et = Kardinad
+    eu = Gortinak
+    fa = پرده ها
+    fi = Verhot
+    fr = Magasin de rideaux
+    he = וילונות
+    hu = Függönyök
+    id = Tirai
+    it = Tende
+    ja = カーテン
+    ko = 커튼
+    mr = पडदे
+    nb = Gardiner
+    nl = Gordijnen
+    pl = Zasłony
+    pt = Loja de cortinas
+    pt-BR = Loja de cortinas
+    ro = Perdele
+    ru = Шторы
+    sk = Záclony
+    sv = Gardiner
+    sw = Mapazia
+    th = ผ้าม่าน
+    tr = Perdeler
+    uk = Штори
+    vi = Rèm cửa
+    zh-Hans = 窗帘
+    zh-Hant = 窗簾
+
   [type.shop.deli]
-    en = Delicatessen Shop
+    en = Delicatessen
     ar = ﺔﺒﻠﻌﻤﻟﺍ ﺔﻤﻌﻃﻷﺍ ﻊﻴﺒﻟ ﻞﺤﻣ
     be = Дэлікатэсная крама
     bg = Магазин за деликатеси
@@ -20675,7 +21291,7 @@
     zh-Hant = 乾洗
 
   [type.shop.electronics]
-    en = Electronics
+    en = Electronics Shop
     ar = متجر إلكترونيات
     cs = Elektronika
     da = Elektronikbutik
@@ -20816,8 +21432,48 @@
     zh-Hans = 农场食品店
     zh-Hant = 農場食品店
 
+  [type.shop.fashion_accessories]
+    en = Fashion Accessories
+    ar = اكسسوارات الموضة
+    be = Модныя аксэсуары
+    bg = Модни аксесоари
+    ca = Complements de moda
+    cs = Módní doplňky
+    da = Mode tilbehør
+    de = Mode-Accessoires
+    el = Αξεσουάρ μόδας
+    es = Accesorios de moda
+    et = Moodsad aksessuaarid
+    eu = Moda Osagarriak
+    fa = لوازم جانبی مد
+    fi = Muoti tarvikkeet
+    fr = Boutique d'accessoires de mode
+    he = אביזרי אופנה
+    hu = Divat kiegészítők
+    id = Aksesoris Fashion
+    it = Accessori alla moda
+    ja = ファッションアクセサリー
+    ko = 패션 악세사리
+    mr = फॅशन अॅक्सेसरीज
+    nb = Motetilbehør
+    nl = Mode accessoires
+    pl = Akcesoria modowe
+    pt = Loja de acessórios de moda
+    pt-BR = Loja de acessórios de moda
+    ro = Acesorii de modă
+    ru = Модные аксессуары
+    sk = Módne doplnky
+    sv = Modeaccessoarer
+    sw = Vifaa vya Mtindo
+    th = เครื่องประดับแฟชั่น
+    tr = Moda Aksesuarları
+    uk = Модні аксесуари
+    vi = Phụ kiện thời trang
+    zh-Hans = 时尚配饰
+    zh-Hant = 時尚配飾
+
   [type.shop.florist]
-    en = Florist’s
+    en = Florist
     ar = متجر زهور
     cs = Květinářství
     da = Blomsterbutik
@@ -20956,6 +21612,46 @@
     vi = Nhà trẻ
     zh-Hans = 幼儿园
     zh-Hant = 園藝店
+
+  [type.shop.gas]
+    en = Gas Store
+    ar = مخزن غاز
+    be = Газавая крама
+    bg = Магазин за газ
+    ca = Botiga de gas
+    cs = Obchod s plynem
+    da = Gas butik
+    de = Gasspeicher
+    el = Κατάστημα υγραερίου
+    es = Tienda de gasolina
+    et = Gaasipood
+    eu = Gas biltegia
+    fa = فروشگاه گاز
+    fi = Kaasukauppa
+    fr = Vente de gaz
+    he = חנות דלק
+    hu = Gázbolt
+    id = Toko gas
+    it = Deposito di gas
+    ja = ガス屋
+    ko = 주유소
+    mr = गॅसचे दुकान
+    nb = Gassbutikk
+    nl = Gas winkel
+    pl = Sklep gazowy
+    pt = Distribuidora de gás
+    pt-BR = Distribuidora de gás
+    ro = Magazin de gaze
+    ru = Газовый магазин
+    sk = Obchod s plynom
+    sv = Gasaffär
+    sw = Duka la gesi
+    th = ร้านแก๊ส
+    tr = Gaz deposu
+    uk = Газовий магазин
+    vi = Cửa hàng gas
+    zh-Hans = 燃气站
+    zh-Hant = 煤氣庫
 
   [type.shop.gift]
     en = Gift Shop
@@ -21165,6 +21861,86 @@
     zh-Hans = 保健食品店
     zh-Hant = 保健食品店
 
+  [type.shop.herbalist]
+    en = Herbalist
+    ar = متجر أعشاب
+    be = Магазін траў
+    bg = Магазин за билки
+    ca = Botiga d'herbes
+    cs = Obchod s bylinkami
+    da = Urtebutik
+    de = Kräuterladen
+    el = Κατάστημα με βότανα
+    es = Tienda de hierbas
+    et = Maitsetaimede pood
+    eu = Belar denda
+    fa = فروشگاه گیاهان دارویی
+    fi = Yrttikauppa
+    fr = Herboristerie
+    he = חנות עשבי תיבול
+    hu = Gyógynövény bolt
+    id = Toko jamu
+    it = Negozio di erbe
+    ja = ハーブ店
+    ko = 허브 가게
+    mr = औषधी वनस्पतींचे दुकान
+    nb = Urtebutikk
+    nl = Kruiden winkel
+    pl = Sklep z ziołami
+    pt = Loja de ervas
+    pt-BR = Loja de ervas
+    ro = Magazin de ierburi
+    ru = Магазин трав
+    sk = Obchod s bylinkami
+    sv = Örter butik
+    sw = Duka la mimea
+    th = ร้านสมุนไพร
+    tr = Şifalı bitkiler mağazası
+    uk = Магазин трав
+    vi = Cửa hàng thảo mộc
+    zh-Hans = 草药店
+    zh-Hant = 香草店
+
+  [type.shop.hifi]
+    en = HiFi Audio
+    ar = صوت هاي فاي
+    be = HiFi аўдыё
+    bg = HiFi аудио
+    ca = Àudio HiFi
+    cs = HiFi audio
+    da = HiFi lyd
+    de = HiFi-Audio
+    el = Ήχος HiFi
+    es = Audio de alta fidelidad
+    et = HiFi heli
+    eu = HiFi Audioa
+    fa = صوتی HiFi
+    fi = HiFi Audio
+    fr = Matériel Hi-Fi
+    he = אודיו HiFi
+    hu = HiFi Audio
+    id = Audio HI FI
+    it = Audio ad alta fedeltà
+    ja = ハイファイオーディオ
+    ko = 하이파이 오디오
+    mr = हायफाय ऑडिओ
+    nb = HiFi lyd
+    nl = HiFi-audio
+    pl = Dźwięk Hi-Fi
+    pt = Loja de áudio Hi-Fi
+    pt-BR = Loja de áudio Hi-Fi
+    ro = Audio HiFi
+    ru = Hi-Fi аудио
+    sk = HiFi audio
+    sv = HiFi ljud
+    sw = Sauti ya HiFi
+    th = เครื่องเสียงไฮไฟ
+    tr = HiFi Ses
+    uk = HiFi Audio
+    vi = Âm thanh hifi
+    zh-Hans = HiFi
+    zh-Hant = 高保真音響
+
   [type.shop.houseware]
     ref = type.shop.doityourself
     en = Houseware
@@ -21204,7 +21980,7 @@
     zh-Hant = 家居用品店
 
   [type.shop.jewelry]
-    en = Jewelry
+    en = Jewelry Shop
     ar = مجوهرات
     cs = Klenotnictví
     da = Smykkebutik
@@ -21341,6 +22117,7 @@
 
   [type.shop.mall]
     en = Mall
+    en-GB = Shopping Centre
     ar = مركز تسوق
     cs = Obchoďák
     da = Indkøbscenter
@@ -21515,6 +22292,46 @@
     zh-Hans = 摩托车商店
     zh-Hant = 機車行
 
+  [type.shop.motorcycle_repair]
+    en = Motorcycle Repair
+    ar = تصليح الدراجات النارية
+    be = Рамонт матацыклаў
+    bg = Ремонт на мотоциклети
+    ca = Reparació de motos
+    cs = Opravy motocyklů
+    da = Motorcykel reparation
+    de = Motorradwerkstatt
+    el = Επισκευή μοτοσυκλετών
+    es = Reparación de motos
+    et = Mootorrataste remont
+    eu = Motoen Konponketa
+    fa = تعمیر موتور سیکلت
+    fi = Moottoripyörän korjaus
+    fr = Réparateur de moto
+    he = תיקון אופנועים
+    hu = Motorkerékpár javítás
+    id = Bengkel Sepeda Motor
+    it = Riparazione moto
+    ja = オートバイの修理
+    ko = 오토바이 수리
+    mr = मोटरसायकल दुरुस्ती
+    nb = Motorsykkel reparasjon
+    nl = Motorfiets Reparatie
+    pl = Naprawa motocykli
+    pt = Oficina de motos
+    pt-BR = Oficina de motos
+    ro = Reparatie motociclete
+    ru = Ремонт мотоциклов
+    sk = Oprava motocyklov
+    sv = Motorcykel reparation
+    sw = Ukarabati wa Pikipiki
+    th = ซ่อมรถจักรยานยนต์
+    tr = Motosiklet Tamiri
+    uk = Ремонт мотоциклів
+    vi = Sửa chữa xe máy
+    zh-Hans = 摩托车维修
+    zh-Hant = 摩托車維修
+
   [type.shop.music]
     en = Record Store
     ar = متجر
@@ -21552,7 +22369,7 @@
     zh-Hant = 購物
 
   [type.shop.musical_instrument]
-    en = Musical Instruments
+    en = Musical Instrument Shop
     ar = متجر
     be = Музычныя інструменты
     cs = Obchod
@@ -21623,7 +22440,7 @@
     zh-Hant = 報攤
 
   [type.shop.optician]
-    en = Optician’s
+    en = Optician
     ar = مركز بصريات
     cs = Optika
     da = Optiker
@@ -21692,9 +22509,49 @@
     zh-Hans = 室外设备
     zh-Hant = 室外設備
 
+  [type.shop.outpost]
+    en = Pickup Point
+    ar = نقطة الالتقاط
+    be = Пункт самавывазу
+    bg = Точка на вземане
+    ca = Punt de recollida
+    cs = Místo vyzvednutí
+    da = Afhentningssted
+    de = Abholpunkt
+    el = Σημείο παραλαβής
+    es = Punto de recogida
+    et = Vastuvõtupunkt
+    eu = Jasotzeko puntua
+    fa = نقطه وانت
+    fi = Noutopiste
+    fr = Point de retrait
+    he = נקודת איסוף
+    hu = Felvevő pont
+    id = Titik penjemputan
+    it = Punto di raccolta
+    ja = 集荷場
+    ko = 픽업 장소
+    mr = पिकअप पॉइंट
+    nb = Hentested
+    nl = Ophaalpunt
+    pl = Punkt odbioru
+    pt = Ponto de coleta
+    pt-BR = Ponto de coleta
+    ro = Punct de ridicare
+    ru = Пункт выдачи заказов
+    sk = Miesto odberu
+    sv = Mötesplats
+    sw = Sehemu ya kuchukua
+    th = จุดรับของ
+    tr = Alım noktası
+    uk = Пункт самовивозу
+    vi = Điểm đón
+    zh-Hans = 自提点
+    zh-Hant = 接送的地點
+
   [type.shop.pastry]
     ref = type.shop.bakery
-    en = Pastry
+    en = Pastry Shop
     ar = ﺕﺎﻨﺠﻌﻣ
     be = Кандытарскія вырабы
     bg = Тестени изделия
@@ -21765,7 +22622,7 @@
     zh-Hant = 當舖
 
   [type.shop.pet]
-    en = Petshop
+    en = Pet Store
     ar = متجر للحيوانات الأليفة
     cs = Zverimex
     da = Dyrehandel
@@ -21798,6 +22655,46 @@
     vi = Cửa Hàng Vật Nuôi
     zh-Hans = 宠物店
     zh-Hant = 寵物店
+
+  [type.shop.pet_grooming]
+    en = Pet Grooming
+    ar = العناية بالحيوانات الأليفة
+    be = Грумінг
+    bg = Грижа за домашни любимци
+    ca = Peluca de mascotes
+    cs = Péče o domácí mazlíčky
+    da = Kæledyrspleje
+    de = Haustierpflege
+    el = Περιποίηση κατοικίδιων ζώων
+    es = Aseo de mascotas
+    et = Lemmikloomade hooldamine
+    eu = Animalien apainketa
+    fa = نظافت حیوانات خانگی
+    fi = Lemmikkieläinten hoito
+    fr = Salon de toilettage
+    he = טיפוח חיות מחמד
+    hu = Kisállat ápolás
+    id = Perawatan Hewan Peliharaan
+    it = Toelettatura per animali domestici
+    ja = ペットグルーミング
+    ko = 애완동물 미용
+    mr = पाळीव प्राणी ग्रूमिंग
+    nb = Kjæledyrpleie
+    nl = Huisdierverzorging
+    pl = Pielęgnacja zwierząt
+    pt = Salão de banhos e tosquia
+    pt-BR = Banho e tosa
+    ro = Îngrijirea animalelor de companie
+    ru = Груминг
+    sk = Starostlivosť o domáce zvieratá
+    sv = Husdjursvård
+    sw = Utunzaji wa Kipenzi
+    th = กรูมมิ่งสัตว์เลี้ยง
+    tr = Evcil Hayvan Bakımı
+    uk = Грумінг
+    vi = Chải lông thú cưng
+    zh-Hans = 宠物美容
+    zh-Hant = 寵物美容
 
   [type.shop.photo]
     en = Photo Shop
@@ -21870,7 +22767,7 @@
     zh-Hant = 魚販
 
   [type.shop.second_hand]
-    en = Second Hand
+    en = Second Hand Shop
     ar = ﺔﻠﻤﻌﺘﺴﻣ ﺕﺍﻭﺩﺍ ﺮﺠﺘﻣ
     be = Крама сэканд-хэнд
     bg = Магазин втора употреба
@@ -21908,7 +22805,7 @@
     zh-Hant = 二手店
 
   [type.shop.shoes]
-    en = Shoe Store
+    en = Shoe Shop
     ar = متجر أحذية
     cs = Obuv
     da = Skobutik
@@ -21943,7 +22840,7 @@
     zh-Hant = 鞋店
 
   [type.shop.sports]
-    en = Sports Goods
+    en = Sports Shop
     ar = أدوات رياضية
     cs = Sportovní zboží
     da = Sportsudstyr
@@ -22078,7 +22975,7 @@
     zh-Hant = 刺青店
 
   [type.shop.tea]
-    en = Tea Store
+    en = Tea Shop
     ar = متجر
     be = Крама гарбаты
     cs = Obchod
@@ -22150,6 +23047,7 @@
 
   [type.shop.toys]
     en = Toy Store
+    en-GB = Toy Shop
     ar = متجر ألعاب
     cs = Hračkářství
     da = Legetøjsbutik
@@ -22397,8 +23295,48 @@
     zh-Hans = 酒品商店
     zh-Hant = 販酒處
 
+  [type.shop.agrarian]
+    en = Agricultural Shop
+    ar = محل زراعي
+    be = Сельскагаспадарчы магазін
+    bg = Селскостопански магазин
+    ca = Botiga agrícola
+    cs = Zemědělský obchod
+    da = Landbrugsbutik
+    de = Landwirtschaftliches Geschäft
+    el = Αγροτικό κατάστημα
+    es = Tienda agrícola
+    et = Põllumajanduspood
+    eu = Nekazaritza denda
+    fa = مغازه کشاورزی
+    fi = Maatalouskauppa
+    fr = Magasin d'agriculture
+    he = חנות חקלאית
+    hu = Mezőgazdasági bolt
+    id = Toko pertanian
+    it = Negozio agricolo
+    ja = 農産物直売所
+    ko = 농산물 가게
+    mr = शेतीचे दुकान
+    nb = Landbruksbutikk
+    nl = Agrarische winkel
+    pl = Sklep rolniczy
+    pt = Loja agrícola
+    pt-BR = Loja agrícola
+    ro = Magazin agricol
+    ru = Сельскохозяйственный магазин
+    sk = Poľnohospodársky obchod
+    sv = Lantbruksbutik
+    sw = Duka la kilimo
+    th = ร้านเกษตร
+    tr = Tarım dükkanı
+    uk = Сільськогосподарський магазин
+    vi = Cửa hàng nông sản
+    zh-Hans = 农产品店
+    zh-Hant = 農產品店
+
   [type.shop.antiques]
-    en = Antiques
+    en = Antiques Shop
     ar = ﻒﺤﺘﻟﺍ
     be = Антыкварыят
     bg = Антики
@@ -22434,6 +23372,46 @@
     vi = Đồ cổ
     zh-Hans = 古董
     zh-Hant = 古董
+
+  [type.shop.appliance]
+    en = Appliances Shop
+    ar = متجر الأجهزة
+    be = Крама бытавой тэхнікі
+    bg = Магазин за техника
+    ca = Botiga d'electrodomèstics
+    cs = Obchod se spotřebiči
+    da = Hvidevarer butik
+    de = Laden für Haushaltsgeräte
+    el = Κατάστημα οικιακών συσκευών
+    es = Tienda de electrodomésticos
+    et = Tehnikapood
+    eu = Etxetresna elektrikoen denda
+    fa = فروشگاه لوازم خانگی
+    fi = Kodinkoneet kauppa
+    fr = Magasin d'électroménager
+    he = חנות מוצרי חשמל
+    hu = Készülék bolt
+    id = Toko peralatan
+    it = Negozio di elettrodomestici
+    ja = 家電店
+    ko = 가전제품 매장
+    mr = उपकरणांचे दुकान
+    nb = Hvitevarebutikk
+    nl = Apparaten winkel
+    pl = Sklep AGD
+    pt = Loja de eletrodomésticos
+    pt-BR = Loja de eletrodomésticos
+    ro = Magazin de electrocasnice
+    ru = Магазин бытовой техники
+    sk = Obchod so spotrebičmi
+    sv = Vitvarubutik
+    sw = Duka la vifaa
+    th = ร้านเครื่องใช้ไฟฟ้า
+    tr = Beyaz eşya dükkanı
+    uk = Магазин побутової техніки
+    vi = Cửa hàng đồ gia dụng
+    zh-Hans = 家电店
+    zh-Hant = 家電店
 
   [type.shop.art]
     en = Arts Shop
@@ -22512,7 +23490,7 @@
     zh-Hant = 兒童商店
 
   [type.shop.bag]
-    en = Bags Store
+    en = Bag Shop
     ar = ﺐﺋﺎﻘﺤﻟﺍ ﺮﺠﺘﻣ
     be = Крама сумак
     bg = Магазин за чанти
@@ -22548,6 +23526,46 @@
     vi = Cửa hàng túi xách
     zh-Hans = 箱包店
     zh-Hant = 箱包店
+
+  [type.shop.bed]
+    en = Beds Shop
+    ar = متجر الأسرة
+    be = Крама ложкаў
+    bg = Магазин за легла
+    ca = Botiga de llits
+    cs = Prodejna postelí
+    da = Senge butik
+    de = Bettengeschäft
+    el = Κατάστημα κρεβατιών
+    es = Tienda de camas
+    et = Voodipood
+    eu = Ohe denda
+    fa = فروشگاه تخت
+    fi = Sänkykauppa
+    fr = Magasin de literie
+    he = חנות מיטות
+    hu = Ágyak boltja
+    id = Toko tempat tidur
+    it = Negozio di letti
+    ja = ベッドショップ
+    ko = 침대 가게
+    mr = पलंगाचे दुकान
+    nb = Sengebutikk
+    nl = Bedden winkel
+    pl = Sklep z łóżkami
+    pt = Loja de camas
+    pt-BR = Loja de camas
+    ro = Magazin de paturi
+    ru = Магазин кроватей
+    sk = Obchod s posteľami
+    sv = Sängbutik
+    sw = Duka la vitanda
+    th = ร้านขายเตียง
+    tr = Yatak dükkanı
+    uk = Магазин ліжок
+    vi = Cửa hàng giường
+    zh-Hans = 寝具
+    zh-Hant = 床鋪
 
   [type.shop.boutique]
     en = Boutique
@@ -22626,7 +23644,7 @@
     zh-Hant = 慈善商店
 
   [type.shop.cheese]
-    en = Cheese Store
+    en = Cheese Shop
     ar = ﻦﺒﺠﻟﺍ ﺮﺠﺘﻣ
     be = Сырны магазін
     bg = Магазин за сирене
@@ -22968,7 +23986,7 @@
     zh-Hant = 營養補充劑
 
   [type.shop.paint]
-    en = Paints
+    en = Paint Shop
     ar = ﺕﺎﻧﺎﻫﺪﻟﺍ
     be = Фарбы
     bg = Бои
@@ -24056,6 +25074,7 @@
 
   [type.sport.soccer]
     en = Soccer
+    en-GB = Football
     ar = كرة القدم
     be = Футбол
     cs = Fotbal
@@ -24566,6 +25585,7 @@
 
   [type.tourism.apartment]
     en = Apartments
+    en-GB = Flats
     ar = شُقَق
     cs = Byty
     da = Lejligheder
@@ -24635,11 +25655,11 @@
     zh-Hant = 藝術品
 
   [type.tourism.artwork.architecture]
-    en = Artwork
+    en = Architectural Artwork
     ar = عمل فني
     cs = Umělecké dílo
     da = Kunstværk
-    de = Kunstwerk
+    de = Architektonisches Kunstwerk
     el = Έργα τέχνης
     es = Obras de arte
     et = Kunstiteos - arhitektuur
@@ -24647,7 +25667,7 @@
     fa = گردشگری
     fi = Taideteos
     fr = Œuvre
-    hu = Szobor
+    hu = Műalkotás
     id = Pariwisata
     it = Opera d'arte
     ja = 建築
@@ -24670,7 +25690,7 @@
     zh-Hant = 藝術品
 
   [type.tourism.artwork.painting]
-    en = Artwork
+    en = Painting
     ar = عمل فني
     cs = Umělecké dílo
     da = Kunstværk
@@ -24682,7 +25702,7 @@
     fa = گردشگری
     fi = Taideteos
     fr = Œuvre
-    hu = Szobor
+    hu = Műalkotás
     id = Pariwisata
     it = Dipinto
     ja = 絵画
@@ -24705,7 +25725,7 @@
     zh-Hant = 藝術品
 
   [type.tourism.artwork.sculpture]
-    en = Artwork
+    en = Sculpture
     ar = عمل فني
     cs = Umělecké dílo
     da = Kunstværk
@@ -24740,7 +25760,7 @@
     zh-Hant = 藝術品
 
   [type.tourism.artwork.statue]
-    en = Artwork
+    en = Statue
     ar = عمل فني
     cs = Umělecké dílo
     da = Kunstværk
@@ -24822,7 +25842,7 @@
     ref = type.tourism.attraction
 
   [type.tourism.camp_site]
-    en = Camping
+    en = Camp Site
     ar = تخييم
     cs = Kempování
     de = Zeltplatz
@@ -25596,7 +26616,7 @@
     zh-Hant = 運河
 
   [type.waterway.canal.tunnel]
-    en = Canal
+    en = Canal Tunnel
     ar = قناة
     cs = Kanál
     da = Kanal
@@ -25813,7 +26833,7 @@
     zh-Hant = 河流
 
   [type.waterway.stream]
-    en = River
+    en = Stream
     ar = نهر
     be = Рака
     cs = Řeka
@@ -25849,7 +26869,7 @@
     zh-Hant = 溪
 
   [type.waterway.stream.ephemeral]
-    en = River
+    en = Ephemeral Stream
     ar = نهر
     be = Рака
     cs = Řeka
@@ -25885,7 +26905,7 @@
     zh-Hant = 溪
 
   [type.waterway.stream.intermittent]
-    en = River
+    en = Intermittent Stream
     ar = نهر
     be = Рака
     cs = Řeka

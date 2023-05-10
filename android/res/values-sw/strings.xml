@@ -36,6 +36,8 @@
 	<string name="rv">Kwa RV</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
 	<string name="data_version">Data ya OpenStreetMap: %s</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">Majengo ya 3D yamezimwa katika hali ya kuokoa nishati</string>
 	<!-- Text in About menu, opens Organic Maps news website -->
 	<string name="news">Habari</string>
 	<!-- Button in the main Help dialog -->
@@ -240,10 +242,16 @@
 	<string name="splash_subtitle">Data ya ramani kutoka OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Anwani/Zuia</string>
+	<string name="type.addr_interpolation.even">Anwani/Zuia</string>
+	<string name="type.addr_interpolation.odd">Anwani/Zuia</string>
 	<string name="type.amenity">Kistawishi</string>
 	<string name="type.amenity.arts_centre">Kituo cha sanaa</string>
 	<string name="type.amenity.bicycle_repair_station">Cykelreparationsstation</string>
+	<string name="type.amenity.charging_station.bicycle">Kituo cha Kuchaji Baiskeli</string>
+	<string name="type.amenity.charging_station.motorcar">Kituo cha Kuchaji Magari</string>
 	<string name="type.leisure.bowling_alley">Njia ya Bowling</string>
+	<string name="type.amenity.money_transfer">Uhamisho wa pesa</string>
 	<string name="type.amenity.music_school">Shule ya Muziki</string>
 	<string name="type.amenity.language_school">Shule ya Lugha</string>
 	<string name="type.amenity.loading_dock">Inapakia kituo</string>
@@ -283,9 +291,12 @@
 	<string name="type.craft.handicraft">Kazi za mikono</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Kiyoyozi</string>
+	<string name="type.craft.key_cutter">Kukata Muhimu</string>
+	<string name="type.craft.locksmith">Fundi wa kufuli</string>
 	<string name="type.craft.metal_construction">Mfanyikazi wa chuma</string>
 	<string name="type.craft.painter">Mchoraji</string>
 	<string name="type.craft.photographer">Mpiga picha</string>
+	<string name="type.shop.camera">Duka la Kamera</string>
 	<string name="type.craft.plumber">Fundi bomba</string>
 	<string name="type.craft.sawmill">Sumel</string>
 	<string name="type.craft.shoemaker">Mtengeneza viatu</string>
@@ -522,6 +533,12 @@
 	<string name="type.power.generator.wind">Jenereta ya upepo</string>
 	<string name="type.power.generator.gas">Kiwanda cha nguvu cha turbine ya gesi</string>
 	<string name="type.power.generator.hydro">Kiwanda cha umeme wa maji</string>
+	<string name="type.power.plant">Kiwanda cha nguvu</string>
+	<string name="type.power.plant.coal">Kiwanda cha nguvu cha makaa ya mawe</string>
+	<string name="type.power.plant.gas">Kiwanda cha nguvu cha turbine ya gesi</string>
+	<string name="type.power.plant.hydro">Kiwanda cha umeme wa maji</string>
+	<string name="type.power.plant.solar">Kiwanda cha nishati ya jua</string>
+	<string name="type.power.plant.wind">Kiwanda cha nguvu cha upepo</string>
 	<string name="type.railway.level_crossing">Tambuka Reli</string>
 	<string name="type.railway.monorail">Mfumo wa reli moja</string>
 	<string name="type.railway.rail">Njia ya Reli</string>
@@ -635,21 +652,35 @@
 	<string name="type.railway.subway_entrance.wuhan">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.yerevan">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.yokohama">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.shop.bathroom_furnishing">Vyombo vya Bafuni</string>
+	<string name="type.shop.cannabis">Duka la Bangi</string>
+	<string name="type.shop.carpet">Mazulia</string>
+	<string name="type.shop.curtain">Mapazia</string>
 	<string name="type.shop.deli">Duka la Delicatessen</string>
 	<string name="type.shop.farm">Duka la Chakula cha shambani</string>
+	<string name="type.shop.fashion_accessories">Vifaa vya Mtindo</string>
+	<string name="type.shop.gas">Duka la gesi</string>
 	<string name="type.shop.grocery">Chakula cha mboga</string>
 	<string name="type.shop.hardware">Duka la vifaa</string>
 	<string name="type.shop.health_food">Duka la Chakula cha Afya</string>
+	<string name="type.shop.herbalist">Duka la mimea</string>
+	<string name="type.shop.hifi">Sauti ya HiFi</string>
 	<string name="type.shop.houseware">Duka la Vifaa vya Nyumbani</string>
 	<string name="type.shop.kitchen">Duka la Jikoni</string>
+	<string name="type.shop.motorcycle_repair">Ukarabati wa Pikipiki</string>
+	<string name="type.shop.outpost">Sehemu ya kuchukua</string>
 	<string name="type.shop.pastry">Keki</string>
+	<string name="type.shop.pet_grooming">Utunzaji wa Kipenzi</string>
 	<string name="type.shop.second_hand">Duka la Mitumba</string>
 	<string name="type.shop.video">Duka la Video</string>
 	<string name="type.shop.video_games">Duka la Video za Michezo</string>
+	<string name="type.shop.agrarian">Duka la kilimo</string>
 	<string name="type.shop.antiques">Mambo ya kale</string>
+	<string name="type.shop.appliance">Duka la vifaa</string>
 	<string name="type.shop.art">Duka la Sanaa</string>
 	<string name="type.shop.baby_goods">Duka la watoto</string>
 	<string name="type.shop.bag">Hifadhi ya Mifuko</string>
+	<string name="type.shop.bed">Duka la vitanda</string>
 	<string name="type.shop.boutique">Boutique</string>
 	<string name="type.shop.charity">Duka la msaada</string>
 	<string name="type.shop.cheese">Duka la Jibini</string>

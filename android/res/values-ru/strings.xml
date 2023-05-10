@@ -221,6 +221,8 @@
 	<string name="pref_map_3d_title">Перспективный вид</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D здания</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D-здания отключаются в режиме энергосбережения</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Голосовые инструкции</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -738,8 +740,13 @@
 	<string name="telegram_url">https://t.me/OrganicMapsRu</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/ru/</string>
+	<!-- Link to OSM wiki for Editor, Profile and About pages -->
+	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/RU:О_проекте</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Адрес/Блок</string>
+	<string name="type.addr_interpolation.even">Адрес/Блок</string>
+	<string name="type.addr_interpolation.odd">Адрес/Блок</string>
 	<string name="type.aerialway">Канатная дорога</string>
 	<string name="type.aerialway.cable_car">Канатная дорога</string>
 	<string name="type.aerialway.chair_lift">Кресельная канатная дорога</string>
@@ -776,7 +783,8 @@
 	<string name="type.amenity.car_wash">Автомойка</string>
 	<string name="type.amenity.casino">Казино</string>
 	<string name="type.amenity.charging_station">Зарядная станция</string>
-	<string name="type.amenity.charging_station.motorcar">Зарядная станция</string>
+	<string name="type.amenity.charging_station.bicycle">Станция зарядки велосипедов</string>
+	<string name="type.amenity.charging_station.motorcar">Зарядная станция для автомобилей</string>
 	<string name="type.amenity.childcare">Детская комната</string>
 	<string name="type.amenity.cinema">Кинотеатр</string>
 	<string name="type.leisure.bowling_alley">Боулинг</string>
@@ -788,6 +796,7 @@
 	<string name="type.amenity.doctors">Врач</string>
 	<string name="type.amenity.drinking_water">Питьевая вода</string>
 	<string name="type.amenity.driving_school">Автошкола</string>
+	<string name="type.amenity.money_transfer">Денежные переводы</string>
 	<string name="type.amenity.music_school">Музыкальная школа</string>
 	<string name="type.amenity.language_school">Языковая школа</string>
 	<string name="type.office.diplomatic">Посольство</string>
@@ -950,9 +959,12 @@
 	<string name="type.craft.handicraft">Ремесленная мастерская</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Отопление, вентиляция и кондиционирование</string>
+	<string name="type.craft.key_cutter">Изготовление ключей</string>
+	<string name="type.craft.locksmith">Слесарь</string>
 	<string name="type.craft.metal_construction">Металлоконструкции</string>
 	<string name="type.craft.painter">Маляр</string>
 	<string name="type.craft.photographer">Фотограф</string>
+	<string name="type.shop.camera">Магазин фотоаппаратов</string>
 	<string name="type.craft.plumber">Сантехник</string>
 	<string name="type.craft.sawmill">Лесопилка</string>
 	<string name="type.craft.shoemaker">Ремонт обуви</string>
@@ -1474,6 +1486,12 @@
 	<string name="type.power.line">Линия электропередач</string>
 	<string name="type.power.line.underground">Подземная линия электропередач</string>
 	<string name="type.power.minor_line">Линия электропередачи низкого напряжения</string>
+	<string name="type.power.plant">Электростанция</string>
+	<string name="type.power.plant.coal">Угольная электростанция</string>
+	<string name="type.power.plant.gas">Газотурбинная электростанция</string>
+	<string name="type.power.plant.hydro">Гидроэлектростанция</string>
+	<string name="type.power.plant.solar">Солнечная электростанция</string>
+	<string name="type.power.plant.wind">Ветряная электростанция</string>
 	<string name="type.power.pole">Опора ЛЭП</string>
 	<string name="type.power.station">Электростанция</string>
 	<string name="type.power.substation">Подстанция</string>
@@ -1760,17 +1778,20 @@
 	<string name="type.shop">Магазин</string>
 	<string name="type.shop.alcohol">Магазин алкоголя</string>
 	<string name="type.shop.bakery">Булочная</string>
+	<string name="type.shop.bathroom_furnishing">Мебель для ванной</string>
 	<string name="type.shop.beauty">Салон красоты</string>
 	<string name="type.shop.beverages">Напитки</string>
 	<string name="type.shop.bicycle">Веломагазин</string>
 	<string name="type.shop.bookmaker">Букмекерская контора</string>
 	<string name="type.shop.books">Книжный магазин</string>
 	<string name="type.shop.butcher">Мясная лавка</string>
+	<string name="type.shop.cannabis">Магазин каннабиса</string>
 	<string name="type.shop.car">Автосалон</string>
 	<string name="type.shop.car_parts">Автомобильные запчасти</string>
 	<string name="type.shop.car_repair">СТО</string>
 	<string name="type.shop.car_repair.tyres">Шиномонтаж</string>
 	<string name="type.shop.caravan">Продажа автодомов</string>
+	<string name="type.shop.carpet">Ковры</string>
 	<string name="type.shop.chemist">Бытовая химия</string>
 	<string name="type.shop.chocolate">Магазин шоколада</string>
 	<string name="type.shop.clothes">Магазин одежды</string>
@@ -1780,6 +1801,7 @@
 	<string name="type.shop.convenience">Продуктовый магазин</string>
 	<string name="type.shop.copyshop">Копировальный центр</string>
 	<string name="type.shop.cosmetics">Косметика</string>
+	<string name="type.shop.curtain">Шторы</string>
 	<string name="type.shop.deli">Магазин деликатесов</string>
 	<string name="type.shop.department_store">Универмаг</string>
 	<string name="type.shop.doityourself">Хозяйственный</string>
@@ -1788,16 +1810,20 @@
 	<string name="type.shop.erotic">Секс-шоп</string>
 	<string name="type.shop.fabric">Магазин</string>
 	<string name="type.shop.farm">Фермерский магазин</string>
+	<string name="type.shop.fashion_accessories">Модные аксессуары</string>
 	<string name="type.shop.florist">Цветочный магазин</string>
 	<string name="type.shop.funeral_directors">Ритуальные услуги</string>
 	<string name="type.shop.furniture">Магазин мебели</string>
 	<string name="type.shop.garden_centre">Садовые товары</string>
+	<string name="type.shop.gas">Газовый магазин</string>
 	<string name="type.shop.gift">Магазин сувениров</string>
 	<string name="type.shop.greengrocer">Овощи и фрукты</string>
 	<string name="type.shop.grocery">Бакалея</string>
 	<string name="type.shop.hairdresser">Парикмахерская</string>
 	<string name="type.shop.hardware">Хозяйственный магазин</string>
 	<string name="type.shop.health_food">Магазин здоровой еды</string>
+	<string name="type.shop.herbalist">Магазин трав</string>
+	<string name="type.shop.hifi">Hi-Fi аудио</string>
 	<string name="type.shop.houseware">Магазин посуды</string>
 	<string name="type.shop.jewelry">Ювелирный магазин</string>
 	<string name="type.shop.kiosk">Киоск</string>
@@ -1808,14 +1834,17 @@
 	<string name="type.shop.mobile_phone">Мобильные телефоны</string>
 	<string name="type.shop.money_lender">Ростовщик</string>
 	<string name="type.shop.motorcycle">Магазин мотоциклов</string>
+	<string name="type.shop.motorcycle_repair">Ремонт мотоциклов</string>
 	<string name="type.shop.music">Музыкальный магазин</string>
 	<string name="type.shop.musical_instrument">Музыкальные инструменты</string>
 	<string name="type.shop.newsagent">Газетный киоск</string>
 	<string name="type.shop.optician">Оптика</string>
 	<string name="type.shop.outdoor">Магазин снаряжения</string>
+	<string name="type.shop.outpost">Пункт выдачи заказов</string>
 	<string name="type.shop.pastry">Выпечка</string>
 	<string name="type.shop.pawnbroker">Ломбард</string>
 	<string name="type.shop.pet">Зоотовары</string>
+	<string name="type.shop.pet_grooming">Груминг</string>
 	<string name="type.shop.photo">Фототовары</string>
 	<string name="type.shop.seafood">Рыбный магазин</string>
 	<string name="type.shop.second_hand">Секонд-хенд магазин</string>
@@ -1833,10 +1862,13 @@
 	<string name="type.shop.video">Магазин видео</string>
 	<string name="type.shop.video_games">Магазин видеоигр</string>
 	<string name="type.shop.wine">Винный магазин</string>
+	<string name="type.shop.agrarian">Сельскохозяйственный магазин</string>
 	<string name="type.shop.antiques">Антиквариат</string>
+	<string name="type.shop.appliance">Магазин бытовой техники</string>
 	<string name="type.shop.art">Художественный магазин</string>
 	<string name="type.shop.baby_goods">Детский магазин</string>
 	<string name="type.shop.bag">Магазин сумок</string>
+	<string name="type.shop.bed">Магазин кроватей</string>
 	<string name="type.shop.boutique">Бутик</string>
 	<string name="type.shop.charity">Благотворительный магазин</string>
 	<string name="type.shop.cheese">Магазин сыра</string>

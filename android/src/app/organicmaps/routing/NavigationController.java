@@ -20,17 +20,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import androidx.recyclerview.widget.RecyclerView;
 import app.organicmaps.Framework;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.R;
 import app.organicmaps.base.MediaPlayerWrapper;
-import app.organicmaps.maplayer.MapButtonsController;
 import app.organicmaps.maplayer.traffic.TrafficManager;
 import app.organicmaps.sound.TtsPlayer;
-import app.organicmaps.widget.menu.NavMenu;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
+import app.organicmaps.widget.menu.NavMenu;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import java.util.Arrays;
 
 public class NavigationController implements Application.ActivityLifecycleCallbacks,
                                              TrafficManager.TrafficCallback,
@@ -51,8 +53,12 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   private final TextView mNextStreet;
 
   @NonNull
-  private final MapButtonsController mMapButtonsController;
-
+  private final View mLanesFrame;
+  @NonNull
+  private final RecyclerView mLanes;
+  @NonNull
+  private final LanesAdapter mLanesAdapter;
+  
   @NonNull
   private final MediaPlayer.OnCompletionListener mSpeedCamSignalCompletionListener;
 
@@ -90,12 +96,18 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     });
   }
 
-  public NavigationController(AppCompatActivity activity, @NonNull MapButtonsController mapButtonsController, View.OnClickListener onSettingsClickListener)
+  private void initLanesRecycler()
+  {
+    mLanes.setAdapter(mLanesAdapter);
+    mLanes.setNestedScrollingEnabled(false);
+  }
+
+  public NavigationController(AppCompatActivity activity, View.OnClickListener onSettingsClickListener,
+                              NavMenu.OnMenuSizeChangedListener onMenuSizeChangedListener)
   {
     mFrame = activity.findViewById(R.id.navigation_frame);
-    mNavMenu = new NavMenu(activity, this);
+    mNavMenu = new NavMenu(activity, this, onMenuSizeChangedListener);
     mOnSettingsClickListener = onSettingsClickListener;
-    mMapButtonsController = mapButtonsController;
 
     // Top frame
     View topFrame = mFrame.findViewById(R.id.nav_top_frame);
@@ -111,6 +123,11 @@ public class NavigationController implements Application.ActivityLifecycleCallba
 
     mStreetFrame = topFrame.findViewById(R.id.street_frame);
     mNextStreet = mStreetFrame.findViewById(R.id.street);
+
+    mLanesFrame = topFrame.findViewById(R.id.lanes_frame);
+    mLanes = mLanesFrame.findViewById(R.id.lanes);
+    mLanesAdapter = new LanesAdapter();
+    initLanesRecycler();
 
     // Show a blank view below the navbar to hide the menu content
     final View navigationBarBackground = mFrame.findViewById(R.id.nav_bottom_sheet_nav_bar);
@@ -132,8 +149,6 @@ public class NavigationController implements Application.ActivityLifecycleCallba
 
   public void stop(MwmActivity parent)
   {
-    mMapButtonsController.resetSearch();
-
     if (mBound)
     {
       parent.unbindService(mServiceConnection);
@@ -185,6 +200,17 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     UiUtils.showIf(info.nextCarDirection.containsNextTurn(), mNextNextTurnFrame);
     if (info.nextCarDirection.containsNextTurn())
       info.nextCarDirection.setNextTurnDrawable(mNextNextTurnImage);
+
+    if (info.lanes != null)
+    {
+      UiUtils.show(mLanesFrame);
+      mLanesAdapter.setItems(Arrays.asList(info.lanes));
+    }
+    else
+    {
+      UiUtils.hide(mLanesFrame);
+      mLanesAdapter.clearItems();
+    }
   }
 
   private void updatePedestrian(RoutingInfo info)
@@ -297,7 +323,6 @@ public class NavigationController implements Application.ActivityLifecycleCallba
   public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState)
   {
     outState.putBoolean(STATE_BOUND, mBound);
-    mMapButtonsController.saveNavSearchState(outState);
   }
 
   public void onRestoreState(@NonNull Bundle savedInstanceState, @NonNull MwmActivity parent)
@@ -305,7 +330,6 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     mBound = savedInstanceState.getBoolean(STATE_BOUND);
     if (mBound)
       start(parent);
-    mMapButtonsController.restoreNavSearchState(savedInstanceState);
   }
 
   @Override

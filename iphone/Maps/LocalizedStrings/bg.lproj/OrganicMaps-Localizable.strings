@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "3D сгради";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "3D сградите са изключени в режим на пестене на енергия";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Гласови инструкции";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Адрес/Блок";
+
+"type.addr_interpolation.even" = "Адрес/Блок";
+
+"type.addr_interpolation.odd" = "Адрес/Блок";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Charging Station";
 
-"type.amenity.charging_station.motorcar" = "Charging Station";
+"type.amenity.charging_station.bicycle" = "Станция за зареждане на велосипеди";
+
+"type.amenity.charging_station.motorcar" = "Станция за зареждане на автомобили";
 
 "type.amenity.childcare" = "Nursery";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Drinking Water";
 
 "type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.money_transfer" = "Паричен превод";
 
 "type.amenity.music_school" = "Музикално училище";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Отопление, вентилация и климатизация";
 
+"type.craft.key_cutter" = "Рязане на ключове";
+
+"type.craft.locksmith" = "Ключар";
+
 "type.craft.metal_construction" = "Метални конструкции";
 
 "type.craft.painter" = "Художник";
 
 "type.craft.photographer" = "Фотограф";
+
+"type.shop.camera" = "Магазин за фотоапарати";
 
 "type.craft.plumber" = "Водопроводчик";
 
@@ -2347,7 +2369,7 @@
 
 "type.landuse.garages" = "Garages";
 
-"type.landuse.grass" = "Lawn";
+"type.landuse.grass" = "Grass";
 
 "type.landuse.greenfield" = "Greenfield";
 
@@ -2369,13 +2391,13 @@
 
 "type.landuse.recreation_ground" = "Recreation Ground";
 
-"type.landuse.reservoir" = "Water";
+"type.landuse.reservoir" = "Reservoir";
 
 "type.landuse.residential" = "Residential Area";
 
 "type.landuse.retail" = "Retail Area";
 
-"type.landuse.salt_pond" = "Pond";
+"type.landuse.salt_pond" = "Salt Pond";
 
 "type.landuse.village_green" = "Land";
 
@@ -2417,7 +2439,7 @@
 
 "type.leisure.picnic_table" = "Маса за пикник";
 
-"type.leisure.pitch" = "Sports Ground";
+"type.leisure.pitch" = "Sport Pitch";
 
 "type.leisure.playground" = "Playground";
 
@@ -2686,6 +2708,18 @@
 "type.power.line.underground" = "Underground Power Line";
 
 "type.power.minor_line" = "Minor Power Line";
+
+"type.power.plant" = "Електроцентрала";
+
+"type.power.plant.coal" = "Въглищна централа";
+
+"type.power.plant.gas" = "Газотурбинна електроцентрала";
+
+"type.power.plant.hydro" = "Водноелектрическа централа";
+
+"type.power.plant.solar" = "Слънчева електроцентрала";
+
+"type.power.plant.wind" = "Вятърна електроцентрала";
 
 "type.power.pole" = "Power Tower";
 
@@ -3255,9 +3289,11 @@
 
 "type.shop" = "Shop";
 
-"type.shop.alcohol" = "Liquor Store";
+"type.shop.alcohol" = "Liquor Shop";
 
 "type.shop.bakery" = "Bakery";
+
+"type.shop.bathroom_furnishing" = "Обзавеждане за баня";
 
 "type.shop.beauty" = "Beauty Shop";
 
@@ -3269,7 +3305,9 @@
 
 "type.shop.books" = "Bookstore";
 
-"type.shop.butcher" = "Butcher’s";
+"type.shop.butcher" = "Butcher";
+
+"type.shop.cannabis" = "Магазин за канабис";
 
 "type.shop.car" = "Car Dealership";
 
@@ -3281,23 +3319,27 @@
 
 "type.shop.caravan" = "RV Dealership";
 
-"type.shop.chemist" = "Chemist Shop";
+"type.shop.carpet" = "Килими";
+
+"type.shop.chemist" = "Chemist";
 
 "type.shop.chocolate" = "Chocolate Shop";
 
 "type.shop.clothes" = "Clothes Shop";
 
-"type.shop.coffee" = "Coffee Store";
+"type.shop.coffee" = "Coffee Shop";
 
 "type.shop.computer" = "Computer Store";
 
-"type.shop.confectionery" = "Sweets";
+"type.shop.confectionery" = "Sweet Shop";
 
 "type.shop.convenience" = "Convenience Store";
 
 "type.shop.copyshop" = "Copy Shop";
 
 "type.shop.cosmetics" = "Cosmetics";
+
+"type.shop.curtain" = "Пердета";
 
 "type.shop.deli" = "Магазин за деликатеси";
 
@@ -3307,7 +3349,7 @@
 
 "type.shop.dry_cleaning" = "Dry Cleaning";
 
-"type.shop.electronics" = "Electronics";
+"type.shop.electronics" = "Electronics Shop";
 
 "type.shop.erotic" = "Erotic Shop";
 
@@ -3315,13 +3357,17 @@
 
 "type.shop.farm" = "Магазин за селскостопански храни";
 
-"type.shop.florist" = "Florist’s";
+"type.shop.fashion_accessories" = "Модни аксесоари";
+
+"type.shop.florist" = "Florist";
 
 "type.shop.funeral_directors" = "Funeral Directors";
 
 "type.shop.furniture" = "Furniture Store";
 
 "type.shop.garden_centre" = "Garden Store";
+
+"type.shop.gas" = "Магазин за газ";
 
 "type.shop.gift" = "Gift Shop";
 
@@ -3335,9 +3381,13 @@
 
 "type.shop.health_food" = "Магазин за здравословни храни";
 
+"type.shop.herbalist" = "Магазин за билки";
+
+"type.shop.hifi" = "HiFi аудио";
+
 "type.shop.houseware" = "Магазин за домакински принадлежности";
 
-"type.shop.jewelry" = "Jewelry";
+"type.shop.jewelry" = "Jewelry Shop";
 
 "type.shop.kiosk" = "Kiosk";
 
@@ -3355,21 +3405,27 @@
 
 "type.shop.motorcycle" = "Motorcycle Shop";
 
+"type.shop.motorcycle_repair" = "Ремонт на мотоциклети";
+
 "type.shop.music" = "Record Store";
 
-"type.shop.musical_instrument" = "Musical Instruments";
+"type.shop.musical_instrument" = "Musical Instrument Shop";
 
 "type.shop.newsagent" = "Newspaper Stand";
 
-"type.shop.optician" = "Optician’s";
+"type.shop.optician" = "Optician";
 
 "type.shop.outdoor" = "Outdoor Equipment";
+
+"type.shop.outpost" = "Точка на вземане";
 
 "type.shop.pastry" = "Тестени изделия";
 
 "type.shop.pawnbroker" = "Pawnbroker";
 
-"type.shop.pet" = "Petshop";
+"type.shop.pet" = "Pet Store";
+
+"type.shop.pet_grooming" = "Грижа за домашни любимци";
 
 "type.shop.photo" = "Photo Shop";
 
@@ -3377,9 +3433,9 @@
 
 "type.shop.second_hand" = "Магазин втора употреба";
 
-"type.shop.shoes" = "Shoe Store";
+"type.shop.shoes" = "Shoe Shop";
 
-"type.shop.sports" = "Sports Goods";
+"type.shop.sports" = "Sports Shop";
 
 "type.shop.stationery" = "Stationery Shop";
 
@@ -3387,7 +3443,7 @@
 
 "type.shop.tattoo" = "Tattoo Parlour";
 
-"type.shop.tea" = "Tea Store";
+"type.shop.tea" = "Tea Shop";
 
 "type.shop.ticket" = "Ticket Shop";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Wine Shop";
 
+"type.shop.agrarian" = "Селскостопански магазин";
+
 "type.shop.antiques" = "Антики";
+
+"type.shop.appliance" = "Магазин за техника";
 
 "type.shop.art" = "Магазин за изкуства";
 
 "type.shop.baby_goods" = "Детски магазин";
 
 "type.shop.bag" = "Магазин за чанти";
+
+"type.shop.bed" = "Магазин за легла";
 
 "type.shop.boutique" = "Бутик";
 
@@ -3528,13 +3590,13 @@
 
 "type.tourism.artwork" = "Artwork";
 
-"type.tourism.artwork.architecture" = "Artwork";
+"type.tourism.artwork.architecture" = "Architectural Artwork";
 
-"type.tourism.artwork.painting" = "Artwork";
+"type.tourism.artwork.painting" = "Painting";
 
-"type.tourism.artwork.sculpture" = "Artwork";
+"type.tourism.artwork.sculpture" = "Sculpture";
 
-"type.tourism.artwork.statue" = "Artwork";
+"type.tourism.artwork.statue" = "Statue";
 
 "type.tourism.attraction" = "Attraction";
 
@@ -3542,7 +3604,7 @@
 
 "type.tourism.attraction.specified" = "Attraction";
 
-"type.tourism.camp_site" = "Camping";
+"type.tourism.camp_site" = "Camp Site";
 
 "type.tourism.caravan_site" = "RV Park";
 
@@ -3594,7 +3656,7 @@
 
 "type.waterway.canal" = "Canal";
 
-"type.waterway.canal.tunnel" = "Canal";
+"type.waterway.canal.tunnel" = "Canal Tunnel";
 
 "type.waterway.dam" = "Dam";
 
@@ -3616,13 +3678,13 @@
 
 "type.waterway.riverbank" = "River";
 
-"type.waterway.stream" = "River";
+"type.waterway.stream" = "Stream";
 
-"type.waterway.stream.ephemeral" = "River";
+"type.waterway.stream.ephemeral" = "Ephemeral Stream";
 
-"type.waterway.stream.intermittent" = "River";
+"type.waterway.stream.intermittent" = "Intermittent Stream";
 
-"type.waterway.stream.tunnel" = "River";
+"type.waterway.stream.tunnel" = "Stream";
 
 "type.waterway.waterfall" = "Waterfall";
 

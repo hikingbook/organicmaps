@@ -28,14 +28,14 @@
 	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">Keresés a térképen</string>
 	<!-- Location services are disabled by user alert - message -->
-	<string name="location_is_disabled_long_text">Ezen az eszközön jelenleg minden helyzetmeghatározó szolgáltatás ki van kapcsolva. Kérjük kapcsolja be ezeket a Beállítások között.</string>
+	<string name="location_is_disabled_long_text">Jelenleg az eszköz vagy alkalmazás helymeghatározási szolgáltatásai le vannak tiltva. Kérjük, engedélyezze őket a Beállításokban.</string>
 	<!-- View and button titles for accessibility -->
 	<string name="zoom_to_country">Megjelenítés a térképen</string>
 	<!-- Message to display at the center of the screen when the country download has failed -->
 	<string name="country_status_download_failed">Letöltése sikertelen</string>
 	<!-- Button text for the button under the country_status_download_failed message -->
 	<string name="try_again">Újrapróbálkozás</string>
-	<string name="about_menu_title">A Organic Maps programról</string>
+	<string name="about_menu_title">Az Organic Mapsről</string>
 	<!-- Text in About screen -->
 	<string name="about_headline">Ingyenes mindenkinek, szeretettel készítve</string>
 	<!-- Text in About screen -->
@@ -46,7 +46,7 @@
 	<string name="about_proposition_3">• Gyors, minimalista, nincs szemét</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">A rajongók és az önkéntesek által létrehozott nyílt forráskódú alkalmazás.</string>
-	<string name="connection_settings">Kapcsolat beállítások</string>
+	<string name="connection_settings">Helymeghatározási beállítások</string>
 	<string name="close">Bezár</string>
 	<string name="unsupported_phone">Hardware-s gyorsítású OpenGL szükséges. Sajnos az Ön eszköze nem támogatott.</string>
 	<string name="download">Letöltés</string>
@@ -84,13 +84,25 @@
 	<!-- Settings button in system menu -->
 	<string name="settings">Beállítások</string>
 	<!-- Header of settings activity where user defines storage path -->
-	<string name="maps_storage">Térképek mentése ide:</string>
+	<string name="maps_storage">Térképek mentési helye</string>
 	<!-- Detailed description of Maps Storage settings button -->
 	<string name="maps_storage_summary">Válassza ki, hogy hova töltsük le a térképeket</string>
 	<!-- E.g. "Downloaded maps: 500Mb" in Maps Storage settings -->
-	<string name="maps_storage_downloaded">Térképek</string>
+	<string name="maps_storage_downloaded">Letöltött térképek</string>
+	<!-- Internal storage type in Maps Storage settings (not accessible by the user) -->
+	<string name="maps_storage_internal">Belső privát tárhely</string>
+	<!-- Shared storage type in Maps Storage settings (a primary storage usually) -->
+	<string name="maps_storage_shared">Belső közös tárhely</string>
+	<!-- Removable external storage type in Maps Storage settings, e.g. an SD card -->
+	<string name="maps_storage_removable">SD-kártya</string>
+	<!-- Generic external storage type in Maps Storage settings -->
+	<string name="maps_storage_external">Külső közös tárhely</string>
+	<!-- Free space out of total storage size in Maps Storage settings, e.g. "300 MB free of 2 GB" -->
+	<string name="maps_storage_free_size">%1$s szabad %2$s-ból</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
-	<string name="move_maps">Áthelyezzük a térképeket?</string>
+	<string name="move_maps">Áthelyezzük a térképfájlokat?</string>
+	<!-- Error moving map files from one storage to another -->
+	<string name="move_maps_error">Hiba történt a térképfájlok áthelyezése közben</string>
 	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Ez több percig is eltarthat.\nKérjük várjon…</string>
 	<!-- Measurement units title in settings activity -->
@@ -102,9 +114,9 @@
 	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
 	<string name="eat">Hol lehet enni valamit</string>
 	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Termékek</string>
+	<string name="food">Élelmiszerek</string>
 	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Közlekedés</string>
+	<string name="transport">Tömegközlekedés</string>
 	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
 	<string name="fuel">Benzinkút</string>
 	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
@@ -114,7 +126,7 @@
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Szálloda</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Látnivaló</string>
+	<string name="tourism">Látnivalók</string>
 	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
 	<string name="entertainment">Szórakozás</string>
 	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
@@ -122,7 +134,7 @@
 	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
 	<string name="nightlife">Éjjeli élet</string>
 	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Pihenés a gyerekekkel</string>
+	<string name="children">Családi kiruccanás</string>
 	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
 	<string name="bank">Bank</string>
 	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
@@ -186,6 +198,8 @@
 	<!-- Length of track in cell that describes route -->
 	<string name="length">Hossz</string>
 	<string name="share_my_location">Helyzetem megosztása</string>
+	<!-- Settings information group in settings screen -->
+	<string name="prefs_group_information">Információk</string>
 	<string name="prefs_group_route">Navigáció</string>
 	<string name="pref_zoom_title">Nagyítás/kicsinyítés gombok</string>
 	<string name="pref_zoom_summary">Mutassa a kijelzőn</string>
@@ -201,6 +215,8 @@
 	<string name="pref_map_3d_title">Perspektivikus nézet</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D-s épületek</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">A 3D épületek energiatakarékos módban ki vannak kapcsolva</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Hangutasítások</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -218,7 +234,7 @@
 	<!-- Text in menu -->
 	<string name="website">Honlap</string>
 	<!-- Text in About menu, opens Organic Maps news website -->
-	<string name="news">Hírek</string>
+	<string name="news">Újdonságok</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">Visszajelzés</string>
 	<!-- Text in menu -->
@@ -226,7 +242,7 @@
 	<!-- Text in menu -->
 	<string name="help">Segítség</string>
 	<!-- Button in the main Help dialog -->
-	<string name="faq">Kérdések és válaszok</string>
+	<string name="faq">Gyakran Ismételt Kérdések</string>
 	<!-- Button in the main menu -->
 	<string name="donate">Adományozni</string>
 	<!-- Button in the main Help dialog -->
@@ -272,7 +288,7 @@
 	<string name="routing_not_enough_space">Nincs elég hely</string>
 	<!-- location service disabled -->
 	<string name="enable_location_services">Kérjük kapcsolja be a helyzetmeghatározó szolgáltatást</string>
-	<string name="save">Simpan</string>
+	<string name="save">Mentés</string>
 	<string name="edit_description_hint">Az ön leírásai (sima szöveg vagy html)</string>
 	<string name="create">létrehoz</string>
 	<!-- red color -->
@@ -355,8 +371,8 @@
 	<string name="clear_search">A keresési előzmények törlése</string>
 	<string name="p2p_your_location">Az Ön helyzete</string>
 	<string name="p2p_start">Indítás</string>
-	<string name="p2p_from_here">Innen</string>
-	<string name="p2p_to_here">Ide</string>
+	<string name="p2p_from_here">Kiindulópont</string>
+	<string name="p2p_to_here">Célpont</string>
 	<string name="p2p_only_from_current">A navigáció csak a jelenlegi helyzetéből érhető el.</string>
 	<string name="p2p_reroute_from_current">Szeretne útvonaltervet készíttetni a jelenlegi pozíciójától?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
@@ -501,7 +517,7 @@
 	<string name="mobile_data_option_not_today">Ma nem használhatja</string>
 	<string name="mobile_data">Mobil Internet</string>
 	<!-- NOTE to translators: please synchronize your translation with the English one. -->
-	<string name="mobile_data_description">Mobil internetre van szükség helyszínekre vonatkozó részletes információ, mint például fotók, árak és szemlék megjelenítéséhez.</string>
+	<string name="mobile_data_description">Mobilinternet szükséges a térképfrissítési értesítésekhez, valamint a helyszínekre és könyvjelzőkre vonatkozó részletes információk megjelenítéséhez.</string>
 	<string name="mobile_data_option_never">Soha se használja</string>
 	<string name="mobile_data_option_ask">Mindig kérdezze meg</string>
 	<string name="traffic_update_maps_text">Forgalmi adatok megjelenítéséhez a térképeket frissíteni kell.</string>
@@ -531,11 +547,13 @@
 	<string name="setting_emulate_bad_storage">Sérült tároló emulálása</string>
 	<string name="core_entrance">Bejárat</string>
 	<string name="error_enter_correct_name">Kérjük adja meg a helyes nevet</string>
-	<string name="bookmark_lists">List</string>
+	<string name="bookmark_lists">Listák</string>
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Összes elrejtése</string>
 	<string name="bookmark_lists_show_all">Összes megjelenítése</string>
 	<string name="bookmarks_create_new_group">Új lista létrehozása</string>
+	<!-- Bookmark categories screen -->
+	<string name="bookmarks_import">Könyvjelzők importálása</string>
 	<string name="bookmarks_error_message_share_general">Nem lehet megosztani alkalmazáshiba miatt</string>
 	<string name="bookmarks_error_title_share_empty">Megosztási hiba</string>
 	<string name="bookmarks_error_message_share_empty">Üres lista nem osztható meg</string>
@@ -582,7 +600,7 @@
 	<string name="bookmark_list_description_hint">Leírás hozzáadása (szöveg vagy html)</string>
 	<string name="not_shared">Privát</string>
 	<string name="speedcams_alert_title">Sebességmérő kamerák</string>
-	<string name="speedcam_option_auto">Autó</string>
+	<string name="speedcam_option_auto">Automatikus</string>
 	<string name="speedcam_option_always">Mindig</string>
 	<string name="speedcam_option_never">Soha</string>
 	<string name="place_description_title">A hely ismertetése</string>
@@ -660,7 +678,7 @@
 	<string name="transit_not_found">Metró navigáció ebben a régióban még nem érhető el</string>
 	<string name="dialog_pedestrian_route_is_long_header">Metró útvonal nem található</string>
 	<string name="dialog_pedestrian_route_is_long_message">Válasszon indulási vagy végpontot közelebb a metróállomáshoz</string>
-	<string name="button_layer_isolines">Terep</string>
+	<string name="button_layer_isolines">Domborzat</string>
 	<string name="isolines_activation_error_dialog">A topográfiai réteg aktiválásához és használatához kérjük frissítse vagy töltse le az adott terület térképét</string>
 	<string name="isolines_location_error_dialog">Ezen a területen a topográfiai réteg még nem elérhető</string>
 	<string name="elevation_profile_ascent">Felemelkedés</string>
@@ -680,8 +698,13 @@
 	<string name="enable_show_on_lock_screen_description">Ha engedélyezve van, nem kell minden alkalommal feloldanod a telefonod, amíg az alkalmazás fut.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Térképadatok az OpenStreetMapből</string>
+	<!-- Link to OSM wiki for Editor, Profile and About pages -->
+	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Hu:Névjegy</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Cím/blokk</string>
+	<string name="type.addr_interpolation.even">Cím/blokk</string>
+	<string name="type.addr_interpolation.odd">Cím/blokk</string>
 	<string name="type.aerialway.station">Felvonóállomás</string>
 	<string name="type.aeroway.aerodrome">Repülőtér</string>
 	<string name="type.aeroway.aerodrome.international">Repülőtér</string>
@@ -705,7 +728,8 @@
 	<string name="type.amenity.car_wash">Autómosó</string>
 	<string name="type.amenity.casino">Kaszinó</string>
 	<string name="type.amenity.charging_station">Töltő állomás</string>
-	<string name="type.amenity.charging_station.motorcar">Töltő állomás</string>
+	<string name="type.amenity.charging_station.bicycle">Kerékpártöltő állomás</string>
+	<string name="type.amenity.charging_station.motorcar">Autó töltőállomás</string>
 	<string name="type.amenity.childcare">Bölcsőde</string>
 	<string name="type.amenity.cinema">Mozi</string>
 	<string name="type.leisure.bowling_alley">Tekepálya</string>
@@ -717,6 +741,7 @@
 	<string name="type.amenity.doctors">Rendelő</string>
 	<string name="type.amenity.drinking_water">Ivóvíz</string>
 	<string name="type.amenity.driving_school">Autósiskola</string>
+	<string name="type.amenity.money_transfer">Pénz átutalás</string>
 	<string name="type.amenity.music_school">Zeneiskola</string>
 	<string name="type.amenity.language_school">Nyelviskola</string>
 	<string name="type.office.diplomatic">Nagykövetség</string>
@@ -832,9 +857,12 @@
 	<string name="type.craft.handicraft">Kézművesség</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Hűtés-fűtés szerelő</string>
+	<string name="type.craft.key_cutter">Kulcsvágás</string>
+	<string name="type.craft.locksmith">Lakatos</string>
 	<string name="type.craft.metal_construction">Lakatos</string>
 	<string name="type.craft.painter">Festő</string>
 	<string name="type.craft.photographer">Fényképész</string>
+	<string name="type.shop.camera">Fényképezőgép bolt</string>
 	<string name="type.craft.plumber">Vízvezeték-szerelő</string>
 	<string name="type.craft.sawmill">Fűrészmalom</string>
 	<string name="type.craft.shoemaker">Cipész</string>
@@ -1241,7 +1269,7 @@
 	<string name="type.natural.wetland">Vizes terület</string>
 	<string name="type.natural.wetland.bog">Láp</string>
 	<string name="type.natural.wetland.marsh">Mocsár</string>
-	<string name="type.office">Hivatal</string>
+	<string name="type.office">Iroda</string>
 	<string name="type.office.company">Vállalati iroda</string>
 	<string name="type.office.estate_agent">Ingatlanügynök</string>
 	<string name="type.office.government">Állami iroda</string>
@@ -1284,6 +1312,12 @@
 	<string name="type.power.generator.wind">Szélgenerátor</string>
 	<string name="type.power.generator.gas">Gázturbinás erőmű</string>
 	<string name="type.power.generator.hydro">Vízerőmű</string>
+	<string name="type.power.plant">Erőmű</string>
+	<string name="type.power.plant.coal">Szénerőmű</string>
+	<string name="type.power.plant.gas">Gázturbinás erőmű</string>
+	<string name="type.power.plant.hydro">Vízerőmű</string>
+	<string name="type.power.plant.solar">Naperőmű</string>
+	<string name="type.power.plant.wind">Szélerőmű</string>
 	<string name="type.power.pole">Villanyoszlop</string>
 	<string name="type.power.substation">Kapcsolószekrény</string>
 	<string name="type.power.tower">Villanyoszlop</string>
@@ -1518,16 +1552,19 @@
 	<string name="type.shop">Bolt</string>
 	<string name="type.shop.alcohol">Italbolt</string>
 	<string name="type.shop.bakery">Pékség</string>
+	<string name="type.shop.bathroom_furnishing">Fürdőszoba berendezési tárgyak</string>
 	<string name="type.shop.beauty">Szépségszalon</string>
 	<string name="type.shop.beverages">Italok</string>
 	<string name="type.shop.bicycle">Kerékpár üzlet</string>
 	<string name="type.shop.bookmaker">Fogadóiroda</string>
 	<string name="type.shop.books">Könyvesbolt</string>
 	<string name="type.shop.butcher">Hentes</string>
+	<string name="type.shop.cannabis">Cannabis Store</string>
 	<string name="type.shop.car">Gépkocsi bolt</string>
 	<string name="type.shop.car_parts">Autó alkatrészek</string>
 	<string name="type.shop.car_repair">Gépkocsi szervíz</string>
 	<string name="type.shop.car_repair.tyres">Gumiszerviz</string>
+	<string name="type.shop.carpet">Szőnyegek</string>
 	<string name="type.shop.chemist">Drogéria</string>
 	<string name="type.shop.chocolate">Csokoládébolt</string>
 	<string name="type.shop.clothes">Ruhabolt</string>
@@ -1537,6 +1574,7 @@
 	<string name="type.shop.convenience">Csemegebolt</string>
 	<string name="type.shop.copyshop">Fénymásoló üzlet</string>
 	<string name="type.shop.cosmetics">Kozmetikum</string>
+	<string name="type.shop.curtain">Függönyök</string>
 	<string name="type.shop.deli">Csemegebolt</string>
 	<string name="type.shop.department_store">Áruház</string>
 	<string name="type.shop.doityourself">Vaskereskedés</string>
@@ -1545,16 +1583,20 @@
 	<string name="type.shop.erotic">Erotikus bolt</string>
 	<string name="type.shop.fabric">Bolt</string>
 	<string name="type.shop.farm">Farm Food Shop</string>
+	<string name="type.shop.fashion_accessories">Divat kiegészítők</string>
 	<string name="type.shop.florist">Virágos</string>
 	<string name="type.shop.funeral_directors">Temetkezési vállalkozó</string>
 	<string name="type.shop.furniture">Bútoráruház</string>
 	<string name="type.shop.garden_centre">Faiskola</string>
+	<string name="type.shop.gas">Gázbolt</string>
 	<string name="type.shop.gift">Ajándékbolt</string>
 	<string name="type.shop.greengrocer">Zöldséges</string>
 	<string name="type.shop.grocery">Élelmiszerbolt</string>
 	<string name="type.shop.hairdresser">Fodrász</string>
 	<string name="type.shop.hardware">Barkácsüzlet</string>
 	<string name="type.shop.health_food">Egészségügyi élelmiszerbolt</string>
+	<string name="type.shop.herbalist">Gyógynövény bolt</string>
+	<string name="type.shop.hifi">HiFi Audio</string>
 	<string name="type.shop.houseware">Háztartási bolt</string>
 	<string name="type.shop.jewelry">Ékszer</string>
 	<string name="type.shop.kiosk">Trafik</string>
@@ -1565,14 +1607,17 @@
 	<string name="type.shop.mobile_phone">Mobiltelefon üzlet</string>
 	<string name="type.shop.money_lender">Bolt</string>
 	<string name="type.shop.motorcycle">Motorkerékpár üzlet</string>
+	<string name="type.shop.motorcycle_repair">Motorkerékpár javítás</string>
 	<string name="type.shop.music">Bolt</string>
 	<string name="type.shop.musical_instrument">Bolt</string>
 	<string name="type.shop.newsagent">Újságárus</string>
 	<string name="type.shop.optician">Optika</string>
 	<string name="type.shop.outdoor">Túrafelszerelés</string>
+	<string name="type.shop.outpost">Felvevő pont</string>
 	<string name="type.shop.pastry">Cukrászsütemény</string>
 	<string name="type.shop.pawnbroker">Zálogház</string>
 	<string name="type.shop.pet">Házikedvenc-üzlet</string>
+	<string name="type.shop.pet_grooming">Kisállat ápolás</string>
 	<string name="type.shop.photo">Fénykép üzlet</string>
 	<string name="type.shop.seafood">Halüzlet</string>
 	<string name="type.shop.second_hand">Second Hand Store</string>
@@ -1590,10 +1635,13 @@
 	<string name="type.shop.video">Videotéka</string>
 	<string name="type.shop.video_games">Videojáték bolt</string>
 	<string name="type.shop.wine">Szeszesital-üzlet</string>
+	<string name="type.shop.agrarian">Mezőgazdasági bolt</string>
 	<string name="type.shop.antiques">Régiségek</string>
+	<string name="type.shop.appliance">Készülék bolt</string>
 	<string name="type.shop.art">Művészeti Bolt</string>
 	<string name="type.shop.baby_goods">Bababolt</string>
 	<string name="type.shop.bag">Táskák bolt</string>
+	<string name="type.shop.bed">Ágyak boltja</string>
 	<string name="type.shop.boutique">Butik</string>
 	<string name="type.shop.charity">Jótékonysági Bolt</string>
 	<string name="type.shop.cheese">Sajtbolt</string>
@@ -1650,8 +1698,8 @@
 	<string name="type.tourism.alpine_hut">Hegyi menedék</string>
 	<string name="type.tourism.apartment">Apartmanok</string>
 	<string name="type.tourism.artwork">Szobor</string>
-	<string name="type.tourism.artwork.architecture">Szobor</string>
-	<string name="type.tourism.artwork.painting">Szobor</string>
+	<string name="type.tourism.artwork.architecture">Műalkotás</string>
+	<string name="type.tourism.artwork.painting">Műalkotás</string>
 	<string name="type.tourism.artwork.sculpture">Szobor</string>
 	<string name="type.tourism.artwork.statue">Szobor</string>
 	<string name="type.tourism.attraction">Látnivaló</string>

@@ -135,7 +135,7 @@ Storage::Storage(string const & pathToCountriesFile /* = COUNTRIES_FILE */,
 
 Storage::Storage(string const & referenceCountriesTxtJsonForTesting,
                  unique_ptr<MapFilesDownloader> mapDownloaderForTesting)
-  : m_downloader(move(mapDownloaderForTesting))
+  : m_downloader(std::move(mapDownloaderForTesting))
 {
   m_downloader->SetDownloadingPolicy(m_downloadingPolicy);
 
@@ -900,7 +900,7 @@ void Storage::SetDownloaderForTesting(unique_ptr<MapFilesDownloader> downloader)
   if (m_downloader)
     m_downloader->Clear();
 
-  m_downloader = move(downloader);
+  m_downloader = std::move(downloader);
   m_downloader->SetDownloadingPolicy(m_downloadingPolicy);
 }
 
@@ -1464,9 +1464,9 @@ void Storage::LoadDiffScheme()
     return;
   }
 
-  diffs::Loader::Load(move(localMapsInfo), [this](diffs::NameDiffInfoMap && diffs)
+  diffs::Loader::Load(std::move(localMapsInfo), [this](diffs::NameDiffInfoMap && diffs)
   {
-    OnDiffStatusReceived(move(diffs));
+    OnDiffStatusReceived(std::move(diffs));
   });
 }
 */
@@ -1500,7 +1500,7 @@ void Storage::ApplyDiff(CountryId const & countryId, MapSource mapSource, functi
 
   LocalFilePtr & diffFile = params.m_diffFile;
   diffs::ApplyDiff(
-      move(params), *emplaceResult.first->second,
+      std::move(params), *emplaceResult.first->second,
       [this, fn, countryId, diffFile, mapSource](DiffApplicationResult result)
       {
         CHECK_THREAD_CHECKER(m_threadChecker, ());
@@ -1616,7 +1616,7 @@ void Storage::OnFinishDownloading(MapSource mapSource)
 
 void Storage::OnDiffStatusReceived(diffs::NameDiffInfoMap && diffs, MapSource mapSource)
 {
-  m_diffsDataSource->SetDiffInfo(move(diffs));
+  m_diffsDataSource->SetDiffInfo(std::move(diffs));
 
   SetMapSchemeForCountriesWithAbsentDiffs([this] (auto const & id)
   {
@@ -1773,7 +1773,7 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
       countryIdAndName.m_localName = string();
     else
       countryIdAndName.m_localName = m_countryNameGetter(countryIdAndName.m_id);
-    nodeAttrs.m_parentInfo.emplace_back(move(countryIdAndName));
+    nodeAttrs.m_parentInfo.emplace_back(std::move(countryIdAndName));
   }
   // Parents country.
   nodeAttrs.m_topmostParentInfo.clear();
