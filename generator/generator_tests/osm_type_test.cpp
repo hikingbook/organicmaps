@@ -186,6 +186,20 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Combined)
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
 {
   {
+    // Single house number tag is transformed into address type.
+    Tags const tags = { {"addr:housenumber", "42"} };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"building", "address"})), ());
+
+    TEST_EQUAL(params.house.Get(), "42", ());
+  }
+
+  using AddrType = feature::AddressData::Type;
+
+  {
     Tags const tags = {
       { "addr:conscriptionnumber", "223" },
       { "addr:housenumber", "223/5" },
@@ -202,6 +216,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
     TEST(params.IsTypeExist(GetType({"building", "address"})), ());
 
     TEST_EQUAL(params.house.Get(), "223/5", ());
+    TEST_EQUAL(params.GetAddressData().Get(AddrType::Street), "Řetězová", ());
+    TEST_EQUAL(params.GetAddressData().Get(AddrType::Postcode), "11000", ());
   }
 
   {
@@ -223,6 +239,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
     TEST(!params.IsTypeExist(GetType({"entrance"})), ());
 
     TEST_EQUAL(params.house.Get(), "41", ());
+    TEST_EQUAL(params.GetAddressData().Get(AddrType::Street), "Leutschenbachstrasse", ());
+    TEST_EQUAL(params.GetAddressData().Get(AddrType::Postcode), "8050", ());
   }
 }
 
@@ -1553,6 +1571,35 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_MilitaryDanger)
   }
 }
 
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_ChargingStation)
+{
+  {
+    Tags const tags = {
+      {"amenity", "charging_station"},
+      {"motorcar", "no"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "charging_station"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      {"amenity", "charging_station"},
+      {"bicycle", "yes"},
+      {"motorcar", "yes"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "charging_station", "bicycle"})), (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "charging_station", "motorcar"})), (params));
+  }
+}
+
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
 {
   Tags const oneTypes = {
@@ -1609,6 +1656,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     // {"railway", "subway"},
     // {"traffic_calming", "bump"},
     // {"traffic_calming", "hump"},
+    {"addr:interpolation", "even"},
+    {"addr:interpolation", "odd"},
     {"aerialway", "cable_car"},
     {"aerialway", "chair_lift"},
     {"aerialway", "drag_lift"},
@@ -2077,6 +2126,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"shop", "photo"},
     {"shop", "seafood"},
     {"shop", "second_hand"},
+    {"shop", "sewing"},
     {"shop", "shoes"},
     {"shop", "sports"},
     {"shop", "stationery"},
@@ -2206,6 +2256,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     //
     // Manually constructed type, not parsed from osm.
     // {{"building", "address"}, {{"addr:housenumber", "any_value"}, {"addr:street", "any_value"}}},
+    {{"addr:interpolation"}, {{"addr:interpolation", "all"}}},
     {{"aeroway", "aerodrome", "international"}, {{"aeroway", "aerodrome"}, {"aerodrome", "international"}}},
     {{"amenity", "grave_yard", "christian"}, {{"amenity", "grave_yard"}, {"religion", "christian"}}},
     {{"amenity", "parking", "fee"}, {{"amenity", "parking"}, {"fee", "any_value"}}},

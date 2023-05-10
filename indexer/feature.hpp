@@ -69,7 +69,12 @@ public:
 
   int8_t GetLayer();
 
-  std::vector<m2::PointD> GetTrianglesAsPoints(int scale);
+  // For better result this value should be greater than 17
+  // (number of points in inner triangle-strips).
+  using PointsBufferT = buffer_vector<m2::PointD, 32>;
+
+  PointsBufferT const & GetPoints(int scale);
+  PointsBufferT const & GetTrianglesAsPoints(int scale);
 
   void SetID(FeatureID id) { m_id = std::move(id); }
   FeatureID const & GetID() const { return m_id; }
@@ -152,7 +157,7 @@ public:
 
   uint8_t GetRank();
   uint64_t GetPopulation();
-  std::string const & GetRoadNumber();
+  std::string const & GetRef();
 
   feature::Metadata const & GetMetadata();
 
@@ -228,11 +233,7 @@ private:
   m2::PointD m_center;
   m2::RectD m_limitRect;
 
-  // For better result this value should be greater than 17
-  // (number of points in inner triangle-strips).
-  static const size_t kStaticBufferSize = 32;
-  using Points = buffer_vector<m2::PointD, kStaticBufferSize>;
-  Points m_points, m_triangles;
+  PointsBufferT m_points, m_triangles;
   feature::Metadata m_metadata;
   indexer::MetadataDeserializer::MetaIds m_metaIds;
 

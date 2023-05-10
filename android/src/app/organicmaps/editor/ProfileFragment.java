@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmToolbarFragment;
@@ -23,6 +22,7 @@ import app.organicmaps.util.Constants;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.concurrency.ThreadPool;
 import app.organicmaps.util.concurrency.UiThread;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class ProfileFragment extends BaseMwmToolbarFragment
 {
@@ -88,7 +88,7 @@ public class ProfileFragment extends BaseMwmToolbarFragment
 
   private void logout()
   {
-    new AlertDialog.Builder(requireContext(), R.style.MwmTheme_AlertDialog)
+    new MaterialAlertDialogBuilder(requireContext(), R.style.MwmTheme_AlertDialog)
         .setMessage(R.string.are_you_sure)
         .setPositiveButton(R.string.ok, (dialog, which) ->
         {
@@ -101,7 +101,7 @@ public class ProfileFragment extends BaseMwmToolbarFragment
 
   private void openOsmAboutUrl()
   {
-    startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(Constants.Url.OSM_ABOUT)));
+    startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(getString(R.string.osm_wiki_about_url))));
   }
 
   private void openOsmHistoryUrl()

@@ -1,4 +1,4 @@
-package app.organicmaps.widget.placepage;
+package app.organicmaps.widget.placepage.sections;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import app.organicmaps.editor.data.Timetable;
 import app.organicmaps.util.ThemeUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
+import app.organicmaps.widget.placepage.PlacePageUtils;
+import app.organicmaps.widget.placepage.PlacePageViewModel;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -59,8 +61,6 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
     mFullWeekOpeningHours = view.findViewById(R.id.rw__full_opening_hours);
     mOpeningHoursAdapter = new PlaceOpeningHoursAdapter();
     mFullWeekOpeningHours.setAdapter(mOpeningHoursAdapter);
-
-    mViewModel.getMapObject().observe(requireActivity(), this);
   }
 
   private void refreshTodayNonBusinessTime(Timespan[] closedTimespans)
@@ -90,11 +90,9 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
     mTodayOpenTime.setTextColor(color);
   }
 
-  private void refreshOpeningHours()
+  private void refreshOpeningHours(MapObject mapObject)
   {
-    final String ohStr = mViewModel.getMapObject()
-                                  .getValue()
-                                  .getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
+    final String ohStr = mapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
     final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
     mFrame.setOnLongClickListener((v) -> {
       PlacePageUtils.copyToClipboard(requireContext(), mFrame, TimeFormatUtils.formatTimetables(getResources(), ohStr, timetables));
@@ -172,7 +170,7 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
         // Show that place is closed today.
         if (!containsCurrentWeekday)
         {
-          refreshTodayOpeningHours(resources.getString(R.string.day_off_today), ContextCompat.getColor(getContext(), R.color.base_red));
+          refreshTodayOpeningHours(resources.getString(R.string.day_off_today), ContextCompat.getColor(requireContext(), R.color.base_red));
           UiUtils.hide(mTodayNonBusinessTime);
         }
       }
@@ -180,15 +178,23 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
   }
 
   @Override
-  public void onDestroyView()
+  public void onStart()
   {
-    super.onDestroyView();
+    super.onStart();
+    mViewModel.getMapObject().observe(requireActivity(), this);
+  }
+
+  @Override
+  public void onStop()
+  {
+    super.onStop();
     mViewModel.getMapObject().removeObserver(this);
   }
 
   @Override
-  public void onChanged(MapObject mapObject)
+  public void onChanged(@Nullable MapObject mapObject)
   {
-    refreshOpeningHours();
+    if (mapObject != null)
+      refreshOpeningHours(mapObject);
   }
 }

@@ -364,7 +364,7 @@ void LineShape::Construct<DashedLineBuilder>(DashedLineBuilder & builder) const
   // Each segment should lie in pattern mask according to the "longest" possible pixel length in current tile.
   // Since, we calculate vertices once, usually for the "smallest" tile scale, need to apply divide factor here.
   // In other words, if m_baseGtoPScale = Scale(tileLevel), we should use Scale(tileLevel + 1) to calculate 'maskLengthG'.
-  /// @todo Logically, the factor should be 2, but drawing artifacts still present.
+  /// @todo Logically, the factor should be 2, but drawing artifacts are still present at higher visual scales.
   /// Use 3 for the best quality, but need to review here, probably I missed something.
   float const maskLengthG = builder.GetMaskLengthG() / 3;
 
@@ -523,7 +523,7 @@ void LineShape::Prepare(ref_ptr<dp::TextureManager> textures) const
 
       auto builder = std::make_unique<SimpleSolidLineBuilder>(p, m_spline->GetPath().size(), lineWidth);
       Construct<SimpleSolidLineBuilder>(*builder);
-      m_lineShapeInfo = move(builder);
+      m_lineShapeInfo = std::move(builder);
     }
     else
     {
@@ -532,7 +532,7 @@ void LineShape::Prepare(ref_ptr<dp::TextureManager> textures) const
 
       auto builder = std::make_unique<SolidLineBuilder>(p, m_spline->GetPath().size());
       Construct<SolidLineBuilder>(*builder);
-      m_lineShapeInfo = move(builder);
+      m_lineShapeInfo = std::move(builder);
     }
   }
   else
@@ -548,7 +548,7 @@ void LineShape::Prepare(ref_ptr<dp::TextureManager> textures) const
 
     auto builder = std::make_unique<DashedLineBuilder>(p, m_spline->GetPath().size());
     Construct<DashedLineBuilder>(*builder);
-    m_lineShapeInfo = move(builder);
+    m_lineShapeInfo = std::move(builder);
   }
 }
 

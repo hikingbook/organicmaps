@@ -3,7 +3,7 @@
 #include "app/organicmaps/core/jni_helper.hpp"
 #include "app/organicmaps/UserMarkHelper.hpp"
 #include "app/organicmaps/opengl/androidoglcontextfactory.hpp"
-#include "app/organicmaps/platform/Platform.hpp"
+#include "app/organicmaps/platform/AndroidPlatform.hpp"
 #include "app/organicmaps/util/FeatureIdBuilder.hpp"
 #include "app/organicmaps/util/NetworkPolicy.hpp"
 #include "app/organicmaps/vulkan/android_vulkan_context_factory.hpp"
@@ -30,6 +30,7 @@
 #include "geometry/point_with_altitude.hpp"
 
 #include "indexer/feature_altitude.hpp"
+#include "indexer/validate_and_format_contacts.hpp"
 
 #include "routing/following_info.hpp"
 #include "routing/speed_camera_manager.hpp"
@@ -244,9 +245,9 @@ bool Framework::CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi
   m_work.SetMyPositionModeListener(bind(&Framework::MyPositionModeChanged, this, _1, _2));
 
   if (m_vulkanContextFactory)
-    m_work.CreateDrapeEngine(make_ref(m_vulkanContextFactory), move(p));
+    m_work.CreateDrapeEngine(make_ref(m_vulkanContextFactory), std::move(p));
   else
-    m_work.CreateDrapeEngine(make_ref(m_oglContextFactory), move(p));
+    m_work.CreateDrapeEngine(make_ref(m_oglContextFactory), std::move(p));
   m_work.EnterForeground();
 
   return true;
@@ -672,13 +673,18 @@ void Framework::SetupWidget(gui::EWidget widget, float x, float y, dp::Anchor an
   m_guiPositions[widget] = gui::Position(m2::PointF(x, y), anchor);
 }
 
+void Framework::UpdateMyPositionRoutingOffset(int offsetY)
+{
+  NativeFramework()->UpdateMyPositionRoutingOffset(false, offsetY);
+}
+
 void Framework::ApplyWidgets()
 {
   gui::TWidgetsLayoutInfo layout;
   for (auto const & widget : m_guiPositions)
     layout[widget.first] = widget.second.m_pixelPivot;
 
-  m_work.SetWidgetLayout(move(layout));
+  m_work.SetWidgetLayout(std::move(layout));
 }
 
 void Framework::CleanWidgets()
@@ -1833,6 +1839,12 @@ JNIEXPORT jboolean JNICALL
 Java_app_organicmaps_Framework_nativeHasPlacePageInfo(JNIEnv *, jclass)
 {
   return static_cast<jboolean>(frm()->HasPlacePageInfo());
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_Framework_nativeMemoryWarning(JNIEnv *, jclass)
+{
+  return frm()->MemoryWarning();
 }
 
 JNIEXPORT void JNICALL

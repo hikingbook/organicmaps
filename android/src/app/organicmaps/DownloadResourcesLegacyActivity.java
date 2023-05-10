@@ -13,14 +13,17 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.app.AlertDialog;
 
-import app.organicmaps.MapSource;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.List;
 
 import app.organicmaps.api.ParsedMwmRequest;
 import app.organicmaps.base.BaseMwmFragmentActivity;
@@ -38,14 +41,10 @@ import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.Logger;
 
-import java.util.List;
-
 @SuppressLint("StringFormatMatches")
 public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
 {
   private static final String TAG = DownloadResourcesLegacyActivity.class.getSimpleName();
-
-  private static final int REQ_CODE_API_RESULT = 10;
 
   public static final String EXTRA_COUNTRY = "country";
 
@@ -66,6 +65,9 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
   private String mCurrentCountry;
   @Nullable
   private MapTask mMapTaskToForward;
+
+  @NonNull
+  private ActivityResultLauncher<Intent> mApiRequest;
 
   private boolean mAreResourcesDownloaded;
 
@@ -197,6 +199,10 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
     super.onSafeCreate(savedInstanceState);
     setContentView(R.layout.activity_download_resources);
     initViewsAndListeners();
+    mApiRequest = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+      setResult(result.getResultCode(), result.getData());
+      finish();
+    });
 
     if (prepareFilesDownload(false))
     {
@@ -216,6 +222,8 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
   protected void onSafeDestroy()
   {
     super.onSafeDestroy();
+    mApiRequest.unregister();
+    mApiRequest = null;
     Utils.keepScreenOn(false, getWindow());
     if (mCountryDownloadListenerSlot != 0)
     {
@@ -350,7 +358,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
     final Intent intent = new Intent(this, MwmActivity.class);
 
     // Disable animation because MwmActivity should appear exactly over this one
-    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
     // Add saved task to forward to map activity.
     if (mMapTaskToForward != null)
@@ -362,23 +370,13 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       if (ParsedMwmRequest.getCurrentRequest() != null)
       {
         // Wait for the result from MwmActivity for API callers.
-        UiUtils.startActivityForResult(this, intent, REQ_CODE_API_RESULT);
+        mApiRequest.launch(intent);
         return;
       }
     }
 
     startActivity(intent);
     finish();
-  }
-
-  protected void onActivityResult(int requestCode, int resultCode, Intent data)
-  {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == REQ_CODE_API_RESULT)
-    {
-      setResult(resultCode, data);
-      finish();
-    }
   }
 
   private void finishFilesDownload(int result)
@@ -462,7 +460,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       throw new AssertionError("Unexpected result code = " + result);
     }
 
-    new AlertDialog.Builder(this, R.style.MwmTheme_AlertDialog)
+    new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
         .setTitle(titleId)
         .setMessage(messageId)
         .setCancelable(true)

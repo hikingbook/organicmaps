@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "3D budovy";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "3D budovy sú vypnuté v režime úspory energie";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Hlasové povely";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Adresa/blok";
+
+"type.addr_interpolation.even" = "Adresa/blok";
+
+"type.addr_interpolation.odd" = "Adresa/blok";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Dobíjacia stanica";
 
-"type.amenity.charging_station.motorcar" = "Dobíjacia stanica";
+"type.amenity.charging_station.bicycle" = "Nabíjacia stanica pre bicykle";
+
+"type.amenity.charging_station.motorcar" = "Nabíjacia stanica pre motorové vozidlá";
 
 "type.amenity.childcare" = "Jasle";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Pitná voda";
 
 "type.amenity.driving_school" = "Autoškola";
+
+"type.amenity.money_transfer" = "Prevod peňazí";
 
 "type.amenity.music_school" = "Hudobná škola";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Vzduchotechnika";
 
+"type.craft.key_cutter" = "Rezanie kľúčov";
+
+"type.craft.locksmith" = "Zámočník";
+
 "type.craft.metal_construction" = "Kovorobotník";
 
 "type.craft.painter" = "Maliar natierač";
 
 "type.craft.photographer" = "Fotograf";
+
+"type.shop.camera" = "Obchod s fotoaparátmi";
 
 "type.craft.plumber" = "Klampiarstvo";
 
@@ -2375,7 +2397,7 @@
 
 "type.landuse.retail" = "Retail Area";
 
-"type.landuse.salt_pond" = "Pond";
+"type.landuse.salt_pond" = "Salt Pond";
 
 "type.landuse.village_green" = "Land";
 
@@ -2686,6 +2708,18 @@
 "type.power.line.underground" = "Underground Power Line";
 
 "type.power.minor_line" = "Minor Power Line";
+
+"type.power.plant" = "Elektráreň";
+
+"type.power.plant.coal" = "Uhoľná elektráreň";
+
+"type.power.plant.gas" = "Elektráreň s plynovou turbínou";
+
+"type.power.plant.hydro" = "Vodná elektráreň";
+
+"type.power.plant.solar" = "Solárna elektráreň";
+
+"type.power.plant.wind" = "Veterná elektráreň";
 
 "type.power.pole" = "Stĺp elektrického vedenia";
 
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Pekáreň";
 
+"type.shop.bathroom_furnishing" = "Vybavenie kúpeľne";
+
 "type.shop.beauty" = "Kozmetický salón";
 
 "type.shop.beverages" = "Nápoje";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "Mäsiar";
 
+"type.shop.cannabis" = "Obchod s kanabisom";
+
 "type.shop.car" = "Predajňa áut";
 
 "type.shop.car_parts" = "Autodiely";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Pneuservis";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "Koberce";
 
 "type.shop.chemist" = "Drogéria";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Kozmetika";
 
+"type.shop.curtain" = "Záclony";
+
 "type.shop.deli" = "Predajňa lahôdok";
 
 "type.shop.department_store" = "Obchodný dom";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Obchod s farmárskymi potravinami";
 
+"type.shop.fashion_accessories" = "Módne doplnky";
+
 "type.shop.florist" = "Kvety";
 
 "type.shop.funeral_directors" = "Pohrebníctvo";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Nábytok";
 
 "type.shop.garden_centre" = "Škôlka";
+
+"type.shop.gas" = "Obchod s plynom";
 
 "type.shop.gift" = "Darčeky";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Železiarstvo";
 
 "type.shop.health_food" = "Obchod so zdravou výživou";
+
+"type.shop.herbalist" = "Obchod s bylinkami";
+
+"type.shop.hifi" = "HiFi audio";
 
 "type.shop.houseware" = "Obchod s domácimi potrebami";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Obchod s motocyklami";
 
+"type.shop.motorcycle_repair" = "Oprava motocyklov";
+
 "type.shop.music" = "Obchod";
 
 "type.shop.musical_instrument" = "Obchod";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Outdoorové vybavenie";
 
+"type.shop.outpost" = "Miesto odberu";
+
 "type.shop.pastry" = "Pečivo";
 
 "type.shop.pawnbroker" = "Záložňa";
 
 "type.shop.pet" = "Obchod zo zvieratami";
+
+"type.shop.pet_grooming" = "Starostlivosť o domáce zvieratá";
 
 "type.shop.photo" = "Fotografické služby";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Vinotéka";
 
+"type.shop.agrarian" = "Poľnohospodársky obchod";
+
 "type.shop.antiques" = "Starožitnosti";
+
+"type.shop.appliance" = "Obchod so spotrebičmi";
 
 "type.shop.art" = "Obchod s umením";
 
 "type.shop.baby_goods" = "Obchod pre deti";
 
 "type.shop.bag" = "Obchod s taškami";
+
+"type.shop.bed" = "Obchod s posteľami";
 
 "type.shop.boutique" = "Butik";
 
@@ -3542,7 +3604,7 @@
 
 "type.tourism.attraction.specified" = "Atrakcia";
 
-"type.tourism.camp_site" = "Camping";
+"type.tourism.camp_site" = "Camp Site";
 
 "type.tourism.caravan_site" = "Kemp pre karavany";
 

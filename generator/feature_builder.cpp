@@ -210,10 +210,14 @@ bool FeatureBuilder::PreSerialize()
   if (!m_params.IsValid())
     return false;
 
+  // Conform serialization logic (see HeaderMask::HEADER_MASK_HAS_ADDINFO):
+  // - rank (city) is stored only for Point
+  // - ref (road number, address range) is stored only for Line
+  // - house is stored for PointEx and Area
   switch (m_params.GetGeomType())
   {
   case GeomType::Point:
-    // Store house number like HEADER_GEOM_POINT_EX.
+    // Store house number like HeaderGeomType::PointEx.
     if (!m_params.house.IsEmpty())
     {
       m_params.SetGeomTypePointEx();
@@ -222,7 +226,6 @@ bool FeatureBuilder::PreSerialize()
 
     if (!m_params.ref.empty())
     {
-
       if (ftypes::IsMotorwayJunctionChecker::Instance()(GetTypes()) ||
           (m_params.name.IsEmpty() &&
            (ftypes::IsPostBoxChecker::Instance()(GetTypes()) ||
@@ -232,15 +235,15 @@ bool FeatureBuilder::PreSerialize()
       {
         m_params.name.AddString(StringUtf8Multilang::kDefaultCode, m_params.ref);
       }
-    }
 
-    m_params.ref.clear();
+      m_params.ref.clear();
+    }
     break;
 
   case GeomType::Line:
   {
-    // We need refs for road's numbers.
-    if (!routing::IsRoad(GetTypes()))
+    // Ref is used for road's number or house number's range.
+    if (!routing::IsRoad(GetTypes()) && !ftypes::IsAddressInterpolChecker::Instance()(GetTypes()))
       m_params.ref.clear();
 
     m_params.rank = 0;
@@ -387,7 +390,7 @@ void FeatureBuilder::SerializeForIntermediate(Buffer & data) const
   Buffer tmp(data);
   FeatureBuilder fb;
   fb.DeserializeFromIntermediate(tmp);
-  ASSERT ( fb == *this, ("Source feature: ", *this, "Deserialized feature: ", fb) );
+  ASSERT(fb == *this, ("Source feature: ", *this, "Deserialized feature: ", fb));
 #endif
 }
 

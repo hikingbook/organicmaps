@@ -151,7 +151,12 @@ However, it is possible to use the WSL (Windows Subsystem for Linux) to run GUI 
 
 #### Windows 11 (WSL)
 
-Since Windows 11 Build 22000 running GUI apps from the WSL is supported [out-of-the box](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps). After [building](#building-1) the app you should be able to [run](#running) it without any additional steps.
+To run Linux GUI apps, you'll need to [install a driver](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps) matching your system. This enables a virtual GPU allowing hardware-accelerated OpenGL rendering.
+- [Intel GPU Driver](https://www.intel.com/content/www/us/en/download/19344/intel-graphics-windows-dch-drivers.html)
+- [AMD GPU Driver](https://www.amd.com/en/support)
+- [NVIDIA GPU DRIVER](https://www.nvidia.com/Download/index.aspx?lang=en-us)
+
+Once a GPU driver is installed and you have [built the app](#building-1) you should be able to [run](#running) it without any additional steps.
 
 #### Windows 10 (WSL)
 
@@ -460,6 +465,7 @@ Android Studio. Please make sure that SDK for API Level 33,
 NDK version **25.2.9519653** and CMake version **3.22.1** are installed.
 
 If you are low on RAM, disk space or traffic there are ways to reduce system requirements:
+- exclude the `cpp` folder from indexing. If you do not make any work on the C++ code, this will greatly improve the startup performance and the ram usage of Android Studio. Click on the `Project` tab on the left, find the `cpp` folder (should be next to the `java` folder), right click on it and select `Mark Directory as` -> `Excluded` (red folder icon). Then restart Android Studio.
 - in Android Studio enable "File > Power Save Mode";
 - don't install Android Studio, run builds and emulator from command line;
 - build only for target arches you actually need, e.g. `arm64`;

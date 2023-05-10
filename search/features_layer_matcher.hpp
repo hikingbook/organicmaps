@@ -111,6 +111,15 @@ public:
 private:
   void BailIfCancelled() { ::search::BailIfCancelled(m_cancellable); }
 
+  static bool HouseNumbersMatch(FeatureType & feature, std::vector<house_numbers::Token> const & queryParse)
+  {
+    auto const interpol = ftypes::IsAddressInterpolChecker::Instance().GetInterpolType(feature);
+    if (interpol != feature::InterpolType::None)
+      return house_numbers::HouseNumbersMatchRange(feature.GetRef(), queryParse, interpol);
+    else
+      return house_numbers::HouseNumbersMatch(strings::MakeUniString(feature.GetHouseNumber()), queryParse);
+  }
+
   template <typename Fn>
   void MatchPOIsWithParent(FeaturesLayer const & child, FeaturesLayer const & parent, Fn && fn)
   {
@@ -199,7 +208,8 @@ private:
 
       m_context->ForEachFeature(
           mercator::RectByCenterXYAndSizeInMeters(poiCenters[i].m_point, maxRadius),
-          [&](FeatureType & ft) {
+          [&](FeatureType & ft)
+          {
             BailIfCancelled();
 
             if (m_postcodes && !m_postcodes->HasBit(ft.GetID().m_index) &&
@@ -207,8 +217,7 @@ private:
             {
               return;
             }
-            if (house_numbers::HouseNumbersMatch(strings::MakeUniString(ft.GetHouseNumber()),
-                                                 queryParse))
+            if (HouseNumbersMatch(ft, queryParse))
             {
               double const distanceM =
                   mercator::DistanceOnEarth(feature::GetCenter(ft), poiCenters[i].m_point);
@@ -326,8 +335,9 @@ private:
     ParseQuery(child.m_subQuery, child.m_lastTokenIsPrefix, queryParse);
 
     uint32_t numFilterInvocations = 0;
-    auto houseNumberFilter = [&](uint32_t houseId, uint32_t streetId,
-                                 std::unique_ptr<FeatureType> & feature, bool & loaded) -> bool {
+    auto const houseNumberFilter = [&](uint32_t houseId, uint32_t streetId,
+                                       std::unique_ptr<FeatureType> & feature)
+    {
       ++numFilterInvocations;
       if ((numFilterInvocations & 0xFF) == 0)
         BailIfCancelled();
@@ -338,30 +348,28 @@ private:
       if (m_postcodes && !m_postcodes->HasBit(houseId) && !m_postcodes->HasBit(streetId))
         return false;
 
-      if (!loaded)
+      if (!feature)
       {
         feature = GetByIndex(houseId);
-        loaded = feature != nullptr;
+        if (!feature)
+          return false;
       }
-
-      if (!loaded)
-        return false;
 
       if (!child.m_hasDelayedFeatures)
         return false;
 
-      strings::UniString const houseNumber(strings::MakeUniString(feature->GetHouseNumber()));
-      return house_numbers::HouseNumbersMatch(houseNumber, queryParse);
+      return HouseNumbersMatch(*feature, queryParse);
     };
 
+    /// @todo We can't make FeatureType robust cache now, but good to have some FeatureCached class.
     std::unordered_map<uint32_t, bool> cache;
-    auto cachingHouseNumberFilter = [&](uint32_t houseId, uint32_t streetId,
-                                        std::unique_ptr<FeatureType> & feature,
-                                        bool & loaded) -> bool {
+    auto const cachingHouseNumberFilter = [&](uint32_t houseId, uint32_t streetId,
+                                              std::unique_ptr<FeatureType> & feature)
+    {
       auto const it = cache.find(houseId);
       if (it != cache.cend())
         return it->second;
-      bool const result = houseNumberFilter(houseId, streetId, feature, loaded);
+      bool const result = houseNumberFilter(houseId, streetId, feature);
       cache[houseId] = result;
       return result;
     };
@@ -378,16 +386,17 @@ private:
       for (uint32_t houseId : street.m_features)
       {
         std::unique_ptr<FeatureType> feature;
-        bool loaded = false;
-        if (!cachingHouseNumberFilter(houseId, streetId, feature, loaded))
+        if (!cachingHouseNumberFilter(houseId, streetId, feature))
           continue;
-
-        if (!loaded)
-          feature = GetByIndex(houseId);
 
         if (!feature)
-          continue;
+        {
+          feature = GetByIndex(houseId);
+          if (!feature)
+            continue;
+        }
 
+        /// @todo Should be optimized, we already have street candidate and no need to call GetNearbyStreets inside.
         if (GetMatchingStreet(*feature) == streetId)
           fn(houseId, streetId);
       }

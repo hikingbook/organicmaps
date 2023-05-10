@@ -206,6 +206,8 @@
 	<string name="pref_map_3d_title">Vedere în perspectivă</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">Clădiri 3D</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">Clădirile 3D sunt oprite în modul de economisire a energiei</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Instrucțiuni vocale</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -706,6 +708,9 @@
 	<string name="splash_subtitle">Date cartografice din OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Adresă/Bloc</string>
+	<string name="type.addr_interpolation.even">Adresă/Bloc</string>
+	<string name="type.addr_interpolation.odd">Adresă/Bloc</string>
 	<string name="type.aerialway.station">Stație de teleferic</string>
 	<string name="type.aeroway.aerodrome">Aeroport</string>
 	<string name="type.aeroway.aerodrome.international">Aeroport</string>
@@ -727,7 +732,8 @@
 	<string name="type.amenity.car_wash">Spălătorie auto</string>
 	<string name="type.amenity.casino">Divertisment</string>
 	<string name="type.amenity.charging_station">Stație încărcare</string>
-	<string name="type.amenity.charging_station.motorcar">Stație încărcare</string>
+	<string name="type.amenity.charging_station.bicycle">Stație de încărcare pentru biciclete</string>
+	<string name="type.amenity.charging_station.motorcar">Stație de încărcare autoturisme</string>
 	<string name="type.amenity.childcare">De îngrijire a copilului</string>
 	<string name="type.leisure.bowling_alley">Popicărie</string>
 	<string name="type.amenity.clinic">Clinică</string>
@@ -736,6 +742,7 @@
 	<string name="type.amenity.courthouse">Judecătorie</string>
 	<string name="type.amenity.drinking_water">Apă de băut</string>
 	<string name="type.amenity.driving_school">Școală de șoferi</string>
+	<string name="type.amenity.money_transfer">Transfer de bani</string>
 	<string name="type.amenity.music_school">Scoala de Muzica</string>
 	<string name="type.amenity.language_school">Școala de limbi străine</string>
 	<string name="type.office.diplomatic">Ambasadă</string>
@@ -848,9 +855,12 @@
 	<string name="type.craft.handicraft">Tehnici de lucru manual</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Încălzire, ventilație și aer condiționat</string>
+	<string name="type.craft.key_cutter">Tăierea cheilor</string>
+	<string name="type.craft.locksmith">Lăcătuș</string>
 	<string name="type.craft.metal_construction">Metalurgist</string>
 	<string name="type.craft.painter">Pictor</string>
 	<string name="type.craft.photographer">Fotograf</string>
+	<string name="type.shop.camera">Magazin de aparate foto</string>
 	<string name="type.craft.plumber">Instalator</string>
 	<string name="type.craft.sawmill">Fabrica de cherestea</string>
 	<string name="type.craft.shoemaker">Reparații încălțăminte</string>
@@ -1300,6 +1310,12 @@
 	<string name="type.power.generator.wind">Generator eolian</string>
 	<string name="type.power.generator.gas">Centrala electrica cu turbina cu gaz</string>
 	<string name="type.power.generator.hydro">Centrală hidroelectrică</string>
+	<string name="type.power.plant">Centrală electrică</string>
+	<string name="type.power.plant.coal">Centrală electrică pe cărbune</string>
+	<string name="type.power.plant.gas">Centrala electrica cu turbina cu gaz</string>
+	<string name="type.power.plant.hydro">Centrală hidroelectrică</string>
+	<string name="type.power.plant.solar">Centrală solară</string>
+	<string name="type.power.plant.wind">Centrală eoliană</string>
 	<string name="type.power.pole">Stâlp de electricitate</string>
 	<string name="type.power.substation">Stație subterană</string>
 	<string name="type.power.tower">Stâlp de electricitate</string>
@@ -1534,16 +1550,19 @@
 	<string name="type.shop">Magazin</string>
 	<string name="type.shop.alcohol">Băuturi alcoolice</string>
 	<string name="type.shop.bakery">Brutărie</string>
+	<string name="type.shop.bathroom_furnishing">Mobilier pentru baie</string>
 	<string name="type.shop.beauty">Salon de înfrumusețare</string>
 	<string name="type.shop.beverages">Băuturi</string>
 	<string name="type.shop.bicycle">Bicicletă</string>
 	<string name="type.shop.bookmaker">Casă de pariuri</string>
 	<string name="type.shop.books">Librărie</string>
 	<string name="type.shop.butcher">Măcelărie</string>
+	<string name="type.shop.cannabis">Magazin de canabis</string>
 	<string name="type.shop.car">Magazin auto</string>
 	<string name="type.shop.car_parts">Piese auto</string>
 	<string name="type.shop.car_repair">Atelier de reparații auto</string>
 	<string name="type.shop.car_repair.tyres">Vulcanizare</string>
+	<string name="type.shop.carpet">Covoare</string>
 	<string name="type.shop.chemist">Mercerie</string>
 	<string name="type.shop.chocolate">Magazin</string>
 	<string name="type.shop.clothes">Magazin de haine</string>
@@ -1553,6 +1572,7 @@
 	<string name="type.shop.convenience">Magazin mixt</string>
 	<string name="type.shop.copyshop">Centru copiere</string>
 	<string name="type.shop.cosmetics">Cosmetică</string>
+	<string name="type.shop.curtain">Perdele</string>
 	<string name="type.shop.deli">Magazin de delicatese</string>
 	<string name="type.shop.department_store">Magazin universal</string>
 	<string name="type.shop.doityourself">Magazin de bricolaj</string>
@@ -1561,16 +1581,20 @@
 	<string name="type.shop.erotic">Magazin erotic</string>
 	<string name="type.shop.fabric">Magazin</string>
 	<string name="type.shop.farm">Magazin alimentar la fermă</string>
+	<string name="type.shop.fashion_accessories">Acesorii de modă</string>
 	<string name="type.shop.florist">Florărie</string>
 	<string name="type.shop.funeral_directors">Pompe funebre</string>
 	<string name="type.shop.furniture">Magazin de mobilă</string>
 	<string name="type.shop.garden_centre">Pepinieră</string>
+	<string name="type.shop.gas">Magazin de gaze</string>
 	<string name="type.shop.gift">Magazin de suveniruri</string>
 	<string name="type.shop.greengrocer">Băcănie</string>
 	<string name="type.shop.grocery">Băcănie</string>
 	<string name="type.shop.hairdresser">Coafor</string>
 	<string name="type.shop.hardware">Magazin de hardware</string>
 	<string name="type.shop.health_food">Magazin de alimente naturiste</string>
+	<string name="type.shop.herbalist">Magazin de ierburi</string>
+	<string name="type.shop.hifi">Audio HiFi</string>
 	<string name="type.shop.houseware">Magazin de articole de uz casnic</string>
 	<string name="type.shop.jewelry">Bijutier</string>
 	<string name="type.shop.kiosk">Magazin</string>
@@ -1581,14 +1605,17 @@
 	<string name="type.shop.mobile_phone">Magazin de telefoane mobile</string>
 	<string name="type.shop.money_lender">Magazin</string>
 	<string name="type.shop.motorcycle">Magazin moto</string>
+	<string name="type.shop.motorcycle_repair">Reparatie motociclete</string>
 	<string name="type.shop.music">Magazin</string>
 	<string name="type.shop.musical_instrument">Magazin</string>
 	<string name="type.shop.newsagent">Chioșc cu ziare</string>
 	<string name="type.shop.optician">Optică</string>
 	<string name="type.shop.outdoor">Echipament de exterior</string>
+	<string name="type.shop.outpost">Punct de ridicare</string>
 	<string name="type.shop.pastry">Patiserie</string>
 	<string name="type.shop.pawnbroker">Amanet</string>
 	<string name="type.shop.pet">Pet shop</string>
+	<string name="type.shop.pet_grooming">Îngrijirea animalelor de companie</string>
 	<string name="type.shop.photo">Centru fotografii</string>
 	<string name="type.shop.seafood">Pescărie</string>
 	<string name="type.shop.second_hand">Magazin second-hand</string>
@@ -1605,10 +1632,13 @@
 	<string name="type.shop.video">Magazin video</string>
 	<string name="type.shop.video_games">Magazin de jocuri video</string>
 	<string name="type.shop.wine">Vinărie</string>
+	<string name="type.shop.agrarian">Magazin agricol</string>
 	<string name="type.shop.antiques">Antichități</string>
+	<string name="type.shop.appliance">Magazin de electrocasnice</string>
 	<string name="type.shop.art">Magazin de arte</string>
 	<string name="type.shop.baby_goods">Magazin pentru copii</string>
 	<string name="type.shop.bag">Magazin de genti</string>
+	<string name="type.shop.bed">Magazin de paturi</string>
 	<string name="type.shop.boutique">Butic</string>
 	<string name="type.shop.charity">Magazin de caritate</string>
 	<string name="type.shop.cheese">Magazin de branzeturi</string>

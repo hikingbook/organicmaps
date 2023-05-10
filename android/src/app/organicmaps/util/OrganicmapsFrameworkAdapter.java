@@ -218,12 +218,12 @@ public enum OrganicmapsFrameworkAdapter {
         mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
     }
 
-    public void adjustCompass(int offsetY, int offsetX) {
-        mwmActivity.adjustCompass(offsetY, offsetX);
+    public void updateCompassOffset(int offsetY, int offsetX) {
+        mwmActivity.updateCompassOffset(offsetY, offsetX);
     }
 
-    public void adjustBottomWidgets(int offsetX, int offsetY) {
-        mwmActivity.adjustBottomWidgets(offsetX, offsetY);
+    public void updateBottomWidgetsOffset(int offsetX, int offsetY) {
+        mwmActivity.updateBottomWidgetsOffset(offsetX, offsetY);
     }
 
     /**

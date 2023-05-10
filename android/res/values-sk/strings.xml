@@ -201,6 +201,8 @@
 	<string name="pref_map_3d_title">Perspektívne zobrazenie</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3D budovy</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D budovy sú vypnuté v režime úspory energie</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Hlasové povely</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -677,6 +679,9 @@
 	<string name="splash_subtitle">Mapové údaje z OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Adresa/blok</string>
+	<string name="type.addr_interpolation.even">Adresa/blok</string>
+	<string name="type.addr_interpolation.odd">Adresa/blok</string>
 	<string name="type.aerialway.station">Lanovka</string>
 	<string name="type.aeroway.aerodrome">Letisko</string>
 	<string name="type.aeroway.aerodrome.international">Letisko</string>
@@ -699,7 +704,8 @@
 	<string name="type.amenity.car_wash">Autoumývareň</string>
 	<string name="type.amenity.casino">Kasíno</string>
 	<string name="type.amenity.charging_station">Dobíjacia stanica</string>
-	<string name="type.amenity.charging_station.motorcar">Dobíjacia stanica</string>
+	<string name="type.amenity.charging_station.bicycle">Nabíjacia stanica pre bicykle</string>
+	<string name="type.amenity.charging_station.motorcar">Nabíjacia stanica pre motorové vozidlá</string>
 	<string name="type.amenity.childcare">Jasle</string>
 	<string name="type.amenity.cinema">Kino</string>
 	<string name="type.leisure.bowling_alley">Bowlingová dráha</string>
@@ -711,6 +717,7 @@
 	<string name="type.amenity.doctors">Ambulancia</string>
 	<string name="type.amenity.drinking_water">Pitná voda</string>
 	<string name="type.amenity.driving_school">Autoškola</string>
+	<string name="type.amenity.money_transfer">Prevod peňazí</string>
 	<string name="type.amenity.music_school">Hudobná škola</string>
 	<string name="type.amenity.language_school">Jazyková škola</string>
 	<string name="type.office.diplomatic">Veľvyslanectvo</string>
@@ -826,9 +833,12 @@
 	<string name="type.craft.handicraft">Ručné práce</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Vzduchotechnika</string>
+	<string name="type.craft.key_cutter">Rezanie kľúčov</string>
+	<string name="type.craft.locksmith">Zámočník</string>
 	<string name="type.craft.metal_construction">Kovorobotník</string>
 	<string name="type.craft.painter">Maliar natierač</string>
 	<string name="type.craft.photographer">Fotograf</string>
+	<string name="type.shop.camera">Obchod s fotoaparátmi</string>
 	<string name="type.craft.plumber">Klampiarstvo</string>
 	<string name="type.craft.sawmill">Píla</string>
 	<string name="type.craft.shoemaker">Oprava obuvy</string>
@@ -1277,6 +1287,12 @@
 	<string name="type.power.generator.wind">Veterný generátor</string>
 	<string name="type.power.generator.gas">Elektráreň s plynovou turbínou</string>
 	<string name="type.power.generator.hydro">Vodná elektráreň</string>
+	<string name="type.power.plant">Elektráreň</string>
+	<string name="type.power.plant.coal">Uhoľná elektráreň</string>
+	<string name="type.power.plant.gas">Elektráreň s plynovou turbínou</string>
+	<string name="type.power.plant.hydro">Vodná elektráreň</string>
+	<string name="type.power.plant.solar">Solárna elektráreň</string>
+	<string name="type.power.plant.wind">Veterná elektráreň</string>
 	<string name="type.power.pole">Stĺp elektrického vedenia</string>
 	<string name="type.power.substation">Rozvodňa</string>
 	<string name="type.power.tower">Stĺp elektrického vedenia</string>
@@ -1511,16 +1527,19 @@
 	<string name="type.shop">Obchod</string>
 	<string name="type.shop.alcohol">Liehoviny</string>
 	<string name="type.shop.bakery">Pekáreň</string>
+	<string name="type.shop.bathroom_furnishing">Vybavenie kúpeľne</string>
 	<string name="type.shop.beauty">Kozmetický salón</string>
 	<string name="type.shop.beverages">Nápoje</string>
 	<string name="type.shop.bicycle">Cyklistický obchod</string>
 	<string name="type.shop.bookmaker">Stávková kancelária</string>
 	<string name="type.shop.books">Kníhkupectvo</string>
 	<string name="type.shop.butcher">Mäsiar</string>
+	<string name="type.shop.cannabis">Obchod s kanabisom</string>
 	<string name="type.shop.car">Predajňa áut</string>
 	<string name="type.shop.car_parts">Autodiely</string>
 	<string name="type.shop.car_repair">Autoservis</string>
 	<string name="type.shop.car_repair.tyres">Pneuservis</string>
+	<string name="type.shop.carpet">Koberce</string>
 	<string name="type.shop.chemist">Drogéria</string>
 	<string name="type.shop.chocolate">Obchod</string>
 	<string name="type.shop.clothes">Oblečenie</string>
@@ -1530,6 +1549,7 @@
 	<string name="type.shop.convenience">Príležitostné potreby</string>
 	<string name="type.shop.copyshop">Kopírovacie služby</string>
 	<string name="type.shop.cosmetics">Kozmetika</string>
+	<string name="type.shop.curtain">Záclony</string>
 	<string name="type.shop.deli">Predajňa lahôdok</string>
 	<string name="type.shop.department_store">Obchodný dom</string>
 	<string name="type.shop.doityourself">Železiarstvo</string>
@@ -1538,16 +1558,20 @@
 	<string name="type.shop.erotic">Erotický obchod</string>
 	<string name="type.shop.fabric">Obchod</string>
 	<string name="type.shop.farm">Obchod s farmárskymi potravinami</string>
+	<string name="type.shop.fashion_accessories">Módne doplnky</string>
 	<string name="type.shop.florist">Kvety</string>
 	<string name="type.shop.funeral_directors">Pohrebníctvo</string>
 	<string name="type.shop.furniture">Nábytok</string>
 	<string name="type.shop.garden_centre">Škôlka</string>
+	<string name="type.shop.gas">Obchod s plynom</string>
 	<string name="type.shop.gift">Darčeky</string>
 	<string name="type.shop.greengrocer">Zelovoc</string>
 	<string name="type.shop.grocery">Potraviny</string>
 	<string name="type.shop.hairdresser">Kaderníctvo</string>
 	<string name="type.shop.hardware">Železiarstvo</string>
 	<string name="type.shop.health_food">Obchod so zdravou výživou</string>
+	<string name="type.shop.herbalist">Obchod s bylinkami</string>
+	<string name="type.shop.hifi">HiFi audio</string>
 	<string name="type.shop.houseware">Obchod s domácimi potrebami</string>
 	<string name="type.shop.jewelry">Klenotníctvo</string>
 	<string name="type.shop.kitchen">Kuchynský obchod</string>
@@ -1557,14 +1581,17 @@
 	<string name="type.shop.mobile_phone">Mobilné telefóny</string>
 	<string name="type.shop.money_lender">Obchod</string>
 	<string name="type.shop.motorcycle">Obchod s motocyklami</string>
+	<string name="type.shop.motorcycle_repair">Oprava motocyklov</string>
 	<string name="type.shop.music">Obchod</string>
 	<string name="type.shop.musical_instrument">Obchod</string>
 	<string name="type.shop.newsagent">Novinový stánok</string>
 	<string name="type.shop.optician">Optika</string>
 	<string name="type.shop.outdoor">Outdoorové vybavenie</string>
+	<string name="type.shop.outpost">Miesto odberu</string>
 	<string name="type.shop.pastry">Pečivo</string>
 	<string name="type.shop.pawnbroker">Záložňa</string>
 	<string name="type.shop.pet">Obchod zo zvieratami</string>
+	<string name="type.shop.pet_grooming">Starostlivosť o domáce zvieratá</string>
 	<string name="type.shop.photo">Fotografické služby</string>
 	<string name="type.shop.seafood">Obchodník s rybami</string>
 	<string name="type.shop.second_hand">Obchod z druhej ruky</string>
@@ -1581,10 +1608,13 @@
 	<string name="type.shop.video">Predajňa s videami</string>
 	<string name="type.shop.video_games">Predajňa s videohrami</string>
 	<string name="type.shop.wine">Vinotéka</string>
+	<string name="type.shop.agrarian">Poľnohospodársky obchod</string>
 	<string name="type.shop.antiques">Starožitnosti</string>
+	<string name="type.shop.appliance">Obchod so spotrebičmi</string>
 	<string name="type.shop.art">Obchod s umením</string>
 	<string name="type.shop.baby_goods">Obchod pre deti</string>
 	<string name="type.shop.bag">Obchod s taškami</string>
+	<string name="type.shop.bed">Obchod s posteľami</string>
 	<string name="type.shop.boutique">Butik</string>
 	<string name="type.shop.charity">Charitatívny obchod</string>
 	<string name="type.shop.cheese">Predajňa syrov</string>

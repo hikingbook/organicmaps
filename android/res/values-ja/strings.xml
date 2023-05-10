@@ -199,6 +199,8 @@
 	<string name="pref_map_3d_title">パースペクティブ表示</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">3Dビルディング</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">省電力モードで建物の 3D 表示がオフになっている</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">音声指示</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -673,8 +675,13 @@
 	<string name="enable_screen_sleep_description">有効にすると、画面は一定時間非アクティブになった後もスリープ状態になります。</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">OpenStreetMapからの地図データ</string>
+	<!-- Link to OSM wiki for Editor, Profile and About pages -->
+	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/JA:参加する</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">アドレス/ブロック</string>
+	<string name="type.addr_interpolation.even">アドレス/ブロック</string>
+	<string name="type.addr_interpolation.odd">アドレス/ブロック</string>
 	<string name="type.aerialway">索道</string>
 	<string name="type.aerialway.cable_car">ロープウェイ</string>
 	<string name="type.aerialway.chair_lift">チェアリフト</string>
@@ -710,7 +717,8 @@
 	<string name="type.amenity.car_wash">洗車場</string>
 	<string name="type.amenity.casino">カジノ</string>
 	<string name="type.amenity.charging_station">充電ステーション</string>
-	<string name="type.amenity.charging_station.motorcar">充電ステーション</string>
+	<string name="type.amenity.charging_station.bicycle">自転車充電ステーション</string>
+	<string name="type.amenity.charging_station.motorcar">自動車充電ステーション</string>
 	<string name="type.amenity.childcare">託児所</string>
 	<string name="type.amenity.cinema">映画館</string>
 	<string name="type.leisure.bowling_alley">ボーリング場</string>
@@ -722,6 +730,7 @@
 	<string name="type.amenity.doctors">医院</string>
 	<string name="type.amenity.drinking_water">水飲み場</string>
 	<string name="type.amenity.driving_school">自動車教習所</string>
+	<string name="type.amenity.money_transfer">送金</string>
 	<string name="type.amenity.music_school">音楽学校</string>
 	<string name="type.amenity.language_school">語学学校</string>
 	<string name="type.office.diplomatic">大使館</string>
@@ -858,9 +867,12 @@
 	<string name="type.craft.handicraft">手芸</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">冷暖房空調</string>
+	<string name="type.craft.key_cutter">キーカット</string>
+	<string name="type.craft.locksmith">錠前屋</string>
 	<string name="type.craft.metal_construction">金属工</string>
 	<string name="type.craft.painter">塗装工</string>
 	<string name="type.craft.photographer">写真家</string>
+	<string name="type.shop.camera">カメラショップ</string>
 	<string name="type.craft.plumber">配管工</string>
 	<string name="type.craft.sawmill">製材所</string>
 	<string name="type.craft.shoemaker">靴修理</string>
@@ -1368,6 +1380,12 @@
 	<string name="type.power.line">電力線</string>
 	<string name="type.power.line.underground">地下電力線</string>
 	<string name="type.power.minor_line">低圧電力線</string>
+	<string name="type.power.plant">発電所</string>
+	<string name="type.power.plant.coal">石炭火力発電所</string>
+	<string name="type.power.plant.gas">ガスタービン発電所</string>
+	<string name="type.power.plant.hydro">水力発電所</string>
+	<string name="type.power.plant.solar">太陽光発電所</string>
+	<string name="type.power.plant.wind">風力発電所</string>
 	<string name="type.power.pole">電柱</string>
 	<string name="type.power.station">変電所</string>
 	<string name="type.power.substation">変電所</string>
@@ -1645,16 +1663,19 @@
 	<string name="type.shop">買い物</string>
 	<string name="type.shop.alcohol">酒屋</string>
 	<string name="type.shop.bakery">パン屋</string>
+	<string name="type.shop.bathroom_furnishing">バスルームの備品</string>
 	<string name="type.shop.beauty">ビューティーサロン</string>
 	<string name="type.shop.beverages">ドリンク</string>
 	<string name="type.shop.bicycle">自転車屋</string>
 	<string name="type.shop.bookmaker">ブックメーカー</string>
 	<string name="type.shop.books">本屋</string>
 	<string name="type.shop.butcher">肉屋</string>
+	<string name="type.shop.cannabis">大麻店</string>
 	<string name="type.shop.car">カーディーラー</string>
 	<string name="type.shop.car_parts">車両部品</string>
 	<string name="type.shop.car_repair">自動車修理</string>
 	<string name="type.shop.car_repair.tyres">タイヤ修理</string>
+	<string name="type.shop.carpet">カーペット</string>
 	<string name="type.shop.chemist">化学薬品店</string>
 	<string name="type.shop.chocolate">チョコレート屋</string>
 	<string name="type.shop.clothes">洋服</string>
@@ -1664,6 +1685,7 @@
 	<string name="type.shop.convenience">コンビニエンスストア</string>
 	<string name="type.shop.copyshop">コピーショップ</string>
 	<string name="type.shop.cosmetics">化粧品</string>
+	<string name="type.shop.curtain">カーテン</string>
 	<string name="type.shop.deli">デリカテッセンショップ</string>
 	<string name="type.shop.department_store">デパート</string>
 	<string name="type.shop.doityourself">工具店</string>
@@ -1672,16 +1694,20 @@
 	<string name="type.shop.erotic">アダルトショップ</string>
 	<string name="type.shop.fabric">生地屋</string>
 	<string name="type.shop.farm">ファームフードショップ</string>
+	<string name="type.shop.fashion_accessories">ファッションアクセサリー</string>
 	<string name="type.shop.florist">フローリスト/花屋</string>
 	<string name="type.shop.funeral_directors">葬儀屋</string>
 	<string name="type.shop.furniture">家具店</string>
 	<string name="type.shop.garden_centre">ガーデンセンター</string>
+	<string name="type.shop.gas">ガス屋</string>
 	<string name="type.shop.gift">ギフトショップ</string>
 	<string name="type.shop.greengrocer">八百屋</string>
 	<string name="type.shop.grocery">買い物</string>
 	<string name="type.shop.hairdresser">美容院/理容店</string>
 	<string name="type.shop.hardware">ホームセンター</string>
 	<string name="type.shop.health_food">健康食品店</string>
+	<string name="type.shop.herbalist">ハーブ店</string>
+	<string name="type.shop.hifi">ハイファイオーディオ</string>
 	<string name="type.shop.houseware">家庭用品店</string>
 	<string name="type.shop.jewelry">宝石店</string>
 	<string name="type.shop.kiosk">キオスク</string>
@@ -1692,14 +1718,17 @@
 	<string name="type.shop.mobile_phone">携帯ショップ</string>
 	<string name="type.shop.money_lender">消費者金融</string>
 	<string name="type.shop.motorcycle">バイクショップ</string>
+	<string name="type.shop.motorcycle_repair">オートバイの修理</string>
 	<string name="type.shop.music">CDショップ</string>
 	<string name="type.shop.musical_instrument">楽器店</string>
 	<string name="type.shop.newsagent">新聞販売店</string>
 	<string name="type.shop.optician">眼鏡店</string>
 	<string name="type.shop.outdoor">アウトドア用品店</string>
+	<string name="type.shop.outpost">集荷場</string>
 	<string name="type.shop.pastry">ペストリー</string>
 	<string name="type.shop.pawnbroker">質屋</string>
 	<string name="type.shop.pet">ペットショップ</string>
+	<string name="type.shop.pet_grooming">ペットグルーミング</string>
 	<string name="type.shop.photo">写真屋</string>
 	<string name="type.shop.seafood">魚屋</string>
 	<string name="type.shop.second_hand">古物商</string>
@@ -1717,10 +1746,13 @@
 	<string name="type.shop.video">ビデオショップ</string>
 	<string name="type.shop.video_games">ゲームショップ</string>
 	<string name="type.shop.wine">ワイン店</string>
+	<string name="type.shop.agrarian">農産物直売所</string>
 	<string name="type.shop.antiques">骨董品</string>
+	<string name="type.shop.appliance">家電店</string>
 	<string name="type.shop.art">アートショップ</string>
 	<string name="type.shop.baby_goods">キッズストア</string>
 	<string name="type.shop.bag">バッグストア</string>
+	<string name="type.shop.bed">ベッドショップ</string>
 	<string name="type.shop.boutique">ブティック</string>
 	<string name="type.shop.charity">チャリティーショップ</string>
 	<string name="type.shop.cheese">チーズ店</string>

@@ -16,6 +16,7 @@ import app.organicmaps.MapSource;
 import app.organicmaps.R;
 import app.organicmaps.util.ConnectionState;
 import app.organicmaps.util.Utils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -93,7 +94,7 @@ public final class MapManager
       throw new IllegalArgumentException("Given error can not be displayed: " + errorData.errorCode);
     }
 
-    final AlertDialog dlg = new AlertDialog.Builder(activity, R.style.MwmTheme_AlertDialog)
+    final AlertDialog dlg = new MaterialAlertDialogBuilder(activity, R.style.MwmTheme_AlertDialog)
         .setTitle(R.string.country_status_download_failed)
         .setMessage(text)
         .setNegativeButton(R.string.cancel, (dialog, which) -> {
@@ -114,7 +115,7 @@ public final class MapManager
 
   private static void notifyNoSpaceInternal(Activity activity)
   {
-    new AlertDialog.Builder(activity, R.style.MwmTheme_AlertDialog)
+    new MaterialAlertDialogBuilder(activity, R.style.MwmTheme_AlertDialog)
         .setTitle(R.string.downloader_no_space_title)
         .setMessage(R.string.downloader_no_space_message)
         .setPositiveButton(android.R.string.ok, null)
@@ -165,7 +166,7 @@ public final class MapManager
       return false;
     }
 
-    new AlertDialog.Builder(activity, R.style.MwmTheme_AlertDialog)
+    new MaterialAlertDialogBuilder(activity, R.style.MwmTheme_AlertDialog)
         .setTitle(R.string.download_over_mobile_header)
         .setMessage(R.string.download_over_mobile_message)
         .setNegativeButton(R.string.cancel, null)

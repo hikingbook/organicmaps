@@ -218,6 +218,8 @@
 	<string name="pref_map_3d_title">Vista en perspectiva</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">Edificios en 3D</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">Los edificios 3D se apagan en el modo de ahorro de energía</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Instrucciones de voz</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -727,8 +729,13 @@
 	<string name="enable_show_on_lock_screen_description">Cuando está habilitado, no tiene que desbloquear su dispositivo mientras la aplicación se está ejecutando.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Datos de mapas de OpenStreetMap</string>
+	<!-- Link to OSM wiki for Editor, Profile and About pages -->
+	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/ES:Acerca_de_OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Dirección/Bloque</string>
+	<string name="type.addr_interpolation.even">Dirección/Bloque</string>
+	<string name="type.addr_interpolation.odd">Dirección/Bloque</string>
 	<string name="type.aerialway">Transporte aéreo</string>
 	<string name="type.aerialway.cable_car">Teleférico</string>
 	<string name="type.aerialway.chair_lift">Telesilla</string>
@@ -765,7 +772,8 @@
 	<string name="type.amenity.car_wash">Lavado de coches</string>
 	<string name="type.amenity.casino">Casino</string>
 	<string name="type.amenity.charging_station">Estación de carga</string>
-	<string name="type.amenity.charging_station.motorcar">Estación de carga</string>
+	<string name="type.amenity.charging_station.bicycle">Estación de carga de bicicletas</string>
+	<string name="type.amenity.charging_station.motorcar">Estación de carga de automóviles</string>
 	<string name="type.amenity.childcare">Guardería</string>
 	<string name="type.amenity.cinema">Cine</string>
 	<string name="type.leisure.bowling_alley">Bolera</string>
@@ -777,6 +785,7 @@
 	<string name="type.amenity.doctors">Consulta del médico</string>
 	<string name="type.amenity.drinking_water">Agua potable</string>
 	<string name="type.amenity.driving_school">Autoescuela</string>
+	<string name="type.amenity.money_transfer">Transferencia de dinero</string>
 	<string name="type.amenity.music_school">Escuela de música</string>
 	<string name="type.amenity.language_school">Escuela de idiomas</string>
 	<string name="type.office.diplomatic">Embajada</string>
@@ -939,9 +948,12 @@
 	<string name="type.craft.handicraft">Artesanía</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Calefacción, ventilación y aire acondicionado</string>
+	<string name="type.craft.key_cutter">Copista de llaves</string>
+	<string name="type.craft.locksmith">Cerrajero</string>
 	<string name="type.craft.metal_construction">Trabajador del metal</string>
 	<string name="type.craft.painter">Pintor</string>
 	<string name="type.craft.photographer">Fotógrafo</string>
+	<string name="type.shop.camera">Tienda de cámaras</string>
 	<string name="type.craft.plumber">Fontanero</string>
 	<string name="type.craft.sawmill">Serrería</string>
 	<string name="type.craft.shoemaker">Zapatero</string>
@@ -1453,6 +1465,12 @@
 	<string name="type.power.line">Línea eléctrica</string>
 	<string name="type.power.line.underground">Línea eléctrica subterránea</string>
 	<string name="type.power.minor_line">Línea eléctrica de baja tensión</string>
+	<string name="type.power.plant">Planta de energía</string>
+	<string name="type.power.plant.coal">Central eléctrica de carbón</string>
+	<string name="type.power.plant.gas">Planta de energía de turbina de gas</string>
+	<string name="type.power.plant.hydro">Planta de energía hidroeléctrica</string>
+	<string name="type.power.plant.solar">Planta de energía solar</string>
+	<string name="type.power.plant.wind">Planta eólica</string>
 	<string name="type.power.pole">Poste eléctrico</string>
 	<string name="type.power.station">Estación eléctrica</string>
 	<string name="type.power.substation">Subestación eléctrica</string>
@@ -1702,17 +1720,20 @@
 	<string name="type.shop">Tienda</string>
 	<string name="type.shop.alcohol">Licorería</string>
 	<string name="type.shop.bakery">Panadería</string>
+	<string name="type.shop.bathroom_furnishing">Equipamiento de baño</string>
 	<string name="type.shop.beauty">Centro de belleza</string>
 	<string name="type.shop.beverages">Bebidas</string>
 	<string name="type.shop.bicycle">Tienda de bicicletas</string>
 	<string name="type.shop.bookmaker">Casa de apuestas</string>
 	<string name="type.shop.books">Librería</string>
 	<string name="type.shop.butcher">Carnicería</string>
+	<string name="type.shop.cannabis">Tienda de cánnabis</string>
 	<string name="type.shop.car">Concesionario de coches</string>
 	<string name="type.shop.car_parts">Piezas de automóvil</string>
 	<string name="type.shop.car_repair">Taller</string>
 	<string name="type.shop.car_repair.tyres">Reparación de neumáticos</string>
 	<string name="type.shop.caravan">Concesionario de caravanas</string>
+	<string name="type.shop.carpet">Alfombras</string>
 	<string name="type.shop.chemist">Droguería</string>
 	<string name="type.shop.chocolate">Chocolatería</string>
 	<string name="type.shop.clothes">Tienda de ropa</string>
@@ -1722,6 +1743,7 @@
 	<string name="type.shop.convenience">Tienda de barrio</string>
 	<string name="type.shop.copyshop">Centro de copiado</string>
 	<string name="type.shop.cosmetics">Productos cosméticos</string>
+	<string name="type.shop.curtain">Cortinas</string>
 	<string name="type.shop.deli">Tienda de delicatessen</string>
 	<string name="type.shop.department_store">Grandes almacenes</string>
 	<string name="type.shop.doityourself">Ferretería</string>
@@ -1730,16 +1752,20 @@
 	<string name="type.shop.erotic">Sex Shop</string>
 	<string name="type.shop.fabric">Tienda de telas</string>
 	<string name="type.shop.farm">Tienda de alimentos de granja</string>
+	<string name="type.shop.fashion_accessories">Accesorios de moda</string>
 	<string name="type.shop.florist">Floristería</string>
 	<string name="type.shop.funeral_directors">Funeraria</string>
 	<string name="type.shop.furniture">Tienda de muebles</string>
 	<string name="type.shop.garden_centre">Vivero</string>
+	<string name="type.shop.gas">Tienda de gasolina</string>
 	<string name="type.shop.gift">Tienda de regalos</string>
 	<string name="type.shop.greengrocer">Frutería</string>
 	<string name="type.shop.grocery">Tienda de comestibles</string>
 	<string name="type.shop.hairdresser">Peluquería</string>
 	<string name="type.shop.hardware">Ferretería</string>
 	<string name="type.shop.health_food">Tienda de comida saludable</string>
+	<string name="type.shop.herbalist">Tienda de hierbas</string>
+	<string name="type.shop.hifi">Audio de alta fidelidad</string>
 	<string name="type.shop.houseware">Tienda de artículos para el hogar</string>
 	<string name="type.shop.jewelry">Joyería</string>
 	<string name="type.shop.kiosk">Quiosco</string>
@@ -1750,14 +1776,17 @@
 	<string name="type.shop.mobile_phone">Móviles</string>
 	<string name="type.shop.money_lender">Prestamista</string>
 	<string name="type.shop.motorcycle">Tienda de motos</string>
+	<string name="type.shop.motorcycle_repair">Reparación de motos</string>
 	<string name="type.shop.music">Tienda de discos</string>
 	<string name="type.shop.musical_instrument">Instrumentos musicales</string>
 	<string name="type.shop.newsagent">Puesto de venta de periódicos</string>
 	<string name="type.shop.optician">Óptica</string>
 	<string name="type.shop.outdoor">Equipamiento de ocio al aire libre</string>
+	<string name="type.shop.outpost">Punto de recogida</string>
 	<string name="type.shop.pastry">Pastelería</string>
 	<string name="type.shop.pawnbroker">Casa de empeños</string>
 	<string name="type.shop.pet">Tienda de mascotas</string>
+	<string name="type.shop.pet_grooming">Aseo de mascotas</string>
 	<string name="type.shop.photo">Artículos de fotografía</string>
 	<string name="type.shop.seafood">Pescadería</string>
 	<string name="type.shop.second_hand">Tienda de segunda mano</string>
@@ -1775,10 +1804,13 @@
 	<string name="type.shop.video">Tienda de vídeo</string>
 	<string name="type.shop.video_games">Tienda de videojuegos</string>
 	<string name="type.shop.wine">Tienda de vinos</string>
+	<string name="type.shop.agrarian">Tienda agrícola</string>
 	<string name="type.shop.antiques">Antigüedades</string>
+	<string name="type.shop.appliance">Tienda de electrodomésticos</string>
 	<string name="type.shop.art">Tienda de arte</string>
 	<string name="type.shop.baby_goods">Tienda de niños</string>
 	<string name="type.shop.bag">Tienda de bolsos</string>
+	<string name="type.shop.bed">Tienda de camas</string>
 	<string name="type.shop.boutique">Boutique</string>
 	<string name="type.shop.charity">Tienda de caridad</string>
 	<string name="type.shop.cheese">Tienda de queso</string>

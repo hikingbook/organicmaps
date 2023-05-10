@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "مباني ثلاثية الأبعاد";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "يتم إيقاف تشغيل المباني ثلاثية الأبعاد في وضع توفير الطاقة";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "تعليمات صوتية";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ar:About_OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "العنوان / البلوك";
+
+"type.addr_interpolation.even" = "العنوان / البلوك";
+
+"type.addr_interpolation.odd" = "العنوان / البلوك";
 
 "type.aerialway" = "Aerialway";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "محطة شحن";
 
-"type.amenity.charging_station.motorcar" = "محطة شحن";
+"type.amenity.charging_station.bicycle" = "محطة شحن الدراجات";
+
+"type.amenity.charging_station.motorcar" = "محطة شحن Motorcar";
 
 "type.amenity.childcare" = "حضانة";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "مياه شرب";
 
 "type.amenity.driving_school" = "مدرسة قيادة";
+
+"type.amenity.money_transfer" = "تحويل المال";
 
 "type.amenity.music_school" = "مدرسة موسيقى";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "تكييف";
 
+"type.craft.key_cutter" = "قطع المفاتيح";
+
+"type.craft.locksmith" = "قفال";
+
 "type.craft.metal_construction" = "عامل معادن";
 
 "type.craft.painter" = "رسام";
 
 "type.craft.photographer" = "مصور فوتوغرافي";
+
+"type.shop.camera" = "متجر الكاميرا";
 
 "type.craft.plumber" = "سباك";
 
@@ -2687,6 +2709,18 @@
 
 "type.power.minor_line" = "Minor Power Line";
 
+"type.power.plant" = "محطة توليد الكهرباء";
+
+"type.power.plant.coal" = "محطة لتوليد الطاقه من الفحم";
+
+"type.power.plant.gas" = "محطة توليد الكهرباء بالغاز";
+
+"type.power.plant.hydro" = "محطة توليد الطاقة الكهرمائية";
+
+"type.power.plant.solar" = "محطة للطاقة الشمسية";
+
+"type.power.plant.wind" = "محطة طاقة الرياح";
+
 "type.power.pole" = "عمود كهرباء";
 
 "type.power.station" = "Power Station";
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "مخبز";
 
+"type.shop.bathroom_furnishing" = "أثاث الحمام";
+
 "type.shop.beauty" = "صالون تجميل";
 
 "type.shop.beverages" = "مشروبات";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "جزار";
 
+"type.shop.cannabis" = "متجر القنب";
+
 "type.shop.car" = "متجر سيارات";
 
 "type.shop.car_parts" = "ﺓﺭﺎﻴﺴﻟﺍ ءﺍﺰﺟﺃ";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "إصلاح إطارات";
 
 "type.shop.caravan" = "RV Dealership";
+
+"type.shop.carpet" = "السجاد";
 
 "type.shop.chemist" = "متجر كيماويات";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "مستحضرات تجميل";
 
+"type.shop.curtain" = "ستائر";
+
 "type.shop.deli" = "ﺔﺒﻠﻌﻤﻟﺍ ﺔﻤﻌﻃﻷﺍ ﻊﻴﺒﻟ ﻞﺤﻣ";
 
 "type.shop.department_store" = "متجر شامل";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "ﺔﻋﺭﺰﻤﻟﺍ ﺔﻳﺬﻏﺃ ﺮﺠﺘﻣ";
 
+"type.shop.fashion_accessories" = "اكسسوارات الموضة";
+
 "type.shop.florist" = "متجر زهور";
 
 "type.shop.funeral_directors" = "منظموا الجنازات";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "معرض أثاث";
 
 "type.shop.garden_centre" = "حضانة";
+
+"type.shop.gas" = "مخزن غاز";
 
 "type.shop.gift" = "متجر هدايا";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "ﺕﺍﺪﻌﻣ ﻞﺤﻣ";
 
 "type.shop.health_food" = "ﺔﻴﺤﺼﻟﺍ ﺔﻳﺬﻏﻼﻟ ﺮﺠﺘﻣ";
+
+"type.shop.herbalist" = "متجر أعشاب";
+
+"type.shop.hifi" = "صوت هاي فاي";
 
 "type.shop.houseware" = "ﺔﻴﻟﺰﻨﻣ ﺕﺍﻭﺩﺃ ﻞﺤﻣ";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "متجر دراجات نارية";
 
+"type.shop.motorcycle_repair" = "تصليح الدراجات النارية";
+
 "type.shop.music" = "متجر";
 
 "type.shop.musical_instrument" = "متجر";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "معدات خارجية";
 
+"type.shop.outpost" = "نقطة الالتقاط";
+
 "type.shop.pastry" = "ﺕﺎﻨﺠﻌﻣ";
 
 "type.shop.pawnbroker" = "سمسار تسليف";
 
 "type.shop.pet" = "متجر للحيوانات الأليفة";
+
+"type.shop.pet_grooming" = "العناية بالحيوانات الأليفة";
 
 "type.shop.photo" = "محل صور";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "متجر مشروبات روحية";
 
+"type.shop.agrarian" = "محل زراعي";
+
 "type.shop.antiques" = "ﻒﺤﺘﻟﺍ";
+
+"type.shop.appliance" = "متجر الأجهزة";
 
 "type.shop.art" = "ﻥﻮﻨﻔﻟﺍ ﺮﺠﺘﻣ";
 
 "type.shop.baby_goods" = "ﻝﺎﻔﻃﻸﻟ ﺮﺠﺘﻣ";
 
 "type.shop.bag" = "ﺐﺋﺎﻘﺤﻟﺍ ﺮﺠﺘﻣ";
+
+"type.shop.bed" = "متجر الأسرة";
 
 "type.shop.boutique" = "ﺮﺠﺘﻣ";
 

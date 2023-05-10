@@ -1,4 +1,8 @@
 world  +
+    addr:interpolation  +
+        even  -
+        odd  -
+        {}
     aerialway  +
         cable_car  -
         chair_lift  -
@@ -43,6 +47,7 @@ world  +
         car_wash  -
         casino  -
         charging_station  +
+            bicycle  -
             motorcar  -
             {}
         childcare  -
@@ -74,6 +79,7 @@ world  +
         library  -
         loading_dock  -
         marketplace  -
+        money_transfer  -
         motorcycle_parking  -
         music_school  -
         nightclub  -
@@ -233,6 +239,8 @@ world  +
         gardener  -
         handicraft  -
         hvac  -
+        key_cutter  -
+        locksmith  -
         metal_construction  -
         painter  -
         photographer  -
@@ -793,6 +801,13 @@ world  +
             {}
         line  -
         minor_line  -
+        plant  +
+            coal  -
+            gas  -
+            hydro  -
+            solar  -
+            wind  -
+            {}
         pole  -
         station  -
         substation  -
@@ -1112,25 +1127,32 @@ world  +
         shuttle_train  -
         {}
     shop  +
+        agrarian  -
         alcohol  -
         antiques  -
+        appliance  -
         art  -
         baby_goods  -
         bag  -
         bakery  -
+        bathroom_furnishing  -
         beauty  -
+        bed  -
         beverages  -
         bicycle  -
         bookmaker  -
         books  -
         boutique  -
         butcher  -
+        camera  -
+        cannabis  -
         car  -
         car_parts  -
         car_repair  +
             tyres  -
             {}
         caravan  -
+        carpet  -
         charity  -
         cheese  -
         chemist  -
@@ -1143,6 +1165,7 @@ world  +
         copyshop  -
         cosmetics  -
         craft  -
+        curtain  -
         dairy  -
         deli  -
         department_store  -
@@ -1153,17 +1176,21 @@ world  +
         erotic  -
         fabric  -
         farm  -
+        fashion_accessories  -
         fishing  -
         florist  -
         funeral_directors  -
         furniture  -
         garden_centre  -
+        gas  -
         gift  -
         greengrocer  -
         grocery  -
         hairdresser  -
         hardware  -
         health_food  -
+        herbalist  -
+        hifi  -
         houseware  -
         interior_decoration  -
         jewelry  -
@@ -1177,17 +1204,20 @@ world  +
         mobile_phone  -
         money_lender  -
         motorcycle  -
+        motorcycle_repair  -
         music  -
         musical_instrument  -
         newsagent  -
         nutrition_supplements  -
         optician  -
         outdoor  -
+        outpost  -
         paint  -
         pastry  -
         pawnbroker  -
         perfumery  -
         pet  -
+        pet_grooming  -
         photo  -
         seafood  -
         second_hand  -

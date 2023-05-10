@@ -87,7 +87,7 @@ void FormatMapSize(uint64_t sizeInBytes, std::string & units, size_t & sizeToDow
 extern char const * kTokenKeySetting;
 extern char const * kTokenSecretSetting;
 
-MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
+MainWindow::MainWindow(Framework & framework,
                        std::unique_ptr<ScreenshotParams> && screenshotParams,
                        QRect const & screenGeometry
 #ifdef BUILD_DESIGNER
@@ -115,7 +115,7 @@ MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
 
   int const width = m_screenshotMode ? static_cast<int>(screenshotParams->m_width) : 0;
   int const height = m_screenshotMode ? static_cast<int>(screenshotParams->m_height) : 0;
-  m_pDrawWidget = new DrawWidget(framework, apiOpenGLES3, std::move(screenshotParams), this);
+  m_pDrawWidget = new DrawWidget(framework, std::move(screenshotParams), this);
 
   setCentralWidget(m_pDrawWidget);
 
@@ -131,7 +131,8 @@ MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
   CreateNavigationBar();
   CreateSearchBarAndPanel();
 
-  QString caption = qAppName();
+  QString caption = QCoreApplication::applicationName();
+
 #ifdef BUILD_DESIGNER
   if (!m_mapcssFilePath.isEmpty())
     caption += QString(" - ") + m_mapcssFilePath;
@@ -194,7 +195,7 @@ MainWindow::MainWindow(Framework & framework, bool apiOpenGLES3,
 
     if (!text.empty())
     {
-      InfoDialog welcomeDlg(QString("Welcome to ") + qAppName(), text.c_str(),
+      InfoDialog welcomeDlg(QString("Welcome to ") + caption, text.c_str(),
                             this, QStringList(tr("Download Maps")));
       if (welcomeDlg.exec() == QDialog::Rejected)
         bShowUpdateDialog = false;
@@ -634,7 +635,7 @@ void MainWindow::OnUploadEditsMenuItem()
   {
     auto & editor = osm::Editor::Instance();
     if (editor.HaveMapEditsOrNotesToUpload())
-      editor.UploadChanges(key, secret, {{"created_by", "OMaps " OMIM_OS_NAME}});
+      editor.UploadChanges(key, secret, {{"created_by", "Organic Maps " OMIM_OS_NAME}});
   }
 }
 
@@ -927,9 +928,4 @@ void MainWindow::OnBookmarksAction()
   m_pDrawWidget->update();
 }
 
-// static
-void MainWindow::SetDefaultSurfaceFormat(bool apiOpenGLES3)
-{
-  DrawWidget::SetDefaultSurfaceFormat(apiOpenGLES3);
-}
 }  // namespace qt

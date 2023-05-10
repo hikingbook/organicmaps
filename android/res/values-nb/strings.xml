@@ -220,6 +220,8 @@
 	<string name="pref_map_3d_title">Perspektivvisning</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
 	<string name="pref_map_3d_buildings_title">Bygninger i 3D</string>
+	<!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
+	<string name="pref_map_3d_buildings_disabled_summary">3D-bygninger er slått av i strømsparingsmodus</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Taleinstrukser</string>
 	<!-- Settings «Route» category: «Tts language» title -->
@@ -726,6 +728,9 @@
 	<string name="splash_subtitle">Kartdata fra OpenStreetMap</string>
 
 	<!-- SECTION: Types -->
+	<string name="type.addr_interpolation">Adresse/blokk</string>
+	<string name="type.addr_interpolation.even">Adresse/blokk</string>
+	<string name="type.addr_interpolation.odd">Adresse/blokk</string>
 	<string name="type.aerialway">Taubane</string>
 	<string name="type.aerialway.cable_car">Pendeltaubane</string>
 	<string name="type.aerialway.chair_lift">Stolheis</string>
@@ -753,7 +758,8 @@
 	<string name="type.amenity.car_wash">Bilvask</string>
 	<string name="type.amenity.casino">Kasino</string>
 	<string name="type.amenity.charging_station">Ladestasjon</string>
-	<string name="type.amenity.charging_station.motorcar">Ladestasjon</string>
+	<string name="type.amenity.charging_station.bicycle">Ladestasjon for sykkel</string>
+	<string name="type.amenity.charging_station.motorcar">Ladestasjon for biler</string>
 	<string name="type.amenity.childcare">Daghjem</string>
 	<string name="type.amenity.cinema">Kino</string>
 	<string name="type.leisure.bowling_alley">Bowlinghall</string>
@@ -765,6 +771,7 @@
 	<string name="type.amenity.doctors">Legekontor</string>
 	<string name="type.amenity.drinking_water">Drikkevann</string>
 	<string name="type.amenity.driving_school">Kjøreskole</string>
+	<string name="type.amenity.money_transfer">Pengeoverføring</string>
 	<string name="type.amenity.music_school">Musikkskole</string>
 	<string name="type.amenity.language_school">Språkskole</string>
 	<string name="type.office.diplomatic">Ambassade</string>
@@ -881,9 +888,12 @@
 	<string name="type.craft.handicraft">Kunsthåndverk</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Klimaanlegg</string>
+	<string name="type.craft.key_cutter">Key Cutting</string>
+	<string name="type.craft.locksmith">Låsesmed</string>
 	<string name="type.craft.metal_construction">Metallarbeider</string>
 	<string name="type.craft.painter">Maler</string>
 	<string name="type.craft.photographer">Fotograf</string>
+	<string name="type.shop.camera">Kamerabutikk</string>
 	<string name="type.craft.plumber">Rørlegger</string>
 	<string name="type.craft.sawmill">Sagbruk</string>
 	<string name="type.craft.shoemaker">Skoreparasjon</string>
@@ -1337,6 +1347,12 @@
 	<string name="type.power.generator.wind">Vindgenerator</string>
 	<string name="type.power.generator.gas">Gassturbinkraftverk</string>
 	<string name="type.power.generator.hydro">Vannkraftverk</string>
+	<string name="type.power.plant">Kraftverk</string>
+	<string name="type.power.plant.coal">Kullkraftverk</string>
+	<string name="type.power.plant.gas">Gassturbinkraftverk</string>
+	<string name="type.power.plant.hydro">Vannkraftverk</string>
+	<string name="type.power.plant.solar">Solkraftverk</string>
+	<string name="type.power.plant.wind">Vindkraftverk</string>
 	<string name="type.power.pole">Strømmast</string>
 	<string name="type.power.substation">Trafo</string>
 	<string name="type.power.tower">Strømmast</string>
@@ -1576,15 +1592,18 @@
 	<string name="type.shop">Butikk</string>
 	<string name="type.shop.alcohol">Vinmonopol</string>
 	<string name="type.shop.bakery">Bakeri</string>
+	<string name="type.shop.bathroom_furnishing">Baderomsmøbler</string>
 	<string name="type.shop.beauty">Skjønnhetssalong</string>
 	<string name="type.shop.beverages">Drinker</string>
 	<string name="type.shop.bicycle">Sykkel</string>
 	<string name="type.shop.books">Bokhandel</string>
 	<string name="type.shop.butcher">Slakter</string>
+	<string name="type.shop.cannabis">Cannabisbutikk</string>
 	<string name="type.shop.car">Bil butikk</string>
 	<string name="type.shop.car_parts">Bildeler</string>
 	<string name="type.shop.car_repair">Bilverksted</string>
 	<string name="type.shop.car_repair.tyres">Dekkreparasjon</string>
+	<string name="type.shop.carpet">Tepper</string>
 	<string name="type.shop.chemist">Husholdningsartikler</string>
 	<string name="type.shop.chocolate">Butikk</string>
 	<string name="type.shop.clothes">Klesbutikk</string>
@@ -1594,6 +1613,7 @@
 	<string name="type.shop.convenience">Nærbutikk</string>
 	<string name="type.shop.copyshop">Kopieringsbutikk</string>
 	<string name="type.shop.cosmetics">Kosmetikk</string>
+	<string name="type.shop.curtain">Gardiner</string>
 	<string name="type.shop.deli">Delikatessebutikk</string>
 	<string name="type.shop.department_store">Varehus</string>
 	<string name="type.shop.doityourself">Jernvareforretning</string>
@@ -1602,16 +1622,20 @@
 	<string name="type.shop.erotic">Erotisk butikk</string>
 	<string name="type.shop.fabric">Butikk</string>
 	<string name="type.shop.farm">Gårdsmatbutikk</string>
+	<string name="type.shop.fashion_accessories">Motetilbehør</string>
 	<string name="type.shop.florist">Blomsterhandler</string>
 	<string name="type.shop.funeral_directors">Begravelsebyrå</string>
 	<string name="type.shop.furniture">Møbelbutikk</string>
 	<string name="type.shop.garden_centre">Planteskole</string>
+	<string name="type.shop.gas">Gassbutikk</string>
 	<string name="type.shop.gift">Gavebutikk</string>
 	<string name="type.shop.greengrocer">Frukt- og grønnsakshandler</string>
 	<string name="type.shop.grocery">Dagligvare</string>
 	<string name="type.shop.hairdresser">Frisør</string>
 	<string name="type.shop.hardware">Jernvareforretning</string>
 	<string name="type.shop.health_food">Helsekostbutikk</string>
+	<string name="type.shop.herbalist">Urtebutikk</string>
+	<string name="type.shop.hifi">HiFi lyd</string>
 	<string name="type.shop.houseware">Husholdningsbutikk</string>
 	<string name="type.shop.jewelry">Gullsmed</string>
 	<string name="type.shop.kiosk">Kiosk</string>
@@ -1622,14 +1646,17 @@
 	<string name="type.shop.mobile_phone">Mobiltelefonbutikk</string>
 	<string name="type.shop.money_lender">Butikk</string>
 	<string name="type.shop.motorcycle">Motorsykkelforretning</string>
+	<string name="type.shop.motorcycle_repair">Motorsykkel reparasjon</string>
 	<string name="type.shop.music">Platebutikk</string>
 	<string name="type.shop.musical_instrument">Musikkinstrumenter</string>
 	<string name="type.shop.newsagent">Aviskiosk</string>
 	<string name="type.shop.optician">Optiker</string>
 	<string name="type.shop.outdoor">Fritidsutstyr</string>
+	<string name="type.shop.outpost">Hentested</string>
 	<string name="type.shop.pastry">Bakverk</string>
 	<string name="type.shop.pawnbroker">Pantelåner</string>
 	<string name="type.shop.pet">Dyrebutikk</string>
+	<string name="type.shop.pet_grooming">Kjæledyrpleie</string>
 	<string name="type.shop.photo">Fotobutikk</string>
 	<string name="type.shop.seafood">Fiskehandler</string>
 	<string name="type.shop.second_hand">Bruktbutikk</string>
@@ -1647,10 +1674,13 @@
 	<string name="type.shop.video">Videobutikken</string>
 	<string name="type.shop.video_games">Videospillbutikken</string>
 	<string name="type.shop.wine">Alkoholutsalg</string>
+	<string name="type.shop.agrarian">Landbruksbutikk</string>
 	<string name="type.shop.antiques">Antikviteter</string>
+	<string name="type.shop.appliance">Hvitevarebutikk</string>
 	<string name="type.shop.art">Kunstbutikk</string>
 	<string name="type.shop.baby_goods">Barnebutikk</string>
 	<string name="type.shop.bag">Veskerbutikk</string>
+	<string name="type.shop.bed">Sengebutikk</string>
 	<string name="type.shop.boutique">Boutique</string>
 	<string name="type.shop.charity">Veldedighetsbutikk</string>
 	<string name="type.shop.cheese">Ostebutikk</string>

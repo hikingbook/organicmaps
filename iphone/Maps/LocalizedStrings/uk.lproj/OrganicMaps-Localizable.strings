@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "Будівлі у 3D";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "3D будівлі вимкнені в режимі енергозбереження";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Голосові інструкції";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Uk:Про_проект";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Адреса/блок";
+
+"type.addr_interpolation.even" = "Адреса/блок";
+
+"type.addr_interpolation.odd" = "Адреса/блок";
 
 "type.aerialway" = "Канатна дорога";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Зарядна станція";
 
-"type.amenity.charging_station.motorcar" = "Зарядна станція";
+"type.amenity.charging_station.bicycle" = "Велосипедна зарядна станція";
+
+"type.amenity.charging_station.motorcar" = "Автомобільна зарядна станція";
 
 "type.amenity.childcare" = "Дитяча кімната";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Питна вода";
 
 "type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.money_transfer" = "Грошовий переказ";
 
 "type.amenity.music_school" = "Музична школа ім";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Опалення, вентиляція та кондиціювання повітря";
 
+"type.craft.key_cutter" = "Нарізка ключів";
+
+"type.craft.locksmith" = "Слюсар";
+
 "type.craft.metal_construction" = "Металоконструкції";
 
 "type.craft.painter" = "Маляр";
 
 "type.craft.photographer" = "Фотограф";
+
+"type.shop.camera" = "Магазин фотоапаратів";
 
 "type.craft.plumber" = "Сантехнік";
 
@@ -2687,6 +2709,18 @@
 
 "type.power.minor_line" = "Лінія електропередач низької напруги";
 
+"type.power.plant" = "Електростанція";
+
+"type.power.plant.coal" = "Вугільна електростанція";
+
+"type.power.plant.gas" = "Газотурбінна електростанція";
+
+"type.power.plant.hydro" = "Гідроелектростанція";
+
+"type.power.plant.solar" = "Сонячна електростанція";
+
+"type.power.plant.wind" = "Вітрова електростанція";
+
 "type.power.pole" = "Стовп ЛЕП";
 
 "type.power.station" = "Електростанція";
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Пекарня";
 
+"type.shop.bathroom_furnishing" = "Меблі для ванної кімнати";
+
 "type.shop.beauty" = "Салон краси";
 
 "type.shop.beverages" = "Напої";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "М'ясний магазин";
 
+"type.shop.cannabis" = "Магазин конопель";
+
 "type.shop.car" = "Автосалон";
 
 "type.shop.car_parts" = "Автозапчастини";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Шиномонтаж";
 
 "type.shop.caravan" = "Продаж автобудинків";
+
+"type.shop.carpet" = "Килими";
 
 "type.shop.chemist" = "Магазин побутової хімії";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Косметика";
 
+"type.shop.curtain" = "Штори";
+
 "type.shop.deli" = "Делікатесний магазин";
 
 "type.shop.department_store" = "Універмаг";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Магазин фермерських продуктів";
 
+"type.shop.fashion_accessories" = "Модні аксесуари";
+
 "type.shop.florist" = "Магазин квітів";
 
 "type.shop.funeral_directors" = "Ритуальні послуги";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Магазин меблів";
 
 "type.shop.garden_centre" = "Товари для саду";
+
+"type.shop.gas" = "Газовий магазин";
 
 "type.shop.gift" = "Магазин сувенірів";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Магазин побутової техніки";
 
 "type.shop.health_food" = "Магазин здорового харчування";
+
+"type.shop.herbalist" = "Магазин трав";
+
+"type.shop.hifi" = "HiFi Audio";
 
 "type.shop.houseware" = "Магазин посуду";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Магазин мотоциклів";
 
+"type.shop.motorcycle_repair" = "Ремонт мотоциклів";
+
 "type.shop.music" = "Крамниця";
 
 "type.shop.musical_instrument" = "Крамниця";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Спорядження";
 
+"type.shop.outpost" = "Пункт самовивозу";
+
 "type.shop.pastry" = "Тістечка";
 
 "type.shop.pawnbroker" = "Ломбард";
 
 "type.shop.pet" = "Зоотовари";
+
+"type.shop.pet_grooming" = "Грумінг";
 
 "type.shop.photo" = "Фототовари";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Винна крамниця";
 
+"type.shop.agrarian" = "Сільськогосподарський магазин";
+
 "type.shop.antiques" = "Антикваріат";
+
+"type.shop.appliance" = "Магазин побутової техніки";
 
 "type.shop.art" = "Магазин мистецтв";
 
 "type.shop.baby_goods" = "Дитячий магазин";
 
 "type.shop.bag" = "Магазин сумок";
+
+"type.shop.bed" = "Магазин ліжок";
 
 "type.shop.boutique" = "Бутік";
 

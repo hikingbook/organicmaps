@@ -1,6 +1,5 @@
 #pragma once
 
-#include "indexer/feature_data.hpp"
 #include "indexer/ftypes_matcher.hpp"
 #include "indexer/drawing_rule_def.hpp"
 
@@ -31,7 +30,6 @@ struct CaptionDescription
 
   std::string const & GetMainText() const;
   std::string const & GetAuxText() const;
-  std::string const & GetRoadNumber() const;
   bool IsNameExists() const;
   bool IsHouseNumberInMainText() const { return m_isHouseNumberInMainText; }
 
@@ -43,7 +41,6 @@ private:
 
   std::string m_mainText;
   std::string m_auxText;
-  std::string m_roadNumber;
   std::string m_houseNumber;
   bool m_isHouseNumberInMainText = false;
 };
@@ -89,6 +86,4 @@ private:
 
 bool InitStylist(FeatureType & f, int8_t deviceLang, int const zoomLevel, bool buildings3d,
                  Stylist & s);
-
-double GetFeaturePriority(FeatureType & f, int const zoomLevel);
 }  // namespace df

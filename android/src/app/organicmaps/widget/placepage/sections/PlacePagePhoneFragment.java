@@ -1,4 +1,4 @@
-package app.organicmaps.widget.placepage;
+package app.organicmaps.widget.placepage.sections;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.bookmarks.data.Metadata;
+import app.organicmaps.widget.placepage.PlacePageViewModel;
 
 public class PlacePagePhoneFragment extends Fragment implements Observer<MapObject>
 {
@@ -36,20 +37,26 @@ public class PlacePagePhoneFragment extends Fragment implements Observer<MapObje
     RecyclerView phoneRecycler = view.findViewById(R.id.rw__phone);
     mPhoneAdapter = new PlacePhoneAdapter();
     phoneRecycler.setAdapter(mPhoneAdapter);
+  }
 
+  @Override
+  public void onStart()
+  {
+    super.onStart();
     mViewModel.getMapObject().observe(requireActivity(), this);
   }
 
   @Override
-  public void onDestroyView()
+  public void onStop()
   {
-    super.onDestroyView();
+    super.onStop();
     mViewModel.getMapObject().removeObserver(this);
   }
 
   @Override
-  public void onChanged(MapObject mapObject)
+  public void onChanged(@Nullable MapObject mapObject)
   {
-    mPhoneAdapter.refreshPhones(mapObject.getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
+    if (mapObject != null)
+      mPhoneAdapter.refreshPhones(mapObject.getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
   }
 }

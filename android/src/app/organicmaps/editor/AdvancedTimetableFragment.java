@@ -5,6 +5,7 @@
 
 package app.organicmaps.editor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
@@ -33,6 +35,7 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
   private EditText mInput;
   private WebView mExample;
   private TextView mExamplesTitle;
+  private static ImageView mSaveButton;
   @Nullable
   private String mInitTimetables;
   @Nullable
@@ -70,6 +73,7 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
 //    mExamplesTitle = view.findViewById(R.id.tv__examples_title);
 //    setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
 //    setTextChangedListener(mInput, mListener);
+//    mSaveButton = getParentFragment().getParentFragment().getView().findViewById(R.id.save);
 //  }
 
 //  private void showExample(boolean show)
@@ -142,7 +146,10 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
       @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {}
+      public void onTextChanged(CharSequence s, int start, int before, int count)
+      {
+        mSaveButton.setEnabled(OpeningHours.nativeIsTimetableStringValid(s.toString()));
+      }
 
       @Override
       public void afterTextChanged(Editable s)

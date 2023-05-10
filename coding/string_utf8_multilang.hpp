@@ -92,14 +92,20 @@ public:
 
   static Languages const & GetSupportedLanguages();
 
+  // These names require separate search/street processing.
+  static bool IsAltOrOldName(int8_t langCode)
+  {
+    return langCode == kAltNameCode || langCode == kOldNameCode;
+  }
+
   /// @returns kUnsupportedLanguageCode if language is not recognized.
   static int8_t GetLangIndex(std::string_view lang);
   /// @returns empty string if langCode is invalid.
   static char const * GetLangByCode(int8_t langCode);
   /// @returns empty string if langCode is invalid.
   static char const * GetLangNameByCode(int8_t langCode);
-  /// @returns empty vector if langCode is invalid.
-  static std::vector<std::string> const & GetTransliteratorsIdsByCode(int8_t langCode);
+  /// @returns nullptr if langCode is invalid.
+  static std::vector<std::string> const * GetTransliteratorsIdsByCode(int8_t langCode);
 
   inline bool operator==(StringUtf8Multilang const & rhs) const { return m_s == rhs.m_s; }
   inline bool operator!=(StringUtf8Multilang const & rhs) const { return !(*this == rhs); }

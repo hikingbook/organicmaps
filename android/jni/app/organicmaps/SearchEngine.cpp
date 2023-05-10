@@ -1,7 +1,7 @@
 // This file is modified by Zheng-Xiang Ke on 2022.
 #include "app/organicmaps/Framework.hpp"
 #include "app/organicmaps/UserMarkHelper.hpp"
-#include "app/organicmaps/platform/Platform.hpp"
+#include "app/organicmaps/platform/AndroidPlatform.hpp"
 
 #include "map/bookmarks_search_params.hpp"
 #include "map/everywhere_search_params.hpp"
@@ -288,7 +288,7 @@ extern "C"
 
   JNIEXPORT void JNICALL Java_app_organicmaps_search_SearchEngine_nativeRunInteractiveSearch(
       JNIEnv * env, jclass clazz, jbyteArray bytes, jboolean isCategory,
-      jstring lang, jlong timestamp, jboolean isMapAndTable)
+      jstring lang, jlong timestamp, jboolean isMapAndTable, jboolean hasPosition, jdouble lat, jdouble lon)
   {
     search::ViewportSearchParams vparams{
         jni::ToNativeString(env, bytes),
@@ -311,8 +311,7 @@ extern "C"
           std::move(vparams.m_inputLocale),
           {},   // default timeout
           static_cast<bool>(isCategory),
-          bind(&OnResults, _1, _2, timestamp, isMapAndTable,
-                false /* hasPosition */, 0.0 /* lat */, 0.0 /* lon */)
+          bind(&OnResults, _1, _2, timestamp, isMapAndTable, hasPosition, lat, lon)
       };
 
       if (g_framework->NativeFramework()->GetSearchAPI().SearchEverywhere(std::move(eparams)))

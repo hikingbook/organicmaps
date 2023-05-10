@@ -38,11 +38,11 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import app.organicmaps.BuildConfig;
@@ -391,7 +391,7 @@ public class Utils
     }
 
     final Holder holder = new Holder();
-    new AlertDialog.Builder(context, R.style.MwmTheme_AlertDialog)
+    new MaterialAlertDialogBuilder(context, R.style.MwmTheme_AlertDialog)
         .setMessage(message)
         .setNegativeButton(R.string.cancel, null)
         .setPositiveButton(R.string.downloader_retry, (dialog, which) -> {

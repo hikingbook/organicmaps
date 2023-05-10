@@ -226,6 +226,9 @@
 /* Settings «Map» category: «3D buildings» title */
 "pref_map_3d_buildings_title" = "Bâtiments en 3D";
 
+/* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
+"pref_map_3d_buildings_disabled_summary" = "Les bâtiments 3D sont désactivés en mode d'économie d'énergie";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instructions vocales";
 
@@ -1236,8 +1239,17 @@
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
 "translated_om_site_url" = "https://organicmaps.app/";
 
+/* Link to OSM wiki for Editor, Profile and About pages */
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/FR:À_propos_d’OpenStreetMap";
+
 
 /********** Types **********/
+
+"type.addr_interpolation" = "Adresse/Bloc";
+
+"type.addr_interpolation.even" = "Adresse/Bloc";
+
+"type.addr_interpolation.odd" = "Adresse/Bloc";
 
 "type.aerialway" = "Transport par câble aérien";
 
@@ -1311,7 +1323,9 @@
 
 "type.amenity.charging_station" = "Borne de recharge";
 
-"type.amenity.charging_station.motorcar" = "Borne de recharge";
+"type.amenity.charging_station.bicycle" = "Borne de recharge pour vélo";
+
+"type.amenity.charging_station.motorcar" = "Borne de recharge pour voiture";
 
 "type.amenity.childcare" = "Garderie";
 
@@ -1334,6 +1348,8 @@
 "type.amenity.drinking_water" = "Eau potable";
 
 "type.amenity.driving_school" = "Auto-école";
+
+"type.amenity.money_transfer" = "Transfert d'argent";
 
 "type.amenity.music_school" = "École de musique";
 
@@ -1655,11 +1671,17 @@
 /* Heating, Ventilation, and Air Conditioning */
 "type.craft.hvac" = "Chauffage, ventilation et climatisation";
 
+"type.craft.key_cutter" = "Reproduction de clé";
+
+"type.craft.locksmith" = "Serrurier";
+
 "type.craft.metal_construction" = "Métallo";
 
 "type.craft.painter" = "Peintre";
 
 "type.craft.photographer" = "Photographe";
+
+"type.shop.camera" = "Boutique d'appareils photo";
 
 "type.craft.plumber" = "Plombier";
 
@@ -2687,6 +2709,18 @@
 
 "type.power.minor_line" = "Minor Power Line";
 
+"type.power.plant" = "Centrale électrique";
+
+"type.power.plant.coal" = "Centrale au charbon";
+
+"type.power.plant.gas" = "Centrale à turbine à gaz";
+
+"type.power.plant.hydro" = "Centrale hydroélectrique";
+
+"type.power.plant.solar" = "Centrale solaire";
+
+"type.power.plant.wind" = "Centrale éolienne";
+
 "type.power.pole" = "Poteau électrique";
 
 "type.power.station" = "Power Station";
@@ -3259,6 +3293,8 @@
 
 "type.shop.bakery" = "Boulangerie";
 
+"type.shop.bathroom_furnishing" = "Mobilier de salle de bain";
+
 "type.shop.beauty" = "Salon de beauté";
 
 "type.shop.beverages" = "Boissons";
@@ -3271,6 +3307,8 @@
 
 "type.shop.butcher" = "Boucherie";
 
+"type.shop.cannabis" = "Magasin de cannabis";
+
 "type.shop.car" = "Concessionnaire automobile";
 
 "type.shop.car_parts" = "Pièces de voiture";
@@ -3280,6 +3318,8 @@
 "type.shop.car_repair.tyres" = "Réparation de pneus";
 
 "type.shop.caravan" = "Concessionnaire de caravanes et camping-cars";
+
+"type.shop.carpet" = "Magasin de tapis";
 
 "type.shop.chemist" = "Droguerie";
 
@@ -3299,6 +3339,8 @@
 
 "type.shop.cosmetics" = "Produits de beauté";
 
+"type.shop.curtain" = "Magasin de rideaux";
+
 "type.shop.deli" = "Épicerie fine";
 
 "type.shop.department_store" = "Grand magasin";
@@ -3315,6 +3357,8 @@
 
 "type.shop.farm" = "Magasin d'alimentation à la ferme";
 
+"type.shop.fashion_accessories" = "Boutique d'accessoires de mode";
+
 "type.shop.florist" = "Fleuriste";
 
 "type.shop.funeral_directors" = "Pompes funèbres";
@@ -3322,6 +3366,8 @@
 "type.shop.furniture" = "Magasin de meubles";
 
 "type.shop.garden_centre" = "Jardinerie";
+
+"type.shop.gas" = "Vente de gaz";
 
 "type.shop.gift" = "Boutique de souvenirs";
 
@@ -3334,6 +3380,10 @@
 "type.shop.hardware" = "Quincaillerie";
 
 "type.shop.health_food" = "Magasin d'alimentation diététique";
+
+"type.shop.herbalist" = "Herboristerie";
+
+"type.shop.hifi" = "Matériel Hi-Fi";
 
 "type.shop.houseware" = "Magasin d'articles ménagers";
 
@@ -3355,6 +3405,8 @@
 
 "type.shop.motorcycle" = "Magasin de motos";
 
+"type.shop.motorcycle_repair" = "Réparateur de moto";
+
 "type.shop.music" = "Disquaire";
 
 "type.shop.musical_instrument" = "Magasin d'instruments de musique";
@@ -3365,11 +3417,15 @@
 
 "type.shop.outdoor" = "Matériel de loisirs de plein air";
 
+"type.shop.outpost" = "Point de retrait";
+
 "type.shop.pastry" = "Pâtisserie";
 
 "type.shop.pawnbroker" = "Prêteur sur gages";
 
 "type.shop.pet" = "Animalerie";
+
+"type.shop.pet_grooming" = "Salon de toilettage";
 
 "type.shop.photo" = "Matériel de photographie";
 
@@ -3405,13 +3461,19 @@
 
 "type.shop.wine" = "Caviste";
 
+"type.shop.agrarian" = "Magasin d'agriculture";
+
 "type.shop.antiques" = "Antiquités";
+
+"type.shop.appliance" = "Magasin d'électroménager";
 
 "type.shop.art" = "Boutique d'art";
 
 "type.shop.baby_goods" = "Magasin de puériculture";
 
 "type.shop.bag" = "Magasin de sacs";
+
+"type.shop.bed" = "Magasin de literie";
 
 "type.shop.boutique" = "Boutique";
 
@@ -3542,7 +3604,7 @@
 
 "type.tourism.attraction.specified" = "Attraction";
 
-"type.tourism.camp_site" = "Camping";
+"type.tourism.camp_site" = "Camp Site";
 
 "type.tourism.caravan_site" = "Aire de camping-car";
 
@@ -3594,7 +3656,7 @@
 
 "type.waterway.canal" = "Canal";
 
-"type.waterway.canal.tunnel" = "Canal";
+"type.waterway.canal.tunnel" = "Canal Tunnel";
 
 "type.waterway.dam" = "Barrage";
 

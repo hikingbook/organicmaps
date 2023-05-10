@@ -115,7 +115,7 @@ public:
 
   void SetTransitInfo(std::unique_ptr<TransitInfo> transitInfo)
   {
-    m_transitInfo.Set(move(transitInfo));
+    m_transitInfo.Set(std::move(transitInfo));
   }
 
   Segment const & GetSegment() const { return m_segment; }
@@ -123,6 +123,7 @@ public:
   geometry::PointWithAltitude const & GetJunction() const { return m_junction; }
   RoadNameInfo const & GetRoadNameInfo() const { return m_roadNameInfo; }
   turns::TurnItem const & GetTurn() const { return m_turn; }
+  void ClearTurnLanes() { m_turn.m_lanes.clear(); }
 
   double GetDistFromBeginningMeters() const { return m_distFromBeginningMeters; }
   double GetDistFromBeginningMerc() const { return m_distFromBeginningMerc; }
