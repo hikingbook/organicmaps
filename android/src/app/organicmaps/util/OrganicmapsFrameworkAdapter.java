@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -280,10 +281,8 @@ public enum OrganicmapsFrameworkAdapter {
         BookmarkManager.INSTANCE.deleteCategory(catId);
     }
 
-    public void deleteAllCategory(List<Long> catIdList) {
-        for (long catId : catIdList) {
-            deleteCategory(catId);
-        }
+    public List<BookmarkCategory> getBookmarkCategories() {
+        return Arrays.asList(BookmarkManager.INSTANCE.nativeGetBookmarkCategories());
     }
 
     public void toggleCategoryVisibility(Long catId) {

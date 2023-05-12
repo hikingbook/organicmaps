@@ -614,7 +614,7 @@ public enum BookmarkManager
   @NonNull
   native BookmarkCategory nativeGetBookmarkCategory(long catId);
   @NonNull
-  native BookmarkCategory[] nativeGetBookmarkCategories();
+  public native BookmarkCategory[] nativeGetBookmarkCategories();
   @NonNull
   native BookmarkCategory[] nativeGetChildrenCategories(long catId);
 

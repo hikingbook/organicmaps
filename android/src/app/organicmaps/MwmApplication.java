@@ -19,6 +19,7 @@ import app.organicmaps.background.AppBackgroundTracker;
 import app.organicmaps.background.NotificationChannelFactory;
 import app.organicmaps.background.NotificationChannelProvider;
 import app.organicmaps.background.Notifier;
+import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.downloader.CountryItem;
 import app.organicmaps.downloader.MapManager;
 import app.organicmaps.location.LocationHelper;
@@ -201,7 +202,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     initNativeStrings();
 //    ThemeSwitcher.INSTANCE.initialize(this);
     SearchEngine.INSTANCE.initialize(null);
-//    BookmarkManager.loadBookmarks();
+    BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
 //    ThemeSwitcher.INSTANCE.restart(false);
     LocationHelper.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
