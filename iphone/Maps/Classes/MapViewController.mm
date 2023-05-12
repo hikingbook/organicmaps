@@ -447,7 +447,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
   self.userTouchesAction = UserTouchesActionNone;
   [[MWMBookmarksManager sharedManager] addObserver:self];
-//  [[MWMBookmarksManager sharedManager] loadBookmarks];
+  [[MWMBookmarksManager sharedManager] loadBookmarks];
   [MWMFrameworkListener addObserver:self];
 }
 
