@@ -23,7 +23,6 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import app.organicmaps.Framework;
-import app.organicmaps.R;
 import app.organicmaps.background.AppBackgroundTracker;
 import app.organicmaps.base.Initializable;
 import app.organicmaps.bookmarks.data.FeatureId;
@@ -34,7 +33,6 @@ import app.organicmaps.util.Listeners;
 import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.NetworkPolicy;
 import app.organicmaps.util.log.Logger;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public enum LocationHelper implements Initializable<Context>, AppBackgroundTracker.OnTransitionListener, BaseLocationProvider.Listener
 {
@@ -373,22 +371,22 @@ public enum LocationHelper implements Initializable<Context>, AppBackgroundTrack
       return;
     }
 
-    final AppCompatActivity activity = mActivity;
-    mErrorDialog = new MaterialAlertDialogBuilder(activity, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.current_location_unknown_title)
-        .setMessage(R.string.current_location_unknown_message)
-        .setOnDismissListener(dialog -> mErrorDialog = null)
-        .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
-        {
-          Logger.w(TAG, "Disabled by user");
-          LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-          stop();
-        })
-        .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
-        {
-          // Do nothing - provider will continue to search location.
-        })
-        .show();
+//    final AppCompatActivity activity = mActivity;
+//    mErrorDialog = new MaterialAlertDialogBuilder(activity, R.style.MwmTheme_AlertDialog)
+//        .setTitle(R.string.current_location_unknown_title)
+//        .setMessage(R.string.current_location_unknown_message)
+//        .setOnDismissListener(dialog -> mErrorDialog = null)
+//        .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
+//        {
+//          Logger.w(TAG, "Disabled by user");
+//          LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
+//          stop();
+//        })
+//        .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
+//        {
+//          // Do nothing - provider will continue to search location.
+//        })
+//        .show();
   }
 
   /**
