@@ -584,6 +584,8 @@
         <data android:host="*"/>
         <data android:mimeType="application/vnd.google-earth.kml+xml"/>
         <data android:mimeType="application/vnd.google-earth.kmz"/>
+        <data android:mimeType="application/gpx"/>
+        <data android:mimeType="application/gpx+xml"/>
       </intent-filter>
 
       <intent-filter>
@@ -591,6 +593,8 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <data android:mimeType="application/vnd.google-earth.kml+xml"/>
         <data android:mimeType="application/vnd.google-earth.kmz"/>
+        <data android:mimeType="application/gpx"/>
+        <data android:mimeType="application/gpx+xml"/>
       </intent-filter>
 
       <intent-filter>
@@ -604,21 +608,148 @@
         <data android:mimeType="*/*"/>
         <!-- See http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i -->
         <data android:pathPattern="/.*\\.kmz" />
+        <data android:pathPattern="/.*\\.KMZ" />
         <data android:pathPattern="/.*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\.KMZ" />
         <data android:pathPattern="/.*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KMZ" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KMZ" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
         <data android:pathPattern="/.*\\.kml" />
+        <data android:pathPattern="/.*\\.KML" />
         <data android:pathPattern="/.*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\.KML" />
         <data android:pathPattern="/.*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KML" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KML" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\.gpx" />
+        <data android:pathPattern="/.*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
         <!-- Old MAPS.ME binary format //-->
         <data android:pathPattern="/.*\\.kmb" />
+        <data android:pathPattern="/.*\\.KMB" />
         <data android:pathPattern="/.*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\.KMB" />
         <data android:pathPattern="/.*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KMB" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KMB" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+      </intent-filter>
+
+      <!-- Duplicates the intent-filter above except it doesn't have mimeType, see
+           https://stackoverflow.com/questions/1733195/android-intent-filter-for-a-particular-file-extension/31028507#31028507 -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="content"/>
+        <data android:scheme="file"/>
+        <data android:scheme="data"/>
+        <data android:host="*"/>
+        <!-- See http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i -->
+        <data android:pathPattern="/.*\\.kmz" />
+        <data android:pathPattern="/.*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmz" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMZ" />
+        <data android:pathPattern="/.*\\.kml" />
+        <data android:pathPattern="/.*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kml" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KML" />
+        <data android:pathPattern="/.*\\.gpx" />
+        <data android:pathPattern="/.*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.gpx" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.GPX" />
+        <!-- Old MAPS.ME binary format //-->
+        <data android:pathPattern="/.*\\.kmb" />
+        <data android:pathPattern="/.*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
       </intent-filter>
     </activity>
 
@@ -676,7 +807,7 @@
     <activity
         android:name="app.organicmaps.bookmarks.BookmarkCategoriesActivity"
         android:configChanges="orientation|screenLayout|screenSize"
-        android:label="@string/bookmarks"
+        android:label="@string/bookmarks_and_tracks"
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
 
@@ -700,7 +831,8 @@
 
     <activity
         android:name="app.organicmaps.editor.FeatureCategoryActivity"
-        android:parentActivityName="app.organicmaps.MwmActivity" />
+        android:parentActivityName="app.organicmaps.MwmActivity"
+        android:windowSoftInputMode="adjustResize" />
 
     <activity
         android:name="app.organicmaps.editor.ReportActivity"

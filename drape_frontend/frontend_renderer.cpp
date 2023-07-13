@@ -413,7 +413,9 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
     {
       ref_ptr<MapShapesMessage> msg = message;
       CHECK(m_context != nullptr, ());
-      m_myPositionController->SetRenderShape(m_context, m_texMng, msg->AcceptShape());
+      m_texMng->ApplyInvalidatedStaticTextures();
+      m_myPositionController->SetRenderShape(m_context, m_texMng, msg->AcceptShape(),
+                                             msg->AcceptPeloadedArrow3dData());
       m_selectionShape = msg->AcceptSelection();
       if (m_selectObjectMessage != nullptr)
       {
@@ -1508,7 +1510,15 @@ void FrontendRenderer::RenderScene(ScreenBase const & modelView, bool activeFram
     return;
 
   if (IsValidCurrentZoom())
-    m_myPositionController->Render(m_context, make_ref(m_gpuProgramManager), modelView, GetCurrentZoom(), m_frameValues);
+  {
+    uint32_t clearBits = dp::ClearBits::DepthBit;
+    if (m_apiVersion == dp::ApiVersion::OpenGLES2 || m_apiVersion == dp::ApiVersion::OpenGLES3)
+      clearBits |= dp::ClearBits::StencilBit;
+    m_context->Clear(clearBits, dp::kClearBitsStoreAll);
+
+    m_myPositionController->Render(m_context, make_ref(m_gpuProgramManager), modelView,
+                                   GetCurrentZoom(), m_frameValues);
+  }
 
   if (m_guiRenderer && !m_screenshotMode)
   {

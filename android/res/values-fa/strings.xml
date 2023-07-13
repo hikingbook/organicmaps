@@ -24,7 +24,7 @@
 	<string name="miles">مایل</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">مکان من</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">بعداً</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">جست‌وجو</string>
@@ -70,8 +70,10 @@
 	<string name="add_new_set">اضافه کردن مجموعه جدید</string>
 	<!-- Bookmark Color dialog title -->
 	<string name="bookmark_color">رنگ نشانه</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">نشانه‌ها</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">نشانه‌ها و مسیر</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">مکان من</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -110,6 +112,8 @@
 	<string name="parking">پارکینگ</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">خرید کردن</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">دست دوم</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">هتل</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -230,6 +234,10 @@
 	<string name="copyright">حق نشر و کپی رایت</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">گزارش خطا</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">برای کالیبره کردن قطب نما، جهت پیکان را با حرکت دادن تلفن در یک حرکت شکل هشت بهبود دهید.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">تلفن را به شکل هشت حرکت دهید تا قطب نما را کالیبره کنید و جهت پیکان را روی نقشه ثابت کنید.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">آپدیت همه</string>
 	<!-- Cancel all button text -->
@@ -358,6 +366,10 @@
 	<string name="p2p_reroute_from_current">آیا می خواهید یک مسیر را از موقعیت فعلیتان برنامه ریزی کنیم؟</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">بعدی</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">از ساعت</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">الی</string>
 	<string name="editor_time_add">اضافه کردن برنامه ریزی</string>
 	<string name="editor_time_delete">حذف کردن برنامه ریزی</string>
 	<!-- Text for allday switch. -->
@@ -459,18 +471,16 @@
 	<string name="current_location_unknown_message">مکان شما ناشناس مانده است.ممکن است شما داخل یک ساختمان یا تونل باشید.</string>
 	<string name="current_location_unknown_continue_button">ادامه</string>
 	<string name="current_location_unknown_stop_button">توقف</string>
-	<string name="meter">متر</string>
-	<string name="kilometer">کیلومتر</string>
+	<string name="m">متر</string>
+	<string name="km">کیلومتر</string>
 	<string name="kilometers_per_hour">کیلومتربرساعت (km/h)</string>
-	<string name="mile">مایل</string>
+	<string name="mi">مایل</string>
 	<!-- A unit of measure -->
-	<string name="foot">فوت</string>
+	<string name="ft">فوت</string>
 	<string name="miles_per_hour">مایل بر ساعت (mph)</string>
 	<string name="hour">ساعت</string>
 	<string name="minute">دقیقه</string>
-	<string name="placepage_place_description">توضیحات</string>
 	<string name="placepage_more_button">بیشتر</string>
-	<string name="placepage_call_button">تماس</string>
 	<string name="placepage_edit_bookmark_button">ویرایش نشانه‌ها</string>
 	<string name="editor_comment_hint">اظهار نظر</string>
 	<string name="editor_reset_edits_message">آیا تغییرات محلی را نادیده می گیرید؟</string>
@@ -535,6 +545,8 @@
 	<string name="bookmark_lists_hide_all">پنهان کردن همه</string>
 	<string name="bookmark_lists_show_all">نمایش همه</string>
 	<string name="bookmarks_create_new_group">ایجاد لیست جدید</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">وارد کردن نشانکu200cها و آهنگu200cها</string>
 	<string name="bookmarks_error_message_share_general">با توجه به خطای برنامه، امکان اشتراک گذاری وجود ندارد</string>
 	<string name="bookmarks_error_title_share_empty">خطای اشتراک</string>
 	<string name="bookmarks_error_message_share_empty">یک لیست خالی را نمی توان به اشتراک گذاشت</string>
@@ -717,11 +729,13 @@
 	<string name="type.amenity.clinic">کلینیک</string>
 	<string name="type.amenity.college">دانشگاه</string>
 	<string name="type.amenity.community_centre">مرکزاجتماعی</string>
+	<string name="type.amenity.conference_centre">مرکز کنفرانس</string>
 	<string name="type.amenity.courthouse">دادگاه</string>
 	<string name="type.amenity.dentist">دندان پزشکی</string>
 	<string name="type.amenity.doctors">کلینیک</string>
 	<string name="type.amenity.drinking_water">اب اشامیدنی</string>
 	<string name="type.amenity.driving_school">اموزشگاه رانندگی</string>
+	<string name="type.amenity.exhibition_centre">مرکز نمایشگاه</string>
 	<string name="type.amenity.money_transfer">انتقال پول</string>
 	<string name="type.amenity.music_school">ﯽﻘﯿﺳﻮﻣ ﻩﺎﮕﺷﺯﻮﻣﺁ</string>
 	<string name="type.amenity.language_school">ﻥﺎﺑﺯ ﻪﺳﺭﺪﻣ</string>
@@ -817,13 +831,22 @@
 	<string name="type.barrier.kissing_gate">ورودی</string>
 	<string name="type.barrier.lift_gate">اسانسور</string>
 	<string name="type.barrier.stile">پلکان</string>
+	<string name="type.barrier.turnstile">گردان</string>
 	<string name="type.barrier.swing_gate">اسانسور</string>
 	<string name="type.barrier.toll_booth">گیشه عوارضی</string>
 	<string name="type.boundary.national_park">پارک ملی</string>
+	<string name="type.boundary.protected_area">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.1">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.2">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.3">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.4">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.5">منطقه حفاظت شده</string>
+	<string name="type.boundary.protected_area.6">منطقه حفاظت شده</string>
 	<string name="type.building">ساختمان</string>
 	<string name="type.building.address">ساختمان</string>
-	<string name="type.building.garage">گاراژ</string>
 	<string name="type.building.has_parts">ساختمان</string>
+	<string name="type.building_part">ساختمان</string>
+	<string name="type.building.garage">گاراژ</string>
 	<string name="type.building.train_station">ایستگاه قطار</string>
 	<string name="type.cemetery.grave">ﺮﺒﻗ</string>
 	<string name="type.craft">صنعت‌گری</string>
@@ -856,6 +879,7 @@
 	<string name="type.entrance">ورودی</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">ﯽﻠﺻﺍ ﯼﺩﻭﺭﻭ</string>
+	<string name="type.entrance.exit">خارج شوید</string>
 	<string name="type.healthcare.laboratory">ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ</string>
 	<string name="type.healthcare.physiotherapist">فیزیوتراپیست</string>
 	<string name="type.healthcare.alternative">طب جایگزین</string>
@@ -961,6 +985,8 @@
 	<string name="type.highway.road">جاده</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">پل</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">پل</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">تونل</string>
 	<string name="type.highway.secondary">جاده</string>
@@ -1216,11 +1242,39 @@
 	<string name="type.power.plant.wind">نیروگاه بادی</string>
 	<string name="type.power.pole">برج قدرت</string>
 	<string name="type.power.tower">برج قدرت</string>
+	<string name="type.railway.funicular">فونیکولور</string>
 	<string name="type.railway.halt">ایستگاه قطار</string>
 	<string name="type.railway.level_crossing">تقاطع راه آهن</string>
 	<string name="type.railway.monorail">مونوریل</string>
 	<string name="type.railway.rail">راه آهن</string>
+	<string name="type.railway.rail.highspeed">راه آهن پرسرعت</string>
+	<string name="type.railway.rail.tourism">راه آهن توریستی</string>
+	<string name="type.railway.rail.main">راه آهن</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">راه آهن ثانویه</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">راه آهن شهری</string>
+	<string name="type.railway.rail.spur">خار راه آهن</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">ریل کمکی</string>
+	<string name="type.railway.rail.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.highspeed.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.tourism.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.main.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.branch.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.utility.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.spur.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.service.bridge">پل راه آهن</string>
+	<string name="type.railway.rail.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.highspeed.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.tourism.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.main.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.branch.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.utility.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.spur.tunnel">تونل راه آهن</string>
+	<string name="type.railway.rail.service.tunnel">تونل راه آهن</string>
 	<string name="type.railway.station">ایستگاه قطار</string>
+	<string name="type.railway.station.funicular">فونیکولور</string>
 	<string name="type.railway.station.light_rail">ایستگاه قطار</string>
 	<string name="type.railway.station.monorail">ایستگاه قطار</string>
 	<string name="type.railway.station.subway">حمل و نقل</string>
@@ -1533,6 +1587,7 @@
 	<string name="type.shop.agrarian">مغازه کشاورزی</string>
 	<string name="type.shop.antiques">ﺕﺎﺟ ﻪﻘﯿﺘﻋ</string>
 	<string name="type.shop.appliance">فروشگاه لوازم خانگی</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">ﺮﻨﻫ ﻩﺎﮕﺷﻭﺮﻓ</string>
 	<string name="type.shop.baby_goods">ﻥﺎﮐﺩﻮﮐ ﻩﺎﮕﺷﻭﺮﻓ</string>
 	<string name="type.shop.bag">ﻒﯿﮐ ﻩﺎﮕﺷﻭﺮﻓ</string>
@@ -1621,6 +1676,7 @@
 	<string name="type.tourism.zoo">گردشگری</string>
 	<string name="type.waterway.canal">کانال اب</string>
 	<string name="type.waterway.canal.tunnel">کانال اب</string>
+	<string name="type.waterway.fish_pass">نردبان ماهی</string>
 	<string name="type.waterway.river">رودخانه</string>
 	<string name="type.waterway.river.tunnel">رودخانه</string>
 	<string name="type.waterway.riverbank">رودخانه</string>
@@ -1632,6 +1688,7 @@
 	<string name="type.wheelchair.limited">دسترسی محدود با صندلی چرخ دار</string>
 	<string name="type.wheelchair.no">بدون دسترسی با صندلی چرخ دار</string>
 	<string name="type.wheelchair.yes">دسترسی کامل با صندلی چرخ دار</string>
-	<string name="type.building_part">ساختما</string>
 	<string name="type.amenity.events_venue">محل برگزاری رویدادها</string>
+	<string name="type.shop.auction">حراج</string>
+	<string name="type.shop.collector">کلکسیونی ها</string>
 </resources>

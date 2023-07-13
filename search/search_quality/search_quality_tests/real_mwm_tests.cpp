@@ -474,9 +474,9 @@ UNIT_CLASS_TEST(MwmTestsFixture, Street_BusStop)
     auto const & results = request->Results();
     TEST_GREATER(results.size(), kTopPoiResultsCount, ());
 
-    // Top results are Hotel and Street.
-    Range const range(results, 0, 3);
-    EqualClassifType(range, GetClassifTypes({{"tourism", "hotel"}, {"shop", "supermarket"}, {"highway"}}));
+    // Top results are Hotel and Street (sometimes bus stop).
+    Range const range(results);
+    EqualClassifType(range, GetClassifTypes({{"tourism", "hotel"}, {"highway", "bus_stop"}, {"highway", "residential"}}));
   }
 
   {
@@ -500,6 +500,17 @@ UNIT_CLASS_TEST(MwmTestsFixture, Street_BusStop)
     EqualClassifType(range, GetClassifTypes({{"highway", "bus_stop"}}));
     TEST_LESS(SortedByDistance(range, center), 5000.0, ());
   }
+
+  {
+    auto request = MakeRequest("Juncal train", "en");
+    auto const & results = request->Results();
+    TEST_GREATER(results.size(), kTopPoiResultsCount, ());
+
+    // First result is a train station in other MWM, >200km away.
+    TEST(EqualClassifType(results[0].GetFeatureType(), classif().GetTypeByPath({"railway", "station"})), ());
+    double const dist = ms::DistanceOnEarth(center, mercator::ToLatLon(results[0].GetFeatureCenter()));
+    TEST_GREATER(dist, 2.0E5, ());
+  }
 }
 
 UNIT_CLASS_TEST(MwmTestsFixture, Generic_Buildings_Rank)
@@ -522,7 +533,6 @@ UNIT_CLASS_TEST(MwmTestsFixture, Generic_Buildings_Rank)
   {
     auto request = MakeRequest("dia ", "en");
     auto const & results = request->Results();
-    LOG(LINFO, (results));
     TEST_GREATER(results.size(), kTopPoiResultsCount, ());
 
     Range const range(results);
@@ -530,4 +540,200 @@ UNIT_CLASS_TEST(MwmTestsFixture, Generic_Buildings_Rank)
     TEST_LESS(SortedByDistance(range, center), 1000.0, ());
   }
 }
+
+UNIT_CLASS_TEST(MwmTestsFixture, UTH_Airport)
+{
+  auto const aeroportType = classif().GetTypeByPath({"aeroway", "aerodrome", "international"});
+
+  // Under UTH airport.
+  ms::LatLon const center(17.3867863, 102.7775625);
+  SetViewportAndLoadMaps(center);
+
+  // "ut" query is _common_
+  auto request = MakeRequest("ut", "en");
+  auto const & results = request->Results();
+
+  bool found = false;
+  // The first 5 will be cities suggestions.
+  for (size_t i = 0; i < 10; ++i)
+  {
+    auto const & r = results[i];
+    if (r.GetResultType() == search::Result::Type::Feature &&
+        EqualClassifType(r.GetFeatureType(), aeroportType))
+    {
+      found = true;
+      break;
+    }
+  }
+
+  TEST(found, (results));
+}
+
+// https://github.com/organicmaps/organicmaps/issues/5186
+UNIT_CLASS_TEST(MwmTestsFixture, Milan_Streets)
+{
+  // Milan
+  ms::LatLon const center(45.46411, 9.19045);
+  SetViewportAndLoadMaps(center);
+
+  auto request = MakeRequest("Via Domenichino", "it");
+  auto const & results = request->Results();
+
+  size_t constexpr kResultsCount = 2;
+  TEST_GREATER(results.size(), kResultsCount, ());
+
+  Range const range(results, 0, kResultsCount);
+  TEST_LESS(SortedByDistance(range, center), 20000.0, ());
+}
+
+// https://github.com/organicmaps/organicmaps/issues/5150
+UNIT_CLASS_TEST(MwmTestsFixture, London_RedLion)
+{
+  // Milan
+  ms::LatLon const center(51.49263, -0.12877);
+  SetViewportAndLoadMaps(center);
+
+  auto request = MakeRequest("Red Lion", "en");
+  auto const & results = request->Results();
+
+  TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
+
+  // Top first results "The Red Lion" in 5 km.
+  Range const range(results);
+  TEST_LESS(SortedByDistance(range, center), 5000.0, ());
+}
+
+UNIT_CLASS_TEST(MwmTestsFixture, AddrInterpolation_Rank)
+{
+  // Buenos Aires (Palermo)
+  ms::LatLon const center(-34.57852, -58.42567);
+  SetViewportAndLoadMaps(center);
+
+  {
+    auto request = MakeRequest("Sante Fe 1176", "en");
+    auto const & results = request->Results();
+
+    TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
+
+    // Top first address results in 20 km.
+    Range const range(results, 0, 2);
+    EqualClassifType(range, GetClassifTypes({{"addr:interpolation"}}));
+    TEST_LESS(SortedByDistance(range, center), 20000.0, ());
+
+    // - 3(4) place: Exact address in Montevideo, Uruguay (~200km)
+    // - 4+ places: addr:interpolation in Argentina
+  }
+
+  // Funny object here. barrier=fence with address and postcode=2700.
+  // We should rank it lower than housenumber matchings. Or not?
+  // https://www.openstreetmap.org/way/582640784#map=19/-33.91495/-60.55215
+  {
+    auto request = MakeRequest("José Hernández 2700", "en");
+    auto const & results = request->Results();
+
+    TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
+
+    // Top first address results.
+    Range const range(results, 0, 6 /* count */);
+    EqualClassifType(range, GetClassifTypes({{"building", "address"}}));
+
+    // Results are not sorted because one match is not exact (address near street).
+    //TEST_LESS(SortedByDistance(range, center), 300000.0, ());
+
+    // Interesting results goes after, streets on distance ~250km in Pergamino.
+    // Seems like because of matching 2700 postcode.
+  }
+}
+
+// The idea behind that is to get most famous cities on first (rare second) place.
+// Every city has POIs, Stops (Metro), Streets named like other cities, but anyway - city should be on top.
+// Each city should have population rank and popularity (will be implemented) that gives them big search rank.
+/// @todo Add (restore) popularity at least from Wiki size.
+/// @todo Add more search query languages?
+UNIT_CLASS_TEST(MwmTestsFixture, Famous_Cities_Rank)
+{
+  auto const & cl = classif();
+  uint32_t const capitalType = cl.GetTypeByPath({"place", "city", "capital"});
+
+  std::string arrCities[] = {
+      "Buenos Aires",
+      "Rio de Janeiro",
+      "New York",
+      /// @todo After popularity.
+      //"San Francisco",
+      //"Las Vegas",
+      "Los Angeles",
+      "Toronto",
+      "Lisboa",
+      "Madrid",
+      "Barcelona",
+      "London",
+      "Paris",
+      //"Zurich",
+      "Rome",
+      "Milan",
+      "Venezia",
+      "Amsterdam",
+      "Berlin",
+      "Stockholm",
+      "Istanbul",
+      "Minsk",
+      "Moscow",
+      "Kyiv",
+      "New Delhi",
+      "Bangkok",
+      "Beijing",
+      "Tokyo",
+      "Melbourne",
+      "Sydney",
+  };
+  size_t const count = std::size(arrCities);
+
+  std::vector<ms::LatLon> arrCenters;
+  arrCenters.resize(count);
+  // Buenos Aires like starting point :)
+  arrCenters[0] = {-34.60649, -58.43540};
+
+  // For DEBUG.
+  // bool isGoGo = false;
+  for (size_t i = 0; i < count; ++i)
+  {
+    // if (!isGoGo && arrCities[i] == "London")
+    //   isGoGo = true;
+    // if (i > 0 && !isGoGo)
+    //   continue;
+
+    /// @todo Temporary, USA has a lot of similar close cities.
+    if (arrCities[i] == "New York")
+      continue;
+
+    LOG(LINFO, ("=== Processing:", arrCities[i]));
+    SetViewportAndLoadMaps(arrCenters[i]);
+
+    for (size_t j = 0; j < count; ++j)
+    {
+      auto request = MakeRequest(arrCities[j] + " ", "en");
+      auto const & results = request->Results();
+      TEST_GREATER(results.size(), 0, (arrCities[i], arrCities[j]));
+
+      uint32_t type = results[0].GetFeatureType();
+      ftype::TruncValue(type, 3);
+      if (type != capitalType)
+      {
+        // Buenos Aires should always work.
+        TEST(i != 0, ());
+
+        TEST_GREATER(results.size(), 1, (arrCities[i], arrCities[j]));
+        type = results[1].GetFeatureType();
+        ftype::TruncValue(type, 3);
+
+        TEST(type == capitalType, (cl.GetReadableObjectName(type), arrCities[i], arrCities[j]));
+      }
+
+      if (i == 0 && i != j)
+        arrCenters[j] = mercator::ToLatLon(results[0].GetFeatureCenter());
+    }
+  }
+}
+
 } // namespace real_mwm_tests

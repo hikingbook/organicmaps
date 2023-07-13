@@ -9,7 +9,6 @@ import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -179,18 +178,10 @@ public class NavigationController implements Application.ActivityLifecycleCallba
       mService.stopForeground(true);
   }
 
-  private void updateVehicle(RoutingInfo info)
+  private void updateVehicle(@NonNull RoutingInfo info)
   {
-    if (!TextUtils.isEmpty(info.distToTurn))
-    {
-      SpannableStringBuilder nextTurnDistance = Utils.formatUnitsText(mFrame.getContext(),
-                                                                      R.dimen.text_size_nav_number,
-                                                                      R.dimen.text_size_nav_dimension,
-                                                                      info.distToTurn,
-                                                                      info.turnUnits);
-      mNextTurnDistance.setText(nextTurnDistance);
-      info.carDirection.setTurnDrawable(mNextTurnImage);
-    }
+    mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
+    info.carDirection.setTurnDrawable(mNextTurnImage);
 
     if (RoutingInfo.CarDirection.isRoundAbout(info.carDirection))
       UiUtils.setTextAndShow(mCircleExit, String.valueOf(info.exitNum));
@@ -213,11 +204,9 @@ public class NavigationController implements Application.ActivityLifecycleCallba
     }
   }
 
-  private void updatePedestrian(RoutingInfo info)
+  private void updatePedestrian(@NonNull RoutingInfo info)
   {
-    mNextTurnDistance.setText(
-        Utils.formatUnitsText(mFrame.getContext(), R.dimen.text_size_nav_number,
-                              R.dimen.text_size_nav_dimension, info.distToTurn, info.turnUnits));
+    mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
 
     info.pedestrianTurnDirection.setTurnDrawable(mNextTurnImage);
   }

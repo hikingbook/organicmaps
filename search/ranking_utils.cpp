@@ -89,7 +89,7 @@ ErrorsMade GetPrefixErrorsMade(QueryParams::Token const & token, strings::UniStr
   if (token.AnyOfSynonyms([&text](strings::UniString const & s) { return StartsWith(text, s); }))
     return ErrorsMade(0);
 
-  auto const dfa = PrefixDFAModifier<LevenshteinDFA>(BuildLevenshteinDFA(text));
+  auto const dfa = BuildLevenshteinDFA(text);
   auto it = dfa.Begin();
   strings::DFAMove(it, token.GetOriginal().begin(), token.GetOriginal().end());
   if (!it.Rejects())
@@ -112,7 +112,7 @@ bool IsStopWord(UniString const & s)
       // Don't want to put _full_ stopwords list, not to break current ranking.
       // Only 2-letters and the most common.
       char const * arr[] = {
-        "a", "s",         // English
+        "a", "s", "the",  // English
         "am", "im", "an", // German
         "d", "de", "di", "da", "la", "le", // French, Spanish, Italian
         "и", "я"          // Cyrillic

@@ -55,12 +55,14 @@ world  +
         clinic  -
         college  -
         community_centre  -
+        conference_centre  -
         courthouse  -
         dentist  -
         doctors  -
         drinking_water  -
         driving_school  -
         events_venue  -
+        exhibition_centre  -
         fast_food  -
         ferry_terminal  -
         fire_station  -
@@ -191,6 +193,7 @@ world  +
         stile  -
         swing_gate  -
         toll_booth  -
+        turnstile  -
         wall  -
         {}
     boundary  +
@@ -214,8 +217,15 @@ world  +
             state  -
             suburb  -
             {}
-        military  -
         national_park  -
+        protected_area  +
+            1  -
+            2  -
+            3  -
+            4  -
+            5  -
+            6  -
+            {}
         {}
     building  +
         address  -
@@ -347,6 +357,7 @@ world  +
         phone  -
         {}
     entrance  +
+        exit  -
         main  -
         {}
     healthcare  +
@@ -554,7 +565,9 @@ world  +
         lit  -
         nobicycle  -
         nocar  -
+        nocycleway  -
         nofoot  -
+        nosidewalk  -
         onedir_bicycle  -
         oneway  -
         private  -
@@ -575,6 +588,7 @@ world  +
         zero  -
         {}
     junction  +
+        circular  -
         roundabout  -
         {}
     landuse  +
@@ -657,6 +671,7 @@ world  +
         {}
     man_made  +
         breakwater  -
+        bridge  -
         cairn  -
         chimney  -
         cutline  -
@@ -854,20 +869,39 @@ world  +
             tunnel  -
             {}
         rail  +
+            branch  +
+                bridge  -
+                tunnel  -
+                {}
             bridge  -
-            motor_vehicle  -
+            highspeed  +
+                bridge  -
+                tunnel  -
+                {}
+            main  +
+                bridge  -
+                tunnel  -
+                {}
+            service  +
+                bridge  -
+                tunnel  -
+                {}
+            spur  +
+                bridge  -
+                tunnel  -
+                {}
+            tourism  +
+                bridge  -
+                tunnel  -
+                {}
             tunnel  -
-            {}
-        razed  -
-        siding  +
-            bridge  -
-            tunnel  -
-            {}
-        spur  +
-            bridge  -
-            tunnel  -
+            utility  +
+                bridge  -
+                tunnel  -
+                {}
             {}
         station  +
+            funicular  -
             light_rail  -
             monorail  -
             subway  +
@@ -1102,10 +1136,6 @@ world  +
             tunnel  -
             {}
         tram_stop  -
-        yard  +
-            bridge  -
-            tunnel  -
-            {}
         {}
     recycling  +
         batteries  -
@@ -1132,6 +1162,7 @@ world  +
         antiques  -
         appliance  -
         art  -
+        auction  -
         baby_goods  -
         bag  -
         bakery  -
@@ -1159,6 +1190,7 @@ world  +
         chocolate  -
         clothes  -
         coffee  -
+        collector  -
         computer  -
         confectionery  -
         convenience  -
@@ -1330,6 +1362,9 @@ world  +
             {}
         dock  -
         drain  +
+            tunnel  -
+            {}
+        fish_pass  +
             tunnel  -
             {}
         lock_gate  -

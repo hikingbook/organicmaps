@@ -21,7 +21,7 @@
 	<string name="miles">Millas</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Mi posición</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Luego</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Buscar</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Color del marcador</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Nombre del grupo de marcadores</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Marcadores</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Marcadores y rutas</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Mis lugares</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -123,6 +125,8 @@
 	<string name="parking">Aparcamiento</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Compras</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Segunda mano</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -256,6 +260,10 @@
 	<string name="copyright">Derechos de autor</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Informar de un fallo</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Mejora la dirección de la flecha moviendo el teléfono en forma de ocho para calibrar la brújula.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Mueve el teléfono en forma de ocho para calibrar la brújula y fijar la dirección de la flecha en el mapa.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualizar todos</string>
 	<!-- Cancel all button text -->
@@ -384,6 +392,10 @@
 	<string name="p2p_reroute_from_current">¿Quiere que planeemos un ruta desde su ubicación actual?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Siguiente</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">De</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">A</string>
 	<string name="editor_time_add">Añadir horario</string>
 	<string name="editor_time_delete">Eliminar horario</string>
 	<!-- Text for allday switch. -->
@@ -488,18 +500,16 @@
 	<string name="current_location_unknown_message">La ubicación actual es desconocida. Quizá esté en un edificio o en un túnel.</string>
 	<string name="current_location_unknown_continue_button">Continuar</string>
 	<string name="current_location_unknown_stop_button">Detener</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<!-- A unit of measure -->
-	<string name="foot">pie</string>
+	<string name="ft">pie</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">h</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Descripción</string>
 	<string name="placepage_more_button">Más</string>
-	<string name="placepage_call_button">Llamar</string>
 	<string name="placepage_edit_bookmark_button">Editar marcador</string>
 	<string name="editor_comment_hint">Comentario…</string>
 	<string name="editor_reset_edits_message">¿Restablecer todos los cambios locales?</string>
@@ -571,8 +581,8 @@
 	<string name="bookmark_lists_hide_all">Ocultar todo</string>
 	<string name="bookmark_lists_show_all">Mostrar todo</string>
 	<string name="bookmarks_create_new_group">Crear nueva lista</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Importar marcadores</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importar marcadores y trazas</string>
 	<string name="bookmarks_error_message_share_general">No se puede compartir debido a un error de la aplicación</string>
 	<string name="bookmarks_error_title_share_empty">Error al compartir</string>
 	<string name="bookmarks_error_message_share_empty">No se puede compartir una lista vacía</string>
@@ -729,6 +739,8 @@
 	<string name="enable_show_on_lock_screen_description">Cuando está habilitado, no tiene que desbloquear su dispositivo mientras la aplicación se está ejecutando.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Datos de mapas de OpenStreetMap</string>
+	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+	<string name="translated_om_site_url">https://organicmaps.app/es/</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/ES:Acerca_de_OpenStreetMap</string>
 
@@ -780,11 +792,13 @@
 	<string name="type.amenity.clinic">Clínica</string>
 	<string name="type.amenity.college">Colegio</string>
 	<string name="type.amenity.community_centre">Centro comunitario</string>
+	<string name="type.amenity.conference_centre">Centro de conferencias</string>
 	<string name="type.amenity.courthouse">Juzgado</string>
 	<string name="type.amenity.dentist">Dentista</string>
 	<string name="type.amenity.doctors">Consulta del médico</string>
 	<string name="type.amenity.drinking_water">Agua potable</string>
 	<string name="type.amenity.driving_school">Autoescuela</string>
+	<string name="type.amenity.exhibition_centre">Centro de Exposiciones</string>
 	<string name="type.amenity.money_transfer">Transferencia de dinero</string>
 	<string name="type.amenity.music_school">Escuela de música</string>
 	<string name="type.amenity.language_school">Escuela de idiomas</string>
@@ -905,6 +919,7 @@
 	<string name="type.barrier.lift_gate">Barrera</string>
 	<string name="type.barrier.retaining_wall">Muro de contención</string>
 	<string name="type.barrier.stile">Escalón</string>
+	<string name="type.barrier.turnstile">Torniquete</string>
 	<string name="type.barrier.swing_gate">Barrera</string>
 	<string name="type.barrier.toll_booth">Cabina de peaje</string>
 	<string name="type.barrier.wall">Muro</string>
@@ -929,10 +944,18 @@
 	<string name="type.boundary.administrative.state">Frontera de estado</string>
 	<string name="type.boundary.administrative.suburb">Frontera de suburbio</string>
 	<string name="type.boundary.national_park">Parque nacional</string>
+	<string name="type.boundary.protected_area">Área protegida</string>
+	<string name="type.boundary.protected_area.1">Área protegida</string>
+	<string name="type.boundary.protected_area.2">Área protegida</string>
+	<string name="type.boundary.protected_area.3">Área protegida</string>
+	<string name="type.boundary.protected_area.4">Área protegida</string>
+	<string name="type.boundary.protected_area.5">Área protegida</string>
+	<string name="type.boundary.protected_area.6">Área protegida</string>
 	<string name="type.building">Edificio</string>
 	<string name="type.building.address">Edificio</string>
-	<string name="type.building.garage">Garaje</string>
 	<string name="type.building.has_parts">Edificio</string>
+	<string name="type.building_part">Edificio</string>
+	<string name="type.building.garage">Garaje</string>
 	<string name="type.building.train_station">Estación de tren</string>
 	<string name="type.building.warehouse">Almacén</string>
 	<string name="type.cemetery.grave">Tumba</string>
@@ -1053,6 +1076,7 @@
 	<string name="type.entrance">Entrada</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrada principal</string>
+	<string name="type.entrance.exit">Salir</string>
 	<string name="type.healthcare.laboratory">Laboratorio médico</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapeuta</string>
 	<string name="type.healthcare.alternative">Medicina alternativa</string>
@@ -1165,6 +1189,8 @@
 	<string name="type.highway.road">Calle</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Puente</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Puente</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Túnel</string>
 	<string name="type.highway.secondary">Calle</string>
@@ -1284,6 +1310,7 @@
 	<string name="type.historic.wayside_shrine">Peto de ánimas</string>
 	<string name="type.internet_access">Internet</string>
 	<string name="type.internet_access.wlan">Internet</string>
+	<string name="type.junction.circular">Rotonda</string>
 	<string name="type.junction.roundabout">Rotonda</string>
 	<string name="type.landuse">Uso del suelo</string>
 	<string name="type.landuse.basin">Cuenca</string>
@@ -1489,7 +1516,34 @@
 	<string name="type.railway.narrow_gauge">Vía férrea de ancho estrecho</string>
 	<string name="type.railway.platform">Plataforma de vía férrea</string>
 	<string name="type.railway.rail">Ferrocarril</string>
+	<string name="type.railway.rail.highspeed">Ferrocarril de alta velocidad</string>
+	<string name="type.railway.rail.tourism">Ferrocarril turístico</string>
+	<string name="type.railway.rail.main">Ferrocarril</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Ramal ferroviario</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Ferrocarril utilitario</string>
+	<string name="type.railway.rail.spur">Espolón ferroviario</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Vía férrea de maniobras</string>
+	<string name="type.railway.rail.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.highspeed.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.tourism.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.main.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.branch.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.utility.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.spur.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.service.bridge">Puente ferroviario</string>
+	<string name="type.railway.rail.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.highspeed.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.tourism.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.main.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.branch.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.utility.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.spur.tunnel">Túnel ferroviario</string>
+	<string name="type.railway.rail.service.tunnel">Túnel ferroviario</string>
 	<string name="type.railway.station">Estación de tren</string>
+	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Estación de tren</string>
 	<string name="type.railway.station.monorail">Estación de tren</string>
 	<string name="type.railway.station.subway">Metro</string>
@@ -1762,7 +1816,6 @@
 	<string name="type.shop.greengrocer">Frutería</string>
 	<string name="type.shop.grocery">Tienda de comestibles</string>
 	<string name="type.shop.hairdresser">Peluquería</string>
-	<string name="type.shop.hardware">Ferretería</string>
 	<string name="type.shop.health_food">Tienda de comida saludable</string>
 	<string name="type.shop.herbalist">Tienda de hierbas</string>
 	<string name="type.shop.hifi">Audio de alta fidelidad</string>
@@ -1807,6 +1860,7 @@
 	<string name="type.shop.agrarian">Tienda agrícola</string>
 	<string name="type.shop.antiques">Antigüedades</string>
 	<string name="type.shop.appliance">Tienda de electrodomésticos</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Tienda de arte</string>
 	<string name="type.shop.baby_goods">Tienda de niños</string>
 	<string name="type.shop.bag">Tienda de bolsos</string>
@@ -1902,6 +1956,7 @@
 	<string name="type.waterway">Curso de agua</string>
 	<string name="type.waterway.canal">Canal</string>
 	<string name="type.waterway.canal.tunnel">Canal</string>
+	<string name="type.waterway.fish_pass">Escalera de peces</string>
 	<string name="type.waterway.dam">Presa</string>
 	<string name="type.waterway.ditch">Zanja</string>
 	<string name="type.waterway.ditch.tunnel">Zanja</string>
@@ -1937,6 +1992,7 @@
 	<string name="type.piste_type.downhill.novice">Pista de esquí alpino</string>
 	<string name="type.piste_type.nordic">Pista de esquí nórdico</string>
 	<string name="type.piste_type.sled">Pista para trineos</string>
-	<string name="type.building_part">Edificio</string>
 	<string name="type.amenity.events_venue">Lugar para eventos</string>
+	<string name="type.shop.auction">Subasta</string>
+	<string name="type.shop.collector">Coleccionables</string>
 </resources>

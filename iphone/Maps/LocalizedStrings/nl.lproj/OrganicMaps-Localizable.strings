@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Mijn locatie";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Later";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Bladwijzergroepen";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Bladwijzers";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Bladwijzers en tracks";
 
 /* Default bookmark list name */
 "core_my_places" = "Mijn plaatsen";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Winkelen";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Tweedehands";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Routeberekening mislukt";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Aankomst: %s";
+"routing_arrive" = "Aankomst: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Om een route te maken, download en update alle kaarten rondom de route.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Selecteer Terwijl Je de App Gebruikt";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mijl";
+"mi" = "mijl";
 
 /* A unit of measure */
-"foot" = "voet";
+"ft" = "voet";
 
 "miles_per_hour" = "mph";
 
 "hour" = "u";
 
 "minute" = "min";
-
-"placepage_place_description" = "Beschrijving";
 
 "placepage_more_button" = "Meer";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Scherm Verbergen";
 
-"downloader_percent" = "%s (%s van %s)";
+"downloader_percent" = "%@ (%@ van %@)";
 
-"downloader_process" = "%s downloaden…";
+"downloader_process" = "%@ downloaden…";
 
-"downloader_applying" = "%s toepassen…";
+"downloader_applying" = "%@ toepassen…";
 
 "bookmarks_error_message_share_general" = "Delen is onmogelijk wegens een toepassingsfout";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Download kaarten in de Organic Maps app op uw apparaat";
 
-"carplay_roundabout_exit" = "Afrit nr. %s";
+"carplay_roundabout_exit" = "Afrit nr. %@";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sorteer…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Kaarten bijwerken houdt de informatie over objecten actueel";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Bijwerken (%s)";
+"whats_new_auto_update_button_size" = "Bijwerken (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Later handmatig bijwerken";
@@ -1237,7 +1241,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/nl/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/NL:Wat_is_OpenStreetMap%3F";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Gemeenschapscentrum";
 
+"type.amenity.conference_centre" = "Conferentiecentrum";
+
 "type.amenity.courthouse" = "Rechtbank";
 
 "type.amenity.dentist" = "Tandarts";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Drinkwater";
 
 "type.amenity.driving_school" = "Rijschool";
+
+"type.amenity.exhibition_centre" = "Expositiecentrum";
 
 "type.amenity.money_transfer" = "Overschrijving";
 
@@ -1423,9 +1431,9 @@
 
 "type.amenity.parking_space.permissive" = "Parkeerplek";
 
-"type.amenity.parking_space.private" = "Privé parkeerplek";
+"type.amenity.parking_space.private" = "Parkeerplek";
 
-"type.amenity.parking_space.underground" = "Ondergrondse parkeerplek";
+"type.amenity.parking_space.underground" = "Parkeerplek";
 
 "type.amenity.parking_space.disabled" = "Invalide parkeerplaats";
 
@@ -1586,6 +1594,8 @@
 
 "type.barrier.stile" = "Tourniquet";
 
+"type.barrier.turnstile" = "Tourniquet";
+
 "type.barrier.swing_gate" = "Slagboom";
 
 "type.barrier.toll_booth" = "Tolhokje";
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Nationaal park";
 
+"type.boundary.protected_area" = "Beschermd gebied";
+
+"type.boundary.protected_area.1" = "Beschermd gebied";
+
+"type.boundary.protected_area.2" = "Beschermd gebied";
+
+"type.boundary.protected_area.3" = "Beschermd gebied";
+
+"type.boundary.protected_area.4" = "Beschermd gebied";
+
+"type.boundary.protected_area.5" = "Beschermd gebied";
+
+"type.boundary.protected_area.6" = "Beschermd gebied";
+
 "type.building" = "Gebouw";
 
 "type.building.address" = "Gebouw";
 
-"type.building.garage" = "Garage";
-
 "type.building.has_parts" = "Gebouw";
+
+"type.building_part" = "Gebouw";
+
+"type.building.garage" = "Garage";
 
 "type.building.train_station" = "Treinstation";
 
@@ -1755,7 +1781,7 @@
 
 "type.cuisine.fish" = "Vis";
 
-"type.cuisine.fish_and_chips" = "Fish and chips";
+"type.cuisine.fish_and_chips" = "Fish and Chips";
 
 "type.cuisine.french" = "Frans";
 
@@ -1878,6 +1904,8 @@
 
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Hoofdingang";
+
+"type.entrance.exit" = "Ga naar";
 
 "type.healthcare.laboratory" = "Medisch laboratorium";
 
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Brug";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Brug";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunnel";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Kruispunt";
 
+"type.junction.circular" = "Rotonde";
+
 "type.junction.roundabout" = "Rotonde";
 
 "type.landuse" = "Landgebruik";
@@ -2431,11 +2464,11 @@
 
 "type.leisure.park" = "Park";
 
-"type.leisure.park.no.access" = "Ontoegankelijk park";
+"type.leisure.park.no.access" = "Park";
 
 "type.leisure.park.permissive" = "Park";
 
-"type.leisure.park.private" = "Privé park";
+"type.leisure.park.private" = "Park";
 
 "type.leisure.picnic_table" = "Picknicktafel";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Electriciteit";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Zonne-generator";
 
@@ -2757,7 +2790,7 @@
 
 "type.railway.disused" = "Ongebruikt spoor";
 
-"type.railway.funicular" = "Kabelspoorweg";
+"type.railway.funicular" = "Tunnel";
 
 "type.railway.funicular.bridge" = "Kabelspoorbuur";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Spoorlijn";
 
+"type.railway.rail.highspeed" = "Hogesnelheidstrein";
+
+"type.railway.rail.tourism" = "Toeristische spoorlijn";
+
+"type.railway.rail.main" = "Spoor";
+
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Secundaire spoorwegen";
+
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Spoorwegen";
+
+"type.railway.rail.spur" = "Zijspoor";
+
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Hulpspoor";
+
 "type.railway.rail.bridge" = "Treinspoorbrug";
 
-"type.railway.rail.motor_vehicle" = "Spoorweg";
+"type.railway.rail.highspeed.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.tourism.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.main.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.branch.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.utility.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.spur.bridge" = "Treinspoorbrug";
+
+"type.railway.rail.service.bridge" = "Treinspoorbrug";
 
 "type.railway.rail.tunnel" = "Spoortunnel";
 
-"type.railway.razed" = "Verwijderde spoorbaan";
+"type.railway.rail.highspeed.tunnel" = "Spoortunnel";
 
-"type.railway.siding" = "Nevenspoor";
+"type.railway.rail.tourism.tunnel" = "Spoortunnel";
 
-"type.railway.siding.bridge" = "Nevenspoor-brug";
+"type.railway.rail.main.tunnel" = "Spoortunnel";
 
-"type.railway.siding.tunnel" = "Nevenspoor-tunnel";
+"type.railway.rail.branch.tunnel" = "Spoortunnel";
 
-"type.railway.spur" = "Zijspoor";
+"type.railway.rail.utility.tunnel" = "Spoortunnel";
 
-"type.railway.spur.bridge" = "Zijspoor-brug";
+"type.railway.rail.spur.tunnel" = "Spoortunnel";
 
-"type.railway.spur.tunnel" = "Zijspoor-tunnel";
+"type.railway.rail.service.tunnel" = "Spoortunnel";
 
 "type.railway.station" = "Station";
+
+"type.railway.station.funicular" = "Tunnel";
 
 "type.railway.station.light_rail" = "Station";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Tramhalte";
 
-"type.railway.yard" = "Rangeerterrein";
-
-"type.railway.yard.bridge" = "Rangeerterrein brug";
-
-"type.railway.yard.tunnel" = "Rangeerterrein tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Veerboot";
 
-"type.route.shuttle_train" = "Shuttle-trein";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Winkel";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Apparaten winkel";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Kunstwinkel";
 
 "type.shop.baby_goods" = "Babyspullenwinkel";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Kanaal";
 
+"type.waterway.fish_pass" = "Vistrap";
+
 "type.waterway.dam" = "Dam";
 
 "type.waterway.ditch" = "Sloot";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sleebaan";
 
-"type.building_part" = "Gebouw";
-
 "type.amenity.events_venue" = "Evenementenlocatie";
+
+"type.shop.auction" = "Veiling";
+
+"type.shop.collector" = "Verzamelobjecten";

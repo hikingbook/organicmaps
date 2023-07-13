@@ -79,7 +79,6 @@
 		3472B5D3200F501500DC6CD5 /* BackgroundFetchTaskFrameworkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472B5D1200F501500DC6CD5 /* BackgroundFetchTaskFrameworkType.swift */; };
 		3472B5E1200F86C800DC6CD5 /* MWMEditorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3472B5DF200F86C800DC6CD5 /* MWMEditorHelper.mm */; };
 		34763EE71F2F392300F4D2D3 /* MWMTextToSpeech.mm in Sources */ = {isa = PBXBuildFile; fileRef = 34763EE51F2F392300F4D2D3 /* MWMTextToSpeech.mm */; };
-		34763F071F3092E700F4D2D3 /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34763F051F3092E700F4D2D3 /* String+Format.swift */; };
 		34845DAF1E1649F6003D55B9 /* DownloaderNoResultsEmbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34845DAD1E1649F6003D55B9 /* DownloaderNoResultsEmbedViewController.swift */; };
 		34845DB31E165E24003D55B9 /* SearchNoResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34845DB11E165E24003D55B9 /* SearchNoResultsViewController.swift */; };
 		34845DB71E166084003D55B9 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34845DB51E166084003D55B9 /* Common.swift */; };
@@ -440,10 +439,9 @@
 		AA4B377726DCCF32008624B4 /* FrameworkAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */; };
 		AA4B377A26DCDD58008624B4 /* OrganicMaps-Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA4B377826DCDD57008624B4 /* OrganicMaps-Localizable.strings */; };
 		B33D21AF20DAF9F000BAD749 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21AE20DAF9F000BAD749 /* Toast.swift */; };
-		B33D21B820E130D000BAD749 /* BookmarksTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */; };
 		B3E3B4FD20D463B700DA8C13 /* BMCCategoriesHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */; };
 		BB25B1A71FB32767007276FA /* transit_colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = BB25B1A51FB32767007276FA /* transit_colors.txt */; };
-		BB7626B61E85599C0031D71C /* icudt70l.dat in Resources */ = {isa = PBXBuildFile; fileRef = BB7626B41E8559980031D71C /* icudt70l.dat */; };
+		BB7626B61E85599C0031D71C /* icudt73l.dat in Resources */ = {isa = PBXBuildFile; fileRef = BB7626B41E8559980031D71C /* icudt73l.dat */; };
 		BB8123D62130427E00ADE512 /* MetalContextFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB8123D52130427E00ADE512 /* MetalContextFactory.mm */; };
 		CD4A1F132305872700F2A6B6 /* PromoBookingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A1F122305872700F2A6B6 /* PromoBookingPresentationController.swift */; };
 		CD6E8677226774C700D1EDF7 /* CPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6E8676226774C700D1EDF7 /* CPConstants.swift */; };
@@ -577,6 +575,7 @@
 		F6FE3C3C1CC5106500A73196 /* MWMPlaceDoesntExistAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FE3C3A1CC5106500A73196 /* MWMPlaceDoesntExistAlert.xib */; };
 		F6FEA82E1C58F108007223CC /* MWMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FEA82C1C58E89B007223CC /* MWMButton.m */; };
 		FA14E686276014C10066E453 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FA14E683276014C10066E453 /* libz.1.tbd */; };
+		FA4511912A5EC15100CD8F64 /* 00_NotoSerifDevanagari-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA45118E2A5EC15100CD8F64 /* 00_NotoSerifDevanagari-Regular.ttf */; };
 		FA456C3C26BDC6AD00B83C20 /* Chart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA456C3B26BDC6AD00B83C20 /* Chart.framework */; };
 		FA456C3D26BDC6BA00B83C20 /* Chart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA456C3B26BDC6AD00B83C20 /* Chart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA456C3E26BDC6C100B83C20 /* DatePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA853BDC26BC58570026D455 /* DatePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -814,7 +813,6 @@
 		34763EE51F2F392300F4D2D3 /* MWMTextToSpeech.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MWMTextToSpeech.mm; sourceTree = "<group>"; };
 		34763EE91F2F394D00F4D2D3 /* MWMTextToSpeech+CPP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MWMTextToSpeech+CPP.h"; sourceTree = "<group>"; };
 		34763EEA1F2F3AD700F4D2D3 /* MWMTextToSpeechObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMTextToSpeechObserver.h; sourceTree = "<group>"; };
-		34763F051F3092E700F4D2D3 /* String+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
 		34763F0B1F30CCAC00F4D2D3 /* MWMEditorCellType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMEditorCellType.h; sourceTree = "<group>"; };
 		347AD8081F28B4E6007ACB68 /* MWMSearchManagerObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMSearchManagerObserver.h; sourceTree = "<group>"; };
 		34845DAD1E1649F6003D55B9 /* DownloaderNoResultsEmbedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderNoResultsEmbedViewController.swift; sourceTree = "<group>"; };
@@ -1296,10 +1294,9 @@
 		AA4B377B26DCDD62008624B4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
 		AA4B377C26DCDD6A008624B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
 		B33D21AE20DAF9F000BAD749 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTabViewController.swift; sourceTree = "<group>"; };
 		B3E3B4FC20D463B700DA8C13 /* BMCCategoriesHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMCCategoriesHeader.xib; sourceTree = "<group>"; };
 		BB25B1A51FB32767007276FA /* transit_colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = transit_colors.txt; path = ../../data/transit_colors.txt; sourceTree = "<group>"; };
-		BB7626B41E8559980031D71C /* icudt70l.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = icudt70l.dat; path = ../../data/icudt70l.dat; sourceTree = "<group>"; };
+		BB7626B41E8559980031D71C /* icudt73l.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = icudt73l.dat; path = ../../data/icudt73l.dat; sourceTree = "<group>"; };
 		BB8123D42130427E00ADE512 /* MetalContextFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalContextFactory.h; sourceTree = "<group>"; };
 		BB8123D52130427E00ADE512 /* MetalContextFactory.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalContextFactory.mm; sourceTree = "<group>"; };
 		CD4A1F122305872700F2A6B6 /* PromoBookingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBookingPresentationController.swift; sourceTree = "<group>"; };
@@ -1552,6 +1549,7 @@
 		FA1A4CF226AABBEC00026C44 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = bg; path = bg.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FA1A4CF326AABBED00026C44 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA1A4CF426AABBEE00026C44 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FA45118E2A5EC15100CD8F64 /* 00_NotoSerifDevanagari-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "00_NotoSerifDevanagari-Regular.ttf"; path = "../../data/00_NotoSerifDevanagari-Regular.ttf"; sourceTree = "<group>"; };
 		FA456C3B26BDC6AD00B83C20 /* Chart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA456C4026BDCC8E00B83C20 /* shaders.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = shaders.xcodeproj; path = ../../xcode/shaders/shaders.xcodeproj; sourceTree = "<group>"; };
 		FA459EB314327AF700B5BB3C /* WorldCoasts.mwm */ = {isa = PBXFileReference; lastKnownFileType = file; name = WorldCoasts.mwm; path = ../../data/WorldCoasts.mwm; sourceTree = "<group>"; };
@@ -2045,7 +2043,6 @@
 				3454D79E1E07F045004AF2AD /* NSString+Categories.h */,
 				3454D79F1E07F045004AF2AD /* NSString+Categories.m */,
 				3457C4241F680F1900028233 /* String+BoundingRect.swift */,
-				34763F051F3092E700F4D2D3 /* String+Format.swift */,
 				3454D7A01E07F045004AF2AD /* UIButton+Orientation.h */,
 				3454D7A11E07F045004AF2AD /* UIButton+Orientation.m */,
 				34D3AFF41E37A36A004100F9 /* UICollectionView+Cells.swift */,
@@ -3509,6 +3506,7 @@
 			children = (
 				6B679E88266BFD090074AE2A /* 00_NotoNaskhArabic-Regular.ttf */,
 				6B15907026623AE500944BBA /* 00_NotoSansThai-Regular.ttf */,
+				FA45118E2A5EC15100CD8F64 /* 00_NotoSerifDevanagari-Regular.ttf */,
 				EEA615E5134C4968003A9827 /* 01_dejavusans.ttf */,
 				9DF04B231B71010E00DACAF1 /* 02_droidsans-fallback.ttf */,
 				EEA615E7134C4968003A9827 /* 03_jomolhari-id-a3d.ttf */,
@@ -3531,7 +3529,7 @@
 				978D4A30199A11E600D72CA7 /* faq.html */,
 				EEFE7C1212F8C9E1006AF8C3 /* fonts_blacklist.txt */,
 				EEFE7C1312F8C9E1006AF8C3 /* fonts_whitelist.txt */,
-				BB7626B41E8559980031D71C /* icudt70l.dat */,
+				BB7626B41E8559980031D71C /* icudt73l.dat */,
 				F623DA6A1C9C2731006A3436 /* opening_hours_how_to_edit.html */,
 				FA85F632145DDDC20090E1A0 /* packed_polygons.bin */,
 				451950391B7A3E070085DA05 /* patterns.txt */,
@@ -3563,7 +3561,6 @@
 			children = (
 				47CA68CE2500425900671019 /* BookmarksList */,
 				3404F4A02028A6C00090E401 /* Categories */,
-				B33D21B720E130D000BAD749 /* BookmarksTabViewController.swift */,
 				996D108924E3DBF2002DD0E2 /* BookmarksCoordinator.swift */,
 			);
 			path = Bookmarks;
@@ -3617,7 +3614,8 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1410;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Organic Maps";
 				TargetAttributes = {
 					6741A93D1BF340DE002C974C = {
@@ -3728,6 +3726,7 @@
 				47AEF8402231249E00D20538 /* categories_brands.txt in Resources */,
 				F6C3A1B221AC22810060EEC8 /* Alert 5.m4a in Resources */,
 				6741A9531BF340DE002C974C /* 01_dejavusans.ttf in Resources */,
+				FA4511912A5EC15100CD8F64 /* 00_NotoSerifDevanagari-Regular.ttf in Resources */,
 				6741A9541BF340DE002C974C /* 02_droidsans-fallback.ttf in Resources */,
 				AA4B377A26DCDD58008624B4 /* OrganicMaps-Localizable.strings in Resources */,
 				6741A9571BF340DE002C974C /* 03_jomolhari-id-a3d.ttf in Resources */,
@@ -3831,7 +3830,7 @@
 				F6E2FF001E097BA00083EBEC /* SearchCategoryCell.xib in Resources */,
 				F6E2FF331E097BA00083EBEC /* MWMSearchCommonCell.xib in Resources */,
 				F6E2FF061E097BA00083EBEC /* SearchHistoryClearCell.xib in Resources */,
-				BB7626B61E85599C0031D71C /* icudt70l.dat in Resources */,
+				BB7626B61E85599C0031D71C /* icudt73l.dat in Resources */,
 				34AB665C1FC5AA330078E451 /* TransportTransitIntermediatePoint.xib in Resources */,
 				F6E2FF151E097BA00083EBEC /* SearchHistoryQueryCell.xib in Resources */,
 				F6E2FEE81E097BA00083EBEC /* MWMSearchNoResults.xib in Resources */,
@@ -3980,7 +3979,6 @@
 				34AB66831FC5AA330078E451 /* NavigationAddPointToastView.swift in Sources */,
 				F6E2FE4C1E097BA00083EBEC /* MWMPlacePageManager.mm in Sources */,
 				3404757E1E081B3300C92850 /* iosOGLContext.mm in Sources */,
-				34763F071F3092E700F4D2D3 /* String+Format.swift in Sources */,
 				993F5513237C622700545511 /* DeepLinkHandler.swift in Sources */,
 				993DF11223F6BDB100AC231A /* UIImageRenderer.swift in Sources */,
 				F6E2FD5C1E097BA00083EBEC /* MWMMapDownloaderCellHeader.m in Sources */,
@@ -4119,7 +4117,6 @@
 				34AB663E1FC5AA330078E451 /* RouteManagerTransitioning.swift in Sources */,
 				993DF0CB23F6BD0600AC231A /* ElevationDetailsRouter.swift in Sources */,
 				47CA68FC250F99E500671019 /* BookmarksListCellStrategy.swift in Sources */,
-				B33D21B820E130D000BAD749 /* BookmarksTabViewController.swift in Sources */,
 				34AB662F1FC5AA330078E451 /* RouteManagerPresentationController.swift in Sources */,
 				993F5508237C622700545511 /* DeepLinkRouteStrategyAdapter.mm in Sources */,
 				FA85D43D27958BF500B858E9 /* FaqController.swift in Sources */,
@@ -4488,6 +4485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.11.17;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.debug;
@@ -4509,6 +4507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.11.17;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps;

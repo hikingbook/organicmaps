@@ -21,7 +21,7 @@
 	<string name="miles">Mile</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Poziția mea</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Mai târziu</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Caută</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Culoare loc preferat</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Denumirea listei</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Locuri preferate</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Locuri preferate și trasee</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Locurile mele</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">Parcare</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Shopping</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">La mâna a doua</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -242,6 +246,10 @@
 	<string name="copyright">Drepturi de autor</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Raportează o eroare</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Îmbunătățiți direcția săgeții prin mișcarea telefonului într-o mișcare în opt pentru a calibra busola.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Mișcați telefonul într-o mișcare în formă de opt pentru a calibra busola și a fixa direcția săgeții pe hartă.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualizează tot</string>
 	<!-- Cancel all button text -->
@@ -370,6 +378,10 @@
 	<string name="p2p_reroute_from_current">Vrei să planifici un traseu din poziția ta actuală?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Următorul</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">De la</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">La</string>
 	<string name="editor_time_add">Adaugă planificare</string>
 	<string name="editor_time_delete">Elimină planificarea</string>
 	<!-- Text for allday switch. -->
@@ -472,15 +484,13 @@
 	<string name="current_location_unknown_message">Poziția actuală este necunoscută. Poate te afli într-o clădire sau un tunel.</string>
 	<string name="current_location_unknown_continue_button">Continuă</string>
 	<string name="current_location_unknown_stop_button">Oprește</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Descriere</string>
 	<string name="placepage_more_button">Mai mult</string>
-	<string name="placepage_call_button">Apelează</string>
 	<string name="placepage_edit_bookmark_button">Modifică locul preferat</string>
 	<string name="editor_comment_hint">Comentariu…</string>
 	<string name="editor_reset_edits_message">Ștergi toate modificările locale?</string>
@@ -552,8 +562,8 @@
 	<string name="bookmark_lists_hide_all">Ascunde tot</string>
 	<string name="bookmark_lists_show_all">Arată tot</string>
 	<string name="bookmarks_create_new_group">Creează o listă nouă</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Importă locuri preferate</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importați marcaje și piese</string>
 	<string name="bookmarks_error_message_share_general">Nu poate fi trimis din cauza unei erori a aplicației</string>
 	<string name="bookmarks_error_title_share_empty">Eroare de trimitere</string>
 	<string name="bookmarks_error_message_share_empty">Nu poate fi trimisă o listă goală</string>
@@ -739,9 +749,11 @@
 	<string name="type.amenity.clinic">Clinică</string>
 	<string name="type.amenity.college">Colegiu</string>
 	<string name="type.amenity.community_centre">Centru comunitar</string>
+	<string name="type.amenity.conference_centre">Centru de conferinte</string>
 	<string name="type.amenity.courthouse">Judecătorie</string>
 	<string name="type.amenity.drinking_water">Apă de băut</string>
 	<string name="type.amenity.driving_school">Școală de șoferi</string>
+	<string name="type.amenity.exhibition_centre">Centru de expozitie</string>
 	<string name="type.amenity.money_transfer">Transfer de bani</string>
 	<string name="type.amenity.music_school">Scoala de Muzica</string>
 	<string name="type.amenity.language_school">Școala de limbi străine</string>
@@ -834,13 +846,22 @@
 	<string name="type.barrier.kissing_gate">Poartă</string>
 	<string name="type.barrier.lift_gate">Barieră cu braț</string>
 	<string name="type.barrier.stile">Barieră</string>
+	<string name="type.barrier.turnstile">Turnichet</string>
 	<string name="type.barrier.swing_gate">Barieră cu braț</string>
 	<string name="type.barrier.toll_booth">Cabină de taxare</string>
 	<string name="type.boundary.national_park">Parcul național</string>
+	<string name="type.boundary.protected_area">Zonă protejată</string>
+	<string name="type.boundary.protected_area.1">Zonă protejată</string>
+	<string name="type.boundary.protected_area.2">Zonă protejată</string>
+	<string name="type.boundary.protected_area.3">Zonă protejată</string>
+	<string name="type.boundary.protected_area.4">Zonă protejată</string>
+	<string name="type.boundary.protected_area.5">Zonă protejată</string>
+	<string name="type.boundary.protected_area.6">Zonă protejată</string>
 	<string name="type.building">Clădire</string>
 	<string name="type.building.address">Clădire</string>
-	<string name="type.building.garage">Garaj</string>
 	<string name="type.building.has_parts">Clădire</string>
+	<string name="type.building_part">Clădire</string>
+	<string name="type.building.garage">Garaj</string>
 	<string name="type.building.train_station">Feroviar</string>
 	<string name="type.cemetery.grave">Mormânt</string>
 	<string name="type.craft">Meșteșuguri</string>
@@ -896,7 +917,6 @@
 	<string name="type.cuisine.filipino">Bucătărie filipinez</string>
 	<string name="type.cuisine.fine_dining">Restaurant elegant</string>
 	<string name="type.cuisine.fish">Pește</string>
-	<string name="type.cuisine.fish_and_chips">Restaurant fish and chips</string>
 	<string name="type.cuisine.french">Bucătărie francez</string>
 	<string name="type.cuisine.friture">Prăjit</string>
 	<string name="type.cuisine.georgian">Bucătărie georgian</string>
@@ -958,6 +978,7 @@
 	<string name="type.entrance">Intrare</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Intrarea principala</string>
+	<string name="type.entrance.exit">Ieșire</string>
 	<string name="type.healthcare.laboratory">Laborator medical</string>
 	<string name="type.healthcare.physiotherapist">Fizioterapeut</string>
 	<string name="type.healthcare.alternative">Medicină alternativă</string>
@@ -1064,6 +1085,8 @@
 	<string name="type.highway.road">Stradă</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Pod</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Pod</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Tunel</string>
 	<string name="type.highway.secondary">Stradă</string>
@@ -1319,11 +1342,39 @@
 	<string name="type.power.pole">Stâlp de electricitate</string>
 	<string name="type.power.substation">Stație subterană</string>
 	<string name="type.power.tower">Stâlp de electricitate</string>
+	<string name="type.railway.funicular">Funicular</string>
 	<string name="type.railway.halt">Feroviar</string>
 	<string name="type.railway.level_crossing">Trecere feroviară</string>
 	<string name="type.railway.monorail">Cale ferată monoșină</string>
 	<string name="type.railway.rail">Cale ferată</string>
+	<string name="type.railway.rail.highspeed">Calea ferată de mare viteză</string>
+	<string name="type.railway.rail.tourism">Calea ferată turistică</string>
+	<string name="type.railway.rail.main">Calea ferată</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Calea ferată secundară</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Calea ferată utilitară</string>
+	<string name="type.railway.rail.spur">Pinteni de cale ferată</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Calea ferată auxiliară</string>
+	<string name="type.railway.rail.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.highspeed.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.tourism.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.main.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.branch.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.utility.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.spur.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.service.bridge">Podul de cale ferată</string>
+	<string name="type.railway.rail.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.highspeed.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.tourism.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.main.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.branch.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.utility.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.spur.tunnel">Tunel de cale ferată</string>
+	<string name="type.railway.rail.service.tunnel">Tunel de cale ferată</string>
 	<string name="type.railway.station">Feroviar</string>
+	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Feroviar</string>
 	<string name="type.railway.station.monorail">Feroviar</string>
 	<string name="type.railway.station.subway">Metrou</string>
@@ -1635,6 +1686,7 @@
 	<string name="type.shop.agrarian">Magazin agricol</string>
 	<string name="type.shop.antiques">Antichități</string>
 	<string name="type.shop.appliance">Magazin de electrocasnice</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Magazin de arte</string>
 	<string name="type.shop.baby_goods">Magazin pentru copii</string>
 	<string name="type.shop.bag">Magazin de genti</string>
@@ -1717,6 +1769,7 @@
 	<string name="type.tourism.viewpoint">Punct de vedere</string>
 	<string name="type.tourism.wilderness_hut">Cabană în pădure</string>
 	<string name="type.tourism.zoo">Grădină zoologică</string>
+	<string name="type.waterway.fish_pass">Scară de pește</string>
 	<string name="type.waterway.lock_gate">Ecluză</string>
 	<string name="type.waterway.river">Râu</string>
 	<string name="type.waterway.river.tunnel">Râu</string>
@@ -1729,6 +1782,7 @@
 	<string name="type.wheelchair.limited">Parțial utilat pentru invalizi</string>
 	<string name="type.wheelchair.no">Nu este utilat pentru invalizi</string>
 	<string name="type.wheelchair.yes">Utilat pentru invalizi</string>
-	<string name="type.building_part">Clădire</string>
 	<string name="type.amenity.events_venue">Locul de desfășurare a evenimentelor</string>
+	<string name="type.shop.auction">Licitație</string>
+	<string name="type.shop.collector">Colecții</string>
 </resources>

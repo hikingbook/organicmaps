@@ -21,7 +21,7 @@
 	<string name="miles">Dặm</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Vị trí của Tôi</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Để sau</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Tìm kiếm</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Đánh dấu Màu sắc</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Đánh dấu Tên Bộ</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Đánh dấu</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Đánh dấu và dấu vết</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Các Địa chỉ của Tôi</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">đỗ xe</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Đi mua sắm</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Đồ cũ</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Khách sạn</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -237,6 +241,10 @@
 	<string name="copyright">Bản quyền</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Báo cáo lỗi</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Cải thiện hướng mũi tên bằng cách di chuyển điện thoại theo chuyển động hình số tám để hiệu chỉnh la bàn.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Di chuyển điện thoại theo chuyển động hình số tám để hiệu chỉnh la bàn và cố định hướng mũi tên trên bản đồ.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Cập nhật tất cả</string>
 	<!-- Cancel all button text -->
@@ -363,6 +371,10 @@
 	<string name="p2p_reroute_from_current">Bạn có muốn chúng tôi vạch đường từ vị trí hiện tại của bạn không?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Tiếp theo</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Từ</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Đến</string>
 	<string name="editor_time_add">Thêm lịch biểu</string>
 	<string name="editor_time_delete">Xóa lịch biểu</string>
 	<!-- Text for allday switch. -->
@@ -462,18 +474,16 @@
 	<string name="current_location_unknown_message">Chưa biết địa điểm hiện tại. Có thể bạn đang ở trong một tòa nhà hoặc đường hầm.</string>
 	<string name="current_location_unknown_continue_button">Tiếp tục</string>
 	<string name="current_location_unknown_stop_button">Dừng</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/giờ</string>
-	<string name="mile">dặm</string>
+	<string name="mi">dặm</string>
 	<!-- A unit of measure -->
-	<string name="foot">ft</string>
+	<string name="ft">ft</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">giờ</string>
 	<string name="minute">phút</string>
-	<string name="placepage_place_description">Mô tả</string>
 	<string name="placepage_more_button">Bổ sung</string>
-	<string name="placepage_call_button">Gọi</string>
 	<string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
 	<string name="editor_comment_hint">Nhận xét…</string>
 	<string name="editor_reset_edits_message">Cài đặt lại tất cả thay đổi cục bộ?</string>
@@ -538,6 +548,8 @@
 	<string name="bookmark_lists_hide_all">Ẩn tất cả</string>
 	<string name="bookmark_lists_show_all">Hiển thị tất cả</string>
 	<string name="bookmarks_create_new_group">Tạo danh sách mới</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Nhập dấu trang và bản nhạc</string>
 	<string name="bookmarks_error_message_share_general">Không thể chia sẻ do lỗi ứng dụng</string>
 	<string name="bookmarks_error_title_share_empty">Lỗi chia sẻ</string>
 	<string name="bookmarks_error_message_share_empty">Không thể chia sẻ một danh sách trống</string>
@@ -714,11 +726,13 @@
 	<string name="type.amenity.clinic">Phòng khám</string>
 	<string name="type.amenity.college">Trường đại học</string>
 	<string name="type.amenity.community_centre">Trung Tâm Cộng Đồng</string>
+	<string name="type.amenity.conference_centre">Trung tâm Hội nghị</string>
 	<string name="type.amenity.courthouse">Tòa án</string>
 	<string name="type.amenity.dentist">Nha sĩ</string>
 	<string name="type.amenity.doctors">Bác sĩ</string>
 	<string name="type.amenity.drinking_water">Nước uống</string>
 	<string name="type.amenity.driving_school">Trường lái xe</string>
+	<string name="type.amenity.exhibition_centre">Trung tâm triển lãm</string>
 	<string name="type.amenity.money_transfer">Chuyển tiền</string>
 	<string name="type.amenity.music_school">Trường âm nhạc</string>
 	<string name="type.amenity.language_school">Ngôn ngữ Trường học</string>
@@ -814,13 +828,22 @@
 	<string name="type.barrier.kissing_gate">Cổng</string>
 	<string name="type.barrier.lift_gate">Thanh Chắn</string>
 	<string name="type.barrier.stile">Trụ chắn</string>
+	<string name="type.barrier.turnstile">Cửa quay</string>
 	<string name="type.barrier.swing_gate">Thanh Chắn</string>
 	<string name="type.barrier.toll_booth">Quầy Soát Vé</string>
 	<string name="type.boundary.national_park">Công viên quốc gia</string>
+	<string name="type.boundary.protected_area">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.1">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.2">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.3">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.4">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.5">Khu bảo tồn</string>
+	<string name="type.boundary.protected_area.6">Khu bảo tồn</string>
 	<string name="type.building">Tòa nhà</string>
 	<string name="type.building.address">Tòa nhà</string>
-	<string name="type.building.garage">Gara</string>
 	<string name="type.building.has_parts">Tòa nhà</string>
+	<string name="type.building_part">Tòa nhà</string>
+	<string name="type.building.garage">Gara</string>
 	<string name="type.building.train_station">Đường tàu hỏa</string>
 	<string name="type.cemetery.grave">Phần mộ</string>
 	<string name="type.craft">Thủ công</string>
@@ -938,6 +961,7 @@
 	<string name="type.entrance">Lối vào</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Lối vào chính</string>
+	<string name="type.entrance.exit">Lối ra</string>
 	<string name="type.healthcare.laboratory">Phòng thí nghiệm y tế</string>
 	<string name="type.healthcare.physiotherapist">Nhà vật lý trị liệu</string>
 	<string name="type.healthcare.alternative">Liều thuốc thay thế</string>
@@ -1044,6 +1068,8 @@
 	<string name="type.highway.road">Phố</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Cầu</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Cầu</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Đường hầm</string>
 	<string name="type.highway.secondary">Phố</string>
@@ -1299,11 +1325,39 @@
 	<string name="type.power.pole">Trụ Điện</string>
 	<string name="type.power.substation">Trạm biến áp</string>
 	<string name="type.power.tower">Trụ Điện</string>
+	<string name="type.railway.funicular">Đường sắt leo núi</string>
 	<string name="type.railway.halt">Đường tàu hỏa</string>
 	<string name="type.railway.level_crossing">Chỗ qua đường sắt</string>
 	<string name="type.railway.monorail">Đường sắt một chiều</string>
 	<string name="type.railway.rail">Đường sắt</string>
+	<string name="type.railway.rail.highspeed">Đường sắt cao tốc</string>
+	<string name="type.railway.rail.tourism">Đường sắt du lịch</string>
+	<string name="type.railway.rail.main">Đường sắt</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Đường sắt phụ</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Đường sắt tiện ích</string>
+	<string name="type.railway.rail.spur">Đường sắt thúc đẩy</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Đường ray phụ trợ</string>
+	<string name="type.railway.rail.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.highspeed.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.tourism.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.main.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.branch.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.utility.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.spur.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.service.bridge">Cầu đường sắt</string>
+	<string name="type.railway.rail.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.highspeed.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.tourism.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.main.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.branch.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.utility.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.spur.tunnel">Đường hầm đường sắt</string>
+	<string name="type.railway.rail.service.tunnel">Đường hầm đường sắt</string>
 	<string name="type.railway.station">Đường tàu hỏa</string>
+	<string name="type.railway.station.funicular">Đường sắt leo núi</string>
 	<string name="type.railway.station.light_rail">Đường tàu hỏa</string>
 	<string name="type.railway.station.monorail">Đường tàu hỏa</string>
 	<string name="type.railway.station.subway">Ngầm</string>
@@ -1571,7 +1625,6 @@
 	<string name="type.shop.greengrocer">Cửa hàng rau củ</string>
 	<string name="type.shop.grocery">Cửa hàng tạp hóa</string>
 	<string name="type.shop.hairdresser">Tiệm làm tóc</string>
-	<string name="type.shop.hardware">Cửa hàng phần cứng</string>
 	<string name="type.shop.health_food">Cửa hàng thực phẩm sức khỏe</string>
 	<string name="type.shop.herbalist">Cửa hàng thảo mộc</string>
 	<string name="type.shop.hifi">Âm thanh hifi</string>
@@ -1616,6 +1669,7 @@
 	<string name="type.shop.agrarian">Cửa hàng nông sản</string>
 	<string name="type.shop.antiques">Đồ cổ</string>
 	<string name="type.shop.appliance">Cửa hàng đồ gia dụng</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Cửa hàng nghệ thuật</string>
 	<string name="type.shop.baby_goods">Cửa hàng trẻ em</string>
 	<string name="type.shop.bag">Cửa hàng túi xách</string>
@@ -1705,6 +1759,7 @@
 	<string name="type.tourism.zoo">Vườn bách thú</string>
 	<string name="type.waterway.canal">Kênh</string>
 	<string name="type.waterway.canal.tunnel">Kênh</string>
+	<string name="type.waterway.fish_pass">Thang cá</string>
 	<string name="type.waterway.lock_gate">Cổng Khóa</string>
 	<string name="type.waterway.river">Sông</string>
 	<string name="type.waterway.river.tunnel">Sông</string>
@@ -1717,6 +1772,7 @@
 	<string name="type.wheelchair.limited">Được trang bị một phần cho người khuyết tật</string>
 	<string name="type.wheelchair.no">Không trang bị cho người khuyết tật</string>
 	<string name="type.wheelchair.yes">Được trang bị cho người khuyết tật</string>
-	<string name="type.building_part">Tòa nhà</string>
 	<string name="type.amenity.events_venue">Địa điểm tổ chức sự kiện</string>
+	<string name="type.shop.auction">Bán đấu giá</string>
+	<string name="type.shop.collector">Đồ sưu tầm</string>
 </resources>

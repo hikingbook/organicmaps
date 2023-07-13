@@ -96,6 +96,62 @@ UNIT_TEST(NameScore_Smoke)
   test("Зона №51", "зона №", NameScore::FULL_PREFIX, 0, 4);
 }
 
+UNIT_TEST(ErrorsMade_Smoke)
+{
+  {
+    QueryParams::Token const searchToken = strings::MakeUniString("hairdressers");
+
+    auto nameToken = strings::MakeUniString("h");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST(!search::impl::GetPrefixErrorsMade(searchToken, nameToken).IsValid(), ());
+
+    nameToken = strings::MakeUniString("hair");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST(!search::impl::GetPrefixErrorsMade(searchToken, nameToken).IsValid(), ());
+  }
+
+  {
+    auto nameToken = strings::MakeUniString("hair");
+
+    QueryParams::Token searchToken = strings::MakeUniString("hair");
+    TEST_EQUAL(search::impl::GetErrorsMade(searchToken, nameToken).m_errorsMade, 0, ());
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 0, ());
+
+    searchToken = strings::MakeUniString("gair");
+    TEST_EQUAL(search::impl::GetErrorsMade(searchToken, nameToken).m_errorsMade, 1, ());
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 1, ());
+
+    searchToken = strings::MakeUniString("gai");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 1, ());
+
+    searchToken = strings::MakeUniString("hairrr");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST(!search::impl::GetPrefixErrorsMade(searchToken, nameToken).IsValid(), ());
+  }
+
+  {
+    auto nameToken = strings::MakeUniString("hairdresser");
+
+    QueryParams::Token searchToken = strings::MakeUniString("hair");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 0, ());
+
+    searchToken = strings::MakeUniString("gair");
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 1, ());
+
+    searchToken = strings::MakeUniString("gairdrese");
+    TEST(!search::impl::GetErrorsMade(searchToken, nameToken).IsValid(), ());
+    TEST_EQUAL(search::impl::GetPrefixErrorsMade(searchToken, nameToken).m_errorsMade, 2, ());
+  }
+}
+
+UNIT_TEST(NameScore_Prefix)
+{
+  TEST_EQUAL(GetScore("H Nicks", "hairdressers").m_nameScore, NameScore::ZERO, ());
+  TEST_EQUAL(GetScore("Hair E14", "hairdressers").m_nameScore, NameScore::ZERO, ());
+}
+
 UNIT_TEST(NameScore_SubstringVsErrors)
 {
   string const query = "Simon";
@@ -106,7 +162,6 @@ UNIT_TEST(NameScore_SubstringVsErrors)
   info.m_numTokens = 1;
   info.m_allTokensUsed = true;
   info.m_exactMatch = false;
-  info.m_exactCountryOrCapital = false;
 
   {
     RankingInfo poi1 = info;
@@ -136,14 +191,12 @@ UNIT_TEST(RankingInfo_PreferCountry)
   auto cafe = info;
   cafe.m_distanceToPivot = 1e3;
   cafe.m_tokenRanges[Model::TYPE_SUBPOI] = TokenRange(0, 1);
-  cafe.m_exactCountryOrCapital = false;
   cafe.m_type = Model::TYPE_SUBPOI;
   cafe.m_classifType.poi = PoiType::Eat;
 
   auto country = info;
   country.m_distanceToPivot = 1e6;
   country.m_tokenRanges[Model::TYPE_COUNTRY] = TokenRange(0, 1);
-  country.m_exactCountryOrCapital = true;
   country.m_type = Model::TYPE_COUNTRY;
 
   // Country should be preferred even if cafe is much closer to viewport center.
@@ -157,7 +210,6 @@ UNIT_TEST(RankingInfo_PrefixVsFull)
   info.m_matchedFraction = 1;
   info.m_allTokensUsed = true;
   info.m_exactMatch = false;
-  info.m_exactCountryOrCapital = false;
   info.m_distanceToPivot = 1000;
   info.m_type = Model::TYPE_SUBPOI;
   info.m_tokenRanges[Model::TYPE_SUBPOI] = TokenRange(0, 2);

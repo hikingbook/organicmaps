@@ -21,7 +21,7 @@
 	<string name="miles">Mil</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Min position</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Senere</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Søg</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Bogmærke Farve</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Indstil bogmærkenavn</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Bogmærker</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Bogmærker og ruter</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Mine Steder</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">Parkering</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Indkøb</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Brugt</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -237,6 +241,10 @@
 	<string name="copyright">Copyright</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Rapportér fejl</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Forbedre pilens retning ved at bevæge telefonen i en ottetalsbevægelse for at kalibrere kompasset.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Bevæg telefonen i en ottetalsbevægelse for at kalibrere kompasset og fastgøre pilens retning på kortet.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Opdatér alle</string>
 	<!-- Cancel all button text -->
@@ -363,6 +371,10 @@
 	<string name="p2p_reroute_from_current">Ønsker du, at vi planlægger en rute fra din nuværende placering?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Næste</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Fra</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Til</string>
 	<string name="editor_time_add">Tilføj tidsplan</string>
 	<string name="editor_time_delete">Slet tidsplan</string>
 	<!-- Text for allday switch. -->
@@ -464,18 +476,16 @@
 	<string name="current_location_unknown_message">Aktuel placering er ukendt. Måske er du i en bygning eller i en tunnel.</string>
 	<string name="current_location_unknown_continue_button">Fortsæt</string>
 	<string name="current_location_unknown_stop_button">Stop</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/t</string>
-	<string name="mile">mil</string>
+	<string name="mi">mil</string>
 	<!-- A unit of measure -->
-	<string name="foot">fod</string>
+	<string name="ft">fod</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">time</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Beskrivelse</string>
 	<string name="placepage_more_button">Mere</string>
-	<string name="placepage_call_button">Ring</string>
 	<string name="placepage_edit_bookmark_button">Rediger bogmærke</string>
 	<string name="editor_comment_hint">Kommentar…</string>
 	<string name="editor_reset_edits_message">Nulstil alle lokale ændringer?</string>
@@ -540,6 +550,8 @@
 	<string name="bookmark_lists_hide_all">Skjul alle</string>
 	<string name="bookmark_lists_show_all">Vis alle</string>
 	<string name="bookmarks_create_new_group">Opret ny liste</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importer bogmærker og spor</string>
 	<string name="bookmarks_error_message_share_general">Ikke i stand til at dele på grund af en programfejl</string>
 	<string name="bookmarks_error_title_share_empty">Delingsfejl</string>
 	<string name="bookmarks_error_message_share_empty">Kan ikke dele en tom liste</string>
@@ -716,11 +728,13 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Universitet</string>
 	<string name="type.amenity.community_centre">Medborgerhus</string>
+	<string name="type.amenity.conference_centre">Konferencecenter</string>
 	<string name="type.amenity.courthouse">Domhus</string>
 	<string name="type.amenity.dentist">Tandlæge</string>
 	<string name="type.amenity.doctors">Lægekontor</string>
 	<string name="type.amenity.drinking_water">Vand</string>
 	<string name="type.amenity.driving_school">Køreskole</string>
+	<string name="type.amenity.exhibition_centre">Udstillingscenter</string>
 	<string name="type.amenity.money_transfer">Pengeoverførsel</string>
 	<string name="type.amenity.music_school">Musikskolen</string>
 	<string name="type.amenity.language_school">Sprogskole</string>
@@ -812,12 +826,21 @@
 	<string name="type.barrier.kissing_gate">Port</string>
 	<string name="type.barrier.lift_gate">Bom</string>
 	<string name="type.barrier.stile">Gærdebro</string>
+	<string name="type.barrier.turnstile">Turnstile</string>
 	<string name="type.barrier.swing_gate">Bom</string>
 	<string name="type.barrier.toll_booth">Betalingsstation</string>
 	<string name="type.boundary.national_park">National park</string>
+	<string name="type.boundary.protected_area">Beskyttet område</string>
+	<string name="type.boundary.protected_area.1">Beskyttet område</string>
+	<string name="type.boundary.protected_area.2">Beskyttet område</string>
+	<string name="type.boundary.protected_area.3">Beskyttet område</string>
+	<string name="type.boundary.protected_area.4">Beskyttet område</string>
+	<string name="type.boundary.protected_area.5">Beskyttet område</string>
+	<string name="type.boundary.protected_area.6">Beskyttet område</string>
 	<string name="type.building">Bygning</string>
 	<string name="type.building.address">Bygning</string>
 	<string name="type.building.has_parts">Bygning</string>
+	<string name="type.building_part">Bygning</string>
 	<string name="type.building.train_station">Togstation</string>
 	<string name="type.cemetery.grave">Grav</string>
 	<string name="type.craft">Håndværk</string>
@@ -873,7 +896,6 @@
 	<string name="type.cuisine.filipino">Filippinsk</string>
 	<string name="type.cuisine.fine_dining">Eksklusiv</string>
 	<string name="type.cuisine.fish">Fisk</string>
-	<string name="type.cuisine.fish_and_chips">Fish and chips</string>
 	<string name="type.cuisine.french">Fransk</string>
 	<string name="type.cuisine.friture">Friture</string>
 	<string name="type.cuisine.georgian">Georgisk</string>
@@ -935,6 +957,7 @@
 	<string name="type.entrance">Indgang</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Hovedindgang</string>
+	<string name="type.entrance.exit">Udgang</string>
 	<string name="type.healthcare.laboratory">Medicinsk laboratorium</string>
 	<string name="type.healthcare.physiotherapist">Fysioterapeut</string>
 	<string name="type.healthcare.alternative">Alternativ medicin</string>
@@ -1041,6 +1064,8 @@
 	<string name="type.highway.road">Gade</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Bro</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Bro</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Tunnel</string>
 	<string name="type.highway.secondary">Gade</string>
@@ -1295,11 +1320,39 @@
 	<string name="type.power.pole">El-pol</string>
 	<string name="type.power.substation">Transformerstation</string>
 	<string name="type.power.tower">El-pol</string>
+	<string name="type.railway.funicular">Funicular</string>
 	<string name="type.railway.halt">Togstation</string>
 	<string name="type.railway.level_crossing">Niveauskæring</string>
 	<string name="type.railway.monorail">Monorail</string>
 	<string name="type.railway.rail">Jernbane</string>
+	<string name="type.railway.rail.highspeed">Højhastighedsjernbane</string>
+	<string name="type.railway.rail.tourism">Turistisk jernbane</string>
+	<string name="type.railway.rail.main">Jernbane</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Sekundær jernbane</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Jernbane til forsyningsselskaber</string>
+	<string name="type.railway.rail.spur">Jernbanespor</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Ekstra jernbanespor</string>
+	<string name="type.railway.rail.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.highspeed.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.tourism.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.main.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.branch.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.utility.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.spur.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.service.bridge">Jernbanebro</string>
+	<string name="type.railway.rail.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.highspeed.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.tourism.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.main.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.branch.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.utility.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.spur.tunnel">Jernbanetunnel</string>
+	<string name="type.railway.rail.service.tunnel">Jernbanetunnel</string>
 	<string name="type.railway.station">Togstation</string>
+	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Togstation</string>
 	<string name="type.railway.station.monorail">Togstation</string>
 	<string name="type.railway.station.subway">Metro</string>
@@ -1566,7 +1619,6 @@
 	<string name="type.shop.greengrocer">Grønthandler</string>
 	<string name="type.shop.grocery">Købmand</string>
 	<string name="type.shop.hairdresser">Frisør</string>
-	<string name="type.shop.hardware">Isenkræmmer</string>
 	<string name="type.shop.health_food">Helsekostbutik</string>
 	<string name="type.shop.herbalist">Urtebutik</string>
 	<string name="type.shop.hifi">HiFi lyd</string>
@@ -1610,6 +1662,7 @@
 	<string name="type.shop.agrarian">Landbrugsbutik</string>
 	<string name="type.shop.antiques">Antikviteter</string>
 	<string name="type.shop.appliance">Hvidevarer butik</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Kunstbutik</string>
 	<string name="type.shop.baby_goods">Børnebutik</string>
 	<string name="type.shop.bag">Tasker butik</string>
@@ -1691,6 +1744,7 @@
 	<string name="type.tourism.wilderness_hut">Vildmarkshytte</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
+	<string name="type.waterway.fish_pass">Fiskestige</string>
 	<string name="type.waterway.lock_gate">Låseport</string>
 	<string name="type.waterway.river">Flod</string>
 	<string name="type.waterway.river.tunnel">Flod</string>
@@ -1703,6 +1757,7 @@
 	<string name="type.wheelchair.limited">Begrænset tilgængelighed for kørestol</string>
 	<string name="type.wheelchair.no">Ingen tilgængelighed for kørestol</string>
 	<string name="type.wheelchair.yes">Fuld tilgængelighed for kørestol</string>
-	<string name="type.building_part">Bygning</string>
 	<string name="type.amenity.events_venue">Sted for arrangementer</string>
+	<string name="type.shop.auction">Auktion</string>
+	<string name="type.shop.collector">Samlerobjekter</string>
 </resources>

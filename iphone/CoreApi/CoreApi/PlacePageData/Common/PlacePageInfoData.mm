@@ -29,7 +29,6 @@ using namespace osm;
     using MetadataID = MapObject::MetadataID;
     rawData.ForEachMetadataReadable([&](MetadataID metaID, std::string const & value)
     {
-      /// @todo Show wikipedia, wikimedia_commons here?
       switch (metaID)
       {
         case MetadataID::FMD_OPEN_HOURS:
@@ -71,8 +70,12 @@ using namespace osm;
     });
 
     _address = rawData.GetAddress().empty() ? nil : @(rawData.GetAddress().c_str());
-    _rawCoordinates = @(rawData.GetFormattedCoordinate(true).c_str());
-    _formattedCoordinates = @(rawData.GetFormattedCoordinate(false).c_str());
+    _coordFormats = @[@(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::LatLonDMS).c_str()),
+                      @(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::LatLonDecimal).c_str()),
+                      @(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::OLCFull).c_str()),
+                      @(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::OSMLink).c_str()),
+                      @(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::UTM).c_str()),
+                      @(rawData.GetFormattedCoordinate(place_page::CoordinatesFormat::MGRS).c_str())];
   }
   return self;
 }

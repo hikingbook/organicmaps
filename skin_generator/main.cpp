@@ -8,9 +8,6 @@
 #include <QtCore/QString>
 #include <QtCore/QHash>
 
-#include <QtXml/QXmlSimpleReader>
-#include <QtXml/QXmlInputSource>
-
 #include <gflags/gflags.h>
 
 DEFINE_string(fontFileName, "../../data/01_dejavusans.ttf", "path to TrueType font file");
@@ -36,8 +33,6 @@ int main(int argc, char *argv[])
   {
     gflags::ParseCommandLineFlags(&argc, &argv, true);
     QApplication app(argc, argv);
-    // Pretty icons on HDPI displays.
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     tools::SkinGenerator gen;
 

@@ -253,9 +253,7 @@ UNIT_CLASS_TEST(TestAbsentRegionsFinder, China)
   Checkpoints const checkpoints{mercator::FromLatLon(30.78611, 102.55829),
                                 mercator::FromLatLon(27.54127, 102.02502)};
 
-  std::set<std::string> const planRegions{};
-
-  TestRegions(checkpoints, planRegions);
+  TestRegions(checkpoints, {});
 }
 
 // Inside "Finland_Eastern Finland_North".
@@ -264,9 +262,7 @@ UNIT_CLASS_TEST(TestAbsentRegionsFinder, Finland)
   Checkpoints const checkpoints{mercator::FromLatLon(63.54162, 28.71141),
                                 mercator::FromLatLon(64.6790, 28.73029)};
 
-  std::set<std::string> const planRegions{};
-
-  TestRegions(checkpoints, planRegions);
+  TestRegions(checkpoints, {});
 }
 
 // https://github.com/organicmaps/organicmaps/issues/980
@@ -280,4 +276,26 @@ UNIT_CLASS_TEST(TestAbsentRegionsFinder, BC_Alberta)
 
   TestRegions(checkpoints, planRegions);
 }
+
+// https://github.com/organicmaps/organicmaps/issues/1721
+UNIT_CLASS_TEST(TestAbsentRegionsFinder, Germany_Cologne_Croatia_Zagreb)
+{
+  Checkpoints const checkpoints{mercator::FromLatLon(50.924, 6.943),
+                                mercator::FromLatLon(45.806, 15.963)};
+
+  /// @todo Optimal route should include Graz-Maribor-Zagreb.
+  auto const & rgns = GetRegions(checkpoints);
+  TEST(rgns.count("Austria_Styria_Graz") > 0, ());
+}
+
+UNIT_CLASS_TEST(TestAbsentRegionsFinder, Russia_SPB_Pechory)
+{
+  Checkpoints const checkpoints{mercator::FromLatLon(59.9387323, 30.3162295),
+                                mercator::FromLatLon(57.8133044, 27.6081855)};
+
+  /// @todo Optimal should not include Estonia.
+  for (auto const & rgn : GetRegions(checkpoints))
+    TEST(!strings::StartsWith(rgn, "Estonia"), ());
+}
+
 } // namespace absent_regions_finder_tests

@@ -42,7 +42,7 @@
         <li>Contour lines, elevation profiles, peaks, and slopes</li>
         <li>Turn-by-turn walking, cycling, and car navigation with voice guidance</li>
         <li>Fast offline search on the map</li>
-        <li>Bookmarks export and import in KML/KMZ formats (GPX is planned)</li>
+        <li>Bookmarks and tracks export and import in KML, KMZ, GPX formats</li>
         <li>Dark Mode to protect your eyes</li>
         <li>Countries and regions don&apos;t take a lot of space</li>
         <li>Free and open-source</li>
@@ -113,6 +113,56 @@
   </screenshots>
 
   <releases>
+   <release version="2023.06.04-13" date="2023-06-04">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>New OpenStreetMap data as of June 2, 2023</li>
+           <li>GPX import support</li>
+           <li>Fixed disappearing bookmark lists when wrong characters were saved in a bookmark name or description</li>
+           <li>Improved car and bicycle routing</li>
+           <li>Fixed bookmarks dialog color in the dark mode</li>
+         </ul>
+       <p>Map Styles:</p>
+         <ul>
+           <li>Fixed funicular icon</li>
+           <li>Changed desert color in the dark mode</li>
+           <li>Added Fish Pass</li>
+           <li>New Icon for Parcel Locker</li>
+           <li>Fixed icon for northernmost Munich underground station</li>
+         </ul>
+       <p>Translations:</p>
+         <ul>
+           <li>Corrected Basque, Belarusian, British, English, and Ukrainian translations</li>
+         </ul>
+     </description>
+   </release>
+   <release version="2023.05.08-7" date="2023-05-08">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>New OpenStreetMap data as of May 3</li>
+           <li>Fixed OpenGL issues on some devices</li>
+           <li>Search supports addr:interpolation addresses</li>
+           <li>Faster rendering of subway layer</li>
+           <li>Fixed wrong postcodes in Paris</li>
+           <li>Fixed missing Wikipedia links</li>
+           <li>Fixed car routing via roundabouts</li>
+         </ul>
+       <p>Map Styles:</p>
+         <ul>
+           <li>Changed gate icon</li>
+           <li>Changed Lyon subway icon</li>
+           <li>Fixed US road shields</li>
+           <li>Fixed priority of water areas</li>
+           <li>Added camera shop, interior_decoration, antiques, art, cheese shop</li>
+         </ul>
+       <p>Translations:</p>
+         <ul>
+           <li>Improved English, German, Brazilian Portuguese translations</li>
+         </ul>
+     </description>
+   </release>
    <release version="2023.04.02-7" date="2023-04-02">
      <description>
        <p>Highlights:</p>

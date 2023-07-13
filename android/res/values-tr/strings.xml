@@ -23,7 +23,7 @@
 	<string name="miles">Mil</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Konumum</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Daha sonra</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Ara</string>
@@ -73,8 +73,10 @@
 	<string name="bookmark_color">Yer İmi Rengi</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Yer İmi Listesi Adı</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Yer İmleri</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Yer İmleri ve Kayıtlar</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Yerlerim</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -125,6 +127,8 @@
 	<string name="parking">Otopark</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Alışveriş</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">İkinci el</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Otel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -197,7 +201,7 @@
 	<!-- Confirmation in downloading countries dialog -->
 	<string name="are_you_sure">Devam etmek istediğinizden emin misiniz?</string>
 	<!-- Title for tracks category in bookmarks manager -->
-	<string name="tracks_title">Kayıtlar</string>
+	<string name="tracks_title">Yol Kayıtları</string>
 	<!-- Length of track in cell that describes route -->
 	<string name="length">Uzunluk</string>
 	<string name="share_my_location">Konumumu Paylaş</string>
@@ -256,6 +260,10 @@
 	<string name="copyright">Telif hakkı</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Hata bildir</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Pusulayı kalibre etmek için telefonu sekiz şeklinde hareket ettirerek ok yönünü iyileştirin.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Pusulayı kalibre etmek ve haritadaki ok yönünü düzeltmek için telefonu sekiz şeklinde hareket ettirin.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Tümünü güncelle</string>
 	<!-- Cancel all button text -->
@@ -384,6 +392,10 @@
 	<string name="p2p_reroute_from_current">Mevcut konumunuzdan bir rota planlamamızı ister misiniz?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Sonraki</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Açılış</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Kapanış</string>
 	<string name="editor_time_add">Plan Ekle</string>
 	<string name="editor_time_delete">Planı Sil</string>
 	<!-- Text for allday switch. -->
@@ -488,18 +500,16 @@
 	<string name="current_location_unknown_message">Geçerli konum bilinmiyor. Muhtemelen bir bina veya tünelin içindesiniz.</string>
 	<string name="current_location_unknown_continue_button">Devam</string>
 	<string name="current_location_unknown_stop_button">Dur</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/s</string>
-	<string name="mile">mil</string>
+	<string name="mi">mil</string>
 	<!-- A unit of measure -->
-	<string name="foot">fit</string>
+	<string name="ft">fit</string>
 	<string name="miles_per_hour">saatte mil</string>
 	<string name="hour">sa</string>
 	<string name="minute">dk</string>
-	<string name="placepage_place_description">Açıklama</string>
 	<string name="placepage_more_button">Diğer</string>
-	<string name="placepage_call_button">Ara</string>
 	<string name="placepage_edit_bookmark_button">Yer İmini Düzenle</string>
 	<string name="editor_comment_hint">Yorum…</string>
 	<string name="editor_reset_edits_message">Tüm yerel değişiklikler sıfırlansın mı?</string>
@@ -571,8 +581,8 @@
 	<string name="bookmark_lists_hide_all">Tümünü gizle</string>
 	<string name="bookmark_lists_show_all">Tümünü göster</string>
 	<string name="bookmarks_create_new_group">Yeni liste oluştur</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Yer imlerini içe aktar</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Yer i̇mlerini ve parçaları i̇çe aktarma</string>
 	<string name="bookmarks_error_message_share_general">Bir uygulama hatasından dolayı paylaşılamıyor</string>
 	<string name="bookmarks_error_title_share_empty">Paylaşma hatası</string>
 	<string name="bookmarks_error_message_share_empty">Boş bir liste paylaşılamaz</string>
@@ -775,19 +785,21 @@
 	<string name="type.amenity.casino">Kumarhane</string>
 	<string name="type.amenity.charging_station">Şarj İstasyonu</string>
 	<string name="type.amenity.charging_station.bicycle">Bisiklet Şarj İstasyonu</string>
-	<string name="type.amenity.charging_station.motorcar">Otomobil Şarj İstasyonu</string>
+	<string name="type.amenity.charging_station.motorcar">Araç Şarj İstasyonu</string>
 	<string name="type.amenity.childcare">Kreş</string>
 	<string name="type.amenity.cinema">Sinema</string>
 	<string name="type.leisure.bowling_alley">Bowling pisti</string>
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Kolej</string>
 	<string name="type.amenity.community_centre">Toplum Merkezi</string>
+	<string name="type.amenity.conference_centre">Konferans merkezi</string>
 	<string name="type.amenity.courthouse">Adliye</string>
 	<string name="type.amenity.dentist">Dişçi</string>
 	<string name="type.amenity.doctors">Doktor</string>
 	<string name="type.amenity.drinking_water">İçme Suyu</string>
 	<string name="type.amenity.driving_school">Sürücü Kursu</string>
-	<string name="type.amenity.money_transfer">Para transferi</string>
+	<string name="type.amenity.exhibition_centre">Sergi Merkezi</string>
+	<string name="type.amenity.money_transfer">Para Aktarımı</string>
 	<string name="type.amenity.music_school">Müzik Okulu</string>
 	<string name="type.amenity.language_school">Dil Okulu</string>
 	<string name="type.office.diplomatic">Büyükelçilik</string>
@@ -807,7 +819,7 @@
 	<string name="type.amenity.internet_cafe">İnternet Kafe</string>
 	<string name="type.amenity.kindergarten">Anaokulu</string>
 	<string name="type.amenity.library">Kütüphane</string>
-	<string name="type.amenity.loading_dock">Yükleme alanı</string>
+	<string name="type.amenity.loading_dock">Yükleme Alanı</string>
 	<string name="type.amenity.marketplace">Pazaryeri</string>
 	<string name="type.amenity.motorcycle_parking">Motosiklet Parkı</string>
 	<string name="type.amenity.nightclub">Gece Kulübü</string>
@@ -902,6 +914,7 @@
 	<string name="type.barrier.lift_gate">Asansör Kapısı</string>
 	<string name="type.barrier.retaining_wall">İstinat duvarı</string>
 	<string name="type.barrier.stile">Çit Merdiveni</string>
+	<string name="type.barrier.turnstile">Turnike</string>
 	<string name="type.barrier.swing_gate">Salıncak Kapısı</string>
 	<string name="type.barrier.toll_booth">Gişe</string>
 	<string name="type.barrier.wall">Duvar</string>
@@ -926,10 +939,18 @@
 	<string name="type.boundary.administrative.state">Devlet Sınırı</string>
 	<string name="type.boundary.administrative.suburb">Mahalle Sınırı</string>
 	<string name="type.boundary.national_park">Ulusal Park</string>
+	<string name="type.boundary.protected_area">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.1">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.2">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.3">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.4">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.5">Korunmuş bölge</string>
+	<string name="type.boundary.protected_area.6">Korunmuş bölge</string>
 	<string name="type.building">Bina</string>
 	<string name="type.building.address">Bina</string>
-	<string name="type.building.garage">Garaj</string>
 	<string name="type.building.has_parts">Bina</string>
+	<string name="type.building_part">Bina</string>
+	<string name="type.building.garage">Garaj</string>
 	<string name="type.building.train_station">Tren İstasyonu</string>
 	<string name="type.building.warehouse">Depo</string>
 	<string name="type.cemetery.grave">Mezar</string>
@@ -945,12 +966,12 @@
 	<string name="type.craft.handicraft">El İşi</string>
 	<!-- Heating, Ventilation, and Air Conditioning -->
 	<string name="type.craft.hvac">Klimacı</string>
-	<string name="type.craft.key_cutter">Anahtar kesme</string>
+	<string name="type.craft.key_cutter">Anahtar Kopyalama</string>
 	<string name="type.craft.locksmith">Çilingir</string>
 	<string name="type.craft.metal_construction">Dökümcü</string>
 	<string name="type.craft.painter">Boyacı</string>
 	<string name="type.craft.photographer">Fotoğraf Stüdyosu</string>
-	<string name="type.shop.camera">Kamera Dükkanı</string>
+	<string name="type.shop.camera">Kamera Mağazası</string>
 	<string name="type.craft.plumber">Tesisatçı</string>
 	<string name="type.craft.sawmill">Kereste Fabrikası</string>
 	<string name="type.craft.shoemaker">Ayakkabı Tamircisi</string>
@@ -1049,6 +1070,7 @@
 	<string name="type.entrance">Giriş</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Ana giriş</string>
+	<string name="type.entrance.exit">Çıkış</string>
 	<string name="type.healthcare.laboratory">Tıbbi Laboratuvar</string>
 	<string name="type.healthcare.physiotherapist">Fizyoterapist</string>
 	<string name="type.healthcare.alternative">Alternatif tıp</string>
@@ -1161,6 +1183,8 @@
 	<string name="type.highway.road">Yol</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Köprü</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Köprü</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Tünel</string>
 	<string name="type.highway.secondary">Tali Yol</string>
@@ -1281,6 +1305,7 @@
 	<string name="type.internet_access">İnternet</string>
 	<string name="type.internet_access.wlan">İnternet</string>
 	<string name="type.junction">Kavşak noktası</string>
+	<string name="type.junction.circular">Göbekli kavşak</string>
 	<string name="type.junction.roundabout">Göbekli kavşak</string>
 	<string name="type.landuse">Arazi Kullanımı</string>
 	<string name="type.landuse.allotments">Tahsisler</string>
@@ -1459,21 +1484,21 @@
 	<string name="type.place.village">Köy</string>
 	<string name="type.power">Enerji</string>
 	<string name="type.power.generator">Jeneratör</string>
-	<string name="type.power.generator.solar">Güneş jeneratörü</string>
-	<string name="type.power.generator.wind">Rüzgar jeneratörü</string>
-	<string name="type.power.generator.gas">Gaz türbini santrali</string>
-	<string name="type.power.generator.hydro">Hidroelektrik santral</string>
+	<string name="type.power.generator.solar">Güneş Paneli</string>
+	<string name="type.power.generator.wind">Rüzgar Türbini</string>
+	<string name="type.power.generator.gas">Gaz Türbini Santrali</string>
+	<string name="type.power.generator.hydro">Hidroelektrik Santrali</string>
 	<string name="type.power.line">Elektrik Hattı</string>
 	<string name="type.power.line.underground">Yeraltı Elektrik Hattı</string>
 	<string name="type.power.minor_line">Küçük Elektrik Hattı</string>
-	<string name="type.power.plant">Enerji santrali</string>
-	<string name="type.power.plant.coal">Kömür santrali</string>
-	<string name="type.power.plant.gas">Gaz türbini santrali</string>
-	<string name="type.power.plant.hydro">Hidroelektrik santral</string>
-	<string name="type.power.plant.solar">Güneş enerjili elektrik santrali</string>
-	<string name="type.power.plant.wind">Rüzgar santrali</string>
-	<string name="type.power.pole">Elektrik Kulesi</string>
-	<string name="type.power.station">Elektrik İstasyonu</string>
+	<string name="type.power.plant">Elektrik Santrali</string>
+	<string name="type.power.plant.coal">Kömür Santrali</string>
+	<string name="type.power.plant.gas">Gaz Türbini Santrali</string>
+	<string name="type.power.plant.hydro">Hidroelektrik Santrali</string>
+	<string name="type.power.plant.solar">Güneş Enerjisi Santrali</string>
+	<string name="type.power.plant.wind">Rüzgar Santrali</string>
+	<string name="type.power.pole">Elektrik Direği</string>
+	<string name="type.power.station">Elektrik Santrali</string>
 	<string name="type.power.substation">Trafo</string>
 	<string name="type.power.tower">Elektrik Kulesi</string>
 	<string name="type.public_transport">Toplu Taşıma</string>
@@ -1504,17 +1529,34 @@
 	<string name="type.railway.preserved.bridge">Korunmuş Ray</string>
 	<string name="type.railway.preserved.tunnel">Korunmuş Ray</string>
 	<string name="type.railway.rail">Demiryolu</string>
-	<string name="type.railway.rail.bridge">Demiryolu</string>
-	<string name="type.railway.rail.motor_vehicle">Demiryolu</string>
-	<string name="type.railway.rail.tunnel">Demiryolu</string>
-	<string name="type.railway.razed">Yıkılmış Ray</string>
-	<string name="type.railway.siding">Demiryolu Hattı</string>
-	<string name="type.railway.siding.bridge">Demiryolu Hattı</string>
-	<string name="type.railway.siding.tunnel">Demiryolu Hattı</string>
-	<string name="type.railway.spur">Düz Ray</string>
-	<string name="type.railway.spur.bridge">Düz Ray</string>
-	<string name="type.railway.spur.tunnel">Düz Ray</string>
+	<string name="type.railway.rail.highspeed">Yüksek hızlı demiryolu</string>
+	<string name="type.railway.rail.tourism">Turistik demiryolu</string>
+	<string name="type.railway.rail.main">Demiryolu</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">İkincil demiryolu</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Yardımcı demiryolu</string>
+	<string name="type.railway.rail.spur">Düz Ray</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Yardımcı ray hattı</string>
+	<string name="type.railway.rail.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.highspeed.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.tourism.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.main.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.branch.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.utility.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.spur.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.service.bridge">Demiryolu köprüsü</string>
+	<string name="type.railway.rail.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.highspeed.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.tourism.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.main.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.branch.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.utility.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.spur.tunnel">Demiryolu tüneli</string>
+	<string name="type.railway.rail.service.tunnel">Demiryolu tüneli</string>
 	<string name="type.railway.station">Tren İstasyonu</string>
+	<string name="type.railway.station.funicular">Füniküler</string>
 	<string name="type.railway.station.light_rail">Tren İstasyonu</string>
 	<string name="type.railway.station.monorail">Tren İstasyonu</string>
 	<string name="type.railway.station.subway">Metro</string>
@@ -1744,29 +1786,25 @@
 	<string name="type.railway.tram.bridge">Tramvay Hattı</string>
 	<string name="type.railway.tram.tunnel">Tramvay Hattı</string>
 	<string name="type.railway.tram_stop">Tramvay Durağı</string>
-	<string name="type.railway.yard">Demiryolu Avlusu</string>
-	<string name="type.railway.yard.bridge">Demiryolu Avlusu</string>
-	<string name="type.railway.yard.tunnel">Demiryolu Avlusu</string>
 	<string name="type.route">Rota</string>
 	<string name="type.route.ferry">Feribot</string>
-	<string name="type.route.shuttle_train">Servis Treni</string>
 	<string name="type.shop">Mağaza</string>
 	<string name="type.shop.alcohol">İçki dükkanı</string>
 	<string name="type.shop.bakery">Fırın</string>
-	<string name="type.shop.bathroom_furnishing">Banyo Mobilyaları</string>
+	<string name="type.shop.bathroom_furnishing">Banyo Mobilya Mağazası</string>
 	<string name="type.shop.beauty">Güzellik Salonu</string>
 	<string name="type.shop.beverages">İçecekler</string>
 	<string name="type.shop.bicycle">Bisikletçi</string>
 	<string name="type.shop.bookmaker">Bahisçi</string>
 	<string name="type.shop.books">Kitapçı</string>
 	<string name="type.shop.butcher">Kasap</string>
-	<string name="type.shop.cannabis">Kenevir dükkanı</string>
+	<string name="type.shop.cannabis">Kenevir Mağazası</string>
 	<string name="type.shop.car">Otomobil Mağazası</string>
 	<string name="type.shop.car_parts">Araba Parçaları</string>
 	<string name="type.shop.car_repair">Oto Tamir</string>
 	<string name="type.shop.car_repair.tyres">Lastik Tamiri</string>
 	<string name="type.shop.caravan">Karavan Bayiliği</string>
-	<string name="type.shop.carpet">Halılar</string>
+	<string name="type.shop.carpet">Halıcı</string>
 	<string name="type.shop.chemist">Temizlik Ürünleri Mağazası</string>
 	<string name="type.shop.chocolate">Mağaza</string>
 	<string name="type.shop.clothes">Giyim Mağazası</string>
@@ -1776,7 +1814,7 @@
 	<string name="type.shop.convenience">Bakkal</string>
 	<string name="type.shop.copyshop">Kopyalama Merkezi</string>
 	<string name="type.shop.cosmetics">Bakım ürünleri</string>
-	<string name="type.shop.curtain">Perdeler</string>
+	<string name="type.shop.curtain">Perdeci</string>
 	<string name="type.shop.deli">Şarküteri Dükkanı</string>
 	<string name="type.shop.department_store">Büyük Mağaza</string>
 	<string name="type.shop.doityourself">Hırdavatçı</string>
@@ -1790,15 +1828,15 @@
 	<string name="type.shop.funeral_directors">Cenaze Levazımcısı</string>
 	<string name="type.shop.furniture">Mobilya Mağazası</string>
 	<string name="type.shop.garden_centre">Bahçe Mağazası</string>
-	<string name="type.shop.gas">Gaz deposu</string>
+	<string name="type.shop.gas">Gaz İstasyonu</string>
 	<string name="type.shop.gift">Hediyelik Eşya Mağazası</string>
 	<string name="type.shop.greengrocer">Manav</string>
 	<string name="type.shop.grocery">Market</string>
 	<string name="type.shop.hairdresser">Kuaför</string>
 	<string name="type.shop.hardware">Donanım mağazası</string>
 	<string name="type.shop.health_food">Sağlık Gıda Mağazası</string>
-	<string name="type.shop.herbalist">Şifalı bitkiler mağazası</string>
-	<string name="type.shop.hifi">HiFi Ses</string>
+	<string name="type.shop.herbalist">Aktar</string>
+	<string name="type.shop.hifi">Plakçı</string>
 	<string name="type.shop.houseware">Ev Eşyaları Dükkanı</string>
 	<string name="type.shop.jewelry">Kuyumcu</string>
 	<string name="type.shop.kiosk">Büfe</string>
@@ -1809,17 +1847,17 @@
 	<string name="type.shop.mobile_phone">Cep Telefonu Mağazası</string>
 	<string name="type.shop.money_lender">Mağaza</string>
 	<string name="type.shop.motorcycle">Motosiklet Dükkanı</string>
-	<string name="type.shop.motorcycle_repair">Motosiklet Tamiri</string>
+	<string name="type.shop.motorcycle_repair">Motosiklet Tamircisi</string>
 	<string name="type.shop.music">Mağaza</string>
 	<string name="type.shop.musical_instrument">Mağaza</string>
 	<string name="type.shop.newsagent">Gazete Standı</string>
 	<string name="type.shop.optician">Gözlükçü</string>
 	<string name="type.shop.outdoor">Dış Mekan Ekipmanları</string>
-	<string name="type.shop.outpost">Alım noktası</string>
+	<string name="type.shop.outpost">Alım Noktası</string>
 	<string name="type.shop.pastry">Hamur işi</string>
 	<string name="type.shop.pawnbroker">Tefeci</string>
 	<string name="type.shop.pet">Evcil Hayvan Mağazası</string>
-	<string name="type.shop.pet_grooming">Evcil Hayvan Bakımı</string>
+	<string name="type.shop.pet_grooming">Evcil Hayvan Bakıcısı</string>
 	<string name="type.shop.photo">Fotoğrafçı</string>
 	<string name="type.shop.seafood">Deniz Ürünleri Mağazası</string>
 	<string name="type.shop.second_hand">İkinci El Mağazası</string>
@@ -1837,13 +1875,14 @@
 	<string name="type.shop.video">Video Mağazası</string>
 	<string name="type.shop.video_games">Video Oyunları Mağazası</string>
 	<string name="type.shop.wine">Şarap Mağazası</string>
-	<string name="type.shop.agrarian">Tarım dükkanı</string>
+	<string name="type.shop.agrarian">Zirai Ürünler Mağazası</string>
 	<string name="type.shop.antiques">Antikalar</string>
-	<string name="type.shop.appliance">Beyaz eşya dükkanı</string>
+	<string name="type.shop.appliance">Beyaz Eşya Mağazası</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Sanat Mağazası</string>
 	<string name="type.shop.baby_goods">Çocuk mağazası</string>
 	<string name="type.shop.bag">Çanta Mağazası</string>
-	<string name="type.shop.bed">Yatak dükkanı</string>
+	<string name="type.shop.bed">Yatak Mağazası</string>
 	<string name="type.shop.boutique">Butik</string>
 	<string name="type.shop.charity">Hayır Dükkanı</string>
 	<string name="type.shop.cheese">Peynir Dükkanı</string>
@@ -1935,6 +1974,7 @@
 	<string name="type.waterway">Su Yolu</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
+	<string name="type.waterway.fish_pass">Balık Geçidi</string>
 	<string name="type.waterway.dam">Baraj</string>
 	<string name="type.waterway.ditch">Hendek</string>
 	<string name="type.waterway.ditch.tunnel">Hendek</string>
@@ -1970,6 +2010,7 @@
 	<string name="type.piste_type.downhill.novice">Yeni başlayanlar için kayak pisti</string>
 	<string name="type.piste_type.nordic">İskandinav Kayak Pisti</string>
 	<string name="type.piste_type.sled">Kızak Pisti</string>
-	<string name="type.building_part">Bina</string>
 	<string name="type.amenity.events_venue">Etkinlik mekanı</string>
+	<string name="type.shop.auction">Müzayede</string>
+	<string name="type.shop.collector">Koleksiyon eşyaları</string>
 </resources>

@@ -21,7 +21,7 @@
 	<string name="miles">Mil</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Min position</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Senare</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Sök</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Bokmärkesfärg</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Bokmärkessamlingens namn</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Bokmärken</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Bokmärken och rutter</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Mina Platser</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">Parkering</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Shopping</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Begagnad</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotell</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -235,6 +239,10 @@
 	<string name="copyright">Copyright</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Rapportera en bugg</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Förbättra pilens riktning genom att flytta telefonen i en åttarörelse för att kalibrera kompassen.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Flytta telefonen i en åttarörelse för att kalibrera kompassen och fastställa pilens riktning på kartan.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Uppdatera alla</string>
 	<!-- Cancel all button text -->
@@ -361,6 +369,10 @@
 	<string name="p2p_reroute_from_current">Vill du att vi planerar en färdväg från din nuvarande plats?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Nästa</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Från</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Till</string>
 	<string name="editor_time_add">Lägg till schema</string>
 	<string name="editor_time_delete">Ta bort schema</string>
 	<!-- Text for allday switch. -->
@@ -460,18 +472,16 @@
 	<string name="current_location_unknown_message">Nuvarande plats okänd. Du kanske är i en byggnad eller tunnel.</string>
 	<string name="current_location_unknown_continue_button">Fortsätt</string>
 	<string name="current_location_unknown_stop_button">Stopp</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mile</string>
+	<string name="mi">mile</string>
 	<!-- A unit of measure -->
-	<string name="foot">fot</string>
+	<string name="ft">fot</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">h</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Beskrivning</string>
 	<string name="placepage_more_button">Mer</string>
-	<string name="placepage_call_button">Ring</string>
 	<string name="placepage_edit_bookmark_button">Redigera bokmärke</string>
 	<string name="editor_comment_hint">kommentar…</string>
 	<string name="editor_reset_edits_message">Återställ alla lokala ändringar?</string>
@@ -536,6 +546,8 @@
 	<string name="bookmark_lists_hide_all">Dölj alla</string>
 	<string name="bookmark_lists_show_all">Visa alla</string>
 	<string name="bookmarks_create_new_group">Skapa ny lista</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importera bokmärken och spår</string>
 	<string name="bookmarks_error_message_share_general">Kunde inte delas på grund av ett applikationsfel</string>
 	<string name="bookmarks_error_title_share_empty">Delningsfel</string>
 	<string name="bookmarks_error_message_share_empty">Kan inte dela en tom lista</string>
@@ -553,9 +565,11 @@
 	</plurals>
 	<string name="common_check_internet_connection_dialog_title">Ingen internetanslutning</string>
 	<plurals name="objects">
-	  <item quantity="other">%d plats</item>
+	  <item quantity="one">%d plats</item>
+	  <item quantity="other">%d platser</item>
 	</plurals>
 	<plurals name="places">
+	  <item quantity="one">%d plats</item>
 	  <item quantity="other">%d platser</item>
 	</plurals>
 	<plurals name="tracks">
@@ -676,6 +690,8 @@
 	<string name="enable_screen_sleep_description">När den är aktiverad får skärmen sova efter en period av inaktivitet.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Kartdata från OpenStreetMap</string>
+	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+	<string name="translated_om_site_url">https://organicmaps.app/sv/</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adress/Block</string>
@@ -710,11 +726,13 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Högskola</string>
 	<string name="type.amenity.community_centre">Stadshus</string>
+	<string name="type.amenity.conference_centre">Konferens Center</string>
 	<string name="type.amenity.courthouse">Domstol</string>
 	<string name="type.amenity.dentist">Tandläkare</string>
 	<string name="type.amenity.doctors">Läkarmottagning</string>
 	<string name="type.amenity.drinking_water">Dricksvatten</string>
 	<string name="type.amenity.driving_school">Körskola</string>
+	<string name="type.amenity.exhibition_centre">Mässa</string>
 	<string name="type.amenity.money_transfer">Pengaöverföring</string>
 	<string name="type.amenity.music_school">Musikskola</string>
 	<string name="type.amenity.language_school">Språkskola</string>
@@ -810,12 +828,21 @@
 	<string name="type.barrier.kissing_gate">Grind</string>
 	<string name="type.barrier.lift_gate">Bom</string>
 	<string name="type.barrier.stile">Stätta</string>
+	<string name="type.barrier.turnstile">Turnstile</string>
 	<string name="type.barrier.swing_gate">Bom</string>
 	<string name="type.barrier.toll_booth">Tullhus</string>
 	<string name="type.boundary.national_park">Nationalpark</string>
+	<string name="type.boundary.protected_area">Skyddat område</string>
+	<string name="type.boundary.protected_area.1">Skyddat område</string>
+	<string name="type.boundary.protected_area.2">Skyddat område</string>
+	<string name="type.boundary.protected_area.3">Skyddat område</string>
+	<string name="type.boundary.protected_area.4">Skyddat område</string>
+	<string name="type.boundary.protected_area.5">Skyddat område</string>
+	<string name="type.boundary.protected_area.6">Skyddat område</string>
 	<string name="type.building">Byggnad</string>
 	<string name="type.building.address">Byggnad</string>
 	<string name="type.building.has_parts">Byggnad</string>
+	<string name="type.building_part">Byggnad</string>
 	<string name="type.building.train_station">Tågstation</string>
 	<string name="type.cemetery.grave">Grav</string>
 	<string name="type.craft">Hantverk</string>
@@ -932,6 +959,7 @@
 	<string name="type.entrance">Entré</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Huvudentré</string>
+	<string name="type.entrance.exit">Utgång</string>
 	<string name="type.healthcare.laboratory">Medicinskt laboratorium</string>
 	<string name="type.healthcare.physiotherapist">Fysioterapeut</string>
 	<string name="type.healthcare.alternative">Alternativ medicin</string>
@@ -1038,6 +1066,8 @@
 	<string name="type.highway.road">Gata</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Bro</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Bro</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Tunnel</string>
 	<string name="type.highway.secondary">Gata</string>
@@ -1292,11 +1322,39 @@
 	<string name="type.power.pole">Elstolpe</string>
 	<string name="type.power.substation">Ställverk</string>
 	<string name="type.power.tower">Elstolpe</string>
+	<string name="type.railway.funicular">Linbana</string>
 	<string name="type.railway.halt">Tågstation</string>
 	<string name="type.railway.level_crossing">Järnvägskorsning</string>
 	<string name="type.railway.monorail">Monorail</string>
 	<string name="type.railway.rail">Järnväg</string>
+	<string name="type.railway.rail.highspeed">Järnväg för höghastighetståg</string>
+	<string name="type.railway.rail.tourism">Järnväg för turisttrafik</string>
+	<string name="type.railway.rail.main">Järnväg</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Sekundär järnväg</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Järnväg för allmännyttiga ändamål</string>
+	<string name="type.railway.rail.spur">Järnvägsspår</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Extra järnvägsspår</string>
+	<string name="type.railway.rail.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.highspeed.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.tourism.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.main.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.branch.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.utility.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.spur.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.service.bridge">Järnvägsbro</string>
+	<string name="type.railway.rail.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.highspeed.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.tourism.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.main.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.branch.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.utility.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.spur.tunnel">Järnvägstunnel</string>
+	<string name="type.railway.rail.service.tunnel">Järnvägstunnel</string>
 	<string name="type.railway.station">Tågstation</string>
+	<string name="type.railway.station.funicular">Linbana</string>
 	<string name="type.railway.station.light_rail">Tågstation</string>
 	<string name="type.railway.station.monorail">Tågstation</string>
 	<string name="type.railway.station.subway">Tunnelbana</string>
@@ -1607,6 +1665,7 @@
 	<string name="type.shop.agrarian">Lantbruksbutik</string>
 	<string name="type.shop.antiques">Antikviteter</string>
 	<string name="type.shop.appliance">Vitvarubutik</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Konstaffär</string>
 	<string name="type.shop.baby_goods">Barnbutik</string>
 	<string name="type.shop.bag">Väskor butik</string>
@@ -1692,6 +1751,7 @@
 	<string name="type.tourism.wilderness_hut">Vildmarksstuga</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
+	<string name="type.waterway.fish_pass">Fiskstege</string>
 	<string name="type.waterway.lock_gate">Slussport</string>
 	<string name="type.waterway.river">Flod</string>
 	<string name="type.waterway.river.tunnel">Flod</string>
@@ -1704,6 +1764,7 @@
 	<string name="type.wheelchair.limited">Delvis utrustad för handikappade</string>
 	<string name="type.wheelchair.no">Ej utrustad för handikappade</string>
 	<string name="type.wheelchair.yes">Utrustad för handikappade</string>
-	<string name="type.building_part">Byggnad</string>
 	<string name="type.amenity.events_venue">Evenemangslokal</string>
+	<string name="type.shop.auction">Auktion</string>
+	<string name="type.shop.collector">Samlingsföremål</string>
 </resources>

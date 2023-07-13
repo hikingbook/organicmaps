@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Poziția mea";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Mai târziu";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Liste cu locuri preferate";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Locuri preferate";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Locuri preferate și trasee";
 
 /* Default bookmark list name */
 "core_my_places" = "Locurile mele";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Shopping";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "La mâna a doua";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Planificarea traseului a eșuat";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Sosire la %s";
+"routing_arrive" = "Sosire la %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Pentru a crea un traseu, descarcă și actualizează toate hărțile de pe parcursul traseului.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Alege „În timp ce folosești aplicația”";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "ft";
+"ft" = "ft";
 
 "miles_per_hour" = "mph";
 
 "hour" = "h";
 
 "minute" = "min";
-
-"placepage_place_description" = "Descriere";
 
 "placepage_more_button" = "Mai mult";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Ascunde pagina";
 
-"downloader_percent" = "%s (%s din %s)";
+"downloader_percent" = "%@ (%@ din %@)";
 
-"downloader_process" = "Se descarcă %s…";
+"downloader_process" = "Se descarcă %@…";
 
-"downloader_applying" = "Se aplică %s…";
+"downloader_applying" = "Se aplică %@…";
 
 "bookmarks_error_message_share_general" = "Nu poate fi trimis din cauza unei erori a aplicației";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Descarcă hărțile în aplicația Organic Maps din dispozitivul tău";
 
-"carplay_roundabout_exit" = "%s ieșire";
+"carplay_roundabout_exit" = "%@ ieșire";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sortare…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Actualizarea hărților menține actualizate informațiile despre obiecte";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Actualizează (%s)";
+"whats_new_auto_update_button_size" = "Actualizează (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Actualizează manual mai târziu";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Centru comunitar";
 
+"type.amenity.conference_centre" = "Centru de conferinte";
+
 "type.amenity.courthouse" = "Judecătorie";
 
 "type.amenity.dentist" = "Dentist";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Apă de băut";
 
 "type.amenity.driving_school" = "Școală de șoferi";
+
+"type.amenity.exhibition_centre" = "Centru de expozitie";
 
 "type.amenity.money_transfer" = "Transfer de bani";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Restaurant";
 
@@ -1506,7 +1514,7 @@
 
 "type.amenity.shower" = "Duș";
 
-"type.amenity.taxi" = "Taxi";
+"type.amenity.taxi" = "Taxi Stand";
 
 "type.amenity.telephone" = "Telefon";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parcomat";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Cabinet veterinar";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Barieră";
+
+"type.barrier.turnstile" = "Turnichet";
 
 "type.barrier.swing_gate" = "Barieră cu braț";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Parcul național";
 
+"type.boundary.protected_area" = "Zonă protejată";
+
+"type.boundary.protected_area.1" = "Zonă protejată";
+
+"type.boundary.protected_area.2" = "Zonă protejată";
+
+"type.boundary.protected_area.3" = "Zonă protejată";
+
+"type.boundary.protected_area.4" = "Zonă protejată";
+
+"type.boundary.protected_area.5" = "Zonă protejată";
+
+"type.boundary.protected_area.6" = "Zonă protejată";
+
 "type.building" = "Clădire";
 
 "type.building.address" = "Clădire";
 
-"type.building.garage" = "Garaj";
-
 "type.building.has_parts" = "Clădire";
+
+"type.building_part" = "Clădire";
+
+"type.building.garage" = "Garaj";
 
 "type.building.train_station" = "Feroviar";
 
@@ -1755,7 +1781,7 @@
 
 "type.cuisine.fish" = "Pește";
 
-"type.cuisine.fish_and_chips" = "Restaurant fish and chips";
+"type.cuisine.fish_and_chips" = "Fish and Chips";
 
 "type.cuisine.french" = "Bucătărie francez";
 
@@ -1878,6 +1904,8 @@
 
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Intrarea principala";
+
+"type.entrance.exit" = "Ieșire";
 
 "type.healthcare.laboratory" = "Laborator medical";
 
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Pod";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Pod";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunel";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Turnul de comunicații";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Robinet cu apă";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Generator solar";
 
@@ -2755,7 +2788,7 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
 "type.railway.funicular" = "Funicular";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Cale ferată";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Calea ferată de mare viteză";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Calea ferată turistică";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Calea ferată";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Calea ferată secundară";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Calea ferată utilitară";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Pinteni de cale ferată";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Calea ferată auxiliară";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Podul de cale ferată";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Podul de cale ferată";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.main.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.branch.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.utility.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.spur.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.service.bridge" = "Podul de cale ferată";
+
+"type.railway.rail.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.highspeed.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.tourism.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.main.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.branch.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.utility.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.spur.tunnel" = "Tunel de cale ferată";
+
+"type.railway.rail.service.tunnel" = "Tunel de cale ferată";
 
 "type.railway.station" = "Feroviar";
+
+"type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Feroviar";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Stație de tramvai";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Magazin";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Magazin de electrocasnice";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Magazin de arte";
 
 "type.shop.baby_goods" = "Magazin pentru copii";
@@ -3604,7 +3663,7 @@
 
 "type.tourism.attraction.specified" = "Punct de atracție";
 
-"type.tourism.camp_site" = "Camp Site";
+"type.tourism.camp_site" = "Campground";
 
 "type.tourism.caravan_site" = "Teren pentru campare";
 
@@ -3657,6 +3716,8 @@
 "type.waterway.canal" = "Canal";
 
 "type.waterway.canal.tunnel" = "Canal Tunnel";
+
+"type.waterway.fish_pass" = "Scară de pește";
 
 "type.waterway.dam" = "Dam";
 
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Clădire";
-
 "type.amenity.events_venue" = "Locul de desfășurare a evenimentelor";
+
+"type.shop.auction" = "Licitație";
+
+"type.shop.collector" = "Colecții";

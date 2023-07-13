@@ -7,6 +7,7 @@
 #include "drape_frontend/traffic_renderer.hpp"
 #include "drape_frontend/visual_params.hpp"
 
+#include "indexer/drawing_rules.hpp"
 #include "indexer/feature.hpp"
 #include "indexer/feature_algo.hpp"
 #include "indexer/feature_visibility.hpp"
@@ -263,7 +264,7 @@ void RuleDrawer::ProcessAreaStyle(FeatureType & f, Stylist const & s,
     // Looks like nonsense, but there are some osm objects with types
     // highway-path-bridge and building (sic!) at the same time (pedestrian crossing).
     isBuilding = (isPart || IsBuildingChecker::Instance()(types)) &&
-                  !IsBridgeChecker::Instance()(types) && !IsTunnelChecker::Instance()(types);
+                  !IsBridgeOrTunnelChecker::Instance()(types);
 
     isBuildingOutline = isBuilding && hasParts && !isPart;
     is3dBuilding = m_context->Is3dBuildingsEnabled() && (isBuilding && !isBuildingOutline);
@@ -312,6 +313,26 @@ void RuleDrawer::ProcessAreaStyle(FeatureType & f, Stylist const & s,
 
   if (CheckCancelled())
     return;
+
+#ifdef DEBUG
+  // Check that we have max 2 area styles (hatching and filling).
+  s.ForEachRule([count = 0](Stylist::TRuleWrapper const & rule) mutable
+  {
+    if (rule.m_rule->GetArea())
+    {
+      if (rule.m_hatching)
+      {
+        ASSERT_EQUAL(count, 0, ());
+        count = 1;
+      }
+      else
+      {
+        ASSERT_LESS(count, 2, ());
+        count = 2;
+      }
+    }
+  });
+#endif
 
   s.ForEachRule(std::bind(&ApplyAreaFeature::ProcessAreaRule, &apply, _1));
 

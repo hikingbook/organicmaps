@@ -15,18 +15,16 @@
 #include <functional>
 #include <string>
 
+#include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
+
 #include <QtGui/QMouseEvent>
 #include <QtGui/QOpenGLFunctions>
-#include <QtGui/QOpenGLShaderProgram>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QMenu>
 
-#include <QtGui/QOpenGLBuffer>
-#include <QtGui/QOpenGLVertexArrayObject>
-
-namespace qt
-{
-namespace common
+namespace qt::common
 {
 //#define ENABLE_AA_SWITCH
 
@@ -62,12 +60,12 @@ void MapWidget::BindHotkeys(QWidget & parent)
       {Qt::Key_Equal, SLOT(ScalePlus())},
       {Qt::Key_Plus, SLOT(ScalePlus())},
       {Qt::Key_Minus, SLOT(ScaleMinus())},
-      {Qt::ALT + Qt::Key_Equal, SLOT(ScalePlusLight())},
-      {Qt::ALT + Qt::Key_Plus, SLOT(ScalePlusLight())},
-      {Qt::ALT + Qt::Key_Minus, SLOT(ScaleMinusLight())},
+      {static_cast<int>(Qt::ALT) + static_cast<int>(Qt::Key_Equal), SLOT(ScalePlusLight())},
+      {static_cast<int>(Qt::ALT) + static_cast<int>(Qt::Key_Plus), SLOT(ScalePlusLight())},
+      {static_cast<int>(Qt::ALT) + static_cast<int>(Qt::Key_Minus), SLOT(ScaleMinusLight())},
 #ifdef ENABLE_AA_SWITCH
-      {Qt::ALT + Qt::Key_A, SLOT(AntialiasingOn())},
-      {Qt::ALT + Qt::Key_S, SLOT(AntialiasingOff())},
+      {static_cast<int>(Qt::ALT) + static_cast<int>(Qt::Key_A), SLOT(AntialiasingOn())},
+      {static_cast<int>(Qt::ALT) + static_cast<int>(Qt::Key_S), SLOT(AntialiasingOff())},
 #endif
   };
 
@@ -152,7 +150,7 @@ void MapWidget::SliderReleased() { m_sliderState = SliderState::Released; }
 
 m2::PointD MapWidget::GetDevicePoint(QMouseEvent * e) const
 {
-  return m2::PointD(L2D(e->x()), L2D(e->y()));
+  return m2::PointD(L2D(e->position().x()), L2D(e->position().y()));
 }
 
 df::Touch MapWidget::GetTouch(QMouseEvent * e) const
@@ -285,6 +283,17 @@ void MapWidget::Build()
   m_vao->release();
 }
 
+namespace
+{
+search::ReverseGeocoder::Address GetFeatureAddressInfo(Framework const & framework, FeatureType & ft)
+{
+  search::ReverseGeocoder const coder(framework.GetDataSource());
+  search::ReverseGeocoder::Address address;
+  coder.GetExactAddress(ft, address);
+  return address;
+}
+} // namespace
+
 void MapWidget::ShowInfoPopup(QMouseEvent * e, m2::PointD const & pt)
 {
   // show feature types
@@ -374,23 +383,35 @@ void MapWidget::initializeGL()
     else
     {
       LOG(LINFO, ("Contex is LibGL"));
-      // TODO: Separate apiOpenGL3 from apiOpenGLES3, and use that for the currend shader code.
-      m_apiOpenGLES3 = true;
+
+      if (context()->format().version() < qMakePair(3, 2))
+      {
+        LOG(LINFO, ("OpenGL version is below 3.2, taking the OpenGL 2.1 path"));
+        m_apiOpenGLES3 = false;
+      }
+      else
+      {
+        LOG(LINFO, ("OpenGL version is at least 3.2, enabling GLSL '#version 150 core'"));
+        // TODO: Separate apiOpenGL3 from apiOpenGLES3, and use that for the currend shader code.
+        m_apiOpenGLES3 = true;
+      }
     }
+
+    auto fmt = context()->format();
+    if (m_apiOpenGLES3)
+    {
+      fmt.setProfile(QSurfaceFormat::CoreProfile);
+      fmt.setVersion(3, 2);
+    }
+    else
+    {
+      fmt.setProfile(QSurfaceFormat::CompatibilityProfile);
+      fmt.setVersion(2, 1);
+    }
+
+    QSurfaceFormat::setDefaultFormat(fmt);
   }
 #endif
-  auto fmt = context()->format();
-  if (m_apiOpenGLES3)
-  {
-    fmt.setProfile(QSurfaceFormat::CoreProfile);
-    fmt.setVersion(3, 2);
-  }
-  else
-  {
-    fmt.setProfile(QSurfaceFormat::CompatibilityProfile);
-    fmt.setVersion(2, 1);
-  }
-  QSurfaceFormat::setDefaultFormat(fmt);
 
   m_contextFactory.reset(new QtOGLContextFactory(context()));
 
@@ -491,7 +512,7 @@ void MapWidget::mouseReleaseEvent(QMouseEvent * e)
     return;
 
   if (e->button() == Qt::RightButton)
-    emit OnContextMenuRequested(e->globalPos());
+    emit OnContextMenuRequested(e->globalPosition().toPoint());
 
   QOpenGLWidget::mouseReleaseEvent(e);
   if (IsLeftButton(e))
@@ -504,17 +525,12 @@ void MapWidget::wheelEvent(QWheelEvent * e)
     return;
 
   QOpenGLWidget::wheelEvent(e);
-  m_framework.Scale(exp(e->delta() / 360.0), m2::PointD(L2D(e->x()), L2D(e->y())), false);
+
+  QPointF const pos = e->position();
+
+  // https://doc-snapshots.qt.io/qt6-dev/qwheelevent.html#angleDelta, angleDelta() returns in eighths of a degree.
+  /// @todo Here you can tune the speed of zooming.
+  m_framework.Scale(exp(e->angleDelta().y() / 3.0 / 360.0), m2::PointD(L2D(pos.x()), L2D(pos.y())), false);
 }
 
-search::ReverseGeocoder::Address GetFeatureAddressInfo(Framework const & framework,
-                                                       FeatureType & ft)
-{
-  search::ReverseGeocoder const coder(framework.GetDataSource());
-  search::ReverseGeocoder::Address address;
-  coder.GetExactAddress(ft, address);
-
-  return address;
-}
-}  // namespace common
-}  // namespace qt
+} // namespace qt::common

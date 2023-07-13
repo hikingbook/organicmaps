@@ -119,7 +119,7 @@ size_t constexpr kMaxTrafficCacheSizeBytes = 64 /* Mb */ * 1024 * 1024;
 // This is temporary solution while we don't have a good filter.
 bool ParseSetGpsTrackMinAccuracyCommand(string const & query)
 {
-  const char kGpsAccuracy[] = "?gpstrackaccuracy:";
+  char const kGpsAccuracy[] = "?gpstrackaccuracy:";
   if (!strings::StartsWith(query, kGpsAccuracy))
     return false;
 
@@ -1401,7 +1401,7 @@ void Framework::FillSearchResultsMarks(SearchResultsIterT beg, SearchResultsIter
 
 bool Framework::GetDistanceAndAzimut(m2::PointD const & point,
                                      double lat, double lon, double north,
-                                     string & distance, double & azimut)
+                                     platform::Distance & distance, double & azimut)
 {
 #ifdef FIXED_LOCATION
   m_fixedPos.GetLat(lat);
@@ -1412,7 +1412,7 @@ bool Framework::GetDistanceAndAzimut(m2::PointD const & point,
   double const d = ms::DistanceOnEarth(lat, lon, mercator::YToLat(point.y), mercator::XToLon(point.x));
 
   // Distance may be less than 1.0
-  distance = measurement_utils::FormatDistance(d);
+  distance = platform::Distance::CreateFormatted(d);
 
   // We calculate azimuth even when distance is very short (d ~ 0),
   // because return value has 2 states (near me or far from me).
@@ -1488,12 +1488,11 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
       df::MapDataProvider(std::move(idReadFn), std::move(featureReadFn),
                           std::move(isCountryLoadedByNameFn), std::move(updateCurrentCountryFn)),
       params.m_hints, params.m_visualScale, fontsScaleFactor, std::move(params.m_widgetsInitInfo),
-      std::move(myPositionModeChangedFn), allow3dBuildings,
-      trafficEnabled, isolinesEnabled,
+      std::move(myPositionModeChangedFn), allow3dBuildings, trafficEnabled, isolinesEnabled,
       params.m_isChoosePositionMode, params.m_isChoosePositionMode, GetSelectedFeatureTriangles(),
       m_routingManager.IsRoutingActive() && m_routingManager.IsRoutingFollowing(),
-      isAutozoomEnabled, simplifiedTrafficColors, std::move(overlaysShowStatsFn),
-      std::move(onGraphicsContextInitialized));
+      isAutozoomEnabled, simplifiedTrafficColors, std::nullopt /* arrow3dCustomDecl */,
+      std::move(overlaysShowStatsFn), std::move(onGraphicsContextInitialized));
 
   m_drapeEngine = make_unique_dp<df::DrapeEngine>(std::move(p));
   m_drapeEngine->SetModelViewListener([this](ScreenBase const & screen)
@@ -2438,11 +2437,6 @@ void Framework::Load3dMode(bool & allow3d, bool & allow3dBuildings)
     allow3dBuildings = true;
 }
 
-void Framework::SaveLargeFontsSize(bool isLargeSize)
-{
-  settings::Set(kLargeFontsSize, isLargeSize);
-}
-
 bool Framework::LoadLargeFontsSize()
 {
   bool isLargeSize;
@@ -2453,6 +2447,8 @@ bool Framework::LoadLargeFontsSize()
 
 void Framework::SetLargeFontsSize(bool isLargeSize)
 {
+  settings::Set(kLargeFontsSize, isLargeSize);
+
   double const scaleFactor = isLargeSize ? kLargeFontsScaleFactor : 1.0;
 
   ASSERT(m_drapeEngine.get() != nullptr, ());

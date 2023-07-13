@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "現在地";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "次の機会に";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "ブックマークセット";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "ブックマーク";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "ブックマークとトラック";
 
 /* Default bookmark list name */
 "core_my_places" = "マイロケーション";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "ショッピング";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "中古品";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "ホテル";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "RV用";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "ブックマークの読み込み中";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "ルート検索に失敗";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "到着予定: %s";
+"routing_arrive" = "到着予定: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "ルートを作成するには、ルートの通過する地図を全てダウンロード・アップデートしてください。";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. アプリの使用中を選択してください";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "キロメートル毎時";
 
-"mile" = "マイル";
+"mi" = "マイル";
 
 /* A unit of measure */
-"foot" = "フィート";
+"ft" = "フィート";
 
 "miles_per_hour" = "マイル毎時";
 
 "hour" = "時間";
 
 "minute" = "分";
-
-"placepage_place_description" = "説明";
 
 "placepage_more_button" = "さらに詳しく";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "画面を非表示";
 
-"downloader_percent" = "%s (%s / %s)";
+"downloader_percent" = "%@ (%@ / %@)";
 
-"downloader_process" = "%s をダウンロードしています…";
+"downloader_process" = "%@ をダウンロードしています…";
 
-"downloader_applying" = "%s を適用中です…";
+"downloader_applying" = "%@ を適用中です…";
 
 "bookmarks_error_message_share_general" = "アプリケーションエラーのため共有できません";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "あなたの機器のOrganic Mapsのアプリにマップをダウンロードしてください";
 
-"carplay_roundabout_exit" = "第%s出口";
+"carplay_roundabout_exit" = "第%@出口";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "並び替え中…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "地図を更新することで物件情報を最新の状態に保ちます";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "更新 (%s)";
+"whats_new_auto_update_button_size" = "更新 (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "あとで手動で更新";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "コミュニティセンター";
 
+"type.amenity.conference_centre" = "カンファレンスセンター";
+
 "type.amenity.courthouse" = "裁判所";
 
 "type.amenity.dentist" = "歯医者";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "水飲み場";
 
 "type.amenity.driving_school" = "自動車教習所";
+
+"type.amenity.exhibition_centre" = "エキシビションセンター";
 
 "type.amenity.money_transfer" = "送金";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "レストラン";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "駐車券支払機";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "獣医";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "擁壁";
 
 "type.barrier.stile" = "回転扉";
+
+"type.barrier.turnstile" = "ターンスタイル";
 
 "type.barrier.swing_gate" = "ブームバリア";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "国立公園";
 
+"type.boundary.protected_area" = "保護区域";
+
+"type.boundary.protected_area.1" = "保護区域";
+
+"type.boundary.protected_area.2" = "保護区域";
+
+"type.boundary.protected_area.3" = "保護区域";
+
+"type.boundary.protected_area.4" = "保護区域";
+
+"type.boundary.protected_area.5" = "保護区域";
+
+"type.boundary.protected_area.6" = "保護区域";
+
 "type.building" = "建物";
 
 "type.building.address" = "建物";
 
-"type.building.garage" = "車庫";
-
 "type.building.has_parts" = "建物";
+
+"type.building_part" = "建物";
+
+"type.building.garage" = "車庫";
 
 "type.building.train_station" = "鉄道駅";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "正面玄関";
 
+"type.entrance.exit" = "終了する";
+
 "type.healthcare.laboratory" = "医療研究所";
 
 "type.healthcare.physiotherapist" = "理学療法士";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "橋";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "橋";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "トンネル";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "交差点";
 
+"type.junction.circular" = "ラウンドアバウト";
+
 "type.junction.roundabout" = "ラウンドアバウト";
 
 "type.landuse" = "土地利用";
@@ -2349,7 +2382,7 @@
 
 "type.landuse.construction" = "建設工事中";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "農地";
 
@@ -2757,7 +2790,7 @@
 
 "type.railway.disused" = "休止線";
 
-"type.railway.funicular" = "ケーブルカー";
+"type.railway.funicular" = "フニクラ";
 
 "type.railway.funicular.bridge" = "ケーブルカー(橋)";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "鉄道";
 
+"type.railway.rail.highspeed" = "高速鉄道";
+
+"type.railway.rail.tourism" = "観光鉄道";
+
+"type.railway.rail.main" = "鉄道";
+
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "二次鉄道";
+
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "実用鉄道";
+
+"type.railway.rail.spur" = "引き込み線";
+
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "補助線路";
+
 "type.railway.rail.bridge" = "鉄道(橋)";
 
-"type.railway.rail.motor_vehicle" = "鉄道";
+"type.railway.rail.highspeed.bridge" = "鉄道(橋)";
+
+"type.railway.rail.tourism.bridge" = "鉄道(橋)";
+
+"type.railway.rail.main.bridge" = "鉄道(橋)";
+
+"type.railway.rail.branch.bridge" = "鉄道(橋)";
+
+"type.railway.rail.utility.bridge" = "鉄道(橋)";
+
+"type.railway.rail.spur.bridge" = "鉄道(橋)";
+
+"type.railway.rail.service.bridge" = "鉄道(橋)";
 
 "type.railway.rail.tunnel" = "鉄道(鉄道)";
 
-"type.railway.razed" = "撤去済の鉄道";
+"type.railway.rail.highspeed.tunnel" = "鉄道(鉄道)";
 
-"type.railway.siding" = "側線";
+"type.railway.rail.tourism.tunnel" = "鉄道(鉄道)";
 
-"type.railway.siding.bridge" = "側線(橋)";
+"type.railway.rail.main.tunnel" = "鉄道(鉄道)";
 
-"type.railway.siding.tunnel" = "側線(トンネル)";
+"type.railway.rail.branch.tunnel" = "鉄道(鉄道)";
 
-"type.railway.spur" = "引き込み線";
+"type.railway.rail.utility.tunnel" = "鉄道(鉄道)";
 
-"type.railway.spur.bridge" = "引き込み線(橋)";
+"type.railway.rail.spur.tunnel" = "鉄道(鉄道)";
 
-"type.railway.spur.tunnel" = "引き込み線(トンネル)";
+"type.railway.rail.service.tunnel" = "鉄道(鉄道)";
 
 "type.railway.station" = "鉄道駅";
+
+"type.railway.station.funicular" = "フニクラ";
 
 "type.railway.station.light_rail" = "鉄道駅";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "トラム";
 
-"type.railway.yard" = "ヤード";
-
-"type.railway.yard.bridge" = "ヤード(橋)";
-
-"type.railway.yard.tunnel" = "ヤード(トンネル)";
-
 "type.route" = "ルート";
 
 "type.route.ferry" = "フェリー航路";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "買い物";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "家電店";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "アートショップ";
 
 "type.shop.baby_goods" = "キッズストア";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "運河";
 
+"type.waterway.fish_pass" = "魚道";
+
 "type.waterway.dam" = "ダム";
 
 "type.waterway.ditch" = "排水路";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "建物";
-
 "type.amenity.events_venue" = "イベント会場";
+
+"type.shop.auction" = "オークション";
+
+"type.shop.collector" = "コレクタブル";

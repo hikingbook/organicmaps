@@ -20,13 +20,13 @@ namespace kml
 {
 namespace
 {
-std::string_view const kPlacemark = "Placemark";
-std::string_view const kStyle = "Style";
-std::string_view const kDocument = "Document";
-std::string_view const kStyleMap = "StyleMap";
-std::string_view const kStyleUrl = "styleUrl";
-std::string_view const kPair = "Pair";
-std::string_view const kExtendedData = "ExtendedData";
+std::string_view constexpr kPlacemark = "Placemark";
+std::string_view constexpr kStyle = "Style";
+std::string_view constexpr kDocument = "Document";
+std::string_view constexpr kStyleMap = "StyleMap";
+std::string_view constexpr kStyleUrl = "styleUrl";
+std::string_view constexpr kPair = "Pair";
+std::string_view constexpr kExtendedData = "ExtendedData";
 std::string const kCompilation = "mwm:compilation";
 
 std::string_view const kCoordinates = "coordinates";
@@ -52,11 +52,6 @@ std::string const kExtendedDataFooter =
   "</ExtendedData>\n";
 
 std::string const kCompilationFooter = "</" + kCompilation + ">\n";
-
-auto const kDefaultLang = StringUtf8Multilang::kDefaultCode;
-
-auto const kDefaultTrackWidth = 5.0;
-auto const kDefaultTrackColor = 0x006ec7ff;
 
 std::string Indent(size_t count)
 {
@@ -174,15 +169,28 @@ BookmarkIcon GetIcon(std::string const & iconName)
   return BookmarkIcon::None;
 }
 
-template <typename Channel>
-uint32_t ToRGBA(Channel red, Channel green, Channel blue, Channel alpha)
+void SaveStringWithCDATA(KmlWriter::WriterWrapper & writer, std::string s)
 {
-  return static_cast<uint8_t>(red) << 24 | static_cast<uint8_t>(green) << 16 |
-         static_cast<uint8_t>(blue) << 8 | static_cast<uint8_t>(alpha);
-}
+  if (s.empty())
+    return;
 
-void SaveStringWithCDATA(KmlWriter::WriterWrapper & writer, std::string const & s)
-{
+  // Expat loads XML 1.0 only. Sometimes users copy and paste bookmark descriptions or even names from the web.
+  // Rarely, in these copy-pasted texts, there are invalid XML1.0 symbols.
+  // See https://en.wikipedia.org/wiki/Valid_characters_in_XML
+  // A robust solution requires parsing invalid XML on loading (then users can restore "bad" XML files), see
+  // https://github.com/organicmaps/organicmaps/issues/3837
+  // When a robust solution is implemented, this workaround can be removed for better performance/battery.
+  //
+  // This solution is a simple ASCII-range check that does not check symbols from other unicode ranges
+  // (they will require a more complex and slower approach of converting UTF-8 string to unicode first).
+  // It should be enough for many cases, according to user reports and wrong characters in their data.
+  s.erase(std::remove_if(s.begin(), s.end(), [](unsigned char c)
+  {
+    if (c >= 0x20 || c == 0x09 || c == 0x0a || c == 0x0d)
+      return false;
+    return true;
+  }), s.end());
+
   if (s.empty())
     return;
 
@@ -239,8 +247,9 @@ void SaveLocalizableString(KmlWriter::WriterWrapper & writer, LocalizableString 
   writer << offsetStr << "</mwm:" << tagName << ">\n";
 }
 
+template <class StringViewLike>
 void SaveStringsArray(KmlWriter::WriterWrapper & writer,
-                      std::vector<std::string> const & stringsArray,
+                      std::vector<StringViewLike> const & stringsArray,
                       std::string const & tagName, std::string const & offsetStr)
 {
   if (stringsArray.empty())
@@ -250,7 +259,14 @@ void SaveStringsArray(KmlWriter::WriterWrapper & writer,
   for (auto const & s : stringsArray)
   {
     writer << offsetStr << kIndent2 << "<mwm:value>";
-    SaveStringWithCDATA(writer, s);
+    // Constants from our code do not need any additional checks or escaping.
+    if constexpr (std::is_same_v<StringViewLike, std::string_view>)
+    {
+      ASSERT_EQUAL(s.find_first_of("<&"), std::string_view::npos, ("Use std::string overload for", s));
+      writer << s;
+    }
+    else
+      SaveStringWithCDATA(writer, s);
     writer << "</mwm:value>\n";
   }
   writer << offsetStr << "</mwm:" << tagName << ">\n";
@@ -343,14 +359,12 @@ void SaveCategoryExtendedData(KmlWriter::WriterWrapper & writer, CategoryData co
 
   SaveStringsArray(writer, categoryData.m_toponyms, "toponyms", indent);
 
-  std::vector<std::string> languageCodes;
+  std::vector<std::string_view> languageCodes;
   languageCodes.reserve(categoryData.m_languageCodes.size());
   for (auto const & lang : categoryData.m_languageCodes)
-  {
-    std::string str = StringUtf8Multilang::GetLangByCode(lang);
-    if (!str.empty())
-      languageCodes.push_back(std::move(str));
-  }
+    if (auto const str = StringUtf8Multilang::GetLangByCode(lang); !str.empty())
+      languageCodes.push_back(str);
+
   SaveStringsArray(writer, languageCodes, "languageCodes", indent);
 
   SaveStringsMap(writer, categoryData.m_properties, "properties", indent);
@@ -476,7 +490,7 @@ void SaveBookmarkData(KmlWriter::WriterWrapper & writer, BookmarkData const & bo
 {
   writer << kIndent2 << "<Placemark>\n";
   writer << kIndent4 << "<name>";
-  std::string const defaultLang = StringUtf8Multilang::GetLangByCode(kDefaultLangCode);
+  auto const defaultLang = StringUtf8Multilang::GetLangByCode(kDefaultLangCode);
   SaveStringWithCDATA(writer, GetPreferredBookmarkName(bookmarkData, defaultLang));
   writer << "</name>\n";
 
@@ -655,7 +669,7 @@ bool ParsePointWithAltitude(std::string_view s, char const * delim,
 }
 }  // namespace
 
-KmlWriter::WriterWrapper & KmlWriter::WriterWrapper::operator<<(std::string const & str)
+KmlWriter::WriterWrapper & KmlWriter::WriterWrapper::operator<<(std::string_view str)
 {
   m_writer.Write(str.data(), str.length());
   return *this;
@@ -821,9 +835,10 @@ double KmlParser::GetTrackWidthForStyle(std::string const & styleUrl) const
   return kDefaultTrackWidth;
 }
 
-bool KmlParser::Push(std::string const & tag)
+bool KmlParser::Push(std::string movedTag)
 {
-  m_tags.push_back(tag);
+  std::string const & tag = m_tags.emplace_back(std::move(movedTag));
+
   if (tag == kCompilation)
   {
     m_categoryData = &m_compilationData;
@@ -837,53 +852,51 @@ bool KmlParser::Push(std::string const & tag)
   return true;
 }
 
-void KmlParser::AddAttr(std::string const & attr, std::string const & value)
+void KmlParser::AddAttr(std::string attr, std::string value)
 {
-  std::string attrInLowerCase = attr;
-  strings::AsciiToLower(attrInLowerCase);
+  strings::AsciiToLower(attr);
 
-  if (IsValidAttribute(kStyle, value, attrInLowerCase))
+  if (IsValidAttribute(kStyle, value, attr))
   {
     m_styleId = value;
   }
-  else if (IsValidAttribute(kStyleMap, value, attrInLowerCase))
+  else if (IsValidAttribute(kStyleMap, value, attr))
   {
     m_mapStyleId = value;
   }
-  else if (IsValidAttribute(kCompilation, value, attrInLowerCase))
+  else if (IsValidAttribute(kCompilation, value, attr))
   {
     if (!strings::to_uint64(value, m_categoryData->m_compilationId))
       m_categoryData->m_compilationId = 0;
   }
 
-  if (attrInLowerCase == "code")
+  if (attr == "code")
   {
     m_attrCode = StringUtf8Multilang::GetLangIndex(value);
   }
-  else if (attrInLowerCase == "id")
+  else if (attr == "id")
   {
     m_attrId = value;
   }
-  else if (attrInLowerCase == "key")
+  else if (attr == "key")
   {
     m_attrKey = value;
   }
-  else if (attrInLowerCase == "type" && !value.empty() && GetTagFromEnd(0) == kCompilation)
+  else if (attr == "type" && !value.empty() && GetTagFromEnd(0) == kCompilation)
   {
-    std::string valueInLowerCase = value;
-    strings::AsciiToLower(valueInLowerCase);
-    if (valueInLowerCase == "category")
+    strings::AsciiToLower(value);
+    if (value == "category")
       m_categoryData->m_type = CompilationType::Category;
-    else if (valueInLowerCase == "collection")
+    else if (value == "collection")
       m_categoryData->m_type = CompilationType::Collection;
-    else if (valueInLowerCase == "day")
+    else if (value == "day")
       m_categoryData->m_type = CompilationType::Day;
     else
       m_categoryData->m_type = CompilationType::Category;
   }
 }
 
-bool KmlParser::IsValidAttribute(std::string_view const & type, std::string const & value,
+bool KmlParser::IsValidAttribute(std::string_view type, std::string const & value,
                                  std::string const & attrInLowerCase) const
 {
   return (GetTagFromEnd(0) == type && !value.empty() && attrInLowerCase == "id");
@@ -901,7 +914,7 @@ bool KmlParser::IsProcessTrackTag() const
   return n >= 3 && IsTrack(m_tags[n - 1]) && (m_tags[n - 2] == kPlacemark || m_tags[n - 3] == kPlacemark);
 }
 
-void KmlParser::Pop(std::string const & tag)
+void KmlParser::Pop(std::string_view tag)
 {
   ASSERT_EQUAL(m_tags.back(), tag, ());
 
@@ -1017,18 +1030,19 @@ void KmlParser::Pop(std::string const & tag)
   m_tags.pop_back();
 }
 
-void KmlParser::CharData(std::string value)
+void KmlParser::CharData(std::string & value)
 {
   strings::Trim(value);
 
   size_t const count = m_tags.size();
   if (count > 1 && !value.empty())
   {
-    std::string const & currTag = m_tags[count - 1];
-    std::string const & prevTag = m_tags[count - 2];
-    std::string const ppTag = count > 2 ? m_tags[count - 3] : std::string();
-    std::string const pppTag = count > 3 ? m_tags[count - 4] : std::string();
-    std::string const ppppTag = count > 4 ? m_tags[count - 5] : std::string();
+    using namespace std;
+    string const & currTag = m_tags[count - 1];
+    string const & prevTag = m_tags[count - 2];
+    string_view const ppTag = count > 2 ? m_tags[count - 3] : string_view{};
+    string_view const pppTag = count > 3 ? m_tags[count - 4] : string_view{};
+    string_view const ppppTag = count > 4 ? m_tags[count - 5] : string_view{};
 
     auto const TrackTag = [this, &prevTag, &currTag, &value]()
     {

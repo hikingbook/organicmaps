@@ -4,6 +4,7 @@
 
 #include "kml/serdes.hpp"
 #include "kml/serdes_binary.hpp"
+#include "kml/serdes_gpx.hpp"
 
 #include "indexer/classificator.hpp"
 #include "indexer/feature_data.hpp"
@@ -205,12 +206,6 @@ void ValidateKmlData(std::unique_ptr<kml::FileData> & data)
   }
 }
 
-// Returns extension with a dot in a lower case.
-std::string GetFileExt(std::string const & filePath)
-{
-  return strings::MakeLowerCase(base::GetFileExtension(filePath));
-}
-
 bool IsBadCharForPath(strings::UniChar c)
 {
   if (c < ' ')
@@ -244,17 +239,30 @@ std::string RemoveInvalidSymbols(std::string const & name)
   return strings::ToUtf8(filtered);
 }
 
-std::string GenerateUniqueFileName(const std::string & path, std::string name, std::string const & ext)
+// Returns extension with a dot in a lower case.
+std::string GetLowercaseFileExt(std::string const & filePath)
+{
+  return strings::MakeLowerCase(base::GetFileExtension(filePath));
+}
+
+std::string GenerateUniqueFileName(std::string const & path, std::string name, std::string_view ext)
 {
   // Remove extension, if file name already contains it.
   if (strings::EndsWith(name, ext))
     name.resize(name.size() - ext.size());
 
   size_t counter = 1;
-  std::string suffix;
-  while (Platform::IsFileExistsByFullPath(base::JoinPath(path, name + suffix + ext)))
+  std::string suffix, res;
+  do
+  {
+    res = name;
+    res = base::JoinPath(path, res.append(suffix).append(ext));
+    if (!Platform::IsFileExistsByFullPath(res))
+      break;
     suffix = strings::to_string(counter++);
-  return base::JoinPath(path, name + suffix + ext);
+  } while (true);
+
+  return res;
 }
 
 std::string GenerateValidAndUniqueFilePathForKML(std::string const & fileName)
@@ -263,13 +271,51 @@ std::string GenerateValidAndUniqueFilePathForKML(std::string const & fileName)
   if (filePath.empty())
     filePath = kDefaultBookmarksFileName;
 
-  return GenerateUniqueFileName(GetBookmarksDirectory(), std::move(filePath));
+  return GenerateUniqueFileName(GetBookmarksDirectory(), std::move(filePath), kKmlExtension);
 }
 
-std::string const kKmzExtension = ".kmz";
-std::string const kKmlExtension = ".kml";
-std::string const kKmbExtension = ".kmb";
 std::string const kDefaultBookmarksFileName = "Bookmarks";
+
+// Populate empty category & track names based on file name: assign file name to category name,
+// if there is only one unnamed track - assign file name to it, otherwise add numbers 1, 2, 3...
+// to file name to build names for all unnamed tracks
+void FillEmptyNames(std::unique_ptr<kml::FileData> & kmlData, std::string const & file)
+{
+  auto start = file.find_last_of('/') + 1;
+  auto end = file.find_last_of('.');
+  if (end == std::string::npos)
+    end = file.size();
+  auto const name = file.substr(start, end - start);
+
+  if (kmlData->m_categoryData.m_name.empty())
+    kmlData->m_categoryData.m_name[kml::kDefaultLang] = name;
+
+  if (kmlData->m_tracksData.empty())
+    return;
+
+  auto const emptyNames = std::count_if(kmlData->m_tracksData.begin(), kmlData->m_tracksData.end(),
+                                  [](const kml::TrackData & t) { return t.m_name.empty(); });
+  if (emptyNames == 0)
+    return;
+
+  auto emptyTrackNum = 1;
+  for (auto & track : kmlData->m_tracksData)
+  {
+    if (track.m_name.empty())
+    {
+      if (emptyNames == 1)
+      {
+        track.m_name[kml::kDefaultLang] = name;
+        return;
+      }
+      else
+      {
+        track.m_name[kml::kDefaultLang] = name + " " + std::to_string(emptyTrackNum);
+        emptyTrackNum++;
+      }
+    }
+  }
+}
 
 std::unique_ptr<kml::FileData> LoadKmlFile(std::string const & file, KmlFileType fileType)
 {
@@ -277,6 +323,8 @@ std::unique_ptr<kml::FileData> LoadKmlFile(std::string const & file, KmlFileType
   try
   {
     kmlData = LoadKmlData(FileReader(file), fileType);
+    if (kmlData != nullptr)
+      FillEmptyNames(kmlData, file);
   }
   catch (std::exception const & e)
   {
@@ -290,9 +338,9 @@ std::unique_ptr<kml::FileData> LoadKmlFile(std::string const & file, KmlFileType
 
 std::string GetKMLPath(std::string const & filePath)
 {
-  std::string const fileExt = GetFileExt(filePath);
+  std::string const fileExt = GetLowercaseFileExt(filePath);
   std::string fileSavePath;
-  if (fileExt == kKmlExtension)
+  if (fileExt == kKmlExtension || fileExt == kGpxExtension)
   {
     fileSavePath = GenerateValidAndUniqueFilePathForKML(base::FileNameFromFullPath(filePath));
     if (!base::CopyFileX(filePath, fileSavePath))
@@ -318,7 +366,7 @@ std::string GetKMLPath(std::string const & filePath)
       std::string ext;
       for (size_t i = 0; i < files.size(); ++i)
       {
-        ext = GetFileExt(files[i].first);
+        ext = GetLowercaseFileExt(files[i].first);
         if (ext == kKmlExtension)
         {
           kmlFileName = files[i].first;
@@ -358,6 +406,11 @@ std::unique_ptr<kml::FileData> LoadKmlData(Reader const & reader, KmlFileType fi
     else if (fileType == KmlFileType::Text)
     {
       kml::DeserializerKml des(*data);
+      des.Deserialize(reader);
+    }
+    else if (fileType == KmlFileType::Gpx)
+    {
+      kml::DeserializerGpx des(*data);
       des.Deserialize(reader);
     }
     else

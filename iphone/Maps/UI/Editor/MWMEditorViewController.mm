@@ -525,7 +525,7 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
       osm::LocalizedName const & name = localizedNames[indexPath.row];
       [tCell configWithDelegate:self
                        langCode:name.m_code
-                       langName:@(name.m_langName)
+                       langName:ToNSString(name.m_langName)
                            name:@(name.m_name.c_str())
                    errorMessage:L(@"error_enter_correct_name")
                         isValid:isValid
@@ -546,7 +546,7 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
 
       [tCell configWithDelegate:self
                        langCode:langCode
-                       langName:@(StringUtf8Multilang::GetLangNameByCode(langCode))
+                       langName:ToNSString(StringUtf8Multilang::GetLangNameByCode(langCode))
                            name:@(name.c_str())
                    errorMessage:L(@"error_enter_correct_name")
                         isValid:isValid

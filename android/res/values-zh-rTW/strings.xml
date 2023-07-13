@@ -21,7 +21,7 @@
 	<string name="miles">英哩</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">我的位置</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">稍後</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">搜尋</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">書籤顏色</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">收藏夾名稱</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">書籤</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">書籤和軌跡</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">我的地點</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">停車場</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">購物</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">二手</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">旅館</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -248,6 +252,10 @@
 	<string name="copyright">版權</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">報告錯誤</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">通過以八字形移動手機來校準指南針來改善箭頭方向</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">以 8 字形移動手機以校準指南針並固定地圖上的箭頭方向</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">更新全部</string>
 	<!-- Cancel all button text -->
@@ -376,6 +384,10 @@
 	<string name="p2p_reroute_from_current">你是否想要規劃目前位置的路線？</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">下一頁</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">從</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">到</string>
 	<string name="editor_time_add">新增排程</string>
 	<string name="editor_time_delete">刪除排程</string>
 	<!-- Text for allday switch. -->
@@ -476,18 +488,16 @@
 	<string name="current_location_unknown_message">目前位置未知，可能您在建築物內或隧道內。</string>
 	<string name="current_location_unknown_continue_button">繼續</string>
 	<string name="current_location_unknown_stop_button">停止</string>
-	<string name="meter">公尺</string>
-	<string name="kilometer">公里</string>
+	<string name="m">公尺</string>
+	<string name="km">公里</string>
 	<string name="kilometers_per_hour">公里每小時</string>
-	<string name="mile">英哩</string>
+	<string name="mi">英哩</string>
 	<!-- A unit of measure -->
-	<string name="foot">英尺</string>
+	<string name="ft">英尺</string>
 	<string name="miles_per_hour">英哩每小時</string>
 	<string name="hour">小時</string>
 	<string name="minute">分鐘</string>
-	<string name="placepage_place_description">說明</string>
 	<string name="placepage_more_button">更多</string>
-	<string name="placepage_call_button">呼叫</string>
 	<string name="placepage_edit_bookmark_button">編輯書籤</string>
 	<string name="editor_comment_hint">註解…</string>
 	<string name="editor_reset_edits_message">重設所有本機變更？</string>
@@ -556,8 +566,8 @@
 	<string name="bookmark_lists_hide_all">隱藏全部</string>
 	<string name="bookmark_lists_show_all">顯示全部</string>
 	<string name="bookmarks_create_new_group">創建新列表</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">匯入書籤</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">導入書籤和曲目</string>
 	<string name="bookmarks_error_message_share_general">由於 app 出錯而無法分享</string>
 	<string name="bookmarks_error_title_share_empty">分享錯誤</string>
 	<string name="bookmarks_error_message_share_empty">無法分享空的列表</string>
@@ -747,11 +757,13 @@
 	<string name="type.amenity.clinic">診所</string>
 	<string name="type.amenity.college">學院</string>
 	<string name="type.amenity.community_centre">社區活動中心</string>
+	<string name="type.amenity.conference_centre">會議中心</string>
 	<string name="type.amenity.courthouse">法院</string>
 	<string name="type.amenity.dentist">牙醫</string>
 	<string name="type.amenity.doctors">醫師診間</string>
 	<string name="type.amenity.drinking_water">飲用水</string>
 	<string name="type.amenity.driving_school">駕訓班</string>
+	<string name="type.amenity.exhibition_centre">展覽中心</string>
 	<string name="type.amenity.money_transfer">匯款</string>
 	<string name="type.amenity.music_school">音樂學校</string>
 	<string name="type.amenity.language_school">語言學校</string>
@@ -849,13 +861,22 @@
 	<string name="type.barrier.kissing_gate">大門</string>
 	<string name="type.barrier.lift_gate">遮斷機</string>
 	<string name="type.barrier.stile">梯磴</string>
+	<string name="type.barrier.turnstile">旋轉門</string>
 	<string name="type.barrier.swing_gate">遮斷機</string>
 	<string name="type.barrier.toll_booth">收費站</string>
 	<string name="type.boundary.national_park">國家公園</string>
+	<string name="type.boundary.protected_area">保護區</string>
+	<string name="type.boundary.protected_area.1">保護區</string>
+	<string name="type.boundary.protected_area.2">保護區</string>
+	<string name="type.boundary.protected_area.3">保護區</string>
+	<string name="type.boundary.protected_area.4">保護區</string>
+	<string name="type.boundary.protected_area.5">保護區</string>
+	<string name="type.boundary.protected_area.6">保護區</string>
 	<string name="type.building">建築物</string>
 	<string name="type.building.address">建築物</string>
-	<string name="type.building.garage">車庫</string>
 	<string name="type.building.has_parts">建築物</string>
+	<string name="type.building_part">建築物</string>
+	<string name="type.building.garage">車庫</string>
 	<string name="type.building.train_station">鐵道</string>
 	<string name="type.cemetery.grave">墓穴</string>
 	<string name="type.craft">工藝作坊</string>
@@ -973,6 +994,7 @@
 	<string name="type.entrance">入口</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">主要入口</string>
+	<string name="type.entrance.exit">出口</string>
 	<string name="type.healthcare.laboratory">醫學實驗室</string>
 	<string name="type.healthcare.physiotherapist">物理治療師</string>
 	<string name="type.healthcare.alternative">替代藥物</string>
@@ -1079,6 +1101,8 @@
 	<string name="type.highway.road">道路</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">橋</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">橋</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">隧道</string>
 	<string name="type.highway.secondary">次要道路</string>
@@ -1337,16 +1361,41 @@
 	<string name="type.power.pole">電塔</string>
 	<string name="type.power.substation">變電所</string>
 	<string name="type.power.tower">電塔</string>
+	<string name="type.railway.funicular">纜車</string>
 	<string name="type.railway.halt">小站</string>
 	<string name="type.railway.level_crossing">鐵路道口</string>
 	<string name="type.railway.monorail">單軌軌道</string>
 	<string name="type.railway.monorail.bridge">單軌軌道</string>
 	<string name="type.railway.monorail.tunnel">單軌軌道</string>
 	<string name="type.railway.rail">鐵路軌道</string>
-	<string name="type.railway.rail.bridge">鐵路軌道</string>
-	<string name="type.railway.rail.motor_vehicle">鐵路軌道</string>
+	<string name="type.railway.rail.highspeed">高鐵</string>
+	<string name="type.railway.rail.tourism">旅遊鐵路</string>
+	<string name="type.railway.rail.main">鐵路</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">二級鐵路</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">公用鐵路</string>
+	<string name="type.railway.rail.spur">鐵路支線</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">輔助鐵軌</string>
+	<string name="type.railway.rail.bridge">鐵路橋</string>
+	<string name="type.railway.rail.highspeed.bridge">鐵路橋</string>
+	<string name="type.railway.rail.tourism.bridge">鐵路橋</string>
+	<string name="type.railway.rail.main.bridge">鐵路橋</string>
+	<string name="type.railway.rail.branch.bridge">鐵路橋</string>
+	<string name="type.railway.rail.utility.bridge">鐵路橋</string>
+	<string name="type.railway.rail.spur.bridge">鐵路橋</string>
+	<string name="type.railway.rail.service.bridge">鐵路橋</string>
 	<string name="type.railway.rail.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.highspeed.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.tourism.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.main.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.branch.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.utility.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.spur.tunnel">鐵路軌道</string>
+	<string name="type.railway.rail.service.tunnel">鐵路軌道</string>
 	<string name="type.railway.station">火車站</string>
+	<string name="type.railway.station.funicular">纜車</string>
 	<string name="type.railway.station.light_rail">輕軌車站</string>
 	<string name="type.railway.station.monorail">單軌車站</string>
 	<string name="type.railway.station.subway">捷運站</string>
@@ -1662,6 +1711,7 @@
 	<string name="type.shop.agrarian">農產品店</string>
 	<string name="type.shop.antiques">古董</string>
 	<string name="type.shop.appliance">家電店</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">藝術商店</string>
 	<string name="type.shop.baby_goods">兒童商店</string>
 	<string name="type.shop.bag">箱包店</string>
@@ -1753,6 +1803,7 @@
 	<string name="type.tourism.zoo">動物園</string>
 	<string name="type.waterway.canal">運河</string>
 	<string name="type.waterway.canal.tunnel">運河</string>
+	<string name="type.waterway.fish_pass">魚梯</string>
 	<string name="type.waterway.lock_gate">閘門</string>
 	<string name="type.waterway.river">河流</string>
 	<string name="type.waterway.river.tunnel">河流</string>
@@ -1765,6 +1816,7 @@
 	<string name="type.wheelchair.limited">部分配備為殘疾人專用</string>
 	<string name="type.wheelchair.no">未配備殘疾人專用</string>
 	<string name="type.wheelchair.yes">配備殘疾人專用</string>
-	<string name="type.building_part">建築物</string>
 	<string name="type.amenity.events_venue">活動場所</string>
+	<string name="type.shop.auction">拍賣</string>
+	<string name="type.shop.collector">收藏品</string>
 </resources>

@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -74,11 +75,6 @@ public class Utils
   {
   }
 
-  public static boolean isMarshmallowOrLater()
-  {
-    return isTargetOrLater(Build.VERSION_CODES.M);
-  }
-
   public static boolean isNougatOrLater()
   {
     return isTargetOrLater(Build.VERSION_CODES.N);
@@ -106,7 +102,6 @@ public class Utils
       w.clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
   }
 
-  @SuppressWarnings("deprecation")
   private static void showOnLockScreenOld(boolean enable, Activity activity)
   {
     if (enable)
@@ -362,11 +357,24 @@ public class Utils
       NavUtils.navigateUpFromSameTask(activity);
   }
 
-  public static SpannableStringBuilder formatUnitsText(Context context, @DimenRes int size, @DimenRes int units, String dimension, String unitText)
+  public static SpannableStringBuilder formatTime(Context context, @DimenRes int size, @DimenRes int units, String dimension, String unitText)
   {
     final SpannableStringBuilder res = new SpannableStringBuilder(dimension).append("\u00A0").append(unitText);
     res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, size), false), 0, dimension.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, units), false), dimension.length(), res.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return res;
+  }
+
+  @NonNull
+  public static Spannable formatDistance(Context context, @NonNull Distance distance)
+  {
+    final SpannableStringBuilder res = new SpannableStringBuilder(distance.toString(context));
+    res.setSpan(
+        new AbsoluteSizeSpan(UiUtils.dimen(context, R.dimen.text_size_nav_number), false),
+        0, distance.mDistanceStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    res.setSpan(
+        new AbsoluteSizeSpan(UiUtils.dimen(context, R.dimen.text_size_nav_dimension), false),
+        distance.mDistanceStr.length(), res.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return res;
   }
 
@@ -768,7 +776,7 @@ public class Utils
     @Override
     public void onCompleted(final boolean success, @Nullable final String zipPath)
     {
-      //TODO: delete zip file after its sent.
+      // TODO: delete zip file after its sent.
       UiThread.run(() -> {
         final Activity activity = mActivityRef.get();
         if (activity == null)
@@ -778,23 +786,26 @@ public class Utils
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[] { mEmail });
         intent.putExtra(Intent.EXTRA_SUBJECT, "[" + BuildConfig.VERSION_NAME + "] " + mSubject);
-        // TODO: Send a short text attachment with system info and logs if zipping logs failed 
+        // TODO: Send a short text attachment with system info and logs if zipping logs failed
         if (success)
         {
           final Uri uri = StorageUtils.getUriForFilePath(activity, zipPath);
           intent.putExtra(Intent.EXTRA_STREAM, uri);
           // Properly set permissions for intent, see
           // https://developer.android.com/reference/androidx/core/content/FileProvider#include-the-permission-in-an-intent
-          intent.setData(uri);
+          intent.setDataAndType(uri, "message/rfc822");
           intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
           if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP_MR1) {
             intent.setClipData(ClipData.newRawUri("", uri));
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
           }
         }
+        else
+        {
+          intent.setType("message/rfc822");
+        }
         // Do this so some email clients don't complain about empty body.
         intent.putExtra(Intent.EXTRA_TEXT, "");
-        intent.setType("message/rfc822");
         try
         {
           activity.startActivity(intent);

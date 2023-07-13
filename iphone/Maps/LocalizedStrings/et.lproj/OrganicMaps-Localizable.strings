@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Minu asukoht";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Hiljem";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Järjehoidjate loetelud";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Järjehoidjad";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Järjehoidjad ja rajad";
 
 /* Default bookmark list name */
 "core_my_places" = "Minu kohad";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Poed";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Kasutatud";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotell";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Marsruudi planeerimine ebaõnnestus";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Saabumine: %s";
+"routing_arrive" = "Saabumine: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Marsruudi arvutamiseks lae alla ja värskenda kõik kavandatud teekonnale jäävad kaardid.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Vali \"Rakenduse kasutamise ajal\"";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "jalga";
+"ft" = "jalga";
 
 "miles_per_hour" = "mph";
 
 "hour" = "h";
 
 "minute" = "min";
-
-"placepage_place_description" = "Kirjeldus";
 
 "placepage_more_button" = "Veel";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Peida vaade";
 
-"downloader_percent" = "%s (%s / %s)";
+"downloader_percent" = "%@ (%@ / %@)";
 
-"downloader_process" = "Allalaadimine %s…";
+"downloader_process" = "Allalaadimine %@…";
 
-"downloader_applying" = "%s rakendamine";
+"downloader_applying" = "%@ rakendamine";
 
 "bookmarks_error_message_share_general" = "Rakenduse vea tõttu ei saanud jagada";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Palun lae alla kaardid oma seadme Organic Maps rakenduses";
 
-"carplay_roundabout_exit" = "%s väljumine";
+"carplay_roundabout_exit" = "%@ väljumine";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sorteeri…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Kaartide värskendamine hoiab objektide info ajakohasena";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Värskenda (%s)";
+"whats_new_auto_update_button_size" = "Värskenda (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Värskenda hiljem käsitsi";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Kogukonnakeskus";
 
+"type.amenity.conference_centre" = "Konverentsikeskus";
+
 "type.amenity.courthouse" = "Kohtumaja";
 
 "type.amenity.dentist" = "Hambaarst";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Joogivesi";
 
 "type.amenity.driving_school" = "Autokool";
+
+"type.amenity.exhibition_centre" = "Näituste keskus";
 
 "type.amenity.money_transfer" = "Raha ülekanne";
 
@@ -1586,6 +1594,8 @@
 
 "type.barrier.stile" = "Trepp";
 
+"type.barrier.turnstile" = "Turnstile";
+
 "type.barrier.swing_gate" = "Tiibvärav";
 
 "type.barrier.toll_booth" = "Tolliputka";
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Rahvuspark";
 
+"type.boundary.protected_area" = "Kaitseala";
+
+"type.boundary.protected_area.1" = "Kaitseala";
+
+"type.boundary.protected_area.2" = "Kaitseala";
+
+"type.boundary.protected_area.3" = "Kaitseala";
+
+"type.boundary.protected_area.4" = "Kaitseala";
+
+"type.boundary.protected_area.5" = "Kaitseala";
+
+"type.boundary.protected_area.6" = "Kaitseala";
+
 "type.building" = "Hoone";
 
 "type.building.address" = "Hoone";
 
-"type.building.garage" = "Garaaž";
-
 "type.building.has_parts" = "Hoone";
+
+"type.building_part" = "Hoone";
+
+"type.building.garage" = "Garaaž";
 
 "type.building.train_station" = "Rongijaam";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Peasissekäik";
 
+"type.entrance.exit" = "Väljumine";
+
 "type.healthcare.laboratory" = "Meditsiinilabor";
 
 "type.healthcare.physiotherapist" = "Füsioterapeut";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Sild";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Sild";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunnel";
@@ -2326,6 +2357,8 @@
 "type.internet_access.wlan" = "Internet";
 
 "type.junction" = "Ristmik";
+
+"type.junction.circular" = "Ringtee";
 
 "type.junction.roundabout" = "Ringtee";
 
@@ -2757,7 +2790,7 @@
 
 "type.railway.disused" = "Kasutamata raudtee";
 
-"type.railway.funicular" = "Funikulöör";
+"type.railway.funicular" = "Funicular";
 
 "type.railway.funicular.bridge" = "Funikulöör";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Raudtee";
 
+"type.railway.rail.highspeed" = "Kiirraudtee";
+
+"type.railway.rail.tourism" = "Turismiraudtee";
+
+"type.railway.rail.main" = "Raudtee";
+
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Teisene raudtee";
+
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Teenindus raudtee";
+
+"type.railway.rail.spur" = "Rööbastee";
+
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Lisarööpmel rööbastee";
+
 "type.railway.rail.bridge" = "Raudtee sild";
 
-"type.railway.rail.motor_vehicle" = "Raudtee";
+"type.railway.rail.highspeed.bridge" = "Raudtee sild";
+
+"type.railway.rail.tourism.bridge" = "Raudtee sild";
+
+"type.railway.rail.main.bridge" = "Raudtee sild";
+
+"type.railway.rail.branch.bridge" = "Raudtee sild";
+
+"type.railway.rail.utility.bridge" = "Raudtee sild";
+
+"type.railway.rail.spur.bridge" = "Raudtee sild";
+
+"type.railway.rail.service.bridge" = "Raudtee sild";
 
 "type.railway.rail.tunnel" = "Raudtee tunnel";
 
-"type.railway.razed" = "Eemaldatud raudtee";
+"type.railway.rail.highspeed.tunnel" = "Raudtee tunnel";
 
-"type.railway.siding" = "Raudtee haru";
+"type.railway.rail.tourism.tunnel" = "Raudtee tunnel";
 
-"type.railway.siding.bridge" = "Raudtee haru sild";
+"type.railway.rail.main.tunnel" = "Raudtee tunnel";
 
-"type.railway.siding.tunnel" = "Raudtee haru tunnel";
+"type.railway.rail.branch.tunnel" = "Raudtee tunnel";
 
-"type.railway.spur" = "Rööbastee";
+"type.railway.rail.utility.tunnel" = "Raudtee tunnel";
 
-"type.railway.spur.bridge" = "Rööbastee sild";
+"type.railway.rail.spur.tunnel" = "Raudtee tunnel";
 
-"type.railway.spur.tunnel" = "Rööbastee tunnel";
+"type.railway.rail.service.tunnel" = "Raudtee tunnel";
 
 "type.railway.station" = "Raudtee jaam";
+
+"type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Raudtee jaam";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Trammipeatus";
 
-"type.railway.yard" = "Raudtee hoov";
-
-"type.railway.yard.bridge" = "Raudtee hoovi sild";
-
-"type.railway.yard.tunnel" = "Raudtee hoovi tunnel";
-
 "type.route" = "Tee";
 
 "type.route.ferry" = "Praam";
 
-"type.route.shuttle_train" = "Kiirrong";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Pood";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Tehnikapood";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Kunstipood";
 
 "type.shop.baby_goods" = "Lastekaubad";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Kanal";
 
+"type.waterway.fish_pass" = "Kala redel";
+
 "type.waterway.dam" = "Tamm";
 
 "type.waterway.ditch" = "Kraav";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Kelgurada";
 
-"type.building_part" = "Hoone";
-
 "type.amenity.events_venue" = "Ürituste toimumiskoht";
+
+"type.shop.auction" = "Oksjon";
+
+"type.shop.collector" = "Kollektsioneeritavad esemed";

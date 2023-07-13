@@ -143,8 +143,22 @@ NameScores GetNameScores(FeatureType & ft, Geocoder::Params const & params,
   }
 
   if (type == Model::TYPE_BUILDING)
-    UpdateNameScores(ft.GetHouseNumber(), StringUtf8Multilang::kDefaultCode, sliceNoCategories,
-                     bestScores);
+  {
+    if (ft.GetGeomType() == feature::GeomType::Line)
+    {
+      // Sometimes we can get linear matches with postcode (instead of house number) here.
+      // Because of _fake_ TYPE_BUILDING layer in MatchPOIsAndBuildings.
+      if (ftypes::IsAddressInterpolChecker::Instance()(ft))
+      {
+        // Separate case for addr:interpolation (Building + Line).
+        ASSERT(!ft.GetRef().empty(), ());
+        // Just assign SUBSTRING with no errors (was checked in HouseNumbersMatch).
+        bestScores.UpdateIfBetter(NameScores(NameScore::SUBSTRING, ErrorsMade(0), false, 4));
+      }
+    }
+    else
+      UpdateNameScores(ft.GetHouseNumber(), StringUtf8Multilang::kDefaultCode, sliceNoCategories, bestScores);
+  }
 
   if (ftypes::IsAirportChecker::Instance()(ft))
   {
@@ -374,8 +388,8 @@ public:
       }, Delimiters());
 
       // Factor is a number of the rest, not common matched tokens in Feature' name. Bigger is worse.
-      info.m_commonTokensFactor = min(3, count - int(info.m_tokenRanges[info.m_type].Size()));
-      ASSERT_GREATER_OR_EQUAL(info.m_commonTokensFactor, 0, ());
+      // Example when count == 0: UTH airport has empty name, but "ut" is a _common_ token.
+      info.m_commonTokensFactor = min(3, std::max(0, count - int(info.m_tokenRanges[info.m_type].Size())));
     }
 
     res.SetRankingInfo(info);
@@ -579,12 +593,6 @@ private:
       info.m_errorsMade = errorsMade;
       info.m_isAltOrOldName = isAltOrOldName;
       info.m_matchedFraction = matchedLength / static_cast<float>(totalLength);
-
-      info.m_exactCountryOrCapital = info.m_errorsMade == ErrorsMade(0) && info.m_allTokensUsed &&
-                                     info.m_nameScore == NameScore::FULL_MATCH &&
-          // Upgrade _any_ capital rank, not only _true_ capital (=2).
-          // For example, search Barcelona from Istanbul or vice-versa.
-                                     (m_countryChecker(featureTypes) || m_capitalChecker(featureTypes));
     }
 
     CategoriesInfo const categoriesInfo(featureTypes,
@@ -757,6 +765,15 @@ void Ranker::UpdateResults(bool lastUpdate)
 
   if (m_params.m_viewportSearch)
   {
+    // Heuristics to filter partially matched category trash in the viewport.
+    // https://github.com/organicmaps/organicmaps/issues/5251
+    auto it = partition(m_tentativeResults.begin(), m_tentativeResults.end(),
+                        [](RankerResult const & r) { return !r.IsPartialCategory(); });
+
+    size_t const goodCount = distance(m_tentativeResults.begin(), it);
+    if (goodCount >= 10 || goodCount * 3 >= m_tentativeResults.size())
+      m_tentativeResults.erase(it, m_tentativeResults.end());
+
     sort(m_tentativeResults.begin(), m_tentativeResults.end(),
          base::LessBy(&RankerResult::GetDistanceToPivot));
   }

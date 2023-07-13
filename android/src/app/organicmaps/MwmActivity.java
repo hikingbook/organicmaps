@@ -26,7 +26,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import app.organicmaps.Framework.PlacePageActivationListener;
 import app.organicmaps.api.Const;
@@ -1686,7 +1685,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onBookmarksFileLoaded(boolean success)
   {
-    Utils.showSnackbar(this, findViewById(R.id.coordinator), findViewById(R.id.menu_frame),
+    Utils.showSnackbar(this, findViewById(R.id.coordinator),
                         success ? R.string.load_kmz_successful : R.string.load_kmz_failed);
   }
 

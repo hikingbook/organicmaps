@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Moje położenie";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Później";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Zestawy zakładek";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Zakładki";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Zakładki i trasy";
 
 /* Default bookmark list name */
 "core_my_places" = "Moje miejsca";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Shopping";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Z drugiej ręki";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Planowanie trasy nieudane";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Przybycie: %s";
+"routing_arrive" = "Przybycie: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Aby utworzyć trasę, pobierz i zaktualizuj wszystkie właściwe dla niej mapy.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Zaznacz Podczas korzystania z aplikacji";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "ft";
+"ft" = "ft";
 
 "miles_per_hour" = "mph";
 
 "hour" = "godz";
 
 "minute" = "min";
-
-"placepage_place_description" = "Opis";
 
 "placepage_more_button" = "Więcej";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Ukryj ekran";
 
-"downloader_percent" = "%s (%s z %s)";
+"downloader_percent" = "%@ (%@ z %@)";
 
-"downloader_process" = "Pobieranie %s…";
+"downloader_process" = "Pobieranie %@…";
 
-"downloader_applying" = "Stosowanie zmian %s…";
+"downloader_applying" = "Stosowanie zmian %@…";
 
 "bookmarks_error_message_share_general" = "Nie można udostępnić z powodu błędu aplikacji";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Pobierz mapy do aplikacji Organic Maps na swoje urządzenie";
 
-"carplay_roundabout_exit" = "%s zjazd";
+"carplay_roundabout_exit" = "%@ zjazd";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sortuj…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Aktualizacja map umożliwia uzyskanie bieżących informacji o obiektach";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Zaktualizuj (%s)";
+"whats_new_auto_update_button_size" = "Zaktualizuj (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Zaktualizuj ręcznie później";
@@ -1237,7 +1241,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/pl/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Pl:Wstęp";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Centrum społecznościowe";
 
+"type.amenity.conference_centre" = "Centrum konferencyjne";
+
 "type.amenity.courthouse" = "Sąd";
 
 "type.amenity.dentist" = "Dentysta";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Woda pitna";
 
 "type.amenity.driving_school" = "Szkoła nauki jazdy";
+
+"type.amenity.exhibition_centre" = "Centrum wystawowe";
 
 "type.amenity.money_transfer" = "Transfer pieniędzy";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Restauracja";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parkometr";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Weterynarz";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Mur oporowy";
 
 "type.barrier.stile" = "Przełaz";
+
+"type.barrier.turnstile" = "Bramka obrotowa";
 
 "type.barrier.swing_gate" = "Szlaban";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Park narodowy";
 
+"type.boundary.protected_area" = "Strefa chroniona";
+
+"type.boundary.protected_area.1" = "Strefa chroniona";
+
+"type.boundary.protected_area.2" = "Strefa chroniona";
+
+"type.boundary.protected_area.3" = "Strefa chroniona";
+
+"type.boundary.protected_area.4" = "Strefa chroniona";
+
+"type.boundary.protected_area.5" = "Strefa chroniona";
+
+"type.boundary.protected_area.6" = "Strefa chroniona";
+
 "type.building" = "Budynek";
 
-"type.building.address" = "Adres";
+"type.building.address" = "Budynek";
+
+"type.building.has_parts" = "Budynek";
+
+"type.building_part" = "Budynek";
 
 "type.building.garage" = "Garaż";
-
-"type.building.has_parts" = "Część budynku";
 
 "type.building.train_station" = "Dworzec kolejowy";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Główne wejście";
 
+"type.entrance.exit" = "Wyjdź";
+
 "type.healthcare.laboratory" = "Laboratorium Medyczne";
 
 "type.healthcare.physiotherapist" = "Fizjoterapeuta";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Most";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Most";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunel";
@@ -2326,6 +2357,8 @@
 "type.internet_access.wlan" = "Internet";
 
 "type.junction" = "Skrzyżowanie";
+
+"type.junction.circular" = "Rondo";
 
 "type.junction.roundabout" = "Rondo";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Generator słoneczny";
 
@@ -2755,9 +2788,9 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
-"type.railway.funicular" = "Funicular";
+"type.railway.funicular" = "Kolejka linowa";
 
 "type.railway.funicular.bridge" = "Funicular Bridge";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Kolej";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Kolej dużych prędkości";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Kolej turystyczna";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Kolej";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Kolej drugorzędna";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Kolej użytkowa";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Ostroga kolejowa";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Pomocniczy tor kolejowy";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Most kolejowy";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Most kolejowy";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Most kolejowy";
+
+"type.railway.rail.main.bridge" = "Most kolejowy";
+
+"type.railway.rail.branch.bridge" = "Most kolejowy";
+
+"type.railway.rail.utility.bridge" = "Most kolejowy";
+
+"type.railway.rail.spur.bridge" = "Most kolejowy";
+
+"type.railway.rail.service.bridge" = "Most kolejowy";
+
+"type.railway.rail.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.highspeed.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.tourism.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.main.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.branch.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.utility.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.spur.tunnel" = "Tunel kolejowy";
+
+"type.railway.rail.service.tunnel" = "Tunel kolejowy";
 
 "type.railway.station" = "Dworzec kolejowy";
+
+"type.railway.station.funicular" = "Kolejka linowa";
 
 "type.railway.station.light_rail" = "Dworzec kolejowy";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Przystanek tramwajowy";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Sklep";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Sklep AGD";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Sklep artystyczny";
 
 "type.shop.baby_goods" = "Sklep dla dzieci";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Kanał";
 
+"type.waterway.fish_pass" = "Przepławka";
+
 "type.waterway.dam" = "Dam";
 
 "type.waterway.ditch" = "Ditch";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Część budynku";
-
 "type.amenity.events_venue" = "Miejsce wydarzeń";
+
+"type.shop.auction" = "Aukcja";
+
+"type.shop.collector" = "Przedmioty kolekcjonerskie";

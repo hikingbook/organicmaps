@@ -85,7 +85,7 @@ You need a Linux or a Mac machine to build a desktop version of Organic Maps. [W
 
 Ensure that you have at least 20GB of free space.
 
-Install Cmake (**3.22.1** minimum), Boost, Qt 5 and other dependencies.
+Install Cmake (**3.22.1** minimum), Boost, Qt 6 and other dependencies.
 
 Installing *ccache* can speed up active development.
 
@@ -97,12 +97,13 @@ sudo apt update && sudo apt install -y \
     clang \
     ninja-build \
     python3 \
-    qtbase5-dev \
+    qt6-base-dev \
     libc++-dev \
     libfreetype-dev \
-    libglu1-mesa-dev \
+    libglvnd-dev \
+    libgl1-mesa-dev \
     libicu-dev \
-    libqt5svg5-dev \
+    libqt6svg6-dev \
     libsqlite3-dev \
     zlib1g-dev
 ```
@@ -129,15 +130,17 @@ sudo dnf install -y \
     freetype-devel \
     libicu-devel \
     libstdc++-devel \
-    qt5-qtbase-devel \
-    qt5-qtsvg-devel \
+    mesa-libGL-devel \
+    libglvnd-devel \
+    qt6-qtbase-devel \
+    qt6-qtsvg-devel \
     sqlite-devel
 ```
 
 _macOS:_
 
 ```bash
-brew install cmake ninja qt@5
+brew install cmake ninja qt@6
 ```
 
 ### Windows
@@ -145,7 +148,7 @@ brew install cmake ninja qt@5
 We haven't compiled Organic Maps on Windows *natively* in a long time, though it is possible.
 Some files should be updated. There is a work in progress on [windows](https://github.com/organicmaps/organicmaps/tree/windows) branch.
 Please contribute if you have time.
-You'll need to have python3, cmake, ninja, and QT5 in the PATH, and Visual Studio 2022 or Visual Studio 2022 Build Tools installed. Use [Visual Studio Developer Command Prompt](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022) or generate Visual Studio project files with CMake to build the project.
+You'll need to have python3, cmake, ninja, and QT6 in the PATH, and Visual Studio 2022 or Visual Studio 2022 Build Tools installed. Use [Visual Studio Developer Command Prompt](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022) or generate Visual Studio project files with CMake to build the project.
 
 However, it is possible to use the WSL (Windows Subsystem for Linux) to run GUI applications. 
 
@@ -265,7 +268,7 @@ To switch themes you can enter this commands:
 - `?vlight` - Day theme for vehicle navigation
 - `?vdark` - Night theme for vehicle navigation
 
-There are also other commands for turning on/off isolines, antialiasing, etc. Check [the code](https://github.com/organicmaps/organicmaps/blob/6ae19b40c2b7a515338eb128547df05da13bdb78/map/framework.cpp#L2570-L2671) to learn about them.
+There are also other commands for turning on/off isolines, antialiasing, etc. Check [DEBUG_COMMANDS.md](DEBUG_COMMANDS.md) to learn about them.
 
 ### More options
 
@@ -343,6 +346,9 @@ Make sure the Studio has at least 1920Mb max heap size in "File > Settings... > 
 In Android Studio open the project in `android/` directory.
 
 Setup a virtual device to use [emulator](https://developer.android.com/studio/run/emulator) ("Tools > Device Manager") or [use a hardware device for debugging](https://developer.android.com/studio/run/device). If using an emulator, make sure to choose a system image with API Level 31 and ABI _x86_64_.
+
+Android Studio has issues in parsing C++ part of the project - one of these applications should be used: [Qt Creator](https://www.qt.io/product/development-tools), [XCode](https://developer.apple.com/xcode/), [CLion](https://www.jetbrains.com/clion/). For XCode it is required to run `cmake . -g Xcode` to generate project files, while CLion and QT Creator can import CMakeLists.txt.
+
 
 ### Building
 
@@ -482,13 +488,13 @@ Building Organic Maps for iOS requires a Mac.
 
 Ensure that you have at least 20GB of free space.
 
-Install Command Line Tools:
+After [getting all sources](#getting-sources), please make sure that Command Line Tools are installed:
 
-- Launch Terminal application on your Mac.
-- Type `git` in the command line.
-- Follow the instructions in GUI.
+```bash
+xcode-select --install
+```
 
-Install [Xcode](https://apps.apple.com/ru/app/xcode/id497799835?mt=12) from AppStore.
+Then, install [Xcode](https://apps.apple.com/app/xcode/id497799835?mt=12) from AppStore.
 
 Enroll in the [Apple Developer Program](https://developer.apple.com/programs/) (you can run Organic Maps in Simulator without this step).
 
@@ -496,7 +502,7 @@ Enroll in the [Apple Developer Program](https://developer.apple.com/programs/) (
 
 Set up your developer account and add certificates:
 
-- Run Xcode.
+- Open Xcode.
 - Click "Xcode" → "Preferences".
 - Open "Account" tab.
 - Enter account credentials from the previous step.

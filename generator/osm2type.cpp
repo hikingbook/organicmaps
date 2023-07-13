@@ -325,7 +325,7 @@ void LeaveLongestTypes(vector<generator::TypeStrings> & matchedTypes)
 
 void MatchTypes(OsmElement * p, FeatureBuilderParams & params, function<bool(uint32_t)> const & filterType)
 {
-  auto static const rules = generator::ParseMapCSS(GetPlatform().GetReader("mapcss-mapping.csv"));
+  auto static const rules = generator::ParseMapCSS(GetPlatform().GetReader(MAPCSS_MAPPING_FILE));
 
   vector<generator::TypeStrings> matchedTypes;
   for (auto const & [typeString, rule] : rules)
@@ -423,7 +423,7 @@ string MatchCity(OsmElement const * p)
       {"montreal", {-73.995802, 45.398482, -73.474295, 45.70479}},
       {"moscow", {36.9964599609, 55.3962717136, 38.1884765625, 56.1118730004}},
       {"mumbai", {72.7514648437, 18.8803004445, 72.9862976074, 19.2878132403}},
-      {"munchen", {11.3433837891, 47.9981928195, 11.7965698242, 48.2530267576}},
+      {"munchen", {11.3433837891, 47.9981928195, 11.7965698242, 48.2730267576}},
       {"nagoya", {136.791969,35.025951,137.060899,35.260229}}, 
       {"newyork", {-74.4104003906, 40.4134960497, -73.4600830078, 41.1869224229}},
       {"nnov", {43.6431884766, 56.1608472541, 44.208984375, 56.4245355509}},
@@ -955,7 +955,7 @@ void GetNameAndType(OsmElement * p, FeatureBuilderParams & params,
        }},
   });
 
-  // Stage4: Match tags in classificator to find feature types.
+  // Stage4: Match tags to classificator feature types via mapcss-mapping.csv.
   MatchTypes(p, params, filterType);
 
   // Stage5: Postprocess feature types.
