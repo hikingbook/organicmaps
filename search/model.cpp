@@ -111,7 +111,13 @@ public:
 
   bool operator()(FeatureType & ft) const
   {
-    return !ft.GetHouseNumber().empty() || IsBuildingChecker::Instance()(ft);
+    if (!ft.GetHouseNumber().empty())
+      return true;
+
+    if (ft.GetGeomType() == feature::GeomType::Line)
+      return IsAddressInterpolChecker::Instance()(ft);
+    else
+      return IsBuildingChecker::Instance()(ft);
   }
 };
 }  // namespace
@@ -141,7 +147,7 @@ Model::Type Model::GetType(FeatureType & feature) const
   case LocalityType::City:
   case LocalityType::Town: return TYPE_CITY;
   case LocalityType::Village: return TYPE_VILLAGE;
-  case LocalityType::Count: ASSERT(false, ());    // no break here
+  case LocalityType::Count: ASSERT(false, ()); [[fallthrough]];
   case LocalityType::None: return TYPE_UNCLASSIFIED;
   }
 

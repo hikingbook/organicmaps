@@ -1,6 +1,9 @@
 name: Linux Check
 on:
   workflow_dispatch: # Manual trigger
+  push:
+    branches:
+      - master
   pull_request:
     paths-ignore:
       - .gitignore
@@ -26,11 +29,9 @@ jobs:
   linux-no-unity:
     name: Linux no unity build
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
     # Cancels previous jobs if the same branch or PR was updated again.
     concurrency:
-      group: ${{ github.workflow }}-${{ matrix.compiler.CC }}-${{ matrix.CMAKE_BUILD_TYPE }}-${{ github.event.pull_request.number || github.ref }}
+      group: ${{ github.workflow }}-no-unity-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: true
 
     steps:
@@ -54,12 +55,19 @@ jobs:
           sudo apt update -y
           sudo apt install -y \
               ninja-build \
-              qtbase5-dev \
-              libqt5svg5-dev
+              libgl1-mesa-dev \
+              libglvnd-dev \
+              qt6-base-dev \
+              libqt6svg6-dev
 
       - name: Configure
         shell: bash
         run: ./configure.sh
+
+      - name: Configure ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ github.workflow }}-no-unity
 
       - name: CMake
         shell: bash
@@ -68,7 +76,9 @@ jobs:
           CXX: clang++-14
         # -g1 should slightly reduce build time.
         run: |
-          cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-g1 -DUNITY_DISABLE=ON
+          cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_FLAGS=-g1 -DUNITY_DISABLE=ON
 
       - name: Compile
         shell: bash
@@ -83,6 +93,10 @@ jobs:
       matrix:
         compiler: [{ CXX: g++-12, CC: gcc-12 }, { CXX: clang++-14, CC: clang-14 }]
         CMAKE_BUILD_TYPE: [Debug, RelWithDebInfo]
+    # Cancels previous jobs if the same branch or PR was updated again.
+    concurrency:
+      group: ${{ github.workflow }}-unity-${{ matrix.compiler.CC }}-${{ matrix.CMAKE_BUILD_TYPE }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
 
     steps:
       - name: Free disk space by removing .NET, Android and Haskell
@@ -105,12 +119,19 @@ jobs:
               g++-12 \
               gcc-12 \
               ninja-build \
-              qtbase5-dev \
-              libqt5svg5-dev
+              libgl1-mesa-dev \
+              libglvnd-dev \
+              qt6-base-dev \
+              libqt6svg6-dev
 
       - name: Configure
         shell: bash
         run: ./configure.sh
+
+      - name: Configure ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ github.workflow }}-unity-${{ matrix.compiler.CC }}-${{ matrix.CMAKE_BUILD_TYPE }}
 
       - name: CMake
         shell: bash
@@ -120,7 +141,9 @@ jobs:
         # -g1 should slightly reduce build time.
         run: |
           echo "Building ${{ matrix.CMAKE_BUILD_TYPE }}"
-          cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.CMAKE_BUILD_TYPE }} -DCMAKE_C_FLAGS=-g1 -DCMAKE_CXX_FLAGS=-g1
+          cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.CMAKE_BUILD_TYPE }} \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_C_FLAGS=-g1 -DCMAKE_CXX_FLAGS=-g1
 
       - name: Compile
         shell: bash

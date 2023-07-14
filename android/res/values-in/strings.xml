@@ -23,7 +23,7 @@
 	<string name="miles">Mil</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Posisi Saya</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Nanti</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Cari</string>
@@ -73,8 +73,10 @@
 	<string name="bookmark_color">Warna Penanda</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Nama Set Penanda</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Penanda</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Penanda dan jalur</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Tempat-tempat Saya</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -113,6 +115,8 @@
 	<string name="parking">Parkir</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Berbelanja</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Tangan kedua</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -239,6 +243,10 @@
 	<string name="copyright">Hak cipta</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Laporkan gangguan</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Perbaiki arah panah dengan menggerakkan ponsel dalam gerakan angka delapan untuk mengkalibrasi kompas.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Gerakkan ponsel dengan gerakan angka delapan untuk mengkalibrasi kompas dan memperbaiki arah panah pada peta.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Perbarui semua</string>
 	<!-- Cancel all button text -->
@@ -365,6 +373,10 @@
 	<string name="p2p_reroute_from_current">Apakah Anda ingin kami merencanakan sebuah rute dari lokasi Anda saat ini?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Berikut</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Dari pukul</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Hingga</string>
 	<string name="editor_time_add">Tambah Jadwal</string>
 	<string name="editor_time_delete">Hapus Jadwal</string>
 	<!-- Text for allday switch. -->
@@ -464,18 +476,16 @@
 	<string name="current_location_unknown_message">Lokasi saat ini tidak diketahui. Anda mungkin berada dalam bangunan atau terowongan.</string>
 	<string name="current_location_unknown_continue_button">Lanjutkan</string>
 	<string name="current_location_unknown_stop_button">Berhenti</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/j</string>
-	<string name="mile">mil</string>
+	<string name="mi">mil</string>
 	<!-- A unit of measure -->
-	<string name="foot">kaki</string>
+	<string name="ft">kaki</string>
 	<string name="miles_per_hour">mpj</string>
 	<string name="hour">j</string>
 	<string name="minute">mnt</string>
-	<string name="placepage_place_description">Deskripsi</string>
 	<string name="placepage_more_button">Lainnya</string>
-	<string name="placepage_call_button">Hubungi</string>
 	<string name="placepage_edit_bookmark_button">Edit Bookmark</string>
 	<string name="editor_comment_hint">Komentar…</string>
 	<string name="editor_reset_edits_message">Atur ulang perubahan lokal?</string>
@@ -540,6 +550,8 @@
 	<string name="bookmark_lists_hide_all">Sembunyikan semua</string>
 	<string name="bookmark_lists_show_all">Perlihatkan semua</string>
 	<string name="bookmarks_create_new_group">Buat daftar baru</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Impor penanda dan trek</string>
 	<string name="bookmarks_error_message_share_general">Tidak dapat berbagi karena kesalahan aplikasi</string>
 	<string name="bookmarks_error_title_share_empty">Kesalahan dalam membagikan</string>
 	<string name="bookmarks_error_message_share_empty">Tidak dapat membagikan daftar kosong</string>
@@ -680,6 +692,8 @@
 	<string name="enable_screen_sleep_description">Jika diaktifkan, layar akan diizinkan untuk tidur setelah beberapa saat tidak aktif.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Data peta dari OpenStreetMap</string>
+	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+	<string name="translated_om_site_url">https://organicmaps.app/id/</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Alamat/Blokir</string>
@@ -712,11 +726,13 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Kampus</string>
 	<string name="type.amenity.community_centre">Pusat komunitas</string>
+	<string name="type.amenity.conference_centre">Pusat konferensi</string>
 	<string name="type.amenity.courthouse">Gedung pengadilan</string>
 	<string name="type.amenity.dentist">Dokter gigi</string>
 	<string name="type.amenity.doctors">Praktik dokter</string>
 	<string name="type.amenity.drinking_water">Air minum</string>
 	<string name="type.amenity.driving_school">Sekolah Mengemudi</string>
+	<string name="type.amenity.exhibition_centre">Pusat pameran</string>
 	<string name="type.amenity.money_transfer">Transfer uang</string>
 	<string name="type.amenity.music_school">Sekolah musik</string>
 	<string name="type.amenity.language_school">Sekolah bahasa</string>
@@ -811,13 +827,22 @@
 	<string name="type.barrier.kissing_gate">Gerbang</string>
 	<string name="type.barrier.lift_gate">Polisi tidur</string>
 	<string name="type.barrier.stile">Undakan</string>
+	<string name="type.barrier.turnstile">Pintu putar</string>
 	<string name="type.barrier.swing_gate">Polisi tidur</string>
 	<string name="type.barrier.toll_booth">Gerbang tol</string>
 	<string name="type.boundary.national_park">Taman Nasional</string>
+	<string name="type.boundary.protected_area">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.1">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.2">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.3">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.4">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.5">Kawasan Lindung</string>
+	<string name="type.boundary.protected_area.6">Kawasan Lindung</string>
 	<string name="type.building">Gedung</string>
 	<string name="type.building.address">Gedung</string>
-	<string name="type.building.garage">Garasi</string>
 	<string name="type.building.has_parts">Gedung</string>
+	<string name="type.building_part">Gedung</string>
+	<string name="type.building.garage">Garasi</string>
 	<string name="type.building.train_station">Rel kereta api</string>
 	<string name="type.cemetery.grave">Kuburan</string>
 	<string name="type.craft">Kerajinan</string>
@@ -935,6 +960,7 @@
 	<string name="type.entrance">Pintu masuk</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Pintu masuk utama</string>
+	<string name="type.entrance.exit">Keluar</string>
 	<string name="type.healthcare.laboratory">Laboratorium medis</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapis</string>
 	<string name="type.healthcare.alternative">Pengobatan alternatif</string>
@@ -1041,6 +1067,8 @@
 	<string name="type.highway.road">Jalan</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Menjembatani</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Menjembatani</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Terowongan</string>
 	<string name="type.highway.secondary">Jalan</string>
@@ -1296,11 +1324,39 @@
 	<string name="type.power.pole">Menara listrik</string>
 	<string name="type.power.substation">Stasiun bawah tanah</string>
 	<string name="type.power.tower">Menara listrik</string>
+	<string name="type.railway.funicular">Kereta gantung</string>
 	<string name="type.railway.halt">Rel kereta api</string>
 	<string name="type.railway.level_crossing">Perlintasan Kereta Api</string>
 	<string name="type.railway.monorail">Monorel</string>
 	<string name="type.railway.rail">Kereta api</string>
+	<string name="type.railway.rail.highspeed">Kereta api berkecepatan tinggi</string>
+	<string name="type.railway.rail.tourism">Kereta api wisata</string>
+	<string name="type.railway.rail.main">Kereta api</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Kereta api sekunder</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Kereta api utilitas</string>
+	<string name="type.railway.rail.spur">Pacu kereta api</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Jalur rel bantu</string>
+	<string name="type.railway.rail.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.highspeed.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.tourism.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.main.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.branch.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.utility.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.spur.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.service.bridge">Jembatan kereta api</string>
+	<string name="type.railway.rail.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.highspeed.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.tourism.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.main.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.branch.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.utility.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.spur.tunnel">Terowongan kereta api</string>
+	<string name="type.railway.rail.service.tunnel">Terowongan kereta api</string>
 	<string name="type.railway.station">Rel kereta api</string>
+	<string name="type.railway.station.funicular">Kereta gantung</string>
 	<string name="type.railway.station.light_rail">Rel kereta api</string>
 	<string name="type.railway.station.monorail">Rel kereta api</string>
 	<string name="type.railway.station.subway">Stasiun bawah tanah</string>
@@ -1568,7 +1624,6 @@
 	<string name="type.shop.greengrocer">Penjual sayuran</string>
 	<string name="type.shop.grocery">Kebutuhan sehari-hari</string>
 	<string name="type.shop.hairdresser">Penata rambut</string>
-	<string name="type.shop.hardware">Toko perangkat keras</string>
 	<string name="type.shop.health_food">Toko Makanan Kesehatan</string>
 	<string name="type.shop.herbalist">Toko jamu</string>
 	<string name="type.shop.hifi">Audio HI FI</string>
@@ -1611,6 +1666,7 @@
 	<string name="type.shop.agrarian">Toko pertanian</string>
 	<string name="type.shop.antiques">Barang antik</string>
 	<string name="type.shop.appliance">Toko peralatan</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Toko Seni</string>
 	<string name="type.shop.baby_goods">Toko anak-anak</string>
 	<string name="type.shop.bag">Toko Tas</string>
@@ -1696,6 +1752,7 @@
 	<string name="type.tourism.zoo">Kebun binatang</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
+	<string name="type.waterway.fish_pass">Tangga ikan</string>
 	<string name="type.waterway.lock_gate">Gerbang pengunci</string>
 	<string name="type.waterway.river">Sungai</string>
 	<string name="type.waterway.river.tunnel">Sungai</string>
@@ -1708,6 +1765,7 @@
 	<string name="type.wheelchair.limited">Akses kursi roda terbatas</string>
 	<string name="type.wheelchair.no">Tidak ada akses kursi roda</string>
 	<string name="type.wheelchair.yes">Akses penuh kursi roda</string>
-	<string name="type.building_part">Gedung</string>
 	<string name="type.amenity.events_venue">Tempat acara</string>
+	<string name="type.shop.auction">Lelang</string>
+	<string name="type.shop.collector">Barang koleksi</string>
 </resources>

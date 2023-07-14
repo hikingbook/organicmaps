@@ -23,7 +23,7 @@
 	<string name="miles">ไมล์</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">ตำแหน่งของฉัน</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">ภายหลัง</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">ค้นหา</string>
@@ -73,8 +73,10 @@
 	<string name="bookmark_color">สีของบุ๊กมาร์ก</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">ชื่อของชุดบุ๊กมาร์ก</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">บุ๊กมาร์ก</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">บุ๊กมาร์กและการติดตาม</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">สถานที่ของฉัน</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -113,6 +115,8 @@
 	<string name="parking">ที่จอดรถ</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">ช็อปปิง</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">มือสอง</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">โรงแรม</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -239,6 +243,10 @@
 	<string name="copyright">ลิขสิทธิ์</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">แจ้งข้อผิดพลาด</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">ปรับปรุงทิศทางลูกศรโดยขยับโทรศัพท์เป็นเลขแปดเพื่อปรับเทียบเข็มทิศ</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">ขยับโทรศัพท์เป็นเลขแปดเพื่อปรับเทียบเข็มทิศและกำหนดทิศทางลูกศรบนแผนที่</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">อัปเดตทั้งหมด</string>
 	<!-- Cancel all button text -->
@@ -365,6 +373,10 @@
 	<string name="p2p_reroute_from_current">คุณต้องการให้เราาวงแผนเส้นทางจากสถานที่ตั้งปัจจุบันของคุณหรือไม่?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">ถัดไป</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">เวลา</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">น</string>
 	<string name="editor_time_add">เพิ่มวัน</string>
 	<string name="editor_time_delete">ลบวัน</string>
 	<!-- Text for allday switch. -->
@@ -464,18 +476,16 @@
 	<string name="current_location_unknown_message">ไม่ทราบชื่อสถานที่ปัจจุบัน คุณอาจจะอยู่ในอาคาร หรือ ในอุโมงค์</string>
 	<string name="current_location_unknown_continue_button">ดำเนินการต่อ</string>
 	<string name="current_location_unknown_stop_button">หยุด</string>
-	<string name="meter">ม.</string>
-	<string name="kilometer">กม.</string>
+	<string name="m">ม.</string>
+	<string name="km">กม.</string>
 	<string name="kilometers_per_hour">กม./ชม.</string>
-	<string name="mile">ไมล์</string>
+	<string name="mi">ไมล์</string>
 	<!-- A unit of measure -->
-	<string name="foot">ฟุต</string>
+	<string name="ft">ฟุต</string>
 	<string name="miles_per_hour">ไมล์/ชม.</string>
 	<string name="hour">ชม.</string>
 	<string name="minute">น.</string>
-	<string name="placepage_place_description">คำอธิบาย</string>
 	<string name="placepage_more_button">เพิ่มเติม</string>
-	<string name="placepage_call_button">โทร</string>
 	<string name="placepage_edit_bookmark_button">แก้ไข Bookmark</string>
 	<string name="editor_comment_hint">ข้อคิดเห็น</string>
 	<string name="editor_reset_edits_message">ตั้งค่าการเปลี่ยนแปลงท้องถิ่นทั้งหมด</string>
@@ -540,6 +550,8 @@
 	<string name="bookmark_lists_hide_all">ซ่อนทั้งหมด</string>
 	<string name="bookmark_lists_show_all">แสดงทั้งหมด</string>
 	<string name="bookmarks_create_new_group">สร้างรายการใหม่</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">นำเข้าบุ๊กมาร์กและแทร็ก</string>
 	<string name="bookmarks_error_message_share_general">ไม่สามารถแชร์ได้เนื่องจากเกิดข้อผิดพลาดในแอปพลิเคชัน</string>
 	<string name="bookmarks_error_title_share_empty">ข้อผิดพลาดในการแชร์</string>
 	<string name="bookmarks_error_message_share_empty">ไม่สามารถแชร์รายการที่ว่างเปล่าได้</string>
@@ -716,11 +728,13 @@
 	<string name="type.amenity.clinic">คลินิก</string>
 	<string name="type.amenity.college">วิทยาลัย</string>
 	<string name="type.amenity.community_centre">ศูนย์ชุมชน</string>
+	<string name="type.amenity.conference_centre">ศูนย์ประชุม</string>
 	<string name="type.amenity.courthouse">ศาล</string>
 	<string name="type.amenity.dentist">ทันตแพทย์</string>
 	<string name="type.amenity.doctors">ห้องแพทย์</string>
 	<string name="type.amenity.drinking_water">น้ำดื่ม</string>
 	<string name="type.amenity.driving_school">โรงเรียนสอนขับรถ</string>
+	<string name="type.amenity.exhibition_centre">ศูนย์นิทรรศการ</string>
 	<string name="type.amenity.money_transfer">การโอนเงิน</string>
 	<string name="type.amenity.music_school">โรงเรียนดนตรี</string>
 	<string name="type.amenity.language_school">โรงเรียนภาษา</string>
@@ -817,13 +831,22 @@
 	<string name="type.barrier.kissing_gate">ประตู</string>
 	<string name="type.barrier.lift_gate">ไม้กั้น</string>
 	<string name="type.barrier.stile">บันไดข้าม</string>
+	<string name="type.barrier.turnstile">ประตูหมุน</string>
 	<string name="type.barrier.swing_gate">ไม้กั้น</string>
 	<string name="type.barrier.toll_booth">ด่านเก็บเงิน</string>
 	<string name="type.boundary.national_park">อุทยานแห่งชาติ</string>
+	<string name="type.boundary.protected_area">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.1">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.2">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.3">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.4">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.5">พื้นที่คุ้มครอง</string>
+	<string name="type.boundary.protected_area.6">พื้นที่คุ้มครอง</string>
 	<string name="type.building">อาคาร</string>
 	<string name="type.building.address">อาคาร</string>
-	<string name="type.building.garage">อาคารจอดรถ</string>
 	<string name="type.building.has_parts">อาคาร</string>
+	<string name="type.building_part">อาคาร</string>
+	<string name="type.building.garage">อาคารจอดรถ</string>
 	<string name="type.building.train_station">สถานีรถไฟ</string>
 	<string name="type.cemetery.grave">หลุมฝังศพ</string>
 	<string name="type.craft">งานฝีมือ</string>
@@ -941,6 +964,7 @@
 	<string name="type.entrance">ทางเข้า</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">ทางเข้าหลัก</string>
+	<string name="type.entrance.exit">ทางออก</string>
 	<string name="type.healthcare.laboratory">ห้องปฏิบัติการทางการแพทย์</string>
 	<string name="type.healthcare.physiotherapist">นักกายภาพบำบัด</string>
 	<string name="type.healthcare.alternative">การแพทย์ทางเลือก</string>
@@ -1047,6 +1071,8 @@
 	<string name="type.highway.road">ถนน</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">สะพาน</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">สะพาน</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">อุโมงค์</string>
 	<string name="type.highway.secondary">ถนน</string>
@@ -1303,11 +1329,39 @@
 	<string name="type.power.pole">เสาไฟฟ้า</string>
 	<string name="type.power.substation">สถานีไฟฟ้า</string>
 	<string name="type.power.tower">เสาไฟฟ้า</string>
+	<string name="type.railway.funicular">รถกระเช้าไฟฟ้า</string>
 	<string name="type.railway.halt">สถานีรถไฟ</string>
 	<string name="type.railway.level_crossing">ทางรถไฟตัดผ่านถนน</string>
 	<string name="type.railway.monorail">รางรถไฟรางเดี่ยว</string>
 	<string name="type.railway.rail">รถไฟ</string>
+	<string name="type.railway.rail.highspeed">รถไฟความเร็วสูง</string>
+	<string name="type.railway.rail.tourism">รถไฟท่องเที่ยว</string>
+	<string name="type.railway.rail.main">รถไฟ</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">รถไฟสายรอง</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">ยูทิลิตี้รถไฟ</string>
+	<string name="type.railway.rail.spur">เดือยรถไฟ</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">รางรถไฟเสริม</string>
+	<string name="type.railway.rail.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.highspeed.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.tourism.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.main.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.branch.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.utility.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.spur.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.service.bridge">สะพานรถไฟ</string>
+	<string name="type.railway.rail.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.highspeed.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.tourism.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.main.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.branch.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.utility.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.spur.tunnel">อุโมงค์รถไฟ</string>
+	<string name="type.railway.rail.service.tunnel">อุโมงค์รถไฟ</string>
 	<string name="type.railway.station">สถานีรถไฟ</string>
+	<string name="type.railway.station.funicular">รถกระเช้าไฟฟ้า</string>
 	<string name="type.railway.station.light_rail">สถานีรถไฟ</string>
 	<string name="type.railway.station.monorail">สถานีรถไฟ</string>
 	<string name="type.railway.station.subway">รถไฟ</string>
@@ -1620,6 +1674,7 @@
 	<string name="type.shop.agrarian">ร้านเกษตร</string>
 	<string name="type.shop.antiques">ของเก่า</string>
 	<string name="type.shop.appliance">ร้านเครื่องใช้ไฟฟ้า</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">ร้านศิลปะ</string>
 	<string name="type.shop.baby_goods">ร้านขายของสำหรับเด็ก</string>
 	<string name="type.shop.bag">ร้านกระเป๋า</string>
@@ -1707,6 +1762,7 @@
 	<string name="type.tourism.zoo">สวนสัตว์</string>
 	<string name="type.waterway.canal">คลอง</string>
 	<string name="type.waterway.canal.tunnel">คลอง</string>
+	<string name="type.waterway.fish_pass">บันไดปลา</string>
 	<string name="type.waterway.lock_gate">ประตูระบายน้ำ</string>
 	<string name="type.waterway.river">แม่น้ำ</string>
 	<string name="type.waterway.river.tunnel">แม่น้ำ</string>
@@ -1719,6 +1775,7 @@
 	<string name="type.wheelchair.limited">พื้นที่จำกัดการใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุ</string>
 	<string name="type.wheelchair.no">พื้นที่ไม่สามารถใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุ</string>
 	<string name="type.wheelchair.yes">พื้นใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุได้</string>
-	<string name="type.building_part">อาคาร</string>
 	<string name="type.amenity.events_venue">สถานที่จัดงาน</string>
+	<string name="type.shop.auction">ประมูล</string>
+	<string name="type.shop.collector">ของสะสม</string>
 </resources>

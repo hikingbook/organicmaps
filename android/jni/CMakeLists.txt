@@ -16,6 +16,7 @@ set(SRC
   app/organicmaps/opengl/gl3stub.h
   app/organicmaps/platform/GuiThread.hpp
   app/organicmaps/platform/AndroidPlatform.hpp
+  app/organicmaps/util/Distance.hpp
   app/organicmaps/util/FeatureIdBuilder.hpp
   app/organicmaps/vulkan/android_vulkan_context_factory.hpp
 
@@ -46,7 +47,7 @@ set(SRC
   app/organicmaps/opengl/android_gl_utils.cpp
   app/organicmaps/opengl/androidoglcontext.cpp
   app/organicmaps/opengl/androidoglcontextfactory.cpp
-  app/organicmaps/opengl/gl3stub.c
+  app/organicmaps/opengl/gl3stub.cpp
   app/organicmaps/platform/GuiThread.cpp
   app/organicmaps/platform/HttpThread.cpp
   app/organicmaps/platform/Language.cpp

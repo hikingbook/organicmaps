@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Мое местоположение";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Не сейчас";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Списки меток";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Метки";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Метки и треки";
 
 /* Default bookmark list name */
 "core_my_places" = "Мои Метки";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Шоппинг";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Секонд-хенд";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Гостиница";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Ошибка построения маршрута";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Прибытие в %s";
+"routing_arrive" = "Прибытие в %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Для построения маршрута загрузите и обновите все карты по пути следования.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Выберите «При использовании программы»";
 
-"meter" = "м";
+"m" = "м";
 
-"kilometer" = "км";
+"km" = "км";
 
 "kilometers_per_hour" = "км/ч";
 
-"mile" = "ми";
+"mi" = "ми";
 
 /* A unit of measure */
-"foot" = "фут";
+"ft" = "фут";
 
 "miles_per_hour" = "ми/ч";
 
 "hour" = "ч";
 
 "minute" = "мин";
-
-"placepage_place_description" = "Описание";
 
 "placepage_more_button" = "Ещё";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Скрыть";
 
-"downloader_percent" = "%s (%s из %s)";
+"downloader_percent" = "%@ (%@ из %@)";
 
-"downloader_process" = "Загрузка %s…";
+"downloader_process" = "Загрузка %@…";
 
-"downloader_applying" = "Применение %s…";
+"downloader_applying" = "Применение %@…";
 
 "bookmarks_error_message_share_general" = "Не удалось поделиться из-за ошибки приложения";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Скачайте карты в приложении Organic Maps на своем устройстве";
 
-"carplay_roundabout_exit" = "%s съезд";
+"carplay_roundabout_exit" = "%@ съезд";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Сортировать…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Обновление карт поддерживает информацию об объектах в актуальном состоянии";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Обновить (%s)";
+"whats_new_auto_update_button_size" = "Обновить (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Обновить вручную позже";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Культурно-досуговый центр";
 
+"type.amenity.conference_centre" = "Конференц-центр";
+
 "type.amenity.courthouse" = "Суд";
 
 "type.amenity.dentist" = "Стоматология";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Питьевая вода";
 
 "type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.exhibition_centre" = "Выставочный центр";
 
 "type.amenity.money_transfer" = "Денежные переводы";
 
@@ -1586,6 +1594,8 @@
 
 "type.barrier.stile" = "Перелаз";
 
+"type.barrier.turnstile" = "Турникет";
+
 "type.barrier.swing_gate" = "Шлагбаум";
 
 "type.barrier.toll_booth" = "Пункт оплаты";
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Национальный парк";
 
+"type.boundary.protected_area" = "Заповедная зона";
+
+"type.boundary.protected_area.1" = "Заповедная зона";
+
+"type.boundary.protected_area.2" = "Заповедная зона";
+
+"type.boundary.protected_area.3" = "Заповедная зона";
+
+"type.boundary.protected_area.4" = "Заповедная зона";
+
+"type.boundary.protected_area.5" = "Заповедная зона";
+
+"type.boundary.protected_area.6" = "Заповедная зона";
+
 "type.building" = "Здание";
 
 "type.building.address" = "Здание";
 
-"type.building.garage" = "Гараж";
-
 "type.building.has_parts" = "Здание";
+
+"type.building_part" = "Здание";
+
+"type.building.garage" = "Гараж";
 
 "type.building.train_station" = "Ж/д вокзал";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Главный вход";
 
+"type.entrance.exit" = "Выход";
+
 "type.healthcare.laboratory" = "Медицинская лаборатория";
 
 "type.healthcare.physiotherapist" = "Физиотерапевт";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Мост";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Мост";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Тоннель";
@@ -2326,6 +2357,8 @@
 "type.internet_access.wlan" = "Интернет";
 
 "type.junction" = "Перекрёсток";
+
+"type.junction.circular" = "Кольцо";
 
 "type.junction.roundabout" = "Кольцо";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Железнодорожный путь";
 
+"type.railway.rail.highspeed" = "Высокоскоростная железная дорога";
+
+"type.railway.rail.tourism" = "Туристическая железная дорога";
+
+"type.railway.rail.main" = "Железная дорога";
+
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Второстепенная железная дорога";
+
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Служебная железная дорога";
+
+"type.railway.rail.spur" = "Подъездной Ж/Д путь";
+
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Вспомогательный Ж/Д путь";
+
 "type.railway.rail.bridge" = "Железнодорожный мост";
 
-"type.railway.rail.motor_vehicle" = "Железная дорога";
+"type.railway.rail.highspeed.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.tourism.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.main.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.branch.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.utility.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.spur.bridge" = "Железнодорожный мост";
+
+"type.railway.rail.service.bridge" = "Железнодорожный мост";
 
 "type.railway.rail.tunnel" = "Железнодорожный туннель";
 
-"type.railway.razed" = "Заброшенная Ж/Д";
+"type.railway.rail.highspeed.tunnel" = "Железнодорожный туннель";
 
-"type.railway.siding" = "Ветка Ж/Д";
+"type.railway.rail.tourism.tunnel" = "Железнодорожный туннель";
 
-"type.railway.siding.bridge" = "Ветка Ж/Д";
+"type.railway.rail.main.tunnel" = "Железнодорожный туннель";
 
-"type.railway.siding.tunnel" = "Ветка Ж/Д";
+"type.railway.rail.branch.tunnel" = "Железнодорожный туннель";
 
-"type.railway.spur" = "Подъездная Ж/Д";
+"type.railway.rail.utility.tunnel" = "Железнодорожный туннель";
 
-"type.railway.spur.bridge" = "Подъездная Ж/Д";
+"type.railway.rail.spur.tunnel" = "Железнодорожный туннель";
 
-"type.railway.spur.tunnel" = "Подъездная Ж/Д";
+"type.railway.rail.service.tunnel" = "Железнодорожный туннель";
 
 "type.railway.station" = "Ж/д станция";
+
+"type.railway.station.funicular" = "Фуникулер";
 
 "type.railway.station.light_rail" = "Ж/д станция";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Остановка трамвая";
 
-"type.railway.yard" = "Ж/Д площадка";
-
-"type.railway.yard.bridge" = "Ж/Д площадка";
-
-"type.railway.yard.tunnel" = "Ж/Д площадка";
-
 "type.route" = "Маршрут";
 
 "type.route.ferry" = "Паромная переправа";
 
-"type.route.shuttle_train" = "Челночная линия";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Магазин";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Магазин бытовой техники";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Художественный магазин";
 
 "type.shop.baby_goods" = "Детский магазин";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Канал";
 
+"type.waterway.fish_pass" = "Рыбоход";
+
 "type.waterway.dam" = "Дамба";
 
 "type.waterway.ditch" = "Канава";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Трасса для саней";
 
-"type.building_part" = "Здание";
-
 "type.amenity.events_venue" = "Место проведения мероприятий";
+
+"type.shop.auction" = "Аукцион";
+
+"type.shop.collector" = "Коллекции";

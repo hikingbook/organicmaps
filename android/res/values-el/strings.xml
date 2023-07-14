@@ -22,7 +22,7 @@
 	<string name="miles">Μίλια</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Η θέση μου</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Αργότερα</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Αναζήτηση</string>
@@ -72,8 +72,10 @@
 	<string name="bookmark_color">Χρώμα αγαπημένου</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Όνομα συνόλου αγαπημένων</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Αγαπημένα</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Αγαπημένα και διαδρομές</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Οι τοποθεσίες μου</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -112,6 +114,8 @@
 	<string name="parking">Χώρος στάθμευσης</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Ψώνια</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Μεταχειρισμένα</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Ξενοδοχείο</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -238,6 +242,10 @@
 	<string name="copyright">Πνευματικά δικαιώματα</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Αναφορά σφάλματος</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Βελτιώστε την κατεύθυνση των βελών μετακινώντας το τηλέφωνο με μια κίνηση σχήματος οκτώ για να βαθμονομήσετε την πυξίδα.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Μετακινήστε το τηλέφωνο με μια κίνηση σχήματος οκτώ για να βαθμονομήσετε την πυξίδα και να καθορίσετε την κατεύθυνση του βέλους στο χάρτη.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Ενημέρωση όλων</string>
 	<!-- Cancel all button text -->
@@ -366,6 +374,10 @@
 	<string name="p2p_reroute_from_current">Θέλετε να σχεδιάσουμε μια διαδρομή από την τρέχουσα θέση σας;</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Επόμενη</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Από τις</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Έως Τις</string>
 	<string name="editor_time_add">Προσθέσετε χρονοδιάγραμμα</string>
 	<string name="editor_time_delete">Διαγραφή χρονοδιαγράμματος</string>
 	<!-- Text for allday switch. -->
@@ -467,7 +479,6 @@
 	<string name="current_location_unknown_continue_button">Συνέχεια</string>
 	<string name="current_location_unknown_stop_button">Στοπ</string>
 	<string name="placepage_more_button">Περισσότερα</string>
-	<string name="placepage_call_button">Κλήση</string>
 	<string name="placepage_edit_bookmark_button">Επεξεργασία αγαπημένου</string>
 	<string name="editor_comment_hint">Σχόλιο…</string>
 	<string name="editor_reset_edits_message">Απόρριψη όλων των τοπικών αλλαγών;</string>
@@ -532,6 +543,8 @@
 	<string name="bookmark_lists_hide_all">Απόκρυψη όλων</string>
 	<string name="bookmark_lists_show_all">Εμφάνιση όλων</string>
 	<string name="bookmarks_create_new_group">Δημιουργία νέας λίστας</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Εισαγωγή σελιδοδεικτών και κομματιών</string>
 	<string name="bookmarks_error_message_share_general">Αδυναμία κοινής χρήσης λόγω σφάλματος εφαρμογής</string>
 	<string name="bookmarks_error_title_share_empty">Σφάλμα κοινής χρήσης</string>
 	<string name="bookmarks_error_message_share_empty">Αδύνατη η κοινή χρήση κενής λίστας</string>
@@ -715,11 +728,13 @@
 	<string name="type.amenity.clinic">Κλινική</string>
 	<string name="type.amenity.college">Κολέγιο</string>
 	<string name="type.amenity.community_centre">Κέντρο κοινότητας</string>
+	<string name="type.amenity.conference_centre">Συνεδριακό Κέντρο</string>
 	<string name="type.amenity.courthouse">Δικαστικό μέγαρο</string>
 	<string name="type.amenity.dentist">Οδοντίατρος</string>
 	<string name="type.amenity.doctors">Γιατροί</string>
 	<string name="type.amenity.drinking_water">Πόσιμο νερό</string>
 	<string name="type.amenity.driving_school">Σχολή οδήγησης</string>
+	<string name="type.amenity.exhibition_centre">Εκθεσιακό Κέντρο</string>
 	<string name="type.amenity.money_transfer">Μεταφορά χρημάτων</string>
 	<string name="type.amenity.music_school">Μουσική Σχολή</string>
 	<string name="type.amenity.language_school">Σχολή Γλωσσών</string>
@@ -816,13 +831,22 @@
 	<string name="type.barrier.kissing_gate">Πύλη</string>
 	<string name="type.barrier.lift_gate">Ανυψούμενη μπάρα</string>
 	<string name="type.barrier.stile">Τουρνικέ</string>
+	<string name="type.barrier.turnstile">Πεζοδρόμιο</string>
 	<string name="type.barrier.swing_gate">Ανυψούμενη μπάρα</string>
 	<string name="type.barrier.toll_booth">Σταθμός διοδίων</string>
 	<string name="type.boundary.national_park">Εθνικό πάρκο</string>
+	<string name="type.boundary.protected_area">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.1">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.2">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.3">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.4">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.5">Προστατευόμενη Περιοχή</string>
+	<string name="type.boundary.protected_area.6">Προστατευόμενη Περιοχή</string>
 	<string name="type.building">Κτίριο</string>
 	<string name="type.building.address">Κτίριο</string>
-	<string name="type.building.garage">Γκαράζ</string>
 	<string name="type.building.has_parts">Κτίριο</string>
+	<string name="type.building_part">Κτίριο</string>
+	<string name="type.building.garage">Γκαράζ</string>
 	<string name="type.building.train_station">Σιδηροδρομικός σταθμός</string>
 	<string name="type.cemetery.grave">Τάφος</string>
 	<string name="type.craft">Τεχνική</string>
@@ -940,6 +964,7 @@
 	<string name="type.entrance">Είσοδος</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Κύρια είσοδος</string>
+	<string name="type.entrance.exit">Έξοδος</string>
 	<string name="type.healthcare.laboratory">Ιατρικό Εργαστήριο</string>
 	<string name="type.healthcare.physiotherapist">Φυσικοθεραπευτής</string>
 	<string name="type.healthcare.alternative">Εναλλακτική ιατρική</string>
@@ -1046,6 +1071,8 @@
 	<string name="type.highway.road">Οδός</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Γέφυρα</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Γέφυρα</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Σήραγγα</string>
 	<string name="type.highway.secondary">Οδός</string>
@@ -1305,11 +1332,39 @@
 	<string name="type.power.pole">Πυλώνες μεταφοράς ρεύματος</string>
 	<string name="type.power.substation">Υποσταθμός</string>
 	<string name="type.power.tower">Πυλώνες μεταφοράς ρεύματος</string>
+	<string name="type.railway.funicular">Μονωτικό τρενάκι</string>
 	<string name="type.railway.halt">Σιδηροδρομικός σταθμός</string>
 	<string name="type.railway.level_crossing">Σιδηροδρομική διέλευση</string>
 	<string name="type.railway.monorail">Μονοαξονικός σιδηρόδρομος</string>
 	<string name="type.railway.rail">Σιδηρόδρομος</string>
+	<string name="type.railway.rail.highspeed">Σιδηρόδρομος υψηλής ταχύτητας</string>
+	<string name="type.railway.rail.tourism">Τουριστικός σιδηρόδρομος</string>
+	<string name="type.railway.rail.main">Σιδηρόδρομος</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Δευτερεύων σιδηροδρομικός σιδηρόδρομος</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Σιδηρόδρομος κοινής ωφέλειας</string>
+	<string name="type.railway.rail.spur">Σιδηροδρομική ατραπός</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Βοηθητική σιδηροδρομική γραμμή</string>
+	<string name="type.railway.rail.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.highspeed.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.tourism.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.main.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.branch.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.utility.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.spur.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.service.bridge">Σιδηροδρομική γέφυρα</string>
+	<string name="type.railway.rail.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.highspeed.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.tourism.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.main.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.branch.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.utility.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.spur.tunnel">Σιδηροδρομική σήραγγα</string>
+	<string name="type.railway.rail.service.tunnel">Σιδηροδρομική σήραγγα</string>
 	<string name="type.railway.station">Σιδηροδρομικός σταθμός</string>
+	<string name="type.railway.station.funicular">Μονωτικό τρενάκι</string>
 	<string name="type.railway.station.light_rail">Σιδηροδρομικός σταθμός</string>
 	<string name="type.railway.station.monorail">Σιδηροδρομικός σταθμός</string>
 	<string name="type.railway.station.subway">Μετρό</string>
@@ -1622,6 +1677,7 @@
 	<string name="type.shop.agrarian">Αγροτικό κατάστημα</string>
 	<string name="type.shop.antiques">Αντίκες</string>
 	<string name="type.shop.appliance">Κατάστημα οικιακών συσκευών</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Κατάστημα Τεχνών</string>
 	<string name="type.shop.baby_goods">Παιδικό κατάστημα</string>
 	<string name="type.shop.bag">Κατάστημα τσαντών</string>
@@ -1710,6 +1766,7 @@
 	<string name="type.tourism.zoo">Ζωολογικός κήπος</string>
 	<string name="type.waterway.canal">Κανάλι</string>
 	<string name="type.waterway.canal.tunnel">Κανάλι</string>
+	<string name="type.waterway.fish_pass">Σκάλα ψαριών</string>
 	<string name="type.waterway.lock_gate">Φράγμα</string>
 	<string name="type.waterway.river">Ποταμός</string>
 	<string name="type.waterway.river.tunnel">Ποταμός</string>
@@ -1722,6 +1779,7 @@
 	<string name="type.wheelchair.limited">Μερικώς εξοπλισμένο για άτομα με ειδικές ανάγκες</string>
 	<string name="type.wheelchair.no">Δεν υπάρχει πρόβλεψη για άτομα με ειδικές ανάγκες</string>
 	<string name="type.wheelchair.yes">Εξοπλισμένο για άτομα με ειδικές ανάγκες</string>
-	<string name="type.building_part">Κτίριο</string>
 	<string name="type.amenity.events_venue">Κέντρο εκδηλώσεων</string>
+	<string name="type.shop.auction">Δημοπρασία</string>
+	<string name="type.shop.collector">Συλλεκτικά αντικείμενα</string>
 </resources>

@@ -21,7 +21,7 @@
 	<string name="miles">मैल</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">माझे स्थान</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">नंतर</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">शोधा</string>
@@ -63,8 +63,10 @@
 	<string name="bookmark_color">खूणपत्र रंग</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">खूणपत्र यादीचे नाव</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">खूणपत्रे</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">खूणपत्रे आणि ट्रॅक</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">माझी ठिकाणे</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -101,6 +103,8 @@
 	<string name="parking">वाहनतळ</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">खरेदी</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">वापरलेले</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">मुक्कामगृह</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -228,6 +232,10 @@
 	<string name="copyright">प्रकाशन अधिकार (कॉपीराईट)</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">त्रुटी कळवा</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">कंपास कॅलिब्रेट करण्यासाठी फोनला आकृती-आठ मोशनमध्ये हलवून बाणाची दिशा सुधारा.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">होकायंत्र कॅलिब्रेट करण्यासाठी आणि नकाशावर बाणाची दिशा निश्चित करण्यासाठी फोनला आकृती-आठ मोशनमध्ये हलवा.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">सर्व अद्ययावत</string>
 	<!-- Cancel all button text -->
@@ -356,6 +364,10 @@
 	<string name="p2p_reroute_from_current">तुमच्या वर्तमान स्थानापासून मार्ग नियोजन करायचे का?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">पुढे</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">ते</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">पर्यंत</string>
 	<string name="editor_time_add">वेळापत्रक जोडा</string>
 	<string name="editor_time_delete">वेळापत्रक मिटवा</string>
 	<!-- Text for allday switch. -->
@@ -455,18 +467,16 @@
 	<string name="current_location_unknown_message">वर्तमान स्थान अज्ञात आहे. कदाचित तुम्ही एखाद्या इमारतीत किंवा बोगद्यात असाल.</string>
 	<string name="current_location_unknown_continue_button">चालू</string>
 	<string name="current_location_unknown_stop_button">थांबा</string>
-	<string name="meter">m</string>
-	<string name="kilometer">किमी</string>
+	<string name="m">m</string>
+	<string name="km">किमी</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<!-- A unit of measure -->
-	<string name="foot">फूट</string>
+	<string name="ft">फूट</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">तास</string>
 	<string name="minute">मिनिट</string>
-	<string name="placepage_place_description">वर्णन</string>
 	<string name="placepage_more_button">अधिक</string>
-	<string name="placepage_call_button">फोन करा</string>
 	<string name="placepage_edit_bookmark_button">खूणपत्र संपादित करा</string>
 	<string name="editor_comment_hint">टिप्पणी</string>
 	<string name="editor_reset_edits_message">सर्व स्थानिक बदल टाकून द्यायचे?</string>
@@ -535,8 +545,8 @@
 	<string name="bookmark_lists_hide_all">सर्व लपवा</string>
 	<string name="bookmark_lists_show_all">सर्व दाखवा</string>
 	<string name="bookmarks_create_new_group">नवीन यादी जोडा</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">खूणपत्रे आयात करा</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">बुकमार्क आणि ट्रॅक आयात करा</string>
 	<string name="bookmarks_error_message_share_general">ऍप त्रुटीमुळे सामायिक करण्यात अक्षम</string>
 	<string name="bookmarks_error_title_share_empty">सामायिकरण त्रुटी</string>
 	<string name="bookmarks_error_message_share_empty">रिकामी यादी सामायिक करू शकत नाही</string>
@@ -689,6 +699,8 @@
 	<string name="enable_show_on_lock_screen">लॉक पटलावर (स्क्रीनवर) दाखवा</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">चालू असल्यास, ऍप चालू असताना प्रत्येक वेळी तुम्हाला तुमचे उपकरण अनलॉक करण्याची आवश्यकता नाही.</string>
+	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+	<string name="translated_om_site_url">https://organicmaps.app/mr/</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
@@ -733,11 +745,13 @@
 	<string name="type.amenity.clinic">चिकित्सालय</string>
 	<string name="type.amenity.college">महाविद्यालय</string>
 	<string name="type.amenity.community_centre">समुदाय केंद्र</string>
+	<string name="type.amenity.conference_centre">परिषद केंद्र</string>
 	<string name="type.amenity.courthouse">न्यायालय</string>
 	<string name="type.amenity.dentist">दंतवैद्य</string>
 	<string name="type.amenity.doctors">डॉक्टर</string>
 	<string name="type.amenity.drinking_water">पिण्याचे पाणी</string>
 	<string name="type.amenity.driving_school">वाहनचालक शाळा</string>
+	<string name="type.amenity.exhibition_centre">प्रदर्शन केंद्र</string>
 	<string name="type.amenity.money_transfer">पैसे हस्तांतरण</string>
 	<string name="type.office.diplomatic">दूतावास</string>
 	<string name="type.amenity.fast_food">फास्ट फूड</string>
@@ -839,6 +853,7 @@
 	<string name="type.barrier.kissing_gate">दार</string>
 	<string name="type.barrier.lift_gate">लिफ्ट दार</string>
 	<string name="type.barrier.retaining_wall">संधारक भिंत</string>
+	<string name="type.barrier.turnstile">टर्नस्टाइल</string>
 	<string name="type.barrier.swing_gate">झुलते दार</string>
 	<string name="type.barrier.toll_booth">टोल बूथ</string>
 	<string name="type.barrier.wall">भिंत</string>
@@ -863,10 +878,18 @@
 	<string name="type.boundary.administrative.state">राज्य सीमा</string>
 	<string name="type.boundary.administrative.suburb">उपनगर सीमा</string>
 	<string name="type.boundary.national_park">राष्ट्रीय उद्यान</string>
+	<string name="type.boundary.protected_area">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.1">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.2">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.3">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.4">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.5">संरक्षित क्षेत्र</string>
+	<string name="type.boundary.protected_area.6">संरक्षित क्षेत्र</string>
 	<string name="type.building">इमारत</string>
 	<string name="type.building.address">इमारत</string>
-	<string name="type.building.garage">गराज</string>
 	<string name="type.building.has_parts">इमारत</string>
+	<string name="type.building_part">इमारत</string>
+	<string name="type.building.garage">गराज</string>
 	<string name="type.building.train_station">रेल्वे स्थानक</string>
 	<string name="type.building.warehouse">वखार</string>
 	<string name="type.craft">हस्तकला</string>
@@ -922,6 +945,7 @@
 	<string name="type.entrance">प्रवेशद्वार</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">मुख्य प्रवेशद्वार</string>
+	<string name="type.entrance.exit">बाहेर पडा</string>
 	<string name="type.healthcare.laboratory">वैद्यकीय प्रयोगशाळा</string>
 	<string name="type.healthcare.physiotherapist">फिजिओथेरपिस्ट</string>
 	<string name="type.healthcare.alternative">पर्यायी औषध</string>
@@ -1031,6 +1055,8 @@
 	<string name="type.highway.road">रस्ता</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">पूल</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">पूल</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">बोगदा</string>
 	<string name="type.highway.secondary">दुय्यम मार्ग</string>
@@ -1151,6 +1177,7 @@
 	<string name="type.internet_access">इंटरनेट</string>
 	<string name="type.internet_access.wlan">इंटरनेट</string>
 	<string name="type.junction">जंक्शन</string>
+	<string name="type.junction.circular">गोलमार्ग</string>
 	<string name="type.junction.roundabout">गोलमार्ग</string>
 	<string name="type.landuse">भूमी उपयोग</string>
 	<string name="type.landuse.allotments">वाटप</string>
@@ -1343,7 +1370,7 @@
 	<string name="type.railway">रेल्वे</string>
 	<string name="type.railway.construction">रेल्वेचे बांधकाम</string>
 	<string name="type.railway.crossing">रेल्वे ओलांडणी</string>
-	<string name="type.railway.funicular">हवाई रज्जुमार्ग</string>
+	<string name="type.railway.funicular">फ्युनिक्युलर</string>
 	<string name="type.railway.funicular.bridge">हवाई रज्जुमार्ग</string>
 	<string name="type.railway.funicular.tunnel">हवाई रज्जुमार्ग</string>
 	<string name="type.railway.halt">रेल्वे स्थानक</string>
@@ -1356,10 +1383,34 @@
 	<string name="type.railway.narrow_gauge.tunnel">अरुंदमापी रेल्वे</string>
 	<string name="type.railway.platform">रेल्वे फलाट</string>
 	<string name="type.railway.rail">रेल्वे</string>
+	<string name="type.railway.rail.highspeed">हाय-स्पीड रेल्वे</string>
+	<string name="type.railway.rail.tourism">पर्यटन रेल्वे</string>
+	<string name="type.railway.rail.main">रेल्वे</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">दुय्यम रेल्वे</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">उपयुक्तता रेल्वे</string>
+	<string name="type.railway.rail.spur">रेल्वे स्पर</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">सहायक रेल्वे ट्रॅक</string>
 	<string name="type.railway.rail.bridge">रेल्वे</string>
-	<string name="type.railway.rail.motor_vehicle">रेल्वे</string>
+	<string name="type.railway.rail.highspeed.bridge">रेल्वे</string>
+	<string name="type.railway.rail.tourism.bridge">रेल्वे</string>
+	<string name="type.railway.rail.main.bridge">रेल्वे</string>
+	<string name="type.railway.rail.branch.bridge">रेल्वे</string>
+	<string name="type.railway.rail.utility.bridge">रेल्वे</string>
+	<string name="type.railway.rail.spur.bridge">रेल्वे</string>
+	<string name="type.railway.rail.service.bridge">रेल्वे</string>
 	<string name="type.railway.rail.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.highspeed.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.tourism.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.main.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.branch.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.utility.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.spur.tunnel">रेल्वे</string>
+	<string name="type.railway.rail.service.tunnel">रेल्वे</string>
 	<string name="type.railway.station">रेल्वे स्थानक</string>
+	<string name="type.railway.station.funicular">फ्युनिक्युलर</string>
 	<string name="type.railway.station.light_rail">रेल्वे स्थानक</string>
 	<string name="type.railway.station.monorail">रेल्वे स्थानक</string>
 	<string name="type.railway.station.subway">भुयारी मार्ग</string>
@@ -1589,9 +1640,6 @@
 	<string name="type.railway.tram.bridge">ट्राम मार्गिका</string>
 	<string name="type.railway.tram.tunnel">ट्राम मार्गिका</string>
 	<string name="type.railway.tram_stop">ट्राम थांबा</string>
-	<string name="type.railway.yard">रेल्वे आवार</string>
-	<string name="type.railway.yard.bridge">रेल्वे आवार</string>
-	<string name="type.railway.yard.tunnel">रेल्वे आवार</string>
 	<string name="type.route">मार्ग</string>
 	<string name="type.route.ferry">होडी</string>
 	<string name="type.shop">दुकान</string>
@@ -1632,7 +1680,6 @@
 	<string name="type.shop.gift">भेटवस्तूंचे दुकान</string>
 	<string name="type.shop.greengrocer">भाजीवाला</string>
 	<string name="type.shop.hairdresser">न्हावी</string>
-	<string name="type.shop.hardware">हार्डवेअर दुकान</string>
 	<string name="type.shop.herbalist">औषधी वनस्पतींचे दुकान</string>
 	<string name="type.shop.hifi">हायफाय ऑडिओ</string>
 	<string name="type.shop.houseware">हार्डवेअर दुकान</string>
@@ -1732,6 +1779,7 @@
 	<string name="type.waterway">जलमार्ग</string>
 	<string name="type.waterway.canal">कालवा</string>
 	<string name="type.waterway.canal.tunnel">कालवा</string>
+	<string name="type.waterway.fish_pass">मासे शिडी</string>
 	<string name="type.waterway.dam">धरण</string>
 	<string name="type.waterway.ditch">खंदक</string>
 	<string name="type.waterway.ditch.tunnel">खंदक</string>
@@ -1752,6 +1800,7 @@
 	<string name="type.wheelchair.limited">चाकखुर्चीसाठी मर्यादित प्रवेश</string>
 	<string name="type.wheelchair.no">चाकखुर्चीसाठी प्रवेश नाही</string>
 	<string name="type.wheelchair.yes">चाकखुर्चीसाठी प्रवेश</string>
-	<string name="type.building_part">इमारत</string>
 	<string name="type.amenity.events_venue">कार्यक्रमाचे ठिकाण</string>
+	<string name="type.shop.auction">लिलाव</string>
+	<string name="type.shop.collector">संग्रहणीय वस्तू</string>
 </resources>

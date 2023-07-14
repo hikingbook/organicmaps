@@ -21,7 +21,7 @@
 	<string name="miles">Míle</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">Moje poloha</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Později</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Hledat</string>
@@ -39,11 +39,11 @@
 	<!-- Text in About screen -->
 	<string name="about_headline">Zdarma pro všechny, vyrobené s láskou</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_1">• Žádné reklamy, žádné sledování, žádné sběr dat</string>
+	<string name="about_proposition_1">• Žádné reklamy, žádné sledování, žádný sběr dat</string>
 	<!-- Text in About screen -->
 	<string name="about_proposition_2">• Šetří baterii, nevyužívá data na pozadí</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">• Rychlý, minimalistický, žádný haraburdí</string>
+	<string name="about_proposition_3">• Rychlé, minimalistické, žádný bloatware</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Otevřená aplikace vytvořená nadšenci a dobrovolníky.</string>
 	<string name="connection_settings">Nastavení připojení</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Barva záložky</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Název záložky</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Záložky</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Záložky a stopy</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Moje místa</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">Parkoviště</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Nákupy</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Second-hand</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -241,6 +245,10 @@
 	<string name="copyright">Autorská práva</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Nahlásit chybu</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Zlepšete směr šipky pohybem telefonu do osmičky a zkalibrujte kompas.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Pohybem telefonu do osmičky zkalibrujte kompas a zafixujte směr šipky na mapě.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Aktualizovat vše</string>
 	<!-- Cancel all button text -->
@@ -367,6 +375,10 @@
 	<string name="p2p_reroute_from_current">Máme naplánovat trasu z vašeho současného umístění?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Další</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Od</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Do</string>
 	<string name="editor_time_add">Přidat rozvrh</string>
 	<string name="editor_time_delete">Smazat rozvrh</string>
 	<!-- Text for allday switch. -->
@@ -441,7 +453,7 @@
 	<string name="placepage_add_business_button">Přidat organizaci</string>
 	<string name="message_invalid_feature_position">Objekt zde nemůže být umístěn</string>
 	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Kartografické údaje z OpenStreetMap od roku %s. Je to jako Wikipedia, kde můžete přidat nebo upravovat místa pro všechny uživatele po celém světě.</string>
+	<string name="osm_presentation">Kartografická data z OpenStreetMap z %s. OSM je jako Wikipedie pro mapy, kde můžete přidat nebo upravovat místa pro uživatele po celém světě.</string>
 	<string name="login_to_make_edits_visible">Přihlaste se, aby ostatní uživatelé mohli vidět změny, které jste provedli.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d z %2$d</string>
@@ -468,18 +480,16 @@
 	<string name="current_location_unknown_message">Nezjistili jsme vaši současnou polohu. Možná jste v budově nebo tunelu.</string>
 	<string name="current_location_unknown_continue_button">Pokračovat</string>
 	<string name="current_location_unknown_stop_button">Zastavit</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mil</string>
+	<string name="mi">mil</string>
 	<!-- A unit of measure -->
-	<string name="foot">stopa</string>
+	<string name="ft">stopa</string>
 	<string name="miles_per_hour">mil/h</string>
 	<string name="hour">hod</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Popis</string>
 	<string name="placepage_more_button">Více</string>
-	<string name="placepage_call_button">Volat</string>
 	<string name="placepage_edit_bookmark_button">Upravit záložku</string>
 	<string name="editor_comment_hint">Poznámka…</string>
 	<string name="editor_reset_edits_message">Vymazat všechny místní změny?</string>
@@ -544,8 +554,8 @@
 	<string name="bookmark_lists_hide_all">Skrýt vše</string>
 	<string name="bookmark_lists_show_all">Zobrazit vše</string>
 	<string name="bookmarks_create_new_group">Vytvořte nový seznam</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Importovat záložky</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Import záložek a stop</string>
 	<string name="bookmarks_error_message_share_general">Nelze sdílet kvůli chybě aplikace</string>
 	<string name="bookmarks_error_title_share_empty">Chyba sdílení</string>
 	<string name="bookmarks_error_message_share_empty">Nelze sdílet s prázdným seznamem</string>
@@ -727,11 +737,13 @@
 	<string name="type.amenity.clinic">Klinika</string>
 	<string name="type.amenity.college">Vysoká škola</string>
 	<string name="type.amenity.community_centre">Kulturní centrum</string>
+	<string name="type.amenity.conference_centre">Konferenční centrum</string>
 	<string name="type.amenity.courthouse">Soud</string>
 	<string name="type.amenity.dentist">Zubař</string>
 	<string name="type.amenity.doctors">Lékařská ordinace</string>
 	<string name="type.amenity.drinking_water">Pitná voda</string>
 	<string name="type.amenity.driving_school">Autoškola</string>
+	<string name="type.amenity.exhibition_centre">Výstaviště</string>
 	<string name="type.amenity.money_transfer">Převod peněz</string>
 	<string name="type.amenity.music_school">Hudební škola</string>
 	<string name="type.amenity.language_school">Jazyková škola</string>
@@ -827,13 +839,22 @@
 	<string name="type.barrier.kissing_gate">Brána</string>
 	<string name="type.barrier.lift_gate">Závora</string>
 	<string name="type.barrier.stile">Sloupek</string>
+	<string name="type.barrier.turnstile">Turniket</string>
 	<string name="type.barrier.swing_gate">Závora</string>
 	<string name="type.barrier.toll_booth">Mýtné</string>
 	<string name="type.boundary.national_park">Národní park</string>
+	<string name="type.boundary.protected_area">Chráněné území</string>
+	<string name="type.boundary.protected_area.1">Chráněné území</string>
+	<string name="type.boundary.protected_area.2">Chráněné území</string>
+	<string name="type.boundary.protected_area.3">Chráněné území</string>
+	<string name="type.boundary.protected_area.4">Chráněné území</string>
+	<string name="type.boundary.protected_area.5">Chráněné území</string>
+	<string name="type.boundary.protected_area.6">Chráněné území</string>
 	<string name="type.building">Stavba</string>
 	<string name="type.building.address">Stavba</string>
-	<string name="type.building.garage">Garáž</string>
 	<string name="type.building.has_parts">Stavba</string>
+	<string name="type.building_part">Stavba</string>
+	<string name="type.building.garage">Garáž</string>
 	<string name="type.building.train_station">Železniční stanice</string>
 	<string name="type.cemetery.grave">Hrob</string>
 	<string name="type.craft">Řemeslo</string>
@@ -951,6 +972,7 @@
 	<string name="type.entrance">Vchod</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Hlavní vchod</string>
+	<string name="type.entrance.exit">Exit</string>
 	<string name="type.healthcare.laboratory">Lékařská laboratoř</string>
 	<string name="type.healthcare.physiotherapist">Fyzioterapeut</string>
 	<string name="type.healthcare.alternative">Alternativní medicína</string>
@@ -1057,6 +1079,8 @@
 	<string name="type.highway.road">Ulice</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Most</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Most</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Tunel</string>
 	<string name="type.highway.secondary">Ulice</string>
@@ -1313,11 +1337,39 @@
 	<string name="type.power.pole">Sloup elektrického vedení</string>
 	<string name="type.power.substation">Rozvodna</string>
 	<string name="type.power.tower">Sloup elektrického vedení</string>
+	<string name="type.railway.funicular">Lanovka</string>
 	<string name="type.railway.halt">Železniční stanice</string>
 	<string name="type.railway.level_crossing">Přejezd</string>
 	<string name="type.railway.monorail">Jednokolejná železnice</string>
 	<string name="type.railway.rail">Železnice</string>
+	<string name="type.railway.rail.highspeed">Vysokorychlostní železnice</string>
+	<string name="type.railway.rail.tourism">Turistická železnice</string>
+	<string name="type.railway.rail.main">Železnice</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Sekundární železnice</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Užitková železnice</string>
+	<string name="type.railway.rail.spur">Železniční odbočka</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Pomocná kolejnice</string>
+	<string name="type.railway.rail.bridge">Železniční most</string>
+	<string name="type.railway.rail.highspeed.bridge">Železniční most</string>
+	<string name="type.railway.rail.tourism.bridge">Železniční most</string>
+	<string name="type.railway.rail.main.bridge">Železniční most</string>
+	<string name="type.railway.rail.branch.bridge">Železniční most</string>
+	<string name="type.railway.rail.utility.bridge">Železniční most</string>
+	<string name="type.railway.rail.spur.bridge">Železniční most</string>
+	<string name="type.railway.rail.service.bridge">Železniční most</string>
+	<string name="type.railway.rail.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.highspeed.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.tourism.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.main.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.branch.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.utility.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.spur.tunnel">Železniční tunel</string>
+	<string name="type.railway.rail.service.tunnel">Železniční tunel</string>
 	<string name="type.railway.station">Železniční stanice</string>
+	<string name="type.railway.station.funicular">Lanovka</string>
 	<string name="type.railway.station.light_rail">Železniční stanice</string>
 	<string name="type.railway.station.monorail">Železniční stanice</string>
 	<string name="type.railway.station.subway">Metro</string>
@@ -1585,7 +1637,6 @@
 	<string name="type.shop.greengrocer">Ovoce a zelenina</string>
 	<string name="type.shop.grocery">Potraviny</string>
 	<string name="type.shop.hairdresser">Kadeřnictví</string>
-	<string name="type.shop.hardware">Železářství</string>
 	<string name="type.shop.health_food">Prodejna zdravé výživy</string>
 	<string name="type.shop.herbalist">Obchod s bylinkami</string>
 	<string name="type.shop.hifi">HiFi audio</string>
@@ -1628,6 +1679,7 @@
 	<string name="type.shop.agrarian">Zemědělský obchod</string>
 	<string name="type.shop.antiques">Starožitnosti</string>
 	<string name="type.shop.appliance">Obchod se spotřebiči</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Obchod s uměním</string>
 	<string name="type.shop.baby_goods">Dětský obchod</string>
 	<string name="type.shop.bag">Obchod s taškami</string>
@@ -1713,6 +1765,7 @@
 	<string name="type.tourism.zoo">zoologická zahrada</string>
 	<string name="type.waterway.canal">Kanál</string>
 	<string name="type.waterway.canal.tunnel">Kanál</string>
+	<string name="type.waterway.fish_pass">Žebřík pro ryby</string>
 	<string name="type.waterway.lock_gate">Stavidlo</string>
 	<string name="type.waterway.river">Řeka</string>
 	<string name="type.waterway.river.tunnel">Řeka</string>
@@ -1725,6 +1778,7 @@
 	<string name="type.wheelchair.limited">Omezený vstup pro vozíčkáře</string>
 	<string name="type.wheelchair.no">Bez přístupu pro vozíčkáře</string>
 	<string name="type.wheelchair.yes">Plný vstup pro vozíčkáře</string>
-	<string name="type.building_part">Stavba</string>
 	<string name="type.amenity.events_venue">Místo konání akcí</string>
+	<string name="type.shop.auction">Aukce</string>
+	<string name="type.shop.collector">Sběratelské předměty</string>
 </resources>

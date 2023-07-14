@@ -11,6 +11,8 @@ set(SRC
   country_defines.hpp
   country_file.cpp
   country_file.hpp
+  distance.cpp
+  distance.hpp
   downloader_defines.hpp
   downloader_utils.cpp
   downloader_utils.hpp
@@ -54,6 +56,8 @@ set(SRC
   socket.hpp
   string_storage_base.cpp
   string_storage_base.hpp
+  utm_mgrs_utils.cpp
+  utm_mgrs_utils.hpp
 )
 
 if(${PLATFORM_IPHONE})
@@ -168,8 +172,8 @@ endif()
 target_link_libraries(${PROJECT_NAME}
   geometry  # mercator::YToLat
   coding
-  $<$<BOOL:${PLATFORM_DESKTOP}>:Qt5::Core>
-  $<$<BOOL:${PLATFORM_LINUX}>:Qt5::Network>
+  $<$<BOOL:${PLATFORM_DESKTOP}>:Qt6::Core>
+  $<$<BOOL:${PLATFORM_LINUX}>:Qt6::Network>
   $<$<BOOL:${PLATFORM_MAC}>:-framework\ Foundation -framework\ SystemConfiguration -framework\ CoreLocation -framework\ CFNetwork>
 )
 

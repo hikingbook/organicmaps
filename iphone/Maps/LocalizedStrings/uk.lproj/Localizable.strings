@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Моє місцезнаходження";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Не зараз";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Списки мiток";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Мітки";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Мітки та маршрути";
 
 /* Default bookmark list name */
 "core_my_places" = "Мої Мітки";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Шопінг";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Секонд-хенд";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Готель";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Для автобудинків";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Завантаження мiток";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Збій планування маршруту";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Прибуття в %s";
+"routing_arrive" = "Прибуття в %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Для створення маршруту, будь ласка, скачайте та обновіть всі карти за ним.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Оберіть \"Під час роботи програми\"";
 
-"meter" = "м";
+"m" = "м";
 
-"kilometer" = "км";
+"km" = "км";
 
 "kilometers_per_hour" = "км/год";
 
-"mile" = "ми";
+"mi" = "ми";
 
 /* A unit of measure */
-"foot" = "фут";
+"ft" = "фут";
 
 "miles_per_hour" = "ми/год";
 
 "hour" = "год";
 
 "minute" = "хв";
-
-"placepage_place_description" = "Опис";
 
 "placepage_more_button" = "Ще";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Приховати екран";
 
-"downloader_percent" = "%s (%s з %s)";
+"downloader_percent" = "%@ (%@ з %@)";
 
-"downloader_process" = "Завантаження %s…";
+"downloader_process" = "Завантаження %@…";
 
-"downloader_applying" = "Застосування %s…";
+"downloader_applying" = "Застосування %@…";
 
 "bookmarks_error_message_share_general" = "Неможливо поділитися через помилку програми";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Завантажте карти в додатку Organic Maps на своєму пристрої";
 
-"carplay_roundabout_exit" = "%s з’їзд";
+"carplay_roundabout_exit" = "%@ з’їзд";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Сортувати";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Оновлення мап дозволяє підтримувати інформацію про об'єкти в актуальному стані";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Оновити (%s)";
+"whats_new_auto_update_button_size" = "Оновити (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Оновити вручну пізніше";
@@ -1237,7 +1241,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/uk/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Uk:Про_проект";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Центр культури та дозвілля, Дім культури";
 
+"type.amenity.conference_centre" = "Конференц-центр";
+
 "type.amenity.courthouse" = "Суд";
 
 "type.amenity.dentist" = "Стоматологія";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Питна вода";
 
 "type.amenity.driving_school" = "Автошкола";
+
+"type.amenity.exhibition_centre" = "Виставковий центр";
 
 "type.amenity.money_transfer" = "Грошовий переказ";
 
@@ -1449,7 +1457,7 @@
 
 "type.amenity.place_of_worship.taoist" = "Храм";
 
-"type.amenity.police" = "Міліція";
+"type.amenity.police" = "Поліція";
 
 "type.amenity.post_box" = "Поштова скринька";
 
@@ -1586,6 +1594,8 @@
 
 "type.barrier.stile" = "Перелаз";
 
+"type.barrier.turnstile" = "Турнікет.";
+
 "type.barrier.swing_gate" = "Шлагбаум";
 
 "type.barrier.toll_booth" = "Пункт оплати";
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Національний парк";
 
+"type.boundary.protected_area" = "Заповідна зона";
+
+"type.boundary.protected_area.1" = "Заповідна зона";
+
+"type.boundary.protected_area.2" = "Заповідна зона";
+
+"type.boundary.protected_area.3" = "Заповідна зона";
+
+"type.boundary.protected_area.4" = "Заповідна зона";
+
+"type.boundary.protected_area.5" = "Заповідна зона";
+
+"type.boundary.protected_area.6" = "Заповідна зона";
+
 "type.building" = "Будівля";
 
 "type.building.address" = "Будівля";
 
-"type.building.garage" = "Гараж";
-
 "type.building.has_parts" = "Будівля";
+
+"type.building_part" = "Будівля";
+
+"type.building.garage" = "Гараж";
 
 "type.building.train_station" = "Залізничний вокзал";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Головний вхід";
 
+"type.entrance.exit" = "Виходьте.";
+
 "type.healthcare.laboratory" = "Медична лабораторія";
 
 "type.healthcare.physiotherapist" = "Фізіотерапевт";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Міст";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Міст";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Тунель";
@@ -2326,6 +2357,8 @@
 "type.internet_access.wlan" = "Інтернет";
 
 "type.junction" = "Перехрестя";
+
+"type.junction.circular" = "Кільце";
 
 "type.junction.roundabout" = "Кільце";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Залізнична дорога";
 
+"type.railway.rail.highspeed" = "Швидкісна залізниця";
+
+"type.railway.rail.tourism" = "Туристична залізниця";
+
+"type.railway.rail.main" = "Залізниця";
+
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Залізнична гілка";
+
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Службова залізниця";
+
+"type.railway.rail.spur" = "Під'їздна залізниця";
+
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Допоміжна залізнична колія";
+
 "type.railway.rail.bridge" = "Залізничний міст";
 
-"type.railway.rail.motor_vehicle" = "Залізниця";
+"type.railway.rail.highspeed.bridge" = "Залізничний міст";
+
+"type.railway.rail.tourism.bridge" = "Залізничний міст";
+
+"type.railway.rail.main.bridge" = "Залізничний міст";
+
+"type.railway.rail.branch.bridge" = "Залізничний міст";
+
+"type.railway.rail.utility.bridge" = "Залізничний міст";
+
+"type.railway.rail.spur.bridge" = "Залізничний міст";
+
+"type.railway.rail.service.bridge" = "Залізничний міст";
 
 "type.railway.rail.tunnel" = "Залізничний тунель";
 
-"type.railway.razed" = "Закинута залізниця";
+"type.railway.rail.highspeed.tunnel" = "Залізничний тунель";
 
-"type.railway.siding" = "Гілка залізниці";
+"type.railway.rail.tourism.tunnel" = "Залізничний тунель";
 
-"type.railway.siding.bridge" = "Гілка залізниці";
+"type.railway.rail.main.tunnel" = "Залізничний тунель";
 
-"type.railway.siding.tunnel" = "Гілка залізниці";
+"type.railway.rail.branch.tunnel" = "Залізничний тунель";
 
-"type.railway.spur" = "Під'їздна залізниця";
+"type.railway.rail.utility.tunnel" = "Залізничний тунель";
 
-"type.railway.spur.bridge" = "Під'їздна залізниця";
+"type.railway.rail.spur.tunnel" = "Залізничний тунель";
 
-"type.railway.spur.tunnel" = "Під'їздна залізниця";
+"type.railway.rail.service.tunnel" = "Залізничний тунель";
 
 "type.railway.station" = "Залізничний вокзал";
+
+"type.railway.station.funicular" = "Фунікулер";
 
 "type.railway.station.light_rail" = "Залізничний вокзал";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Зупинка";
 
-"type.railway.yard" = "Залізнична ділянка";
-
-"type.railway.yard.bridge" = "Залізнична ділянка";
-
-"type.railway.yard.tunnel" = "Залізнична ділянка";
-
 "type.route" = "Маршрут";
 
 "type.route.ferry" = "Паромна переправа";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Крамниця";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Магазин побутової техніки";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Магазин мистецтв";
 
 "type.shop.baby_goods" = "Дитячий магазин";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Канал";
 
+"type.waterway.fish_pass" = "Рибохід";
+
 "type.waterway.dam" = "Дамба";
 
 "type.waterway.ditch" = "Канава";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Траса для санок";
 
-"type.building_part" = "Будівля";
-
 "type.amenity.events_venue" = "Місце проведення подій";
+
+"type.shop.auction" = "Аукціон";
+
+"type.shop.collector" = "Колекційні речі";

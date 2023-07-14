@@ -27,9 +27,15 @@ std::vector<UniString> const kAllowedMisprints = {
     MakeUniString("gh"),
     MakeUniString("pf"),
     MakeUniString("vw"),
+
+    // Russian
     MakeUniString("ао"),
     MakeUniString("еиэ"),
     MakeUniString("шщ"),
+
+    // Spanish
+    MakeUniString("jh"),  // "Jose" <-> "Hose"
+    MakeUniString("fh"),  // "Hernández" <-> "Fernández"
 };
 
 std::pair<UniString, UniString> const kPreprocessReplacements[] = {
@@ -143,10 +149,10 @@ UniString NormalizeAndSimplifyString(std::string_view s)
   });
 
   // Replace sequence of spaces with single one.
-  uniString.erase(std::unique(uniString.begin(), uniString.end(), [](UniChar l, UniChar r)
+  base::Unique(uniString, [](UniChar l, UniChar r)
   {
     return (l == r && l == ' ');
-  }), uniString.end());
+  });
 
   return uniString;
 

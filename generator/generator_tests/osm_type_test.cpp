@@ -154,7 +154,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Location)
 
     auto const params = GetFeatureBuilderParams(tags);
 
-    /// @todo Mapcss understands only [!location] syntax now. Make it possible to set [!location=underground]
+    /// @todo Mapcss understands only [!location] syntax now. Make it possible to set [location!=underground]
     TEST_EQUAL(params.m_types.size(), 0, (params));
   }
 }
@@ -473,6 +473,21 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Layer)
     TEST_EQUAL(params.layer, 1, ());
   }
 
+  /* TODO: add an explicit layer=1 for ANY bridge/tunnel value except "no"
+  {
+    Tags const tags = {
+      { "highway", "secondary" },
+      { "bridge", "positive_value" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "secondary", "bridge"})), ());
+    TEST_EQUAL(params.layer, 1, ());
+  }
+  */
+
   {
     Tags const tags = {
       { "highway", "primary" },
@@ -518,7 +533,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Hwtag)
 {
   {
     Tags const tags = {
-      { "railway", "rail" },
+      { "railway", "light_rail" },
       { "access", "private" },
       { "oneway", "true" },
     };
@@ -526,7 +541,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Hwtag)
     auto const params = GetFeatureBuilderParams(tags);
 
     TEST_EQUAL(params.m_types.size(), 1, (params));
-    TEST(params.IsTypeExist(GetType({"railway", "rail"})), ());
+    TEST(params.IsTypeExist(GetType({"railway", "light_rail"})), ());
   }
 
   {
@@ -634,20 +649,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
 
   {
     Tags const tags = {
-      { "railway", "rail" },
-      { "motor_vehicle", "yes" },
-    };
-
-    auto const params = GetFeatureBuilderParams(tags);
-
-    TEST_EQUAL(params.m_types.size(), 1, (params));
-    uint32_t const type = GetType({"railway", "rail", "motor_vehicle"});
-    TEST(params.IsTypeExist(type), (params));
-    TEST(routing::CarModel::AllLimitsInstance().IsRoadType(type), ());
-  }
-
-  {
-    Tags const tags = {
       { "route", "shuttle_train" },
     };
 
@@ -679,18 +680,32 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Boundary)
 {
-  Tags const tags = {
-    { "admin_level", "4" },
-    { "boundary", "administrative" },
-    { "admin_level", "2" },
-    { "boundary", "administrative" },
-  };
+  {
+    Tags const tags = {
+      { "admin_level", "4" },
+      { "boundary", "administrative" },
+      { "admin_level", "2" },
+      { "boundary", "administrative" },
+    };
 
-  auto const params = GetFeatureBuilderParams(tags);
+    auto const params = GetFeatureBuilderParams(tags);
 
-  TEST_EQUAL(params.m_types.size(), 2, (params));
-  TEST(params.IsTypeExist(GetType({"boundary", "administrative", "2"})), ());
-  TEST(params.IsTypeExist(GetType({"boundary", "administrative", "4"})), ());
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"boundary", "administrative", "2"})), ());
+    TEST(params.IsTypeExist(GetType({"boundary", "administrative", "4"})), ());
+  }
+
+  {
+    Tags const tags = {
+      { "protect_class", "1b" },
+      { "boundary", "protected_area" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"boundary", "protected_area", "1"})), ());
+  }
 }
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Dibrugarh)
@@ -1317,27 +1332,16 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_NoExit)
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Junctions)
 {
-  for (char const * value : { "yes", "circular", "jughandle" })
+  for (char const * value : { "yes", "jughandle" })
   {
     Tags const tags = {
         {"junction", value }
     };
 
+    // Useless now, because they don't have any rules and are not set as an exception.
     auto const params = GetFeatureBuilderParams(tags);
-
     TEST_EQUAL(params.m_types.size(), 1, (params));
     TEST(params.IsTypeExist(GetType({"junction"})), (params));
-  }
-
-  {
-    Tags const tags = {
-        {"junction", "roundabout" }
-    };
-
-    auto const params = GetFeatureBuilderParams(tags);
-
-    TEST_EQUAL(params.m_types.size(), 1, (params));
-    TEST(params.IsTypeExist(GetType({"junction", "roundabout"})), (params));
   }
 }
 
@@ -1600,6 +1604,78 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ChargingStation)
   }
 }
 
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_RailwayRail)
+{
+  using Type = std::vector<std::string>;
+  std::vector<std::pair<Type, Tags>> const railTypes = {
+    {{"railway", "rail", "highspeed"}, {{"railway", "rail"}, {"highspeed", "positive_value"}}},
+    {{"railway", "rail", "highspeed"}, {{"railway", "rail"}, {"usage", "main"}, {"highspeed", "positive_value"}}},
+    {{"railway", "rail", "tourism"}, {{"railway", "rail"}, {"usage", "tourism"}}},
+    {{"railway", "rail", "main"}, {{"railway", "rail"}, {"usage", "main"}}},
+    {{"railway", "rail", "branch"}, {{"railway", "rail"}, {"usage", "branch"}}},
+    {{"railway", "rail", "branch"}, {{"railway", "rail"}}},
+    {{"railway", "rail", "utility"}, {{"railway", "rail"}, {"usage", "military"}}},
+    {{"railway", "rail", "utility"}, {{"railway", "rail"}, {"usage", "industrial"}, {"service", "spur"}}},
+    {{"railway", "rail", "spur"}, {{"railway", "rail"}, {"service", "spur"}}},
+    {{"railway", "rail", "service"}, {{"railway", "rail"}, {"service", "siding"}}},
+    {{"railway", "rail", "service"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "siding"}}},
+    {{"railway", "rail", "service"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "crossover"}}},
+    // TODO: better match to railway-rail-spur:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}}},
+    // TODO: better match following 3 cases to railway-rail-service:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"service", "unsupported_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "unsupported_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "unsupported_value"}}},
+
+    // Bridges (note, railway-rail-bridge should be never matched).
+    {{"railway", "rail", "highspeed", "bridge"}, {{"railway", "rail"}, {"highspeed", "positive_value"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "highspeed", "bridge"}, {{"railway", "rail"}, {"usage", "main"}, {"highspeed", "positive_value"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "tourism", "bridge"}, {{"railway", "rail"}, {"usage", "tourism"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "main", "bridge"}, {{"railway", "rail"}, {"usage", "main"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "branch", "bridge"}, {{"railway", "rail"}, {"usage", "branch"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "branch", "bridge"}, {{"railway", "rail"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "utility", "bridge"}, {{"railway", "rail"}, {"usage", "industrial"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "utility", "bridge"}, {{"railway", "rail"}, {"usage", "military"}, {"service", "spur"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "spur", "bridge"}, {{"railway", "rail"}, {"service", "spur"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "service", "bridge"}, {{"railway", "rail"}, {"service", "yard"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "service", "bridge"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "yard"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail", "service", "bridge"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "siding"}, {"bridge", "positive_value"}}},
+    // TODO: better match to railway-rail-spur-bridge:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"bridge", "positive_value"}}},
+    // TODO: better match following 3 cases to railway-rail-service-bridge:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"service", "unsupported_value"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "unsupported_value"}, {"bridge", "positive_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "unsupported_value"}, {"bridge", "positive_value"}}},
+
+    // Tunnels (note, railway-rail-tunnel should be never matched).
+    {{"railway", "rail", "highspeed", "tunnel"}, {{"railway", "rail"}, {"highspeed", "positive_value"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "highspeed", "tunnel"}, {{"railway", "rail"}, {"usage", "main"}, {"highspeed", "positive_value"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "tourism", "tunnel"}, {{"railway", "rail"}, {"usage", "tourism"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "main", "tunnel"}, {{"railway", "rail"}, {"usage", "main"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "branch", "tunnel"}, {{"railway", "rail"}, {"usage", "branch"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "branch", "tunnel"}, {{"railway", "rail"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "utility", "tunnel"}, {{"railway", "rail"}, {"usage", "industrial"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "utility", "tunnel"}, {{"railway", "rail"}, {"usage", "military"}, {"service", "spur"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "spur", "tunnel"}, {{"railway", "rail"}, {"service", "spur"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "service", "tunnel"}, {{"railway", "rail"}, {"service", "yard"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "service", "tunnel"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "yard"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail", "service", "tunnel"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "siding"}, {"tunnel", "positive_value"}}},
+    // TODO: better match to railway-rail-spur-tunnel:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"tunnel", "positive_value"}}},
+    // TODO: better match following 3 cases to railway-rail-service-tunnel:
+    {{"railway", "rail"}, {{"railway", "rail"}, {"service", "unsupported_value"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "main"}, {"service", "unsupported_value"}, {"tunnel", "positive_value"}}},
+    {{"railway", "rail"}, {{"railway", "rail"}, {"usage", "unsupported_value"}, {"service", "unsupported_value"}, {"tunnel", "positive_value"}}},
+  };
+
+  for (auto const & type : railTypes)
+  {
+    auto const params = GetFeatureBuilderParams(type.second);
+    TEST_EQUAL(params.m_types.size(), 1, (type, params));
+    TEST(params.IsTypeExist(GetType(type.first)), (type, params));
+  }
+}
+
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
 {
   Tags const oneTypes = {
@@ -1759,6 +1835,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"barrier", "toll_booth"},
     {"barrier", "wall"},
     {"boundary", "national_park"},
+    {"boundary", "protected_area"},
     {"building", "has_parts"},
     {"building", "train_station"},
     {"cemetery", "grave"},
@@ -1925,6 +2002,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"hwtag", "yescar"},
     {"hwtag", "yesfoot"},
     {"internet_access", "wlan"},
+    {"junction", "circular"},
     {"junction", "roundabout"},
     {"landuse", "allotments"},
     {"landuse", "basin"},
@@ -2061,12 +2139,10 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"railway", "narrow_gauge"},
     {"railway", "platform"},
     {"railway", "preserved"},
-    {"railway", "rail"},
     {"railway", "station"},
     {"railway", "subway_entrance"},
     {"railway", "tram"},
     {"railway", "tram_stop"},
-    {"railway", "yard"},
     {"route", "shuttle_train"},
     {"shop", "alcohol"},
     {"shop", "bakery"},
@@ -2473,9 +2549,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"railway", "narrow_gauge", "tunnel"}, {{"railway", "narrow_gauge"}, {"tunnel", "any_value"}}},
     {{"railway", "preserved", "bridge"}, {{"railway", "preserved"}, {"bridge", "any_value"}}},
     {{"railway", "preserved", "tunnel"}, {{"railway", "preserved"}, {"tunnel", "any_value"}}},
-    {{"railway", "rail", "bridge"}, {{"railway", "rail"}, {"bridge", "any_value"}}},
-    {{"railway", "rail", "motor_vehicle"}, {{"railway", "rail"}, {"motor_vehicle", "any_value"}}},
-    {{"railway", "rail", "tunnel"}, {{"railway", "rail"}, {"tunnel", "any_value"}}},
     {{"railway", "station", "light_rail"}, {{"railway", "station"}, {"station", "light_rail"}}},
     {{"railway", "station", "light_rail"}, {{"railway", "station"}, {"transport", "light_rail"}}},
     {{"railway", "station", "monorail"}, {{"railway", "station"}, {"station", "monorail"}}},
@@ -2519,8 +2592,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"railway", "subway_entrance", "spb"}, {{"railway", "subway_entrance"}, {"city", "spb"}}},
     {{"railway", "tram", "bridge"}, {{"railway", "tram"}, {"bridge", "any_value"}}},
     {{"railway", "tram", "tunnel"}, {{"railway", "tram"}, {"tunnel", "any_value"}}},
-    {{"railway", "yard", "bridge"}, {{"railway", "yard"}, {"bridge", "any_value"}}},
-    {{"railway", "yard", "tunnel"}, {{"railway", "yard"}, {"tunnel", "any_value"}}},
     {{"shop", "car_repair", "tyres"}, {{"shop", "car_repair"}, {"service", "tyres"}}},
     {{"shop", "clothes"}, {{"shop", "clothes"}}},
     {{"shop", "clothes"}, {{"shop", "fashion"}}},

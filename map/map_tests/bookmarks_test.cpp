@@ -494,7 +494,7 @@ UNIT_TEST(Bookmarks_UniqueFileName)
 {
   string const BASE = "SomeUniqueFileName";
   string const FILEBASE = "./" + BASE;
-  string const FILENAME = FILEBASE + kKmlExtension;
+  string const FILENAME = FILEBASE + string{kKmlExtension};
 
   {
     FileWriter file(FILENAME);
@@ -1119,6 +1119,23 @@ UNIT_CLASS_TEST(Runner, TrackParsingTest_1)
     TEST_EQUAL(col[i], track->GetColor(0), ());
     ++i;
   }
+}
+
+UNIT_CLASS_TEST(Runner, FillEmptyTrackNames)
+{
+  BookmarkManager bmManager(BM_CALLBACKS);
+  bmManager.EnableTestMode(true);
+
+  string const kmlFile1 = GetPlatform().TestsDataPathForFile("gpx_test_data/empty_names1.gpx");
+  auto fileData1 = LoadKmlFile(kmlFile1, KmlFileType::Gpx);
+  TEST_EQUAL(fileData1->m_categoryData.m_name[kml::kDefaultLangCode], "empty_names1", ());
+  TEST_EQUAL(fileData1->m_tracksData[0].m_name[kml::kDefaultLangCode], "empty_names1 1", ());
+  TEST_EQUAL(fileData1->m_tracksData[1].m_name[kml::kDefaultLangCode], "empty_names1 2", ());
+
+  string const kmlFile2 = GetPlatform().TestsDataPathForFile("gpx_test_data/empty_names2.gpx");
+  auto fileData2 = LoadKmlFile(kmlFile2, KmlFileType::Gpx);
+  TEST_EQUAL(fileData2->m_categoryData.m_name[kml::kDefaultLangCode], "empty_names2", ());
+  TEST_EQUAL(fileData2->m_tracksData[0].m_name[kml::kDefaultLangCode], "empty_names2", ());
 }
 
 UNIT_CLASS_TEST(Runner, TrackParsingTest_2)

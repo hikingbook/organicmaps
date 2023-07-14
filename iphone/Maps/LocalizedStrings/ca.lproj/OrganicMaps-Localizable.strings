@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "La meva posició";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Més tard";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Llistes de marcadors";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Marcadors";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Marcadors i traces";
 
 /* Default bookmark list name */
 "core_my_places" = "Els meus llocs";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Compres";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Segona mà";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "La planificació de la ruta ha fallat";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Arribada: %s";
+"routing_arrive" = "Arribada: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Baixeu i actualitzeu tots els mapes del trajecte per a calcular-ne la ruta.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Trieu \"Mentre s'usa l'aplicació\"";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "ft";
+"ft" = "ft";
 
 "miles_per_hour" = "mph";
 
 "hour" = "h";
 
 "minute" = "min";
-
-"placepage_place_description" = "Descripció";
 
 "placepage_more_button" = "Més";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Oculta la pantalla";
 
-"downloader_percent" = "%s (%s de %s)";
+"downloader_percent" = "%@ (%@ de %@)";
 
-"downloader_process" = "S'està baixant %s…";
+"downloader_process" = "S'està baixant %@…";
 
-"downloader_applying" = "S'està aplicant %s…";
+"downloader_applying" = "S'està aplicant %@…";
 
 "bookmarks_error_message_share_general" = "No s'ha pogut compartir a causa d'un error de l'aplicació";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Baixeu els mapes en l'aplicació Organic Maps del vostre aparell";
 
-"carplay_roundabout_exit" = "%s sortida";
+"carplay_roundabout_exit" = "%@ sortida";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Ordena…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "L'actualització dels mapes manté la informació sobre els objectes al dia";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Actualitza (%s)";
+"whats_new_auto_update_button_size" = "Actualitza (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Actualitza manualment després";
@@ -1237,7 +1241,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/ca/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ca:About";
@@ -1285,7 +1289,7 @@
 
 "type.amenity" = "Amenity";
 
-"type.amenity.arts_centre" = "Art Center";
+"type.amenity.arts_centre" = "Arts Center";
 
 "type.amenity.atm" = "ATM";
 
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Community Centre";
 
+"type.amenity.conference_centre" = "Centre de Conferències";
+
 "type.amenity.courthouse" = "Courthouse";
 
 "type.amenity.dentist" = "Dentist";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Drinking Water";
 
 "type.amenity.driving_school" = "Driving School";
+
+"type.amenity.exhibition_centre" = "Centre d'exposicions";
 
 "type.amenity.money_transfer" = "Transferència de diners";
 
@@ -1409,15 +1417,15 @@
 
 "type.amenity.parking.private" = "Private Parking";
 
-"type.amenity.parking.park_and_ride" = "Parking";
+"type.amenity.parking.park_and_ride" = "Park And Ride Parking";
 
 "type.amenity.parking.underground" = "Underground Parking";
 
-"type.amenity.parking_entrance" = "Parking entrance";
+"type.amenity.parking_entrance" = "Parking Entrance";
 
-"type.amenity.parking_entrance.private" = "Parking entrance";
+"type.amenity.parking_entrance.private" = "Parking Entrance";
 
-"type.amenity.parking_entrance.permissive" = "Parking entrance";
+"type.amenity.parking_entrance.permissive" = "Parking Entrance";
 
 "type.amenity.parking_space" = "Parking Space";
 
@@ -1435,23 +1443,23 @@
 
 "type.amenity.place_of_worship" = "Place of Worship";
 
-"type.amenity.place_of_worship.buddhist" = "Temple";
+"type.amenity.place_of_worship.buddhist" = "Buddhist Temple";
 
 "type.amenity.place_of_worship.christian" = "Church";
 
-"type.amenity.place_of_worship.hindu" = "Temple";
+"type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
 "type.amenity.place_of_worship.jewish" = "Synagogue";
 
 "type.amenity.place_of_worship.muslim" = "Mosque";
 
-"type.amenity.place_of_worship.shinto" = "Shrine";
+"type.amenity.place_of_worship.shinto" = "Shinto Shrine";
 
-"type.amenity.place_of_worship.taoist" = "Temple";
+"type.amenity.place_of_worship.taoist" = "Taoist Temple";
 
 "type.amenity.police" = "Police";
 
-"type.amenity.post_box" = "Post Box";
+"type.amenity.post_box" = "Mailbox";
 
 "type.amenity.post_office" = "Post Office";
 
@@ -1470,7 +1478,7 @@
 
 "type.amenity.recycling.container" = "Recycling Container";
 
-"type.recycling.batteries" = "Household Batteries";
+"type.recycling.batteries" = "Batteries";
 
 "type.recycling.clothes" = "Clothes";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Restaurant";
 
@@ -1506,7 +1514,7 @@
 
 "type.amenity.shower" = "Shower";
 
-"type.amenity.taxi" = "Taxi";
+"type.amenity.taxi" = "Taxi Stand";
 
 "type.amenity.telephone" = "Phone";
 
@@ -1530,9 +1538,9 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
-"type.amenity.vending_machine.parking_tickets" = "Parking Tickets";
+"type.amenity.vending_machine.parking_tickets" = "Parking Meter";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Ticket Machine";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinary Doctor";
 
@@ -1552,13 +1560,13 @@
 
 "type.amenity.waste_transfer_station" = "Waste Transfer Station";
 
-"type.amenity.water_point" = "RV Water Point";
+"type.amenity.water_point" = "Water Tank Refill Point";
 
 "type.barrier" = "Barrier";
 
 "type.barrier.block" = "Block";
 
-"type.barrier.bollard" = "Pillar";
+"type.barrier.bollard" = "Bollard";
 
 "type.barrier.border_control" = "Border Control";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Stile";
+
+"type.barrier.turnstile" = "Torniquet";
 
 "type.barrier.swing_gate" = "Swing Gate";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "National Park";
 
+"type.boundary.protected_area" = "Àrea Protegida";
+
+"type.boundary.protected_area.1" = "Àrea Protegida";
+
+"type.boundary.protected_area.2" = "Àrea Protegida";
+
+"type.boundary.protected_area.3" = "Àrea Protegida";
+
+"type.boundary.protected_area.4" = "Àrea Protegida";
+
+"type.boundary.protected_area.5" = "Àrea Protegida";
+
+"type.boundary.protected_area.6" = "Àrea Protegida";
+
 "type.building" = "Building";
 
 "type.building.address" = "Building";
 
-"type.building.garage" = "Garage";
-
 "type.building.has_parts" = "Building";
+
+"type.building_part" = "Building";
+
+"type.building.garage" = "Garage";
 
 "type.building.train_station" = "Train Station";
 
@@ -1658,7 +1684,7 @@
 
 "type.craft.carpenter" = "Carpenter";
 
-"type.craft.confectionery" = "Confectionery";
+"type.craft.confectionery" = "Confectioner";
 
 "type.craft.electrician" = "Electrician";
 
@@ -1669,7 +1695,7 @@
 "type.craft.handicraft" = "Handicraft";
 
 /* Heating, Ventilation, and Air Conditioning */
-"type.craft.hvac" = "HVAC";
+"type.craft.hvac" = "HVAC Shop";
 
 "type.craft.key_cutter" = "Tall de claus";
 
@@ -1813,7 +1839,7 @@
 
 "type.cuisine.noodles" = "Noodles";
 
-"type.cuisine.oriental" = "Far Eastern";
+"type.cuisine.oriental" = "East Asian";
 
 "type.cuisine.pancake" = "Pancake";
 
@@ -1879,23 +1905,25 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Entrada principal";
 
+"type.entrance.exit" = "Sortida";
+
 "type.healthcare.laboratory" = "Medical Laboratory";
 
 "type.healthcare.physiotherapist" = "Physiotherapist";
 
-"type.healthcare.alternative" = "Alternative medicine";
+"type.healthcare.alternative" = "Alternative Medicine";
 
-"type.healthcare.audiologist" = "Audiology";
+"type.healthcare.audiologist" = "Audiologist";
 
-"type.healthcare.blood_donation" = "Blood donation center";
+"type.healthcare.blood_donation" = "Blood Donation Center";
 
-"type.healthcare.optometrist" = "Optometry";
+"type.healthcare.optometrist" = "Optometrist";
 
-"type.healthcare.podiatrist" = "Podiatry";
+"type.healthcare.podiatrist" = "Podiatrist";
 
-"type.healthcare.psychotherapist" = "Psychotherapy";
+"type.healthcare.psychotherapist" = "Psychotherapist";
 
-"type.healthcare.sample_collection" = "Sample collection";
+"type.healthcare.sample_collection" = "Sample Collection Centre";
 
 "type.healthcare.speech_therapist" = "Logopedics";
 
@@ -2062,9 +2090,9 @@
 
 "type.highway.raceway" = "Racetrack";
 
-"type.highway.residential" = "Street";
+"type.highway.residential" = "Residential Street";
 
-"type.highway.residential.area" = "Street";
+"type.highway.residential.area" = "Residential Street";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.residential.bridge" = "Bridge";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Bridge";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Bridge";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunnel";
@@ -2206,7 +2237,7 @@
 
 "type.area_highway.primary" = "Primary Road";
 
-"type.area_highway.residential" = "Street";
+"type.area_highway.residential" = "Residential Street";
 
 "type.area_highway.secondary" = "Secondary Road";
 
@@ -2229,21 +2260,21 @@
 
 /********** Types: Historic **********/
 
-"type.historic" = "Historic object";
+"type.historic" = "Historic Object";
 
 "type.historic.archaeological_site" = "Archaeological Site";
 
-"type.historic.battlefield" = "Battlefield";
+"type.historic.battlefield" = "Historic Battlefield";
 
 "type.historic.boundary_stone" = "Boundary Stone";
 
 "type.historic.castle" = "Castle";
 
-"type.historic.castle.castrum" = "Roman fort";
+"type.historic.castle.castrum" = "Roman Fort";
 
-"type.historic.castle.defensive" = "Castle";
+"type.historic.castle.defensive" = "Stronghold Castle";
 
-"type.historic.castle.fortified_church" = "Fortified church";
+"type.historic.castle.fortified_church" = "Fortified Church";
 
 "type.historic.castle.fortress" = "Fortress";
 
@@ -2251,15 +2282,15 @@
 
 "type.historic.castle.kremlin" = "Kremlin";
 
-"type.historic.castle.manor" = "Manor house";
+"type.historic.castle.manor" = "Manor House";
 
 "type.historic.castle.palace" = "Palace";
 
-"type.historic.castle.shiro" = "Japanese castle";
+"type.historic.castle.shiro" = "Japanese Castle";
 
-"type.historic.castle.stately" = "Castle";
+"type.historic.castle.stately" = "Stately Castle";
 
-"type.historic.city_gate" = "City gate";
+"type.historic.city_gate" = "City Gate";
 
 "type.historic.citywalls" = "City Wall";
 
@@ -2269,9 +2300,9 @@
 
 "type.historic.memorial" = "Memorial";
 
-"type.historic.memorial.cross" = "Memorial cross";
+"type.historic.memorial.cross" = "Memorial Cross";
 
-"type.historic.memorial.plaque" = "Commemorative plaque";
+"type.historic.memorial.plaque" = "Commemorative Plaque";
 
 "type.historic.memorial.sculpture" = "Sculpture";
 
@@ -2279,21 +2310,21 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
-"type.historic.memorial.war_memorial" = "War memorial";
+"type.historic.memorial.war_memorial" = "War Memorial";
 
 "type.historic.monument" = "Monument";
 
 "type.historic.pillory" = "Pillory";
 
-"type.historic.ruins" = "Ruins";
+"type.historic.ruins" = "Historic Ruins";
 
 "type.historic.ship" = "Ship";
 
 "type.historic.tomb" = "Tomb";
 
-"type.historic.wayside_cross" = "Wayside cross";
+"type.historic.wayside_cross" = "Wayside Cross";
 
-"type.historic.wayside_shrine" = "Wayside shrine";
+"type.historic.wayside_shrine" = "Wayside Shrine";
 
 "type.hwtag" = "hwtag";
 
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2365,7 +2398,7 @@
 
 "type.landuse.forest.deciduous" = "Deciduous Forest";
 
-"type.landuse.forest.mixed" = "Mixed Forest";
+"type.landuse.forest.mixed" = "Mixed-Leaf Forest";
 
 "type.landuse.garages" = "Garages";
 
@@ -2475,7 +2508,7 @@
 
 "type.man_made.cairn" = "Cairn";
 
-"type.man_made.chimney" = "Factory Chimney";
+"type.man_made.chimney" = "Chimney";
 
 "type.man_made.cutline" = "Cutline";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Torre de comunicacions";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Water Tap";
 
@@ -2533,13 +2566,13 @@
 
 "type.natural.beach" = "Beach";
 
-"type.natural.beach.sand" = "Sand Beach";
+"type.natural.beach.sand" = "Sandy Beach";
 
 "type.natural.beach.gravel" = "Gravel Beach";
 
 "type.natural.cape" = "Cape";
 
-"type.natural.cave_entrance" = "Cave";
+"type.natural.cave_entrance" = "Cave Entrance";
 
 "type.natural.cliff" = "Cliff";
 
@@ -2587,7 +2620,7 @@
 
 "type.natural.scrub" = "Scrub";
 
-"type.natural.spring" = "Spring";
+"type.natural.spring" = "Natural Spring";
 
 "type.natural.strait" = "Strait";
 
@@ -2665,7 +2698,7 @@
 
 "type.place.island" = "Island";
 
-"type.place.islet" = "Island";
+"type.place.islet" = "Islet";
 
 "type.place.isolated_dwelling" = "Isolated Dwelling";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Generador solar";
 
@@ -2721,7 +2754,7 @@
 
 "type.power.plant.wind" = "Central eòlica";
 
-"type.power.pole" = "Power Tower";
+"type.power.pole" = "Power Pole";
 
 "type.power.station" = "Power Station";
 
@@ -2755,7 +2788,7 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
 "type.railway.funicular" = "Funicular";
 
@@ -2763,7 +2796,7 @@
 
 "type.railway.funicular.tunnel" = "Funicular Tunnel";
 
-"type.railway.halt" = "Train Station";
+"type.railway.halt" = "Rail Halt";
 
 "type.railway.level_crossing" = "Level Crossing";
 
@@ -2795,251 +2828,282 @@
 
 "type.railway.rail" = "Railway";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Ferrocarril d'alta velocitat";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Ferrocarril turístic";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Ferrocarril";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Ferrocarril secundari";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Ferrocarril d'utilitat";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Espoló de ferrocarril";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Via ferroviària auxiliar";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Pont del ferrocarril";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Pont del ferrocarril";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.main.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.branch.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.utility.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.spur.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.service.bridge" = "Pont del ferrocarril";
+
+"type.railway.rail.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.highspeed.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.tourism.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.main.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.branch.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.utility.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.spur.tunnel" = "Túnel ferroviari";
+
+"type.railway.rail.service.tunnel" = "Túnel ferroviari";
 
 "type.railway.station" = "Train Station";
+
+"type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Train Station";
 
 "type.railway.station.monorail" = "Train Station";
 
-"type.railway.station.subway" = "Subway";
+"type.railway.station.subway" = "Subway Station";
 
-"type.railway.station.subway.adana" = "Subway";
+"type.railway.station.subway.adana" = "Subway Station";
 
-"type.railway.station.subway.algiers" = "Subway";
+"type.railway.station.subway.algiers" = "Subway Station";
 
-"type.railway.station.subway.almaty" = "Subway";
+"type.railway.station.subway.almaty" = "Subway Station";
 
-"type.railway.station.subway.amsterdam" = "Subway";
+"type.railway.station.subway.amsterdam" = "Subway Station";
 
-"type.railway.station.subway.ankara" = "Subway";
+"type.railway.station.subway.ankara" = "Subway Station";
 
-"type.railway.station.subway.athens" = "Subway";
+"type.railway.station.subway.athens" = "Subway Station";
 
-"type.railway.station.subway.baku" = "Subway";
+"type.railway.station.subway.baku" = "Subway Station";
 
-"type.railway.station.subway.bangkok" = "Subway";
+"type.railway.station.subway.bangkok" = "Subway Station";
 
-"type.railway.station.subway.barcelona" = "Subway";
+"type.railway.station.subway.barcelona" = "Subway Station";
 
-"type.railway.station.subway.beijing" = "Subway";
+"type.railway.station.subway.beijing" = "Subway Station";
 
-"type.railway.station.subway.bengalore" = "Subway";
+"type.railway.station.subway.bengalore" = "Subway Station";
 
-"type.railway.station.subway.berlin" = "Subway";
+"type.railway.station.subway.berlin" = "Subway Station";
 
-"type.railway.station.subway.bilbao" = "Subway";
+"type.railway.station.subway.bilbao" = "Subway Station";
 
-"type.railway.station.subway.brasilia" = "Subway";
+"type.railway.station.subway.brasilia" = "Subway Station";
 
-"type.railway.station.subway.brescia" = "Subway";
+"type.railway.station.subway.brescia" = "Subway Station";
 
-"type.railway.station.subway.brussels" = "Subway";
+"type.railway.station.subway.brussels" = "Subway Station";
 
-"type.railway.station.subway.bucharest" = "Subway";
+"type.railway.station.subway.bucharest" = "Subway Station";
 
-"type.railway.station.subway.budapest" = "Subway";
+"type.railway.station.subway.budapest" = "Subway Station";
 
-"type.railway.station.subway.buenos_aires" = "Subway";
+"type.railway.station.subway.buenos_aires" = "Subway Station";
 
-"type.railway.station.subway.bursa" = "Subway";
+"type.railway.station.subway.bursa" = "Subway Station";
 
-"type.railway.station.subway.cairo" = "Subway";
+"type.railway.station.subway.cairo" = "Subway Station";
 
-"type.railway.station.subway.caracas" = "Subway";
+"type.railway.station.subway.caracas" = "Subway Station";
 
-"type.railway.station.subway.catania" = "Subway";
+"type.railway.station.subway.catania" = "Subway Station";
 
-"type.railway.station.subway.changchun" = "Subway";
+"type.railway.station.subway.changchun" = "Subway Station";
 
-"type.railway.station.subway.chengdu" = "Subway";
+"type.railway.station.subway.chengdu" = "Subway Station";
 
-"type.railway.station.subway.chicago" = "Subway";
+"type.railway.station.subway.chicago" = "Subway Station";
 
-"type.railway.station.subway.chongqing" = "Subway";
+"type.railway.station.subway.chongqing" = "Subway Station";
 
-"type.railway.station.subway.dalian" = "Subway";
+"type.railway.station.subway.dalian" = "Subway Station";
 
-"type.railway.station.subway.delhi" = "Subway";
+"type.railway.station.subway.delhi" = "Subway Station";
 
-"type.railway.station.subway.dnepro" = "Subway";
+"type.railway.station.subway.dnepro" = "Subway Station";
 
-"type.railway.station.subway.dubai" = "Subway";
+"type.railway.station.subway.dubai" = "Subway Station";
 
-"type.railway.station.subway.ekb" = "Subway";
+"type.railway.station.subway.ekb" = "Subway Station";
 
-"type.railway.station.subway.fukuoka" = "Subway";
+"type.railway.station.subway.fukuoka" = "Subway Station";
 
-"type.railway.station.subway.glasgow" = "Subway";
+"type.railway.station.subway.glasgow" = "Subway Station";
 
-"type.railway.station.subway.guangzhou" = "Subway";
+"type.railway.station.subway.guangzhou" = "Subway Station";
 
-"type.railway.station.subway.hamburg" = "Subway";
+"type.railway.station.subway.hamburg" = "Subway Station";
 
-"type.railway.station.subway.helsinki" = "Subway";
+"type.railway.station.subway.helsinki" = "Subway Station";
 
-"type.railway.station.subway.hiroshima" = "Subway";
+"type.railway.station.subway.hiroshima" = "Subway Station";
 
-"type.railway.station.subway.isfahan" = "Subway";
+"type.railway.station.subway.isfahan" = "Subway Station";
 
-"type.railway.station.subway.istanbul" = "Subway";
+"type.railway.station.subway.istanbul" = "Subway Station";
 
-"type.railway.station.subway.izmir" = "Subway";
+"type.railway.station.subway.izmir" = "Subway Station";
 
-"type.railway.station.subway.kazan" = "Subway";
+"type.railway.station.subway.kazan" = "Subway Station";
 
-"type.railway.station.subway.kharkiv" = "Subway";
+"type.railway.station.subway.kharkiv" = "Subway Station";
 
-"type.railway.station.subway.kiev" = "Subway";
+"type.railway.station.subway.kiev" = "Subway Station";
 
-"type.railway.station.subway.kobe" = "Subway";
+"type.railway.station.subway.kobe" = "Subway Station";
 
-"type.railway.station.subway.kolkata" = "Subway";
+"type.railway.station.subway.kolkata" = "Subway Station";
 
-"type.railway.station.subway.kunming" = "Subway";
+"type.railway.station.subway.kunming" = "Subway Station";
 
-"type.railway.station.subway.kyoto" = "Subway";
+"type.railway.station.subway.kyoto" = "Subway Station";
 
-"type.railway.station.subway.la" = "Subway";
+"type.railway.station.subway.la" = "Subway Station";
 
-"type.railway.station.subway.lausanne" = "Subway";
+"type.railway.station.subway.lausanne" = "Subway Station";
 
-"type.railway.station.subway.lille" = "Subway";
+"type.railway.station.subway.lille" = "Subway Station";
 
-"type.railway.station.subway.lima" = "Subway";
+"type.railway.station.subway.lima" = "Subway Station";
 
-"type.railway.station.subway.lisboa" = "Subway";
+"type.railway.station.subway.lisboa" = "Subway Station";
 
-"type.railway.station.subway.london" = "Subway";
+"type.railway.station.subway.london" = "Subway Station";
 
-"type.railway.station.subway.lyon" = "Subway";
+"type.railway.station.subway.lyon" = "Subway Station";
 
-"type.railway.station.subway.madrid" = "Subway";
+"type.railway.station.subway.madrid" = "Subway Station";
 
-"type.railway.station.subway.malaga" = "Subway";
+"type.railway.station.subway.malaga" = "Subway Station";
 
-"type.railway.station.subway.manila" = "Subway";
+"type.railway.station.subway.manila" = "Subway Station";
 
-"type.railway.station.subway.maracaibo" = "Subway";
+"type.railway.station.subway.maracaibo" = "Subway Station";
 
-"type.railway.station.subway.mashhad" = "Subway";
+"type.railway.station.subway.mashhad" = "Subway Station";
 
-"type.railway.station.subway.mecca" = "Subway";
+"type.railway.station.subway.mecca" = "Subway Station";
 
-"type.railway.station.subway.medellin" = "Subway";
+"type.railway.station.subway.medellin" = "Subway Station";
 
-"type.railway.station.subway.mexico" = "Subway";
+"type.railway.station.subway.mexico" = "Subway Station";
 
-"type.railway.station.subway.milan" = "Subway";
+"type.railway.station.subway.milan" = "Subway Station";
 
-"type.railway.station.subway.minsk" = "Subway";
+"type.railway.station.subway.minsk" = "Subway Station";
 
-"type.railway.station.subway.montreal" = "Subway";
+"type.railway.station.subway.montreal" = "Subway Station";
 
-"type.railway.station.subway.moscow" = "Subway";
+"type.railway.station.subway.moscow" = "Subway Station";
 
-"type.railway.station.subway.munchen" = "Subway";
+"type.railway.station.subway.munchen" = "Subway Station";
 
-"type.railway.station.subway.nagoya" = "Subway";
+"type.railway.station.subway.nagoya" = "Subway Station";
 
-"type.railway.station.subway.newyork" = "Subway";
+"type.railway.station.subway.newyork" = "Subway Station";
 
-"type.railway.station.subway.nnov" = "Subway";
+"type.railway.station.subway.nnov" = "Subway Station";
 
-"type.railway.station.subway.novosibirsk" = "Subway";
+"type.railway.station.subway.novosibirsk" = "Subway Station";
 
-"type.railway.station.subway.osaka" = "Subway";
+"type.railway.station.subway.osaka" = "Subway Station";
 
-"type.railway.station.subway.oslo" = "Subway";
+"type.railway.station.subway.oslo" = "Subway Station";
 
-"type.railway.station.subway.palma" = "Subway";
+"type.railway.station.subway.palma" = "Subway Station";
 
-"type.railway.station.subway.panama" = "Subway";
+"type.railway.station.subway.panama" = "Subway Station";
 
-"type.railway.station.subway.paris" = "Subway";
+"type.railway.station.subway.paris" = "Subway Station";
 
-"type.railway.station.subway.philadelphia" = "Subway";
+"type.railway.station.subway.philadelphia" = "Subway Station";
 
-"type.railway.station.subway.pyongyang" = "Subway";
+"type.railway.station.subway.pyongyang" = "Subway Station";
 
-"type.railway.station.subway.rennes" = "Subway";
+"type.railway.station.subway.rennes" = "Subway Station";
 
-"type.railway.station.subway.rio" = "Subway";
+"type.railway.station.subway.rio" = "Subway Station";
 
-"type.railway.station.subway.roma" = "Subway";
+"type.railway.station.subway.roma" = "Subway Station";
 
-"type.railway.station.subway.rotterdam" = "Subway";
+"type.railway.station.subway.rotterdam" = "Subway Station";
 
-"type.railway.station.subway.samara" = "Subway";
+"type.railway.station.subway.samara" = "Subway Station";
 
-"type.railway.station.subway.santiago" = "Subway";
+"type.railway.station.subway.santiago" = "Subway Station";
 
-"type.railway.station.subway.santo_domingo" = "Subway";
+"type.railway.station.subway.santo_domingo" = "Subway Station";
 
-"type.railway.station.subway.saopaulo" = "Subway";
+"type.railway.station.subway.saopaulo" = "Subway Station";
 
-"type.railway.station.subway.sapporo" = "Subway";
+"type.railway.station.subway.sapporo" = "Subway Station";
 
-"type.railway.station.subway.sendai" = "Subway";
+"type.railway.station.subway.sendai" = "Subway Station";
 
-"type.railway.station.subway.sf" = "Subway";
+"type.railway.station.subway.sf" = "Subway Station";
 
-"type.railway.station.subway.shanghai" = "Subway";
+"type.railway.station.subway.shanghai" = "Subway Station";
 
-"type.railway.station.subway.shiraz" = "Subway";
+"type.railway.station.subway.shiraz" = "Subway Station";
 
-"type.railway.station.subway.sofia" = "Subway";
+"type.railway.station.subway.sofia" = "Subway Station";
 
-"type.railway.station.subway.spb" = "Subway";
+"type.railway.station.subway.spb" = "Subway Station";
 
-"type.railway.station.subway.stockholm" = "Subway";
+"type.railway.station.subway.stockholm" = "Subway Station";
 
-"type.railway.station.subway.tabriz" = "Subway";
+"type.railway.station.subway.tabriz" = "Subway Station";
 
-"type.railway.station.subway.taipei" = "Subway";
+"type.railway.station.subway.taipei" = "Subway Station";
 
-"type.railway.station.subway.taoyuan" = "Subway";
+"type.railway.station.subway.taoyuan" = "Subway Station";
 
-"type.railway.station.subway.tashkent" = "Subway";
+"type.railway.station.subway.tashkent" = "Subway Station";
 
-"type.railway.station.subway.tbilisi" = "Subway";
+"type.railway.station.subway.tbilisi" = "Subway Station";
 
-"type.railway.station.subway.tianjin" = "Subway";
+"type.railway.station.subway.tianjin" = "Subway Station";
 
-"type.railway.station.subway.tokyo" = "Subway";
+"type.railway.station.subway.tokyo" = "Subway Station";
 
-"type.railway.station.subway.valencia" = "Subway";
+"type.railway.station.subway.valencia" = "Subway Station";
 
-"type.railway.station.subway.vienna" = "Subway";
+"type.railway.station.subway.vienna" = "Subway Station";
 
-"type.railway.station.subway.warszawa" = "Subway";
+"type.railway.station.subway.warszawa" = "Subway Station";
 
-"type.railway.station.subway.washington" = "Subway";
+"type.railway.station.subway.washington" = "Subway Station";
 
-"type.railway.station.subway.wuhan" = "Subway";
+"type.railway.station.subway.wuhan" = "Subway Station";
 
-"type.railway.station.subway.yerevan" = "Subway";
+"type.railway.station.subway.yerevan" = "Subway Station";
 
-"type.railway.station.subway.yokohama" = "Subway";
+"type.railway.station.subway.yokohama" = "Subway Station";
 
 "type.railway.subway" = "Subway Line";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Tram Stop";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Shop";
 
@@ -3311,9 +3369,9 @@
 
 "type.shop.car" = "Car Dealership";
 
-"type.shop.car_parts" = "Car Parts";
+"type.shop.car_parts" = "Car Parts Shop";
 
-"type.shop.car_repair" = "Car Repair Shop";
+"type.shop.car_repair" = "Car Repair Workshop";
 
 "type.shop.car_repair.tyres" = "Tyre Repair";
 
@@ -3331,13 +3389,13 @@
 
 "type.shop.computer" = "Computer Store";
 
-"type.shop.confectionery" = "Sweet Shop";
+"type.shop.confectionery" = "Candy Shop";
 
 "type.shop.convenience" = "Convenience Store";
 
-"type.shop.copyshop" = "Copy Shop";
+"type.shop.copyshop" = "Copyshop";
 
-"type.shop.cosmetics" = "Cosmetics";
+"type.shop.cosmetics" = "Cosmetics Shop";
 
 "type.shop.curtain" = "Cortines";
 
@@ -3345,9 +3403,9 @@
 
 "type.shop.department_store" = "Department Store";
 
-"type.shop.doityourself" = "Hardware Store";
+"type.shop.doityourself" = "Home Improvement Store";
 
-"type.shop.dry_cleaning" = "Dry Cleaning";
+"type.shop.dry_cleaning" = "Dry Cleaner";
 
 "type.shop.electronics" = "Electronics Shop";
 
@@ -3365,7 +3423,7 @@
 
 "type.shop.furniture" = "Furniture Store";
 
-"type.shop.garden_centre" = "Garden Store";
+"type.shop.garden_centre" = "Garden Center";
 
 "type.shop.gas" = "Botiga de gas";
 
@@ -3373,7 +3431,7 @@
 
 "type.shop.greengrocer" = "Greengrocer";
 
-"type.shop.grocery" = "Grocery";
+"type.shop.grocery" = "Grocery Store";
 
 "type.shop.hairdresser" = "Hairdresser";
 
@@ -3385,9 +3443,9 @@
 
 "type.shop.hifi" = "Àudio HiFi";
 
-"type.shop.houseware" = "Hardware Store";
+"type.shop.houseware" = "Home Improvement Store";
 
-"type.shop.jewelry" = "Jewelry Shop";
+"type.shop.jewelry" = "Jewelry Store";
 
 "type.shop.kiosk" = "Kiosk";
 
@@ -3399,7 +3457,7 @@
 
 "type.shop.massage" = "Massage Salon";
 
-"type.shop.mobile_phone" = "Cell Phones";
+"type.shop.mobile_phone" = "Cell Phone Store";
 
 "type.shop.money_lender" = "Money Lender";
 
@@ -3415,7 +3473,7 @@
 
 "type.shop.optician" = "Optician";
 
-"type.shop.outdoor" = "Outdoor Equipment";
+"type.shop.outdoor" = "Outdoor Equipment Shop";
 
 "type.shop.outpost" = "Punt de recollida";
 
@@ -3429,7 +3487,7 @@
 
 "type.shop.photo" = "Photo Shop";
 
-"type.shop.seafood" = "Seafood Shop";
+"type.shop.seafood" = "Fishmonger";
 
 "type.shop.second_hand" = "Second Hand Shop";
 
@@ -3457,7 +3515,7 @@
 
 "type.shop.video" = "Video Shop";
 
-"type.shop.video_games" = "Video Games Shop";
+"type.shop.video_games" = "Video Game Shop";
 
 "type.shop.wine" = "Wine Shop";
 
@@ -3467,9 +3525,10 @@
 
 "type.shop.appliance" = "Botiga d'electrodomèstics";
 
-"type.shop.art" = "Arts Shop";
+/* maybe change to Art Gallery for en-US when supported */
+"type.shop.art" = "Artwork Shop";
 
-"type.shop.baby_goods" = "Baby Goods";
+"type.shop.baby_goods" = "Baby Goods Shop";
 
 "type.shop.bag" = "Bag Shop";
 
@@ -3481,35 +3540,35 @@
 
 "type.shop.cheese" = "Cheese Shop";
 
-"type.shop.craft" = "Arts and Crafts";
+"type.shop.craft" = "Craft Supplies Store";
 
-"type.shop.dairy" = "Dairy Products";
+"type.shop.dairy" = "Dairy Shop";
 
-"type.shop.electrical" = "Electrical Store";
+"type.shop.electrical" = "Electrical Supplies Store";
 
 "type.shop.fishing" = "Fishing Store";
 
-"type.shop.interior_decoration" = "Interior Decorations";
+"type.shop.interior_decoration" = "Interior Decorations Store";
 
 "type.shop.lottery" = "Lottery Tickets";
 
-"type.shop.medical_supply" = "Medical Supplies";
+"type.shop.medical_supply" = "Medical Supplies Store";
 
-"type.shop.nutrition_supplements" = "Nutrition Supplements";
+"type.shop.nutrition_supplements" = "Nutrition Supplement Store";
 
 "type.shop.paint" = "Paint Shop";
 
-"type.shop.perfumery" = "Perfumery";
+"type.shop.perfumery" = "Perfume Shop";
 
-"type.shop.sewing" = "Sewing Supplies";
+"type.shop.sewing" = "Sewing Supplies Shop";
 
 "type.shop.storage_rental" = "Storage Rental";
 
-"type.shop.tobacco" = "Tobacco";
+"type.shop.tobacco" = "Smoke Shop";
 
-"type.shop.trade" = "Trades Supplies";
+"type.shop.trade" = "Trade Supplies";
 
-"type.shop.watches" = "Watches";
+"type.shop.watches" = "Watch Store";
 
 "type.shop.wholesale" = "Wholesale Store";
 
@@ -3527,7 +3586,7 @@
 
 "type.sport.basketball" = "Basketball";
 
-"type.sport.beachvolleyball" = "Beach volleyball";
+"type.sport.beachvolleyball" = "Beach Volleyball";
 
 "type.sport.bowls" = "Bowls";
 
@@ -3548,7 +3607,7 @@
 "type.sport.multi" = "Various Sports";
 
 /* Used to tag a scuba diving site. */
-"type.sport.scuba_diving" = "Scuba diving site";
+"type.sport.scuba_diving" = "Scuba Diving Site";
 
 "type.sport.shooting" = "Shooting";
 
@@ -3560,7 +3619,7 @@
 
 "type.sport.swimming" = "Swimming";
 
-"type.sport.table_tennis" = "Table tennis";
+"type.sport.table_tennis" = "Table Tennis";
 
 "type.sport.tennis" = "Tennis Court";
 
@@ -3580,13 +3639,13 @@
 
 "type.sport.badminton" = "Badminton";
 
-"type.sport.pelota" = "Basque pelota";
+"type.sport.pelota" = "Basque Pelota";
 
 "type.tourism" = "Tourism";
 
-"type.tourism.alpine_hut" = "Mountains Lodging";
+"type.tourism.alpine_hut" = "Alpine Lodging";
 
-"type.tourism.apartment" = "Apartments";
+"type.tourism.apartment" = "Holiday Apartment";
 
 "type.tourism.artwork" = "Artwork";
 
@@ -3604,13 +3663,13 @@
 
 "type.tourism.attraction.specified" = "Attraction";
 
-"type.tourism.camp_site" = "Camp Site";
+"type.tourism.camp_site" = "Campground";
 
 "type.tourism.caravan_site" = "RV Park";
 
 "type.tourism.chalet" = "Chalet";
 
-"type.tourism.gallery" = "Gallery";
+"type.tourism.gallery" = "Art Gallery";
 
 "type.tourism.guest_house" = "Guest House";
 
@@ -3657,6 +3716,8 @@
 "type.waterway.canal" = "Canal";
 
 "type.waterway.canal.tunnel" = "Canal Tunnel";
+
+"type.waterway.fish_pass" = "Pas de peix";
 
 "type.waterway.dam" = "Dam";
 
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Building";
-
 "type.amenity.events_venue" = "Events Venue";
+
+"type.shop.auction" = "Subhasta";
+
+"type.shop.collector" = "Col·leccionables";

@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Min position";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Senere";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Bogmærk sæt";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Bogmærker";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Bogmærker og ruter";
 
 /* Default bookmark list name */
 "core_my_places" = "Mine Steder";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Indkøb";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Brugt";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Til RV";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Indlæser Bogmærker";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Ruteplanlægning mislykkedes";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Ankomst: %s";
+"routing_arrive" = "Ankomst: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "For at oprette en rute skal du hente og opdatere alle kort langs ruten.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Vælg Mens app'en bruges";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/t";
 
-"mile" = "mil";
+"mi" = "mil";
 
 /* A unit of measure */
-"foot" = "fod";
+"ft" = "fod";
 
 "miles_per_hour" = "mph";
 
 "hour" = "time";
 
 "minute" = "min";
-
-"placepage_place_description" = "Beskrivelse";
 
 "placepage_more_button" = "Mere";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Skjul skærm";
 
-"downloader_percent" = "%s (%s af %s)";
+"downloader_percent" = "%@ (%@ af %@)";
 
-"downloader_process" = "Downloader %s…";
+"downloader_process" = "Downloader %@…";
 
-"downloader_applying" = "Anvender %s…";
+"downloader_applying" = "Anvender %@…";
 
 "bookmarks_error_message_share_general" = "Ikke i stand til at dele på grund af en programfejl";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Download kort i Organic Maps appen, på din enhed";
 
-"carplay_roundabout_exit" = "%s exit";
+"carplay_roundabout_exit" = "%@ exit";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sort…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Opdatering af kort sikrer, at oplysningerne om objekter er aktuel";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Opdater (%s)";
+"whats_new_auto_update_button_size" = "Opdater (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Opdater manuelt senere";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Medborgerhus";
 
+"type.amenity.conference_centre" = "Konferencecenter";
+
 "type.amenity.courthouse" = "Domhus";
 
 "type.amenity.dentist" = "Tandlæge";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Vand";
 
 "type.amenity.driving_school" = "Køreskole";
+
+"type.amenity.exhibition_centre" = "Udstillingscenter";
 
 "type.amenity.money_transfer" = "Pengeoverførsel";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Restaurant";
 
@@ -1506,7 +1514,7 @@
 
 "type.amenity.shower" = "Bruser";
 
-"type.amenity.taxi" = "Taxi";
+"type.amenity.taxi" = "Taxi Stand";
 
 "type.amenity.telephone" = "Telefon";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Parkeringsbilletmaskine";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Dyrlæge";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Gærdebro";
+
+"type.barrier.turnstile" = "Turnstile";
 
 "type.barrier.swing_gate" = "Bom";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "National park";
 
+"type.boundary.protected_area" = "Beskyttet område";
+
+"type.boundary.protected_area.1" = "Beskyttet område";
+
+"type.boundary.protected_area.2" = "Beskyttet område";
+
+"type.boundary.protected_area.3" = "Beskyttet område";
+
+"type.boundary.protected_area.4" = "Beskyttet område";
+
+"type.boundary.protected_area.5" = "Beskyttet område";
+
+"type.boundary.protected_area.6" = "Beskyttet område";
+
 "type.building" = "Bygning";
 
 "type.building.address" = "Bygning";
 
-"type.building.garage" = "Garage";
-
 "type.building.has_parts" = "Bygning";
+
+"type.building_part" = "Bygning";
+
+"type.building.garage" = "Garage";
 
 "type.building.train_station" = "Togstation";
 
@@ -1755,7 +1781,7 @@
 
 "type.cuisine.fish" = "Fisk";
 
-"type.cuisine.fish_and_chips" = "Fish and chips";
+"type.cuisine.fish_and_chips" = "Fish and Chips";
 
 "type.cuisine.french" = "Fransk";
 
@@ -1878,6 +1904,8 @@
 
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Hovedindgang";
+
+"type.entrance.exit" = "Udgang";
 
 "type.healthcare.laboratory" = "Medicinsk laboratorium";
 
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Bro";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Bro";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunnel";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Kommunikationstårn";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Vandhane";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Solar generator";
 
@@ -2755,7 +2788,7 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
 "type.railway.funicular" = "Funicular";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Jernbane";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Højhastighedsjernbane";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Turistisk jernbane";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Jernbane";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Sekundær jernbane";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Jernbane til forsyningsselskaber";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Jernbanespor";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Ekstra jernbanespor";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Jernbanebro";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Jernbanebro";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Jernbanebro";
+
+"type.railway.rail.main.bridge" = "Jernbanebro";
+
+"type.railway.rail.branch.bridge" = "Jernbanebro";
+
+"type.railway.rail.utility.bridge" = "Jernbanebro";
+
+"type.railway.rail.spur.bridge" = "Jernbanebro";
+
+"type.railway.rail.service.bridge" = "Jernbanebro";
+
+"type.railway.rail.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.highspeed.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.tourism.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.main.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.branch.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.utility.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.spur.tunnel" = "Jernbanetunnel";
+
+"type.railway.rail.service.tunnel" = "Jernbanetunnel";
 
 "type.railway.station" = "Togstation";
+
+"type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Togstation";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Sporvogn";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Butik";
 
@@ -3377,7 +3435,7 @@
 
 "type.shop.hairdresser" = "Frisør";
 
-"type.shop.hardware" = "Isenkræmmer";
+"type.shop.hardware" = "Hardware Store";
 
 "type.shop.health_food" = "Helsekostbutik";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Hvidevarer butik";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Kunstbutik";
 
 "type.shop.baby_goods" = "Børnebutik";
@@ -3604,7 +3663,7 @@
 
 "type.tourism.attraction.specified" = "Attraktioner";
 
-"type.tourism.camp_site" = "Camp Site";
+"type.tourism.camp_site" = "Campground";
 
 "type.tourism.caravan_site" = "Autocamperplads";
 
@@ -3657,6 +3716,8 @@
 "type.waterway.canal" = "Kanal";
 
 "type.waterway.canal.tunnel" = "Kanal";
+
+"type.waterway.fish_pass" = "Fiskestige";
 
 "type.waterway.dam" = "Dam";
 
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Bygning";
-
 "type.amenity.events_venue" = "Sted for arrangementer";
+
+"type.shop.auction" = "Auktion";
+
+"type.shop.collector" = "Samlerobjekter";

@@ -51,6 +51,7 @@ import app.organicmaps.editor.Editor;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.routing.RoutingController;
+import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.concurrency.UiThread;
@@ -60,6 +61,15 @@ import app.organicmaps.widget.placepage.sections.PlacePageLinksFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageOpeningHoursFragment;
 import app.organicmaps.widget.placepage.sections.PlacePagePhoneFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageWikipediaFragment;
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class PlacePageView extends Fragment implements View.OnClickListener,
                                                        View.OnLongClickListener,
@@ -78,6 +88,8 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
       Arrays.asList(CoordinatesFormat.LatLonDMS,
                     CoordinatesFormat.LatLonDecimal,
                     CoordinatesFormat.OLCFull,
+                    CoordinatesFormat.UTM,
+                    CoordinatesFormat.MGRS,
                     CoordinatesFormat.OSMLink);
   private View mFrame;
   // Preview.
@@ -214,6 +226,12 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     mTvAddress.setOnLongClickListener(this);
     mTvAddress.setOnClickListener(this);
 
+    MaterialButton shareButton = mPreview.findViewById(R.id.share_button);
+    shareButton.setOnClickListener((v) -> SharingUtils.shareMapObject(requireContext(), mMapObject));
+
+    final MaterialButton closeButton = mPreview.findViewById(R.id.close_button);
+    closeButton.setOnClickListener((v) -> mPlacePageViewListener.onPlacePageRequestClose());
+
     RelativeLayout address = mFrame.findViewById(R.id.ll__place_name);
 
     LinearLayout latlon = mFrame.findViewById(R.id.ll__place_latlon);
@@ -253,7 +271,6 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     super.onStart();
     mViewModel.getMapObject().observe(requireActivity(), this);
     LocationHelper.INSTANCE.addListener(this);
-    setCurrentCountry();
   }
 
   @Override
@@ -267,7 +284,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
 
   private void setCurrentCountry()
   {
-    if (mCurrentCountry != null || mMapObject == null)
+    if (mCurrentCountry != null)
       return;
     String country = MapManager.nativeGetSelectedCountry();
     if (country != null && !RoutingController.get().isNavigating())
@@ -427,7 +444,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     {
       double altitude = l.getAltitude();
       builder.append(altitude >= 0 ? "▲" : "▼");
-      builder.append(Framework.nativeFormatAltitude(altitude));
+      builder.append(Framework.nativeFormatAltitude(altitude).toString(requireContext()));
     }
     if (l.hasSpeed())
       builder.append("   ")
@@ -449,15 +466,21 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     double lon = mMapObject.getLon();
     DistanceAndAzimut distanceAndAzimuth =
         Framework.nativeGetDistanceAndAzimuthFromLatLon(lat, lon, l.getLatitude(), l.getLongitude(), 0.0);
-    mTvDistance.setText(distanceAndAzimuth.getDistance());
+    mTvDistance.setText(distanceAndAzimuth.getDistance().toString(requireContext()));
   }
 
   private void refreshLatLon()
   {
     final double lat = mMapObject.getLat();
     final double lon = mMapObject.getLon();
-    final String latLon = Framework.nativeFormatLatLon(lat, lon, mCoordsFormat.getId());
-    mTvLatlon.setText(latLon);
+    String latLon = Framework.nativeFormatLatLon(lat, lon, mCoordsFormat.getId());
+    if (latLon == null) // Some coordinates couldn't be converted to UTM and MGRS
+      latLon = "N/A";
+
+    if (mCoordsFormat.showLabel())
+      mTvLatlon.setText(mCoordsFormat.getLabel() + ": " + latLon);
+    else
+      mTvLatlon.setText(latLon);
   }
 
   private void addOrganisation()
@@ -525,17 +548,17 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
 //      items.add(mTvAddress.getText().toString());
 //    else if (id == R.id.ll__place_latlon)
 //    {
-//      Utils.copyTextToClipboard(ctx, items.get(0));
-//      Utils.showSnackbarAbove(mDetails,
-//          getRootView().findViewById(R.id.pp_buttons_layout),
-//          ctx.getString(R.string.copied_to_clipboard, items.get(0)));
 //      final double lat = mMapObject.getLat();
 //      final double lon = mMapObject.getLon();
 //      for (CoordinatesFormat format : visibleCoordsFormat)
-//        items.add(Framework.nativeFormatLatLon(lat, lon, format.getId()));
+//      {
+//        String formatted = Framework.nativeFormatLatLon(lat, lon, format.getId());
+//        if (formatted != null)
+//          items.add(formatted);
+//      }
 //    }
 //    else if (id == R.id.ll__place_operator)
-//      items.add(mTvOperator.getText().toString());
+//     items.add(mTvOperator.getText().toString());
 //    else if (id == R.id.ll__place_level)
 //      items.add(mTvLevel.getText().toString());
 
@@ -543,7 +566,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     if (items.size() == 1)
       PlacePageUtils.copyToClipboard(context, mFrame, items.get(0));
     else
-      PlacePageUtils.showCopyPopup(context, v, mFrame, items);
+      PlacePageUtils.showCopyPopup(context, v, items);
 
     return true;
   }
@@ -612,11 +635,11 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
   {
     if (mapObject == null)
       return;
+    // Starting the download will fire this callback but the object will be the same
+    // Detaching the country in that case will crash the app
     if (!mapObject.sameAs(mMapObject))
-    {
       detachCountry();
-      setCurrentCountry();
-    }
+    setCurrentCountry();
 
     mMapObject = mapObject;
 
@@ -670,5 +693,6 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     void onPlacePageContentChanged(int previewHeight, int frameHeight);
 
     void onPlacePageRequestToggleState();
+    void onPlacePageRequestClose();
   }
 }

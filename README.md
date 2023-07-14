@@ -43,7 +43,7 @@ Organic Maps is the ultimate companion app for travelers, tourists, hikers, and 
 - Contour lines, elevation profiles, peaks, and slopes
 - Turn-by-turn walking, cycling, and car navigation with voice guidance
 - Fast offline search on the map
-- Bookmarks export and import in KML/KMZ formats (GPX is [planned](https://github.com/organicmaps/organicmaps/issues/624))
+- Bookmarks and tracks export and import in KML, KMZ, GPX formats
 - Dark Mode to protect your eyes
 - Countries and regions don't take a lot of space
 - Free and open-source
@@ -69,9 +69,14 @@ Organic Maps app is free from trackers and other bad stuff:
 - No crapware
 - ~~No pesticides~~ Purely organic!
 
-The application is verified by <a href="https://reports.exodus-privacy.eu.org/en/reports/app.organicmaps/latest/">Exodus Privacy Project:
+The Android application is verified by <a href="https://reports.exodus-privacy.eu.org/en/reports/app.organicmaps/latest/">Exodus Privacy Project:
 
 <img src="docs/privacy/exodus.png" width="400">
+</a>
+
+The iOS application is verified by <a href="https://ios.trackercontrol.org/app/app.organicmaps">TrackerControl for iOS:
+
+<img src="docs/privacy/trackercontrol-ios.png" width="400">
 </a>
 
 <br/>

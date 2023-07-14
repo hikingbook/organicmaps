@@ -17,7 +17,6 @@
 #include <exception>
 #include <sstream>
 
-#include "defines.hpp"
 
 using namespace std;
 using platform::CountryFile;

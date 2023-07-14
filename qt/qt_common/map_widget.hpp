@@ -4,14 +4,11 @@
 #include "drape_frontend/gui/skin.hpp"
 #include "drape_frontend/user_event_stream.hpp"
 
-#include "search/reverse_geocoder.hpp"
-
 #include "qt/qt_common/qtoglcontextfactory.hpp"
 
-#include "indexer/feature.hpp"
+#include <QOpenGLWidget>
 
 #include <QtCore/QTimer>
-#include <QtWidgets/QOpenGLWidget>
 
 #include <memory>
 
@@ -23,9 +20,7 @@ class QOpenGLShaderProgram;
 class QOpenGLVertexArrayObject;
 class QOpenGLBuffer;
 
-namespace qt
-{
-namespace common
+namespace qt::common
 {
 class ScaleSlider;
 
@@ -107,7 +102,4 @@ protected:
   std::unique_ptr<QOpenGLBuffer> m_vbo;
 };
 
-search::ReverseGeocoder::Address GetFeatureAddressInfo(Framework const & framework,
-                                                       FeatureType & ft);
-}  // namespace common
-}  // namespace qt
+} // namespace qt::common

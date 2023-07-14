@@ -24,7 +24,7 @@
 	<string name="miles">الأميال</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">موقعي</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">ًلاحقا</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">البحث</string>
@@ -74,8 +74,10 @@
 	<string name="bookmark_color">لون الإشارة المرجعية</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">اسم قائمة الإشارات المرجعية</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">الإشارات المرجعية</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">الإشارات المرجعية والمسارات</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">أماكني</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -126,6 +128,8 @@
 	<string name="parking">مرافق ركن السيارات</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">تسوق</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">اليد الثانية</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">فندق</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -259,6 +263,10 @@
 	<string name="copyright">حقوق النشر</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">الإبلاغ عن خطأ</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">قم بتحسين اتجاه السهم عن طريق تحريك الهاتف في حركة على شكل ثمانية لمعايرة البوصلة.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">حرك الهاتف في حركة على شكل ثمانية لمعايرة البوصلة وإصلاح اتجاه السهم على الخريطة.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">تحديث الكل</string>
 	<!-- Cancel all button text -->
@@ -387,6 +395,10 @@
 	<string name="p2p_reroute_from_current">هل ترغب في أن نرسم مسار لك من موقعك الحالي؟</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">التالي</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">من الساعة</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">إلى</string>
 	<string name="editor_time_add">إضافة جدول</string>
 	<string name="editor_time_delete">حذف جدول</string>
 	<!-- Text for allday switch. -->
@@ -491,18 +503,16 @@
 	<string name="current_location_unknown_message">الموقع الحالي غير معروف. ربما تتواجد داخل مبنى أو نفق.</string>
 	<string name="current_location_unknown_continue_button">الاستمرار</string>
 	<string name="current_location_unknown_stop_button">إيقاف</string>
-	<string name="meter">متر</string>
-	<string name="kilometer">كم</string>
+	<string name="m">متر</string>
+	<string name="km">كم</string>
 	<string name="kilometers_per_hour">كم/ساعة</string>
-	<string name="mile">ميل</string>
+	<string name="mi">ميل</string>
 	<!-- A unit of measure -->
-	<string name="foot">قدم</string>
+	<string name="ft">قدم</string>
 	<string name="miles_per_hour">ميل/ساعة</string>
 	<string name="hour">س</string>
 	<string name="minute">د</string>
-	<string name="placepage_place_description">الوصف</string>
 	<string name="placepage_more_button">المزيد</string>
-	<string name="placepage_call_button">اتصال</string>
 	<string name="placepage_edit_bookmark_button">تحرير العلامة المرجعية</string>
 	<string name="editor_comment_hint">تعليق…</string>
 	<string name="editor_reset_edits_message">هل تريد مسح كافة التغييرات المحلية؟</string>
@@ -574,8 +584,8 @@
 	<string name="bookmark_lists_hide_all">إخفاء الكل</string>
 	<string name="bookmark_lists_show_all">إظهار الكل</string>
 	<string name="bookmarks_create_new_group">إنشاء قائمة جديدة</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">إضافة الإشارات المرجعية من ملفات الجهاز</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">استيراد الإشارات المرجعية والمسارات</string>
 	<string name="bookmarks_error_message_share_general">تعذرت المشاركة بسبب خطأ في التطبيق</string>
 	<string name="bookmarks_error_title_share_empty">خطأ في المشاركة</string>
 	<string name="bookmarks_error_message_share_empty">لا يمكن مشاركة قائمة فارغة</string>
@@ -766,11 +776,13 @@
 	<string name="type.amenity.clinic">عيادة</string>
 	<string name="type.amenity.college">كلية</string>
 	<string name="type.amenity.community_centre">مركز اجتماعي</string>
+	<string name="type.amenity.conference_centre">مركز المؤتمرات</string>
 	<string name="type.amenity.courthouse">محكمة</string>
 	<string name="type.amenity.dentist">طبيب أسنان</string>
 	<string name="type.amenity.doctors">طبيب</string>
 	<string name="type.amenity.drinking_water">مياه شرب</string>
 	<string name="type.amenity.driving_school">مدرسة قيادة</string>
+	<string name="type.amenity.exhibition_centre">مركز المعرض</string>
 	<string name="type.amenity.money_transfer">تحويل المال</string>
 	<string name="type.amenity.music_school">مدرسة موسيقى</string>
 	<string name="type.amenity.language_school">مدرسة لغة</string>
@@ -883,6 +895,7 @@
 	<string name="type.barrier.kissing_gate">بوابة</string>
 	<string name="type.barrier.lift_gate">حاجز بوابة</string>
 	<string name="type.barrier.stile">ممر عبور</string>
+	<string name="type.barrier.turnstile">الباب الدوار</string>
 	<string name="type.barrier.swing_gate">حاجز بوابة</string>
 	<string name="type.barrier.toll_booth">كشك رسوم عبور</string>
 	<string name="type.barrier.wall">جدار</string>
@@ -905,10 +918,18 @@
 	<string name="type.boundary.administrative.nation">حدود دولية</string>
 	<string name="type.boundary.administrative.region">حدود منطقة</string>
 	<string name="type.boundary.national_park">منتزه وطني</string>
+	<string name="type.boundary.protected_area">منطقة محمية</string>
+	<string name="type.boundary.protected_area.1">منطقة محمية</string>
+	<string name="type.boundary.protected_area.2">منطقة محمية</string>
+	<string name="type.boundary.protected_area.3">منطقة محمية</string>
+	<string name="type.boundary.protected_area.4">منطقة محمية</string>
+	<string name="type.boundary.protected_area.5">منطقة محمية</string>
+	<string name="type.boundary.protected_area.6">منطقة محمية</string>
 	<string name="type.building">مبنى</string>
 	<string name="type.building.address">مبنى</string>
-	<string name="type.building.garage">جراج</string>
 	<string name="type.building.has_parts">مبنى</string>
+	<string name="type.building_part">مبنى</string>
+	<string name="type.building.garage">جراج</string>
 	<string name="type.building.train_station">محطة سكك حديدية</string>
 	<string name="type.building.warehouse">مستودع</string>
 	<string name="type.cemetery.grave">قبر</string>
@@ -1028,6 +1049,7 @@
 	<string name="type.entrance">مدخل</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">ﻲﺴﻴﺋﺮﻟﺍ ﻞﺧﺪﻤﻟﺍ</string>
+	<string name="type.entrance.exit">مخرج</string>
 	<string name="type.healthcare.laboratory">مختبر طبي</string>
 	<string name="type.healthcare.physiotherapist">اخصائي علاج طبيعي</string>
 	<string name="type.healthcare.alternative">الطب البديل</string>
@@ -1138,6 +1160,8 @@
 	<string name="type.highway.road">شارع</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">جسر</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">جسر</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">نفق</string>
 	<string name="type.highway.secondary">شارع ثانوي</string>
@@ -1257,6 +1281,7 @@
 	<string name="type.internet_access">إنترنت</string>
 	<string name="type.internet_access.wlan">إنترنت لا سلكي</string>
 	<string name="type.junction">تقاطع</string>
+	<string name="type.junction.circular">دوّار</string>
 	<string name="type.junction.roundabout">دوّار</string>
 	<string name="type.landuse.basin">حوض المياه</string>
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
@@ -1297,7 +1322,7 @@
 	<string name="type.leisure.park">موقف سيارات</string>
 	<string name="type.leisure.park.no.access">موقف سيارات</string>
 	<string name="type.leisure.park.permissive">موقف سيارات</string>
-	<string name="type.leisure.park.private">موقف سيارات خاص</string>
+	<string name="type.leisure.park.private">موقف سيارات</string>
 	<string name="type.leisure.picnic_table">ﺔﻫﺰﻨﻟﺍ ﺔﻟﻭﺎﻃ</string>
 	<string name="type.leisure.pitch">ملعب رياضي</string>
 	<string name="type.leisure.playground">ملعب</string>
@@ -1417,11 +1442,39 @@
 	<string name="type.power.pole">عمود كهرباء</string>
 	<string name="type.power.substation">محطة كهرباء فرعية</string>
 	<string name="type.power.tower">عمود كهرباء</string>
+	<string name="type.railway.funicular">حبلي</string>
 	<string name="type.railway.halt">محطة سكك حديدية</string>
 	<string name="type.railway.level_crossing">مزلقان</string>
 	<string name="type.railway.monorail">اتجاه واحد</string>
 	<string name="type.railway.rail">خط سكة حديد</string>
+	<string name="type.railway.rail.highspeed">سكة حديد عالية السرعة</string>
+	<string name="type.railway.rail.tourism">السكك الحديدية السياحية</string>
+	<string name="type.railway.rail.main">سكة حديدية</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">السكك الحديدية الثانوية</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">سكة حديد المرافق</string>
+	<string name="type.railway.rail.spur">سكة حديد سبير</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">مسار السكك الحديدية المساعدة</string>
+	<string name="type.railway.rail.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.highspeed.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.tourism.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.main.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.branch.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.utility.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.spur.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.service.bridge">جسر للسكك الحديدية</string>
+	<string name="type.railway.rail.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.highspeed.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.tourism.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.main.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.branch.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.utility.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.spur.tunnel">نفق السكة الحديد</string>
+	<string name="type.railway.rail.service.tunnel">نفق السكة الحديد</string>
 	<string name="type.railway.station">محطة سكك حديدية</string>
+	<string name="type.railway.station.funicular">حبلي</string>
 	<string name="type.railway.station.light_rail">محطة سكك حديدية</string>
 	<string name="type.railway.station.monorail">محطة سكك حديدية</string>
 	<string name="type.railway.station.subway">محطة مترو</string>
@@ -1734,6 +1787,7 @@
 	<string name="type.shop.agrarian">محل زراعي</string>
 	<string name="type.shop.antiques">ﻒﺤﺘﻟﺍ</string>
 	<string name="type.shop.appliance">متجر الأجهزة</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">ﻥﻮﻨﻔﻟﺍ ﺮﺠﺘﻣ</string>
 	<string name="type.shop.baby_goods">ﻝﺎﻔﻃﻸﻟ ﺮﺠﺘﻣ</string>
 	<string name="type.shop.bag">ﺐﺋﺎﻘﺤﻟﺍ ﺮﺠﺘﻣ</string>
@@ -1824,6 +1878,7 @@
 	<string name="type.tourism.zoo">حديقة حيوان</string>
 	<string name="type.waterway.canal">قناة</string>
 	<string name="type.waterway.canal.tunnel">قناة</string>
+	<string name="type.waterway.fish_pass">سلم سمك</string>
 	<string name="type.waterway.lock_gate">بوابة هويس</string>
 	<string name="type.waterway.river">نهر</string>
 	<string name="type.waterway.river.tunnel">نهر</string>
@@ -1836,6 +1891,7 @@
 	<string name="type.wheelchair.limited">دعم محدود لكراسي المعاقين</string>
 	<string name="type.wheelchair.no">لا يدعم لكراسي المعاقين</string>
 	<string name="type.wheelchair.yes">دعم كامل لكراسي المعاقين</string>
-	<string name="type.building_part">مبنى</string>
 	<string name="type.amenity.events_venue">مكان الأحداث</string>
+	<string name="type.shop.auction">مزاد علني</string>
+	<string name="type.shop.collector">المقتنيات</string>
 </resources>

@@ -21,7 +21,7 @@
 	<string name="miles">Milles</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">La meva posició</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Més tard</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Cerca</string>
@@ -63,8 +63,10 @@
 	<string name="bookmark_color">Color del marcador</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Nom de la llista de marcadors</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Marcadors</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Marcadors i traces</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Els meus llocs</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -115,6 +117,8 @@
 	<string name="parking">Aparcament</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Compres</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Segona mà</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -248,6 +252,10 @@
 	<string name="copyright">Copyright</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Informació d\'errors</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Milloreu la direcció de la fletxa movent el telèfon amb un moviment de vuit per calibrar la brúixola.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Moveu el telèfon amb un moviment de vuit per calibrar la brúixola i fixar la direcció de la fletxa al mapa.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualitza-ho tot</string>
 	<!-- Cancel all button text -->
@@ -376,6 +384,10 @@
 	<string name="p2p_reroute_from_current">Voleu que planifiquem una ruta des de la vostra ubicació actual?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Següent</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">De</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">A</string>
 	<string name="editor_time_add">Afegeix un horari</string>
 	<string name="editor_time_delete">Esborra l\'horari</string>
 	<!-- Text for allday switch. -->
@@ -477,18 +489,16 @@
 	<string name="current_location_unknown_message">Es desconeix la ubicació actual. Potser sou en un edifici o en un túnel.</string>
 	<string name="current_location_unknown_continue_button">Continua</string>
 	<string name="current_location_unknown_stop_button">Atura\'t</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<!-- A unit of measure -->
-	<string name="foot">ft</string>
+	<string name="ft">ft</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">h</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Descripció</string>
 	<string name="placepage_more_button">Més</string>
-	<string name="placepage_call_button">Truca-hi</string>
 	<string name="placepage_edit_bookmark_button">Edita el marcador</string>
 	<string name="editor_comment_hint">Comentari…</string>
 	<string name="editor_reset_edits_message">Voleu descartar tots els canvis locals?</string>
@@ -560,8 +570,8 @@
 	<string name="bookmark_lists_hide_all">Amaga-ho tot</string>
 	<string name="bookmark_lists_show_all">Mostra-ho tot</string>
 	<string name="bookmarks_create_new_group">Crea una llista</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Importa marcadors</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importa marcadors i les traces</string>
 	<string name="bookmarks_error_message_share_general">No s\'ha pogut compartir a causa d\'un error de l\'aplicació</string>
 	<string name="bookmarks_error_title_share_empty">Error al compartir</string>
 	<string name="bookmarks_error_message_share_empty">No es pot compartir una llista buida</string>
@@ -718,6 +728,8 @@
 	<string name="enable_show_on_lock_screen_description">Si està activa, no cal desblocar l\'aparell cada vegada mentre l\'aplicació està funcionant.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Dades del mapa de l\'OpenStreetMap</string>
+	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+	<string name="translated_om_site_url">https://organicmaps.app/ca/</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ca:About</string>
 
@@ -728,15 +740,26 @@
 	<string name="type.amenity.charging_station.bicycle">Estació de recàrrega de bicicletes</string>
 	<string name="type.amenity.charging_station.motorcar">Estació de recàrrega de cotxes</string>
 	<string name="type.leisure.bowling_alley">Bolera</string>
+	<string name="type.amenity.conference_centre">Centre de Conferències</string>
+	<string name="type.amenity.exhibition_centre">Centre d\'exposicions</string>
 	<string name="type.amenity.money_transfer">Transferència de diners</string>
 	<string name="type.amenity.loading_dock">Moll de càrrega</string>
 
 	<!-- SECTION: Types: Recycling -->
+	<string name="type.barrier.turnstile">Torniquet</string>
+	<string name="type.boundary.protected_area">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.1">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.2">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.3">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.4">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.5">Àrea Protegida</string>
+	<string name="type.boundary.protected_area.6">Àrea Protegida</string>
 	<string name="type.craft.key_cutter">Tall de claus</string>
 	<string name="type.craft.locksmith">Serraller</string>
 	<string name="type.shop.camera">Botiga de càmeres</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrada principal</string>
+	<string name="type.entrance.exit">Sortida</string>
 
 	<!-- SECTION: Types: Roads -->
 	<string name="type.highway.busway">Carretera dedicada a l\'autobús</string>
@@ -753,6 +776,34 @@
 	<string name="type.power.plant.hydro">Central hidroelèctrica</string>
 	<string name="type.power.plant.solar">Central d\'energia solar</string>
 	<string name="type.power.plant.wind">Central eòlica</string>
+	<string name="type.railway.funicular">Funicular</string>
+	<string name="type.railway.rail.highspeed">Ferrocarril d\'alta velocitat</string>
+	<string name="type.railway.rail.tourism">Ferrocarril turístic</string>
+	<string name="type.railway.rail.main">Ferrocarril</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Ferrocarril secundari</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Ferrocarril d\'utilitat</string>
+	<string name="type.railway.rail.spur">Espoló de ferrocarril</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Via ferroviària auxiliar</string>
+	<string name="type.railway.rail.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.highspeed.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.tourism.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.main.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.branch.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.utility.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.spur.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.service.bridge">Pont del ferrocarril</string>
+	<string name="type.railway.rail.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.highspeed.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.tourism.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.main.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.branch.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.utility.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.spur.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.rail.service.tunnel">Túnel ferroviari</string>
+	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.shop.bathroom_furnishing">Mobles de bany</string>
 	<string name="type.shop.cannabis">Botiga de cànnabis</string>
 	<string name="type.shop.carpet">Catifes</string>
@@ -767,4 +818,7 @@
 	<string name="type.shop.agrarian">Botiga agrícola</string>
 	<string name="type.shop.appliance">Botiga d\'electrodomèstics</string>
 	<string name="type.shop.bed">Botiga de llits</string>
+	<string name="type.waterway.fish_pass">Pas de peix</string>
+	<string name="type.shop.auction">Subhasta</string>
+	<string name="type.shop.collector">Col·leccionables</string>
 </resources>

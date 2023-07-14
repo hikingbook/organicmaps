@@ -106,16 +106,18 @@ node[amenity=hunting_stand],
 area[amenity=hunting_stand],
 node[amenity=shower],
 area[amenity=shower],
+node[amenity=conference_centre],
+area[amenity=conference_centre],
 node[amenity=events_venue],
 area[amenity=events_venue],
+node[amenity=exhibition_centre],
+area[amenity=exhibition_centre],
 node[man_made=chimney],
 area[man_made=chimney],
 node[vending=parking_tickets],
 area[vending=parking_tickets]
 {z-index: 2200;}
 
-node[shop],
-area[shop],
 node[amenity=veterinary],
 area[amenity=veterinary],
 node[leisure=playground],
@@ -158,6 +160,11 @@ area[amenity=bbq],
 node[amenity=toilets],
 area[amenity=toilets]
 {z-index: 2400;}
+
+/* Bigger than amenities above */
+node[shop],
+area[shop],
+{z-index: 2410;}
 
 /* Bigger than leisure=playground, sports_centre, pitch */
 node[sport],
@@ -244,7 +251,7 @@ node[leisure=picnic_table],
 area[leisure=picnic_table],
 node[amenity=shelter],
 area[amenity=shelter],
-node[highway=rest_area],
+area[highway=services],
 area[highway=rest_area],
 node[amenity=bicycle_rental],
 area[amenity=bicycle_rental],
@@ -294,8 +301,6 @@ node[shop=car_repair][service=tyres],
 area[shop=car_repair][service=tyres],
 node[shop=caravan],
 area[shop=caravan],
-node[highway=services],
-area[highway=services],
 node[amenity=post_office],
 area[amenity=post_office],
 node[amenity=dentist],
@@ -555,8 +560,8 @@ area|z14-[natural=bare_rock],
 
 node|z12-[boundary=national_park],
 area|z12-[boundary=national_park],
-node|z12-[boundary=national_park],
-area|z12-[boundary=national_park],
+node|z12-[boundary=protected_area],
+area|z12-[boundary=protected_area],
 node|z12-[leisure=nature_reserve],
 area|z12-[leisure=nature_reserve]
 {text: name;text-color: @park_label;text-halo-opacity: 0.8;text-halo-color: @label_halo_light;text-halo-radius:0.5;}
@@ -627,29 +632,29 @@ area|z17-[leisure=beach_resort]
 
 node|z11[boundary=national_park],
 area|z11[boundary=national_park],
-node|z11[boundary=national_park],
-area|z11[boundary=national_park],
+node|z11[boundary=protected_area],
+area|z11[boundary=protected_area],
 node|z11[leisure=nature_reserve],
 area|z11[leisure=nature_reserve]
 {icon-image: nparkf-outline-s.svg;icon-min-distance: 20;}
 node|z12-13[boundary=national_park],
 area|z12-13[boundary=national_park],
-node|z12-13[boundary=national_park],
-area|z12-13[boundary=national_park],
+node|z12-13[boundary=protected_area],
+area|z12-13[boundary=protected_area],
 node|z12-13[leisure=nature_reserve],
 area|z12-13[leisure=nature_reserve]
 {icon-image: nparkf-outline-s.svg;text-offset: 1;font-size: 10;icon-min-distance: 12;}
 node|z14[boundary=national_park],
 area|z14[boundary=national_park],
-node|z14[boundary=national_park],
-area|z14[boundary=national_park],
+node|z14[boundary=protected_area],
+area|z14[boundary=protected_area],
 node|z14[leisure=nature_reserve],
 area|z14[leisure=nature_reserve]
 {icon-image: nparkf-outline-s.svg;text-offset: 1;font-size: 11;}
 node|z15-[boundary=national_park],
 area|z15-[boundary=national_park],
-node|z15-[boundary=national_park],
-area|z15-[boundary=national_park],
+node|z15-[boundary=protected_area],
+area|z15-[boundary=protected_area],
 node|z15-[leisure=nature_reserve],
 area|z15-[leisure=nature_reserve]
 {icon-image: nparkf-outline-m.svg;text-offset: 1;font-size: 12;text-halo-opacity: 0.9;}
@@ -942,6 +947,11 @@ node|z17-[aerialway=station],
 node|z17-[railway=level_crossing]
 {icon-image: railway-crossing-m.svg;}
 
+node|z15-[railway=station][station=funicular],
+{icon-image: funicular-m.svg;text-offset: 1;font-size: 10;}
+node|z17-[aerialway=station],
+{font-size: 12;}
+
 /* 4.TOURISM */
 
 /* 4.1 Main POI */
@@ -1181,17 +1191,17 @@ node|z17-[tourism=attraction][attraction=animal],
 area|z17-[tourism=attraction][attraction=animal]
 {icon-image: zoo-m.svg;icon-min-distance: 24;}
 
-node|z14[amenity=community_centre],
-area|z14[amenity=community_centre]
-{icon-image: tourism-s.svg;icon-min-distance: 8;}
-node|z15[amenity=community_centre],
-area|z15[amenity=community_centre]
-{icon-image: tourism-m.svg;icon-min-distance: 24;}
 node|z16-[amenity=community_centre],
-area|z16-[amenity=community_centre]
-{icon-image: tourism-m.svg;icon-min-distance: 16;}
+area|z16-[amenity=community_centre],
+node|z16-[amenity=conference_centre],
+area|z16-[amenity=conference_centre],
+node|z16-[amenity=events_venue],
+area|z16-[amenity=events_venue],
+node|z16-[amenity=exhibition_centre],
+area|z16-[amenity=exhibition_centre],
+{icon-image: community-m.svg;icon-min-distance: 24;}
 
-/* 4.2 Apartament */
+/* 4.2 Apartment */
 
 node|z16-[tourism=hotel],
 node|z16-[tourism=hostel],
@@ -1218,8 +1228,6 @@ node|z16-[leisure=picnic_table],
 area|z16-[leisure=picnic_table],
 node|z16-[amenity=shelter],
 area|z16-[amenity=shelter],
-node|z16-[highway=rest_area],
-area|z16-[highway=rest_area],
 node|z16-[tourism=caravan_site],
 area|z16-[tourism=caravan_site]
 {text: name;text-color: @poi_label;text-offset: 1;font-size: 10;}
@@ -1279,8 +1287,6 @@ area|z15-[tourism=camp_site]
 
 node|z16-[tourism=picnic_site],
 area|z16-[tourism=picnic_site],
-node|z16-[highway=rest_area],
-area|z16-[highway=rest_area]
 {icon-image: picnic-m.svg;icon-min-distance: 10;}
 node|z16-[leisure=picnic_table],
 area|z16-[leisure=picnic_table]
@@ -1390,6 +1396,7 @@ node|z16-[barrier=kissing_gate],
 node|z16-[barrier=lift_gate],
 node|z16-[barrier=swing_gate],
 node|z16-[barrier=stile],
+node|z16-[barrier=turnstile],
 node|z16-[amenity=nightclub],
 area|z16-[amenity=nightclub],
 node|z16-[amenity=bank],
@@ -1403,6 +1410,12 @@ area|z16-[man_made=windmill],
 node|z16-[man_made=survey_point],
 node|z16-[amenity=college],
 area|z16-[amenity=college],
+node|z16-[amenity=conference_centre],
+area|z16-[amenity=conference_centre],
+node|z16-[amenity=events_venue],
+area|z16-[amenity=events_venue],
+node|z16-[amenity=exhibition_centre],
+area|z16-[amenity=exhibition_centre],
 node|z17-[amenity=pharmacy],
 area|z17-[amenity=pharmacy],
 node|z17-[amenity=clinic],
@@ -1473,8 +1486,6 @@ node|z17-[amenity=vending_machine],
 area|z17-[amenity=vending_machine],
 node|z17-[amenity=parcel_locker],
 area|z17-[amenity=parcel_locker],
-node|z17-[amenity=events_venue],
-area|z17-[amenity=events_venue],
 node|z17-[aeroway=gate],
 area|z17-[aeroway=gate],
 node|z17-[sport],
@@ -1985,6 +1996,7 @@ node|z16-[barrier=block],
 node|z16-[barrier=bollard],
 node|z16-[barrier=chain],
 node|z16-[barrier=stile],
+node|z16-[barrier=turnstile],
 {icon-image: dot-m.svg;font-size: 11;}
 
 node|z16-[barrier=entrance],
@@ -2149,7 +2161,7 @@ area|z17-[amenity=vending_machine][vending=parking_tickets]
 {icon-image: parking-meter-m.svg;font-size: 11;}
 node|z17-[amenity=parcel_locker],
 area|z17-[amenity=parcel_locker],
-{icon-image: mail-m.svg;icon-min-distance: 20;}
+{icon-image: parcel_locker-m.svg;icon-min-distance: 20;}
 
 node|z17[amenity=vending_machine][vending=fuel],
 area|z17[amenity=vending_machine][vending=fuel]
@@ -2220,17 +2232,6 @@ node|z16-[man_made=survey_point]
 
 /* 6. SHOP */
 
-node|z15-[highway=services],
-area|z15-[highway=services],
-{text: name; text-color: @poi_label; text-offset: 1; font-size: 10; text-position: center;}
-
-node|z15[highway=services],
-area|z15[highway=services],
-{icon-image: car-repair-s.svg; icon-min-distance: 20;}
-node|z16-[highway=services],
-area|z16-[highway=services],
-{icon-image: car-repair-m.svg;}
-
 node|z16-[amenity=marketplace],
 area|z16-[amenity=marketplace],
 {text: name; text-color: @poi_label; text-offset: 1; font-size: 10;}
@@ -2266,6 +2267,8 @@ node|z16-[shop=second_hand],
 area|z16-[shop=second_hand],
 node|z16-[shop=antiques],
 area|z16-[shop=antiques],
+node|z16-[shop=auction],
+area|z16-[shop=auction],
 node|z16-[shop=bookmaker],
 area|z16-[shop=bookmaker],
 node|z16-[shop=bakery],
@@ -2447,6 +2450,9 @@ area|z16[shop=second_hand]
 node|z16[shop=antiques],
 area|z16[shop=antiques]
 {icon-image: antiques-m.svg;}
+node|z16[shop=auction],
+area|z16[shop=auction]
+{icon-image: auction-m.svg;}
 node|z16[shop=bookmaker],
 area|z16[shop=bookmaker]
 {icon-image: bookmaker-m.svg;}
@@ -2528,6 +2534,9 @@ area|z16[shop=grocery],
 node|z16[shop=health_food],
 area|z16[shop=health_food],
 {icon-image: grocery-m.svg;}
+node|z16[shop=collector],
+area|z16[shop=collector]
+{icon-image: shop-m.svg;}
 node|z16[shop=copyshop],
 area|z16[shop=copyshop]
 {icon-image: copyshop-m.svg;}
@@ -2656,6 +2665,9 @@ area|z17-[shop=second_hand]
 node|z17-[shop=antiques],
 area|z17-[shop=antiques]
 {icon-image: antiques-m.svg;icon-min-distance: 24;}
+node|z17-[shop=auction],
+area|z17-[shop=auction]
+{icon-image: auction-m.svg;icon-min-distance: 24;}
 node|z17-[shop=bookmaker],
 area|z17-[shop=bookmaker]
 {icon-image: bookmaker-m.svg;icon-min-distance: 24;}
@@ -2737,6 +2749,9 @@ area|z17-[shop=grocery],
 node|z17-[shop=health_food],
 area|z17-[shop=health_food],
 {icon-image: grocery-m.svg;icon-min-distance: 24;}
+node|z17-[shop=collector],
+area|z17-[shop=collector]
+{icon-image: shop-m.svg;icon-min-distance: 24;}
 node|z17-[shop=copyshop],
 area|z17-[shop=copyshop]
 {icon-image: copyshop-m.svg;icon-min-distance: 24;}
@@ -2905,10 +2920,16 @@ area|z17-[craft=metal_construction]
 
 /* 7. CAR */
 
+area|z14-[highway=services],
+area|z15-[highway=rest_area],
+{text-position: center;}
+
 node|z14-[amenity=fuel],
 area|z14-[amenity=fuel],
 node|z14-[amenity=charging_station][motorcar?],
 area|z14-[amenity=charging_station][motorcar?],
+area|z14-[highway=services],
+area|z15-[highway=rest_area],
 node|z15-[amenity=sanitary_dump_station],
 area|z15-[amenity=sanitary_dump_station],
 node|z16-[amenity=charging_station],
@@ -2957,6 +2978,20 @@ area|z17-[amenity=charging_station]
 {icon-image: charging-station-m.svg;}
 node|z18-[amenity=charging_station],
 area|z18-[amenity=charging_station]
+{font-size: 11;}
+
+area|z14[highway=services],
+{icon-image: car-repair-s.svg; icon-min-distance: 20;}
+area|z15[highway=services],
+{icon-image: car-repair-m.svg; icon-min-distance: 10;}
+area|z15[highway=rest_area]
+{icon-image: picnic-m.svg; icon-min-distance: 10;}
+area|z16-[highway=services],
+{icon-image: car-repair-m.svg;}
+area|z16-[highway=rest_area],
+{icon-image: picnic-m.svg;}
+area|z18-[highway=services],
+area|z18-[highway=rest_area],
 {font-size: 11;}
 
 node|z17-[amenity=car_wash],

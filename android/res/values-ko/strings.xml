@@ -21,7 +21,7 @@
 	<string name="miles">마일</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">나의 위치</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">나중에</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">검색하기</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">색상 즐겨찾기에 추가</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">집합 이름을 즐겨찾기에 추가</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">북마크</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">북마크 및 트랙</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">내 장소</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">주차</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">쇼핑</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">중고</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">호텔</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -237,6 +241,10 @@
 	<string name="copyright">저작권</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">오류 신고</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">나침반을 보정하기 위해 휴대폰을 8자 모양으로 움직여 화살표 방향을 개선하세요.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">휴대폰을 8자 모양으로 움직여 나침반을 보정하고 지도에서 화살표 방향을 수정합니다.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">모두 업데이트</string>
 	<!-- Cancel all button text -->
@@ -363,6 +371,10 @@
 	<string name="p2p_reroute_from_current">현재 위치에서 경로를 계획하시겠습니까?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">다음</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">부터</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">까지</string>
 	<string name="editor_time_add">스케줄 추가</string>
 	<string name="editor_time_delete">스케줄 삭제</string>
 	<!-- Text for allday switch. -->
@@ -462,18 +474,16 @@
 	<string name="current_location_unknown_message">현재 위치를 알 수 없습니다. 건물 안이나 터널 안에서는 검색할 수 없습니다</string>
 	<string name="current_location_unknown_continue_button">계속</string>
 	<string name="current_location_unknown_stop_button">중지</string>
-	<string name="meter">m</string>
-	<string name="kilometer">km</string>
+	<string name="m">m</string>
+	<string name="km">km</string>
 	<string name="kilometers_per_hour">km/시</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<!-- A unit of measure -->
-	<string name="foot">풋</string>
+	<string name="ft">풋</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">t</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">설명</string>
 	<string name="placepage_more_button">자세히</string>
-	<string name="placepage_call_button">전화</string>
 	<string name="placepage_edit_bookmark_button">즐겨찾기 편집</string>
 	<string name="editor_comment_hint">설명…</string>
 	<string name="editor_reset_edits_message">지역 변경 사항을 재설정하시겠습니까?</string>
@@ -538,6 +548,8 @@
 	<string name="bookmark_lists_hide_all">모두 숨기기</string>
 	<string name="bookmark_lists_show_all">모두 표시</string>
 	<string name="bookmarks_create_new_group">새 목록 만들기</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">북마크 및 트랙 가져오기</string>
 	<string name="bookmarks_error_message_share_general">애플리케이션 오류로 인해 공유할 수 없습니다</string>
 	<string name="bookmarks_error_title_share_empty">공유 오류</string>
 	<string name="bookmarks_error_message_share_empty">빈 목록을 공유 할 수 없습니다</string>
@@ -715,11 +727,13 @@
 	<string name="type.amenity.clinic">클리닉</string>
 	<string name="type.amenity.college">칼리지</string>
 	<string name="type.amenity.community_centre">커뮤니티센터</string>
+	<string name="type.amenity.conference_centre">컨퍼런스 센터</string>
 	<string name="type.amenity.courthouse">법원</string>
 	<string name="type.amenity.dentist">치과</string>
 	<string name="type.amenity.doctors">개인병원</string>
 	<string name="type.amenity.drinking_water">음수대</string>
 	<string name="type.amenity.driving_school">운전학원</string>
+	<string name="type.amenity.exhibition_centre">전시 센터</string>
 	<string name="type.amenity.money_transfer">송금</string>
 	<string name="type.amenity.music_school">음악 학교</string>
 	<string name="type.amenity.language_school">언어 학교</string>
@@ -816,13 +830,22 @@
 	<string name="type.barrier.kissing_gate">게이트</string>
 	<string name="type.barrier.lift_gate">차량차단기</string>
 	<string name="type.barrier.stile">디딤대</string>
+	<string name="type.barrier.turnstile">개찰구</string>
 	<string name="type.barrier.swing_gate">차량차단기</string>
 	<string name="type.barrier.toll_booth">톨게이트</string>
 	<string name="type.boundary.national_park">국립 공원</string>
+	<string name="type.boundary.protected_area">보호구역</string>
+	<string name="type.boundary.protected_area.1">보호구역</string>
+	<string name="type.boundary.protected_area.2">보호구역</string>
+	<string name="type.boundary.protected_area.3">보호구역</string>
+	<string name="type.boundary.protected_area.4">보호구역</string>
+	<string name="type.boundary.protected_area.5">보호구역</string>
+	<string name="type.boundary.protected_area.6">보호구역</string>
 	<string name="type.building">건물</string>
 	<string name="type.building.address">건물</string>
-	<string name="type.building.garage">차고</string>
 	<string name="type.building.has_parts">건물</string>
+	<string name="type.building_part">건물</string>
+	<string name="type.building.garage">차고</string>
 	<string name="type.building.train_station">기차역</string>
 	<string name="type.cemetery.grave">무덤</string>
 	<string name="type.craft">공예</string>
@@ -940,6 +963,7 @@
 	<string name="type.entrance">입구</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">정문</string>
+	<string name="type.entrance.exit">종료</string>
 	<string name="type.healthcare.laboratory">의료 연구실</string>
 	<string name="type.healthcare.physiotherapist">물리치료사</string>
 	<string name="type.healthcare.alternative">대체 약품</string>
@@ -1045,6 +1069,8 @@
 	<string name="type.highway.road">거리</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">다리</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">다리</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">터널</string>
 	<string name="type.highway.secondary">거리</string>
@@ -1303,11 +1329,39 @@
 	<string name="type.power.pole">전봇대</string>
 	<string name="type.power.substation">변전소</string>
 	<string name="type.power.tower">전봇대</string>
+	<string name="type.railway.funicular">케이블카</string>
 	<string name="type.railway.halt">기차역</string>
 	<string name="type.railway.level_crossing">철도 건널목</string>
 	<string name="type.railway.monorail">모노레일</string>
 	<string name="type.railway.rail">철로</string>
+	<string name="type.railway.rail.highspeed">고속 철도</string>
+	<string name="type.railway.rail.tourism">관광 철도</string>
+	<string name="type.railway.rail.main">철도</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">보조 철도</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">유틸리티 철도</string>
+	<string name="type.railway.rail.spur">철도 박차</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">보조 레일 트랙</string>
+	<string name="type.railway.rail.bridge">철도 교량</string>
+	<string name="type.railway.rail.highspeed.bridge">철도 교량</string>
+	<string name="type.railway.rail.tourism.bridge">철도 교량</string>
+	<string name="type.railway.rail.main.bridge">철도 교량</string>
+	<string name="type.railway.rail.branch.bridge">철도 교량</string>
+	<string name="type.railway.rail.utility.bridge">철도 교량</string>
+	<string name="type.railway.rail.spur.bridge">철도 교량</string>
+	<string name="type.railway.rail.service.bridge">철도 교량</string>
+	<string name="type.railway.rail.tunnel">철도 터널</string>
+	<string name="type.railway.rail.highspeed.tunnel">철도 터널</string>
+	<string name="type.railway.rail.tourism.tunnel">철도 터널</string>
+	<string name="type.railway.rail.main.tunnel">철도 터널</string>
+	<string name="type.railway.rail.branch.tunnel">철도 터널</string>
+	<string name="type.railway.rail.utility.tunnel">철도 터널</string>
+	<string name="type.railway.rail.spur.tunnel">철도 터널</string>
+	<string name="type.railway.rail.service.tunnel">철도 터널</string>
 	<string name="type.railway.station">기차역</string>
+	<string name="type.railway.station.funicular">케이블카</string>
 	<string name="type.railway.station.light_rail">기차역</string>
 	<string name="type.railway.station.monorail">기차역</string>
 	<string name="type.railway.station.subway">지하철</string>
@@ -1575,7 +1629,6 @@
 	<string name="type.shop.greengrocer">청과상</string>
 	<string name="type.shop.grocery">\"식료품점\"</string>
 	<string name="type.shop.hairdresser">이발사</string>
-	<string name="type.shop.hardware">철물점</string>
 	<string name="type.shop.health_food">\"건강식품 가게\"</string>
 	<string name="type.shop.herbalist">허브 가게</string>
 	<string name="type.shop.hifi">하이파이 오디오</string>
@@ -1620,6 +1673,7 @@
 	<string name="type.shop.agrarian">농산물 가게</string>
 	<string name="type.shop.antiques">고물</string>
 	<string name="type.shop.appliance">가전제품 매장</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">아트샵</string>
 	<string name="type.shop.baby_goods">어린이 가게</string>
 	<string name="type.shop.bag">가방 판매점</string>
@@ -1710,6 +1764,7 @@
 	<string name="type.tourism.zoo">동물원</string>
 	<string name="type.waterway.canal">운하</string>
 	<string name="type.waterway.canal.tunnel">운하</string>
+	<string name="type.waterway.fish_pass">물고기 사다리</string>
 	<string name="type.waterway.lock_gate">수문</string>
 	<string name="type.waterway.river">강</string>
 	<string name="type.waterway.river.tunnel">강</string>
@@ -1722,6 +1777,7 @@
 	<string name="type.wheelchair.limited">휠체어 접근 제한</string>
 	<string name="type.wheelchair.no">휠체어 접근 금지</string>
 	<string name="type.wheelchair.yes">휠체어 접근 가능</string>
-	<string name="type.building_part">건물</string>
 	<string name="type.amenity.events_venue">행사장</string>
+	<string name="type.shop.auction">경매</string>
+	<string name="type.shop.collector">수집품</string>
 </resources>

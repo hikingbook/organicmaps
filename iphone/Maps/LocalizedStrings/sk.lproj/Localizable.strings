@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Moja poloha";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Neskôr";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Skupiny záložiek";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Záložky";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Záložky a stopy";
 
 /* Default bookmark list name */
 "core_my_places" = "Moje miesta";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Nakupovanie";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Second-hand";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Pre RV";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Načítavanie záložiek";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Plánovanie trasy zlyhalo";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Pricestovať: %s";
+"routing_arrive" = "Pricestovať: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Prosím, pre vytvorenie trasy si stiahnite a aktualizujte všetky mapy pozdĺž trasy.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Vyberte si počas používania aplikácie";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "stopa";
+"ft" = "stopa";
 
 "miles_per_hour" = "mph";
 
 "hour" = "hod";
 
 "minute" = "min";
-
-"placepage_place_description" = "Popis";
 
 "placepage_more_button" = "Viac";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Skryť obrazovku";
 
-"downloader_percent" = "%s (%s z %s)";
+"downloader_percent" = "%@ (%@ z %@)";
 
-"downloader_process" = "Sťahovanie %s…";
+"downloader_process" = "Sťahovanie %@…";
 
-"downloader_applying" = "Použitie %s…";
+"downloader_applying" = "Použitie %@…";
 
 "bookmarks_error_message_share_general" = "Pre chybu aplikácie nie je zdieľanie možné";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Prosím stiahnite si mapy v aplikácii Organic Maps vo vašom zariadení";
 
-"carplay_roundabout_exit" = "%s výjazd";
+"carplay_roundabout_exit" = "%@ výjazd";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Zoradiť…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Vďaka aktualizácii máp budú informácie o objektoch na mape aktualizované";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Aktualizovať (%s)";
+"whats_new_auto_update_button_size" = "Aktualizovať (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Manuálne aktualizovať neskôr";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Dom kultúry";
 
+"type.amenity.conference_centre" = "Konferenčné centrum";
+
 "type.amenity.courthouse" = "Súd";
 
 "type.amenity.dentist" = "Zubár";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Pitná voda";
 
 "type.amenity.driving_school" = "Autoškola";
+
+"type.amenity.exhibition_centre" = "Výstavisko";
 
 "type.amenity.money_transfer" = "Prevod peňazí";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Reštaurácia";
 
@@ -1506,7 +1514,7 @@
 
 "type.amenity.shower" = "Sprcha";
 
-"type.amenity.taxi" = "Taxi";
+"type.amenity.taxi" = "Taxi Stand";
 
 "type.amenity.telephone" = "Telefón";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Automat na výdaj parkovacích lístkov";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinár";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Turniket";
+
+"type.barrier.turnstile" = "Turniket";
 
 "type.barrier.swing_gate" = "Závora";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Národný park";
 
+"type.boundary.protected_area" = "Chránené územie";
+
+"type.boundary.protected_area.1" = "Chránené územie";
+
+"type.boundary.protected_area.2" = "Chránené územie";
+
+"type.boundary.protected_area.3" = "Chránené územie";
+
+"type.boundary.protected_area.4" = "Chránené územie";
+
+"type.boundary.protected_area.5" = "Chránené územie";
+
+"type.boundary.protected_area.6" = "Chránené územie";
+
 "type.building" = "Budova";
 
 "type.building.address" = "Budova";
 
-"type.building.garage" = "Garáž";
-
 "type.building.has_parts" = "Budova";
+
+"type.building_part" = "Budova";
+
+"type.building.garage" = "Garáž";
 
 "type.building.train_station" = "Železničná stanica";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Hlavný vchod";
 
+"type.entrance.exit" = "Exit";
+
 "type.healthcare.laboratory" = "Lekárske laboratórium";
 
 "type.healthcare.physiotherapist" = "Fyzioterapeut";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Most";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Most";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Tunel";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Komunikačná veža";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Vodovodný kohútik";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Solárny generátor";
 
@@ -2755,9 +2788,9 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
-"type.railway.funicular" = "Funicular";
+"type.railway.funicular" = "Lanovka";
 
 "type.railway.funicular.bridge" = "Funicular Bridge";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Železnica";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Vysokorýchlostná železnica";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Turistická železnica";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Železnice";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Sekundárna železnica";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Úžitková železnica";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Železničná odbočka";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Pomocná železničná trať";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Železničný most";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Železničný most";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Železničný most";
+
+"type.railway.rail.main.bridge" = "Železničný most";
+
+"type.railway.rail.branch.bridge" = "Železničný most";
+
+"type.railway.rail.utility.bridge" = "Železničný most";
+
+"type.railway.rail.spur.bridge" = "Železničný most";
+
+"type.railway.rail.service.bridge" = "Železničný most";
+
+"type.railway.rail.tunnel" = "Železničný tunel";
+
+"type.railway.rail.highspeed.tunnel" = "Železničný tunel";
+
+"type.railway.rail.tourism.tunnel" = "Železničný tunel";
+
+"type.railway.rail.main.tunnel" = "Železničný tunel";
+
+"type.railway.rail.branch.tunnel" = "Železničný tunel";
+
+"type.railway.rail.utility.tunnel" = "Železničný tunel";
+
+"type.railway.rail.spur.tunnel" = "Železničný tunel";
+
+"type.railway.rail.service.tunnel" = "Železničný tunel";
 
 "type.railway.station" = "Železničná stanica";
+
+"type.railway.station.funicular" = "Lanovka";
 
 "type.railway.station.light_rail" = "Železničná stanica";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Električková zastávka";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Obchod";
 
@@ -3377,7 +3435,7 @@
 
 "type.shop.hairdresser" = "Kaderníctvo";
 
-"type.shop.hardware" = "Železiarstvo";
+"type.shop.hardware" = "Hardware Store";
 
 "type.shop.health_food" = "Obchod so zdravou výživou";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Obchod so spotrebičmi";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Obchod s umením";
 
 "type.shop.baby_goods" = "Obchod pre deti";
@@ -3604,7 +3663,7 @@
 
 "type.tourism.attraction.specified" = "Atrakcia";
 
-"type.tourism.camp_site" = "Camp Site";
+"type.tourism.camp_site" = "Campground";
 
 "type.tourism.caravan_site" = "Kemp pre karavany";
 
@@ -3657,6 +3716,8 @@
 "type.waterway.canal" = "Kanál";
 
 "type.waterway.canal.tunnel" = "Kanál";
+
+"type.waterway.fish_pass" = "Rebrík pre ryby";
 
 "type.waterway.dam" = "Dam";
 
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Budova";
-
 "type.amenity.events_venue" = "Miesto konania podujatí";
+
+"type.shop.auction" = "Aukcia";
+
+"type.shop.collector" = "Zberateľské predmety";

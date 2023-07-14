@@ -2,6 +2,8 @@
 #include "qt/mainwindow.hpp"
 #include "qt/screenshoter.hpp"
 
+#include "qt/qt_common/helpers.hpp"
+
 #include "map/framework.hpp"
 
 #include "platform/platform.hpp"
@@ -14,18 +16,14 @@
 
 #include "build_style/build_style.h"
 
-#include <cstdio>
-#include <cstdlib>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QFileDialog>
+
 #include <sstream>
 
 #include <gflags/gflags.h>
 
-#include <QtCore/QDir>
-#include <QtGui/QScreen>
-#include <QtGui/QSurfaceFormat>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QFileDialog>
 
 DEFINE_string(data_path, "", "Path to data directory.");
 DEFINE_string(log_abort_level, base::ToString(base::GetDefaultLogAbortLevel()),
@@ -141,8 +139,6 @@ int main(int argc, char * argv[])
   UNUSED_VALUE(mainGuard);
 
   QApplication app(argc, argv);
-  // Pretty icons on HDPI displays.
-  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
   platform.SetupMeasurementSystem();
 
 
@@ -203,36 +199,7 @@ int main(int argc, char * argv[])
         screenshotParams->m_dpiScale = FLAGS_dpi_scale;
     }
 
-
-    QSurfaceFormat fmt;
-    fmt.setAlphaBufferSize(8);
-    fmt.setBlueBufferSize(8);
-    fmt.setGreenBufferSize(8);
-    fmt.setRedBufferSize(8);
-    fmt.setStencilBufferSize(0);
-    fmt.setSamples(0);
-    fmt.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
-    fmt.setSwapInterval(1);
-    fmt.setDepthBufferSize(16);
-
-    // This is a workaround for some systems,
-    // including MacOs and older Linux distros, which rely on X.org and Mesa.
-    // Where somehow the driver itself doesn't
-    // make all the otherwise supported GLSL versions available by default
-    // and such requests are somehow disregarded at later stages of execution.
-    // This setting here will be potentially overwritten and overruled anyway,
-    // and only needed to ensure that we have the needed GLSL compiler available
-    // later when we need it.
-    if (app.platformName() == QString("xcb") ||
-        app.platformName() == QString("cocoa"))
-    {
-      fmt.setProfile(QSurfaceFormat::CoreProfile);
-      fmt.setVersion(3, 2);
-    }
-#ifdef ENABLE_OPENGL_DIAGNOSTICS
-    fmt.setOption(QSurfaceFormat::DebugContext);
-#endif
-    QSurfaceFormat::setDefaultFormat(fmt);
+    qt::common::SetDefaultSurfaceFormat(app.platformName());
 
     FrameworkParams frameworkParams;
 

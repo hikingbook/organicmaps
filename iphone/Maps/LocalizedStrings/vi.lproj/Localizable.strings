@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Vị trí của Tôi";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Để sau";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Đánh dấu Bộ";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Đánh dấu";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Đánh dấu và dấu vết";
 
 /* Default bookmark list name */
 "core_my_places" = "Các Địa chỉ của Tôi";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Đi mua sắm";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Đồ cũ";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Khách sạn";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Đối với RV";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Tải Điểm đánh dấu";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Không thể Lập Lộ trình";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Đến: %s";
+"routing_arrive" = "Đến: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Để tạo đường đi, vui lòng tải về và cập nhật tất cả bản đồ dọc theo tuyến đường.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Chọn Khi Đang Dùng Ứng dụng";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/giờ";
 
-"mile" = "dặm";
+"mi" = "dặm";
 
 /* A unit of measure */
-"foot" = "ft";
+"ft" = "ft";
 
 "miles_per_hour" = "mph";
 
 "hour" = "giờ";
 
 "minute" = "phút";
-
-"placepage_place_description" = "Mô tả";
 
 "placepage_more_button" = "Bổ sung";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Ẩn Màn hình";
 
-"downloader_percent" = "%s (%s / %s)";
+"downloader_percent" = "%@ (%@ / %@)";
 
-"downloader_process" = "Tải về %s…";
+"downloader_process" = "Tải về %@…";
 
-"downloader_applying" = "Áp dụng %s…";
+"downloader_applying" = "Áp dụng %@…";
 
 "bookmarks_error_message_share_general" = "Không thể chia sẻ do lỗi ứng dụng";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Vui lòng tải xuống bản đồ trong ứng dụng Organic Maps trên thiết bị của bạn";
 
-"carplay_roundabout_exit" = "Lối ra %s của vòng xuyến";
+"carplay_roundabout_exit" = "Lối ra %@ của vòng xuyến";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Sắp xếp…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Cập nhật bản đồ để cập nhật thông tin về các đối tượng trên đó";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Cập nhật (%s)";
+"whats_new_auto_update_button_size" = "Cập nhật (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Cập nhật thủ công sau";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Trung Tâm Cộng Đồng";
 
+"type.amenity.conference_centre" = "Trung tâm Hội nghị";
+
 "type.amenity.courthouse" = "Tòa án";
 
 "type.amenity.dentist" = "Nha sĩ";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Nước uống";
 
 "type.amenity.driving_school" = "Trường lái xe";
+
+"type.amenity.exhibition_centre" = "Trung tâm triển lãm";
 
 "type.amenity.money_transfer" = "Chuyển tiền";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Quán ăn";
 
@@ -1506,7 +1514,7 @@
 
 "type.amenity.shower" = "Nhà tắm";
 
-"type.amenity.taxi" = "Taxi";
+"type.amenity.taxi" = "Taxi Stand";
 
 "type.amenity.telephone" = "Điện thoại";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Máy trả tiền vé đậu xe";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Bác sĩ Thú y";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Trụ chắn";
+
+"type.barrier.turnstile" = "Cửa quay";
 
 "type.barrier.swing_gate" = "Thanh Chắn";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Công viên quốc gia";
 
+"type.boundary.protected_area" = "Khu bảo tồn";
+
+"type.boundary.protected_area.1" = "Khu bảo tồn";
+
+"type.boundary.protected_area.2" = "Khu bảo tồn";
+
+"type.boundary.protected_area.3" = "Khu bảo tồn";
+
+"type.boundary.protected_area.4" = "Khu bảo tồn";
+
+"type.boundary.protected_area.5" = "Khu bảo tồn";
+
+"type.boundary.protected_area.6" = "Khu bảo tồn";
+
 "type.building" = "Tòa nhà";
 
 "type.building.address" = "Tòa nhà";
 
-"type.building.garage" = "Gara";
-
 "type.building.has_parts" = "Tòa nhà";
+
+"type.building_part" = "Tòa nhà";
+
+"type.building.garage" = "Gara";
 
 "type.building.train_station" = "Đường tàu hỏa";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Lối vào chính";
 
+"type.entrance.exit" = "Lối ra";
+
 "type.healthcare.laboratory" = "Phòng thí nghiệm y tế";
 
 "type.healthcare.physiotherapist" = "Nhà vật lý trị liệu";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Cầu";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Cầu";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Đường hầm";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Tháp truyền thông";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Vòi nước";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Máy phát điện năng lượng mặt trời";
 
@@ -2755,9 +2788,9 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
-"type.railway.funicular" = "Funicular";
+"type.railway.funicular" = "Đường sắt leo núi";
 
 "type.railway.funicular.bridge" = "Funicular Bridge";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Đường sắt";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Đường sắt cao tốc";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Đường sắt du lịch";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Đường sắt";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Đường sắt phụ";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Đường sắt tiện ích";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Đường sắt thúc đẩy";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Đường ray phụ trợ";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Cầu đường sắt";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Cầu đường sắt";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.main.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.branch.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.utility.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.spur.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.service.bridge" = "Cầu đường sắt";
+
+"type.railway.rail.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.highspeed.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.tourism.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.main.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.branch.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.utility.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.spur.tunnel" = "Đường hầm đường sắt";
+
+"type.railway.rail.service.tunnel" = "Đường hầm đường sắt";
 
 "type.railway.station" = "Đường tàu hỏa";
+
+"type.railway.station.funicular" = "Đường sắt leo núi";
 
 "type.railway.station.light_rail" = "Đường tàu hỏa";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Bến tàu điện";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Cửa hàng";
 
@@ -3377,7 +3435,7 @@
 
 "type.shop.hairdresser" = "Tiệm làm tóc";
 
-"type.shop.hardware" = "Cửa hàng phần cứng";
+"type.shop.hardware" = "Hardware Store";
 
 "type.shop.health_food" = "Cửa hàng thực phẩm sức khỏe";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Cửa hàng đồ gia dụng";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Cửa hàng nghệ thuật";
 
 "type.shop.baby_goods" = "Cửa hàng trẻ em";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Kênh";
 
+"type.waterway.fish_pass" = "Thang cá";
+
 "type.waterway.dam" = "Dam";
 
 "type.waterway.ditch" = "Ditch";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Tòa nhà";
-
 "type.amenity.events_venue" = "Địa điểm tổ chức sự kiện";
+
+"type.shop.auction" = "Bán đấu giá";
+
+"type.shop.collector" = "Đồ sưu tầm";

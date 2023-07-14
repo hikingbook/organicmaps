@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Η θέση μου";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Αργότερα";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Σύνολα αγαπημένων";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Αγαπημένα";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Αγαπημένα και διαδρομές";
 
 /* Default bookmark list name */
 "core_my_places" = "Οι τοποθεσίες μου";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Ψώνια";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Μεταχειρισμένα";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Ξενοδοχείο";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Για RV";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Φόρτωση αγαπημένων";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Ο σχεδιασμός διαδρομής απέτυχε";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Άφιξη στις %s";
+"routing_arrive" = "Άφιξη στις %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Download and update all map along the projected path to calculate route.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Επιλέξτε ενώ χρησιμοποιείτε την εφαρμογή";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/h";
 
-"mile" = "mi";
+"mi" = "mi";
 
 /* A unit of measure */
-"foot" = "ft";
+"ft" = "ft";
 
 "miles_per_hour" = "mph";
 
 "hour" = "h";
 
 "minute" = "min";
-
-"placepage_place_description" = "Description";
 
 "placepage_more_button" = "Περισσότερα";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Απόκρυψη οθόνης";
 
-"downloader_percent" = "%s (%s από %s)";
+"downloader_percent" = "%@ (%@ από %@)";
 
-"downloader_process" = "Λήψη %s…";
+"downloader_process" = "Λήψη %@…";
 
-"downloader_applying" = "Εφαρμογή %s…";
+"downloader_applying" = "Εφαρμογή %@…";
 
 "bookmarks_error_message_share_general" = "Αδυναμία κοινής χρήσης λόγω σφάλματος εφαρμογής";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Κάντε λήψη χαρτών στην εφαρμογή Organic Maps στη συσκευή σας";
 
-"carplay_roundabout_exit" = "%s έξοδος";
+"carplay_roundabout_exit" = "%@ έξοδος";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Ταξινόμηση";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Η ενημέρωση των χαρτών διατηρεί τις πληροφορίες των στοιχείων επικαιροποιημένες";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Ενημέρωση (%s)";
+"whats_new_auto_update_button_size" = "Ενημέρωση (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Χειροκίνητη ενημέρωση αργότερα";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Κέντρο κοινότητας";
 
+"type.amenity.conference_centre" = "Συνεδριακό Κέντρο";
+
 "type.amenity.courthouse" = "Δικαστικό μέγαρο";
 
 "type.amenity.dentist" = "Οδοντίατρος";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Πόσιμο νερό";
 
 "type.amenity.driving_school" = "Σχολή οδήγησης";
+
+"type.amenity.exhibition_centre" = "Εκθεσιακό Κέντρο";
 
 "type.amenity.money_transfer" = "Μεταφορά χρημάτων";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Εστιατόριο";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Εισιτήρια στάθμευσης";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Κτηνίατρος";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Τουρνικέ";
+
+"type.barrier.turnstile" = "Πεζοδρόμιο";
 
 "type.barrier.swing_gate" = "Ανυψούμενη μπάρα";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Εθνικό πάρκο";
 
+"type.boundary.protected_area" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.1" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.2" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.3" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.4" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.5" = "Προστατευόμενη Περιοχή";
+
+"type.boundary.protected_area.6" = "Προστατευόμενη Περιοχή";
+
 "type.building" = "Κτίριο";
 
 "type.building.address" = "Κτίριο";
 
-"type.building.garage" = "Γκαράζ";
-
 "type.building.has_parts" = "Κτίριο";
+
+"type.building_part" = "Κτίριο";
+
+"type.building.garage" = "Γκαράζ";
 
 "type.building.train_station" = "Σιδηροδρομικός σταθμός";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Κύρια είσοδος";
 
+"type.entrance.exit" = "Έξοδος";
+
 "type.healthcare.laboratory" = "Ιατρικό Εργαστήριο";
 
 "type.healthcare.physiotherapist" = "Φυσικοθεραπευτής";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Γέφυρα";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Γέφυρα";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Σήραγγα";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Πύργος Επικοινωνιών";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Βρύση νερού";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Ηλιακή γεννήτρια";
 
@@ -2755,9 +2788,9 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
-"type.railway.funicular" = "Funicular";
+"type.railway.funicular" = "Μονωτικό τρενάκι";
 
 "type.railway.funicular.bridge" = "Funicular Bridge";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Σιδηρόδρομος";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Σιδηρόδρομος υψηλής ταχύτητας";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Τουριστικός σιδηρόδρομος";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Σιδηρόδρομος";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Δευτερεύων σιδηροδρομικός σιδηρόδρομος";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Σιδηρόδρομος κοινής ωφέλειας";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Σιδηροδρομική ατραπός";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Βοηθητική σιδηροδρομική γραμμή";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Σιδηροδρομική γέφυρα";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Σιδηροδρομική γέφυρα";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.main.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.branch.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.utility.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.spur.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.service.bridge" = "Σιδηροδρομική γέφυρα";
+
+"type.railway.rail.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.highspeed.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.tourism.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.main.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.branch.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.utility.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.spur.tunnel" = "Σιδηροδρομική σήραγγα";
+
+"type.railway.rail.service.tunnel" = "Σιδηροδρομική σήραγγα";
 
 "type.railway.station" = "Σιδηροδρομικός σταθμός";
+
+"type.railway.station.funicular" = "Μονωτικό τρενάκι";
 
 "type.railway.station.light_rail" = "Σιδηροδρομικός σταθμός";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Στάση τραμ";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Κατάστημα";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Κατάστημα οικιακών συσκευών";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Κατάστημα Τεχνών";
 
 "type.shop.baby_goods" = "Παιδικό κατάστημα";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Κανάλι";
 
+"type.waterway.fish_pass" = "Σκάλα ψαριών";
+
 "type.waterway.dam" = "Dam";
 
 "type.waterway.ditch" = "Ditch";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Κτίριο";
-
 "type.amenity.events_venue" = "Κέντρο εκδηλώσεων";
+
+"type.shop.auction" = "Δημοπρασία";
+
+"type.shop.collector" = "Συλλεκτικά αντικείμενα";

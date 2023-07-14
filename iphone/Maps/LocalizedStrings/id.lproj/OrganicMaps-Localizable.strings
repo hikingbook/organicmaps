@@ -32,7 +32,7 @@
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Posisi Saya";
 
-/* Update maps later/Buy pro version later button text */
+/* Update maps later button text */
 "later" = "Nanti";
 
 /* View and button titles for accessibility, please also edit it in iphone/plist.txt */
@@ -71,8 +71,11 @@
 /* "Bookmark Lists" dialog title */
 "bookmark_sets" = "Set Penanda";
 
-/* "Bookmarks" dialog title, please also edit it in iphone/plist.txt */
+/* Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. */
 "bookmarks" = "Penanda";
+
+/* "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt */
+"bookmarks_and_tracks" = "Penanda dan jalur";
 
 /* Default bookmark list name */
 "core_my_places" = "Tempat-tempat Saya";
@@ -106,6 +109,9 @@
 
 /* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
 "shopping" = "Berbelanja";
+
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
+"secondhand" = "Tangan kedua";
 
 /* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
 "hotel" = "Hotel";
@@ -155,7 +161,7 @@
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
 "rv" = "Untuk RV";
 
-"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks from Organic Maps app. Please open them if you have Organic Maps installed. Or, if you don't, download the app for your iOS or Android device by following this link: https://omaps.app/get?kmz\n\nEnjoy traveling with Organic Maps!";
+"share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Memuat Penanda";
@@ -274,7 +280,7 @@
 "telegram" = "Telegram";
 
 /* Text in menu */
-"matrix" = "[matrix]";
+"matrix" = "[Matrix]";
 
 /* Text in menu */
 "mastodon" = "Mastodon";
@@ -503,7 +509,7 @@
 "routing_planning_error" = "Sudah sampai di tujuan";
 
 /* Arrive routing message in navigation view */
-"routing_arrive" = "Kedatangan: %s";
+"routing_arrive" = "Kedatangan: %@";
 
 /* Text for routing::RouterResultCode::FileTooOld dialog. */
 "dialog_routing_download_and_update_maps" = "Untuk membuat rute, silakan unduh dan perbarui semua peta sepanjang rute.";
@@ -762,24 +768,22 @@
 /* iOS Dialog for the case when the location permission is not granted */
 "location_services_disabled_3" = "3. Pilih While Using the App";
 
-"meter" = "m";
+"m" = "m";
 
-"kilometer" = "km";
+"km" = "km";
 
 "kilometers_per_hour" = "km/j";
 
-"mile" = "mil";
+"mi" = "mil";
 
 /* A unit of measure */
-"foot" = "kaki";
+"ft" = "kaki";
 
 "miles_per_hour" = "mpj";
 
 "hour" = "j";
 
 "minute" = "mnt";
-
-"placepage_place_description" = "Deskripsi";
 
 "placepage_more_button" = "Lainnya";
 
@@ -925,11 +929,11 @@
 
 "downloader_hide_screen" = "Sembunyikan Layar";
 
-"downloader_percent" = "%s (%s dari %s)";
+"downloader_percent" = "%@ (%@ dari %@)";
 
-"downloader_process" = "Mengunduh %s…";
+"downloader_process" = "Mengunduh %@…";
 
-"downloader_applying" = "Menerapkan %s…";
+"downloader_applying" = "Menerapkan %@…";
 
 "bookmarks_error_message_share_general" = "Tidak dapat berbagi karena kesalahan aplikasi";
 
@@ -1107,7 +1111,7 @@
 
 "download_map_carplay" = "Silakan unduh peta di apl Organic Maps pada perangkat Anda";
 
-"carplay_roundabout_exit" = "Jalan keluar ke %s";
+"carplay_roundabout_exit" = "Jalan keluar ke %@";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Urutkan…";
@@ -1213,7 +1217,7 @@
 "whats_new_auto_update_message" = "Memperbarui peta membuat informasi tentang objek tetap terkini";
 
 /* Autoupdate dialog on start */
-"whats_new_auto_update_button_size" = "Pembaruan (%s)";
+"whats_new_auto_update_button_size" = "Pembaruan (%@)";
 
 /* Autoupdate dialog on start */
 "whats_new_auto_update_button_later" = "Perbarui secara manual nanti";
@@ -1237,7 +1241,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/id/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
@@ -1339,6 +1343,8 @@
 
 "type.amenity.community_centre" = "Pusat komunitas";
 
+"type.amenity.conference_centre" = "Pusat konferensi";
+
 "type.amenity.courthouse" = "Gedung pengadilan";
 
 "type.amenity.dentist" = "Dokter gigi";
@@ -1348,6 +1354,8 @@
 "type.amenity.drinking_water" = "Air minum";
 
 "type.amenity.driving_school" = "Sekolah Mengemudi";
+
+"type.amenity.exhibition_centre" = "Pusat pameran";
 
 "type.amenity.money_transfer" = "Transfer uang";
 
@@ -1494,7 +1502,7 @@
 
 "type.recycling.green_waste" = "Green/Organic Waste";
 
-"type.recycling.cartons" = "Beverage Cartons";
+"type.recycling.cartons" = "Cartons";
 
 "type.amenity.restaurant" = "Restoran";
 
@@ -1530,7 +1538,7 @@
 
 "type.amenity.vending_machine.food" = "Food Dispenser";
 
-"type.amenity.vending_machine.newspapers" = "Newspapers Dispenser";
+"type.amenity.vending_machine.newspapers" = "Newspaper Dispenser";
 
 "type.amenity.vending_machine.parking_tickets" = "Mesin pembayaran tiket parkir";
 
@@ -1542,7 +1550,7 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
-"type.amenity.vending_machine.fuel" = "Fuel Dispenser";
+"type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Dokter Hewan";
 
@@ -1585,6 +1593,8 @@
 "type.barrier.retaining_wall" = "Retaining Wall";
 
 "type.barrier.stile" = "Undakan";
+
+"type.barrier.turnstile" = "Pintu putar";
 
 "type.barrier.swing_gate" = "Polisi tidur";
 
@@ -1634,13 +1644,29 @@
 
 "type.boundary.national_park" = "Taman Nasional";
 
+"type.boundary.protected_area" = "Kawasan Lindung";
+
+"type.boundary.protected_area.1" = "Kawasan Lindung";
+
+"type.boundary.protected_area.2" = "Kawasan Lindung";
+
+"type.boundary.protected_area.3" = "Kawasan Lindung";
+
+"type.boundary.protected_area.4" = "Kawasan Lindung";
+
+"type.boundary.protected_area.5" = "Kawasan Lindung";
+
+"type.boundary.protected_area.6" = "Kawasan Lindung";
+
 "type.building" = "Gedung";
 
 "type.building.address" = "Gedung";
 
-"type.building.garage" = "Garasi";
-
 "type.building.has_parts" = "Gedung";
+
+"type.building_part" = "Gedung";
+
+"type.building.garage" = "Garasi";
 
 "type.building.train_station" = "Rel kereta api";
 
@@ -1879,6 +1905,8 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Pintu masuk utama";
 
+"type.entrance.exit" = "Keluar";
+
 "type.healthcare.laboratory" = "Laboratorium medis";
 
 "type.healthcare.physiotherapist" = "Fisioterapis";
@@ -2078,6 +2106,9 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.road.bridge" = "Menjembatani";
+
+/* A bridge structure outline. */
+"type.man_made.bridge" = "Menjembatani";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.road.tunnel" = "Terowongan";
@@ -2327,6 +2358,8 @@
 
 "type.junction" = "Junction";
 
+"type.junction.circular" = "Roundabout";
+
 "type.junction.roundabout" = "Roundabout";
 
 "type.landuse" = "Landuse";
@@ -2347,9 +2380,9 @@
 
 "type.landuse.commercial" = "Commercial Area";
 
-"type.landuse.construction" = "Construction";
+"type.landuse.construction" = "Construction Area";
 
-"type.landuse.education" = "Educational Facilities";
+"type.landuse.education" = "Educational Facility";
 
 "type.landuse.farm" = "Farm";
 
@@ -2503,7 +2536,7 @@
 
 "type.man_made.tower.communication" = "Menara Komunikasi";
 
-"type.man_made.wastewater_plant" = "Wastewater treatment plant";
+"type.man_made.wastewater_plant" = "Wastewater Treatment Plant";
 
 "type.man_made.water_tap" = "Keran Air";
 
@@ -2693,7 +2726,7 @@
 
 "type.power" = "Power";
 
-"type.power.generator" = "Generator";
+"type.power.generator" = "Power Generator";
 
 "type.power.generator.solar" = "Pembangkit surya";
 
@@ -2755,9 +2788,9 @@
 
 "type.railway.crossing" = "Railway Crossing";
 
-"type.railway.disused" = "Disused railway";
+"type.railway.disused" = "Disused Railway";
 
-"type.railway.funicular" = "Funicular";
+"type.railway.funicular" = "Kereta gantung";
 
 "type.railway.funicular.bridge" = "Funicular Bridge";
 
@@ -2795,27 +2828,58 @@
 
 "type.railway.rail" = "Kereta api";
 
-"type.railway.rail.bridge" = "Railway Bridge";
+"type.railway.rail.highspeed" = "Kereta api berkecepatan tinggi";
 
-"type.railway.rail.motor_vehicle" = "Railway";
+"type.railway.rail.tourism" = "Kereta api wisata";
 
-"type.railway.rail.tunnel" = "Railway Tunnel";
+"type.railway.rail.main" = "Kereta api";
 
-"type.railway.razed" = "Razed Rail";
+/* Includes ordinary railway=rail w/o more specific usage= and service= tags. */
+"type.railway.rail.branch" = "Kereta api sekunder";
 
-"type.railway.siding" = "Siding Rail";
+/* Non-passenger utility tracks: industrial, military, test. */
+"type.railway.rail.utility" = "Kereta api utilitas";
 
-"type.railway.siding.bridge" = "Siding Rail Bridge";
+"type.railway.rail.spur" = "Pacu kereta api";
 
-"type.railway.siding.tunnel" = "Siding Rail Tunnel";
+/* Short service tracks: siding, yard, crossover. */
+"type.railway.rail.service" = "Jalur rel bantu";
 
-"type.railway.spur" = "Spur Rail";
+"type.railway.rail.bridge" = "Jembatan kereta api";
 
-"type.railway.spur.bridge" = "Spur Rail Bridge";
+"type.railway.rail.highspeed.bridge" = "Jembatan kereta api";
 
-"type.railway.spur.tunnel" = "Spur Rail Tunnel";
+"type.railway.rail.tourism.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.main.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.branch.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.utility.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.spur.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.service.bridge" = "Jembatan kereta api";
+
+"type.railway.rail.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.highspeed.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.tourism.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.main.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.branch.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.utility.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.spur.tunnel" = "Terowongan kereta api";
+
+"type.railway.rail.service.tunnel" = "Terowongan kereta api";
 
 "type.railway.station" = "Rel kereta api";
+
+"type.railway.station.funicular" = "Kereta gantung";
 
 "type.railway.station.light_rail" = "Rel kereta api";
 
@@ -3275,17 +3339,11 @@
 
 "type.railway.tram_stop" = "Perhentian trem";
 
-"type.railway.yard" = "Railway Yard";
-
-"type.railway.yard.bridge" = "Railway Yard Bridge";
-
-"type.railway.yard.tunnel" = "Railway Yard Tunnel";
-
-"type.route" = "route";
+"type.route" = "Route";
 
 "type.route.ferry" = "Ferry";
 
-"type.route.shuttle_train" = "Shuttle Train";
+"type.route.shuttle_train" = "route-shuttle_train";
 
 "type.shop" = "Toko";
 
@@ -3377,7 +3435,7 @@
 
 "type.shop.hairdresser" = "Penata rambut";
 
-"type.shop.hardware" = "Toko perangkat keras";
+"type.shop.hardware" = "Hardware Store";
 
 "type.shop.health_food" = "Toko Makanan Kesehatan";
 
@@ -3467,6 +3525,7 @@
 
 "type.shop.appliance" = "Toko peralatan";
 
+/* maybe change to Art Gallery for en-US when supported */
 "type.shop.art" = "Toko Seni";
 
 "type.shop.baby_goods" = "Toko anak-anak";
@@ -3658,6 +3717,8 @@
 
 "type.waterway.canal.tunnel" = "Kanal";
 
+"type.waterway.fish_pass" = "Tangga ikan";
+
 "type.waterway.dam" = "Dam";
 
 "type.waterway.ditch" = "Ditch";
@@ -3728,6 +3789,8 @@
 
 "type.piste_type.sled" = "Sledding Piste";
 
-"type.building_part" = "Gedung";
-
 "type.amenity.events_venue" = "Tempat acara";
+
+"type.shop.auction" = "Lelang";
+
+"type.shop.collector" = "Barang koleksi";

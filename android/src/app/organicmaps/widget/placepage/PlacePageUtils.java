@@ -39,11 +39,6 @@ public class PlacePageUtils
     return state == BottomSheetBehavior.STATE_COLLAPSED;
   }
 
-  static boolean isHalfExpandedState(@BottomSheetBehavior.State int state)
-  {
-    return state == BottomSheetBehavior.STATE_HALF_EXPANDED;
-  }
-
   static boolean isExpandedState(@BottomSheetBehavior.State int state)
   {
     return state == BottomSheetBehavior.STATE_EXPANDED;
@@ -79,12 +74,11 @@ public class PlacePageUtils
   public static void copyToClipboard(Context context, View frame, String text)
   {
     Utils.copyTextToClipboard(context, text);
-    Utils.showSnackbarAbove(frame,
-                            frame.getRootView().findViewById(R.id.pp_buttons_layout),
+    Utils.showSnackbarAbove(frame.getRootView().findViewById(R.id.pp_buttons_layout), frame,
                             context.getString(R.string.copied_to_clipboard, text));
   }
 
-  public static void showCopyPopup(Context context, View popupAnchor, View frame, List<String> items)
+  public static void showCopyPopup(Context context, View popupAnchor, List<String> items)
   {
     final PopupMenu popup = new PopupMenu(context, popupAnchor);
     final Menu menu = popup.getMenu();
@@ -95,7 +89,7 @@ public class PlacePageUtils
 
     popup.setOnMenuItemClickListener(item -> {
       final String text = items.get(item.getItemId());
-      copyToClipboard(context, frame, text);
+      copyToClipboard(context, popupAnchor, text);
       return true;
     });
     popup.show();

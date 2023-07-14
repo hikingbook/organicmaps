@@ -21,7 +21,7 @@
 	<string name="miles">Milhas</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
 	<string name="core_my_position">A minha posição</string>
-	<!-- Update maps later/Buy pro version later button text -->
+	<!-- Update maps later button text -->
 	<string name="later">Mais tarde</string>
 	<!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
 	<string name="search">Pesquisar</string>
@@ -71,8 +71,10 @@
 	<string name="bookmark_color">Cor do favorito</string>
 	<!-- Add Bookmark list dialog - hint when the list name is empty -->
 	<string name="bookmark_set_name">Nome do conjunto de favoritos</string>
-	<!-- "Bookmarks" dialog title, please also edit it in iphone/plist.txt -->
+	<!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
 	<string name="bookmarks">Favoritos</string>
+	<!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+	<string name="bookmarks_and_tracks">Favoritos e trilhas</string>
 	<!-- Default bookmark list name -->
 	<string name="core_my_places">Os meus locais</string>
 	<!-- Add bookmark dialog - bookmark name -->
@@ -111,6 +113,8 @@
 	<string name="parking">Estacionamento</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
 	<string name="shopping">Compras</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
+	<string name="secondhand">Em segunda mão</string>
 	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
 	<string name="hotel">Hotel</string>
 	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
@@ -242,6 +246,10 @@
 	<string name="copyright">Direitos de autor</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">Reportar um problema</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_recommended">Melhore a direcção das setas movendo o telemóvel num movimento em forma de oito para calibrar a bússola.</string>
+	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
+	<string name="compass_calibration_required">Mova o telemóvel num movimento em forma de oito para calibrar a bússola e fixar a direcção da seta no mapa.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Atualizar tudo</string>
 	<!-- Cancel all button text -->
@@ -370,6 +378,10 @@
 	<string name="p2p_reroute_from_current">Quer planear uma rota a partir da sua localização atual?</string>
 	<!-- Edit open hours/set time and minutes dialog -->
 	<string name="next_button">Próxima</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_from">Das</string>
+	<!-- Tab title in the Edit Opening Hours time picker -->
+	<string name="editor_time_to">Às</string>
 	<string name="editor_time_add">Adicionar horário</string>
 	<string name="editor_time_delete">Eliminar horário</string>
 	<!-- Text for allday switch. -->
@@ -469,18 +481,16 @@
 	<string name="current_location_unknown_message">A localização atual é desconhecida. Talvez esteja num edifício ou num túnel.</string>
 	<string name="current_location_unknown_continue_button">Continuar</string>
 	<string name="current_location_unknown_stop_button">Parar</string>
-	<string name="meter">m</string>
-	<string name="kilometer">Km</string>
+	<string name="m">m</string>
+	<string name="km">Km</string>
 	<string name="kilometers_per_hour">km/h</string>
-	<string name="mile">mi</string>
+	<string name="mi">mi</string>
 	<!-- A unit of measure -->
-	<string name="foot">ft</string>
+	<string name="ft">ft</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="hour">h</string>
 	<string name="minute">min</string>
-	<string name="placepage_place_description">Descrição</string>
 	<string name="placepage_more_button">Mais</string>
-	<string name="placepage_call_button">Telefonar</string>
 	<string name="placepage_edit_bookmark_button">Editar favorito</string>
 	<string name="editor_comment_hint">Comentário…</string>
 	<string name="editor_reset_edits_message">Eliminar todas as alterações locais?</string>
@@ -545,8 +555,8 @@
 	<string name="bookmark_lists_hide_all">Ocultar tudo</string>
 	<string name="bookmark_lists_show_all">Mostrar tudo</string>
 	<string name="bookmarks_create_new_group">Criar nova lista</string>
-	<!-- Bookmark categories screen -->
-	<string name="bookmarks_import">Importar favoritos</string>
+	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
+	<string name="bookmarks_import">Importar favoritos e trilhas</string>
 	<string name="bookmarks_error_message_share_general">Não foi possível partilhar devido a um erro da aplicação</string>
 	<string name="bookmarks_error_title_share_empty">Erro ao partilhar</string>
 	<string name="bookmarks_error_message_share_empty">Não é possível partilhar uma lista vazia</string>
@@ -744,11 +754,13 @@
 	<string name="type.amenity.clinic">Clínica ou centro de saúde</string>
 	<string name="type.amenity.college">Escola técnica</string>
 	<string name="type.amenity.community_centre">Centro comunitário</string>
+	<string name="type.amenity.conference_centre">Centro de conferências</string>
 	<string name="type.amenity.courthouse">Tribunal</string>
 	<string name="type.amenity.dentist">Dentista</string>
 	<string name="type.amenity.doctors">Consultório médico</string>
 	<string name="type.amenity.drinking_water">Água potável</string>
 	<string name="type.amenity.driving_school">Escola de condução</string>
+	<string name="type.amenity.exhibition_centre">Centro de exposições</string>
 	<string name="type.amenity.money_transfer">Transferência de dinheiro</string>
 	<string name="type.amenity.music_school">Escola de música</string>
 	<string name="type.amenity.language_school">Escola de idiomas</string>
@@ -787,8 +799,8 @@
 	<string name="type.amenity.parking_entrance.permissive">Entrada do estacionamento</string>
 	<string name="type.amenity.parking_space">Lugar de estacionamento</string>
 	<string name="type.amenity.parking_space.permissive">Lugar de estacionamento</string>
-	<string name="type.amenity.parking_space.private">Lugar de estacionamento privado</string>
-	<string name="type.amenity.parking_space.underground">Lugar de estacionamento subterrâneo</string>
+	<string name="type.amenity.parking_space.private">Lugar de estacionamento</string>
+	<string name="type.amenity.parking_space.underground">Lugar de estacionamento</string>
 	<string name="type.amenity.parking_space.disabled">Estacionamento para deficientes</string>
 	<string name="type.amenity.payment_terminal">Terminal de pagamento</string>
 	<string name="type.amenity.pharmacy">Farmácia</string>
@@ -854,6 +866,7 @@
 	<string name="type.barrier.lift_gate">Cancela elevatória</string>
 	<string name="type.barrier.retaining_wall">Muro de retenção</string>
 	<string name="type.barrier.stile">Travessia de escada em vedação ou muro</string>
+	<string name="type.barrier.turnstile">Torniquete</string>
 	<string name="type.barrier.swing_gate">Cancela elevatória</string>
 	<string name="type.barrier.toll_booth">Portagem</string>
 	<string name="type.barrier.wall">Muro</string>
@@ -878,10 +891,18 @@
 	<string name="type.boundary.administrative.state">Fronteira de estado</string>
 	<string name="type.boundary.administrative.suburb">Fronteira de subúrbio</string>
 	<string name="type.boundary.national_park">Parque nacional</string>
+	<string name="type.boundary.protected_area">Área protegida</string>
+	<string name="type.boundary.protected_area.1">Área protegida</string>
+	<string name="type.boundary.protected_area.2">Área protegida</string>
+	<string name="type.boundary.protected_area.3">Área protegida</string>
+	<string name="type.boundary.protected_area.4">Área protegida</string>
+	<string name="type.boundary.protected_area.5">Área protegida</string>
+	<string name="type.boundary.protected_area.6">Área protegida</string>
 	<string name="type.building">Edifício</string>
 	<string name="type.building.address">Edifício</string>
-	<string name="type.building.garage">Garagem</string>
 	<string name="type.building.has_parts">Edifício</string>
+	<string name="type.building_part">Edifício</string>
+	<string name="type.building.garage">Garagem</string>
 	<string name="type.building.train_station">Estação de comboios</string>
 	<string name="type.building.warehouse">Armazém</string>
 	<string name="type.cemetery.grave">Túmulo</string>
@@ -1001,6 +1022,7 @@
 	<string name="type.entrance">Entrada</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrada principal</string>
+	<string name="type.entrance.exit">Sai</string>
 	<string name="type.healthcare.laboratory">Laboratório médico</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapeuta</string>
 	<string name="type.healthcare.alternative">Medicina alternativa</string>
@@ -1112,6 +1134,8 @@
 	<string name="type.highway.road">Estrada</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.road.bridge">Ponte</string>
+	<!-- A bridge structure outline. -->
+	<string name="type.man_made.bridge">Ponte</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.road.tunnel">Túnel</string>
 	<string name="type.highway.secondary">Estrada secundária</string>
@@ -1232,6 +1256,7 @@
 	<string name="type.internet_access">Internet</string>
 	<string name="type.internet_access.wlan">Internet</string>
 	<string name="type.junction">Cruzamento</string>
+	<string name="type.junction.circular">Rotunda</string>
 	<string name="type.junction.roundabout">Rotunda</string>
 	<string name="type.landuse">Uso do solo</string>
 	<string name="type.landuse.allotments">Horta comunitária</string>
@@ -1286,7 +1311,7 @@
 	<string name="type.leisure.park">Parque urbano</string>
 	<string name="type.leisure.park.no.access">Parque urbano</string>
 	<string name="type.leisure.park.permissive">Parque urbano</string>
-	<string name="type.leisure.park.private">Parque urbano privado</string>
+	<string name="type.leisure.park.private">Parque urbano</string>
 	<string name="type.leisure.picnic_table">Mesa de piqueniques</string>
 	<string name="type.leisure.pitch">Campo de desportos</string>
 	<string name="type.leisure.playground">Parque infantil</string>
@@ -1452,17 +1477,34 @@
 	<string name="type.railway.preserved.bridge">Ferrovia preservada</string>
 	<string name="type.railway.preserved.tunnel">Ferrovia preservada</string>
 	<string name="type.railway.rail">Ferrovia</string>
-	<string name="type.railway.rail.bridge">Ferrovia</string>
-	<string name="type.railway.rail.motor_vehicle">Ferrovia</string>
-	<string name="type.railway.rail.tunnel">Ferrovia</string>
-	<string name="type.railway.razed">Ferrovia removida</string>
-	<string name="type.railway.siding">Desvio de ferrovia</string>
-	<string name="type.railway.siding.bridge">Desvio de ferrovia</string>
-	<string name="type.railway.siding.tunnel">Desvio de ferrovia</string>
-	<string name="type.railway.spur">Ramal de ferrovia</string>
-	<string name="type.railway.spur.bridge">Ramal de ferrovia</string>
-	<string name="type.railway.spur.tunnel">Ramal de ferrovia</string>
+	<string name="type.railway.rail.highspeed">Ferrovia de alta velocidade</string>
+	<string name="type.railway.rail.tourism">Ferrovia turística</string>
+	<string name="type.railway.rail.main">Ferrovia</string>
+	<!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
+	<string name="type.railway.rail.branch">Ramal ferroviário</string>
+	<!-- Non-passenger utility tracks: industrial, military, test. -->
+	<string name="type.railway.rail.utility">Ferrovia de serviços</string>
+	<string name="type.railway.rail.spur">Ramal de inserção</string>
+	<!-- Short service tracks: siding, yard, crossover. -->
+	<string name="type.railway.rail.service">Linha de serviço</string>
+	<string name="type.railway.rail.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.highspeed.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.tourism.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.main.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.branch.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.utility.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.spur.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.service.bridge">Ponte ferroviária</string>
+	<string name="type.railway.rail.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.highspeed.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.tourism.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.main.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.branch.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.utility.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.spur.tunnel">Túnel ferroviário</string>
+	<string name="type.railway.rail.service.tunnel">Túnel ferroviário</string>
 	<string name="type.railway.station">Estação de comboios</string>
+	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Estação de comboios</string>
 	<string name="type.railway.station.monorail">Estação de comboios</string>
 	<string name="type.railway.station.subway">Estação de metro</string>
@@ -1692,12 +1734,8 @@
 	<string name="type.railway.tram.bridge">Linha de elétrico</string>
 	<string name="type.railway.tram.tunnel">Linha de elétrico</string>
 	<string name="type.railway.tram_stop">Paragem de elétrico</string>
-	<string name="type.railway.yard">Pátio de manobras ferroviárias</string>
-	<string name="type.railway.yard.bridge">Pátio de manobras ferroviárias</string>
-	<string name="type.railway.yard.tunnel">Pátio de manobras ferroviárias</string>
 	<string name="type.route">Rota</string>
 	<string name="type.route.ferry">Rota de ferry</string>
-	<string name="type.route.shuttle_train">Rota de comboio vaivem</string>
 	<string name="type.shop">Loja</string>
 	<string name="type.shop.alcohol">Loja de bebidas alcoolicas</string>
 	<string name="type.shop.bakery">Padaria</string>
@@ -1787,6 +1825,7 @@
 	<string name="type.shop.agrarian">Loja agrícola</string>
 	<string name="type.shop.antiques">Antiguidades</string>
 	<string name="type.shop.appliance">Loja de eletrodomésticos</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
 	<string name="type.shop.art">Loja de artes</string>
 	<string name="type.shop.baby_goods">Loja infantil</string>
 	<string name="type.shop.bag">Loja de bolsas</string>
@@ -1882,6 +1921,7 @@
 	<string name="type.waterway">Curso de água</string>
 	<string name="type.waterway.canal">Canal</string>
 	<string name="type.waterway.canal.tunnel">Canal</string>
+	<string name="type.waterway.fish_pass">Escada de peixes</string>
 	<string name="type.waterway.dam">Barragem</string>
 	<string name="type.waterway.ditch">Vala</string>
 	<string name="type.waterway.ditch.tunnel">Vala</string>
@@ -1917,6 +1957,7 @@
 	<string name="type.piste_type.downhill.novice">Esqui alpino iniciante</string>
 	<string name="type.piste_type.nordic">Pista tipo nórdico</string>
 	<string name="type.piste_type.sled">Pista para trenós</string>
-	<string name="type.building_part">Parte de edifício</string>
 	<string name="type.amenity.events_venue">Local dos eventos</string>
+	<string name="type.shop.auction">Leilão</string>
+	<string name="type.shop.collector">Objectos de colecção</string>
 </resources>

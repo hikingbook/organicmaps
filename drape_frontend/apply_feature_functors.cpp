@@ -35,10 +35,9 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <map>
 #include <mutex>
-#include <sstream>
-#include <unordered_map>
-#include <utility>
+
 
 namespace df
 {
@@ -458,7 +457,7 @@ void ApplyPointFeature::ProcessPointRule(Stylist::TRuleWrapper const & rule)
     return;
 
   SymbolRuleProto const * symRule = rule.m_rule->GetSymbol();
-  if (symRule != nullptr)
+  if (symRule)
   {
     m_symbolDepth = rule.m_depth;
     m_symbolRule = symRule;
@@ -702,6 +701,7 @@ void ApplyAreaFeature::BuildEdges(int vertexIndex1, int vertexIndex2, int vertex
 
 void ApplyAreaFeature::CalculateBuildingOutline(bool calculateNormals, BuildingOutline & outline)
 {
+  // Make sure that you called this fuction once! per feature.
   outline.m_vertices = std::move(m_points);
   outline.m_indices.reserve(m_edges.size() * 2);
   if (calculateNormals)
@@ -748,19 +748,24 @@ void ApplyAreaFeature::ProcessAreaRule(Stylist::TRuleWrapper const & rule)
     params.m_baseGtoPScale = static_cast<float>(m_currentScaleGtoP);
 
     BuildingOutline outline;
-    if (m_isBuilding)
+    if (m_isBuilding && !params.m_hatching)
     {
+      /// @todo Make borders work for non-building areas too.
       outline.m_generateOutline = areaRule->has_border() &&
                                   areaRule->color() != areaRule->border().color() &&
                                   areaRule->border().width() > 0.0;
       if (outline.m_generateOutline)
         params.m_outlineColor = ToDrapeColor(areaRule->border().color());
+
       bool const calculateNormals = m_posZ > 0.0;
-      CalculateBuildingOutline(calculateNormals, outline);
+      if (calculateNormals || outline.m_generateOutline)
+        CalculateBuildingOutline(calculateNormals, outline);
+
       params.m_is3D = !outline.m_indices.empty() && calculateNormals;
     }
 
-    m_insertShape(make_unique_dp<AreaShape>(std::vector<m2::PointD>(m_triangles), std::move(outline), params));
+    m_insertShape(make_unique_dp<AreaShape>(params.m_hatching ? m_triangles : std::move(m_triangles),
+                                            std::move(outline), params));
   }
   else
   {
@@ -842,16 +847,12 @@ void ApplyLineFeatureGeometry::ProcessLineRule(Stylist::TRuleWrapper const & rul
     if (clippedPaths.empty())
       return;
 
-    size_t const kExtraPointsPerSegment = 4;
-    m2::SmoothPaths(guidePointsForSmooth, kExtraPointsPerSegment, m2::kCentripetalAlpha,
-                    clippedPaths);
+    m2::SmoothPaths(guidePointsForSmooth, 4 /* newPointsPerSegmentCount */, m2::kCentripetalAlpha, clippedPaths);
 
     m_clippedSplines.clear();
-    for (auto const & path : clippedPaths)
-    {
-      auto splines = m2::ClipPathByRect(m_tileRect, path);
-      std::move(splines.begin(), splines.end(), std::back_inserter(m_clippedSplines));
-    }
+    std::function<void (m2::SharedSpline &&)> inserter = base::MakeBackInsertFunctor(m_clippedSplines);
+    for (auto & path : clippedPaths)
+      m2::ClipPathByRect(m_tileRect, std::move(path), inserter);
   }
 
   if (m_clippedSplines.empty())

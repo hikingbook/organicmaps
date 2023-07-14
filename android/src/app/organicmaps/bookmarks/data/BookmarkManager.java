@@ -427,6 +427,11 @@ public enum BookmarkManager
             filename = cursor.getString(columnIndex);
         }
       }
+      catch (Exception ex)
+      {
+        Logger.e(TAG, ex + " while querying " + uri);
+        ex.printStackTrace();
+      }
     }
 
     if (filename == null)
@@ -434,17 +439,16 @@ public enum BookmarkManager
       filename = uri.getPath();
       int cut = filename.lastIndexOf('/');
       if (cut != -1)
-      {
         filename = filename.substring(cut + 1);
-      }
     }
     // See IsBadCharForPath()
     filename = filename.replaceAll("[:/\\\\<>\"|?*]", "");
 
+    final String lowerCaseFilename = filename.toLowerCase(java.util.Locale.ROOT);
     // Check that filename contains bookmarks extension.
     for (String ext: BOOKMARKS_EXTENSIONS)
     {
-      if (filename.endsWith(ext))
+      if (lowerCaseFilename.endsWith(ext))
         return filename;
     }
 
@@ -461,6 +465,8 @@ public enum BookmarkManager
         else if (type.equalsIgnoreCase("kml+xml"))
           return filename + ".kml";
       }
+      if (mime.endsWith("gpx+xml") || mime.endsWith("gpx")) // match application/gpx, application/gpx+xml
+        return filename + ".gpx";
     }
 
     return null;
@@ -469,15 +475,12 @@ public enum BookmarkManager
   @WorkerThread
   public boolean importBookmarksFile(@NonNull ContentResolver resolver, @NonNull Uri uri, @NonNull File tempDir)
   {
-    String filename = getBookmarksFilenameFromUri(resolver, uri);
+    final String filename = getBookmarksFilenameFromUri(resolver, uri);
     if (filename == null)
-    {
-      Logger.w(TAG, "Missing path in bookmarks URI: " + uri);
       return false;
-    }
 
-    Logger.w(TAG, "Downloading bookmarks file " + uri);
-    File tempFile = new File(tempDir, filename);
+    Logger.w(TAG, "Downloading bookmarks file " + uri + " with file name " + filename);
+    final File tempFile = new File(tempDir, filename);
     try
     {
       StorageUtils.copyFile(resolver, uri, tempFile);
