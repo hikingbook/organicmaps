@@ -17423,7 +17423,7 @@ cont {
     scale: 14
     lines {
       width: 0.9
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -17657,7 +17657,7 @@ cont {
     scale: 14
     lines {
       width: 0.9
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -18004,6 +18004,630 @@ cont {
 }
 cont {
   name: "highway-footway-permissive"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_bad"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_excellent"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_good"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_horrible"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_intermediate"
+  element {
+    scale: 15
+    lines {
+      width: 1.5
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 2.0
+      color: 16777215
+      dashdot {
+        dd: 5.0
+        dd: 2.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.4
+      color: 16777215
+      dashdot {
+        dd: 6.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.4
+      color: 16777215
+      dashdot {
+        dd: 8.0
+        dd: 3.0
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.5
+      color: 16777215
+      dashdot {
+        dd: 10.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-footway-trail_visibility_no"
   element {
     scale: 15
     lines {
@@ -21117,7 +21741,7 @@ cont {
     scale: 14
     lines {
       width: 0.9
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -21130,7 +21754,7 @@ cont {
     scale: 15
     lines {
       width: 1.1
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -21151,7 +21775,7 @@ cont {
     scale: 16
     lines {
       width: 1.5
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 4.0
         dd: 2.5
@@ -21171,7 +21795,7 @@ cont {
     scale: 17
     lines {
       width: 2.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 4.0
         dd: 2.5
@@ -21191,7 +21815,7 @@ cont {
     scale: 18
     lines {
       width: 3.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 6.0
         dd: 3.5
@@ -21211,7 +21835,7 @@ cont {
     scale: 19
     lines {
       width: 4.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 8.0
         dd: 4.5
@@ -21351,7 +21975,7 @@ cont {
     scale: 14
     lines {
       width: 0.9
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -21364,7 +21988,7 @@ cont {
     scale: 15
     lines {
       width: 1.1
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 3.5
         dd: 2.0
@@ -21385,7 +22009,7 @@ cont {
     scale: 16
     lines {
       width: 1.5
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 4.0
         dd: 2.5
@@ -21405,7 +22029,7 @@ cont {
     scale: 17
     lines {
       width: 2.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 4.0
         dd: 2.5
@@ -21425,7 +22049,7 @@ cont {
     scale: 18
     lines {
       width: 3.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 6.0
         dd: 3.5
@@ -21445,7 +22069,7 @@ cont {
     scale: 19
     lines {
       width: 4.0
-      color: 10506258
+      color: 8996011
       dashdot {
         dd: 8.0
         dd: 4.5
@@ -21815,6 +22439,708 @@ cont {
 }
 cont {
   name: "highway-path-permissive"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 10506258
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 10506258
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_bad"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 8996011
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 8996011
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 8996011
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 8996011
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 8996011
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 8996011
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_excellent"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 10506258
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 10506258
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_good"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 10506258
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 10506258
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_horrible"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 8996011
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 8996011
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 8996011
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 8996011
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 8996011
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 8996011
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_intermediate"
+  element {
+    scale: 14
+    lines {
+      width: 0.9
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+  }
+  element {
+    scale: 15
+    lines {
+      width: 1.1
+      color: 10506258
+      dashdot {
+        dd: 3.5
+        dd: 2.0
+      }
+      priority: 313
+      cap: BUTTCAP
+    }
+    path_text {
+      primary {
+        height: 8
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 16
+    lines {
+      width: 1.5
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 17
+    lines {
+      width: 2.0
+      color: 10506258
+      dashdot {
+        dd: 4.0
+        dd: 2.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 9
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 18
+    lines {
+      width: 3.0
+      color: 10506258
+      dashdot {
+        dd: 6.0
+        dd: 3.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+  element {
+    scale: 19
+    lines {
+      width: 4.0
+      color: 10506258
+      dashdot {
+        dd: 8.0
+        dd: 4.5
+      }
+      priority: 313
+    }
+    path_text {
+      primary {
+        height: 10
+        color: 3355443
+        stroke_color: 872415231
+      }
+      priority: 16313
+    }
+  }
+}
+cont {
+  name: "highway-path-trail_visibility_no"
   element {
     scale: 14
     lines {
@@ -103208,6 +104534,77 @@ cont {
     scale: 19
     symbol {
       name: "map"
+      priority: 16598
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 11
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15598
+    }
+  }
+}
+cont {
+  name: "tourism-information-mobile"
+  element {
+    scale: 16
+    symbol {
+      name: "mobile"
+      priority: 16588
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15588
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "mobile"
+      priority: 16588
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 10
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15588
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "mobile"
+      priority: 16598
+      min_distance: 10
+    }
+    caption {
+      primary {
+        height: 11
+        color: 4473924
+        offset_y: 1
+        is_optional: true
+      }
+      priority: 15598
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "mobile"
       priority: 16598
       min_distance: 10
     }
