@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2023.
 #include "app/organicmaps/platform/AndroidPlatform.hpp"
 #include "app/organicmaps/platform/GuiThread.hpp"
 
@@ -130,10 +131,11 @@ platform::NetworkPolicy GetCurrentNetworkPolicy()
 
 namespace android
 {
-void Platform::Initialize(JNIEnv * env, jobject functorProcessObject, jstring apkPath,
+void Platform::Initialize(JNIEnv * env, jobject context, jobject functorProcessObject, jstring apkPath,
                           jstring writablePath, jstring privatePath, jstring tmpPath,
                           jstring flavorName, jstring buildType, bool isTablet)
 {
+  m_context = env->NewGlobalRef(context);
   m_functorProcessObject = env->NewGlobalRef(functorProcessObject);
 
   m_guiThread = std::make_unique<GuiThread>(m_functorProcessObject);

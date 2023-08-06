@@ -17,13 +17,13 @@ extern "C"
   // void nativeInitPlatform(String apkPath, String storagePath, String privatePath, String tmpPath,
   // String flavorName, String buildType, boolean isTablet);
   JNIEXPORT void JNICALL
-  Java_app_organicmaps_MwmApplication_nativeInitPlatform(JNIEnv * env, jobject thiz,
+  Java_app_organicmaps_MwmApplication_nativeInitPlatform(JNIEnv * env, jobject thiz, jobject context,
                                                              jstring apkPath, jstring writablePath,
                                                              jstring privatePath, jstring tmpPath,
                                                              jstring flavorName, jstring buildType,
                                                              jboolean isTablet)
   {
-    android::Platform::Instance().Initialize(env, thiz, apkPath, writablePath, privatePath, tmpPath,
+    android::Platform::Instance().Initialize(env, context, thiz, apkPath, writablePath, privatePath, tmpPath,
                                              flavorName, buildType, isTablet);
   }
 

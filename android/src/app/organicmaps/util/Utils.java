@@ -1,8 +1,3 @@
-/**
- * Author by robin, Date on 11/30/21.
- * Comment: Remove Crashlytics
- */
-
 package app.organicmaps.util;
 
 import android.annotation.SuppressLint;
@@ -28,7 +23,6 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.AndroidRuntimeException;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -46,14 +40,6 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
-import app.organicmaps.BuildConfig;
-import app.organicmaps.MwmApplication;
-import app.organicmaps.R;
-import app.organicmaps.base.CustomNavigateUpListener;
-import app.organicmaps.util.concurrency.UiThread;
-import app.organicmaps.util.log.Logger;
-import app.organicmaps.util.log.LogsManager;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.Serializable;
@@ -67,6 +53,13 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
+
+import app.organicmaps.BuildConfig;
+import app.organicmaps.R;
+import app.organicmaps.base.CustomNavigateUpListener;
+import app.organicmaps.util.concurrency.UiThread;
+import app.organicmaps.util.log.Logger;
+import app.organicmaps.util.log.LogsManager;
 
 public class Utils
 {
@@ -735,7 +728,7 @@ public class Utils
 
     String key = "type." + type.replace('-', '.')
                                .replace(':', '_');
-    return getLocalizedFeatureByKey(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(), key);
+    return getLocalizedFeatureByKey(context, key);
   }
 
   @NonNull

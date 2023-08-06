@@ -165,7 +165,8 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
     // external storage is damaged or not available (read-only).
     createPlatformDirectories(writablePath, privatePath, tempPath);
 
-    nativeInitPlatform(apkPath,
+    nativeInitPlatform((Context)OrganicmapsFrameworkAdapter.INSTANCE.getApplication(),
+                       apkPath,
                        writablePath,
                        privatePath,
                        tempPath,
@@ -264,7 +265,7 @@ public class MwmApplication extends Application implements AppBackgroundTracker.
 //  }
 
   private static native void nativeSetSettingsDir(String settingsPath);
-  private native void nativeInitPlatform(String apkPath, String writablePath, String privatePath,
+  private native void nativeInitPlatform(Context context, String apkPath, String writablePath, String privatePath,
                                          String tmpPath, String flavorName, String buildType,
                                          boolean isTablet);
   private static native void nativeInitFramework();

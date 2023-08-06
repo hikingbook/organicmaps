@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2023.
 #pragma once
 
 #include <jni.h>
@@ -17,7 +18,7 @@ namespace android
 class Platform : public ::Platform
 {
 public:
-  void Initialize(JNIEnv * env, jobject functorProcessObject, jstring apkPath, jstring writablePath,
+  void Initialize(JNIEnv * env, jobject context, jobject functorProcessObject, jstring apkPath, jstring writablePath,
                   jstring privatePath, jstring tmpPath, jstring flavorName,
                   jstring buildType, bool isTablet);
 
@@ -47,12 +48,13 @@ public:
 
   AndroidSecureStorage & GetSecureStorage() { return m_secureStorage; }
 
-  jobject GetContext() { return m_functorProcessObject; }
+  jobject GetContext() { return m_context; }
 
   static Platform & Instance();
 
 private:
   jobject m_functorProcessObject = nullptr;
+  jobject m_context = nullptr;
   AndroidSecureStorage m_secureStorage;
 };
 } // namespace android
