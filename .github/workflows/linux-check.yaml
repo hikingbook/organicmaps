@@ -20,9 +20,7 @@ on:
       - packaging/**
       - pyhelpers/**
       - tools/**
-      - '!tools/python/run_desktop_tests.py'
-      - '!tools/python/testserver.py'
-      - '!tools/python/SiblingKiller.py'
+      - '!tools/python/test_server/**'
       - xcode/**
 
 jobs:
@@ -74,10 +72,11 @@ jobs:
         env:
           CC: clang-14
           CXX: clang++-14
+          CMAKE_C_COMPILER_LAUNCHER: ccache
+          CMAKE_CXX_COMPILER_LAUNCHER: ccache
         # -g1 should slightly reduce build time.
         run: |
           cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug \
-            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_FLAGS=-g1 -DUNITY_DISABLE=ON
 
       - name: Compile
@@ -138,11 +137,12 @@ jobs:
         env:
           CC: ${{ matrix.compiler.CC }}
           CXX: ${{ matrix.compiler.CXX }}
+          CMAKE_C_COMPILER_LAUNCHER: ccache
+          CMAKE_CXX_COMPILER_LAUNCHER: ccache
         # -g1 should slightly reduce build time.
         run: |
           echo "Building ${{ matrix.CMAKE_BUILD_TYPE }}"
           cmake . -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.CMAKE_BUILD_TYPE }} \
-            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_C_FLAGS=-g1 -DCMAKE_CXX_FLAGS=-g1
 
       - name: Compile
@@ -150,36 +150,18 @@ jobs:
         working-directory: build
         run: ninja
 
-      - name: Checkout world_feed_integration_tests_data
-        uses: actions/checkout@v3
-        with:
-          repository: organicmaps/world_feed_integration_tests_data
-          path: data/world_feed_integration_tests_data
-
       - name: Tests
         shell: bash
-        # generator_integration_tests - https://github.com/organicmaps/organicmaps/issues/225
-        # routing_integration_tests - https://github.com/organicmaps/organicmaps/issues/221
-        # routing_quality_tests - https://github.com/organicmaps/organicmaps/issues/215
-        # drape_tests - requires X Window
-
-        # Separate run of OH boost-based test
+        working-directory: build
+        env:
+          # drape_tests - requires X Window
+          # generator_integration_tests - https://github.com/organicmaps/organicmaps/issues/225
+          # opening_hours_integration_tests - https://github.com/organicmaps/organicmaps/issues/219
+          # opening_hours_supported_features_tests - https://github.com/organicmaps/organicmaps/issues/219
+          # routing_integration_tests - https://github.com/organicmaps/organicmaps/issues/221
+          # shaders_tests - https://github.com/organicmaps/organicmaps/issues/223
+          # world_feed_integration_tests - https://github.com/organicmaps/organicmaps/issues/215
+          CTEST_EXCLUDE_REGEX: "drape_tests|generator_integration_tests|opening_hours_integration_tests|opening_hours_supported_features_tests|routing_benchmarks|routing_integration_tests|routing_quality_tests|search_quality_tests|storage_integration_tests|shaders_tests|world_feed_integration_tests"
         run: |
-          ./build/opening_hours_tests |
-          ./tools/python/run_desktop_tests.py \
-            -f ./build \
-            -u ./data \
-            -d ./data \
-            -e generator_integration_tests \
-            -e routing_integration_tests \
-            -e routing_quality_tests \
-            -e search_quality_tests \
-            -e world_feed_integration_tests \
-            -e drape_tests \
-            -e shaders_tests \
-                            \
-            -e opening_hours_tests \
-            -e opening_hours_integration_tests \
-            -e routing_consistency_tests \
-            -e opening_hours_supported_features_tests \
-            -e storage_integration_tests \
+          ln -s ../data data
+          ctest -LE "fixture" -E "$CTEST_EXCLUDE_REGEX" --output-on-failure
