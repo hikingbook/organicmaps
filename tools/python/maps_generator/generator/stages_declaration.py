@@ -79,17 +79,17 @@ class StageCoastline(Stage):
         #     if not use_old_if_fail:
         #         raise e
 
-        # logger.info("Build costs failed. Try to download the costs...")
-        download_files(
-            {
-                settings.PLANET_COASTS_GEOM_URL: os.path.join(
-                    env.paths.coastline_path, coasts_geom
-                ),
-                settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
-                    env.paths.coastline_path, coasts_rawgeom
-                ),
-            }
-        )
+            logger.warning("Build coasts failed. Try to download the coasts...")
+            download_files(
+                {
+                    settings.PLANET_COASTS_GEOM_URL: os.path.join(
+                        env.paths.coastline_path, coasts_geom
+                    ),
+                    settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
+                        env.paths.coastline_path, coasts_rawgeom
+                    ),
+                }
+            )
 
         for f in [coasts_geom, coasts_rawgeom]:
             path = os.path.join(env.paths.coastline_path, f)
@@ -169,15 +169,23 @@ class StageDownloadDescriptions(Stage):
 @mwm_stage
 class StageMwm(Stage):
     def apply(self, env: Env):
-        with ThreadPool(settings.THREADS_COUNT) as pool:
-            pool.map(
-                lambda c: StageMwm.make_mwm(c, env),
-                env.get_tmp_mwm_names(),
-                chunksize=1,
-            )
+        tmp_mwm_names = env.get_tmp_mwm_names()
+        if len(tmp_mwm_names):
+            logger.info(f'Number of feature data .mwm.tmp country files to process: {len(tmp_mwm_names)}')
+            with ThreadPool(settings.THREADS_COUNT) as pool:
+                pool.map(
+                    lambda c: StageMwm.make_mwm(c, env),
+                    tmp_mwm_names,
+                    chunksize=1,
+                )
+        else:
+            # TODO: list all countries that were not found?
+            logger.warning(f'There are no feature data .mwm.tmp country files to process in {env.paths.intermediate_tmp_path}!')
+            logger.warning('Countries requested for generation are not in the supplied planet file?')
 
     @staticmethod
     def make_mwm(country: AnyStr, env: Env):
+        logger.info(f'Starting mwm generation for {country}')
         world_stages = {
             WORLD_NAME: [
                 StageIndex,
@@ -203,10 +211,11 @@ class StageMwm(Stage):
         ]
 
         for stage in world_stages.get(country, mwm_stages):
-            logger.info('Mwm stage {}: start...'.format(stage.__name__))
+            logger.info(f'{country} mwm stage {stage.__name__}: start...')
             stage(country=country)(env)
 
         env.finish_mwm(country)
+        logger.info(f'Finished mwm generation for {country}')
 
 
 @country_stage

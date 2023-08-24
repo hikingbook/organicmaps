@@ -435,7 +435,7 @@
 		99F9A0E72462CA1700AE21E0 /* DownloadAllView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F9A0E62462CA1700AE21E0 /* DownloadAllView.xib */; };
 		A630D1EA207CA95900976DEA /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A630D1E8207CA95900976DEA /* Localizable.stringsdict */; };
 		AA1C7E3E269A2DD600BAADF2 /* EditTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7E3D269A2DD600BAADF2 /* EditTrackViewController.swift */; };
-		AA4B377626DCCEF6008624B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */; };
+		AC79C8922A65AB9500594C24 /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC79C8912A65AB9500594C24 /* UIColor+hexString.swift */; };
 		AA4B377726DCCF32008624B4 /* FrameworkAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */; };
 		AA4B377A26DCDD58008624B4 /* OrganicMaps-Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA4B377826DCDD57008624B4 /* OrganicMaps-Localizable.strings */; };
 		B33D21AF20DAF9F000BAD749 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D21AE20DAF9F000BAD749 /* Toast.swift */; };
@@ -1286,10 +1286,9 @@
 		A630D205207CAA3A00976DEA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		A630D206207CAA5800976DEA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		AA1C7E3D269A2DD600BAADF2 /* EditTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTrackViewController.swift; sourceTree = "<group>"; };
+		AC79C8912A65AB9500594C24 /* UIColor+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		AA4B377026DCC525008624B4 /* FrameworkAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameworkAdapter.h; sourceTree = "<group>"; };
 		AA4B377326DCC525008624B4 /* FrameworkAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameworkAdapter.mm; sourceTree = "<group>"; };
-		AA4B377426DCC598008624B4 /* MWMMapDownloadDialogDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWMMapDownloadDialogDelegate.h; sourceTree = "<group>"; };
-		AA4B377526DCCEF6008624B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA4B377926DCDD57008624B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
 		AA4B377B26DCDD62008624B4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
 		AA4B377C26DCDD6A008624B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OrganicMaps-Localizable.strings"; sourceTree = "<group>"; };
@@ -2604,6 +2603,7 @@
 				993DF0D023F6BDB000AC231A /* UIView+styleName.swift */,
 				993DF0D123F6BDB000AC231A /* UINavigationItem+styleName.swift */,
 				993DF0D223F6BDB000AC231A /* UIColor+rgba.swift */,
+				AC79C8912A65AB9500594C24 /* UIColor+hexString.swift */,
 				993DF0D323F6BDB000AC231A /* UIColor+image.swift */,
 			);
 			path = Extensions;
@@ -4123,6 +4123,7 @@
 				99A906ED23F6F7030005872B /* PlacePagePreviewViewController.swift in Sources */,
 				993DF10223F6BDB100AC231A /* Colors.swift in Sources */,
 				34AB66201FC5AA330078E451 /* RouteStartButton.swift in Sources */,
+				AC79C8922A65AB9500594C24 /* UIColor+hexString.swift in Sources */,
 				99DEF9D723E420F6006BFD21 /* ElevationProfileDescriptionCell.swift in Sources */,
 				993DF11623F6BDB100AC231A /* UIWindowRenderer.swift in Sources */,
 				F660DEE51EAF4F59004DC056 /* MWMLocationManager+SpeedAndAltitude.swift in Sources */,
