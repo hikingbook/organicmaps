@@ -215,7 +215,9 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
     }
 #endif
   }
-  m_distances.resize(count - 1, -1);
+  if (count > 0) {
+    m_distances.resize(count - 1, -1);
+  }
 
   /// @todo Take out this logic into VehicleModel::GetSpeed to include
   /// RouteShuttleTrain for bicycle and pedestrian.

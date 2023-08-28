@@ -79,17 +79,17 @@ class StageCoastline(Stage):
         #     if not use_old_if_fail:
         #         raise e
 
-            logger.warning("Build coasts failed. Try to download the coasts...")
-            download_files(
-                {
-                    settings.PLANET_COASTS_GEOM_URL: os.path.join(
-                        env.paths.coastline_path, coasts_geom
-                    ),
-                    settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
-                        env.paths.coastline_path, coasts_rawgeom
-                    ),
-                }
-            )
+        logger.warning("Build coasts failed. Try to download the coasts...")
+        download_files(
+            {
+                settings.PLANET_COASTS_GEOM_URL: os.path.join(
+                    env.paths.coastline_path, coasts_geom
+                ),
+                settings.PLANET_COASTS_RAWGEOM_URL: os.path.join(
+                    env.paths.coastline_path, coasts_rawgeom
+                ),
+            }
+        )
 
         for f in [coasts_geom, coasts_rawgeom]:
             path = os.path.join(env.paths.coastline_path, f)
