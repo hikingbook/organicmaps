@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Night Mode";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Off";
+/* Generic «Off» string */
+"off" = "Off";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "On";
+/* Generic «On» string */
+"on" = "On";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Auto";
+/* Generic «Auto» string */
+"auto" = "Auto";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspective view";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Traffic data is not available";
 
-"on" = "Washa";
-
-"off" = "Zima";
-
 "transliteration_title" = "Tafsiri kwa lugha ya Kilatini";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Kamera za mwendo-kasi";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Mara kwa Mara";
 
-"speedcam_option_always" = "Mara kwa Mara";
-
-"speedcam_option_never" = "Kamwe";
+/* Generic «Never» string */
+"never" = "Kamwe";
 
 "place_description_title" = "Maelezo ya Eneo";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Casino";
 
+"type.amenity.gambling" = "Kamari";
+
+"type.leisure.adult_gaming_centre" = "Kituo cha Michezo ya Watu Wazima";
+
+"type.leisure.amusement_arcade" = "Ukumbi wa michezo";
+
 "type.amenity.charging_station" = "Charging Station";
 
 "type.amenity.charging_station.bicycle" = "Kituo cha Kuchaji Baiskeli";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Maegesho";
 
+"type.amenity.parking.fee.street_side" = "Maegesho";
+
 "type.amenity.parking.lane" = "Maegesho";
+
+"type.amenity.parking.fee.lane" = "Maegesho";
 
 "type.amenity.parking_entrance" = "Mlango wa maegesho";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Buddhist Temple";
 
 "type.amenity.place_of_worship.christian" = "Church";
+
+"type.amenity.place_of_worship.christian.mormon" = "Kanisa la Yesu Kristo la Watakatifu wa Siku za Mwisho";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Shelter";
 
+"type.amenity.public_bath" = "Bafu ya Umma";
+
 "type.amenity.shower" = "Shower";
+
+"type.amenity.stripclub" = "Klabu ya Strip";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Ukaguzi wa Gari";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinary Doctor";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Moti";
+"type.waterway.ditch" = "Mfereji wa mifereji ya maji";
+
+"type.natural.water.moat" = "Moti";
+
+"type.natural.water.wastewater" = "Maji machafu";
 
 "type.barrier.entrance" = "Entrance";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Kiwanda cha pombe";
 
+"type.craft.caterer" = "Mpishi";
+
 "type.craft.carpenter" = "Seremala";
 
 "type.craft.confectionery" = "Confectioner";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Urekebishaji wa Elektroniki";
 
 "type.craft.gardener" = "Mtunza bustani";
+
+"type.craft.grinding_mill" = "Kusaga kinu";
 
 "type.craft.handicraft" = "Kazi za mikono";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamese";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Sehemu ya Mkutano wa Dharura";
 
 "type.emergency.defibrillator" = "Defibrillator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Kitu cha kihistoria";
 
+"type.historic.aircraft" = "Ndege ya kihistoria";
+
+"type.historic.anchor" = "Nanga ya kihistoria";
+
 "type.historic.archaeological_site" = "Tovuti ya Akiolojia";
 
 "type.historic.battlefield" = "Uwanja wa vita";
 
 "type.historic.boundary_stone" = "Jiwe la mpaka";
+
+"type.historic.cannon" = "Kanuni";
 
 "type.historic.castle" = "Ngome";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Kunyongea";
 
+"type.historic.locomotive" = "Locomotive ya kihistoria";
+
 "type.historic.memorial" = "Ukumbusho";
 
 "type.historic.memorial.cross" = "Msalaba wa kumbukumbu";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Kikwazo";
 
+"type.historic.stone" = "Jiwe la Kihistoria";
+
 "type.historic.memorial.war_memorial" = "Kumbukumbu ya vita";
+
+"type.historic.mine" = "Mgodi wa Kihistoria";
 
 "type.historic.monument" = "Mnara";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Meli";
 
+"type.historic.tank" = "Tangi ya kihistoria";
+
 "type.historic.tomb" = "Kaburi";
 
 "type.historic.wayside_cross" = "Msalaba wa njiani";
 
 "type.historic.wayside_shrine" = "Kaburi la njia";
+
+"type.historic.wreck" = "Ajali ya meli";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Hifadhi";
+
+"type.leisure.outdoor_seating" = "Viti vya nje";
 
 "type.leisure.park" = "Hifadhi";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Aquarium";
+
 "type.tourism.alpine_hut" = "Alpine Lodging";
 
 "type.tourism.apartment" = "Holiday Apartment";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Ofisi ya watalii";
 
+"type.tourism.information.visitor_centre" = "Kituo cha Wageni";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Mfereji wa mifereji ya maji";
+
+"type.waterway.ditch.tunnel" = "Culvert";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Culvert";
 
 "type.waterway.lock_gate" = "Lock Gate";
 

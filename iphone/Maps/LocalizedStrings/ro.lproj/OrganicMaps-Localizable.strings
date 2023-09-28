@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Mod nocturn";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Oprit";
+/* Generic «Off» string */
+"off" = "Oprit";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Pornit";
+/* Generic «On» string */
+"on" = "Pornit";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automat";
+/* Generic «Auto» string */
+"auto" = "Automat";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Vedere în perspectivă";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Datele privind traficul nu sunt disponibile";
 
-"on" = "Pornit";
-
-"off" = "Oprit";
-
 "transliteration_title" = "Transcrie în alfabet latin";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Radare";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Mereu";
 
-"speedcam_option_always" = "Mereu";
-
-"speedcam_option_never" = "Niciodată";
+/* Generic «Never» string */
+"never" = "Niciodată";
 
 "place_description_title" = "Descrierea locului";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Divertisment";
 
+"type.amenity.gambling" = "Jocuri de noroc";
+
+"type.leisure.adult_gaming_centre" = "Centru de jocuri pentru adulți";
+
+"type.leisure.amusement_arcade" = "Arcadă";
+
 "type.amenity.charging_station" = "Stație încărcare";
 
 "type.amenity.charging_station.bicycle" = "Stație de încărcare pentru biciclete";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parcare";
 
+"type.amenity.parking.fee.street_side" = "Parcare";
+
 "type.amenity.parking.lane" = "Parcare";
+
+"type.amenity.parking.fee.lane" = "Parcare";
 
 "type.amenity.parking_entrance" = "Intrare parcare";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Templu";
 
 "type.amenity.place_of_worship.christian" = "Biserică";
+
+"type.amenity.place_of_worship.christian.mormon" = "Biserica lui Isus Hristos a Sfinților din Zilele din Urmă";
 
 "type.amenity.place_of_worship.hindu" = "Templu";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Adăpost";
 
+"type.amenity.public_bath" = "Baie publică";
+
 "type.amenity.shower" = "Duș";
+
+"type.amenity.stripclub" = "Stripclub";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Inspecția vehiculului";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Cabinet veterinar";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Şanţ";
+"type.waterway.ditch" = "Șanț de drenaj";
+
+"type.natural.water.moat" = "Şanţ";
+
+"type.natural.water.wastewater" = "Ape uzate";
 
 "type.barrier.entrance" = "Intrare";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Berărie";
 
+"type.craft.caterer" = "Catering";
+
 "type.craft.carpenter" = "Tâmplar";
 
 "type.craft.confectionery" = "Cofetar";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Reparații electronice";
 
 "type.craft.gardener" = "Peisagist";
+
+"type.craft.grinding_mill" = "Moara de măcinat";
 
 "type.craft.handicraft" = "Tehnici de lucru manual";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Bucătărie vietnamez";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Punct de adunare de urgență";
 
 "type.emergency.defibrillator" = "Defibrilator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Obiect istoric";
 
+"type.historic.aircraft" = "Avioane istorice";
+
+"type.historic.anchor" = "Ancoră istorică";
+
 "type.historic.archaeological_site" = "Sit arheologic";
 
 "type.historic.battlefield" = "Câmpul de luptă";
 
 "type.historic.boundary_stone" = "Piatră de hotar";
+
+"type.historic.cannon" = "Tun";
 
 "type.historic.castle" = "Castel";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Spânzurătoare";
 
+"type.historic.locomotive" = "Locomotiva istorică";
+
 "type.historic.memorial" = "Comemorare";
 
 "type.historic.memorial.cross" = "Cruce comemorativă";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Blocaj de poticnire";
 
+"type.historic.stone" = "Piatra istorica";
+
 "type.historic.memorial.war_memorial" = "Memorial de război";
+
+"type.historic.mine" = "Mina istorică";
 
 "type.historic.monument" = "Monument";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Navă";
 
+"type.historic.tank" = "Tanc istoric";
+
 "type.historic.tomb" = "Mormânt";
 
 "type.historic.wayside_cross" = "Troiță";
 
 "type.historic.wayside_shrine" = "Altarul de la marginea drumului";
+
+"type.historic.wreck" = "Naufragiu";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Rezervație naturală";
+
+"type.leisure.outdoor_seating" = "Scaune în aer liber";
 
 "type.leisure.park" = "Parc";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Acvariu";
+
 "type.tourism.alpine_hut" = "Cabană de munte";
 
 "type.tourism.apartment" = "Apartamente";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Birou de informații turistice";
 
+"type.tourism.information.visitor_centre" = "Centrul pentru vizitatori";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Muzeu";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Șanț de drenaj";
+
+"type.waterway.ditch.tunnel" = "Canal de scurgere";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Canal de scurgere";
 
 "type.waterway.lock_gate" = "Ecluză";
 

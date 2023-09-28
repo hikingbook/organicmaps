@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Modo nocturno";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Desactivado";
+/* Generic «Off» string */
+"off" = "Desactivado";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Activado";
+/* Generic «On» string */
+"on" = "Activado";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automático";
+/* Generic «Auto» string */
+"auto" = "Automático";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Vista en perspectiva";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Los datos de tráfico no están disponibles";
 
-"on" = "Act.";
-
-"off" = "Desact.";
-
 "transliteration_title" = "Transliteración al alfabeto latino";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Cámaras de velocidad";
 
-"speedcam_option_auto" = "Automático";
+/* Generic «Always» string */
+"always" = "Siempre";
 
-"speedcam_option_always" = "Siempre";
-
-"speedcam_option_never" = "Nunca";
+/* Generic «Never» string */
+"never" = "Nunca";
 
 "place_description_title" = "Descripción de lugares";
 
@@ -1111,7 +1107,7 @@
 
 "download_map_carplay" = "Descargue mapas en la aplicación Organic Maps en su dispositivo";
 
-"carplay_roundabout_exit" = "%@ desviación";
+"carplay_roundabout_exit" = "%@ salida";
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Ordenar…";
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Casino";
 
+"type.amenity.gambling" = "Juegos de azar";
+
+"type.leisure.adult_gaming_centre" = "Centro de juegos para adultos";
+
+"type.leisure.amusement_arcade" = "Arcade";
+
 "type.amenity.charging_station" = "Estación de carga";
 
 "type.amenity.charging_station.bicycle" = "Estación de carga de bicicletas";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Aparcamiento";
 
+"type.amenity.parking.fee.street_side" = "Aparcamiento";
+
 "type.amenity.parking.lane" = "Aparcamiento";
+
+"type.amenity.parking.fee.lane" = "Aparcamiento";
 
 "type.amenity.parking_entrance" = "Entrada al aparcamiento";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Templo";
 
 "type.amenity.place_of_worship.christian" = "Iglesia";
+
+"type.amenity.place_of_worship.christian.mormon" = "Iglesia de Jesucristo de los Santos de los Últimos Días";
 
 "type.amenity.place_of_worship.hindu" = "Templo";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Refugio";
 
+"type.amenity.public_bath" = "Baños públicos";
+
 "type.amenity.shower" = "Ducha";
+
+"type.amenity.stripclub" = "Club de striptease";
 
 "type.amenity.taxi" = "Taxi";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Taquilla de paquetes";
 
+"type.amenity.vehicle_inspection" = "Inspección de vehículos";
+
 "type.amenity.vending_machine.fuel" = "Maquina expendedora de combustible";
 
 "type.amenity.veterinary" = "Clínica veterinaria";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Barrera para bicicletas";
 
-"type.barrier.ditch" = "Foso";
+"type.waterway.ditch" = "Zanja de drenaje";
+
+"type.natural.water.moat" = "Foso";
+
+"type.natural.water.wastewater" = "Aguas residuales";
 
 "type.barrier.entrance" = "Entrada";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Fábrica de cerveza";
 
+"type.craft.caterer" = "Catering";
+
 "type.craft.carpenter" = "Carpintero";
 
 "type.craft.confectionery" = "Confitería";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Reparación de aparatos electrónicos";
 
 "type.craft.gardener" = "Paisajista";
+
+"type.craft.grinding_mill" = "Molino de molienda";
 
 "type.craft.handicraft" = "Artesanía";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Cocina vietnamita";
 
 "type.emergency" = "Emergencia";
+
+"type.emergency.assembly_point" = "Punto de reunión de emergencia";
 
 "type.emergency.defibrillator" = "Desfibrilador";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Objeto histórico";
 
+"type.historic.aircraft" = "Avión histórico";
+
+"type.historic.anchor" = "Ancla histórica";
+
 "type.historic.archaeological_site" = "Yacimiento arqueológico";
 
 "type.historic.battlefield" = "Campo de batalla";
 
 "type.historic.boundary_stone" = "Hito fronterizo";
+
+"type.historic.cannon" = "Cañón";
 
 "type.historic.castle" = "Castillo";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Horca";
 
+"type.historic.locomotive" = "Locomotora histórica";
+
 "type.historic.memorial" = "Monumento conmemorativo";
 
 "type.historic.memorial.cross" = "Cruz conmemorativa";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
+"type.historic.stone" = "Piedra histórica";
+
 "type.historic.memorial.war_memorial" = "Monumento a la guerra";
+
+"type.historic.mine" = "Mina histórica";
 
 "type.historic.monument" = "Monumento";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Barco";
 
+"type.historic.tank" = "Tanque histórico";
+
 "type.historic.tomb" = "Tumba";
 
 "type.historic.wayside_cross" = "Cruz de término";
 
 "type.historic.wayside_shrine" = "Peto de ánimas";
+
+"type.historic.wreck" = "Naufragio";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Reserva";
+
+"type.leisure.outdoor_seating" = "Asientos al aire libre";
 
 "type.leisure.park" = "Parque";
 
@@ -3457,7 +3499,7 @@
 
 "type.shop.hifi" = "Audio de alta fidelidad";
 
-"type.shop.houseware" = "Ferretería";
+"type.shop.houseware" = "Tienda de artículos para el hogar";
 
 "type.shop.jewelry" = "Joyería";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Turismo";
 
+"type.tourism.aquarium" = "Acuario";
+
 "type.tourism.alpine_hut" = "Refugio de montaña";
 
 "type.tourism.apartment" = "Apartamentos";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Oficina de turismo";
 
+"type.tourism.information.visitor_centre" = "Centro de visitantes";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museo";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Presa";
 
-"type.waterway.ditch" = "Zanja";
+"type.barrier.ditch" = "Zanja";
 
-"type.waterway.ditch.tunnel" = "Zanja";
+"type.natural.water.ditch" = "Zanja de drenaje";
+
+"type.waterway.ditch.tunnel" = "Obra de drenaje";
 
 "type.waterway.dock" = "Muelle";
 
 "type.waterway.drain" = "Desagüe";
 
-"type.waterway.drain.tunnel" = "Zanja";
+"type.natural.water.drain" = "Desagüe";
+
+"type.waterway.drain.tunnel" = "Obra de drenaje";
 
 "type.waterway.lock_gate" = "Compuerta";
 

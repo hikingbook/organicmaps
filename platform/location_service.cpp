@@ -6,7 +6,11 @@
 #include <optional>
 #include <vector>
 
-extern "C" location::LocationService * CreateAppleLocationService(location::LocationObserver &);
+#if defined(OMIM_OS_MAC)
+std::unique_ptr<location::LocationService> CreateAppleLocationService(location::LocationObserver &);
+#elif defined(OMIM_OS_LINUX)
+std::unique_ptr<location::LocationService> CreateQtLocationService(location::LocationObserver &, std::string const & sourceName);
+#endif
 
 namespace location
 {
@@ -50,7 +54,7 @@ public:
 
   class DesktopLocationService : public LocationService, public LocationObserver
   {
-    std::vector<LocationService *> m_services;
+    std::vector<std::unique_ptr<LocationService>> m_services;
     PositionFilter m_filter;
     bool m_reportFirstEvent;
 
@@ -71,31 +75,27 @@ public:
     {
 #if defined(OMIM_OS_MAC)
       m_services.push_back(CreateAppleLocationService(*this));
+#elif defined(OMIM_OS_LINUX)
+      m_services.push_back(CreateQtLocationService(*this, "geoclue2"));
 #endif
-    }
-
-    virtual ~DesktopLocationService()
-    {
-      for (size_t i = 0; i < m_services.size(); ++i)
-        delete m_services[i];
     }
 
     virtual void Start()
     {
-      for (size_t i = 0; i < m_services.size(); ++i)
-        m_services[i]->Start();
+      for (auto & service : m_services)
+        service->Start();
     }
 
     virtual void Stop()
     {
-      for (size_t i = 0; i < m_services.size(); ++i)
-        m_services[i]->Stop();
+      for (auto & service : m_services)
+        service->Stop();
       m_reportFirstEvent = true;
     }
   };
 }  // namespace location
 
-location::LocationService * CreateDesktopLocationService(location::LocationObserver & observer)
+std::unique_ptr<location::LocationService> CreateDesktopLocationService(location::LocationObserver & observer)
 {
-  return new location::DesktopLocationService(observer);
+  return std::make_unique<location::DesktopLocationService>(observer);
 }

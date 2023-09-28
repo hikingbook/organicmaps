@@ -49,6 +49,11 @@ By default, it searches `strings.txt`, to check `types_strings.txt` add a `-t` o
 There are many more other options, e.g. print various translation statistics, validate and re-format translation files.
 Check `tools/python/strings_utils.py -h` to see all of them.
 
+To check consistency of types_strings.txt with categories.txt run:
+```
+ruby tools/ruby/category_consistency/check_consistency.rb
+```
+
 ## Automatic translations
 
 In some cases automatically translated strings are better than no translation at all.
@@ -64,8 +69,10 @@ Requires Python version >= 3.7.
 
 ```bash
 export DEEPL_FREE_API_KEY=<your DeepL API key here>
-# Generates translations in both categories.txt and strings.txt formats at the same time.
+# Generates translations in both categories.txt and strings.txt formats at the same time:
 tools/python/translate.py English text to translate here
+# Use two-letter language codes with a colon for a non-English source language:
+tools/python/translate.py de:German text to translate here
 ```
 
 ### Google Translate only

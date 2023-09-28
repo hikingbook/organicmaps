@@ -52,7 +52,6 @@
 #include "platform/preferred_languages.hpp"
 #include "platform/settings.hpp"
 
-#include "coding/endianness.hpp"
 #include "coding/point_coding.hpp"
 #include "coding/string_utf8_multilang.hpp"
 #include "coding/transliteration.hpp"
@@ -272,7 +271,7 @@ void Framework::OnViewportChanged(ScreenBase const & screen)
     m_viewportChangedFn(screen);
 }
 
-Framework::Framework(FrameworkParams const & params)
+Framework::Framework(FrameworkParams const & params, bool loadMaps)
   : m_enabledDiffs(params.m_enableDiffs)
   , m_isRenderingEnabled(true)
   , m_transitManager(m_featuresFetcher.GetDataSource(),
@@ -296,8 +295,6 @@ Framework::Framework(FrameworkParams const & params)
   , m_popularityLoader(m_featuresFetcher.GetDataSource(), POPULARITY_RANKS_FILE_TAG)
   , m_descriptionsLoader(std::make_unique<descriptions::Loader>(m_featuresFetcher.GetDataSource()))
 {
-  CHECK(IsLittleEndian(), ("Only little-endian architectures are supported."));
-
   // Editor should be initialized from the main thread to set its ThreadChecker.
   // However, search calls editor upon initialization thus setting the lazy editor's ThreadChecker
   // to a wrong thread. So editor should be initialiazed before serach.
@@ -336,7 +333,7 @@ Framework::Framework(FrameworkParams const & params)
   LOG(LDEBUG, ("Country info getter initialized"));
 
   InitSearchAPI(params.m_numSearchAPIThreads);
-  LOG(LDEBUG, ("Search API initialized"));
+  LOG(LDEBUG, ("Search API initialized, part 1"));
 
   m_bmManager = make_unique<BookmarkManager>(BookmarkManager::Callbacks(
       [this]() -> StringsBundle const & { return m_stringsBundle; },
@@ -361,29 +358,15 @@ Framework::Framework(FrameworkParams const & params)
 
   m_storage.SetDownloadingPolicy(&m_storageDownloadingPolicy);
   m_storage.SetStartDownloadingCallback([this]() { UpdatePlacePageInfoForCurrentSelection(); });
-  LOG(LDEBUG, ("Storage initialized"));
-
-  RegisterAllMaps();
-  LOG(LDEBUG, ("Maps initialized"));
-
-  // Perform real initialization after World was loaded.
-  GetSearchAPI().InitAfterWorldLoaded();
 
   m_routingManager.SetRouterImpl(RouterType::Vehicle);
 
   UpdateMinBuildingsTapZoom();
 
-  LOG(LDEBUG, ("Routing engine initialized"));
-
   LOG(LINFO, ("System languages:", languages::GetPreferred()));
 
   editor.SetDelegate(make_unique<search::EditorDelegate>(m_featuresFetcher.GetDataSource()));
   editor.SetInvalidateFn([this](){ InvalidateRect(GetCurrentViewport()); });
-  editor.LoadEdits();
-
-  m_featuresFetcher.GetDataSource().AddObserver(editor);
-
-  LOG(LDEBUG, ("Editor initialized"));
 
   m_trafficManager.SetCurrentDataVersion(m_storage.GetCurrentDataVersion());
   m_trafficManager.SetSimplifiedColorScheme(LoadTrafficSimplifiedColors());
@@ -394,8 +377,12 @@ Framework::Framework(FrameworkParams const & params)
   InitTransliteration();
   LOG(LDEBUG, ("Transliterators initialized"));
 
+  /// @todo No any real config loading here for now.
   GetPowerManager().Subscribe(this);
   GetPowerManager().Load();
+
+  if (loadMaps)
+    LoadMapsSync();
 }
 
 Framework::~Framework()
@@ -506,12 +493,50 @@ bool Framework::HasUnsavedEdits(storage::CountryId const & countryId)
   return hasUnsavedChanges;
 }
 
+// Small copy-paste with LoadMapsAsync, but I don't have a better solution.
+void Framework::LoadMapsSync()
+{
+  RegisterAllMaps();
+  LOG(LDEBUG, ("Maps initialized"));
+
+  GetSearchAPI().InitAfterWorldLoaded();
+  LOG(LDEBUG, ("Search API initialized, part 2, after World was loaded"));
+
+  osm::Editor & editor = osm::Editor::Instance();
+  editor.LoadEdits();
+  m_featuresFetcher.GetDataSource().AddObserver(editor);
+  LOG(LDEBUG, ("Editor initialized"));
+
+  GetStorage().RestoreDownloadQueue();
+}
+
+// Small copy-paste with LoadMapsSync, but I don't have a better solution.
+void Framework::LoadMapsAsync(std::function<void()> && callback)
+{
+  osm::Editor & editor = osm::Editor::Instance();
+  threads::SimpleThread([this, &editor, callback = std::move(callback)]()
+  {
+    RegisterAllMaps();
+    LOG(LDEBUG, ("Maps initialized"));
+
+    GetSearchAPI().InitAfterWorldLoaded();
+    LOG(LDEBUG, ("Search API initialized, part 2, after World was loaded"));
+
+    GetPlatform().RunTask(Platform::Thread::Gui, [this, &editor, callback = std::move(callback)]()
+    {
+      editor.LoadEdits();
+      m_featuresFetcher.GetDataSource().AddObserver(editor);
+      LOG(LDEBUG, ("Editor initialized"));
+
+      GetStorage().RestoreDownloadQueue();
+
+      callback();
+    });
+  }).detach();
+}
+
 void Framework::RegisterAllMaps()
 {
-  ASSERT(!m_storage.IsDownloadInProgress(),
-         ("Registering maps while map downloading leads to removing downloading maps from "
-          "ActiveMapsListener::m_items."));
-
   m_storage.RegisterAllLocalMaps(m_enabledDiffs);
 
   vector<shared_ptr<LocalCountryFile>> maps;
@@ -2043,6 +2068,37 @@ void Framework::DeactivateHotelSearchMark()
 void Framework::OnTapEvent(place_page::BuildInfo const & buildInfo)
 {
   auto placePageInfo = BuildPlacePageInfo(buildInfo);
+  bool isRoutePoint = placePageInfo.has_value() && placePageInfo->IsRoutePoint();
+
+  if (m_routingManager.IsRoutingActive()
+      && m_routingManager.GetCurrentRouterType() == routing::RouterType::Ruler
+      && !buildInfo.m_isLongTap
+      && !isRoutePoint)
+  {
+    DeactivateMapSelection(true /* notifyUI */);
+
+    // Continue route to the point
+    RouteMarkData data;
+    data.m_title = placePageInfo ? placePageInfo->GetTitle() : std::string();
+    data.m_subTitle = std::string();
+    data.m_pointType = RouteMarkType::Finish;
+    data.m_intermediateIndex = m_routingManager.GetRoutePointsCount() - 1;
+    data.m_isMyPosition = false;
+
+    if (placePageInfo && placePageInfo->IsBookmark())
+      // Continue route to exact bookmark position.
+      data.m_position = placePageInfo->GetBookmarkData().m_point;
+    else
+      data.m_position = buildInfo.m_mercator;
+
+    m_routingManager.ContinueRouteToPoint(std::move(data));
+
+    // Refresh route
+    m_routingManager.RemoveRoute(false /* deactivateFollowing */);
+    m_routingManager.BuildRoute();
+
+    return;
+  }
 
   if (placePageInfo)
   {
@@ -2586,7 +2642,13 @@ bool Framework::ParseDrapeDebugCommand(string const & query)
   if (desiredStyle != MapStyleCount)
   {
 #if defined(OMIM_OS_ANDROID)
-    MarkMapStyle(desiredStyle);
+    if (m_drapeEngine->GetApiVersion() == dp::ApiVersion::Vulkan)
+    {
+      // See comment in android/jni/app/organicmaps/Framework.cpp Framework::MarkMapStyle().
+      SetMapStyle(desiredStyle);
+    }
+    else
+      MarkMapStyle(desiredStyle);
 #else
     SetMapStyle(desiredStyle);
 #endif

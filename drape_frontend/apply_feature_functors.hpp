@@ -37,21 +37,19 @@ class BaseApplyFeature
 {
 public:
   BaseApplyFeature(TileKey const & tileKey, TInsertShapeFn const & insertShape,
-                   FeatureID const & id, int minVisibleScale, uint8_t rank,
-                   CaptionDescription const & captions);
+                   FeatureID const & id, uint8_t rank, CaptionDescription const & captions);
 
   virtual ~BaseApplyFeature() = default;
 
 protected:
   void ExtractCaptionParams(CaptionDefProto const * primaryProto,
                             CaptionDefProto const * secondaryProto,
-                            float depth, TextViewParams & params) const;
+                            TextViewParams & params) const;
   std::string ExtractHotelInfo() const;
 
   TInsertShapeFn m_insertShape;
   FeatureID m_id;
   CaptionDescription const & m_captions;
-  int m_minVisibleScale;
   uint8_t m_rank;
 
   TileKey const m_tileKey;
@@ -63,13 +61,11 @@ class ApplyPointFeature : public BaseApplyFeature
   using TBase = BaseApplyFeature;
 
 public:
-  ApplyPointFeature(TileKey const & tileKey, TInsertShapeFn const & insertShape,
-                    FeatureID const & id, int minVisibleScale, uint8_t rank,
-                    CaptionDescription const & captions, float posZ,
-                    DepthLayer depthLayer);
+  ApplyPointFeature(TileKey const & tileKey, TInsertShapeFn const & insertShape, FeatureID const & id,
+                    uint8_t rank, CaptionDescription const & captions, float posZ);
 
   void operator()(m2::PointD const & point, bool hasArea);
-  void ProcessPointRule(Stylist::TRuleWrapper const & rule);
+  void ProcessPointRule(TRuleWrapper const & rule);
   void Finish(ref_ptr<dp::TextureManager> texMng);
 
 protected:
@@ -80,11 +76,11 @@ private:
   bool m_hasArea;
   bool m_createdByEditor;
   bool m_obsoleteInEditor;
-  DepthLayer m_depthLayer;
   float m_symbolDepth;
   SymbolRuleProto const * m_symbolRule;
   m2::PointF m_centerPoint;
-  std::vector<TextViewParams> m_textParams;
+  TextViewParams m_textParams;
+  TextViewParams m_hnParams;
 };
 
 class ApplyAreaFeature : public ApplyPointFeature
@@ -94,13 +90,13 @@ class ApplyAreaFeature : public ApplyPointFeature
 public:
   ApplyAreaFeature(TileKey const & tileKey, TInsertShapeFn const & insertShape,
                    FeatureID const & id, double currentScaleGtoP, bool isBuilding,
-                   bool skipAreaGeometry, float minPosZ, float posZ, int minVisibleScale,
+                   bool skipAreaGeometry, float minPosZ, float posZ,
                    uint8_t rank, CaptionDescription const & captions);
 
   using TBase::operator ();
 
   void operator()(m2::PointD const & p1, m2::PointD const & p2, m2::PointD const & p3);
-  void ProcessAreaRule(Stylist::TRuleWrapper const & rule);
+  void ProcessAreaRule(TRuleWrapper const & rule);
 
   struct Edge
   {
@@ -155,12 +151,12 @@ class ApplyLineFeatureGeometry : public BaseApplyFeature
 
 public:
   ApplyLineFeatureGeometry(TileKey const & tileKey, TInsertShapeFn const & insertShape,
-                           FeatureID const & id, double currentScaleGtoP, int minVisibleScale,
+                           FeatureID const & id, double currentScaleGtoP,
                            uint8_t rank, size_t pointsCount, bool smooth);
 
   void operator() (m2::PointD const & point);
   bool HasGeometry() const;
-  void ProcessLineRule(Stylist::TRuleWrapper const & rule);
+  void ProcessLineRule(TRuleWrapper const & rule);
   void Finish();
 
   std::vector<m2::SharedSpline> const & GetClippedSplines() const { return m_clippedSplines; }
@@ -180,17 +176,18 @@ private:
 #endif
 };
 
+// Process pathtext and shield drules. Operates on metalines usually.
 class ApplyLineFeatureAdditional : public BaseApplyFeature
 {
   using TBase = BaseApplyFeature;
 
 public:
   ApplyLineFeatureAdditional(TileKey const & tileKey, TInsertShapeFn const & insertShape,
-                             FeatureID const & id, double currentScaleGtoP, int minVisibleScale,
+                             FeatureID const & id, double currentScaleGtoP,
                              uint8_t rank, CaptionDescription const & captions,
                              std::vector<m2::SharedSpline> const & clippedSplines);
 
-  void ProcessLineRule(Stylist::TRuleWrapper const & rule);
+  void ProcessLineRule(TRuleWrapper const & rule);
   void Finish(ref_ptr<dp::TextureManager> texMng, ftypes::RoadShieldsSetT const & roadShields,
               GeneratedRoadShields & generatedRoadShields);
 
@@ -209,7 +206,7 @@ private:
 
   std::vector<m2::SharedSpline> m_clippedSplines;
   float m_currentScaleGtoP;
-  float m_depth;
+  float m_captionDepth, m_shieldDepth;
   CaptionDefProto const * m_captionRule;
   ShieldRuleProto const * m_shieldRule;
 };

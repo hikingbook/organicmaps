@@ -69,6 +69,7 @@ world  +
         food_court  -
         fountain  -
         fuel  -
+        gambling  -
         grave_yard  +
             christian  -
             {}
@@ -88,7 +89,10 @@ world  +
         nursing_home  -
         parcel_locker  -
         parking  +
-            fee  -
+            fee  +
+                lane  -
+                street_side  -
+                {}
             lane  -
             multi-storey  -
             no-access  -
@@ -112,7 +116,9 @@ world  +
         pharmacy  -
         place_of_worship  +
             buddhist  -
-            christian  -
+            christian  +
+                mormon  -
+                {}
             hindu  -
             jewish  -
             muslim  -
@@ -124,6 +130,7 @@ world  +
         post_office  -
         prison  -
         pub  -
+        public_bath  -
         public_bookcase  -
         recycling  +
             centre  -
@@ -134,12 +141,14 @@ world  +
         school  -
         shelter  -
         shower  -
+        stripclub  -
         taxi  -
         telephone  -
         theatre  -
         toilets  -
         townhall  -
         university  -
+        vehicle_inspection  -
         vending_machine  +
             cigarettes  -
             coffee  -
@@ -245,10 +254,12 @@ world  +
         blacksmith  -
         brewery  -
         carpenter  -
+        caterer  -
         confectionery  -
         electrician  -
         electronics_repair  -
         gardener  -
+        grinding_mill  -
         handicraft  -
         hvac  -
         key_cutter  -
@@ -354,6 +365,7 @@ world  +
         spontaneous_camp  -
         {}
     emergency  +
+        assembly_point  -
         defibrillator  -
         fire_hydrant  -
         phone  -
@@ -527,9 +539,12 @@ world  +
         world_towns_level  -
         {}
     historic  +
+        aircraft  -
+        anchor  -
         archaeological_site  -
         battlefield  -
         boundary_stone  -
+        cannon  -
         castle  +
             castrum  -
             defensive  -
@@ -546,6 +561,7 @@ world  +
         citywalls  -
         fort  -
         gallows  -
+        locomotive  -
         memorial  +
             cross  -
             plaque  -
@@ -554,13 +570,17 @@ world  +
             stolperstein  -
             war_memorial  -
             {}
+        mine  -
         monument  -
         pillory  -
         ruins  -
         ship  -
+        stone  -
+        tank  -
         tomb  -
         wayside_cross  -
         wayside_shrine  -
+        wreck  -
         {}
     hwtag  +
         bidir_bicycle  -
@@ -617,7 +637,9 @@ world  +
         grass  -
         greenfield  -
         greenhouse_horticulture  -
-        industrial  -
+        industrial  +
+            mine  -
+            {}
         landfill  -
         meadow  -
         military  +
@@ -635,6 +657,8 @@ world  +
         vineyard  -
         {}
     leisure  +
+        adult_gaming_centre  -
+        amusement_arcade  -
         beach_resort  -
         bowling_alley  -
         common  -
@@ -650,6 +674,7 @@ world  +
         landscape_reserve  -
         marina  -
         nature_reserve  -
+        outdoor_seating  -
         park  +
             no-access  -
             permissive  -
@@ -734,12 +759,16 @@ world  +
         volcano  -
         water  +
             basin  -
+            ditch  -
+            drain  -
             lake  -
             lock  -
+            moat  -
             pond  -
             reservoir  -
             river  -
             tunnel  -
+            wastewater  -
             {}
         wetland  +
             bog  -
@@ -1319,6 +1348,7 @@ world  +
     tourism  +
         alpine_hut  -
         apartment  -
+        aquarium  -
         artwork  +
             architecture  -
             painting  -
@@ -1342,6 +1372,7 @@ world  +
             map  -
             mobile  -
             office  -
+            visitor_centre  -
             {}
         motel  -
         museum  -

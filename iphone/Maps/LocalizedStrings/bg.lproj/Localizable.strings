@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Нощен режим";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Изключен";
+/* Generic «Off» string */
+"off" = "Изключен";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Включен";
+/* Generic «On» string */
+"on" = "Включен";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Автоматично";
+/* Generic «Auto» string */
+"auto" = "Автоматично";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Перспективен изглед";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Няма налични данни за трафика";
 
-"on" = "Вкл.";
-
-"off" = "Изкл.";
-
 "transliteration_title" = "Латинска транслитерация";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Камери за скорост";
 
-"speedcam_option_auto" = "Автоматично";
+/* Generic «Always» string */
+"always" = "Винаги";
 
-"speedcam_option_always" = "Винаги";
-
-"speedcam_option_never" = "Никога";
+/* Generic «Never» string */
+"never" = "Никога";
 
 "place_description_title" = "Описание на мястото";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Casino";
 
+"type.amenity.gambling" = "Хазарт";
+
+"type.leisure.adult_gaming_centre" = "Център за игри за възрастни";
+
+"type.leisure.amusement_arcade" = "Аркада";
+
 "type.amenity.charging_station" = "Charging Station";
 
 "type.amenity.charging_station.bicycle" = "Станция за зареждане на велосипеди";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Паркинг";
 
+"type.amenity.parking.fee.street_side" = "Паркинг";
+
 "type.amenity.parking.lane" = "Паркинг";
+
+"type.amenity.parking.fee.lane" = "Паркинг";
 
 "type.amenity.parking_entrance" = "Вход за паркинг";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Buddhist Temple";
 
 "type.amenity.place_of_worship.christian" = "Church";
+
+"type.amenity.place_of_worship.christian.mormon" = "Църквата на Исус Христос на светиите от последните дни";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Shelter";
 
+"type.amenity.public_bath" = "Обществена баня";
+
 "type.amenity.shower" = "Shower";
+
+"type.amenity.stripclub" = "Стриптийз клуб";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Проверка на автомобила";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinary Doctor";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Ров";
+"type.waterway.ditch" = "Отводнителна канавка";
+
+"type.natural.water.moat" = "Ров";
+
+"type.natural.water.wastewater" = "Отпадъчни води";
 
 "type.barrier.entrance" = "Entrance";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Пивоварна";
 
+"type.craft.caterer" = "Кетъринг";
+
 "type.craft.carpenter" = "Марангоз";
 
 "type.craft.confectionery" = "Сладкарски изделия";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Ремонт на електроника";
 
 "type.craft.gardener" = "Градинар";
+
+"type.craft.grinding_mill" = "Мелница за смилане";
 
 "type.craft.handicraft" = "Занаят";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamese";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Авариен сборен пункт";
 
 "type.emergency.defibrillator" = "Defibrillator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Исторически обект";
 
+"type.historic.aircraft" = "Исторически самолет";
+
+"type.historic.anchor" = "Историческа котва";
+
 "type.historic.archaeological_site" = "Археологически сайт";
 
 "type.historic.battlefield" = "Бойно поле";
 
 "type.historic.boundary_stone" = "Граничен камък";
+
+"type.historic.cannon" = "Оръдие";
 
 "type.historic.castle" = "Замък";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Бесилка";
 
+"type.historic.locomotive" = "Исторически Локомотив";
+
 "type.historic.memorial" = "Мемориал";
 
 "type.historic.memorial.cross" = "Мемориален кръст";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Cпънка";
 
+"type.historic.stone" = "Исторически камък";
+
 "type.historic.memorial.war_memorial" = "Военен паметник";
+
+"type.historic.mine" = "Историческа мина";
 
 "type.historic.monument" = "Паметник";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Кораб";
 
+"type.historic.tank" = "Исторически танк";
+
 "type.historic.tomb" = "Гробница";
 
 "type.historic.wayside_cross" = "Крайпътен кръст";
 
 "type.historic.wayside_shrine" = "Крайпътно светилище";
+
+"type.historic.wreck" = "корабокрушение";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Nature Reserve";
+
+"type.leisure.outdoor_seating" = "Места за сядане на открито";
 
 "type.leisure.park" = "Park";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Аквариум";
+
 "type.tourism.alpine_hut" = "Alpine Lodging";
 
 "type.tourism.apartment" = "Holiday Apartment";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Туристически офис";
 
+"type.tourism.information.visitor_centre" = "Център за посетители";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Отводнителна канавка";
+
+"type.waterway.ditch.tunnel" = "водосток";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "водосток";
 
 "type.waterway.lock_gate" = "Lock Gate";
 

@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Öörežiim";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Väljas";
+/* Generic «Off» string */
+"off" = "Väljas";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Sees";
+/* Generic «On» string */
+"on" = "Sees";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automaatne";
+/* Generic «Auto» string */
+"auto" = "Automaatne";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektiivi vaade";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Liiklusinfo ei ole saadaval";
 
-"on" = "Sees";
-
-"off" = "Väljas";
-
 "transliteration_title" = "Transliteratsioon ladina keelde";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Kiiruskaamerad";
 
-"speedcam_option_auto" = "Automaatne";
+/* Generic «Always» string */
+"always" = "Alati";
 
-"speedcam_option_always" = "Alati";
-
-"speedcam_option_never" = "Mitte kunagi";
+/* Generic «Never» string */
+"never" = "Mitte kunagi";
 
 "place_description_title" = "Koha kirjeldus";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kasiino";
 
+"type.amenity.gambling" = "Hasartmängud";
+
+"type.leisure.adult_gaming_centre" = "Täiskasvanute mängukeskus";
+
+"type.leisure.amusement_arcade" = "Arkaad";
+
 "type.amenity.charging_station" = "Laadimisjaam";
 
 "type.amenity.charging_station.bicycle" = "Jalgratta laadimisjaam";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkimine";
 
+"type.amenity.parking.fee.street_side" = "Parkimine";
+
 "type.amenity.parking.lane" = "Parkimine";
+
+"type.amenity.parking.fee.lane" = "Parkimine";
 
 "type.amenity.parking_entrance" = "Parkla sissepääs";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Tempel";
 
 "type.amenity.place_of_worship.christian" = "Kirik";
+
+"type.amenity.place_of_worship.christian.mormon" = "Viimse Aja Pühade Jeesuse Kristuse kirik";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Varjupaik";
 
+"type.amenity.public_bath" = "Avalik vann";
+
 "type.amenity.shower" = "Dušš";
+
+"type.amenity.stripclub" = "Stripiklubi";
 
 "type.amenity.taxi" = "Takso";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Pakiautomaat";
 
+"type.amenity.vehicle_inspection" = "Sõiduki ülevaatus";
+
 "type.amenity.vending_machine.fuel" = "Tankimisautomaat";
 
 "type.amenity.veterinary" = "Loomaarst";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Jalgrattabarjäär";
 
-"type.barrier.ditch" = "Vallikraav";
+"type.waterway.ditch" = "Drenaažikraav";
+
+"type.natural.water.moat" = "Vallikraav";
+
+"type.natural.water.wastewater" = "Reovesi";
 
 "type.barrier.entrance" = "Sissepääs";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Käsitööpruulikoda";
 
+"type.craft.caterer" = "Catering";
+
 "type.craft.carpenter" = "Puusepp";
 
 "type.craft.confectionery" = "Maiustused";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Elektroonika remont";
 
 "type.craft.gardener" = "Aednik";
+
+"type.craft.grinding_mill" = "Jahvatusveski";
 
 "type.craft.handicraft" = "Käsitöö";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnami";
 
 "type.emergency" = "Hädaabi";
+
+"type.emergency.assembly_point" = "Erakorraline kogunemispunkt";
 
 "type.emergency.defibrillator" = "Defibrillaator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Ajalooline objekt";
 
+"type.historic.aircraft" = "Ajalooline lennuk";
+
+"type.historic.anchor" = "Ajalooline ankur";
+
 "type.historic.archaeological_site" = "Arheoloogiline koht";
 
 "type.historic.battlefield" = "Lahinguväli";
 
 "type.historic.boundary_stone" = "Piirikivi";
+
+"type.historic.cannon" = "Kahur";
 
 "type.historic.castle" = "Loss";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Võllas";
 
+"type.historic.locomotive" = "Ajalooline vedur";
+
 "type.historic.memorial" = "Memoriaal";
 
 "type.historic.memorial.cross" = "Mälestusrist";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Komistuskivi";
 
+"type.historic.stone" = "Ajalooline kivi";
+
 "type.historic.memorial.war_memorial" = "Sõjamemoriaal";
+
+"type.historic.mine" = "Ajalooline kaevandus";
 
 "type.historic.monument" = "Monument";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Laev";
 
+"type.historic.tank" = "Ajalooline tank";
+
 "type.historic.tomb" = "Haud";
 
 "type.historic.wayside_cross" = "Teeäärne rist";
 
 "type.historic.wayside_shrine" = "Teeäärne pühamu";
+
+"type.historic.wreck" = "Laevahukk";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Looduskaitseala";
+
+"type.leisure.outdoor_seating" = "Istekohad õues";
 
 "type.leisure.park" = "Park";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Turism";
 
+"type.tourism.aquarium" = "Akvaarium";
+
 "type.tourism.alpine_hut" = "Mägimajutus";
 
 "type.tourism.apartment" = "Korterid";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Turismiinfo";
 
+"type.tourism.information.visitor_centre" = "Külastuskeskus";
+
 "type.tourism.motel" = "Motell";
 
 "type.tourism.museum" = "Muuseum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Tamm";
 
-"type.waterway.ditch" = "Kraav";
+"type.barrier.ditch" = "Kraav";
 
-"type.waterway.ditch.tunnel" = "Truup";
+"type.natural.water.ditch" = "Drenaažikraav";
+
+"type.waterway.ditch.tunnel" = "Truupp";
 
 "type.waterway.dock" = "Veetee dokk";
 
 "type.waterway.drain" = "Kuivenduskraav";
 
-"type.waterway.drain.tunnel" = "Truup";
+"type.natural.water.drain" = "Kuivenduskraav";
+
+"type.waterway.drain.tunnel" = "Truupp";
 
 "type.waterway.lock_gate" = "Lüüsi värav";
 

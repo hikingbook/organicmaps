@@ -35,11 +35,8 @@ enum OverlayRank : uint8_t
 };
 
 uint64_t constexpr kPriorityMaskZoomLevel = 0xFF0000000000FFFF;
-uint64_t constexpr kPriorityMaskManual    = 0x00FFFFFFFF00FFFF;
-uint64_t constexpr kPriorityMaskRank      = 0x0000000000FFFFFF;
-uint64_t constexpr kPriorityMaskAll = kPriorityMaskZoomLevel |
-                                      kPriorityMaskManual |
-                                      kPriorityMaskRank;
+uint64_t constexpr kPriorityMaskAll = std::numeric_limits<uint64_t>::max();
+
 struct OverlayID
 {
   FeatureID m_featureId;
@@ -146,8 +143,6 @@ public:
 
   OverlayID const & GetOverlayID() const { return m_id; }
   uint64_t const & GetPriority() const { return m_priority; }
-
-  virtual uint64_t GetPriorityMask() const { return kPriorityMaskAll; }
 
   virtual bool IsBound() const { return false; }
   virtual bool HasLinearFeatureShape() const { return false; }
@@ -265,8 +260,7 @@ private:
   bool m_isBound;
 };
 
-uint64_t CalculateOverlayPriority(int minZoomLevel, uint8_t rank, float depth);
-uint64_t CalculateSpecialModePriority(uint16_t specialPriority);
+uint64_t CalculateOverlayPriority(uint8_t rank, float depth);
 uint64_t CalculateSpecialModeUserMarkPriority(uint16_t specialPriority);
 uint64_t CalculateUserMarkPriority(int minZoomLevel, uint16_t specialPriority);
 }  // namespace dp

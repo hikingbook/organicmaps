@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Νυχτερινή λειτουργία";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Απενεργ.";
+/* Generic «Off» string */
+"off" = "Απενεργ.";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Ενεργ.";
+/* Generic «On» string */
+"on" = "Ενεργ.";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Αυτόματα";
+/* Generic «Auto» string */
+"auto" = "Αυτόματα";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Προβολή προοπτικής";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Οι πληροφορίες για την κίνηση δεν είναι διαθέσιμες";
 
-"on" = "Ενεργ.";
-
-"off" = "Απενεργ.";
-
 "transliteration_title" = "Μεταγραφή στα Λατινικά";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Κάμερες Ταχύτητας";
 
-"speedcam_option_auto" = "Αυτόματο";
+/* Generic «Always» string */
+"always" = "Πάντα";
 
-"speedcam_option_always" = "Πάντα";
-
-"speedcam_option_never" = "Ποτέ";
+/* Generic «Never» string */
+"never" = "Ποτέ";
 
 "place_description_title" = "Περιγραφή μέρους";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Καζίνο";
 
+"type.amenity.gambling" = "ΤΥΧΕΡΑ ΠΑΙΧΝΙΔΙΑ";
+
+"type.leisure.adult_gaming_centre" = "Κέντρο παιχνιδιών ενηλίκων";
+
+"type.leisure.amusement_arcade" = "Στοά";
+
 "type.amenity.charging_station" = "Σταθμός φόρτισης";
 
 "type.amenity.charging_station.bicycle" = "Σταθμός φόρτισης ποδηλάτων";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Χώρος στάθμευσης";
 
+"type.amenity.parking.fee.street_side" = "Χώρος στάθμευσης";
+
 "type.amenity.parking.lane" = "Χώρος στάθμευσης";
+
+"type.amenity.parking.fee.lane" = "Χώρος στάθμευσης";
 
 "type.amenity.parking_entrance" = "Είσοδος στάθμευσης";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Ναός";
 
 "type.amenity.place_of_worship.christian" = "Εκκλησία";
+
+"type.amenity.place_of_worship.christian.mormon" = "Εκκλησία του Ιησού Χριστού των Αγίων των Τελευταίων Ημερών";
 
 "type.amenity.place_of_worship.hindu" = "Ναός";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Καταφύγιο";
 
+"type.amenity.public_bath" = "Δημόσιο Λουτρό";
+
 "type.amenity.shower" = "Ντους";
+
+"type.amenity.stripclub" = "Stripclub";
 
 "type.amenity.taxi" = "Ταξί";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Έλεγχος οχήματος";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Κτηνίατρος";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Τάφρος";
+"type.waterway.ditch" = "Αποστραγγιστική Τάφρο";
+
+"type.natural.water.moat" = "Τάφρος";
+
+"type.natural.water.wastewater" = "Λυμάτων";
 
 "type.barrier.entrance" = "Είσοδος";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Ζυθοποιείο";
 
+"type.craft.caterer" = "Τροφοδότης";
+
 "type.craft.carpenter" = "Ξυλουργός";
 
 "type.craft.confectionery" = "Ζαχαροπλάστης";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Επισκευή ηλεκτρονικών";
 
 "type.craft.gardener" = "Κηπουρός";
+
+"type.craft.grinding_mill" = "Μύλος λείανσης";
 
 "type.craft.handicraft" = "Χειροτεχνία";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Βιετναμέζικη";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Σημείο συναρμολόγησης έκτακτης ανάγκης";
 
 "type.emergency.defibrillator" = "Πρώτες βοήθειες";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Ιστορικό αντικείμενο";
 
+"type.historic.aircraft" = "Ιστορικό αεροσκάφος";
+
+"type.historic.anchor" = "Ιστορική Άγκυρα";
+
 "type.historic.archaeological_site" = "Αρχαιολογικός χώρος";
 
 "type.historic.battlefield" = "Πεδίο μάχης";
 
 "type.historic.boundary_stone" = "Οριακή πέτρα";
+
+"type.historic.cannon" = "Κανόνι";
 
 "type.historic.castle" = "Κάστρο";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Αγχόνη";
 
+"type.historic.locomotive" = "Ιστορική Ατμομηχανή";
+
 "type.historic.memorial" = "Μνημείο";
 
 "type.historic.memorial.cross" = "Σταυρός μνήμης";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Λίθοι Μνήμης";
 
+"type.historic.stone" = "Ιστορική Πέτρα";
+
 "type.historic.memorial.war_memorial" = "Μνημείο του Αγνώστου Στρατιώτη";
+
+"type.historic.mine" = "Ιστορικό Ορυχείο";
 
 "type.historic.monument" = "Μνημείο";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Αξιοθέατο";
 
+"type.historic.tank" = "Ιστορική δεξαμενή";
+
 "type.historic.tomb" = "Αξιοθέατο";
 
 "type.historic.wayside_cross" = "Σταυρός στην άκρη του δρόμου";
 
 "type.historic.wayside_shrine" = "Εικονοστάσιο στην άκρη του δρόμου";
+
+"type.historic.wreck" = "Ναυάγιο";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Φυσικό απόθεμα";
+
+"type.leisure.outdoor_seating" = "Καθίσματα εξωτερικού χώρου";
 
 "type.leisure.park" = "Πάρκο";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Ενυδρείο";
+
 "type.tourism.alpine_hut" = "Ορεινό καταφύγιο";
 
 "type.tourism.apartment" = "Διαμερίσματα";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Ενημέρωση τουριστών";
 
+"type.tourism.information.visitor_centre" = "Κέντρο Επισκεπτών";
+
 "type.tourism.motel" = "Μοτέλ";
 
 "type.tourism.museum" = "Μουσείο";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Αποστραγγιστική Τάφρο";
+
+"type.waterway.ditch.tunnel" = "Υπόγειος οχετός";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Υπόγειος οχετός";
 
 "type.waterway.lock_gate" = "Φράγμα";
 

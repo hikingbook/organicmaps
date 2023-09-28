@@ -14,8 +14,8 @@ on:
       - LICENSE
       - NOTICE
       - README.md
-      - android/src/fdroid/**
-      - android/src/google/**
+      - android/app/src/fdroid/**
+      - android/app/src/google/**
       - iphone/**
       - data/strings/**
       - docs/**
@@ -52,7 +52,7 @@ jobs:
       - name: Lint
         shell: bash
         working-directory: android
-        run: gradle lint
+        run: ./gradlew lint
 
   android-check:
     name: Build Android Debug
@@ -100,11 +100,11 @@ jobs:
         run: |
           cmake --version
           ninja --version
-          gradle -Parm64 assemble${{ matrix.flavor }}
+          ./gradlew -Parm64 assemble${{ matrix.flavor }}
 
       - name: Upload arm64-v8a ${{ matrix.flavor }} apk
         uses: actions/upload-artifact@v3
         with:
           name: android-arm64-v8a-${{ matrix.flavor }}
-          path: android/build/outputs/apk/**/OrganicMaps-*.apk
+          path: android/app/build/outputs/apk/**/OrganicMaps-*.apk
           if-no-files-found: error

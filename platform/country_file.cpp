@@ -1,8 +1,6 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "platform/country_file.hpp"
 
-#include "platform/mwm_version.hpp"
-
 #include "base/assert.hpp"
 
 #include <sstream>
@@ -35,7 +33,7 @@ CountryFile::CountryFile(std::string name)
 }
 
 CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1)
-: m_name(std::move(name)), m_mapSize(size), m_sha1(sha1), m_hikingbookProMapSize(hikingbookProMapSize), m_hikingbookProMapSha1(hikingbookProMapSha1)
+  : m_name(std::move(name)), m_mapSize(size), m_sha1(std::move(sha1)), m_hikingbookProMapSize(hikingbookProMapSize), m_hikingbookProMapSha1(std::move(hikingbookProMapSha1))
 {
 }
 

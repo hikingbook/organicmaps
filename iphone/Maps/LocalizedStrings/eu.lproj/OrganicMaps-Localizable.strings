@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Gaueko modua";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Desgaituta";
+/* Generic «Off» string */
+"off" = "Desgaituta";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Aktibatuta";
+/* Generic «On» string */
+"on" = "Aktibatuta";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automatikoa";
+/* Generic «Auto» string */
+"auto" = "Automatikoa";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektiba ikuspegia";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafiko datuak ez daude eskuragarri";
 
-"on" = "Martxan";
-
-"off" = "Itzalita";
-
 "transliteration_title" = "Latinezko transliterazioa";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Abiadura kamerak";
 
-"speedcam_option_auto" = "Automatikoa";
+/* Generic «Always» string */
+"always" = "Beti";
 
-"speedcam_option_always" = "Beti";
-
-"speedcam_option_never" = "Inoiz ez";
+/* Generic «Never» string */
+"never" = "Inoiz ez";
 
 "place_description_title" = "Tokiaren deskribapena";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kasinoa";
 
+"type.amenity.gambling" = "Jokoa";
+
+"type.leisure.adult_gaming_centre" = "Helduen Joko Zentroa";
+
+"type.leisure.amusement_arcade" = "Arcade";
+
 "type.amenity.charging_station" = "Kargatzeko geltokia";
 
 "type.amenity.charging_station.bicycle" = "Bizikletak kargatzeko geltokia";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Aparkalekua";
 
+"type.amenity.parking.fee.street_side" = "Aparkalekua";
+
 "type.amenity.parking.lane" = "Aparkalekua";
+
+"type.amenity.parking.fee.lane" = "Aparkalekua";
 
 "type.amenity.parking_entrance" = "Aparkalekuaren sarrera";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Tenplua";
 
 "type.amenity.place_of_worship.christian" = "Eliza";
+
+"type.amenity.place_of_worship.christian.mormon" = "Azken Eguneko Santuen Jesukristoren eliza";
 
 "type.amenity.place_of_worship.hindu" = "Tenplua";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Aterpea";
 
+"type.amenity.public_bath" = "Bainu Publikoa";
+
 "type.amenity.shower" = "Dutxa";
+
+"type.amenity.stripclub" = "Stripclub";
 
 "type.amenity.taxi" = "Taxia";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Paketeen aldagela";
 
+"type.amenity.vehicle_inspection" = "Ibilgailuen Ikuskapena";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Albaitaritzako klinika";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Bizikleta-hesia";
 
-"type.barrier.ditch" = "Lubanarroa";
+"type.waterway.ditch" = "Drainatze Zanga";
+
+"type.natural.water.moat" = "Lubanarroa";
+
+"type.natural.water.wastewater" = "Hondakin-urak";
 
 "type.barrier.entrance" = "Sarrera";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Garagardo fabrika";
 
+"type.craft.caterer" = "Catering";
+
 "type.craft.carpenter" = "Arotza";
 
 "type.craft.confectionery" = "Gozogilea";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Elektronika Konponketa";
 
 "type.craft.gardener" = "Paisaia";
+
+"type.craft.grinding_mill" = "Artezteko errota";
 
 "type.craft.handicraft" = "Eskulangintza";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamgo sukaldaritza";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Larrialdietako Batzar Puntua";
 
 "type.emergency.defibrillator" = "Desfibriladorea";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Objektu historikoa";
 
+"type.historic.aircraft" = "Hegazkin historikoa";
+
+"type.historic.anchor" = "Aingura Historikoa";
+
 "type.historic.archaeological_site" = "Aztarnategi arkeologikoa";
 
 "type.historic.battlefield" = "Gudu zelai";
 
 "type.historic.boundary_stone" = "Zedarri";
+
+"type.historic.cannon" = "Kanoia";
 
 "type.historic.castle" = "Gaztelu";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Urkamendi";
 
+"type.historic.locomotive" = "Lokomotora historikoa";
+
 "type.historic.memorial" = "Memorial";
 
 "type.historic.memorial.cross" = "Oroimenezko gurutzea";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
+"type.historic.stone" = "Harri historikoa";
+
 "type.historic.memorial.war_memorial" = "Gerra memoriala";
+
+"type.historic.mine" = "Meategi historikoa";
 
 "type.historic.monument" = "Monumentua";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Turismoa";
 
+"type.historic.tank" = "Depositu historikoa";
+
 "type.historic.tomb" = "Ehorztoki";
 
 "type.historic.wayside_cross" = "Bideko gurutze";
 
 "type.historic.wayside_shrine" = "Bide bazterreko baseliza";
+
+"type.historic.wreck" = "Naufragioa";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Erreserbatutako lurraldea";
+
+"type.leisure.outdoor_seating" = "Kanpoko eserlekuak";
 
 "type.leisure.park" = "Parkea";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Turismoa";
 
+"type.tourism.aquarium" = "Aquariuma";
+
 "type.tourism.alpine_hut" = "Kabina";
 
 "type.tourism.apartment" = "Apartamentuak";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Turismo bulegoa";
 
+"type.tourism.information.visitor_centre" = "Bisitarien Zentroa";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museoa";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Drainatze Zanga";
+
+"type.waterway.ditch.tunnel" = "Zuloa";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Zuloa";
 
 "type.waterway.lock_gate" = "Atea";
 
