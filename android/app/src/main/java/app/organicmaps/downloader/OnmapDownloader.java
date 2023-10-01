@@ -41,6 +41,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   public IDownloaderDelegate downloaderDelegate;
 
   private int mStorageSubscriptionSlot;
+  private int mPreviousCountryItemStatus;
 
   @Nullable
   private CountryItem mCurrentCountry;
@@ -88,6 +89,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     public void onCurrentCountryChanged(String countryId)
     {
       mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
+      if (mCurrentCountry != null) {
+        mPreviousCountryItemStatus = countryItemStatus();
+      }
       updateState(false);
       if (downloaderDelegate != null) {
         downloaderDelegate.onCurrentCountryChanged(countryId);
@@ -243,6 +247,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         if (mCurrentCountry == null)
           return;
 
+        // Modified by Ke, Zheng-Xiang
+        setCountryItemStatus(mPreviousCountryItemStatus);
+        updateState(false);
+
         MapManager.nativeCancel(mCurrentCountry.id);
         setAutodownloadLocked(true);
       }
@@ -256,6 +264,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         return;
 
       // Modified by Ke, Zheng-Xiang
+      mPreviousCountryItemStatus = countryItemStatus();
       setCountryItemStatus(CountryItem.STATUS_ENQUEUED);
       updateState(false);
 

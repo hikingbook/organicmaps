@@ -11,15 +11,15 @@ import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AlertDialog;
 
-import app.organicmaps.MapSource;
-
-import app.organicmaps.R;
-import app.organicmaps.util.ConnectionState;
-import app.organicmaps.util.Utils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+
+import app.organicmaps.MapSource;
+import app.organicmaps.R;
+import app.organicmaps.util.ConnectionState;
+import app.organicmaps.util.Utils;
 
 @UiThread
 public final class MapManager
@@ -178,7 +178,7 @@ public final class MapManager
     return true;
   }
 
-  static boolean warnOn3gUpdate(Activity activity, @Nullable String countryId, @NonNull final Runnable onAcceptListener)
+  public static boolean warnOn3gUpdate(Activity activity, @Nullable String countryId, @NonNull final Runnable onAcceptListener)
   {
     //noinspection SimplifiableIfStatement
     if (TextUtils.isEmpty(countryId) || !notifyNoSpaceToUpdate(activity, countryId))
