@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Mode nuit";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Désactivé";
+/* Generic «Off» string */
+"off" = "Désactivé";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Activé";
+/* Generic «On» string */
+"on" = "Activé";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automatique";
+/* Generic «Auto» string */
+"auto" = "Automatique";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Vue en perspective";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Les données de circulation ne sont pas disponibles";
 
-"on" = "On";
-
-"off" = "Off";
-
 "transliteration_title" = "Translittération en latin";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Radars de vitesse";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Toujours";
 
-"speedcam_option_always" = "Toujours";
-
-"speedcam_option_never" = "Jamais";
+/* Generic «Never» string */
+"never" = "Jamais";
 
 "place_description_title" = "Description d'endroit";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Casino";
 
+"type.amenity.gambling" = "Jeu d'argent";
+
+"type.leisure.adult_gaming_centre" = "Centre de jeux pour adultes";
+
+"type.leisure.amusement_arcade" = "Arcade";
+
 "type.amenity.charging_station" = "Borne de recharge";
 
 "type.amenity.charging_station.bicycle" = "Borne de recharge pour vélo";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Stationnement";
 
+"type.amenity.parking.fee.street_side" = "Stationnement";
+
 "type.amenity.parking.lane" = "Stationnement";
+
+"type.amenity.parking.fee.lane" = "Stationnement";
 
 "type.amenity.parking_entrance" = "Entrée du stationnement";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Buddhist Temple";
 
 "type.amenity.place_of_worship.christian" = "Église";
+
+"type.amenity.place_of_worship.christian.mormon" = "Église de Jésus-Christ des Saints des Derniers Jours";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Abri";
 
+"type.amenity.public_bath" = "Bain public";
+
 "type.amenity.shower" = "Douche";
+
+"type.amenity.stripclub" = "Club de strip-tease";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Consigne automatique pour colis";
 
+"type.amenity.vehicle_inspection" = "Inspection de véhicule";
+
 "type.amenity.vending_machine.fuel" = "Pompe à carburants";
 
 "type.amenity.veterinary" = "Docteur vétérinaire";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Barrière à vélos";
 
-"type.barrier.ditch" = "Fossé";
+"type.waterway.ditch" = "Fossé de drainage";
+
+"type.natural.water.moat" = "Fossé";
+
+"type.natural.water.wastewater" = "Eaux usées";
 
 "type.barrier.entrance" = "Entrée";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Brasserie artisanale";
 
+"type.craft.caterer" = "Traiteur";
+
 "type.craft.carpenter" = "Charpentier";
 
 "type.craft.confectionery" = "Confiseur";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Réparation d'appareils électroniques";
 
 "type.craft.gardener" = "Paysagiste";
+
+"type.craft.grinding_mill" = "Moulin à broyer";
 
 "type.craft.handicraft" = "Artisanat";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Cuisine vietnamienne";
 
 "type.emergency" = "Urgence";
+
+"type.emergency.assembly_point" = "Point de rassemblement d'urgence";
 
 "type.emergency.defibrillator" = "Défibrillateur";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Objet historique";
 
+"type.historic.aircraft" = "Avion historique";
+
+"type.historic.anchor" = "Ancre historique";
+
 "type.historic.archaeological_site" = "Site archéologique";
 
 "type.historic.battlefield" = "Champ de bataille";
 
 "type.historic.boundary_stone" = "Borne frontière";
+
+"type.historic.cannon" = "Canon";
 
 "type.historic.castle" = "Château fort";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Potence";
 
+"type.historic.locomotive" = "Locomotive historique";
+
 "type.historic.memorial" = "Mémorial";
 
 "type.historic.memorial.cross" = "Croix commémorative";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
+"type.historic.stone" = "Pierre historique";
+
 "type.historic.memorial.war_memorial" = "Monument aux morts";
+
+"type.historic.mine" = "Mine historique";
 
 "type.historic.monument" = "Monument";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Navire";
 
+"type.historic.tank" = "Char historique";
+
 "type.historic.tomb" = "Tombe historique";
 
 "type.historic.wayside_cross" = "Croix de chemin";
 
 "type.historic.wayside_shrine" = "Oratoire";
+
+"type.historic.wreck" = "Naufrage";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Réserve naturelle";
+
+"type.leisure.outdoor_seating" = "Sièges extérieurs";
 
 "type.leisure.park" = "Parc";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourisme";
 
+"type.tourism.aquarium" = "Aquarium";
+
 "type.tourism.alpine_hut" = "Refuge de montagne";
 
 "type.tourism.apartment" = "Appart'hôtel";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Office de tourisme";
 
+"type.tourism.information.visitor_centre" = "centre de visite";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Musée";
@@ -3735,13 +3781,17 @@
 
 "type.waterway.dam" = "Barrage";
 
-"type.waterway.ditch" = "Fossé";
+"type.barrier.ditch" = "Fossé";
+
+"type.natural.water.ditch" = "Fossé de drainage";
 
 "type.waterway.ditch.tunnel" = "Drain";
 
 "type.waterway.dock" = "Cale";
 
 "type.waterway.drain" = "Drain";
+
+"type.natural.water.drain" = "Drain";
 
 "type.waterway.drain.tunnel" = "Drain";
 

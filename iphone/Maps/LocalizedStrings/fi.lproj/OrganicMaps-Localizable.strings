@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Yötila";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Pois päältä";
+/* Generic «Off» string */
+"off" = "Pois päältä";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Päällä";
+/* Generic «On» string */
+"on" = "Päällä";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automaattinen";
+/* Generic «Auto» string */
+"auto" = "Automaattinen";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektiivinäkymä";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Liikennetietoja ei ole saatavilla";
 
-"on" = "Käytössä";
-
-"off" = "Ei käytössä";
-
 "transliteration_title" = "Translitterointi latinalaisiksi aakkosiksi";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Nopeuskamerat";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Aina";
 
-"speedcam_option_always" = "Aina";
-
-"speedcam_option_never" = "Ei koskaan";
+/* Generic «Never» string */
+"never" = "Ei koskaan";
 
 "place_description_title" = "Paikan kuvaus";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kasino";
 
+"type.amenity.gambling" = "Uhkapelit";
+
+"type.leisure.adult_gaming_centre" = "Aikuisten pelikeskus";
+
+"type.leisure.amusement_arcade" = "Arcade";
+
 "type.amenity.charging_station" = "Latausasema";
 
 "type.amenity.charging_station.bicycle" = "Polkupyörän latausasema";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkkipaikka";
 
+"type.amenity.parking.fee.street_side" = "Parkkipaikka";
+
 "type.amenity.parking.lane" = "Parkkipaikka";
+
+"type.amenity.parking.fee.lane" = "Parkkipaikka";
 
 "type.amenity.parking_entrance" = "Pysäköinnin sisäänkäynti";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Buddhalainen temppeli";
 
 "type.amenity.place_of_worship.christian" = "Kirkko";
+
+"type.amenity.place_of_worship.christian.mormon" = "Myöhempien Aikojen Pyhien Jeesuksen Kristuksen Kirkko";
 
 "type.amenity.place_of_worship.hindu" = "Hindutemppeli";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Katos";
 
+"type.amenity.public_bath" = "Julkinen kylpylä";
+
 "type.amenity.shower" = "Suihku";
+
+"type.amenity.stripclub" = "Stripclub";
 
 "type.amenity.taxi" = "Taksi";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Pakettilokero";
 
+"type.amenity.vehicle_inspection" = "Ajoneuvon tarkastus";
+
 "type.amenity.vending_machine.fuel" = "Bensa-automaatti";
 
 "type.amenity.veterinary" = "Eläinlääkäri";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Polkupyöräeste";
 
-"type.barrier.ditch" = "Vallihauta";
+"type.waterway.ditch" = "Viemäröinti oja";
+
+"type.natural.water.moat" = "Vallihauta";
+
+"type.natural.water.wastewater" = "Jätevesi";
 
 "type.barrier.entrance" = "Sisäänkäynti";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Panimo";
 
+"type.craft.caterer" = "Pitopalvelu";
+
 "type.craft.carpenter" = "Puuseppä";
 
 "type.craft.confectionery" = "Kondiittori";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Elektroniikan korjaus";
 
 "type.craft.gardener" = "Puutarhuri";
+
+"type.craft.grinding_mill" = "Jauhatusmylly";
 
 "type.craft.handicraft" = "Käsityö";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamilainen keittiö";
 
 "type.emergency" = "Hätätila";
+
+"type.emergency.assembly_point" = "Hätäkokouspiste";
 
 "type.emergency.defibrillator" = "Defibrillaattori";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Historiallinen esine";
 
+"type.historic.aircraft" = "Historiallinen lentokone";
+
+"type.historic.anchor" = "Historiallinen ankkuri";
+
 "type.historic.archaeological_site" = "Arkeologinen kohde";
 
 "type.historic.battlefield" = "Taistelukenttä";
 
 "type.historic.boundary_stone" = "Rajamerkki";
+
+"type.historic.cannon" = "Tykki";
 
 "type.historic.castle" = "Linna";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Hirsipuu";
 
+"type.historic.locomotive" = "Historiallinen veturi";
+
 "type.historic.memorial" = "Muistomerkki";
 
 "type.historic.memorial.cross" = "Muistoristi";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Kompastuskivet";
 
+"type.historic.stone" = "Historiallinen kivi";
+
 "type.historic.memorial.war_memorial" = "Sotamuistomerkki";
+
+"type.historic.mine" = "Historiallinen kaivos";
 
 "type.historic.monument" = "Monumentti";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Alus";
 
+"type.historic.tank" = "Historiallinen tankki";
+
 "type.historic.tomb" = "Hautakammio";
 
 "type.historic.wayside_cross" = "Tienvarren risti";
 
 "type.historic.wayside_shrine" = "Tienvarren pyhäkkö";
+
+"type.historic.wreck" = "Haaksirikko";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Luonnonsuojelualue";
+
+"type.leisure.outdoor_seating" = "Ulkona istuminen";
 
 "type.leisure.park" = "Puisto";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Turismi";
 
+"type.tourism.aquarium" = "Akvaario";
+
 "type.tourism.alpine_hut" = "Vuorimajoitus";
 
 "type.tourism.apartment" = "Loma-asunnot";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Turistitoimisto";
 
+"type.tourism.information.visitor_centre" = "Vierailijakeskus";
+
 "type.tourism.motel" = "Motelli";
 
 "type.tourism.museum" = "Museo";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Pato";
 
-"type.waterway.ditch" = "Oja";
+"type.barrier.ditch" = "Oja";
 
-"type.waterway.ditch.tunnel" = "Oja";
+"type.natural.water.ditch" = "Viemäröinti oja";
+
+"type.waterway.ditch.tunnel" = "Holvirumpu";
 
 "type.waterway.dock" = "Telakka";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Oja";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Holvirumpu";
 
 "type.waterway.lock_gate" = "Kanavasulku";
 

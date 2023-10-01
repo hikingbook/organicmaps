@@ -2890,7 +2890,7 @@
     mr = खरेदी
     nb = Shopping
     nl = Winkelen
-    pl = Shopping
+    pl = Zakupy
     pt = Compras
     pt-BR = Compras
     ro = Shopping
@@ -4917,8 +4917,8 @@
     zh-Hans = 夜间模式
     zh-Hant = 夜間模式
 
-  [pref_map_style_default]
-    comment = «Map style» entry value
+  [off]
+    comment = Generic «Off» string
     tags = android,ios
     en = Off
     ar = تعطيل
@@ -4958,8 +4958,8 @@
     zh-Hans = 关闭
     zh-Hant = 關閉
 
-  [pref_map_style_night]
-    comment = «Map style» entry value
+  [on]
+    comment = Generic «On» string
     tags = android,ios
     en = On
     af = Aan
@@ -5000,8 +5000,8 @@
     zh-Hans = 开启
     zh-Hant = 開啟
 
-  [pref_map_style_auto]
-    comment = «Map style» entry value
+  [auto]
+    comment = Generic «Auto» string
     tags = android,ios
     en = Auto
     af = Outomaties
@@ -5014,6 +5014,7 @@
     de = Auto
     el = Αυτόματα
     es = Automático
+    es-MX = Automático
     et = Automaatne
     eu = Automatikoa
     fa = خودکار
@@ -5035,6 +5036,7 @@
     ru = Автоматически
     sk = Automaticky
     sv = Auto
+    sw = Auto
     th = อัตโนมัติ
     tr = Otomatik
     uk = Автоматично
@@ -5253,6 +5255,94 @@
     vi = Ngôn ngữ Giọng nói
     zh-Hans = 语音语言
     zh-Hant = 語音語言
+
+  [pref_tts_test_voice_title]
+    comment = Settings «Route» category: «Test Voice Directions» title
+    tags = android
+    en = Test Voice Directions (TTS, Text-To-Speech)
+    ar = اختبار الاتجاهات الصوتية (TTS، تحويل النص إلى كلام)
+    be = Тэставыя галасавыя ўказанні (TTS, Text-To-Speech)
+    bg = Тестване на гласови указания (TTS, Text-To-Speech)
+    ca = Prova les indicacions de veu (TTS, Text-To-Speech)
+    cs = Testování hlasových pokynů (TTS, Text-To-Speech)
+    da = Test stemmeanvisninger (TTS, Text-To-Speech)
+    de = Teste Sprachanweisungen (TTS, Text-To-Speech)
+    el = Δοκιμή φωνητικών οδηγιών (TTS, Text-To-Speech)
+    es = Probar indicaciones de voz (TTS, Text-To-Speech)
+    es-MX = Pruebe las instrucciones de voz (TTS, Text-To-Speech)
+    et = Testi hääljuhised (TTS, Text-To-Speech)
+    eu = Probatu ahots bidezko jarraibideak (TTS, Text-To-Speech)
+    fa = تست مسیرهای صوتی (TTS، تبدیل متن به گفتار)
+    fi = Testaa puheohjeita (TTS, Text-To-Speech).
+    fr = Teste les instructions vocales (TTS, Text-To-Speech)
+    he = בדיקת הנחיות קוליות (TTS, טקסט לדיבור)
+    hi = ध्वनि निर्देशों का परीक्षण करें (टीटीएस, टेक्स्ट-टू-स्पीच)
+    hu = Hangutasítások tesztelése (TTS, Text-To-Speech)
+    id = Menguji petunjuk suara (TTS, Text-To-Speech)
+    it = Prova le indicazioni vocali (TTS, Text-To-Speech)
+    ja = 音声案内をテストする（TTS、Text-To-Speech）
+    ko = 음성 길 안내 테스트(TTS, 텍스트 음성 변환)
+    mr = चाचणी आवाज दिशानिर्देश (TTS, टेक्स्ट-टू-स्पीच)
+    nb = Test taleanvisninger (TTS, tekst-til-tale)
+    nl = Test gesproken aanwijzingen (TTS, Text-To-Speech)
+    pl = Testuj wskazówki głosowe (TTS, Text-To-Speech)
+    pt = Testa as direcções de voz (TTS, Text-To-Speech)
+    pt-BR = Testar instruções de voz (TTS, Text-To-Speech)
+    ro = Testarea indicațiilor vocale (TTS, Text-To-Speech)
+    ru = Проверить голосовые подсказки (TTS, Text-To-Speech).
+    sk = Testovanie hlasových pokynov (TTS, Text-To-Speech)
+    sv = Testa röstinstruktioner (TTS, Text-To-Speech)
+    sw = Jaribu maelekezo ya sauti (TTS, maandishi-kwa-hotuba)
+    th = ทดสอบเส้นทางด้วยเสียง (TTS, การอ่านออกเสียงข้อความ)
+    tr = Sesli yönlendirmeleri test edin (TTS, Text-To-Speech)
+    uk = Тестування голосових підказок (TTS, Text-To-Speech)
+    vi = Kiểm tra chỉ đường bằng giọng nói (TTS, chuyển văn bản thành giọng nói)
+    zh-Hans = 测试语音指令（TTS，Text-To-Speech）
+    zh-Hant = 測試語音指令（TTS、文本轉語音
+
+  [pref_tts_playing_test_voice]
+    comment = Settings «Route» category: Pop-up message when clicking «Test Voice Directions»
+    tags = android
+    en = Check the volume or system Text-To-Speech settings if you don't hear the voice now.
+    ar = تحقق من مستوى الصوت أو إعدادات تحويل النص إلى كلام في النظام إذا كنت لا تسمع الصوت الآن.
+    be = Праверце гучнасць або сістэмныя налады пераўтварэння тэксту ў маўленне, калі вы зараз не чуеце голас.
+    bg = Проверете силата на звука или системните настройки за преобразуване на текст в реч, ако сега не чувате гласа.
+    ca = Comproveu el volum o la configuració de text a veu del sistema si ara no escolteu la veu.
+    cs = Pokud nyní hlas neslyšíte, zkontrolujte nastavení hlasitosti nebo převodu textu na řeč v systému.
+    da = Tjek lydstyrken eller systemets tekst-til-tale-indstillinger, hvis du ikke kan høre stemmen nu.
+    de = Überprüfe die Lautstärke oder die Text-to-speech Einstellungen des Systems, wenn du die Stimme jetzt nicht hörst.
+    el = Ελέγξτε την ένταση ήχου ή τις ρυθμίσεις του συστήματος text-to-speech αν δεν ακούτε τη φωνή τώρα.
+    es = Compruebe el volumen o la configuración de texto a voz del sistema si ahora no oye la voz.
+    es-MX = Verifique el volumen o la configuración de texto a voz del sistema si no escucha la voz ahora.
+    et = Kontrollige helitugevust või süsteemi teksti kõnetamise seadeid, kui te ei kuule nüüd häält.
+    eu = Egiaztatu bolumena edo sistemaren testu-ahotsaren ezarpenak ahotsa entzuten ez baduzu.
+    fa = اگر اکنون صدا را نمی شنوید، میزان صدا یا تنظیمات تبدیل متن به گفتار سیستم را بررسی کنید.
+    fi = Tarkista äänenvoimakkuus tai järjestelmän tekstistä puheeksi -asetukset, jos ääni ei kuulu nyt.
+    fr = Vérifie le volume ou les paramètres de synthèse vocale du système si tu n'entends pas la voix maintenant.
+    he = בדוק את עוצמת הקול או את הגדרות הטקסט לדיבור של המערכת אם אינך שומע את הקול כעת.
+    hi = यदि आपको अभी आवाज नहीं सुनाई देती है तो वॉल्यूम या सिस्टम टेक्स्ट-टू-स्पीच सेटिंग्स की जांच करें।
+    hu = Ellenőrizze a hangerőt vagy a rendszer szöveg-beszéd beállításait, ha most nem hallja a hangot.
+    id = Periksa pengaturan volume atau pengaturan teks-ke-ucapan sistem jika anda tidak mendengar suara sekarang.
+    it = Controlla il volume o le impostazioni del sistema di sintesi vocale se ora non senti la voce.
+    ja = 音声が聞こえない場合は、音量またはシステムの音声合成設定を確認する。
+    ko = 지금 음성이 들리지 않으면 볼륨 또는 시스템 텍스트 음성 변환 설정을 확인하세요.
+    mr = तुम्हाला आता आवाज ऐकू येत नसल्यास व्हॉल्यूम किंवा सिस्टम टेक्स्ट-टू-स्पीच सेटिंग्ज तपासा.
+    nb = Kontroller volumet eller systeminnstillingene for tekst-til-tale hvis du ikke hører stemmen nå.
+    nl = Controleer het volume of de tekst-naar-spraak instellingen van het systeem als je de stem nu niet hoort.
+    pl = Jeśli nie słyszysz głosu, sprawdź głośność lub systemowe ustawienia zamiany tekstu na mowę.
+    pt = Verifica o volume ou as definições de conversão de texto em voz do sistema se não ouvires a voz agora.
+    pt-BR = Verifique o volume ou as configurações de conversão de texto em fala do sistema se você não estiver ouvindo a voz agora.
+    ro = Dacă nu auziți vocea acum, verificați volumul sau setările sistemului text-to-speech.
+    ru = Проверьте громкость или системные настройки преобразования текста в речь, если сейчас ничего не слышно.
+    sk = Ak teraz nepočujete hlas, skontrolujte hlasitosť alebo systémové nastavenia prevodu textu na reč.
+    sv = Kontrollera volymen eller systemets text-till-tal-inställningar om du inte hör rösten nu.
+    sw = Angalia mipangilio ya sauti au ya mfumo ya kubadilisha maandishi-hadi-hotuba ikiwa husikii sauti sasa.
+    th = ตรวจสอบระดับเสียงหรือการตั้งค่าการอ่านออกเสียงข้อความของระบบหากคุณไม่ได้ยินเสียงในตอนนี้
+    tr = Sesi şimdi duymuyorsanız ses seviyesini veya sistem metin okuma ayarlarını kontrol edin.
+    uk = Якщо ви не чуєте голос, перевірте гучність або налаштування системи перетворення тексту на мовлення.
+    vi = Kiểm tra cài đặt âm lượng hoặc chuyển văn bản sang giọng nói của hệ thống nếu bây giờ bạn không nghe thấy giọng nói.
+    zh-Hans = 如果现在听不到语音，请检查音量或系统文本到语音设置。
+    zh-Hant = 如果您現在聽不到聲音，請檢查音量或系統文本轉語音設置。
 
   [pref_tts_unavailable]
     comment = Settings «Route» category: «Tts unavailable» subtitle
@@ -5710,7 +5800,7 @@
     zh-Hant = 它可讓您記錄特定期間所行經的路徑，並在地圖上看到該路徑。請注意：啟用此項功能會增加電池使用量。在時間間隔過期後，會從地圖中自動移除行進路線。
 
   [placepage_distance]
-    tags = ios
+    tags = android,ios
     en = Distance
     af = Afstand
     ar = المسافة
@@ -5796,6 +5886,7 @@
     tags = android
     en = Menu
     af = Kieslys
+    ar = القائمة
     ca = Menú
     es = Menú
     eu = Menua
@@ -6160,8 +6251,8 @@
     tr = Bağış yapın
     uk = Підтримати грошима
     vi = Quyên tặng
-    zh-Hans = 捐
-    zh-Hant = 捐
+    zh-Hans = 捐款
+    zh-Hant = 捐款
 
   [how_to_support_us]
     comment = Button in the main Help dialog
@@ -6322,7 +6413,7 @@
     mr = ईमेल वाहक सेट केलेले नाही. कृपया ते सेट करा किंवा वेगळ्या पद्धतीने आमच्याशी %@ वर संपर्क करा
     nb = E-postklienten har ikke blitt konfigurert. Konfigurer den eller bruk en annen måte å kontakte oss på %@
     nl = De emailcliënt is niet ingesteld. Gelieve de cliënt te configureren of op een andere manier contact met ons op te nemen op %@
-    pl = Email klienta nie został założony. Proszę skonfigurować adres email, bądź skorzystać z innych opcji, aby się z nami skontaktować na %@
+    pl = Klient pocztowy nie został skonfigurowany. Proszę skonfigurować go, bądź skorzystać z innych opcji, aby się z nami skontaktować na %@
     pt = O programa de email não está configurado. Por favor, configure-o ou utilize qualquer outra forma de nos contactar através de %@
     pt-BR = O cliente de email não está configurado. Por favor, configure-o ou utilize qualquer outro modo para nos contatar através de %@
     ro = Aplicația de email nu a fost stabilită. Stabilește-o sau utilizează alt mod de a ne contacta la %@.
@@ -9847,7 +9938,7 @@
 
   [routing_arrive]
     comment = Arrive routing message in navigation view
-    tags = android,ios
+    tags = ios
     en = Arrival at %@
     af = Aankoms om %@
     ar = وقت الوصول: %@
@@ -10745,7 +10836,7 @@
     tags = android,ios
     en = Open
     af = Oop
-    ar = يفتح
+    ar = مفتوح
     be = Адкрыта
     bg = Отворено
     ca = Obert
@@ -10786,7 +10877,7 @@
     tags = android,ios
     en = Closed
     af = Gesluit
-    ar = يغلق
+    ar = مغلق
     be = Закрыта
     bg = Затворено
     ca = Tancat
@@ -11673,7 +11764,7 @@
     mr = २४/७
     nb = Dag og natt
     nl = Nacht en dag
-    pl = Dzień i noc
+    pl = 24/7
     pt = 24 horas por dia
     pt-BR = 24 horas por dia
     ro = 24/7
@@ -11858,6 +11949,7 @@
     tags = ios
     en = Opens at %@
     af = Open om %@
+    ar = يفتح في %@
     be = Адкрываецца ў %@
     ca = Obre a les %@
     de = Öffnet um %@
@@ -11902,6 +11994,7 @@
     tags = ios
     en = Closes at %@
     af = Sluit om %@
+    ar = يغلق في %@
     be = Закрываецца ў %@
     ca = Tanca a les %@
     de = Schließt um %@
@@ -13890,7 +13983,7 @@
     tags = android,ios
     en = Adding
     af = Voeg tans toe
-    ar = يتم الإٍضافة
+    ar = يتم الإضافة
     be = Даданне
     bg = Добавяне
     ca = Addició
@@ -14612,7 +14705,7 @@
     mr = मजल्यांची संख्या (कमाल %d)
     nb = Antall etasjer (maks. %d)
     nl = Aantal verdiepingen (max. %d)
-    pl = Liczba pięter (maks. %d)
+    pl = Liczba kondygnacji (maks. %d)
     pt = Número de pisos (máx. %d)
     pt-BR = Número de andares (máx. %d)
     ro = Număr de etaje (maximum %d)
@@ -14654,7 +14747,7 @@
     mr = मजल्यांची संख्या %d पेक्षा जास्त नसावी
     nb = Rediger bygningen med maks. %d etasjer
     nl = Het gebouw mag niet meer dan %d verdiepingen hebben
-    pl = Edytuj budynek z maksymalną liczbą %d pięter
+    pl = Liczba kondygnacji nie może przekraczać %d
     pt = O número de pisos não pode ser maior que %d
     pt-BR = O número de andares não pode ser maior que %d
     ro = Numărul de etaje nu trebuie să depășească %d
@@ -16760,7 +16853,7 @@
     mr = अद्ययावत करा
     nb = Oppdatere
     nl = Updaten
-    pl = Uaktualnić
+    pl = Aktualizuj
     pt = Atualizar
     pt-BR = Atualizar
     ro = Actualizează
@@ -16942,7 +17035,7 @@
     zh-Hant = OpenStreetMap 編輯人員將檢查更改並在有任何問題時與您聯繫。
 
   [navigation_stop_button]
-    tags = ios
+    tags = android,ios
     en = stop
     af = stop
     ar = توقف
@@ -17977,90 +18070,6 @@
     zh-Hans = 一般反馈
     zh-Hant = 一般反應
 
-  [on]
-    tags = android,ios
-    en = On
-    af = Aan
-    ar = تشغيل
-    be = Укл.
-    bg = Вкл.
-    ca = Actiu
-    cs = Zapnout
-    da = Til
-    de = An
-    el = Ενεργ.
-    es = Act.
-    et = Sees
-    eu = Martxan
-    fa = روشن
-    fi = Käytössä
-    fr = On
-    hu = Be
-    id = On
-    it = Acceso
-    ja = オン
-    ko = 켜기
-    lt = Įjungtas
-    mr = चालू
-    nb = På
-    nl = Aan
-    pl = Wł.
-    pt = Lig.
-    pt-BR = Lig.
-    ro = Pornit
-    ru = Вкл.
-    sk = Zap.
-    sv = På
-    sw = Washa
-    th = เปิด
-    tr = Aç
-    uk = Увімкн.
-    vi = Bật
-    zh-Hans = 开
-    zh-Hant = 開
-
-  [off]
-    tags = android,ios
-    en = Off
-    af = Af
-    ar = إيقاف
-    be = Выкл.
-    bg = Изкл.
-    ca = Inactiu
-    cs = Vypnout
-    da = Fra
-    de = Aus
-    el = Απενεργ.
-    es = Desact.
-    et = Väljas
-    eu = Itzalita
-    fa = خاموش
-    fi = Ei käytössä
-    fr = Off
-    hu = Ki
-    id = Mati
-    it = Spento
-    ja = オフ
-    ko = 끄기
-    lt = Išjungtas
-    mr = बंद
-    nb = Av
-    nl = Uit
-    pl = Wył.
-    pt = Deslig.
-    pt-BR = Deslig.
-    ro = Oprit
-    ru = Выкл.
-    sk = Vyp.
-    sv = Av
-    sw = Zima
-    th = ปิด
-    tr = Kapat
-    uk = Вимкн.
-    vi = Tắt
-    zh-Hans = 关
-    zh-Hant = 關
-
   [prefs_languages_information]
     tags = android
     en = We use system TTS for voice instructions. Many Android devices use Google TTS, you can download or update it from Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)
@@ -18400,48 +18409,6 @@
     vi = Bổ sung điểm kết thúc để lập kế hoạch lộ trình
     zh-Hans = 添加终点以规划路线
     zh-Hant = 新增終點以計劃路線
-
-  [button_exit]
-    tags = android
-    en = Exit
-    af = Verlaat
-    ar = خروج
-    be = Выхад
-    bg = Изход
-    ca = Surt
-    cs = Ukončit
-    da = Afslut
-    de = Beenden
-    el = Έξοδος
-    es = Salir
-    et = Välju
-    eu = Irten
-    fa = خروج
-    fi = Poistu
-    fr = Quitter
-    hu = Kilépés
-    id = Keluar
-    it = Uscita
-    ja = 終了
-    ko = 끝내기
-    lt = Išeiti
-    mr = बाहेर पडा
-    nb = Avslutt
-    nl = Verlaten
-    pl = Wyjdź
-    pt = Sair
-    pt-BR = Sair
-    ro = Ieșire
-    ru = Выход
-    sk = Ukončiť
-    sv = Avsluta
-    sw = Toka
-    th = ออก
-    tr = Çık
-    uk = Вихід
-    vi = Thoát
-    zh-Hans = 退出
-    zh-Hant = 退出
 
   [planning_route_manage_route]
     tags = ios
@@ -20549,92 +20516,6 @@
     zh-Hans = 支持设置
     zh-Hant = 跟蹤設置
 
-  [crash_reports]
-    tags = android
-    en = Crash report
-    af = Uitbomverslag
-    ar = تقرير الخاص بتعطل التطبيق
-    be = Справаздача аб памылцы
-    bg = Доклад за срив
-    ca = Informe de fallada
-    cs = Zprávy o chybách
-    da = Nedbrudsrapport
-    de = Fehlerberichte
-    el = Αναφορά σφάλματος
-    es = Informe de incidentes
-    es-MX = Reporte de fallas
-    et = Krahhi raport
-    eu = Akatsen txostena
-    fa = گزارش خرابی
-    fi = Kaatumisraportti
-    fr = Rapport d'accident
-    hu = Hibajelentés
-    id = Laporan tabrakan
-    it = Rapporto d'arresto
-    ja = クラッシュレポート
-    ko = 오류 보고서
-    lt = Strigčio ataskaita
-    mr = क्रॅश अहवाल
-    nb = Krasjrapport
-    nl = Crash rapport
-    pl = Raport o błędzie
-    pt = Relatório de erros
-    pt-BR = Relatório de erros
-    ro = Raport de eroare
-    ru = Отчеты об ошибках
-    sk = Hlásenie chýb
-    sv = Olycksrapport
-    sw = Ripoti ya kuharibika
-    th = รายงานข้อขัดข้อง
-    tr = Çökme raporu
-    uk = Звіти про помилки
-    vi = Báo cáo sự cố
-    zh-Hans = 错误报告
-    zh-Hant = 錯誤報告
-
-  [crash_reports_description]
-    tags = android
-    en = We may use your crash reports to improve Organic Maps. Changes will take effect after you restart the app.
-    af = Ons kan u uitbomverslae gebruik om Organic Maps te verbeter. Veranderinge sal plaasvind nadat u die toep herbegin het.
-    ar = قد نستخدم بياناتك لتحسين تجربة Organic Maps. سوف تكون التغييرات نافذة المفعول بعد إعادة تشغيل التطبيق.
-    be = Мы можам выкарыстоўваць вашы даныя, каб палепшыць Organic Maps. Змены набудуць сілу пасля перазапуску праграмы.
-    bg = Можем да използваме данни ви, за да подобрим изживяването с Organic Maps. Промените ще влязат в сила, след рестартиране на приложението.
-    ca = Podem usar les vostres dades per a millorar l'experiència d'Organic Maps. Els canvis seran efectius després de reinicieu l'aplicació.
-    cs = Můžeme používat vaše údaje pro vývoj a zlepšení Organic Maps. Změny se projeví po restartování aplikace.
-    da = Vi kan anvende dine data til at forbedre brugeroplevelsen på Organic Maps. Ændringerne træder i kraft, når du har genstartet appen.
-    de = Wir können Ihre Daten nutzen, um Organic Maps weiterzuentwickeln und zu verbessern. Die Änderungen werden nach dem Neustart der App wirksam werden.
-    el = Μπορεί να χρησιμοποιήσουμε τα δεδομένα σας για να βελτιώσουμε την εμπειρία του Organic Maps. Οι αλλαγές θα ενεργοποιηθούν μετά την επανεκκίνηση της εφαρμογής.
-    es = Puede que utilicemos sus datos para mejorar la experiencia de Organic Maps. Los cambios tendrán efecto después de que reinicie la aplicación.
-    es-MX = Puede que utilicemos sus datos para mejorar la experiencia de Organic Maps. Los cambios surtirán efecto después de que reinicie la aplicación.
-    et = õime kasutada teie andmeid Organic Maps kasutuskogemuse parandamiseks. Muudatused jõustuvad pärast rakenduse taaskäivitamist.
-    eu = Zure datuak Organic Maps-en esperientzia hobetzeko erabil ditzakegu. Aldaketak aplikazioa berrabiarazi ondoren jarriko dira indarrean.
-    fa = ما از داده‌های شما برای بهبود Organic Maps استفاده می‌کنیم. تغییرات پس از راه‌اندازی مجدد برنامه به‌کار می‌افتد.
-    fi = Saatamme käyttää tietojasi parantaaksemme Organic Mapsia. Muutokset tulevat voimaan kun käynnistät sovelluksen uudestaan.
-    fr = Nous pouvons utiliser vos données pour améliorer l'expérience de Organic Maps. Les modifications prendront effet après le redémarrage de l'application.
-    hu = A Organic Maps fejlesztéséhez felhasználhatjuk az adatait. A változtatások az alkalmazás újraindítása után lépnek életbe.
-    id = Kami dapat menggunakan data Anda untuk meningkatkan pengalaman Organic Maps. Perubahan akan berlaku setelah Anda memulai ulang aplikasi.
-    it = Potremmo utilizzare i tuoi dati per migliorare l'esperienza di Organic Maps. Le modifiche avranno effetto dopo aver riavviato l'app.
-    ja = Organic Maps体験を向上させるため、お客様のデータを使用する可能性があります。変更は、アプリを再起動した後に、反映されます。
-    ko = 당사는 Organic Maps 경험을 개선하기 위해 귀하의 데이터를 활용할 수 있습니다. 앱을 다시 시작한 후 변경사항이 적용됩니다.
-    lt = Galime naudotis jūsų duomenimis, kad tobulintumėme Organic Maps patirtį. Pakeitimas įsigalios po programėlės paleidimo iš naujo.
-    mr = Organic Maps चा अनुभव सुधारण्यासाठी आम्ही तुमचा डेटा वापरू शकतो. तुम्ही ऍप पुनःचालू केल्यानंतर बदल प्रभावी होईल.
-    nb = Vi kan bruke dine data for å forbedre Organic Maps-opplevelsen. Endringer vil bli aktive når du restarter appen.
-    nl = Wij kunnen uw gegevens gebruiken om Organic Maps te verbeteren. Wijzigingen treden in werking na het opnieuw opstarten van de app.
-    pl = Możemy używać Twoich danych do usprawnienia działania Organic Maps. Zmiany zostaną zastosowane po ponownym uruchomieniu aplikacji.
-    pt = Podemos utilizar os seus dados para melhorar a experiência no Organic Maps. As alterações entrarão em vigor quando reiniciar a aplicação.
-    pt-BR = Nós podemos utilizar seus dados para melhorar a experiência no Organic Maps. As mudanças terão efeitos após reiniciar o app.
-    ro = Putem folosi datele tale pentru a îmbunătăți Organic Maps. Modificările vor intra în vigoare după repornirea aplicației.
-    ru = Мы можем использовать ваши данные, чтобы развивать и улучшать Organic Maps. Изменения вступят в силу после перезапуска приложения.
-    sk = Vaše údaje môžeme použiť na zlepšenie skúseností s programom Organic Maps. Zmeny sa prejavia po reštartovaní aplikácie.
-    sv = Vi kan komma att använda din data för att förbättra Organic Maps upplevelsen. Ändringarna kommer träda i kraft när du startar om appen.
-    sw = Tunaweza kutumia data yako kuboresha uzoefu wa Organic Maps Mabadiliko yataanza kutumika baada ya kuwasha upya programu.
-    th = เราอาจใช้ข้อมูลของคุณเพื่อพัฒนาประสบการณ์ของ Organic Maps การเปลี่ยนแปลงจะมีผลหลังจากที่คุณเปิดแอพฯ ขึ้นใหม่
-    tr = Organic Maps deneyimini geliştirmek için verilerinizi kullanabiliriz. Değişiklikler, uygulama yeniden başlatıldıktan sonra geçerli olur.
-    uk = Ми можемо використовувати ваші дані, щоб розвивати та покращувати Organic Maps. Зміни вступлять у силу після перезапуску програми
-    vi = Chúng tôi có thể sử dụng dữ liệu của bạn để cải thiện trải nghiệm trên Organic Maps. Thay đổi sẽ có hiệu lực sau khi bạn khởi động lại ứng dụng.
-    zh-Hans = 我们可以使用您的数据来开发和改进Organic Maps。更改将在重新启动应用程序后生效。
-    zh-Hant = 我們可以使用您的數據來開發和改進Organic Maps。更改將再重新啟動 app 後生效。
-
   [privacy_policy]
     tags = android,ios
     en = Privacy policy
@@ -21566,50 +21447,8 @@
     zh-Hans = 高速摄像机
     zh-Hant = 超速照相機
 
-  [speedcam_option_auto]
-    tags = android,ios
-    en = Auto
-    af = Outomaties
-    ar = تلفائياً
-    be = Аўтаматычна
-    bg = Автоматично
-    ca = Automàtic
-    cs = Automaticky
-    da = Auto
-    de = Auto
-    el = Αυτόματο
-    es = Auto
-    es-MX = Automático
-    et = Automaatne
-    eu = Automatikoa
-    fa = خودکار
-    fi = Auto
-    fr = Auto
-    hu = Automatikus
-    id = Auto
-    it = Auto
-    ja = 自動
-    ko = 자동
-    lt = Automatiškai
-    mr = स्वयं
-    nb = Auto
-    nl = Auto
-    pl = Automatycznie
-    pt = Automático
-    pt-BR = Automático
-    ro = Auto
-    ru = Авто
-    sk = Automaticky
-    sv = Auto
-    sw = Auto
-    th = อัตโนมัติ
-    tr = Otomatik
-    uk = Авто
-    vi = Tự động
-    zh-Hans = 自动
-    zh-Hant = 自動
-
-  [speedcam_option_always]
+  [always]
+    comment = Generic «Always» string
     tags = android,ios
     en = Always
     af = Altyd
@@ -21652,7 +21491,8 @@
     zh-Hans = 总是
     zh-Hant = 總是
 
-  [speedcam_option_never]
+  [never]
+    comment = Generic «Never» string
     tags = android,ios
     en = Never
     af = Nooit
@@ -24035,8 +23875,8 @@
     da = %@ exit
     de = %@ Ausfahrt
     el = %@ έξοδος
-    es = %@ desviación
-    es-MX = %@ desviación
+    es = %@ salida
+    es-MX = %@ salida
     et = %@ väljumine
     eu = %@ irteera
     fa = خروجی %@
@@ -24526,7 +24366,7 @@
     mr = गेल्या आठवड्यात
     nb = For en uke siden
     nl = Een week geleden
-    pl = Tydzień wstecz
+    pl = Tydzień temu
     pt = Uma semana atrás
     pt-BR = Uma semana atrás
     ro = Acum o săptămână
@@ -24568,7 +24408,7 @@
     mr = गेल्या महिन्यात
     nb = For en måned siden
     nl = Een maand geleden
-    pl = Miesiąc wstecz
+    pl = Miesiąc temu
     pt = Um mês atrás
     pt-BR = Um mês atrás
     ro = Acum o lună
@@ -24610,7 +24450,7 @@
     mr = एक महिन्यापूर्वी
     nb = Mer enn en måned siden
     nl = Meer dan een maand geleden
-    pl = Ponad miesiąc wstecz
+    pl = Ponad miesiąc temu
     pt = Mais de um mês atrás
     pt-BR = Mais de um mês atrás
     ro = Acum mai mult de o lună
@@ -24652,7 +24492,7 @@
     mr = एक वर्षांपूर्वी
     nb = Mer enn ett år siden
     nl = Meer dan een jaar geleden
-    pl = Ponad rok wstecz
+    pl = Ponad rok temu
     pt = Mais de um ano atrás
     pt-BR = Mais de um ano atrás
     ro = Cu mai mult de un an în urmă
@@ -24694,7 +24534,7 @@
     mr = माझ्या जवळ
     nb = Nær meg
     nl = Naast mij
-    pl = Obok mnie
+    pl = W pobliżu
     pt = Perto de mim
     pt-BR = Próximo de mim
     ro = Lângă mine
@@ -25630,7 +25470,7 @@
     mr = भूप्रदेश
     nb = Høyder
     nl = Hoogtes
-    pl = Wysokości
+    pl = Poziomice
     pt = Terreno
     pt-BR = Topográfica
     ro = Înălțimi
@@ -25673,7 +25513,7 @@
     mr = भूस्वरूप स्तर वापरण्यासाठी कृपया नकाशा डाउनलोड किंवा अद्ययावत करा
     nb = For å bruke høydekurver oppdater eller last opp kartet til nødvendig område
     nl = Als u gebruik wilt maken van hoogtelijnen, moet u een kaart van het gewenste gebied bijwerken of downloaden
-    pl = Do skorzystania z linii wysokości, zaktualizuj lub pobierz mapę obszaru, który potrzebujesz
+    pl = Do skorzystania z poziomic, pobierz mapę tego obszaru.
     pt = Para ativar e usar a camada topográfica, por favor atualize ou descarregue o mapa da área
     pt-BR = Para ativar e usar a camada topográfica, atualize ou baixe o mapa da região
     ro = Pentru a activa și utiliza stratul topografic actualizează sau descarcă harta zonei
@@ -25716,7 +25556,7 @@
     mr = या भागात भूस्वरूप स्तर अद्याप उपलब्ध नाही
     nb = Høydekurver er ikke tilgjengelige i dette området ennå
     nl = De hoogtelijnen zijn nog niet beschikbaar in deze regio
-    pl = W tej chwili nie są dostępne linie wysokości w tym regionie
+    pl = Poziomice nie są jeszcze dostępne w tym regionie
     pt = A camada topográfica ainda não está disponível nesta área
     pt-BR = A camada topográfica ainda não está disponível para esta região
     ro = Stratul topografic nu este încă disponibil în această zonă
@@ -26229,7 +26069,7 @@
     mr = समोच्च रेषा पाहायला नकाशा विशाल (झूम) करा
     nb = Forstørr kartet for å se høydekurver
     nl = Zoom in om isolijnen te bekijken
-    pl = Powiększ mapę, aby zobaczyć izolinie
+    pl = Powiększ mapę, aby zobaczyć poziomice
     pt = Amplie o mapa para ver as curvas de nível
     pt-BR = Use o zoom para explorar as isolinhas
     ro = Mărește harta pentru a vedea izoliniile
@@ -26430,6 +26270,7 @@
     tags = android
     en = Disconnect USB cable
     af = Ontkoppel USB-kabel
+    ar = إفصل سلك USB
     be = Адлучыце USB кабель
     bg = Изключване на USB кабел
     ca = Desconnecteu el cable USB
@@ -27010,3 +26851,46 @@
     comment = A number of bookmarks and a number of tracks, separated by comma, like: 1 bookmark, 5 tracks
     tags = android
     en = %@, %@
+
+  [app_tip_00]
+    comment = Tip #00
+    tags = android
+    en = Thank you for using our community-built maps!
+    ar = شكرًا لك على استخدام الخرائط التي أنشأها مجتمعنا!
+    be = Дзякуй за выкарыстанне нашых карт, створаных супольнасцю!
+    bg = Благодарим ви, че използвате нашите карти, създадени от общността!
+    ca = Gràcies per utilitzar els nostres mapes creats per la comunitat!
+    cs = Děkujeme, že používáte naše komunitní mapy!
+    da = Tak, fordi du bruger vores community-byggede kort!
+    de = Danke, dass du unsere von der Gemeinschaft erstellten Karten benutzt!
+    el = Σας ευχαριστούμε που χρησιμοποιείτε τους χάρτες μας που δημιουργήθηκαν από την κοινότητα!
+    es = ¡Gracias por utilizar nuestros mapas creados por la comunidad!
+    et = Aitäh, et kasutate meie kogukonna koostatud kaarte!
+    eu = Eskerrik asko gure komunitateak eraikitako mapak erabiltzeagatik!
+    fa = از شما برای استفاده از نقشه های ساخته شده توسط جامعه سپاسگزاریم!
+    fi = Kiitos, että käytät yhteisön laatimia karttojamme!
+    fr = Merci d'utiliser nos cartes créées par la communauté !
+    he = תודה על השימוש במפות שנבנו בקהילה שלנו!
+    hi = हमारे समुदाय-निर्मित मानचित्रों का उपयोग करने के लिए धन्यवाद!
+    hu = Köszönjük, hogy használja a közösség által készített térképeinket!
+    id = Terima kasih telah menggunakan peta buatan komunitas kami!
+    it = Grazie per aver utilizzato le nostre mappe costruite dalla comunità!
+    ja = 私たちのコミュニティが作った地図をご利用いただき、ありがとうございます！
+    ko = 커뮤니티에서 제작한 지도를 이용해 주셔서 감사합니다!
+    mr = आमचे समुदाय-निर्मित नकाशे वापरल्याबद्दल धन्यवाद!
+    nb = Takk for at du bruker kartene vi har laget i fellesskap!
+    nl = Bedankt voor het gebruik van onze door de community gemaakte kaarten!
+    pl = Dziękujemy za korzystanie z naszych map stworzonych przez społeczność!
+    pt = Obrigado por utilizares os nossos mapas construídos pela comunidade!
+    pt-BR = Obrigado por você usar nossos mapas criados pela comunidade!
+    ro = Vă mulțumim că utilizați hărțile create de comunitatea noastră!
+    ru = Спасибо, что пользуетесь нашими картами, созданными сообществом!
+    sk = Ďakujeme, že používate naše mapy vytvorené komunitou!
+    sv = Tack för att du använder våra gemenskapsbyggda kartor!
+    sw = Asante kwa kutumia ramani zetu zilizojengwa na jumuiya!
+    th = ขอขอบคุณที่ใช้แผนที่ที่สร้างโดยชุมชนของเรา!
+    tr = Topluluk tarafından oluşturulan haritalarımızı kullandığınız için teşekkür ederiz!
+    uk = Дякуємо, що користуєтесь нашими мапами, створеними спільнотою!
+    vi = Cảm ơn bạn đã sử dụng bản đồ do cộng đồng xây dựng của chúng tôi!
+    zh-Hans = 感谢您使用我们的社区地图！
+    zh-Hant = 感謝您使用我們社區構建的地圖！

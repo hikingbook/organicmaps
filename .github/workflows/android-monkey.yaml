@@ -76,13 +76,13 @@ jobs:
         run: |
           cmake --version
           ninja --version
-          gradle -Pfirebase assembleGoogleDebug uploadCrashlyticsSymbolFileGoogleDebug
+          ./gradlew -Pfirebase -Parm64-v8a -Parmeabi-v7a -Px86_64 assembleGoogleDebug uploadCrashlyticsSymbolFileGoogleDebug
 
       - name: Run monkey
         run: |
-          gcloud auth activate-service-account --key-file android/firebase-test-lab.json
+          gcloud auth activate-service-account --key-file android/app/firebase-test-lab.json
           gcloud config set project omapsapp
-          gcloud firebase test android run --app ./android/build/outputs/apk/google/debug/OrganicMaps-*-google-debug.apk \
+          gcloud firebase test android run --app ./android/app/build/outputs/apk/google/debug/OrganicMaps-*-google-debug.apk \
             --device model=panther,version=33 \
             --device model=bluejay,version=32 \
             --device model=b2q,version=31 \
@@ -96,6 +96,4 @@ jobs:
             --device model=Nexus6,version=25 \
             --device model=NexusLowRes,version=24 \
             --device model=NexusLowRes,version=23,orientation=landscape \
-            --device model=Nexus6,version=22 \
-            --device model=Nexus7,version=21 \
             --timeout 15m

@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Nattläge";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Av";
+/* Generic «Off» string */
+"off" = "Av";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "På";
+/* Generic «On» string */
+"on" = "På";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Auto";
+/* Generic «Auto» string */
+"auto" = "Auto";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektivvy";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafikdata är inte tillgänglig";
 
-"on" = "På";
-
-"off" = "Av";
-
 "transliteration_title" = "Transkribering till latin";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Hastighetskameror";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Alltid";
 
-"speedcam_option_always" = "Alltid";
-
-"speedcam_option_never" = "Aldrig";
+/* Generic «Never» string */
+"never" = "Aldrig";
 
 "place_description_title" = "Beskrivning av platsen";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kasino";
 
+"type.amenity.gambling" = "Spelande";
+
+"type.leisure.adult_gaming_centre" = "Spelcenter för vuxna";
+
+"type.leisure.amusement_arcade" = "Arkad";
+
 "type.amenity.charging_station" = "Laddstation";
 
 "type.amenity.charging_station.bicycle" = "Laddningsstation för cykel";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkering";
 
+"type.amenity.parking.fee.street_side" = "Parkering";
+
 "type.amenity.parking.lane" = "Parkering";
+
+"type.amenity.parking.fee.lane" = "Parkering";
 
 "type.amenity.parking_entrance" = "Parkering entré";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Tempel";
 
 "type.amenity.place_of_worship.christian" = "Kyrka";
+
+"type.amenity.place_of_worship.christian.mormon" = "Jesu Kristi Kyrka av Sista Dagars Heliga";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Skyddsrum";
 
+"type.amenity.public_bath" = "Offentligt bad";
+
 "type.amenity.shower" = "Dusch";
+
+"type.amenity.stripclub" = "Stripklubb";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Fordonsinspektion";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinär";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Vallgrav";
+"type.waterway.ditch" = "Dräneringsdike";
+
+"type.natural.water.moat" = "Vallgrav";
+
+"type.natural.water.wastewater" = "Avloppsvatten";
 
 "type.barrier.entrance" = "Ingång";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Bryggeri";
 
+"type.craft.caterer" = "Cateringfirma";
+
 "type.craft.carpenter" = "Snickare";
 
 "type.craft.confectionery" = "Konditor";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Reparation av elektronik";
 
 "type.craft.gardener" = "Trädgårdsmästare";
+
+"type.craft.grinding_mill" = "Kvarn för slipning";
 
 "type.craft.handicraft" = "Konsthantverk";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamesisk mat";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Nöduppsamlingsplats";
 
 "type.emergency.defibrillator" = "Defibrillator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Historiskt objekt";
 
+"type.historic.aircraft" = "Historiska flygplan";
+
+"type.historic.anchor" = "Historiskt ankare";
+
 "type.historic.archaeological_site" = "Arkeologisk plats";
 
 "type.historic.battlefield" = "Stridsområde";
 
 "type.historic.boundary_stone" = "Gränsmärke";
+
+"type.historic.cannon" = "Kanon";
 
 "type.historic.castle" = "Borg";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Galge";
 
+"type.historic.locomotive" = "Historiskt lok";
+
 "type.historic.memorial" = "Minnesmärke";
 
 "type.historic.memorial.cross" = "Kors till minne";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Snubbelsten";
 
+"type.historic.stone" = "Historisk sten";
+
 "type.historic.memorial.war_memorial" = "Krigsmonument";
+
+"type.historic.mine" = "Historisk gruva";
 
 "type.historic.monument" = "Minnesmärke";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Fartyg";
 
+"type.historic.tank" = "Historisk tank";
+
 "type.historic.tomb" = "Grav";
 
 "type.historic.wayside_cross" = "Korset vid vägkanten";
 
 "type.historic.wayside_shrine" = "Helgedom vid vägkanten";
+
+"type.historic.wreck" = "Förlisning";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Naturreservat";
+
+"type.leisure.outdoor_seating" = "Sittplatser utomhus";
 
 "type.leisure.park" = "Parken";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Akvarium";
+
 "type.tourism.alpine_hut" = "Bergsboende";
 
 "type.tourism.apartment" = "Lägenheter";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Turistcenter";
 
+"type.tourism.information.visitor_centre" = "Besökscentrum";
+
 "type.tourism.motel" = "Motell";
 
 "type.tourism.museum" = "Museum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Dräneringsdike";
+
+"type.waterway.ditch.tunnel" = "Kulvert";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Kulvert";
 
 "type.waterway.lock_gate" = "Slussport";
 

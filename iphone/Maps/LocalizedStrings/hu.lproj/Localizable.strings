@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Éjszakai üzemmód";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Ki";
+/* Generic «Off» string */
+"off" = "Ki";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Be";
+/* Generic «On» string */
+"on" = "Be";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automatikus";
+/* Generic «Auto» string */
+"auto" = "Automatikus";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektivikus nézet";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Forgalmi adatok nem állnak rendelkezésre";
 
-"on" = "Be";
-
-"off" = "Ki";
-
 "transliteration_title" = "Átírás latin nyelvre";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Sebességmérő kamerák";
 
-"speedcam_option_auto" = "Automatikus";
+/* Generic «Always» string */
+"always" = "Mindig";
 
-"speedcam_option_always" = "Mindig";
-
-"speedcam_option_never" = "Soha";
+/* Generic «Never» string */
+"never" = "Soha";
 
 "place_description_title" = "A hely ismertetése";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kaszinó";
 
+"type.amenity.gambling" = "Szerencsejáték";
+
+"type.leisure.adult_gaming_centre" = "Felnőtt Játékközpont";
+
+"type.leisure.amusement_arcade" = "Árkád";
+
 "type.amenity.charging_station" = "Töltő állomás";
 
 "type.amenity.charging_station.bicycle" = "Kerékpártöltő állomás";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkoló";
 
+"type.amenity.parking.fee.street_side" = "Parkoló";
+
 "type.amenity.parking.lane" = "Parkoló";
+
+"type.amenity.parking.fee.lane" = "Parkoló";
 
 "type.amenity.parking_entrance" = "Parkoló bejárata";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Templom";
 
 "type.amenity.place_of_worship.christian" = "Templom";
+
+"type.amenity.place_of_worship.christian.mormon" = "Utolsó Napok Szentjeinek Jézus Krisztus Egyháza";
 
 "type.amenity.place_of_worship.hindu" = "Templom";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Menedék";
 
+"type.amenity.public_bath" = "Közfürdő";
+
 "type.amenity.shower" = "Tusoló";
+
+"type.amenity.stripclub" = "Stripclub";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Gépjármű átvizsgálás";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Állatorvos";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Várárok";
+"type.waterway.ditch" = "Árok";
+
+"type.natural.water.moat" = "Várárok";
+
+"type.natural.water.wastewater" = "Szennyvíz";
 
 "type.barrier.entrance" = "Bejárat";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Sörfőzde";
 
+"type.craft.caterer" = "Catering";
+
 "type.craft.carpenter" = "Ács";
 
 "type.craft.confectionery" = "Cukrászda";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Elektronikai javítás";
 
 "type.craft.gardener" = "Kertész";
+
+"type.craft.grinding_mill" = "Csiszolómalom";
 
 "type.craft.handicraft" = "Kézművesség";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnami konyha";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Sürgősségi gyülekezési pont";
 
 "type.emergency.defibrillator" = "Defibrillátor";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Történelmi tárgy";
 
+"type.historic.aircraft" = "Történelmi Repülőgép";
+
+"type.historic.anchor" = "Történelmi horgony";
+
 "type.historic.archaeological_site" = "Ásatás";
 
 "type.historic.battlefield" = "Csatatér";
 
 "type.historic.boundary_stone" = "Határkő";
+
+"type.historic.cannon" = "Ágyú";
 
 "type.historic.castle" = "Kastély";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Akasztófa";
 
+"type.historic.locomotive" = "Történelmi mozdony";
+
 "type.historic.memorial" = "Emlékmű";
 
 "type.historic.memorial.cross" = "Emlékkereszt";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Botlatókő";
 
+"type.historic.stone" = "Történelmi kő";
+
 "type.historic.memorial.war_memorial" = "Háborús emlékmű";
+
+"type.historic.mine" = "Történelmi Bánya";
 
 "type.historic.monument" = "Műemlék";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Túrizmus";
 
+"type.historic.tank" = "Történelmi Tank";
+
 "type.historic.tomb" = "Sír";
 
 "type.historic.wayside_cross" = "Útszéli kereszt";
 
 "type.historic.wayside_shrine" = "Útmenti szentély";
+
+"type.historic.wreck" = "Hajótörés";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Védett terület";
+
+"type.leisure.outdoor_seating" = "Kültéri ülőhelyek";
 
 "type.leisure.park" = "Park";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Akvárium";
+
 "type.tourism.alpine_hut" = "Hegyi menedék";
 
 "type.tourism.apartment" = "Apartmanok";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Idegenforgalmi iroda";
 
+"type.tourism.information.visitor_centre" = "Látogatóközpont";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Múzeum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Árok";
+
+"type.waterway.ditch.tunnel" = "Vízelvezető";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Vízelvezető";
 
 "type.waterway.lock_gate" = "Zsilip";
 

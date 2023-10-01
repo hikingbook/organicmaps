@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "夜間模式";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "關閉";
+/* Generic «Off» string */
+"off" = "關閉";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "開啟";
+/* Generic «On» string */
+"on" = "開啟";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "自動";
+/* Generic «Auto» string */
+"auto" = "自動";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "透視圖";
@@ -310,7 +310,7 @@
 "faq" = "問題和解答";
 
 /* Button in the main menu */
-"donate" = "捐";
+"donate" = "捐款";
 
 /* Button in the main Help dialog */
 "how_to_support_us" = "支持項目";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "無法使用交通資訊";
 
-"on" = "開";
-
-"off" = "關";
-
 "transliteration_title" = "音譯為拉丁文";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "超速照相機";
 
-"speedcam_option_auto" = "自動";
+/* Generic «Always» string */
+"always" = "總是";
 
-"speedcam_option_always" = "總是";
-
-"speedcam_option_never" = "從不";
+/* Generic «Never» string */
+"never" = "從不";
 
 "place_description_title" = "地點說明";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "賭場";
 
+"type.amenity.gambling" = "賭博";
+
+"type.leisure.adult_gaming_centre" = "成人遊戲中心";
+
+"type.leisure.amusement_arcade" = "拱廊";
+
 "type.amenity.charging_station" = "充電站";
 
 "type.amenity.charging_station.bicycle" = "自行車充電站";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "停車場";
 
+"type.amenity.parking.fee.street_side" = "停車場";
+
 "type.amenity.parking.lane" = "停車場";
+
+"type.amenity.parking.fee.lane" = "停車場";
 
 "type.amenity.parking_entrance" = "停車場入口";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "佛教寺廟";
 
 "type.amenity.place_of_worship.christian" = "基督教堂";
+
+"type.amenity.place_of_worship.christian.mormon" = "耶穌基督後期聖徒教會";
 
 "type.amenity.place_of_worship.hindu" = "印度教寺廟";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "隱藏處";
 
+"type.amenity.public_bath" = "公共浴場";
+
 "type.amenity.shower" = "淋浴間";
+
+"type.amenity.stripclub" = "脫衣舞俱樂部";
 
 "type.amenity.taxi" = "計程車";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "車輛檢驗";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "獸醫";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "護城河";
+"type.waterway.ditch" = "排水溝";
+
+"type.natural.water.moat" = "護城河";
+
+"type.natural.water.wastewater" = "廢水";
 
 "type.barrier.entrance" = "入口";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "釀酒廠";
 
+"type.craft.caterer" = "餐飲服務商";
+
 "type.craft.carpenter" = "木工";
 
 "type.craft.confectionery" = "糖果商";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "電子產品維修";
 
 "type.craft.gardener" = "園藝師";
+
+"type.craft.grinding_mill" = "磨粉機";
 
 "type.craft.handicraft" = "手工藝";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "越南料理";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "緊急集合點";
 
 "type.emergency.defibrillator" = "心臟電擊器";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "歷史地點";
 
+"type.historic.aircraft" = "歷史悠久的飛機";
+
+"type.historic.anchor" = "歷史錨";
+
 "type.historic.archaeological_site" = "考古遺址";
 
 "type.historic.battlefield" = "古戰場";
 
 "type.historic.boundary_stone" = "界碑";
+
+"type.historic.cannon" = "大砲";
 
 "type.historic.castle" = "城堡";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "絞架";
 
+"type.historic.locomotive" = "歷史悠久的機車";
+
 "type.historic.memorial" = "紀念館";
 
 "type.historic.memorial.cross" = "紀念十字架";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "絆腳石";
 
+"type.historic.stone" = "歷史之石";
+
 "type.historic.memorial.war_memorial" = "戰爭紀念建築";
+
+"type.historic.mine" = "歷史礦山";
 
 "type.historic.monument" = "紀念碑";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "歷史船";
 
+"type.historic.tank" = "歷史悠久的坦克";
+
 "type.historic.tomb" = "陵墓";
 
 "type.historic.wayside_cross" = "路旁十字架";
 
 "type.historic.wayside_shrine" = "路旁神龕";
+
+"type.historic.wreck" = "沉船";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "自然保護區";
+
+"type.leisure.outdoor_seating" = "戶外座位";
 
 "type.leisure.park" = "公園";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "水族館";
+
 "type.tourism.alpine_hut" = "山上住宿";
 
 "type.tourism.apartment" = "公寓";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "旅遊辦事處";
 
+"type.tourism.information.visitor_centre" = "遊客中心";
+
 "type.tourism.motel" = "汽車旅館";
 
 "type.tourism.museum" = "博物館";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "排水溝";
+
+"type.waterway.ditch.tunnel" = "涵洞";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "涵洞";
 
 "type.waterway.lock_gate" = "閘門";
 

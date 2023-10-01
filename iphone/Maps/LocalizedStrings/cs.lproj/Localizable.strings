@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Noční režim";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Vypnuto";
+/* Generic «Off» string */
+"off" = "Vypnuto";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Zapnuto";
+/* Generic «On» string */
+"on" = "Zapnuto";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Automaticky";
+/* Generic «Auto» string */
+"auto" = "Automaticky";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Zobrazení perspektivy";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Data o provozu nejsou k dispozici";
 
-"on" = "Zapnout";
-
-"off" = "Vypnout";
-
 "transliteration_title" = "Přepis do latinky";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Detektory rychlosti";
 
-"speedcam_option_auto" = "Automaticky";
+/* Generic «Always» string */
+"always" = "Vždy";
 
-"speedcam_option_always" = "Vždy";
-
-"speedcam_option_never" = "Nikdy";
+/* Generic «Never» string */
+"never" = "Nikdy";
 
 "place_description_title" = "Popis místa";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Casino";
 
+"type.amenity.gambling" = "Hazardní hry";
+
+"type.leisure.adult_gaming_centre" = "Centrum her pro dospělé";
+
+"type.leisure.amusement_arcade" = "Pasáž";
+
 "type.amenity.charging_station" = "Nabíjecí stanice";
 
 "type.amenity.charging_station.bicycle" = "Nabíjecí stanice pro jízdní kola";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkoviště";
 
+"type.amenity.parking.fee.street_side" = "Parkoviště";
+
 "type.amenity.parking.lane" = "Parkoviště";
+
+"type.amenity.parking.fee.lane" = "Parkoviště";
 
 "type.amenity.parking_entrance" = "Vjezd na parkoviště";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Chrám";
 
 "type.amenity.place_of_worship.christian" = "Chrám";
+
+"type.amenity.place_of_worship.christian.mormon" = "Církev Ježíše Krista Svatých posledních dnů";
 
 "type.amenity.place_of_worship.hindu" = "Chrám";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Přístřešek";
 
+"type.amenity.public_bath" = "Veřejné lázně";
+
 "type.amenity.shower" = "Sprcha";
+
+"type.amenity.stripclub" = "Stripcklub";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Kontrola vozidla";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Veterinář";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Hradní příkop";
+"type.waterway.ditch" = "Drenážní příkop";
+
+"type.natural.water.moat" = "Hradní příkop";
+
+"type.natural.water.wastewater" = "Odpadní voda";
 
 "type.barrier.entrance" = "Vstup";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Pivovar";
 
+"type.craft.caterer" = "Cateringová společnost";
+
 "type.craft.carpenter" = "Truhlář";
 
 "type.craft.confectionery" = "Cukrářské výrobky";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Opravy elektroniky";
 
 "type.craft.gardener" = "Zahradník";
+
+"type.craft.grinding_mill" = "Mlýn na mletí";
 
 "type.craft.handicraft" = "Ruční práce";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamská kuchyně";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Nouzové shromažďovací místo";
 
 "type.emergency.defibrillator" = "Defibrilátor";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Historický objekt";
 
+"type.historic.aircraft" = "Historická letadla";
+
+"type.historic.anchor" = "Historická kotva";
+
 "type.historic.archaeological_site" = "Vykopávky";
 
 "type.historic.battlefield" = "Bojiště";
 
 "type.historic.boundary_stone" = "Hraniční kámen";
+
+"type.historic.cannon" = "Dělo";
 
 "type.historic.castle" = "Hrad";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Šibenice";
 
+"type.historic.locomotive" = "Historická lokomotiva";
+
 "type.historic.memorial" = "Pomník";
 
 "type.historic.memorial.cross" = "Pamětní kříž";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
+"type.historic.stone" = "Historický kámen";
+
 "type.historic.memorial.war_memorial" = "Válečný památník";
+
+"type.historic.mine" = "Historický důl";
 
 "type.historic.monument" = "Zajímavost";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Pamětihodnost";
 
+"type.historic.tank" = "Historický tank";
+
 "type.historic.tomb" = "Pamětihodnost";
 
 "type.historic.wayside_cross" = "Přícestný kříž";
 
 "type.historic.wayside_shrine" = "Drobná sakrální památka";
+
+"type.historic.wreck" = "Vrak";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Rezervace";
+
+"type.leisure.outdoor_seating" = "Venkovní posezení";
 
 "type.leisure.park" = "Park";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Akvárium";
+
 "type.tourism.alpine_hut" = "Ubytování v horách";
 
 "type.tourism.apartment" = "Byty";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Informační centrum";
 
+"type.tourism.information.visitor_centre" = "Návštěvnické centrum";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Muzeum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Drenážní příkop";
+
+"type.waterway.ditch.tunnel" = "Propustek";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Propustek";
 
 "type.waterway.lock_gate" = "Stavidlo";
 

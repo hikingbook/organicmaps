@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Нічний режим";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Вимкнуто";
+/* Generic «Off» string */
+"off" = "Вимкнуто";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Увімкнуто";
+/* Generic «On» string */
+"on" = "Увімкнуто";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Автоматично";
+/* Generic «Auto» string */
+"auto" = "Автоматично";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Перспективний вид";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Дані про трафік недоступні";
 
-"on" = "Увімкн.";
-
-"off" = "Вимкн.";
-
 "transliteration_title" = "Транслітерація латинськими літерами";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Камери швидкості";
 
-"speedcam_option_auto" = "Авто";
+/* Generic «Always» string */
+"always" = "Завжди";
 
-"speedcam_option_always" = "Завжди";
-
-"speedcam_option_never" = "Ніколи";
+/* Generic «Never» string */
+"never" = "Ніколи";
 
 "place_description_title" = "Опис місця";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Казино";
 
+"type.amenity.gambling" = "Азартні ігри";
+
+"type.leisure.adult_gaming_centre" = "Ігровий центр для дорослих";
+
+"type.leisure.amusement_arcade" = "Аркада";
+
 "type.amenity.charging_station" = "Зарядна станція";
 
 "type.amenity.charging_station.bicycle" = "Велосипедна зарядна станція";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Парковка";
 
+"type.amenity.parking.fee.street_side" = "Парковка";
+
 "type.amenity.parking.lane" = "Парковка";
+
+"type.amenity.parking.fee.lane" = "Парковка";
 
 "type.amenity.parking_entrance" = "Вхід на паркінг";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Храм";
 
 "type.amenity.place_of_worship.christian" = "Церква";
+
+"type.amenity.place_of_worship.christian.mormon" = "Церква Ісуса Христа Святих Останніх Днів";
 
 "type.amenity.place_of_worship.hindu" = "Храм";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Укриття";
 
+"type.amenity.public_bath" = "Громадська лазня";
+
 "type.amenity.shower" = "Душ";
+
+"type.amenity.stripclub" = "Стриптиз-клуб";
 
 "type.amenity.taxi" = "Таксі";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Поштомат";
 
+"type.amenity.vehicle_inspection" = "Техогляд автомобіля";
+
 "type.amenity.vending_machine.fuel" = "Паливна колонка";
 
 "type.amenity.veterinary" = "Ветеринарна клініка";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Велосипедна перешкода";
 
-"type.barrier.ditch" = "Рів";
+"type.waterway.ditch" = "Дренажна канава";
+
+"type.natural.water.moat" = "Рів";
+
+"type.natural.water.wastewater" = "Стічні води";
 
 "type.barrier.entrance" = "Прохід";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Крафтова пивоварня";
 
+"type.craft.caterer" = "Кейтеринг";
+
 "type.craft.carpenter" = "Столяр";
 
 "type.craft.confectionery" = "Кондитер";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Ремонт електроніки";
 
 "type.craft.gardener" = "Садівник";
+
+"type.craft.grinding_mill" = "Млин";
 
 "type.craft.handicraft" = "Народні художні промисли";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "В'єтнамська кухня";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Аварійний збірний пункт";
 
 "type.emergency.defibrillator" = "Дефібрилятор";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Історичний об'єкт";
 
+"type.historic.aircraft" = "Історичний літак";
+
+"type.historic.anchor" = "Історичний якір";
+
 "type.historic.archaeological_site" = "Пам'ятка археології";
 
 "type.historic.battlefield" = "Поле битви";
 
 "type.historic.boundary_stone" = "Прикордонний камінь";
+
+"type.historic.cannon" = "Гармата";
 
 "type.historic.castle" = "Замок";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Шибениця";
 
+"type.historic.locomotive" = "Історичний паровоз";
+
 "type.historic.memorial" = "Меморіал";
 
 "type.historic.memorial.cross" = "Пам'ятний хрест";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Камені спотикання";
 
+"type.historic.stone" = "Історичний камінь";
+
 "type.historic.memorial.war_memorial" = "Військовий меморіал";
+
+"type.historic.mine" = "Історична шахта";
 
 "type.historic.monument" = "Пам'ятник";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Корабель";
 
+"type.historic.tank" = "Історичний танк";
+
 "type.historic.tomb" = "Гробниця";
 
 "type.historic.wayside_cross" = "Християнський хрест";
 
 "type.historic.wayside_shrine" = "Святиня";
+
+"type.historic.wreck" = "Корабельна аварія";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Пристань";
 
 "type.leisure.nature_reserve" = "Заповідник";
+
+"type.leisure.outdoor_seating" = "Сидіння на відкритому повітрі";
 
 "type.leisure.park" = "Парк";
 
@@ -3457,7 +3499,7 @@
 
 "type.shop.hifi" = "HiFi Audio";
 
-"type.shop.houseware" = "Магазин посуду";
+"type.shop.houseware" = "Побутові товари";
 
 "type.shop.jewelry" = "Ювелірний магазин";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Туризм";
 
+"type.tourism.aquarium" = "Акваріум";
+
 "type.tourism.alpine_hut" = "Гірський готель";
 
 "type.tourism.apartment" = "Апартаменти";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Туристичний офіс";
 
+"type.tourism.information.visitor_centre" = "Центр для відвідувачів";
+
 "type.tourism.motel" = "Мотель";
 
 "type.tourism.museum" = "Музей";
@@ -3735,13 +3781,17 @@
 
 "type.waterway.dam" = "Дамба";
 
-"type.waterway.ditch" = "Канава";
+"type.barrier.ditch" = "Канава";
+
+"type.natural.water.ditch" = "Дренажна канава";
 
 "type.waterway.ditch.tunnel" = "Водопропускна труба";
 
 "type.waterway.dock" = "Причал";
 
 "type.waterway.drain" = "Водовiдвiд";
+
+"type.natural.water.drain" = "Водовiдвiд";
 
 "type.waterway.drain.tunnel" = "Водопропускна труба";
 

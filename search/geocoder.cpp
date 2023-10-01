@@ -654,10 +654,10 @@ void Geocoder::InitBaseContext(BaseContext & ctx)
 {
   Retrieval retrieval(*m_context, m_cancellable);
 
-  ctx.m_tokens.assign(m_params.GetNumTokens(), BaseContext::TOKEN_TYPE_COUNT);
-  ctx.m_numTokens = m_params.GetNumTokens();
-  ctx.m_features.resize(ctx.m_numTokens);
-  for (size_t i = 0; i < ctx.m_features.size(); ++i)
+  size_t const numTokens = m_params.GetNumTokens();
+  ctx.m_tokens.assign(numTokens, BaseContext::TOKEN_TYPE_COUNT);
+  ctx.m_features.resize(numTokens);
+  for (size_t i = 0; i < numTokens; ++i)
   {
     if (m_params.IsCategorialRequest())
     {
@@ -940,7 +940,7 @@ void Geocoder::MatchCategories(BaseContext & ctx, bool aroundPivot)
     if (!GetTypeInGeocoding(ctx, featureId, type))
       return;
 
-    EmitResult(ctx, m_context->GetId(), featureId, type, TokenRange(0, ctx.m_numTokens),
+    EmitResult(ctx, m_context->GetId(), featureId, type, TokenRange(0, ctx.NumTokens()),
                nullptr /* geoParts */, true /* allTokensUsed */, exactMatch);
   };
 
@@ -1039,7 +1039,7 @@ void Geocoder::MatchCities(BaseContext & ctx)
 
   ASSERT(!ctx.m_city, ());
 
-  // Localities are ordered my (m_startToken, m_endToken) pairs.
+  // Localities are ordered by (m_startToken, m_endToken) pairs.
   for (auto const & p : m_cities)
   {
     auto const & tokenRange = p.first;
@@ -1084,7 +1084,10 @@ void Geocoder::MatchCities(BaseContext & ctx)
       centers.Add(city.m_rect.Center());
       LimitedSearch(ctx, filter, centers);
 
-      if (numEmitted == ctx.m_numEmitted)
+      /// @todo A bit controversial here. We don't emit relaxed city if it was matched with some address.
+      /// But do emit others (less relevant) relaxed cities. Can't say for sure is it ok or not, but
+      /// we don't emit less relevant relaxed streets (@see CreateStreetsLayerAndMatchLowerLayers).
+      if (numEmitted == ctx.m_numEmitted && !ctx.AllTokensUsed())
       {
         TRACE(Relaxed);
         EmitResult(ctx, *ctx.m_city, ctx.m_city->m_tokenRange, false /* allTokensUsed */);
@@ -1145,16 +1148,17 @@ void Geocoder::WithPostcodes(BaseContext & ctx, Fn && fn)
   size_t const maxPostcodeTokens = GetMaxNumTokensInPostcode();
   auto worldContext = GetWorldContext(m_dataSource);
 
-  for (size_t startToken = 0; startToken != ctx.m_numTokens; ++startToken)
+  size_t const numTokens = ctx.NumTokens();
+  for (size_t startToken = 0; startToken != numTokens; ++startToken)
   {
     size_t endToken = startToken;
-    for (size_t n = 1; startToken + n <= ctx.m_numTokens && n <= maxPostcodeTokens; ++n)
+    for (size_t n = 1; startToken + n <= numTokens && n <= maxPostcodeTokens; ++n)
     {
       if (ctx.IsTokenUsed(startToken + n - 1))
         break;
 
       TokenSlice slice(m_params, TokenRange(startToken, startToken + n));
-      auto const isPrefix = startToken + n == ctx.m_numTokens;
+      auto const isPrefix = startToken + n == numTokens;
       if (LooksLikePostcode(QuerySlice(slice), isPrefix))
         endToken = startToken + n;
     }
@@ -1276,11 +1280,10 @@ void Geocoder::GreedilyMatchStreetsWithSuburbs(BaseContext & ctx, CentersFilter 
   }
 }
 
-void Geocoder::CentersFilter::ProcessStreets(std::vector<uint32_t> & streets, Geocoder & geocoder) const
+template <class FnT>
+void Geocoder::CentersFilter::ClusterizeStreets(std::vector<uint32_t> & streets,
+                                                Geocoder const & geocoder, FnT && fn) const
 {
-  if (streets.size() <= geocoder.m_params.m_filteringParams.m_maxStreetsCount)
-    return;
-
   std::vector<std::tuple<double, m2::PointD, uint32_t>> loadedStreets;
   loadedStreets.reserve(streets.size());
 
@@ -1292,7 +1295,7 @@ void Geocoder::CentersFilter::ProcessStreets(std::vector<uint32_t> & streets, Ge
     {
       double minDist = std::numeric_limits<double>::max();
       for (auto const & c : m_centers)
-        minDist = std::min(minDist, ftCenter.SquaredLength(c));
+        minDist = std::min(minDist, ftCenter.Length(c));
       loadedStreets.emplace_back(minDist, ftCenter, fid);
     }
     else
@@ -1330,23 +1333,24 @@ void Geocoder::CentersFilter::ProcessStreets(std::vector<uint32_t> & streets, Ge
 
   // Emit results.
   streets.clear();
-  for (size_t i = 0; i < count; ++i)
-    streets.push_back(std::get<2>(loadedStreets[i]));
-  std::sort(streets.begin(), streets.end());
+  if (count == 0)
+    return;
 
-  // Alternative naive implementation (previous filtering logic).
-  /*
-  streets.erase(std::remove_if(streets.begin(), streets.end(), [&](uint32_t fid)
+  double firstDist = std::get<0>(loadedStreets[0]);
+  for (size_t i = 0; i < count; ++i)
   {
-    m2::PointD center;
-    if (!geocoder.m_context->GetCenter(fid, center))
-      return true;
-    return std::all_of(rects.begin(), rects.end(), [&center](m2::RectD const & rect)
+    double const currDist = std::get<0>(loadedStreets[i]);
+    if (currDist - firstDist > geocoder.m_params.m_filteringParams.m_streetClusterRadiusMercator)
     {
-      return !rect.IsPointInside(center);
-    });
-  }), streets.end());
-  */
+      std::sort(streets.begin(), streets.end());
+      fn();
+      streets.clear();
+      firstDist = currDist;
+    }
+    streets.push_back(std::get<2>(loadedStreets[i]));
+  }
+  std::sort(streets.begin(), streets.end());
+  fn();
 }
 
 void Geocoder::CreateStreetsLayerAndMatchLowerLayers(BaseContext & ctx,
@@ -1368,19 +1372,21 @@ void Geocoder::CreateStreetsLayerAndMatchLowerLayers(BaseContext & ctx,
   {
     sortedFeatures.push_back(base::asserted_cast<uint32_t>(bit));
   });
-  centers.ProcessStreets(sortedFeatures, *this);
 
-  ScopedMarkTokens mark(ctx.m_tokens, BaseContext::TOKEN_TYPE_STREET, prediction.m_tokenRange);
-  size_t const numEmitted = ctx.m_numEmitted;
-
-  MatchPOIsAndBuildings(ctx, 0 /* curToken */, CBV::GetFull());
-
-  // A relaxed best effort parse: at least show the street if we can find one.
-  if (makeRelaxed && numEmitted == ctx.m_numEmitted && ctx.SkipUsedTokens(0) != ctx.m_numTokens)
+  centers.ClusterizeStreets(sortedFeatures, *this, [&]()
   {
-    TRACE(Relaxed);
-    FindPaths(ctx);
-  }
+    ScopedMarkTokens mark(ctx.m_tokens, BaseContext::TOKEN_TYPE_STREET, prediction.m_tokenRange);
+    size_t const numEmitted = ctx.m_numEmitted;
+
+    MatchPOIsAndBuildings(ctx, 0 /* curToken */, CBV::GetFull());
+
+    // A relaxed best effort parse: at least show the street if we can find one.
+    if (makeRelaxed && numEmitted == ctx.m_numEmitted && !ctx.AllTokensUsed())
+    {
+      TRACE(Relaxed);
+      FindPaths(ctx);
+    }
+  });
 }
 
 void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV const & filter)
@@ -1391,8 +1397,9 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
 
   auto & layers = ctx.m_layers;
 
+  size_t const numTokens = ctx.NumTokens();
   curToken = ctx.SkipUsedTokens(curToken);
-  if (curToken == ctx.m_numTokens)
+  if (curToken == numTokens)
   {
     // All tokens were consumed, find paths through layers, emit
     // features.
@@ -1485,7 +1492,7 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
   Retrieval::ExtendedFeatures features(filter);
 
   // Try to consume [curToken, m_numTokens) tokens range.
-  for (size_t n = 1; curToken + n <= ctx.m_numTokens && !ctx.IsTokenUsed(curToken + n - 1); ++n)
+  for (size_t idx = curToken; idx < numTokens && !ctx.IsTokenUsed(idx); ++idx)
   {
     // At this point |features| is the intersection of
     // m_addressFeatures[curToken], m_addressFeatures[curToken + 1],
@@ -1493,12 +1500,13 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
 
     BailIfCancelled();
 
+    size_t const endToken = idx + 1;
     {
       auto & layer = layers.back();
-      InitLayer(layer.m_type, TokenRange(curToken, curToken + n), layer);
+      InitLayer(layer.m_type, TokenRange(curToken, endToken), layer);
     }
 
-    features = features.Intersect(ctx.m_features[curToken + n - 1]);
+    features = features.Intersect(ctx.m_features[idx]);
 
     CBV filtered = features.m_features;
     if (m_filter->NeedToFilter(features.m_features))
@@ -1509,7 +1517,7 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
     if (filtered.IsEmpty() && !looksLikeHouseNumber)
       break;
 
-    if (n == 1)
+    if (idx == curToken)
     {
       filtered.ForEach(clusterize);
     }
@@ -1566,9 +1574,9 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
 
       layer.m_type = static_cast<Model::Type>(i);
       ScopedMarkTokens mark(ctx.m_tokens, BaseContext::FromModelType(layer.m_type),
-                            TokenRange(curToken, curToken + n));
+                            TokenRange(curToken, endToken));
       if (IsLayerSequenceSane(layers))
-        MatchPOIsAndBuildings(ctx, curToken + n, filter);
+        MatchPOIsAndBuildings(ctx, endToken, filter);
     }
   }
 }
@@ -1733,8 +1741,9 @@ void Geocoder::EmitResult(BaseContext & ctx, MwmSet::MwmId const & mwmId, uint32
   {
     size_t length = 0;
     size_t matchedLength = 0;
-    TokenSlice slice(m_params, TokenRange(0, ctx.m_numTokens));
-    for (size_t tokenIdx = 0; tokenIdx < ctx.m_numTokens; ++tokenIdx)
+    size_t const numTokens = ctx.NumTokens();
+    TokenSlice slice(m_params, TokenRange(0, numTokens));
+    for (size_t tokenIdx = 0; tokenIdx < numTokens; ++tokenIdx)
     {
       auto const tokenLength = slice.Get(tokenIdx).GetOriginal().size();
       length += tokenLength;
@@ -1841,7 +1850,7 @@ void Geocoder::MatchUnclassified(BaseContext & ctx, size_t curToken)
 
   curToken = ctx.SkipUsedTokens(curToken);
   auto startToken = curToken;
-  for (; curToken < ctx.m_numTokens && !ctx.IsTokenUsed(curToken); ++curToken)
+  for (; curToken < ctx.NumTokens() && !ctx.IsTokenUsed(curToken); ++curToken)
   {
     allFeatures = allFeatures.Intersect(ctx.m_features[curToken]);
   }

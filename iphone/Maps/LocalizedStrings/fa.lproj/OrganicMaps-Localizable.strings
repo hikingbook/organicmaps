@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "حالت شب";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "خاموش";
+/* Generic «Off» string */
+"off" = "خاموش";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "روشن";
+/* Generic «On» string */
+"on" = "روشن";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "خودکار";
+/* Generic «Auto» string */
+"auto" = "خودکار";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "نمای چشم انداز";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "اطلاعات ترافیکی موجود نیست";
 
-"on" = "روشن";
-
-"off" = "خاموش";
-
 "transliteration_title" = "ترجمه به لاتین";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "دوربین‌های سرعت";
 
-"speedcam_option_auto" = "خودکار";
+/* Generic «Always» string */
+"always" = "همیشه";
 
-"speedcam_option_always" = "همیشه";
-
-"speedcam_option_never" = "هرگز";
+/* Generic «Never» string */
+"never" = "هرگز";
 
 "place_description_title" = "توضیحات محل";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "قمارخانه";
 
+"type.amenity.gambling" = "قمار";
+
+"type.leisure.adult_gaming_centre" = "مرکز بازی بزرگسالان";
+
+"type.leisure.amusement_arcade" = "گذرگاه طاقدار";
+
 "type.amenity.charging_station" = "ایستگاه شارژ";
 
 "type.amenity.charging_station.bicycle" = "ایستگاه شارژ دوچرخه";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "پارکینگ";
 
+"type.amenity.parking.fee.street_side" = "پارکینگ";
+
 "type.amenity.parking.lane" = "پارکینگ";
+
+"type.amenity.parking.fee.lane" = "پارکینگ";
 
 "type.amenity.parking_entrance" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "گردشگری";
 
 "type.amenity.place_of_worship.christian" = "گردشگری";
+
+"type.amenity.place_of_worship.christian.mormon" = "کلیسای عیسی مسیح مقدسین آخرالزمان";
 
 "type.amenity.place_of_worship.hindu" = "گردشگری";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "پناهگاه";
 
+"type.amenity.public_bath" = "حمام عمومی";
+
 "type.amenity.shower" = "حمام";
+
+"type.amenity.stripclub" = "باشگاه استریپ";
 
 "type.amenity.taxi" = "تاکسی";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "بازرسی وسایل نقلیه";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "دامپزشکی";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "ﻕﺪﻨﺧ";
+"type.waterway.ditch" = "خندق زهکشی";
+
+"type.natural.water.moat" = "ﻕﺪﻨﺧ";
+
+"type.natural.water.wastewater" = "فاضلاب";
 
 "type.barrier.entrance" = "ورودی";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "کارخانه ابجوسازی";
 
+"type.craft.caterer" = "پذیرایی";
+
 "type.craft.carpenter" = "نجار";
 
 "type.craft.confectionery" = "قنادی";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "تعمیرات الکترونیک";
 
 "type.craft.gardener" = "باغبان";
+
+"type.craft.grinding_mill" = "آسیاب آسیاب";
 
 "type.craft.handicraft" = "صنایع دستی";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamese";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "محل تجمع اضطراری";
 
 "type.emergency.defibrillator" = "دستگاه شوک";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "شیء تاریخی";
 
+"type.historic.aircraft" = "هواپیمای تاریخی";
+
+"type.historic.anchor" = "لنگر تاریخی";
+
 "type.historic.archaeological_site" = "گردشگری";
 
 "type.historic.battlefield" = "میدان جنگ";
 
 "type.historic.boundary_stone" = "نشانگر مرز";
+
+"type.historic.cannon" = "توپ";
 
 "type.historic.castle" = "قلعه";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "چوبه دار";
 
+"type.historic.locomotive" = "لوکوموتیو تاریخی";
+
 "type.historic.memorial" = "گردشگری";
 
 "type.historic.memorial.cross" = "صلیب یادبود";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "سنگ مانع";
 
+"type.historic.stone" = "سنگ تاریخی";
+
 "type.historic.memorial.war_memorial" = "رزم‌یاد";
+
+"type.historic.mine" = "معدن تاریخی";
 
 "type.historic.monument" = "گردشگری";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "گردشگری";
 
+"type.historic.tank" = "تانک تاریخی";
+
 "type.historic.tomb" = "گردشگری";
 
 "type.historic.wayside_cross" = "صلیب کنار راه";
 
 "type.historic.wayside_shrine" = "حرم کنار راه";
+
+"type.historic.wreck" = "غرق کشتی";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Nature Reserve";
+
+"type.leisure.outdoor_seating" = "نشستن در فضای باز";
 
 "type.leisure.park" = "پارک";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "آکواریوم";
+
 "type.tourism.alpine_hut" = "Alpine Lodging";
 
 "type.tourism.apartment" = "اپارتمان";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "گردشگری";
 
+"type.tourism.information.visitor_centre" = "مرکز بازدیدکنندگان";
+
 "type.tourism.motel" = "هتل";
 
 "type.tourism.museum" = "گردشگری";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "خندق زهکشی";
+
+"type.waterway.ditch.tunnel" = "کولورت";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "کولورت";
 
 "type.waterway.lock_gate" = "Lock Gate";
 

@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Nattilstand";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Fra";
+/* Generic «Off» string */
+"off" = "Fra";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Til";
+/* Generic «On» string */
+"on" = "Til";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Auto";
+/* Generic «Auto» string */
+"auto" = "Auto";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Perspektivvisning";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafikdata er ikke tilgængelige";
 
-"on" = "Til";
-
-"off" = "Fra";
-
 "transliteration_title" = "Translitteration til latinsk";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Fartkameraer";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Altid";
 
-"speedcam_option_always" = "Altid";
-
-"speedcam_option_never" = "Aldrig";
+/* Generic «Never» string */
+"never" = "Aldrig";
 
 "place_description_title" = "Beskrivelse af sted";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Kasino";
 
+"type.amenity.gambling" = "Gambling";
+
+"type.leisure.adult_gaming_centre" = "Spillecenter for voksne";
+
+"type.leisure.amusement_arcade" = "Arcade";
+
 "type.amenity.charging_station" = "Ladestation";
 
 "type.amenity.charging_station.bicycle" = "Cykel ladestation";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkering";
 
+"type.amenity.parking.fee.street_side" = "Parkering";
+
 "type.amenity.parking.lane" = "Parkering";
+
+"type.amenity.parking.fee.lane" = "Parkering";
 
 "type.amenity.parking_entrance" = "Parkeringsindgang";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Tempel";
 
 "type.amenity.place_of_worship.christian" = "Kirke";
+
+"type.amenity.place_of_worship.christian.mormon" = "Jesu Kristi Kirke af Sidste Dages Hellige";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Shelter";
 
+"type.amenity.public_bath" = "Offentligt bad";
+
 "type.amenity.shower" = "Bruser";
+
+"type.amenity.stripclub" = "Stripklub";
 
 "type.amenity.taxi" = "Taxi Stand";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Bilsyn";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Dyrlæge";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Voldgrav";
+"type.waterway.ditch" = "Afvandingsgrøft";
+
+"type.natural.water.moat" = "Voldgrav";
+
+"type.natural.water.wastewater" = "Spildevand";
 
 "type.barrier.entrance" = "Gennemgang";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Bryggeri";
 
+"type.craft.caterer" = "Caterer";
+
 "type.craft.carpenter" = "Tømrer";
 
 "type.craft.confectionery" = "Konfekture";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Reparation af elektronik";
 
 "type.craft.gardener" = "Gartner";
+
+"type.craft.grinding_mill" = "Slibemølle";
 
 "type.craft.handicraft" = "Kunsthåndværk";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamesisk";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Nødsamlingssted";
 
 "type.emergency.defibrillator" = "Hjertestarter";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Historisk objekt";
 
+"type.historic.aircraft" = "Historiske fly";
+
+"type.historic.anchor" = "Historisk anker";
+
 "type.historic.archaeological_site" = "Arkæologisk sted";
 
 "type.historic.battlefield" = "Slagmark";
 
 "type.historic.boundary_stone" = "Grænsesten";
+
+"type.historic.cannon" = "Kanon";
 
 "type.historic.castle" = "Slot";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Galge";
 
+"type.historic.locomotive" = "Historisk lokomotiv";
+
 "type.historic.memorial" = "Mindesmærke";
 
 "type.historic.memorial.cross" = "Mindesmærkekors";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolpersten";
 
+"type.historic.stone" = "Historisk sten";
+
 "type.historic.memorial.war_memorial" = "Krigsmindesmærke";
+
+"type.historic.mine" = "Historisk mine";
 
 "type.historic.monument" = "Monument";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Turisme";
 
+"type.historic.tank" = "Historisk tank";
+
 "type.historic.tomb" = "Grav";
 
 "type.historic.wayside_cross" = "Kors ved vejsiden";
 
 "type.historic.wayside_shrine" = "Skrin ved vejsiden";
+
+"type.historic.wreck" = "Forlis";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Reservat";
+
+"type.leisure.outdoor_seating" = "Udendørs siddepladser";
 
 "type.leisure.park" = "Park";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Akvarium";
+
 "type.tourism.alpine_hut" = "Bjerg logi";
 
 "type.tourism.apartment" = "Lejligheder";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Turistkontor";
 
+"type.tourism.information.visitor_centre" = "Besøgscenter";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Afvandingsgrøft";
+
+"type.waterway.ditch.tunnel" = "Kulvert";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Kulvert";
 
 "type.waterway.lock_gate" = "Låseport";
 

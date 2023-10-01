@@ -57,6 +57,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
   switch ([self type]) {
     case MWMRouterTypeVehicle:
     case MWMRouterTypePublicTransport:
+    case MWMRouterTypeRuler:
       return NO;
     case MWMRouterTypePedestrian:
     case MWMRouterTypeBicycle:
@@ -351,7 +352,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 //  if ([MWMRouter type] == MWMRouterTypePublicTransport)
 //    [navManager updateTransitInfo:rm.GetTransitRouteInfo()];
 //  else
-//    [navManager updateFollowingInfo:info type:[MWMRouter type]];
+//    [navManager updateFollowingInfo:info routePoints:[MWMRouter points] type:[MWMRouter type]];
 }
 
 + (void)routeAltitudeImageForSize:(CGSize)size completion:(MWMImageHeightBlock)block {

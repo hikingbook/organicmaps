@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "Mode Malam";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "Tidak Aktif";
+/* Generic «Off» string */
+"off" = "Tidak Aktif";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "Aktif";
+/* Generic «On» string */
+"on" = "Aktif";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "Otomatis";
+/* Generic «Auto» string */
+"auto" = "Otomatis";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "Pandangan perspektif";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Data lalu lintas tidak tersedia";
 
-"on" = "On";
-
-"off" = "Mati";
-
 "transliteration_title" = "Transliterasi ke dalam bahasa Latin";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "Kamera cepat";
 
-"speedcam_option_auto" = "Auto";
+/* Generic «Always» string */
+"always" = "Selalu";
 
-"speedcam_option_always" = "Selalu";
-
-"speedcam_option_never" = "Tidak pernah";
+/* Generic «Never» string */
+"never" = "Tidak pernah";
 
 "place_description_title" = "Deskripsi Tempat";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "Hiburan";
 
+"type.amenity.gambling" = "Berjudi";
+
+"type.leisure.adult_gaming_centre" = "Pusat Permainan Dewasa";
+
+"type.leisure.amusement_arcade" = "Arkade";
+
 "type.amenity.charging_station" = "Pusat Pengisian Daya";
 
 "type.amenity.charging_station.bicycle" = "Stasiun Pengisian Sepeda";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "Parkir";
 
+"type.amenity.parking.fee.street_side" = "Parkir";
+
 "type.amenity.parking.lane" = "Parkir";
+
+"type.amenity.parking.fee.lane" = "Parkir";
 
 "type.amenity.parking_entrance" = "Pintu masuk parkir";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "Kuil";
 
 "type.amenity.place_of_worship.christian" = "Gereja";
+
+"type.amenity.place_of_worship.christian.mormon" = "Gereja Yesus Kristus dari Orang-Orang Suci Zaman Akhir";
 
 "type.amenity.place_of_worship.hindu" = "Kuil";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "Tempat penampungan";
 
+"type.amenity.public_bath" = "Pemandian umum";
+
 "type.amenity.shower" = "Pancuran";
+
+"type.amenity.stripclub" = "Klub telanjang";
 
 "type.amenity.taxi" = "Taksi";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "Pemeriksaan kendaraan";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "Dokter Hewan";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "Cycle Barrier";
 
-"type.barrier.ditch" = "Parit";
+"type.waterway.ditch" = "Parit saluran air";
+
+"type.natural.water.moat" = "Parit";
+
+"type.natural.water.wastewater" = "Air limbah";
 
 "type.barrier.entrance" = "Pintu masuk";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "Toko minuman";
 
+"type.craft.caterer" = "Katering";
+
 "type.craft.carpenter" = "Tukang kayu";
 
 "type.craft.confectionery" = "Penganan";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "Perbaikan Elektronik";
 
 "type.craft.gardener" = "Tukang kebun";
+
+"type.craft.grinding_mill" = "Pabrik penggilingan";
 
 "type.craft.handicraft" = "Kriya";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Masakan vietnam";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "Titik Berkumpul Darurat";
 
 "type.emergency.defibrillator" = "Defibrilator";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "Objek bersejarah";
 
+"type.historic.aircraft" = "Pesawat Bersejarah";
+
+"type.historic.anchor" = "Jangkar Bersejarah";
+
 "type.historic.archaeological_site" = "Situs arkeologi";
 
 "type.historic.battlefield" = "Medan Perang";
 
 "type.historic.boundary_stone" = "Batu pembatas";
+
+"type.historic.cannon" = "Meriam";
 
 "type.historic.castle" = "Kastel";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "Tiang gantungan";
 
+"type.historic.locomotive" = "Lokomotif Bersejarah";
+
 "type.historic.memorial" = "Tugu peringatan";
 
 "type.historic.memorial.cross" = "Salib peringatan";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "Stolperstein";
 
+"type.historic.stone" = "Batu Bersejarah";
+
 "type.historic.memorial.war_memorial" = "Tugu peringatan perang";
+
+"type.historic.mine" = "Tambang Bersejarah";
 
 "type.historic.monument" = "Monumen";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "Pemandangan";
 
+"type.historic.tank" = "Tangki Bersejarah";
+
 "type.historic.tomb" = "Pemandangan";
 
 "type.historic.wayside_cross" = "Salib di pinggir jalan";
 
 "type.historic.wayside_shrine" = "Kuil di pinggir jalan";
+
+"type.historic.wreck" = "Kecelakaan kapal";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Cagar Alam";
+
+"type.leisure.outdoor_seating" = "Tempat duduk di luar ruangan";
 
 "type.leisure.park" = "Taman";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "Tourism";
 
+"type.tourism.aquarium" = "Akuarium";
+
 "type.tourism.alpine_hut" = "Penginapan di pegunungan";
 
 "type.tourism.apartment" = "Apartemen";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "Kantor wisata";
 
+"type.tourism.information.visitor_centre" = "Pusat Pengunjung";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "Museum";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "Dam";
 
-"type.waterway.ditch" = "Ditch";
+"type.barrier.ditch" = "Ditch";
 
-"type.waterway.ditch.tunnel" = "Ditch";
+"type.natural.water.ditch" = "Parit saluran air";
+
+"type.waterway.ditch.tunnel" = "Gorong-gorong";
 
 "type.waterway.dock" = "Waterway Dock";
 
 "type.waterway.drain" = "Drain";
 
-"type.waterway.drain.tunnel" = "Ditch";
+"type.natural.water.drain" = "Drain";
+
+"type.waterway.drain.tunnel" = "Gorong-gorong";
 
 "type.waterway.lock_gate" = "Gerbang pengunci";
 

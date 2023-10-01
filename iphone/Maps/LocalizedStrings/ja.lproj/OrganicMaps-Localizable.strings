@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "夜間モード";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "オフ";
+/* Generic «Off» string */
+"off" = "オフ";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "オン";
+/* Generic «On» string */
+"on" = "オン";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "自動";
+/* Generic «Auto» string */
+"auto" = "自動";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "パースペクティブ表示";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "交通データは利用できません";
 
-"on" = "オン";
-
-"off" = "オフ";
-
 "transliteration_title" = "ラテン文字への字訳";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "自動速度違反取締装置";
 
-"speedcam_option_auto" = "自動";
+/* Generic «Always» string */
+"always" = "常時";
 
-"speedcam_option_always" = "常時";
-
-"speedcam_option_never" = "無効";
+/* Generic «Never» string */
+"never" = "無効";
 
 "place_description_title" = "場所の説明";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "カジノ";
 
+"type.amenity.gambling" = "ギャンブル";
+
+"type.leisure.adult_gaming_centre" = "アダルト ゲーム センター";
+
+"type.leisure.amusement_arcade" = "アーケード";
+
 "type.amenity.charging_station" = "充電ステーション";
 
 "type.amenity.charging_station.bicycle" = "自転車充電ステーション";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "駐車場";
 
+"type.amenity.parking.fee.street_side" = "駐車場";
+
 "type.amenity.parking.lane" = "駐車場";
+
+"type.amenity.parking.fee.lane" = "駐車場";
 
 "type.amenity.parking_entrance" = "駐車場入口";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "寺院";
 
 "type.amenity.place_of_worship.christian" = "キリスト教会";
+
+"type.amenity.place_of_worship.christian.mormon" = "末日聖徒イエス・キリスト教会";
 
 "type.amenity.place_of_worship.hindu" = "ヒンドゥー教寺院";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "避難所";
 
+"type.amenity.public_bath" = "公衆浴場";
+
 "type.amenity.shower" = "シャワー";
+
+"type.amenity.stripclub" = "ストリップクラブ";
 
 "type.amenity.taxi" = "タクシー";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "Parcel Locker";
 
+"type.amenity.vehicle_inspection" = "車検";
+
 "type.amenity.vending_machine.fuel" = "Fuel Pump";
 
 "type.amenity.veterinary" = "獣医";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "バリカー";
 
-"type.barrier.ditch" = "堀";
+"type.waterway.ditch" = "排水溝";
+
+"type.natural.water.moat" = "堀";
+
+"type.natural.water.wastewater" = "廃水";
 
 "type.barrier.entrance" = "エントランス";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "醸造所";
 
+"type.craft.caterer" = "ケータリング";
+
 "type.craft.carpenter" = "大工";
 
 "type.craft.confectionery" = "菓子職人";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "電子機器修理";
 
 "type.craft.gardener" = "造園家";
+
+"type.craft.grinding_mill" = "粉砕機";
 
 "type.craft.handicraft" = "手芸";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "ベトナム料理";
 
 "type.emergency" = "Emergency";
+
+"type.emergency.assembly_point" = "緊急集合場所";
 
 "type.emergency.defibrillator" = "除細動器";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "史跡";
 
+"type.historic.aircraft" = "歴史的な航空機";
+
+"type.historic.anchor" = "歴史的なアンカー";
+
 "type.historic.archaeological_site" = "考古遺跡";
 
 "type.historic.battlefield" = "古戦場";
 
 "type.historic.boundary_stone" = "境界標";
+
+"type.historic.cannon" = "大砲";
 
 "type.historic.castle" = "城";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "絞首台";
 
+"type.historic.locomotive" = "歴史的な機関車";
+
 "type.historic.memorial" = "記念碑";
 
 "type.historic.memorial.cross" = "メモリアルクロス";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "ストルパーシュタイン";
 
+"type.historic.stone" = "歴史的な石";
+
 "type.historic.memorial.war_memorial" = "戦争記念施設";
+
+"type.historic.mine" = "歴史ある鉱山";
 
 "type.historic.monument" = "記念碑";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "退役船";
 
+"type.historic.tank" = "歴史的な戦車";
+
 "type.historic.tomb" = "墓";
 
 "type.historic.wayside_cross" = "歴史的な十字架";
 
 "type.historic.wayside_shrine" = "歴史的な祠";
+
+"type.historic.wreck" = "難破船";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "マリーナ";
 
 "type.leisure.nature_reserve" = "自然保護区";
+
+"type.leisure.outdoor_seating" = "屋外席";
 
 "type.leisure.park" = "公園";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "観光";
 
+"type.tourism.aquarium" = "水族館";
+
 "type.tourism.alpine_hut" = "山小屋";
 
 "type.tourism.apartment" = "アパート";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "観光案内所";
 
+"type.tourism.information.visitor_centre" = "ビジターセンター";
+
 "type.tourism.motel" = "モーテル";
 
 "type.tourism.museum" = "博物館";
@@ -3735,13 +3781,17 @@
 
 "type.waterway.dam" = "ダム";
 
-"type.waterway.ditch" = "排水路";
+"type.barrier.ditch" = "排水路";
+
+"type.natural.water.ditch" = "排水溝";
 
 "type.waterway.ditch.tunnel" = "暗渠";
 
 "type.waterway.dock" = "ドック";
 
 "type.waterway.drain" = "用水路";
+
+"type.natural.water.drain" = "用水路";
 
 "type.waterway.drain.tunnel" = "暗渠";
 

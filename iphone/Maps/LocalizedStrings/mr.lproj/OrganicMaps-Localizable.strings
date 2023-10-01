@@ -217,14 +217,14 @@
 /* Settings «Map» category: «Night style» title */
 "pref_map_style_title" = "रात्र मोड";
 
-/* «Map style» entry value */
-"pref_map_style_default" = "बंद";
+/* Generic «Off» string */
+"off" = "बंद";
 
-/* «Map style» entry value */
-"pref_map_style_night" = "चालू";
+/* Generic «On» string */
+"on" = "चालू";
 
-/* «Map style» entry value */
-"pref_map_style_auto" = "स्वयं";
+/* Generic «Auto» string */
+"auto" = "स्वयं";
 
 /* Settings «Map» category: «Perspective view» title */
 "pref_map_3d_title" = "यथार्थ दृश्य";
@@ -887,10 +887,6 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "वाहतूक माहिती उपलब्ध नाही";
 
-"on" = "चालू";
-
-"off" = "बंद";
-
 "transliteration_title" = "लॅटिनमध्ये (इंग्रजीची अक्षरे) लिप्यंतरण";
 
 /* Subway exits for public transport marks on the map */
@@ -995,11 +991,11 @@
 
 "speedcams_alert_title" = "वेग कॅमेरे";
 
-"speedcam_option_auto" = "स्वयं";
+/* Generic «Always» string */
+"always" = "नेहमी";
 
-"speedcam_option_always" = "नेहमी";
-
-"speedcam_option_never" = "कधीच नाही";
+/* Generic «Never» string */
+"never" = "कधीच नाही";
 
 "place_description_title" = "ठिकाणाचे वर्णन";
 
@@ -1325,6 +1321,12 @@
 
 "type.amenity.casino" = "जुगारगृह";
 
+"type.amenity.gambling" = "जुगार";
+
+"type.leisure.adult_gaming_centre" = "प्रौढ गेमिंग केंद्र";
+
+"type.leisure.amusement_arcade" = "आर्केड";
+
 "type.amenity.charging_station" = "चार्जिंग केंद्र";
 
 "type.amenity.charging_station.bicycle" = "सायकल चार्जिंग स्टेशन";
@@ -1423,7 +1425,11 @@
 
 "type.amenity.parking.street_side" = "वाहनतळ";
 
+"type.amenity.parking.fee.street_side" = "वाहनतळ";
+
 "type.amenity.parking.lane" = "वाहनतळ";
+
+"type.amenity.parking.fee.lane" = "वाहनतळ";
 
 "type.amenity.parking_entrance" = "Parking Entrance";
 
@@ -1450,6 +1456,8 @@
 "type.amenity.place_of_worship.buddhist" = "मंदिर";
 
 "type.amenity.place_of_worship.christian" = "चर्च";
+
+"type.amenity.place_of_worship.christian.mormon" = "चर्च ऑफ जिझस क्राइस्ट ऑफ लेटर डे सेंट्स";
 
 "type.amenity.place_of_worship.hindu" = "मंदिर";
 
@@ -1516,7 +1524,11 @@
 
 "type.amenity.shelter" = "निवारा";
 
+"type.amenity.public_bath" = "सार्वजनिक स्नान";
+
 "type.amenity.shower" = "अंघोळ";
+
+"type.amenity.stripclub" = "स्ट्रिपक्लब";
 
 "type.amenity.taxi" = "टॅक्सी";
 
@@ -1554,6 +1566,8 @@
 
 "type.amenity.parcel_locker" = "पार्सल लॉकर";
 
+"type.amenity.vehicle_inspection" = "वाहन तपासणी";
+
 "type.amenity.vending_machine.fuel" = "इंधन विक्रीयंत्र";
 
 "type.amenity.veterinary" = "पशुवैद्यकीय डॉक्टर";
@@ -1580,7 +1594,11 @@
 
 "type.barrier.cycle_barrier" = "सायकल अडथळा";
 
-"type.barrier.ditch" = "Moat";
+"type.waterway.ditch" = "ड्रेनेज खंदक";
+
+"type.natural.water.moat" = "Moat";
+
+"type.natural.water.wastewater" = "सांडपाणी";
 
 "type.barrier.entrance" = "प्रवेशद्वार";
 
@@ -1686,6 +1704,8 @@
 
 "type.craft.brewery" = "दारूभट्टी";
 
+"type.craft.caterer" = "केटरर";
+
 "type.craft.carpenter" = "सुतार";
 
 "type.craft.confectionery" = "हलवाई";
@@ -1695,6 +1715,8 @@
 "type.craft.electronics_repair" = "इलेक्ट्रॉनिक्स दुरुस्ती";
 
 "type.craft.gardener" = "माळी";
+
+"type.craft.grinding_mill" = "ग्राइंडिंग मिल";
 
 "type.craft.handicraft" = "हस्तकला";
 
@@ -1896,6 +1918,8 @@
 "type.cuisine.vietnamese" = "Vietnamese";
 
 "type.emergency" = "आणीबाणी";
+
+"type.emergency.assembly_point" = "आपत्कालीन विधानसभा पॉइंट";
 
 "type.emergency.defibrillator" = "कंपनरोधक";
 
@@ -2272,11 +2296,17 @@
 
 "type.historic" = "ऐतिहासिक";
 
+"type.historic.aircraft" = "ऐतिहासिक विमान";
+
+"type.historic.anchor" = "ऐतिहासिक अँकर";
+
 "type.historic.archaeological_site" = "पुरातत्व स्थळ";
 
 "type.historic.battlefield" = "रणांगण";
 
 "type.historic.boundary_stone" = "सीमेचा दगड";
+
+"type.historic.cannon" = "तोफ";
 
 "type.historic.castle" = "गढी";
 
@@ -2308,6 +2338,8 @@
 
 "type.historic.gallows" = "फाशी";
 
+"type.historic.locomotive" = "ऐतिहासिक लोकोमोटिव्ह";
+
 "type.historic.memorial" = "स्मारक";
 
 "type.historic.memorial.cross" = "मेमोरियल क्रॉस";
@@ -2320,7 +2352,11 @@
 
 "type.historic.memorial.stolperstein" = "अडथळा";
 
+"type.historic.stone" = "ऐतिहासिक दगड";
+
 "type.historic.memorial.war_memorial" = "युद्ध स्मारक";
+
+"type.historic.mine" = "ऐतिहासिक खाण";
 
 "type.historic.monument" = "स्मारक";
 
@@ -2330,11 +2366,15 @@
 
 "type.historic.ship" = "जहाज";
 
+"type.historic.tank" = "ऐतिहासिक टाकी";
+
 "type.historic.tomb" = "थडगे";
 
 "type.historic.wayside_cross" = "ख्रिश्चन क्रॉस";
 
 "type.historic.wayside_shrine" = "देवस्थान";
+
+"type.historic.wreck" = "जहाजाचा नाश";
 
 "type.hwtag" = "hwtag";
 
@@ -2471,6 +2511,8 @@
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "संरक्षित निसर्गक्षेत्र";
+
+"type.leisure.outdoor_seating" = "बाहेरची आसनव्यवस्था";
 
 "type.leisure.park" = "उद्यान";
 
@@ -3457,7 +3499,7 @@
 
 "type.shop.hifi" = "हायफाय ऑडिओ";
 
-"type.shop.houseware" = "हार्डवेअर दुकान";
+"type.shop.houseware" = "Housewares Store";
 
 "type.shop.jewelry" = "दागिने";
 
@@ -3657,6 +3699,8 @@
 
 "type.tourism" = "पर्यटन";
 
+"type.tourism.aquarium" = "मत्स्यालय";
+
 "type.tourism.alpine_hut" = "Alpine Lodging";
 
 "type.tourism.apartment" = "सदनिका";
@@ -3703,6 +3747,8 @@
 
 "type.tourism.information.office" = "पर्यटन कार्यालय";
 
+"type.tourism.information.visitor_centre" = "अभ्यागत केंद्र";
+
 "type.tourism.motel" = "Motel";
 
 "type.tourism.museum" = "संग्रहालय";
@@ -3735,15 +3781,19 @@
 
 "type.waterway.dam" = "धरण";
 
-"type.waterway.ditch" = "खंदक";
+"type.barrier.ditch" = "खंदक";
 
-"type.waterway.ditch.tunnel" = "खंदक";
+"type.natural.water.ditch" = "ड्रेनेज खंदक";
+
+"type.waterway.ditch.tunnel" = "कल्व्हर्ट";
 
 "type.waterway.dock" = "जलमार्ग गोद";
 
 "type.waterway.drain" = "नाला";
 
-"type.waterway.drain.tunnel" = "खंदक";
+"type.natural.water.drain" = "नाला";
+
+"type.waterway.drain.tunnel" = "कल्व्हर्ट";
 
 "type.waterway.lock_gate" = "जलद्वार";
 

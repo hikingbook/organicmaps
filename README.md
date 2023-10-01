@@ -28,10 +28,10 @@ No ads, no tracking, no data collection, no crapware. Your [donations](https://o
 </p>
 
 <p float="left">
-  <img src="android/src/fdroid/play/listings/en-US/graphics/phone-screenshots/1.jpg" width="400" />
-  <img src="android/src/fdroid/play/listings/en-US/graphics/phone-screenshots/2.jpg" width="400" />
-  <img src="android/src/fdroid/play/listings/en-US/graphics/phone-screenshots/3.jpg" width="400" />
-  <img src="android/src/fdroid/play/listings/en-US/graphics/phone-screenshots/4.jpg" width="400" />
+  <img src="android/app/src/fdroid/play/listings/en-US/graphics/phone-screenshots/1.jpg" width="400" />
+  <img src="android/app/src/fdroid/play/listings/en-US/graphics/phone-screenshots/2.jpg" width="400" />
+  <img src="android/app/src/fdroid/play/listings/en-US/graphics/phone-screenshots/3.jpg" width="400" />
+  <img src="android/app/src/fdroid/play/listings/en-US/graphics/phone-screenshots/4.jpg" width="400" />
 </p>
 
 ## Features
@@ -74,7 +74,7 @@ The Android application is verified by <a href="https://reports.exodus-privacy.e
 <img src="docs/privacy/exodus.png" width="400">
 </a>
 
-The iOS application is verified by <a href="https://ios.trackercontrol.org/app/app.organicmaps">TrackerControl for iOS:
+The iOS application is verified by <a href="https://ios.trackercontrol.org/analysis/app.organicmaps">TrackerControl for iOS:
 
 <img src="docs/privacy/trackercontrol-ios.png" width="400">
 </a>
@@ -130,7 +130,7 @@ see [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md). You can [help in many ways](ht
 Please join our beta program, suggest your features, and report bugs:
 
 - [iOS Beta (TestFlight)](https://testflight.apple.com/join/lrKCl08I)
-- [Android Beta (Firebase)](https://appdistribution.firebase.dev/i/9ec3bca5e2b47373)
+- [Android Beta (Firebase)](https://appdistribution.firebase.dev/i/2f0fee463107b137)
 
 ## Feedback
 

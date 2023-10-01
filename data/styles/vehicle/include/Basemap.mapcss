@@ -193,8 +193,6 @@ line|z10-[waterway=river],
 line|z10-[waterway=riverbank],
 line|z13-[waterway=stream],
 line|z13-[waterway=canal],
-line|z17-[waterway=ditch],
-line|z17-[waterway=drain],
 line|z13-[natural=strait],
 {opacity: 1; color: @river;}
 
@@ -208,6 +206,16 @@ area|z12-[landuse=basin],
 area|z12-[landuse=reservoir],
 area|z13-[leisure=swimming_pool],
 {fill-color: @water;}
+
+area|z0-[natural=water][water=ditch],
+area|z0-[natural=water][water=drain],
+area|z0-[natural=water][water=wastewater],
+{fill-color: none;}
+
+area|z13-[natural=water][water=ditch],
+area|z13-[natural=water][water=drain],
+area|z12-[natural=water][water=wastewater],
+{fill-color: @water_bad;fill-opacity: 1;}
 
 area|z11-[natural=wetland],
 {fill-color: @wetland;fill-opacity: 1;}
@@ -255,11 +263,6 @@ line|z15-[waterway=stream][intermittent=yes]
 node|z16-[waterway=lock_gate],
 {icon-image: dot-m.svg;}
 
-line|z17-[waterway=ditch],
-line|z17-[barrier=ditch],
-line|z17-[waterway=drain],
-{width: 1.8;opacity: 1;color: @river;dashes: 0.9,0.9;}
-
 /* Do not draw tunnel waterways */
 
 line[waterway][tunnel]
@@ -288,7 +291,6 @@ area|z15-[landuse=railway],
 area|z15-[landuse=quarry],
 area|z15-[leisure=stadium],
 area|z15-[amenity=parking],
-area|z15-[amenity=parking_space],
 area|z16-[public_transport=platform],
 area|z16-[amenity=place_of_worship],
 area|z16-[railway=platform],
@@ -304,7 +306,7 @@ area|z15-[landuse=quarry]
 {fill-color: @industrial;fill-opacity: 1;}
 
 
-/* 7.2 Hostital */
+/* 7.2 Hospital */
 
 
 
@@ -316,7 +318,7 @@ area|z15-[landuse=quarry]
 area|z15-[leisure=stadium],
 {fill-color: @sport;fill-opacity: 1;}
 
-/* 7.4 Cemetry */
+/* 7.4 Cemetery */
 
 area|z14[landuse=cemetery],
 area|z14[amenity=grave_yard]
@@ -366,11 +368,12 @@ area|z14-[landuse=farmland],
 /* Parking */
 
 area|z15-[amenity=parking],
-area|z15-[amenity=parking_space]
 {fill-color: @parking;fill-opacity: 1;}
 area|z17-[amenity=parking],
-area|z17-[amenity=parking_space]
 {fill-color: @parking_l;fill-opacity: 1;}
+
+area|z15-[amenity=parking][location=underground],
+{fill-color: none;}
 
 /* 8.BUILDINGS */
 
@@ -497,6 +500,10 @@ line|z18[natural=earth_bank],
 line|z19-[natural=cliff],
 line|z19-[natural=earth_bank],
 {width: 7.4; dashes: 3.5,5,6,1.4; opacity: 0.6;}
+
+
+line|z17-[barrier=ditch],
+{width: 1.8;opacity: 1;color: @cliff;dashes: 0.9,0.9;}
 
 
 line|z17-[barrier=retaining_wall],
