@@ -55,7 +55,7 @@
     <item name="buttonBarNegativeButtonStyle">@style/MwmTheme.AlertDialog.NegativeButtonStyle</item>
     <item name="buttonBarPositiveButtonStyle">@style/MwmTheme.AlertDialog.PositiveButtonStyle</item>
     <item name="colorAccent">@color/base_accent</item>
-    <item name="android:textColorPrimary">@color/black_secondary</item>
+    <item name="android:textColorPrimary">@color/text_body</item>
     <item name="android:textSize">@dimen/text_size_body_1</item>
     <item name="android:windowTitleStyle">@style/MwmTheme.DialogTitleStyle.Light</item>
   </style>
@@ -74,7 +74,7 @@
   </style>
 
   <style name="MwmTheme.DialogTitleStyle.Light" parent="MwmTheme.DialogTitleBase">
-    <item name="android:textColor">@color/black_primary</item>
+    <item name="android:textColor">@color/text_body</item>
   </style>
 
   <style name="MwmTheme.Night.AlertDialog" parent="Theme.AppCompat.Dialog.Alert">
