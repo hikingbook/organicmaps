@@ -77,7 +77,7 @@ private:
     ValueType val = valuesProvider.GetValue(pos);
     if (val == valuesProvider.GetInvalidValue())
     {
-      LOG(LWARNING, ("Invalid value at the position", pos, m_debugId));
+    //   LOG(LWARNING, ("Invalid value at the position", pos, m_debugId));
       m_isValid = false;
       return val;
     }
