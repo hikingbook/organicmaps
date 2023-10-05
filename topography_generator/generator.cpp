@@ -156,7 +156,7 @@ private:
 
     if (kernel.empty())
     {
-      LOG(LWARNING, ("Can't fix invalid value", GetValueImpl(pos), "at the position", pos));
+    //   LOG(LWARNING, ("Can't fix invalid value", GetValueImpl(pos), "at the position", pos));
       return kInvalidAltitude;
     }
 
