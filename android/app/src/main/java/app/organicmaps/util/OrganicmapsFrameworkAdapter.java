@@ -4,10 +4,8 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -28,7 +26,6 @@ import app.organicmaps.Map;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.SplashActivity;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.downloader.OnmapDownloader;
@@ -152,11 +149,15 @@ public enum OrganicmapsFrameworkAdapter {
     public void onResumeMwmActivity() {
         if (mwmActivity.mOnmapDownloader != null)
             mwmActivity.mOnmapDownloader.onResume();
+
+        SensorHelper.from(activity).addListener(mwmActivity);
     }
 
     public void onPauseMwmActivity() {
         if (mwmActivity.mOnmapDownloader != null)
             mwmActivity.mOnmapDownloader.onPause();
+
+        SensorHelper.from(activity).removeListener(mwmActivity);
     }
 
     public void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
