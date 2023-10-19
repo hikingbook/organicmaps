@@ -241,6 +241,9 @@ public enum OrganicmapsFrameworkAdapter {
      */
     public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
         long catId = searchCategoryIDWithName(catName);
+        if (catId == Long.MAX_VALUE) {
+            return Long.MAX_VALUE;
+        }
         return BookmarkManager.INSTANCE.nativeAddBookmark(
                 catId,
                 name,
@@ -330,14 +333,18 @@ public enum OrganicmapsFrameworkAdapter {
             doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
         }
 
-        return BookmarkManager.INSTANCE.nativeAddTrack(
-                catId,
-                name,
-                description,
-                doubleLocations,
-                color,
-                lineWidth
-        );
+        try {
+            return BookmarkManager.INSTANCE.nativeAddTrack(
+                    catId,
+                    name,
+                    description,
+                    doubleLocations,
+                    color,
+                    lineWidth
+            );
+        } catch (Throwable e) {
+            return Long.MAX_VALUE;
+        }
     }
 
     public boolean isTrackExistedInCategory(long catId) {
