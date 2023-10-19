@@ -21,6 +21,8 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -615,26 +617,28 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initMap(boolean isLaunchByDeepLink)
   {
-    final FragmentManager manager = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getSupportFragmentManager();
-    mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
-    if (mMapFragment == null)
-    {
-      Bundle args = new Bundle();
-      args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
-      final FragmentFactory factory = manager.getFragmentFactory();
-      mMapFragment = (MapFragment) factory.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getClassLoader(), MapFragment.class.getName());
-      mMapFragment.setArguments(args);
-      manager
-          .beginTransaction()
-          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-          .commit();
-    }
+    try {
+      final FragmentManager manager = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getSupportFragmentManager();
+      mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
+      if (mMapFragment == null) {
+        Bundle args = new Bundle();
+        args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
+        final FragmentFactory factory = manager.getFragmentFactory();
+        mMapFragment = (MapFragment) factory.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getClassLoader(), MapFragment.class.getName());
+        mMapFragment.setArguments(args);
+        manager
+                .beginTransaction()
+                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+                .commit();
+      }
 
 //    View container = findViewById(R.id.map_fragment_container);
-    View container = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().findViewById(R.id.map_fragment_container);
-    if (container != null)
-    {
-      container.setOnTouchListener(this);
+      View container = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().findViewById(R.id.map_fragment_container);
+      if (container != null) {
+        container.setOnTouchListener(this);
+      }
+    } catch (Throwable e) {
+      (new Handler(Looper.getMainLooper())).postDelayed(() -> initMap(isLaunchByDeepLink), 500);
     }
   }
 
