@@ -1076,6 +1076,10 @@ JNIEXPORT jlong JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
         JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray locations, jint color, double width)
 {
+  if (!frm()->GetBookmarkManager().HasBmCategory(catId)) {
+    return kml::kInvalidTrackId;
+  }
+
   kml::TrackData trackData;
   const jsize size = env->GetArrayLength(locations);
 
