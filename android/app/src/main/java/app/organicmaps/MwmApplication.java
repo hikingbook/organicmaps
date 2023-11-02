@@ -6,6 +6,7 @@ package app.organicmaps;
 
 import static app.organicmaps.location.LocationState.LOCATION_TAG;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -148,10 +149,11 @@ public class MwmApplication extends Application implements Application.ActivityL
 //    return context.getSharedPreferences(context.getString(R.string.pref_file_name), MODE_PRIVATE);
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onCreate()
   {
-    super.onCreate();
+//    super.onCreate();
     Logger.i(TAG, "Initializing application");
     OrganicmapsFrameworkAdapter.INSTANCE.initApplication(this);
     LogsManager.INSTANCE.initFileLogging(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
