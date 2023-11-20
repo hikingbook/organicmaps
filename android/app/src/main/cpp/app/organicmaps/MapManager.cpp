@@ -116,7 +116,12 @@ extern "C"
 // static String nativeGetRoot();
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_downloader_MapManager_nativeGetRoot(JNIEnv *env, jclass clazz) {
-    return jni::ToJavaString(env, GetStorage().GetRootId());
+    try {
+        return jni::ToJavaString(env, GetStorage().GetRootId());
+    }
+    catch(...) {
+        return jni::ToJavaString(env, "Countries");
+    }
 }
 
 // static boolean nativeMoveFile(String oldFile, String newFile);
