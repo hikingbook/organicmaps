@@ -599,20 +599,25 @@ JNIEXPORT jboolean JNICALL
 Java_app_organicmaps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JNIEnv *env,
                                                                               jclass clazz,
                                                                               jstring root) {
-    auto const countryId = jni::ToNativeString(env, root);
-    auto const localFile = GetStorage().GetLatestLocalFile(countryId);
-    if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
+    try {
+        auto const countryId = jni::ToNativeString(env, root);
+        auto const localFile = GetStorage().GetLatestLocalFile(countryId);
+        if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
+            return false;
+        }
+
+        auto const path = localFile->GetPath(MapFileType::Map);
+        Platform &pl = GetPlatform();
+        auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
+        if (version.GetFormat() < version::Format::v11) {
+            Java_app_organicmaps_downloader_MapManager_nativeDelete(env, clazz, root);
+            return true;
+        }
         return false;
     }
-
-    auto const path = localFile->GetPath(MapFileType::Map);
-    Platform &pl = GetPlatform();
-    auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
-    if (version.GetFormat() < version::Format::v11) {
-        Java_app_organicmaps_downloader_MapManager_nativeDelete(env, clazz, root);
-        return true;
+    catch(...) {
+        return false;
     }
-    return false;
 }
 
 // static @Nullable void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
