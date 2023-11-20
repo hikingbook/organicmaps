@@ -356,40 +356,52 @@ Java_app_organicmaps_downloader_MapManager_nativeIsDownloading(JNIEnv *env, jcla
 }
 
 static void StartBatchingCallbacks() {
-    CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("StartBatchingCallbacks"));
-    ASSERT(!g_isBatched, ());
-    ASSERT(g_batchedCallbackData.empty(), ());
+    try {
+        CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("StartBatchingCallbacks"));
+        ASSERT(!g_isBatched, ());
+        ASSERT(g_batchedCallbackData.empty(), ());
 
-    g_isBatched = true;
+        g_isBatched = true;
+    }
+    catch(...) {
+        g_isBatched = true;
+    }
 }
 
 static void EndBatchingCallbacks(JNIEnv *env) {
-    CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("EndBatchingCallbacks"));
+    try {
+        CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("EndBatchingCallbacks"));
 
-    auto const &listBuilder = jni::ListBuilder::Instance(env);
+        auto const &listBuilder = jni::ListBuilder::Instance(env);
 
-    for (auto &key: g_batchedCallbackData) {
-        // Allocate resulting ArrayList
-        jni::TScopedLocalRef const list(env, listBuilder.CreateArray(env, key.second.size()));
+        for (auto &key: g_batchedCallbackData) {
+            // Allocate resulting ArrayList
+            jni::TScopedLocalRef const list(env, listBuilder.CreateArray(env, key.second.size()));
 
-        for (TBatchedData const &dataItem: key.second) {
-            // Create StorageCallbackData instance…
-            static jclass batchDataClass = jni::GetGlobalClassRef(env,
-                                                                  "app/organicmaps/downloader/MapManager$StorageCallbackData");
-            static jmethodID batchDataCtor = jni::GetConstructorID(env, batchDataClass,
-                                                                   "(Ljava/lang/String;IIIZ)V");
+            for (TBatchedData const &dataItem: key.second) {
+                // Create StorageCallbackData instance…
+                static jclass batchDataClass = jni::GetGlobalClassRef(env,
+                                                                      "app/organicmaps/downloader/MapManager$StorageCallbackData");
+                static jmethodID batchDataCtor = jni::GetConstructorID(env, batchDataClass,
+                                                                       "(Ljava/lang/String;IIIZ)V");
 
-            jni::TScopedLocalRef const id(env, jni::ToJavaString(env, dataItem.m_countryId));
-            jni::TScopedLocalRef const item(env,
-                                            env->NewObject(batchDataClass, batchDataCtor, id.get(),
-                                                           static_cast<jint>(dataItem.m_newOrganicMapStatus),
-                                                           static_cast<jint>(dataItem.m_newHikingbookProMapStatus),
-                                                           static_cast<jint>(dataItem.m_errorCode),
-                                                           dataItem.m_isLeaf));
-            // …and put it into the resulting list
-            env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
+                jni::TScopedLocalRef const id(env, jni::ToJavaString(env, dataItem.m_countryId));
+                jni::TScopedLocalRef const item(env,
+                                                env->NewObject(batchDataClass, batchDataCtor,
+                                                               id.get(),
+                                                               static_cast<jint>(dataItem.m_newOrganicMapStatus),
+                                                               static_cast<jint>(dataItem.m_newHikingbookProMapStatus),
+                                                               static_cast<jint>(dataItem.m_errorCode),
+                                                               dataItem.m_isLeaf));
+                // …and put it into the resulting list
+                env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
+            }
+
+            g_batchedCallbackData.clear();
+            g_isBatched = false;
         }
-
+    }
+    catch(...) {
         g_batchedCallbackData.clear();
         g_isBatched = false;
     }
