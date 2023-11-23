@@ -29,7 +29,6 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import app.organicmaps.background.OsmUploadWork;
-import app.organicmaps.downloader.DownloaderNotifier;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.CountryItem;
@@ -46,6 +45,7 @@ import app.organicmaps.util.ConnectionState;
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.SharedPropertiesUtils;
 import app.organicmaps.util.StorageUtils;
+import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.Logger;
@@ -245,11 +245,12 @@ public class MwmApplication extends Application implements Application.ActivityL
     MapManager.nativeSubscribe(mStorageCallbacks);
 
     initNativeStrings();
-//    ThemeSwitcher.INSTANCE.initialize(this);
+    ThemeSwitcher.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     SearchEngine.INSTANCE.initialize();
     BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
-//    ThemeSwitcher.INSTANCE.restart(false);
+    Config.setUiThemeSettings(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(), OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.theme_outdoor));
+    ThemeSwitcher.INSTANCE.restart(false);
 //    RoutingController.get().initialize(this);
 //    TrafficManager.INSTANCE.initialize();
 //    SubwayManager.from(this).initialize();

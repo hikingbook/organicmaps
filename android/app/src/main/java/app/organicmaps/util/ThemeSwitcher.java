@@ -1,6 +1,5 @@
 package app.organicmaps.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 
@@ -103,6 +102,10 @@ public enum ThemeSwitcher
     if (ThemeUtils.isNightTheme(mContext, newTheme))
       style = RoutingController.get().isVehicleNavigation()
               ? Framework.MAP_STYLE_VEHICLE_DARK : Framework.MAP_STYLE_DARK;
+    else if (ThemeUtils.isOutdoorTheme(mContext, newTheme))
+      style = Framework.MAP_STYLE_OUTDOOR_CLEAR;
+    else if (ThemeUtils.isOutdoorNightTheme(mContext, newTheme))
+      style = Framework.MAP_STYLE_OUTDOOR_DARK;
 
     if (!newTheme.equals(oldTheme))
     {
