@@ -789,6 +789,12 @@
 
 "book_button" = "Erreserba";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Xehetasunak KAYAK-en";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Esteka honen bidez erreserba bakoitzeko jasotzen den erreferentzia-bonua Organic Maps garatzera doa.";
+
 "placepage_call_button" = "Deitu";
 
 "placepage_edit_bookmark_button" = "Editatu markagailua";
@@ -977,8 +983,6 @@
 
 "export_file" = "Esportatu fitxategia";
 
-"list_settings" = "Zerrendaren ezarpenak";
-
 "delete_list" = "Ezabatu zerrenda";
 
 "hide_from_map" = "Ezkutatu mapan";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Bideratzeko aukerak";
 
-"driving_options_subheader" = "Ibilbide guztietan saihestu";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Bidesariak saihestea";
 
-"avoid_tolls" = "Ordainpeko errepideak";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Asfaltatu gabeko saihestea";
 
-"avoid_unpaved" = "Asfaltatu gabeko errepideak";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Ferriak saihestea";
 
-"avoid_ferry" = "Ferry pasabideak";
-
-"avoid_motorways" = "Autobideak";
+"avoid_motorways" = "Autobideak saihestea";
 
 "unable_to_calc_alert_title" = "Ezin da ibilbidea proposatu";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Asfaltatu gabeko errepidea";
 
 "ferry_crossing" = "Ferry zeharkaldia";
-
-"avoid_toll_roads_placepage" = "Saihestu ordainpeko errepideak";
-
-"avoid_unpaved_roads_placepage" = "Saihestu asfaltatu gabeko errepideak";
-
-"avoid_ferry_crossing_placepage" = "Ferryak saihestu";
 
 "trip_start" = "Goazen";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Ibilbidea auto modura aldatuko da";
 
 "ok" = "Ados";
-
-"avoid_unpaved_carplay_1" = "Lurrezko biderik ez";
-
-"avoid_unpaved_carplay_2" = "Saihestu asfaltatu gabekoa";
-
-"avoid_ferry_carplay_1" = "Ferryrik ez";
-
-"avoid_ferry_carplay_2" = "Ferryrik ez";
-
-"avoid_tolls_carplay_1" = "Bidesaririk ez";
-
-"avoid_tolls_carplay_2" = "Bidesaririk ez";
 
 "speedcams_alert_title_carplay_1" = "Abiadura kamerak.";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Komunitate Zentroa";
 
+"type.amenity.compressed_air" = "Aire konprimitua";
+
 "type.amenity.conference_centre" = "Biltzar Jauregia";
 
 "type.amenity.courthouse" = "Auzitegia";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Lurpeko Aparkalekua";
 
-"type.amenity.parking.street_side" = "Aparkalekua";
+"type.amenity.parking.underground.fee" = "Ordaindutako lurpeko aparkalekua";
 
-"type.amenity.parking.fee.street_side" = "Aparkalekua";
+"type.amenity.parking.underground.private" = "Lurpeko aparkaleku pribatua";
 
-"type.amenity.parking.lane" = "Aparkalekua";
+"type.amenity.parking.street_side" = "Kale alboko aparkalekua";
 
-"type.amenity.parking.fee.lane" = "Aparkalekua";
+"type.amenity.parking.street_side.fee" = "Ordaindutako kale alboko aparkalekua";
+
+"type.amenity.parking.street_side.private" = "Kale alboko aparkaleku pribatua";
+
+"type.amenity.parking.lane" = "Erreiaren aparkalekua";
+
+"type.amenity.parking.lane.fee" = "Ordaindutako erreiaren aparkalekua";
+
+"type.amenity.parking.lane.private" = "Errei pribatuko aparkalekua";
 
 "type.amenity.parking_entrance" = "Aparkalekuaren sarrera";
 
-"type.amenity.parking_entrance.private" = "Aparkalekuaren sarrera";
+"type.amenity.parking_entrance.private" = "Aparkaleku pribatuaren sarrera";
 
 "type.amenity.parking_entrance.permissive" = "Aparkalekuaren sarrera";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Eliza";
 
 "type.amenity.place_of_worship.christian.mormon" = "Azken Eguneko Santuen Jesukristoren eliza";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehovaren Testiguen Erresumaren aretoa";
 
 "type.amenity.place_of_worship.hindu" = "Tenplua";
 
@@ -1692,7 +1691,7 @@
 
 "type.building.train_station" = "Tren geltokian";
 
-"type.building.warehouse" = "Denda";
+"type.building.warehouse" = "Biltegia";
 
 "type.cemetery.grave" = "Hilobia";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Lore-ohea";
+
 "type.landuse.forest" = "Basoa";
 
 "type.landuse.forest.coniferous" = "Basoa";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funikularra";
 
 "type.railway.station.light_rail" = "Tren geltokian";
+
+"type.railway.station.light_rail.london" = "Tren geltokian";
+
+"type.railway.station.light_rail.porto" = "Tren geltokian";
 
 "type.railway.station.monorail" = "Tren geltokian";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Botika";
 
-"type.shop.chocolate" = "Denda";
+"type.shop.chocolate" = "Txokolate Denda";
 
 "type.shop.clothes" = "Arropa denda";
 
-"type.shop.coffee" = "Denda";
+"type.shop.coffee" = "Kafe Denda";
 
 "type.shop.computer" = "Denda informatikoa";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Sexu denda";
 
-"type.shop.fabric" = "Denda";
+"type.shop.fabric" = "Oihal-denda";
 
 "type.shop.farm" = "Baserriko Janari Denda";
 
@@ -3483,7 +3488,7 @@
 
 "type.shop.gas" = "Gas biltegia";
 
-"type.shop.gift" = "Denda";
+"type.shop.gift" = "Opari denda";
 
 "type.shop.greengrocer" = "Fruta denda";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Mugikorra";
 
-"type.shop.money_lender" = "Denda";
+"type.shop.money_lender" = "Diru emailea";
 
 "type.shop.motorcycle" = "Moto denda";
 
 "type.shop.motorcycle_repair" = "Motoen Konponketa";
 
-"type.shop.music" = "Denda";
+"type.shop.music" = "Disko-denda";
 
-"type.shop.musical_instrument" = "Denda";
+"type.shop.musical_instrument" = "Musika Tresnen Denda";
 
 "type.shop.newsagent" = "Kioskoa";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Argazkilaritza artikuluak";
 
+"type.shop.rental" = "Alokairu-denda";
+
+"type.shop.rental.bicycle" = "Bizikletak alokatzeko denda";
+
 "type.shop.seafood" = "Arrain-denda";
 
 "type.shop.second_hand" = "Bigarren eskuko denda";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tatuajeak";
 
-"type.shop.tea" = "Denda";
+"type.shop.tea" = "Te-denda";
 
 "type.shop.ticket" = "Sarreren salmenta";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Kabina";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Petting Zoo";
 
 "type.traffic_calming" = "Traffic Calming";
 

@@ -307,40 +307,40 @@ zh-Hant:1購物|店鋪|商店|雜貨店|便利商店
 
 # First keyword should match [shopping] definition in strings.txt!
 @shopping
-en:5Shopping
-ru:4Шоппинг|Покупки
+en:4Shopping
+ru:3Шоппинг|4Покупки
 ar:تسوق
-be:4Закупы
-bg:4Шопинг
+be:3Шопінг|4Закупы
+bg:3Шопинг
 cs:Nákupy
 da:Indkøb
-de:5Shopping
+de:4Shopping
 el:Ψώνια
-es:5Compras
+es:4Compras
 et:Ostud
-eu:5Erosketak
+eu:4Erosketak
 fa:فروشگاه|خرید کردن
 fi:Ostokset
-fr:5Shopping
+fr:4Shopping
 he:חנות
 hu:Bevásárlás
 id:Berbelanja
-it:5Shopping
+it:4Shopping
 ja:ショッピング
 ko:쇼핑
 mr:खरेदी|शॉपिंग
-nb:5Shopping
+nb:4Shopping
 nl:Winkelen
 pl:Zakupy
-pt:5Compras
-pt-BR:5Compras
-ro:5Shopping|Cumpărături
+pt:4Compras
+pt-BR:4Compras
+ro:4Shopping|Cumpărături
 sk:Nakupovanie
 sw:Manunuzi
-sv:5Shopping
+sv:4Shopping
 th:ช็อปปิง
-tr:5Alışveriş
-uk:4Шопінг
+tr:4Alışveriş
+uk:3Шопінг
 vi:Đi mua sắm
 zh-Hans:购物
 zh-Hant:購物
@@ -348,8 +348,8 @@ zh-Hant:購物
 # First keyword should match [hotel] definition in strings.txt!
 @hotel
 en:Hotel|hotels
-ru:5Гостиница|гостиницы|отель|отели
-be:Гатель|гателі
+ru:4Гостиница|отель|отели
+be:4Гатэль|гатэлі
 bg:Хотел|хотели
 ar:فندق|الفنادق
 cs:Hotel|Hotely
@@ -357,7 +357,7 @@ da:Hotel|Hoteller
 nl:Hotel|Hotels
 fi:Hotelli|Hotellit
 fr:Hôtel|Hôtels|4Hébergement
-de:5Hotel|Hotels
+de:Hotel|Hotels
 hu:Szálloda|Szállodák|Hotel|Hotelek
 id:Hotel|Hotel
 it:Hôtel|Alberghi
@@ -375,11 +375,11 @@ eu:Hotela
 sv:Hotell|Hotellen
 th:โรงแรม
 tr:Otel|Oteller
-uk:Готель|готелі
+uk:4Готель|готелі
 vi:Khách sạn
 zh-Hans:旅店|酒店|賓館
 zh-Hant:飯店|酒店|宾馆
-el:Ξενοδοχείο|Διαμονή|Ξενοδοχεία
+el:4Ξενοδοχείο|Διαμονή|Ξενοδοχεία
 he:מלון|בתי
 sk:Hotel|Hotely
 fa:هتل|هتل ها
@@ -1040,7 +1040,7 @@ fr:3Boulangerie|3Pâtisserie|pain
 de:3Bäckerei|Bäckerladen|Bäcker|4Konditorei
 hu:3Pékség
 id:Toko roti|Roti
-it:3Panetteria|Panificio|Forno
+it:3Panetteria|Panettiere|Panificio|Forno
 ja:1パン屋|ベーカリー|パン|軽食|持ち帰り
 ko:1베이커리|빵집
 mr:बेकरी|पाव
@@ -1409,7 +1409,7 @@ fr:Magasin de cuisine|cuisiniste
 he:םיחבטמ תונח
 hu:Konyhabolt
 id:Toko Dapur
-it:Negozio di cucina
+it:Negozio di cucina|Negozio di cucine
 ja:キッチンストア
 ko:주방용품점
 nb:Kjøkkenbutikk
@@ -1444,7 +1444,7 @@ fr:Magasin de vins et spiritueux|vins et spiritueux|4alcool
 de:5Spirituosengeschäft|Spirituosen
 hu:Italbolt|ital
 id:Toko alkohol|minuman keras
-it:Enoteca
+it:Negozio di liquori|Negozio di alcolici|Negozio di vini|3Enoteca
 ja:酒屋|お買い物|ショップ|商店|雑貨
 ko:리큐어 스토어|주류 샵
 mr:दारू|वाईन|विस्की|देशी दारू|ताडी|फेणी
@@ -4212,7 +4212,7 @@ pl:Ławka
 pt:2Assento|3Banco
 pt-BR:Assento|Banco de praça
 ro:Banchetă|Bancă|Bancă parc
-es:Banco
+es:Asiento|Banco
 et:Pink
 eu:Bankua
 sv:Bänk
@@ -5711,7 +5711,7 @@ fr:3Boîte aux lettres|courrier
 de:3Briefkasten|3Postfach|post
 hu:3Postaláda|Levelesláda
 id:Kotak pos
-it:3Casella
+it:3Buca delle lettere|Buche delle lettere|5Casella della posta|Casella postale|Cassetta della posta|4Cassetta postale|Cassette delle lettere
 ja:1郵便ポスト|ポスト|郵便局
 ko:우편함|우체통
 mr:टपालपेटी|पोस्ट बॉक्स
@@ -5747,6 +5747,7 @@ nl:3Postkantoor
 fr:3comptoir postal|bureau de poste
 de:3Postamt
 id:Kantor pos
+it:Ufficio postale
 pl:Poczta|listy
 pt:Estação de correios|Posto de correios|Correios
 pt-BR:3Correios
@@ -6336,7 +6337,7 @@ ro:Adăpost
 es:Refugio
 et:4Varjend
 eu:Aterpea
-sv:Skyddsrum
+sv:Vindskydd
 th:ที่อยู่อาศัย
 tr:Barınak
 uk:4Укриття
@@ -6447,9 +6448,9 @@ ko:화장실
 nb:3Toalett
 pl:3Toaleta
 pt:Casa de banho|WC
-pt-BR:4Banheiro
+pt-BR:4Banheiro|WC
 ro:3Toaletă
-es:WC
+es:Baño|WC
 et:WC
 eu:Komuna
 sv:3Toalett
@@ -6577,7 +6578,7 @@ fr:Pays
 de:Land
 hu:Ország
 id:Benua
-it:Paese
+it:Paese|Nazione
 ja:国|国家
 ko:나라
 nb:Land
@@ -11448,7 +11449,7 @@ fr:Poubelle
 de:6Abfalleimer|4Mülleimer|Papierkorb
 hu:Szemétkosár
 id:Kotak sampah
-it:Contenitore per rifiuti
+it:Cestino|Contenitore per rifiuti
 ja:くずかご
 ko:쓰레기통
 nb:4Søppelbøtte|4Søppelkasse
@@ -11843,6 +11844,45 @@ el:Κέντρο κοινότητας
 sk:3Dom kultúry
 fa:مرکزاجتماعی
 mr:समुदाय केंद्र
+
+amenity-compressed_air
+en:Compressed Air
+ar:هواء مضغوط
+be:Сціснутае паветра
+bg:Сгъстен въздух
+ca:Aire comprimit
+cs:Stlačený vzduch
+da:Trykluft
+de:Pressluft
+el:Πεπιεσμένος αέρας
+es:Aire comprimido|Compresor|Hinchador
+et:Suruõhk
+eu:Aire konprimitua
+fa:هوای فشرده
+fi:Paineilma
+fr:Air comprimé
+he:אוויר דחוס
+hu:Sűrített levegő
+id:Udara terkompresi
+it:Aria compressa
+ja:圧縮空気
+ko:압축 공기
+mr:संकुचित हवा
+nb:Komprimert luft
+nl:Samengeperste lucht
+pl:Sprężone powietrze
+pt:Ar comprimido
+ro:Aer comprimat
+ru:Сжатый воздух
+sk:Stlačený vzduch
+sv:Tryckluft
+sw:Air compressed
+th:อากาศอัด
+tr:Basınçlı hava
+uk:Стиснене повітря
+vi:Khí nén
+zh-Hans:压缩空气
+zh-Hant:壓縮的空氣
 
 amenity-courthouse
 en:4Courthouse
@@ -12489,7 +12529,7 @@ fr:Cave à vins|Caviste|Magasin de vins
 de:4Weinhandlung|Weinladen|Weingeschäft
 hu:Borkereskedés
 id:Toko anggur
-it:Negozio di alcolici
+it:3Enoteca|Negozio di vini|Negozio di alcolici|Negozio di liquori
 ja:ワイン|酒屋|ワインショップ
 ko:와인 샵|와인 가게
 nb:Alkoholutsalg

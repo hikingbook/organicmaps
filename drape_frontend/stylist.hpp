@@ -2,6 +2,8 @@
 
 #include "indexer/ftypes_matcher.hpp"
 #include "indexer/drawing_rule_def.hpp"
+#include "indexer/drawing_rules.hpp"
+#include "indexer/road_shields_parser.hpp"
 
 #include "base/buffer_vector.hpp"
 
@@ -26,18 +28,9 @@ private:
   size_t m_type3end;
 };
 
-struct TRuleWrapper
-{
-  drule::BaseRule const * m_rule;
-  float m_depth;
-  bool m_hatching;
-  bool m_isHouseNumber;
-};
-
 struct CaptionDescription
 {
-  void Init(FeatureType & f, int8_t deviceLang, int const zoomLevel,
-            feature::GeomType const type, bool const auxCaptionExists);
+  void Init(FeatureType & f, int8_t deviceLang, int zoomLevel, feature::GeomType geomType, bool auxCaptionExists);
 
   std::string const & GetMainText() const { return m_mainText; }
   std::string const & GetAuxText() const { return m_auxText; }
@@ -55,31 +48,27 @@ private:
 class Stylist
 {
 public:
-  bool m_isCoastline = false;
-  bool m_areaStyleExists = false;
-  bool m_lineStyleExists = false;
-  bool m_pointStyleExists = false;
+  SymbolRuleProto const * m_symbolRule = nullptr;
+  CaptionRuleProto const * m_captionRule = nullptr;
+  CaptionRuleProto const * m_houseNumberRule = nullptr;
+  PathTextRuleProto const * m_pathtextRule = nullptr;
+  ShieldRuleProto const * m_shieldRule = nullptr;
+  AreaRuleProto const * m_areaRule = nullptr;
+  AreaRuleProto const * m_hatchingRule = nullptr;
+
+  using LineRulesT = buffer_vector<LineRuleProto const *, 4>;
+  LineRulesT m_lineRules;
+
+  ftypes::RoadShieldsSetT m_roadShields;
+
+  Stylist(FeatureType & f, uint8_t zoomLevel, int8_t deviceLang);
 
   CaptionDescription const & GetCaptionDescription() const { return m_captionDescriptor; }
 
-  template <class ToDo> void ForEachRule(ToDo && toDo) const
-  {
-    for (auto const & r : m_rules)
-      toDo(r);
-  }
-
-  bool IsEmpty() const { return m_rules.empty(); }
-
 private:
-  friend bool InitStylist(FeatureType & f, int8_t deviceLang, int const zoomLevel, bool buildings3d,
-                          Stylist & s);
-
-  typedef buffer_vector<TRuleWrapper, 8> rules_t;
-  rules_t m_rules;
+  void ProcessKey(FeatureType & f, drule::Key const & key);
 
   CaptionDescription m_captionDescriptor;
 };
 
-bool InitStylist(FeatureType & f, int8_t deviceLang, int const zoomLevel, bool buildings3d,
-                 Stylist & s);
 }  // namespace df

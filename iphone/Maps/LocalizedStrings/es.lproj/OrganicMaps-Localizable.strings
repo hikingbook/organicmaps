@@ -141,7 +141,7 @@
 "hospital" = "Hospital";
 
 /* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Baños";
+"toilet" = "Baño";
 
 /* Search category for post offices; any changes should be duplicated in categories.txt @post! */
 "post" = "Oficina de correos";
@@ -301,7 +301,7 @@
 "openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
-"rate_the_app" = "Valora la aplicación";
+"rate_the_app" = "Valore la aplicación";
 
 /* Text in menu */
 "help" = "Ayuda";
@@ -313,7 +313,7 @@
 "donate" = "Donar";
 
 /* Button in the main Help dialog */
-"how_to_support_us" = "Apoya el proyecto";
+"how_to_support_us" = "Apoye el proyecto";
 
 /* Button in the main Help dialog */
 "copyright" = "Derechos de autor";
@@ -789,6 +789,12 @@
 
 "book_button" = "Reservar";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Detalles en KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "La bonificación por recomendación recibida por cada reserva a través de este enlace se destina al desarrollo de Organic Maps.";
+
 "placepage_call_button" = "Llamar";
 
 "placepage_edit_bookmark_button" = "Editar marcador";
@@ -834,7 +840,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Los editores de OpenStreetMap comprobarán los cambios y se pondrán en contacto contigo si tienen alguna pregunta.";
 
-"navigation_stop_button" = "parada";
+"navigation_stop_button" = "detener";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "¿Desactivar la grabación de su ruta recientemente recorrida?";
@@ -844,10 +850,10 @@
 /* For sharing via SMS and so on */
 "sharing_call_action_look" = "Comprueba";
 
-"recent_track_background_dialog_message" = "Organic Maps usa tu geolocalización en segundo plano para registrar tu ruta recorrida recientemente.";
+"recent_track_background_dialog_message" = "Organic Maps usa su geolocalización en segundo plano para registrar su ruta recorrida recientemente.";
 
 /* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps es una aplicación de mapas sin conexión gratuita y de código abierto. Sin anuncios. Sin seguimiento. Si ve un error en el mapa, corríjalo en OpenStreetMap. El proyecto está creado por entusiastas en nuestro tiempo libre, por lo que necesitamos tus comentarios y tu apoyo.";
+"about_description" = "Organic Maps es una aplicación de mapas sin conexión gratuita y de código abierto. Sin anuncios. Sin seguimiento. Si ve un error en el mapa, corríjalo en OpenStreetMap. El proyecto está creado por entusiastas en nuestro tiempo libre, por lo que necesitamos sus comentarios y su apoyo.";
 
 "general_settings" = "Ajustes generales";
 
@@ -977,8 +983,6 @@
 
 "export_file" = "Exportar archivo";
 
-"list_settings" = "Ajustes de la lista";
-
 "delete_list" = "Eliminar lista";
 
 "hide_from_map" = "Ocultar del mapa";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Opciones de enrutamiento";
 
-"driving_options_subheader" = "Evitar en todas las rutas";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Evitar peajes";
 
-"avoid_tolls" = "Carreteras de pago";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Evitar vías sin pavimentar";
 
-"avoid_unpaved" = "Caminos sin pavimento";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Evitar ferris";
 
-"avoid_ferry" = "Cruces de ferri";
-
-"avoid_motorways" = "Autopistas";
+"avoid_motorways" = "Evitar autopistas";
 
 "unable_to_calc_alert_title" = "No se puede calcular la ruta";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Camino sin pavimento";
 
 "ferry_crossing" = "Cruce de ferri";
-
-"avoid_toll_roads_placepage" = "Evitar las carreteras con pago de peaje";
-
-"avoid_unpaved_roads_placepage" = "Evitar los caminos sin pavimento";
-
-"avoid_ferry_crossing_placepage" = "Evitar ferries";
 
 "trip_start" = "Vamos";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "La ruta se cambiará a coche";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Sin carretera de tierra";
-
-"avoid_unpaved_carplay_2" = "Evitar sin pavimentar";
-
-"avoid_ferry_carplay_1" = "Sin ferri";
-
-"avoid_ferry_carplay_2" = "Evitar ferris";
-
-"avoid_tolls_carplay_1" = "Sin peaje";
-
-"avoid_tolls_carplay_2" = "Evitar peaje de pago";
 
 "speedcams_alert_title_carplay_1" = "Cám.velocidad";
 
@@ -1295,7 +1282,7 @@
 
 "type.amenity.bbq" = "Picnic";
 
-"type.amenity.bench" = "Banco";
+"type.amenity.bench" = "Asiento";
 
 "type.amenity.bicycle_parking" = "Aparcamiento de bicicletas";
 
@@ -1344,6 +1331,8 @@
 "type.amenity.college" = "Colegio";
 
 "type.amenity.community_centre" = "Centro comunitario";
+
+"type.amenity.compressed_air" = "Aire comprimido";
 
 "type.amenity.conference_centre" = "Centro de conferencias";
 
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Aparcamiento subterráneo";
 
-"type.amenity.parking.street_side" = "Aparcamiento";
+"type.amenity.parking.underground.fee" = "Aparcamiento subterráneo de pago";
 
-"type.amenity.parking.fee.street_side" = "Aparcamiento";
+"type.amenity.parking.underground.private" = "Aparcamiento subterráneo privado";
 
-"type.amenity.parking.lane" = "Aparcamiento";
+"type.amenity.parking.street_side" = "Aparcamiento en la calle";
 
-"type.amenity.parking.fee.lane" = "Aparcamiento";
+"type.amenity.parking.street_side.fee" = "Aparcamiento en la calle de pago";
+
+"type.amenity.parking.street_side.private" = "Aparcamiento en la calle privado";
+
+"type.amenity.parking.lane" = "Aparcamiento en carril";
+
+"type.amenity.parking.lane.fee" = "Aparcamiento en carril de pago";
+
+"type.amenity.parking.lane.private" = "Aparcamiento en carril privado";
 
 "type.amenity.parking_entrance" = "Entrada al aparcamiento";
 
-"type.amenity.parking_entrance.private" = "Entrada al aparcamiento";
+"type.amenity.parking_entrance.private" = "Entrada al aparcamiento privado";
 
 "type.amenity.parking_entrance.permissive" = "Entrada al aparcamiento";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Iglesia";
 
 "type.amenity.place_of_worship.christian.mormon" = "Iglesia de Jesucristo de los Santos de los Últimos Días";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Salón del Reino de los Testigos de Jehová";
 
 "type.amenity.place_of_worship.hindu" = "Templo";
 
@@ -2030,7 +2029,7 @@
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Túnel peatonal";
 
-"type.highway.ford" = "Vado (de lugar)";
+"type.highway.ford" = "Vado";
 
 "type.highway.living_street" = "Calle";
 
@@ -2441,6 +2440,8 @@
 "type.landuse.farmyard" = "Granja";
 
 "type.landuse.field" = "Campo";
+
+"type.landuse.flowerbed" = "Cama de flores";
 
 "type.landuse.forest" = "Bosque";
 
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Estación de tren";
+
+"type.railway.station.light_rail.london" = "Estación de tren";
+
+"type.railway.station.light_rail.porto" = "Estación de tren";
 
 "type.railway.station.monorail" = "Estación de tren";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Artículos de fotografía";
 
+"type.shop.rental" = "Tienda de alquiler";
+
+"type.shop.rental.bicycle" = "Tienda de alquiler de bicicletas";
+
 "type.shop.seafood" = "Pescadería";
 
 "type.shop.second_hand" = "Tienda de segunda mano";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Cabaña";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Zoológico de animales acariciables";
 
 "type.traffic_calming" = "Reducción de velocidad";
 

@@ -789,6 +789,12 @@
 
 "book_button" = "จอง";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "รายละเอียดบน KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "โบนัสการแนะนำที่ได้รับสำหรับการจองแต่ละครั้งผ่านลิงก์นี้จะนำไปใช้ในการพัฒนาแผนที่ทั่วไป";
+
 "placepage_call_button" = "โทร";
 
 "placepage_edit_bookmark_button" = "แก้ไข Bookmark";
@@ -977,8 +983,6 @@
 
 "export_file" = "ส่งออกไฟล์";
 
-"list_settings" = "การตั้งค่ารายการ";
-
 "delete_list" = "ลบรายการ";
 
 "hide_from_map" = "ซ่อนจากแผนที่";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "ทางเลือกเส้นทางขับขี่";
 
-"driving_options_subheader" = "หลีกเลี่ยงในทุกเส้นทาง";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "หลีกเลี่ยงถนนที่เก็บค่าผ่านทาง";
 
-"avoid_tolls" = "ถนนแบบเสียค่าผ่านทาง";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "เลี่ยงถนนดินทั้งหมด";
 
-"avoid_unpaved" = "ถนนดิน";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "เลี่ยงการข้ามฟากด้วยเรือ";
 
-"avoid_ferry" = "เรือข้ามฟาก";
-
-"avoid_motorways" = "ทางด่วน";
+"avoid_motorways" = "หลีกเลี่ยงมอเตอร์เวย์";
 
 "unable_to_calc_alert_title" = "ไม่สามารถคำนวณเส้นทาง";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "ถนนดิน";
 
 "ferry_crossing" = "เรือข้ามฟาก";
-
-"avoid_toll_roads_placepage" = "เลี่ยงทางที่ต้องเสียเงินทั้งหมด";
-
-"avoid_unpaved_roads_placepage" = "เลี่ยงถนนดินทั้งหมด";
-
-"avoid_ferry_crossing_placepage" = "เลี่ยงการข้ามฟากด้วยเรือ";
 
 "trip_start" = "ไปกันเลย";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "เส้นทางของรถยนต์อาจถูกปรับเปลี่ยน";
 
 "ok" = "โอเค";
-
-"avoid_unpaved_carplay_1" = "ไม่มีลูกรัง";
-
-"avoid_unpaved_carplay_2" = "หลีกเลี่ยงทาง";
-
-"avoid_ferry_carplay_1" = "ไม่มีเรือ";
-
-"avoid_ferry_carplay_2" = "หลีกเลี่ยงเรือ";
-
-"avoid_tolls_carplay_1" = "ไม่มีค่าผ่าน";
-
-"avoid_tolls_carplay_2" = "เลี่ยงทางด่วน";
 
 "speedcams_alert_title_carplay_1" = "จับความเร็ว";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "ศูนย์ชุมชน";
 
+"type.amenity.compressed_air" = "อากาศอัด";
+
 "type.amenity.conference_centre" = "ศูนย์ประชุม";
 
 "type.amenity.courthouse" = "ศาล";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "ที่จอดรถใต้ดิน";
 
-"type.amenity.parking.street_side" = "ที่จอดรถ";
+"type.amenity.parking.underground.fee" = "ที่จอดรถใต้ดินแบบชำระเงิน";
 
-"type.amenity.parking.fee.street_side" = "ที่จอดรถ";
+"type.amenity.parking.underground.private" = "ที่จอดรถใต้ดินส่วนตัว";
 
-"type.amenity.parking.lane" = "ที่จอดรถ";
+"type.amenity.parking.street_side" = "ที่จอดรถริมถนน";
 
-"type.amenity.parking.fee.lane" = "ที่จอดรถ";
+"type.amenity.parking.street_side.fee" = "ที่จอดรถริมถนนแบบชำระเงิน";
+
+"type.amenity.parking.street_side.private" = "ที่จอดรถริมถนนส่วนตัว";
+
+"type.amenity.parking.lane" = "ที่จอดรถเลน";
+
+"type.amenity.parking.lane.fee" = "ที่จอดรถเลนแบบชำระเงิน";
+
+"type.amenity.parking.lane.private" = "ที่จอดรถเลนส่วนตัว";
 
 "type.amenity.parking_entrance" = "ทางเข้าที่จอดรถ";
 
-"type.amenity.parking_entrance.private" = "ทางเข้าที่จอดรถ";
+"type.amenity.parking_entrance.private" = "ทางเข้าที่จอดรถส่วนตัว";
 
 "type.amenity.parking_entrance.permissive" = "ทางเข้าที่จอดรถ";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "โบสถ์";
 
 "type.amenity.place_of_worship.christian.mormon" = "โบสถ์พระเยซูคริสต์แห่งวิสุทธิชนยุคสุดท้าย";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "ห้องราชอาณาจักรของพยานเยโฮวา";
 
 "type.amenity.place_of_worship.hindu" = "วัด";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "แปลงดอกไม้";
+
 "type.landuse.forest" = "ป่า";
 
 "type.landuse.forest.coniferous" = "ป่า";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "รถกระเช้าไฟฟ้า";
 
 "type.railway.station.light_rail" = "สถานีรถไฟ";
+
+"type.railway.station.light_rail.london" = "สถานีรถไฟ";
+
+"type.railway.station.light_rail.porto" = "สถานีรถไฟ";
 
 "type.railway.station.monorail" = "สถานีรถไฟ";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "ร้านเคมีภัณฑ์";
 
-"type.shop.chocolate" = "ร้านค้า";
+"type.shop.chocolate" = "ร้านช็อกโกแลต";
 
 "type.shop.clothes" = "ร้านขายเสื้อผ้า";
 
-"type.shop.coffee" = "ร้านค้า";
+"type.shop.coffee" = "ร้านขายกาแฟ";
 
 "type.shop.computer" = "ร้านขายคอมพิวเตอร์";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "ร้านเฉพาะผู้ใหญ่";
 
-"type.shop.fabric" = "ร้านค้า";
+"type.shop.fabric" = "ร้านผ้า";
 
 "type.shop.farm" = "ฟาร์มฟู้ดช็อป";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "ร้านขายโทรศัพท์มือถือ";
 
-"type.shop.money_lender" = "ร้านค้า";
+"type.shop.money_lender" = "ผู้ให้ยืมเงิน";
 
 "type.shop.motorcycle" = "ร้านรถมอเตอร์ไซค์";
 
 "type.shop.motorcycle_repair" = "ซ่อมรถจักรยานยนต์";
 
-"type.shop.music" = "ร้านค้า";
+"type.shop.music" = "ร้านเพลง";
 
-"type.shop.musical_instrument" = "ร้านค้า";
+"type.shop.musical_instrument" = "ร้านขายเครื่องดนตรี";
 
 "type.shop.newsagent" = "แผงขายหนังสือพิมพ์";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "ร้านถ่ายภาพ";
 
+"type.shop.rental" = "ร้านเช่า";
+
+"type.shop.rental.bicycle" = "ร้านเช่าจักรยาน";
+
 "type.shop.seafood" = "ร้านขายปลา";
 
 "type.shop.second_hand" = "ร้านขายของมือสอง";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "ร้านสัก";
 
-"type.shop.tea" = "ร้านค้า";
+"type.shop.tea" = "ร้านน้ำชา";
 
 "type.shop.ticket" = "จุดจำหน่ายตั๋ว";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "กระท่อมกลางป่า";
 
 "type.tourism.zoo" = "สวนสัตว์";
+
+"type.tourism.zoo.petting" = "สวนสัตว์ลูบคลำ";
 
 "type.traffic_calming" = "Traffic Calming";
 

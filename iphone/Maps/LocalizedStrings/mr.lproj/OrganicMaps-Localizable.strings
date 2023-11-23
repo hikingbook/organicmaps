@@ -789,6 +789,12 @@
 
 "book_button" = "पुस्तक";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "कायाक वर तपशील";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "या लिंकद्वारे प्रत्येक बुकिंगसाठी मिळणारा रेफरल बोनस ऑरगॅनिक नकाशांच्या विकासासाठी जातो.";
+
 "placepage_call_button" = "फोन करा";
 
 "placepage_edit_bookmark_button" = "खूणपत्र संपादित करा";
@@ -977,8 +983,6 @@
 
 "export_file" = "फाइल निर्यात";
 
-"list_settings" = "यादी सेटिंग";
-
 "delete_list" = "यादी मिटवा";
 
 "hide_from_map" = "नकाशावरून लपवा";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "मार्गशोधी पर्याय";
 
-"driving_options_subheader" = "प्रत्येक मार्गावर टाळा";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "टोल रस्ते टाळा";
 
-"avoid_tolls" = "टोल मार्ग";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "कच्चे मार्ग टाळा";
 
-"avoid_unpaved" = "कच्चे मार्ग";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "जल मार्ग टाळा";
 
-"avoid_ferry" = "जल मार्ग";
-
-"avoid_motorways" = "महामार्ग";
+"avoid_motorways" = "मोटरवे टाळा";
 
 "unable_to_calc_alert_title" = "मार्गाची गणना करण्यात अक्षम";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "कच्चे मार्ग";
 
 "ferry_crossing" = "जल मार्ग";
-
-"avoid_toll_roads_placepage" = "टोल मार्ग टाळा";
-
-"avoid_unpaved_roads_placepage" = "कच्चे मार्ग टाळा";
-
-"avoid_ferry_crossing_placepage" = "जल मार्ग टाळा";
 
 "trip_start" = "चल जाऊया";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "मार्गाचे रुपांतर वाहनासाठी केले जाईल";
 
 "ok" = "ठीक आहे";
-
-"avoid_unpaved_carplay_1" = "कच्चा रस्ता नाही";
-
-"avoid_unpaved_carplay_2" = "कच्चा रस्ता टाळा";
-
-"avoid_ferry_carplay_1" = "नाव नाहीत";
-
-"avoid_ferry_carplay_2" = "नाव टाळा";
-
-"avoid_tolls_carplay_1" = "टोल रस्ता नाही";
-
-"avoid_tolls_carplay_2" = "टोल रस्ता टाळा";
 
 "speedcams_alert_title_carplay_1" = "वेगकॅमेरा";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "समुदाय केंद्र";
 
+"type.amenity.compressed_air" = "संकुचित हवा";
+
 "type.amenity.conference_centre" = "परिषद केंद्र";
 
 "type.amenity.courthouse" = "न्यायालय";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Underground Parking";
 
-"type.amenity.parking.street_side" = "वाहनतळ";
+"type.amenity.parking.underground.fee" = "सशुल्क भूमिगत पार्किंग";
 
-"type.amenity.parking.fee.street_side" = "वाहनतळ";
+"type.amenity.parking.underground.private" = "खाजगी भूमिगत पार्किंग";
 
-"type.amenity.parking.lane" = "वाहनतळ";
+"type.amenity.parking.street_side" = "स्ट्रीट साइड पार्किंग";
 
-"type.amenity.parking.fee.lane" = "वाहनतळ";
+"type.amenity.parking.street_side.fee" = "पेड स्ट्रीट साइड पार्किंग";
+
+"type.amenity.parking.street_side.private" = "खाजगी रस्त्यावरील बाजूचे पार्किंग";
+
+"type.amenity.parking.lane" = "लेन पार्किंग";
+
+"type.amenity.parking.lane.fee" = "सशुल्क लेन पार्किंग";
+
+"type.amenity.parking.lane.private" = "खाजगी लेन पार्किंग";
 
 "type.amenity.parking_entrance" = "Parking Entrance";
 
-"type.amenity.parking_entrance.private" = "Parking Entrance";
+"type.amenity.parking_entrance.private" = "खाजगी पार्किंग प्रवेशद्वार";
 
 "type.amenity.parking_entrance.permissive" = "Parking Entrance";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "चर्च";
 
 "type.amenity.place_of_worship.christian.mormon" = "चर्च ऑफ जिझस क्राइस्ट ऑफ लेटर डे सेंट्स";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "यहोवा साक्षींचे राज्य सभा";
 
 "type.amenity.place_of_worship.hindu" = "मंदिर";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "क्षेत्र";
 
+"type.landuse.flowerbed" = "फ्लॉवरबेड";
+
 "type.landuse.forest" = "वन";
 
 "type.landuse.forest.coniferous" = "शंकुमंत जंगल";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "फ्युनिक्युलर";
 
 "type.railway.station.light_rail" = "रेल्वे स्थानक";
+
+"type.railway.station.light_rail.london" = "रेल्वे स्थानक";
+
+"type.railway.station.light_rail.porto" = "रेल्वे स्थानक";
 
 "type.railway.station.monorail" = "रेल्वे स्थानक";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "औषधालय";
 
-"type.shop.chocolate" = "दुकान";
+"type.shop.chocolate" = "चॉकलेट शॉप";
 
 "type.shop.clothes" = "कपड्याचे दुकान";
 
-"type.shop.coffee" = "दुकान";
+"type.shop.coffee" = "कॉफीचे दुकान";
 
 "type.shop.computer" = "संगणकाचे दुकान";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotic Shop";
 
-"type.shop.fabric" = "दुकान";
+"type.shop.fabric" = "फॅब्रिकचे दुकान";
 
 "type.shop.farm" = "Farm Food Shop";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "मोबाईल";
 
-"type.shop.money_lender" = "दुकान";
+"type.shop.money_lender" = "सावकार";
 
 "type.shop.motorcycle" = "दुचाकी विक्रेता";
 
 "type.shop.motorcycle_repair" = "मोटरसायकल दुरुस्ती";
 
-"type.shop.music" = "दुकान";
+"type.shop.music" = "संगीताच दुकान";
 
-"type.shop.musical_instrument" = "दुकान";
+"type.shop.musical_instrument" = "वाद्याचे दुकान";
 
 "type.shop.newsagent" = "वृत्तपत्र विक्री";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "फोटोचे दुकान";
 
+"type.shop.rental" = "भाड्याचे दुकान";
+
+"type.shop.rental.bicycle" = "सायकल भाड्याचे दुकान";
+
 "type.shop.seafood" = "मासळी उपहारगृह";
 
 "type.shop.second_hand" = "Second Hand Shop";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "गोंदणाचे(टॅटू) दुकान";
 
-"type.shop.tea" = "दुकान";
+"type.shop.tea" = "चहा दुकान";
 
 "type.shop.ticket" = "तिकीटघर";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "प्राणीसंग्रहालय";
+
+"type.tourism.zoo.petting" = "पेटिंग प्राणीसंग्रहालय";
 
 "type.traffic_calming" = "Traffic Calming";
 

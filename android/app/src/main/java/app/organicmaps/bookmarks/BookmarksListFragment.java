@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.BundleCompat;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -41,12 +41,12 @@ import app.organicmaps.widget.placepage.EditBookmarkFragment;
 import app.organicmaps.widget.recycler.DividerItemDecorationWithPadding;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.UiUtils;
-import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter>
     implements BookmarkManager.BookmarksSharingListener,
@@ -108,13 +108,9 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   @NonNull
   private BookmarkCategory getCategoryOrThrow()
   {
-    Bundle args = getArguments();
-    BookmarkCategory category;
-    if (args == null || (args.getBundle(EXTRA_BUNDLE) == null) ||
-        ((category = Utils.getParcelable(args.getBundle(EXTRA_BUNDLE), EXTRA_CATEGORY, BookmarkCategory.class))) == null)
-      throw new IllegalArgumentException("Category not exist in bundle");
-
-    return category;
+    final Bundle args = requireArguments();
+    final Bundle extra = Objects.requireNonNull(args.getBundle(EXTRA_BUNDLE));
+    return Objects.requireNonNull(BundleCompat.getParcelable(extra, EXTRA_CATEGORY, BookmarkCategory.class));
   }
 
   @NonNull
@@ -298,7 +294,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   private void updateSearchVisibility()
   {
-    if (isEmpty() || !isSearchAllowed())
+    if (isEmpty())
     {
       UiUtils.hide(mSearchContainer);
     }
@@ -534,12 +530,6 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
            && getBookmarkListAdapter().getItemCount() == 0;
   }
 
-  private boolean isSearchAllowed()
-  {
-    BookmarkCategory category = mCategoryDataSource.getData();
-    return BookmarkManager.INSTANCE.isSearchAllowed(category.getId());
-  }
-
   private boolean isLastOwnedCategory()
   {
     return BookmarkManager.INSTANCE.getCategories().size() == 1;
@@ -637,7 +627,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     inflater.inflate(R.menu.option_menu_bookmarks, menu);
 
     MenuItem itemSearch = menu.findItem(R.id.bookmarks_search);
-    itemSearch.setVisible(!isEmpty() && isSearchAllowed());
+    itemSearch.setVisible(!isEmpty());
   }
 
   @Override
@@ -647,7 +637,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
     boolean visible = !mSearchMode && !isEmpty();
     MenuItem itemSearch = menu.findItem(R.id.bookmarks_search);
-    itemSearch.setVisible(visible && isSearchAllowed());
+    itemSearch.setVisible(visible);
 
     MenuItem itemMore = menu.findItem(R.id.bookmarks_more);
     if (mLastSortTimestamp != 0)
@@ -740,7 +730,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
         items.add(new MenuBottomSheetItem(R.string.sort, R.drawable.ic_sort, this::onSortOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.export_file, R.drawable.ic_share, this::onShareOptionSelected));
     }
-    items.add(new MenuBottomSheetItem(R.string.list_settings, R.drawable.ic_settings, this::onSettingsOptionSelected));
+    items.add(new MenuBottomSheetItem(R.string.edit, R.drawable.ic_settings, this::onSettingsOptionSelected));
     if (!isLastOwnedCategory())
       items.add(new MenuBottomSheetItem(R.string.delete_list, R.drawable.ic_delete, this::onDeleteOptionSelected));
     return items;
@@ -779,12 +769,6 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   }
 
   @Override
-  public void onBookmarksLoadingStarted()
-  {
-    // No op.
-  }
-
-  @Override
   public void onBookmarksLoadingFinished()
   {
     View view = getView();
@@ -795,12 +779,6 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     onViewCreatedInternal(view);
     updateRecyclerVisibility();
     updateLoadingPlaceholder(view, false);
-  }
-
-  @Override
-  public void onBookmarksFileLoaded(boolean success)
-  {
-    // No op.
   }
 
   private void updateLoadingPlaceholder(@NonNull View root, boolean isShowLoadingPlaceholder)

@@ -3,7 +3,6 @@ package app.organicmaps.maplayer;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.content.Context;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -19,9 +18,7 @@ import app.organicmaps.R;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.search.SearchEngine;
 import app.organicmaps.util.Graphics;
-import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
-import app.organicmaps.util.Utils;
 import app.organicmaps.util.concurrency.UiThread;
 
 public class SearchWheel implements View.OnClickListener
@@ -87,18 +84,6 @@ public class SearchWheel implements View.OnClickListener
       throw new IllegalArgumentException("No navigation search for id " + resId);
     }
 
-    @Nullable
-    public static SearchOption fromSearchQuery(@NonNull String query, @NonNull Context context)
-    {
-      final String normalizedQuery = StringUtils.toLowerCase(query.trim());
-      for (SearchOption searchOption : SearchOption.values())
-      {
-        final String searchOptionQuery = StringUtils.toLowerCase(context.getString(searchOption.mQueryId).trim());
-        if (searchOptionQuery.equals(normalizedQuery))
-          return searchOption;
-      }
-      return null;
-    }
   }
 
   public SearchWheel(View frame, @NonNull View.OnClickListener onSearchPressedListener,

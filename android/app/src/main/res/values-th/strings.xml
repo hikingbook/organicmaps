@@ -48,7 +48,8 @@
 	<string name="about_proposition_3">•เร็วเรียบง่ายไม่มีขยะ</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">แอปพลิเคชันโอเพนซอร์ซที่สร้างขึ้นโดยผู้ที่ชื่นชอบและอาสาสมัคร</string>
-	<string name="connection_settings">การตั้งค่าการเชื่อมต่อ</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">การตั้งค่าตำแหน่ง</string>
 	<string name="close">ปิด</string>
 	<string name="unsupported_phone">จำเป็นต้องใช้ฮาร์ดแวร์ที่เพิ่มความเร็ว OpenGL โชคไม่ดีที่อุปกรณ์ของคุณไม่รองรับ</string>
 	<string name="download">ดาวน์โหลด</string>
@@ -489,6 +490,10 @@
 	<string name="hour">ชม.</string>
 	<string name="minute">น.</string>
 	<string name="placepage_more_button">เพิ่มเติม</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">รายละเอียดบน KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">โบนัสการแนะนำที่ได้รับสำหรับการจองแต่ละครั้งผ่านลิงก์นี้จะนำไปใช้ในการพัฒนาแผนที่ทั่วไป</string>
 	<string name="placepage_edit_bookmark_button">แก้ไข Bookmark</string>
 	<string name="editor_comment_hint">ข้อคิดเห็น</string>
 	<string name="editor_reset_edits_message">ตั้งค่าการเปลี่ยนแปลงท้องถิ่นทั้งหมด</string>
@@ -507,8 +512,6 @@
 	<string name="editor_share_to_all_dialog_message_1">ตรวจสอบว่าคุณไม่ได้กรอกข้อมูลส่วนตัวใด ๆ</string>
 	<string name="editor_share_to_all_dialog_message_2">ผู้แก้ไข OpenStreetMap จะตรวจสอบการเปลี่ยนแปลงและติดต่อคุณหากมีคำถามใดๆ</string>
 	<string name="navigation_stop_button">หยุด</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps เป็นแอปพลิเคชันแผนที่ออฟไลน์แบบโอเพนซอร์สฟรี ไม่มีโฆษณา ไม่มีการติดตาม. หากคุณเห็นข้อผิดพลาดบนแผนที่ โปรดแก้ไขใน OpenStreetMap โครงการนี้สร้างขึ้นโดยผู้ที่ชื่นชอบในเวลาว่าง เราจึงต้องการความคิดเห็นและการสนับสนุนจากคุณ</string>
 	<!-- For the first routing -->
 	<string name="accept">ยอมรับ</string>
 	<!-- For the first routing -->
@@ -567,7 +570,6 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d ไฟล์ที่ค้นพบ คุณจะเห็นพวกเขาหลังจากการแปลง</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
 	<plurals name="objects">
 	  <item quantity="other">%d สถานที่</item>
 	</plurals>
@@ -589,7 +591,6 @@
 	<string name="bookmarks_empty_list_message">เพื่อเพิ่มบุ๊กมาร์ก โปรดแตะที่สถานที่บนแผนที่ แล้วจากนั้นแตะที่ไอคอนรูปดาว</string>
 	<string name="category_desc_more">…เพิ่มเติม</string>
 	<string name="export_file">ส่งออกไฟล์</string>
-	<string name="list_settings">การตั้งค่ารายการ</string>
 	<string name="delete_list">ลบรายการ</string>
 	<string name="public_access">เข้าถึงได้โดยสาธารณะ</string>
 	<string name="limited_access">จำกัดการเข้าถึง</string>
@@ -611,11 +612,13 @@
 	<string name="enable_logging_warning_message">ออปชันเพื่อเปิดการบันทึกประวัติการทำงานเพื่อการวินิจฉัย ประวัติดังกล่าวอาจเป็นประโยชน์กับทีมงานช่วยเหลือของเราที่คอยจัดการกับปัญหาที่เจอระหว่างแอปทำงาน โปรดเปิดออปชันดังกล่าวจากการร้องข้อการสนับสนุนจาก Organic Maps เท่านั้น</string>
 	<string name="access_rules_author_only">การแก้ไขทางออนไลน์</string>
 	<string name="driving_options_title">ทางเลือกเส้นทางขับขี่</string>
-	<string name="driving_options_subheader">หลีกเลี่ยงในทุกเส้นทาง</string>
-	<string name="avoid_tolls">ถนนแบบเสียค่าผ่านทาง</string>
-	<string name="avoid_unpaved">ถนนดิน</string>
-	<string name="avoid_ferry">เรือข้ามฟาก</string>
-	<string name="avoid_motorways">ทางด่วน</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">หลีกเลี่ยงถนนที่เก็บค่าผ่านทาง</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">เลี่ยงถนนดินทั้งหมด</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">เลี่ยงการข้ามฟากด้วยเรือ</string>
+	<string name="avoid_motorways">หลีกเลี่ยงมอเตอร์เวย์</string>
 	<string name="unable_to_calc_alert_title">ไม่สามารถคำนวณเส้นทาง</string>
 	<string name="unable_to_calc_alert_subtitle">ขออภัย เราไม่สามารถค้นหาเส้นทาง โดยสาเหตุอาจมาจากทางเลือกที่คุณกำหนดไว้ โปรดเปลี่ยนการตั้งค่าทางเลือกและลองใหม่อีกครั้ง</string>
 	<string name="define_to_avoid_btn">กำหนดถนนที่ต้องการเลี่ยง</string>
@@ -623,9 +626,6 @@
 	<string name="toll_road">ถนนแบบเสียค่าผ่านทาง</string>
 	<string name="unpaved_road">ถนนดิน</string>
 	<string name="ferry_crossing">เรือข้ามฟาก</string>
-	<string name="avoid_toll_roads_placepage">เลี่ยงทางที่ต้องเสียเงินทั้งหมด</string>
-	<string name="avoid_unpaved_roads_placepage">เลี่ยงถนนดินทั้งหมด</string>
-	<string name="avoid_ferry_crossing_placepage">เลี่ยงการข้ามฟากด้วยเรือ</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">ใช่</string>
 	<!-- A generic "No" button in dialogs -->
@@ -634,6 +634,7 @@
 	<string name="yes_available">ใช่</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">ไม่ใช่</string>
+	<string name="trip_finished">คุณมาถึงแล้ว!</string>
 	<string name="ok">โอเค</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">เรียง…</string>
@@ -686,13 +687,29 @@
 	<string name="elevation_profile_distance">ระยะทาง</string>
 	<string name="elevation_profile_time">เวลา:</string>
 	<string name="isolines_toast_zooms_1_10">ขยายเข้าเพื่อสำรวจเส้นชั้นความสูง</string>
-	<string name="enable_screen_sleep">อนุญาตให้หน้าจอเข้าสู่โหมดสลีป</string>
+	<string name="enable_keep_screen_on">เปิดหน้าจอไว้</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">เมื่อเปิดใช้งานหน้าจอจะได้รับอนุญาตให้เข้าสู่โหมดสลีปหลังจากไม่มีการใช้งานเป็นระยะเวลาหนึ่ง</string>
+	<string name="enable_keep_screen_on_description">เมื่อเปิดใช้งาน หน้าจอจะเปิดอยู่เสมอเมื่อแสดงแผนที่</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">ข้อมูลแผนที่จาก OpenStreetMap</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">ขอขอบคุณที่ใช้แผนที่ที่สร้างโดยชุมชนของเรา!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">ขณะนี้คุณกำลังใช้แผนที่ทั่วไปบนหน้าจอโทรศัพท์</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">ขณะนี้คุณกำลังใช้แผนที่ทั่วไปบนหน้าจอรถยนต์</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">คุณเชื่อมต่อกับ Android Auto แล้ว</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">ดำเนินการต่อบนโทรศัพท์</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">ไปที่หน้าจอรถ</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">แอปพลิเคชันนี้ต้องการการเข้าถึงตำแหน่งของคุณเพื่อจุดประสงค์ในการนำทาง</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">ให้สิทธิ์</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">เชื่อมต่อกับรถยนต์</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">ที่อยู่/บล็อค</string>
@@ -733,6 +750,7 @@
 	<string name="type.amenity.clinic">คลินิก</string>
 	<string name="type.amenity.college">วิทยาลัย</string>
 	<string name="type.amenity.community_centre">ศูนย์ชุมชน</string>
+	<string name="type.amenity.compressed_air">อากาศอัด</string>
 	<string name="type.amenity.conference_centre">ศูนย์ประชุม</string>
 	<string name="type.amenity.courthouse">ศาล</string>
 	<string name="type.amenity.dentist">ทันตแพทย์</string>
@@ -772,12 +790,16 @@
 	<string name="type.amenity.parking.private">ที่จอดรถส่วนตัว</string>
 	<string name="type.amenity.parking.park_and_ride">ที่จอดรถ</string>
 	<string name="type.amenity.parking.underground">ที่จอดรถใต้ดิน</string>
-	<string name="type.amenity.parking.street_side">ที่จอดรถ</string>
-	<string name="type.amenity.parking.fee.street_side">ที่จอดรถ</string>
-	<string name="type.amenity.parking.lane">ที่จอดรถ</string>
-	<string name="type.amenity.parking.fee.lane">ที่จอดรถ</string>
+	<string name="type.amenity.parking.underground.fee">ที่จอดรถใต้ดินแบบชำระเงิน</string>
+	<string name="type.amenity.parking.underground.private">ที่จอดรถใต้ดินส่วนตัว</string>
+	<string name="type.amenity.parking.street_side">ที่จอดรถริมถนน</string>
+	<string name="type.amenity.parking.street_side.fee">ที่จอดรถริมถนนแบบชำระเงิน</string>
+	<string name="type.amenity.parking.street_side.private">ที่จอดรถริมถนนส่วนตัว</string>
+	<string name="type.amenity.parking.lane">ที่จอดรถเลน</string>
+	<string name="type.amenity.parking.lane.fee">ที่จอดรถเลนแบบชำระเงิน</string>
+	<string name="type.amenity.parking.lane.private">ที่จอดรถเลนส่วนตัว</string>
 	<string name="type.amenity.parking_entrance">ทางเข้าที่จอดรถ</string>
-	<string name="type.amenity.parking_entrance.private">ทางเข้าที่จอดรถ</string>
+	<string name="type.amenity.parking_entrance.private">ทางเข้าที่จอดรถส่วนตัว</string>
 	<string name="type.amenity.parking_entrance.permissive">ทางเข้าที่จอดรถ</string>
 	<string name="type.amenity.parking_space">พื้นที่จอดรถ</string>
 	<string name="type.amenity.parking_space.permissive">พื้นที่จอดรถ</string>
@@ -790,6 +812,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">วัด</string>
 	<string name="type.amenity.place_of_worship.christian">โบสถ์</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">โบสถ์พระเยซูคริสต์แห่งวิสุทธิชนยุคสุดท้าย</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">ห้องราชอาณาจักรของพยานเยโฮวา</string>
 	<string name="type.amenity.place_of_worship.hindu">วัด</string>
 	<string name="type.amenity.place_of_worship.jewish">มัสยิดยิว</string>
 	<string name="type.amenity.place_of_worship.muslim">มัสยิด</string>
@@ -1226,6 +1249,7 @@
 	<string name="type.landuse.cemetery.christian">สุสาน</string>
 	<string name="type.landuse.churchyard">บริเวณโบสถ์</string>
 	<string name="type.landuse.farmland">พื้นที่ทำการเกษตร</string>
+	<string name="type.landuse.flowerbed">แปลงดอกไม้</string>
 	<string name="type.landuse.forest">ป่า</string>
 	<string name="type.landuse.forest.coniferous">ป่า</string>
 	<string name="type.landuse.forest.deciduous">ป่า</string>
@@ -1394,6 +1418,8 @@
 	<string name="type.railway.station">สถานีรถไฟ</string>
 	<string name="type.railway.station.funicular">รถกระเช้าไฟฟ้า</string>
 	<string name="type.railway.station.light_rail">สถานีรถไฟ</string>
+	<string name="type.railway.station.light_rail.london">สถานีรถไฟ</string>
+	<string name="type.railway.station.light_rail.porto">สถานีรถไฟ</string>
 	<string name="type.railway.station.monorail">สถานีรถไฟ</string>
 	<string name="type.railway.station.subway">รถไฟ</string>
 	<string name="type.railway.station.subway.adana">รถไฟ</string>
@@ -1635,9 +1661,9 @@
 	<string name="type.shop.car_repair.tyres">ร้านปะยาง</string>
 	<string name="type.shop.carpet">พรม</string>
 	<string name="type.shop.chemist">ร้านเคมีภัณฑ์</string>
-	<string name="type.shop.chocolate">ร้านค้า</string>
+	<string name="type.shop.chocolate">ร้านช็อกโกแลต</string>
 	<string name="type.shop.clothes">ร้านขายเสื้อผ้า</string>
-	<string name="type.shop.coffee">ร้านค้า</string>
+	<string name="type.shop.coffee">ร้านขายกาแฟ</string>
 	<string name="type.shop.computer">ร้านขายคอมพิวเตอร์</string>
 	<string name="type.shop.confectionery">ร้านขายขนมหวาน</string>
 	<string name="type.shop.convenience">ร้านสะดวกซื้อ</string>
@@ -1650,7 +1676,7 @@
 	<string name="type.shop.dry_cleaning">ซักแห้ง</string>
 	<string name="type.shop.electronics">ร้านขายอุปกรณ์อิเล็กทรอนิกส์</string>
 	<string name="type.shop.erotic">ร้านเฉพาะผู้ใหญ่</string>
-	<string name="type.shop.fabric">ร้านค้า</string>
+	<string name="type.shop.fabric">ร้านผ้า</string>
 	<string name="type.shop.farm">ฟาร์มฟู้ดช็อป</string>
 	<string name="type.shop.fashion_accessories">เครื่องประดับแฟชั่น</string>
 	<string name="type.shop.florist">ร้านดอกไม้</string>
@@ -1674,11 +1700,11 @@
 	<string name="type.shop.mall">เดอะมอลล์</string>
 	<string name="type.shop.massage">สถานอาบอบนวด</string>
 	<string name="type.shop.mobile_phone">ร้านขายโทรศัพท์มือถือ</string>
-	<string name="type.shop.money_lender">ร้านค้า</string>
+	<string name="type.shop.money_lender">ผู้ให้ยืมเงิน</string>
 	<string name="type.shop.motorcycle">ร้านรถมอเตอร์ไซค์</string>
 	<string name="type.shop.motorcycle_repair">ซ่อมรถจักรยานยนต์</string>
-	<string name="type.shop.music">ร้านค้า</string>
-	<string name="type.shop.musical_instrument">ร้านค้า</string>
+	<string name="type.shop.music">ร้านเพลง</string>
+	<string name="type.shop.musical_instrument">ร้านขายเครื่องดนตรี</string>
 	<string name="type.shop.newsagent">แผงขายหนังสือพิมพ์</string>
 	<string name="type.shop.optician">ร้านแว่น</string>
 	<string name="type.shop.outdoor">อุปกรณ์กลางแจ้ง</string>
@@ -1688,6 +1714,8 @@
 	<string name="type.shop.pet">เพ็ทชอป</string>
 	<string name="type.shop.pet_grooming">กรูมมิ่งสัตว์เลี้ยง</string>
 	<string name="type.shop.photo">ร้านถ่ายภาพ</string>
+	<string name="type.shop.rental">ร้านเช่า</string>
+	<string name="type.shop.rental.bicycle">ร้านเช่าจักรยาน</string>
 	<string name="type.shop.seafood">ร้านขายปลา</string>
 	<string name="type.shop.second_hand">ร้านขายของมือสอง</string>
 	<string name="type.shop.shoes">ร้านขายรองเท้า</string>
@@ -1695,7 +1723,7 @@
 	<string name="type.shop.stationery">ร้านขายเครื่องเขียน</string>
 	<string name="type.shop.supermarket">ซูเปอร์มาร์เก็ต</string>
 	<string name="type.shop.tattoo">ร้านสัก</string>
-	<string name="type.shop.tea">ร้านค้า</string>
+	<string name="type.shop.tea">ร้านน้ำชา</string>
 	<string name="type.shop.ticket">จุดจำหน่ายตั๋ว</string>
 	<string name="type.shop.toys">ร้านขายของเล่น</string>
 	<string name="type.shop.travel_agency">สำนักงานการท่องเที่ยว</string>
@@ -1795,6 +1823,7 @@
 	<string name="type.tourism.viewpoint">จุดชมวิว</string>
 	<string name="type.tourism.wilderness_hut">กระท่อมกลางป่า</string>
 	<string name="type.tourism.zoo">สวนสัตว์</string>
+	<string name="type.tourism.zoo.petting">สวนสัตว์ลูบคลำ</string>
 	<string name="type.waterway.canal">คลอง</string>
 	<string name="type.waterway.canal.tunnel">คลอง</string>
 	<string name="type.waterway.fish_pass">บันไดปลา</string>

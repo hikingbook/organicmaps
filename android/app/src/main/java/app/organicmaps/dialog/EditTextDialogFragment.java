@@ -9,7 +9,6 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmDialogFragment;
 import app.organicmaps.util.InputUtils;
@@ -41,7 +41,7 @@ public class EditTextDialogFragment extends BaseMwmDialogFragment
   @Nullable
   private String mInitialText;
   private String mHint;
-  private EditText mEtInput;
+  private TextInputEditText mEtInput;
   private TextInputLayout mEtInputLayout;
   private Button mPositiveButton;
   private Validator mInputValidator;
@@ -64,13 +64,6 @@ public class EditTextDialogFragment extends BaseMwmDialogFragment
                           @NonNull Fragment parent, @Nullable Validator inputValidator)
   {
     return show(title, initialText, "", positiveBtn, negativeBtn, NO_LIMITED_TEXT_LENGTH, parent, inputValidator);
-  }
-
-  public static EditTextDialogFragment show(@Nullable String title, @Nullable String initialText,
-                          @Nullable String positiveBtn, @Nullable String negativeBtn,
-                          int textLimit, @NonNull Fragment parent, @Nullable Validator inputValidator)
-  {
-    return show(title, initialText, "", positiveBtn, negativeBtn, textLimit, parent, inputValidator);
   }
 
   public static EditTextDialogFragment show(@Nullable String title, @Nullable String initialText, @Nullable String hint,

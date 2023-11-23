@@ -9,7 +9,6 @@ class InfoItemViewController: UIViewController {
   @IBOutlet var imageView: UIImageView!
   @IBOutlet var infoLabel: UILabel!
   @IBOutlet var accessoryImage: UIImageView!
-  @IBOutlet var separatorView: UIView!
   @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
 
   var tapHandler: TapHandler?
@@ -26,7 +25,6 @@ class InfoItemViewController: UIViewController {
     }
   }
   var canShowMenu = false
-
   @IBAction func onTap(_ sender: UITapGestureRecognizer) {
     tapHandler?()
   }
@@ -52,6 +50,7 @@ class InfoItemViewController: UIViewController {
 protocol PlacePageInfoViewControllerDelegate: AnyObject {
   func didPressCall()
   func didPressWebsite()
+  func didPressKayak()
   func didPressWikipedia()
   func didPressWikimediaCommons()
   func didPressFacebook()
@@ -78,6 +77,7 @@ class PlacePageInfoViewController: UIViewController {
   private var rawOpeningHoursView: InfoItemViewController?
   private var phoneView: InfoItemViewController?
   private var websiteView: InfoItemViewController?
+  private var kayakView: InfoItemViewController?
   private var wikipediaView: InfoItemViewController?
   private var wikimediaCommonsView: InfoItemViewController?
   private var emailView: InfoItemViewController?
@@ -147,6 +147,12 @@ class PlacePageInfoViewController: UIViewController {
       }
     }
     
+    if placePageInfoData.kayak != nil {
+      kayakView = createInfoItem(L("more_on_kayak"), icon: UIImage(named: "ic_placepage_kayak"), style: .link) { [weak self] in
+        self?.delegate?.didPressKayak()
+      }
+    }
+
     if placePageInfoData.wikimediaCommons != nil {
       wikimediaCommonsView = createInfoItem(L("wikimedia_commons"), icon: UIImage(named: "ic_placepage_wikimedia_commons"), style: .link) { [weak self] in
         self?.delegate?.didPressWikimediaCommons()
@@ -223,7 +229,6 @@ class PlacePageInfoViewController: UIViewController {
   }
 
   // MARK: private
-
   private func createInfoItem(_ info: String,
                               icon: UIImage?,
                               style: Style = .regular,
@@ -239,7 +244,36 @@ class PlacePageInfoViewController: UIViewController {
 
   private func addToStack(_ viewController: UIViewController) {
     addChild(viewController)
-    stackView.addArrangedSubview(viewController.view)
+    stackView.addArrangedSubviewWithSeparator(viewController.view)
     viewController.didMove(toParent: self)
+  }
+}
+
+private extension UIStackView {
+  func addArrangedSubviewWithSeparator(_ view: UIView) {
+    if !arrangedSubviews.isEmpty {
+      view.addSeparator(thickness: CGFloat(1.0),
+                        color: StyleManager.shared.theme?.colors.blackDividers,
+                        insets: UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0))
+    }
+    addArrangedSubview(view)
+  }
+}
+
+private extension UIView {
+  func addSeparator(thickness: CGFloat,
+                    color: UIColor?,
+                    insets: UIEdgeInsets) {
+    let lineView = UIView()
+    lineView.backgroundColor = color ?? .black
+    lineView.isUserInteractionEnabled = false
+    lineView.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(lineView)
+    NSLayoutConstraint.activate([
+      lineView.heightAnchor.constraint(equalToConstant: thickness),
+      lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.left),
+      lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
+      lineView.topAnchor.constraint(equalTo: topAnchor, constant: insets.top),
+    ])
   }
 }

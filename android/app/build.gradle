@@ -13,6 +13,8 @@ buildscript {
   def taskName = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
   def isFdroid = taskName.contains('fdroid')
   def isBeta = taskName.contains('beta')
+  def isDebug = taskName.contains('debug')
+  def isSyncWithFiles = taskName.contains('rundefaulttasksexecutionrequest') // used by Android Studio
 
   //
   // Please add symlinks to google/java/app/organicmaps/location for each new gms-enabled flavor below:
@@ -23,13 +25,22 @@ buildscript {
   // ```
   ext.googleMobileServicesEnabled = taskName.contains('google') || taskName.contains('huawei') || taskName.contains('web')
 
+  // Firebase Crashlytics compile-time feature flag: -Pfirebase=true|false
+  def googleFirebaseServicesFlag = findProperty('firebase')
   // Enable Firebase for all beta flavors except fdroid only if google-services.json exists.
   def googleFirebaseServicesDefault = isBeta && !isFdroid && file("$projectDir/google-services.json").exists()
-  // Add a parameter to force Firebase.
-  ext.googleFirebaseServicesEnabled = project.hasProperty('firebase') ?: googleFirebaseServicesDefault
+  ext.googleFirebaseServicesEnabled = googleFirebaseServicesFlag != null ?
+      googleFirebaseServicesFlag == '' || googleFirebaseServicesFlag.toBoolean() :
+      googleFirebaseServicesDefault
+
+  // Android Auto compile-time feature flag: -Pandroidauto=true|false
+  def androidAutoFlag = findProperty('androidauto')
+  // Enable Android Auto by default for all debug and beta flavors except fdroid.
+  def androidAutoDefault = isSyncWithFiles || ((isDebug || isBeta) && !isFdroid)
+  ext.androidAutoEnabled = androidAutoFlag != null ? androidAutoFlag.toBoolean() : androidAutoDefault
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:8.1.1'
+    classpath 'com.android.tools.build:gradle:8.1.3'
 
     if (googleMobileServicesEnabled) {
       println('Building with Google Mobile Services')
@@ -85,10 +96,21 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ndk'
   }
 
+  if (androidAutoEnabled) {
+    println('Building with Android Auto')
+    implementation 'androidx.car.app:app:1.4.0-beta02'
+    // Fix for app/organicmaps/util/FileUploadWorker.java:14: error: cannot access ListenableFuture
+    // https://github.com/organicmaps/organicmaps/issues/6106
+    implementation 'com.google.guava:guava:32.1.2-android'
+  } else {
+    println('Building without Android Auto')
+  }
+
   // This line is added as a workaround for duplicate classes error caused by some outdated dependency:
   // > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckDuplicatesRunnable
   // We don't use Kotlin, but some dependencies are actively using it.
   // See https://stackoverflow.com/a/75719642
+  implementation 'androidx.core:core:1.12.0'
   implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
   implementation 'androidx.annotation:annotation:1.7.0'
   implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -99,7 +121,6 @@ dependencies {
   implementation 'androidx.work:work-runtime:2.8.1'
   implementation 'androidx.lifecycle:lifecycle-process:2.6.2'
   implementation 'com.google.android.material:material:1.9.0'
-  implementation 'com.google.code.gson:gson:2.10.1'
   implementation 'com.github.devnullorthrow:MPAndroidChart:3.2.0-alpha'
   implementation 'net.jcip:jcip-annotations:1.0'
 
@@ -146,10 +167,9 @@ android {
     dataBinding = true
   }
   // All properties are read from gradle.properties file
-  compileSdkVersion propCompileSdkVersion.toInteger()
-  buildToolsVersion propBuildToolsVersion
+  compileSdk propCompileSdkVersion.toInteger()
 
-  ndkVersion '25.2.9519653'
+  ndkVersion '26.1.10909125'
 
   defaultConfig {
     // Default package name is taken from the manifest and should be app.organicmaps
@@ -158,16 +178,13 @@ android {
     versionName = ver.V2
     println('Version: ' + versionName)
     println('VersionCode: ' + versionCode)
-    minSdkVersion propMinSdkVersion.toInteger()
-    targetSdkVersion propTargetSdkVersion.toInteger()
+    minSdk propMinSdkVersion.toInteger()
+    targetSdk propTargetSdkVersion.toInteger()
     applicationId project.ext.appId
     buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
     // Should be customized in flavors.
     buildConfigField 'String', 'REVIEW_URL', '""'
     resourceConfigurations += [project.ext.supportedLocalizations]
-
-    multiDexEnabled true
-    multiDexKeepFile file('multidex-config.txt')
 
     externalNativeBuild {
       def pchFlag = 'OFF'
@@ -213,6 +230,10 @@ android {
     }
 
     setProperty("archivesBaseName", appName.replaceAll("\\s","") + "-" + defaultConfig.versionCode)
+
+    if (!androidAutoEnabled) {
+      sourceSets.main.java.excludes += '**/organicmaps/car'
+    }
   }
 
   flavorDimensions += 'default'
@@ -283,7 +304,7 @@ android {
     android.applicationVariants.all { variant ->
       def task = variant.name.capitalize()
       project.task(type: Exec, "run${task}", dependsOn: "install${task}") {
-        commandLine android.getAdbExe(), 'shell', 'am', 'start', '-n', "${applicationId}/app.organicmaps.SplashActivity"
+        commandLine android.getAdbExe(), 'shell', 'am', 'start', '-n', "$applicationId/app.organicmaps.DownloadResourcesActivity", '-a', 'android.intent.action.MAIN', '-c', 'android.intent.category.LAUNCHER'
       }
     }
   }
@@ -331,7 +352,7 @@ android {
       shrinkResources true
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-mwm.txt'
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       resValue 'string', 'app_id', android.defaultConfig.applicationId
       resValue 'string', 'app_name', project.ext.appName
       // Full size symbols are too big for Google, 217mb aab vs 95mb.
@@ -352,7 +373,7 @@ android {
       shrinkResources true
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-mwm.txt'
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       matchingFallbacks = ['debug', 'release']
       resValue 'string', 'app_id', android.defaultConfig.applicationId + applicationIdSuffix
       resValue 'string', 'app_name', project.ext.appName + ' ' + '(Beta)'
@@ -386,7 +407,7 @@ android {
   // TODO: Load all minor files via separate call to ReadAsString which can correctly handle compressed files in zip containers.
   androidResources {
     ignoreAssetsPattern '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
-    noCompress 'txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv', 'obj'
+    noCompress = ['txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv', 'obj']
   }
 
   compileOptions {
@@ -417,6 +438,7 @@ android.buildTypes.all { buildType ->
   def authority = "\"" + authorityValue + "\""
   buildConfigField 'String', 'FILE_PROVIDER_AUTHORITY', authority
   manifestPlaceholders += [FILE_PROVIDER_PLACEHOLDER : authorityValue]
+  manifestPlaceholders += [ANDROID_AUTO_ENABLED : androidAutoEnabled]
 }
 
 task prepareGoogleReleaseListing {

@@ -49,7 +49,8 @@
 	<string name="about_proposition_3">• سريع ، الحد الأدنى ، لا خردة</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">تطبيق مفتوح المصدر الذي أنشأه المتحمسون والمتطوعون.</string>
-	<string name="connection_settings">إعدادات الاتصال</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">إعدادات الموقع</string>
 	<string name="close">إغلاق</string>
 	<string name="unsupported_phone">أنت بحاجة الى OpenGL بأجهزة تسريع. لسوء الحظ جهازك لا يدعم هذه الخاصية.</string>
 	<string name="download">تنزيل</string>
@@ -253,6 +254,14 @@
 	<!-- Text in About menu, opens Organic Maps news website -->
 	<string name="news">أخبار</string>
 	<!-- Text in menu -->
+	<string name="telegram">تيليجرام</string>
+	<!-- Text in menu -->
+	<string name="facebook">فيسبوك</string>
+	<!-- Text in menu -->
+	<string name="twitter">X (تويتر)</string>
+	<!-- Text in menu -->
+	<string name="instagram">إنستغرام</string>
+	<!-- Text in menu -->
 	<string name="openstreetmap">خريطة الشارع المفتوحة</string>
 	<!-- Settings: Send feedback button and dialog title -->
 	<string name="feedback">إرسال التعليقات</string>
@@ -265,7 +274,7 @@
 	<!-- Button in the main menu -->
 	<string name="donate">تبرع</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">ﻉﻭﺮﺸﻤﻟﺍ ﻢﻋﺩ</string>
+	<string name="how_to_support_us">دعم المشروع</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">حقوق النشر</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -418,7 +427,7 @@
 	<string name="editor_example_values">أمثلة على القيم</string>
 	<string name="editor_correct_mistake">تصحيح الخطأ</string>
 	<string name="editor_add_select_location">الموقع</string>
-	<string name="editor_report_problem_desription_1">يرجى وصف المشكلة بالتفاصيل حتى يتسنى لفريق خريطة الشارع المفتوح إصلاح الخطأ.</string>
+	<string name="editor_report_problem_desription_1">يرجى وصف المشكلة بالتفاصيل حتى يتسنى لفريق خريطة الشارع المفتوحة إصلاح الخطأ.</string>
 	<string name="editor_report_problem_desription_2">أو افعل ذلك بنفسك من خلال الموقع https://www.openstreetmap.org/</string>
 	<string name="editor_report_problem_send_button">إرسال</string>
 	<string name="editor_report_problem_title">مشكلة</string>
@@ -437,9 +446,9 @@
 	<string name="closed">مغلق</string>
 	<string name="edit_opening_hours">حرر ساعات العمل</string>
 	<string name="no_osm_account">ليس لديك حساب في خريطة الشارع المفتوحة؟</string>
-	<string name="register_at_openstreetmap">التسجيل في حريطة الشارع المفتوحة</string>
+	<string name="register_at_openstreetmap">التسجيل في خريطة الشارع المفتوحة</string>
 	<string name="login">تسجيل الدخول</string>
-	<string name="login_osm">OpenStreetMap ﻰﻟﺇ ﻝﻮﺧﺪﻟﺍ ﻞﻴﺠﺴﺗ</string>
+	<string name="login_osm">تسجيل الدخول الى OpenStreetMap</string>
 	<string name="password">كلمة المرور</string>
 	<string name="forgot_password">هل نسيت كلمة المرور؟</string>
 	<string name="logout">تسجيل الخروج</string>
@@ -518,6 +527,10 @@
 	<string name="hour">س</string>
 	<string name="minute">د</string>
 	<string name="placepage_more_button">المزيد</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">التفاصيل على KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">تذهب مكافأة الإحالة التي يتم تلقيها لكل حجز من خلال هذا الرابط إلى تطوير Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">تحرير العلامة المرجعية</string>
 	<string name="editor_comment_hint">تعليق…</string>
 	<string name="editor_reset_edits_message">هل تريد مسح كافة التغييرات المحلية؟</string>
@@ -541,10 +554,8 @@
 	<string name="editor_share_to_all_dialog_title">هل ترغب في إرساله لجميع المستخدمين؟</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">تأكد من أنك لم تقم بإدخال أية بيانات شخصية.</string>
-	<string name="editor_share_to_all_dialog_message_2">.ﺔﻠﺌﺳﺃ ﻱﺃ ﻢﻬﻳﺪﻟ ﻥﺎﻛ ﺍﺫﺇ ﻚﻌﻣ ﻥﻮﻠﺻﺍﻮﺘﻳﻭ ﺕﺍﺮﻴﻴﻐﺘﻟﺍ ﻦﻣ OpenStreetMap ﻭﺭﺮﺤﻣ ﻖﻘﺤﺘﻴﺳ</string>
+	<string name="editor_share_to_all_dialog_message_2">سيتحقق محررو خرائط الشارع المفتوحة من التغييرات ويتواصلون معك إذا كان لديهم أي أسئلة.</string>
 	<string name="navigation_stop_button">توقف</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps هو تطبيق سريع ومجاني للوصول إلى الخرائط بدون اتصال بالانترنت، وهو بدون إعلانات ومتتبعات. إن الخرائط هي مصدرها بيانات خريطة الشارع المفتوحة التي يستطيع الجميع تعديلها، لذلك يمكنك إصلاح أخطاء الخريطة وإضافة الميزات بنفسك. Organic Maps هو مشروع مفتوح المصدر أُنشأ من قبل مجموعة من الهواة في وقت فراغهم. نقدّر جداً مساهماتك ودعمك.</string>
 	<!-- For the first routing -->
 	<string name="accept">قبول</string>
 	<!-- For the first routing -->
@@ -603,7 +614,6 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">تم العثور على %d ملفات. سوف تراهم بعد التحويل.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">لا يوجد اتصال بالإنترنت</string>
 	<plurals name="objects">
 	  <item quantity="other">غرض %d</item>
 	</plurals>
@@ -625,7 +635,6 @@
 	<string name="bookmarks_empty_list_message">لإضافة إشارة مرجعية ، اضغط على مكان على الخريطة ثم انقر على رمز النجمة</string>
 	<string name="category_desc_more">…المزيد</string>
 	<string name="export_file">ملف التصدير</string>
-	<string name="list_settings">إعدادات القائمة</string>
 	<string name="delete_list">حذف القائمة</string>
 	<string name="public_access">مسموح الوصول لعامة الشعب</string>
 	<string name="limited_access">مسموح الوصول بشكل محدود</string>
@@ -647,11 +656,13 @@
 	<string name="enable_logging_warning_message">هذا الخيار يقوم ببدأ تسجيل سجلات التطبيق لإغراض التشخيصة. يمكن أن يكون مفيدًا لفريق الدعم الخاص بنا لحل المشاكل التي تواجهكم داخل التطبيق. قم بتفعيل هذا الخيار بشكل مؤقت فقط في حالة طلب الدعم من Organic Maps.</string>
 	<string name="access_rules_author_only">التعديل باستخدام الإنترنت</string>
 	<string name="driving_options_title">خيارات رسم المسار</string>
-	<string name="driving_options_subheader">تجنبها على جميع الطرق</string>
-	<string name="avoid_tolls">الطرق ذات الرسوم</string>
-	<string name="avoid_unpaved">الطرق غير المعبدة</string>
-	<string name="avoid_ferry">استخدام العبّارات</string>
-	<string name="avoid_motorways">الطرق السريعة</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">تجنب الطرق ذات الرسوم</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">تجنب الطرق الغير معبدة</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">تجنب استخدام العبّارات</string>
+	<string name="avoid_motorways">تجنب الطريق السريع</string>
 	<string name="unable_to_calc_alert_title">لا يمكن حساب الطريق</string>
 	<string name="unable_to_calc_alert_subtitle">نأسف، لم نعثر على الطريق ربما بسبب الخيارات التي قمت بتحديدها. يرجى تغيير الإعدادات والمحاولة مجددًا</string>
 	<string name="define_to_avoid_btn">حدد الطرق التي يجب تجنبها</string>
@@ -659,9 +670,6 @@
 	<string name="toll_road">طريق برسوم مرور</string>
 	<string name="unpaved_road">طريق غير معبد</string>
 	<string name="ferry_crossing">استخدام عبّارة</string>
-	<string name="avoid_toll_roads_placepage">تجنب الطرق ذات الرسوم</string>
-	<string name="avoid_unpaved_roads_placepage">تجنب الطرق الغير معبدة</string>
-	<string name="avoid_ferry_crossing_placepage">تجنب استخدام العبّارات</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">نعم</string>
 	<!-- A generic "No" button in dialogs -->
@@ -670,6 +678,7 @@
 	<string name="yes_available">نعم</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">لا</string>
+	<string name="trip_finished">لقد وصلت!</string>
 	<string name="ok">موافق</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">ترتيب…</string>
@@ -731,9 +740,9 @@
 	<string name="connection_failure">فشل الاتصال</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">إفصل سلك USB</string>
-	<string name="enable_screen_sleep">اسمح للشاشة بالنوم</string>
+	<string name="enable_keep_screen_on">إبقاء الشاشة قيد التشغيل</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">عند التفعيل ، سيتم السماح للشاشة بالنوم بعد فترة من عدم النشاط.</string>
+	<string name="enable_keep_screen_on_description">عند التمكين، ستكون الشاشة قيد التشغيل دائمًا عند عرض الخريطة.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">إظهار  التطبيق فوق شاشة القفل</string>
 	<!-- Description in preferences -->
@@ -744,6 +753,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ar:About_OpenStreetMap</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">شكرًا لك على استخدام الخرائط التي أنشأها مجتمعنا!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">أنت الآن تستخدم الخرائط العضوية على شاشة الهاتف</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">أنت الآن تستخدم الخرائط العضوية على شاشة السيارة</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">أنت متصل بـ Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">تواصل على الهاتف</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">إلى شاشة السيارة</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">يتطلب هذا التطبيق الوصول إلى موقعك لأغراض التنقل.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">أذونات المنح</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">متصل بالسيارة</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">العنوان / البلوك</string>
@@ -795,6 +820,7 @@
 	<string name="type.amenity.clinic">عيادة</string>
 	<string name="type.amenity.college">كلية</string>
 	<string name="type.amenity.community_centre">مركز اجتماعي</string>
+	<string name="type.amenity.compressed_air">هواء مضغوط</string>
 	<string name="type.amenity.conference_centre">مركز المؤتمرات</string>
 	<string name="type.amenity.courthouse">محكمة</string>
 	<string name="type.amenity.dentist">طبيب أسنان</string>
@@ -835,12 +861,16 @@
 	<string name="type.amenity.parking.private">موقف سيارات خاص</string>
 	<string name="type.amenity.parking.park_and_ride">موقف اصطفاف وركوب</string>
 	<string name="type.amenity.parking.underground">موقف سيارات تحت الأرض</string>
-	<string name="type.amenity.parking.street_side">موقف سيارات</string>
-	<string name="type.amenity.parking.fee.street_side">موقف سيارات</string>
-	<string name="type.amenity.parking.lane">موقف سيارات</string>
-	<string name="type.amenity.parking.fee.lane">موقف سيارات</string>
+	<string name="type.amenity.parking.underground.fee">موقف سيارات مدفوع الأجر تحت الأرض</string>
+	<string name="type.amenity.parking.underground.private">موقف سيارات خاص تحت الأرض</string>
+	<string name="type.amenity.parking.street_side">موقف سيارات على جانب الشارع</string>
+	<string name="type.amenity.parking.street_side.fee">موقف سيارات مدفوع الأجر على جانب الشارع</string>
+	<string name="type.amenity.parking.street_side.private">موقف سيارات خاص على جانب الشارع</string>
+	<string name="type.amenity.parking.lane">وقوف السيارات لين</string>
+	<string name="type.amenity.parking.lane.fee">موقف سيارات مدفوع الأجر</string>
+	<string name="type.amenity.parking.lane.private">موقف سيارات خاص بالممر</string>
 	<string name="type.amenity.parking_entrance">مدخل موقف سيارات</string>
-	<string name="type.amenity.parking_entrance.private">مدخل موقف سيارات</string>
+	<string name="type.amenity.parking_entrance.private">مدخل خاص لوقوف السيارات</string>
 	<string name="type.amenity.parking_entrance.permissive">مدخل موقف سيارات</string>
 	<string name="type.amenity.parking_space">مكان لوقوف السيارات</string>
 	<string name="type.amenity.parking_space.permissive">مكان لوقوف السيارات</string>
@@ -853,6 +883,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">معبد بوذي</string>
 	<string name="type.amenity.place_of_worship.christian">كنيسة</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">كنيسة يسوع المسيح لقديسي الأيام الأخيرة</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">قاعة مملكة شهود يهوه</string>
 	<string name="type.amenity.place_of_worship.hindu">معبد هندوسي</string>
 	<string name="type.amenity.place_of_worship.jewish">معبد يهودي</string>
 	<string name="type.amenity.place_of_worship.muslim">مسجد</string>
@@ -1354,6 +1385,7 @@
 	<string name="type.landuse.farm">مزرعة</string>
 	<string name="type.landuse.farmland">حقل</string>
 	<string name="type.landuse.field">حقل</string>
+	<string name="type.landuse.flowerbed">مشتل أزهار</string>
 	<string name="type.landuse.forest">غابة</string>
 	<string name="type.landuse.forest.coniferous">غابة صنوبرية</string>
 	<string name="type.landuse.forest.deciduous">غابة نفضيّة</string>
@@ -1381,6 +1413,7 @@
 	<string name="type.leisure.garden">حديقة</string>
 	<string name="type.leisure.garden.residential">حديقة</string>
 	<string name="type.leisure.golf_course">ملعب غولف</string>
+	<string name="type.leisure.marina">مرسى</string>
 	<string name="type.leisure.nature_reserve">محمية طبيعية</string>
 	<string name="type.leisure.outdoor_seating">جلوس في الهواء الطلق</string>
 	<string name="type.leisure.park">متنزه</string>
@@ -1543,6 +1576,8 @@
 	<string name="type.railway.station">محطة قطار</string>
 	<string name="type.railway.station.funicular">حبلي</string>
 	<string name="type.railway.station.light_rail">محطة قطار</string>
+	<string name="type.railway.station.light_rail.london">محطة قطار</string>
+	<string name="type.railway.station.light_rail.porto">محطة قطار</string>
 	<string name="type.railway.station.monorail">محطة قطار</string>
 	<string name="type.railway.station.subway">محطة مترو</string>
 	<string name="type.railway.station.subway.adana">محطة مترو</string>
@@ -1782,6 +1817,7 @@
 	<string name="type.shop.car_parts">محل أجزاء سيارات</string>
 	<string name="type.shop.car_repair">محل صيانة السيارات</string>
 	<string name="type.shop.car_repair.tyres">إصلاح إطارات</string>
+	<string name="type.shop.caravan">معرض سيارات التخييم</string>
 	<string name="type.shop.carpet">متجر سجادات</string>
 	<string name="type.shop.chemist">متجر كيماويات</string>
 	<string name="type.shop.chocolate">متجر شوكولاتة</string>
@@ -1809,6 +1845,7 @@
 	<string name="type.shop.gas">متجر غاز</string>
 	<string name="type.shop.gift">متجر هدايا</string>
 	<string name="type.shop.greengrocer">محل خضار</string>
+	<string name="type.shop.grocery">محل بقالة</string>
 	<string name="type.shop.hairdresser">حلاق</string>
 	<string name="type.shop.hardware">محل معدات</string>
 	<string name="type.shop.health_food">متجر أغذية صحية</string>
@@ -1836,6 +1873,8 @@
 	<string name="type.shop.pet">متجر للحيوانات الأليفة</string>
 	<string name="type.shop.pet_grooming">العناية بالحيوانات الأليفة</string>
 	<string name="type.shop.photo">محل تصوير</string>
+	<string name="type.shop.rental">محل تأجير</string>
+	<string name="type.shop.rental.bicycle">محل تأجير الدراجات</string>
 	<string name="type.shop.seafood">سمّاك</string>
 	<string name="type.shop.second_hand">متجر بضائع مستعملة</string>
 	<string name="type.shop.shoes">متجر أحذية</string>
@@ -1946,6 +1985,7 @@
 	<string name="type.tourism.viewpoint">نقطة منظر</string>
 	<string name="type.tourism.wilderness_hut">كوخ برية</string>
 	<string name="type.tourism.zoo">حديقة حيوان</string>
+	<string name="type.tourism.zoo.petting">حديقة الحيوان الملاعبة</string>
 	<string name="type.traffic_calming">تهدئة سير السيارات</string>
 	<string name="type.traffic_calming.bump">مطبة</string>
 	<string name="type.waterway.canal">قناة</string>

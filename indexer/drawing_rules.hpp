@@ -16,10 +16,11 @@
 #include <unordered_map>
 #include <vector>
 
-class LineDefProto;
+class LineRuleProto;
 class AreaRuleProto;
 class SymbolRuleProto;
-class CaptionDefProto;
+class CaptionRuleProto;
+class PathTextRuleProto;
 class ShieldRuleProto;
 class ContainerProto;
 class FeatureType;
@@ -33,11 +34,11 @@ namespace drule
     BaseRule() = default;
     virtual ~BaseRule() = default;
 
-    virtual LineDefProto const * GetLine() const;
+    virtual LineRuleProto const * GetLine() const;
     virtual AreaRuleProto const * GetArea() const;
     virtual SymbolRuleProto const * GetSymbol() const;
-    virtual CaptionDefProto const * GetCaption(int) const;
-    virtual text_type_t GetCaptionTextType(int) const;
+    virtual CaptionRuleProto const * GetCaption() const;
+    virtual PathTextRuleProto const * GetPathtext() const;
     virtual ShieldRuleProto const * GetShield() const;
 
     // Test feature by runtime feature style selector

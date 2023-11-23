@@ -789,6 +789,12 @@
 
 "book_button" = "예약";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "KAYAK의 세부 정보";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "이 링크를 통해 예약할 때마다 받는 추천 보너스는 오가닉맵 개발에 사용됩니다.";
+
 "placepage_call_button" = "전화";
 
 "placepage_edit_bookmark_button" = "즐겨찾기 편집";
@@ -977,8 +983,6 @@
 
 "export_file" = "파일 내보내기";
 
-"list_settings" = "목록 세팅";
-
 "delete_list" = "리스트 삭제";
 
 "hide_from_map" = "지도에서 숨기기";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "운전 옵션";
 
-"driving_options_subheader" = "모든 길에서 피하기";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "유료 도로 피하기";
 
-"avoid_tolls" = "유로 도로";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "비포장 도로 피하기";
 
-"avoid_unpaved" = "비포장 도로";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "여객선 횡단길 피하기";
 
-"avoid_ferry" = "여객선 교차로";
-
-"avoid_motorways" = "고속도로";
+"avoid_motorways" = "고속도로를 피하세요";
 
 "unable_to_calc_alert_title" = "루트를 계산할 수 없습니다";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "비포장 도로";
 
 "ferry_crossing" = "여객선 횡단길";
-
-"avoid_toll_roads_placepage" = "유료 도로 피하기";
-
-"avoid_unpaved_roads_placepage" = "비포장 도로 피하기";
-
-"avoid_ferry_crossing_placepage" = "여객선 횡단길 피하기";
 
 "trip_start" = "가자";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "루트가 차량에 맞춰 수정됩니다";
 
 "ok" = "OK";
-
-"avoid_unpaved_carplay_1" = "비포장 도로 없음";
-
-"avoid_unpaved_carplay_2" = "비포장 도로 없음";
-
-"avoid_ferry_carplay_1" = "여객선 없음";
-
-"avoid_ferry_carplay_2" = "여객선 없음";
-
-"avoid_tolls_carplay_1" = "유료 도로 없음";
-
-"avoid_tolls_carplay_2" = "유료 도로 없음";
 
 "speedcams_alert_title_carplay_1" = "속도단속 카메라";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "커뮤니티센터";
 
+"type.amenity.compressed_air" = "압축 공기";
+
 "type.amenity.conference_centre" = "컨퍼런스 센터";
 
 "type.amenity.courthouse" = "법원";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "지하주차장";
 
-"type.amenity.parking.street_side" = "주차";
+"type.amenity.parking.underground.fee" = "유료 지하 주차장";
 
-"type.amenity.parking.fee.street_side" = "주차";
+"type.amenity.parking.underground.private" = "전용 지하 주차장";
 
-"type.amenity.parking.lane" = "주차";
+"type.amenity.parking.street_side" = "노상 주차장";
 
-"type.amenity.parking.fee.lane" = "주차";
+"type.amenity.parking.street_side.fee" = "유료 노상 주차장";
+
+"type.amenity.parking.street_side.private" = "전용 노상 주차장";
+
+"type.amenity.parking.lane" = "차선 주차";
+
+"type.amenity.parking.lane.fee" = "유료 차선 주차";
+
+"type.amenity.parking.lane.private" = "전용 차선 주차";
 
 "type.amenity.parking_entrance" = "주차장 입구";
 
-"type.amenity.parking_entrance.private" = "주차장 입구";
+"type.amenity.parking_entrance.private" = "전용 주차장 입구";
 
 "type.amenity.parking_entrance.permissive" = "주차장 입구";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "교회";
 
 "type.amenity.place_of_worship.christian.mormon" = "예수 그리스도 후기 성도 교회";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "예수 그리스도의 후기 성도 국회당";
 
 "type.amenity.place_of_worship.hindu" = "힌두교 사원";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "\"화단\"";
+
 "type.landuse.forest" = "숲";
 
 "type.landuse.forest.coniferous" = "숲";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "케이블카";
 
 "type.railway.station.light_rail" = "기차역";
+
+"type.railway.station.light_rail.london" = "기차역";
+
+"type.railway.station.light_rail.porto" = "기차역";
 
 "type.railway.station.monorail" = "기차역";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "화학물질 가게";
 
-"type.shop.chocolate" = "가게";
+"type.shop.chocolate" = "초콜릿 가게";
 
 "type.shop.clothes" = "옷 가게";
 
-"type.shop.coffee" = "가게";
+"type.shop.coffee" = "커피숍";
 
 "type.shop.computer" = "컴퓨터 판매점";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "성인용품 가게";
 
-"type.shop.fabric" = "가게";
+"type.shop.fabric" = "원단 가게";
 
 "type.shop.farm" = "\"농장 식품 가게\"";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "휴대폰 대리점";
 
-"type.shop.money_lender" = "가게";
+"type.shop.money_lender" = "자금 대출 기관";
 
 "type.shop.motorcycle" = "오토바이 가게";
 
 "type.shop.motorcycle_repair" = "오토바이 수리";
 
-"type.shop.music" = "가게";
+"type.shop.music" = "음악 가게";
 
-"type.shop.musical_instrument" = "가게";
+"type.shop.musical_instrument" = "악기 판매점";
 
 "type.shop.newsagent" = "신문 가판대";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "사진 가게";
 
+"type.shop.rental" = "렌탈샵";
+
+"type.shop.rental.bicycle" = "자전거 대여점";
+
 "type.shop.seafood" = "생선가게";
 
 "type.shop.second_hand" = "중고 판매점";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "타투 가게";
 
-"type.shop.tea" = "가게";
+"type.shop.tea" = "차 가게";
 
 "type.shop.ticket" = "매표소";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "황야 오두막";
 
 "type.tourism.zoo" = "동물원";
+
+"type.tourism.zoo.petting" = "페팅 동물원";
 
 "type.traffic_calming" = "Traffic Calming";
 

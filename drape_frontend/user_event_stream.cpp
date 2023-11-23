@@ -66,7 +66,6 @@ char const * UserEventStream::DOUBLE_TAP_AND_HOLD = "DoubleTapAndHold";
 char const * UserEventStream::END_DOUBLE_TAP_AND_HOLD = "EndDoubleTapAndHold";
 #endif
 
-uint8_t constexpr TouchEvent::INVALID_MASKED_POINTER = 0xFF;
 
 void TouchEvent::SetFirstTouch(const Touch & touch)
 {
@@ -128,6 +127,17 @@ void TouchEvent::Swap()
   SetFirstMaskedPointer(swapIndex(GetFirstMaskedPointer()));
   SetSecondMaskedPointer(swapIndex(GetSecondMaskedPointer()));
 }
+
+std::string DebugPrint(Touch const & t)
+{
+  return DebugPrint(t.m_location) + "; " + std::to_string(t.m_id) + "; " + std::to_string(t.m_force);
+}
+
+std::string DebugPrint(TouchEvent const & e)
+{
+  return std::to_string(e.m_type) + "; { " + DebugPrint(e.m_touches[0]) + " }";
+}
+
 
 UserEventStream::UserEventStream()
   : m_state(STATE_EMPTY)
@@ -249,6 +259,13 @@ ScreenBase const & UserEventStream::ProcessEvents(bool & modelViewChanged, bool 
       {
         ref_ptr<SetVisibleViewportEvent> viewportEvent = make_ref(e);
         breakAnim = OnNewVisibleViewport(viewportEvent);
+      }
+      break;
+    case UserEvent::EventType::Scroll:
+      {
+        ref_ptr<ScrollEvent> scrollEvent = make_ref(e);
+        breakAnim = OnScroll(scrollEvent);
+        TouchCancel(m_touches);
       }
       break;
 
@@ -455,6 +472,23 @@ bool UserEventStream::OnNewVisibleViewport(ref_ptr<SetVisibleViewportEvent> view
     return SetScreen(screen, true /* isAnim */);
   }
   return false;
+}
+
+bool UserEventStream::OnScroll(ref_ptr<ScrollEvent> scrollEvent)
+{
+  double const distanceX = scrollEvent->GetDistanceX();
+  double const distanceY = scrollEvent->GetDistanceY();
+
+  ScreenBase screen;
+  GetTargetScreen(screen);
+  screen.Move(-distanceX, -distanceY);
+
+  ShrinkAndScaleInto(screen, df::GetWorldRect());
+
+  if (m_listener)
+    m_listener->OnScrolled({-distanceX, -distanceY});
+
+  return SetScreen(screen, false);
 }
 
 bool UserEventStream::SetAngle(double azimuth, bool isAnim, TAnimationCreator const & parallelAnimCreator)

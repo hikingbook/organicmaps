@@ -789,6 +789,12 @@
 
 "book_button" = "Reserveeri";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Üksikasjad KAYAKi kohta";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Iga selle lingi kaudu tehtud broneeringu eest saadav boonus läheb Organic Maps'i arendamiseks.";
+
 "placepage_call_button" = "Helista";
 
 "placepage_edit_bookmark_button" = "Muuda järjehoidjat";
@@ -977,8 +983,6 @@
 
 "export_file" = "Ekspordi fail";
 
-"list_settings" = "Loetelu seaded";
-
 "delete_list" = "Kustuta loetelu";
 
 "hide_from_map" = "Peida kaardil";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Marsruutimise valikud";
 
-"driving_options_subheader" = "Väldi igal marsruudil";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Vältige tasulisi teid";
 
-"avoid_tolls" = "Tasulised teed";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Väldi katteta teid";
 
-"avoid_unpaved" = "Katteta teed";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Väldi praamiületusi";
 
-"avoid_ferry" = "Praamiületused";
-
-"avoid_motorways" = "Kiirteed";
+"avoid_motorways" = "Vältige kiirteed";
 
 "unable_to_calc_alert_title" = "Marsruudi arvutamine ei õnnestu";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Katteta tee";
 
 "ferry_crossing" = "Praamiületus";
-
-"avoid_toll_roads_placepage" = "Väldi tasulisi teid";
-
-"avoid_unpaved_roads_placepage" = "Väldi katteta teid";
-
-"avoid_ferry_crossing_placepage" = "Väldi praamiületusi";
 
 "trip_start" = "Liigume";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "See marsruut teisendatakse autoga läbitavaks";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Väldi pinnasteid";
-
-"avoid_unpaved_carplay_2" = "Väldi katteta teid";
-
-"avoid_ferry_carplay_1" = "Väldi praame";
-
-"avoid_ferry_carplay_2" = "Väldi praame";
-
-"avoid_tolls_carplay_1" = "Väldi tasulisi teid";
-
-"avoid_tolls_carplay_2" = "Väldi tasulisi teid";
 
 "speedcams_alert_title_carplay_1" = "Kiiruskaamerad";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Kogukonnakeskus";
 
+"type.amenity.compressed_air" = "Suruõhk";
+
 "type.amenity.conference_centre" = "Konverentsikeskus";
 
 "type.amenity.courthouse" = "Kohtumaja";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Maa-alune parkimine";
 
-"type.amenity.parking.street_side" = "Parkimine";
+"type.amenity.parking.underground.fee" = "Tasuline maa-alune parkimine";
 
-"type.amenity.parking.fee.street_side" = "Parkimine";
+"type.amenity.parking.underground.private" = "Privaatne maa-alune parkimine";
 
-"type.amenity.parking.lane" = "Parkimine";
+"type.amenity.parking.street_side" = "Tänavaäärne parkimine";
 
-"type.amenity.parking.fee.lane" = "Parkimine";
+"type.amenity.parking.street_side.fee" = "Tasuline tänavaäärne parkimine";
+
+"type.amenity.parking.street_side.private" = "Privaatne tänavaäärne parkimine";
+
+"type.amenity.parking.lane" = "Parkimine sõidurajal";
+
+"type.amenity.parking.lane.fee" = "Tasuline parkimine";
+
+"type.amenity.parking.lane.private" = "Privaatne tee parkimine";
 
 "type.amenity.parking_entrance" = "Parkla sissepääs";
 
-"type.amenity.parking_entrance.private" = "Parkla sissepääs";
+"type.amenity.parking_entrance.private" = "Eraldi parkla sissepääs";
 
 "type.amenity.parking_entrance.permissive" = "Parkla sissepääs";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kirik";
 
 "type.amenity.place_of_worship.christian.mormon" = "Viimse Aja Pühade Jeesuse Kristuse kirik";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehoova tunnistajate kuningriigi saal";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Põld";
 
+"type.landuse.flowerbed" = "Lillepeenar";
+
 "type.landuse.forest" = "Mets";
 
 "type.landuse.forest.coniferous" = "Okaspuumets";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Raudtee jaam";
+
+"type.railway.station.light_rail.london" = "Raudtee jaam";
+
+"type.railway.station.light_rail.porto" = "Raudtee jaam";
 
 "type.railway.station.monorail" = "Raudtee jaam";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotopood";
 
+"type.shop.rental" = "Laenutuspood";
+
+"type.shop.rental.bicycle" = "Jalgrattalaenutus";
+
 "type.shop.seafood" = "Mereandide pood";
 
 "type.shop.second_hand" = "Taaskasutus";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Loodusonn";
 
 "type.tourism.zoo" = "Loomaaed";
+
+"type.tourism.zoo.petting" = "Lemmikloomaaed";
 
 "type.traffic_calming" = "Liikluse rahustamine";
 

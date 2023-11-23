@@ -49,7 +49,8 @@
 	<string name="about_proposition_3">• Nopea, minimalistinen, ei roskaa</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Harrastajien ja vapaaehtoisten luoma avoimen lähdekoodin sovellus.</string>
-	<string name="connection_settings">Yhteysasetukset</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Sijaintiasetukset</string>
 	<string name="close">Sulje</string>
 	<string name="unsupported_phone">Laitteistokiihdytetty OpenGL vaaditaan. Valitettavasti laitteesi ei ole tuettu.</string>
 	<string name="download">Lataa</string>
@@ -513,6 +514,10 @@
 	<string name="hour">t</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Lisää</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Lisätietoa osoitteessa KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Jokaisesta tämän linkin kautta tehdystä varauksesta saatu suosittelubonus käytetään Organic Mapsin kehittämiseen.</string>
 	<string name="placepage_edit_bookmark_button">Muokkaa kirjanmerkkiä</string>
 	<string name="editor_comment_hint">Kommentti…</string>
 	<string name="editor_reset_edits_message">Nollataanko kaikki paikalliset muutokset?</string>
@@ -538,8 +543,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Varmista, ettet syöttänyt henkilökohtaisia tietojasi.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-editorit tarkistavat muutokset ja ottavat sinuun yhteyttä, jos heillä on kysyttävää.</string>
 	<string name="navigation_stop_button">lopeta</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps on ilmainen ja avoimen lähdekoodin offline-karttasovellus. Ei mainoksia. Ei seurantaa. Jos näet virheen kartalla, korjaa se OpenStreetMapissa. Hankkeen ovat luoneet harrastajat vapaa-ajallaan, joten palautettasi ja tukeasi tarvitaan.</string>
 	<!-- For the first routing -->
 	<string name="accept">Hyväksy</string>
 	<!-- For the first routing -->
@@ -599,7 +602,6 @@
 	  <item quantity="one">%d tiedosto löydettiin. Näet sen muunnoksen jälkeen.</item>
 	  <item quantity="other">%d tiedostoa löydettiin. Näet ne muunnoksen jälkeen.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Ei internet-yhteyttä</string>
 	<plurals name="objects">
 	  <item quantity="one">%d kohde</item>
 	  <item quantity="other">%d kohdetta</item>
@@ -624,7 +626,6 @@
 	<string name="bookmarks_empty_list_message">Lisätäksesi kirjanmerkin, paina kartasta ja sitten paina tähden kuvaa</string>
 	<string name="category_desc_more">…lisää</string>
 	<string name="export_file">Vie tiedosto</string>
-	<string name="list_settings">Luettelon asetukset</string>
 	<string name="delete_list">Poista luettelo</string>
 	<string name="public_access">Julkinen pääsy</string>
 	<string name="limited_access">Rajoitettu pääsy</string>
@@ -646,11 +647,13 @@
 	<string name="enable_logging_warning_message">Valinta ottaa käyttöön lokikirjaukset diagnostiikkaa varten. Se voi auttaa tukihenkilöstöämme, kun he korjaavat sovelluksen ongelmia. Ota tämä ominaisuus käyttöön vain, jos Organic Maps:n tuki pyytää.</string>
 	<string name="access_rules_author_only">Nettimuokkaus</string>
 	<string name="driving_options_title">Reititysvalinnat</string>
-	<string name="driving_options_subheader">Vältettävä kaikissa reiteissä</string>
-	<string name="avoid_tolls">Maksulliset tiet</string>
-	<string name="avoid_unpaved">Päällystämättömät tiet</string>
-	<string name="avoid_ferry">Lauttaliikenne</string>
-	<string name="avoid_motorways">Valtatiet</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Vältä maksullisia teitä</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Vältä päällystämättömiä teitä</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Vältä lautan käyttöä</string>
+	<string name="avoid_motorways">Vältä moottoritietä</string>
 	<string name="unable_to_calc_alert_title">Reittiä ei voi luoda</string>
 	<string name="unable_to_calc_alert_subtitle">Valitettavasti emme voineet luoda reittiä valituilla vaihtoehdoilla. Vaihda asetuksia ja yritä uudelleen</string>
 	<string name="define_to_avoid_btn">Määritä vältettävät tiet</string>
@@ -658,9 +661,6 @@
 	<string name="toll_road">Maksullinen tie</string>
 	<string name="unpaved_road">Päällystämätön tie</string>
 	<string name="ferry_crossing">Lauttaliikenne</string>
-	<string name="avoid_toll_roads_placepage">Vältä maksullisia teitä</string>
-	<string name="avoid_unpaved_roads_placepage">Vältä päällystämättömiä teitä</string>
-	<string name="avoid_ferry_crossing_placepage">Vältä lautan käyttöä</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Kyllä</string>
 	<!-- A generic "No" button in dialogs -->
@@ -669,6 +669,7 @@
 	<string name="yes_available">kyllä</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">ei</string>
+	<string name="trip_finished">Olet perillä!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Järjestä…</string>
@@ -730,9 +731,9 @@
 	<string name="connection_failure">Yhteysvirhe</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Irrota USB-kaapeli</string>
-	<string name="enable_screen_sleep">Salli näytön lepotila</string>
+	<string name="enable_keep_screen_on">Pidä näyttö päällä</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Kun tämä asetus on käytössä, näyttö menee lepotilaan käyttämättömyyden jälkeen.</string>
+	<string name="enable_keep_screen_on_description">Kun tämä on käytössä, näyttö on aina päällä, kun kartta näytetään.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Näytä lukitusnäytöllä</string>
 	<!-- Description in preferences -->
@@ -741,6 +742,22 @@
 	<string name="splash_subtitle">OpenStreetMapin karttatiedot</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Kiitos, että käytät yhteisön laatimia karttojamme!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Käytät nyt puhelimen näytöllä Organic Maps -palvelua.</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Käytät nyt Organic Maps auton näytöllä</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Olet yhteydessä Android Autoon</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Jatka puhelimessa</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Auton näyttöön</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Tämä sovellus edellyttää sijaintisi tallentamista navigointia varten.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Lupien myöntäminen</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Liitetty autoon</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Osoite/lohko</string>
@@ -790,6 +807,7 @@
 	<string name="type.amenity.clinic">Klinikka</string>
 	<string name="type.amenity.college">Korkeakoulu</string>
 	<string name="type.amenity.community_centre">Monitoimitalo</string>
+	<string name="type.amenity.compressed_air">Paineilma</string>
 	<string name="type.amenity.conference_centre">Konferenssikeskus</string>
 	<string name="type.amenity.courthouse">Oikeustalo</string>
 	<string name="type.amenity.dentist">Hammaslääkäri</string>
@@ -829,12 +847,16 @@
 	<string name="type.amenity.parking.private">Yksityinen pysäköinti</string>
 	<string name="type.amenity.parking.park_and_ride">Liityntäpysäköinti</string>
 	<string name="type.amenity.parking.underground">Maanalainen pysäköinti</string>
-	<string name="type.amenity.parking.street_side">Parkkipaikka</string>
-	<string name="type.amenity.parking.fee.street_side">Parkkipaikka</string>
-	<string name="type.amenity.parking.lane">Parkkipaikka</string>
-	<string name="type.amenity.parking.fee.lane">Parkkipaikka</string>
+	<string name="type.amenity.parking.underground.fee">Maksullinen maanalainen pysäköinti</string>
+	<string name="type.amenity.parking.underground.private">Yksityinen maanalainen pysäköintialue</string>
+	<string name="type.amenity.parking.street_side">Kadun puolella pysäköinti</string>
+	<string name="type.amenity.parking.street_side.fee">Maksullinen kadunvarsipysäköinti</string>
+	<string name="type.amenity.parking.street_side.private">Yksityinen katu puolella pysäköinti</string>
+	<string name="type.amenity.parking.lane">Kaistapysäköinti</string>
+	<string name="type.amenity.parking.lane.fee">Maksullinen pysäköintikaista</string>
+	<string name="type.amenity.parking.lane.private">Yksityinen kaista pysäköinti</string>
 	<string name="type.amenity.parking_entrance">Pysäköinnin sisäänkäynti</string>
-	<string name="type.amenity.parking_entrance.private">Pysäköinnin sisäänkäynti</string>
+	<string name="type.amenity.parking_entrance.private">Yksityinen pysäköintialue sisäänkäynti</string>
 	<string name="type.amenity.parking_entrance.permissive">Pysäköinnin sisäänkäynti</string>
 	<string name="type.amenity.parking_space">Parkkipaikka</string>
 	<string name="type.amenity.parking_space.permissive">Parkkipaikka</string>
@@ -847,6 +869,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Buddhalainen temppeli</string>
 	<string name="type.amenity.place_of_worship.christian">Kirkko</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Myöhempien Aikojen Pyhien Jeesuksen Kristuksen Kirkko</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Jehovan todistajien valtakunnansali</string>
 	<string name="type.amenity.place_of_worship.hindu">Hindutemppeli</string>
 	<string name="type.amenity.place_of_worship.jewish">Synagoga</string>
 	<string name="type.amenity.place_of_worship.muslim">Moskeija</string>
@@ -1344,6 +1367,7 @@
 	<string name="type.landuse.farmland">Maatalousmaa</string>
 	<string name="type.landuse.farmyard">Maatila</string>
 	<string name="type.landuse.field">Kenttä</string>
+	<string name="type.landuse.flowerbed">Kukkapenkki</string>
 	<string name="type.landuse.forest">Metsä</string>
 	<string name="type.landuse.forest.coniferous">Havumetsä</string>
 	<string name="type.landuse.forest.deciduous">Lehtimetsä</string>
@@ -1525,6 +1549,8 @@
 	<string name="type.railway.station">Rautatieasema</string>
 	<string name="type.railway.station.funicular">Köysirata</string>
 	<string name="type.railway.station.light_rail">Rautatieasema</string>
+	<string name="type.railway.station.light_rail.london">Rautatieasema</string>
+	<string name="type.railway.station.light_rail.porto">Rautatieasema</string>
 	<string name="type.railway.station.monorail">Rautatieasema</string>
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.adana">Metro</string>
@@ -1766,9 +1792,9 @@
 	<string name="type.shop.car_repair.tyres">Rengashuolto</string>
 	<string name="type.shop.carpet">Matot</string>
 	<string name="type.shop.chemist">Kosmetiikkamyymälä</string>
-	<string name="type.shop.chocolate">Kauppa</string>
+	<string name="type.shop.chocolate">Suklaakauppa</string>
 	<string name="type.shop.clothes">Vaatekauppa</string>
-	<string name="type.shop.coffee">Kauppa</string>
+	<string name="type.shop.coffee">Kahvikauppa</string>
 	<string name="type.shop.computer">Tietokonekauppa</string>
 	<string name="type.shop.confectionery">Makeiskauppa</string>
 	<string name="type.shop.convenience">Lähikauppa</string>
@@ -1781,7 +1807,7 @@
 	<string name="type.shop.dry_cleaning">Kuivapesula</string>
 	<string name="type.shop.electronics">Elektroniikka</string>
 	<string name="type.shop.erotic">Erotiikkaliike</string>
-	<string name="type.shop.fabric">Kauppa</string>
+	<string name="type.shop.fabric">Kangaskauppa</string>
 	<string name="type.shop.farm">Maatilaruokakauppa</string>
 	<string name="type.shop.fashion_accessories">Muoti tarvikkeet</string>
 	<string name="type.shop.florist">Floristi</string>
@@ -1804,11 +1830,11 @@
 	<string name="type.shop.mall">Ostoskeskus</string>
 	<string name="type.shop.massage">Hierontahuone</string>
 	<string name="type.shop.mobile_phone">Elektroniikkakauppa</string>
-	<string name="type.shop.money_lender">Kauppa</string>
+	<string name="type.shop.money_lender">Rahan lainaaja</string>
 	<string name="type.shop.motorcycle">Moottoripyöräliike</string>
 	<string name="type.shop.motorcycle_repair">Moottoripyörän korjaus</string>
-	<string name="type.shop.music">Kauppa</string>
-	<string name="type.shop.musical_instrument">Kauppa</string>
+	<string name="type.shop.music">Levykauppa</string>
+	<string name="type.shop.musical_instrument">Soittimien kauppa</string>
 	<string name="type.shop.newsagent">Lehtikioski</string>
 	<string name="type.shop.optician">Optikko</string>
 	<string name="type.shop.outdoor">Ulkoiluvarusteet</string>
@@ -1818,6 +1844,8 @@
 	<string name="type.shop.pet">Eläinkauppa</string>
 	<string name="type.shop.pet_grooming">Lemmikkieläinten hoito</string>
 	<string name="type.shop.photo">Valokuvakauppa</string>
+	<string name="type.shop.rental">Vuokrakauppa</string>
+	<string name="type.shop.rental.bicycle">Polkupyörävuokraamo</string>
 	<string name="type.shop.seafood">Kalakauppias</string>
 	<string name="type.shop.second_hand">Käytetyn tavaran liike</string>
 	<string name="type.shop.shoes">Kenkäkauppa</string>
@@ -1825,7 +1853,7 @@
 	<string name="type.shop.stationery">Kirjoitustarvikekauppa</string>
 	<string name="type.shop.supermarket">Supermarketti</string>
 	<string name="type.shop.tattoo">Tatuointiliike</string>
-	<string name="type.shop.tea">Kauppa</string>
+	<string name="type.shop.tea">Teekauppa</string>
 	<string name="type.shop.ticket">Lippumyymälä</string>
 	<string name="type.shop.toys">Lelukauppa</string>
 	<string name="type.shop.travel_agency">Matkatoimisto</string>
@@ -1929,6 +1957,7 @@
 	<string name="type.tourism.viewpoint">Näköalatasanne</string>
 	<string name="type.tourism.wilderness_hut">Autiotupa</string>
 	<string name="type.tourism.zoo">Eläintarha</string>
+	<string name="type.tourism.zoo.petting">Lemmikkieläintarha</string>
 	<string name="type.traffic_calming.bump">Hidastetöyssy</string>
 	<string name="type.waterway">Vesiväylä</string>
 	<string name="type.waterway.canal">Kanaali</string>

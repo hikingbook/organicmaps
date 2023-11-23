@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Azkarra, minimalista, zaborrik gabe</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Kode irekiko aplikazioa zaleek eta boluntarioek sortutakoa.</string>
-	<string name="connection_settings">Konexio ezarpenak</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Kokapen ezarpenak</string>
 	<string name="close">Itxi</string>
 	<string name="unsupported_phone">Aplikazioak hardwarez azeleratutako OpenGL behar du. Zoritxarrez, zure gailua ez da onartzen.</string>
 	<string name="download">Deskargatu</string>
@@ -511,6 +512,10 @@
 	<string name="hour">h</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Gehiago</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Xehetasunak KAYAK-en</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Esteka honen bidez erreserba bakoitzeko jasotzen den erreferentzia-bonua Organic Maps garatzera doa.</string>
 	<string name="placepage_edit_bookmark_button">Editatu markagailua</string>
 	<string name="editor_comment_hint">Iruzkina…</string>
 	<string name="editor_reset_edits_message">Tokiko aldaketa guztiak berrezarri nahi dituzu?</string>
@@ -536,8 +541,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Ziurtatu ez duzula datu pertsonalik sartu.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap editoreek aldaketak egiaztatuko dituzte eta zurekin harremanetan jarriko dira zalantzaren bat izanez gero.</string>
 	<string name="navigation_stop_button">gelditu</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps lineaz kanpoko mapa aplikazio doako eta irekia da. Iragarkirik ez. Ez dago jarraipenik. Mapan errore bat ikusten baduzu, konpondu OpenStreetMap-en. Proiektua zaleek sortu dute haien aisialdian, beraz, zure iritzia eta laguntza behar dugu.</string>
 	<!-- For the first routing -->
 	<string name="accept">Onartu</string>
 	<!-- For the first routing -->
@@ -597,7 +600,6 @@
 	  <item quantity="one">fitxategi %d aurkitu da. Elkarrizketaren ondoren ikusiko duzu.</item>
 	  <item quantity="other">%d fitxategi aurkitu dira. Elkarrizketaren ondoren ikusiko dituzu.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Ez dago Interneteko konexiorik</string>
 	<plurals name="objects">
 	  <item quantity="one">objektu %d</item>
 	  <item quantity="other">%d objektu</item>
@@ -622,7 +624,6 @@
 	<string name="bookmarks_empty_list_message">Markagailu bat gehitzeko, ukitu mapako toki bat eta, ondoren, ukitu izarraren ikonoa</string>
 	<string name="category_desc_more">…gehiago</string>
 	<string name="export_file">Esportatu fitxategia</string>
-	<string name="list_settings">Zerrendaren ezarpenak</string>
 	<string name="delete_list">Ezabatu zerrenda</string>
 	<string name="public_access">Sarbide publikoa</string>
 	<string name="limited_access">Sarbide mugatua</string>
@@ -644,11 +645,13 @@
 	<string name="enable_logging_warning_message">Aukera hau diagnostiko helburua duten erregistro ekintzetarako gaituta dago. Honek gure taldeari aplikazioarekin arazoak identifikatzen laguntzen dio. Gaitu aukera Organic Maps laguntzari eskatuta soilik.</string>
 	<string name="access_rules_author_only">Sarean editatzen</string>
 	<string name="driving_options_title">Bideratzeko aukerak</string>
-	<string name="driving_options_subheader">Ibilbide guztietan saihestu</string>
-	<string name="avoid_tolls">Ordainpeko errepideak</string>
-	<string name="avoid_unpaved">Asfaltatu gabeko errepideak</string>
-	<string name="avoid_ferry">Ferry pasabideak</string>
-	<string name="avoid_motorways">Autobideak</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Bidesariak saihestea</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Asfaltatu gabeko saihestea</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Ferriak saihestea</string>
+	<string name="avoid_motorways">Autobideak saihestea</string>
 	<string name="unable_to_calc_alert_title">Ezin da ibilbidea proposatu</string>
 	<string name="unable_to_calc_alert_subtitle">Zoritxarrez, ezin izan dugu aukeratutako aukerekin ibilbiderik proposatu. Aldatu ezarpenak eta saiatu berriro</string>
 	<string name="define_to_avoid_btn">Zehaztu saihestu beharreko bideak</string>
@@ -656,9 +659,6 @@
 	<string name="toll_road">Ordainpeko errepidea</string>
 	<string name="unpaved_road">Asfaltatu gabeko errepidea</string>
 	<string name="ferry_crossing">Ferry zeharkaldia</string>
-	<string name="avoid_toll_roads_placepage">Saihestu ordainpeko errepideak</string>
-	<string name="avoid_unpaved_roads_placepage">Saihestu asfaltatu gabeko errepideak</string>
-	<string name="avoid_ferry_crossing_placepage">Ferryak saihestu</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Bai</string>
 	<!-- A generic "No" button in dialogs -->
@@ -667,6 +667,7 @@
 	<string name="yes_available">bai</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">ez</string>
+	<string name="trip_finished">Iritsi zara!</string>
 	<string name="ok">Ados</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Ordenatu…</string>
@@ -728,9 +729,9 @@
 	<string name="connection_failure">Konexio arazoa</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Deskonektatu USB kablea</string>
-	<string name="enable_screen_sleep">Utzi pantailari lo egiten</string>
+	<string name="enable_keep_screen_on">Mantendu pantaila piztuta</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Gaituta dagoenean, pantailak lo egin ahal izango du jarduerarik gabe egon ondoren.</string>
+	<string name="enable_keep_screen_on_description">Gaituta dagoenean, pantaila beti egongo da piztuta mapa bistaratzen denean.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Erakutsi pantaila blokeatuan</string>
 	<!-- Description in preferences -->
@@ -741,6 +742,22 @@
 	<string name="translated_om_site_url">https://organicmaps.app/eu/</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Eskerrik asko gure komunitateak eraikitako mapak erabiltzeagatik!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Organic Maps organikoak erabiltzen ari zara telefonoaren pantailan</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Organic Maps erabiltzen ari zara autoaren pantailan</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Android Auto-ra konektatuta zaude</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Jarraitu telefonoan</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Autoaren pantailara</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Aplikazio honek zure kokapenerako sarbidea behar du nabigaziorako.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Eman baimenak</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Kotxearekin konektatuta</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Helbidea/Blokea</string>
@@ -791,6 +808,7 @@
 	<string name="type.amenity.clinic">Klinika</string>
 	<string name="type.amenity.college">Unibertsitatea</string>
 	<string name="type.amenity.community_centre">Komunitate Zentroa</string>
+	<string name="type.amenity.compressed_air">Aire konprimitua</string>
 	<string name="type.amenity.conference_centre">Biltzar Jauregia</string>
 	<string name="type.amenity.courthouse">Auzitegia</string>
 	<string name="type.amenity.dentist">Dentista</string>
@@ -831,12 +849,16 @@
 	<string name="type.amenity.parking.private">Aparkaleku pribatua</string>
 	<string name="type.amenity.parking.park_and_ride">Aparkalekua</string>
 	<string name="type.amenity.parking.underground">Lurpeko Aparkalekua</string>
-	<string name="type.amenity.parking.street_side">Aparkalekua</string>
-	<string name="type.amenity.parking.fee.street_side">Aparkalekua</string>
-	<string name="type.amenity.parking.lane">Aparkalekua</string>
-	<string name="type.amenity.parking.fee.lane">Aparkalekua</string>
+	<string name="type.amenity.parking.underground.fee">Ordaindutako lurpeko aparkalekua</string>
+	<string name="type.amenity.parking.underground.private">Lurpeko aparkaleku pribatua</string>
+	<string name="type.amenity.parking.street_side">Kale alboko aparkalekua</string>
+	<string name="type.amenity.parking.street_side.fee">Ordaindutako kale alboko aparkalekua</string>
+	<string name="type.amenity.parking.street_side.private">Kale alboko aparkaleku pribatua</string>
+	<string name="type.amenity.parking.lane">Erreiaren aparkalekua</string>
+	<string name="type.amenity.parking.lane.fee">Ordaindutako erreiaren aparkalekua</string>
+	<string name="type.amenity.parking.lane.private">Errei pribatuko aparkalekua</string>
 	<string name="type.amenity.parking_entrance">Aparkalekuaren sarrera</string>
-	<string name="type.amenity.parking_entrance.private">Aparkalekuaren sarrera</string>
+	<string name="type.amenity.parking_entrance.private">Aparkaleku pribatuaren sarrera</string>
 	<string name="type.amenity.parking_entrance.permissive">Aparkalekuaren sarrera</string>
 	<string name="type.amenity.parking_space">Aparkaleku</string>
 	<string name="type.amenity.parking_space.permissive">Aparkaleku</string>
@@ -849,6 +871,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Tenplua</string>
 	<string name="type.amenity.place_of_worship.christian">Eliza</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Azken Eguneko Santuen Jesukristoren eliza</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Jehovaren Testiguen Erresumaren aretoa</string>
 	<string name="type.amenity.place_of_worship.hindu">Tenplua</string>
 	<string name="type.amenity.place_of_worship.jewish">Sinagoga</string>
 	<string name="type.amenity.place_of_worship.muslim">Meskita</string>
@@ -963,7 +986,7 @@
 	<string name="type.building_part">Eraikin</string>
 	<string name="type.building.garage">Garajea</string>
 	<string name="type.building.train_station">Tren geltokian</string>
-	<string name="type.building.warehouse">Denda</string>
+	<string name="type.building.warehouse">Biltegia</string>
 	<string name="type.cemetery.grave">Hilobia</string>
 	<string name="type.craft">Artisautza</string>
 	<string name="type.craft.beekeeper">Erlezaina</string>
@@ -1333,6 +1356,7 @@
 	<string name="type.landuse.cemetery.christian">Hilerria</string>
 	<string name="type.landuse.churchyard">Hilerria</string>
 	<string name="type.landuse.farmland">Nekazaritza-lurra</string>
+	<string name="type.landuse.flowerbed">Lore-ohea</string>
 	<string name="type.landuse.forest">Basoa</string>
 	<string name="type.landuse.forest.coniferous">Basoa</string>
 	<string name="type.landuse.forest.deciduous">Basoa</string>
@@ -1505,6 +1529,8 @@
 	<string name="type.railway.station">Tren geltokian</string>
 	<string name="type.railway.station.funicular">Funikularra</string>
 	<string name="type.railway.station.light_rail">Tren geltokian</string>
+	<string name="type.railway.station.light_rail.london">Tren geltokian</string>
+	<string name="type.railway.station.light_rail.porto">Tren geltokian</string>
 	<string name="type.railway.station.monorail">Tren geltokian</string>
 	<string name="type.railway.station.subway">Metroa</string>
 	<string name="type.railway.station.subway.adana">Metroa</string>
@@ -1746,9 +1772,9 @@
 	<string name="type.shop.car_repair.tyres">Pneumatikoen konponketa</string>
 	<string name="type.shop.carpet">Alfonbrak</string>
 	<string name="type.shop.chemist">Botika</string>
-	<string name="type.shop.chocolate">Denda</string>
+	<string name="type.shop.chocolate">Txokolate Denda</string>
 	<string name="type.shop.clothes">Arropa denda</string>
-	<string name="type.shop.coffee">Denda</string>
+	<string name="type.shop.coffee">Kafe Denda</string>
 	<string name="type.shop.computer">Denda informatikoa</string>
 	<string name="type.shop.confectionery">Gozogintza</string>
 	<string name="type.shop.convenience">Auzoko denda</string>
@@ -1761,7 +1787,7 @@
 	<string name="type.shop.dry_cleaning">Garbigailua</string>
 	<string name="type.shop.electronics">Elektronika</string>
 	<string name="type.shop.erotic">Sexu denda</string>
-	<string name="type.shop.fabric">Denda</string>
+	<string name="type.shop.fabric">Oihal-denda</string>
 	<string name="type.shop.farm">Baserriko Janari Denda</string>
 	<string name="type.shop.fashion_accessories">Moda Osagarriak</string>
 	<string name="type.shop.florist">Loradenda</string>
@@ -1769,7 +1795,7 @@
 	<string name="type.shop.furniture">Altzari denda</string>
 	<string name="type.shop.garden_centre">Haurtzaindegia</string>
 	<string name="type.shop.gas">Gas biltegia</string>
-	<string name="type.shop.gift">Denda</string>
+	<string name="type.shop.gift">Opari denda</string>
 	<string name="type.shop.greengrocer">Fruta denda</string>
 	<string name="type.shop.grocery">Janariak</string>
 	<string name="type.shop.hairdresser">Barber-denda</string>
@@ -1785,11 +1811,11 @@
 	<string name="type.shop.mall">Merkataritza-gune</string>
 	<string name="type.shop.massage">Masaje gela</string>
 	<string name="type.shop.mobile_phone">Mugikorra</string>
-	<string name="type.shop.money_lender">Denda</string>
+	<string name="type.shop.money_lender">Diru emailea</string>
 	<string name="type.shop.motorcycle">Moto denda</string>
 	<string name="type.shop.motorcycle_repair">Motoen Konponketa</string>
-	<string name="type.shop.music">Denda</string>
-	<string name="type.shop.musical_instrument">Denda</string>
+	<string name="type.shop.music">Disko-denda</string>
+	<string name="type.shop.musical_instrument">Musika Tresnen Denda</string>
 	<string name="type.shop.newsagent">Kioskoa</string>
 	<string name="type.shop.optician">Optika</string>
 	<string name="type.shop.outdoor">Ekipamendua</string>
@@ -1799,6 +1825,8 @@
 	<string name="type.shop.pet">Animali denda</string>
 	<string name="type.shop.pet_grooming">Animalien apainketa</string>
 	<string name="type.shop.photo">Argazkilaritza artikuluak</string>
+	<string name="type.shop.rental">Alokairu-denda</string>
+	<string name="type.shop.rental.bicycle">Bizikletak alokatzeko denda</string>
 	<string name="type.shop.seafood">Arrain-denda</string>
 	<string name="type.shop.second_hand">Bigarren eskuko denda</string>
 	<string name="type.shop.shoes">Zapata-denda</string>
@@ -1806,7 +1834,7 @@
 	<string name="type.shop.stationery">Papergintza</string>
 	<string name="type.shop.supermarket">Supermerkatua</string>
 	<string name="type.shop.tattoo">Tatuajeak</string>
-	<string name="type.shop.tea">Denda</string>
+	<string name="type.shop.tea">Te-denda</string>
 	<string name="type.shop.ticket">Sarreren salmenta</string>
 	<string name="type.shop.toys">Jostailu denda</string>
 	<string name="type.shop.travel_agency">Bidai agentzia</string>
@@ -1905,6 +1933,7 @@
 	<string name="type.tourism.theme_park">Parke tematiko</string>
 	<string name="type.tourism.viewpoint">Bista panoramikoa</string>
 	<string name="type.tourism.wilderness_hut">Kabina</string>
+	<string name="type.tourism.zoo.petting">Petting Zoo</string>
 	<string name="type.waterway.fish_pass">Arrainen eskailera</string>
 	<string name="type.natural.water.ditch">Drainatze Zanga</string>
 	<string name="type.waterway.ditch.tunnel">Zuloa</string>

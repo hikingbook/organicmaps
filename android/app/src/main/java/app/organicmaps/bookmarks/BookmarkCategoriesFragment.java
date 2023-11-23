@@ -21,7 +21,6 @@ import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.adapter.OnItemClickListener;
 import app.organicmaps.base.BaseMwmRecyclerFragment;
-import app.organicmaps.base.DataChangedListener;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.bookmarks.data.BookmarkSharingResult;
@@ -102,7 +101,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
     rw.setNestedScrollingEnabled(false);
     RecyclerView.ItemDecoration decor = new DividerItemDecorationWithPadding(requireContext());
     rw.addItemDecoration(decor);
-    mCategoriesAdapterObserver = new CategoriesAdapterObserver(this);
+    mCategoriesAdapterObserver = this::onCategoriesChanged;
     BookmarkManager.INSTANCE.addCategoriesUpdatesListener(mCategoriesAdapterObserver);
   }
 
@@ -168,7 +167,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
     if (mSelectedCategory != null)
     {
       items.add(new MenuBottomSheetItem(
-          R.string.list_settings,
+          R.string.edit,
           R.drawable.ic_settings,
           () -> onSettingsActionSelected(mSelectedCategory)));
       items.add(new MenuBottomSheetItem(
@@ -193,11 +192,6 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
   protected void setupPlaceholder(@Nullable PlaceholderView placeholder)
   {
     // A placeholder is no needed on this screen.
-  }
-
-  @Override
-  public void onBookmarksLoadingStarted()
-  {
   }
 
   @Override
@@ -304,7 +298,7 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
 
       final Context context = requireActivity();
       final Uri rootUri = data.getData();
-      final ProgressDialog dialog = new ProgressDialog(context, R.style.MwmTheme_AlertDialog);
+      final ProgressDialog dialog = new ProgressDialog(context, R.style.MwmTheme_ProgressDialog);
       dialog.setMessage(getString(R.string.wait_several_minutes));
       dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       dialog.setIndeterminate(true);
@@ -369,35 +363,8 @@ public class BookmarkCategoriesFragment extends BaseMwmRecyclerFragment<Bookmark
     void commit(@NonNull String newName);
   }
 
-  private static class CategoriesAdapterObserver implements DataChangedListener<BookmarkCategoriesFragment>
+  private void onCategoriesChanged()
   {
-    @Nullable
-    private BookmarkCategoriesFragment mFragment;
-
-    CategoriesAdapterObserver(@NonNull BookmarkCategoriesFragment fragment)
-    {
-      mFragment = fragment;
-    }
-
-    @Override
-    public void attach(@NonNull BookmarkCategoriesFragment object)
-    {
-      mFragment = object;
-    }
-
-    @Override
-    public void detach()
-    {
-      mFragment = null;
-    }
-
-    @Override
-    public void onChanged()
-    {
-      if (mFragment == null)
-        return;
-
-      mFragment.getAdapter().setItems(BookmarkManager.INSTANCE.getCategories());
-    }
+    getAdapter().setItems(BookmarkManager.INSTANCE.getCategories());
   }
 }

@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Hurtig, minimalistisk, intet skrammel</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Open source-applikation oprettet af entusiaster og frivillige.</string>
-	<string name="connection_settings">Forbindelsesindstillinger</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Indstillinger for placering</string>
 	<string name="close">Luk</string>
 	<string name="unsupported_phone">En hardware accelereret OpenGL er påkrævet. Din enhed er desværre ikke understøttet.</string>
 	<string name="download">Download</string>
@@ -489,6 +490,10 @@
 	<string name="hour">time</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mere</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Detaljer på KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Henvisningsbonussen, der modtages for hver booking via dette link, går til udviklingen af Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Rediger bogmærke</string>
 	<string name="editor_comment_hint">Kommentar…</string>
 	<string name="editor_reset_edits_message">Nulstil alle lokale ændringer?</string>
@@ -507,8 +512,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Sørg for at du ikke indtastede personlige oplysninger.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-redaktører vil tjekke ændringerne og kontakte dig, hvis de har spørgsmål.</string>
 	<string name="navigation_stop_button">stop</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps er en gratis og open source offline kortapplikation. Ingen annoncer. Ingen sporing. Hvis du ser en fejl på kortet, skal du rette den i OpenStreetMap. Projektet er skabt af entusiaster i vores fritid, så vi har brug for din feedback og support.</string>
 	<!-- For the first routing -->
 	<string name="accept">Accepter</string>
 	<!-- For the first routing -->
@@ -568,7 +571,6 @@
 	  <item quantity="one">%d fil blev fundet. Du vil se det efter konvertering.</item>
 	  <item quantity="other">Der er fundet %d filer. Du vil se dem efter konvertering.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Ingen internetforbindelse</string>
 	<plurals name="objects">
 	  <item quantity="other">%d sted</item>
 	</plurals>
@@ -590,7 +592,6 @@
 	<string name="bookmarks_empty_list_message">For at tilføje et bogmærke, så tryk et sted på kort og så på stjerneikonet</string>
 	<string name="category_desc_more">…mere</string>
 	<string name="export_file">Eksporter fil</string>
-	<string name="list_settings">Listeindstillinger</string>
 	<string name="delete_list">Slet liste</string>
 	<string name="public_access">Offentlig adgang</string>
 	<string name="limited_access">Begrænset adgang</string>
@@ -612,11 +613,13 @@
 	<string name="enable_logging_warning_message">Indstillingen aktiverer logning til diagnostiske formål. Det kan være nyttigt for vores supportere, der fejlfinder problemer med appen. Aktiver kun denne mulighed på anmodning fra Organic Maps support.</string>
 	<string name="access_rules_author_only">Online redigering</string>
 	<string name="driving_options_title">Køre muligheder</string>
-	<string name="driving_options_subheader">Undgå på enhver rute</string>
-	<string name="avoid_tolls">Betalingsveje</string>
-	<string name="avoid_unpaved">Grusveje</string>
-	<string name="avoid_ferry">Færgeoverfarter</string>
-	<string name="avoid_motorways">Motorveje</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Undgå betalingsveje</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Undgå grusveje</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Undgå færgeoverfarter</string>
+	<string name="avoid_motorways">Undgå motorvejen</string>
 	<string name="unable_to_calc_alert_title">Det er ikke muligt at beregne rute</string>
 	<string name="unable_to_calc_alert_subtitle">Desværre kunne vi ikke finde en rute med den aktuelle opsætning. Ændre opsætningen, og prøv igen</string>
 	<string name="define_to_avoid_btn">Definer veje du vil undgå</string>
@@ -624,9 +627,6 @@
 	<string name="toll_road">Betalingsvej</string>
 	<string name="unpaved_road">Grusvej</string>
 	<string name="ferry_crossing">Færgeoverfart</string>
-	<string name="avoid_toll_roads_placepage">Undgå betalingsveje</string>
-	<string name="avoid_unpaved_roads_placepage">Undgå grusveje</string>
-	<string name="avoid_ferry_crossing_placepage">Undgå færgeoverfarter</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Ja</string>
 	<!-- A generic "No" button in dialogs -->
@@ -635,6 +635,7 @@
 	<string name="yes_available">Ja</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nej</string>
+	<string name="trip_finished">Du er ankommet!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sort…</string>
@@ -687,15 +688,31 @@
 	<string name="elevation_profile_distance">Afs.:</string>
 	<string name="elevation_profile_time">Tid:</string>
 	<string name="isolines_toast_zooms_1_10">Zoom ind for at udforske isolinjekort</string>
-	<string name="enable_screen_sleep">Lad skærmen sove</string>
+	<string name="enable_keep_screen_on">Hold skærmen tændt</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Når den er aktiveret, får skærmen lov til at sove efter en periode med inaktivitet.</string>
+	<string name="enable_keep_screen_on_description">Når den er aktiveret, vil skærmen altid være tændt, når kortet vises.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Kortdata fra OpenStreetMap</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Da:Om_OpenStreetMap</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Tak, fordi du bruger vores community-byggede kort!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Du bruger nu Organic Maps på telefonens skærm.</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Du bruger nu Organic Maps på bilens skærm.</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Du er forbundet til Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Fortsæt i telefonen</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Til bilens skærm</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Denne applikation kræver adgang til din placering til navigationsformål.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Giv tilladelser</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Forbundet til bilen</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/blok</string>
@@ -733,6 +750,7 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Universitet</string>
 	<string name="type.amenity.community_centre">Medborgerhus</string>
+	<string name="type.amenity.compressed_air">Trykluft</string>
 	<string name="type.amenity.conference_centre">Konferencecenter</string>
 	<string name="type.amenity.courthouse">Domhus</string>
 	<string name="type.amenity.dentist">Tandlæge</string>
@@ -771,12 +789,16 @@
 	<string name="type.amenity.parking.private">Privat parkering</string>
 	<string name="type.amenity.parking.park_and_ride">Parkering</string>
 	<string name="type.amenity.parking.underground">Underjordisk parkering</string>
-	<string name="type.amenity.parking.street_side">Parkering</string>
-	<string name="type.amenity.parking.fee.street_side">Parkering</string>
-	<string name="type.amenity.parking.lane">Parkering</string>
-	<string name="type.amenity.parking.fee.lane">Parkering</string>
+	<string name="type.amenity.parking.underground.fee">Betalt underjordisk parkering</string>
+	<string name="type.amenity.parking.underground.private">Privat underjordisk parkering</string>
+	<string name="type.amenity.parking.street_side">Parkering på gadesiden</string>
+	<string name="type.amenity.parking.street_side.fee">Betalt parkering på gadesiden</string>
+	<string name="type.amenity.parking.street_side.private">Privat gade sideparkering</string>
+	<string name="type.amenity.parking.lane">Parkering på kørebane</string>
+	<string name="type.amenity.parking.lane.fee">Betalt baneparkering</string>
+	<string name="type.amenity.parking.lane.private">Privat vej parkering</string>
 	<string name="type.amenity.parking_entrance">Parkeringsindgang</string>
-	<string name="type.amenity.parking_entrance.private">Parkeringsindgang</string>
+	<string name="type.amenity.parking_entrance.private">Privat indgang til parkering</string>
 	<string name="type.amenity.parking_entrance.permissive">Parkeringsindgang</string>
 	<string name="type.amenity.parking_space">Parkeringsplads</string>
 	<string name="type.amenity.parking_space.permissive">Parkeringsplads</string>
@@ -789,6 +811,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Tempel</string>
 	<string name="type.amenity.place_of_worship.christian">Kirke</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Jesu Kristi Kirke af Sidste Dages Hellige</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Jehovas Vidner Rigssal</string>
 	<string name="type.amenity.place_of_worship.hindu">Tempel</string>
 	<string name="type.amenity.place_of_worship.jewish">Synagoge</string>
 	<string name="type.amenity.place_of_worship.muslim">Moske</string>
@@ -1218,6 +1241,7 @@
 	<string name="type.landuse.cemetery.christian">Kirkegård</string>
 	<string name="type.landuse.churchyard">Kirkegård</string>
 	<string name="type.landuse.farmland">Landbrugsjord</string>
+	<string name="type.landuse.flowerbed">Blomsterseng</string>
 	<string name="type.landuse.forest">Skov</string>
 	<string name="type.landuse.forest.coniferous">Skov</string>
 	<string name="type.landuse.forest.deciduous">Skov</string>
@@ -1385,6 +1409,8 @@
 	<string name="type.railway.station">Togstation</string>
 	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Togstation</string>
+	<string name="type.railway.station.light_rail.london">Togstation</string>
+	<string name="type.railway.station.light_rail.porto">Togstation</string>
 	<string name="type.railway.station.monorail">Togstation</string>
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.adana">Metro</string>
@@ -1625,9 +1651,9 @@
 	<string name="type.shop.car_repair.tyres">Dækreparation</string>
 	<string name="type.shop.carpet">Tæpper</string>
 	<string name="type.shop.chemist">Materialist</string>
-	<string name="type.shop.chocolate">Butik</string>
+	<string name="type.shop.chocolate">Chokolade butik</string>
 	<string name="type.shop.clothes">Tøjbutik</string>
-	<string name="type.shop.coffee">Butik</string>
+	<string name="type.shop.coffee">Butik med kaffe</string>
 	<string name="type.shop.computer">Computerforretning</string>
 	<string name="type.shop.confectionery">Slikbutik</string>
 	<string name="type.shop.convenience">Døgnbutik</string>
@@ -1640,7 +1666,7 @@
 	<string name="type.shop.dry_cleaning">Renseri</string>
 	<string name="type.shop.electronics">Elektronikbutik</string>
 	<string name="type.shop.erotic">Erotisk butik</string>
-	<string name="type.shop.fabric">Butik</string>
+	<string name="type.shop.fabric">Stofbutik</string>
 	<string name="type.shop.farm">Farm Food Shop</string>
 	<string name="type.shop.fashion_accessories">Mode tilbehør</string>
 	<string name="type.shop.florist">Blomsterbutik</string>
@@ -1662,11 +1688,11 @@
 	<string name="type.shop.mall">Indkøbscenter</string>
 	<string name="type.shop.massage">Massageklinik</string>
 	<string name="type.shop.mobile_phone">Mobiltelefonbutik</string>
-	<string name="type.shop.money_lender">Butik</string>
+	<string name="type.shop.money_lender">Pengeudlåner</string>
 	<string name="type.shop.motorcycle">Motorcykelforhandler</string>
 	<string name="type.shop.motorcycle_repair">Motorcykel reparation</string>
-	<string name="type.shop.music">Butik</string>
-	<string name="type.shop.musical_instrument">Butik</string>
+	<string name="type.shop.music">Pladebutik</string>
+	<string name="type.shop.musical_instrument">Butik med musikinstrumenter</string>
 	<string name="type.shop.newsagent">Avis-kiosk</string>
 	<string name="type.shop.optician">Optiker</string>
 	<string name="type.shop.outdoor">Fritidsudstyr</string>
@@ -1676,6 +1702,8 @@
 	<string name="type.shop.pet">Dyrehandel</string>
 	<string name="type.shop.pet_grooming">Kæledyrspleje</string>
 	<string name="type.shop.photo">Fotobutik</string>
+	<string name="type.shop.rental">Udlejningsbutik</string>
+	<string name="type.shop.rental.bicycle">Cykeludlejningsbutik</string>
 	<string name="type.shop.seafood">Fiskehandler</string>
 	<string name="type.shop.second_hand">Genbrugsbutik</string>
 	<string name="type.shop.shoes">Skobutik</string>
@@ -1683,7 +1711,7 @@
 	<string name="type.shop.stationery">Kontorartikler</string>
 	<string name="type.shop.supermarket">Supermarked</string>
 	<string name="type.shop.tattoo">Tatovør</string>
-	<string name="type.shop.tea">Butik</string>
+	<string name="type.shop.tea">Tebutik</string>
 	<string name="type.shop.ticket">Billetkontor</string>
 	<string name="type.shop.toys">Legetøjsbutik</string>
 	<string name="type.shop.travel_agency">Rejsebureau</string>
@@ -1777,6 +1805,7 @@
 	<string name="type.tourism.theme_park">Turisme</string>
 	<string name="type.tourism.viewpoint">Udsigtspunkt</string>
 	<string name="type.tourism.wilderness_hut">Vildmarkshytte</string>
+	<string name="type.tourism.zoo.petting">Petting Zoo</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
 	<string name="type.waterway.fish_pass">Fiskestige</string>

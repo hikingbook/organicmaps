@@ -4,13 +4,11 @@ import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import app.organicmaps.Framework;
 import app.organicmaps.MwmApplication;
-import app.organicmaps.base.Initializable;
 
-public class SubwayManager implements Initializable<Void>
+public class SubwayManager
 {
   @NonNull
   private final OnTransitSchemeChangedListener mSchemeChangedListener;
@@ -33,21 +31,9 @@ public class SubwayManager implements Initializable<Void>
     return Framework.nativeIsTransitSchemeEnabled();
   }
 
-  public void toggle()
-  {
-    setEnabled(!isEnabled());
-  }
-
-  @Override
-  public void initialize(@Nullable Void aVoid)
+  public void initialize()
   {
     registerListener();
-  }
-
-  @Override
-  public void destroy()
-  {
-    // No op.
   }
 
   private void registerListener()

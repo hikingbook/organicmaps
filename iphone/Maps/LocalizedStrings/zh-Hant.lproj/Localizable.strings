@@ -789,6 +789,12 @@
 
 "book_button" = "預約";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "KAYAK 上的詳細資訊";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "透過此連結進行的每次預訂收到的推薦獎金將用於開發有機地圖";
+
 "placepage_call_button" = "呼叫";
 
 "placepage_edit_bookmark_button" = "編輯書籤";
@@ -977,8 +983,6 @@
 
 "export_file" = "導出文件";
 
-"list_settings" = "列表設定";
-
 "delete_list" = "刪除列表";
 
 "hide_from_map" = "從卡中隱藏";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "繞行設定";
 
-"driving_options_subheader" = "在每條線路上規避";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "避開收費公路";
 
-"avoid_tolls" = "收費公路";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "規避土路";
 
-"avoid_unpaved" = "土路";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "規避渡輪渡口";
 
-"avoid_ferry" = "渡輪渡口";
-
-"avoid_motorways" = "高速公路";
+"avoid_motorways" = "避開高速公路";
 
 "unable_to_calc_alert_title" = "無法規劃路線";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "土路";
 
 "ferry_crossing" = "渡輪";
-
-"avoid_toll_roads_placepage" = "規避收費公路";
-
-"avoid_unpaved_roads_placepage" = "規避土路";
-
-"avoid_ferry_crossing_placepage" = "規避渡輪渡口";
 
 "trip_start" = "前往";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "該路線將改為汽車（路線）";
 
 "ok" = "好";
-
-"avoid_unpaved_carplay_1" = "無土路路段";
-
-"avoid_unpaved_carplay_2" = "無土路路段";
-
-"avoid_ferry_carplay_1" = "無渡船";
-
-"avoid_ferry_carplay_2" = "無渡船";
-
-"avoid_tolls_carplay_1" = "無付費路段";
-
-"avoid_tolls_carplay_2" = "無付費路段";
 
 "speedcams_alert_title_carplay_1" = "測速照相機";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "社區活動中心";
 
+"type.amenity.compressed_air" = "壓縮的空氣";
+
 "type.amenity.conference_centre" = "會議中心";
 
 "type.amenity.courthouse" = "法院";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "地下停車場";
 
-"type.amenity.parking.street_side" = "停車場";
+"type.amenity.parking.underground.fee" = "收費地下停車場";
 
-"type.amenity.parking.fee.street_side" = "停車場";
+"type.amenity.parking.underground.private" = "私人地下停車場";
 
-"type.amenity.parking.lane" = "停車場";
+"type.amenity.parking.street_side" = "街邊停車";
 
-"type.amenity.parking.fee.lane" = "停車場";
+"type.amenity.parking.street_side.fee" = "付費街邊停車場";
+
+"type.amenity.parking.street_side.private" = "私人街邊停車場";
+
+"type.amenity.parking.lane" = "車道停車";
+
+"type.amenity.parking.lane.fee" = "收費車道停車";
+
+"type.amenity.parking.lane.private" = "私人車道停車";
 
 "type.amenity.parking_entrance" = "停車場入口";
 
-"type.amenity.parking_entrance.private" = "停車場入口";
+"type.amenity.parking_entrance.private" = "私人停車場入口";
 
 "type.amenity.parking_entrance.permissive" = "停車場入口";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "基督教堂";
 
 "type.amenity.place_of_worship.christian.mormon" = "耶穌基督後期聖徒教會";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "耶和華見證人王國大廳";
 
 "type.amenity.place_of_worship.hindu" = "印度教寺廟";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "花壇";
+
 "type.landuse.forest" = "樹林";
 
 "type.landuse.forest.coniferous" = "樹林";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "纜車";
 
 "type.railway.station.light_rail" = "輕軌車站";
+
+"type.railway.station.light_rail.london" = "輕軌車站";
+
+"type.railway.station.light_rail.porto" = "輕軌車站";
 
 "type.railway.station.monorail" = "單軌車站";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "照片店";
 
+"type.shop.rental" = "租賃店";
+
+"type.shop.rental.bicycle" = "自行車租賃店";
+
 "type.shop.seafood" = "魚販";
 
 "type.shop.second_hand" = "二手店";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "山屋";
 
 "type.tourism.zoo" = "動物園";
+
+"type.tourism.zoo.petting" = "寵物動物園";
 
 "type.traffic_calming" = "Traffic Calming";
 

@@ -789,6 +789,12 @@
 
 "book_button" = "Boka";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Information på KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Hänvisningsbonusen som erhålls för varje bokning via denna länk går till utvecklingen av Organic Maps.";
+
 "placepage_call_button" = "Ring";
 
 "placepage_edit_bookmark_button" = "Redigera bokmärke";
@@ -977,8 +983,6 @@
 
 "export_file" = "Exportera fil";
 
-"list_settings" = "Listinställningar";
-
 "delete_list" = "Radera listan";
 
 "hide_from_map" = "Dölj från kort";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Omvägsinställningar";
 
-"driving_options_subheader" = "Undvik på varje rutten";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Undvik avgiftsbelagda vägar";
 
-"avoid_tolls" = "Betalväg";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Undvik kärrvägar";
 
-"avoid_unpaved" = "Kärrväg";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Undvik färjetrafik";
 
-"avoid_ferry" = "Färjetrafik";
-
-"avoid_motorways" = "Motorväg";
+"avoid_motorways" = "Undvik motorvägen";
 
 "unable_to_calc_alert_title" = "Det går inte att bygga ruttenen";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Kärrvägen";
 
 "ferry_crossing" = "Färjetrafik";
-
-"avoid_toll_roads_placepage" = "Undvik betalvägar";
-
-"avoid_unpaved_roads_placepage" = "Undvik kärrvägar";
-
-"avoid_ferry_crossing_placepage" = "Undvik färjetrafik";
 
 "trip_start" = "Kom igen";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Ruten kommer att ändras till bil";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Utan kärrväg";
-
-"avoid_unpaved_carplay_2" = "Utan kärrvägar";
-
-"avoid_ferry_carplay_1" = "Utan färjor";
-
-"avoid_ferry_carplay_2" = "Utan färjor";
-
-"avoid_tolls_carplay_1" = "Utan betalda";
-
-"avoid_tolls_carplay_2" = "Utan betalda";
 
 "speedcams_alert_title_carplay_1" = "Kameror";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Stadshus";
 
+"type.amenity.compressed_air" = "Tryckluft";
+
 "type.amenity.conference_centre" = "Konferens Center";
 
 "type.amenity.courthouse" = "Domstol";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Underjordisk parkering";
 
-"type.amenity.parking.street_side" = "Parkering";
+"type.amenity.parking.underground.fee" = "Betald underjordisk parkering";
 
-"type.amenity.parking.fee.street_side" = "Parkering";
+"type.amenity.parking.underground.private" = "Privat underjordisk parkering";
 
-"type.amenity.parking.lane" = "Parkering";
+"type.amenity.parking.street_side" = "Gata sida parkering";
 
-"type.amenity.parking.fee.lane" = "Parkering";
+"type.amenity.parking.street_side.fee" = "Betald gata sidoparkering";
+
+"type.amenity.parking.street_side.private" = "Privat gata sidoparkering";
+
+"type.amenity.parking.lane" = "Körfält parkering";
+
+"type.amenity.parking.lane.fee" = "Avgiftsbelagd körfältsparkering";
+
+"type.amenity.parking.lane.private" = "Privat körfält parkering";
 
 "type.amenity.parking_entrance" = "Parkering entré";
 
-"type.amenity.parking_entrance.private" = "Parkering entré";
+"type.amenity.parking_entrance.private" = "Privat parkeringsingång";
 
 "type.amenity.parking_entrance.permissive" = "Parkering entré";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kyrka";
 
 "type.amenity.place_of_worship.christian.mormon" = "Jesu Kristi Kyrka av Sista Dagars Heliga";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehovas vittnen Rikets sal";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -1522,7 +1521,7 @@
 
 "type.amenity.school" = "Skola";
 
-"type.amenity.shelter" = "Skyddsrum";
+"type.amenity.shelter" = "Vindskydd";
 
 "type.amenity.public_bath" = "Offentligt bad";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Rabatt";
+
 "type.landuse.forest" = "Skog";
 
 "type.landuse.forest.coniferous" = "Skog";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Linbana";
 
 "type.railway.station.light_rail" = "Tågstation";
+
+"type.railway.station.light_rail.london" = "Tågstation";
+
+"type.railway.station.light_rail.porto" = "Tågstation";
 
 "type.railway.station.monorail" = "Tågstation";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Hushållskemikalier";
 
-"type.shop.chocolate" = "Butik";
+"type.shop.chocolate" = "Chokladbutik";
 
 "type.shop.clothes" = "Klädbutik";
 
-"type.shop.coffee" = "Butik";
+"type.shop.coffee" = "Kaffebutik";
 
 "type.shop.computer" = "Datorbutik";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotisk butik";
 
-"type.shop.fabric" = "Butik";
+"type.shop.fabric" = "Tygbutik";
 
 "type.shop.farm" = "Gårdsmataffär";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Mobilbutik";
 
-"type.shop.money_lender" = "Butik";
+"type.shop.money_lender" = "Pengar långivare";
 
 "type.shop.motorcycle" = "Motorcykelaffär";
 
 "type.shop.motorcycle_repair" = "Motorcykel reparation";
 
-"type.shop.music" = "Butik";
+"type.shop.music" = "Musikaffär";
 
-"type.shop.musical_instrument" = "Butik";
+"type.shop.musical_instrument" = "Musikinstrumentbutik";
 
 "type.shop.newsagent" = "Tidningsstånd";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotoaffär";
 
+"type.shop.rental" = "Uthyrningsbutik";
+
+"type.shop.rental.bicycle" = "Cykeluthyrningsbutik";
+
 "type.shop.seafood" = "Fiskhandlare";
 
 "type.shop.second_hand" = "Andrahandsaffär";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tatuerare";
 
-"type.shop.tea" = "Butik";
+"type.shop.tea" = "Tebutik";
 
 "type.shop.ticket" = "Biljettkontor";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Vildmarksstuga";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Petting Zoo";
 
 "type.traffic_calming" = "Traffic Calming";
 

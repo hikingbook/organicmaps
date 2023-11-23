@@ -23,19 +23,9 @@ using namespace std;
 namespace
 {
   uint32_t const DEFAULT_BG_COLOR = 0xEEEEDD;
-
-  drule::text_type_t GetTextType(string const & text)
-  {
-    if (text == "addr:housename")
-      return drule::text_type_housename;
-    else if (text == "addr:housenumber")
-      return drule::text_type_housenumber;
-
-    return drule::text_type_name;
-  }
 } // namespace
 
-LineDefProto const * BaseRule::GetLine() const
+LineRuleProto const * BaseRule::GetLine() const
 {
   return 0;
 }
@@ -50,14 +40,14 @@ SymbolRuleProto const * BaseRule::GetSymbol() const
   return 0;
 }
 
-CaptionDefProto const * BaseRule::GetCaption(int) const
+CaptionRuleProto const * BaseRule::GetCaption() const
 {
   return 0;
 }
 
-text_type_t BaseRule::GetCaptionTextType(int) const
+PathTextRuleProto const * BaseRule::GetPathtext() const
 {
-  return text_type_name;
+  return 0;
 }
 
 ShieldRuleProto const * BaseRule::GetShield() const
@@ -152,21 +142,15 @@ namespace
   {
     class Line : public BaseRule
     {
-      LineDefProto m_line;
+      LineRuleProto m_line;
     public:
       explicit Line(LineRuleProto const & r)
+        : m_line(r)
       {
-        m_line.set_color(r.color());
-        m_line.set_width(r.width());
-        m_line.set_join(r.join());
-        m_line.set_cap(r.cap());
-        if (r.has_dashdot())
-          *(m_line.mutable_dashdot()) = r.dashdot();
-        if (r.has_pathsym())
-          *(m_line.mutable_pathsym()) = r.pathsym();
+        ASSERT(r.has_pathsym() || r.width() > 0, ("Zero width line w/o path symbol)"));
       }
 
-      virtual LineDefProto const * GetLine() const { return &m_line; }
+      virtual LineRuleProto const * GetLine() const { return &m_line; }
     };
 
     class Area : public BaseRule
@@ -187,52 +171,27 @@ namespace
       virtual SymbolRuleProto const * GetSymbol() const { return &m_symbol; }
     };
 
-    template <class T> class CaptionT : public BaseRule
+    class Caption : public BaseRule
     {
-      T m_caption;
-
-      text_type_t m_textTypePrimary;
-      text_type_t m_textTypeSecondary;
-
+      CaptionRuleProto m_caption;
     public:
-      explicit CaptionT(T const & r)
-        : m_caption(r), m_textTypePrimary(text_type_name), m_textTypeSecondary(text_type_name)
+      explicit Caption(CaptionRuleProto const & r)
+        : m_caption(r)
       {
-        if (!m_caption.primary().text().empty())
-          m_textTypePrimary = GetTextType(m_caption.primary().text());
-
-        if (m_caption.has_secondary() && !m_caption.secondary().text().empty())
-          m_textTypeSecondary = GetTextType(m_caption.secondary().text());
+        ASSERT(r.has_primary(),());
       }
 
-      virtual CaptionDefProto const * GetCaption(int i) const
-      {
-        if (i == 0)
-          return &m_caption.primary();
-        else
-        {
-          ASSERT_EQUAL ( i, 1, () );
-          if (m_caption.has_secondary())
-            return &m_caption.secondary();
-          else
-            return 0;
-        }
-      }
-
-      virtual text_type_t GetCaptionTextType(int i) const
-      {
-        if (i == 0)
-          return m_textTypePrimary;
-        else
-        {
-          ASSERT_EQUAL ( i, 1, () );
-          return m_textTypeSecondary;
-        }
-      }
+      virtual CaptionRuleProto const * GetCaption() const { return &m_caption; }
     };
 
-    typedef CaptionT<CaptionRuleProto> Caption;
-    typedef CaptionT<PathTextRuleProto> PathText;
+    class PathText : public BaseRule
+    {
+      PathTextRuleProto m_pathtext;
+    public:
+      explicit PathText(PathTextRuleProto const & r) : m_pathtext(r) {}
+
+      virtual PathTextRuleProto const * GetPathtext() const { return &m_pathtext; }
+    };
 
     class Shield : public BaseRule
     {

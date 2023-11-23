@@ -9,17 +9,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BundleCompat;
 
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmToolbarFragment;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
-import app.organicmaps.util.Utils;
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
@@ -33,20 +34,19 @@ public class BookmarkCategorySettingsFragment extends BaseMwmToolbarFragment
 
   @SuppressWarnings("NullableProblems")
   @NonNull
-  private EditText mEditDescView;
+  private TextInputEditText mEditDescView;
 
   @SuppressWarnings("NullableProblems")
   @NonNull
-  private EditText mEditCategoryNameView;
+  private TextInputEditText mEditCategoryNameView;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
-    final Bundle args = getArguments();
-    if (args == null)
-      throw new IllegalArgumentException("Args must not be null");
-    mCategory = Objects.requireNonNull(Utils.getParcelable(args, BookmarkCategorySettingsActivity.EXTRA_BOOKMARK_CATEGORY, BookmarkCategory.class));
+    final Bundle args = requireArguments();
+    mCategory = Objects.requireNonNull(BundleCompat.getParcelable(args,
+        BookmarkCategorySettingsActivity.EXTRA_BOOKMARK_CATEGORY, BookmarkCategory.class));
   }
 
   @Nullable

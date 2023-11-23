@@ -789,6 +789,12 @@
 
 "book_button" = "Book";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Λεπτομέρειες στο KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Το μπόνους παραπομπής που λαμβάνετε για κάθε κράτηση μέσω αυτού του συνδέσμου πηγαίνει στην ανάπτυξη του Organic Maps.";
+
 "placepage_call_button" = "Κλήση";
 
 "placepage_edit_bookmark_button" = "Επεξεργασία αγαπημένου";
@@ -977,8 +983,6 @@
 
 "export_file" = "Αρχείο Εξαγωγής";
 
-"list_settings" = "Ρυθμίσεις Λίστας";
-
 "delete_list" = "Διαγραφή λίστας";
 
 "hide_from_map" = "Κρύψε από τον χάρτη";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Ρυθμίσεις παράκαμψης";
 
-"driving_options_subheader" = "Αποφυγή σε κάθε διαδρομή";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Αποφυγή τα διόδια";
 
-"avoid_tolls" = "Δρόμοι με διόδια";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Αποφυγή των χωματόδρομων";
 
-"avoid_unpaved" = "Χωματόδρομοι";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Αποφυγή των πορθμείων";
 
-"avoid_ferry" = "Πορθμεία";
-
-"avoid_motorways" = "Αυτοκινητόδρομοι";
+"avoid_motorways" = "Αποφύγετε τον αυτοκινητόδρομο";
 
 "unable_to_calc_alert_title" = "Δεν είναι δυνατή η δημιουργία διαδρομής";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Χωματόδρομος";
 
 "ferry_crossing" = "Πορθμείο";
-
-"avoid_toll_roads_placepage" = "Αποφυγή των δρόμων με διόδια";
-
-"avoid_unpaved_roads_placepage" = "Αποφυγή των χωματόδρομων";
-
-"avoid_ferry_crossing_placepage" = "Αποφυγή των πορθμείων";
 
 "trip_start" = "Πάμε";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Η διαδρομή θα αντικατασταθεί με τη διαδρομή με αυτοκίνητο";
 
 "ok" = "Καλώς";
-
-"avoid_unpaved_carplay_1" = "Χ/χωματόδρ.";
-
-"avoid_unpaved_carplay_2" = "Χ/χωματόδρομους";
-
-"avoid_ferry_carplay_1" = "Χ/πορθμεία";
-
-"avoid_ferry_carplay_2" = "Χωρίς πορθμεία";
-
-"avoid_tolls_carplay_1" = "Χωρίς διόδια";
-
-"avoid_tolls_carplay_2" = "Χωρίς διόδια";
 
 "speedcams_alert_title_carplay_1" = "Κάμερες";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Κέντρο κοινότητας";
 
+"type.amenity.compressed_air" = "Πεπιεσμένος αέρας";
+
 "type.amenity.conference_centre" = "Συνεδριακό Κέντρο";
 
 "type.amenity.courthouse" = "Δικαστικό μέγαρο";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Υπόγειος χώρος στάθμευσης";
 
-"type.amenity.parking.street_side" = "Χώρος στάθμευσης";
+"type.amenity.parking.underground.fee" = "Υπόγειος χώρος στάθμευσης επί πληρωμή";
 
-"type.amenity.parking.fee.street_side" = "Χώρος στάθμευσης";
+"type.amenity.parking.underground.private" = "Ιδιωτικός υπόγειος χώρος στάθμευσης";
 
-"type.amenity.parking.lane" = "Χώρος στάθμευσης";
+"type.amenity.parking.street_side" = "Στάθμευση στην πλευρά του δρόμου";
 
-"type.amenity.parking.fee.lane" = "Χώρος στάθμευσης";
+"type.amenity.parking.street_side.fee" = "Πληρωμένη στάθμευση στο δρόμο";
+
+"type.amenity.parking.street_side.private" = "Ιδιωτικός δρόμος πλευρικός χώρος στάθμευσης";
+
+"type.amenity.parking.lane" = "Λωρίδα στάθμευσης";
+
+"type.amenity.parking.lane.fee" = "Χώρος στάθμευσης επί πληρωμή";
+
+"type.amenity.parking.lane.private" = "Ιδιωτική λωρίδα στάθμευσης";
 
 "type.amenity.parking_entrance" = "Είσοδος στάθμευσης";
 
-"type.amenity.parking_entrance.private" = "Είσοδος στάθμευσης";
+"type.amenity.parking_entrance.private" = "Ιδιωτική είσοδος στάθμευσης";
 
 "type.amenity.parking_entrance.permissive" = "Είσοδος στάθμευσης";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Εκκλησία";
 
 "type.amenity.place_of_worship.christian.mormon" = "Εκκλησία του Ιησού Χριστού των Αγίων των Τελευταίων Ημερών";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Αίθουσα Βασιλείας των Μαρτύρων του Ιεχωβά";
 
 "type.amenity.place_of_worship.hindu" = "Ναός";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Παρτέρι";
+
 "type.landuse.forest" = "Δάσος";
 
 "type.landuse.forest.coniferous" = "Δάσος";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Μονωτικό τρενάκι";
 
 "type.railway.station.light_rail" = "Σιδηροδρομικός σταθμός";
+
+"type.railway.station.light_rail.london" = "Σιδηροδρομικός σταθμός";
+
+"type.railway.station.light_rail.porto" = "Σιδηροδρομικός σταθμός";
 
 "type.railway.station.monorail" = "Σιδηροδρομικός σταθμός";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Χημικά προϊόντα";
 
-"type.shop.chocolate" = "Κατάστημα";
+"type.shop.chocolate" = "Σοκολατοποιία";
 
 "type.shop.clothes" = "Κατάστημα ρούχων";
 
-"type.shop.coffee" = "Κατάστημα";
+"type.shop.coffee" = "Καφεκοπτείο";
 
 "type.shop.computer" = "Κατάστημα πληροφορικής";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Κατάστημα ερωτικών ειδών";
 
-"type.shop.fabric" = "Κατάστημα";
+"type.shop.fabric" = "Υφασματοπωλείο";
 
 "type.shop.farm" = "Κατάστημα Αγροτικών Τροφίμων";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Κινητή Τηλεφωνία";
 
-"type.shop.money_lender" = "Κατάστημα";
+"type.shop.money_lender" = "Δανειστής χρημάτων";
 
 "type.shop.motorcycle" = "Κατάστημα μοτοσυκλετών";
 
 "type.shop.motorcycle_repair" = "Επισκευή μοτοσυκλετών";
 
-"type.shop.music" = "Κατάστημα";
+"type.shop.music" = "Κατάστημα δίσκων";
 
-"type.shop.musical_instrument" = "Κατάστημα";
+"type.shop.musical_instrument" = "Κατάστημα μουσικών οργάνων";
 
 "type.shop.newsagent" = "Εφημεριδοπώλης";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Φωτογραφείο";
 
+"type.shop.rental" = "Κατάστημα ενοικίασης";
+
+"type.shop.rental.bicycle" = "Κατάστημα ενοικίασης ποδηλάτων";
+
 "type.shop.seafood" = "Κατάστημα με θαλασσινά";
 
 "type.shop.second_hand" = "Κατάστημα μεταχειρισμένων";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Τατουάζ";
 
-"type.shop.tea" = "Κατάστημα";
+"type.shop.tea" = "Τεϊοπωλείο";
 
 "type.shop.ticket" = "Κατάστημα πώλησης εισιτηρίων";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Καλύβα";
 
 "type.tourism.zoo" = "Ζωολογικός κήπος";
+
+"type.tourism.zoo.petting" = "Ζωολογικό κήπο";
 
 "type.traffic_calming" = "Traffic Calming";
 

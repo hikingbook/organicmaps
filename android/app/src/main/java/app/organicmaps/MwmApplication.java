@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -20,11 +21,12 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import app.organicmaps.background.OsmUploadWork;
 import app.organicmaps.downloader.DownloaderNotifier;
-import app.organicmaps.base.MediaPlayerWrapper;
 import app.organicmaps.bookmarks.data.BookmarkManager;
+import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.CountryItem;
 import app.organicmaps.downloader.MapManager;
 import app.organicmaps.location.LocationHelper;
+import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.subway.SubwayManager;
@@ -36,7 +38,6 @@ import app.organicmaps.settings.StoragePathManager;
 import app.organicmaps.sound.TtsPlayer;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.ConnectionState;
-import app.organicmaps.util.Counters;
 import app.organicmaps.util.SharedPropertiesUtils;
 import app.organicmaps.util.StorageUtils;
 import app.organicmaps.util.ThemeSwitcher;
@@ -70,6 +71,10 @@ public class MwmApplication extends Application implements Application.ActivityL
   @NonNull
   private SensorHelper mSensorHelper;
 
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
+  private DisplayManager mDisplayManager;
+
   private volatile boolean mFrameworkInitialized;
   private volatile boolean mPlatformInitialized;
 
@@ -77,7 +82,6 @@ public class MwmApplication extends Application implements Application.ActivityL
   private final Object mMainQueueToken = new Object();
   @NonNull
   private final MapManager.StorageCallback mStorageCallbacks = new StorageCallbackImpl();
-  private MediaPlayerWrapper mPlayer;
 
   @Nullable
   private WeakReference<Activity> mTopActivity;
@@ -113,9 +117,10 @@ public class MwmApplication extends Application implements Application.ActivityL
     return mSensorHelper;
   }
 
-  public MwmApplication()
+  @NonNull
+  public DisplayManager getDisplayManager()
   {
-    super();
+    return mDisplayManager;
   }
 
   @NonNull
@@ -145,6 +150,8 @@ public class MwmApplication extends Application implements Application.ActivityL
     Logger.d(TAG, "Settings path = " + settingsPath);
     nativeSetSettingsDir(settingsPath);
 
+    Config.init(this);
+
     mMainLoopHandler = new Handler(getMainLooper());
     ConnectionState.INSTANCE.initialize(this);
 
@@ -156,6 +163,7 @@ public class MwmApplication extends Application implements Application.ActivityL
     mIsolinesManager = new IsolinesManager(this);
     mLocationHelper = new LocationHelper(this);
     mSensorHelper = new SensorHelper(this);
+    mDisplayManager = new DisplayManager();
   }
 
   /**
@@ -164,10 +172,10 @@ public class MwmApplication extends Application implements Application.ActivityL
    * @throws IOException - if failed to create directories. Caller must handle
    * the exception and do nothing with native code if initialization is failed.
    */
-  public boolean init(SplashActivity listener) throws IOException
+  public boolean init(@NonNull Runnable onComplete) throws IOException
   {
     initNativePlatform();
-    return initNativeFramework(listener);
+    return initNativeFramework(onComplete);
   }
 
   private void initNativePlatform() throws IOException
@@ -214,25 +222,25 @@ public class MwmApplication extends Application implements Application.ActivityL
     StorageUtils.requireDirectory(tempPath);
   }
 
-  private boolean initNativeFramework(SplashActivity listener)
+  private boolean initNativeFramework(@NonNull Runnable onComplete)
   {
     if (mFrameworkInitialized)
       return false;
 
-    nativeInitFramework(listener);
+    nativeInitFramework(onComplete);
 
     MapManager.nativeSubscribe(mStorageCallbacks);
 
     initNativeStrings();
     ThemeSwitcher.INSTANCE.initialize(this);
-    SearchEngine.INSTANCE.initialize(null);
+    SearchEngine.INSTANCE.initialize();
     BookmarkManager.loadBookmarks();
     TtsPlayer.INSTANCE.initialize(this);
     ThemeSwitcher.INSTANCE.restart(false);
     RoutingController.get().initialize(this);
-    TrafficManager.INSTANCE.initialize(null);
-    SubwayManager.from(this).initialize(null);
-    IsolinesManager.from(this).initialize(null);
+    TrafficManager.INSTANCE.initialize();
+    SubwayManager.from(this).initialize();
+    IsolinesManager.from(this).initialize();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(mProcessLifecycleObserver);
 
     Logger.i(TAG, "Framework initialized");
@@ -261,31 +269,21 @@ public class MwmApplication extends Application implements Application.ActivityL
     System.loadLibrary("organicmaps");
   }
 
-  public static void onUpgrade(@NonNull Context context)
-  {
-    Counters.resetAppSessionCounters(context);
-  }
-
-  // Called from jni
+  // Called from JNI.
+  @Keep
   @SuppressWarnings("unused")
-  void forwardToMainThread(final long taskPointer)
+  private void forwardToMainThread(final long taskPointer)
   {
     Message m = Message.obtain(mMainLoopHandler, () -> nativeProcessTask(taskPointer));
     m.obj = mMainQueueToken;
     mMainLoopHandler.sendMessage(m);
   }
 
-  @NonNull
-  public MediaPlayerWrapper getMediaPlayer()
-  {
-    return mPlayer;
-  }
-
   private static native void nativeSetSettingsDir(String settingsPath);
   private native void nativeInitPlatform(String apkPath, String writablePath, String privatePath,
                                          String tmpPath, String flavorName, String buildType,
                                          boolean isTablet);
-  private static native void nativeInitFramework(SplashActivity listener);
+  private static native void nativeInitFramework(@NonNull Runnable onComplete);
   private static native void nativeProcessTask(long taskPointer);
   private static native void nativeAddLocalization(String name, String value);
   private static native void nativeOnTransit(boolean foreground);
@@ -361,12 +359,17 @@ public class MwmApplication extends Application implements Application.ActivityL
 
     OsmUploadWork.startActionUploadOsmChanges(this);
 
-    if (RoutingController.get().isNavigating())
-    {
+    if (!mDisplayManager.isDeviceDisplayUsed())
+      Logger.i(LOCATION_TAG, "Android Auto is active, keeping location in the background");
+    else if (RoutingController.get().isNavigating())
       Logger.i(LOCATION_TAG, "Navigation is in progress, keeping location in the background");
-      return;
+    else if (!Map.isEngineCreated() || LocationState.nativeGetMode() == LocationState.PENDING_POSITION)
+      Logger.i(LOCATION_TAG, "PENDING_POSITION mode, keeping location in the background");
+    else
+    {
+      Logger.i(LOCATION_TAG, "Stopping location in the background");
+      mLocationHelper.stop();
     }
-    mLocationHelper.stop();
   }
 
   private class StorageCallbackImpl implements MapManager.StorageCallback

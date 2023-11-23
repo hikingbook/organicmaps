@@ -4,12 +4,12 @@ import android.os.Parcel;
 import android.text.TextUtils;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import app.organicmaps.routing.RoutePointInfo;
 import app.organicmaps.search.Popularity;
-import app.organicmaps.search.PopularityProvider;
 import app.organicmaps.widget.placepage.PlacePageData;
 
 import java.lang.annotation.Retention;
@@ -20,7 +20,9 @@ import java.util.List;
 
 // TODO(yunikkk): Refactor. Displayed information is different from edited information, and it's better to
 // separate them. Simple getters from jni place_page::Info and osm::EditableFeature should be enough.
-public class MapObject implements PopularityProvider, PlacePageData
+// Used from JNI.
+@Keep
+public class MapObject implements PlacePageData
 {
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({ POI, API_POINT, BOOKMARK, MY_POSITION, SEARCH })
@@ -244,13 +246,6 @@ public class MapObject implements PopularityProvider, PlacePageData
   }
 
   @NonNull
-  @Override
-  public Popularity getPopularity()
-  {
-    return mPopularity;
-  }
-
-  @NonNull
   public RoadWarningMarkType getRoadWarningMarkType()
   {
     return mRoadWarningMarkType;
@@ -268,26 +263,9 @@ public class MapObject implements PopularityProvider, PlacePageData
     return mMetadata != null && !mMetadata.isEmpty();
   }
 
-  @MapObjectType
-  public int getMapObjectType()
-  {
-    return mMapObjectType;
-  }
-
   public String getApiId()
   {
     return mApiId;
-  }
-
-  @NonNull
-  public  String[] getRawTypes()
-  {
-    if (mRawTypes == null)
-      return new String[0];
-
-    String[] types = new String[mRawTypes.size()];
-    mRawTypes.toArray(types);
-    return types;
   }
 
   public void setLat(double lat)
@@ -300,12 +278,10 @@ public class MapObject implements PopularityProvider, PlacePageData
     mLon = lon;
   }
 
-  public void setSubtitle(String typeName)
-  {
-    mSubtitle = typeName;
-  }
-
-  private void addMetadata(int type, String value)
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
+  public void addMetadata(int type, String value)
   {
     mMetadata.addMetadata(type, value);
   }
@@ -315,9 +291,19 @@ public class MapObject implements PopularityProvider, PlacePageData
     return !TextUtils.isEmpty(getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
   }
 
-  public static boolean isOfType(@MapObjectType int type, MapObject object)
+  public final boolean isMyPosition()
   {
-    return object != null && object.getMapObjectType() == type;
+    return mMapObjectType == MY_POSITION;
+  }
+
+  public final boolean isBookmark()
+  {
+    return mMapObjectType == BOOKMARK;
+  }
+
+  public final boolean isApiPoint()
+  {
+    return mMapObjectType == API_POINT;
   }
 
   @Nullable

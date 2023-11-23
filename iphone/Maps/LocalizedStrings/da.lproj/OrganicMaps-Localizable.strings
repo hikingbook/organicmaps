@@ -789,6 +789,12 @@
 
 "book_button" = "Book";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Detaljer på KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Henvisningsbonussen, der modtages for hver booking via dette link, går til udviklingen af Organic Maps.";
+
 "placepage_call_button" = "Ring";
 
 "placepage_edit_bookmark_button" = "Rediger bogmærke";
@@ -977,8 +983,6 @@
 
 "export_file" = "Eksporter fil";
 
-"list_settings" = "Listeindstillinger";
-
 "delete_list" = "Slet liste";
 
 "hide_from_map" = "Skjul på kort";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Køre muligheder";
 
-"driving_options_subheader" = "Undgå på enhver rute";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Undgå betalingsveje";
 
-"avoid_tolls" = "Betalingsveje";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Undgå grusveje";
 
-"avoid_unpaved" = "Grusveje";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Undgå færgeoverfarter";
 
-"avoid_ferry" = "Færgeoverfarter";
-
-"avoid_motorways" = "Motorveje";
+"avoid_motorways" = "Undgå motorvejen";
 
 "unable_to_calc_alert_title" = "Det er ikke muligt at beregne rute";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Grusvej";
 
 "ferry_crossing" = "Færgeoverfart";
-
-"avoid_toll_roads_placepage" = "Undgå betalingsveje";
-
-"avoid_unpaved_roads_placepage" = "Undgå grusveje";
-
-"avoid_ferry_crossing_placepage" = "Undgå færgeoverfarter";
 
 "trip_start" = "Lad os komme i gang";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Rute vil blive ændret til en kørselsrute";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Ingen grus";
-
-"avoid_unpaved_carplay_2" = "Undgå grus";
-
-"avoid_ferry_carplay_1" = "Ingen færger";
-
-"avoid_ferry_carplay_2" = "Undgå færger";
-
-"avoid_tolls_carplay_1" = "Ingen betal.";
-
-"avoid_tolls_carplay_2" = "Undgå betaling";
 
 "speedcams_alert_title_carplay_1" = "Radarkontrol";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Medborgerhus";
 
+"type.amenity.compressed_air" = "Trykluft";
+
 "type.amenity.conference_centre" = "Konferencecenter";
 
 "type.amenity.courthouse" = "Domhus";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Underjordisk parkering";
 
-"type.amenity.parking.street_side" = "Parkering";
+"type.amenity.parking.underground.fee" = "Betalt underjordisk parkering";
 
-"type.amenity.parking.fee.street_side" = "Parkering";
+"type.amenity.parking.underground.private" = "Privat underjordisk parkering";
 
-"type.amenity.parking.lane" = "Parkering";
+"type.amenity.parking.street_side" = "Parkering på gadesiden";
 
-"type.amenity.parking.fee.lane" = "Parkering";
+"type.amenity.parking.street_side.fee" = "Betalt parkering på gadesiden";
+
+"type.amenity.parking.street_side.private" = "Privat gade sideparkering";
+
+"type.amenity.parking.lane" = "Parkering på kørebane";
+
+"type.amenity.parking.lane.fee" = "Betalt baneparkering";
+
+"type.amenity.parking.lane.private" = "Privat vej parkering";
 
 "type.amenity.parking_entrance" = "Parkeringsindgang";
 
-"type.amenity.parking_entrance.private" = "Parkeringsindgang";
+"type.amenity.parking_entrance.private" = "Privat indgang til parkering";
 
 "type.amenity.parking_entrance.permissive" = "Parkeringsindgang";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kirke";
 
 "type.amenity.place_of_worship.christian.mormon" = "Jesu Kristi Kirke af Sidste Dages Hellige";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehovas Vidner Rigssal";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Blomsterseng";
+
 "type.landuse.forest" = "Skov";
 
 "type.landuse.forest.coniferous" = "Skov";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Togstation";
+
+"type.railway.station.light_rail.london" = "Togstation";
+
+"type.railway.station.light_rail.porto" = "Togstation";
 
 "type.railway.station.monorail" = "Togstation";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Materialist";
 
-"type.shop.chocolate" = "Butik";
+"type.shop.chocolate" = "Chokolade butik";
 
 "type.shop.clothes" = "Tøjbutik";
 
-"type.shop.coffee" = "Butik";
+"type.shop.coffee" = "Butik med kaffe";
 
 "type.shop.computer" = "Computerforretning";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotisk butik";
 
-"type.shop.fabric" = "Butik";
+"type.shop.fabric" = "Stofbutik";
 
 "type.shop.farm" = "Farm Food Shop";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Mobiltelefonbutik";
 
-"type.shop.money_lender" = "Butik";
+"type.shop.money_lender" = "Pengeudlåner";
 
 "type.shop.motorcycle" = "Motorcykelforhandler";
 
 "type.shop.motorcycle_repair" = "Motorcykel reparation";
 
-"type.shop.music" = "Butik";
+"type.shop.music" = "Pladebutik";
 
-"type.shop.musical_instrument" = "Butik";
+"type.shop.musical_instrument" = "Butik med musikinstrumenter";
 
 "type.shop.newsagent" = "Avis-kiosk";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotobutik";
 
+"type.shop.rental" = "Udlejningsbutik";
+
+"type.shop.rental.bicycle" = "Cykeludlejningsbutik";
+
 "type.shop.seafood" = "Fiskehandler";
 
 "type.shop.second_hand" = "Genbrugsbutik";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tatovør";
 
-"type.shop.tea" = "Butik";
+"type.shop.tea" = "Tebutik";
 
 "type.shop.ticket" = "Billetkontor";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Vildmarkshytte";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Petting Zoo";
 
 "type.traffic_calming" = "Traffic Calming";
 

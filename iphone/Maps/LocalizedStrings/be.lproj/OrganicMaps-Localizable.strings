@@ -789,6 +789,12 @@
 
 "book_button" = "Забраніраваць";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Падрабязнасці на KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Рэферальны бонус, атрыманы за кожнае браніраванне па гэтай спасылцы, ідзе на распрацоўку Organic Maps.";
+
 "placepage_call_button" = "Патэлефанаваць";
 
 "placepage_edit_bookmark_button" = "Рэдагаваць закладку";
@@ -977,8 +983,6 @@
 
 "export_file" = "Экспартаваць файл";
 
-"list_settings" = "Налады спіса";
-
 "delete_list" = "Выдаліць спіс";
 
 "hide_from_map" = "Схаваць з мапы";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Налады пракладкі маршрута";
 
-"driving_options_subheader" = "Пазбягаць на кожным маршруце";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Пазбягаць платныя дарогі";
 
-"avoid_tolls" = "Платныя дарогі";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Пазбягаць грунтавыя дарогі";
 
-"avoid_unpaved" = "Грунтовыя дарогі";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Пазбягаць паромы";
 
-"avoid_ferry" = "Паромныя пераправы";
-
-"avoid_motorways" = "Аўтамагістралі";
+"avoid_motorways" = "Пазбягаць аўтамагістралі";
 
 "unable_to_calc_alert_title" = "Не атрымалася пракласці маршрут";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Грунтовая дарога";
 
 "ferry_crossing" = "Паромная пераправа";
-
-"avoid_toll_roads_placepage" = "Пазбягаць платных дарог";
-
-"avoid_unpaved_roads_placepage" = "Пазбягаць грунтовых дарог";
-
-"avoid_ferry_crossing_placepage" = "Пазбягаць паромных перапраў";
 
 "trip_start" = "Паехалі";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будзе ператвораны ў аўтамабільны";
 
 "ok" = "Ок";
-
-"avoid_unpaved_carplay_1" = "Без грунт.";
-
-"avoid_unpaved_carplay_2" = "Пазбягаць грунтовак";
-
-"avoid_ferry_carplay_1" = "Без паромаў";
-
-"avoid_ferry_carplay_2" = "Пазбягаць паромаў";
-
-"avoid_tolls_carplay_1" = "Без платных";
-
-"avoid_tolls_carplay_2" = "Пазбягаць платных";
 
 "speedcams_alert_title_carplay_1" = "Камеры";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Community Centre";
 
+"type.amenity.compressed_air" = "Сціснутае паветра";
+
 "type.amenity.conference_centre" = "Канферэнц-цэнтр";
 
 "type.amenity.courthouse" = "Courthouse";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Падземны паркінг";
 
-"type.amenity.parking.street_side" = "Паркоўка";
+"type.amenity.parking.underground.fee" = "Платная падземная паркоўка";
 
-"type.amenity.parking.fee.street_side" = "Паркоўка";
+"type.amenity.parking.underground.private" = "Прыватны падземны паркінг";
 
-"type.amenity.parking.lane" = "Паркоўка";
+"type.amenity.parking.street_side" = "Паркоўка з боку вуліцы";
 
-"type.amenity.parking.fee.lane" = "Паркоўка";
+"type.amenity.parking.street_side.fee" = "Платная паркоўка з боку вуліцы";
+
+"type.amenity.parking.street_side.private" = "Прыватная паркоўка з боку вуліцы";
+
+"type.amenity.parking.lane" = "Завулак паркоўкі";
+
+"type.amenity.parking.lane.fee" = "Платная паркоўка";
+
+"type.amenity.parking.lane.private" = "Прыватная паркоўка";
 
 "type.amenity.parking_entrance" = "Уваход на паркоўку";
 
-"type.amenity.parking_entrance.private" = "Уваход на паркоўку";
+"type.amenity.parking_entrance.private" = "Уваход на прыватную паркоўку";
 
 "type.amenity.parking_entrance.permissive" = "Уваход на паркоўку";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Church";
 
 "type.amenity.place_of_worship.christian.mormon" = "Царква Ісуса Хрыста Святых апошніх дзён";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Зала царства Сведкаў Іегавы";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "клумба";
+
 "type.landuse.forest" = "Forest";
 
 "type.landuse.forest.coniferous" = "Coniferous Forest";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Фунікулёр";
 
 "type.railway.station.light_rail" = "Train Station";
+
+"type.railway.station.light_rail.london" = "Train Station";
+
+"type.railway.station.light_rail.porto" = "Train Station";
 
 "type.railway.station.monorail" = "Train Station";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Photo Shop";
 
+"type.shop.rental" = "Пракат";
+
+"type.shop.rental.bicycle" = "Пракат ровараў";
+
 "type.shop.seafood" = "Fishmonger";
 
 "type.shop.second_hand" = "Крама сэканд-хэнд";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Хатні заапарк";
 
 "type.traffic_calming" = "Traffic Calming";
 

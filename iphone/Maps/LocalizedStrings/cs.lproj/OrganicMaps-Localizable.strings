@@ -789,6 +789,12 @@
 
 "book_button" = "Rezervace";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Podrobnosti na KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Bonus za každou rezervaci provedenou prostřednictvím tohoto odkazu je určen na rozvoj služby Organic Maps.";
+
 "placepage_call_button" = "Volat";
 
 "placepage_edit_bookmark_button" = "Upravit záložku";
@@ -977,8 +983,6 @@
 
 "export_file" = "Exportovat soubor";
 
-"list_settings" = "Nastavení seznamu";
-
 "delete_list" = "Smazat seznam";
 
 "hide_from_map" = "Neukazovat na mapě";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Možnosti trasy";
 
-"driving_options_subheader" = "Vyhněte se na každé trase";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Vyhněte se zpoplatněným silnicím";
 
-"avoid_tolls" = "Silnice s mýtným";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Vyhnout se nezpevněným silnicím";
 
-"avoid_unpaved" = "Nezpevněná silnice";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Vyhnout se přejezdům trajektů";
 
-"avoid_ferry" = "Přejezdy trajektů";
-
-"avoid_motorways" = "Dálnice";
+"avoid_motorways" = "Vyhněte se dálnici";
 
 "unable_to_calc_alert_title" = "Nelze vypočítat trasu";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Nezpevněná silnice";
 
 "ferry_crossing" = "Přejezd trajektů";
-
-"avoid_toll_roads_placepage" = "Vyhnout se silnicím s mýtným";
-
-"avoid_unpaved_roads_placepage" = "Vyhnout se nezpevněným silnicím";
-
-"avoid_ferry_crossing_placepage" = "Vyhnout se přejezdům trajektů";
 
 "trip_start" = "Pojďme";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Trasa bude upravena k autu jedna";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Bez pr. cest";
-
-"avoid_unpaved_carplay_2" = "Vyhnout se nezp";
-
-"avoid_ferry_carplay_1" = "Bez trajektů";
-
-"avoid_ferry_carplay_2" = "Vyh. se traj.";
-
-"avoid_tolls_carplay_1" = "Bez pl.sil.";
-
-"avoid_tolls_carplay_2" = "Vyh. se pl. sil";
 
 "speedcams_alert_title_carplay_1" = "Rych. kam.";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Kulturní centrum";
 
+"type.amenity.compressed_air" = "Stlačený vzduch";
+
 "type.amenity.conference_centre" = "Konferenční centrum";
 
 "type.amenity.courthouse" = "Soud";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Podzemní parkoviště";
 
-"type.amenity.parking.street_side" = "Parkoviště";
+"type.amenity.parking.underground.fee" = "Placené podzemní parkoviště";
 
-"type.amenity.parking.fee.street_side" = "Parkoviště";
+"type.amenity.parking.underground.private" = "Soukromé podzemní parkoviště";
 
-"type.amenity.parking.lane" = "Parkoviště";
+"type.amenity.parking.street_side" = "Parkování na straně ulice";
 
-"type.amenity.parking.fee.lane" = "Parkoviště";
+"type.amenity.parking.street_side.fee" = "Placené parkování na ulici";
+
+"type.amenity.parking.street_side.private" = "Soukromé parkování na ulici";
+
+"type.amenity.parking.lane" = "Parkovací pruh";
+
+"type.amenity.parking.lane.fee" = "Placené parkování v pruzích";
+
+"type.amenity.parking.lane.private" = "Soukromý parkovací pruh";
 
 "type.amenity.parking_entrance" = "Vjezd na parkoviště";
 
-"type.amenity.parking_entrance.private" = "Vjezd na parkoviště";
+"type.amenity.parking_entrance.private" = "Soukromý vchod na parkoviště";
 
 "type.amenity.parking_entrance.permissive" = "Vjezd na parkoviště";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Chrám";
 
 "type.amenity.place_of_worship.christian.mormon" = "Církev Ježíše Krista Svatých posledních dnů";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Sál Království Jehovových svědků";
 
 "type.amenity.place_of_worship.hindu" = "Chrám";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Záhon";
+
 "type.landuse.forest" = "Les";
 
 "type.landuse.forest.coniferous" = "Les";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Lanovka";
 
 "type.railway.station.light_rail" = "Železniční stanice";
+
+"type.railway.station.light_rail.london" = "Železniční stanice";
+
+"type.railway.station.light_rail.porto" = "Železniční stanice";
 
 "type.railway.station.monorail" = "Železniční stanice";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Drogerie";
 
-"type.shop.chocolate" = "Obchod";
+"type.shop.chocolate" = "Obchod s čokoládou";
 
 "type.shop.clothes" = "Oblečení";
 
-"type.shop.coffee" = "Obchod";
+"type.shop.coffee" = "Obchod s kávou";
 
 "type.shop.computer" = "Obchod s počítači";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Obchod s erotickými pomůckami";
 
-"type.shop.fabric" = "Obchod";
+"type.shop.fabric" = "Obchod s látkami";
 
 "type.shop.farm" = "Prodejna farmářských potravin";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Mobily";
 
-"type.shop.money_lender" = "Obchod";
+"type.shop.money_lender" = "Půjčovatel peněz";
 
 "type.shop.motorcycle" = "Prodejna motocyklů";
 
 "type.shop.motorcycle_repair" = "Opravy motocyklů";
 
-"type.shop.music" = "Obchod";
+"type.shop.music" = "Obchod s hudebninami";
 
-"type.shop.musical_instrument" = "Obchod";
+"type.shop.musical_instrument" = "Obchod s hudebními nástroji";
 
 "type.shop.newsagent" = "Novinový stánek";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotografický obchod";
 
+"type.shop.rental" = "Půjčovna";
+
+"type.shop.rental.bicycle" = "Půjčovna kol";
+
 "type.shop.seafood" = "Prodej ryb";
 
 "type.shop.second_hand" = "Obchod z druhé ruky";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tetovací salon";
 
-"type.shop.tea" = "Obchod";
+"type.shop.tea" = "Obchod s čajem";
 
 "type.shop.ticket" = "Prodej vstupenek";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Chata v divočině";
 
 "type.tourism.zoo" = "zoologická zahrada";
+
+"type.tourism.zoo.petting" = "ZOO pro domácí mazlíčky";
 
 "type.traffic_calming" = "Traffic Calming";
 

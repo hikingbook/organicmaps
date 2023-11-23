@@ -1,6 +1,7 @@
 package app.organicmaps.location;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import java.lang.annotation.Retention;
@@ -12,9 +13,15 @@ public final class LocationState
 
   public interface ModeChangeListener
   {
+    // Used by JNI.
+    @Keep
+    @SuppressWarnings("unused")
     void onMyPositionModeChanged(int newMode);
   }
 
+  // Used by JNI.
+  @Keep
+  @SuppressWarnings("unused")
   public interface PendingTimeoutListener
   {
     void onLocationPendingTimeout();
@@ -37,7 +44,7 @@ public final class LocationState
   //private static final int ERROR_NOT_SUPPORTED = 1;
   public static final int ERROR_DENIED = 2;
   public static final int ERROR_GPS_OFF = 3;
-  public static final int ERROR_TIMEOUT = 4; // Unused on Android (only used on Qt)
+  //public static final int ERROR_TIMEOUT = 4; // Unused on Android (only used on Qt)
 
   public static native void nativeSwitchToNextMode();
   @Value
@@ -69,6 +76,7 @@ public final class LocationState
     return (mode > NOT_FOLLOW_NO_POSITION);
   }
 
+  @SuppressWarnings("unused")
   static String nameOf(@Value int mode)
   {
     switch (mode)

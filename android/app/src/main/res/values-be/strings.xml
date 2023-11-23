@@ -49,7 +49,8 @@
 	<string name="about_proposition_3">• Хуткія, мінімалістычныя, без смецця</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Праграма з адкрытым зыходным кодам, створаная энтузіястамі і валанцёрамі.</string>
-	<string name="connection_settings">Налады падключэння</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Налады месцазнаходжання</string>
 	<string name="close">Закрыць</string>
 	<string name="unsupported_phone">Для працы праграмы неабходны апаратна паскораны OpenGL. Нажаль, ваша прылада не падтрымліваецца.</string>
 	<string name="download">Спампаваць</string>
@@ -511,6 +512,10 @@
 	<string name="hour">г</string>
 	<string name="minute">хв</string>
 	<string name="placepage_more_button">Яшчэ</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Падрабязнасці на KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Рэферальны бонус, атрыманы за кожнае браніраванне па гэтай спасылцы, ідзе на распрацоўку Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Рэдагаваць закладку</string>
 	<string name="editor_comment_hint">Каментарый…</string>
 	<string name="editor_reset_edits_message">Адмовіцца ад усіх лакальных змен?</string>
@@ -532,8 +537,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Упэўніцеся, што вы не ўвялі ніякіх асабістых даных.</string>
 	<string name="editor_share_to_all_dialog_message_2">Рэдактары OpenStreetMap правераць змены і звяжуцца з вамі, калі ў іх узнікнуць пытанні.</string>
 	<string name="navigation_stop_button">спыніць</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps — гэта хуткія і бясплатныя мапы без рэкламы, якія працуюць без інтэрнэту і не шпіёняць за вамі. Усе картаграфічныя даныя бяруцца з OpenStreetMap.org, там вы зможаце самастойна выпраўляць памылкі і дадаваць новыя аб\'екты. Organic Maps — гэта праект з адкрытым зыходным кодам, які ствараецца энтузіястамі ў вольны час. Будзем рады вашай падтрымцы і зваротнай сувязі!</string>
 	<!-- For the first routing -->
 	<string name="accept">Прыняць</string>
 	<!-- For the first routing -->
@@ -589,7 +592,6 @@
 	<string name="please_wait">Пачакайце…</string>
 	<string name="phone_number">Нумар тэлефона</string>
 	<string name="profile">Профіль OpenStreetMap</string>
-	<string name="common_check_internet_connection_dialog_title">Няма падключэння да інтэрнэту</string>
 	<plurals name="objects">
 	  <item quantity="few">%d аб\'екты</item>
 	  <item quantity="one">%d аб\'ект</item>
@@ -617,7 +619,6 @@
 	<string name="bookmarks_empty_list_message">Каб дадаць закладку, націсніце на месца на мапе і потым на іконку з зорачкай</string>
 	<string name="category_desc_more">…яшчэ</string>
 	<string name="export_file">Экспартаваць файл</string>
-	<string name="list_settings">Налады спіса</string>
 	<string name="delete_list">Выдаліць спіс</string>
 	<string name="public_access">Публічны доступ</string>
 	<string name="limited_access">Абмежаваны доступ</string>
@@ -639,11 +640,13 @@
 	<string name="enable_logging_warning_message">Опцыя ўключае запіс журнала падзей для мэтаў дыягностыкі. Гэта можа дапамагчы нашай камандзе вырашаць праблемы з праграмай. Уключайце гэтую опцыю часова, каб запісаць і паслаць нам дэталёвую інфармацыю, пра знойденую вамі праблему.</string>
 	<string name="access_rules_author_only">Рэдагаванне анлайн</string>
 	<string name="driving_options_title">Налады пракладкі маршрута</string>
-	<string name="driving_options_subheader">Пазбягаць на кожным маршруце</string>
-	<string name="avoid_tolls">Платныя дарогі</string>
-	<string name="avoid_unpaved">Грунтовыя дарогі</string>
-	<string name="avoid_ferry">Паромныя пераправы</string>
-	<string name="avoid_motorways">Аўтамагістралі</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Пазбягаць платныя дарогі</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Пазбягаць грунтавыя дарогі</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Пазбягаць паромы</string>
+	<string name="avoid_motorways">Пазбягаць аўтамагістралі</string>
 	<string name="unable_to_calc_alert_title">Не атрымалася пракласці маршрут</string>
 	<string name="unable_to_calc_alert_subtitle">Нажаль, мы не змаглі пракласці маршрут, магчыма з-за абраных вамі налад. Змяніце налады і паспрабуйце зноў.</string>
 	<string name="define_to_avoid_btn">Задаць дарогі, якіх пазбягаць</string>
@@ -651,9 +654,6 @@
 	<string name="toll_road">Платная дарога</string>
 	<string name="unpaved_road">Грунтовая дарога</string>
 	<string name="ferry_crossing">Паромная пераправа</string>
-	<string name="avoid_toll_roads_placepage">Пазбягаць платных дарог</string>
-	<string name="avoid_unpaved_roads_placepage">Пазбягаць грунтовых дарог</string>
-	<string name="avoid_ferry_crossing_placepage">Пазбягаць паромных перапраў</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Так</string>
 	<!-- A generic "No" button in dialogs -->
@@ -662,6 +662,7 @@
 	<string name="yes_available">Ёсць</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Няма</string>
+	<string name="trip_finished">Вы прыбылі!</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сартаваць…</string>
@@ -719,9 +720,9 @@
 	<string name="connection_failure">Памылка падлучэння</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Адлучыце USB кабель</string>
-	<string name="enable_screen_sleep">Дазволіць экрану засынаць</string>
+	<string name="enable_keep_screen_on">Трымаць экран уключаным</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Дазваляе экрану засынаць пасля перыяда бездзеяння.</string>
+	<string name="enable_keep_screen_on_description">Калі ўключана, экран заўсёды будзе ўключаны падчас адлюстравання карты.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Паказваць на экране блакіроўкі</string>
 	<!-- Description in preferences -->
@@ -734,6 +735,22 @@
 	<string name="translated_om_site_url">https://organicmaps.app/ru/</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Дзякуй за выкарыстанне нашых карт, створаных супольнасцю!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Вы выкарыстоўваеце Organic Maps на экране тэлефона</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Вы выкарыстоўваеце Organic Maps на экране аўтамабіля</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Вы падключаны да Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Працягнуць на тэлефоне</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">На экран аўто</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Гэтаму прылажэнню патрабуецца доступ да вашага месцазнаходжання для навігацыі.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Дазволiць</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Падключаны да аўтамабіля</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адрас/Блок</string>
@@ -746,6 +763,7 @@
 	<string name="type.amenity.charging_station.bicycle">Станцыя для зарадкі ровараў</string>
 	<string name="type.amenity.charging_station.motorcar">Аўтамабільная зарадная станцыя</string>
 	<string name="type.leisure.bowling_alley">Боўлінг</string>
+	<string name="type.amenity.compressed_air">Сціснутае паветра</string>
 	<string name="type.amenity.conference_centre">Канферэнц-цэнтр</string>
 	<string name="type.amenity.driving_school">Аўташкола</string>
 	<string name="type.amenity.exhibition_centre">Выставачны цэнтр</string>
@@ -767,15 +785,20 @@
 	<string name="type.amenity.parking.permissive">Прыватная паркоўка</string>
 	<string name="type.amenity.parking.private">Прыватная паркоўка</string>
 	<string name="type.amenity.parking.underground">Падземны паркінг</string>
-	<string name="type.amenity.parking.street_side">Паркоўка</string>
-	<string name="type.amenity.parking.fee.street_side">Паркоўка</string>
-	<string name="type.amenity.parking.lane">Паркоўка</string>
-	<string name="type.amenity.parking.fee.lane">Паркоўка</string>
+	<string name="type.amenity.parking.underground.fee">Платная падземная паркоўка</string>
+	<string name="type.amenity.parking.underground.private">Прыватны падземны паркінг</string>
+	<string name="type.amenity.parking.street_side">Паркоўка з боку вуліцы</string>
+	<string name="type.amenity.parking.street_side.fee">Платная паркоўка з боку вуліцы</string>
+	<string name="type.amenity.parking.street_side.private">Прыватная паркоўка з боку вуліцы</string>
+	<string name="type.amenity.parking.lane">Завулак паркоўкі</string>
+	<string name="type.amenity.parking.lane.fee">Платная паркоўка</string>
+	<string name="type.amenity.parking.lane.private">Прыватная паркоўка</string>
 	<string name="type.amenity.parking_entrance">Уваход на паркоўку</string>
-	<string name="type.amenity.parking_entrance.private">Уваход на паркоўку</string>
+	<string name="type.amenity.parking_entrance.private">Уваход на прыватную паркоўку</string>
 	<string name="type.amenity.parking_entrance.permissive">Уваход на паркоўку</string>
 	<string name="type.amenity.parking_space.disabled">Паркоўка для інвалідаў</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Царква Ісуса Хрыста Святых апошніх дзён</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Зала царства Сведкаў Іегавы</string>
 	<string name="type.amenity.post_box">Паштовая скрыня</string>
 
 	<!-- SECTION: Types: Recycling -->
@@ -1019,6 +1042,7 @@
 	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
 	<string name="type.landuse.cemetery.christian">Хрысціянскія могілкі</string>
 	<string name="type.landuse.education">Адукацыйныя ўстановы</string>
+	<string name="type.landuse.flowerbed">клумба</string>
 	<string name="type.leisure.dance">Танцавальная зала</string>
 	<string name="type.leisure.garden.residential">Частный сад</string>
 	<string name="type.leisure.marina">Прычал</string>
@@ -1177,6 +1201,8 @@
 	<string name="type.shop.outpost">Пункт самавывазу</string>
 	<string name="type.shop.pastry">Кандытарскія вырабы</string>
 	<string name="type.shop.pet_grooming">Грумінг</string>
+	<string name="type.shop.rental">Пракат</string>
+	<string name="type.shop.rental.bicycle">Пракат ровараў</string>
 	<string name="type.shop.second_hand">Крама сэканд-хэнд</string>
 	<string name="type.shop.tea">Крама гарбаты</string>
 	<string name="type.shop.agrarian">Сельскагаспадарчы магазін</string>
@@ -1247,6 +1273,7 @@
 	<string name="type.tourism.information.map">Карта</string>
 	<string name="type.tourism.information.office">Турыстычны офіс</string>
 	<string name="type.tourism.information.visitor_centre">Цэнтр для наведвальнікаў</string>
+	<string name="type.tourism.zoo.petting">Хатні заапарк</string>
 	<string name="type.waterway.fish_pass">Рыбаход</string>
 	<string name="type.natural.water.ditch">Дрэнажная канава</string>
 	<string name="type.waterway.ditch.tunnel">Водопропускная труба</string>

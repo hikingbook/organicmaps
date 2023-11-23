@@ -789,6 +789,12 @@
 
 "book_button" = "Резервиране";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Подробности в KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Полученият бонус за всяка резервация чрез тази връзка отива за развитието на Organic Maps.";
+
 "placepage_call_button" = "Обаждане";
 
 "placepage_edit_bookmark_button" = "Редакция на отметка";
@@ -977,8 +983,6 @@
 
 "export_file" = "Експортиране на файл";
 
-"list_settings" = "Настройки на списък";
-
 "delete_list" = "Изтриване на списък";
 
 "hide_from_map" = "Hide from map";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Опции за маршрутизация";
 
-"driving_options_subheader" = "Избягване при всеки маршрут";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Избягвайте платените пътища";
 
-"avoid_tolls" = "Платени пътища";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Избягвайте неасфалтирани пътища";
 
-"avoid_unpaved" = "Неасфалтирани пътища";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Избягване на преходи с ферибот";
 
-"avoid_ferry" = "Преходи с ферибот";
-
-"avoid_motorways" = "Магистрали";
+"avoid_motorways" = "Избягвайте магистралата";
 
 "unable_to_calc_alert_title" = "Не е възможнос изчисляване на маршрут";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Unpaved road";
 
 "ferry_crossing" = "Ferry crossing";
-
-"avoid_toll_roads_placepage" = "Избягване на платени пътища";
-
-"avoid_unpaved_roads_placepage" = "Избягвайте неасфалтирани пътища";
-
-"avoid_ferry_crossing_placepage" = "Избягване на преходи с ферибот";
 
 "trip_start" = "Let's go";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "The route will be converted into an automobile one";
 
 "ok" = "Ок";
-
-"avoid_unpaved_carplay_1" = "No dirt road";
-
-"avoid_unpaved_carplay_2" = "Avoid unpaved";
-
-"avoid_ferry_carplay_1" = "No ferries";
-
-"avoid_ferry_carplay_2" = "Avoid ferries";
-
-"avoid_tolls_carplay_1" = "No toll road";
-
-"avoid_tolls_carplay_2" = "Avoid toll road";
 
 "speedcams_alert_title_carplay_1" = "Speedсams";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Community Centre";
 
+"type.amenity.compressed_air" = "Сгъстен въздух";
+
 "type.amenity.conference_centre" = "Конферентен център";
 
 "type.amenity.courthouse" = "Courthouse";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Подземен паркинг";
 
-"type.amenity.parking.street_side" = "Паркинг";
+"type.amenity.parking.underground.fee" = "Платен подземен паркинг";
 
-"type.amenity.parking.fee.street_side" = "Паркинг";
+"type.amenity.parking.underground.private" = "Частен подземен паркинг";
 
-"type.amenity.parking.lane" = "Паркинг";
+"type.amenity.parking.street_side" = "Паркинг от страната на улицата";
 
-"type.amenity.parking.fee.lane" = "Паркинг";
+"type.amenity.parking.street_side.fee" = "Платен паркинг от страната на улицата";
+
+"type.amenity.parking.street_side.private" = "Частна улица страничен паркинг";
+
+"type.amenity.parking.lane" = "Паркинг на платното";
+
+"type.amenity.parking.lane.fee" = "Платен паркинг";
+
+"type.amenity.parking.lane.private" = "Частна лента за паркиране";
 
 "type.amenity.parking_entrance" = "Вход за паркинг";
 
-"type.amenity.parking_entrance.private" = "Вход за паркинг";
+"type.amenity.parking_entrance.private" = "Частен вход за паркинг";
 
 "type.amenity.parking_entrance.permissive" = "Вход за паркинг";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Church";
 
 "type.amenity.place_of_worship.christian.mormon" = "Църквата на Исус Христос на светиите от последните дни";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Зала на царството на Свидетелите на Йехова";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Цветна леха";
+
 "type.landuse.forest" = "Forest";
 
 "type.landuse.forest.coniferous" = "Coniferous Forest";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Фуникуляр";
 
 "type.railway.station.light_rail" = "Train Station";
+
+"type.railway.station.light_rail.london" = "Train Station";
+
+"type.railway.station.light_rail.porto" = "Train Station";
 
 "type.railway.station.monorail" = "Train Station";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Photo Shop";
 
+"type.shop.rental" = "Магазин под наем";
+
+"type.shop.rental.bicycle" = "Магазин за велосипеди под наем";
+
 "type.shop.seafood" = "Fishmonger";
 
 "type.shop.second_hand" = "Магазин втора употреба";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Зоопарк за домашни любимци";
 
 "type.traffic_calming" = "Traffic Calming";
 

@@ -49,7 +49,8 @@
 	<string name="about_proposition_3">• Быстрые, минималистичные, без мусора</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Приложение с открытым исходным кодом, созданное энтузиастами и волонтерами.</string>
-	<string name="connection_settings">Настройки подключения</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Настройки местоположения</string>
 	<string name="close">Закрыть</string>
 	<string name="unsupported_phone">Для работы приложения необходим аппаратно ускоренный OpenGL. К сожалению, ваше устройство не поддерживается.</string>
 	<string name="download">Загрузить</string>
@@ -516,6 +517,10 @@
 	<string name="hour">ч</string>
 	<string name="minute">мин</string>
 	<string name="placepage_more_button">Ещё</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Подробнее на KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Реферальный бонус, полученный за каждое бронирование по этой ссылке, идёт на разработку Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Редактировать метку</string>
 	<string name="editor_comment_hint">Коментарий…</string>
 	<string name="editor_reset_edits_message">Сбросить все локальные правки?</string>
@@ -541,8 +546,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Убедитесь, что вы не ввели личные данные.</string>
 	<string name="editor_share_to_all_dialog_message_2">Редакторы OpenStreetMap проверят изменения и свяжутся с вами, если у них возникнут вопросы.</string>
 	<string name="navigation_stop_button">стоп</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps — быстрые и бесплатные карты, которые работают без Интернета. Все картографические данные берутся из OpenStreetMap.org, там можно самостоятельно исправлять ошибки и добавлять новые объекты. В Organic Maps нет рекламы и сбора персональных данных. Это проект с открытым исходным кодом, создаваемый энтузиастами в свободное время. Будем рады вашей поддержке и обратной связи!</string>
 	<!-- For the first routing -->
 	<string name="accept">Принять</string>
 	<!-- For the first routing -->
@@ -603,7 +606,6 @@
 	  <item quantity="one">%d файл был найден. Вы увидите его после конвертации.</item>
 	  <item quantity="other">%d файлов было найдено. Вы увидите их после конвертации.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Нет интернет соединения</string>
 	<plurals name="objects">
 	  <item quantity="few">%d объекта</item>
 	  <item quantity="one">%d объект</item>
@@ -631,7 +633,6 @@
 	<string name="bookmarks_empty_list_message">Чтобы добавить метку, нажмите на место на карте, а затем на иконку звёздочки</string>
 	<string name="category_desc_more">…еще</string>
 	<string name="export_file">Экспортировать файл</string>
-	<string name="list_settings">Настройки списка</string>
 	<string name="delete_list">Удалить список</string>
 	<string name="public_access">Публичный доступ</string>
 	<string name="limited_access">Ограниченный доступ</string>
@@ -653,11 +654,13 @@
 	<string name="enable_logging_warning_message">Данная настройка включается для записи действий в целях диагностики, чтобы помочь нашей команде выявить проблемы с приложением. Временно включайте эту настройку только для отправки детальной информации о найденной вами проблеме в приложении.</string>
 	<string name="access_rules_author_only">Редактируется онлайн</string>
 	<string name="driving_options_title">Настройки объезда</string>
-	<string name="driving_options_subheader">Избегать в каждом маршруте</string>
-	<string name="avoid_tolls">Платные дороги</string>
-	<string name="avoid_unpaved">Грунтовые дороги</string>
-	<string name="avoid_ferry">Паромные переправы</string>
-	<string name="avoid_motorways">Магистрали</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Избегать платных дорог</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Избегать грунтовые дороги</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Избегать паромы</string>
+	<string name="avoid_motorways">Избегать автомагистрали</string>
 	<string name="unable_to_calc_alert_title">Невозможно построить маршрут</string>
 	<string name="unable_to_calc_alert_subtitle">К сожалению, мы не смогли построить маршрут с выбранными опциями. Измените настройки и повторите попытку</string>
 	<string name="define_to_avoid_btn">Настроить пути объезда</string>
@@ -665,9 +668,6 @@
 	<string name="toll_road">Платная дорога</string>
 	<string name="unpaved_road">Грунтовая дорога</string>
 	<string name="ferry_crossing">Паромная переправа</string>
-	<string name="avoid_toll_roads_placepage">Избегать платных дорог</string>
-	<string name="avoid_unpaved_roads_placepage">Избегать грунтовых дорог</string>
-	<string name="avoid_ferry_crossing_placepage">Избегать паромных переправ</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Да</string>
 	<!-- A generic "No" button in dialogs -->
@@ -676,6 +676,7 @@
 	<string name="yes_available">Есть</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Нет</string>
+	<string name="trip_finished">Вы прибыли!</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сортировать…</string>
@@ -737,9 +738,9 @@
 	<string name="connection_failure">Ошибка подключения</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">Отсоедините USB кабель</string>
-	<string name="enable_screen_sleep">Разрешить экрану спать</string>
+	<string name="enable_keep_screen_on">Держи экран включенным</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">При включении экран может переходить в спящий режим после периода бездействия.</string>
+	<string name="enable_keep_screen_on_description">Если эта функция включена, то при отображении карты экран будет всегда включен.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Показывать на экране блокировки</string>
 	<!-- Description in preferences -->
@@ -754,6 +755,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/RU:О_проекте</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Спасибо, что пользуетесь нашими картами, созданными сообществом!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Сейчас Вы используете Organic Maps на экране телефона</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Сейчас Вы используете Organic Maps на экране автомобиля</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Вы подключены к Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Продолжить в телефоне</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Продолжить в авто</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Этому приложению необходим доступ к вашему местоположению для навигации.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Разрешить</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Подключено к автомобилю</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адрес/Блок</string>
@@ -806,6 +823,7 @@
 	<string name="type.amenity.clinic">Поликлиника</string>
 	<string name="type.amenity.college">Колледж</string>
 	<string name="type.amenity.community_centre">Культурно-досуговый центр</string>
+	<string name="type.amenity.compressed_air">Сжатый воздух</string>
 	<string name="type.amenity.conference_centre">Конференц-центр</string>
 	<string name="type.amenity.courthouse">Суд</string>
 	<string name="type.amenity.dentist">Стоматология</string>
@@ -846,12 +864,16 @@
 	<string name="type.amenity.parking.private">Частная парковка</string>
 	<string name="type.amenity.parking.park_and_ride">Парковка</string>
 	<string name="type.amenity.parking.underground">Подземный паркинг</string>
-	<string name="type.amenity.parking.street_side">Парковка</string>
-	<string name="type.amenity.parking.fee.street_side">Парковка</string>
-	<string name="type.amenity.parking.lane">Парковка</string>
-	<string name="type.amenity.parking.fee.lane">Парковка</string>
+	<string name="type.amenity.parking.underground.fee">Платная подземная парковка</string>
+	<string name="type.amenity.parking.underground.private">Частная подземная парковка</string>
+	<string name="type.amenity.parking.street_side">Придорожная парковка</string>
+	<string name="type.amenity.parking.street_side.fee">Платная придорожная парковка</string>
+	<string name="type.amenity.parking.street_side.private">Частная придорожная парковка</string>
+	<string name="type.amenity.parking.lane">Парковочная полоса</string>
+	<string name="type.amenity.parking.lane.fee">Платная парковочная полоса</string>
+	<string name="type.amenity.parking.lane.private">Частная парковочная полоса</string>
 	<string name="type.amenity.parking_entrance">Въезд на парковку</string>
-	<string name="type.amenity.parking_entrance.private">Въезд на парковку</string>
+	<string name="type.amenity.parking_entrance.private">Въезд на частную парковку</string>
 	<string name="type.amenity.parking_entrance.permissive">Въезд на парковку</string>
 	<string name="type.amenity.parking_space">Парковочное место</string>
 	<string name="type.amenity.parking_space.permissive">Парковочное место</string>
@@ -864,6 +886,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Храм</string>
 	<string name="type.amenity.place_of_worship.christian">Церковь</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Церковь Иисуса Христа Святых последних дней</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Зала Царства Свидетелей Иеговы</string>
 	<string name="type.amenity.place_of_worship.hindu">Храм</string>
 	<string name="type.amenity.place_of_worship.jewish">Синагога</string>
 	<string name="type.amenity.place_of_worship.muslim">Мечеть</string>
@@ -1368,6 +1391,7 @@
 	<string name="type.landuse.farmland">Сельскохозяйственная земля</string>
 	<string name="type.landuse.farmyard">Сельскохозяйственная земля</string>
 	<string name="type.landuse.field">Поле</string>
+	<string name="type.landuse.flowerbed">Клумба</string>
 	<string name="type.landuse.forest">Лес</string>
 	<string name="type.landuse.forest.coniferous">Хвойный лес</string>
 	<string name="type.landuse.forest.deciduous">Лиственный лес</string>
@@ -1614,6 +1638,8 @@
 	<string name="type.railway.station">Ж/д станция</string>
 	<string name="type.railway.station.funicular">Фуникулер</string>
 	<string name="type.railway.station.light_rail">Ж/д станция</string>
+	<string name="type.railway.station.light_rail.london">Ж/д станция</string>
+	<string name="type.railway.station.light_rail.porto">Ж/д станция</string>
 	<string name="type.railway.station.monorail">Ж/д станция</string>
 	<string name="type.railway.station.subway">Метро</string>
 	<string name="type.railway.station.subway.adana">Метро</string>
@@ -1879,7 +1905,7 @@
 	<string name="type.shop.dry_cleaning">Химчистка</string>
 	<string name="type.shop.electronics">Электротехника</string>
 	<string name="type.shop.erotic">Секс-шоп</string>
-	<string name="type.shop.fabric">Магазин</string>
+	<string name="type.shop.fabric">Магазин тканей</string>
 	<string name="type.shop.farm">Фермерский магазин</string>
 	<string name="type.shop.fashion_accessories">Модные аксессуары</string>
 	<string name="type.shop.florist">Цветочный магазин</string>
@@ -1917,6 +1943,8 @@
 	<string name="type.shop.pet">Зоотовары</string>
 	<string name="type.shop.pet_grooming">Груминг</string>
 	<string name="type.shop.photo">Фототовары</string>
+	<string name="type.shop.rental">Прокат</string>
+	<string name="type.shop.rental.bicycle">Прокат велосипедов</string>
 	<string name="type.shop.seafood">Рыбный магазин</string>
 	<string name="type.shop.second_hand">Секонд-хенд магазин</string>
 	<string name="type.shop.shoes">Магазин обуви</string>
@@ -2028,6 +2056,7 @@
 	<string name="type.tourism.viewpoint">Обзорная площадка</string>
 	<string name="type.tourism.wilderness_hut">Хижина в лесу</string>
 	<string name="type.tourism.zoo">Зоопарк</string>
+	<string name="type.tourism.zoo.petting">Контактный зоопарк</string>
 	<string name="type.traffic_calming">Лежачий полицейский</string>
 	<string name="type.traffic_calming.bump">Лежачий полицейский</string>
 	<string name="type.traffic_calming.hump">Лежачий полицейский</string>

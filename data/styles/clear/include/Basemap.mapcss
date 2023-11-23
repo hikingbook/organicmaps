@@ -98,7 +98,6 @@ area|z12-[natural=grassland],
 area|z12-[leisure=golf_course],
 area|z12-[natural=heath],
 area|z12-[landuse=allotments],
-area|z14-[natural=scrub],
 area|z12-[natural=bare_rock],
 area|z12-[landuse=orchard],
 area|z12-[landuse=vineyard],
@@ -106,8 +105,9 @@ area|z12-[landuse=meadow],
 area|z12-[landuse=recreation_ground],
 area|z12-[landuse=village_green],
 area|z12-[landuse=field],
+area|z12-[natural=scrub],
+area|z16-[landuse=flowerbed],
 {fill-opacity: 1;}
-
 
 area|z10-12[leisure=park],
 {fill-color: @green0;}
@@ -118,6 +118,8 @@ area|z14-15[natural=scrub],
 {fill-color: @green2;}
 area|z16-[natural=scrub],
 {fill-color: @green3;}
+area|z16-[landuse=flowerbed],
+{fill-color: @flowers;}
 
 area|z14-15[landuse=grass],
 {fill-color: @green0;}
@@ -161,6 +163,7 @@ area|z12-13[landuse=meadow],
 area|z12-13[landuse=recreation_ground],
 area|z12-13[landuse=village_green],
 area|z12-13[landuse=field],
+area|z12-13[natural=scrub],
 {fill-color: @green0;}
 
 /* Next types are hardcoded to have a hatching-style fill, see drape_frontend/stylist.cpp */
@@ -174,6 +177,9 @@ area|z10-[landuse=military][military=danger_area],
 
 area|z12-[landuse=military]
 {fill-opacity: 0.5; fill-color: @military;}
+
+area|z12-[amenity=prison]
+{fill-opacity: 0.5; fill-color: @prison;}
 /* End of hardcoded */
 
 area|z12-[natural=bare_rock],
@@ -199,7 +205,7 @@ area|z0-[natural=desert],
 
 /* 6.WATER */
 
-area|z0-[natural=water][!tunnel],
+area|z0-[natural=water],
 area|z0-[waterway=dock],
 area|z0-[waterway=riverbank],
 area|z0-[landuse=salt_pond],
@@ -315,12 +321,13 @@ area|z14-[amenity=doctors],
 area|z14-[healthcare=laboratory],
 area|z14-[highway=pedestrian][area?],
 area|z14-[area:highway=pedestrian],
-area|z14-[highway=footway][area?][!sac_scale],
+area|z14-[highway=footway][area?],
 area|z14-[area:highway=footway],
 area|z14-[area:highway=living_street],
 area|z14-[amenity=grave_yard],
 area|z14-[landuse=cemetery],
 area|z14-[amenity=university],
+area|z15-[landuse=garages],
 area|z15-[landuse=industrial],
 area|z15-[landuse=construction],
 area|z15-[landuse=churchyard],
@@ -349,7 +356,8 @@ area|z15-[landuse=industrial],
 area|z15-[landuse=construction],
 area|z15-[landuse=landfill],
 area|z15-[landuse=railway],
-area|z15-[landuse=quarry]
+area|z15-[landuse=quarry],
+area|z15-[landuse=garages],
 {fill-color: @industrial;}
 
 /* 7.2 Hospital */
@@ -393,7 +401,7 @@ area|z16-[landuse=cemetery]
 
 area|z14-[highway=pedestrian][area?],
 area|z14-[area:highway=pedestrian],
-area|z14-[highway=footway][area?][!sac_scale],
+area|z14-[highway=footway][area?],
 area|z14-[area:highway=footway],
 area|z14-[area:highway=living_street],
 area|z16-[public_transport=platform],
@@ -403,7 +411,7 @@ area|z16-[amenity=place_of_worship]
 
 area|z16-[highway=pedestrian][area?],
 area|z16-[area:highway=pedestrian],
-area|z16-[highway=footway][area?][!sac_scale],
+area|z16-[highway=footway][area?],
 area|z16-[area:highway=footway],
 area|z16-[area:highway=living_street],
 {fill-color: @pedestrian_area_light;}
@@ -437,9 +445,10 @@ area|z15-[landuse=churchyard]
 
 /* 7.8 Agricultural */
 area|z10-[landuse=farmland],
-area|z10-[landuse=farmyard],
 {fill-color: @farmland; fill-opacity: 1;}
 
+area|z10-[landuse=farmyard],
+{fill-color: @farmyard; fill-opacity: 1;}
 /* Parking */
 
 area|z15-[amenity=parking],
@@ -520,26 +529,22 @@ line|z19-[man_made=cutline],
 
 area|z14[building],
 area|z14[waterway=dam],
-area|z14[landuse=garages],
 {fill-color: @building;fill-opacity: 0.5;}
 
 area|z15[building],
 area|z15[waterway=dam],
-area|z15[landuse=garages],
 {fill-color: @building;fill-opacity: 0.6;}
 
 area|z14-15[aeroway=terminal],
 area|z16[building],
 area|z16[building:part],
 area|z16[waterway=dam],
-area|z16[landuse=garages],
 {fill-color: @building;fill-opacity: 0.8;casing-width: 1;casing-color: @building_border;}
 
 area|z16-[aeroway=terminal],
 area|z17-[building],
 area|z17-[building:part],
 area|z17-[waterway=dam],
-area|z17-[landuse=garages],
 {fill-color: @building_dark;casing-width: 1;casing-color: @building_dark_border;}
 
 

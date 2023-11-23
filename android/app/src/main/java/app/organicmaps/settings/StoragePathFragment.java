@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 
 import app.organicmaps.Framework;
 import app.organicmaps.R;
-import app.organicmaps.base.OnBackPressListener;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.StorageUtils;
 import app.organicmaps.util.Utils;
@@ -26,7 +25,6 @@ import java.io.File;
 import java.util.List;
 
 public class StoragePathFragment extends BaseSettingsFragment
-    implements OnBackPressListener
 {
   private TextView mHeader;
 
@@ -106,7 +104,7 @@ public class StoragePathFragment extends BaseSettingsFragment
   @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3629
   private Dialog showProgressDialog()
   {
-    final ProgressDialog dialog = new ProgressDialog(requireActivity(), R.style.MwmTheme_AlertDialog);
+    final ProgressDialog dialog = new ProgressDialog(requireActivity(), R.style.MwmTheme_ProgressDialog);
     dialog.setMessage(getString(R.string.wait_several_minutes));
     dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     dialog.setIndeterminate(true);

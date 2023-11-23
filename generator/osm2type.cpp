@@ -154,9 +154,12 @@ public:
   struct Rule
   {
     char const * m_key;
+    // Wildcard values:
     // * - take any values
     // ! - take only negative values
     // ~ - take only positive values
+    // Note that the matching logic here is different from the one used in classificator matching,
+    // see ParseMapCSS() and Matches() in generator/utils.cpp.
     char const * m_value;
     function<Function> m_func;
   };
@@ -312,17 +315,46 @@ private:
   buffer_vector<uint32_t, static_cast<size_t>(Type::Count)> m_types;
 };
 
+// If first 2 (1 for short types like "building") components of pre-matched types are the same,
+// then leave only the longest types (there could be a few of them). Equal arity types are kept.
+// - highway-primary-bridge is left while highway-primary is removed;
+// - building-garages is left while building is removed;
+// - amenity-parking-underground-fee is left while amenity-parking and amenity-parking-fee is removed;
+// - both amenity-charging_station-motorcar and amenity-charging_station-bicycle are left;
 void LeaveLongestTypes(vector<generator::TypeStrings> & matchedTypes)
 {
-  auto const less = [](auto const & lhs, auto const & rhs) { return lhs > rhs; };
-
-  auto const equals = [](auto const & lhs, auto const & rhs) {
-    if (rhs.size() > lhs.size())
-      return equal(lhs.begin(), lhs.end(), rhs.begin());
-    return equal(rhs.begin(), rhs.end(), lhs.begin());
+  auto const equalPrefix = [](auto const & lhs, auto const & rhs)
+  {
+    size_t const prefixSz = std::min(lhs.size(), rhs.size());
+    return equal(lhs.begin(), lhs.begin() + std::min(size_t(2), prefixSz), rhs.begin());
   };
 
-  base::SortUnique(matchedTypes, less, equals);
+  auto const isBetter = [&equalPrefix](auto const & lhs, auto const & rhs)
+  {
+    if (equalPrefix(lhs, rhs))
+    {
+      // Longest type is better.
+      if (lhs.size() != rhs.size())
+        return lhs.size() > rhs.size();
+    }
+
+    return lhs < rhs;
+  };
+
+  auto const isEqual = [&equalPrefix](auto const & lhs, auto const & rhs)
+  {
+    if (equalPrefix(lhs, rhs))
+    {
+      // Keep longest type only, so return equal is true.
+      if (lhs.size() != rhs.size())
+        return true;
+
+      return lhs == rhs;
+    }
+    return false;
+  };
+
+  base::SortUnique(matchedTypes, isBetter, isEqual);
 }
 
 void MatchTypes(OsmElement * p, FeatureBuilderParams & params, function<bool(uint32_t)> const & filterType)
@@ -338,12 +370,27 @@ void MatchTypes(OsmElement * p, FeatureBuilderParams & params, function<bool(uin
 
   LeaveLongestTypes(matchedTypes);
 
-  for (auto const & path : matchedTypes)
-  {
-    uint32_t const t = classif().GetTypeByPath(path);
+  auto const & cl = classif();
 
-    if (filterType(t))
-      params.AddType(t);
+  bool buswayAdded = false;
+  for (size_t i = 0; i < matchedTypes.size(); ++i)
+  {
+    auto const & path = matchedTypes[i];
+    uint32_t const type = cl.GetTypeByPath(path);
+    if (!filterType(type))
+      continue;
+
+    // "busway" and "service" can be matched together, keep busway only.
+    if (path[0] == "highway")
+    {
+      // busway goes before service, see LeaveLongestTypes.isBetter
+      if (path[1] == "busway")
+        buswayAdded = true;
+      else if (buswayAdded && path[1] == "service")
+        continue;
+    }
+
+    params.AddType(type);
   }
 }
 
@@ -436,6 +483,7 @@ string MatchCity(OsmElement const * p)
       {"panama", {-79.633827, 8.880788, -79.367367, 9.149179}},
       {"paris", {2.09014892578, 48.6637569323, 2.70538330078, 49.0414689141}},
       {"philadelphia", {-75.276761, 39.865446, -74.964493, 40.137768}},
+      {"porto", {-8.707352, 41.134452, -8.541012, 41.193252}},
       {"pyongyang", {125.48888, 38.780932, 126.12748, 39.298738}},
       {"rennes", {-2.28897,47.934093,-1.283944,48.379636}},
       {"rio", {-43.4873199463, -23.0348745407, -43.1405639648, -22.7134898498}},
@@ -567,6 +615,7 @@ void PreprocessElement(OsmElement * p)
   char const * layer = nullptr;
 
   bool isSubway = false;
+  bool isLightRail = false;
   bool isBus = false;
   bool isTram = false;
 
@@ -580,16 +629,18 @@ void PreprocessElement(OsmElement * p)
       {"trolleybus", "yes", [&isBus] { isBus = true; }},
       {"tram", "yes", [&isTram] { isTram = true; }},
 
-      /// @todo Unfortunatelly, it's not working in many cases (route=subway, transport=subway).
+      /// @todo Unfortunately, it's not working in many cases (route=subway, transport=subway).
       /// Actually, it's better to process subways after feature types assignment.
       {"station", "subway", [&isSubway] { isSubway = true; }},
+
+      {"station", "light_rail", [&isLightRail] { isLightRail = true; }},
   });
 
   if (!hasLayer && layer)
     p->AddTag("layer", layer);
 
   // Tag 'city' is needed for correct selection of metro icons.
-  if (isSubway && p->m_type == OsmElement::EntityType::Node)
+  if ((isSubway || isLightRail) && p->m_type == OsmElement::EntityType::Node)
   {
     string const city = MatchCity(p);
     if (!city.empty())
@@ -912,6 +963,9 @@ void PostprocessElement(OsmElement * p, FeatureBuilderParams & params)
 void GetNameAndType(OsmElement * p, FeatureBuilderParams & params,
                     function<bool(uint32_t)> const & filterType)
 {
+  // At this point, some preprocessing could've been done to the tags already
+  // in TranslatorInterface::Preprocess(), e.g. converting tags according to replaced_tags.txt.
+
   // Stage1: Preprocess tags.
   PreprocessElement(p);
 

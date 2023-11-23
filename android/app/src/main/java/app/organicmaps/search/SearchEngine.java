@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.organicmaps.Framework;
 import app.organicmaps.api.ParsedMwmRequest;
-import app.organicmaps.base.Initializable;
 import app.organicmaps.util.Language;
 import app.organicmaps.util.Listeners;
 import app.organicmaps.util.concurrency.UiThread;
@@ -16,8 +15,7 @@ import java.nio.charset.StandardCharsets;
 
 public enum SearchEngine implements NativeSearchListener,
                                     NativeMapSearchListener,
-                                    NativeBookmarkSearchListener,
-                                    Initializable<Void>
+                                    NativeBookmarkSearchListener
 {
   INSTANCE;
 
@@ -61,6 +59,7 @@ public enum SearchEngine implements NativeSearchListener,
         });
   }
 
+  @Override
   public void onBookmarkSearchResultsUpdate(@Nullable long[] bookmarkIds, long timestamp)
   {
     for (NativeBookmarkSearchListener listener : mBookmarkListeners)
@@ -68,6 +67,7 @@ public enum SearchEngine implements NativeSearchListener,
     mBookmarkListeners.finishIterate();
   }
 
+  @Override
   public void onBookmarkSearchResultsEnd(@Nullable long[] bookmarkIds, long timestamp)
   {
     for (NativeBookmarkSearchListener listener : mBookmarkListeners)
@@ -158,13 +158,6 @@ public enum SearchEngine implements NativeSearchListener,
   }
 
   @MainThread
-  public void searchInteractive(@NonNull Context context, @NonNull String query, boolean isCategory,
-                                long timestamp, boolean isMapAndTable, boolean hasLocation, double lat, double lon)
-  {
-    searchInteractive(query, isCategory, Language.getKeyboardLocale(context), timestamp, isMapAndTable, hasLocation, lat, lon);
-  }
-
-  @MainThread
   public boolean searchInBookmarks(@NonNull String query, long categoryId, long timestamp)
   {
     return nativeRunSearchInBookmarks(query.getBytes(StandardCharsets.UTF_8), categoryId, timestamp);
@@ -217,16 +210,9 @@ public enum SearchEngine implements NativeSearchListener,
     nativeShowResult(index);
   }
 
-  @Override
-  public void initialize(@Nullable Void aVoid)
+  public void initialize()
   {
     nativeInit();
-  }
-
-  @Override
-  public void destroy()
-  {
-    // No op.
   }
 
   /**

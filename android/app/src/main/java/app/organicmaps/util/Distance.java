@@ -2,13 +2,19 @@ package app.organicmaps.util;
 
 import android.content.Context;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import app.organicmaps.R;
 
+// Used by JNI.
+@Keep
+@SuppressWarnings("unused")
 public final class Distance
 {
+  public static final Distance EMPTY = new Distance(0.0, "", (byte) 0);
+
   /**
    * IMPORTANT : Order of enum values MUST BE the same
    * with native Distance::Units enum (see platform/distance.hpp for details).

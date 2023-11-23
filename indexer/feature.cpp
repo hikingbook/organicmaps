@@ -196,7 +196,7 @@ FeatureType::FeatureType(SharedLoadInfo const * loadInfo, vector<uint8_t> && buf
 {
   CHECK(m_loadInfo, ());
 
-  m_header = Header(m_data);
+  m_header = Header(m_data); // Parse the header and optional name/layer/addinfo.
 }
 
 std::unique_ptr<FeatureType> FeatureType::CreateFromMapObject(osm::MapObject const & emo)
@@ -264,7 +264,7 @@ feature::GeomType FeatureType::GetGeomType() const
   {
   case HeaderGeomType::Line: return GeomType::Line;
   case HeaderGeomType::Area: return GeomType::Area;
-  default: return GeomType::Point;
+  default: return GeomType::Point; // HeaderGeomType::Point/PointEx
   }
 }
 
@@ -651,29 +651,12 @@ StringUtf8Multilang const & FeatureType::GetNames()
   return m_params.name;
 }
 
-string FeatureType::DebugString(int scale, bool includeKeyPoint)
+std::string FeatureType::DebugString()
 {
-  ParseCommon();
+  ParseGeometryAndTriangles(FeatureType::BEST_GEOMETRY);
 
-  Classificator const & c = classif();
+  std::string res = DebugPrint(m_id) + " " + DebugPrint(GetGeomType());
 
-  string res = "Types";
-  uint32_t const count = GetTypesCount();
-  for (size_t i = 0; i < count; ++i)
-    res += (" : " + c.GetReadableObjectName(m_types[i]));
-  res += "\n";
-
-  auto const paramsStr = m_params.DebugString();
-  if (!paramsStr.empty())
-  {
-    res += paramsStr;
-    res += "\n";
-  }
-
-  if (!includeKeyPoint)
-    return res;
-
-  ParseGeometryAndTriangles(scale);
   m2::PointD keyPoint;
   switch (GetGeomType())
   {
@@ -683,20 +666,13 @@ string FeatureType::DebugString(int scale, bool includeKeyPoint)
 
   case GeomType::Line:
     if (m_points.empty())
-    {
-      ASSERT(scale != FeatureType::WORST_GEOMETRY && scale != FeatureType::BEST_GEOMETRY, (scale));
-      return res;
-    }
+      break;
     keyPoint = m_points.front();
     break;
 
   case GeomType::Area:
     if (m_triangles.empty())
-    {
-      ASSERT(scale != FeatureType::WORST_GEOMETRY && scale != FeatureType::BEST_GEOMETRY, (scale));
-      return res;
-    }
-
+      break;
     ASSERT_GREATER(m_triangles.size(), 2, ());
     keyPoint = (m_triangles[0] + m_triangles[1] + m_triangles[2]) / 3.0;
     break;
@@ -705,9 +681,21 @@ string FeatureType::DebugString(int scale, bool includeKeyPoint)
     ASSERT(false, ());
     break;
   }
-
   // Print coordinates in (lat,lon) for better investigation capabilities.
-  res += "Key point: " + DebugPrint(keyPoint) + "; " + DebugPrint(mercator::ToLatLon(keyPoint));
+  res += ": " + DebugPrint(keyPoint) + "; " + DebugPrint(mercator::ToLatLon(keyPoint)) + "\n";
+
+  Classificator const & c = classif();
+
+  res += "Types";
+  uint32_t const count = GetTypesCount();
+  for (size_t i = 0; i < count; ++i)
+    res += (" : " + c.GetReadableObjectName(m_types[i]));
+  res += "\n";
+
+  auto const paramsStr = m_params.DebugString();
+  if (!paramsStr.empty())
+    res += paramsStr + "\n";
+
   return res;
 }
 

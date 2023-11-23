@@ -789,6 +789,12 @@
 
 "book_button" = "Đặt trước";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Chi tiết trên KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Phần thưởng giới thiệu nhận được cho mỗi lần đặt phòng thông qua liên kết này sẽ hướng tới việc phát triển bản đồ không phải trả tiền.";
+
 "placepage_call_button" = "Gọi";
 
 "placepage_edit_bookmark_button" = "Sửa Dấu Trang";
@@ -977,8 +983,6 @@
 
 "export_file" = "Xuất tập tin";
 
-"list_settings" = "Cài đặt danh sách";
-
 "delete_list" = "Xóa danh sách";
 
 "hide_from_map" = "Ẩn từ bản đồ";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Thiết lập đi vòng";
 
-"driving_options_subheader" = "Tránh trên mỗi tuyến";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Tránh đường thu phí";
 
-"avoid_tolls" = "Đường trả phí";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Tránh đường đất";
 
-"avoid_unpaved" = "Đường đất";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Tránh bến phà";
 
-"avoid_ferry" = "Bến phà";
-
-"avoid_motorways" = "Đường cao tốc";
+"avoid_motorways" = "Tránh xa lộ";
 
 "unable_to_calc_alert_title" = "Không thể tạo tuyến đường";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Đường đất";
 
 "ferry_crossing" = "Bến phà";
-
-"avoid_toll_roads_placepage" = "Tránh đường trả phí";
-
-"avoid_unpaved_roads_placepage" = "Tránh đường đất";
-
-"avoid_ferry_crossing_placepage" = "Tránh bến phà";
 
 "trip_start" = "Đi nào";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Tuyến đường sẽ được thay đổi thành tuyến dành cho xe ô tô";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Trừ đườg đất";
-
-"avoid_unpaved_carplay_2" = "Trừ khôg trnhựa";
-
-"avoid_ferry_carplay_1" = "Không có phà";
-
-"avoid_ferry_carplay_2" = "Trừ phà";
-
-"avoid_tolls_carplay_1" = "Khôg đgcóphí";
-
-"avoid_tolls_carplay_2" = "Trừ đg có phí";
 
 "speedcams_alert_title_carplay_1" = "Сam tốc độ";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Trung Tâm Cộng Đồng";
 
+"type.amenity.compressed_air" = "Khí nén";
+
 "type.amenity.conference_centre" = "Trung tâm Hội nghị";
 
 "type.amenity.courthouse" = "Tòa án";
@@ -1399,7 +1388,7 @@
 
 "type.amenity.loading_dock" = "Bến tàu";
 
-"type.amenity.marketplace" = "Cửa hàng";
+"type.amenity.marketplace" = "Thương trường";
 
 "type.amenity.motorcycle_parking" = "Bãi đỗ xe máy";
 
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Bãi đậu xe ngầm";
 
-"type.amenity.parking.street_side" = "đỗ xe";
+"type.amenity.parking.underground.fee" = "Bãi đậu xe ngầm trả phí";
 
-"type.amenity.parking.fee.street_side" = "đỗ xe";
+"type.amenity.parking.underground.private" = "Bãi đậu xe ngầm riêng";
 
-"type.amenity.parking.lane" = "đỗ xe";
+"type.amenity.parking.street_side" = "Bãi đậu xe bên đường";
 
-"type.amenity.parking.fee.lane" = "đỗ xe";
+"type.amenity.parking.street_side.fee" = "Bãi đậu xe trả phí bên đường";
+
+"type.amenity.parking.street_side.private" = "Bãi đậu xe riêng bên đường";
+
+"type.amenity.parking.lane" = "Làn đường đỗ xe";
+
+"type.amenity.parking.lane.fee" = "Đỗ xe trên làn đường phải trả tiền";
+
+"type.amenity.parking.lane.private" = "Bãi đậu xe làn đường riêng";
 
 "type.amenity.parking_entrance" = "Lối vào bãi đậu xe";
 
-"type.amenity.parking_entrance.private" = "Lối vào bãi đậu xe";
+"type.amenity.parking_entrance.private" = "Lối vào bãi đậu xe riêng";
 
 "type.amenity.parking_entrance.permissive" = "Lối vào bãi đậu xe";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Chùa";
 
 "type.amenity.place_of_worship.christian.mormon" = "Nhà thờ Các Thánh hữu Ngày sau của Chúa Giêsu Kitô";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Nhà Đấng Sứ Quân của Nhân Chứng của Y-hô-va";
 
 "type.amenity.place_of_worship.hindu" = "Đền";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Giường hoa";
+
 "type.landuse.forest" = "Rừng";
 
 "type.landuse.forest.coniferous" = "Rừng";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Đường sắt leo núi";
 
 "type.railway.station.light_rail" = "Đường tàu hỏa";
+
+"type.railway.station.light_rail.london" = "Đường tàu hỏa";
+
+"type.railway.station.light_rail.porto" = "Đường tàu hỏa";
 
 "type.railway.station.monorail" = "Đường tàu hỏa";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Cửa hàng Hóa chất";
 
-"type.shop.chocolate" = "Cửa hàng";
+"type.shop.chocolate" = "Cửa hàng socola";
 
 "type.shop.clothes" = "Cửa hàng quần áo";
 
-"type.shop.coffee" = "Cửa hàng";
+"type.shop.coffee" = "Quán cà phê";
 
 "type.shop.computer" = "Cửa hàng máy tính";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Cửa hàng người lớn";
 
-"type.shop.fabric" = "Cửa hàng";
+"type.shop.fabric" = "Cửa hàng vải";
 
 "type.shop.farm" = "Cửa hàng thực phẩm nông trại";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Cửa hàng điện thoại di động";
 
-"type.shop.money_lender" = "Cửa hàng";
+"type.shop.money_lender" = "Người cho vay tiền";
 
 "type.shop.motorcycle" = "Cửa hàng xe máy";
 
 "type.shop.motorcycle_repair" = "Sửa chữa xe máy";
 
-"type.shop.music" = "Cửa hàng";
+"type.shop.music" = "Cửa hàng âm nhạc";
 
-"type.shop.musical_instrument" = "Cửa hàng";
+"type.shop.musical_instrument" = "Cửa hàng nhạc cụ";
 
 "type.shop.newsagent" = "Quầy báo";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Hiệu Ảnh";
 
+"type.shop.rental" = "Cửa hàng cho thuê";
+
+"type.shop.rental.bicycle" = "Cửa hàng cho thuê xe đạp";
+
 "type.shop.seafood" = "Người bán cá";
 
 "type.shop.second_hand" = "Cửa hàng bán đồ đã qua sử dụng";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tiệm xăm";
 
-"type.shop.tea" = "Cửa hàng";
+"type.shop.tea" = "Quán trà";
 
 "type.shop.ticket" = "Phòng vé";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Nhà tạm trú";
 
 "type.tourism.zoo" = "Vườn bách thú";
+
+"type.tourism.zoo.petting" = "Vườn thú cưng";
 
 "type.traffic_calming" = "Traffic Calming";
 
