@@ -6,11 +6,8 @@
 package app.organicmaps.base;
 
 import android.content.Context;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.Utils;
@@ -32,12 +29,4 @@ public class BaseMwmFragment extends Fragment implements OnBackPressListener
     return false;
   }
 
-  @NonNull
-  public View getViewOrThrow()
-  {
-    View view = getView();
-    if (view == null)
-      throw new IllegalStateException("Before call this method make sure that fragment exists");
-    return view;
-  }
 }

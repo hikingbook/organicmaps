@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Rápido, minimalista e sem recursos desnecessários</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Aplicativo de código aberto criado por entusiastas e voluntários.</string>
-	<string name="connection_settings">Definições de ligação</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Definições de localização</string>
 	<string name="close">Fechar</string>
 	<string name="unsupported_phone">É necessário a acelaração OpenGL por hardware. Infelizmente o seu dispositivo não é compatível.</string>
 	<string name="download">Descarregar</string>
@@ -134,7 +135,7 @@
 	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
 	<string name="hospital">Hospital</string>
 	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Casas de banho</string>
+	<string name="toilet">Casa de banho</string>
 	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
 	<string name="post">Correios</string>
 	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
@@ -494,6 +495,10 @@
 	<string name="hour">h</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mais</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Detalhes em KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">O bónus de referência recebido por cada reserva efectuada através desta ligação reverte a favor do desenvolvimento do Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Editar favorito</string>
 	<string name="editor_comment_hint">Comentário…</string>
 	<string name="editor_reset_edits_message">Eliminar todas as alterações locais?</string>
@@ -512,8 +517,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Certifique-se que não incluiu nenhuns dados pessoais.</string>
 	<string name="editor_share_to_all_dialog_message_2">Os editores do OpenStreetMap verificarão as alterações e entrarão em contacto consigo se tiverem alguma dúvida.</string>
 	<string name="navigation_stop_button">parar</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps é uma aplicação gratuita e de código aberto de mapas offline. Sem anúncios. Sem seguimento. Se vir um erro no mapa, por favor repare-o em OpenStreetMap. O projecto é criado por entusiastas no nosso tempo livre, por isso precisamos do seu feedback e apoio.</string>
 	<!-- For the first routing -->
 	<string name="accept">Aceitar</string>
 	<!-- For the first routing -->
@@ -573,7 +576,6 @@
 	  <item quantity="one">%d ficheiro encontrado. Pode vê-lo depois da conversão.</item>
 	  <item quantity="other">%d ficheiros encontrados. Pode vê-los depois da conversão.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Sem ligação à Internet</string>
 	<plurals name="objects">
 	  <item quantity="one">%d objeto</item>
 	  <item quantity="other">%d objetos</item>
@@ -598,7 +600,6 @@
 	<string name="bookmarks_empty_list_message">Para adicionar um favorito, toque num lugar do mapa e em seguida toque no ícone da estrela</string>
 	<string name="category_desc_more">…mais</string>
 	<string name="export_file">Exportar o ficheiro</string>
-	<string name="list_settings">Configurações de listas</string>
 	<string name="delete_list">Eliminar lista</string>
 	<string name="public_access">Acesso público</string>
 	<string name="limited_access">Acesso limitado</string>
@@ -620,11 +621,13 @@
 	<string name="enable_logging_warning_message">Esta opção ativa o registo das ações para diagnóstico. Pode ser útil para os programadores descobrirem o problema na aplicação. Ative esta opção apenas a pedido dos programadores do Organic Maps.</string>
 	<string name="access_rules_author_only">Edição online</string>
 	<string name="driving_options_title">Configurações de direção</string>
-	<string name="driving_options_subheader">Evitar em todos os percursos</string>
-	<string name="avoid_tolls">Estradas com portagem</string>
-	<string name="avoid_unpaved">Estradas não pavimentadas</string>
-	<string name="avoid_ferry">Ferry</string>
-	<string name="avoid_motorways">Autoestradas</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Evitar portagens</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Evitar não-pavimentadas</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Evitar ferribotes</string>
+	<string name="avoid_motorways">Evitar autoestradas</string>
 	<string name="unable_to_calc_alert_title">Não foi possível calcular a rota</string>
 	<string name="unable_to_calc_alert_subtitle">Infelizmente não foi possível criar o percurso com as opções selecionadas. Altere as opções e tente novamente</string>
 	<string name="define_to_avoid_btn">Definir as estradas a evitar</string>
@@ -632,9 +635,6 @@
 	<string name="toll_road">Estrada com portagem</string>
 	<string name="unpaved_road">Estrada não pavimentada</string>
 	<string name="ferry_crossing">Ferry</string>
-	<string name="avoid_toll_roads_placepage">Evitar estradas com portagem</string>
-	<string name="avoid_unpaved_roads_placepage">Evitar estradas não pavimentadas</string>
-	<string name="avoid_ferry_crossing_placepage">Evitar ferrys</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Sim</string>
 	<!-- A generic "No" button in dialogs -->
@@ -643,6 +643,7 @@
 	<string name="yes_available">Sim</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Não</string>
+	<string name="trip_finished">Chegou ao destino!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Ordenar…</string>
@@ -698,15 +699,31 @@
 	<string name="download_map_title">Descarregar o mapa mundial</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Falha na coneção</string>
-	<string name="enable_screen_sleep">Permitir que o ecrã desligue</string>
+	<string name="enable_keep_screen_on">Mantém o ecrã ligado</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Quando ativado, o ecrá poderá desligar-se após um período de inatividade.</string>
+	<string name="enable_keep_screen_on_description">Quando ativado, o ecrã estará sempre ligado quando apresentares o mapa.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Dados cartográficos do OpenStreetMap</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Pt:Sobre_o_OpenStreetMap</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Obrigado por utilizares os nossos mapas construídos pela comunidade!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Está agora a utilizar o Organic Maps no ecrã do telemóvel</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Está agora a utilizar o Organic Maps no ecrã do automóvel</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Está ligado ao Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Continuar no telemóvel</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Para ecrã do carro</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Esta aplicação requer acesso à sua localização para fins de navegação.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Conceder permissão</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Ligado ao automóvel</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Endereço/Bloco</string>
@@ -759,6 +776,7 @@
 	<string name="type.amenity.clinic">Clínica ou centro de saúde</string>
 	<string name="type.amenity.college">Escola técnica</string>
 	<string name="type.amenity.community_centre">Centro comunitário</string>
+	<string name="type.amenity.compressed_air">Ar comprimido</string>
 	<string name="type.amenity.conference_centre">Centro de conferências</string>
 	<string name="type.amenity.courthouse">Tribunal</string>
 	<string name="type.amenity.dentist">Dentista</string>
@@ -799,12 +817,16 @@
 	<string name="type.amenity.parking.private">Estacionamento privado</string>
 	<string name="type.amenity.parking.park_and_ride">Parque de estacionamento dissuasor</string>
 	<string name="type.amenity.parking.underground">Estacionamento subterrâneo</string>
-	<string name="type.amenity.parking.street_side">Estacionamento</string>
-	<string name="type.amenity.parking.fee.street_side">Estacionamento</string>
-	<string name="type.amenity.parking.lane">Estacionamento</string>
-	<string name="type.amenity.parking.fee.lane">Estacionamento</string>
+	<string name="type.amenity.parking.underground.fee">Estacionamento subterrâneo pago</string>
+	<string name="type.amenity.parking.underground.private">Estacionamento subterrâneo privado</string>
+	<string name="type.amenity.parking.street_side">Estacionamento ao lado da rua</string>
+	<string name="type.amenity.parking.street_side.fee">Estacionamento ao lado da rua pago</string>
+	<string name="type.amenity.parking.street_side.private">Estacionamento ao lado da rua privado</string>
+	<string name="type.amenity.parking.lane">Estacionamento paralelo à estrada</string>
+	<string name="type.amenity.parking.lane.fee">Estacionamento paralelo à estrada pago</string>
+	<string name="type.amenity.parking.lane.private">Estacionamento paralelo à estrada privado</string>
 	<string name="type.amenity.parking_entrance">Entrada do estacionamento</string>
-	<string name="type.amenity.parking_entrance.private">Entrada do estacionamento</string>
+	<string name="type.amenity.parking_entrance.private">Entrada para estacionamento privado</string>
 	<string name="type.amenity.parking_entrance.permissive">Entrada do estacionamento</string>
 	<string name="type.amenity.parking_space">Lugar de estacionamento</string>
 	<string name="type.amenity.parking_space.permissive">Lugar de estacionamento</string>
@@ -817,6 +839,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Templo budista</string>
 	<string name="type.amenity.place_of_worship.christian">Igreja cristã</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Igreja de Jesus Cristo dos Santos dos Últimos Dias</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Salão do Reino das Testemunhas de Jeová</string>
 	<string name="type.amenity.place_of_worship.hindu">Templo hindu</string>
 	<string name="type.amenity.place_of_worship.jewish">Sinagoga</string>
 	<string name="type.amenity.place_of_worship.muslim">Mesquita</string>
@@ -844,7 +867,7 @@
 	<string name="type.amenity.restaurant">Restaurante</string>
 	<string name="type.amenity.school">Escola</string>
 	<string name="type.amenity.shelter">Abrigo</string>
-	<string name="type.amenity.public_bath">Banheiro público</string>
+	<string name="type.amenity.public_bath">Banho público</string>
 	<string name="type.amenity.shower">Chuveiro</string>
 	<string name="type.amenity.stripclub">Clube de striptease</string>
 	<string name="type.amenity.taxi">Táxi</string>
@@ -1303,6 +1326,7 @@
 	<string name="type.landuse.farmland">Campo agrícola</string>
 	<string name="type.landuse.farmyard">Pátio de quinta</string>
 	<string name="type.landuse.field">Campo</string>
+	<string name="type.landuse.flowerbed">Canteiro de flores</string>
 	<string name="type.landuse.forest">Floresta</string>
 	<string name="type.landuse.forest.coniferous">Floresta de coníferas</string>
 	<string name="type.landuse.forest.deciduous">Floresta de folha caduca</string>
@@ -1537,6 +1561,8 @@
 	<string name="type.railway.station">Estação de comboios</string>
 	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Estação de comboios</string>
+	<string name="type.railway.station.light_rail.london">Estação de comboios</string>
+	<string name="type.railway.station.light_rail.porto">Estação de comboios</string>
 	<string name="type.railway.station.monorail">Estação de comboios</string>
 	<string name="type.railway.station.subway">Estação de metro</string>
 	<string name="type.railway.station.subway.adana">Estação de metro</string>
@@ -1839,6 +1865,8 @@
 	<string name="type.shop.pet">Loja de animais de estimação</string>
 	<string name="type.shop.pet_grooming">Salão de banhos e tosquia</string>
 	<string name="type.shop.photo">Loja de fotografia</string>
+	<string name="type.shop.rental">Locadora</string>
+	<string name="type.shop.rental.bicycle">Loja de aluguel de bicicletas</string>
 	<string name="type.shop.seafood">Peixaria</string>
 	<string name="type.shop.second_hand">Loja de segunda mão</string>
 	<string name="type.shop.shoes">Sapataria</string>
@@ -1950,6 +1978,7 @@
 	<string name="type.tourism.viewpoint">Miradouro</string>
 	<string name="type.tourism.wilderness_hut">Cabana</string>
 	<string name="type.tourism.zoo">Jardim zoológico</string>
+	<string name="type.tourism.zoo.petting">Jardim Zoológico</string>
 	<string name="type.traffic_calming">Redutor de velocidade</string>
 	<string name="type.traffic_calming.bump">Lomba</string>
 	<string name="type.traffic_calming.hump">Lomba longa</string>

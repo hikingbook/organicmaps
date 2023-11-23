@@ -48,7 +48,8 @@
 	<string name="about_proposition_3">• Cepat, minimalis, tidak ada sampah</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Aplikasi open-source yang dibuat oleh penggemar dan sukarelawan.</string>
-	<string name="connection_settings">Pengaturan Koneksi</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Pengaturan lokasi</string>
 	<string name="close">Tutup</string>
 	<string name="unsupported_phone">OpenGL yang dipercepat oleh OpenGL diperlukan. Sayangnya, perangkat Anda tidak mendukung.</string>
 	<string name="download">Unduh</string>
@@ -489,6 +490,10 @@
 	<string name="hour">j</string>
 	<string name="minute">mnt</string>
 	<string name="placepage_more_button">Lainnya</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Perincian di KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Bonus rujukan yang diterima untuk setiap pemesanan melalui tautan ini digunakan untuk pengembangan Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Edit Bookmark</string>
 	<string name="editor_comment_hint">Komentar…</string>
 	<string name="editor_reset_edits_message">Atur ulang perubahan lokal?</string>
@@ -507,8 +512,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Pastikan Anda tidak memasukkan data pribadi apa pun.</string>
 	<string name="editor_share_to_all_dialog_message_2">Editor OpenStreetMap akan memeriksa perubahan dan menghubungi Anda jika ada pertanyaan.</string>
 	<string name="navigation_stop_button">berhenti</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps adalah aplikasi peta offline sumber terbuka dan gratis. Tanpa iklan. Tidak ada pelacakan. Jika Anda melihat kesalahan pada peta, harap perbaiki di OpenStreetMap. Proyek ini dibuat oleh para penggemar di waktu luang kami, jadi kami membutuhkan masukan dan dukungan Anda.</string>
 	<!-- For the first routing -->
 	<string name="accept">Terima</string>
 	<!-- For the first routing -->
@@ -568,7 +571,6 @@
 	  <item quantity="one">%d file ditemukan. Anda akan melihatnya setelah mengonversi.</item>
 	  <item quantity="other">%d file telah ditemukan. Anda akan melihatnya setelah konversi.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Tidak ada koneksi internet</string>
 	<plurals name="objects">
 	  <item quantity="other">tempat %d</item>
 	</plurals>
@@ -590,7 +592,6 @@
 	<string name="bookmarks_empty_list_message">Untuk menambahkan bookmark, ketuk satu tempat di peta lalu ketuk ikon bintang</string>
 	<string name="category_desc_more">…selengkapnya</string>
 	<string name="export_file">File ekspor</string>
-	<string name="list_settings">Pengaturan Daftar</string>
 	<string name="delete_list">Hapus Daftar</string>
 	<string name="public_access">Akses umum</string>
 	<string name="limited_access">Akses terbatas</string>
@@ -612,11 +613,13 @@
 	<string name="enable_logging_warning_message">Opsi ini mengaktifkan pencatatan untuk tujuan diagnostik. Bisa amat membantu bagi staf dukungan kami yang memecahkan masalah dalam aplikasi. Aktifkan opsi ini hanya saat diminta oleh dukungan Organic Maps.</string>
 	<string name="access_rules_author_only">Pengeditan online</string>
 	<string name="driving_options_title">Pilihan berkendara</string>
-	<string name="driving_options_subheader">Hindari di setiap rute</string>
-	<string name="avoid_tolls">Jalan tol</string>
-	<string name="avoid_unpaved">Jalan tanah</string>
-	<string name="avoid_ferry">Penyeberangan kapal feri</string>
-	<string name="avoid_motorways">Jalur motor</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Hindari jalan tol</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Hindari jalan tanah</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Hindari feri</string>
+	<string name="avoid_motorways">Hindari jalan raya</string>
 	<string name="unable_to_calc_alert_title">Tidak dapat menghitung rute</string>
 	<string name="unable_to_calc_alert_subtitle">Sayangnya kami tidak dapat menemukan rute karena opsi pilihan Anda. Harap ubah pengaturan lalu coba lagi</string>
 	<string name="define_to_avoid_btn">Tentukan jalan yang dihindari</string>
@@ -624,9 +627,6 @@
 	<string name="toll_road">Jalan tol</string>
 	<string name="unpaved_road">Jalan tanah</string>
 	<string name="ferry_crossing">Penyeberangan kapal feri</string>
-	<string name="avoid_toll_roads_placepage">Hindari jalan tol</string>
-	<string name="avoid_unpaved_roads_placepage">Hindari jalan tanah</string>
-	<string name="avoid_ferry_crossing_placepage">Hindari penyeberangan kapal feri</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Ya</string>
 	<!-- A generic "No" button in dialogs -->
@@ -635,6 +635,7 @@
 	<string name="yes_available">Ya</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Tidak</string>
+	<string name="trip_finished">Anda telah tiba!</string>
 	<string name="ok">Oke</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Urutkan…</string>
@@ -687,15 +688,31 @@
 	<string name="elevation_profile_distance">Jarak:</string>
 	<string name="elevation_profile_time">Waktu:</string>
 	<string name="isolines_toast_zooms_1_10">Perbesar untuk menjelajahi garis kontur</string>
-	<string name="enable_screen_sleep">Izinkan layar untuk tidur</string>
+	<string name="enable_keep_screen_on">Biarkan layar tetap menyala</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Jika diaktifkan, layar akan diizinkan untuk tidur setelah beberapa saat tidak aktif.</string>
+	<string name="enable_keep_screen_on_description">Apabila diaktifkan, layar akan selalu menyala ketika menampilkan peta.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Data peta dari OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/id/</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Terima kasih telah menggunakan peta buatan komunitas kami!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Anda sekarang menggunakan Organic Maps pada layar ponsel</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Anda sekarang menggunakan Organic Maps pada layar mobil</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Anda terhubung ke Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Lanjutkan di telepon</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Ke layar mobil</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Aplikasi ini memerlukan akses ke lokasi Anda untuk tujuan navigasi.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Memberikan Izin</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Terhubung ke mobil</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Alamat/Blokir</string>
@@ -731,6 +748,7 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Kampus</string>
 	<string name="type.amenity.community_centre">Pusat komunitas</string>
+	<string name="type.amenity.compressed_air">Udara terkompresi</string>
 	<string name="type.amenity.conference_centre">Pusat konferensi</string>
 	<string name="type.amenity.courthouse">Gedung pengadilan</string>
 	<string name="type.amenity.dentist">Dokter gigi</string>
@@ -758,7 +776,7 @@
 	<string name="type.amenity.kindergarten">Taman kanak-kanak</string>
 	<string name="type.amenity.library">Perpustakaan</string>
 	<string name="type.amenity.loading_dock">Dok pemuatan</string>
-	<string name="type.amenity.marketplace">Toko</string>
+	<string name="type.amenity.marketplace">Pasar</string>
 	<string name="type.amenity.motorcycle_parking">Tempat Parkir Sepeda Motor</string>
 	<string name="type.amenity.nightclub">Kelab malam</string>
 	<string name="type.amenity.nursing_home">Panti Jompo</string>
@@ -770,12 +788,16 @@
 	<string name="type.amenity.parking.private">Parkir pribadi</string>
 	<string name="type.amenity.parking.park_and_ride">Parkir</string>
 	<string name="type.amenity.parking.underground">Parkir bawah tanah</string>
-	<string name="type.amenity.parking.street_side">Parkir</string>
-	<string name="type.amenity.parking.fee.street_side">Parkir</string>
-	<string name="type.amenity.parking.lane">Parkir</string>
-	<string name="type.amenity.parking.fee.lane">Parkir</string>
+	<string name="type.amenity.parking.underground.fee">Parkir bawah tanah berbayar</string>
+	<string name="type.amenity.parking.underground.private">Parkir bawah tanah pribadi</string>
+	<string name="type.amenity.parking.street_side">Parkir di tepi jalan</string>
+	<string name="type.amenity.parking.street_side.fee">Parkir di tepi jalan berbayar</string>
+	<string name="type.amenity.parking.street_side.private">Parkir sisi jalan pribadi</string>
+	<string name="type.amenity.parking.lane">Parkir jalur</string>
+	<string name="type.amenity.parking.lane.fee">Parkir jalur berbayar</string>
+	<string name="type.amenity.parking.lane.private">Parkir jalur pribadi</string>
 	<string name="type.amenity.parking_entrance">Pintu masuk parkir</string>
-	<string name="type.amenity.parking_entrance.private">Pintu masuk parkir</string>
+	<string name="type.amenity.parking_entrance.private">Pintu masuk parkir pribadi</string>
 	<string name="type.amenity.parking_entrance.permissive">Pintu masuk parkir</string>
 	<string name="type.amenity.parking_space">Tempat parkir</string>
 	<string name="type.amenity.parking_space.permissive">Tempat parkir</string>
@@ -788,6 +810,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Kuil</string>
 	<string name="type.amenity.place_of_worship.christian">Gereja</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Gereja Yesus Kristus dari Orang-Orang Suci Zaman Akhir</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Aula Kerajaan Saksi-Saksi Yehuwa</string>
 	<string name="type.amenity.place_of_worship.hindu">Kuil</string>
 	<string name="type.amenity.place_of_worship.jewish">Sinagoge</string>
 	<string name="type.amenity.place_of_worship.muslim">Masjid</string>
@@ -1221,6 +1244,7 @@
 	<string name="type.landuse.cemetery.christian">Pemakaman</string>
 	<string name="type.landuse.churchyard">Halaman gereja</string>
 	<string name="type.landuse.farmland">Lahan pertanian</string>
+	<string name="type.landuse.flowerbed">Hamparan bunga</string>
 	<string name="type.landuse.forest">Hutan</string>
 	<string name="type.landuse.forest.coniferous">Hutan</string>
 	<string name="type.landuse.forest.deciduous">Hutan</string>
@@ -1389,6 +1413,8 @@
 	<string name="type.railway.station">Rel kereta api</string>
 	<string name="type.railway.station.funicular">Kereta gantung</string>
 	<string name="type.railway.station.light_rail">Rel kereta api</string>
+	<string name="type.railway.station.light_rail.london">Rel kereta api</string>
+	<string name="type.railway.station.light_rail.porto">Rel kereta api</string>
 	<string name="type.railway.station.monorail">Rel kereta api</string>
 	<string name="type.railway.station.subway">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.adana">Stasiun bawah tanah</string>
@@ -1630,9 +1656,9 @@
 	<string name="type.shop.car_repair.tyres">Tambal ban</string>
 	<string name="type.shop.carpet">Karpet</string>
 	<string name="type.shop.chemist">Toko Bahan Kimia</string>
-	<string name="type.shop.chocolate">Toko</string>
+	<string name="type.shop.chocolate">Toko Cokelat</string>
 	<string name="type.shop.clothes">Toko baju</string>
-	<string name="type.shop.coffee">Toko</string>
+	<string name="type.shop.coffee">Toko kopi</string>
 	<string name="type.shop.computer">Toko komputer</string>
 	<string name="type.shop.confectionery">Penganan</string>
 	<string name="type.shop.convenience">Mini market</string>
@@ -1645,7 +1671,7 @@
 	<string name="type.shop.dry_cleaning">Cuci Kering</string>
 	<string name="type.shop.electronics">Elektronik</string>
 	<string name="type.shop.erotic">Toko Erotik</string>
-	<string name="type.shop.fabric">Toko</string>
+	<string name="type.shop.fabric">Toko Kain</string>
 	<string name="type.shop.farm">Toko Makanan Pertanian</string>
 	<string name="type.shop.fashion_accessories">Aksesoris Fashion</string>
 	<string name="type.shop.florist">Tukang bunga</string>
@@ -1662,16 +1688,16 @@
 	<string name="type.shop.hifi">Audio HI FI</string>
 	<string name="type.shop.houseware">Toko Peralatan Rumah Tangga</string>
 	<string name="type.shop.jewelry">Perhiasan</string>
-	<string name="type.shop.kiosk">Toko</string>
+	<string name="type.shop.kiosk">Kios</string>
 	<string name="type.shop.kitchen">Toko Dapur</string>
 	<string name="type.shop.laundry">Londri</string>
 	<string name="type.shop.massage">Tempat Pijat</string>
 	<string name="type.shop.mobile_phone">Toko telepon</string>
-	<string name="type.shop.money_lender">Toko</string>
+	<string name="type.shop.money_lender">Pemberi Pinjaman Uang</string>
 	<string name="type.shop.motorcycle">Toko Sepeda Motor</string>
 	<string name="type.shop.motorcycle_repair">Bengkel Sepeda Motor</string>
-	<string name="type.shop.music">Toko</string>
-	<string name="type.shop.musical_instrument">Toko</string>
+	<string name="type.shop.music">Toko musik</string>
+	<string name="type.shop.musical_instrument">Toko Alat Musik</string>
 	<string name="type.shop.newsagent">Kios Surat Kabar</string>
 	<string name="type.shop.optician">Toko kacamata</string>
 	<string name="type.shop.outdoor">Peralatan Outdoor</string>
@@ -1681,13 +1707,15 @@
 	<string name="type.shop.pet">Toko hewan</string>
 	<string name="type.shop.pet_grooming">Perawatan Hewan Peliharaan</string>
 	<string name="type.shop.photo">Studio Foto</string>
+	<string name="type.shop.rental">Toko Sewa</string>
+	<string name="type.shop.rental.bicycle">Toko Penyewaan Sepeda</string>
 	<string name="type.shop.seafood">Penjual Ikan</string>
 	<string name="type.shop.second_hand">Toko Barang bekas</string>
 	<string name="type.shop.shoes">Toko sepatu</string>
 	<string name="type.shop.sports">Barang olahraga</string>
 	<string name="type.shop.stationery">Toko Alat Tulis</string>
 	<string name="type.shop.tattoo">Tempat Tato</string>
-	<string name="type.shop.tea">Toko</string>
+	<string name="type.shop.tea">Toko teh</string>
 	<string name="type.shop.ticket">Tempat penjualan karcis</string>
 	<string name="type.shop.toys">Toko mainan</string>
 	<string name="type.shop.travel_agency">Agen Perjalanan Wisata</string>
@@ -1785,6 +1813,7 @@
 	<string name="type.tourism.viewpoint">Titik pandang</string>
 	<string name="type.tourism.wilderness_hut">Pondok Alam Liar</string>
 	<string name="type.tourism.zoo">Kebun binatang</string>
+	<string name="type.tourism.zoo.petting">Kebun Binatang</string>
 	<string name="type.waterway.canal">Kanal</string>
 	<string name="type.waterway.canal.tunnel">Kanal</string>
 	<string name="type.waterway.fish_pass">Tangga ikan</string>

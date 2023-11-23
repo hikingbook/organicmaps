@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Rychlé, minimalistické, žádný bloatware</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Otevřená aplikace vytvořená nadšenci a dobrovolníky.</string>
-	<string name="connection_settings">Nastavení připojení</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Nastavení polohy</string>
 	<string name="close">Zavřít</string>
 	<string name="unsupported_phone">Je vyžadována hardwarová akcelerace OpenGL. Bohužel, vaše zařízení není podporováno.</string>
 	<string name="download">Stáhnout</string>
@@ -493,6 +494,10 @@
 	<string name="hour">hod</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Více</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Podrobnosti na KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Bonus za každou rezervaci provedenou prostřednictvím tohoto odkazu je určen na rozvoj služby Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Upravit záložku</string>
 	<string name="editor_comment_hint">Poznámka…</string>
 	<string name="editor_reset_edits_message">Vymazat všechny místní změny?</string>
@@ -511,8 +516,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Ujistěte se, že jste nezadali žádná osobní data.</string>
 	<string name="editor_share_to_all_dialog_message_2">Redaktoři OpenStreetMap zkontrolují změny a budou vás kontaktovat, pokud budou mít nějaké dotazy.</string>
 	<string name="navigation_stop_button">stop</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps je bezplatná offline mapová aplikace s otevřeným zdrojovým kódem. Žádné reklamy. Žádné sledování. Pokud na mapě uvidíte chybu, opravte ji v OpenStreetMap. Projekt vytvářejí nadšenci v našem volném čase, takže potřebujeme vaši zpětnou vazbu a podporu.</string>
 	<!-- For the first routing -->
 	<string name="accept">Přijmout</string>
 	<!-- For the first routing -->
@@ -573,7 +576,6 @@
 	  <item quantity="one">%d soubor byl nalezen. Uvidíte ji po konverzi.</item>
 	  <item quantity="other">Bylo nalezeno %d souborů. Uvidíte je po konverzi.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Žádné internetové připojení</string>
 	<plurals name="objects">
 	  <item quantity="other">%d místo</item>
 	</plurals>
@@ -595,7 +597,6 @@
 	<string name="bookmarks_empty_list_message">Pro přidání nové značky klikněte na symbol hvězdičky na obrázku objektu</string>
 	<string name="category_desc_more">…ještě</string>
 	<string name="export_file">Exportovat soubor</string>
-	<string name="list_settings">Nastavení seznamu</string>
 	<string name="delete_list">Smazat seznam</string>
 	<string name="public_access">Veřejně přístupné</string>
 	<string name="limited_access">Soukromé</string>
@@ -617,11 +618,13 @@
 	<string name="enable_logging_warning_message">Možnost zapne odesílání dat za diagnostickými účely. To nám pomáhá při řešení problémů s aplikací. Dočasně povolte pro nahrávání a odesílání logů našemu týmu o vašem problému.</string>
 	<string name="access_rules_author_only">Upravujte on-line</string>
 	<string name="driving_options_title">Možnosti trasy</string>
-	<string name="driving_options_subheader">Vyhněte se na každé trase</string>
-	<string name="avoid_tolls">Silnice s mýtným</string>
-	<string name="avoid_unpaved">Nezpevněná silnice</string>
-	<string name="avoid_ferry">Přejezdy trajektů</string>
-	<string name="avoid_motorways">Dálnice</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Vyhněte se zpoplatněným silnicím</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Vyhnout se nezpevněným silnicím</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Vyhnout se přejezdům trajektů</string>
+	<string name="avoid_motorways">Vyhněte se dálnici</string>
 	<string name="unable_to_calc_alert_title">Nelze vypočítat trasu</string>
 	<string name="unable_to_calc_alert_subtitle">Bohužel jsme nemohli nalézt trasu pravděpodobně kvůli vámi definovaným možnostem. Změňte prosím nastavení a zkuste to znovu</string>
 	<string name="define_to_avoid_btn">Definovat silnice, kterým se vyhnout</string>
@@ -629,9 +632,6 @@
 	<string name="toll_road">Silnice s mýtným</string>
 	<string name="unpaved_road">Nezpevněná silnice</string>
 	<string name="ferry_crossing">Přejezd trajektů</string>
-	<string name="avoid_toll_roads_placepage">Vyhnout se silnicím s mýtným</string>
-	<string name="avoid_unpaved_roads_placepage">Vyhnout se nezpevněným silnicím</string>
-	<string name="avoid_ferry_crossing_placepage">Vyhnout se přejezdům trajektů</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Ano</string>
 	<!-- A generic "No" button in dialogs -->
@@ -640,6 +640,7 @@
 	<string name="yes_available">Ano</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Ne</string>
+	<string name="trip_finished">Přijeli jste!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Třídit…</string>
@@ -692,9 +693,9 @@
 	<string name="elevation_profile_distance">Vzdál.:</string>
 	<string name="elevation_profile_time">Čas:</string>
 	<string name="isolines_toast_zooms_1_10">Přiblížit pro prozkoumání izolinií</string>
-	<string name="enable_screen_sleep">Nechte obrazovku spát</string>
+	<string name="enable_keep_screen_on">Nechat obrazovku zapnutou</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Je-li tato možnost povolena, bude obrazovce po určité době nečinnosti umožněno usnout.</string>
+	<string name="enable_keep_screen_on_description">Je-li tato funkce povolena, bude obrazovka při zobrazení mapy vždy zapnutá.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Zobrazit na uzamčené obrazovce</string>
 	<!-- Description in preferences -->
@@ -705,6 +706,22 @@
 	<string name="translated_om_site_url">https://organicmaps.app/cs/</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Děkujeme, že používáte naše komunitní mapy!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Na obrazovce telefonu nyní používáte aplikaci Organic Maps</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Na obrazovce auta nyní používáte aplikaci Organic Maps</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Jste připojeni ke službě Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Pokračujte v telefonu</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Na obrazovku auta</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Tato aplikace vyžaduje přístup k vaší poloze pro účely navigace.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Udělení oprávnění</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Připojení k automobilu</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresa/blok</string>
@@ -742,6 +759,7 @@
 	<string name="type.amenity.clinic">Klinika</string>
 	<string name="type.amenity.college">Vysoká škola</string>
 	<string name="type.amenity.community_centre">Kulturní centrum</string>
+	<string name="type.amenity.compressed_air">Stlačený vzduch</string>
 	<string name="type.amenity.conference_centre">Konferenční centrum</string>
 	<string name="type.amenity.courthouse">Soud</string>
 	<string name="type.amenity.dentist">Zubař</string>
@@ -781,12 +799,16 @@
 	<string name="type.amenity.parking.private">Soukromé parkoviště</string>
 	<string name="type.amenity.parking.park_and_ride">Parkoviště</string>
 	<string name="type.amenity.parking.underground">Podzemní parkoviště</string>
-	<string name="type.amenity.parking.street_side">Parkoviště</string>
-	<string name="type.amenity.parking.fee.street_side">Parkoviště</string>
-	<string name="type.amenity.parking.lane">Parkoviště</string>
-	<string name="type.amenity.parking.fee.lane">Parkoviště</string>
+	<string name="type.amenity.parking.underground.fee">Placené podzemní parkoviště</string>
+	<string name="type.amenity.parking.underground.private">Soukromé podzemní parkoviště</string>
+	<string name="type.amenity.parking.street_side">Parkování na straně ulice</string>
+	<string name="type.amenity.parking.street_side.fee">Placené parkování na ulici</string>
+	<string name="type.amenity.parking.street_side.private">Soukromé parkování na ulici</string>
+	<string name="type.amenity.parking.lane">Parkovací pruh</string>
+	<string name="type.amenity.parking.lane.fee">Placené parkování v pruzích</string>
+	<string name="type.amenity.parking.lane.private">Soukromý parkovací pruh</string>
 	<string name="type.amenity.parking_entrance">Vjezd na parkoviště</string>
-	<string name="type.amenity.parking_entrance.private">Vjezd na parkoviště</string>
+	<string name="type.amenity.parking_entrance.private">Soukromý vchod na parkoviště</string>
 	<string name="type.amenity.parking_entrance.permissive">Vjezd na parkoviště</string>
 	<string name="type.amenity.parking_space">Prostor pro parkování</string>
 	<string name="type.amenity.parking_space.permissive">Prostor pro parkování</string>
@@ -799,6 +821,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Chrám</string>
 	<string name="type.amenity.place_of_worship.christian">Chrám</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Církev Ježíše Krista Svatých posledních dnů</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Sál Království Jehovových svědků</string>
 	<string name="type.amenity.place_of_worship.hindu">Chrám</string>
 	<string name="type.amenity.place_of_worship.jewish">Synagoga</string>
 	<string name="type.amenity.place_of_worship.muslim">Mešita</string>
@@ -1233,6 +1256,7 @@
 	<string name="type.landuse.cemetery.christian">Hřbitov</string>
 	<string name="type.landuse.churchyard">Nádvoří kostela</string>
 	<string name="type.landuse.farmland">Orná půda</string>
+	<string name="type.landuse.flowerbed">Záhon</string>
 	<string name="type.landuse.forest">Les</string>
 	<string name="type.landuse.forest.coniferous">Les</string>
 	<string name="type.landuse.forest.deciduous">Les</string>
@@ -1402,6 +1426,8 @@
 	<string name="type.railway.station">Železniční stanice</string>
 	<string name="type.railway.station.funicular">Lanovka</string>
 	<string name="type.railway.station.light_rail">Železniční stanice</string>
+	<string name="type.railway.station.light_rail.london">Železniční stanice</string>
+	<string name="type.railway.station.light_rail.porto">Železniční stanice</string>
 	<string name="type.railway.station.monorail">Železniční stanice</string>
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.adana">Metro</string>
@@ -1643,9 +1669,9 @@
 	<string name="type.shop.car_repair.tyres">Pneuservis</string>
 	<string name="type.shop.carpet">Koberce</string>
 	<string name="type.shop.chemist">Drogerie</string>
-	<string name="type.shop.chocolate">Obchod</string>
+	<string name="type.shop.chocolate">Obchod s čokoládou</string>
 	<string name="type.shop.clothes">Oblečení</string>
-	<string name="type.shop.coffee">Obchod</string>
+	<string name="type.shop.coffee">Obchod s kávou</string>
 	<string name="type.shop.computer">Obchod s počítači</string>
 	<string name="type.shop.confectionery">Cukrárna</string>
 	<string name="type.shop.convenience">Smíšené zboží</string>
@@ -1658,7 +1684,7 @@
 	<string name="type.shop.dry_cleaning">Chemické čištění</string>
 	<string name="type.shop.electronics">Elektronika</string>
 	<string name="type.shop.erotic">Obchod s erotickými pomůckami</string>
-	<string name="type.shop.fabric">Obchod</string>
+	<string name="type.shop.fabric">Obchod s látkami</string>
 	<string name="type.shop.farm">Prodejna farmářských potravin</string>
 	<string name="type.shop.fashion_accessories">Módní doplňky</string>
 	<string name="type.shop.florist">Květinářství</string>
@@ -1680,11 +1706,11 @@
 	<string name="type.shop.mall">Obchoďák</string>
 	<string name="type.shop.massage">Masážní salon</string>
 	<string name="type.shop.mobile_phone">Mobily</string>
-	<string name="type.shop.money_lender">Obchod</string>
+	<string name="type.shop.money_lender">Půjčovatel peněz</string>
 	<string name="type.shop.motorcycle">Prodejna motocyklů</string>
 	<string name="type.shop.motorcycle_repair">Opravy motocyklů</string>
-	<string name="type.shop.music">Obchod</string>
-	<string name="type.shop.musical_instrument">Obchod</string>
+	<string name="type.shop.music">Obchod s hudebninami</string>
+	<string name="type.shop.musical_instrument">Obchod s hudebními nástroji</string>
 	<string name="type.shop.newsagent">Novinový stánek</string>
 	<string name="type.shop.optician">Optika</string>
 	<string name="type.shop.outdoor">Venkovní vybavení</string>
@@ -1694,13 +1720,15 @@
 	<string name="type.shop.pet">Zverimex</string>
 	<string name="type.shop.pet_grooming">Péče o domácí mazlíčky</string>
 	<string name="type.shop.photo">Fotografický obchod</string>
+	<string name="type.shop.rental">Půjčovna</string>
+	<string name="type.shop.rental.bicycle">Půjčovna kol</string>
 	<string name="type.shop.seafood">Prodej ryb</string>
 	<string name="type.shop.second_hand">Obchod z druhé ruky</string>
 	<string name="type.shop.shoes">Obuv</string>
 	<string name="type.shop.sports">Sportovní zboží</string>
 	<string name="type.shop.stationery">Papírnictví</string>
 	<string name="type.shop.tattoo">Tetovací salon</string>
-	<string name="type.shop.tea">Obchod</string>
+	<string name="type.shop.tea">Obchod s čajem</string>
 	<string name="type.shop.ticket">Prodej vstupenek</string>
 	<string name="type.shop.toys">Hračkářství</string>
 	<string name="type.shop.travel_agency">Cestovní kancelář</string>
@@ -1798,6 +1826,7 @@
 	<string name="type.tourism.viewpoint">Vyhlídka</string>
 	<string name="type.tourism.wilderness_hut">Chata v divočině</string>
 	<string name="type.tourism.zoo">zoologická zahrada</string>
+	<string name="type.tourism.zoo.petting">ZOO pro domácí mazlíčky</string>
 	<string name="type.waterway.canal">Kanál</string>
 	<string name="type.waterway.canal.tunnel">Kanál</string>
 	<string name="type.waterway.fish_pass">Žebřík pro ryby</string>

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -35,6 +35,7 @@ import app.organicmaps.intent.IntentProcessor;
 import app.organicmaps.intent.MapTask;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
+import app.organicmaps.util.Config;
 import app.organicmaps.util.ConnectionState;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
@@ -86,10 +87,16 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
 
   private int mCountryDownloadListenerSlot;
 
-  @SuppressWarnings("unused")
   private interface Listener
   {
+    // Called by JNI.
+    @Keep
+    @SuppressWarnings("unused")
     void onProgress(int percent);
+
+    // Called by JNI.
+    @Keep
+    @SuppressWarnings("unused")
     void onFinish(int errorCode);
   }
 
@@ -227,7 +234,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
     super.onSafeDestroy();
     mApiRequest.unregister();
     mApiRequest = null;
-    Utils.keepScreenOn(false, getWindow());
+    Utils.keepScreenOn(Config.isKeepScreenOnEnabled(), getWindow());
     if (mCountryDownloadListenerSlot != 0)
     {
       MapManager.nativeUnsubscribe(mCountryDownloadListenerSlot);

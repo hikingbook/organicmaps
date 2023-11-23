@@ -16,22 +16,22 @@
 
 amenity-parking                                     # area z15- (also has icon z15-, caption(optional) z16-)
 amenity-parking-fee                                 # area z15- (also has icon z15-, caption(optional) z16-)
-amenity-parking-fee-lane                            # area z15- (also has icon z15-)
-amenity-parking-fee-street_side                     # area z15- (also has icon z15-)
 amenity-parking-lane                                # area z15- (also has icon z17-)
+amenity-parking-lane-fee                            # area z15- (also has icon z15-)
+amenity-parking-lane-private                        # area z15- (also has icon z18-, caption(optional) z18-)
 amenity-parking-multi-storey                        # area z15- (also has icon z15-, caption(optional) z16-)
+amenity-parking-multi-storey-fee                    # area z15- (also has icon z15-, caption(optional) z16-)
 amenity-parking-no-access                           # area z15- (also has icon z15-, caption(optional) z16-)
 amenity-parking-park_and_ride                       # area z15- (also has icon z15-, caption(optional) z16-)
 amenity-parking-permissive                          # area z15- (also has icon z15-, caption(optional) z16-)
 amenity-parking-private                             # area z15- (also has icon z17-, caption(optional) z17-)
 amenity-parking-street_side                         # area z15- (also has icon z17-)
+amenity-parking-street_side-fee                     # area z15- (also has icon z15-)
+amenity-parking-street_side-private                 # area z15- (also has icon z17-, caption(optional) z17-)
 === 160
 
 leisure-stadium                                     # area z15-
 === 150
-
-leisure-nature_reserve                              # area z10- (also has icon z12-, caption(optional) z12-)
-=== 140
 
 amenity-grave_yard                                  # area z14-
 amenity-grave_yard-christian                        # area z14-
@@ -56,6 +56,9 @@ landuse-grass                                       # area z14-
 natural-grassland                                   # area z14-
 natural-heath                                       # area z14-
 === 80
+
+landuse-farmyard                                    # area z14-
+=== 71
 
 landuse-allotments                                  # area z14-
 landuse-farmland                                    # area z14-

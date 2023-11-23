@@ -2,8 +2,8 @@ package app.organicmaps.location;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.location.Location;
@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.UiThread;
 import androidx.core.content.ContextCompat;
+import androidx.core.location.GnssStatusCompat;
+import androidx.core.location.LocationManagerCompat;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -30,19 +32,14 @@ import app.organicmaps.util.log.Logger;
 
 public class LocationHelper implements BaseLocationProvider.Listener
 {
-  private static final long INTERVAL_FOLLOW_AND_ROTATE_MS = 3000;
-  private static final long INTERVAL_FOLLOW_MS = 1000;
+  private static final long INTERVAL_FOLLOW_MS = 0;
   private static final long INTERVAL_NOT_FOLLOW_MS = 3000;
-  private static final long INTERVAL_NAVIGATION_VEHICLE_MS = 500;
-
-  // TODO (trashkalmar): Correct value
-  private static final long INTERVAL_NAVIGATION_BICYCLE_MS = 1000;
-  private static final long INTERVAL_NAVIGATION_PEDESTRIAN_MS = 1000;
+  private static final long INTERVAL_NAVIGATION_MS = 0;
 
   private static final long AGPS_EXPIRATION_TIME_MS = 16 * 60 * 60 * 1000; // 16 hours
 
   @NonNull
-  private Context mContext;
+  private final Context mContext;
 
   private static final String TAG = LocationState.LOCATION_TAG;
   @NonNull
@@ -55,6 +52,44 @@ public class LocationHelper implements BaseLocationProvider.Listener
   private long mInterval;
   private boolean mInFirstRun;
   private boolean mActive;
+
+  @NonNull
+  private GnssStatusCompat.Callback mGnssStatusCallback = new GnssStatusCompat.Callback()
+  {
+    @Override
+    public void onStarted()
+    {
+      Logger.d(TAG);
+    }
+
+    @Override
+    public void onStopped()
+    {
+      Logger.d(TAG);
+    }
+
+    @Override
+    public void onFirstFix(int ttffMillis)
+    {
+      Logger.d(TAG, "ttffMillis = " + ttffMillis);
+    }
+
+    @Override
+    public void onSatelliteStatusChanged(@NonNull GnssStatusCompat status)
+    {
+      int used = 0;
+      boolean fixed = false;
+      for (int i = 0; i < status.getSatelliteCount(); i++)
+      {
+        if (status.usedInFix(i))
+        {
+          used++;
+          fixed = true;
+        }
+      }
+      Logger.d(TAG, "total = " + status.getSatelliteCount() + " used = " + used + " fixed = " + fixed);
+    }
+  };
 
   @NonNull
   public static LocationHelper from(@NonNull Context context)
@@ -163,6 +198,8 @@ public class LocationHelper implements BaseLocationProvider.Listener
     notifyLocationUpdated();
   }
 
+  // Used by GoogleFusedLocationProvider.
+  @SuppressWarnings("unused")
   @Override
   @UiThread
   public void onLocationResolutionRequired(@NonNull PendingIntent pendingIntent)
@@ -183,6 +220,8 @@ public class LocationHelper implements BaseLocationProvider.Listener
       listener.onLocationResolutionRequired(pendingIntent);
   }
 
+  // Used by GoogleFusedLocationProvider.
+  @SuppressWarnings("unused")
   @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
   @Override
   @UiThread
@@ -191,8 +230,10 @@ public class LocationHelper implements BaseLocationProvider.Listener
     // Try to downgrade to the native provider first and restart the service before notifying the user.
     Logger.d(TAG, "provider = " + mLocationProvider.getClass().getSimpleName() + " is not supported," +
         " downgrading to use native provider");
+    mLocationProvider.stop();
     mLocationProvider = new AndroidNativeProvider(mContext, this);
-    restart();
+    mActive = true;
+    mLocationProvider.start(mInterval);
   }
 
   @Override
@@ -235,71 +276,43 @@ public class LocationHelper implements BaseLocationProvider.Listener
     mListeners.remove(listener);
   }
 
-  private void calcLocationUpdatesInterval()
+  private long calcLocationUpdatesInterval()
   {
     if (RoutingController.get().isNavigating())
-    {
-      final @Framework.RouterType int router = Framework.nativeGetRouter();
-      switch (router)
-      {
-      case Framework.ROUTER_TYPE_PEDESTRIAN:
-        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
-        break;
+      return INTERVAL_NAVIGATION_MS;
 
-      case Framework.ROUTER_TYPE_VEHICLE:
-        mInterval = INTERVAL_NAVIGATION_VEHICLE_MS;
-        break;
-
-      case Framework.ROUTER_TYPE_BICYCLE:
-        mInterval = INTERVAL_NAVIGATION_BICYCLE_MS;
-        break;
-
-      case Framework.ROUTER_TYPE_TRANSIT:
-        // TODO: what is the interval should be for transit type?
-        mInterval = INTERVAL_NAVIGATION_PEDESTRIAN_MS;
-        break;
-
-      default:
-        throw new IllegalArgumentException("Unsupported router type: " + router);
-      }
-
-      Logger.d(TAG, "navigation = " + router + " interval = " + mInterval);
-      return;
-    }
-
-    int mode = LocationState.nativeGetMode();
+    final int mode = LocationState.nativeGetMode();
     switch (mode)
     {
+      case LocationState.PENDING_POSITION:
       case LocationState.FOLLOW:
-        mInterval = INTERVAL_FOLLOW_MS;
-        break;
       case LocationState.FOLLOW_AND_ROTATE:
-        mInterval = INTERVAL_FOLLOW_AND_ROTATE_MS;
-        break;
+        return INTERVAL_FOLLOW_MS;
       case LocationState.NOT_FOLLOW:
       case LocationState.NOT_FOLLOW_NO_POSITION:
-      case LocationState.PENDING_POSITION:
-        mInterval = INTERVAL_NOT_FOLLOW_MS;
-        break;
+        return INTERVAL_NOT_FOLLOW_MS;
+      default:
+        throw new IllegalArgumentException("Unsupported location mode: " + mode);
     }
-    Logger.d(TAG, "mode = " + mode + " interval = " + mInterval);
   }
 
   /**
-   * Stops the current provider. Then initialize the location provider again,
-   * because location settings could be changed and a new location provider can be used,
-   * such as Google fused provider. And we think that Google fused provider is preferable
-   * for the most cases. And starts the initialized location provider.
-   *
-   * @see #start()
-   *
+   * Restart the location with a new refresh interval if changed.
    */
-  @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
-  public void restart()
+  @SuppressLint("MissingPermission") // Location permissions have already been granted if isActive() is true.
+  public void restartWithNewMode()
   {
-    Logger.d(TAG);
-    stop();
-    start();
+    if (!isActive())
+      return;
+
+    final long newInterval = calcLocationUpdatesInterval();
+    if (newInterval == mInterval)
+      return;
+
+    Logger.i(TAG, "update refresh interval: old = " + mInterval + " new = " + newInterval);
+    mLocationProvider.stop();
+    mInterval = newInterval;
+    mLocationProvider.start(newInterval);
   }
 
   /**
@@ -317,15 +330,16 @@ public class LocationHelper implements BaseLocationProvider.Listener
     Logger.i(TAG);
     checkForAgpsUpdates();
 
-    if (ContextCompat.checkSelfPermission(mContext, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED)
+    if (LocationUtils.checkFineLocationPermission(mContext))
       SensorHelper.from(mContext).start();
 
     final long oldInterval = mInterval;
-    calcLocationUpdatesInterval();
+    mInterval = calcLocationUpdatesInterval();
     Logger.i(TAG, "provider = " + mLocationProvider.getClass().getSimpleName() +
         " mInFirstRun = " + mInFirstRun + " oldInterval = " + oldInterval + " interval = " + mInterval);
     mActive = true;
     mLocationProvider.start(mInterval);
+    subscribeToGnssStatusUpdates();
   }
 
   /**
@@ -341,6 +355,7 @@ public class LocationHelper implements BaseLocationProvider.Listener
 
     Logger.i(TAG);
     mLocationProvider.stop();
+    unsubscribeFromGnssStatusUpdates();
     SensorHelper.from(mContext).stop();
     mActive = false;
   }
@@ -357,8 +372,7 @@ public class LocationHelper implements BaseLocationProvider.Listener
       Logger.i(TAG, "Location updates are stopped by the user manually.");
       return;
     }
-    else if (ContextCompat.checkSelfPermission(mContext, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED &&
-             ContextCompat.checkSelfPermission(mContext, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED)
+    else if (!LocationUtils.checkLocationPermission(mContext))
     {
       Logger.i(TAG, "Permissions ACCESS_FINE_LOCATION and ACCESS_COARSE_LOCATION are not granted");
       return;
@@ -385,6 +399,23 @@ public class LocationHelper implements BaseLocationProvider.Listener
     final LocationManager manager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
     manager.sendExtraCommand(LocationManager.GPS_PROVIDER, "force_xtra_injection", null);
     manager.sendExtraCommand(LocationManager.GPS_PROVIDER, "force_time_injection", null);
+  }
+
+  private void subscribeToGnssStatusUpdates()
+  {
+    // Subscribe to the low-level GNSS status to keep the green dot location indicator always firing.
+    // https://github.com/organicmaps/organicmaps/issues/5999#issuecomment-1793713369
+    if (!LocationUtils.checkFineLocationPermission(mContext))
+      return;
+    final LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+    LocationManagerCompat.registerGnssStatusCallback(locationManager, ContextCompat.getMainExecutor(mContext),
+        mGnssStatusCallback);
+  }
+
+  private void unsubscribeFromGnssStatusUpdates()
+  {
+    final LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+    LocationManagerCompat.unregisterGnssStatusCallback(locationManager, mGnssStatusCallback);
   }
 
   @UiThread

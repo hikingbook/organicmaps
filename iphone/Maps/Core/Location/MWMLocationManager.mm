@@ -477,8 +477,8 @@ void setShowLocationAlert(BOOL needShow) {
     LOG(LINFO, ("startUpdatingLocation"));
 
     CLLocationManager * locationManager = self.locationManager;
-    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-      [locationManager requestWhenInUseAuthorization];
+//    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+//      [locationManager requestWhenInUseAuthorization];
 
     [locationManager startUpdatingLocation];
 
@@ -488,9 +488,9 @@ void setShowLocationAlert(BOOL needShow) {
       [locationManager startUpdatingHeading];
   };
 
-  if ([CLLocationManager locationServicesEnabled])
-  {
-    switch ([CLLocationManager authorizationStatus])
+//  if ([CLLocationManager locationServicesEnabled])
+//  {
+    switch ([self.locationManager authorizationStatus])
     {
     case kCLAuthorizationStatusAuthorizedWhenInUse:
     case kCLAuthorizationStatusAuthorizedAlways:
@@ -502,21 +502,21 @@ void setShowLocationAlert(BOOL needShow) {
         [self processLocationStatus:MWMLocationStatusDenied];
         break;
     }
-  }
-  else
-  {
-    [self processLocationStatus:MWMLocationStatusGPSIsOff];
-  }
+//  }
+//  else
+//  {
+//    [self processLocationStatus:MWMLocationStatusGPSIsOff];
+//  }
   return NO;
 }
 
 - (void)stop
 {
   LOG(LINFO, ("stopUpdatingLocation"));
-  CLLocationManager * locationManager = self.locationManager;
-  [locationManager stopUpdatingLocation];
-  if ([CLLocationManager headingAvailable])
-    [locationManager stopUpdatingHeading];
+//  CLLocationManager * locationManager = self.locationManager;
+//  [locationManager stopUpdatingLocation];
+//  if ([CLLocationManager headingAvailable])
+//    [locationManager stopUpdatingHeading];
 }
 
 #pragma mark - Framework

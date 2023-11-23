@@ -25,6 +25,8 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.TwoStatePreference;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,13 +48,6 @@ import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.LogsManager;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class SettingsPrefsFragment extends BaseXmlSettingsFragment
 {
@@ -328,13 +323,11 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     if (speedCamModeList.getValue().equals(newValue))
       return true;
 
-    SpeedCameraMode oldCamMode = SpeedCameraMode.valueOf(speedCamModeList.getValue());
-    onSpeedCamerasPrefChanged(oldCamMode, newCamMode);
+    onSpeedCamerasPrefChanged(newCamMode);
     return true;
   }
 
-  private void onSpeedCamerasPrefChanged(@NonNull SpeedCameraMode oldCamMode,
-                                         @NonNull SpeedCameraMode newCamMode)
+  private void onSpeedCamerasPrefChanged(@NonNull SpeedCameraMode newCamMode)
   {
     Framework.setSpeedCamerasMode(newCamMode);
   }
@@ -742,18 +735,18 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
 
   private void initScreenSleepEnabledPrefsCallbacks()
   {
-    final Preference pref = getPreference(getString(R.string.pref_screen_sleep));
+    final Preference pref = getPreference(getString(R.string.pref_keep_screen_on));
 
-    final boolean isScreenSleepEnabled = Config.isScreenSleepEnabled();
-    ((TwoStatePreference) pref).setChecked(isScreenSleepEnabled);
+    final boolean isKeepScreenOnEnabled = Config.isKeepScreenOnEnabled();
+    ((TwoStatePreference) pref).setChecked(isKeepScreenOnEnabled);
     pref.setOnPreferenceChangeListener(
         (preference, newValue) ->
         {
           boolean newVal = (Boolean) newValue;
-          if (isScreenSleepEnabled != newVal)
+          if (isKeepScreenOnEnabled != newVal)
           {
-            Config.setScreenSleepEnabled(newVal);
-            Utils.keepScreenOn(!newVal, requireActivity().getWindow());
+            Config.setKeepScreenOnEnabled(newVal);
+            Utils.keepScreenOn(newVal, requireActivity().getWindow());
           }
           return true;
         });

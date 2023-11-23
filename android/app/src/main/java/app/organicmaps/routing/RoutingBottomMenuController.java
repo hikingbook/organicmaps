@@ -45,7 +45,6 @@ import app.organicmaps.widget.recycler.MultilineLayoutManager;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 final class RoutingBottomMenuController implements View.OnClickListener
 {

@@ -789,6 +789,12 @@
 
 "book_button" = "Book";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Maelezo kuhusu KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Bonasi ya rufaa inayopokelewa kwa kila nafasi uliyohifadhi kupitia kiungo hiki huenda kwenye uundaji wa ramani za kikaboni.";
+
 "placepage_call_button" = "Call";
 
 "placepage_edit_bookmark_button" = "Edit Bookmark";
@@ -977,8 +983,6 @@
 
 "export_file" = "Tuma faili";
 
-"list_settings" = "Mipangilio ya Orodhesha";
-
 "delete_list" = "Futa Orodha";
 
 "hide_from_map" = "Ficha kwenye ramani";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Machaguo ya njia";
 
-"driving_options_subheader" = "Epuka kwenye kila njia";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Epuka barabara za ushuru";
 
-"avoid_tolls" = "Barabara za kulipia";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Epuka barabara za vumbi";
 
-"avoid_unpaved" = "Barabara za vumbi";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Epuka vivuko vya feri";
 
-"avoid_ferry" = "Vivuko cha feri";
-
-"avoid_motorways" = "Barabara za mwendo kasi";
+"avoid_motorways" = "Epuka barabara";
 
 "unable_to_calc_alert_title" = "Haiwezi kukokotoa njia";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Barabara ya vumbi";
 
 "ferry_crossing" = "Kivuko cha feri";
-
-"avoid_toll_roads_placepage" = "Epuka barabara za kulipia";
-
-"avoid_unpaved_roads_placepage" = "Epuka barabara za vumbi";
-
-"avoid_ferry_crossing_placepage" = "Epuka vivuko vya feri";
 
 "trip_start" = "Twende zetu";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Njia itaboreshwa kuwa ya gari";
 
 "ok" = "Sawa";
-
-"avoid_unpaved_carplay_1" = "Hamna za vum";
-
-"avoid_unpaved_carplay_2" = "Epuka za vumbi";
-
-"avoid_ferry_carplay_1" = "Hamna feri";
-
-"avoid_ferry_carplay_2" = "Epuka feri";
-
-"avoid_tolls_carplay_1" = "Hamna za ada";
-
-"avoid_tolls_carplay_2" = "Epuka njia-kodi";
 
 "speedcams_alert_title_carplay_1" = "Kam za kasi";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Community Centre";
 
+"type.amenity.compressed_air" = "Air compressed";
+
 "type.amenity.conference_centre" = "Kituo cha Mikutano";
 
 "type.amenity.courthouse" = "Courthouse";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Maegesho ya chini ya ardhi";
 
-"type.amenity.parking.street_side" = "Maegesho";
+"type.amenity.parking.underground.fee" = "Maegesho ya chini ya ardhi yanayolipwa";
 
-"type.amenity.parking.fee.street_side" = "Maegesho";
+"type.amenity.parking.underground.private" = "Maegesho ya kibinafsi ya chini ya ardhi";
 
-"type.amenity.parking.lane" = "Maegesho";
+"type.amenity.parking.street_side" = "Maegesho ya upande wa mtaa";
 
-"type.amenity.parking.fee.lane" = "Maegesho";
+"type.amenity.parking.street_side.fee" = "Maegesho yanayolipishwa ya barabarani";
+
+"type.amenity.parking.street_side.private" = "Maegesho ya upande wa mtaa wa kibinafsi";
+
+"type.amenity.parking.lane" = "Maegesho ya njia";
+
+"type.amenity.parking.lane.fee" = "Maegesho ya njia ya kulipwa";
+
+"type.amenity.parking.lane.private" = "Maegesho ya njia ya kibinafsi";
 
 "type.amenity.parking_entrance" = "Mlango wa maegesho";
 
-"type.amenity.parking_entrance.private" = "Mlango wa maegesho";
+"type.amenity.parking_entrance.private" = "Mlango wa maegesho ya kibinafsi";
 
 "type.amenity.parking_entrance.permissive" = "Mlango wa maegesho";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Church";
 
 "type.amenity.place_of_worship.christian.mormon" = "Kanisa la Yesu Kristo la Watakatifu wa Siku za Mwisho";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Ukumbi wa Ufalme wa Mashahidi wa Yehova";
 
 "type.amenity.place_of_worship.hindu" = "Hindu Temple";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Kitanda cha maua";
+
 "type.landuse.forest" = "Forest";
 
 "type.landuse.forest.coniferous" = "Coniferous Forest";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Train Station";
+
+"type.railway.station.light_rail.london" = "Train Station";
+
+"type.railway.station.light_rail.porto" = "Train Station";
 
 "type.railway.station.monorail" = "Train Station";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Photo Shop";
 
+"type.shop.rental" = "Duka la Kukodisha";
+
+"type.shop.rental.bicycle" = "Duka la Kukodisha Baiskeli";
+
 "type.shop.seafood" = "Fishmonger";
 
 "type.shop.second_hand" = "Duka la Mitumba";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "Zoo";
+
+"type.tourism.zoo.petting" = "Kufuga Zoo";
 
 "type.traffic_calming" = "Traffic Calming";
 

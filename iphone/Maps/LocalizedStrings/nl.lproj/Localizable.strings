@@ -789,6 +789,12 @@
 
 "book_button" = "Boeken";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Details op KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "De doorverwijsbonus die je ontvangt voor elke boeking via deze link gaat naar de ontwikkeling van Organic Maps.";
+
 "placepage_call_button" = "Bellen";
 
 "placepage_edit_bookmark_button" = "Bladwijzer bewerken";
@@ -977,8 +983,6 @@
 
 "export_file" = "Bestand exporteren";
 
-"list_settings" = "Lijst Instellingen";
-
 "delete_list" = "Lijst verwijderen";
 
 "hide_from_map" = "Van de kaart verbergen";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Route instellingen";
 
-"driving_options_subheader" = "Vermijden op elke route";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Vermijd tolwegen";
 
-"avoid_tolls" = "Tolwegen";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Vermijd onverharde wegen";
 
-"avoid_unpaved" = "Onverharde wegen";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Vermijd veerboten";
 
-"avoid_ferry" = "Veerdiensten";
-
-"avoid_motorways" = "Autosnelwegen";
+"avoid_motorways" = "Vermijd snelwegen";
 
 "unable_to_calc_alert_title" = "Kan route niet opbouwen";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Aardeweg";
 
 "ferry_crossing" = "Ferry";
-
-"avoid_toll_roads_placepage" = "Tolwegen vermijden";
-
-"avoid_unpaved_roads_placepage" = "Aardewegen vermijden";
-
-"avoid_ferry_crossing_placepage" = "Ferries vermijden";
 
 "trip_start" = "Kom op";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "De route wordt gewijzigd in de autoroute";
 
 "ok" = "Goed";
-
-"avoid_unpaved_carplay_1" = "Geen aardew.";
-
-"avoid_unpaved_carplay_2" = "Geen aardewegen";
-
-"avoid_ferry_carplay_1" = "Geen ferry's";
-
-"avoid_ferry_carplay_2" = "Geen ferry's";
-
-"avoid_tolls_carplay_1" = "Zonder tol";
-
-"avoid_tolls_carplay_2" = "Zonder tol";
 
 "speedcams_alert_title_carplay_1" = "Cameras";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Gemeenschapscentrum";
 
+"type.amenity.compressed_air" = "Samengeperste lucht";
+
 "type.amenity.conference_centre" = "Conferentiecentrum";
 
 "type.amenity.courthouse" = "Rechtbank";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Ondergrondse parking";
 
-"type.amenity.parking.street_side" = "Parkeerplaats";
+"type.amenity.parking.underground.fee" = "Betaald ondergronds parkeren";
 
-"type.amenity.parking.fee.street_side" = "Parkeerplaats";
+"type.amenity.parking.underground.private" = "Ondergronds privéparkeren";
 
-"type.amenity.parking.lane" = "Parkeerplaats";
+"type.amenity.parking.street_side" = "Parkeren aan de straatkant";
 
-"type.amenity.parking.fee.lane" = "Parkeerplaats";
+"type.amenity.parking.street_side.fee" = "Betaald parkeren aan de straatkant";
+
+"type.amenity.parking.street_side.private" = "Prive straat parkeren aan de zijkant";
+
+"type.amenity.parking.lane" = "Rijbaan parkeren";
+
+"type.amenity.parking.lane.fee" = "Betaald parkeren op rijstroken";
+
+"type.amenity.parking.lane.private" = "Privé parkeerplaats";
 
 "type.amenity.parking_entrance" = "Parkeeringang";
 
-"type.amenity.parking_entrance.private" = "Parkeeringang";
+"type.amenity.parking_entrance.private" = "Eigen parkeerplaats ingang";
 
 "type.amenity.parking_entrance.permissive" = "Parkeeringang";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kerk";
 
 "type.amenity.place_of_worship.christian.mormon" = "Kerk van Jezus Christus van de Heiligen der Laatste Dagen";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Koninkrijkszaal van Jehovah's Getuigen";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Veld";
 
+"type.landuse.flowerbed" = "Bloemenbed";
+
 "type.landuse.forest" = "Bos";
 
 "type.landuse.forest.coniferous" = "Naaldbos";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Tunnel";
 
 "type.railway.station.light_rail" = "Station";
+
+"type.railway.station.light_rail.london" = "Station";
+
+"type.railway.station.light_rail.porto" = "Station";
 
 "type.railway.station.monorail" = "Station";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotowinkel";
 
+"type.shop.rental" = "Verhuur winkel";
+
+"type.shop.rental.bicycle" = "Fietsverhuurwinkel";
+
 "type.shop.seafood" = "Visboer";
 
 "type.shop.second_hand" = "Tweedehandswinkel";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Wildernishut";
 
 "type.tourism.zoo" = "Dierentuin";
+
+"type.tourism.zoo.petting" = "Kinderboerderij";
 
 "type.traffic_calming" = "Snelheidsmatigende maatregel";
 

@@ -8,18 +8,14 @@ package app.organicmaps.intent;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+
 import app.organicmaps.DownloadResourcesLegacyActivity;
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
-import app.organicmaps.MapFragment;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.api.ParsedMwmRequest;
@@ -41,7 +37,6 @@ import app.organicmaps.util.Utils;
 import app.organicmaps.util.concurrency.ThreadPool;
 
 import java.io.File;
-import java.util.List;
 
 public class Factory
 {
@@ -50,6 +45,15 @@ public class Factory
     @Nullable
     @Override
     public MapTask process(@NonNull Intent intent)
+    {
+      final String uri = processIntent(intent);
+      if (uri == null)
+        return null;
+      return new OpenUrlTask(uri);
+    }
+
+    @Nullable
+    public static String processIntent(@NonNull Intent intent)
     {
       final Uri uri = intent.getData();
       if (uri == null)
@@ -60,7 +64,7 @@ public class Factory
       SearchEngine.INSTANCE.cancelInteractiveSearch();
       final ParsedMwmRequest request = ParsedMwmRequest.extractFromIntent(intent);
       ParsedMwmRequest.setCurrentRequest(request);
-      return new OpenUrlTask(uri.toString());
+      return uri.toString();
     }
   }
 
@@ -209,21 +213,24 @@ public class Factory
     {
       final ParsingResult result = Framework.nativeParseAndSetApiUrl(getUrl());
 
-      // TODO: Kernel recognizes "mapsme://", "mwm://" and "mapswithme://" schemas only!!!
+      final Uri uri = Uri.parse(getUrl());
+      if (uri.isHierarchical())
+      {
+        final String backUrl = uri.getQueryParameter("backurl");
+        if (!TextUtils.isEmpty(backUrl))
+        {
+          final Intent intent = target.getIntent();
+          if (intent != null)
+            intent.putExtra(MwmActivity.EXTRA_BACK_URL, backUrl);
+        }
+      }
+
+      // TODO: Kernel recognizes "om://", "mapsme://", "mwm://" and "mapswithme://" schemas only!!!
       if (result.getUrlType() == ParsingResult.TYPE_INCORRECT)
         return Map.showMapForUrl(getUrl());
 
       if (!result.isSuccess())
         return false;
-
-      final Uri uri = Uri.parse(getUrl());
-      final String backUrl = uri.getQueryParameter("backurl");
-      if (!TextUtils.isEmpty(backUrl))
-      {
-        Intent intent = target.getIntent();
-        if (intent != null)
-          intent.putExtra(MwmActivity.EXTRA_BACK_URL, backUrl);
-      }
 
       switch (result.getUrlType())
       {
@@ -368,41 +375,6 @@ public class Factory
     {
       RoutingController.get().restoreRoute();
       return true;
-    }
-  }
-
-  public static class ShowDialogTask implements MapTask
-  {
-    private static final long serialVersionUID = 1548931513812565018L;
-    @NonNull
-    private final String mDialogName;
-
-    public ShowDialogTask(@NonNull String dialogName)
-    {
-      mDialogName = dialogName;
-    }
-
-    @Override
-    public boolean run(@NonNull MwmActivity target)
-    {
-      final FragmentManager fragmentManager = target.getSupportFragmentManager();
-      Fragment f = fragmentManager.findFragmentByTag(mDialogName);
-      if (f != null)
-        return true;
-
-      final DialogFragment fragment = (DialogFragment) fragmentManager.getFragmentFactory()
-        .instantiate(target.getClassLoader(), mDialogName);
-      fragment.show(fragmentManager, mDialogName);
-      return true;
-    }
-
-    @NonNull
-    private static Bundle toDialogArgs(@NonNull List<KeyValue> pairs)
-    {
-      Bundle bundle = new Bundle();
-      for (KeyValue each : pairs)
-        bundle.putString(each.getKey(), each.getValue());
-      return bundle;
     }
   }
 }

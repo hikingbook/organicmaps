@@ -141,7 +141,7 @@
 "hospital" = "Hospital";
 
 /* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Banheiros";
+"toilet" = "Banheiro";
 
 /* Search category for post offices; any changes should be duplicated in categories.txt @post! */
 "post" = "Correios";
@@ -789,6 +789,12 @@
 
 "book_button" = "Reservar";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Detalhes em KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "O bônus de indicação recebido por cada reserva feita por meio deste link é destinado ao desenvolvimento do Organic Maps.";
+
 "placepage_call_button" = "Ligar";
 
 "placepage_edit_bookmark_button" = "Editar favorito";
@@ -977,8 +983,6 @@
 
 "export_file" = "Exportar arquivo";
 
-"list_settings" = "Configurações de lista";
-
 "delete_list" = "Deletar lista";
 
 "hide_from_map" = "Esconder do mapa";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Opções de direção";
 
-"driving_options_subheader" = "Evitar em todas as rotas";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Evitar pedágios";
 
-"avoid_tolls" = "Pedágios";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Evitar não-pavimentadas";
 
-"avoid_unpaved" = "Pistas sem pavimentação";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Evitar balsas";
 
-"avoid_ferry" = "Balsa";
-
-"avoid_motorways" = "Autoestradas";
+"avoid_motorways" = "Evitar rodovias";
 
 "unable_to_calc_alert_title" = "Incapaz de calcular rota";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Pista não pavimentada";
 
 "ferry_crossing" = "Balsa";
-
-"avoid_toll_roads_placepage" = "Evitar pedágios";
-
-"avoid_unpaved_roads_placepage" = "Evitar pistas sem pavimentação";
-
-"avoid_ferry_crossing_placepage" = "Evitar balsas";
 
 "trip_start" = "Vamos";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "A rota será alterada para uma de automóvel";
 
 "ok" = "Tudo bem";
-
-"avoid_unpaved_carplay_1" = "Não pav.";
-
-"avoid_unpaved_carplay_2" = "Evitar não pav.";
-
-"avoid_ferry_carplay_1" = "Sem balsas";
-
-"avoid_ferry_carplay_2" = "Evitar balsas";
-
-"avoid_tolls_carplay_1" = "Sem pedágio";
-
-"avoid_tolls_carplay_2" = "Evitar pedágios";
 
 "speedcams_alert_title_carplay_1" = "Radares";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Centro comunitário";
 
+"type.amenity.compressed_air" = "Ar comprimido";
+
 "type.amenity.conference_centre" = "Centro de conferências";
 
 "type.amenity.courthouse" = "Tribunal";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Estacionamento subterrâneo";
 
-"type.amenity.parking.street_side" = "Estacionamento";
+"type.amenity.parking.underground.fee" = "Estacionamento subterrâneo pago";
 
-"type.amenity.parking.fee.street_side" = "Estacionamento";
+"type.amenity.parking.underground.private" = "Estacionamento subterrâneo privativo";
 
-"type.amenity.parking.lane" = "Estacionamento";
+"type.amenity.parking.street_side" = "Estacionamento ao lado da rua";
 
-"type.amenity.parking.fee.lane" = "Estacionamento";
+"type.amenity.parking.street_side.fee" = "Estacionamento ao lado da rua pago";
+
+"type.amenity.parking.street_side.private" = "Estacionamento ao lado da rua privativo";
+
+"type.amenity.parking.lane" = "Estacionamento na rua";
+
+"type.amenity.parking.lane.fee" = "Estacionamento na rua pago";
+
+"type.amenity.parking.lane.private" = "Estacionamento na rua privativo";
 
 "type.amenity.parking_entrance" = "Entrada do estacionamento";
 
-"type.amenity.parking_entrance.private" = "Entrada do estacionamento";
+"type.amenity.parking_entrance.private" = "Entrada para estacionamento privativo";
 
 "type.amenity.parking_entrance.permissive" = "Entrada do estacionamento";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Igreja cristã";
 
 "type.amenity.place_of_worship.christian.mormon" = "Igreja de Jesus Cristo dos Santos dos Últimos Dias";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Salão do Reino das Testemunhas de Jeová";
 
 "type.amenity.place_of_worship.hindu" = "Templo hindu";
 
@@ -1524,7 +1523,7 @@
 
 "type.amenity.shelter" = "Abrigo";
 
-"type.amenity.public_bath" = "Banheiro público";
+"type.amenity.public_bath" = "Banho público";
 
 "type.amenity.shower" = "Chuveiro";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Campo";
 
+"type.landuse.flowerbed" = "Canteiro de flores";
+
 "type.landuse.forest" = "Floresta";
 
 "type.landuse.forest.coniferous" = "Floresta de coníferas";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Estação de trem";
+
+"type.railway.station.light_rail.london" = "Estação de trem";
+
+"type.railway.station.light_rail.porto" = "Estação de trem";
 
 "type.railway.station.monorail" = "Estação de trem";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Loja de fotografia";
 
+"type.shop.rental" = "Locadora";
+
+"type.shop.rental.bicycle" = "Loja de aluguel de bicicletas";
+
 "type.shop.seafood" = "Peixaria";
 
 "type.shop.second_hand" = "Loja de segunda mão";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Cabana";
 
 "type.tourism.zoo" = "Zoológico";
+
+"type.tourism.zoo.petting" = "Jardim Zoológico";
 
 "type.traffic_calming" = "Redutor de velocidade";
 

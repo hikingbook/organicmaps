@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Schnell, minimalistisch, keine Bloatware</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Open-Source-Anwendung von Enthusiasten und Freiwilligen.</string>
-	<string name="connection_settings">Verbindungseinstellungen</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Standorteinstellungen</string>
 	<string name="close">Schließen</string>
 	<string name="unsupported_phone">Das Programm benötigt OpenGL, um zu funktionieren. Leider wird Ihr Gerät nicht unterstützt.</string>
 	<string name="download">Herunterladen</string>
@@ -509,6 +510,10 @@
 	<string name="hour">h</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mehr</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Einzelheiten bei KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Der empfehlungsbonus, den wir für jede buchung über diesen link erhalten, fließt in die entwicklung von Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Lesezeichen bearbeiten</string>
 	<string name="editor_comment_hint">Kommentar…</string>
 	<string name="editor_reset_edits_message">Alle lokalen Korrekturen verwerfen</string>
@@ -534,8 +539,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Stellen Sie sicher, dass Sie keine persönlichen Daten eingegeben haben.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap-Redakteure werden die Änderungen prüfen und sich bei Fragen mit Ihnen in Verbindung setzen.</string>
 	<string name="navigation_stop_button">Stopp</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps ist eine schnelle und kostenlose Offline-Karten-App ohne Werbung und Tracking. Die Karten basieren auf den Daten von OpenStreetMap.org, so dass Sie selbst Kartenfehler beheben und Orte hinzufügen können. Organic Maps ist ein Open-Source-Projekt, das von Enthusiasten in ihrer Freizeit entwickelt wird. Ihr Feedback und Ihre Unterstützung sind sehr willkommen!</string>
 	<!-- For the first routing -->
 	<string name="accept">Annehmen</string>
 	<!-- For the first routing -->
@@ -595,7 +598,6 @@
 	  <item quantity="one">%d Datei wurde gefunden. Sie werden sie nach der Konvertierung sehen.</item>
 	  <item quantity="other">%d Dateien wurden gefunden. Sie werden sie nach der Konvertierung sehen.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Keine Internetverbindung</string>
 	<plurals name="objects">
 	  <item quantity="one">%d Objekt</item>
 	  <item quantity="other">%d Objekte</item>
@@ -620,7 +622,6 @@
 	<string name="bookmarks_empty_list_message">Zum Hinzufügen eine Lesezeichens tippen Sie in der Karte auf den Ort und dann unten auf das Sternchen</string>
 	<string name="category_desc_more">…mehr</string>
 	<string name="export_file">Datei exportieren</string>
-	<string name="list_settings">Listeneinstellungen</string>
 	<string name="delete_list">Liste löschen</string>
 	<string name="public_access">Öffentlicher Zugriff</string>
 	<string name="limited_access">Privater Zugriff</string>
@@ -642,11 +643,13 @@
 	<string name="enable_logging_warning_message">Diese Option wird aktiviert, um Aktivitäten zwecks Diagnostik aufzuzeichnen. Das hilft unserem Team, Probleme mit der App zu erkennen. Aktivieren Sie diese Option nur auf Ersuchen des Organic Maps-Supports.</string>
 	<string name="access_rules_author_only">Online bearbeiten</string>
 	<string name="driving_options_title">Routenbeschränkungen</string>
-	<string name="driving_options_subheader">In jeder Reiseroute vermeiden</string>
-	<string name="avoid_tolls">Mautstraßen</string>
-	<string name="avoid_unpaved">Unbefestigte Straßen</string>
-	<string name="avoid_ferry">Fährstellen</string>
-	<string name="avoid_motorways">Autobahnen</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Mautstraßen vermeiden</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Unbefest. Straßen vermeiden</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Fähren vermeiden</string>
+	<string name="avoid_motorways">Autobahnen vermeiden</string>
 	<string name="unable_to_calc_alert_title">Route kann nicht berechnet werden</string>
 	<string name="unable_to_calc_alert_subtitle">Leider konnten wir keine Route mit den gewählten Optionen erstellen. Ändern Sie die Einstellungen und versuchen Sie es erneut</string>
 	<string name="define_to_avoid_btn">Umwege einstellen</string>
@@ -654,9 +657,6 @@
 	<string name="toll_road">Mautstraße</string>
 	<string name="unpaved_road">Unbefestigte Straße</string>
 	<string name="ferry_crossing">Fährstelle</string>
-	<string name="avoid_toll_roads_placepage">Mautstraßen vermeiden</string>
-	<string name="avoid_unpaved_roads_placepage">Unbefestigte Straßen vermeiden</string>
-	<string name="avoid_ferry_crossing_placepage">Fährstellen vermeiden</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Ja</string>
 	<!-- A generic "No" button in dialogs -->
@@ -665,6 +665,7 @@
 	<string name="yes_available">Ja</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nein</string>
+	<string name="trip_finished">Sie sind angekommen!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sortieren…</string>
@@ -726,9 +727,9 @@
 	<string name="connection_failure">Verbindungsfehler</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">USB-Kabel trennen</string>
-	<string name="enable_screen_sleep">Bildschirm schlafen lassen</string>
+	<string name="enable_keep_screen_on">Bildschirm anlassen</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Wenn diese Option aktiviert ist, kann der Bildschirm nach einer gewissen Zeit der Inaktivität in den Ruhezustand versetzt werden.</string>
+	<string name="enable_keep_screen_on_description">Wenn diese Option aktiviert ist, ist der Bildschirm bei der Anzeige der Karte immer eingeschaltet.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Auf dem Sperrbildschirm anzeigen</string>
 	<!-- Description in preferences -->
@@ -741,6 +742,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/DE:Über_OSM</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Danke, dass du unsere von der Gemeinschaft erstellten Karten benutzt!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Du verwendest jetzt Organic Maps auf dem Telefondisplay</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Du verwendest jetzt Organic Maps auf dem Bildschirm des Autos</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Du bist mit Android Auto verbunden</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Weiter auf Telefon</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Zum Autobildschirm</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Diese Anwendung benötigt für die Navigation Zugriff auf deinen Standort.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Erlaubnis erteilen</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Mit dem Auto verbunden</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Block</string>
@@ -789,6 +806,7 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Hochschule</string>
 	<string name="type.amenity.community_centre">Bürgerhaus</string>
+	<string name="type.amenity.compressed_air">Pressluft</string>
 	<string name="type.amenity.conference_centre">Konferenzzentrum</string>
 	<string name="type.amenity.courthouse">Justizgebäude</string>
 	<string name="type.amenity.dentist">Zahnarzt</string>
@@ -827,12 +845,16 @@
 	<string name="type.amenity.parking.private">Privatparkplatz</string>
 	<string name="type.amenity.parking.park_and_ride">P+R-Parkplatz</string>
 	<string name="type.amenity.parking.underground">Tiefgarage</string>
-	<string name="type.amenity.parking.street_side">Parkplatz</string>
-	<string name="type.amenity.parking.fee.street_side">Parkplatz</string>
-	<string name="type.amenity.parking.lane">Parkplatz</string>
-	<string name="type.amenity.parking.fee.lane">Parkplatz</string>
+	<string name="type.amenity.parking.underground.fee">Kostenpflichtige Tiefgarage</string>
+	<string name="type.amenity.parking.underground.private">Private Tiefgarage</string>
+	<string name="type.amenity.parking.street_side">Parkbucht</string>
+	<string name="type.amenity.parking.street_side.fee">Kostenpflichtige Parkbucht</string>
+	<string name="type.amenity.parking.street_side.private">Private Parkbucht</string>
+	<string name="type.amenity.parking.lane">Fahrspur parken</string>
+	<string name="type.amenity.parking.lane.fee">Bezahltes parken auf der straße</string>
+	<string name="type.amenity.parking.lane.private">Privatspur parken</string>
 	<string name="type.amenity.parking_entrance">Parkplatzeinfahrt</string>
-	<string name="type.amenity.parking_entrance.private">Parkplatzeinfahrt</string>
+	<string name="type.amenity.parking_entrance.private">Private Parkplatzeinfahrt</string>
 	<string name="type.amenity.parking_entrance.permissive">Parkplatzeinfahrt</string>
 	<string name="type.amenity.parking_space">Parkplatz</string>
 	<string name="type.amenity.parking_space.permissive">Parkplatz</string>
@@ -845,6 +867,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Buddhistischer Tempel</string>
 	<string name="type.amenity.place_of_worship.christian">Kirche</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Kirche Jesu Christi der Heiligen der Letzten Tage</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Königreichssaal der Zeugen Jehovas</string>
 	<string name="type.amenity.place_of_worship.hindu">Hinduistischer Tempel</string>
 	<string name="type.amenity.place_of_worship.jewish">Synagoge</string>
 	<string name="type.amenity.place_of_worship.muslim">Moschee</string>
@@ -1334,6 +1357,7 @@
 	<string name="type.landuse.farmland">Agrarland</string>
 	<string name="type.landuse.farmyard">Bauernhof</string>
 	<string name="type.landuse.field">Feld</string>
+	<string name="type.landuse.flowerbed">Blumenbeet</string>
 	<string name="type.landuse.forest">Wald</string>
 	<string name="type.landuse.forest.coniferous">Nadelwald</string>
 	<string name="type.landuse.forest.deciduous">Laubwald</string>
@@ -1567,6 +1591,8 @@
 	<string name="type.railway.station">Bahnhof</string>
 	<string name="type.railway.station.funicular">Standseilbahn</string>
 	<string name="type.railway.station.light_rail">Stadtbahnbahnhof</string>
+	<string name="type.railway.station.light_rail.london">Stadtbahnbahnhof</string>
+	<string name="type.railway.station.light_rail.porto">Stadtbahnbahnhof</string>
 	<string name="type.railway.station.monorail">Bahnhof</string>
 	<string name="type.railway.station.subway">U-Bahn-Station</string>
 	<string name="type.railway.station.subway.adana">U-Bahn-Station</string>
@@ -1868,6 +1894,8 @@
 	<string name="type.shop.pet">Tierhandlung</string>
 	<string name="type.shop.pet_grooming">Haustierpflege</string>
 	<string name="type.shop.photo">Fotofachgeschäft</string>
+	<string name="type.shop.rental">Verleih</string>
+	<string name="type.shop.rental.bicycle">Fahrradverleih</string>
 	<string name="type.shop.seafood">Fischhändler</string>
 	<string name="type.shop.second_hand">Second-Hand-Laden</string>
 	<string name="type.shop.shoes">Schuhgeschäft</string>
@@ -1979,6 +2007,7 @@
 	<string name="type.tourism.viewpoint">Aussichtspunkt</string>
 	<string name="type.tourism.wilderness_hut">Waldhütte</string>
 	<string name="type.tourism.zoo">Zoo</string>
+	<string name="type.tourism.zoo.petting">Streichelzoo</string>
 	<string name="type.traffic_calming">Verkehrsberuhigung</string>
 	<string name="type.traffic_calming.bump">kurze Bodenwelle</string>
 	<string name="type.traffic_calming.hump">lange Bodenwelle</string>

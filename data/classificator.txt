@@ -55,6 +55,7 @@ world  +
         clinic  -
         college  -
         community_centre  -
+        compressed_air  -
         conference_centre  -
         courthouse  -
         dentist  -
@@ -89,18 +90,26 @@ world  +
         nursing_home  -
         parcel_locker  -
         parking  +
-            fee  +
-                lane  -
-                street_side  -
+            fee  -
+            lane  +
+                fee  -
+                private  -
                 {}
-            lane  -
-            multi-storey  -
+            multi-storey  +
+                fee  -
+                {}
             no-access  -
             park_and_ride  -
             permissive  -
             private  -
-            street_side  -
-            underground  -
+            street_side  +
+                fee  -
+                private  -
+                {}
+            underground  +
+                fee  -
+                private  -
+                {}
             {}
         parking_entrance  +
             permissive  -
@@ -117,6 +126,7 @@ world  +
         place_of_worship  +
             buddhist  -
             christian  +
+                jehovahs_witness  -
                 mormon  -
                 {}
             hindu  -
@@ -490,7 +500,6 @@ world  +
         service  +
             area  -
             bridge  -
-            busway  -
             driveway  -
             parking_aisle  -
             tunnel  -
@@ -628,6 +637,7 @@ world  +
         farmland  -
         farmyard  -
         field  -
+        flowerbed  -
         forest  +
             coniferous  -
             deciduous  -
@@ -933,7 +943,10 @@ world  +
             {}
         station  +
             funicular  -
-            light_rail  -
+            light_rail  +
+                london  -
+                porto  -
+                {}
             monorail  -
             subway  +
                 adana  -
@@ -1284,6 +1297,9 @@ world  +
         pet  -
         pet_grooming  -
         photo  -
+        rental  +
+            bike  -
+            {}
         seafood  -
         second_hand  -
         sewing  -
@@ -1381,7 +1397,9 @@ world  +
         theme_park  -
         viewpoint  -
         wilderness_hut  -
-        zoo  -
+        zoo  +
+            petting  -
+            {}
         {}
     traffic_calming  +
         bump  -

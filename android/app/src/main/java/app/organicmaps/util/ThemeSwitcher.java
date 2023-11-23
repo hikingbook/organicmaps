@@ -5,18 +5,17 @@ import android.content.Context;
 import android.location.Location;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import app.organicmaps.Framework;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.base.Initializable;
+import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.DownloaderStatusIcon;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.util.concurrency.UiThread;
 
-public enum ThemeSwitcher implements Initializable<Context>
+public enum ThemeSwitcher
 {
   INSTANCE;
 
@@ -59,16 +58,9 @@ public enum ThemeSwitcher implements Initializable<Context>
   @NonNull
   private Context mContext;
 
-  @Override
-  public void initialize(@Nullable Context context)
+  public void initialize(@NonNull Context context)
   {
     mContext = context;
-  }
-
-  @Override
-  public void destroy()
-  {
-    // No op.
   }
 
   /**
@@ -134,6 +126,10 @@ public enum ThemeSwitcher implements Initializable<Context>
 
   private void SetMapStyle(@Framework.MapStyle int style)
   {
+    // Because of the distinct behavior in auto theme, Android Auto employs its own mechanism for theme switching.
+    // For the Android Auto theme switcher, please consult the app.organicmaps.car.util.ThemeUtils module.
+    if (DisplayManager.from(mContext).isCarDisplayUsed())
+      return;
     // If rendering is not active we can mark map style, because all graphics
     // will be recreated after rendering activation.
     if (mRendererActive)

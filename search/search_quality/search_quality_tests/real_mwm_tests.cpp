@@ -522,15 +522,19 @@ UNIT_CLASS_TEST(MwmTestsFixture, Street_BusStop)
     TEST_LESS(SortedByDistance(range, center), 5000.0, ());
   }
 
+  /// @todo Actually, we have very fancy matching here, starting from 3rd result and below.
+  /// Interesting to check how it happens.
   {
     auto request = MakeRequest("Juncal train", "en");
     auto const & results = request->Results();
     TEST_GREATER(results.size(), kTopPoiResultsCount, ());
 
-    // First result is a train station in other MWM, >200km away.
-    TEST(EqualClassifType(results[0].GetFeatureType(), classif().GetTypeByPath({"railway", "station"})), ());
-    double const dist = ms::DistanceOnEarth(center, mercator::ToLatLon(results[0].GetFeatureCenter()));
-    TEST_GREATER(dist, 2.0E5, ());
+    // First result is a "Juncal" supermarket near the train station, 24km :)
+    // Second result is a train station in other MWM, >200km away.
+    Range const range(results, 0, 2);
+    EqualClassifType(range, GetClassifTypes({{"shop", "supermarket"}, {"railway", "station"}}));
+    TEST_LESS(!SortedByDistance(range, center), 2.0E5, ());
+    TEST_LESS(SortedByDistance(range, center), 3.0E5, ());
   }
 }
 
@@ -922,4 +926,40 @@ UNIT_CLASS_TEST(MwmTestsFixture, BA_RelaxedStreets)
     TEST_GREATER(count, 5, ());
   }
 }
+
+UNIT_CLASS_TEST(MwmTestsFixture, Streets_Rank)
+{
+  // Buenos Aires (Palermo)
+  ms::LatLon const center(-34.5802699, -58.4124979);
+  SetViewportAndLoadMaps(center);
+
+  auto const & streetChecker = ftypes::IsStreetOrSquareChecker::Instance();
+
+  auto const processRequest = [&](std::string const & query, size_t idx)
+  {
+    auto request = MakeRequest(query);
+    auto const & results = request->Results();
+
+    TEST_GREATER(results.size(), idx, ());
+
+    bool found = false;
+    for (size_t i = 0; i < idx && !found; ++i)
+    {
+      auto const & r = results[i];
+      if (streetChecker(r.GetFeatureType()))
+      {
+        TEST_EQUAL(r.GetString(), "Avenida Santa Fe", ());
+        TEST_LESS(GetDistanceM(r, center), 1000, ());
+        found = true;
+      }
+    }
+    TEST(found, ());
+  };
+
+  /// @todo Street should be highwer than 11.
+  processRequest("Santa Fe ", 11);
+  /// @todo Prefix search" gives POIs (Starbucks) near "Avenida Santa Fe".
+  processRequest("Santa Fe st ", 2);
+}
+
 } // namespace real_mwm_tests

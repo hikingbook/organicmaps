@@ -16,11 +16,10 @@ import java.util.concurrent.TimeUnit;
 
 import app.organicmaps.Framework;
 import app.organicmaps.R;
-import app.organicmaps.base.Initializable;
 import app.organicmaps.bookmarks.data.FeatureId;
 import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.location.LocationHelper;
-import app.organicmaps.util.Config;
+import app.organicmaps.widget.placepage.CoordinatesFormat;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.concurrency.UiThread;
@@ -29,7 +28,7 @@ import app.organicmaps.widget.placepage.CoordinatesFormat;
 
 
 @androidx.annotation.UiThread
-public class RoutingController implements Initializable<Context>
+public class RoutingController
 {
   private static final String TAG = RoutingController.class.getSimpleName();
 
@@ -50,10 +49,8 @@ public class RoutingController implements Initializable<Context>
 
   public interface Container
   {
-    default void showSearch() {}
     default void showRoutePlan(boolean show, @Nullable Runnable completionListener) {}
     default void showNavigation(boolean show) {}
-    default void showDownloader(boolean openDownloaded) {}
     default void updateMenu() {}
     default void onNavigationCancelled() {}
     default void onNavigationStarted() {}
@@ -67,7 +64,6 @@ public class RoutingController implements Initializable<Context>
     default boolean isSubwayEnabled() { return false; }
     default void onCommonBuildError(int lastResultCode, @NonNull String[] lastMissingMaps) {}
     default void onDrivingOptionsBuildError() {}
-    default void onShowDisclaimer(@Nullable MapObject startPoint, @Nullable MapObject endPoint) {}
 
     /**
      * @param progress progress to be displayed.
@@ -220,7 +216,8 @@ public class RoutingController implements Initializable<Context>
     Logger.d(TAG, "[B] State: " + mState + ", BuildState: " + mBuildState + " -> " + newState);
     mBuildState = newState;
 
-    if (mBuildState == BuildState.BUILT && !MapObject.isOfType(MapObject.MY_POSITION, getStartPoint()))
+    final MapObject startPoint = getStartPoint();
+    if (mBuildState == BuildState.BUILT && (startPoint == null || !startPoint.isMyPosition()))
       Framework.nativeDisableFollowing();
 
     if (mContainer != null)
@@ -256,7 +253,6 @@ public class RoutingController implements Initializable<Context>
     mContainer = container;
   }
 
-  @Override
   public void initialize(@NonNull Context context)
   {
     mLastRouterType = Framework.nativeGetLastUsedRouter();
@@ -270,12 +266,6 @@ public class RoutingController implements Initializable<Context>
         setStartPoint(LocationHelper.from(context).getMyPosition());
     }));
     Framework.nativeSetRoutingLoadPointsListener(mRoutingLoadPointsListener);
-  }
-
-  @Override
-  public void destroy()
-  {
-    // No op.
   }
 
   public void detach()
@@ -355,14 +345,6 @@ public class RoutingController implements Initializable<Context>
   public void prepare(@Nullable MapObject startPoint, @Nullable MapObject endPoint, boolean fromApi)
   {
     Logger.d(TAG, "prepare (" + (endPoint == null ? "route)" : "p2p)"));
-
-    if (!Config.isRoutingDisclaimerAccepted())
-    {
-      if (mContainer != null)
-        mContainer.onShowDisclaimer(startPoint, endPoint);
-      return;
-    }
-
     initLastRouteType(startPoint, endPoint, fromApi);
     prepare(startPoint, endPoint, mLastRouterType);
   }
@@ -666,16 +648,6 @@ public class RoutingController implements Initializable<Context>
     return null;
   }
 
-  public boolean hasStartPoint()
-  {
-    return getStartPoint() != null;
-  }
-
-  public boolean hasEndPoint()
-  {
-    return getEndPoint() != null;
-  }
-
   @Nullable
   public RoutingInfo getCachedRoutingInfo()
   {
@@ -714,13 +686,6 @@ public class RoutingController implements Initializable<Context>
 
     if (getStartPoint() != null && getEndPoint() != null)
       build();
-  }
-
-  public boolean setStartFromMyPosition(@NonNull MapObject my)
-  {
-    Logger.d(TAG, "setStartFromMyPosition");
-
-    return setStartPoint(my);
   }
 
   /**
@@ -818,7 +783,7 @@ public class RoutingController implements Initializable<Context>
     Pair<String, String> description = getDescriptionForPoint(point);
     Framework.nativeAddRoutePoint(description.first /* title */, description.second /* subtitle */,
                                   type, 0 /* intermediateIndex */,
-                                  MapObject.isOfType(MapObject.MY_POSITION, point),
+                                  point.isMyPosition(),
                                   point.getLat(), point.getLon());
   }
 

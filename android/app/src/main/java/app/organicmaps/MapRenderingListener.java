@@ -4,9 +4,16 @@
  */
 package app.organicmaps;
 
+import androidx.annotation.Keep;
+
 public interface MapRenderingListener
 {
-  void onRenderingCreated();
-  void onRenderingRestored();
-  void onRenderingInitializationFinished();
+  default void onRenderingCreated() {}
+
+  default void onRenderingRestored() {}
+
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
+  default void onRenderingInitializationFinished() {}
 }

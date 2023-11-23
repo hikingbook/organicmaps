@@ -31,7 +31,7 @@ DrapeEngine::DrapeEngine(Params && params)
 
   VisualParams::Init(params.m_vs, df::CalculateTileSize(m_viewport.GetWidth(), m_viewport.GetHeight()));
 
-  df::VisualParams::Instance().SetFontScale(params.m_fontsScaleFactor);
+  SetFontScaleFactor(params.m_fontsScaleFactor);
 
   gui::DrapeGui::Instance().SetSurfaceSize(m2::PointF(m_viewport.GetWidth(), m_viewport.GetHeight()));
 
@@ -190,6 +190,11 @@ void DrapeEngine::Scale(double factor, m2::PointD const & pxPoint, bool isAnim)
 void DrapeEngine::Move(double factorX, double factorY, bool isAnim)
 {
   AddUserEvent(make_unique_dp<MoveEvent>(factorX, factorY, isAnim));
+}
+
+void DrapeEngine::Scroll(double distanceX, double distanceY)
+{
+  AddUserEvent(make_unique_dp<ScrollEvent>(distanceX, distanceY));
 }
 
 void DrapeEngine::Rotate(double azimuth, bool isAnim)
@@ -834,11 +839,6 @@ void DrapeEngine::EnableIsolines(bool enable)
 
 void DrapeEngine::SetFontScaleFactor(double scaleFactor)
 {
-  double const kMinScaleFactor = 0.5;
-  double const kMaxScaleFactor = 2.0;
-
-  scaleFactor = base::Clamp(scaleFactor, kMinScaleFactor, kMaxScaleFactor);
-
   VisualParams::Instance().SetFontScale(scaleFactor);
 }
 

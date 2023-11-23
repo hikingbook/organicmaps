@@ -789,6 +789,12 @@
 
 "book_button" = "Забронировать";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Подробнее на KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Реферальный бонус, полученный за каждое бронирование по этой ссылке, идёт на разработку Organic Maps.";
+
 "placepage_call_button" = "Позвонить";
 
 "placepage_edit_bookmark_button" = "Редактировать метку";
@@ -977,8 +983,6 @@
 
 "export_file" = "Экспортировать файл";
 
-"list_settings" = "Настройки списка";
-
 "delete_list" = "Удалить список";
 
 "hide_from_map" = "Скрыть с карты";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Настройки объезда";
 
-"driving_options_subheader" = "Избегать в каждом маршруте";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Избегать платных дорог";
 
-"avoid_tolls" = "Платные дороги";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Избегать грунтовые дороги";
 
-"avoid_unpaved" = "Грунтовые дороги";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Избегать паромы";
 
-"avoid_ferry" = "Паромные переправы";
-
-"avoid_motorways" = "Магистрали";
+"avoid_motorways" = "Избегать автомагистрали";
 
 "unable_to_calc_alert_title" = "Невозможно построить маршрут";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Грунтовая дорога";
 
 "ferry_crossing" = "Паромная переправа";
-
-"avoid_toll_roads_placepage" = "Избегать платных дорог";
-
-"avoid_unpaved_roads_placepage" = "Избегать грунтовых дорог";
-
-"avoid_ferry_crossing_placepage" = "Избегать паромных переправ";
 
 "trip_start" = "Поехали";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будет изменен на автомобильный";
 
 "ok" = "Ок";
-
-"avoid_unpaved_carplay_1" = "Без грунт.";
-
-"avoid_unpaved_carplay_2" = "Без грунтовых";
-
-"avoid_ferry_carplay_1" = "Без паромов";
-
-"avoid_ferry_carplay_2" = "Без паромов";
-
-"avoid_tolls_carplay_1" = "Без платных";
-
-"avoid_tolls_carplay_2" = "Без платных";
 
 "speedcams_alert_title_carplay_1" = "Камеры";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Культурно-досуговый центр";
 
+"type.amenity.compressed_air" = "Сжатый воздух";
+
 "type.amenity.conference_centre" = "Конференц-центр";
 
 "type.amenity.courthouse" = "Суд";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Подземный паркинг";
 
-"type.amenity.parking.street_side" = "Парковка";
+"type.amenity.parking.underground.fee" = "Платная подземная парковка";
 
-"type.amenity.parking.fee.street_side" = "Парковка";
+"type.amenity.parking.underground.private" = "Частная подземная парковка";
 
-"type.amenity.parking.lane" = "Парковка";
+"type.amenity.parking.street_side" = "Придорожная парковка";
 
-"type.amenity.parking.fee.lane" = "Парковка";
+"type.amenity.parking.street_side.fee" = "Платная придорожная парковка";
+
+"type.amenity.parking.street_side.private" = "Частная придорожная парковка";
+
+"type.amenity.parking.lane" = "Парковочная полоса";
+
+"type.amenity.parking.lane.fee" = "Платная парковочная полоса";
+
+"type.amenity.parking.lane.private" = "Частная парковочная полоса";
 
 "type.amenity.parking_entrance" = "Въезд на парковку";
 
-"type.amenity.parking_entrance.private" = "Въезд на парковку";
+"type.amenity.parking_entrance.private" = "Въезд на частную парковку";
 
 "type.amenity.parking_entrance.permissive" = "Въезд на парковку";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Церковь";
 
 "type.amenity.place_of_worship.christian.mormon" = "Церковь Иисуса Христа Святых последних дней";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Зала Царства Свидетелей Иеговы";
 
 "type.amenity.place_of_worship.hindu" = "Храм";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Поле";
 
+"type.landuse.flowerbed" = "Клумба";
+
 "type.landuse.forest" = "Лес";
 
 "type.landuse.forest.coniferous" = "Хвойный лес";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Фуникулер";
 
 "type.railway.station.light_rail" = "Ж/д станция";
+
+"type.railway.station.light_rail.london" = "Ж/д станция";
+
+"type.railway.station.light_rail.porto" = "Ж/д станция";
 
 "type.railway.station.monorail" = "Ж/д станция";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Секс-шоп";
 
-"type.shop.fabric" = "Магазин";
+"type.shop.fabric" = "Магазин тканей";
 
 "type.shop.farm" = "Фермерский магазин";
 
@@ -3542,6 +3547,10 @@
 "type.shop.pet_grooming" = "Груминг";
 
 "type.shop.photo" = "Фототовары";
+
+"type.shop.rental" = "Прокат";
+
+"type.shop.rental.bicycle" = "Прокат велосипедов";
 
 "type.shop.seafood" = "Рыбный магазин";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Хижина в лесу";
 
 "type.tourism.zoo" = "Зоопарк";
+
+"type.tourism.zoo.petting" = "Контактный зоопарк";
 
 "type.traffic_calming" = "Лежачий полицейский";
 

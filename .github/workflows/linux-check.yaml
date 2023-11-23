@@ -18,6 +18,11 @@ on:
       - data/strings/**
       - docs/**
       - packaging/**
+      - platform/*apple*
+      - platform/*_android*
+      - platform/*_ios* 
+      - platform/*_mac* 
+      - platform/*_win* 
       - pyhelpers/**
       - tools/**
       - '!tools/python/test_server/**'
@@ -39,7 +44,7 @@ jobs:
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
 
       - name: Checkout sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 100 # enough to get all commits for the current day
 
@@ -107,7 +112,7 @@ jobs:
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
 
       - name: Checkout sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Parallel submodules checkout
         shell: bash

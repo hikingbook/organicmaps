@@ -1079,6 +1079,12 @@ void Framework::Move(double factorX, double factorY, bool isAnim)
     m_drapeEngine->Move(factorX, factorY, isAnim);
 }
 
+void Framework::Scroll(double distanceX, double distanceY)
+{
+  if (m_drapeEngine != nullptr)
+    m_drapeEngine->Scroll(distanceX, distanceY);
+}
+
 void Framework::Rotate(double azimuth, bool isAnim)
 {
   if (m_drapeEngine != nullptr)
@@ -2634,10 +2640,14 @@ bool Framework::ParseDrapeDebugCommand(string const & query)
     desiredStyle = MapStyleDark;
   else if (query == "?light" || query == "mapstyle:light")
     desiredStyle = MapStyleClear;
-  else if (query == "?vdark" || query == "mapstyle:vehicle_dark")
-    desiredStyle = MapStyleVehicleDark;
   else if (query == "?vlight" || query == "mapstyle:vehicle_light")
     desiredStyle = MapStyleVehicleClear;
+  else if (query == "?vdark" || query == "mapstyle:vehicle_dark")
+    desiredStyle = MapStyleVehicleDark;
+  else if (query == "?olight" || query == "mapstyle:outdoors_light")
+    desiredStyle = MapStyleOutdoorsClear;
+  else if (query == "?odark" || query == "mapstyle:outdoors_dark")
+    desiredStyle = MapStyleOutdoorsDark;
 
   if (desiredStyle != MapStyleCount)
   {

@@ -27,7 +27,6 @@ import app.organicmaps.Framework;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmFragment;
-import app.organicmaps.base.OnBackPressListener;
 import app.organicmaps.bookmarks.data.FeatureId;
 import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.downloader.CountrySuggestFragment;
@@ -46,8 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SearchFragment extends BaseMwmFragment
-                         implements OnBackPressListener,
-                                    NativeSearchListener,
+                         implements NativeSearchListener,
                                     CategoriesAdapter.CategoriesUiListener
 {
   private long mLastQueryTimestamp;

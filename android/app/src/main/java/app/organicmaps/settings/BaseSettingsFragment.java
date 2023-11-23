@@ -32,15 +32,6 @@ abstract class BaseSettingsFragment extends BaseMwmFragment
     }
   }
 
-  protected void clearPaddings()
-  {
-    View parent = (View)mFrame.getParent();
-    if (parent != null)
-    {
-      parent.setPadding(0, 0, 0, 0);
-    }
-  }
-
   protected void restorePaddings()
   {
     View parent = (View)mFrame.getParent();
@@ -73,8 +64,4 @@ abstract class BaseSettingsFragment extends BaseMwmFragment
     restorePaddings();
   }
 
-//  protected SettingsActivity getSettingsActivity()
-//  {
-//    return (SettingsActivity) requireActivity();
-//  }
 }

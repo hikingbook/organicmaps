@@ -8,6 +8,7 @@ package app.organicmaps.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.organicmaps.util.log.Logger;
@@ -18,6 +19,9 @@ public final class SecureStorage
 
   private SecureStorage() {}
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   public static void save(@NonNull Context context, @NonNull String key, @NonNull String value)
   {
     Logger.d(TAG, "save: key = " + key);
@@ -26,6 +30,9 @@ public final class SecureStorage
     prefs.edit().putString(key, value).apply();
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @Nullable
   public static String load(@NonNull Context context, @NonNull String key)
   {
@@ -35,6 +42,9 @@ public final class SecureStorage
     return prefs.getString(key, null);
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   public static void remove(@NonNull Context context, @NonNull String key)
   {
     Logger.d(TAG, "remove: key = " + key);

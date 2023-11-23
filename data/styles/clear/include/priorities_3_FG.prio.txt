@@ -160,17 +160,17 @@ highway-secondary_link-tunnel                       # line z14- (also has line(c
 # highway-secondary_link-tunnel                     # line(casing) z16- (also has line z14-, pathtext z16-)
 # === 259
 
-highway-residential                                 # line z12- (also has pathtext z13-, shield::shield z18-)
-highway-residential-area                            # line z12- (also has pathtext z13-, shield::shield z18-)
-highway-residential-bridge                          # line z12- (also has line::bridgeblack z14-, line::bridgewhite z14-, pathtext z13-, shield::shield z18-)
-highway-residential-tunnel                          # line z12- (also has line(casing) z16-, pathtext z13-, shield::shield z18-)
-highway-tertiary                                    # line z11- (also has pathtext z12-, shield::shield z15-)
-highway-tertiary-bridge                             # line z11- (also has line::bridgeblack z14-, line::bridgewhite z14-, pathtext z12-, shield::shield z15-)
-highway-tertiary-tunnel                             # line z11- (also has line(casing) z16-, pathtext z12-, shield::shield z15-)
+highway-residential                                 # line z12- (also has pathtext z13-, shield::shield z15-)
+highway-residential-area                            # line z12- (also has pathtext z13-, shield::shield z15-)
+highway-residential-bridge                          # line z12- (also has line::bridgeblack z14-, line::bridgewhite z14-, pathtext z13-, shield::shield z15-)
+highway-residential-tunnel                          # line z12- (also has line(casing) z16-, pathtext z13-, shield::shield z15-)
+highway-tertiary                                    # line z11- (also has pathtext z12-, shield::shield z13-)
+highway-tertiary-bridge                             # line z11- (also has line::bridgeblack z14-, line::bridgewhite z14-, pathtext z12-, shield::shield z13-)
+highway-tertiary-tunnel                             # line z11- (also has line(casing) z16-, pathtext z12-, shield::shield z13-)
 === 250
 
-# highway-residential-tunnel                        # line(casing) z16- (also has line z12-, pathtext z13-, shield::shield z18-)
-# highway-tertiary-tunnel                           # line(casing) z16- (also has line z11-, pathtext z12-, shield::shield z15-)
+# highway-residential-tunnel                        # line(casing) z16- (also has line z12-, pathtext z13-, shield::shield z15-)
+# highway-tertiary-tunnel                           # line(casing) z16- (also has line z11-, pathtext z12-, shield::shield z13-)
 # === 249
 
 highway-tertiary_link                               # line z15- (also has pathtext z18-)
@@ -255,7 +255,6 @@ highway-busway-tunnel                               # line z15- (also has pathte
 highway-service                                     # line z15- (also has pathtext z16-)
 highway-service-area                                # line z15- (also has pathtext z16-)
 highway-service-bridge                              # line z15- (also has line::bridgeblack z16-, line::bridgewhite z16-, pathtext z16-)
-highway-service-busway                              # line z15- (also has pathtext z16-)
 highway-service-driveway                            # line z16- (also has pathtext z16-)
 highway-service-parking_aisle                       # line z15- (also has pathtext z16-)
 highway-service-tunnel                              # line z15- (also has pathtext z16-)
@@ -337,13 +336,13 @@ highway-path-bridge::bridgewhite                    # line::bridgewhite z15- (al
 highway-pedestrian-bridge::bridgewhite              # line::bridgewhite z13- (also has line z13-, line::bridgeblack z14-, pathtext z14-)
 highway-primary-bridge::bridgewhite                 # line::bridgewhite z14- (also has line z8-, line::bridgeblack z14-, pathtext z10-, shield::shield z10-)
 highway-primary_link-bridge::bridgewhite            # line::bridgewhite z14- (also has line z11-, line::bridgeblack z14-, pathtext z11-, shield::shield z11-)
-highway-residential-bridge::bridgewhite             # line::bridgewhite z14- (also has line z12-, line::bridgeblack z14-, pathtext z13-, shield::shield z18-)
+highway-residential-bridge::bridgewhite             # line::bridgewhite z14- (also has line z12-, line::bridgeblack z14-, pathtext z13-, shield::shield z15-)
 highway-road-bridge::bridgewhite                    # line::bridgewhite z16- (also has line z12-, line::bridgeblack z16-, pathtext z14-)
 highway-secondary-bridge::bridgewhite               # line::bridgewhite z14- (also has line z10-, line::bridgeblack z14-, pathtext z10-, shield::shield z12-)
 highway-secondary_link-bridge::bridgewhite          # line::bridgewhite z14- (also has line z14-, line::bridgeblack z14-, pathtext z16-)
 highway-service-bridge::bridgewhite                 # line::bridgewhite z16- (also has line z15-, line::bridgeblack z16-, pathtext z16-)
 highway-steps-bridge::bridgewhite                   # line::bridgewhite z15- (also has line z15-, line::bridgeblack z17-, pathtext z16-)
-highway-tertiary-bridge::bridgewhite                # line::bridgewhite z14- (also has line z11-, line::bridgeblack z14-, pathtext z12-, shield::shield z15-)
+highway-tertiary-bridge::bridgewhite                # line::bridgewhite z14- (also has line z11-, line::bridgeblack z14-, pathtext z12-, shield::shield z13-)
 highway-tertiary_link-bridge::bridgewhite           # line::bridgewhite z15- (also has line z15-, line::bridgeblack z15-, pathtext z18-)
 highway-track-bridge::bridgewhite                   # line::bridgewhite z15- (also has line z14-, line::bridgeblack z17-, pathtext z15-)
 highway-trunk-bridge::bridgewhite                   # line::bridgewhite z13- (also has line z7-, line::bridgeblack z13-, pathtext z10-, shield::shield z10-)
@@ -371,13 +370,13 @@ highway-path-bridge::bridgeblack                    # line::bridgeblack z17- (al
 highway-pedestrian-bridge::bridgeblack              # line::bridgeblack z14- (also has line z13-, line::bridgewhite z13-, pathtext z14-)
 highway-primary-bridge::bridgeblack                 # line::bridgeblack z14- (also has line z8-, line::bridgewhite z14-, pathtext z10-, shield::shield z10-)
 highway-primary_link-bridge::bridgeblack            # line::bridgeblack z14- (also has line z11-, line::bridgewhite z14-, pathtext z11-, shield::shield z11-)
-highway-residential-bridge::bridgeblack             # line::bridgeblack z14- (also has line z12-, line::bridgewhite z14-, pathtext z13-, shield::shield z18-)
+highway-residential-bridge::bridgeblack             # line::bridgeblack z14- (also has line z12-, line::bridgewhite z14-, pathtext z13-, shield::shield z15-)
 highway-road-bridge::bridgeblack                    # line::bridgeblack z16- (also has line z12-, line::bridgewhite z16-, pathtext z14-)
 highway-secondary-bridge::bridgeblack               # line::bridgeblack z14- (also has line z10-, line::bridgewhite z14-, pathtext z10-, shield::shield z12-)
 highway-secondary_link-bridge::bridgeblack          # line::bridgeblack z14- (also has line z14-, line::bridgewhite z14-, pathtext z16-)
 highway-service-bridge::bridgeblack                 # line::bridgeblack z16- (also has line z15-, line::bridgewhite z16-, pathtext z16-)
 highway-steps-bridge::bridgeblack                   # line::bridgeblack z17- (also has line z15-, line::bridgewhite z15-, pathtext z16-)
-highway-tertiary-bridge::bridgeblack                # line::bridgeblack z14- (also has line z11-, line::bridgewhite z14-, pathtext z12-, shield::shield z15-)
+highway-tertiary-bridge::bridgeblack                # line::bridgeblack z14- (also has line z11-, line::bridgewhite z14-, pathtext z12-, shield::shield z13-)
 highway-tertiary_link-bridge::bridgeblack           # line::bridgeblack z15- (also has line z15-, line::bridgewhite z15-, pathtext z18-)
 highway-track-bridge::bridgeblack                   # line::bridgeblack z17- (also has line z14-, line::bridgewhite z15-, pathtext z15-)
 highway-trunk-bridge::bridgeblack                   # line::bridgeblack z13- (also has line z7-, line::bridgewhite z13-, pathtext z10-, shield::shield z10-)
@@ -402,19 +401,19 @@ building-has_parts                                  # area z14- (also has captio
 building-train_station                              # area z14- (also has caption z16-)
 === 130
 
-piste:type-downhill                                 # line z14-
-piste:type-downhill-advanced                        # line z14-
-piste:type-downhill-easy                            # line z14-
-piste:type-downhill-expert                          # line z14-
-piste:type-downhill-freeride                        # line z14-
-piste:type-downhill-intermediate                    # line z14-
-piste:type-downhill-novice                          # line z14-
-piste:type-nordic                                   # line z14-
-piste:type-sled                                     # line z14-
+piste:type-downhill                                 # line z14- (also has pathtext z15-)
+piste:type-downhill-advanced                        # line z14- (also has pathtext z15-)
+piste:type-downhill-easy                            # line z14- (also has pathtext z15-)
+piste:type-downhill-expert                          # line z14- (also has pathtext z15-)
+piste:type-downhill-freeride                        # line z14- (also has pathtext z15-)
+piste:type-downhill-intermediate                    # line z14- (also has pathtext z15-)
+piste:type-downhill-novice                          # line z14- (also has pathtext z15-)
+piste:type-nordic                                   # line z14- (also has pathtext z15-)
+piste:type-sled                                     # line z14- (also has pathtext z15-)
 === 120
 
 building:part                                       # area z16-
-landuse-garages                                     # area z14-
+landuse-garages                                     # area z15-
 === 110
 
 barrier-retaining_wall                              # line z16-
@@ -468,6 +467,7 @@ man_made-pier                                       # line z14- and area z12- (a
 waterway-dam                                        # line z14- and area z14- (also has pathtext z15-)
 === 30
 
+amenity-prison                                      # area z12- (also has icon z17-, caption(optional) z17-)
 boundary-national_park                              # area z10- (also has icon z11-, caption(optional) z12-)
 boundary-protected_area-1                           # area z10- (also has icon z11-, caption(optional) z12-)
 landuse-military                                    # area z12- (also has icon z16-, caption(optional) z17-)

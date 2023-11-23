@@ -789,6 +789,12 @@
 
 "book_button" = "Prenota";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Dettagli su KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Il bonus ricevuto per ogni prenotazione effettuata tramite questo link è destinato allo sviluppo di Organic Maps.";
+
 "placepage_call_button" = "Chiama";
 
 "placepage_edit_bookmark_button" = "Modifica luogo preferito";
@@ -977,8 +983,6 @@
 
 "export_file" = "Esportare il file";
 
-"list_settings" = "Impostazioni elenco";
-
 "delete_list" = "Cancella elenco";
 
 "hide_from_map" = "Nascondi sulla mappa";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Impostazioni di deviazione";
 
-"driving_options_subheader" = "Evitare in tutti i percorsi";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Evita le strade a pedaggio";
 
-"avoid_tolls" = "Strade a pedaggio";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Evitare le strade non asfaltate";
 
-"avoid_unpaved" = "Strade non asfaltate";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Evitare i traghetti";
 
-"avoid_ferry" = "Traghetti";
-
-"avoid_motorways" = "Autostrade";
+"avoid_motorways" = "Evita l'autostrada";
 
 "unable_to_calc_alert_title" = "Impossibile elaborare il percorso";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Strada non asfaltata";
 
 "ferry_crossing" = "Traghetto";
-
-"avoid_toll_roads_placepage" = "Evitare strade a pedaggio";
-
-"avoid_unpaved_roads_placepage" = "Evitare le strade non asfaltate";
-
-"avoid_ferry_crossing_placepage" = "Evitare i traghetti";
 
 "trip_start" = "Si parte";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Il percorso sarà convertito in un percorso automobilistico";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "No sterrate";
-
-"avoid_unpaved_carplay_2" = "No sterrate";
-
-"avoid_ferry_carplay_1" = "No traghetti";
-
-"avoid_ferry_carplay_2" = "No traghetti";
-
-"avoid_tolls_carplay_1" = "No pedaggi";
-
-"avoid_tolls_carplay_2" = "Senza pedaggi";
 
 "speedcams_alert_title_carplay_1" = "Autovelox";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Centro ricreativo";
 
+"type.amenity.compressed_air" = "Aria compressa";
+
 "type.amenity.conference_centre" = "Centro conferenze";
 
 "type.amenity.courthouse" = "Tribunale";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Parcheggio sotterraneo";
 
-"type.amenity.parking.street_side" = "Parcheggio";
+"type.amenity.parking.underground.fee" = "Parcheggio sotterraneo a pagamento";
 
-"type.amenity.parking.fee.street_side" = "Parcheggio";
+"type.amenity.parking.underground.private" = "Parcheggio privato sotterraneo";
 
-"type.amenity.parking.lane" = "Parcheggio";
+"type.amenity.parking.street_side" = "Parcheggio laterale alla strada";
 
-"type.amenity.parking.fee.lane" = "Parcheggio";
+"type.amenity.parking.street_side.fee" = "Parcheggio lato strada a pagamento";
+
+"type.amenity.parking.street_side.private" = "Strada privata parcheggio laterale";
+
+"type.amenity.parking.lane" = "Parcheggio in corsia";
+
+"type.amenity.parking.lane.fee" = "Parcheggio a pagamento in corsia";
+
+"type.amenity.parking.lane.private" = "Parcheggio in corsia privata";
 
 "type.amenity.parking_entrance" = "Ingresso parcheggio";
 
-"type.amenity.parking_entrance.private" = "Ingresso parcheggio";
+"type.amenity.parking_entrance.private" = "Ingresso al parcheggio privato";
 
 "type.amenity.parking_entrance.permissive" = "Ingresso parcheggio";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Chiesa";
 
 "type.amenity.place_of_worship.christian.mormon" = "Chiesa di Gesù Cristo dei Santi degli Ultimi Giorni";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Sala del Regno dei Testimoni di Geova";
 
 "type.amenity.place_of_worship.hindu" = "Tempio induista";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Aiuola";
+
 "type.landuse.forest" = "Foresta";
 
 "type.landuse.forest.coniferous" = "Foresta di conifere";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicolare";
 
 "type.railway.station.light_rail" = "Stazione ferroviaria";
+
+"type.railway.station.light_rail.london" = "Stazione ferroviaria";
+
+"type.railway.station.light_rail.porto" = "Stazione ferroviaria";
 
 "type.railway.station.monorail" = "Stazione ferroviaria";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Negozio di fotografia";
 
+"type.shop.rental" = "Negozio di noleggio";
+
+"type.shop.rental.bicycle" = "Negozio di noleggio biciclette";
+
 "type.shop.seafood" = "Pescivendolo";
 
 "type.shop.second_hand" = "Negozio di articoli usati";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Rifugio";
 
 "type.tourism.zoo" = "Giardino zoologico";
+
+"type.tourism.zoo.petting" = "Zoo di coccole";
 
 "type.traffic_calming" = "Rallentatore della velocità";
 

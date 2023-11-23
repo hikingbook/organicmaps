@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">•快速，簡約，沒有垃圾</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">由愛好者和志願者創建的開源應用程序。</string>
-	<string name="connection_settings">連線設定</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">位置設定</string>
 	<string name="close">關閉</string>
 	<string name="unsupported_phone">需要 OpenGL 硬體加速功能的支援。但很不幸的，您的裝置並不支援此功能！</string>
 	<string name="download">下載</string>
@@ -501,6 +502,10 @@
 	<string name="hour">小時</string>
 	<string name="minute">分鐘</string>
 	<string name="placepage_more_button">更多</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">KAYAK 上的詳細資訊</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">透過此連結進行的每次預訂收到的推薦獎金將用於開發有機地圖</string>
 	<string name="placepage_edit_bookmark_button">編輯書籤</string>
 	<string name="editor_comment_hint">註解…</string>
 	<string name="editor_reset_edits_message">重設所有本機變更？</string>
@@ -523,8 +528,6 @@
 	<string name="editor_share_to_all_dialog_message_1">確保您沒有輸入任何個人資料。</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap 編輯人員將檢查更改並在有任何問題時與您聯繫。</string>
 	<string name="navigation_stop_button">停止</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps 是一款免費的開源離線地圖 app。沒有廣告，不會追蹤。如果您在地圖上看到錯誤，請在 OpenStreetMap 中修復吧。這個專案由愛好者在我們的空閒時間創建，因此我們需要您的回饋和支援。</string>
 	<!-- For the first routing -->
 	<string name="accept">接受</string>
 	<!-- For the first routing -->
@@ -583,7 +586,6 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">找到%d個文件。 轉換後你會看到它。</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">沒有網路連線</string>
 	<plurals name="objects">
 	  <item quantity="other">%d 地點</item>
 	</plurals>
@@ -605,7 +607,6 @@
 	<string name="bookmarks_empty_list_message">要增加新標籤，請點一下對象卡片中的星型圖標</string>
 	<string name="category_desc_more">…更多</string>
 	<string name="export_file">導出文件</string>
-	<string name="list_settings">列表設定</string>
 	<string name="delete_list">刪除列表</string>
 	<string name="public_access">開放空間</string>
 	<string name="limited_access">私人空間</string>
@@ -627,11 +628,13 @@
 	<string name="enable_logging_warning_message">此選項啟用以記錄操作來進行診斷。這有助於團隊辨別 app 的問題。請僅在Organic Maps支援請求時開啟該選項。</string>
 	<string name="access_rules_author_only">線上編輯</string>
 	<string name="driving_options_title">繞行設定</string>
-	<string name="driving_options_subheader">在每條線路上規避</string>
-	<string name="avoid_tolls">收費公路</string>
-	<string name="avoid_unpaved">土路</string>
-	<string name="avoid_ferry">渡輪渡口</string>
-	<string name="avoid_motorways">高速公路</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">避開收費公路</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">規避土路</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">規避渡輪渡口</string>
+	<string name="avoid_motorways">避開高速公路</string>
 	<string name="unable_to_calc_alert_title">無法規劃路線</string>
 	<string name="unable_to_calc_alert_subtitle">很遺憾，我們無法使用所選選項規劃路線。請更改設定，然後重試</string>
 	<string name="define_to_avoid_btn">設定繞行路徑</string>
@@ -639,9 +642,6 @@
 	<string name="toll_road">收費公路</string>
 	<string name="unpaved_road">土路</string>
 	<string name="ferry_crossing">渡輪</string>
-	<string name="avoid_toll_roads_placepage">規避收費公路</string>
-	<string name="avoid_unpaved_roads_placepage">規避土路</string>
-	<string name="avoid_ferry_crossing_placepage">規避渡輪渡口</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">是</string>
 	<!-- A generic "No" button in dialogs -->
@@ -650,6 +650,7 @@
 	<string name="yes_available">是</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">否</string>
+	<string name="trip_finished">您已經到達了!</string>
 	<string name="ok">好</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">分類……</string>
@@ -704,13 +705,33 @@
 	<string name="isolines_toast_zooms_1_10">放大地圖以查看等高線</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">拔除 USB 線</string>
-	<string name="enable_screen_sleep">允许螢幕進入休眠狀態</string>
+	<string name="enable_keep_screen_on">保持螢幕開啟</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">啟用後，螢幕將在一段時間不活動後進入休眠狀態。</string>
+	<string name="enable_keep_screen_on_description">啟用後，顯示地圖時畫面將始終開啟。</string>
+	<!-- A preference title; keep short! -->
+	<string name="enable_show_on_lock_screen">在鎖定螢幕上顯示</string>
+	<!-- Description in preferences -->
+	<string name="enable_show_on_lock_screen_description">啟用後，即使設備已鎖定，應用程式仍會在鎖定螢幕上運作。</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">來自 OpenStreetMap 的地圖數據</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">感謝您使用我們社區構建的地圖！</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">您現在正在手機螢幕上使用有機地圖</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">您現在正在汽車螢幕上使用有機地圖</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">您已連接到 Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">繼續打電話</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">到車用螢幕</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">此應用程式需要訪問您的位置以進行導航。</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">授予權限</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">連接到汽車</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">地址/區塊</string>
@@ -762,6 +783,7 @@
 	<string name="type.amenity.clinic">診所</string>
 	<string name="type.amenity.college">學院</string>
 	<string name="type.amenity.community_centre">社區活動中心</string>
+	<string name="type.amenity.compressed_air">壓縮的空氣</string>
 	<string name="type.amenity.conference_centre">會議中心</string>
 	<string name="type.amenity.courthouse">法院</string>
 	<string name="type.amenity.dentist">牙醫</string>
@@ -801,12 +823,16 @@
 	<string name="type.amenity.parking.private">私人停車場</string>
 	<string name="type.amenity.parking.park_and_ride">停車場</string>
 	<string name="type.amenity.parking.underground">地下停車場</string>
-	<string name="type.amenity.parking.street_side">停車場</string>
-	<string name="type.amenity.parking.fee.street_side">停車場</string>
-	<string name="type.amenity.parking.lane">停車場</string>
-	<string name="type.amenity.parking.fee.lane">停車場</string>
+	<string name="type.amenity.parking.underground.fee">收費地下停車場</string>
+	<string name="type.amenity.parking.underground.private">私人地下停車場</string>
+	<string name="type.amenity.parking.street_side">街邊停車</string>
+	<string name="type.amenity.parking.street_side.fee">付費街邊停車場</string>
+	<string name="type.amenity.parking.street_side.private">私人街邊停車場</string>
+	<string name="type.amenity.parking.lane">車道停車</string>
+	<string name="type.amenity.parking.lane.fee">收費車道停車</string>
+	<string name="type.amenity.parking.lane.private">私人車道停車</string>
 	<string name="type.amenity.parking_entrance">停車場入口</string>
-	<string name="type.amenity.parking_entrance.private">停車場入口</string>
+	<string name="type.amenity.parking_entrance.private">私人停車場入口</string>
 	<string name="type.amenity.parking_entrance.permissive">停車場入口</string>
 	<string name="type.amenity.parking_space">停車地點</string>
 	<string name="type.amenity.parking_space.permissive">停車地點</string>
@@ -819,6 +845,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">佛教寺廟</string>
 	<string name="type.amenity.place_of_worship.christian">基督教堂</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">耶穌基督後期聖徒教會</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">耶和華見證人王國大廳</string>
 	<string name="type.amenity.place_of_worship.hindu">印度教寺廟</string>
 	<string name="type.amenity.place_of_worship.jewish">猶太教堂</string>
 	<string name="type.amenity.place_of_worship.muslim">清真寺</string>
@@ -1258,6 +1285,7 @@
 	<string name="type.landuse.cemetery.christian">基督教墓地</string>
 	<string name="type.landuse.churchyard">教堂庭院</string>
 	<string name="type.landuse.farmland">農業用地</string>
+	<string name="type.landuse.flowerbed">花壇</string>
 	<string name="type.landuse.forest">樹林</string>
 	<string name="type.landuse.forest.coniferous">樹林</string>
 	<string name="type.landuse.forest.deciduous">樹林</string>
@@ -1428,6 +1456,8 @@
 	<string name="type.railway.station">火車站</string>
 	<string name="type.railway.station.funicular">纜車</string>
 	<string name="type.railway.station.light_rail">輕軌車站</string>
+	<string name="type.railway.station.light_rail.london">輕軌車站</string>
+	<string name="type.railway.station.light_rail.porto">輕軌車站</string>
 	<string name="type.railway.station.monorail">單軌車站</string>
 	<string name="type.railway.station.subway">捷運站</string>
 	<string name="type.railway.station.subway.adana">捷運站</string>
@@ -1725,6 +1755,8 @@
 	<string name="type.shop.pet">寵物店</string>
 	<string name="type.shop.pet_grooming">寵物美容</string>
 	<string name="type.shop.photo">照片店</string>
+	<string name="type.shop.rental">租賃店</string>
+	<string name="type.shop.rental.bicycle">自行車租賃店</string>
 	<string name="type.shop.seafood">魚販</string>
 	<string name="type.shop.second_hand">二手店</string>
 	<string name="type.shop.shoes">鞋店</string>
@@ -1836,6 +1868,7 @@
 	<string name="type.tourism.viewpoint">視野</string>
 	<string name="type.tourism.wilderness_hut">山屋</string>
 	<string name="type.tourism.zoo">動物園</string>
+	<string name="type.tourism.zoo.petting">寵物動物園</string>
 	<string name="type.waterway.canal">運河</string>
 	<string name="type.waterway.canal.tunnel">運河</string>
 	<string name="type.waterway.fish_pass">魚梯</string>

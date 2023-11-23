@@ -789,6 +789,12 @@
 
 "book_button" = "Rezervasyon";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "KAYAK hakkında detaylar";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Bu bağlantı üzerinden yapılan her rezervasyon için alınan yönlendirme bonusu Organic Maps'in geliştirilmesine harcanmaktadır.";
+
 "placepage_call_button" = "Ara";
 
 "placepage_edit_bookmark_button" = "Yer İmini Düzenle";
@@ -977,8 +983,6 @@
 
 "export_file" = "Dosyayı dışa aktar";
 
-"list_settings" = "Liste Ayarları";
-
 "delete_list" = "Listeyi sil";
 
 "hide_from_map" = "Haritadan gizle";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Yönlendirme seçenekleri";
 
-"driving_options_subheader" = "Her rotada kaçının";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Ücretli yollardan kaçının";
 
-"avoid_tolls" = "Paralı yollar";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Asfaltsız yollardan kaçın";
 
-"avoid_unpaved" = "Asfaltsız yollar";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Feribot geçişlerinden kaçın";
 
-"avoid_ferry" = "Feribot geçişleri";
-
-"avoid_motorways" = "Otoyollar";
+"avoid_motorways" = "Otoyoldan kaçının";
 
 "unable_to_calc_alert_title" = "Rota hesaplanamıyor";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Asfaltsız yol";
 
 "ferry_crossing" = "Feribot geçişi";
-
-"avoid_toll_roads_placepage" = "Paralı yollardan kaçın";
-
-"avoid_unpaved_roads_placepage" = "Asfaltsız yollardan kaçın";
-
-"avoid_ferry_crossing_placepage" = "Feribot geçişlerinden kaçın";
 
 "trip_start" = "Hadi gidelim";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Rota, bir arabalı seyahat rotasına dönüştürülecek";
 
 "ok" = "Tamam";
-
-"avoid_unpaved_carplay_1" = "Toprak yol yok";
-
-"avoid_unpaved_carplay_2" = "Asfaltsız yoldan kaçın";
-
-"avoid_ferry_carplay_1" = "Feribot yok";
-
-"avoid_ferry_carplay_2" = "Feribottan kaçın";
-
-"avoid_tolls_carplay_1" = "Paralı yol yok";
-
-"avoid_tolls_carplay_2" = "Paralı yoldan kaçın";
 
 "speedcams_alert_title_carplay_1" = "Hız kameraları";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Toplum Merkezi";
 
+"type.amenity.compressed_air" = "Basınçlı hava";
+
 "type.amenity.conference_centre" = "Konferans merkezi";
 
 "type.amenity.courthouse" = "Adliye";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Yeraltı otoparkı";
 
-"type.amenity.parking.street_side" = "Otopark";
+"type.amenity.parking.underground.fee" = "Ücretli yeraltı otoparkı";
 
-"type.amenity.parking.fee.street_side" = "Otopark";
+"type.amenity.parking.underground.private" = "Özel yeraltı otoparkı";
 
-"type.amenity.parking.lane" = "Otopark";
+"type.amenity.parking.street_side" = "Sokak tarafı otopark";
 
-"type.amenity.parking.fee.lane" = "Otopark";
+"type.amenity.parking.street_side.fee" = "Ücretli cadde tarafı otopark";
+
+"type.amenity.parking.street_side.private" = "Özel sokak tarafı otopark";
+
+"type.amenity.parking.lane" = "Şerit park";
+
+"type.amenity.parking.lane.fee" = "Ücretli şerit park";
+
+"type.amenity.parking.lane.private" = "Özel şerit otopark";
 
 "type.amenity.parking_entrance" = "Otopark girişi";
 
-"type.amenity.parking_entrance.private" = "Otopark girişi";
+"type.amenity.parking_entrance.private" = "Özel otopark girişi";
 
 "type.amenity.parking_entrance.permissive" = "Otopark girişi";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kilise";
 
 "type.amenity.place_of_worship.christian.mormon" = "İsa Mesih'in Son Zaman Azizleri Kilisesi";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehova'nın Şahitlerinin Krallık Salonu";
 
 "type.amenity.place_of_worship.hindu" = "Tapınak";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Alan";
 
+"type.landuse.flowerbed" = "Çiçeklik";
+
 "type.landuse.forest" = "Orman";
 
 "type.landuse.forest.coniferous" = "Çam Ormanı";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Füniküler";
 
 "type.railway.station.light_rail" = "Tren İstasyonu";
+
+"type.railway.station.light_rail.london" = "Tren İstasyonu";
+
+"type.railway.station.light_rail.porto" = "Tren İstasyonu";
 
 "type.railway.station.monorail" = "Tren İstasyonu";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Temizlik Ürünleri Mağazası";
 
-"type.shop.chocolate" = "Mağaza";
+"type.shop.chocolate" = "Çikolata Dükkanı";
 
 "type.shop.clothes" = "Giyim Mağazası";
 
-"type.shop.coffee" = "Mağaza";
+"type.shop.coffee" = "Kahve Dükkanı";
 
 "type.shop.computer" = "Bilgisayar Mağazası";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotik Ürünler Mağazası";
 
-"type.shop.fabric" = "Mağaza";
+"type.shop.fabric" = "Kumaş Mağazası";
 
 "type.shop.farm" = "Çiftlik Gıda Dükkanı";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Cep Telefonu Mağazası";
 
-"type.shop.money_lender" = "Mağaza";
+"type.shop.money_lender" = "Borç Para Veren";
 
 "type.shop.motorcycle" = "Motosiklet Dükkanı";
 
 "type.shop.motorcycle_repair" = "Motosiklet Tamircisi";
 
-"type.shop.music" = "Mağaza";
+"type.shop.music" = "Müzik Dükkanı";
 
-"type.shop.musical_instrument" = "Mağaza";
+"type.shop.musical_instrument" = "Müzik Aletleri Mağazası";
 
 "type.shop.newsagent" = "Gazete Standı";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotoğrafçı";
 
+"type.shop.rental" = "Kiralık Mağaza";
+
+"type.shop.rental.bicycle" = "Bisiklet Kiralama Mağazası";
+
 "type.shop.seafood" = "Deniz Ürünleri Mağazası";
 
 "type.shop.second_hand" = "İkinci El Mağazası";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Dövme Salonu";
 
-"type.shop.tea" = "Mağaza";
+"type.shop.tea" = "Çay Dükkanı";
 
 "type.shop.ticket" = "Bilet Satıcısı";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Vahşi Doğa Kulübesi";
 
 "type.tourism.zoo" = "Hayvanat Bahçesi";
+
+"type.tourism.zoo.petting" = "Sevişme Hayvanat Bahçesi";
 
 "type.traffic_calming" = "Hız Kesici (Kasis)";
 

@@ -789,6 +789,12 @@
 
 "book_button" = "Varaa";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Lisätietoa osoitteessa KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Jokaisesta tämän linkin kautta tehdystä varauksesta saatu suosittelubonus käytetään Organic Mapsin kehittämiseen.";
+
 "placepage_call_button" = "Soita";
 
 "placepage_edit_bookmark_button" = "Muokkaa kirjanmerkkiä";
@@ -977,8 +983,6 @@
 
 "export_file" = "Vie tiedosto";
 
-"list_settings" = "Luettelon asetukset";
-
 "delete_list" = "Poista luettelo";
 
 "hide_from_map" = "Piilota kartalta";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Reititysvalinnat";
 
-"driving_options_subheader" = "Vältettävä kaikissa reiteissä";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Vältä maksullisia teitä";
 
-"avoid_tolls" = "Maksulliset tiet";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Vältä päällystämättömiä teitä";
 
-"avoid_unpaved" = "Päällystämättömät tiet";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Vältä lautan käyttöä";
 
-"avoid_ferry" = "Lauttaliikenne";
-
-"avoid_motorways" = "Valtatiet";
+"avoid_motorways" = "Vältä moottoritietä";
 
 "unable_to_calc_alert_title" = "Reittiä ei voi luoda";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Päällystämätön tie";
 
 "ferry_crossing" = "Lauttaliikenne";
-
-"avoid_toll_roads_placepage" = "Vältä maksullisia teitä";
-
-"avoid_unpaved_roads_placepage" = "Vältä päällystämättömiä teitä";
-
-"avoid_ferry_crossing_placepage" = "Vältä lautan käyttöä";
 
 "trip_start" = "Mennään";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Reitti muutetaan autoilijan reitiksi";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Ei päällystämättömiä";
-
-"avoid_unpaved_carplay_2" = "Vältä päällystämättömiä";
-
-"avoid_ferry_carplay_1" = "Ei lauttoja";
-
-"avoid_ferry_carplay_2" = "Vältä lauttoja";
-
-"avoid_tolls_carplay_1" = "Ei maksullisia";
-
-"avoid_tolls_carplay_2" = "Vältä maksullisia";
 
 "speedcams_alert_title_carplay_1" = "Nopeuskamerat";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Monitoimitalo";
 
+"type.amenity.compressed_air" = "Paineilma";
+
 "type.amenity.conference_centre" = "Konferenssikeskus";
 
 "type.amenity.courthouse" = "Oikeustalo";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Maanalainen pysäköinti";
 
-"type.amenity.parking.street_side" = "Parkkipaikka";
+"type.amenity.parking.underground.fee" = "Maksullinen maanalainen pysäköinti";
 
-"type.amenity.parking.fee.street_side" = "Parkkipaikka";
+"type.amenity.parking.underground.private" = "Yksityinen maanalainen pysäköintialue";
 
-"type.amenity.parking.lane" = "Parkkipaikka";
+"type.amenity.parking.street_side" = "Kadun puolella pysäköinti";
 
-"type.amenity.parking.fee.lane" = "Parkkipaikka";
+"type.amenity.parking.street_side.fee" = "Maksullinen kadunvarsipysäköinti";
+
+"type.amenity.parking.street_side.private" = "Yksityinen katu puolella pysäköinti";
+
+"type.amenity.parking.lane" = "Kaistapysäköinti";
+
+"type.amenity.parking.lane.fee" = "Maksullinen pysäköintikaista";
+
+"type.amenity.parking.lane.private" = "Yksityinen kaista pysäköinti";
 
 "type.amenity.parking_entrance" = "Pysäköinnin sisäänkäynti";
 
-"type.amenity.parking_entrance.private" = "Pysäköinnin sisäänkäynti";
+"type.amenity.parking_entrance.private" = "Yksityinen pysäköintialue sisäänkäynti";
 
 "type.amenity.parking_entrance.permissive" = "Pysäköinnin sisäänkäynti";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kirkko";
 
 "type.amenity.place_of_worship.christian.mormon" = "Myöhempien Aikojen Pyhien Jeesuksen Kristuksen Kirkko";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehovan todistajien valtakunnansali";
 
 "type.amenity.place_of_worship.hindu" = "Hindutemppeli";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Kenttä";
 
+"type.landuse.flowerbed" = "Kukkapenkki";
+
 "type.landuse.forest" = "Metsä";
 
 "type.landuse.forest.coniferous" = "Havumetsä";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Köysirata";
 
 "type.railway.station.light_rail" = "Rautatieasema";
+
+"type.railway.station.light_rail.london" = "Rautatieasema";
+
+"type.railway.station.light_rail.porto" = "Rautatieasema";
 
 "type.railway.station.monorail" = "Rautatieasema";
 
@@ -3437,11 +3442,11 @@
 
 "type.shop.chemist" = "Kosmetiikkamyymälä";
 
-"type.shop.chocolate" = "Kauppa";
+"type.shop.chocolate" = "Suklaakauppa";
 
 "type.shop.clothes" = "Vaatekauppa";
 
-"type.shop.coffee" = "Kauppa";
+"type.shop.coffee" = "Kahvikauppa";
 
 "type.shop.computer" = "Tietokonekauppa";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotiikkaliike";
 
-"type.shop.fabric" = "Kauppa";
+"type.shop.fabric" = "Kangaskauppa";
 
 "type.shop.farm" = "Maatilaruokakauppa";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Elektroniikkakauppa";
 
-"type.shop.money_lender" = "Kauppa";
+"type.shop.money_lender" = "Rahan lainaaja";
 
 "type.shop.motorcycle" = "Moottoripyöräliike";
 
 "type.shop.motorcycle_repair" = "Moottoripyörän korjaus";
 
-"type.shop.music" = "Kauppa";
+"type.shop.music" = "Levykauppa";
 
-"type.shop.musical_instrument" = "Kauppa";
+"type.shop.musical_instrument" = "Soittimien kauppa";
 
 "type.shop.newsagent" = "Lehtikioski";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Valokuvakauppa";
 
+"type.shop.rental" = "Vuokrakauppa";
+
+"type.shop.rental.bicycle" = "Polkupyörävuokraamo";
+
 "type.shop.seafood" = "Kalakauppias";
 
 "type.shop.second_hand" = "Käytetyn tavaran liike";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tatuointiliike";
 
-"type.shop.tea" = "Kauppa";
+"type.shop.tea" = "Teekauppa";
 
 "type.shop.ticket" = "Lippumyymälä";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Autiotupa";
 
 "type.tourism.zoo" = "Eläintarha";
+
+"type.tourism.zoo.petting" = "Lemmikkieläintarha";
 
 "type.traffic_calming" = "Traffic Calming";
 

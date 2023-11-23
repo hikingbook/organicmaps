@@ -229,9 +229,6 @@ bool MyPositionController::IsModeHasPosition() const
 void MyPositionController::DragStarted()
 {
   m_needBlockAnimation = true;
-
-  if (m_mode == location::PendingPosition)
-    ChangeMode(location::NotFollowNoPosition);
 }
 
 void MyPositionController::DragEnded(m2::PointD const & distance)
@@ -248,9 +245,6 @@ void MyPositionController::ScaleStarted()
 {
   m_needBlockAnimation = true;
   ResetBlockAutoZoomTimer();
-
-  if (m_mode == location::PendingPosition)
-    ChangeMode(location::NotFollowNoPosition);
 }
 
 void MyPositionController::ScaleEnded()
@@ -268,10 +262,19 @@ void MyPositionController::ScaleEnded()
 
 void MyPositionController::Rotated()
 {
-  if (m_mode == location::PendingPosition)
-    ChangeMode(location::NotFollowNoPosition);
-  else if (m_mode == location::FollowAndRotate)
+  if (m_mode == location::FollowAndRotate)
     m_wasRotationInScaling = true;
+}
+
+void MyPositionController::Scrolled(m2::PointD const & distance)
+{
+  if (m_mode == location::PendingPosition)
+    return;
+
+  if (distance.Length() > 0)
+    StopLocationFollow();
+
+  UpdateViewport(kDoNotChangeZoom);
 }
 
 void MyPositionController::ResetRoutingNotFollowTimer(bool blockTimer)
@@ -445,16 +448,7 @@ void MyPositionController::OnLocationUpdate(location::GpsInfo const & info, bool
 
   if (!m_isPositionAssigned)
   {
-    // If the position was never assigned, the new mode will be the desired one except next cases:
     location::EMyPositionMode newMode = m_desiredInitMode;
-    if (m_mode == location::NotFollowNoPosition)
-    {
-      // We touch the map during the PendingPosition mode and current mode was converted into NotFollowNoPosition.
-      // New mode will be NotFollow to prevent spontaneous map snapping.
-      ResetRoutingNotFollowTimer();
-      newMode = location::NotFollow;
-    }
-
     ChangeMode(newMode);
 
     if (!m_hints.m_isFirstLaunch || !AnimationSystem::Instance().AnimationExists(Animation::Object::MapPlane))
@@ -645,7 +639,7 @@ void MyPositionController::ChangeMode(location::EMyPositionMode newMode)
     m_pendingTimer.Reset();
     m_pendingStarted = true;
   }
-  else if (newMode != location::NotFollowNoPosition)
+  else
   {
     m_pendingStarted = false;
   }
@@ -671,9 +665,6 @@ void MyPositionController::StopLocationFollow()
   if (m_mode == location::Follow || m_mode == location::FollowAndRotate)
     ChangeMode(location::NotFollow);
   m_desiredInitMode = location::NotFollow;
-
-  if (m_mode == location::PendingPosition)
-    ChangeMode(location::NotFollowNoPosition);
 
   ResetRoutingNotFollowTimer();
 }
@@ -908,7 +899,7 @@ void MyPositionController::DeactivateRouting()
 
 void MyPositionController::CheckIsWaitingForLocation()
 {
-  if (IsWaitingForLocation() || m_mode == location::NotFollowNoPosition)
+  if (IsWaitingForLocation())
   {
     CHECK_ON_TIMEOUT(m_locationWaitingNotifyId, kMaxPendingLocationTimeSec, CheckIsWaitingForLocation);
     if (m_pendingStarted && m_pendingTimer.ElapsedSeconds() >= kMaxPendingLocationTimeSec)

@@ -14,7 +14,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +23,7 @@ import app.organicmaps.R;
 import app.organicmaps.util.InputUtils;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class SearchToolbarController extends ToolbarController implements View.OnClickListener
 {
@@ -35,7 +35,7 @@ public class SearchToolbarController extends ToolbarController implements View.O
   @NonNull
   private final View mBack;
   @NonNull
-  private final EditText mQuery;
+  private final TextInputEditText mQuery;
   private boolean mFromCategory = false;
   @NonNull
   private final View mProgress;

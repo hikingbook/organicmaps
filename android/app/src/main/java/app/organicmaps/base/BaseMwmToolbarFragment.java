@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import app.organicmaps.widget.ToolbarController;
 
-public class BaseMwmToolbarFragment extends BaseAsyncOperationFragment
+public class BaseMwmToolbarFragment extends BaseMwmFragment
 {
   @SuppressWarnings("NullableProblems")
   @NonNull

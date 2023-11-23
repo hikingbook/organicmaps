@@ -13,8 +13,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -30,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.DimenRes;
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -37,31 +36,25 @@ import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.Serializable;
-import java.lang.ref.WeakReference;
-import java.text.DateFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Currency;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
-
 import app.organicmaps.BuildConfig;
+import app.organicmaps.MwmActivity;
+import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.base.CustomNavigateUpListener;
 import app.organicmaps.util.concurrency.UiThread;
 import app.organicmaps.util.log.Logger;
 import app.organicmaps.util.log.LogsManager;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.text.DecimalFormatSymbols;
+import java.util.Currency;
+import java.util.Locale;
+import java.util.Map;
+
+@Keep
 public class Utils
 {
   private static final String TAG = Utils.class.getSimpleName();
@@ -75,27 +68,13 @@ public class Utils
   {
   }
 
-  public static boolean isNougatOrLater()
-  {
-    return isTargetOrLater(Build.VERSION_CODES.N);
-  }
-
-  public static boolean isOreoOrLater()
-  {
-    return isTargetOrLater(Build.VERSION_CODES.O);
-  }
-
-  private static boolean isTargetOrLater(int target)
-  {
-    return Build.VERSION.SDK_INT >= target;
-  }
-
   /**
    * Enable to keep screen on.
    * Disable to let system turn it off automatically.
    */
   public static void keepScreenOn(boolean enable, Window w)
   {
+    Logger.i(TAG, "enabled = " + enable + " window = " + w);
     if (enable)
       w.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     else
@@ -112,6 +91,7 @@ public class Utils
 
   public static void showOnLockScreen(boolean enable, Activity activity)
   {
+    Logger.i(TAG, "enabled = " + enable + " window = " + activity.getWindow());
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1)
       showOnLockScreenOld(enable, activity);
     else
@@ -346,13 +326,10 @@ public class Utils
                                                                  Constants.Email.SUPPORT));
   }
 
-  public static void navigateToParent(@Nullable Activity activity)
+  public static void navigateToParent(@NonNull Activity activity)
   {
-    if (activity == null)
-      return;
-
-    if (activity instanceof CustomNavigateUpListener)
-      ((CustomNavigateUpListener) activity).customOnNavigateUp();
+    if (activity instanceof MwmActivity)
+      ((MwmActivity) activity).customOnNavigateUp();
     else
       NavUtils.navigateUpFromSameTask(activity);
   }
@@ -376,47 +353,6 @@ public class Utils
         new AbsoluteSizeSpan(UiUtils.dimen(context, R.dimen.text_size_nav_dimension), false),
         distance.mDistanceStr.length(), res.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return res;
-  }
-
-  public static void checkConnection(final Context context, final @StringRes int message,
-                                     final Proc<Boolean> onCheckPassedCallback)
-  {
-    if (ConnectionState.INSTANCE.isConnected())
-    {
-      onCheckPassedCallback.invoke(true);
-      return;
-    }
-
-    class Holder
-    {
-      boolean accepted;
-    }
-
-    final Holder holder = new Holder();
-    new MaterialAlertDialogBuilder(context, R.style.MwmTheme_AlertDialog)
-        .setMessage(message)
-        .setNegativeButton(R.string.cancel, null)
-        .setPositiveButton(R.string.downloader_retry, (dialog, which) -> {
-          holder.accepted = true;
-          checkConnection(context, message, onCheckPassedCallback);
-        }).setOnDismissListener(dialog -> {
-          if (!holder.accepted)
-            onCheckPassedCallback.invoke(false);
-        })
-        .show();
-  }
-
-  public static boolean isAppInstalled(@NonNull Context context, @NonNull String packageName)
-  {
-    try
-    {
-      PackageManager pm = context.getPackageManager();
-      getPackageInfo(pm, packageName, PackageManager.GET_ACTIVITIES);
-      return true;
-    } catch (PackageManager.NameNotFoundException e)
-    {
-      return false;
-    }
   }
 
   public static void sendTo(@NonNull Context context, @NonNull String email)
@@ -450,26 +386,9 @@ public class Utils
     }
   }
 
-  public static void showSystemConnectionSettings(@NonNull Context context)
-  {
-    try
-    {
-      context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-    }
-    catch (ActivityNotFoundException e)
-    {
-      Logger.e(TAG, "Failed to open system connection settings", e);
-      try
-      {
-        context.startActivity(new Intent(Settings.ACTION_SETTINGS));
-      }
-      catch (ActivityNotFoundException ex)
-      {
-        Logger.e(TAG, "Failed to open system settings", ex);
-      }
-    }
-  }
-
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @Nullable
   public static String getCurrencyCode()
   {
@@ -483,24 +402,37 @@ public class Utils
     return null;
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getCountryCode()
   {
     return Locale.getDefault().getCountry();
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getLanguageCode()
   {
     return Locale.getDefault().getLanguage();
   }
 
+
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getDecimalSeparator()
   {
     return String.valueOf(DecimalFormatSymbols.getInstance().getDecimalSeparator());
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getGroupingSeparator()
   {
@@ -521,49 +453,9 @@ public class Utils
     }
   }
 
-  @NonNull
-  public static String formatCurrencyString(@NonNull String price, @NonNull String currencyCode)
-  {
-
-    float value = Float.valueOf(price);
-    return formatCurrencyString(value, currencyCode);
-  }
-
-  @NonNull
-  public static String formatCurrencyString(float price, @NonNull String currencyCode)
-  {
-    String text;
-    try
-    {
-      Locale locale = Locale.getDefault();
-      Currency currency = Utils.getCurrencyForLocale(locale);
-      // If the currency cannot be obtained for the default locale we will use Locale.US.
-      if (currency == null)
-        locale = Locale.US;
-
-      if (isNougatOrLater())
-      {
-        android.icu.text.NumberFormat formatter = android.icu.text.NumberFormat.getInstance(
-            locale, android.icu.text.NumberFormat.CURRENCYSTYLE);
-        if (!TextUtils.isEmpty(currencyCode))
-          formatter.setCurrency(android.icu.util.Currency.getInstance(currencyCode));
-        return formatter.format(price);
-      }
-
-      NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
-      if (!TextUtils.isEmpty(currencyCode))
-        formatter.setCurrency(Currency.getInstance(currencyCode));
-      return formatter.format(price);
-    }
-    catch (Throwable e)
-    {
-      Logger.e(TAG, "Failed to format string for price = " + price
-               + " and currencyCode = " + currencyCode, e);
-      text = (price + " " + currencyCode);
-    }
-    return text;
-  }
-
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getCurrencySymbol(@NonNull String currencyCode)
   {
@@ -614,6 +506,9 @@ public class Utils
    *
    * @return string value or its key if there is no string for the specified key.
    */
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getStringValueByKey(@NonNull Context context, @NonNull String key)
   {
@@ -634,6 +529,9 @@ public class Utils
    *
    * @return bookmark name with time and date.
    */
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getMyPositionBookmarkName(@NonNull Context context)
   {
@@ -641,44 +539,42 @@ public class Utils
                                     DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
   }
 
+  // Called from JNI.
   @NonNull
+  @Keep
+  @SuppressWarnings("unused")
   public static String getDeviceName()
   {
     return Build.MANUFACTURER;
   }
 
+  // Called from JNI.
   @NonNull
+  @Keep
+  @SuppressWarnings("unused")
   public static String getDeviceModel()
   {
     return Build.MODEL;
   }
 
+  // Called from JNI.
   @NonNull
+  @Keep
+  @SuppressWarnings("unused")
   public static String getVersion()
   {
     return BuildConfig.VERSION_NAME;
   }
 
-  @NonNull
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   public static int getIntVersion()
   {
     // Please sync with getVersion() in build.gradle
     // - % 100000000 removes prefix for special markets, e.g Huawei.
     // - / 100 removes the number of commits in the current day.
     return (BuildConfig.VERSION_CODE % 1_00_00_00_00) / 100;
-  }
-
-  @NonNull
-  public static <T> T[] concatArrays(@Nullable T[] a, T... b)
-  {
-    if (a == null || a.length == 0)
-      return b;
-    if (b == null || b.length == 0)
-      return a;
-
-    T[] c = Arrays.copyOf(a, a.length + b.length);
-    System.arraycopy(b, 0, c, a.length, b.length);
-    return c;
   }
 
   public static void detachFragmentIfCoreNotInitialized(@NonNull Context context,
@@ -717,11 +613,6 @@ public class Utils
     return Character.toLowerCase(src.charAt(0)) + src.substring(1);
   }
 
-  public enum PartnerAppOpenMode
-  {
-    None, Direct, Indirect
-  }
-
   public interface Proc<T>
   {
     void invoke(@NonNull T param);
@@ -733,6 +624,9 @@ public class Utils
     return getStringValueByKey(context, key);
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getLocalizedFeatureType(@NonNull Context context, @Nullable String type)
   {
@@ -744,29 +638,27 @@ public class Utils
     return getLocalizedFeatureByKey(context, key);
   }
 
+  // Called from JNI.
+  @Keep
+  @SuppressWarnings("unused")
   @NonNull
   public static String getLocalizedBrand(@NonNull Context context, @Nullable String brand)
   {
     if (TextUtils.isEmpty(brand))
       return "";
 
-    String key = "brand." + brand;
-    return getLocalizedFeatureByKey(context, key);
-  }
-
-  @NonNull
-  public static Calendar getCalendarInstance()
-  {
-    return Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-  }
-
-  @NonNull
-  public static String calculateFinishTime(int seconds)
-  {
-    Calendar calendar = getCalendarInstance();
-    calendar.add(Calendar.SECOND, seconds);
-    DateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-    return dateFormat.format(calendar.getTime());
+    try
+    {
+      @StringRes
+      int nameId = context.getResources().getIdentifier("brand." + brand, "string", context.getPackageName());
+      if (nameId == INVALID_ID || nameId == View.NO_ID)
+        return brand;
+      return context.getString(nameId);
+    }
+    catch (Resources.NotFoundException e)
+    {
+    }
+    return brand;
   }
 
   private static class SupportInfoWithLogsCallback implements LogsManager.OnZipCompletedListener
@@ -830,40 +722,6 @@ public class Utils
       });
     }
   }
-
-  @SuppressWarnings({"deprecation", "unchecked"})
-  @Nullable
-  private static <T> T getParcelableOld(Bundle args, String key)
-  {
-    return (T) args.getParcelable(key);
-  }
-
-
-  @Nullable
-  public static <T> T getParcelable(@NonNull Bundle args, String key, Class<T> clazz)
-  {
-    args.setClassLoader(clazz.getClassLoader());
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
-      return getParcelableOld(args, key);
-    return args.getParcelable(key, clazz);
-  }
-
-  @SuppressWarnings({"deprecation", "unchecked"})
-  @Nullable
-  private static <T extends Serializable> T getSerializableOld(Bundle args, String key)
-  {
-    return (T) args.getSerializable(key);
-  }
-
-  @Nullable
-  public static <T extends Serializable> T getSerializable(@NonNull Bundle args, String key, Class<T> clazz)
-  {
-    args.setClassLoader(clazz.getClassLoader());
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
-      return getSerializableOld(args, key);
-    return args.getSerializable(key, clazz);
-  }
-
 
   @SuppressWarnings("deprecation")
   private static Spanned fromHtmlOld(@NonNull String htmlDescription)

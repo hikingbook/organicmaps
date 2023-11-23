@@ -38,7 +38,8 @@
 	<string name="about_menu_title">Organic Maps बद्दल</string>
 	<!-- Text in About screen -->
 	<string name="about_proposition_2">• बॅटरी वाचवते, पार्श्वभूमी डेटा वापरत नाही</string>
-	<string name="connection_settings">जोडणी सेटिंग</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">स्थान सेटिंग्ज</string>
 	<string name="close">बंद</string>
 	<string name="unsupported_phone">ह्या ऍपला हार्डवेअर प्रवेगक OpenGL आवश्यक आहे. दुर्दैवाने, तुमच्या उपकरणाला ह्याचा आधार नाही.</string>
 	<string name="download">डाउनलोड करा</string>
@@ -480,6 +481,10 @@
 	<string name="hour">तास</string>
 	<string name="minute">मिनिट</string>
 	<string name="placepage_more_button">अधिक</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">कायाक वर तपशील</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">या लिंकद्वारे प्रत्येक बुकिंगसाठी मिळणारा रेफरल बोनस ऑरगॅनिक नकाशांच्या विकासासाठी जातो.</string>
 	<string name="placepage_edit_bookmark_button">खूणपत्र संपादित करा</string>
 	<string name="editor_comment_hint">टिप्पणी</string>
 	<string name="editor_reset_edits_message">सर्व स्थानिक बदल टाकून द्यायचे?</string>
@@ -502,8 +507,6 @@
 	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">आपण कोणतीही वैयक्तिक माहिती प्रविष्ट केला नाही याची खात्री करा.</string>
 	<string name="navigation_stop_button">थांबा</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps हे एक विनामूल्य, जलद व ऑफलाईन नकाशांचे ऍप आहे जिथे जाहिरातीही नसतात व तुम्ही माहिती देखील गोळा केला जात नाही. हे नकाशे OpenStreetMap ह्या जनयोगदान प्रकल्पावर आधारित असल्याने नकाशातील त्रुट्या सुधारणे, नवीन ठिकाण जोडणे हे आपण स्वतः करू शकता. Organic Maps हा काही उत्साही लोकांनी त्यांच्या ऐत्यावेळात निर्माण केलेला मुक्त स्त्रोत स्वरूपाचा प्रकल्प आहे. तुमचा पाठिंबा व अभिप्राय बहुमोल आहे.</string>
 	<!-- For the first routing -->
 	<string name="accept">स्वीकारा</string>
 	<!-- For the first routing -->
@@ -563,7 +566,6 @@
 	  <item quantity="one">%d फाईल सापडली. रूपांतरानंतर तुम्ही ती पाहू शकता.</item>
 	  <item quantity="other">%d फाईली सापडल्या. रूपांतरानंतर तुम्ही त्या पाहू शकता.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">इंटरनेट जोडणी नाही</string>
 	<plurals name="objects">
 	  <item quantity="other">%d वस्तू</item>
 	</plurals>
@@ -586,7 +588,6 @@
 	<string name="bookmarks_empty_list_message">खूणपत्र जोडण्यासाठी, नकाशातील ठिकाणाला स्पर्श करा आणि नंतर तारा चिन्हाला स्पर्श करा</string>
 	<string name="category_desc_more">…अधिक</string>
 	<string name="export_file">फाइल निर्यात</string>
-	<string name="list_settings">यादी सेटिंग</string>
 	<string name="delete_list">यादी मिटवा</string>
 	<string name="public_access">सार्वजनिक प्रवेश</string>
 	<string name="limited_access">मर्यादित प्रवेश</string>
@@ -608,11 +609,13 @@
 	<string name="enable_logging_warning_message">निदान करण्याकरिता हा पर्याय लॉगिंग चालू करतो. ह्याने ऍपच्या समस्यांचे निवारण करणे आम्हाला उपयुक्त ठरू शकते. तुमच्या समस्येबद्दल तपशीलवार नोंदी रेकॉर्ड करण्यासाठी आणि आम्हाला पाठवण्यासाठी हा पर्याय तात्पुरता चालू करा.</string>
 	<string name="access_rules_author_only">ऑनलाइन संपादन</string>
 	<string name="driving_options_title">मार्गशोधी पर्याय</string>
-	<string name="driving_options_subheader">प्रत्येक मार्गावर टाळा</string>
-	<string name="avoid_tolls">टोल मार्ग</string>
-	<string name="avoid_unpaved">कच्चे मार्ग</string>
-	<string name="avoid_ferry">जल मार्ग</string>
-	<string name="avoid_motorways">महामार्ग</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">टोल रस्ते टाळा</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">कच्चे मार्ग टाळा</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">जल मार्ग टाळा</string>
+	<string name="avoid_motorways">मोटरवे टाळा</string>
 	<string name="unable_to_calc_alert_title">मार्गाची गणना करण्यात अक्षम</string>
 	<string name="unable_to_calc_alert_subtitle">दुर्दैवाने, आम्ही मार्ग शोधू शकलो नाही. ह्याचे कारण कदाचित तुम्ही निवडलेले पर्याय असावे. कृपया सेटिंग बदला आणि पुन्हा प्रयत्न करा.</string>
 	<string name="define_to_avoid_btn">टाळण्याचे मार्ग निवडा</string>
@@ -620,9 +623,6 @@
 	<string name="toll_road">टोल मार्ग</string>
 	<string name="unpaved_road">कच्चे मार्ग</string>
 	<string name="ferry_crossing">जल मार्ग</string>
-	<string name="avoid_toll_roads_placepage">टोल मार्ग टाळा</string>
-	<string name="avoid_unpaved_roads_placepage">कच्चे मार्ग टाळा</string>
-	<string name="avoid_ferry_crossing_placepage">जल मार्ग टाळा</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">होय</string>
 	<!-- A generic "No" button in dialogs -->
@@ -631,6 +631,7 @@
 	<string name="yes_available">होय</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">नाही</string>
+	<string name="trip_finished">तुम्ही पोचलात!</string>
 	<string name="ok">ठीक आहे</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">क्रमाने लावा…</string>
@@ -692,9 +693,9 @@
 	<string name="connection_failure">जोडणी अयशस्वी</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">USB केबल काढा</string>
-	<string name="enable_screen_sleep">स्क्रीनचे निद्रा कार्य चालू करा</string>
+	<string name="enable_keep_screen_on">स्क्रीन चालू ठेवा</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">चालू केल्यास निष्क्रियतेच्या कालावधीनंतर स्क्रीनला झोपण्याची परवानगी दिली जाईल.</string>
+	<string name="enable_keep_screen_on_description">सक्षम असतानानकाशाशप्रदर्शितिकरतानानस्क्रीनीनेहमीमचालूाअसेलसेल.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">लॉक पटलावर (स्क्रीनवर) दाखवा</string>
 	<!-- Description in preferences -->
@@ -703,6 +704,22 @@
 	<string name="translated_om_site_url">https://organicmaps.app/mr/</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">आमचे समुदाय-निर्मित नकाशे वापरल्याबद्दल धन्यवाद!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">तुम्ही आता फोन स्क्रीनवर ऑरगॅनिक नकाशे वापरत आहात</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">तुम्ही आता कार स्क्रीनवर ऑरगॅनिक नकाशे वापरत आहात</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">तुम्ही Android Auto शी कनेक्ट आहात</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">फोनवर सुरू ठेवा</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">कारच्या स्क्रीनकडे</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">नेव्हिगेशन हेतूंसाठी या अनुप्रयोगास आपल्या स्थानावर प्रवेश आवश्यक आहे.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">परवानग्या द्या</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">कारला जोडलेले</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
@@ -750,6 +767,7 @@
 	<string name="type.amenity.clinic">चिकित्सालय</string>
 	<string name="type.amenity.college">महाविद्यालय</string>
 	<string name="type.amenity.community_centre">समुदाय केंद्र</string>
+	<string name="type.amenity.compressed_air">संकुचित हवा</string>
 	<string name="type.amenity.conference_centre">परिषद केंद्र</string>
 	<string name="type.amenity.courthouse">न्यायालय</string>
 	<string name="type.amenity.dentist">दंतवैद्य</string>
@@ -781,10 +799,15 @@
 	<string name="type.amenity.nursing_home">वृद्धाश्रम</string>
 	<string name="type.amenity.parking">वाहनतळ</string>
 	<string name="type.amenity.parking.park_and_ride">वाहनतळ</string>
-	<string name="type.amenity.parking.street_side">वाहनतळ</string>
-	<string name="type.amenity.parking.fee.street_side">वाहनतळ</string>
-	<string name="type.amenity.parking.lane">वाहनतळ</string>
-	<string name="type.amenity.parking.fee.lane">वाहनतळ</string>
+	<string name="type.amenity.parking.underground.fee">सशुल्क भूमिगत पार्किंग</string>
+	<string name="type.amenity.parking.underground.private">खाजगी भूमिगत पार्किंग</string>
+	<string name="type.amenity.parking.street_side">स्ट्रीट साइड पार्किंग</string>
+	<string name="type.amenity.parking.street_side.fee">पेड स्ट्रीट साइड पार्किंग</string>
+	<string name="type.amenity.parking.street_side.private">खाजगी रस्त्यावरील बाजूचे पार्किंग</string>
+	<string name="type.amenity.parking.lane">लेन पार्किंग</string>
+	<string name="type.amenity.parking.lane.fee">सशुल्क लेन पार्किंग</string>
+	<string name="type.amenity.parking.lane.private">खाजगी लेन पार्किंग</string>
+	<string name="type.amenity.parking_entrance.private">खाजगी पार्किंग प्रवेशद्वार</string>
 	<string name="type.amenity.parking_space">पार्किंगची जागा</string>
 	<string name="type.amenity.parking_space.permissive">पार्किंगची जागा</string>
 	<string name="type.amenity.parking_space.private">पार्किंगची जागा</string>
@@ -795,6 +818,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">मंदिर</string>
 	<string name="type.amenity.place_of_worship.christian">चर्च</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">चर्च ऑफ जिझस क्राइस्ट ऑफ लेटर डे सेंट्स</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">यहोवा साक्षींचे राज्य सभा</string>
 	<string name="type.amenity.place_of_worship.hindu">मंदिर</string>
 	<string name="type.amenity.place_of_worship.jewish">सिनेगॉग</string>
 	<string name="type.amenity.place_of_worship.muslim">मशीद</string>
@@ -1222,6 +1246,7 @@
 	<string name="type.landuse.farm">शेत</string>
 	<string name="type.landuse.farmland">शेतजमीन</string>
 	<string name="type.landuse.field">क्षेत्र</string>
+	<string name="type.landuse.flowerbed">फ्लॉवरबेड</string>
 	<string name="type.landuse.forest">वन</string>
 	<string name="type.landuse.forest.coniferous">शंकुमंत जंगल</string>
 	<string name="type.landuse.forest.deciduous">पानझडी जंगल</string>
@@ -1443,6 +1468,8 @@
 	<string name="type.railway.station">रेल्वे स्थानक</string>
 	<string name="type.railway.station.funicular">फ्युनिक्युलर</string>
 	<string name="type.railway.station.light_rail">रेल्वे स्थानक</string>
+	<string name="type.railway.station.light_rail.london">रेल्वे स्थानक</string>
+	<string name="type.railway.station.light_rail.porto">रेल्वे स्थानक</string>
 	<string name="type.railway.station.monorail">रेल्वे स्थानक</string>
 	<string name="type.railway.station.subway">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.adana">भुयारी मार्ग</string>
@@ -1691,9 +1718,9 @@
 	<string name="type.shop.car_repair.tyres">टायर दुरुस्ती</string>
 	<string name="type.shop.carpet">कार्पेट्स</string>
 	<string name="type.shop.chemist">औषधालय</string>
-	<string name="type.shop.chocolate">दुकान</string>
+	<string name="type.shop.chocolate">चॉकलेट शॉप</string>
 	<string name="type.shop.clothes">कपड्याचे दुकान</string>
-	<string name="type.shop.coffee">दुकान</string>
+	<string name="type.shop.coffee">कॉफीचे दुकान</string>
 	<string name="type.shop.computer">संगणकाचे दुकान</string>
 	<string name="type.shop.confectionery">मिठाई</string>
 	<string name="type.shop.convenience">सुविधा दुकान</string>
@@ -1703,7 +1730,7 @@
 	<string name="type.shop.doityourself">हार्डवेअर दुकान</string>
 	<string name="type.shop.dry_cleaning">कोरडे धुलाईघर</string>
 	<string name="type.shop.electronics">इलेक्ट्रॉनिक्स</string>
-	<string name="type.shop.fabric">दुकान</string>
+	<string name="type.shop.fabric">फॅब्रिकचे दुकान</string>
 	<string name="type.shop.fashion_accessories">फॅशन अॅक्सेसरीज</string>
 	<string name="type.shop.florist">फुलवाला</string>
 	<string name="type.shop.funeral_directors">अंत्यसंस्कार संचालक</string>
@@ -1721,11 +1748,11 @@
 	<string name="type.shop.mall">मॉल</string>
 	<string name="type.shop.massage">मालिश गृह</string>
 	<string name="type.shop.mobile_phone">मोबाईल</string>
-	<string name="type.shop.money_lender">दुकान</string>
+	<string name="type.shop.money_lender">सावकार</string>
 	<string name="type.shop.motorcycle">दुचाकी विक्रेता</string>
 	<string name="type.shop.motorcycle_repair">मोटरसायकल दुरुस्ती</string>
-	<string name="type.shop.music">दुकान</string>
-	<string name="type.shop.musical_instrument">दुकान</string>
+	<string name="type.shop.music">संगीताच दुकान</string>
+	<string name="type.shop.musical_instrument">वाद्याचे दुकान</string>
 	<string name="type.shop.newsagent">वृत्तपत्र विक्री</string>
 	<string name="type.shop.optician">चष्मेविक्रेता</string>
 	<string name="type.shop.outdoor">भटकंतीचे साहित्य</string>
@@ -1734,13 +1761,15 @@
 	<string name="type.shop.pet">पाळीव प्राण्यांचे दुकान</string>
 	<string name="type.shop.pet_grooming">पाळीव प्राणी ग्रूमिंग</string>
 	<string name="type.shop.photo">फोटोचे दुकान</string>
+	<string name="type.shop.rental">भाड्याचे दुकान</string>
+	<string name="type.shop.rental.bicycle">सायकल भाड्याचे दुकान</string>
 	<string name="type.shop.seafood">मासळी उपहारगृह</string>
 	<string name="type.shop.shoes">चपलाचे दूकान</string>
 	<string name="type.shop.sports">क्रीडा साहित्य</string>
 	<string name="type.shop.stationery">लेखनसामग्री दुकान</string>
 	<string name="type.shop.supermarket">महाबाजार</string>
 	<string name="type.shop.tattoo">गोंदणाचे(टॅटू) दुकान</string>
-	<string name="type.shop.tea">दुकान</string>
+	<string name="type.shop.tea">चहा दुकान</string>
 	<string name="type.shop.ticket">तिकीटघर</string>
 	<string name="type.shop.toys">खेळण्यांचे दुकान</string>
 	<string name="type.shop.travel_agency">प्रवास एजन्सी</string>
@@ -1809,6 +1838,7 @@
 	<string name="type.tourism.theme_park">थीम पार्क</string>
 	<string name="type.tourism.viewpoint">दृष्टिस्थान</string>
 	<string name="type.tourism.zoo">प्राणीसंग्रहालय</string>
+	<string name="type.tourism.zoo.petting">पेटिंग प्राणीसंग्रहालय</string>
 	<string name="type.traffic_calming.bump">वाहतूक गतिरोधक</string>
 	<string name="type.waterway">जलमार्ग</string>
 	<string name="type.waterway.canal">कालवा</string>

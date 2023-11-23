@@ -7,6 +7,7 @@ import android.view.Surface;
 
 import androidx.annotation.Nullable;
 
+import app.organicmaps.display.DisplayType;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.UiUtils;
@@ -50,6 +51,8 @@ public final class Map
   public static final int INVALID_POINTER_MASK = 0xFF;
   public static final int INVALID_TOUCH_ID = -1;
 
+  private final DisplayType mDisplayType;
+
   private int mCurrentCompassOffsetX;
   private int mCurrentCompassOffsetY;
   private int mBottomWidgetOffsetX;
@@ -68,8 +71,11 @@ public final class Map
   @Nullable
   private CallbackUnsupported mCallbackUnsupported;
 
-  public Map()
+  private static int currentDpi = 0;
+
+  public Map(DisplayType mapType)
   {
+    mDisplayType = mapType;
     onCreate(false);
   }
 
@@ -120,10 +126,9 @@ public final class Map
   /**
    * Moves my position arrow to the given offset.
    *
-   * @param context Context.
    * @param offsetY Pixel offset from the bottom.
    */
-  public void updateMyPositionRoutingOffset(final Context context, int offsetY)
+  public void updateMyPositionRoutingOffset(int offsetY)
   {
     nativeUpdateMyPositionRoutingOffset(offsetY);
   }
@@ -139,6 +144,12 @@ public final class Map
     Logger.d(TAG, "mSurfaceCreated = " + mSurfaceCreated);
     if (nativeIsEngineCreated())
     {
+      if (currentDpi != surfaceDpi)
+      {
+        currentDpi = surfaceDpi;
+        nativeUpdateEngineDpi(currentDpi);
+        setupWidgets(context, surfaceFrame.width(), surfaceFrame.height());
+      }
       if (!nativeAttachSurface(surface))
       {
         if (mCallbackUnsupported != null)
@@ -257,9 +268,9 @@ public final class Map
     return mSurfaceCreated;
   }
 
-  public void onScroll(float distanceX, float distanceY)
+  public void onScroll(double distanceX, double distanceY)
   {
-    Map.nativeMove(-distanceX / ((float) mWidth), distanceY / ((float) mHeight), false);
+    Map.nativeOnScroll(distanceX, distanceY);
   }
 
   public static void zoomIn()
@@ -274,7 +285,7 @@ public final class Map
 
   public static void onScale(double factor, double focusX, double focusY, boolean isAnim)
   {
-    nativeScale(factor, focusX, focusY, isAnim);
+    nativeOnScale(factor, focusX, focusY, isAnim);
   }
 
   public static void onTouch(int actionType, MotionEvent event, int pointerIndex)
@@ -291,9 +302,10 @@ public final class Map
     }
   }
 
-  public static void onTouch(float x, float y)
+  public static void onClick(float x, float y)
   {
-    nativeOnTouch(Map.NATIVE_ACTION_UP, 0, x, y, Map.INVALID_TOUCH_ID, 0, 0, 0);
+    nativeOnTouch(NATIVE_ACTION_DOWN, 0, x, y, Map.INVALID_TOUCH_ID, 0, 0, 0);
+    nativeOnTouch(NATIVE_ACTION_UP, 0, x, y, Map.INVALID_TOUCH_ID, 0, 0, 0);
   }
 
   public static boolean isEngineCreated()
@@ -313,8 +325,16 @@ public final class Map
 
     nativeCleanWidgets();
     updateBottomWidgetsOffset(context, mBottomWidgetOffsetX, mBottomWidgetOffsetY);
-    nativeSetupWidget(WIDGET_SCALE_FPS_LABEL, UiUtils.dimen(context, R.dimen.margin_base), UiUtils.dimen(context, R.dimen.margin_base), ANCHOR_LEFT_TOP);
-    updateCompassOffset(context, mCurrentCompassOffsetX, mCurrentCompassOffsetY, false);
+    if (mDisplayType == DisplayType.Device)
+    {
+      nativeSetupWidget(WIDGET_SCALE_FPS_LABEL, UiUtils.dimen(context, R.dimen.margin_base), UiUtils.dimen(context, R.dimen.margin_base) * 2, ANCHOR_LEFT_TOP);
+      updateCompassOffset(context, mCurrentCompassOffsetX, mCurrentCompassOffsetY, false);
+    }
+    else
+    {
+      nativeSetupWidget(WIDGET_SCALE_FPS_LABEL, UiUtils.dimen(context, R.dimen.margin_base), mHeight - UiUtils.dimen(context, R.dimen.margin_base) * 5, ANCHOR_LEFT_TOP);
+      updateCompassOffset(context, mWidth, mCurrentCompassOffsetY, true);
+    }
   }
 
   private void updateRulerOffset(final Context context, int offsetX, int offsetY)
@@ -347,30 +367,48 @@ public final class Map
                                                    boolean firstLaunch,
                                                    boolean isLaunchByDeepLink,
                                                    int appVersionCode);
+
   private static native boolean nativeIsEngineCreated();
+
+  private static native void nativeUpdateEngineDpi(int dpi);
+
   private static native void nativeSetRenderingInitializationFinishedListener(
       @Nullable MapRenderingListener listener);
+
   private static native boolean nativeShowMapForUrl(String url);
 
   // Surface
   private static native boolean nativeAttachSurface(Surface surface);
+
   private static native void nativeDetachSurface(boolean destroySurface);
+
   private static native void nativeSurfaceChanged(Surface surface, int w, int h);
+
   private static native boolean nativeDestroySurfaceOnDetach();
+
   private static native void nativePauseSurfaceRendering();
+
   private static native void nativeResumeSurfaceRendering();
 
   // Widgets
   private static native void nativeApplyWidgets();
+
   private static native void nativeCleanWidgets();
+
   private static native void nativeUpdateMyPositionRoutingOffset(int offsetY);
+
   private static native void nativeSetupWidget(int widget, float x, float y, int anchor);
+
   private static native void nativeCompassUpdated(double north, boolean forceRedraw);
 
   // Events
-  private static native void nativeMove(double factorX, double factorY, boolean isAnim);
   private static native void nativeScalePlus();
+
   private static native void nativeScaleMinus();
-  private static native void nativeScale(double factor, double focusX, double focusY, boolean isAnim);
+
+  private static native void nativeOnScroll(double distanceX, double distanceY);
+
+  private static native void nativeOnScale(double factor, double focusX, double focusY, boolean isAnim);
+
   private static native void nativeOnTouch(int actionType, int id1, float x1, float y1, int id2, float x2, float y2, int maskedPointer);
 }

@@ -789,6 +789,12 @@
 
 "book_button" = "رزرو";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "جزئیات در KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "پاداش ارجاعی دریافت شده برای هر رزرو از طریق این پیوند به سمت توسعه نقشه های ارگانیک می رود.";
+
 "placepage_call_button" = "تماس";
 
 "placepage_edit_bookmark_button" = "ویرایش نشانه‌ها";
@@ -977,8 +983,6 @@
 
 "export_file" = "ارسال فایل";
 
-"list_settings" = "تنظیمات لیست";
-
 "delete_list" = "حذف لیست";
 
 "hide_from_map" = "پنهان کردن از نقشه";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "گزینه‌های رانندگی";
 
-"driving_options_subheader" = "اجتناب از تمامی مسیرها";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "از جاده های عوارضی خودداری کنید";
 
-"avoid_tolls" = "جاده‌های دارای عوارض";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "اجتناب از جاده‌های آسفالت نشده";
 
-"avoid_unpaved" = "جاده‌های آسفالت نشده";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "اجتناب از گذرگاه‌های کشتی";
 
-"avoid_ferry" = "گذرگاه‌های جاده‌ای";
-
-"avoid_motorways" = "بزرگراه‌ها";
+"avoid_motorways" = "از بزرگراه دوری کنید";
 
 "unable_to_calc_alert_title" = "امکان محاسبه مسیر نیست";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "جاده آسفالت نشده";
 
 "ferry_crossing" = "گذرگاه جاده‌ای";
-
-"avoid_toll_roads_placepage" = "اجتناب از جاده‌های دارای عوارض";
-
-"avoid_unpaved_roads_placepage" = "اجتناب از جاده‌های آسفالت نشده";
-
-"avoid_ferry_crossing_placepage" = "اجتناب از گذرگاه‌های کشتی";
 
 "trip_start" = "برویم";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "مسیر به مسیر خودرویی تغییر خواهد کرد";
 
 "ok" = "موافقت کردن";
-
-"avoid_unpaved_carplay_1" = "بی جاده خاکی";
-
-"avoid_unpaved_carplay_2" = "پرهیز از خاکی";
-
-"avoid_ferry_carplay_1" = "بدون بزرگراه";
-
-"avoid_ferry_carplay_2" = "پرهیز از اتوبان";
-
-"avoid_tolls_carplay_1" = "بدون عوارضی";
-
-"avoid_tolls_carplay_2" = "اجتناب از عوارض";
 
 "speedcams_alert_title_carplay_1" = "دوربین سرعت";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "مرکزاجتماعی";
 
+"type.amenity.compressed_air" = "هوای فشرده";
+
 "type.amenity.conference_centre" = "مرکز کنفرانس";
 
 "type.amenity.courthouse" = "دادگاه";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "ﯽﻨﯿﻣﺯ ﺮﯾﺯ ﮓﻨﯿﮐﺭﺎﭘ";
 
-"type.amenity.parking.street_side" = "پارکینگ";
+"type.amenity.parking.underground.fee" = "پارکینگ زیرزمینی پولی";
 
-"type.amenity.parking.fee.street_side" = "پارکینگ";
+"type.amenity.parking.underground.private" = "پارکینگ زیرزمینی اختصاصی";
 
-"type.amenity.parking.lane" = "پارکینگ";
+"type.amenity.parking.street_side" = "پارکینگ کنار خیابان";
 
-"type.amenity.parking.fee.lane" = "پارکینگ";
+"type.amenity.parking.street_side.fee" = "پارکینگ کنار خیابان پولی";
+
+"type.amenity.parking.street_side.private" = "پارکینگ کنار خیابان خصوصی";
+
+"type.amenity.parking.lane" = "پارکینگ لاین";
+
+"type.amenity.parking.lane.fee" = "پارکینگ لاین پولی";
+
+"type.amenity.parking.lane.private" = "پارکینگ لاین خصوصی";
 
 "type.amenity.parking_entrance" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
 
-"type.amenity.parking_entrance.private" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
+"type.amenity.parking_entrance.private" = "ورودی پارکینگ اختصاصی";
 
 "type.amenity.parking_entrance.permissive" = "ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "گردشگری";
 
 "type.amenity.place_of_worship.christian.mormon" = "کلیسای عیسی مسیح مقدسین آخرالزمان";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "سال مملکت شاهدان یهوه";
 
 "type.amenity.place_of_worship.hindu" = "گردشگری";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "باغچه";
+
 "type.landuse.forest" = "جنگل";
 
 "type.landuse.forest.coniferous" = "جنگل";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "فونیکولور";
 
 "type.railway.station.light_rail" = "ایستگاه قطار";
+
+"type.railway.station.light_rail.london" = "ایستگاه قطار";
+
+"type.railway.station.light_rail.porto" = "ایستگاه قطار";
 
 "type.railway.station.monorail" = "ایستگاه قطار";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "فروشگاه";
 
+"type.shop.rental" = "مغازه اجاره ای";
+
+"type.shop.rental.bicycle" = "مغازه اجاره دوچرخه";
+
 "type.shop.seafood" = "فروشگاه";
 
 "type.shop.second_hand" = "ﻡﻭﺩ ﺖﺳﺩ ﻩﺎﮕﺷﻭﺮﻓ";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "کلبه‌ی صحرایی";
 
 "type.tourism.zoo" = "گردشگری";
+
+"type.tourism.zoo.petting" = "باغ وحش پتینگ";
 
 "type.traffic_calming" = "Traffic Calming";
 

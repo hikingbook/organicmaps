@@ -12,7 +12,6 @@
 
 #include "indexer/feature_data.hpp"
 #include "indexer/classificator.hpp"
-#include "indexer/classificator_loader.hpp"
 
 #include "platform/platform.hpp"
 
@@ -1955,6 +1954,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"emergency", "fire_hydrant"},
     {"emergency", "phone"},
     {"highway", "bridleway"},
+    {"highway", "busway"},
     {"highway", "bus_stop"},
     {"highway", "construction"},
     {"highway", "cycleway"},
@@ -2344,14 +2344,20 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"addr:interpolation"}, {{"addr:interpolation", "all"}}},
     {{"aeroway", "aerodrome", "international"}, {{"aeroway", "aerodrome"}, {"aerodrome", "international"}}},
     {{"amenity", "grave_yard", "christian"}, {{"amenity", "grave_yard"}, {"religion", "christian"}}},
+    {{"amenity", "parking"}, {{"amenity", "parking"}, {"fee", "no"}}},
     {{"amenity", "parking", "fee"}, {{"amenity", "parking"}, {"fee", "any_value"}}},
+    {{"amenity", "parking", "lane"}, {{"amenity", "parking"}, {"parking", "lane"}}},
+    {{"amenity", "parking", "lane", "fee"}, {{"amenity", "parking"}, {"parking", "lane"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "multi-storey"}, {{"amenity", "parking"}, {"parking", "multi-storey"}}},
+    {{"amenity", "parking", "multi-storey", "fee"}, {{"amenity", "parking"}, {"parking", "multi-storey"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "no-access"}, {{"amenity", "parking"}, {"access", "no"}}},
     {{"amenity", "parking", "park_and_ride"}, {{"amenity", "parking"}, {"parking", "park_and_ride"}}},
     {{"amenity", "parking", "permissive"}, {{"amenity", "parking"}, {"access", "permissive"}}},
     {{"amenity", "parking", "private"}, {{"amenity", "parking"}, {"access", "private"}}},
+    {{"amenity", "parking", "street_side"}, {{"amenity", "parking"}, {"parking", "street_side"}}},
+    {{"amenity", "parking", "street_side", "fee"}, {{"amenity", "parking"}, {"parking", "street_side"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "underground"}, {{"amenity", "parking"}, {"location", "underground"}}},
-    {{"amenity", "parking", "underground"}, {{"amenity", "parking"}, {"parking", "underground"}}},
+    {{"amenity", "parking", "underground", "fee"}, {{"amenity", "parking"}, {"parking", "underground"}, {"fee", "any_value"}}},
     {{"amenity", "parking_space", "permissive"}, {{"amenity", "parking_space"}, {"access", "permissive"}}},
     {{"amenity", "parking_space", "private"}, {{"amenity", "parking_space"}, {"access", "private"}}},
     {{"amenity", "parking_space", "underground"}, {{"amenity", "parking_space"}, {"parking", "underground"}}},
@@ -2387,6 +2393,10 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"highway", "bridleway", "bridge"}, {{"highway", "bridleway"}, {"bridge", "any_value"}}},
     {{"highway", "bridleway", "permissive"}, {{"highway", "bridleway"}, {"access", "permissive"}}},
     {{"highway", "bridleway", "tunnel"}, {{"highway", "bridleway"}, {"tunnel", "any_value"}}},
+    {{"highway", "busway"}, {{"highway", "service"}, {"service", "bus"}}},
+    {{"highway", "busway"}, {{"highway", "service"}, {"service", "busway"}}},
+    {{"highway", "busway", "bridge"}, {{"highway", "busway"}, {"bridge", "any_value"}}},
+    {{"highway", "busway", "tunnel"}, {{"highway", "busway"}, {"tunnel", "any_value"}}},
     {{"highway", "cycleway", "bridge"}, {{"highway", "cycleway"}, {"bridge", "any_value"}}},
     {{"highway", "cycleway", "permissive"}, {{"highway", "cycleway"}, {"access", "permissive"}}},
     {{"highway", "cycleway", "tunnel"}, {{"highway", "cycleway"}, {"tunnel", "any_value"}}},

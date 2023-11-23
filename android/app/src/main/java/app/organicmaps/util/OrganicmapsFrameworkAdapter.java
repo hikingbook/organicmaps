@@ -130,7 +130,7 @@ public enum OrganicmapsFrameworkAdapter {
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     public void restartLocation() {
-        getLocationHelper().restart();
+        getLocationHelper().restartWithNewMode();
     }
 
     public void initActivity(AppCompatActivity activity, Fragment fragment) {
@@ -166,8 +166,8 @@ public enum OrganicmapsFrameworkAdapter {
         getLocationHelper().addListener(locationListener);
     }
 
-    public void onStopMwmActivity(LocationListener locationListener) {
-        Framework.nativeRemovePlacePageActivationListener();
+    public void onStopMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
+        Framework.nativeRemovePlacePageActivationListener(placePageActivationListener);
         LocationState.nativeRemoveListener();
         getLocationHelper().removeListener(locationListener);
     }

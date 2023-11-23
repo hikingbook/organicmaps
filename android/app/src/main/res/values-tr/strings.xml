@@ -48,7 +48,8 @@
 	<string name="about_proposition_3">• Hızlı, minimalist ve hafif</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Teknoloji tutkunları ve gönüllüler tarafından oluşturulan açık kaynaklı bir uygulama.</string>
-	<string name="connection_settings">Konum Ayarları</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Konum ayarları</string>
 	<string name="close">Kapat</string>
 	<string name="unsupported_phone">Hızlı donanıma sahip bir OpenGL gerekli. Ne yazık ki cihazınız desteklenmiyor.</string>
 	<string name="download">İndir</string>
@@ -513,6 +514,10 @@
 	<string name="hour">sa</string>
 	<string name="minute">dk</string>
 	<string name="placepage_more_button">Diğer</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">KAYAK hakkında detaylar</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Bu bağlantı üzerinden yapılan her rezervasyon için alınan yönlendirme bonusu Organic Maps\'in geliştirilmesine harcanmaktadır.</string>
 	<string name="placepage_edit_bookmark_button">Yer İmini Düzenle</string>
 	<string name="editor_comment_hint">Yorum…</string>
 	<string name="editor_reset_edits_message">Tüm yerel değişiklikler sıfırlansın mı?</string>
@@ -538,8 +543,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Herhangi bir kişisel bilgi girmediğinizden emin olun.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap editörleri değişikliklerinizi kontrol edecek ve bir soruları olursa sizinle iletişime geçecekler.</string>
 	<string name="navigation_stop_button">dur</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps, reklam ve izleyici içermeyen hızlı ve ücretsiz bir çevrimdışı harita uygulamasıdır. Haritalar kitle kaynaklı OpenStreetMap.org verilerine dayanmaktadır, böylece kendiniz harita hatalarını düzeltebilir ve haritaya yeni nesneler ekleyebilirsiniz. Organic Maps, teknoloji tutkunlarının boş zamanlarında oluşturduğu açık kaynaklı bir projedir. Geri bildirim ve desteğinize çok değer veriyoruz!</string>
 	<!-- For the first routing -->
 	<string name="accept">Kabul et</string>
 	<!-- For the first routing -->
@@ -598,7 +601,6 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d dosya bulundu. Dönüşümden sonra onları göreceksiniz.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">İnternet bağlantısı yok</string>
 	<plurals name="objects">
 	  <item quantity="other">%d obje</item>
 	</plurals>
@@ -620,7 +622,6 @@
 	<string name="bookmarks_empty_list_message">Yer imi eklemek için önce haritadaki bir yere sonrasında ise yıldız simgesine dokunun</string>
 	<string name="category_desc_more">…daha fazla</string>
 	<string name="export_file">Dosyayı dışa aktar</string>
-	<string name="list_settings">Liste Ayarları</string>
 	<string name="delete_list">Listeyi sil</string>
 	<string name="public_access">Genel erişim</string>
 	<string name="limited_access">Sınırlı erişim</string>
@@ -642,11 +643,13 @@
 	<string name="enable_logging_warning_message">Bu seçenek tanılama amacıyla günlüğe kaydetmeyi açar. Ekibimizin uygulamayla ilgili sorunları gidermesine yardımcı olabilir. Sorununuzla ilgili ayrıntılı günlükleri kaydetmek ve bize göndermek için bu seçeneği geçici olarak etkinleştirin.</string>
 	<string name="access_rules_author_only">Çevrimiçi düzenleme</string>
 	<string name="driving_options_title">Yönlendirme seçenekleri</string>
-	<string name="driving_options_subheader">Her rotada kaçının</string>
-	<string name="avoid_tolls">Paralı yollar</string>
-	<string name="avoid_unpaved">Asfaltsız yollar</string>
-	<string name="avoid_ferry">Feribot geçişleri</string>
-	<string name="avoid_motorways">Otoyollar</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Ücretli yollardan kaçının</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Asfaltsız yollardan kaçın</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Feribot geçişlerinden kaçın</string>
+	<string name="avoid_motorways">Otoyoldan kaçının</string>
 	<string name="unable_to_calc_alert_title">Rota hesaplanamıyor</string>
 	<string name="unable_to_calc_alert_subtitle">Maalesef, muhtemelen belirlediğiniz seçeneklerden dolayı bir rota bulamadık. Lütfen seçenekleri değiştirin ve tekrar deneyin</string>
 	<string name="define_to_avoid_btn">Kaçınılması gereken yolları tanımlayın</string>
@@ -654,9 +657,6 @@
 	<string name="toll_road">Paralı yol</string>
 	<string name="unpaved_road">Asfaltsız yol</string>
 	<string name="ferry_crossing">Feribot geçişi</string>
-	<string name="avoid_toll_roads_placepage">Paralı yollardan kaçın</string>
-	<string name="avoid_unpaved_roads_placepage">Asfaltsız yollardan kaçın</string>
-	<string name="avoid_ferry_crossing_placepage">Feribot geçişlerinden kaçın</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Evet</string>
 	<!-- A generic "No" button in dialogs -->
@@ -665,6 +665,7 @@
 	<string name="yes_available">Var</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Yok</string>
+	<string name="trip_finished">Vardınız!</string>
 	<string name="ok">Tamam</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Sırala…</string>
@@ -726,9 +727,9 @@
 	<string name="connection_failure">Bağlantı hatası</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">USB kablosunu çıkarın</string>
-	<string name="enable_screen_sleep">Ekranın kapanmasına izin ver</string>
+	<string name="enable_keep_screen_on">Ekranı açık tut</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Etkinleştirildiğinde ekranın bir süre hareketsiz kaldıktan sonra kapanmasına izin verilir.</string>
+	<string name="enable_keep_screen_on_description">Etkinleştirildiğinde, harita görüntülenirken ekran her zaman açık olacaktır.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Kilit ekranında göster</string>
 	<!-- Description in preferences -->
@@ -745,6 +746,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Tr:About</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Topluluk tarafından oluşturulan haritalarımızı kullandığınız için teşekkür ederiz!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Artık telefon ekranında Organic Maps kullanıyorsunuz</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Şu anda araç ekranında Organic Maps kullanıyorsunuz</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Android Auto\'ya bağlandınız</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Telefonda devam edin</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Araba ekranına</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Bu uygulama, navigasyon amacıyla konumunuza erişim gerektirir.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">İzinleri Verin</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Arabaya bağlı</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adres/Blok</string>
@@ -797,6 +814,7 @@
 	<string name="type.amenity.clinic">Klinik</string>
 	<string name="type.amenity.college">Kolej</string>
 	<string name="type.amenity.community_centre">Toplum Merkezi</string>
+	<string name="type.amenity.compressed_air">Basınçlı hava</string>
 	<string name="type.amenity.conference_centre">Konferans merkezi</string>
 	<string name="type.amenity.courthouse">Adliye</string>
 	<string name="type.amenity.dentist">Dişçi</string>
@@ -837,12 +855,16 @@
 	<string name="type.amenity.parking.private">Özel Otopark</string>
 	<string name="type.amenity.parking.park_and_ride">Otopark</string>
 	<string name="type.amenity.parking.underground">Yeraltı otoparkı</string>
-	<string name="type.amenity.parking.street_side">Otopark</string>
-	<string name="type.amenity.parking.fee.street_side">Otopark</string>
-	<string name="type.amenity.parking.lane">Otopark</string>
-	<string name="type.amenity.parking.fee.lane">Otopark</string>
+	<string name="type.amenity.parking.underground.fee">Ücretli yeraltı otoparkı</string>
+	<string name="type.amenity.parking.underground.private">Özel yeraltı otoparkı</string>
+	<string name="type.amenity.parking.street_side">Sokak tarafı otopark</string>
+	<string name="type.amenity.parking.street_side.fee">Ücretli cadde tarafı otopark</string>
+	<string name="type.amenity.parking.street_side.private">Özel sokak tarafı otopark</string>
+	<string name="type.amenity.parking.lane">Şerit park</string>
+	<string name="type.amenity.parking.lane.fee">Ücretli şerit park</string>
+	<string name="type.amenity.parking.lane.private">Özel şerit otopark</string>
 	<string name="type.amenity.parking_entrance">Otopark girişi</string>
-	<string name="type.amenity.parking_entrance.private">Otopark girişi</string>
+	<string name="type.amenity.parking_entrance.private">Özel otopark girişi</string>
 	<string name="type.amenity.parking_entrance.permissive">Otopark girişi</string>
 	<string name="type.amenity.parking_space">Park Alanı</string>
 	<string name="type.amenity.parking_space.permissive">Park Alanı</string>
@@ -855,6 +877,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Tapınak</string>
 	<string name="type.amenity.place_of_worship.christian">Kilise</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">İsa Mesih\'in Son Zaman Azizleri Kilisesi</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Jehova\'nın Şahitlerinin Krallık Salonu</string>
 	<string name="type.amenity.place_of_worship.hindu">Tapınak</string>
 	<string name="type.amenity.place_of_worship.jewish">Sinagog</string>
 	<string name="type.amenity.place_of_worship.muslim">Cami</string>
@@ -1352,6 +1375,7 @@
 	<string name="type.landuse.farmland">Tarım Arazileri</string>
 	<string name="type.landuse.farmyard">Çiftlik Bölgesi</string>
 	<string name="type.landuse.field">Alan</string>
+	<string name="type.landuse.flowerbed">Çiçeklik</string>
 	<string name="type.landuse.forest">Orman</string>
 	<string name="type.landuse.forest.coniferous">Çam Ormanı</string>
 	<string name="type.landuse.forest.deciduous">Orman</string>
@@ -1589,6 +1613,8 @@
 	<string name="type.railway.station">Tren İstasyonu</string>
 	<string name="type.railway.station.funicular">Füniküler</string>
 	<string name="type.railway.station.light_rail">Tren İstasyonu</string>
+	<string name="type.railway.station.light_rail.london">Tren İstasyonu</string>
+	<string name="type.railway.station.light_rail.porto">Tren İstasyonu</string>
 	<string name="type.railway.station.monorail">Tren İstasyonu</string>
 	<string name="type.railway.station.subway">Metro</string>
 	<string name="type.railway.station.subway.adana">Metro</string>
@@ -1839,9 +1865,9 @@
 	<string name="type.shop.caravan">Karavan Bayiliği</string>
 	<string name="type.shop.carpet">Halıcı</string>
 	<string name="type.shop.chemist">Temizlik Ürünleri Mağazası</string>
-	<string name="type.shop.chocolate">Mağaza</string>
+	<string name="type.shop.chocolate">Çikolata Dükkanı</string>
 	<string name="type.shop.clothes">Giyim Mağazası</string>
-	<string name="type.shop.coffee">Mağaza</string>
+	<string name="type.shop.coffee">Kahve Dükkanı</string>
 	<string name="type.shop.computer">Bilgisayar Mağazası</string>
 	<string name="type.shop.confectionery">Şekerci</string>
 	<string name="type.shop.convenience">Bakkal</string>
@@ -1854,7 +1880,7 @@
 	<string name="type.shop.dry_cleaning">Kuru Temizleme</string>
 	<string name="type.shop.electronics">Elektronik Mağazası</string>
 	<string name="type.shop.erotic">Erotik Ürünler Mağazası</string>
-	<string name="type.shop.fabric">Mağaza</string>
+	<string name="type.shop.fabric">Kumaş Mağazası</string>
 	<string name="type.shop.farm">Çiftlik Gıda Dükkanı</string>
 	<string name="type.shop.fashion_accessories">Moda Aksesuarları</string>
 	<string name="type.shop.florist">Çiçekçi</string>
@@ -1878,11 +1904,11 @@
 	<string name="type.shop.mall">Alışveriş Merkezi</string>
 	<string name="type.shop.massage">Masaj Salonu</string>
 	<string name="type.shop.mobile_phone">Cep Telefonu Mağazası</string>
-	<string name="type.shop.money_lender">Mağaza</string>
+	<string name="type.shop.money_lender">Borç Para Veren</string>
 	<string name="type.shop.motorcycle">Motosiklet Dükkanı</string>
 	<string name="type.shop.motorcycle_repair">Motosiklet Tamircisi</string>
-	<string name="type.shop.music">Mağaza</string>
-	<string name="type.shop.musical_instrument">Mağaza</string>
+	<string name="type.shop.music">Müzik Dükkanı</string>
+	<string name="type.shop.musical_instrument">Müzik Aletleri Mağazası</string>
 	<string name="type.shop.newsagent">Gazete Standı</string>
 	<string name="type.shop.optician">Gözlükçü</string>
 	<string name="type.shop.outdoor">Dış Mekan Ekipmanları</string>
@@ -1892,6 +1918,8 @@
 	<string name="type.shop.pet">Evcil Hayvan Mağazası</string>
 	<string name="type.shop.pet_grooming">Evcil Hayvan Bakıcısı</string>
 	<string name="type.shop.photo">Fotoğrafçı</string>
+	<string name="type.shop.rental">Kiralık Mağaza</string>
+	<string name="type.shop.rental.bicycle">Bisiklet Kiralama Mağazası</string>
 	<string name="type.shop.seafood">Deniz Ürünleri Mağazası</string>
 	<string name="type.shop.second_hand">İkinci El Mağazası</string>
 	<string name="type.shop.shoes">Ayakkabı Mağazası</string>
@@ -1899,7 +1927,7 @@
 	<string name="type.shop.stationery">Kırtasiye</string>
 	<string name="type.shop.supermarket">Süpermarket</string>
 	<string name="type.shop.tattoo">Dövme Salonu</string>
-	<string name="type.shop.tea">Mağaza</string>
+	<string name="type.shop.tea">Çay Dükkanı</string>
 	<string name="type.shop.ticket">Bilet Satıcısı</string>
 	<string name="type.shop.toys">Oyuncakçı</string>
 	<string name="type.shop.travel_agency">Seyahat Acentesi</string>
@@ -2003,6 +2031,7 @@
 	<string name="type.tourism.viewpoint">Manzara</string>
 	<string name="type.tourism.wilderness_hut">Vahşi Doğa Kulübesi</string>
 	<string name="type.tourism.zoo">Hayvanat Bahçesi</string>
+	<string name="type.tourism.zoo.petting">Sevişme Hayvanat Bahçesi</string>
 	<string name="type.traffic_calming">Hız Kesici (Kasis)</string>
 	<string name="type.traffic_calming.bump">Hız Kesici (Kasis)</string>
 	<string name="type.traffic_calming.hump">Hız Kesici (Kasis)</string>

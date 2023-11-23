@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BundleCompat;
 
 import app.organicmaps.Framework;
 import app.organicmaps.R;
@@ -22,7 +23,6 @@ import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.widget.ArrowView;
 import app.organicmaps.util.UiUtils;
-import app.organicmaps.util.Utils;
 
 public class DirectionFragment extends BaseMwmDialogFragment
                             implements LocationListener, SensorListener
@@ -52,7 +52,7 @@ public class DirectionFragment extends BaseMwmDialogFragment
     });
     initViews(root);
     if (savedInstanceState != null)
-      setMapObject(Utils.getParcelable(savedInstanceState, EXTRA_MAP_OBJECT, MapObject.class));
+      setMapObject(BundleCompat.getParcelable(savedInstanceState, EXTRA_MAP_OBJECT, MapObject.class));
 
     return root;
   }

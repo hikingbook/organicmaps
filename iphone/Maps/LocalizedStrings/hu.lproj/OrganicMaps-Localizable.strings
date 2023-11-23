@@ -789,6 +789,12 @@
 
 "book_button" = "Foglalás";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Részletek a KAYAK-on";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Az ezen a linken keresztül történő minden egyes foglalásért kapott ajánlói bónusz az Organic Maps fejlesztését szolgálja.";
+
 "placepage_call_button" = "Hívás";
 
 "placepage_edit_bookmark_button" = "Könyvjelző szerkesztése";
@@ -977,8 +983,6 @@
 
 "export_file" = "Fájl exportálása";
 
-"list_settings" = "Lista beállításai";
-
 "delete_list" = "Törölni a listát";
 
 "hide_from_map" = "Elrejtés a térképről";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Útvonaltervezési lehetőségek";
 
-"driving_options_subheader" = "Elkerülés minden útvonalon";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Kerülje a fizetős utakat";
 
-"avoid_tolls" = "Díjköteles utak";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Burkolatlan utak elkerülése";
 
-"avoid_unpaved" = "Burkolatlan utak";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Kompátkelők elkerülése";
 
-"avoid_ferry" = "Kompátkelők";
-
-"avoid_motorways" = "Autópályák";
+"avoid_motorways" = "Kerülje az autópályát";
 
 "unable_to_calc_alert_title" = "Nem lehet útvonalat számítani";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Burkolatlan utak";
 
 "ferry_crossing" = "Kompátkelők";
-
-"avoid_toll_roads_placepage" = "Díjköteles utak elkerülése";
-
-"avoid_unpaved_roads_placepage" = "Burkolatlan utak elkerülése";
-
-"avoid_ferry_crossing_placepage" = "Kompátkelők elkerülése";
 
 "trip_start" = "Gyerünk";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Az útvonal módosítva lesz egy autó számára";
 
 "ok" = "Oké";
-
-"avoid_unpaved_carplay_1" = "Nem földút";
-
-"avoid_unpaved_carplay_2" = "Földút kerülése";
-
-"avoid_ferry_carplay_1" = "Komp nélkül";
-
-"avoid_ferry_carplay_2" = "Kompok kerülése";
-
-"avoid_tolls_carplay_1" = "Nincs útdíj";
-
-"avoid_tolls_carplay_2" = "Útdíj kerülése";
 
 "speedcams_alert_title_carplay_1" = "Traffipaxok";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Közösségi központ";
 
+"type.amenity.compressed_air" = "Sűrített levegő";
+
 "type.amenity.conference_centre" = "Konferencia Központ";
 
 "type.amenity.courthouse" = "Bíróság";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Mélygarázs";
 
-"type.amenity.parking.street_side" = "Parkoló";
+"type.amenity.parking.underground.fee" = "Fizetős mélygarázs";
 
-"type.amenity.parking.fee.street_side" = "Parkoló";
+"type.amenity.parking.underground.private" = "Privát földalatti parkoló";
 
-"type.amenity.parking.lane" = "Parkoló";
+"type.amenity.parking.street_side" = "Utca oldali parkolás";
 
-"type.amenity.parking.fee.lane" = "Parkoló";
+"type.amenity.parking.street_side.fee" = "Fizetős utcai parkolás";
+
+"type.amenity.parking.street_side.private" = "Privát utca oldali parkolás";
+
+"type.amenity.parking.lane" = "Sávos parkolás";
+
+"type.amenity.parking.lane.fee" = "Fizetős sávos parkolás";
+
+"type.amenity.parking.lane.private" = "Privát sávos parkolás";
 
 "type.amenity.parking_entrance" = "Parkoló bejárata";
 
-"type.amenity.parking_entrance.private" = "Parkoló bejárata";
+"type.amenity.parking_entrance.private" = "Privát parkoló bejárat";
 
 "type.amenity.parking_entrance.permissive" = "Parkoló bejárata";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Templom";
 
 "type.amenity.place_of_worship.christian.mormon" = "Utolsó Napok Szentjeinek Jézus Krisztus Egyháza";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehova Tanúinak Királysága terem";
 
 "type.amenity.place_of_worship.hindu" = "Templom";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Virágágy";
+
 "type.landuse.forest" = "Erdő";
 
 "type.landuse.forest.coniferous" = "Erdő";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Funicular";
 
 "type.railway.station.light_rail" = "Vonatmegálló";
+
+"type.railway.station.light_rail.london" = "Vonatmegálló";
+
+"type.railway.station.light_rail.porto" = "Vonatmegálló";
 
 "type.railway.station.monorail" = "Vonatmegálló";
 
@@ -3441,7 +3446,7 @@
 
 "type.shop.clothes" = "Ruhabolt";
 
-"type.shop.coffee" = "Bolt";
+"type.shop.coffee" = "Kávébolt";
 
 "type.shop.computer" = "Számítógép üzlet";
 
@@ -3467,7 +3472,7 @@
 
 "type.shop.erotic" = "Erotikus bolt";
 
-"type.shop.fabric" = "Bolt";
+"type.shop.fabric" = "Szövetbolt";
 
 "type.shop.farm" = "Farm Food Shop";
 
@@ -3515,15 +3520,15 @@
 
 "type.shop.mobile_phone" = "Mobiltelefon üzlet";
 
-"type.shop.money_lender" = "Bolt";
+"type.shop.money_lender" = "Pénzkölcsönző";
 
 "type.shop.motorcycle" = "Motorkerékpár üzlet";
 
 "type.shop.motorcycle_repair" = "Motorkerékpár javítás";
 
-"type.shop.music" = "Bolt";
+"type.shop.music" = "Lemezbolt";
 
-"type.shop.musical_instrument" = "Bolt";
+"type.shop.musical_instrument" = "Hangszerbolt";
 
 "type.shop.newsagent" = "Újságárus";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fénykép üzlet";
 
+"type.shop.rental" = "Kölcsönző";
+
+"type.shop.rental.bicycle" = "Kerékpárkölcsönző";
+
 "type.shop.seafood" = "Halüzlet";
 
 "type.shop.second_hand" = "Second Hand Store";
@@ -3557,7 +3566,7 @@
 
 "type.shop.tattoo" = "Tetováló szalon";
 
-"type.shop.tea" = "Bolt";
+"type.shop.tea" = "Tea bolt";
 
 "type.shop.ticket" = "Jegyiroda";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Kunyhó a vadonban";
 
 "type.tourism.zoo" = "Állatkert";
+
+"type.tourism.zoo.petting" = "Állatsimogató";
 
 "type.traffic_calming" = "Traffic Calming";
 

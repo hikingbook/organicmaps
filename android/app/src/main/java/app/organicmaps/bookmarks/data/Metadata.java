@@ -84,27 +84,10 @@ public class Metadata implements Parcelable
 
   private final Map<MetadataType, String> mMetadataMap = new HashMap<>();
 
-  /**
-   * Adds metadata with type code and value. Returns false if metaType is wrong or unknown
-   *
-   * @return true, if metadata was added, false otherwise
-   */
-  boolean addMetadata(int metaType, String metaValue)
+  public void addMetadata(int metaType, String metaValue)
   {
     final MetadataType type = MetadataType.fromInt(metaType);
     mMetadataMap.put(type, metaValue);
-    return true;
-  }
-
-  /**
-   * Adds metadata with type and value.
-   *
-   * @return true, if metadata was added, false otherwise
-   */
-  public boolean addMetadata(MetadataType type, String value)
-  {
-    mMetadataMap.put(type, value);
-    return true;
   }
 
   @Nullable

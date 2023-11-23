@@ -277,7 +277,7 @@
 "github" = "GitHub";
 
 /* Text in menu */
-"telegram" = "Telegram";
+"telegram" = "تيليجرام";
 
 /* Text in menu */
 "matrix" = "[Matrix]";
@@ -286,13 +286,13 @@
 "mastodon" = "Mastodon";
 
 /* Text in menu */
-"facebook" = "Facebook";
+"facebook" = "فيسبوك";
 
 /* Text in menu */
-"twitter" = "X (Twitter)";
+"twitter" = "X (تويتر)";
 
 /* Text in menu */
-"instagram" = "Instagram";
+"instagram" = "إنستغرام";
 
 /* Text in the editor */
 "vk" = "VK";
@@ -313,7 +313,7 @@
 "donate" = "تبرع";
 
 /* Button in the main Help dialog */
-"how_to_support_us" = "ﻉﻭﺮﺸﻤﻟﺍ ﻢﻋﺩ";
+"how_to_support_us" = "دعم المشروع";
 
 /* Button in the main Help dialog */
 "copyright" = "حقوق النشر";
@@ -325,7 +325,7 @@
 "email_error_body" = "لم يتم تنصيب البريد الإلكتروني. يرجى تفعيله أو استخدام أي وسيلة أخرى للاتصال بنا على %@";
 
 /* Alert title */
-"email_error_title" = "حذث خطأ في إرسال البريد الإلكتروني";
+"email_error_title" = "حدث خطأ في إرسال البريد الإلكتروني";
 
 /* Settings item title */
 "pref_calibration_title" = "معايرة البوصلة";
@@ -611,7 +611,7 @@
 
 "no_osm_account" = "ليس لديك حساب في خريطة الشارع المفتوحة؟";
 
-"register_at_openstreetmap" = "التسجيل في حريطة الشارع المفتوحة";
+"register_at_openstreetmap" = "التسجيل في خريطة الشارع المفتوحة";
 
 "password_8_chars_min" = "كلمة المرور (٨ أحرف بحد أدنى)";
 
@@ -789,6 +789,12 @@
 
 "book_button" = "حجز";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "التفاصيل على KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "تذهب مكافأة الإحالة التي يتم تلقيها لكل حجز من خلال هذا الرابط إلى تطوير Organic Maps.";
+
 "placepage_call_button" = "اتصال";
 
 "placepage_edit_bookmark_button" = "تحرير العلامة المرجعية";
@@ -832,7 +838,7 @@
 /* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "تأكد من أنك لم تقم بإدخال أية بيانات شخصية.";
 
-"editor_share_to_all_dialog_message_2" = ".ﺔﻠﺌﺳﺃ ﻱﺃ ﻢﻬﻳﺪﻟ ﻥﺎﻛ ﺍﺫﺇ ﻚﻌﻣ ﻥﻮﻠﺻﺍﻮﺘﻳﻭ ﺕﺍﺮﻴﻴﻐﺘﻟﺍ ﻦﻣ OpenStreetMap ﻭﺭﺮﺤﻣ ﻖﻘﺤﺘﻴﺳ";
+"editor_share_to_all_dialog_message_2" = "سيتحقق محررو خرائط الشارع المفتوحة من التغييرات ويتواصلون معك إذا كان لديهم أي أسئلة.";
 
 "navigation_stop_button" = "توقف";
 
@@ -977,8 +983,6 @@
 
 "export_file" = "ملف التصدير";
 
-"list_settings" = "إعدادات القائمة";
-
 "delete_list" = "حذف القائمة";
 
 "hide_from_map" = "إخفاء من الخريطة";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "خيارات رسم المسار";
 
-"driving_options_subheader" = "تجنبها على جميع الطرق";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "تجنب الطرق ذات الرسوم";
 
-"avoid_tolls" = "الطرق ذات الرسوم";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "تجنب الطرق الغير معبدة";
 
-"avoid_unpaved" = "الطرق غير المعبدة";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "تجنب استخدام العبّارات";
 
-"avoid_ferry" = "استخدام العبّارات";
-
-"avoid_motorways" = "الطرق السريعة";
+"avoid_motorways" = "تجنب الطريق السريع";
 
 "unable_to_calc_alert_title" = "لا يمكن حساب الطريق";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "طريق غير معبد";
 
 "ferry_crossing" = "استخدام عبّارة";
-
-"avoid_toll_roads_placepage" = "تجنب الطرق ذات الرسوم";
-
-"avoid_unpaved_roads_placepage" = "تجنب الطرق الغير معبدة";
-
-"avoid_ferry_crossing_placepage" = "تجنب استخدام العبّارات";
 
 "trip_start" = "هيا بنا";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "سيتم تعديل الطريق ليكون خاص بالسيارة";
 
 "ok" = "موافق";
-
-"avoid_unpaved_carplay_1" = "بدون طرق ترابية";
-
-"avoid_unpaved_carplay_2" = "تجنب الطرق غير المعبدة";
-
-"avoid_ferry_carplay_1" = "بدون عبََارة";
-
-"avoid_ferry_carplay_2" = "تجنب العبََارة";
-
-"avoid_tolls_carplay_1" = "بدون طرق ذات رسوم";
-
-"avoid_tolls_carplay_2" = "تجنب الطريق ذات الرسوم";
 
 "speedcams_alert_title_carplay_1" = "كاميرات السرعة";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "مركز اجتماعي";
 
+"type.amenity.compressed_air" = "هواء مضغوط";
+
 "type.amenity.conference_centre" = "مركز المؤتمرات";
 
 "type.amenity.courthouse" = "محكمة";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "موقف سيارات تحت الأرض";
 
-"type.amenity.parking.street_side" = "موقف سيارات";
+"type.amenity.parking.underground.fee" = "موقف سيارات مدفوع الأجر تحت الأرض";
 
-"type.amenity.parking.fee.street_side" = "موقف سيارات";
+"type.amenity.parking.underground.private" = "موقف سيارات خاص تحت الأرض";
 
-"type.amenity.parking.lane" = "موقف سيارات";
+"type.amenity.parking.street_side" = "موقف سيارات على جانب الشارع";
 
-"type.amenity.parking.fee.lane" = "موقف سيارات";
+"type.amenity.parking.street_side.fee" = "موقف سيارات مدفوع الأجر على جانب الشارع";
+
+"type.amenity.parking.street_side.private" = "موقف سيارات خاص على جانب الشارع";
+
+"type.amenity.parking.lane" = "وقوف السيارات لين";
+
+"type.amenity.parking.lane.fee" = "موقف سيارات مدفوع الأجر";
+
+"type.amenity.parking.lane.private" = "موقف سيارات خاص بالممر";
 
 "type.amenity.parking_entrance" = "مدخل موقف سيارات";
 
-"type.amenity.parking_entrance.private" = "مدخل موقف سيارات";
+"type.amenity.parking_entrance.private" = "مدخل خاص لوقوف السيارات";
 
 "type.amenity.parking_entrance.permissive" = "مدخل موقف سيارات";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "كنيسة";
 
 "type.amenity.place_of_worship.christian.mormon" = "كنيسة يسوع المسيح لقديسي الأيام الأخيرة";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "قاعة مملكة شهود يهوه";
 
 "type.amenity.place_of_worship.hindu" = "معبد هندوسي";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "حقل";
 
+"type.landuse.flowerbed" = "مشتل أزهار";
+
 "type.landuse.forest" = "غابة";
 
 "type.landuse.forest.coniferous" = "غابة صنوبرية";
@@ -2508,7 +2509,7 @@
 
 "type.leisure.landscape_reserve" = "Landscape Reserve";
 
-"type.leisure.marina" = "Marina";
+"type.leisure.marina" = "مرسى";
 
 "type.leisure.nature_reserve" = "محمية طبيعية";
 
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "حبلي";
 
 "type.railway.station.light_rail" = "محطة قطار";
+
+"type.railway.station.light_rail.london" = "محطة قطار";
+
+"type.railway.station.light_rail.porto" = "محطة قطار";
 
 "type.railway.station.monorail" = "محطة قطار";
 
@@ -3431,7 +3436,7 @@
 
 "type.shop.car_repair.tyres" = "إصلاح إطارات";
 
-"type.shop.caravan" = "RV Dealership";
+"type.shop.caravan" = "معرض سيارات التخييم";
 
 "type.shop.carpet" = "متجر سجادات";
 
@@ -3487,7 +3492,7 @@
 
 "type.shop.greengrocer" = "محل خضار";
 
-"type.shop.grocery" = "Grocery Store";
+"type.shop.grocery" = "محل بقالة";
 
 "type.shop.hairdresser" = "حلاق";
 
@@ -3542,6 +3547,10 @@
 "type.shop.pet_grooming" = "العناية بالحيوانات الأليفة";
 
 "type.shop.photo" = "محل تصوير";
+
+"type.shop.rental" = "محل تأجير";
+
+"type.shop.rental.bicycle" = "محل تأجير الدراجات";
 
 "type.shop.seafood" = "سمّاك";
 
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "كوخ برية";
 
 "type.tourism.zoo" = "حديقة حيوان";
+
+"type.tourism.zoo.petting" = "حديقة الحيوان الملاعبة";
 
 "type.traffic_calming" = "تهدئة سير السيارات";
 

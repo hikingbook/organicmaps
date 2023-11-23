@@ -49,7 +49,8 @@
 	<string name="about_proposition_3">• Швидкий, мінімалістичний, без зайвого сміття</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Програма з відкритим кодом, створена ентузіастами та волонтерами.</string>
-	<string name="connection_settings">Налаштування підключення</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Налаштування місцеположення</string>
 	<string name="close">Закрити</string>
 	<string name="unsupported_phone">Для роботи програми необхідний апаратно прискорений OpenGL. На жаль, ваш пристрій не підтримується.</string>
 	<string name="download">Завантажити</string>
@@ -106,6 +107,8 @@
 	<string name="maps_storage_free_size">%1$s вільно з %2$s</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">Перемістити мапи?</string>
+	<!-- Error moving map files from one storage to another -->
+	<string name="move_maps_error">Помилка переміщення файлів карти</string>
 	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Це може зайняти кілька хвилин.\nБудь ласка, зачекайте…</string>
 	<!-- Measurement units title in settings activity -->
@@ -164,6 +167,7 @@
 	<string name="description">Примітка</string>
 	<!-- Email Subject when sharing bookmark list -->
 	<string name="share_bookmarks_email_subject">З вами поділилися мiтками Organic Maps</string>
+	<string name="share_bookmarks_email_body">Привіт!\n\nДодаю мої закладки; відкрийте їх у Organic Maps. Якщо застосунок не встановлено, ви можете завантажити його тут: https://omaps.app/get?kmz\n\nНасолоджуйтесь подорожами з Organic Maps!</string>
 	<!-- message title of loading file -->
 	<string name="load_kmz_title">Завантаження мiток</string>
 	<!-- Kmz file successful loading -->
@@ -203,6 +207,10 @@
 	<!-- Length of track in cell that describes route -->
 	<string name="length">Довжина</string>
 	<string name="share_my_location">Поділитися моїм місцезнаходженням</string>
+	<!-- Settings general group in settings screen -->
+	<string name="prefs_group_general">Загальні налаштування</string>
+	<!-- Settings information group in settings screen -->
+	<string name="prefs_group_information">Інформація</string>
 	<string name="prefs_group_route">Навігація</string>
 	<string name="pref_zoom_title">Кнопки трансфокації</string>
 	<string name="pref_zoom_summary">Відображення на екрані</string>
@@ -508,6 +516,10 @@
 	<string name="hour">год</string>
 	<string name="minute">хв</string>
 	<string name="placepage_more_button">Ще</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Докладніше на KAYAK</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Реферальний бонус, отриманий за кожне бронювання за цим посиланням, йде на розробку Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Редагувати мiтку</string>
 	<string name="editor_comment_hint">Коментар…</string>
 	<string name="editor_reset_edits_message">Скинути всі локальні виправлення?</string>
@@ -533,8 +545,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Переконайтеся, що ви не ввели особисті дані.</string>
 	<string name="editor_share_to_all_dialog_message_2">Редактори OpenStreetMap перевірять зміни та зв’яжуться з вами, якщо у них виникнуть запитання.</string>
 	<string name="navigation_stop_button">стоп</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Organic Maps – це швидкі та безкоштовні карти, які не потребують доступу до Інтернету. Карти засновані на даних проекта OpenStreetMap.org, саме там Ви можете виправити помилки та додати відсутні дані. Реклама та збір особистої інформації відсутні. Organic Maps це проект з відкритим вихідним кодом, створюється ентузіастами у вільний час, тому нам потрібні Ваші відгуки та підтримку!</string>
 	<!-- For the first routing -->
 	<string name="accept">Прийняти</string>
 	<!-- For the first routing -->
@@ -595,7 +605,6 @@
 	  <item quantity="one">%d файл був знайдений. Ви побачите його після перетворення.</item>
 	  <item quantity="other">%d файлів було знайдено. Ви побачите їх після конвертації.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Нема інтернет з\'єднання</string>
 	<plurals name="objects">
 	  <item quantity="other">%d місце</item>
 	</plurals>
@@ -617,7 +626,6 @@
 	<string name="bookmarks_empty_list_message">Щоб додати нову мітку, натисніть на значок зірочки в картці об’єкта</string>
 	<string name="category_desc_more">…ще</string>
 	<string name="export_file">Експортувати файл</string>
-	<string name="list_settings">Налаштування списку</string>
 	<string name="delete_list">Видалити список</string>
 	<string name="public_access">Публічний доступ</string>
 	<string name="limited_access">Приватний доступ</string>
@@ -639,11 +647,13 @@
 	<string name="enable_logging_warning_message">Дана опція вмикається для логування дій з метою діагностики. Це допомагає команді виявити проблеми з додатком. Тимчасово включайте цю настройку тільки для відправки детальної інформації про знайдену вами проблему в додатку.</string>
 	<string name="access_rules_author_only">Редагується онлайн</string>
 	<string name="driving_options_title">Налаштування об’їзду</string>
-	<string name="driving_options_subheader">Уникати в кожному маршруті</string>
-	<string name="avoid_tolls">Платні дороги</string>
-	<string name="avoid_unpaved">Ґрунтові дороги</string>
-	<string name="avoid_ferry">Поромні переправи</string>
-	<string name="avoid_motorways">Магістралі</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Уникати платних доріг</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Уникати ґрунтових доріг</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Уникати поромів</string>
+	<string name="avoid_motorways">Уникати автострад</string>
 	<string name="unable_to_calc_alert_title">Неможливо побудувати маршрут</string>
 	<string name="unable_to_calc_alert_subtitle">На жаль, ми не змогли побудувати маршрут з вибраними опціями. Змініть налаштування та спробуйте ще раз</string>
 	<string name="define_to_avoid_btn">Налаштувати шляхи об’їзду</string>
@@ -651,9 +661,6 @@
 	<string name="toll_road">Платна дорога</string>
 	<string name="unpaved_road">Ґрунтова дорога</string>
 	<string name="ferry_crossing">Поромна переправа</string>
-	<string name="avoid_toll_roads_placepage">Уникати платних доріг</string>
-	<string name="avoid_unpaved_roads_placepage">Уникати ґрунтових доріг</string>
-	<string name="avoid_ferry_crossing_placepage">Уникати поромних переправ</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Так</string>
 	<!-- A generic "No" button in dialogs -->
@@ -662,6 +669,7 @@
 	<string name="yes_available">Так</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Ні</string>
+	<string name="trip_finished">Ви прибули!</string>
 	<string name="ok">Ок</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Сортувати</string>
@@ -714,9 +722,18 @@
 	<string name="elevation_profile_distance">Відст.:</string>
 	<string name="elevation_profile_time">Шлях:</string>
 	<string name="isolines_toast_zooms_1_10">Збільште мапу, щоб побачити ізолінії</string>
-	<string name="enable_screen_sleep">Дозволити екрану вимкнутись</string>
+	<string name="download_map_title">Завантажити карту світу</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="disk_error">Неможливо створити папку та перемістити файли до внутрішньої памʼяті або SD карти</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="disk_error_title">Помилка диска</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="connection_failure">Помилка підключення</string>
+	<!-- Used in DownloadResources startup screen -->
+	<string name="disconnect_usb_cable_title">Від\'єднайте кабель USB</string>
+	<string name="enable_keep_screen_on">Тримайте екран увімкненим</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">При включенні екран може переходити в сплячий режим після певного періоду бездіяльності</string>
+	<string name="enable_keep_screen_on_description">Якщо увімкнено, екран завжди буде увімкнений під час відображення мапи.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Показувати на заблокованому екрані</string>
 	<!-- Description in preferences -->
@@ -729,6 +746,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Uk:Про_проект</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Дякуємо, що користуєтесь нашими мапами, створеними спільнотою!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Зараз ви використовуєте Organic Maps на екрані телефону</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Ви використовуєте Organic Maps на екрані автомобіля</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Ви підключені до Android Auto</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Продовжуйте в телефоні</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">На екран автомобіля</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Ця програма потребує доступу до вашого місцезнаходження для навігаційних цілей.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Надавати дозволи</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Підключено до автомобіля</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адреса/блок</string>
@@ -781,6 +814,7 @@
 	<string name="type.amenity.clinic">Поліклініка</string>
 	<string name="type.amenity.college">Коледж</string>
 	<string name="type.amenity.community_centre">Центр культури та дозвілля, Дім культури</string>
+	<string name="type.amenity.compressed_air">Стиснене повітря</string>
 	<string name="type.amenity.conference_centre">Конференц-центр</string>
 	<string name="type.amenity.courthouse">Суд</string>
 	<string name="type.amenity.dentist">Стоматологія</string>
@@ -821,12 +855,16 @@
 	<string name="type.amenity.parking.private">Приватна парковка</string>
 	<string name="type.amenity.parking.park_and_ride">Парковка</string>
 	<string name="type.amenity.parking.underground">Підземний паркінг</string>
-	<string name="type.amenity.parking.street_side">Парковка</string>
-	<string name="type.amenity.parking.fee.street_side">Парковка</string>
-	<string name="type.amenity.parking.lane">Парковка</string>
-	<string name="type.amenity.parking.fee.lane">Парковка</string>
+	<string name="type.amenity.parking.underground.fee">Платний підземний паркінг</string>
+	<string name="type.amenity.parking.underground.private">Приватний підземний паркінг</string>
+	<string name="type.amenity.parking.street_side">Парковка з боку вулиці</string>
+	<string name="type.amenity.parking.street_side.fee">Платне паркування з боку вулиці</string>
+	<string name="type.amenity.parking.street_side.private">Приватна парковка з боку вулиці</string>
+	<string name="type.amenity.parking.lane">Парковка по смугах</string>
+	<string name="type.amenity.parking.lane.fee">Платна смуга для паркування</string>
+	<string name="type.amenity.parking.lane.private">Автостоянка на окремій смузі</string>
 	<string name="type.amenity.parking_entrance">Вхід на паркінг</string>
-	<string name="type.amenity.parking_entrance.private">Вхід на паркінг</string>
+	<string name="type.amenity.parking_entrance.private">Приватний під\'їзд для паркування</string>
 	<string name="type.amenity.parking_entrance.permissive">Вхід на паркінг</string>
 	<string name="type.amenity.parking_space">Паркувальне місце</string>
 	<string name="type.amenity.parking_space.permissive">Паркувальне місце</string>
@@ -839,6 +877,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Храм</string>
 	<string name="type.amenity.place_of_worship.christian">Церква</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Церква Ісуса Христа Святих Останніх Днів</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Зала Царства Свідків Єгови</string>
 	<string name="type.amenity.place_of_worship.hindu">Храм</string>
 	<string name="type.amenity.place_of_worship.jewish">Синагога</string>
 	<string name="type.amenity.place_of_worship.muslim">Мечеть</string>
@@ -1338,6 +1377,7 @@
 	<string name="type.landuse.farmland">Сільськогосподарська земля</string>
 	<string name="type.landuse.farmyard">Сільськогосподарська земля</string>
 	<string name="type.landuse.field">Поле</string>
+	<string name="type.landuse.flowerbed">Квітник</string>
 	<string name="type.landuse.forest">Ліс</string>
 	<string name="type.landuse.forest.coniferous">Хвойний ліс</string>
 	<string name="type.landuse.forest.deciduous">Листяний ліс</string>
@@ -1576,6 +1616,8 @@
 	<string name="type.railway.station">Залізничний вокзал</string>
 	<string name="type.railway.station.funicular">Фунікулер</string>
 	<string name="type.railway.station.light_rail">Залізничний вокзал</string>
+	<string name="type.railway.station.light_rail.london">Залізничний вокзал</string>
+	<string name="type.railway.station.light_rail.porto">Залізничний вокзал</string>
 	<string name="type.railway.station.monorail">Залізничний вокзал</string>
 	<string name="type.railway.station.subway">Метро</string>
 	<string name="type.railway.station.subway.adana">Метро</string>
@@ -1826,9 +1868,9 @@
 	<string name="type.shop.caravan">Продаж автобудинків</string>
 	<string name="type.shop.carpet">Килими</string>
 	<string name="type.shop.chemist">Магазин побутової хімії</string>
-	<string name="type.shop.chocolate">Крамниця</string>
+	<string name="type.shop.chocolate">Шоколадна крамниця</string>
 	<string name="type.shop.clothes">Магазин одягу</string>
-	<string name="type.shop.coffee">Крамниця</string>
+	<string name="type.shop.coffee">Кавова крамниця</string>
 	<string name="type.shop.computer">Комп\'ютерний магазин</string>
 	<string name="type.shop.confectionery">Кондитерська</string>
 	<string name="type.shop.convenience">Міні-маркет</string>
@@ -1841,7 +1883,7 @@
 	<string name="type.shop.dry_cleaning">Хімчистка</string>
 	<string name="type.shop.electronics">Електротехнiка</string>
 	<string name="type.shop.erotic">Секс-шоп</string>
-	<string name="type.shop.fabric">Крамниця</string>
+	<string name="type.shop.fabric">Магазин тканин</string>
 	<string name="type.shop.farm">Магазин фермерських продуктів</string>
 	<string name="type.shop.fashion_accessories">Модні аксесуари</string>
 	<string name="type.shop.florist">Магазин квітів</string>
@@ -1865,11 +1907,11 @@
 	<string name="type.shop.mall">Торговий центр</string>
 	<string name="type.shop.massage">Масажний кабінет</string>
 	<string name="type.shop.mobile_phone">Мобільні телефони</string>
-	<string name="type.shop.money_lender">Крамниця</string>
+	<string name="type.shop.money_lender">Кредити</string>
 	<string name="type.shop.motorcycle">Магазин мотоциклів</string>
 	<string name="type.shop.motorcycle_repair">Ремонт мотоциклів</string>
-	<string name="type.shop.music">Крамниця</string>
-	<string name="type.shop.musical_instrument">Крамниця</string>
+	<string name="type.shop.music">Музична крамниця</string>
+	<string name="type.shop.musical_instrument">Музичні інструменти</string>
 	<string name="type.shop.newsagent">Газетний кіоск</string>
 	<string name="type.shop.optician">Оптика</string>
 	<string name="type.shop.outdoor">Спорядження</string>
@@ -1879,6 +1921,8 @@
 	<string name="type.shop.pet">Зоотовари</string>
 	<string name="type.shop.pet_grooming">Грумінг</string>
 	<string name="type.shop.photo">Фототовари</string>
+	<string name="type.shop.rental">Прокат</string>
+	<string name="type.shop.rental.bicycle">Прокат велосипедів</string>
 	<string name="type.shop.seafood">Рибна лавка</string>
 	<string name="type.shop.second_hand">Магазин секонд-хенду</string>
 	<string name="type.shop.shoes">Магазин взуття</string>
@@ -1886,7 +1930,7 @@
 	<string name="type.shop.stationery">Канцелярськi товари</string>
 	<string name="type.shop.supermarket">Супермаркет</string>
 	<string name="type.shop.tattoo">Тату-салон</string>
-	<string name="type.shop.tea">Крамниця</string>
+	<string name="type.shop.tea">Чайна крамниця</string>
 	<string name="type.shop.ticket">Квитковий кiоск</string>
 	<string name="type.shop.toys">Магазин іграшок</string>
 	<string name="type.shop.travel_agency">Турагентство</string>
@@ -1990,6 +2034,7 @@
 	<string name="type.tourism.viewpoint">Оглядний майданчик</string>
 	<string name="type.tourism.wilderness_hut">Хибара</string>
 	<string name="type.tourism.zoo">Зоопарк</string>
+	<string name="type.tourism.zoo.petting">Контактний зоопарк</string>
 	<string name="type.traffic_calming">Лежачий полiцейський</string>
 	<string name="type.traffic_calming.bump">Лежачий полiцейський</string>
 	<string name="type.traffic_calming.hump">Лежачий полiцейський</string>

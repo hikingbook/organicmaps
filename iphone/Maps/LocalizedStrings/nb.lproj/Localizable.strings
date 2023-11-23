@@ -789,6 +789,12 @@
 
 "book_button" = "Bestill";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "Mer informasjon om KAYAK";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "Henvisningsbonusen som mottas for hver bestilling via denne lenken, går til utviklingen av Organic Maps.";
+
 "placepage_call_button" = "Ring";
 
 "placepage_edit_bookmark_button" = "Rediger bokmerke";
@@ -977,8 +983,6 @@
 
 "export_file" = "Eksporter fil";
 
-"list_settings" = "Liste Innstillinger";
-
 "delete_list" = "Slett liste";
 
 "hide_from_map" = "Skjul fra kart";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "Kjørealternativer";
 
-"driving_options_subheader" = "Unngå ved hver rute";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "Unngå bompenger";
 
-"avoid_tolls" = "Bompengeveier";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "Unngå uasfalterte veier";
 
-"avoid_unpaved" = "Uasfaltert vei";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "Unngå fergeoverganger";
 
-"avoid_ferry" = "Fergeoverganger";
-
-"avoid_motorways" = "Motorvei";
+"avoid_motorways" = "Unngå motorveien";
 
 "unable_to_calc_alert_title" = "Kan ikke beregne rute";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "Uasfaltert vei";
 
 "ferry_crossing" = "Fergeovergang";
-
-"avoid_toll_roads_placepage" = "Unngå bompengeveier";
-
-"avoid_unpaved_roads_placepage" = "Unngå uasfalterte veier";
-
-"avoid_ferry_crossing_placepage" = "Unngå fergeoverganger";
 
 "trip_start" = "La oss begynne";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "Rute vil oppdateres til kjørerute";
 
 "ok" = "Ok";
-
-"avoid_unpaved_carplay_1" = "Ikke grusvei";
-
-"avoid_unpaved_carplay_2" = "Ikke uasfaltert";
-
-"avoid_ferry_carplay_1" = "Ingen ferger";
-
-"avoid_ferry_carplay_2" = "Unngå ferger";
-
-"avoid_tolls_carplay_1" = "Ingen bomvei";
-
-"avoid_tolls_carplay_2" = "Unngå bomvei";
 
 "speedcams_alert_title_carplay_1" = "Kamera-info";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "Samfunnshus";
 
+"type.amenity.compressed_air" = "Komprimert luft";
+
 "type.amenity.conference_centre" = "Konferansesenter";
 
 "type.amenity.courthouse" = "Domstol";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "Underjordisk parkering";
 
-"type.amenity.parking.street_side" = "Parkering";
+"type.amenity.parking.underground.fee" = "Betalt underjordisk parkering";
 
-"type.amenity.parking.fee.street_side" = "Parkering";
+"type.amenity.parking.underground.private" = "Privat parkeringskjeller";
 
-"type.amenity.parking.lane" = "Parkering";
+"type.amenity.parking.street_side" = "Parkering på gatesiden";
 
-"type.amenity.parking.fee.lane" = "Parkering";
+"type.amenity.parking.street_side.fee" = "Betalt parkering på gatesiden";
+
+"type.amenity.parking.street_side.private" = "Privat parkering på gatesiden";
+
+"type.amenity.parking.lane" = "Parkering i kjørefelt";
+
+"type.amenity.parking.lane.fee" = "Betalt parkering i kjørefelt";
+
+"type.amenity.parking.lane.private" = "Parkering i privat kjørefelt";
 
 "type.amenity.parking_entrance" = "Parkeringsinngang";
 
-"type.amenity.parking_entrance.private" = "Parkeringsinngang";
+"type.amenity.parking_entrance.private" = "Privat parkeringsinngang";
 
 "type.amenity.parking_entrance.permissive" = "Parkeringsinngang";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "Kirke";
 
 "type.amenity.place_of_worship.christian.mormon" = "Jesu Kristi Kirke av Siste Dagers Hellige";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "Jehovas vitners Rikets sal";
 
 "type.amenity.place_of_worship.hindu" = "Tempel";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "Blomsterbed";
+
 "type.landuse.forest" = "Skog";
 
 "type.landuse.forest.coniferous" = "Barskog";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "Kabelbane";
 
 "type.railway.station.light_rail" = "Togstasjon";
+
+"type.railway.station.light_rail.london" = "Togstasjon";
+
+"type.railway.station.light_rail.porto" = "Togstasjon";
 
 "type.railway.station.monorail" = "Togstasjon";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "Fotobutikk";
 
+"type.shop.rental" = "Utleiebutikk";
+
+"type.shop.rental.bicycle" = "Sykkelutleiebutikk";
+
 "type.shop.seafood" = "Fiskehandler";
 
 "type.shop.second_hand" = "Bruktbutikk";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "Villmarkshytte";
 
 "type.tourism.zoo" = "Dyrehage";
+
+"type.tourism.zoo.petting" = "Dyrehage";
 
 "type.traffic_calming" = "Traffic Calming";
 

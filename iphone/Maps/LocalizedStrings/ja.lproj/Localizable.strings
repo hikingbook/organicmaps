@@ -789,6 +789,12 @@
 
 "book_button" = "予約";
 
+/* A referral link on the place page for some hotels */
+"more_on_kayak" = "KAYAK で詳細表示";
+
+/* An explanation dialog shown when clicking on more_on_kayak link. */
+"dialog_kayak_disclaimer" = "このリンクを経由した予約の紹介ボーナスは、Organic Mapsの発展のために使われる。";
+
 "placepage_call_button" = "コール";
 
 "placepage_edit_bookmark_button" = "ブックマークを編集";
@@ -977,8 +983,6 @@
 
 "export_file" = "ファイルのエクスポート";
 
-"list_settings" = "リスト設定";
-
 "delete_list" = "リスト削除";
 
 "hide_from_map" = "マップから隠す";
@@ -1013,15 +1017,16 @@
 
 "driving_options_title" = "運転オプション";
 
-"driving_options_subheader" = "すべてのルートで回避";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_tolls" = "有料道路を避ける";
 
-"avoid_tolls" = "有料道路";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_unpaved" = "未舗装道路を回避";
 
-"avoid_unpaved" = "未舗装道路";
+/* Recommended length for CarPlay and Android Auto is around 25-27 characters */
+"avoid_ferry" = "フェリー航路を回避";
 
-"avoid_ferry" = "フェリー航路";
-
-"avoid_motorways" = "高速道路";
+"avoid_motorways" = "高速道路を避ける";
 
 "unable_to_calc_alert_title" = "ルートを計算できません";
 
@@ -1036,12 +1041,6 @@
 "unpaved_road" = "未舗装道路";
 
 "ferry_crossing" = "フェリー航路";
-
-"avoid_toll_roads_placepage" = "有料道路を回避";
-
-"avoid_unpaved_roads_placepage" = "未舗装道路を回避";
-
-"avoid_ferry_crossing_placepage" = "フェリー航路を回避";
 
 "trip_start" = "レッツゴー";
 
@@ -1088,18 +1087,6 @@
 "dialog_routing_rebuild_for_vehicle_carplay" = "ルートは自動車用として修正されます";
 
 "ok" = "OK";
-
-"avoid_unpaved_carplay_1" = "未舗装道路無し";
-
-"avoid_unpaved_carplay_2" = "未舗装道路無し";
-
-"avoid_ferry_carplay_1" = "フェリー無し";
-
-"avoid_ferry_carplay_2" = "フェリーを回避";
-
-"avoid_tolls_carplay_1" = "有料道路無し";
-
-"avoid_tolls_carplay_2" = "有料道路を回避";
 
 "speedcams_alert_title_carplay_1" = "速度警告";
 
@@ -1345,6 +1332,8 @@
 
 "type.amenity.community_centre" = "コミュニティセンター";
 
+"type.amenity.compressed_air" = "圧縮空気";
+
 "type.amenity.conference_centre" = "カンファレンスセンター";
 
 "type.amenity.courthouse" = "裁判所";
@@ -1423,17 +1412,25 @@
 
 "type.amenity.parking.underground" = "地下駐車場";
 
-"type.amenity.parking.street_side" = "駐車場";
+"type.amenity.parking.underground.fee" = "有料地下駐車場";
 
-"type.amenity.parking.fee.street_side" = "駐車場";
+"type.amenity.parking.underground.private" = "専用地下駐車場";
 
-"type.amenity.parking.lane" = "駐車場";
+"type.amenity.parking.street_side" = "路上駐車";
 
-"type.amenity.parking.fee.lane" = "駐車場";
+"type.amenity.parking.street_side.fee" = "有料路上駐車場";
+
+"type.amenity.parking.street_side.private" = "プライベート・ストリート・サイド・パーキング";
+
+"type.amenity.parking.lane" = "レーンパーキング";
+
+"type.amenity.parking.lane.fee" = "有料レーン駐車場";
+
+"type.amenity.parking.lane.private" = "専用レーン駐車場";
 
 "type.amenity.parking_entrance" = "駐車場入口";
 
-"type.amenity.parking_entrance.private" = "駐車場入口";
+"type.amenity.parking_entrance.private" = "専用駐車場入り口";
 
 "type.amenity.parking_entrance.permissive" = "駐車場入口";
 
@@ -1458,6 +1455,8 @@
 "type.amenity.place_of_worship.christian" = "キリスト教会";
 
 "type.amenity.place_of_worship.christian.mormon" = "末日聖徒イエス・キリスト教会";
+
+"type.amenity.place_of_worship.christian.jehovahs_witness" = "イエホバの証人の王国ホール";
 
 "type.amenity.place_of_worship.hindu" = "ヒンドゥー教寺院";
 
@@ -2442,6 +2441,8 @@
 
 "type.landuse.field" = "Field";
 
+"type.landuse.flowerbed" = "花壇";
+
 "type.landuse.forest" = "森林";
 
 "type.landuse.forest.coniferous" = "森林";
@@ -2934,6 +2935,10 @@
 "type.railway.station.funicular" = "フニクラ";
 
 "type.railway.station.light_rail" = "鉄道駅";
+
+"type.railway.station.light_rail.london" = "鉄道駅";
+
+"type.railway.station.light_rail.porto" = "鉄道駅";
 
 "type.railway.station.monorail" = "鉄道駅";
 
@@ -3543,6 +3548,10 @@
 
 "type.shop.photo" = "写真屋";
 
+"type.shop.rental" = "レンタルショップ";
+
+"type.shop.rental.bicycle" = "レンタサイクルショップ";
+
 "type.shop.seafood" = "魚屋";
 
 "type.shop.second_hand" = "古物商";
@@ -3764,6 +3773,8 @@
 "type.tourism.wilderness_hut" = "無人小屋";
 
 "type.tourism.zoo" = "動物園";
+
+"type.tourism.zoo.petting" = "ふれあい動物園";
 
 "type.traffic_calming" = "交通静穏化";
 

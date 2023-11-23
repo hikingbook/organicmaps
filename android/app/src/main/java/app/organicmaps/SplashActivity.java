@@ -10,7 +10,6 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -19,17 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import app.organicmaps.location.LocationHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import app.organicmaps.display.DisplayManager;
 import app.organicmaps.util.Config;
-import app.organicmaps.util.Counters;
+import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.ThemeUtils;
 import app.organicmaps.util.concurrency.UiThread;
 import app.organicmaps.util.log.Logger;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.io.IOException;
 
 public class SplashActivity extends AppCompatActivity
 {
@@ -85,7 +82,6 @@ public class SplashActivity extends AppCompatActivity
       throw new IllegalArgumentException("Attempt to apply unsupported theme: " + theme);
 
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
-//    Counters.initCounters(this);
 //    setContentView(R.layout.activity_splash);
 //    mPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
 //        result -> Config.setLocationRequested());
@@ -93,6 +89,12 @@ public class SplashActivity extends AppCompatActivity
       setResult(result.getResultCode(), result.getData());
       finish();
     });
+
+    if (DisplayManager.from(this).isCarDisplayUsed())
+    {
+      startActivity(new Intent(this, MapPlaceholderActivity.class));
+      finish();
+    }
   }
 
   @Override
@@ -101,8 +103,7 @@ public class SplashActivity extends AppCompatActivity
     super.onResume();
     if (mCanceled)
       return;
-    if (!Config.isLocationRequested() && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED)
+    if (!Config.isLocationRequested() && !LocationUtils.checkCoarseLocationPermission(this))
     {
       Logger.d(TAG, "Requesting location permissions");
       mPermissionRequest.launch(new String[]{
@@ -149,16 +150,14 @@ public class SplashActivity extends AppCompatActivity
 //    boolean asyncContinue = false;
 //    try
 //    {
-//      asyncContinue = app.init(this);
+//      asyncContinue = app.init(this::processNavigation);
 //    } catch (IOException e)
 //    {
 //      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message);
 //      return;
 //    }
-
-//    if (Counters.isFirstLaunch(this) &&
-//        (ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-//         ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED))
+//
+//    if (Config.isFirstLaunch(this) && LocationUtils.checkLocationPermission(this))
 //    {
 //      final LocationHelper locationHelper = app.getLocationHelper();
 //      locationHelper.onEnteredIntoFirstRun();
@@ -171,9 +170,16 @@ public class SplashActivity extends AppCompatActivity
   }
 
   // Called from MwmApplication::nativeInitFramework like callback.
+//  @Keep
 //  @SuppressWarnings({"unused", "unchecked"})
 //  public void processNavigation()
 //  {
+//    if (isDestroyed())
+//    {
+//      Logger.w(TAG, "Ignore late callback from core because activity is already destroyed");
+//      return;
+//    }
+//
 //    Intent input = getIntent();
 //    Intent result = new Intent(this, DownloadResourcesLegacyActivity.class);
 //    if (input != null)
@@ -190,12 +196,14 @@ public class SplashActivity extends AppCompatActivity
 //      result.putExtra(EXTRA_INITIAL_INTENT, initialIntent);
 //      if (!initialIntent.hasCategory(Intent.CATEGORY_LAUNCHER))
 //      {
+//        /// @todo Is it ok that we don't call setFirstStartDialogSeen here?
 //        // Wait for the result from MwmActivity for API callers.
 //        mApiRequest.launch(result);
 //        return;
 //      }
 //    }
-//    Counters.setFirstStartDialogSeen(this);
+//
+//    Config.setFirstStartDialogSeen(this);
 //    startActivity(result);
 //    finish();
 //  }

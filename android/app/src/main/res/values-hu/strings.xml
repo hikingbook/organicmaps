@@ -46,7 +46,8 @@
 	<string name="about_proposition_3">• Gyors, minimalista, nincs szemét</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">A rajongók és az önkéntesek által létrehozott nyílt forráskódú alkalmazás.</string>
-	<string name="connection_settings">Helymeghatározási beállítások</string>
+	<!-- The button that opens system location settings -->
+	<string name="location_settings">Helymeghatározási beállítások</string>
 	<string name="close">Bezár</string>
 	<string name="unsupported_phone">Hardware-s gyorsítású OpenGL szükséges. Sajnos az Ön eszköze nem támogatott.</string>
 	<string name="download">Letöltés</string>
@@ -501,6 +502,10 @@
 	<string name="hour">ó</string>
 	<string name="minute">p</string>
 	<string name="placepage_more_button">Még</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Részletek a KAYAK-on</string>
+	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
+	<string name="dialog_kayak_disclaimer">Az ezen a linken keresztül történő minden egyes foglalásért kapott ajánlói bónusz az Organic Maps fejlesztését szolgálja.</string>
 	<string name="placepage_edit_bookmark_button">Könyvjelző szerkesztése</string>
 	<string name="editor_comment_hint">Megjegyzés…</string>
 	<string name="editor_reset_edits_message">Elveti az összes helyi módosítást?</string>
@@ -519,8 +524,6 @@
 	<string name="editor_share_to_all_dialog_message_1">Győződj meg arról, hogy nem adsz meg semmilyen személyes információt.</string>
 	<string name="editor_share_to_all_dialog_message_2">Az OpenStreetMap szerkesztői ellenőrzik a változásokat, és felveszik Önnel a kapcsolatot, ha kérdéseik vannak.</string>
 	<string name="navigation_stop_button">megállítás</string>
-	<!-- Text under the version number in the Help dialog. TODO: Synchronize other translations with English. -->
-	<string name="about_description">Az Organic Maps egy gyors és ingyenes offline térképalkalmazás hirdetések és nyomkövetés nélkül. A térképek az OpenStreetMap.org közösség által fenntartott adatain alapulnak, így a térképen megtalálható hibákat te is javíthatod, és adhatsz hozzá új helyeket. Az Organic Maps egy nyílt forráskódú projekt, amelyet lelkes fejlesztők hoztak létre szabadidejükben. Visszajelzéseidet és támogatásodat nagyra értékeljük!</string>
 	<!-- For the first routing -->
 	<string name="accept">Elfogad</string>
 	<!-- For the first routing -->
@@ -580,7 +583,6 @@
 	  <item quantity="one">%d fájlt találtunk. Látni fogja őket a megtérés után.</item>
 	  <item quantity="other">%d fájl található. Látni fogja őket a megtérés után.</item>
 	</plurals>
-	<string name="common_check_internet_connection_dialog_title">Nincs internetkapcsolat</string>
 	<plurals name="objects">
 	  <item quantity="other">%d hely</item>
 	</plurals>
@@ -602,7 +604,6 @@
 	<string name="bookmarks_empty_list_message">A könyvjelző hozzáadásához, érintsen meg a térképen egy helyet majd érintse meg a csillag ikont</string>
 	<string name="category_desc_more">…tovább</string>
 	<string name="export_file">Fájl exportálása</string>
-	<string name="list_settings">Lista beállításai</string>
 	<string name="delete_list">Törölni a listát</string>
 	<string name="public_access">Nyílt hozzáférés</string>
 	<string name="limited_access">Személyes hozzáférés</string>
@@ -624,11 +625,13 @@
 	<string name="enable_logging_warning_message">Az opció bekapcsolja a diagnosztikai célú naplózást. Hasznos lehet a support csapatunknak, akik elhárítják az alkalmazás hibáit. Csak a Organic Maps support kérésére kapcsold be ezt az opciót.</string>
 	<string name="access_rules_author_only">Online szerkesztés</string>
 	<string name="driving_options_title">Útvonaltervezési lehetőségek</string>
-	<string name="driving_options_subheader">Elkerülés minden útvonalon</string>
-	<string name="avoid_tolls">Díjköteles utak</string>
-	<string name="avoid_unpaved">Burkolatlan utak</string>
-	<string name="avoid_ferry">Kompátkelők</string>
-	<string name="avoid_motorways">Autópályák</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_tolls">Kerülje a fizetős utakat</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_unpaved">Burkolatlan utak elkerülése</string>
+	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
+	<string name="avoid_ferry">Kompátkelők elkerülése</string>
+	<string name="avoid_motorways">Kerülje az autópályát</string>
 	<string name="unable_to_calc_alert_title">Nem lehet útvonalat számítani</string>
 	<string name="unable_to_calc_alert_subtitle">Sajnos nem találunk útvonalat, valószínűleg az általad meghatározott lehetőségek miatt. Kérjük változtass a beállításokon és próbáld újra</string>
 	<string name="define_to_avoid_btn">Elkerülendő utak meghatározása</string>
@@ -636,9 +639,6 @@
 	<string name="toll_road">Díjköteles utak</string>
 	<string name="unpaved_road">Burkolatlan utak</string>
 	<string name="ferry_crossing">Kompátkelők</string>
-	<string name="avoid_toll_roads_placepage">Díjköteles utak elkerülése</string>
-	<string name="avoid_unpaved_roads_placepage">Burkolatlan utak elkerülése</string>
-	<string name="avoid_ferry_crossing_placepage">Kompátkelők elkerülése</string>
 	<!-- A generic "Yes" button in dialogs -->
 	<string name="yes">Igen</string>
 	<!-- A generic "No" button in dialogs -->
@@ -647,6 +647,7 @@
 	<string name="yes_available">Igen</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nem</string>
+	<string name="trip_finished">Megérkeztél!</string>
 	<string name="ok">Oké</string>
 	<!-- max. 10 symbols, both iOS and Android -->
 	<string name="sort">Rendezd…</string>
@@ -699,9 +700,9 @@
 	<string name="elevation_profile_distance">Táv.:</string>
 	<string name="elevation_profile_time">Idő</string>
 	<string name="isolines_toast_zooms_1_10">Nagyítás az isovonalak felfedezéséhez</string>
-	<string name="enable_screen_sleep">Hagyja aludni a képernyőt</string>
+	<string name="enable_keep_screen_on">Tartsa a képernyőt bekapcsolva</string>
 	<!-- Description in preferences -->
-	<string name="enable_screen_sleep_description">Ha engedélyezve van, akkor a képernyő inaktivitás után alszik.</string>
+	<string name="enable_keep_screen_on_description">Ha engedélyezve van, a képernyő mindig be lesz kapcsolva a térkép megjelenítésekor.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">Megjelenítés a zárolt képernyőn</string>
 	<!-- Description in preferences -->
@@ -714,6 +715,22 @@
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Hu:Névjegy</string>
 	<!-- Tip #00 -->
 	<string name="app_tip_00">Köszönjük, hogy használja a közösség által készített térképeinket!</string>
+	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
+	<string name="aa_used_on_the_phone_screen">Ön most az Organic Maps használja a telefon képernyőjén</string>
+	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
+	<string name="aa_used_on_the_car_screen">Ön most az Organic Mapset használja az autó képernyőjén</string>
+	<!-- Displayed on the phone screen. Android Auto connected -->
+	<string name="aa_connected_title">Ön csatlakozik az Android Auto rendszerhez</string>
+	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
+	<string name="aa_continue_on_the_phone">Folytassa a telefonban</string>
+	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="aa_continue_in_the_car">Az autó képernyőjére</string>
+	<!-- Ask user to grant location permissions -->
+	<string name="aa_location_permissions_request">Ez az alkalmazás navigációs célokra hozzáférést igényel az Ön tartózkodási helyéhez.</string>
+	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+	<string name="aa_grant_permissions">Engedélyek megadása</string>
+	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
+	<string name="aa_connected_to_car_notification_title">Autóhoz csatlakoztatva</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Cím/blokk</string>
@@ -753,6 +770,7 @@
 	<string name="type.amenity.clinic">Klinika</string>
 	<string name="type.amenity.college">Kollégium</string>
 	<string name="type.amenity.community_centre">Közösségi központ</string>
+	<string name="type.amenity.compressed_air">Sűrített levegő</string>
 	<string name="type.amenity.conference_centre">Konferencia Központ</string>
 	<string name="type.amenity.courthouse">Bíróság</string>
 	<string name="type.amenity.dentist">Fogorvos</string>
@@ -792,12 +810,16 @@
 	<string name="type.amenity.parking.private">Saját parkoló</string>
 	<string name="type.amenity.parking.park_and_ride">Parkoló</string>
 	<string name="type.amenity.parking.underground">Mélygarázs</string>
-	<string name="type.amenity.parking.street_side">Parkoló</string>
-	<string name="type.amenity.parking.fee.street_side">Parkoló</string>
-	<string name="type.amenity.parking.lane">Parkoló</string>
-	<string name="type.amenity.parking.fee.lane">Parkoló</string>
+	<string name="type.amenity.parking.underground.fee">Fizetős mélygarázs</string>
+	<string name="type.amenity.parking.underground.private">Privát földalatti parkoló</string>
+	<string name="type.amenity.parking.street_side">Utca oldali parkolás</string>
+	<string name="type.amenity.parking.street_side.fee">Fizetős utcai parkolás</string>
+	<string name="type.amenity.parking.street_side.private">Privát utca oldali parkolás</string>
+	<string name="type.amenity.parking.lane">Sávos parkolás</string>
+	<string name="type.amenity.parking.lane.fee">Fizetős sávos parkolás</string>
+	<string name="type.amenity.parking.lane.private">Privát sávos parkolás</string>
 	<string name="type.amenity.parking_entrance">Parkoló bejárata</string>
-	<string name="type.amenity.parking_entrance.private">Parkoló bejárata</string>
+	<string name="type.amenity.parking_entrance.private">Privát parkoló bejárat</string>
 	<string name="type.amenity.parking_entrance.permissive">Parkoló bejárata</string>
 	<string name="type.amenity.parking_space">Parkolóhely</string>
 	<string name="type.amenity.parking_space.permissive">Parkolóhely</string>
@@ -810,6 +832,7 @@
 	<string name="type.amenity.place_of_worship.buddhist">Templom</string>
 	<string name="type.amenity.place_of_worship.christian">Templom</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Utolsó Napok Szentjeinek Jézus Krisztus Egyháza</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Jehova Tanúinak Királysága terem</string>
 	<string name="type.amenity.place_of_worship.hindu">Templom</string>
 	<string name="type.amenity.place_of_worship.jewish">Zsinagóga</string>
 	<string name="type.amenity.place_of_worship.muslim">Mecset</string>
@@ -1244,6 +1267,7 @@
 	<string name="type.landuse.cemetery.christian">Temető</string>
 	<string name="type.landuse.churchyard">Templomtér</string>
 	<string name="type.landuse.farmland">Termőföld</string>
+	<string name="type.landuse.flowerbed">Virágágy</string>
 	<string name="type.landuse.forest">Erdő</string>
 	<string name="type.landuse.forest.coniferous">Erdő</string>
 	<string name="type.landuse.forest.deciduous">Erdő</string>
@@ -1412,6 +1436,8 @@
 	<string name="type.railway.station">Vonatmegálló</string>
 	<string name="type.railway.station.funicular">Funicular</string>
 	<string name="type.railway.station.light_rail">Vonatmegálló</string>
+	<string name="type.railway.station.light_rail.london">Vonatmegálló</string>
+	<string name="type.railway.station.light_rail.porto">Vonatmegálló</string>
 	<string name="type.railway.station.monorail">Vonatmegálló</string>
 	<string name="type.railway.station.subway">Földalatti</string>
 	<string name="type.railway.station.subway.adana">Földalatti</string>
@@ -1655,7 +1681,7 @@
 	<string name="type.shop.chemist">Drogéria</string>
 	<string name="type.shop.chocolate">Csokoládébolt</string>
 	<string name="type.shop.clothes">Ruhabolt</string>
-	<string name="type.shop.coffee">Bolt</string>
+	<string name="type.shop.coffee">Kávébolt</string>
 	<string name="type.shop.computer">Számítógép üzlet</string>
 	<string name="type.shop.confectionery">Cukrászüzlet</string>
 	<string name="type.shop.convenience">Csemegebolt</string>
@@ -1668,7 +1694,7 @@
 	<string name="type.shop.dry_cleaning">Ruhatisztító</string>
 	<string name="type.shop.electronics">Elektronika</string>
 	<string name="type.shop.erotic">Erotikus bolt</string>
-	<string name="type.shop.fabric">Bolt</string>
+	<string name="type.shop.fabric">Szövetbolt</string>
 	<string name="type.shop.farm">Farm Food Shop</string>
 	<string name="type.shop.fashion_accessories">Divat kiegészítők</string>
 	<string name="type.shop.florist">Virágos</string>
@@ -1692,11 +1718,11 @@
 	<string name="type.shop.mall">A pláza</string>
 	<string name="type.shop.massage">Masszázs szalon</string>
 	<string name="type.shop.mobile_phone">Mobiltelefon üzlet</string>
-	<string name="type.shop.money_lender">Bolt</string>
+	<string name="type.shop.money_lender">Pénzkölcsönző</string>
 	<string name="type.shop.motorcycle">Motorkerékpár üzlet</string>
 	<string name="type.shop.motorcycle_repair">Motorkerékpár javítás</string>
-	<string name="type.shop.music">Bolt</string>
-	<string name="type.shop.musical_instrument">Bolt</string>
+	<string name="type.shop.music">Lemezbolt</string>
+	<string name="type.shop.musical_instrument">Hangszerbolt</string>
 	<string name="type.shop.newsagent">Újságárus</string>
 	<string name="type.shop.optician">Optika</string>
 	<string name="type.shop.outdoor">Túrafelszerelés</string>
@@ -1706,6 +1732,8 @@
 	<string name="type.shop.pet">Házikedvenc-üzlet</string>
 	<string name="type.shop.pet_grooming">Kisállat ápolás</string>
 	<string name="type.shop.photo">Fénykép üzlet</string>
+	<string name="type.shop.rental">Kölcsönző</string>
+	<string name="type.shop.rental.bicycle">Kerékpárkölcsönző</string>
 	<string name="type.shop.seafood">Halüzlet</string>
 	<string name="type.shop.second_hand">Second Hand Store</string>
 	<string name="type.shop.shoes">Cipőbolt</string>
@@ -1713,7 +1741,7 @@
 	<string name="type.shop.stationery">Írószer bolt</string>
 	<string name="type.shop.supermarket">Bevásárlóközpont</string>
 	<string name="type.shop.tattoo">Tetováló szalon</string>
-	<string name="type.shop.tea">Bolt</string>
+	<string name="type.shop.tea">Tea bolt</string>
 	<string name="type.shop.ticket">Jegyiroda</string>
 	<string name="type.shop.toys">Játékbolt</string>
 	<string name="type.shop.travel_agency">Utazási iroda</string>
@@ -1813,6 +1841,7 @@
 	<string name="type.tourism.viewpoint">Kilátó</string>
 	<string name="type.tourism.wilderness_hut">Kunyhó a vadonban</string>
 	<string name="type.tourism.zoo">Állatkert</string>
+	<string name="type.tourism.zoo.petting">Állatsimogató</string>
 	<string name="type.waterway.canal">Csatorna</string>
 	<string name="type.waterway.canal.tunnel">Csatorna</string>
 	<string name="type.waterway.fish_pass">Hal létra</string>
