@@ -384,6 +384,7 @@ tourism-artwork-statue                              # icon z15- (also has captio
 === 5025
 
 tourism-attraction                                  # icon z14- (also has caption(optional) z14-)
+tourism-information-mobile                          # icon z14- (also has caption(optional) z14-)
 === 5000
 
 tourism-viewpoint                                   # icon z11- (also has caption(optional) z13-)
@@ -760,6 +761,12 @@ highway-footway-difficult_alpine_hiking             # pathtext z15- (also has li
 highway-footway-hiking                              # pathtext z15- (also has line z11-)
 highway-footway-mountain_hiking                     # pathtext z15- (also has line z11-)
 highway-footway-permissive                          # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_bad                # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_excellent          # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_good               # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_horrible           # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_intermediate       # pathtext z15- (also has line z15-)
+highway-footway-trail_visibility_no                 # pathtext z15- (also has line z15-)
 highway-path                                        # pathtext z13- (also has line z11-)
 highway-path-alpine_hiking                          # pathtext z13- (also has line z11-)
 highway-path-bicycle                                # pathtext z13- (also has line z11-)
@@ -771,6 +778,12 @@ highway-path-hiking                                 # pathtext z13- (also has li
 highway-path-horse                                  # pathtext z13- (also has line z11-)
 highway-path-mountain_hiking                        # pathtext z13- (also has line z11-)
 highway-path-permissive                             # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_bad                   # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_excellent             # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_good                  # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_horrible              # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_intermediate          # pathtext z13- (also has line z11-)
+highway-path-trail_visibility_no                    # pathtext z13- (also has line z11-)
 highway-path-tunnel                                 # pathtext z13- (also has line z11-, line::tunnelBackground z17-, line::tunnelCasing z17-)
 highway-service                                     # pathtext z16- (also has line z13-)
 highway-service-area                                # pathtext z16- (also has line z13-)
@@ -1557,6 +1570,7 @@ amenity-parking_entrance-private                    # icon z19- (also has captio
 # === -4975
 
 # tourism-attraction                                # caption(optional) z14- (also has icon z14-)
+# tourism-information-mobile                        # caption(optional) z14- (also has icon z14-)
 # === -5000
 
 # tourism-viewpoint                                 # caption(optional) z13- (also has icon z11-)

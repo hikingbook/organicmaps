@@ -53,6 +53,18 @@ line|z11-[highway=track],
 line|z11-[highway=path],
 line|z11-[highway=footway][sac_scale],
 {color: @path;opacity: 1;}
+/* Reference: https://github.com/alpha-rudy/taiwan-topo/blob/4aa4c8d219bf3ba4739ed1ae2fa19a74f01976f9/osm_scripts/process_osm.py */
+line|z11-[highway=path][trail_visibility=bad],
+line|z11-[highway=path][trail_visibility=horrible],
+line|z11-[highway=path][trail_visibility=no],
+line|z11-[highway=path][sac_scale=demanding_alpine_hiking],
+line|z11-[highway=path][sac_scale=difficult_alpine_hiking],
+line|z11-[highway=footway][trail_visibility=bad],
+line|z11-[highway=footway][trail_visibility=horrible],
+line|z11-[highway=footway][trail_visibility=no],
+line|z11-[highway=footway][sac_scale=demanding_alpine_hiking],
+line|z11-[highway=footway][sac_scale=difficult_alpine_hiking],
+{color: @difficult_alpine_hiking_path;opacity: 1;}
 
 /* 8.5 Construction & Proposed 13-22 ZOOM */
 
