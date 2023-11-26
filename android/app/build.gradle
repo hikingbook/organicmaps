@@ -71,9 +71,9 @@ repositories {
 //apply plugin: 'com.android.application'
 apply plugin: 'com.android.library'
 apply from: '../secure.properties'
-if (googleMobileServicesEnabled) {
-  apply plugin: 'com.google.gms.google-services'
-}
+//if (googleMobileServicesEnabled) {
+//  apply plugin: 'com.google.gms.google-services'
+//}
 if (googleFirebaseServicesEnabled) {
   apply plugin: 'com.google.firebase.crashlytics'
   apply plugin: 'com.google.firebase.appdistribution'
