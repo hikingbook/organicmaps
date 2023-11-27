@@ -36,8 +36,9 @@ buildscript {
   // Android Auto compile-time feature flag: -Pandroidauto=true|false
   def androidAutoFlag = findProperty('androidauto')
   // Enable Android Auto by default for all debug and beta flavors except fdroid.
-  def androidAutoDefault = false || isSyncWithFiles || ((isDebug || isBeta) && !isFdroid)
-  ext.androidAutoEnabled = androidAutoFlag != null ? androidAutoFlag.toBoolean() : androidAutoDefault
+  def androidAutoDefault = isSyncWithFiles || ((isDebug || isBeta) && !isFdroid)
+//  ext.androidAutoEnabled = androidAutoFlag != null ? androidAutoFlag.toBoolean() : androidAutoDefault
+  ext.androidAutoEnabled = false
 
   dependencies {
     classpath 'com.android.tools.build:gradle:8.1.3'
