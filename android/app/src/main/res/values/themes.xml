@@ -51,11 +51,12 @@
     <item name="android:windowBackground">@color/bg_window_night</item>
   </style>
 
+<!-- Modified  by Zheng-Xiang Ke -->
   <style name="MwmTheme.AlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-    <item name="colorAccent">?buttonDialogTextColor</item>
-    <item name="colorPrimary">?buttonDialogTextColor</item>
-    <item name="android:background">?cardBackground</item>
-    <item name="android:textColorPrimary">?textDialogTheme</item>
+    <item name="buttonBarNegativeButtonStyle">@style/MwmTheme.AlertDialog.NegativeButtonStyle</item>
+    <item name="buttonBarPositiveButtonStyle">@style/MwmTheme.AlertDialog.PositiveButtonStyle</item>
+    <item name="colorAccent">@color/base_accent</item>
+    <item name="android:textColorPrimary">@color/text_body</item>
     <item name="android:textSize">@dimen/text_size_body_1</item>
     <item name="android:windowTitleStyle">@style/MwmTheme.DialogTitleStyle.Light</item>
   </style>
