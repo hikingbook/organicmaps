@@ -29,7 +29,6 @@ import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
-import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.intent.Factory;
 import app.organicmaps.location.LocationHelper;
@@ -129,12 +128,6 @@ public enum OrganicmapsFrameworkAdapter {
     public SensorHelper getSensorHelper()
     {
         return mwmApplication.getSensorHelper();
-    }
-
-    @NonNull
-    public DisplayManager getDisplayManager()
-    {
-        return mwmApplication.getDisplayManager();
     }
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})

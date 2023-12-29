@@ -7,10 +7,10 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.Objects;
-
-import app.organicmaps.util.OrganicmapsFrameworkAdapter;
+import app.organicmaps.MwmApplication;
 import app.organicmaps.util.log.Logger;
+
+import java.util.Objects;
 
 public class DisplayManager
 {
@@ -45,9 +45,8 @@ public class DisplayManager
   @NonNull
   public static DisplayManager from(@NonNull Context context)
   {
-//    final MwmApplication app = (MwmApplication) context.getApplicationContext();
-//    return app.getDisplayManager();
-    return OrganicmapsFrameworkAdapter.INSTANCE.getDisplayManager();
+    final MwmApplication app = (MwmApplication) context.getApplicationContext();
+    return app.getDisplayManager();
   }
 
   public boolean isCarConnected()

@@ -1,5 +1,6 @@
 package app.organicmaps.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 
@@ -118,9 +119,9 @@ public enum ThemeSwitcher
       Config.setCurrentUiTheme(mContext, theme);
       DownloaderStatusIcon.clearCache();
 
-//      final Activity a = MwmApplication.from(mContext).getTopActivity();
-//      if (a != null && !a.isFinishing())
-//        a.recreate();
+      final Activity a = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
+      if (a != null && !a.isFinishing())
+        a.recreate();
     }
     else
     {

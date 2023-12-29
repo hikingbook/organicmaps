@@ -78,35 +78,11 @@ public final class ThemeUtils
     return autoTheme.equals(theme);
   }
 
-  public static boolean isOutdoorTheme(@NonNull Context context)
-  {
-    return isOutdoorTheme(context, Config.getCurrentUiTheme(context));
-  }
-
-  public static boolean isOutdoorTheme(@NonNull Context context, String theme)
-  {
-    String outdoorTheme = context.getString(R.string.theme_outdoor);
-    return outdoorTheme.equals(theme);
-  }
-
-  public static boolean isOutdoorNightTheme(@NonNull Context context)
-  {
-    return isOutdoorNightTheme(context, Config.getCurrentUiTheme(context));
-  }
-
-  public static boolean isOutdoorNightTheme(@NonNull Context context, String theme)
-  {
-    String outdoorNightTheme = context.getString(R.string.theme_outdoor_night);
-    return outdoorNightTheme.equals(theme);
-  }
-
   public static boolean isValidTheme(@NonNull Context context, String theme)
   {
     String defaultTheme = context.getString(R.string.theme_default);
     String nightTheme = context.getString(R.string.theme_night);
-    String outdoorTheme = context.getString(R.string.theme_outdoor);
-    String outdoorNightTheme = context.getString(R.string.theme_outdoor_night);
-    return (defaultTheme.equals(theme) || nightTheme.equals(theme) || outdoorTheme.equals(theme) || outdoorNightTheme.equals(theme));
+    return (defaultTheme.equals(theme) || nightTheme.equals(theme));
   }
 
   @StyleRes
