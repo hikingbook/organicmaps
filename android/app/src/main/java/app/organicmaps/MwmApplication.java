@@ -249,7 +249,6 @@ public class MwmApplication extends Application implements Application.ActivityL
     SearchEngine.INSTANCE.initialize();
     BookmarkManager.loadBookmarks();
 //    TtsPlayer.INSTANCE.initialize(this);
-    Config.setUiThemeSettings(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(), OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.theme_outdoor));
     ThemeSwitcher.INSTANCE.restart(false);
 //    RoutingController.get().initialize(this);
 //    TrafficManager.INSTANCE.initialize();

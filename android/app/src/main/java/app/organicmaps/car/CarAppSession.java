@@ -36,6 +36,7 @@ import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.routing.RoutingController;
+import app.organicmaps.util.Config;
 import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.log.Logger;
 import app.organicmaps.widget.placepage.PlacePageData;

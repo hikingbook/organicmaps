@@ -10,6 +10,7 @@ import androidx.car.app.ScreenManager;
 
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
+import app.organicmaps.MwmActivity;
 import app.organicmaps.api.Const;
 import app.organicmaps.api.ParsedSearchRequest;
 import app.organicmaps.api.RequestType;

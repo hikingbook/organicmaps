@@ -156,6 +156,12 @@ java {
   }
 }
 
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
+}
+
 android {
   namespace 'app.organicmaps'
 

@@ -49,10 +49,6 @@ public class Framework
   public static final int MAP_STYLE_OUTDOORS_CLEAR = 5;
   public static final int MAP_STYLE_OUTDOORS_DARK = 6;
 
-  public static final int MAP_STYLE_OUTDOOR_CLEAR = 5;
-
-  public static final int MAP_STYLE_OUTDOOR_DARK = 6;
-
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({ ROUTER_TYPE_VEHICLE, ROUTER_TYPE_PEDESTRIAN, ROUTER_TYPE_BICYCLE, ROUTER_TYPE_TRANSIT, ROUTER_TYPE_RULER })
 

@@ -543,30 +543,30 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
   public boolean onLongClick(View v)
   {
     final List<String> items = new ArrayList<>();
-//    final int id = v.getId();
-//    if (id == R.id.tv__title)
-//      items.add(mTvTitle.getText().toString());
-//    else if (id == R.id.tv__secondary_title)
-//      items.add(mTvSecondaryTitle.getText().toString());
-//    else if (id == R.id.tv__address)
-//      items.add(mTvAddress.getText().toString());
-//    else if (id == R.id.ll__place_latlon)
-//    {
-//      final double lat = mMapObject.getLat();
-//      final double lon = mMapObject.getLon();
-//      for (CoordinatesFormat format : visibleCoordsFormat)
-//      {
-//        String formatted = Framework.nativeFormatLatLon(lat, lon, format.getId());
-//        if (formatted != null)
-//          items.add(formatted);
-//      }
-//    }
-//    else if (id == R.id.ll__place_operator)
-//      items.add(mTvOperator.getText().toString());
-//    else if (id == R.id.ll__place_level)
-//      items.add(mTvLevel.getText().toString());
-//    else if (id == R.id.ll__place_atm)
-//      items.add(mTvAtm.getText().toString());
+    final int id = v.getId();
+    if (id == R.id.tv__title)
+      items.add(mTvTitle.getText().toString());
+    else if (id == R.id.tv__secondary_title)
+      items.add(mTvSecondaryTitle.getText().toString());
+    else if (id == R.id.tv__address)
+      items.add(mTvAddress.getText().toString());
+    else if (id == R.id.ll__place_latlon)
+    {
+      final double lat = mMapObject.getLat();
+      final double lon = mMapObject.getLon();
+      for (CoordinatesFormat format : visibleCoordsFormat)
+      {
+        String formatted = Framework.nativeFormatLatLon(lat, lon, format.getId());
+        if (formatted != null)
+          items.add(formatted);
+      }
+    }
+    else if (id == R.id.ll__place_operator)
+      items.add(mTvOperator.getText().toString());
+    else if (id == R.id.ll__place_level)
+      items.add(mTvLevel.getText().toString());
+    else if (id == R.id.ll__place_atm)
+      items.add(mTvAtm.getText().toString());
 
     final Context context = requireContext();
     if (items.size() == 1)
