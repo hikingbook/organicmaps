@@ -279,9 +279,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">อัปเดตแผนที่</string>
 	<!-- Preference title -->
-	<string name="google_play_services">บริการของ Google Play</string>
+	<string name="google_play_services">บริการตำแหน่งของ Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">ใช้บริการ Google Play เพื่อรับตำแหน่งปัจจุบันของคุณ</string>
+	<string name="pref_use_google_play">ระบุตำแหน่งโดยประมาณของคุณอย่างรวดเร็วโดยใช้บลูทูธ WiFi หรือเครือข่ายมือถือ</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">ดาวน์โหลดแผนที่ตามเส้นทาง</string>
 	<!-- Text for routing error dialog -->
@@ -491,9 +491,11 @@
 	<string name="minute">น.</string>
 	<string name="placepage_more_button">เพิ่มเติม</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">รายละเอียดบน KAYAK</string>
+	<string name="more_on_kayak">รูปภาพ รีวิว การจอง</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">โบนัสการแนะนำที่ได้รับสำหรับการจองแต่ละครั้งผ่านลิงก์นี้จะนำไปใช้ในการพัฒนาแผนที่ทั่วไป</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">รายละเอียดบน Kayak</string>
 	<string name="placepage_edit_bookmark_button">แก้ไข Bookmark</string>
 	<string name="editor_comment_hint">ข้อคิดเห็น</string>
 	<string name="editor_reset_edits_message">ตั้งค่าการเปลี่ยนแปลงท้องถิ่นทั้งหมด</string>
@@ -505,7 +507,7 @@
 	<string name="error_enter_correct_phone">กรอกหมายเลขโทรศัพท์ที่ถูกต้อง</string>
 	<string name="error_enter_correct_web">กรอกที่อยู่เว็บที่ถูกต้อง</string>
 	<string name="error_enter_correct_email">กรอกอีเมลที่ถูกต้อง</string>
-	<string name="placepage_add_place_button">เพิ่มสถานที่ไปยังแผนที่</string>
+	<string name="placepage_add_place_button">เพิ่มสถานที่ลงใน OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">คุณต้องการส่งมันให้ผู้ใช้ทั้งหมดหรือไม่?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -579,13 +581,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d ติดตามต่าง ๆ</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">การตั้งค่าการติดตาม</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">ความเป็นส่วนตัว</string>
 	<string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
 	<string name="terms_of_use">ข้อกำหนดในการใช้งาน</string>
 	<string name="button_layer_traffic">การจราจร</string>
 	<string name="button_layer_subway">รถไฟใต้ดิน</string>
-	<string name="layers_title">ชั้นแผนที่</string>
+	<string name="layers_title">รูปแบบและเลเยอร์ของแผนที่</string>
 	<string name="subway_data_unavailable">แผนที่รถไฟใต้ดินไม่พร้อมใช้งาน</string>
 	<string name="bookmarks_empty_list_title">รายการนี้ว่างเปล่า</string>
 	<string name="bookmarks_empty_list_message">เพื่อเพิ่มบุ๊กมาร์ก โปรดแตะที่สถานที่บนแผนที่ แล้วจากนั้นแตะที่ไอคอนรูปดาว</string>
@@ -710,6 +712,8 @@
 	<string name="aa_grant_permissions">ให้สิทธิ์</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">เชื่อมต่อกับรถยนต์</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">การเดินป่า</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">ที่อยู่/บล็อค</string>
@@ -783,20 +787,21 @@
 	<string name="type.amenity.nightclub">ไนต์คลับ</string>
 	<string name="type.amenity.nursing_home">บ้านพักคนชรา</string>
 	<string name="type.amenity.parking">ที่จอดรถ</string>
-	<string name="type.amenity.parking.fee">ที่จอดรถแบบเสียค่าบริการ</string>
+	<string name="type.amenity.parking.fee">ที่จอดรถ</string>
 	<string name="type.amenity.parking.multi.storey">ที่จอดรถหลายชั้น</string>
+	<string name="type.amenity.parking.multi.storey.fee">ที่จอดรถหลายชั้น</string>
 	<string name="type.amenity.parking.no.access">ที่จอดรถส่วนตัว</string>
 	<string name="type.amenity.parking.permissive">ที่จอดรถส่วนตัว</string>
 	<string name="type.amenity.parking.private">ที่จอดรถส่วนตัว</string>
 	<string name="type.amenity.parking.park_and_ride">ที่จอดรถ</string>
 	<string name="type.amenity.parking.underground">ที่จอดรถใต้ดิน</string>
-	<string name="type.amenity.parking.underground.fee">ที่จอดรถใต้ดินแบบชำระเงิน</string>
+	<string name="type.amenity.parking.underground.fee">ที่จอดรถใต้ดิน</string>
 	<string name="type.amenity.parking.underground.private">ที่จอดรถใต้ดินส่วนตัว</string>
 	<string name="type.amenity.parking.street_side">ที่จอดรถริมถนน</string>
-	<string name="type.amenity.parking.street_side.fee">ที่จอดรถริมถนนแบบชำระเงิน</string>
+	<string name="type.amenity.parking.street_side.fee">ที่จอดรถริมถนน</string>
 	<string name="type.amenity.parking.street_side.private">ที่จอดรถริมถนนส่วนตัว</string>
 	<string name="type.amenity.parking.lane">ที่จอดรถเลน</string>
-	<string name="type.amenity.parking.lane.fee">ที่จอดรถเลนแบบชำระเงิน</string>
+	<string name="type.amenity.parking.lane.fee">ที่จอดรถเลน</string>
 	<string name="type.amenity.parking.lane.private">ที่จอดรถเลนส่วนตัว</string>
 	<string name="type.amenity.parking_entrance">ทางเข้าที่จอดรถ</string>
 	<string name="type.amenity.parking_entrance.private">ทางเข้าที่จอดรถส่วนตัว</string>
@@ -1006,6 +1011,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">ทางเข้าหลัก</string>
 	<string name="type.entrance.exit">ทางออก</string>
+	<string name="type.fee.no">ฟรี</string>
 	<string name="type.healthcare.laboratory">ห้องปฏิบัติการทางการแพทย์</string>
 	<string name="type.healthcare.physiotherapist">นักกายภาพบำบัด</string>
 	<string name="type.healthcare.alternative">การแพทย์ทางเลือก</string>
@@ -1265,6 +1271,7 @@
 	<string name="type.leisure.garden">สวน</string>
 	<string name="type.leisure.garden.residential">สวน</string>
 	<string name="type.leisure.golf_course">สนามกอล์ฟ</string>
+	<string name="type.leisure.hackerspace">แฮกเกอร์สเปซ</string>
 	<string name="type.leisure.nature_reserve">เขตอนุรักษ์ธรรมชาติ</string>
 	<string name="type.leisure.outdoor_seating">ที่นั่งกลางแจ้ง</string>
 	<string name="type.leisure.park">สวนสาธารณะ</string>
@@ -1514,6 +1521,7 @@
 	<string name="type.railway.station.subway.sf">รถไฟ</string>
 	<string name="type.railway.station.subway.shanghai">รถไฟ</string>
 	<string name="type.railway.station.subway.shiraz">รถไฟ</string>
+	<string name="type.railway.station.subway.singapore">รถไฟ</string>
 	<string name="type.railway.station.subway.sofia">รถไฟ</string>
 	<string name="type.railway.station.subway.spb">รถไฟ</string>
 	<string name="type.railway.station.subway.stockholm">รถไฟ</string>
@@ -1625,6 +1633,7 @@
 	<string name="type.railway.subway_entrance.sf">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.shanghai">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.shiraz">ทางเข้ารถไฟใต้ดิน</string>
+	<string name="type.railway.subway_entrance.singapore">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.sofia">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.spb">ทางเข้ารถไฟใต้ดิน</string>
 	<string name="type.railway.subway_entrance.stockholm">ทางเข้ารถไฟใต้ดิน</string>

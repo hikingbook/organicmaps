@@ -790,10 +790,13 @@
 "book_button" = "Reserva";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Detalls a KAYAK";
+"more_on_kayak" = "Fotos, comentaris, reserves";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "La bonificació de referència rebuda per cada reserva a través d'aquest enllaç es destina al desenvolupament de Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Detalls a Kayak";
 
 "placepage_call_button" = "Truca-hi";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Actualitza";
 
-"placepage_add_place_button" = "Afegeix un lloc en el mapa";
+"placepage_add_place_button" = "Afegeix un lloc a OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Voleu enviar-ho a tots els usuaris?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metro";
 
-"layers_title" = "Capes del mapa";
+"layers_title" = "Estils i capes de mapa";
 
 "subway_data_unavailable" = "El mapa del metro no és disponible";
 
@@ -1061,10 +1064,10 @@
 "no" = "No";
 
 /* E.g. "WiFi:Yes" */
-"yes_available" = "sí";
+"yes_available" = "Sí";
 
 /* E.g. "WiFi:No" */
-"no_available" = "no";
+"no_available" = "No";
 
 "trip_finished" = "Heu arribat!";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ca:About";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Senderisme";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parking";
 
-"type.amenity.parking.fee" = "Paid Parking";
+"type.amenity.parking.fee" = "Parking";
 
 "type.amenity.parking.multi.storey" = "Multi Storey Parking";
+
+"type.amenity.parking.multi.storey.fee" = "Multi Storey Parking";
 
 "type.amenity.parking.no.access" = "Private Parking";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Underground Parking";
 
-"type.amenity.parking.underground.fee" = "Aparcament subterrani de pagament";
+"type.amenity.parking.underground.fee" = "Underground Parking";
 
 "type.amenity.parking.underground.private" = "Aparcament subterrani privat";
 
 "type.amenity.parking.street_side" = "Aparcament al carrer";
 
-"type.amenity.parking.street_side.fee" = "Aparcament al carrer de pagament";
+"type.amenity.parking.street_side.fee" = "Aparcament al carrer";
 
 "type.amenity.parking.street_side.private" = "Aparcament privat al carrer";
 
 "type.amenity.parking.lane" = "Aparcament del carril";
 
-"type.amenity.parking.lane.fee" = "Aparcament de carril de pagament";
+"type.amenity.parking.lane.fee" = "Aparcament del carril";
 
 "type.amenity.parking.lane.private" = "Aparcament de carril privat";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Entrada principal";
 
 "type.entrance.exit" = "Sortida";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratuït";
 
 "type.healthcare.laboratory" = "Medical Laboratory";
 
@@ -2505,6 +2517,8 @@
 
 "type.leisure.golf_course" = "Golf Course";
 
+"type.leisure.hackerspace" = "Hackerspace";
+
 "type.leisure.ice_rink" = "Ice Rink";
 
 "type.leisure.landscape_reserve" = "Landscape Reserve";
@@ -2645,7 +2659,7 @@
 
 "type.natural.heath" = "Heath";
 
-"type.natural.hot_spring" = "Hot Spring";
+"type.natural.hot_spring" = "Font termal";
 
 "type.natural.water.lake" = "Lake";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Subway Station";
 
+"type.railway.station.subway.singapore" = "Subway Station";
+
 "type.railway.station.subway.sofia" = "Subway Station";
 
 "type.railway.station.subway.spb" = "Subway Station";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Subway Entrance";
 
 "type.railway.subway_entrance.shiraz" = "Subway Entrance";
+
+"type.railway.subway_entrance.singapore" = "Subway Entrance";
 
 "type.railway.subway_entrance.sofia" = "Subway Entrance";
 

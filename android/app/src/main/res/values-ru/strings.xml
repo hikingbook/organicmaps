@@ -262,7 +262,7 @@
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Вопросы и ответы</string>
 	<!-- Button in the main menu -->
-	<string name="donate">Поддержать рублём</string>
+	<string name="donate">Поддержать деньгами</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Помочь проекту</string>
 	<!-- Button in the main Help dialog -->
@@ -299,9 +299,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Обновить карту</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Сервисы Google Play</string>
+	<string name="google_play_services">Службы определения местоположения в Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Использовать Google Play Services для определения позиции</string>
+	<string name="pref_use_google_play">Быстрое определение приблизительного местоположения с помощью Bluetooth, WiFi или мобильной сети</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Загрузите все карты по пути следования</string>
 	<!-- Text for routing error dialog -->
@@ -518,9 +518,11 @@
 	<string name="minute">мин</string>
 	<string name="placepage_more_button">Ещё</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Подробнее на KAYAK</string>
+	<string name="more_on_kayak">Фотографии, отзывы, бронирование</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Реферальный бонус, полученный за каждое бронирование по этой ссылке, идёт на разработку Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Подробнее на Kayak</string>
 	<string name="placepage_edit_bookmark_button">Редактировать метку</string>
 	<string name="editor_comment_hint">Коментарий…</string>
 	<string name="editor_reset_edits_message">Сбросить все локальные правки?</string>
@@ -539,7 +541,7 @@
 	<string name="error_enter_correct_twitter_page">Введите корректный веб-адрес Twitter страницы или имя пользователя</string>
 	<string name="error_enter_correct_vk_page">Введите корректный веб-адрес VK страницы или имя пользователя</string>
 	<string name="error_enter_correct_line_page">Введите корректный веб-адрес LINE страницы или LINE ID</string>
-	<string name="placepage_add_place_button">Добавить место на карту</string>
+	<string name="placepage_add_place_button">Добавить место в OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Отправить всем пользователям?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -621,13 +623,13 @@
 	  <item quantity="one">%d трек</item>
 	  <item quantity="other">%d треков</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Настройки сопровождения</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Приватность</string>
 	<string name="privacy_policy">Политика конфиденциальности</string>
 	<string name="terms_of_use">Условия использования</string>
 	<string name="button_layer_traffic">Пробки</string>
 	<string name="button_layer_subway">Метро</string>
-	<string name="layers_title">Слои карты</string>
+	<string name="layers_title">Стили и слои карты</string>
 	<string name="subway_data_unavailable">Карта метро недоступна</string>
 	<string name="bookmarks_empty_list_title">Список пустой</string>
 	<string name="bookmarks_empty_list_message">Чтобы добавить метку, нажмите на место на карте, а затем на иконку звёздочки</string>
@@ -771,6 +773,8 @@
 	<string name="aa_grant_permissions">Разрешить</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Подключено к автомобилю</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Активный отдых</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адрес/Блок</string>
@@ -857,20 +861,21 @@
 	<string name="type.amenity.nightclub">Ночной клуб</string>
 	<string name="type.amenity.nursing_home">Дом престарелых</string>
 	<string name="type.amenity.parking">Парковка</string>
-	<string name="type.amenity.parking.fee">Платная парковка</string>
+	<string name="type.amenity.parking.fee">Парковка</string>
 	<string name="type.amenity.parking.multi.storey">Многоэтажная парковка</string>
+	<string name="type.amenity.parking.multi.storey.fee">Многоэтажная парковка</string>
 	<string name="type.amenity.parking.no.access">Частная парковка</string>
 	<string name="type.amenity.parking.permissive">Частная парковка</string>
 	<string name="type.amenity.parking.private">Частная парковка</string>
 	<string name="type.amenity.parking.park_and_ride">Парковка</string>
 	<string name="type.amenity.parking.underground">Подземный паркинг</string>
-	<string name="type.amenity.parking.underground.fee">Платная подземная парковка</string>
+	<string name="type.amenity.parking.underground.fee">Подземный паркинг</string>
 	<string name="type.amenity.parking.underground.private">Частная подземная парковка</string>
 	<string name="type.amenity.parking.street_side">Придорожная парковка</string>
-	<string name="type.amenity.parking.street_side.fee">Платная придорожная парковка</string>
+	<string name="type.amenity.parking.street_side.fee">Придорожная парковка</string>
 	<string name="type.amenity.parking.street_side.private">Частная придорожная парковка</string>
 	<string name="type.amenity.parking.lane">Парковочная полоса</string>
-	<string name="type.amenity.parking.lane.fee">Платная парковочная полоса</string>
+	<string name="type.amenity.parking.lane.fee">Парковочная полоса</string>
 	<string name="type.amenity.parking.lane.private">Частная парковочная полоса</string>
 	<string name="type.amenity.parking_entrance">Въезд на парковку</string>
 	<string name="type.amenity.parking_entrance.private">Въезд на частную парковку</string>
@@ -1127,6 +1132,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Главный вход</string>
 	<string name="type.entrance.exit">Выход</string>
+	<string name="type.fee.no">Бесплатно</string>
 	<string name="type.healthcare.laboratory">Медицинская лаборатория</string>
 	<string name="type.healthcare.physiotherapist">Физиотерапевт</string>
 	<string name="type.healthcare.alternative">Альтернативная медицина</string>
@@ -1423,6 +1429,7 @@
 	<string name="type.leisure.garden">Сад</string>
 	<string name="type.leisure.garden.residential">Частный сад</string>
 	<string name="type.leisure.golf_course">Площадка для гольфа</string>
+	<string name="type.leisure.hackerspace">Хакерспейс</string>
 	<string name="type.leisure.ice_rink">Каток</string>
 	<string name="type.leisure.landscape_reserve">Ландшафтный заповедник</string>
 	<string name="type.leisure.marina">Причал</string>
@@ -1734,6 +1741,7 @@
 	<string name="type.railway.station.subway.sf">Метро</string>
 	<string name="type.railway.station.subway.shanghai">Метро</string>
 	<string name="type.railway.station.subway.shiraz">Метро</string>
+	<string name="type.railway.station.subway.singapore">Метро</string>
 	<string name="type.railway.station.subway.sofia">Метро</string>
 	<string name="type.railway.station.subway.spb">Метро</string>
 	<string name="type.railway.station.subway.stockholm">Метро</string>
@@ -1848,6 +1856,7 @@
 	<string name="type.railway.subway_entrance.sf">Вход в метро</string>
 	<string name="type.railway.subway_entrance.shanghai">Вход в метро</string>
 	<string name="type.railway.subway_entrance.shiraz">Вход в метро</string>
+	<string name="type.railway.subway_entrance.singapore">Вход в метро</string>
 	<string name="type.railway.subway_entrance.sofia">Вход в метро</string>
 	<string name="type.railway.subway_entrance.spb">Вход в метро</string>
 	<string name="type.railway.subway_entrance.stockholm">Вход в метро</string>

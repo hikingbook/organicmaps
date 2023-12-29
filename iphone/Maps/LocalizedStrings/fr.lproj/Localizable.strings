@@ -790,10 +790,13 @@
 "book_button" = "Réserver";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Détails sur KAYAK";
+"more_on_kayak" = "Photos, commentaires, réservations";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "La prime de parrainage reçue pour chaque réservation effectuée par l'intermédiaire de ce lien sert à développer Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Détails sur Kayak";
 
 "placepage_call_button" = "Appeler";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Mettre à jour";
 
-"placepage_add_place_button" = "Ajouter un lieu sur la carte";
+"placepage_add_place_button" = "Ajouter un lieu sur OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Souhaitez-vous l’envoyer à tous les utilisateurs ?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Métro";
 
-"layers_title" = "Couches de carte";
+"layers_title" = "Styles et couches de cartes";
 
 "subway_data_unavailable" = "La carte du métro n'est pas disponible";
 
@@ -1061,10 +1064,10 @@
 "no" = "Non";
 
 /* E.g. "WiFi:Yes" */
-"yes_available" = "oui";
+"yes_available" = "Oui";
 
 /* E.g. "WiFi:No" */
-"no_available" = "non";
+"no_available" = "Non";
 
 "trip_finished" = "Vous êtes arrivé !";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/FR:À_propos_d’OpenStreetMap";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Randonnée";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Stationnement";
 
-"type.amenity.parking.fee" = "Stationnement payant";
+"type.amenity.parking.fee" = "Stationnement";
 
 "type.amenity.parking.multi.storey" = "Stationnement à plusieurs étages";
+
+"type.amenity.parking.multi.storey.fee" = "Stationnement à plusieurs étages";
 
 "type.amenity.parking.no.access" = "Stationnement privé";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Stationnement souterrain";
 
-"type.amenity.parking.underground.fee" = "Parking souterrain payant";
+"type.amenity.parking.underground.fee" = "Stationnement souterrain";
 
 "type.amenity.parking.underground.private" = "Parking privé souterrain";
 
 "type.amenity.parking.street_side" = "Stationnement latéral sur voie";
 
-"type.amenity.parking.street_side.fee" = "Stationnement latéral sur voie payant";
+"type.amenity.parking.street_side.fee" = "Stationnement latéral sur voie";
 
 "type.amenity.parking.street_side.private" = "Stationnement latéral sur voie privée";
 
 "type.amenity.parking.lane" = "Stationnement le long de la voie";
 
-"type.amenity.parking.lane.fee" = "Stationnement payant le long de la voie";
+"type.amenity.parking.lane.fee" = "Stationnement le long de la voie";
 
 "type.amenity.parking.lane.private" = "Stationnement sur voie privée";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Entrée principale";
 
 "type.entrance.exit" = "Sortie";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratuit";
 
 "type.healthcare.laboratory" = "Laboratoire médical";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Jardin";
 
 "type.leisure.golf_course" = "Terrain de golf";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Patinoire";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Station de métro";
 
+"type.railway.station.subway.singapore" = "Station de métro";
+
 "type.railway.station.subway.sofia" = "Station de métro";
 
 "type.railway.station.subway.spb" = "Station de métro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Entrée du métro";
 
 "type.railway.subway_entrance.shiraz" = "Entrée du métro";
+
+"type.railway.subway_entrance.singapore" = "Entrée du métro";
 
 "type.railway.subway_entrance.sofia" = "Entrée du métro";
 

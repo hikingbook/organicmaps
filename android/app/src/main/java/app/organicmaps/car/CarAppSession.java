@@ -37,6 +37,7 @@ import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.routing.RoutingController;
+import app.organicmaps.util.Config;
 import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.log.Logger;
 import app.organicmaps.widget.placepage.PlacePageData;
@@ -137,7 +138,6 @@ public final class CarAppSession extends Session implements DefaultLifecycleObse
     if (mDisplayManager.isCarDisplayUsed())
     {
       LocationState.nativeSetListener(this);
-      onMyPositionModeChanged(LocationState.nativeGetMode());
       Framework.nativePlacePageActivationListener(this);
     }
     SensorHelper.from(getCarContext()).addListener(this);
@@ -174,7 +174,7 @@ public final class CarAppSession extends Session implements DefaultLifecycleObse
     mInitFailed = false;
     try
     {
-      MwmApplication.from(getCarContext()).init(() -> {});
+      MwmApplication.from(getCarContext()).init(() -> Config.setFirstStartDialogSeen(getCarContext()));
     } catch (IOException e)
     {
       mInitFailed = true;
@@ -198,7 +198,7 @@ public final class CarAppSession extends Session implements DefaultLifecycleObse
 
   public void onCompassUpdated(double north)
   {
-    Map.onCompassUpdated(north, false);
+    Map.onCompassUpdated(north, true);
   }
 
   @Override

@@ -56,11 +56,9 @@ public:
   {
   }
 
-  void SetInner() { m_trgInner = true; }
-
   FeatureBuilder::SupportingData & GetBuffer() { return m_buffer; }
 
-  Points const & GetSourcePoints()
+  Points const & GetSourcePoints() const
   {
     // For inner geometry lines keep simplifying the previous version to ensure points visibility is consistent.
     return !m_current.empty() ? m_current : m_fb.GetOuterGeometry();
@@ -124,12 +122,14 @@ public:
       // See IsPolygonCCW_DataSet tests for more details.
       // ASSERT(IsPolygonCCW(points.begin(), points.end()), (points));
       if (!IsPolygonCCW(points.begin(), points.end()))
+      {
+        // Usually, it is a bad polygon in OSM.
+        LOG(LWARNING, ("GeometryHolder: Degenerated polygon", m_fb.GetMostGenericOsmId()));
         return false;
+      }
     }
 
-    size_t const index = FindSingleStrip(
-        count, IsDiagonalVisibleFunctor<Points::const_iterator>(points.begin(), points.end()));
-
+    size_t const index = FindSingleStrip(count, IsDiagonalVisibleFunctor(points.begin(), points.end()));
     if (index == count)
     {
       // can't find strip

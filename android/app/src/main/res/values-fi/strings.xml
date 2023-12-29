@@ -124,7 +124,7 @@
 	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
 	<string name="transport">Liikenne</string>
 	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Polttoaine</string>
+	<string name="fuel">Huoltoasema</string>
 	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
 	<string name="parking">Parkkipaikka</string>
 	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
@@ -158,7 +158,7 @@
 	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
 	<string name="wifi">WiFi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Kierrätys</string>
+	<string name="recycling">Jätteiden kierrätys</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
 	<string name="water">Vesi</string>
 	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
@@ -298,9 +298,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Päivitä kartta</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play -palvelut</string>
+	<string name="google_play_services">Google Play Sijaintipalvelut</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Käytä Google Play -palveluita sijaintisi selvittämiseksi</string>
+	<string name="pref_use_google_play">Määritä nopeasti likimääräinen sijaintisi Bluetoothin, WiFin tai matkapuhelinverkon kautta</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Lataa karttoja matkalla</string>
 	<!-- Text for routing error dialog -->
@@ -430,6 +430,8 @@
 	<string name="day_off_today">Suljettu tänään</string>
 	<string name="day_off">Suljettu</string>
 	<string name="today">Tänään</string>
+	<string name="opens_in">Avautuu %s kuluttua</string>
+	<string name="closes_in">Sulkeutuu %s kuluttua</string>
 	<string name="closed">Suljettu</string>
 	<string name="edit_opening_hours">Muokkaa aukioloaikoja</string>
 	<string name="no_osm_account">Eikö sinulla ole OpenStreetMap-tiliä?</string>
@@ -515,9 +517,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Lisää</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Lisätietoa osoitteessa KAYAK</string>
+	<string name="more_on_kayak">Kuvat, arvostelut, varaus</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Jokaisesta tämän linkin kautta tehdystä varauksesta saatu suosittelubonus käytetään Organic Mapsin kehittämiseen.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Lisätietoa osoitteessa Kayak</string>
 	<string name="placepage_edit_bookmark_button">Muokkaa kirjanmerkkiä</string>
 	<string name="editor_comment_hint">Kommentti…</string>
 	<string name="editor_reset_edits_message">Nollataanko kaikki paikalliset muutokset?</string>
@@ -536,7 +540,7 @@
 	<string name="error_enter_correct_twitter_page">Syötä kelvollinen Twitter-käyttäjätunnus tai verkko-osoite</string>
 	<string name="error_enter_correct_vk_page">Syötä kelvollinen VK-käyttäjätunnus tai verkko-osoite</string>
 	<string name="error_enter_correct_line_page">Syötä kelvollinen LINE ID tai verkko-osoite</string>
-	<string name="placepage_add_place_button">Lisää paikka kartalle</string>
+	<string name="placepage_add_place_button">Lisää paikka OpenStreetMapiin</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Haluatko lähettää sen kaikille käyttäjille?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -614,13 +618,13 @@
 	  <item quantity="one">%d reitti</item>
 	  <item quantity="other">%d reittiä</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Paikannusasetukset</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Yksityisyys</string>
 	<string name="privacy_policy">Yksityisyyskäytäntö</string>
 	<string name="terms_of_use">Käyttöehdot</string>
 	<string name="button_layer_traffic">Liikenne</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Karttatasot</string>
+	<string name="layers_title">Karttatyylit ja tasot</string>
 	<string name="subway_data_unavailable">Metrokartta ei ole saatavilla</string>
 	<string name="bookmarks_empty_list_title">Luettelo on tyhjä</string>
 	<string name="bookmarks_empty_list_message">Lisätäksesi kirjanmerkin, paina kartasta ja sitten paina tähden kuvaa</string>
@@ -666,9 +670,9 @@
 	<!-- A generic "No" button in dialogs -->
 	<string name="no">Ei</string>
 	<!-- E.g. "WiFi:Yes" -->
-	<string name="yes_available">kyllä</string>
+	<string name="yes_available">Kyllä</string>
 	<!-- E.g. "WiFi:No" -->
-	<string name="no_available">ei</string>
+	<string name="no_available">Ei</string>
 	<string name="trip_finished">Olet perillä!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -758,6 +762,8 @@
 	<string name="aa_grant_permissions">Lupien myöntäminen</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Liitetty autoon</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Vaellus</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Osoite/lohko</string>
@@ -840,20 +846,21 @@
 	<string name="type.amenity.nightclub">Yökerho</string>
 	<string name="type.amenity.nursing_home">Hoitokoti</string>
 	<string name="type.amenity.parking">Parkkipaikka</string>
-	<string name="type.amenity.parking.fee">Maksullinen pysäköinti</string>
+	<string name="type.amenity.parking.fee">Parkkipaikka</string>
 	<string name="type.amenity.parking.multi.storey">Monikerroksinen pysäköinti</string>
+	<string name="type.amenity.parking.multi.storey.fee">Monikerroksinen pysäköinti</string>
 	<string name="type.amenity.parking.no.access">Yksityinen pysäköinti</string>
 	<string name="type.amenity.parking.permissive">Yksityinen pysäköinti</string>
 	<string name="type.amenity.parking.private">Yksityinen pysäköinti</string>
 	<string name="type.amenity.parking.park_and_ride">Liityntäpysäköinti</string>
 	<string name="type.amenity.parking.underground">Maanalainen pysäköinti</string>
-	<string name="type.amenity.parking.underground.fee">Maksullinen maanalainen pysäköinti</string>
+	<string name="type.amenity.parking.underground.fee">Maanalainen pysäköinti</string>
 	<string name="type.amenity.parking.underground.private">Yksityinen maanalainen pysäköintialue</string>
 	<string name="type.amenity.parking.street_side">Kadun puolella pysäköinti</string>
-	<string name="type.amenity.parking.street_side.fee">Maksullinen kadunvarsipysäköinti</string>
+	<string name="type.amenity.parking.street_side.fee">Kadun puolella pysäköinti</string>
 	<string name="type.amenity.parking.street_side.private">Yksityinen katu puolella pysäköinti</string>
 	<string name="type.amenity.parking.lane">Kaistapysäköinti</string>
-	<string name="type.amenity.parking.lane.fee">Maksullinen pysäköintikaista</string>
+	<string name="type.amenity.parking.lane.fee">Kaistapysäköinti</string>
 	<string name="type.amenity.parking.lane.private">Yksityinen kaista pysäköinti</string>
 	<string name="type.amenity.parking_entrance">Pysäköinnin sisäänkäynti</string>
 	<string name="type.amenity.parking_entrance.private">Yksityinen pysäköintialue sisäänkäynti</string>
@@ -1105,6 +1112,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Pääsisäänkäynti</string>
 	<string name="type.entrance.exit">Ulos</string>
+	<string name="type.fee.no">Ilmainen</string>
 	<string name="type.healthcare.laboratory">Lääketieteellinen laboratorio</string>
 	<string name="type.healthcare.physiotherapist">Fysioterapeutti</string>
 	<string name="type.healthcare.alternative">Vaihtoehtoinen lääketiede</string>
@@ -1645,6 +1653,7 @@
 	<string name="type.railway.station.subway.sf">Metro</string>
 	<string name="type.railway.station.subway.shanghai">Metro</string>
 	<string name="type.railway.station.subway.shiraz">Metro</string>
+	<string name="type.railway.station.subway.singapore">Metro</string>
 	<string name="type.railway.station.subway.sofia">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
 	<string name="type.railway.station.subway.stockholm">Metro</string>
@@ -1756,6 +1765,7 @@
 	<string name="type.railway.subway_entrance.sf">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.shanghai">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.shiraz">Metron sisäänkäynti</string>
+	<string name="type.railway.subway_entrance.singapore">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.sofia">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.spb">Metron sisäänkäynti</string>
 	<string name="type.railway.subway_entrance.stockholm">Metron sisäänkäynti</string>
@@ -1938,7 +1948,7 @@
 	<string name="type.tourism.attraction.specified">Nähtävyys</string>
 	<string name="type.tourism.camp_site">Retkeily</string>
 	<string name="type.tourism.caravan_site">Asuntovaunupaikka</string>
-	<string name="type.tourism.chalet">Alppimaja</string>
+	<string name="type.tourism.chalet">Mökki</string>
 	<string name="type.tourism.gallery">Nähtävyydet</string>
 	<string name="type.tourism.guest_house">Majatalo</string>
 	<string name="type.tourism.hostel">Hostelli</string>

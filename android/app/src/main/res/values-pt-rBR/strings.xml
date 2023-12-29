@@ -290,7 +290,7 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Atualizar mapa</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Usar Serviços do Google Play para determinar a sua localização atual</string>
+	<string name="pref_use_google_play">Determine rapidamente sua localização aproximada via Bluetooth, WiFi ou rede móvel</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Baixar todos os mapas ao longo do trajeto</string>
 	<!-- Text for routing error dialog -->
@@ -499,6 +499,8 @@
 	<string name="hour">h</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mais</string>
+	<!-- A referral link on the place page for some hotels -->
+	<string name="more_on_kayak">Fotos, avaliações, reservas</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">O bônus de indicação recebido por cada reserva feita por meio deste link é destinado ao desenvolvimento do Organic Maps.</string>
 	<string name="placepage_edit_bookmark_button">Editar favorito</string>
@@ -514,7 +516,7 @@
 	<string name="error_enter_correct_phone">Digite um número de telefone correto</string>
 	<string name="error_enter_correct_web">Digite um endereço de site válido</string>
 	<string name="error_enter_correct_email">Digite um endereço de email válido</string>
-	<string name="placepage_add_place_button">Adicionar um local ao mapa</string>
+	<string name="placepage_add_place_button">Adicionar um local no OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Deseja enviar para todos os usuários?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -589,13 +591,10 @@
 	  <item quantity="one">%d percurso</item>
 	  <item quantity="other">%d percursos</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Configurações de rastreamento</string>
 	<string name="privacy_policy">Política de privacidade</string>
 	<string name="terms_of_use">Termos de uso</string>
 	<string name="button_layer_traffic">Tráfego</string>
 	<string name="button_layer_subway">Metrô</string>
-	<string name="layers_title">Camadas de mapa</string>
 	<string name="subway_data_unavailable">Mapa de metrô está indisponível</string>
 	<string name="bookmarks_empty_list_title">Esta lista está vazia</string>
 	<string name="bookmarks_empty_list_message">Para adicionar um favorito, toque no mapa e então toque no ícone de estrela</string>
@@ -813,6 +812,7 @@
 	<string name="type.amenity.nightclub">Boate</string>
 	<string name="type.amenity.nursing_home">Casa de repouso</string>
 	<string name="type.amenity.parking.multi.storey">Edifício-garagem</string>
+	<string name="type.amenity.parking.multi.storey.fee">Edifício-garagem</string>
 	<string name="type.amenity.parking.no.access">Estacionamento privado</string>
 	<string name="type.amenity.parking.permissive">Estacionamento privado</string>
 	<string name="type.amenity.parking.private">Estacionamento privado</string>
@@ -820,7 +820,7 @@
 	<string name="type.amenity.parking.underground.private">Estacionamento subterrâneo privativo</string>
 	<string name="type.amenity.parking.street_side.private">Estacionamento ao lado da rua privativo</string>
 	<string name="type.amenity.parking.lane">Estacionamento na rua</string>
-	<string name="type.amenity.parking.lane.fee">Estacionamento na rua pago</string>
+	<string name="type.amenity.parking.lane.fee">Estacionamento na rua</string>
 	<string name="type.amenity.parking.lane.private">Estacionamento na rua privativo</string>
 	<string name="type.amenity.parking_entrance.private">Entrada para estacionamento privativo</string>
 	<string name="type.amenity.payment_terminal">Terminal de pagamento</string>
@@ -1518,6 +1518,7 @@
 	<string name="type.railway.station.subway.sf">Estação de metrô</string>
 	<string name="type.railway.station.subway.shanghai">Estação de metrô</string>
 	<string name="type.railway.station.subway.shiraz">Estação de metrô</string>
+	<string name="type.railway.station.subway.singapore">Estação de metrô</string>
 	<string name="type.railway.station.subway.sofia">Estação de metrô</string>
 	<string name="type.railway.station.subway.spb">Estação de metrô</string>
 	<string name="type.railway.station.subway.stockholm">Estação de metrô</string>
@@ -1632,6 +1633,7 @@
 	<string name="type.railway.subway_entrance.sf">Entrada do metrô</string>
 	<string name="type.railway.subway_entrance.shanghai">Entrada do metrô</string>
 	<string name="type.railway.subway_entrance.shiraz">Entrada do metrô</string>
+	<string name="type.railway.subway_entrance.singapore">Entrada do metrô</string>
 	<string name="type.railway.subway_entrance.sofia">Entrada do metrô</string>
 	<string name="type.railway.subway_entrance.spb">Entrada do metrô</string>
 	<string name="type.railway.subway_entrance.stockholm">Entrada do metrô</string>

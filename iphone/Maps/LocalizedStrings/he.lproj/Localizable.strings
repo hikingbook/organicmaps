@@ -790,10 +790,13 @@
 "book_button" = "Book";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "פרטים על KAYAK";
+"more_on_kayak" = "תמונות, ביקורות, הזמנה";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "בונוס ההפניה המתקבל עבור כל הזמנה דרך קישור זה מיועד לפיתוח מפות אורגניות.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "פרטים על Kayak";
 
 "placepage_call_button" = "Call";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Update";
 
-"placepage_add_place_button" = "Add a place to the map";
+"placepage_add_place_button" = "הוסף מקום ל-OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Do you want to send it to all users?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Subway";
 
-"layers_title" = "Map layers";
+"layers_title" = "סגנונות ושכבות מפה";
 
 "subway_data_unavailable" = "Subway map is unavailable";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "טיול רגלי";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "היָנָחֲ";
 
-"type.amenity.parking.fee" = "םולשתב הינח";
+"type.amenity.parking.fee" = "היָנָחֲ";
 
 "type.amenity.parking.multi.storey" = "תומוק בר הינח";
+
+"type.amenity.parking.multi.storey.fee" = "תומוק בר הינח";
 
 "type.amenity.parking.no.access" = "תיטרפ הינח";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "תיעקרק - תת הינח";
 
-"type.amenity.parking.underground.fee" = "חניה תת קרקעית בתשלום";
+"type.amenity.parking.underground.fee" = "תיעקרק - תת הינח";
 
 "type.amenity.parking.underground.private" = "חניה תת קרקעית פרטית";
 
 "type.amenity.parking.street_side" = "חניה בצד הרחוב";
 
-"type.amenity.parking.street_side.fee" = "חניה ברחוב בתשלום";
+"type.amenity.parking.street_side.fee" = "חניה בצד הרחוב";
 
 "type.amenity.parking.street_side.private" = "חניה פרטית בצד הרחוב";
 
 "type.amenity.parking.lane" = "חנייה בנתיב";
 
-"type.amenity.parking.lane.fee" = "חנייה בנתיב בתשלום";
+"type.amenity.parking.lane.fee" = "חנייה בנתיב";
 
 "type.amenity.parking.lane.private" = "חניה פרטית בנתיב";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "תישארה הסינכ";
 
 "type.entrance.exit" = "יְצִיאָה";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "חינם";
 
 "type.healthcare.laboratory" = "תיאופר הדבעמ";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Garden";
 
 "type.leisure.golf_course" = "Golf Course";
+
+"type.leisure.hackerspace" = "האקרספייס";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Subway Station";
 
+"type.railway.station.subway.singapore" = "Subway Station";
+
 "type.railway.station.subway.sofia" = "Subway Station";
 
 "type.railway.station.subway.spb" = "Subway Station";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Subway Entrance";
 
 "type.railway.subway_entrance.shiraz" = "Subway Entrance";
+
+"type.railway.subway_entrance.singapore" = "Subway Entrance";
 
 "type.railway.subway_entrance.sofia" = "Subway Entrance";
 

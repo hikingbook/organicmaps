@@ -211,6 +211,10 @@
 	<string name="downloader_delete_map">מחק מפה</string>
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">עדכן מפה</string>
+	<!-- Preference title -->
+	<string name="google_play_services">שירותי מיקום של Google Play</string>
+	<!-- Preference text -->
+	<string name="pref_use_google_play">קבע במהירות את המיקום המשוער שלך באמצעות Bluetooth, WiFi או רשת סלולרית</string>
 
 	<!-- SECTION: Routing dialogs strings -->
 	<string name="dialog_routing_disclaimer_title">בעת נסיעה לאורך המסלול, שים לב לדברים הבאים:</string>
@@ -251,13 +255,19 @@
 	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">נתונים קרטוגרפיים מ- OpenStreetMap נכון לשנת %s. זה כמו Wikipedia בו תוכלו להוסיף או לערוך מקומות לכל המשתמשים ברחבי העולם.</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">פרטים על KAYAK</string>
+	<string name="more_on_kayak">תמונות, ביקורות, הזמנה</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">בונוס ההפניה המתקבל עבור כל הזמנה דרך קישור זה מיועד לפיתוח מפות אורגניות.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">פרטים על Kayak</string>
+	<string name="placepage_add_place_button">הוסף מקום ל-OpenStreetMap</string>
 	<string name="editor_share_to_all_dialog_message_2">.ןהשלכ תולאש םהל שי םא רשק ךתיא ורציו םייונישה תא וקדבי OpenStreetMap יכרוע</string>
 	<string name="transliteration_title">תעתיק ללטינית</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">ייבוא סימניות ורצועות</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">פְּרָטִיוּת</string>
+	<string name="layers_title">סגנונות ושכבות מפה</string>
 	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
 	<string name="avoid_tolls">הימנעו מכבישי אגרה</string>
 	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -290,6 +300,8 @@
 	<string name="aa_grant_permissions">הענק הרשאות</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">מחובר לרכב</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">טיול רגלי</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">כתובת/חסימה</string>
@@ -309,19 +321,20 @@
 	<string name="type.amenity.language_school">תופשל רפס תיב</string>
 	<string name="type.amenity.loading_dock">רציף טעינה</string>
 	<string name="type.amenity.parking">היָנָחֲ</string>
-	<string name="type.amenity.parking.fee">םולשתב הינח</string>
+	<string name="type.amenity.parking.fee">היָנָחֲ</string>
 	<string name="type.amenity.parking.multi.storey">תומוק בר הינח</string>
+	<string name="type.amenity.parking.multi.storey.fee">תומוק בר הינח</string>
 	<string name="type.amenity.parking.no.access">תיטרפ הינח</string>
 	<string name="type.amenity.parking.permissive">תיטרפ הינח</string>
 	<string name="type.amenity.parking.private">תיטרפ הינח</string>
 	<string name="type.amenity.parking.underground">תיעקרק - תת הינח</string>
-	<string name="type.amenity.parking.underground.fee">חניה תת קרקעית בתשלום</string>
+	<string name="type.amenity.parking.underground.fee">תיעקרק - תת הינח</string>
 	<string name="type.amenity.parking.underground.private">חניה תת קרקעית פרטית</string>
 	<string name="type.amenity.parking.street_side">חניה בצד הרחוב</string>
-	<string name="type.amenity.parking.street_side.fee">חניה ברחוב בתשלום</string>
+	<string name="type.amenity.parking.street_side.fee">חניה בצד הרחוב</string>
 	<string name="type.amenity.parking.street_side.private">חניה פרטית בצד הרחוב</string>
 	<string name="type.amenity.parking.lane">חנייה בנתיב</string>
-	<string name="type.amenity.parking.lane.fee">חנייה בנתיב בתשלום</string>
+	<string name="type.amenity.parking.lane.fee">חנייה בנתיב</string>
 	<string name="type.amenity.parking.lane.private">חניה פרטית בנתיב</string>
 	<string name="type.amenity.parking_entrance">הינחל הסינכ</string>
 	<string name="type.amenity.parking_entrance.private">כניסה פרטית לחניה</string>
@@ -462,6 +475,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">תישארה הסינכ</string>
 	<string name="type.entrance.exit">יְצִיאָה</string>
+	<string name="type.fee.no">חינם</string>
 	<string name="type.healthcare.laboratory">תיאופר הדבעמ</string>
 	<string name="type.healthcare.physiotherapist">פיזיותרפיסט</string>
 	<string name="type.healthcare.alternative">רפואה אלטרנטיבית</string>
@@ -615,6 +629,7 @@
 	<string name="type.landuse.basin">אגן מים</string>
 	<string name="type.landuse.flowerbed">מיטת פרחים</string>
 	<string name="type.leisure.dance">םידוקיר םלוא</string>
+	<string name="type.leisure.hackerspace">האקרספייס</string>
 	<string name="type.leisure.outdoor_seating">ישיבה בחוץ</string>
 	<string name="type.leisure.picnic_table">קינקיפ ןחלוש</string>
 	<string name="type.man_made.tower.communication">מגדל תקשורת</string>

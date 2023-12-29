@@ -279,9 +279,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Perbarui Peta</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Layanan Google Play</string>
+	<string name="google_play_services">Layanan Lokasi Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Gunakan Layanan Google Play untuk mendapatkan lokasi Anda saat ini</string>
+	<string name="pref_use_google_play">Dengan cepat menentukan perkiraan lokasi Anda melalui Bluetooth, WiFi, atau jaringan seluler</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Unduh peta bersama rute</string>
 	<!-- Text for routing error dialog -->
@@ -491,9 +491,11 @@
 	<string name="minute">mnt</string>
 	<string name="placepage_more_button">Lainnya</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Perincian di KAYAK</string>
+	<string name="more_on_kayak">Foto, ulasan, pemesanan</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Bonus rujukan yang diterima untuk setiap pemesanan melalui tautan ini digunakan untuk pengembangan Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Perincian di Kayak</string>
 	<string name="placepage_edit_bookmark_button">Edit Bookmark</string>
 	<string name="editor_comment_hint">Komentar…</string>
 	<string name="editor_reset_edits_message">Atur ulang perubahan lokal?</string>
@@ -505,7 +507,7 @@
 	<string name="error_enter_correct_phone">Masukkan nomor telepon yang benar</string>
 	<string name="error_enter_correct_web">Masukkan alamat web valid</string>
 	<string name="error_enter_correct_email">Masukkan surel valid</string>
-	<string name="placepage_add_place_button">Tambahkan tempat ke peta</string>
+	<string name="placepage_add_place_button">Menambahkan tempat ke OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Apakah Anda ingin mengirimkannya ke semua pengguna?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -580,13 +582,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">trek %d</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Pengaturan treking</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Privasi</string>
 	<string name="privacy_policy">Kebijakan privasi</string>
 	<string name="terms_of_use">Ketentuan penggunaan</string>
 	<string name="button_layer_traffic">Lalu lintas</string>
 	<string name="button_layer_subway">Kereta bawah tanah</string>
-	<string name="layers_title">Lapisan peta</string>
+	<string name="layers_title">Gaya dan Lapisan Peta</string>
 	<string name="subway_data_unavailable">Peta bawah tanah tidak tersedia</string>
 	<string name="bookmarks_empty_list_title">Daftar ini kosong</string>
 	<string name="bookmarks_empty_list_message">Untuk menambahkan bookmark, ketuk satu tempat di peta lalu ketuk ikon bintang</string>
@@ -713,6 +715,8 @@
 	<string name="aa_grant_permissions">Memberikan Izin</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Terhubung ke mobil</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Pendakian</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Alamat/Blokir</string>
@@ -781,20 +785,21 @@
 	<string name="type.amenity.nightclub">Kelab malam</string>
 	<string name="type.amenity.nursing_home">Panti Jompo</string>
 	<string name="type.amenity.parking">Parkir</string>
-	<string name="type.amenity.parking.fee">Parkir Berbayar</string>
+	<string name="type.amenity.parking.fee">Parkir</string>
 	<string name="type.amenity.parking.multi.storey">Parkir Bertingkat</string>
+	<string name="type.amenity.parking.multi.storey.fee">Parkir Bertingkat</string>
 	<string name="type.amenity.parking.no.access">Parkir pribadi</string>
 	<string name="type.amenity.parking.permissive">Parkir pribadi</string>
 	<string name="type.amenity.parking.private">Parkir pribadi</string>
 	<string name="type.amenity.parking.park_and_ride">Parkir</string>
 	<string name="type.amenity.parking.underground">Parkir bawah tanah</string>
-	<string name="type.amenity.parking.underground.fee">Parkir bawah tanah berbayar</string>
+	<string name="type.amenity.parking.underground.fee">Parkir bawah tanah</string>
 	<string name="type.amenity.parking.underground.private">Parkir bawah tanah pribadi</string>
 	<string name="type.amenity.parking.street_side">Parkir di tepi jalan</string>
-	<string name="type.amenity.parking.street_side.fee">Parkir di tepi jalan berbayar</string>
+	<string name="type.amenity.parking.street_side.fee">Parkir di tepi jalan</string>
 	<string name="type.amenity.parking.street_side.private">Parkir sisi jalan pribadi</string>
 	<string name="type.amenity.parking.lane">Parkir jalur</string>
-	<string name="type.amenity.parking.lane.fee">Parkir jalur berbayar</string>
+	<string name="type.amenity.parking.lane.fee">Parkir jalur</string>
 	<string name="type.amenity.parking.lane.private">Parkir jalur pribadi</string>
 	<string name="type.amenity.parking_entrance">Pintu masuk parkir</string>
 	<string name="type.amenity.parking_entrance.private">Pintu masuk parkir pribadi</string>
@@ -1002,6 +1007,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Pintu masuk utama</string>
 	<string name="type.entrance.exit">Keluar</string>
+	<string name="type.fee.no">Gratis</string>
 	<string name="type.healthcare.laboratory">Laboratorium medis</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapis</string>
 	<string name="type.healthcare.alternative">Pengobatan alternatif</string>
@@ -1509,6 +1515,7 @@
 	<string name="type.railway.station.subway.sf">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.shanghai">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.shiraz">Stasiun bawah tanah</string>
+	<string name="type.railway.station.subway.singapore">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.sofia">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.spb">Stasiun bawah tanah</string>
 	<string name="type.railway.station.subway.stockholm">Stasiun bawah tanah</string>
@@ -1620,6 +1627,7 @@
 	<string name="type.railway.subway_entrance.sf">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.shanghai">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.shiraz">Pintu masuk kereta bawah tanah</string>
+	<string name="type.railway.subway_entrance.singapore">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.sofia">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.spb">Pintu masuk kereta bawah tanah</string>
 	<string name="type.railway.subway_entrance.stockholm">Pintu masuk kereta bawah tanah</string>

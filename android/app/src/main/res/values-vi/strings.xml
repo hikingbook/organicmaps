@@ -277,9 +277,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Cập nhật Bản đồ</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Dịch vụ Google Play</string>
+	<string name="google_play_services">Dịch vụ vị trí của Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Sử dụng Dịch vụ Google Play để có được vị trí hiện tại của bạn</string>
+	<string name="pref_use_google_play">Nhanh chóng xác định vị trí gần đúng của bạn bằng Bluetooth, WiFi hoặc mạng di động</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Tải xuống bản đồ theo tuyến đường</string>
 	<!-- Text for routing error dialog -->
@@ -489,9 +489,11 @@
 	<string name="minute">phút</string>
 	<string name="placepage_more_button">Bổ sung</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Chi tiết trên KAYAK</string>
+	<string name="more_on_kayak">Hình ảnh, đánh giá, đặt phòng</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Phần thưởng giới thiệu nhận được cho mỗi lần đặt phòng thông qua liên kết này sẽ hướng tới việc phát triển bản đồ không phải trả tiền.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Chi tiết trên Kayak</string>
 	<string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
 	<string name="editor_comment_hint">Nhận xét…</string>
 	<string name="editor_reset_edits_message">Cài đặt lại tất cả thay đổi cục bộ?</string>
@@ -503,7 +505,7 @@
 	<string name="error_enter_correct_phone">Nhập chính xác số điện thoại</string>
 	<string name="error_enter_correct_web">Nhập địa chỉ trang web hợp lệ</string>
 	<string name="error_enter_correct_email">Nhập email hợp lệ</string>
-	<string name="placepage_add_place_button">Thêm địa điểm vào bản đồ</string>
+	<string name="placepage_add_place_button">Thêm địa điểm vào OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Bạn có muốn gửi cho toàn bộ người dùng?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -578,13 +580,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d các chặn đường</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Thiết lập theo dõi</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Sự riêng tư</string>
 	<string name="privacy_policy">Chính sách bảo mật</string>
 	<string name="terms_of_use">Điều khoảng sử dụng</string>
 	<string name="button_layer_traffic">Giao thông</string>
 	<string name="button_layer_subway">Xe điện ngầm</string>
-	<string name="layers_title">Các lớp bản đồ</string>
+	<string name="layers_title">Kiểu và lớp bản đồ</string>
 	<string name="subway_data_unavailable">Bản đồ tàu điện ngầm không khả dụng</string>
 	<string name="bookmarks_empty_list_title">Danh sách trống</string>
 	<string name="bookmarks_empty_list_message">Để thêm dấu trang, hãy nhấn vào một địa điểm trên bản đồ và sau đó nhấn vào biểu tượng dấu sao</string>
@@ -709,6 +711,8 @@
 	<string name="aa_grant_permissions">Cấp quyền</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Đã kết nối với ô tô</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Đi bộ đường dài</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Địa chỉ/Khối</string>
@@ -781,20 +785,21 @@
 	<string name="type.amenity.nightclub">Câu lạc bộ đêm</string>
 	<string name="type.amenity.nursing_home">Nhà dưỡng lão</string>
 	<string name="type.amenity.parking">đỗ xe</string>
-	<string name="type.amenity.parking.fee">Đậu xe trả phí</string>
+	<string name="type.amenity.parking.fee">đỗ xe</string>
 	<string name="type.amenity.parking.multi.storey">Bãi đậu xe nhiều tầng</string>
+	<string name="type.amenity.parking.multi.storey.fee">Bãi đậu xe nhiều tầng</string>
 	<string name="type.amenity.parking.no.access">Bãi đậu xe tư nhân</string>
 	<string name="type.amenity.parking.permissive">Bãi đậu xe tư nhân</string>
 	<string name="type.amenity.parking.private">Bãi đậu xe tư nhân</string>
 	<string name="type.amenity.parking.park_and_ride">đỗ xe</string>
 	<string name="type.amenity.parking.underground">Bãi đậu xe ngầm</string>
-	<string name="type.amenity.parking.underground.fee">Bãi đậu xe ngầm trả phí</string>
+	<string name="type.amenity.parking.underground.fee">Bãi đậu xe ngầm</string>
 	<string name="type.amenity.parking.underground.private">Bãi đậu xe ngầm riêng</string>
 	<string name="type.amenity.parking.street_side">Bãi đậu xe bên đường</string>
-	<string name="type.amenity.parking.street_side.fee">Bãi đậu xe trả phí bên đường</string>
+	<string name="type.amenity.parking.street_side.fee">Bãi đậu xe bên đường</string>
 	<string name="type.amenity.parking.street_side.private">Bãi đậu xe riêng bên đường</string>
 	<string name="type.amenity.parking.lane">Làn đường đỗ xe</string>
-	<string name="type.amenity.parking.lane.fee">Đỗ xe trên làn đường phải trả tiền</string>
+	<string name="type.amenity.parking.lane.fee">Làn đường đỗ xe</string>
 	<string name="type.amenity.parking.lane.private">Bãi đậu xe làn đường riêng</string>
 	<string name="type.amenity.parking_entrance">Lối vào bãi đậu xe</string>
 	<string name="type.amenity.parking_entrance.private">Lối vào bãi đậu xe riêng</string>
@@ -1003,6 +1008,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Lối vào chính</string>
 	<string name="type.entrance.exit">Lối ra</string>
+	<string name="type.fee.no">Miễn phí</string>
 	<string name="type.healthcare.laboratory">Phòng thí nghiệm y tế</string>
 	<string name="type.healthcare.physiotherapist">Nhà vật lý trị liệu</string>
 	<string name="type.healthcare.alternative">Liều thuốc thay thế</string>
@@ -1261,6 +1267,7 @@
 	<string name="type.leisure.garden">Điểm khảo cổ</string>
 	<string name="type.leisure.garden.residential">Điểm khảo cổ</string>
 	<string name="type.leisure.golf_course">Sân gôn</string>
+	<string name="type.leisure.hackerspace">Không gian tin tặc</string>
 	<string name="type.leisure.nature_reserve">Giữ chỗ</string>
 	<string name="type.leisure.outdoor_seating">Chỗ ngồi ngoài trời</string>
 	<string name="type.leisure.park">Công viên</string>
@@ -1510,6 +1517,7 @@
 	<string name="type.railway.station.subway.sf">Ngầm</string>
 	<string name="type.railway.station.subway.shanghai">Ngầm</string>
 	<string name="type.railway.station.subway.shiraz">Ngầm</string>
+	<string name="type.railway.station.subway.singapore">Ngầm</string>
 	<string name="type.railway.station.subway.sofia">Ngầm</string>
 	<string name="type.railway.station.subway.spb">Ngầm</string>
 	<string name="type.railway.station.subway.stockholm">Ngầm</string>
@@ -1621,6 +1629,7 @@
 	<string name="type.railway.subway_entrance.sf">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.shanghai">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.shiraz">Lỗi vào Metro</string>
+	<string name="type.railway.subway_entrance.singapore">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.sofia">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.spb">Lỗi vào Metro</string>
 	<string name="type.railway.subway_entrance.stockholm">Lỗi vào Metro</string>

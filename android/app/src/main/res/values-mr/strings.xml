@@ -268,9 +268,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">नकाशा अद्ययावत करा</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play सेवा</string>
+	<string name="google_play_services">Google Play स्थान सेवा</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">तुमचे वर्तमान स्थान निर्धारित करण्यासाठी Google Play सेवा वापरा</string>
+	<string name="pref_use_google_play">ब्लूटूथ, वायफाय किंवा मोबाइल नेटवर्क वापरून तुमचे अंदाजे स्थान द्रुतपणे निर्धारित करा</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">तुमच्या मार्गावरील सर्व नकाशे डाउनलोड करा</string>
 	<!-- Text for routing error dialog -->
@@ -482,9 +482,11 @@
 	<string name="minute">मिनिट</string>
 	<string name="placepage_more_button">अधिक</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">कायाक वर तपशील</string>
+	<string name="more_on_kayak">फोटोपुनरावलोकनेबुकिंगबुकिंग</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">या लिंकद्वारे प्रत्येक बुकिंगसाठी मिळणारा रेफरल बोनस ऑरगॅनिक नकाशांच्या विकासासाठी जातो.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">कायाक वर तपशील</string>
 	<string name="placepage_edit_bookmark_button">खूणपत्र संपादित करा</string>
 	<string name="editor_comment_hint">टिप्पणी</string>
 	<string name="editor_reset_edits_message">सर्व स्थानिक बदल टाकून द्यायचे?</string>
@@ -501,7 +503,7 @@
 	<string name="error_enter_correct_facebook_page">वैध Facebook वेब पत्ता, खाते किंवा पृष्ठ नाव प्रविष्ट करा</string>
 	<string name="error_enter_correct_instagram_page">वैध Instagram वेब पत्ता किंवा खाते नाव प्रविष्ट करा</string>
 	<string name="error_enter_correct_twitter_page">वैध Twitter वेब पत्ता किंवा वापरकर्तानाव प्रविष्ट करा</string>
-	<string name="placepage_add_place_button">नकाशावर एक ठिकाण जोडा</string>
+	<string name="placepage_add_place_button">OpenStreetMap मध्ये ठिकाण जोडा</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">तुम्ही ते सर्व वापरकर्त्यांना पाठवू इच्छिता?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -576,13 +578,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d ट्रॅक</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">ट्रॅकिंग सेटिंग</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">गोपनीयता</string>
 	<string name="privacy_policy">गोपनीयता धोरण</string>
 	<string name="terms_of_use">वापरण्याच्या अटी</string>
 	<string name="button_layer_traffic">ट्रॅफिक</string>
 	<string name="button_layer_subway">भुयारी मार्ग</string>
-	<string name="layers_title">नकाशा स्तर</string>
+	<string name="layers_title">नकाशा शैली आणि स्तर</string>
 	<string name="subway_data_unavailable">भुयारी नकाशा अनुपलब्ध आहे</string>
 	<string name="bookmarks_empty_list_title">ही यादी रिकामी आहे</string>
 	<string name="bookmarks_empty_list_message">खूणपत्र जोडण्यासाठी, नकाशातील ठिकाणाला स्पर्श करा आणि नंतर तारा चिन्हाला स्पर्श करा</string>
@@ -720,6 +722,8 @@
 	<string name="aa_grant_permissions">परवानग्या द्या</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">कारला जोडलेले</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">गिर्यारोहण</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
@@ -798,14 +802,14 @@
 	<string name="type.amenity.nightclub">नाईट क्लब</string>
 	<string name="type.amenity.nursing_home">वृद्धाश्रम</string>
 	<string name="type.amenity.parking">वाहनतळ</string>
+	<string name="type.amenity.parking.fee">वाहनतळ</string>
 	<string name="type.amenity.parking.park_and_ride">वाहनतळ</string>
-	<string name="type.amenity.parking.underground.fee">सशुल्क भूमिगत पार्किंग</string>
 	<string name="type.amenity.parking.underground.private">खाजगी भूमिगत पार्किंग</string>
 	<string name="type.amenity.parking.street_side">स्ट्रीट साइड पार्किंग</string>
-	<string name="type.amenity.parking.street_side.fee">पेड स्ट्रीट साइड पार्किंग</string>
+	<string name="type.amenity.parking.street_side.fee">स्ट्रीट साइड पार्किंग</string>
 	<string name="type.amenity.parking.street_side.private">खाजगी रस्त्यावरील बाजूचे पार्किंग</string>
 	<string name="type.amenity.parking.lane">लेन पार्किंग</string>
-	<string name="type.amenity.parking.lane.fee">सशुल्क लेन पार्किंग</string>
+	<string name="type.amenity.parking.lane.fee">लेन पार्किंग</string>
 	<string name="type.amenity.parking.lane.private">खाजगी लेन पार्किंग</string>
 	<string name="type.amenity.parking_entrance.private">खाजगी पार्किंग प्रवेशद्वार</string>
 	<string name="type.amenity.parking_space">पार्किंगची जागा</string>
@@ -988,6 +992,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">मुख्य प्रवेशद्वार</string>
 	<string name="type.entrance.exit">बाहेर पडा</string>
+	<string name="type.fee.no">विनामूल्य</string>
 	<string name="type.healthcare.laboratory">वैद्यकीय प्रयोगशाळा</string>
 	<string name="type.healthcare.physiotherapist">फिजिओथेरपिस्ट</string>
 	<string name="type.healthcare.alternative">पर्यायी औषध</string>
@@ -1276,6 +1281,7 @@
 	<string name="type.leisure.garden">बाग</string>
 	<string name="type.leisure.garden.residential">बाग</string>
 	<string name="type.leisure.golf_course">गोल्फचे मैदान</string>
+	<string name="type.leisure.hackerspace">हॅकरस्पेस</string>
 	<string name="type.leisure.ice_rink">हिम क्रीडा क्षेत्र</string>
 	<string name="type.leisure.nature_reserve">संरक्षित निसर्गक्षेत्र</string>
 	<string name="type.leisure.outdoor_seating">बाहेरची आसनव्यवस्था</string>
@@ -1564,6 +1570,7 @@
 	<string name="type.railway.station.subway.sf">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.shanghai">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.shiraz">भुयारी मार्ग</string>
+	<string name="type.railway.station.subway.singapore">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.sofia">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.spb">भुयारी मार्ग</string>
 	<string name="type.railway.station.subway.stockholm">भुयारी मार्ग</string>
@@ -1678,6 +1685,7 @@
 	<string name="type.railway.subway_entrance.sf">भुयारी प्रवेशद्वार</string>
 	<string name="type.railway.subway_entrance.shanghai">भुयारी प्रवेशद्वार</string>
 	<string name="type.railway.subway_entrance.shiraz">भुयारी प्रवेशद्वार</string>
+	<string name="type.railway.subway_entrance.singapore">भुयारी प्रवेशद्वार</string>
 	<string name="type.railway.subway_entrance.sofia">भुयारी प्रवेशद्वार</string>
 	<string name="type.railway.subway_entrance.spb">भुयारी प्रवेशद्वार</string>
 	<string name="type.railway.subway_entrance.stockholm">भुयारी प्रवेशद्वार</string>

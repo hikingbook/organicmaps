@@ -296,9 +296,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Haritayı Güncelle</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play Hizmetleri</string>
+	<string name="google_play_services">Google Play Konum Hizmetleri</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Mevcut konumunuzu belirlemek için Google Play Hizmetlerini kullanın</string>
+	<string name="pref_use_google_play">Bluetooth, WiFi veya mobil ağ üzerinden yaklaşık konumunuzu hızlıca belirleyin</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Rota üzerindeki tüm haritaları indir</string>
 	<!-- Text for routing error dialog -->
@@ -515,9 +515,11 @@
 	<string name="minute">dk</string>
 	<string name="placepage_more_button">Diğer</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">KAYAK hakkında detaylar</string>
+	<string name="more_on_kayak">Fotoğraflar, yorumlar, rezervasyon</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Bu bağlantı üzerinden yapılan her rezervasyon için alınan yönlendirme bonusu Organic Maps\'in geliştirilmesine harcanmaktadır.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Kayak hakkında detaylar</string>
 	<string name="placepage_edit_bookmark_button">Yer İmini Düzenle</string>
 	<string name="editor_comment_hint">Yorum…</string>
 	<string name="editor_reset_edits_message">Tüm yerel değişiklikler sıfırlansın mı?</string>
@@ -536,7 +538,7 @@
 	<string name="error_enter_correct_twitter_page">Geçerli bir Twitter web adresi veya kullanıcı adı girin</string>
 	<string name="error_enter_correct_vk_page">Geçerli bir VK web adresi veya hesap adı girin</string>
 	<string name="error_enter_correct_line_page">Geçerli bir LINE web adresi veya LINE ID\'si girin</string>
-	<string name="placepage_add_place_button">Haritaya bir yer ekle</string>
+	<string name="placepage_add_place_button">OpenStreetMap\'e Yer Ekle</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Bunu tüm kullanıcılara göndermek ister misiniz?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -610,13 +612,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d kayıt</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Takip ayarları</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Gizlilik</string>
 	<string name="privacy_policy">Gizlilik politikası</string>
 	<string name="terms_of_use">Kullanım koşulları</string>
 	<string name="button_layer_traffic">Trafik</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Harita katmanları</string>
+	<string name="layers_title">Harita Stilleri ve Katmanları</string>
 	<string name="subway_data_unavailable">Metro haritası mevcut değil</string>
 	<string name="bookmarks_empty_list_title">Bu liste boş</string>
 	<string name="bookmarks_empty_list_message">Yer imi eklemek için önce haritadaki bir yere sonrasında ise yıldız simgesine dokunun</string>
@@ -762,6 +764,8 @@
 	<string name="aa_grant_permissions">İzinleri Verin</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Arabaya bağlı</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Yürüyüş</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adres/Blok</string>
@@ -848,20 +852,21 @@
 	<string name="type.amenity.nightclub">Gece Kulübü</string>
 	<string name="type.amenity.nursing_home">Huzurevi</string>
 	<string name="type.amenity.parking">Otopark</string>
-	<string name="type.amenity.parking.fee">Ücretli Otopark</string>
+	<string name="type.amenity.parking.fee">Otopark</string>
 	<string name="type.amenity.parking.multi.storey">Çok Katlı Otopark</string>
+	<string name="type.amenity.parking.multi.storey.fee">Çok Katlı Otopark</string>
 	<string name="type.amenity.parking.no.access">Özel Otopark</string>
 	<string name="type.amenity.parking.permissive">Özel Otopark</string>
 	<string name="type.amenity.parking.private">Özel Otopark</string>
 	<string name="type.amenity.parking.park_and_ride">Otopark</string>
 	<string name="type.amenity.parking.underground">Yeraltı otoparkı</string>
-	<string name="type.amenity.parking.underground.fee">Ücretli yeraltı otoparkı</string>
+	<string name="type.amenity.parking.underground.fee">Yeraltı otoparkı</string>
 	<string name="type.amenity.parking.underground.private">Özel yeraltı otoparkı</string>
 	<string name="type.amenity.parking.street_side">Sokak tarafı otopark</string>
-	<string name="type.amenity.parking.street_side.fee">Ücretli cadde tarafı otopark</string>
+	<string name="type.amenity.parking.street_side.fee">Sokak tarafı otopark</string>
 	<string name="type.amenity.parking.street_side.private">Özel sokak tarafı otopark</string>
 	<string name="type.amenity.parking.lane">Şerit park</string>
-	<string name="type.amenity.parking.lane.fee">Ücretli şerit park</string>
+	<string name="type.amenity.parking.lane.fee">Şerit park</string>
 	<string name="type.amenity.parking.lane.private">Özel şerit otopark</string>
 	<string name="type.amenity.parking_entrance">Otopark girişi</string>
 	<string name="type.amenity.parking_entrance.private">Özel otopark girişi</string>
@@ -1112,6 +1117,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Ana giriş</string>
 	<string name="type.entrance.exit">Çıkış</string>
+	<string name="type.fee.no">Ücretsiz</string>
 	<string name="type.healthcare.laboratory">Tıbbi Laboratuvar</string>
 	<string name="type.healthcare.physiotherapist">Fizyoterapist</string>
 	<string name="type.healthcare.alternative">Alternatif tıp</string>
@@ -1709,6 +1715,7 @@
 	<string name="type.railway.station.subway.sf">Metro</string>
 	<string name="type.railway.station.subway.shanghai">Metro</string>
 	<string name="type.railway.station.subway.shiraz">Metro</string>
+	<string name="type.railway.station.subway.singapore">Metro</string>
 	<string name="type.railway.station.subway.sofia">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
 	<string name="type.railway.station.subway.stockholm">Metro</string>
@@ -1823,6 +1830,7 @@
 	<string name="type.railway.subway_entrance.sf">Metro Girişi</string>
 	<string name="type.railway.subway_entrance.shanghai">Metro Girişi</string>
 	<string name="type.railway.subway_entrance.shiraz">Metro Girişi</string>
+	<string name="type.railway.subway_entrance.singapore">Metro Girişi</string>
 	<string name="type.railway.subway_entrance.sofia">Metro Girişi</string>
 	<string name="type.railway.subway_entrance.spb">Metro Girişi</string>
 	<string name="type.railway.subway_entrance.stockholm">Metro Girişi</string>

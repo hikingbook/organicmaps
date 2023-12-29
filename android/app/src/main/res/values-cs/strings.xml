@@ -281,9 +281,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Aktualizovat mapu</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Služby Google Play</string>
+	<string name="google_play_services">Služby určování polohy Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Používat Služby Google Play pro získání aktuální polohy</string>
+	<string name="pref_use_google_play">Rychlé určení přibližné polohy pomocí Bluetooth, WiFi nebo mobilní sítě</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Stahovat mapy podél cesty</string>
 	<!-- Text for routing error dialog -->
@@ -495,9 +495,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Více</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Podrobnosti na KAYAK</string>
+	<string name="more_on_kayak">Fotografie, recenze, rezervace</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Bonus za každou rezervaci provedenou prostřednictvím tohoto odkazu je určen na rozvoj služby Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Podrobnosti na Kayak</string>
 	<string name="placepage_edit_bookmark_button">Upravit záložku</string>
 	<string name="editor_comment_hint">Poznámka…</string>
 	<string name="editor_reset_edits_message">Vymazat všechny místní změny?</string>
@@ -509,7 +511,7 @@
 	<string name="error_enter_correct_phone">Zadejte správné telefonní číslo</string>
 	<string name="error_enter_correct_web">Zadat platnou webovou adresu</string>
 	<string name="error_enter_correct_email">Zadat platný email</string>
-	<string name="placepage_add_place_button">Přidat místo na mapu</string>
+	<string name="placepage_add_place_button">Přidat místo do OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Chcete jej poslat všem uživatelům?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -585,13 +587,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d cest</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Natavení doprovodu</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Soukromí</string>
 	<string name="privacy_policy">Zásady ochrany osobních údajů</string>
 	<string name="terms_of_use">Podmínky užívání</string>
 	<string name="button_layer_traffic">Zácpy</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Úrovně mapy</string>
+	<string name="layers_title">Styly a vrstvy mapy</string>
 	<string name="subway_data_unavailable">Mapa metra není dostupná</string>
 	<string name="bookmarks_empty_list_title">Seznam je prázdný</string>
 	<string name="bookmarks_empty_list_message">Pro přidání nové značky klikněte na symbol hvězdičky na obrázku objektu</string>
@@ -722,6 +724,8 @@
 	<string name="aa_grant_permissions">Udělení oprávnění</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Připojení k automobilu</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Pěší turistika</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresa/blok</string>
@@ -792,20 +796,21 @@
 	<string name="type.amenity.nightclub">Noční klub</string>
 	<string name="type.amenity.nursing_home">Dům s pečovatelskou službou</string>
 	<string name="type.amenity.parking">Parkoviště</string>
-	<string name="type.amenity.parking.fee">Placené parkoviště</string>
+	<string name="type.amenity.parking.fee">Parkoviště</string>
 	<string name="type.amenity.parking.multi.storey">Vícepodlažní parkoviště</string>
+	<string name="type.amenity.parking.multi.storey.fee">Vícepodlažní parkoviště</string>
 	<string name="type.amenity.parking.no.access">Soukromé parkoviště</string>
 	<string name="type.amenity.parking.permissive">Soukromé parkoviště</string>
 	<string name="type.amenity.parking.private">Soukromé parkoviště</string>
 	<string name="type.amenity.parking.park_and_ride">Parkoviště</string>
 	<string name="type.amenity.parking.underground">Podzemní parkoviště</string>
-	<string name="type.amenity.parking.underground.fee">Placené podzemní parkoviště</string>
+	<string name="type.amenity.parking.underground.fee">Podzemní parkoviště</string>
 	<string name="type.amenity.parking.underground.private">Soukromé podzemní parkoviště</string>
 	<string name="type.amenity.parking.street_side">Parkování na straně ulice</string>
-	<string name="type.amenity.parking.street_side.fee">Placené parkování na ulici</string>
+	<string name="type.amenity.parking.street_side.fee">Parkování na straně ulice</string>
 	<string name="type.amenity.parking.street_side.private">Soukromé parkování na ulici</string>
 	<string name="type.amenity.parking.lane">Parkovací pruh</string>
-	<string name="type.amenity.parking.lane.fee">Placené parkování v pruzích</string>
+	<string name="type.amenity.parking.lane.fee">Parkovací pruh</string>
 	<string name="type.amenity.parking.lane.private">Soukromý parkovací pruh</string>
 	<string name="type.amenity.parking_entrance">Vjezd na parkoviště</string>
 	<string name="type.amenity.parking_entrance.private">Soukromý vchod na parkoviště</string>
@@ -1014,6 +1019,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Hlavní vchod</string>
 	<string name="type.entrance.exit">Exit</string>
+	<string name="type.fee.no">Zdarma</string>
 	<string name="type.healthcare.laboratory">Lékařská laboratoř</string>
 	<string name="type.healthcare.physiotherapist">Fyzioterapeut</string>
 	<string name="type.healthcare.alternative">Alternativní medicína</string>
@@ -1522,6 +1528,7 @@
 	<string name="type.railway.station.subway.sf">Metro</string>
 	<string name="type.railway.station.subway.shanghai">Metro</string>
 	<string name="type.railway.station.subway.shiraz">Metro</string>
+	<string name="type.railway.station.subway.singapore">Metro</string>
 	<string name="type.railway.station.subway.sofia">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
 	<string name="type.railway.station.subway.stockholm">Metro</string>
@@ -1633,6 +1640,7 @@
 	<string name="type.railway.subway_entrance.sf">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.shanghai">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.shiraz">Vchod do podchodu</string>
+	<string name="type.railway.subway_entrance.singapore">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.sofia">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.spb">Vchod do podchodu</string>
 	<string name="type.railway.subway_entrance.stockholm">Vchod do podchodu</string>

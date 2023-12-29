@@ -296,9 +296,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Aktualizuj mapę</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Usługi Google Play</string>
+	<string name="google_play_services">Usługi lokalizacyjne Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Używa usług Google Play do ustalenia aktualnego położenia</string>
+	<string name="pref_use_google_play">Szybko określ swoją przybliżoną lokalizację przez Bluetooth, WiFi lub sieć komórkową</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Pobierz mapy wzdłuż trasy</string>
 	<!-- Text for routing error dialog -->
@@ -515,9 +515,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Więcej</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Szczegóły na KAYAK</string>
+	<string name="more_on_kayak">Zdjęcia, opinie, rezerwacja</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Premia za polecenie otrzymywana za każdą rezerwację za pośrednictwem tego linku jest przeznaczana na rozwój Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Szczegóły na Kayak</string>
 	<string name="placepage_edit_bookmark_button">Edytuj zakładkę</string>
 	<string name="editor_comment_hint">Komentarz…</string>
 	<string name="editor_reset_edits_message">Usunąć wszystkie lokalne zmiany?</string>
@@ -536,7 +538,7 @@
 	<string name="error_enter_correct_twitter_page">Wprowadź poprawny adres lub nazwę konta na Twitterze</string>
 	<string name="error_enter_correct_vk_page">Wprowadź poprawny adres lub nazwę konta na VK</string>
 	<string name="error_enter_correct_line_page">Wpisz prawidłowy url LINE lub LINE ID</string>
-	<string name="placepage_add_place_button">Dodaj miejsce do mapy</string>
+	<string name="placepage_add_place_button">Dodaj miejsce do OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Czy chcesz wysłać je wszystkim użytkownikom?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -612,13 +614,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d tras</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Ustawienia śledzenia</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Prywatność</string>
 	<string name="privacy_policy">Polityka prywatności</string>
 	<string name="terms_of_use">Warunki użytkowania</string>
 	<string name="button_layer_traffic">Ruch drogowy</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Warstwy map</string>
+	<string name="layers_title">Style i warstwy mapy</string>
 	<string name="subway_data_unavailable">Mapa metra jest niedostępna</string>
 	<string name="bookmarks_empty_list_title">Lista jest pusta</string>
 	<string name="bookmarks_empty_list_message">Aby dodać zakładkę, dotknij miejsca na mapie, a następnie dotknij ikony gwiazdy.</string>
@@ -760,6 +762,8 @@
 	<string name="aa_grant_permissions">Przyznaj uprawnienia</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Podłączono do samochodu</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Turystyka piesza</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adres/Blok</string>
@@ -821,7 +825,7 @@
 	<string name="type.amenity.driving_school">Szkoła nauki jazdy</string>
 	<string name="type.amenity.exhibition_centre">Centrum wystawiennicze</string>
 	<string name="type.amenity.money_transfer">Transfer pieniędzy</string>
-	<string name="type.amenity.music_school">Szkoła Muzyczna</string>
+	<string name="type.amenity.music_school">Szkoła muzyczna</string>
 	<string name="type.amenity.language_school">Szkoła językowa</string>
 	<string name="type.office.diplomatic">Ambasada</string>
 	<string name="type.amenity.fast_food">Fast food</string>
@@ -846,20 +850,21 @@
 	<string name="type.amenity.nightclub">Klub nocny</string>
 	<string name="type.amenity.nursing_home">Dom opieki</string>
 	<string name="type.amenity.parking">Parking</string>
-	<string name="type.amenity.parking.fee">Płatny parking</string>
+	<string name="type.amenity.parking.fee">Parking</string>
 	<string name="type.amenity.parking.multi.storey">Parking wielopoziomowy</string>
+	<string name="type.amenity.parking.multi.storey.fee">Parking wielopoziomowy</string>
 	<string name="type.amenity.parking.no.access">Parking prywatny</string>
 	<string name="type.amenity.parking.permissive">Parking prywatny</string>
 	<string name="type.amenity.parking.private">Parking prywatny</string>
 	<string name="type.amenity.parking.park_and_ride">Parking \"Parkuj i Jedź\"</string>
 	<string name="type.amenity.parking.underground">Parking podziemny</string>
-	<string name="type.amenity.parking.underground.fee">Płatny parking podziemny</string>
+	<string name="type.amenity.parking.underground.fee">Parking podziemny</string>
 	<string name="type.amenity.parking.underground.private">Prywatny parking podziemny</string>
 	<string name="type.amenity.parking.street_side">Parking od strony ulicy</string>
-	<string name="type.amenity.parking.street_side.fee">Płatny parking przy ulicy</string>
+	<string name="type.amenity.parking.street_side.fee">Parking od strony ulicy</string>
 	<string name="type.amenity.parking.street_side.private">Prywatna ulica parking boczny</string>
 	<string name="type.amenity.parking.lane">Parking na pasie ruchu</string>
-	<string name="type.amenity.parking.lane.fee">Płatny parking na pasie ruchu</string>
+	<string name="type.amenity.parking.lane.fee">Parking na pasie ruchu</string>
 	<string name="type.amenity.parking.lane.private">Parking na prywatnym pasie ruchu</string>
 	<string name="type.amenity.parking_entrance">Wjazd na parking</string>
 	<string name="type.amenity.parking_entrance.private">Prywatne wejście na parking</string>
@@ -883,7 +888,7 @@
 	<string name="type.amenity.place_of_worship.taoist">Świątynia taoistyczna</string>
 	<string name="type.amenity.police">Policja</string>
 	<string name="type.amenity.post_box">Skrzynka pocztowa</string>
-	<string name="type.amenity.post_office">Urząd Pocztowy</string>
+	<string name="type.amenity.post_office">Urząd pocztowy</string>
 	<string name="type.amenity.prison">Więzienie</string>
 	<string name="type.amenity.pub">Pub</string>
 	<string name="type.amenity.public_bookcase">Wymiana książek</string>
@@ -1113,8 +1118,9 @@
 	<string name="type.entrance">Wejście</string>
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Główne wejście</string>
-	<string name="type.entrance.exit">Wyjdź</string>
-	<string name="type.healthcare.laboratory">Laboratorium Medyczne</string>
+	<string name="type.entrance.exit">Wyjście</string>
+	<string name="type.fee.no">Bezpłatne</string>
+	<string name="type.healthcare.laboratory">Laboratorium medyczne</string>
 	<string name="type.healthcare.physiotherapist">Fizjoterapeuta</string>
 	<string name="type.healthcare.alternative">Medycyna alternatywna</string>
 	<string name="type.healthcare.audiologist">Audiologia</string>
@@ -1204,11 +1210,11 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.path.tunnel">Tunel</string>
 	<string name="type.highway.pedestrian">Deptak</string>
-	<string name="type.highway.pedestrian.area">Deptak</string>
+	<string name="type.highway.pedestrian.area">Obszar deptaka</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
-	<string name="type.highway.pedestrian.bridge">Most pieszy</string>
+	<string name="type.highway.pedestrian.bridge">Most dla pieszych</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
-	<string name="type.highway.pedestrian.tunnel">Tunel pieszy</string>
+	<string name="type.highway.pedestrian.tunnel">Tunel dla pieszych</string>
 	<string name="type.highway.primary">Ulica</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.primary.bridge">Most</string>
@@ -1220,8 +1226,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.primary_link.tunnel">Tunel</string>
 	<string name="type.highway.raceway">Tor wyścigowy</string>
-	<string name="type.highway.residential">Ulica</string>
-	<string name="type.highway.residential.area">Ulica</string>
+	<string name="type.highway.residential">Droga lokalna</string>
+	<string name="type.highway.residential.area">Droga lokalna</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.residential.bridge">Most</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
@@ -1244,11 +1250,11 @@
 	<string name="type.highway.secondary_link.bridge">Most</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.secondary_link.tunnel">Tunel drogowy</string>
-	<string name="type.highway.service">Ulica</string>
-	<string name="type.highway.service.area">Ulica</string>
+	<string name="type.highway.service">Droga dojazdowa</string>
+	<string name="type.highway.service.area">Droga dojazdowa</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.service.bridge">Most drogowy</string>
-	<string name="type.highway.service.driveway">Ulica</string>
+	<string name="type.highway.service.driveway">Droga podjazdowa</string>
 	<string name="type.highway.service.parking_aisle">Miejsca parkingowe</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.service.tunnel">Tunel drogowy</string>
@@ -1269,17 +1275,17 @@
 	<string name="type.highway.tertiary_link.bridge">Most</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.tertiary_link.tunnel">Tunel drogowy</string>
-	<string name="type.highway.track">Droga polna/leśna</string>
-	<string name="type.highway.track.area">Droga polna/leśna</string>
+	<string name="type.highway.track">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.area">Droga na pola lub do lasu</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.track.bridge">Most</string>
-	<string name="type.highway.track.grade1">Droga polna/leśna</string>
-	<string name="type.highway.track.grade2">Droga polna/leśna</string>
-	<string name="type.highway.track.grade3">Droga polna/leśna</string>
-	<string name="type.highway.track.grade4">Droga polna/leśna</string>
-	<string name="type.highway.track.grade5">Droga polna/leśna</string>
-	<string name="type.highway.track.no.access">Droga polna/leśna</string>
-	<string name="type.highway.track.permissive">Droga polna/leśna</string>
+	<string name="type.highway.track.grade1">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.grade2">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.grade3">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.grade4">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.grade5">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.no.access">Droga na pola lub do lasu</string>
+	<string name="type.highway.track.permissive">Droga na pola lub do lasu</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.track.tunnel">Tunel drogowy</string>
 	<string name="type.highway.traffic_signals">Sygnalizacja świetlna</string>
@@ -1306,17 +1312,17 @@
 	<string name="type.area_highway.path">Ścieżka</string>
 	<string name="type.area_highway.pedestrian">Deptak</string>
 	<string name="type.area_highway.primary">Ulica</string>
-	<string name="type.area_highway.residential">Ulica</string>
+	<string name="type.area_highway.residential">Droga lokalna</string>
 	<string name="type.area_highway.secondary">Ulica</string>
-	<string name="type.area_highway.service">Ulica</string>
+	<string name="type.area_highway.service">Droga dojazdowa</string>
 	<string name="type.area_highway.tertiary">Ulica</string>
 	<string name="type.area_highway.steps">Schody</string>
-	<string name="type.area_highway.track">Droga polna/leśna</string>
+	<string name="type.area_highway.track">Droga na pola lub do lasu</string>
 	<string name="type.area_highway.trunk">Ulica</string>
 	<string name="type.area_highway.unclassified">Ulica</string>
 
 	<!-- SECTION: Types: Historic -->
-	<string name="type.historic">Historyczne</string>
+	<string name="type.historic">Obiekt historyczny</string>
 	<string name="type.historic.aircraft">Historyczny samolot</string>
 	<string name="type.historic.anchor">Historyczna kotwica</string>
 	<string name="type.historic.archaeological_site">Odkrywka archeologiczna</string>
@@ -1443,7 +1449,7 @@
 	<string name="type.man_made.tower">Wieża</string>
 	<string name="type.man_made.tower.communication">Wieża komunikacyjna</string>
 	<string name="type.man_made.wastewater_plant">Oczyszczalnia ścieków</string>
-	<string name="type.man_made.water_tap">Woda pitna</string>
+	<string name="type.man_made.water_tap">Kran z wodą</string>
 	<string name="type.man_made.water_tower">Wieża wodna</string>
 	<string name="type.man_made.water_well">Studnia</string>
 	<string name="type.man_made.windmill">Młyn wiatrowy</string>
@@ -1690,6 +1696,7 @@
 	<string name="type.railway.station.subway.sf">Metro</string>
 	<string name="type.railway.station.subway.shanghai">Metro</string>
 	<string name="type.railway.station.subway.shiraz">Metro</string>
+	<string name="type.railway.station.subway.singapore">Metro</string>
 	<string name="type.railway.station.subway.sofia">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
 	<string name="type.railway.station.subway.stockholm">Metro</string>
@@ -1801,6 +1808,7 @@
 	<string name="type.railway.subway_entrance.sf">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.shanghai">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.shiraz">Wejście do metra</string>
+	<string name="type.railway.subway_entrance.singapore">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.sofia">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.spb">Wejście do metra</string>
 	<string name="type.railway.subway_entrance.stockholm">Wejście do metra</string>
@@ -1910,7 +1918,7 @@
 	<string name="type.shop.variety_store">Sklep z różnościami</string>
 	<string name="type.shop.video">Wypożyczalnia wideo</string>
 	<string name="type.shop.video_games">Sklep z grami wideo</string>
-	<string name="type.shop.wine">Sklep monopolowy</string>
+	<string name="type.shop.wine">Sklep z winami</string>
 	<string name="type.shop.agrarian">Sklep rolniczy</string>
 	<string name="type.shop.antiques">Antyki</string>
 	<string name="type.shop.appliance">Sklep AGD</string>

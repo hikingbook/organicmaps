@@ -3,6 +3,7 @@ package app.organicmaps.settings;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -38,6 +39,7 @@ import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.LogsManager;
+import app.organicmaps.search.SearchRecents;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Arrays;
@@ -163,6 +165,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     List<LanguageData> languages = TtsPlayer.INSTANCE.refreshLanguages();
     mLanguages.clear();
     mCurrentLanguage = null;
+    mTtsTestStringArray = null;
 
     final Preference root = getPreference(getString(R.string.pref_tts_screen));
 
@@ -215,6 +218,16 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     mTtsPrefEnabled.setChecked(available && TtsPlayer.isEnabled());
     mTtsVoiceTest.setEnabled(enabled && available && TtsPlayer.isEnabled());
 
+    if (available)
+    {
+      // Update array of TTS test strings. Strings are taken from resources using selected TTS language.
+      Configuration config = new Configuration(getResources().getConfiguration());
+      config.setLocale(mCurrentLanguage.locale);
+      mTtsTestStringArray = Arrays.asList(getContext().createConfigurationContext(config).getResources().getStringArray(R.array.app_tips));
+      Collections.shuffle(mTtsTestStringArray);
+      mTestStringIndex = 0;
+    }
+
     enableListeners(true);
   }
 
@@ -260,14 +273,8 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
       initEmulationBadStorage();
       initUseMobileDataPrefsCallbacks();
       initPowerManagementPrefsCallbacks();
-      final boolean playServices = initPlayServicesPrefsCallbacks();
-      if (!playServices)
-      {
-        // Remove "Tracking" section completely.
-        final PreferenceCategory tracking = findPreference(getString(R.string.pref_subtittle_opt_out));
-        if (tracking != null)
-          mPreferenceScreen.removePreference(tracking);
-      }
+      initPlayServicesPrefsCallbacks();
+      initSearchPrivacyPrefsCallbacks();
       initScreenSleepEnabledPrefsCallbacks();
       initShowOnLockScreenPrefsCallbacks();
     }
@@ -279,14 +286,12 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
       mTtsLangInfo = getPreference(getString(R.string.pref_tts_info));
       mTtsVoiceTest = getPreference(getString(R.string.pref_tts_test_voice));
 
-      // Initialize TTS test strings.
-      mTtsTestStringArray = Arrays.asList(getResources().getStringArray(R.array.app_tips));
-      Collections.shuffle(mTtsTestStringArray);
-      mTestStringIndex = 0;
-
       if (mTtsVoiceTest != null)
       {
         mTtsVoiceTest.setOnPreferenceClickListener(pref -> {
+          if (mTtsTestStringArray == null)
+            return false;
+
           Utils.showSnackbar(getView(), getString(R.string.pref_tts_playing_test_voice));
           TtsPlayer.INSTANCE.speak(mTtsTestStringArray.get(mTestStringIndex));
           mTestStringIndex++;
@@ -516,17 +521,14 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     });
   }
 
-  private boolean initPlayServicesPrefsCallbacks()
+  private void initPlayServicesPrefsCallbacks()
   {
     final Preference pref = findPreference(getString(R.string.pref_play_services));
     if (pref == null)
-      return false;
+      return;
 
     if (!LocationProviderFactory.isGoogleLocationAvailable(requireActivity().getApplicationContext()))
-    {
-      removePreference(getString(R.string.pref_subtittle_opt_out), pref);
-      return false;
-    }
+      removePreference(getString(R.string.pref_privacy), pref);
     else
     {
       ((TwoStatePreference) pref).setChecked(Config.useGoogleServices());
@@ -551,8 +553,29 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
           return true;
         }
       });
-      return true;
     }
+  }
+
+  private void initSearchPrivacyPrefsCallbacks()
+  {
+    final Preference pref = findPreference(getString(R.string.pref_search_history));
+    if (pref == null)
+      return;
+
+    final boolean isHistoryEnabled = Config.isSearchHistoryEnabled();
+    ((TwoStatePreference) pref).setChecked(isHistoryEnabled);
+    pref.setOnPreferenceChangeListener((preference, newValue) -> {
+      boolean newVal = (Boolean) newValue;
+      if (newVal != isHistoryEnabled)
+      {
+        Config.setSearchHistoryEnabled(newVal);
+        if (newVal)
+          SearchRecents.refresh();
+        else
+          SearchRecents.clear();
+      }
+      return true;
+    });
   }
 
   private void init3dModePrefsCallbacks()

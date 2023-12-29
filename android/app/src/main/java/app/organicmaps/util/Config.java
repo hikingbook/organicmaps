@@ -36,6 +36,7 @@ public final class Config
   private static final String KEY_MISC_SHOW_ON_LOCK_SCREEN = "ShowOnLockScreen";
   private static final String KEY_MISC_AGPS_TIMESTAMP = "AGPSTimestamp";
   private static final String KEY_DONATE_URL = "DonateUrl";
+  private static final String KEY_PREF_SEARCH_HISTORY = "SearchHistoryEnabled";
 
   /**
    * The total number of app launches.
@@ -339,10 +340,21 @@ public final class Config
     nativeSetTransliteration(value);
   }
 
-  @NonNull
-  public static String getDonateUrl()
+  public static boolean isNY()
   {
-    return getString(KEY_DONATE_URL);
+    return getBool("NY");
+  }
+
+  @NonNull
+  @SuppressWarnings("ConstantConditions") // BuildConfig
+  public static String getDonateUrl(@NonNull Context context)
+  {
+    final String url = getString(KEY_DONATE_URL);
+    // Enable donations by default if not Google or Huawei. Replace organicmaps.app/donate/ with localized page.
+    if ((url.isEmpty() && !BuildConfig.FLAVOR.equals("google") && !BuildConfig.FLAVOR.equals("huawei")) ||
+        url.endsWith("organicmaps.app/donate/"))
+      return context.getString(R.string.translated_om_site_url) + "donate/";
+    return url;
   }
 
   public static void init(@NonNull Context context)
@@ -389,6 +401,16 @@ public final class Config
         .edit()
         .putBoolean(KEY_MISC_FIRST_START_DIALOG_SEEN, true)
         .apply();
+  }
+
+  public static boolean isSearchHistoryEnabled()
+  {
+    return getBool(KEY_PREF_SEARCH_HISTORY, true);
+  }
+
+  public static void setSearchHistoryEnabled(boolean enabled)
+  {
+    setBool(KEY_PREF_SEARCH_HISTORY, enabled);
   }
 
   private static native boolean nativeHasConfigValue(String name);

@@ -790,10 +790,13 @@
 "book_button" = "Đặt trước";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Chi tiết trên KAYAK";
+"more_on_kayak" = "Hình ảnh, đánh giá, đặt phòng";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Phần thưởng giới thiệu nhận được cho mỗi lần đặt phòng thông qua liên kết này sẽ hướng tới việc phát triển bản đồ không phải trả tiền.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Chi tiết trên Kayak";
 
 "placepage_call_button" = "Gọi";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Cập nhật";
 
-"placepage_add_place_button" = "Thêm địa điểm vào bản đồ";
+"placepage_add_place_button" = "Thêm địa điểm vào OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Bạn có muốn gửi cho toàn bộ người dùng?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Xe điện ngầm";
 
-"layers_title" = "Các lớp bản đồ";
+"layers_title" = "Kiểu và lớp bản đồ";
 
 "subway_data_unavailable" = "Bản đồ tàu điện ngầm không khả dụng";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Đi bộ đường dài";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "đỗ xe";
 
-"type.amenity.parking.fee" = "Đậu xe trả phí";
+"type.amenity.parking.fee" = "đỗ xe";
 
 "type.amenity.parking.multi.storey" = "Bãi đậu xe nhiều tầng";
+
+"type.amenity.parking.multi.storey.fee" = "Bãi đậu xe nhiều tầng";
 
 "type.amenity.parking.no.access" = "Bãi đậu xe tư nhân";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Bãi đậu xe ngầm";
 
-"type.amenity.parking.underground.fee" = "Bãi đậu xe ngầm trả phí";
+"type.amenity.parking.underground.fee" = "Bãi đậu xe ngầm";
 
 "type.amenity.parking.underground.private" = "Bãi đậu xe ngầm riêng";
 
 "type.amenity.parking.street_side" = "Bãi đậu xe bên đường";
 
-"type.amenity.parking.street_side.fee" = "Bãi đậu xe trả phí bên đường";
+"type.amenity.parking.street_side.fee" = "Bãi đậu xe bên đường";
 
 "type.amenity.parking.street_side.private" = "Bãi đậu xe riêng bên đường";
 
 "type.amenity.parking.lane" = "Làn đường đỗ xe";
 
-"type.amenity.parking.lane.fee" = "Đỗ xe trên làn đường phải trả tiền";
+"type.amenity.parking.lane.fee" = "Làn đường đỗ xe";
 
 "type.amenity.parking.lane.private" = "Bãi đậu xe làn đường riêng";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Lối vào chính";
 
 "type.entrance.exit" = "Lối ra";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Miễn phí";
 
 "type.healthcare.laboratory" = "Phòng thí nghiệm y tế";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Điểm khảo cổ";
 
 "type.leisure.golf_course" = "Sân gôn";
+
+"type.leisure.hackerspace" = "Không gian tin tặc";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Ngầm";
 
+"type.railway.station.subway.singapore" = "Ngầm";
+
 "type.railway.station.subway.sofia" = "Ngầm";
 
 "type.railway.station.subway.spb" = "Ngầm";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Lỗi vào Metro";
 
 "type.railway.subway_entrance.shiraz" = "Lỗi vào Metro";
+
+"type.railway.subway_entrance.singapore" = "Lỗi vào Metro";
 
 "type.railway.subway_entrance.sofia" = "Lỗi vào Metro";
 

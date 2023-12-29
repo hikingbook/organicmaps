@@ -277,9 +277,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">지도 업데이트</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play 서비스</string>
+	<string name="google_play_services">Google Play 위치 서비스</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Google Play 서비스를 사용하여 현재 위치 정보 얻기</string>
+	<string name="pref_use_google_play">블루투스, WiFi 또는 모바일 네트워크를 통해 대략적인 위치를 빠르게 파악할 수 있습니다</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">경로를 따라 지도 다운로드</string>
 	<!-- Text for routing error dialog -->
@@ -489,9 +489,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">자세히</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">KAYAK의 세부 정보</string>
+	<string name="more_on_kayak">사진, 리뷰, 예약</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">이 링크를 통해 예약할 때마다 받는 추천 보너스는 오가닉맵 개발에 사용됩니다.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Kayak의 세부 정보</string>
 	<string name="placepage_edit_bookmark_button">즐겨찾기 편집</string>
 	<string name="editor_comment_hint">설명…</string>
 	<string name="editor_reset_edits_message">지역 변경 사항을 재설정하시겠습니까?</string>
@@ -503,7 +505,7 @@
 	<string name="error_enter_correct_phone">올바른 전화 번호 입력</string>
 	<string name="error_enter_correct_web">유효한 웹 주소 입력</string>
 	<string name="error_enter_correct_email">유효한 이메일 주소 입력</string>
-	<string name="placepage_add_place_button">지도에 장소 추가</string>
+	<string name="placepage_add_place_button">오픈스트리트맵에 장소 추가</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">이를 모든 사용자에게 전송하시겠습니까?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -577,13 +579,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d 추적</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">추적 설정</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">개인정보 보호</string>
 	<string name="privacy_policy">개인정보 보호 방침</string>
 	<string name="terms_of_use">사용 약관</string>
 	<string name="button_layer_traffic">트래픽</string>
 	<string name="button_layer_subway">지하철</string>
-	<string name="layers_title">맵 레이어</string>
+	<string name="layers_title">맵 스타일 및 레이어</string>
 	<string name="subway_data_unavailable">지하철 지도가 가용하지 않습니다.</string>
 	<string name="bookmarks_empty_list_title">이 목록은 비어있습니다.</string>
 	<string name="bookmarks_empty_list_message">북마크를 추가하려면 맵에서 장소를 탭하고 별 모양 아이콘을 탭하세요.</string>
@@ -710,6 +712,8 @@
 	<string name="aa_grant_permissions">권한 부여</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">차량에 연결</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">하이킹</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">주소/블록</string>
@@ -782,20 +786,21 @@
 	<string name="type.amenity.nightclub">나이트 클럽</string>
 	<string name="type.amenity.nursing_home">요양원</string>
 	<string name="type.amenity.parking">주차</string>
-	<string name="type.amenity.parking.fee">유료 주차장</string>
+	<string name="type.amenity.parking.fee">주차</string>
 	<string name="type.amenity.parking.multi.storey">다층 주차장</string>
+	<string name="type.amenity.parking.multi.storey.fee">다층 주차장</string>
 	<string name="type.amenity.parking.no.access">전용 주차장</string>
 	<string name="type.amenity.parking.permissive">전용 주차장</string>
 	<string name="type.amenity.parking.private">전용 주차장</string>
 	<string name="type.amenity.parking.park_and_ride">주차</string>
 	<string name="type.amenity.parking.underground">지하주차장</string>
-	<string name="type.amenity.parking.underground.fee">유료 지하 주차장</string>
+	<string name="type.amenity.parking.underground.fee">지하주차장</string>
 	<string name="type.amenity.parking.underground.private">전용 지하 주차장</string>
 	<string name="type.amenity.parking.street_side">노상 주차장</string>
-	<string name="type.amenity.parking.street_side.fee">유료 노상 주차장</string>
+	<string name="type.amenity.parking.street_side.fee">노상 주차장</string>
 	<string name="type.amenity.parking.street_side.private">전용 노상 주차장</string>
 	<string name="type.amenity.parking.lane">차선 주차</string>
-	<string name="type.amenity.parking.lane.fee">유료 차선 주차</string>
+	<string name="type.amenity.parking.lane.fee">차선 주차</string>
 	<string name="type.amenity.parking.lane.private">전용 차선 주차</string>
 	<string name="type.amenity.parking_entrance">주차장 입구</string>
 	<string name="type.amenity.parking_entrance.private">전용 주차장 입구</string>
@@ -1005,6 +1010,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">정문</string>
 	<string name="type.entrance.exit">종료</string>
+	<string name="type.fee.no">무료</string>
 	<string name="type.healthcare.laboratory">의료 연구실</string>
 	<string name="type.healthcare.physiotherapist">물리치료사</string>
 	<string name="type.healthcare.alternative">대체 약품</string>
@@ -1264,6 +1270,7 @@
 	<string name="type.leisure.garden">정원</string>
 	<string name="type.leisure.garden.residential">정원</string>
 	<string name="type.leisure.golf_course">골프장</string>
+	<string name="type.leisure.hackerspace">해커스 스페이스</string>
 	<string name="type.leisure.nature_reserve">천연보호구역</string>
 	<string name="type.leisure.outdoor_seating">야외 좌석</string>
 	<string name="type.leisure.park">공원</string>
@@ -1514,6 +1521,7 @@
 	<string name="type.railway.station.subway.sf">지하철</string>
 	<string name="type.railway.station.subway.shanghai">지하철</string>
 	<string name="type.railway.station.subway.shiraz">지하철</string>
+	<string name="type.railway.station.subway.singapore">지하철</string>
 	<string name="type.railway.station.subway.sofia">지하철</string>
 	<string name="type.railway.station.subway.spb">지하철</string>
 	<string name="type.railway.station.subway.stockholm">지하철</string>
@@ -1625,6 +1633,7 @@
 	<string name="type.railway.subway_entrance.sf">지하철 입구</string>
 	<string name="type.railway.subway_entrance.shanghai">지하철 입구</string>
 	<string name="type.railway.subway_entrance.shiraz">지하철 입구</string>
+	<string name="type.railway.subway_entrance.singapore">지하철 입구</string>
 	<string name="type.railway.subway_entrance.sofia">지하철 입구</string>
 	<string name="type.railway.subway_entrance.spb">지하철 입구</string>
 	<string name="type.railway.subway_entrance.stockholm">지하철 입구</string>

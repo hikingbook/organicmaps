@@ -123,6 +123,10 @@ NameScores GetNameScores(FeatureType & ft, Geocoder::Params const & params,
     auto const updateScore = [&](string_view name)
     {
       TokensVector vec(name);
+      // Name consists of stop words only.
+      if (vec.Size() == 0)
+        return;
+
       UpdateNameScores(vec, lang, slice, bestScores);
       UpdateNameScores(vec, lang, sliceNoCategories, bestScores);
 
@@ -435,10 +439,10 @@ private:
 
   bool GetExactAddress(FeatureType & ft, m2::PointD const & center, ReverseGeocoder::Address & addr) const
   {
-    if (m_reverseGeocoder.GetExactAddress(ft, addr))
+    if (m_reverseGeocoder.GetExactAddress(ft, addr, true /* placeAsStreet */))
       return true;
 
-    m_reverseGeocoder.GetNearbyAddress(center, 0.0 /* maxDistanceM */, addr);
+    m_reverseGeocoder.GetNearbyAddress(center, 0.0 /* maxDistanceM */, addr, true /* placeAsStreet */);
     return addr.IsValid();
   }
 
@@ -608,6 +612,10 @@ private:
   uint8_t NormalizeRank(uint8_t rank, Model::Type type, m2::PointD const & center,
                         string const & country, bool isCapital, bool isRelaxed)
   {
+    // Do not prioritize objects with population < 800. Same as RankToPopulation(rank) < 800, but faster.
+    if (rank <= 70)
+      return 0;
+
     if (isRelaxed)
       rank /= 5.0;
 

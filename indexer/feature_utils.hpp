@@ -125,4 +125,11 @@ namespace feature
 
   // Returns vector of recycling types localized by platform.
   std::vector<std::string> GetLocalizedRecyclingTypes(TypesHolder const & types);
+
+  // Returns fee type localized by platform.
+  std::string GetLocalizedFeeType(TypesHolder const & types);
+
+  /// Returns true if feature has ATM type.
+  bool HasAtm(TypesHolder const & types);
+
 }  // namespace feature

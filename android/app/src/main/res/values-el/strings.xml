@@ -277,9 +277,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Ενημέρωση χάρτη</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Υπηρεσίες Google Play</string>
+	<string name="google_play_services">Υπηρεσίες τοποθεσίας Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Χρησιμοποιήστε υπηρεσίες Google Play για να προσδιορίσετε την τρέχουσα τοποθεσία σας</string>
+	<string name="pref_use_google_play">Προσδιορίστε γρήγορα την κατά προσέγγιση τοποθεσία σας μέσω Bluetooth, WiFi ή δικτύου κινητής τηλεφωνίας</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Κατεβάστε όλους τους χάρτες για ολόκληρο το μήκος της διαδρομής σας</string>
 	<!-- Text for routing error dialog -->
@@ -483,9 +483,11 @@
 	<string name="current_location_unknown_stop_button">Στοπ</string>
 	<string name="placepage_more_button">Περισσότερα</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Λεπτομέρειες στο KAYAK</string>
+	<string name="more_on_kayak">Φωτογραφίες, κριτικές, κράτηση</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Το μπόνους παραπομπής που λαμβάνετε για κάθε κράτηση μέσω αυτού του συνδέσμου πηγαίνει στην ανάπτυξη του Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Λεπτομέρειες στο Kayak</string>
 	<string name="placepage_edit_bookmark_button">Επεξεργασία αγαπημένου</string>
 	<string name="editor_comment_hint">Σχόλιο…</string>
 	<string name="editor_reset_edits_message">Απόρριψη όλων των τοπικών αλλαγών;</string>
@@ -497,7 +499,7 @@
 	<string name="error_enter_correct_phone">Εισάγετε έναν έγκυρο αριθμό τηλεφώνου</string>
 	<string name="error_enter_correct_web">Εισάγετε μια έγκυρη διεύθυνση ιστοτόπου</string>
 	<string name="error_enter_correct_email">Εισάγετε ένα έγκυρο email</string>
-	<string name="placepage_add_place_button">Να προστεθεί η τοποθεσία στο χάρτη</string>
+	<string name="placepage_add_place_button">Προσθήκη τόπου στο OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Θέλετε να το στείλετε σε όλους τους χρήστες;</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -571,13 +573,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d διαδρομές</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Ρυθμίσεις διαδρομών</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Απόρρητο</string>
 	<string name="privacy_policy">Πολιτική απορρήτου</string>
 	<string name="terms_of_use">Όροι χρήσης</string>
 	<string name="button_layer_traffic">Κίνηση</string>
 	<string name="button_layer_subway">Μετρό</string>
-	<string name="layers_title">Επίπεδα του χάρτη</string>
+	<string name="layers_title">Στυλ χάρτη και επίπεδα</string>
 	<string name="subway_data_unavailable">Ο χάρτης μετρό δεν είναι διαθέσιμος</string>
 	<string name="bookmarks_empty_list_title">Η λίστα είναι άδεια</string>
 	<string name="bookmarks_empty_list_message">Για να προσθέσετε σελιδοδείκτη, πατήστε ένα μέρος στο χάρτη και μετά πατήστε το αστεράκι</string>
@@ -704,6 +706,8 @@
 	<string name="aa_grant_permissions">Χορήγηση αδειών</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Συνδεδεμένο με το αυτοκίνητο</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Πεζοπορία</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Διεύθυνση/Μπλοκ</string>
@@ -781,20 +785,21 @@
 	<string name="type.amenity.nightclub">Νυχτερινό κέντρο διασκέδασης</string>
 	<string name="type.amenity.nursing_home">Γηροκομείο</string>
 	<string name="type.amenity.parking">Χώρος στάθμευσης</string>
-	<string name="type.amenity.parking.fee">Χώρος στάθμευσης επί πληρωμή</string>
+	<string name="type.amenity.parking.fee">Χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.multi.storey">Πολυώροφος χώρος στάθμευσης</string>
+	<string name="type.amenity.parking.multi.storey.fee">Πολυώροφος χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.no.access">Ιδιωτικός χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.permissive">Ιδιωτικός χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.private">Ιδιωτικός χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.park_and_ride">Χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.underground">Υπόγειος χώρος στάθμευσης</string>
-	<string name="type.amenity.parking.underground.fee">Υπόγειος χώρος στάθμευσης επί πληρωμή</string>
+	<string name="type.amenity.parking.underground.fee">Υπόγειος χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.underground.private">Ιδιωτικός υπόγειος χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.street_side">Στάθμευση στην πλευρά του δρόμου</string>
-	<string name="type.amenity.parking.street_side.fee">Πληρωμένη στάθμευση στο δρόμο</string>
+	<string name="type.amenity.parking.street_side.fee">Στάθμευση στην πλευρά του δρόμου</string>
 	<string name="type.amenity.parking.street_side.private">Ιδιωτικός δρόμος πλευρικός χώρος στάθμευσης</string>
 	<string name="type.amenity.parking.lane">Λωρίδα στάθμευσης</string>
-	<string name="type.amenity.parking.lane.fee">Χώρος στάθμευσης επί πληρωμή</string>
+	<string name="type.amenity.parking.lane.fee">Λωρίδα στάθμευσης</string>
 	<string name="type.amenity.parking.lane.private">Ιδιωτική λωρίδα στάθμευσης</string>
 	<string name="type.amenity.parking_entrance">Είσοδος στάθμευσης</string>
 	<string name="type.amenity.parking_entrance.private">Ιδιωτική είσοδος στάθμευσης</string>
@@ -1004,6 +1009,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Κύρια είσοδος</string>
 	<string name="type.entrance.exit">Έξοδος</string>
+	<string name="type.fee.no">Δωρεάν</string>
 	<string name="type.healthcare.laboratory">Ιατρικό Εργαστήριο</string>
 	<string name="type.healthcare.physiotherapist">Φυσικοθεραπευτής</string>
 	<string name="type.healthcare.alternative">Εναλλακτική ιατρική</string>
@@ -1309,7 +1315,7 @@
 	<string name="type.natural.glacier">Παγετώνας</string>
 	<string name="type.natural.grassland">Βοσκότοποι</string>
 	<string name="type.natural.heath">Ρείκι</string>
-	<string name="type.natural.hot_spring">Ιαματικές πηγές</string>
+	<string name="type.natural.hot_spring">Θερμή πηγή</string>
 	<string name="type.natural.water.lake">Λίμνη</string>
 	<string name="type.natural.water.lock">Θάλαμος κλειδαριάς</string>
 	<string name="type.natural.water.pond">Δεξαμενή</string>
@@ -1515,6 +1521,7 @@
 	<string name="type.railway.station.subway.sf">Μετρό</string>
 	<string name="type.railway.station.subway.shanghai">Μετρό</string>
 	<string name="type.railway.station.subway.shiraz">Μετρό</string>
+	<string name="type.railway.station.subway.singapore">Μετρό</string>
 	<string name="type.railway.station.subway.sofia">Μετρό</string>
 	<string name="type.railway.station.subway.spb">Μετρό</string>
 	<string name="type.railway.station.subway.stockholm">Μετρό</string>
@@ -1626,6 +1633,7 @@
 	<string name="type.railway.subway_entrance.sf">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.shanghai">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.shiraz">Είσοδος μετρό</string>
+	<string name="type.railway.subway_entrance.singapore">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.sofia">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.spb">Είσοδος μετρό</string>
 	<string name="type.railway.subway_entrance.stockholm">Είσοδος μετρό</string>

@@ -790,10 +790,13 @@
 "book_button" = "Boka";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Information på KAYAK";
+"more_on_kayak" = "Foton, recensioner, bokning";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Hänvisningsbonusen som erhålls för varje bokning via denna länk går till utvecklingen av Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Information på Kayak";
 
 "placepage_call_button" = "Ring";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Uppdatera";
 
-"placepage_add_place_button" = "Lägg till en plats på kartan";
+"placepage_add_place_button" = "Lägg till plats i OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Vill du skicka det till alla användare?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Tunnelbana";
 
-"layers_title" = "Kartlager";
+"layers_title" = "Kartstilar och lager";
 
 "subway_data_unavailable" = "Kartor över tunnelbana är otillgänglig";
 
@@ -985,7 +988,7 @@
 
 "delete_list" = "Radera listan";
 
-"hide_from_map" = "Dölj från kort";
+"hide_from_map" = "Dölj från karta";
 
 "bookmark_list_description_hint" = "Lägg till en beskrivning (text eller html)";
 
@@ -1183,7 +1186,7 @@
 
 "elevation_profile_maxaltitude" = "Max. höjd";
 
-"elevation_profile_difficulty" = "Komplexitet";
+"elevation_profile_difficulty" = "Svårighet";
 
 "elevation_profile_time" = "Tid:";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Vandring";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parkering";
 
-"type.amenity.parking.fee" = "Betald parkering";
+"type.amenity.parking.fee" = "Parkering";
 
 "type.amenity.parking.multi.storey" = "Flervånings parkering";
+
+"type.amenity.parking.multi.storey.fee" = "Flervånings parkering";
 
 "type.amenity.parking.no.access" = "Privat parkering";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Underjordisk parkering";
 
-"type.amenity.parking.underground.fee" = "Betald underjordisk parkering";
+"type.amenity.parking.underground.fee" = "Underjordisk parkering";
 
 "type.amenity.parking.underground.private" = "Privat underjordisk parkering";
 
 "type.amenity.parking.street_side" = "Gata sida parkering";
 
-"type.amenity.parking.street_side.fee" = "Betald gata sidoparkering";
+"type.amenity.parking.street_side.fee" = "Gata sida parkering";
 
 "type.amenity.parking.street_side.private" = "Privat gata sidoparkering";
 
 "type.amenity.parking.lane" = "Körfält parkering";
 
-"type.amenity.parking.lane.fee" = "Avgiftsbelagd körfältsparkering";
+"type.amenity.parking.lane.fee" = "Körfält parkering";
 
 "type.amenity.parking.lane.private" = "Privat körfält parkering";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Huvudentré";
 
 "type.entrance.exit" = "Utgång";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratis";
 
 "type.healthcare.laboratory" = "Medicinskt laboratorium";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Trädgård";
 
 "type.leisure.golf_course" = "Golfbana";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Tunnelbana";
 
+"type.railway.station.subway.singapore" = "Tunnelbana";
+
 "type.railway.station.subway.sofia" = "Tunnelbana";
 
 "type.railway.station.subway.spb" = "Tunnelbana";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Tunnelbana entré";
 
 "type.railway.subway_entrance.shiraz" = "Tunnelbana entré";
+
+"type.railway.subway_entrance.singapore" = "Tunnelbana entré";
 
 "type.railway.subway_entrance.sofia" = "Tunnelbana entré";
 

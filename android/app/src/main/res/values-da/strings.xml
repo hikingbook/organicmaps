@@ -277,9 +277,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Opdater kort</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play-tjenester</string>
+	<string name="google_play_services">Google Play Placeringstjenester</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Anvend Google Play Services til at få din aktuelle placering</string>
+	<string name="pref_use_google_play">Find hurtigt din omtrentlige position via Bluetooth, WiFi eller mobilnetværk</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Download kort på vejen</string>
 	<!-- Text for routing error dialog -->
@@ -491,9 +491,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mere</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Detaljer på KAYAK</string>
+	<string name="more_on_kayak">Fotos, anmeldelser, booking</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Henvisningsbonussen, der modtages for hver booking via dette link, går til udviklingen af Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Detaljer på Kayak</string>
 	<string name="placepage_edit_bookmark_button">Rediger bogmærke</string>
 	<string name="editor_comment_hint">Kommentar…</string>
 	<string name="editor_reset_edits_message">Nulstil alle lokale ændringer?</string>
@@ -505,7 +507,7 @@
 	<string name="error_enter_correct_phone">Indtast korrekt telefonnummer</string>
 	<string name="error_enter_correct_web">Indtast en gyldig webadresse</string>
 	<string name="error_enter_correct_email">Indtast en gyldig emailadresse</string>
-	<string name="placepage_add_place_button">Tilføj et sted på kortet</string>
+	<string name="placepage_add_place_button">Tilføj sted til OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Ønsker du at sende det til alle brugere?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -580,13 +582,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d ruter</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Tracking-indstillinger</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Privatliv</string>
 	<string name="privacy_policy">Privatlivspolitik</string>
 	<string name="terms_of_use">Vilkår for bruger</string>
 	<string name="button_layer_traffic">Trafik</string>
 	<string name="button_layer_subway">Undergrundsbane</string>
-	<string name="layers_title">Kortlag</string>
+	<string name="layers_title">Kortstile og -lag</string>
 	<string name="subway_data_unavailable">Kort over undergrundsbaner er ikke tilgængeligt</string>
 	<string name="bookmarks_empty_list_title">Listen er tom</string>
 	<string name="bookmarks_empty_list_message">For at tilføje et bogmærke, så tryk et sted på kort og så på stjerneikonet</string>
@@ -713,6 +715,8 @@
 	<string name="aa_grant_permissions">Giv tilladelser</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Forbundet til bilen</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Vandring</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/blok</string>
@@ -782,20 +786,21 @@
 	<string name="type.amenity.nightclub">Natklub</string>
 	<string name="type.amenity.nursing_home">Plejehjem</string>
 	<string name="type.amenity.parking">Parkering</string>
-	<string name="type.amenity.parking.fee">Betalt parkering</string>
+	<string name="type.amenity.parking.fee">Parkering</string>
 	<string name="type.amenity.parking.multi.storey">Parkering i flere etager</string>
+	<string name="type.amenity.parking.multi.storey.fee">Parkering i flere etager</string>
 	<string name="type.amenity.parking.no.access">Privat parkering</string>
 	<string name="type.amenity.parking.permissive">Privat parkering</string>
 	<string name="type.amenity.parking.private">Privat parkering</string>
 	<string name="type.amenity.parking.park_and_ride">Parkering</string>
 	<string name="type.amenity.parking.underground">Underjordisk parkering</string>
-	<string name="type.amenity.parking.underground.fee">Betalt underjordisk parkering</string>
+	<string name="type.amenity.parking.underground.fee">Underjordisk parkering</string>
 	<string name="type.amenity.parking.underground.private">Privat underjordisk parkering</string>
 	<string name="type.amenity.parking.street_side">Parkering på gadesiden</string>
-	<string name="type.amenity.parking.street_side.fee">Betalt parkering på gadesiden</string>
+	<string name="type.amenity.parking.street_side.fee">Parkering på gadesiden</string>
 	<string name="type.amenity.parking.street_side.private">Privat gade sideparkering</string>
 	<string name="type.amenity.parking.lane">Parkering på kørebane</string>
-	<string name="type.amenity.parking.lane.fee">Betalt baneparkering</string>
+	<string name="type.amenity.parking.lane.fee">Parkering på kørebane</string>
 	<string name="type.amenity.parking.lane.private">Privat vej parkering</string>
 	<string name="type.amenity.parking_entrance">Parkeringsindgang</string>
 	<string name="type.amenity.parking_entrance.private">Privat indgang til parkering</string>
@@ -999,6 +1004,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Hovedindgang</string>
 	<string name="type.entrance.exit">Udgang</string>
+	<string name="type.fee.no">Gratis</string>
 	<string name="type.healthcare.laboratory">Medicinsk laboratorium</string>
 	<string name="type.healthcare.physiotherapist">Fysioterapeut</string>
 	<string name="type.healthcare.alternative">Alternativ medicin</string>
@@ -1505,6 +1511,7 @@
 	<string name="type.railway.station.subway.sf">Metro</string>
 	<string name="type.railway.station.subway.shanghai">Metro</string>
 	<string name="type.railway.station.subway.shiraz">Metro</string>
+	<string name="type.railway.station.subway.singapore">Metro</string>
 	<string name="type.railway.station.subway.sofia">Metro</string>
 	<string name="type.railway.station.subway.spb">Metro</string>
 	<string name="type.railway.station.subway.stockholm">Metro</string>
@@ -1616,6 +1623,7 @@
 	<string name="type.railway.subway_entrance.sf">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.shanghai">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.shiraz">Indgang til undergrundsbane</string>
+	<string name="type.railway.subway_entrance.singapore">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.sofia">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.spb">Indgang til undergrundsbane</string>
 	<string name="type.railway.subway_entrance.stockholm">Indgang til undergrundsbane</string>

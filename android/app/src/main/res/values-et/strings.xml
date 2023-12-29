@@ -286,9 +286,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Värskenda kaart</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play teenused</string>
+	<string name="google_play_services">Google Play asukohateenused</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Kasuta Google Play teenuseid oma hetkeasukoha määramiseks</string>
+	<string name="pref_use_google_play">Määrake kiiresti oma ligikaudne asukoht Bluetoothi, WiFi või mobiilivõrgu kaudu</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Lae alla kõik kaardid oma marsruudil</string>
 	<!-- Text for routing error dialog -->
@@ -503,9 +503,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Veel</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Üksikasjad KAYAKi kohta</string>
+	<string name="more_on_kayak">Fotod, arvustused, broneerimine</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Iga selle lingi kaudu tehtud broneeringu eest saadav boonus läheb Organic Maps\'i arendamiseks.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Üksikasjad Kayaki kohta</string>
 	<string name="placepage_edit_bookmark_button">Muuda järjehoidjat</string>
 	<string name="editor_comment_hint">Kommenteeri…</string>
 	<string name="editor_reset_edits_message">Loobu kõigist kohalikest muudatustest?</string>
@@ -524,7 +526,7 @@
 	<string name="error_enter_correct_twitter_page">Sisesta kehtiv Twitteri veebiaadress või kasutajanimi</string>
 	<string name="error_enter_correct_vk_page">Sisesta kehtiv VK veebiaadress või konto nimi</string>
 	<string name="error_enter_correct_line_page">Sisesta kehtiv LINE veebiaadress või LINE ID</string>
-	<string name="placepage_add_place_button">Lisa koht kaardile</string>
+	<string name="placepage_add_place_button">Lisa koht OpenStreetMapile</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Kas soovid saata selle kõigile kasutajatele?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -601,13 +603,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d rada</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Asukoha määramise seaded</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Privaatsus</string>
 	<string name="privacy_policy">Privaatsuspoliitika</string>
 	<string name="terms_of_use">Kasutustingimused</string>
 	<string name="button_layer_traffic">Liiklus</string>
 	<string name="button_layer_subway">Metroo</string>
-	<string name="layers_title">Kaardikihid</string>
+	<string name="layers_title">Kaardi stiilid ja kihid</string>
 	<string name="subway_data_unavailable">Metroo kaart ei ole saadaval</string>
 	<string name="bookmarks_empty_list_title">See loetelu on tühi</string>
 	<string name="bookmarks_empty_list_message">Järjehoidja lisamiseks puuduta kohta kaardil ja seejärel puuduta tähekese ikooni</string>
@@ -653,9 +655,9 @@
 	<!-- A generic "No" button in dialogs -->
 	<string name="no">Ei</string>
 	<!-- E.g. "WiFi:Yes" -->
-	<string name="yes_available">jah</string>
+	<string name="yes_available">Jah</string>
 	<!-- E.g. "WiFi:No" -->
-	<string name="no_available">ei</string>
+	<string name="no_available">Ei</string>
 	<string name="trip_finished">Oled kohal!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -745,6 +747,8 @@
 	<string name="aa_grant_permissions">Lubade andmine</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Ühendatud autoga</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Matkamine</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Aadress/plokk</string>
@@ -831,20 +835,21 @@
 	<string name="type.amenity.nightclub">Ööklubi</string>
 	<string name="type.amenity.nursing_home">Hooldekodu</string>
 	<string name="type.amenity.parking">Parkimine</string>
-	<string name="type.amenity.parking.fee">Tasuline parkimine</string>
+	<string name="type.amenity.parking.fee">Parkimine</string>
 	<string name="type.amenity.parking.multi.storey">Parkimine mitmel korrusel</string>
+	<string name="type.amenity.parking.multi.storey.fee">Parkimine mitmel korrusel</string>
 	<string name="type.amenity.parking.no.access">Privaatne parkimine</string>
 	<string name="type.amenity.parking.permissive">Privaatne parkimine</string>
 	<string name="type.amenity.parking.private">Privaatne parkimine</string>
 	<string name="type.amenity.parking.park_and_ride">Parkimine</string>
 	<string name="type.amenity.parking.underground">Maa-alune parkimine</string>
-	<string name="type.amenity.parking.underground.fee">Tasuline maa-alune parkimine</string>
+	<string name="type.amenity.parking.underground.fee">Maa-alune parkimine</string>
 	<string name="type.amenity.parking.underground.private">Privaatne maa-alune parkimine</string>
 	<string name="type.amenity.parking.street_side">Tänavaäärne parkimine</string>
-	<string name="type.amenity.parking.street_side.fee">Tasuline tänavaäärne parkimine</string>
+	<string name="type.amenity.parking.street_side.fee">Tänavaäärne parkimine</string>
 	<string name="type.amenity.parking.street_side.private">Privaatne tänavaäärne parkimine</string>
 	<string name="type.amenity.parking.lane">Parkimine sõidurajal</string>
-	<string name="type.amenity.parking.lane.fee">Tasuline parkimine</string>
+	<string name="type.amenity.parking.lane.fee">Parkimine sõidurajal</string>
 	<string name="type.amenity.parking.lane.private">Privaatne tee parkimine</string>
 	<string name="type.amenity.parking_entrance">Parkla sissepääs</string>
 	<string name="type.amenity.parking_entrance.private">Eraldi parkla sissepääs</string>
@@ -1101,6 +1106,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Peasissekäik</string>
 	<string name="type.entrance.exit">Väljumine</string>
+	<string name="type.fee.no">Tasuta</string>
 	<string name="type.healthcare.laboratory">Meditsiinilabor</string>
 	<string name="type.healthcare.physiotherapist">Füsioterapeut</string>
 	<string name="type.healthcare.alternative">Alternatiivne meditsiin</string>
@@ -1704,6 +1710,7 @@
 	<string name="type.railway.station.subway.sf">Metroo</string>
 	<string name="type.railway.station.subway.shanghai">Metroo</string>
 	<string name="type.railway.station.subway.shiraz">Metroo</string>
+	<string name="type.railway.station.subway.singapore">Metroo</string>
 	<string name="type.railway.station.subway.sofia">Metroo</string>
 	<string name="type.railway.station.subway.spb">Metroo</string>
 	<string name="type.railway.station.subway.stockholm">Metroo</string>
@@ -1818,6 +1825,7 @@
 	<string name="type.railway.subway_entrance.sf">Metroo sissepääs</string>
 	<string name="type.railway.subway_entrance.shanghai">Metroo sissepääs</string>
 	<string name="type.railway.subway_entrance.shiraz">Metroo sissepääs</string>
+	<string name="type.railway.subway_entrance.singapore">Metroo sissepääs</string>
 	<string name="type.railway.subway_entrance.sofia">Metroo sissepääs</string>
 	<string name="type.railway.subway_entrance.spb">Metroo sissepääs</string>
 	<string name="type.railway.subway_entrance.stockholm">Metroo sissepääs</string>

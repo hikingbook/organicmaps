@@ -288,9 +288,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Actualitza el mapa</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Serveis de Google Play</string>
+	<string name="google_play_services">Serveis d\'ubicació de Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Usa els serveis de Google Play per a obtenir la ubicació actual</string>
+	<string name="pref_use_google_play">Determineu ràpidament la vostra ubicació aproximada mitjançant Bluetooth, WiFi o xarxa mòbil</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Baixeu tots els mapes de la ruta</string>
 	<!-- Text for routing error dialog -->
@@ -504,9 +504,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Més</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Detalls a KAYAK</string>
+	<string name="more_on_kayak">Fotos, comentaris, reserves</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">La bonificació de referència rebuda per cada reserva a través d\'aquest enllaç es destina al desenvolupament de Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Detalls a Kayak</string>
 	<string name="placepage_edit_bookmark_button">Edita el marcador</string>
 	<string name="editor_comment_hint">Comentari…</string>
 	<string name="editor_reset_edits_message">Voleu descartar tots els canvis locals?</string>
@@ -525,7 +527,7 @@
 	<string name="error_enter_correct_twitter_page">Introduïu una adreça web de Twitter o un nom d\'usuari vàlids</string>
 	<string name="error_enter_correct_vk_page">Introduïu una adreça web de VK o un nom de compte vàlids</string>
 	<string name="error_enter_correct_line_page">Introduïu una adreça web de LINE o un ID LINE vàlids</string>
-	<string name="placepage_add_place_button">Afegeix un lloc en el mapa</string>
+	<string name="placepage_add_place_button">Afegeix un lloc a OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Voleu enviar-ho a tots els usuaris?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -603,13 +605,13 @@
 	  <item quantity="one">%d traça</item>
 	  <item quantity="other">%d traces</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Configuració de seguiment</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Privadesa</string>
 	<string name="privacy_policy">Normes de confidencialitat</string>
 	<string name="terms_of_use">Considicions del servei</string>
 	<string name="button_layer_traffic">Trànsit</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Capes del mapa</string>
+	<string name="layers_title">Estils i capes de mapa</string>
 	<string name="subway_data_unavailable">El mapa del metro no és disponible</string>
 	<string name="bookmarks_empty_list_title">Aquesta llista és buida</string>
 	<string name="bookmarks_empty_list_message">Per a afegir un marcador, toqueu un lloc en el mapa i després toqueu la icona d\'estrella</string>
@@ -655,9 +657,9 @@
 	<!-- A generic "No" button in dialogs -->
 	<string name="no">No</string>
 	<!-- E.g. "WiFi:Yes" -->
-	<string name="yes_available">sí</string>
+	<string name="yes_available">Sí</string>
 	<!-- E.g. "WiFi:No" -->
-	<string name="no_available">no</string>
+	<string name="no_available">No</string>
 	<string name="trip_finished">Heu arribat!</string>
 	<string name="ok">D\'acord</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -751,6 +753,8 @@
 	<string name="aa_grant_permissions">Concedeix permisos</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Connectat al cotxe</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Senderisme</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adreça/Bloc</string>
@@ -767,13 +771,12 @@
 	<string name="type.amenity.exhibition_centre">Centre d\'exposicions</string>
 	<string name="type.amenity.money_transfer">Transferència de diners</string>
 	<string name="type.amenity.loading_dock">Moll de càrrega</string>
-	<string name="type.amenity.parking.underground.fee">Aparcament subterrani de pagament</string>
 	<string name="type.amenity.parking.underground.private">Aparcament subterrani privat</string>
 	<string name="type.amenity.parking.street_side">Aparcament al carrer</string>
-	<string name="type.amenity.parking.street_side.fee">Aparcament al carrer de pagament</string>
+	<string name="type.amenity.parking.street_side.fee">Aparcament al carrer</string>
 	<string name="type.amenity.parking.street_side.private">Aparcament privat al carrer</string>
 	<string name="type.amenity.parking.lane">Aparcament del carril</string>
-	<string name="type.amenity.parking.lane.fee">Aparcament de carril de pagament</string>
+	<string name="type.amenity.parking.lane.fee">Aparcament del carril</string>
 	<string name="type.amenity.parking.lane.private">Aparcament de carril privat</string>
 	<string name="type.amenity.parking_entrance.private">Entrada d\'aparcament privat</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">Església de Jesucrist dels Sants dels Últims Dies</string>
@@ -802,6 +805,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrada principal</string>
 	<string name="type.entrance.exit">Sortida</string>
+	<string name="type.fee.no">Gratuït</string>
 
 	<!-- SECTION: Types: Roads -->
 	<string name="type.highway.busway">Carretera dedicada a l\'autobús</string>
@@ -818,6 +822,7 @@
 	<string name="type.landuse.flowerbed">Llit de flors</string>
 	<string name="type.leisure.outdoor_seating">Seients a l\'aire lliure</string>
 	<string name="type.man_made.tower.communication">Torre de comunicacions</string>
+	<string name="type.natural.hot_spring">Font termal</string>
 	<string name="type.power.generator.solar">Generador solar</string>
 	<string name="type.power.generator.wind">Generador eòlic</string>
 	<string name="type.power.generator.gas">Central elèctrica de turbina de gas</string>

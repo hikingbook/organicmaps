@@ -275,9 +275,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">地図を更新</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play 開発者サービス</string>
+	<string name="google_play_services">Google Play位置情報サービス</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">現在のロケーションを取得するためにGoogle Playのサービスを使う</string>
+	<string name="pref_use_google_play">Bluetooth、WiFi、またはモバイルネットワーク経由で、おおよその位置を素早く特定する</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">ルート上の地図をダウンロード</string>
 	<!-- Text for routing error dialog -->
@@ -487,9 +487,11 @@
 	<string name="minute">分</string>
 	<string name="placepage_more_button">さらに詳しく</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">KAYAK で詳細表示</string>
+	<string name="more_on_kayak">写真、レビュー、予約</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">このリンクを経由した予約の紹介ボーナスは、Organic Mapsの発展のために使われる。</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Kayak で詳細表示</string>
 	<string name="placepage_edit_bookmark_button">ブックマークを編集</string>
 	<string name="editor_comment_hint">コメント…</string>
 	<string name="editor_reset_edits_message">すべてのローカルの変更をリセットしますか？</string>
@@ -501,7 +503,7 @@
 	<string name="error_enter_correct_phone">正しい電話番号を入力してください</string>
 	<string name="error_enter_correct_web">有効なウェブアドレスを入力してください</string>
 	<string name="error_enter_correct_email">有効なメールアドレスを入力してください</string>
-	<string name="placepage_add_place_button">地図上に場所を追加</string>
+	<string name="placepage_add_place_button">OpenStreetMapに場所を追加する</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">全てのユーザーに送信しますか？</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -575,13 +577,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%dの追跡</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">追跡の設定</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">プライバシー</string>
 	<string name="privacy_policy">個人情報保護方針</string>
 	<string name="terms_of_use">ご利用規約</string>
 	<string name="button_layer_traffic">交通状況</string>
 	<string name="button_layer_subway">地下鉄</string>
-	<string name="layers_title">マップレイヤー</string>
+	<string name="layers_title">マップのスタイルとレイヤー</string>
 	<string name="subway_data_unavailable">地下鉄路線図はご利用いただけません</string>
 	<string name="bookmarks_empty_list_title">このリストは空です</string>
 	<string name="bookmarks_empty_list_message">ブックマークを追加するには、地図上の場所をタップし、星のアイコンをタップします。</string>
@@ -708,6 +710,8 @@
 	<string name="aa_grant_permissions">許可を与える</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">自動車に接続されている</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">ハイキング</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">アドレス/ブロック</string>
@@ -793,20 +797,21 @@
 	<string name="type.amenity.nightclub">ナイトクラブ</string>
 	<string name="type.amenity.nursing_home">養護施設</string>
 	<string name="type.amenity.parking">駐車場</string>
-	<string name="type.amenity.parking.fee">有料駐車場</string>
+	<string name="type.amenity.parking.fee">駐車場</string>
 	<string name="type.amenity.parking.multi.storey">立体駐車場</string>
+	<string name="type.amenity.parking.multi.storey.fee">立体駐車場</string>
 	<string name="type.amenity.parking.no.access">専用駐車場</string>
 	<string name="type.amenity.parking.permissive">専用駐車場</string>
 	<string name="type.amenity.parking.private">専用駐車場</string>
 	<string name="type.amenity.parking.park_and_ride">駐車場</string>
 	<string name="type.amenity.parking.underground">地下駐車場</string>
-	<string name="type.amenity.parking.underground.fee">有料地下駐車場</string>
+	<string name="type.amenity.parking.underground.fee">地下駐車場</string>
 	<string name="type.amenity.parking.underground.private">専用地下駐車場</string>
 	<string name="type.amenity.parking.street_side">路上駐車</string>
-	<string name="type.amenity.parking.street_side.fee">有料路上駐車場</string>
+	<string name="type.amenity.parking.street_side.fee">路上駐車</string>
 	<string name="type.amenity.parking.street_side.private">プライベート・ストリート・サイド・パーキング</string>
 	<string name="type.amenity.parking.lane">レーンパーキング</string>
-	<string name="type.amenity.parking.lane.fee">有料レーン駐車場</string>
+	<string name="type.amenity.parking.lane.fee">レーンパーキング</string>
 	<string name="type.amenity.parking.lane.private">専用レーン駐車場</string>
 	<string name="type.amenity.parking_entrance">駐車場入口</string>
 	<string name="type.amenity.parking_entrance.private">専用駐車場入り口</string>
@@ -1035,6 +1040,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">正面玄関</string>
 	<string name="type.entrance.exit">終了する</string>
+	<string name="type.fee.no">無料</string>
 	<string name="type.healthcare.laboratory">医療研究所</string>
 	<string name="type.healthcare.physiotherapist">理学療法士</string>
 	<string name="type.healthcare.alternative">代替医療</string>
@@ -1328,6 +1334,7 @@
 	<string name="type.leisure.garden">庭園</string>
 	<string name="type.leisure.garden.residential">庭園</string>
 	<string name="type.leisure.golf_course">ゴルフコース</string>
+	<string name="type.leisure.hackerspace">ハッカースペース</string>
 	<string name="type.leisure.ice_rink">アイスリンク</string>
 	<string name="type.leisure.landscape_reserve">自然保護区</string>
 	<string name="type.leisure.marina">マリーナ</string>
@@ -1625,6 +1632,7 @@
 	<string name="type.railway.station.subway.sf">地下鉄</string>
 	<string name="type.railway.station.subway.shanghai">地下鉄</string>
 	<string name="type.railway.station.subway.shiraz">地下鉄</string>
+	<string name="type.railway.station.subway.singapore">地下鉄</string>
 	<string name="type.railway.station.subway.sofia">地下鉄</string>
 	<string name="type.railway.station.subway.spb">地下鉄</string>
 	<string name="type.railway.station.subway.stockholm">地下鉄</string>
@@ -1736,6 +1744,7 @@
 	<string name="type.railway.subway_entrance.sf">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.shanghai">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.shiraz">地下鉄入り口</string>
+	<string name="type.railway.subway_entrance.singapore">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.sofia">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.spb">地下鉄入り口</string>
 	<string name="type.railway.subway_entrance.stockholm">地下鉄入り口</string>

@@ -66,6 +66,8 @@ public:
     return m_metadata == other.m_metadata;
   }
 
+  void Clear() { m_metadata.clear(); }
+
 protected:
   friend bool indexer::MetadataDeserializer::Get(uint32_t id, MetadataBase & meta);
 
@@ -171,6 +173,8 @@ public:
   static std::string ToWikiURL(std::string v);
   std::string GetWikiURL() const;
   static std::string ToWikimediaCommonsURL(std::string const & v);
+
+  void ClearPOIAttribs();
 };
 
 class AddressData : public MetadataBase
@@ -178,14 +182,25 @@ class AddressData : public MetadataBase
 public:
   enum class Type : uint8_t
   {
-    Street,
-    Postcode
+    Street, Place,
   };
 
-  void Add(Type type, std::string const & s)
+  // Store single value only.
+  void Set(Type type, std::string_view s)
   {
-    // Store single value only.
-    MetadataBase::Set(base::Underlying(type), s);
+    Set(type, std::string(s));
+  }
+  void Set(Type type, std::string s)
+  {
+    if (!s.empty())
+      MetadataBase::Set(base::Underlying(type), std::move(s));
+  }
+
+  void SetIfAbsent(Type type, std::string s)
+  {
+    uint8_t const ut = base::Underlying(type);
+    if (!s.empty() && !Has(ut))
+      MetadataBase::Set(ut, std::move(s));
   }
 
   std::string_view Get(Type type) const { return MetadataBase::Get(base::Underlying(type)); }

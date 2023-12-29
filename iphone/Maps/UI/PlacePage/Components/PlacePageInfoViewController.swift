@@ -89,6 +89,7 @@ class PlacePageInfoViewController: UIViewController {
   private var cuisineView: InfoItemViewController?
   private var operatorView: InfoItemViewController?
   private var wifiView: InfoItemViewController?
+  private var atmView: InfoItemViewController?
   private var addressView: InfoItemViewController?
   private var levelView: InfoItemViewController?
   private var coordinatesView: InfoItemViewController?
@@ -136,7 +137,8 @@ class PlacePageInfoViewController: UIViewController {
     }
 
     if let website = placePageInfoData.website {
-      websiteView = createInfoItem(website, icon: UIImage(named: "ic_placepage_website"), style: .link) { [weak self] in
+      // Strip website url only when the value is displayed, to avoid issues when it's opened or edited.
+      websiteView = createInfoItem(stripUrl(str: website), icon: UIImage(named: "ic_placepage_website"), style: .link) { [weak self] in
         self?.delegate?.didPressWebsite()
       }
     }
@@ -144,12 +146,6 @@ class PlacePageInfoViewController: UIViewController {
     if placePageInfoData.wikipedia != nil {
       wikipediaView = createInfoItem(L("read_in_wikipedia"), icon: UIImage(named: "ic_placepage_wiki"), style: .link) { [weak self] in
         self?.delegate?.didPressWikipedia()
-      }
-    }
-    
-    if placePageInfoData.kayak != nil {
-      kayakView = createInfoItem(L("more_on_kayak"), icon: UIImage(named: "ic_placepage_kayak"), style: .link) { [weak self] in
-        self?.delegate?.didPressKayak()
       }
     }
 
@@ -161,6 +157,10 @@ class PlacePageInfoViewController: UIViewController {
 
     if let wifi = placePageInfoData.wifiAvailable {
       wifiView = createInfoItem(wifi, icon: UIImage(named: "ic_placepage_wifi"))
+    }
+    
+    if let atm = placePageInfoData.atm {
+      atmView = createInfoItem(atm, icon: UIImage(named: "ic_placepage_atm"))
     }
 
     if let level = placePageInfoData.level {
@@ -208,6 +208,12 @@ class PlacePageInfoViewController: UIViewController {
       addressView?.canShowMenu = true
     }
 
+    if placePageInfoData.kayak != nil {
+      kayakView = createInfoItem(L("more_on_kayak"), icon: UIImage(named: "ic_placepage_kayak"), style: .link) { [weak self] in
+        self?.delegate?.didPressKayak()
+      }
+    }
+
     var formatId = self.coordinatesFormatId
     if let coordFormats = self.placePageInfoData.coordFormats as? Array<String> {
       if formatId >= coordFormats.count {
@@ -246,6 +252,16 @@ class PlacePageInfoViewController: UIViewController {
     addChild(viewController)
     stackView.addArrangedSubviewWithSeparator(viewController.view)
     viewController.didMove(toParent: self)
+  }
+
+  private static let kHttp = "http://"
+  private static let kHttps = "https://"
+
+  private func stripUrl(str: String) -> String {
+    let dropFromStart = str.hasPrefix(PlacePageInfoViewController.kHttps) ? PlacePageInfoViewController.kHttps.count
+        : (str.hasPrefix(PlacePageInfoViewController.kHttp) ? PlacePageInfoViewController.kHttp.count : 0);
+    let dropFromEnd = str.hasSuffix("/") ? 1 : 0;
+    return String(str.dropFirst(dropFromStart).dropLast(dropFromEnd))
   }
 }
 

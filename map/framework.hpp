@@ -330,6 +330,10 @@ public:
   bool HasPlacePageInfo() const { return m_currentPlacePageInfo.has_value(); }
   place_page::Info const & GetCurrentPlacePageInfo() const;
   place_page::Info & GetCurrentPlacePageInfo();
+  void BuildAndSetPlacePageInfo(place_page::BuildInfo const & buildInfo)
+  {
+    OnTapEvent(buildInfo);
+  }
 
   void InvalidateRendering();
   void EnableDebugRectRendering(bool enabled);
@@ -493,7 +497,8 @@ public:
   m2::PointD GetVisiblePixelCenter() const;
 
   m2::PointD const & GetViewportCenter() const;
-  void SetViewportCenter(m2::PointD const & pt, int zoomLevel = -1, bool isAnim = true);
+  void SetViewportCenter(m2::PointD const & pt, int zoomLevel = -1, bool isAnim = true,
+                         bool trackVisibleViewport = false);
 
   m2::RectD GetCurrentViewport() const;
   void SetVisibleViewport(m2::RectD const & rect);
@@ -547,8 +552,15 @@ public:
   void RunFirstLaunchAnimation();
 
   /// Set correct viewport, parse API, show balloon.
-  bool ShowMapForURL(std::string const & url);
-  url_scheme::ParsedMapApi::ParsingResult ParseAndSetApiURL(std::string const & url);
+  void ExecuteMapApiRequest()
+  {
+    m_parsedMapApi.ExecuteMapApiRequest(*this);
+  }
+
+  url_scheme::ParsedMapApi::UrlType ParseAndSetApiURL(std::string const & url)
+  {
+    return m_parsedMapApi.SetUrlAndParse(url);
+  }
 
   struct ParsedRoutingData
   {
@@ -563,6 +575,7 @@ public:
   ParsedRoutingData GetParsedRoutingData() const;
   url_scheme::SearchRequest GetParsedSearchRequest() const;
   std::string const & GetParsedAppName() const;
+  std::string const & GetParsedBackUrl() const;
   ms::LatLon GetParsedCenterLatLon() const;
 
   using FeatureMatcher = std::function<bool(FeatureType & ft)>;
@@ -686,6 +699,9 @@ public:
 
   bool LoadIsolinesEnabled();
   void SaveIsolinesEnabled(bool enabled);
+
+  bool LoadOutdoorsEnabled();
+  void SaveOutdoorsEnabled(bool enabled);
 
   dp::ApiVersion LoadPreferredGraphicsAPI();
   void SavePreferredGraphicsAPI(dp::ApiVersion apiVersion);

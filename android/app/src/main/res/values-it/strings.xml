@@ -281,8 +281,10 @@
 	<string name="downloader_delete_map">Elimina mappa</string>
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Aggiorna mappa</string>
+	<!-- Preference title -->
+	<string name="google_play_services">Servizi di localizzazione di Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Usa i servizi Google Play per ottenere la tua posizione attuale</string>
+	<string name="pref_use_google_play">Determina rapidamente la tua posizione approssimativa tramite Bluetooth, WiFi o rete mobile</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Scarica le mappe lungo il percorso</string>
 	<!-- Text for routing error dialog -->
@@ -496,9 +498,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Di più</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Dettagli su KAYAK</string>
+	<string name="more_on_kayak">Foto, recensioni, prenotazioni</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Il bonus ricevuto per ogni prenotazione effettuata tramite questo link è destinato allo sviluppo di Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Dettagli su Kayak</string>
 	<string name="placepage_edit_bookmark_button">Modifica luogo preferito</string>
 	<string name="editor_comment_hint">Commento…</string>
 	<string name="editor_reset_edits_message">Cancellare tutte le modifiche locali?</string>
@@ -517,7 +521,7 @@
 	<string name="error_enter_correct_twitter_page">Inserisci un indirizzo web o un nome utente Twitter valido</string>
 	<string name="error_enter_correct_vk_page">Inserisci un indirizzo web o un nome di account VK valido</string>
 	<string name="error_enter_correct_line_page">Inserisca un indirizzo web LINE valido o un ID LINE</string>
-	<string name="placepage_add_place_button">Aggiungi un luogo sulla mappa</string>
+	<string name="placepage_add_place_button">Aggiungi un luogo a OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Vuoi inviarlo a tutti gli utenti?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -595,13 +599,13 @@
 	  <item quantity="one">%d percorso</item>
 	  <item quantity="other">%d percorsi</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Impostazioni percorso</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Privacy</string>
 	<string name="privacy_policy">Riservatezza</string>
 	<string name="terms_of_use">Condizioni d\'uso</string>
 	<string name="button_layer_traffic">Traffico</string>
 	<string name="button_layer_subway">Metropolitana</string>
-	<string name="layers_title">Livelli mappa</string>
+	<string name="layers_title">Stili e livelli di mappa</string>
 	<string name="subway_data_unavailable">La mappa della metropolitana non è disponibile</string>
 	<string name="bookmarks_empty_list_title">Questo elenco è vuoto</string>
 	<string name="bookmarks_empty_list_message">Per aggiungere un luogo preferito, tieni premuto un punto sulla mappa e poi tocca l\'icona a forma di stella</string>
@@ -739,6 +743,8 @@
 	<string name="aa_grant_permissions">Concessione dei permessi</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Collegato all\'auto</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Escursioni</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Indirizzo/Blocco</string>
@@ -825,20 +831,21 @@
 	<string name="type.amenity.nightclub">Locale notturno</string>
 	<string name="type.amenity.nursing_home">Casa di riposo</string>
 	<string name="type.amenity.parking">Parcheggio</string>
-	<string name="type.amenity.parking.fee">Parcheggio a pagamento</string>
+	<string name="type.amenity.parking.fee">Parcheggio</string>
 	<string name="type.amenity.parking.multi.storey">Parcheggio multipiano</string>
+	<string name="type.amenity.parking.multi.storey.fee">Parcheggio multipiano</string>
 	<string name="type.amenity.parking.no.access">Parcheggio privato</string>
 	<string name="type.amenity.parking.permissive">Parcheggio privato</string>
 	<string name="type.amenity.parking.private">Parcheggio privato</string>
 	<string name="type.amenity.parking.park_and_ride">Parcheggio di interscambio</string>
 	<string name="type.amenity.parking.underground">Parcheggio sotterraneo</string>
-	<string name="type.amenity.parking.underground.fee">Parcheggio sotterraneo a pagamento</string>
+	<string name="type.amenity.parking.underground.fee">Parcheggio sotterraneo</string>
 	<string name="type.amenity.parking.underground.private">Parcheggio privato sotterraneo</string>
 	<string name="type.amenity.parking.street_side">Parcheggio laterale alla strada</string>
-	<string name="type.amenity.parking.street_side.fee">Parcheggio lato strada a pagamento</string>
+	<string name="type.amenity.parking.street_side.fee">Parcheggio laterale alla strada</string>
 	<string name="type.amenity.parking.street_side.private">Strada privata parcheggio laterale</string>
 	<string name="type.amenity.parking.lane">Parcheggio in corsia</string>
-	<string name="type.amenity.parking.lane.fee">Parcheggio a pagamento in corsia</string>
+	<string name="type.amenity.parking.lane.fee">Parcheggio in corsia</string>
 	<string name="type.amenity.parking.lane.private">Parcheggio in corsia privata</string>
 	<string name="type.amenity.parking_entrance">Ingresso parcheggio</string>
 	<string name="type.amenity.parking_entrance.private">Ingresso al parcheggio privato</string>
@@ -1093,6 +1100,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrata principale</string>
 	<string name="type.entrance.exit">Uscita</string>
+	<string name="type.fee.no">Gratuito</string>
 	<string name="type.healthcare.laboratory">Laboratorio Medico</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapista</string>
 	<string name="type.healthcare.alternative">Medicina alternativa</string>
@@ -1661,6 +1669,7 @@
 	<string name="type.railway.station.subway.sf">Stazione della metrò</string>
 	<string name="type.railway.station.subway.shanghai">Stazione della metrò</string>
 	<string name="type.railway.station.subway.shiraz">Stazione della metrò</string>
+	<string name="type.railway.station.subway.singapore">Stazione della metrò</string>
 	<string name="type.railway.station.subway.sofia">Stazione della metrò</string>
 	<string name="type.railway.station.subway.spb">Stazione della metrò</string>
 	<string name="type.railway.station.subway.stockholm">Stazione della metrò</string>
@@ -1773,6 +1782,7 @@
 	<string name="type.railway.subway_entrance.sf">Stazione metropolitana</string>
 	<string name="type.railway.subway_entrance.shanghai">Stazione metropolitana</string>
 	<string name="type.railway.subway_entrance.shiraz">Stazione metropolitana</string>
+	<string name="type.railway.subway_entrance.singapore">Stazione metropolitana</string>
 	<string name="type.railway.subway_entrance.sofia">Stazione metropolitana</string>
 	<string name="type.railway.subway_entrance.spb">Stazione metropolitana</string>
 	<string name="type.railway.subway_entrance.stockholm">Stazione metropolitana</string>

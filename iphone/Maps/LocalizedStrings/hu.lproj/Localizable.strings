@@ -790,10 +790,13 @@
 "book_button" = "Foglalás";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Részletek a KAYAK-on";
+"more_on_kayak" = "Fényképek, vélemények, foglalás";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Az ezen a linken keresztül történő minden egyes foglalásért kapott ajánlói bónusz az Organic Maps fejlesztését szolgálja.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Részletek a Kayak-on";
 
 "placepage_call_button" = "Hívás";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Frissítés";
 
-"placepage_add_place_button" = "Hely hozzáadása a térképhez";
+"placepage_add_place_button" = "Hely hozzáadása az OpenStreetMap-hez";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Szeretnéd elküldeni az összes felhasználónak?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metró";
 
-"layers_title" = "Térképrétegek";
+"layers_title" = "Térképstílusok és rétegek";
 
 "subway_data_unavailable" = "A metrótérkép nem elérhető";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Hu:Névjegy";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Túrázás";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parkoló";
 
-"type.amenity.parking.fee" = "Fizetős parkolás";
+"type.amenity.parking.fee" = "Parkoló";
 
 "type.amenity.parking.multi.storey" = "Többszintes parkoló";
+
+"type.amenity.parking.multi.storey.fee" = "Többszintes parkoló";
 
 "type.amenity.parking.no.access" = "Saját parkoló";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Mélygarázs";
 
-"type.amenity.parking.underground.fee" = "Fizetős mélygarázs";
+"type.amenity.parking.underground.fee" = "Mélygarázs";
 
 "type.amenity.parking.underground.private" = "Privát földalatti parkoló";
 
 "type.amenity.parking.street_side" = "Utca oldali parkolás";
 
-"type.amenity.parking.street_side.fee" = "Fizetős utcai parkolás";
+"type.amenity.parking.street_side.fee" = "Utca oldali parkolás";
 
 "type.amenity.parking.street_side.private" = "Privát utca oldali parkolás";
 
 "type.amenity.parking.lane" = "Sávos parkolás";
 
-"type.amenity.parking.lane.fee" = "Fizetős sávos parkolás";
+"type.amenity.parking.lane.fee" = "Sávos parkolás";
 
 "type.amenity.parking.lane.private" = "Privát sávos parkolás";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Főbejárat";
 
 "type.entrance.exit" = "Kilépés";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Ingyenes";
 
 "type.healthcare.laboratory" = "Orvosi laboratórium";
 
@@ -2505,6 +2517,8 @@
 
 "type.leisure.golf_course" = "Golfpálya";
 
+"type.leisure.hackerspace" = "Hackerspace";
+
 "type.leisure.ice_rink" = "Ice Rink";
 
 "type.leisure.landscape_reserve" = "Landscape Reserve";
@@ -2645,7 +2659,7 @@
 
 "type.natural.heath" = "Fenyér";
 
-"type.natural.hot_spring" = "Termálvíz";
+"type.natural.hot_spring" = "Melegvizű forrás";
 
 "type.natural.water.lake" = "Tó";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Földalatti";
 
+"type.railway.station.subway.singapore" = "Földalatti";
+
 "type.railway.station.subway.sofia" = "Földalatti";
 
 "type.railway.station.subway.spb" = "Földalatti";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Földalatti bejárat";
 
 "type.railway.subway_entrance.shiraz" = "Földalatti bejárat";
+
+"type.railway.subway_entrance.singapore" = "Földalatti bejárat";
 
 "type.railway.subway_entrance.sofia" = "Földalatti bejárat";
 
