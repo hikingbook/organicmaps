@@ -47,6 +47,9 @@
 # A python parser implementation used to compile *.mapcss style files is in tools/kothic/src/libkomwm.py::komap_mapswithme().
 # The app doesn't use this file directly, it loads a data/types.txt
 # which is derived from this file during style files compilation.
+#
+# Types that don't have any style defined are discarded by the generator.
+# To prevent discarding, add them to the exceptions in indexer/feature_visibility.cpp::IsUsefulNondrawableType()
 
 building;[building];;addr:housenumber;name;1;
 highway|residential;2;
@@ -435,6 +438,7 @@ amenity|parking|underground|fee;[amenity=parking][location=underground][fee],[am
 amenity|parking|underground;[amenity=parking][location=underground],[amenity=parking][parking=underground];;name;int_name;357;
 amenity|parking|street_side;[amenity=parking][parking=street_side];;name;int_name;358;
 amenity|parking|multi-storey;[amenity=parking][parking=multi-storey];;name;int_name;359;
+# TODO: its being replaced by landuse-recreation_ground, merge in there.
 leisure|recreation_ground;360;
 highway|footway|mountain_hiking;[highway=footway][sac_scale=mountain_hiking];;name;int_name;361;
 deprecated:highway|service|driveway|bridge:01.2020;[highway=service][service=driveway][bridge?];x;name;int_name;362;highway|service|driveway
@@ -576,8 +580,8 @@ waterway|fish_pass;496;
 waterway|fish_pass|tunnel;[waterway=fish_pass][tunnel?];;name;int_name;497;
 natural|water|lock;[natural=water][water=lock];;name;int_name;498;
 deprecated:waterway|lock:06.2022;499;waterway|canal
-deprecated|deprecated;500;x
-deprecated|deprecated;501;x
+fee|yes;[fee?];;name;int_name;500;
+fee|no;[fee=no];;name;int_name;501;
 deprecated|deprecated;502;x
 highway|trunk_link|tunnel;[highway=trunk_link][tunnel?];;name;int_name;503;
 deprecated|deprecated;504;x
@@ -609,6 +613,7 @@ highway|footway|alpine_hiking;[highway=footway][sac_scale=alpine_hiking];;name;i
 deprecated|deprecated;530;x
 deprecated|deprecated;531;x
 deprecated|deprecated;532;x
+# TODO: deprecated, replaced by leisure=nature_reserve
 leisure|landscape_reserve;533;
 deprecated|deprecated;534;x
 deprecated|deprecated;535;x
@@ -1072,7 +1077,7 @@ highway|speed_camera;991;
 shop|beauty;992;
 shop|sports;993;
 deprecated:route|ferry|motor_vehicle:09.2021;[route=ferry][motor_vehicle];x;name;int_name;994;route|ferry
-deprecated:railway|rail|motor_vehicle:06.2023;[railway=rail][motor_vehicle];x;name;int_name;995;railway|rail
+deprecated:railway|rail|motor_vehicle:06.2023;[railway=rail][motor_vehicle],[railway=rail][motorcar];x;name;int_name;995;railway|rail
 hwtag|nofoot;996;
 place|city|capital|2;[place=city][capital=2],[place=city][capital?][admin_level=2];;name;int_name;997;
 place|city|capital|3;[place=city][capital=3],[place=city][capital?][admin_level=3];;name;int_name;998;
@@ -1133,7 +1138,7 @@ man_made|water_tower;1051;
 highway|world_level;1052;
 highway|world_towns_level;1053;
 building|train_station;1054;
-route|shuttle_train;1055;
+route|shuttle_train;[route=shuttle_train],[route=train][shuttle];;;;1055;
 shop|copyshop;1056;
 shop|photo;1057;
 shop|travel_agency;[shop=travel_agency],[office=travel_agent];;name;int_name;1058;
@@ -1671,6 +1676,9 @@ amenity|parking|underground|private;[amenity=parking][location=underground][acce
 amenity|parking|street_side|private;[amenity=parking][parking=street_side][access=private];;name;int_name;1590;
 amenity|parking|lane|private;[amenity=parking][parking=lane][access=private];;name;int_name;1591;
 amenity|compressed_air;1592;
+leisure|hackerspace;1593;
+railway|station|subway|singapore;[railway=station][transport=subway][city=singapore],[railway=station][station=subway][city=singapore];;name;int_name;1594;
+railway|subway_entrance|singapore;[railway=subway_entrance][city=singapore];;name;int_name;1595;
 highway|path|trail_visibility_excellent;[highway=path][trail_visibility=excellent];;name;int_name;9987;
 highway|path|trail_visibility_good;[highway=path][trail_visibility=good];;name;int_name;9988;
 highway|path|trail_visibility_intermediate;[highway=path][trail_visibility=intermediate];;name;int_name;9989;

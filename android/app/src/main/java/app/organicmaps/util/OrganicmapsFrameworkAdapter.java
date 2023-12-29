@@ -4,8 +4,10 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -22,7 +24,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import app.organicmaps.Framework;
-import app.organicmaps.Map;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -30,6 +31,7 @@ import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.OnmapDownloader;
+import app.organicmaps.intent.Factory;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.location.LocationState;
@@ -428,6 +430,9 @@ public enum OrganicmapsFrameworkAdapter {
 
     public boolean showLocation(Location location) {
         String geoUrl = Framework.nativeGetGe0Url(location.getLatitude(), location.getLongitude(), 15, "");
-        return Map.showMapForUrl(geoUrl);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(geoUrl));
+        Factory.UrlProcessor urlProcessor = new Factory.UrlProcessor();
+        return urlProcessor.process(intent, mwmActivity);
     }
 }

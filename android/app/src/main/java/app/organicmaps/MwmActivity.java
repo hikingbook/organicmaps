@@ -9,6 +9,7 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static app.organicmaps.SplashActivity.EXTRA_INITIAL_INTENT;
 import static app.organicmaps.location.LocationState.FOLLOW;
 import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
 import static app.organicmaps.location.LocationState.LOCATION_TAG;
@@ -46,6 +47,7 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.IntentCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
@@ -58,17 +60,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Stack;
 
 import app.organicmaps.Framework.PlacePageActivationListener;
 import app.organicmaps.api.Const;
 import app.organicmaps.base.BaseMwmFragmentActivity;
 import app.organicmaps.base.OnBackPressListener;
 import app.organicmaps.bookmarks.BookmarkCategoriesActivity;
-import app.organicmaps.bookmarks.data.BookmarkInfo;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.bookmarks.data.MapObject;
-import app.organicmaps.bookmarks.data.Track;
 import app.organicmaps.display.DisplayChangedListener;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.display.DisplayType;
@@ -83,14 +82,14 @@ import app.organicmaps.editor.EditorHostFragment;
 import app.organicmaps.editor.FeatureCategoryActivity;
 import app.organicmaps.editor.ReportFragment;
 import app.organicmaps.help.HelpActivity;
-import app.organicmaps.intent.MapTask;
+import app.organicmaps.intent.Factory;
+import app.organicmaps.intent.IntentProcessor;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.maplayer.MapButtonsController;
-import app.organicmaps.maplayer.Mode;
 import app.organicmaps.maplayer.ToggleMapLayerFragment;
 import app.organicmaps.maplayer.isolines.IsolinesState;
 import app.organicmaps.routing.NavigationController;
@@ -142,9 +141,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 {
   private static final String TAG = MwmActivity.class.getSimpleName();
 
-  public static final String EXTRA_TASK = "map_task";
-  public static final String EXTRA_LAUNCH_BY_DEEP_LINK = "launch_by_deep_link";
-  public static final String EXTRA_BACK_URL = "backurl";
+  public static final String EXTRA_COUNTRY_ID = "country_id";
+  public static final String EXTRA_CATEGORY_ID = "category_id";
+  public static final String EXTRA_BOOKMARK_ID = "bookmark_id";
+  public static final String EXTRA_TRACK_ID = "track_id";
   public static final String EXTRA_UPDATE_THEME = "update_theme";
   private static final String EXTRA_CONSUMED = "mwm.extra.intent.processed";
 
@@ -158,9 +158,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private static final String MAIN_MENU_ID = "MAIN_MENU_BOTTOM_SHEET";
   private static final String LAYERS_MENU_ID = "LAYERS_MENU_BOTTOM_SHEET";
-
-  // Map tasks that we run AFTER rendering initialized
-  private final Stack<MapTask> mTasks = new Stack<>();
 
   @Nullable
   private MapFragment mMapFragment;
@@ -194,7 +191,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private PlacePageViewModel mPlacePageViewModel;
 //  private MapButtonsViewModel mMapButtonsViewModel;
   private MapButtonsController.LayoutMode mPreviousMapLayoutMode;
-  private Mode mPreviousLayerMode;
 
   @Nullable
   private WindowInsetsCompat mCurrentWindowInsets;
@@ -236,7 +232,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public static Intent createShowMapIntent(@NonNull Context context, @Nullable String countryId)
   {
     return new Intent(context, DownloadResourcesLegacyActivity.class)
-            .putExtra(DownloadResourcesLegacyActivity.EXTRA_COUNTRY, countryId);
+        .putExtra(EXTRA_COUNTRY_ID, countryId);
   }
 
   @Override
@@ -245,25 +241,74 @@ public class MwmActivity extends BaseMwmFragmentActivity
     checkMeasurementSystem();
   }
 
-  @Override
-  public void onRenderingRestored()
-  {
-    runTasks();
-  }
-
   // Called from JNI.
   @Override
   @Keep
   @SuppressWarnings("unused")
   public void onRenderingInitializationFinished()
   {
-    runTasks();
+    ThemeSwitcher.INSTANCE.restart(true);
+
+//    if (RoutingController.get().isPlanning())
+//      onPlanningStarted();
+//    else if (RoutingController.get().isNavigating())
+//      onNavigationStarted();
+//    else if (RoutingController.get().hasSavedRoute())
+//      RoutingController.get().restoreRoute();
+
+    processIntent();
   }
 
-  private void runTasks()
+  /**
+   * Process intents AFTER rendering is initialized.
+   */
+  private void processIntent()
   {
-    while (!mTasks.isEmpty())
-      mTasks.pop().run(this);
+    if (!Map.isEngineCreated())
+      throw new AssertionError("Must be called with initialized Drape");
+
+    final Intent intent = getIntent();
+    if (intent == null || intent.getBooleanExtra(EXTRA_CONSUMED, false))
+      return;
+    intent.putExtra(EXTRA_CONSUMED, true);
+
+    final long categoryId = intent.getLongExtra(EXTRA_CATEGORY_ID, -1);
+    final long bookmarkId = intent.getLongExtra(EXTRA_BOOKMARK_ID, -1);
+    final long trackId = intent.getLongExtra(EXTRA_TRACK_ID, -1);
+    if (bookmarkId != -1)
+    {
+      Objects.requireNonNull(BookmarkManager.INSTANCE.getBookmarkInfo(bookmarkId));
+      BookmarkManager.INSTANCE.showBookmarkOnMap(bookmarkId);
+      return;
+    }
+    else if (trackId != -1)
+    {
+      Objects.requireNonNull(BookmarkManager.INSTANCE.getTrack(trackId));
+      Framework.nativeShowTrackRect(trackId);
+      return;
+    }
+    else if (categoryId != -1)
+    {
+      BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(categoryId);
+      return;
+    }
+
+    final String countryId = intent.getStringExtra(EXTRA_COUNTRY_ID);
+    if (countryId != null)
+    {
+      Framework.nativeShowCountry(countryId, false);
+      return;
+    }
+
+    final IntentProcessor[] mIntentProcessors = {
+        new Factory.UrlProcessor(),
+        new Factory.KmzKmlProcessor(),
+    };
+    for (IntentProcessor ip : mIntentProcessors)
+    {
+      if (ip.process(intent, this))
+        break;
+    }
   }
 
   private static void checkMeasurementSystem()
@@ -434,19 +479,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
     // We don't need to manually handle removing the observers it follows the activity lifecycle
 //    mMapButtonsViewModel.getBottomButtonsHeight().observe(this, this::onMapBottomButtonsHeightChange);
 //    mMapButtonsViewModel.getLayoutMode().observe(this, this::initNavigationButtons);
-//    mPreviousLayerMode = mMapButtonsViewModel.getMapLayerMode().getValue();
-//    mMapButtonsViewModel.getMapLayerMode().observe(this, this::onLayerChange);
 
     mSearchController = new FloatingSearchToolbarController(this, this);
     mSearchController.getToolbar()
             .getViewTreeObserver();
-
-    mDisplayManager = DisplayManager.from(this);
-    mDisplayManager.addListener(DisplayType.Device, this);
-
-    boolean isLaunchByDeepLink = getIntent().getBooleanExtra(EXTRA_LAUNCH_BY_DEEP_LINK, false);
-    initViews(isLaunchByDeepLink);
-    updateViewsInsets();
 
     // Note: You must call registerForActivityResult() before the fragment or activity is created.
     mLocationPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
@@ -456,24 +492,33 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mPostNotificationPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
             this::onPostNotificationPermissionResult);
 
-    boolean isConsumed = savedInstanceState == null && processIntent(getIntent());
-    // If the map activity is launched by any incoming intent (deeplink, update maps event, etc)
-    // or it's the first launch (onboarding) we haven't to try restoring the route,
-    // showing the tips, etc.
-    if (isConsumed || Config.isFirstLaunch(this))
+    mDisplayManager = DisplayManager.from(this);
+    if (mDisplayManager.isCarDisplayUsed())
+    {
+      mRemoveDisplayListener = false;
+      startActivity(new Intent(this, MapPlaceholderActivity.class));
+      finish();
       return;
+    }
+    mDisplayManager.addListener(DisplayType.Device, this);
 
-//    if (RoutingController.get().isPlanning())
-//      onPlanningStarted();
-//    else if (RoutingController.get().isNavigating())
-//      onNavigationStarted();
-//    else if (savedInstanceState == null && RoutingController.get().hasSavedRoute())
-//      addTask(new Factory.RestoreRouteTask());
-
-    autostartLocation();
+    final Intent intent = getIntent();
+    final boolean isLaunchByDeepLink = intent != null && !intent.hasCategory(Intent.CATEGORY_LAUNCHER);
+    initViews(isLaunchByDeepLink);
+    updateViewsInsets();
 
     if (getIntent().getBooleanExtra(EXTRA_UPDATE_THEME, false))
       ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
+
+    /*
+     * onRenderingInitializationFinished() hook is not called when MwmActivity is recreated with the already
+     * initialized Drape engine. This can happen when the activity is swiped away from the most recent app lists
+     * during navigation and then restarted from the launcher. Call this hook explicitly here to run operations
+     * that require initialized Drape, such as restoring navigation and processing incoming intents.
+     * https://github.com/organicmaps/organicmaps/issues/6712
+     */
+    if (Map.isEngineCreated())
+      onRenderingInitializationFinished();
   }
 
   private void refreshLightStatusBar()
@@ -602,7 +647,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mSearchController.show();
   }
 
-  public void showPositionChooserForAPI(String appName)
+  public void showPositionChooserForAPI(@Nullable String appName)
   {
     showPositionChooser(Framework.ChoosePositionMode.API, false, false);
     if (!TextUtils.isEmpty(appName))
@@ -699,8 +744,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
         Map.zoomOut();
         break;
       case myPosition:
+        Logger.i(LOCATION_TAG, "The location button pressed");
+        // Calls onMyPositionModeChanged(mode + 1).
         LocationState.nativeSwitchToNextMode();
-        startLocation();
         break;
       case toggleMapLayer:
         toggleMapLayerBottomSheet();
@@ -848,7 +894,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void startLocationToPoint(final @Nullable MapObject endPoint)
   {
     closeFloatingPanels();
-    startLocation();
+    if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
+    {
+      // Calls onMyPositionModeChanged(PENDING_POSITION).
+      LocationState.nativeSwitchToNextMode();
+    }
 
     MapObject startPoint = LocationHelper.from(this).getMyPosition();
     RoutingController.get().prepare(startPoint, endPoint);
@@ -975,55 +1025,21 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   protected void onNewIntent(Intent intent)
   {
-    super.onNewIntent(intent);
+    // {@link see BaseMwmFragmentActivity.onCreate()}
+    final Intent initialIntent = IntentCompat.getParcelableExtra(intent, EXTRA_INITIAL_INTENT, Intent.class);
+    if (initialIntent != null)
+      intent = initialIntent;
     setIntent(intent);
-    processIntent(intent);
+    super.onNewIntent(intent);
+    if (isMapRendererActive())
+      processIntent();
   }
 
-  private boolean processIntent(Intent intent)
-  {
-    if (intent == null)
-      return false;
-
-    if (intent.hasExtra(EXTRA_TASK))
-    {
-      addTask(intent);
-      return true;
-    }
-
-    return false;
-  }
-
-  private void addTask(Intent intent)
-  {
-    if (intent != null &&
-            !intent.getBooleanExtra(EXTRA_CONSUMED, false) &&
-            intent.hasExtra(EXTRA_TASK) &&
-            ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) == 0))
-    {
-      final MapTask mapTask = (MapTask) intent.getSerializableExtra(EXTRA_TASK);
-      mTasks.add(mapTask);
-      intent.removeExtra(EXTRA_TASK);
-
-      if (isMapRendererActive())
-        runTasks();
-
-      // mark intent as consumed
-      intent.putExtra(EXTRA_CONSUMED, true);
-    }
-  }
 
   private boolean isMapRendererActive()
   {
     return mMapFragment != null && Map.isEngineCreated()
             && mMapFragment.isContextCreated();
-  }
-
-  private void addTask(MapTask task)
-  {
-    mTasks.add(task);
-    if (isMapRendererActive())
-      runTasks();
   }
 
   @CallSuper
@@ -1086,7 +1102,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    IsolinesManager.from(getApplicationContext()).attach(this::onIsolinesStateChanged);
 //    LocationState.nativeSetListener(this);
 //    LocationHelper.from(this).addListener(this);
-//    onMyPositionModeChanged(LocationState.nativeGetMode());
     mSearchController.attach(this);
   }
 
@@ -1102,6 +1117,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    IsolinesManager.from(getApplicationContext()).detach();
     mSearchController.detach();
     Utils.keepScreenOn(false, getWindow());
+
+    final String backUrl = Framework.nativeGetParsedBackUrl();
+    if (!TextUtils.isEmpty(backUrl))
+      Utils.openUri(this, Uri.parse(backUrl));
   }
 
   @CallSuper
@@ -1419,7 +1438,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //      if (height != 0)
 //        offset = height;
 //    }
-//    adjustCompassAndTraffic(offset);
+//    updateCompassOffset(offset);
 //  }
 
 //  @Override
@@ -1448,7 +1467,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    else
 //    {
 //      if (mIsTabletLayout && mCurrentWindowInsets != null)
-//        adjustCompassAndTraffic(mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
+//        updateCompassOffset(mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
 //      else if (!mIsTabletLayout)
 //        mRoutingPlanInplaceController.show(false);
 //
@@ -1458,21 +1477,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //        completionListener.run();
 //    }
 //  }
-
-  private void adjustCompassAndTraffic(final int offsetY)
-  {
-    addTask(new MapTask()
-    {
-      private static final long serialVersionUID = 9177064181621376624L;
-
-      @Override
-      public boolean run(@NonNull MwmActivity target)
-      {
-        updateCompassOffset(offsetY);
-        return true;
-      }
-    });
-  }
 
 //  @Override
 //  public void showNavigation(boolean show)
@@ -1545,12 +1549,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    Utils.keepScreenOn(true, getWindow());
 //  }
 
-//  @Override
-//  public void onPlanningCancelled()
-//  {
-//    closeFloatingToolbarsAndPanels(true);
+//    mRoutingPlanInplaceController.hideDrivingOptionsView();
+//    NavigationService.stopService(this);
+//    mMapButtonsViewModel.setSearchOption(null);
 //    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.regular);
 //    refreshLightStatusBar();
+//    Utils.keepScreenOn(Config.isKeepScreenOnEnabled(), getWindow());
 //  }
 
 //  @Override
@@ -1666,21 +1670,24 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     dismissAlertDialog();
     mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.how_to_support_us)
-            .setMessage(R.string.dialog_kayak_disclaimer)
-            .setCancelable(false)
-            .setPositiveButton(R.string.more_on_kayak, (dlg, which) -> {
-              Config.acceptKayakDisclaimer();
-              Utils.openUrl(this, url);
-            })
-            .setNegativeButton(R.string.cancel, null)
-            .setOnDismissListener(dialog -> mAlertDialog = null)
-            .show();
+        .setTitle(R.string.how_to_support_us)
+        .setMessage(R.string.dialog_kayak_disclaimer)
+        .setCancelable(false)
+        .setPositiveButton(R.string.dialog_kayak_button, (dlg, which) -> {
+          Config.acceptKayakDisclaimer();
+          Utils.openUrl(this, url);
+        })
+        .setNegativeButton(R.string.cancel, null)
+        .setOnDismissListener(dialog -> mAlertDialog = null)
+        .show();
   }
 
   private boolean showStartPointNotice()
   {
     final RoutingController controller = RoutingController.get();
+
+    if (showAddStartOrFinishFrame(controller, true))
+      return false;
 
     // Starting and ending points must be non-null, see {@link #showAddStartOrFinishFrame() }.
     final MapObject startPoint = Objects.requireNonNull(controller.getStartPoint());
@@ -1710,16 +1717,56 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onMyPositionModeChanged(int newMode)
   {
-    Logger.d(LOCATION_TAG, "newMode = " + newMode);
+    Logger.d(LOCATION_TAG, "newMode = " + LocationState.nameOf(newMode));
 //    mMapButtonsViewModel.setMyPositionMode(newMode);
     RoutingController controller = RoutingController.get();
-    if (controller.isPlanning())
+    if (controller.isPlanning() || controller.isBuilding() || controller.isErrorEncountered())
       showAddStartOrFinishFrame(controller, true);
-    LocationHelper.from(this).restartWithNewMode();
+
     if (newMode == FOLLOW || newMode == FOLLOW_AND_ROTATE)
       Utils.keepScreenOn(Config.isKeepScreenOnEnabled() || RoutingController.get().isNavigating(), getWindow());
     else
       Utils.keepScreenOn(RoutingController.get().isNavigating(), getWindow());
+
+    final LocationHelper locationHelper = LocationHelper.from(this);
+
+    // Check if location was disabled by the user.
+    if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
+    {
+      Logger.i(LOCATION_TAG, "Location updates are stopped by the user manually.");
+      if (locationHelper.isActive())
+        locationHelper.stop();
+      return;
+    }
+
+    // Check for any location permissions.
+    if (!LocationUtils.checkCoarseLocationPermission(this))
+    {
+      Logger.w(LOCATION_TAG, "Permissions ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION are not granted");
+      // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
+      LocationState.nativeOnLocationError(LocationState.ERROR_DENIED);
+
+      Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION + ACCESS_FINE_LOCATION permissions");
+      dismissLocationErrorDialog();
+      mLocationPermissionRequest.launch(new String[]{
+          ACCESS_COARSE_LOCATION,
+          ACCESS_FINE_LOCATION
+      });
+      return;
+    }
+
+    locationHelper.restartWithNewMode();
+
+    if ((newMode == FOLLOW || newMode == FOLLOW_AND_ROTATE) && !LocationUtils.checkFineLocationPermission(this))
+    {
+      // Try to optimistically request FINE permission for FOLLOW and FOLLOW_AND_ROTATE modes.
+      Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION permission for " + LocationState.nameOf(newMode));
+      dismissLocationErrorDialog();
+      mLocationPermissionRequest.launch(new String[]{
+          ACCESS_COARSE_LOCATION,
+          ACCESS_FINE_LOCATION
+      });
+    }
   }
 
   /**
@@ -1788,30 +1835,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
   /**
-   * Start location services when the user presses a button or starts routing.
-   */
-  private void startLocation()
-  {
-    Logger.d(LOCATION_TAG);
-
-    if (LocationUtils.checkFineLocationPermission(this))
-    {
-      Logger.i(LOCATION_TAG, "Permission ACCESS_FINE_LOCATION is granted");
-      LocationHelper.from(this).start();
-      return;
-    }
-
-    // Always try to optimistically request FINE permission when the user presses a button or starts routing.
-    // Android will suppress annoying dialogs and skip directly to onLocationPermissionsResult().
-    Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION permission");
-    dismissLocationErrorDialog();
-    mLocationPermissionRequest.launch(new String[]{
-            ACCESS_COARSE_LOCATION,
-            ACCESS_FINE_LOCATION
-    });
-  }
-
-  /**
    * Request POST_NOTIFICATIONS permission.
    */
   public void requestPostNotificationsPermission()
@@ -1825,42 +1848,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     Logger.i(TAG, "Requesting POST_NOTIFICATIONS permission");
     mPostNotificationPermissionRequest.launch(POST_NOTIFICATIONS);
-  }
-
-  /**
-   * Start location services explicitly on the start of activity.
-   */
-  private void autostartLocation()
-  {
-    if (LocationState.nativeGetMode() == LocationState.NOT_FOLLOW_NO_POSITION)
-    {
-      Logger.i(LOCATION_TAG, "Location updates are stopped by the user manually.");
-      LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-      LocationHelper.from(this).stop();
-    }
-    else if (LocationUtils.checkFineLocationPermission(this))
-    {
-      Logger.i(LOCATION_TAG, "Permission ACCESS_FINE_LOCATION is granted");
-      LocationHelper.from(this).start();
-    }
-    else if (LocationUtils.checkCoarseLocationPermission(this))
-    {
-      Logger.i(LOCATION_TAG, "Permission ACCESS_COARSE_LOCATION is granted");
-      LocationHelper.from(this).start();
-    }
-    else
-    {
-      Logger.w(LOCATION_TAG, "Permissions ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION are not granted");
-      LocationState.nativeOnLocationError(LocationState.ERROR_DENIED);
-      LocationHelper.from(this).stop();
-
-      Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION + ACCESS_FINE_LOCATION permissions");
-      dismissLocationErrorDialog();
-      mLocationPermissionRequest.launch(new String[]{
-              ACCESS_COARSE_LOCATION,
-              ACCESS_FINE_LOCATION
-      });
-    }
   }
 
   /**
@@ -1882,13 +1869,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     if (LocationUtils.checkLocationPermission(this))
     {
-      LocationHelper.from(this).start();
+      if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
+        LocationState.nativeSwitchToNextMode();
       return;
     }
 
     Logger.w(LOCATION_TAG, "Permissions ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION have been refused");
+    // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
     LocationState.nativeOnLocationError(LocationState.ERROR_DENIED);
-    LocationHelper.from(this).stop();
 
     if (mLocationErrorDialog != null && mLocationErrorDialog.isShowing())
     {
@@ -1949,14 +1937,17 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (resultCode != Activity.RESULT_OK)
     {
       Logger.w(LOCATION_TAG, "Location resolution has been refused");
+      // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
       LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-      LocationHelper.from(this).stop();
       return;
     }
 
     Logger.i(LOCATION_TAG, "Location resolution has been granted, restarting location");
-    LocationHelper.from(this).stop();
-    startLocation();
+    if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
+    {
+      // Calls onMyPositionModeChanged(PENDING_POSITION).
+      LocationState.nativeSwitchToNextMode();
+    }
   }
 
   /**
@@ -1968,8 +1959,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     Logger.d(LOCATION_TAG, "settings = " + LocationUtils.areLocationServicesTurnedOn(this));
 
+    // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
     LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-    LocationHelper.from(this).stop();
 
     if (mLocationErrorDialog != null && mLocationErrorDialog.isShowing())
     {
@@ -2006,7 +1997,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       return;
     }
 
-    if (LocationState.nativeGetMode() == LocationState.NOT_FOLLOW_NO_POSITION)
+    if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
     {
       Logger.d(LOCATION_TAG, "Don't show 'location timeout' error dialog in NOT_FOLLOW_NO_POSITION mode");
       return;
@@ -2025,20 +2016,20 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     mLocationErrorDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.current_location_unknown_title)
-            .setMessage(R.string.current_location_unknown_message)
-            .setOnDismissListener(dialog -> mLocationErrorDialog = null)
-            .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
-            {
-              Logger.w(LOCATION_TAG, "Disabled by user");
-              LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-              LocationHelper.from(this).stop();
-            })
-            .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
-            {
-              // Do nothing - provider will continue to search location.
-            })
-            .show();
+        .setTitle(R.string.current_location_unknown_title)
+        .setMessage(R.string.current_location_unknown_message)
+        .setOnDismissListener(dialog -> mLocationErrorDialog = null)
+        .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
+        {
+          Logger.w(LOCATION_TAG, "Disabled by user");
+          // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
+          LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
+        })
+        .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
+        {
+          // Do nothing - provider will continue to search location.
+        })
+        .show();
   }
 
   @Override
@@ -2106,41 +2097,17 @@ public class MwmActivity extends BaseMwmFragmentActivity
         Map.zoomIn();
         return true;
       case KeyEvent.KEYCODE_ESCAPE:
-        Intent currIntent = getIntent();
-        if (currIntent == null || !currIntent.hasExtra(EXTRA_BACK_URL))
-          return super.onKeyUp(keyCode, event);
-
-        String backUrl = currIntent.getStringExtra(EXTRA_BACK_URL);
-        if (TextUtils.isEmpty(backUrl))
-          return super.onKeyUp(keyCode, event);
-
-        Uri back_uri = Uri.parse(backUrl);
-        if (back_uri == null)
-          return super.onKeyUp(keyCode, event);
-
-        return Utils.openUri(this, back_uri);
+        final Intent currIntent = getIntent();
+        final String backUrl = Framework.nativeGetParsedBackUrl();
+        if (TextUtils.isEmpty(backUrl) || (currIntent != null && Factory.isStartedForApiResult(currIntent)))
+        {
+          finish();
+          return true;
+        }
+        return super.onKeyUp(keyCode, event);
       default:
         return super.onKeyUp(keyCode, event);
     }
-  }
-
-  public void showTrackOnMap(long trackId)
-  {
-    Track track = BookmarkManager.INSTANCE.getTrack(trackId);
-    Objects.requireNonNull(track);
-    Framework.nativeShowTrackRect(trackId);
-  }
-
-  public void showBookmarkOnMap(long bookmarkId)
-  {
-    BookmarkInfo info = BookmarkManager.INSTANCE.getBookmarkInfo(bookmarkId);
-    Objects.requireNonNull(info);
-    BookmarkManager.INSTANCE.showBookmarkOnMap(bookmarkId);
-  }
-
-  public void showBookmarkCategoryOnMap(long categoryId)
-  {
-    BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(categoryId);
   }
 
   public void onAddPlaceOptionSelected()
@@ -2174,13 +2141,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     shareMyLocation();
   }
 
-  public void onLayerChange(Mode mode)
-  {
-    if (mPreviousLayerMode != mode)
-      closeFloatingPanels();
-    mPreviousLayerMode = mode;
-  }
-
   @Override
   @Nullable
   public ArrayList<MenuBottomSheetItem> getMenuBottomSheetItems(String id)
@@ -2195,7 +2155,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
               getDownloadMapsCounter(),
               this::onDownloadMapsOptionSelected
       ));
-      mDonatesUrl = Config.getDonateUrl();
+      mDonatesUrl = Config.getDonateUrl(getApplicationContext());
       if (!TextUtils.isEmpty(mDonatesUrl))
         items.add(new MenuBottomSheetItem(R.string.donate, R.drawable.ic_donate, this::onDonateOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.settings, R.drawable.ic_settings, this::onSettingsOptionSelected));

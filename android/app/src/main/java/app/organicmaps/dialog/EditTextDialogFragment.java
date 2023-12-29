@@ -80,8 +80,8 @@ public class EditTextDialogFragment extends BaseMwmDialogFragment
     final Bundle args = new Bundle();
     args.putString(ARG_TITLE, title);
     args.putString(ARG_INITIAL, initialText);
-    args.putString(ARG_POSITIVE_BUTTON, positiveBtn == null ? null : positiveBtn);
-    args.putString(ARG_NEGATIVE_BUTTON, negativeBtn == null ? null : negativeBtn);
+    args.putString(ARG_POSITIVE_BUTTON, positiveBtn);
+    args.putString(ARG_NEGATIVE_BUTTON, negativeBtn);
     args.putString(ARG_HINT, hint);
     args.putInt(ARG_TEXT_LENGTH_LIMIT, textLimit);
     FragmentManager fragmentManager = parent.getChildFragmentManager();
@@ -128,7 +128,10 @@ public class EditTextDialogFragment extends BaseMwmDialogFragment
     // Wait till alert is shown to get mPositiveButton.
     editTextDialog.setOnShowListener((dialog) -> {
       mPositiveButton = editTextDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-      this.validateInput(requireActivity(), mInitialText);
+      final FragmentActivity activity = getActivity();
+      if (activity == null)
+        return;
+      this.validateInput(activity, mInitialText);
     });
 
     // Setup validation on input edit.
@@ -137,7 +140,10 @@ public class EditTextDialogFragment extends BaseMwmDialogFragment
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count)
       {
-        EditTextDialogFragment.this.validateInput(requireActivity(), s.toString());
+        final FragmentActivity activity = getActivity();
+        if (activity == null)
+          return;
+        EditTextDialogFragment.this.validateInput(activity, s.toString());
       }
     });
 

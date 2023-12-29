@@ -57,7 +57,9 @@
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Saidia mradi</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Huduma za Google Play</string>
+	<string name="google_play_services">Huduma za Mahali za Google Play</string>
+	<!-- Preference text -->
+	<string name="pref_use_google_play">Tambua kwa haraka kadirio la eneo lako kwa kutumia Bluetooth, WiFi au mtandao wa simu</string>
 	<!-- deep purple color -->
 	<string name="deep_purple">Zambarau Iliyoiva</string>
 	<!-- light blue color -->
@@ -86,9 +88,12 @@
 	<string name="osm_presentation">Takwimu za katuni kutoka kwa OpenStreetMap kama ya %s. Ni kama Wikipedia ambapo unaweza kuongeza au kuhariri maeneo kwa watumiaji wote ulimwenguni.</string>
 	<string name="editor_other_info">Tuma ujumbe kwenye vihariri vya OSM</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Maelezo kuhusu KAYAK</string>
+	<string name="more_on_kayak">Picha, hakiki, uhifadhi</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Bonasi ya rufaa inayopokelewa kwa kila nafasi uliyohifadhi kupitia kiungo hiki huenda kwenye uundaji wa ramani za kikaboni.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Maelezo kuhusu Kayak</string>
+	<string name="placepage_add_place_button">Ongeza Mahali kwa OpenStreetMap</string>
 	<string name="editor_share_to_all_dialog_message_2">Wahariri wa OpenStreetMap watakagua mabadiliko na kuwasiliana nawe ikiwa wana maswali yoyote.</string>
 	<!-- Settings: "Send general feedback" button -->
 	<string name="feedback_general">Maoni Jumla</string>
@@ -138,13 +143,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">Njia %d</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Mipangilio ya ufuatiliaji</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Faragha</string>
 	<string name="privacy_policy">Sera ya faragha</string>
 	<string name="terms_of_use">Masharti ya matumizi</string>
 	<string name="button_layer_traffic">Trafiki</string>
 	<string name="button_layer_subway">Njia ya chini</string>
-	<string name="layers_title">Tabaka za ramani</string>
+	<string name="layers_title">Mitindo ya Ramani na Tabaka</string>
 	<string name="subway_data_unavailable">Ramani ya njia ya chini haipatikani</string>
 	<string name="bookmarks_empty_list_title">Orodha hii ni tupu</string>
 	<string name="bookmarks_empty_list_message">Ili kuongeza ramani, gusa mahali kwenye ramani na kisha gusa ikoni ya nyota</string>
@@ -269,6 +274,8 @@
 	<string name="aa_grant_permissions">Ruhusa za ruzuku</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Imeunganishwa na gari</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Kutembea kwa miguu</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Anwani/Zuia</string>
@@ -291,19 +298,20 @@
 	<string name="type.amenity.language_school">Shule ya Lugha</string>
 	<string name="type.amenity.loading_dock">Inapakia kituo</string>
 	<string name="type.amenity.parking">Maegesho</string>
-	<string name="type.amenity.parking.fee">Maegesho ya Kulipwa</string>
+	<string name="type.amenity.parking.fee">Maegesho</string>
 	<string name="type.amenity.parking.multi.storey">Maegesho ya Hifadhi nyingi</string>
+	<string name="type.amenity.parking.multi.storey.fee">Maegesho ya Hifadhi nyingi</string>
 	<string name="type.amenity.parking.no.access">Maegesho ya Kibinafsi</string>
 	<string name="type.amenity.parking.permissive">Maegesho ya Kibinafsi</string>
 	<string name="type.amenity.parking.private">Maegesho ya Kibinafsi</string>
 	<string name="type.amenity.parking.underground">Maegesho ya chini ya ardhi</string>
-	<string name="type.amenity.parking.underground.fee">Maegesho ya chini ya ardhi yanayolipwa</string>
+	<string name="type.amenity.parking.underground.fee">Maegesho ya chini ya ardhi</string>
 	<string name="type.amenity.parking.underground.private">Maegesho ya kibinafsi ya chini ya ardhi</string>
 	<string name="type.amenity.parking.street_side">Maegesho ya upande wa mtaa</string>
-	<string name="type.amenity.parking.street_side.fee">Maegesho yanayolipishwa ya barabarani</string>
+	<string name="type.amenity.parking.street_side.fee">Maegesho ya upande wa mtaa</string>
 	<string name="type.amenity.parking.street_side.private">Maegesho ya upande wa mtaa wa kibinafsi</string>
 	<string name="type.amenity.parking.lane">Maegesho ya njia</string>
-	<string name="type.amenity.parking.lane.fee">Maegesho ya njia ya kulipwa</string>
+	<string name="type.amenity.parking.lane.fee">Maegesho ya njia</string>
 	<string name="type.amenity.parking.lane.private">Maegesho ya njia ya kibinafsi</string>
 	<string name="type.amenity.parking_entrance">Mlango wa maegesho</string>
 	<string name="type.amenity.parking_entrance.private">Mlango wa maegesho ya kibinafsi</string>
@@ -367,6 +375,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Mlango Mkuu</string>
 	<string name="type.entrance.exit">Utgång</string>
+	<string name="type.fee.no">Bila</string>
 	<string name="type.healthcare.laboratory">Maabara ya Matibabu</string>
 	<string name="type.healthcare.physiotherapist">Mtaalamu wa Physiotherapist</string>
 	<string name="type.healthcare.alternative">Dawa mbadala</string>
@@ -741,6 +750,7 @@
 	<string name="type.railway.subway_entrance.sf">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.shanghai">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.shiraz">Lango la kuingilia stesheni ya reli</string>
+	<string name="type.railway.subway_entrance.singapore">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.sofia">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.spb">Lango la kuingilia stesheni ya reli</string>
 	<string name="type.railway.subway_entrance.stockholm">Lango la kuingilia stesheni ya reli</string>

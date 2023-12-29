@@ -790,10 +790,13 @@
 "book_button" = "Reservar";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Detalles sobre KAYAK";
+"more_on_kayak" = "Fotos, reseñas, reservas.";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "El bono de recomendación recibido por cada reserva a través de este enlace se destina al desarrollo de Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Detalles sobre Kayak";
 
 "placepage_call_button" = "Llamar";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Actualizar";
 
-"placepage_add_place_button" = "Añadir un lugar al mapa";
+"placepage_add_place_button" = "Agregar lugar a OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "¿Quiere enviarlo a todos los usuarios?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metro";
 
-"layers_title" = "Capas del mapa";
+"layers_title" = "Estilos y capas de mapas";
 
 "subway_data_unavailable" = "El mapa del metro no está disponible";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/ES:Acerca_de_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Senderismo";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Estacionamiento";
 
-"type.amenity.parking.fee" = "Estacionamiento de pago";
+"type.amenity.parking.fee" = "Estacionamiento";
 
 "type.amenity.parking.multi.storey" = "Estacionamiento de varios pisos";
+
+"type.amenity.parking.multi.storey.fee" = "Estacionamiento de varios pisos";
 
 "type.amenity.parking.no.access" = "Estacionamiento privado";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Estacionamiento subterráneo";
 
-"type.amenity.parking.underground.fee" = "Estacionamiento subterráneo de pago";
+"type.amenity.parking.underground.fee" = "Estacionamiento subterráneo";
 
 "type.amenity.parking.underground.private" = "Estacionamiento subterráneo privado";
 
 "type.amenity.parking.street_side" = "Estacionamiento en la calle";
 
-"type.amenity.parking.street_side.fee" = "Estacionamiento en la calle de pago";
+"type.amenity.parking.street_side.fee" = "Estacionamiento en la calle";
 
 "type.amenity.parking.street_side.private" = "Estacionamiento en la calle privado";
 
 "type.amenity.parking.lane" = "Estacionamiento en carril";
 
-"type.amenity.parking.lane.fee" = "Estacionamiento en carril de pago";
+"type.amenity.parking.lane.fee" = "Estacionamiento en carril";
 
 "type.amenity.parking.lane.private" = "Estacionamiento en carril privado";
 
@@ -1555,7 +1563,7 @@
 
 "type.amenity.vending_machine.newspapers" = "Máquina expendedora de periódicos";
 
-"type.amenity.vending_machine.parking_tickets" = "Máquina de pago de tique de aparcamiento";
+"type.amenity.vending_machine.parking_tickets" = "Máquina de pago de aparcamiento";
 
 "type.amenity.vending_machine.public_transport_tickets" = "Máquina expendedora de billetes de transporte público";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Entrada principal";
 
 "type.entrance.exit" = "Salida";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratis";
 
 "type.healthcare.laboratory" = "Laboratorio médico";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Jardín";
 
 "type.leisure.golf_course" = "Campo de golf";
+
+"type.leisure.hackerspace" = "Espacio hacker";
 
 "type.leisure.ice_rink" = "Pisa de patinaje";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metro";
 
+"type.railway.station.subway.singapore" = "Metro";
+
 "type.railway.station.subway.sofia" = "Metro";
 
 "type.railway.station.subway.spb" = "Metro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Entrada de metro";
 
 "type.railway.subway_entrance.shiraz" = "Entrada de metro";
+
+"type.railway.subway_entrance.singapore" = "Entrada de metro";
 
 "type.railway.subway_entrance.sofia" = "Entrada de metro";
 

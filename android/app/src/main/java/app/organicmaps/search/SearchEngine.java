@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
 
 import app.organicmaps.Framework;
-import app.organicmaps.api.ParsedMwmRequest;
 import app.organicmaps.util.Language;
 import app.organicmaps.util.Listeners;
 import app.organicmaps.util.concurrency.UiThread;
@@ -186,8 +185,6 @@ public enum SearchEngine implements NativeSearchListener,
   @MainThread
   private static void cancelApiCall()
   {
-    if (ParsedMwmRequest.getCurrentRequest() != null)
-      ParsedMwmRequest.setCurrentRequest(null);
     Framework.nativeClearApiPoints();
   }
 

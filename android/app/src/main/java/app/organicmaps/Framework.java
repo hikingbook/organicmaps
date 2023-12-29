@@ -18,7 +18,7 @@ import java.util.Locale;
 
 import app.organicmaps.api.ParsedRoutingData;
 import app.organicmaps.api.ParsedSearchRequest;
-import app.organicmaps.api.ParsingResult;
+import app.organicmaps.api.RequestType;
 import app.organicmaps.bookmarks.data.DistanceAndAzimut;
 import app.organicmaps.bookmarks.data.FeatureId;
 import app.organicmaps.bookmarks.data.MapObject;
@@ -38,7 +38,7 @@ import app.organicmaps.widget.placepage.PlacePageData;
 public class Framework
 {
   @Retention(RetentionPolicy.SOURCE)
-  @IntDef({MAP_STYLE_CLEAR, MAP_STYLE_DARK, MAP_STYLE_VEHICLE_CLEAR, MAP_STYLE_VEHICLE_DARK, MAP_STYLE_OUTDOOR_CLEAR, MAP_STYLE_OUTDOOR_DARK})
+  @IntDef({MAP_STYLE_CLEAR, MAP_STYLE_DARK, MAP_STYLE_VEHICLE_CLEAR, MAP_STYLE_VEHICLE_DARK, MAP_STYLE_OUTDOORS_CLEAR, MAP_STYLE_OUTDOORS_DARK})
 
   public @interface MapStyle {}
 
@@ -46,6 +46,8 @@ public class Framework
   public static final int MAP_STYLE_DARK = 1;
   public static final int MAP_STYLE_VEHICLE_CLEAR = 3;
   public static final int MAP_STYLE_VEHICLE_DARK = 4;
+  public static final int MAP_STYLE_OUTDOORS_CLEAR = 5;
+  public static final int MAP_STYLE_OUTDOORS_DARK = 6;
 
   public static final int MAP_STYLE_OUTDOOR_CLEAR = 5;
 
@@ -232,12 +234,13 @@ public class Framework
   public static native void nativeClearApiPoints();
 
   @NonNull
-  public static native ParsingResult nativeParseAndSetApiUrl(String url);
+  public static native @RequestType int nativeParseAndSetApiUrl(String url);
   public static native ParsedRoutingData nativeGetParsedRoutingData();
   public static native ParsedSearchRequest nativeGetParsedSearchRequest();
-  public static native String nativeGetParsedAppName();
-  @Size(2)
+  public static native @Nullable String nativeGetParsedAppName();
+  @Nullable @Size(2)
   public static native double[] nativeGetParsedCenterLatLon();
+  public static native @Nullable String nativeGetParsedBackUrl();
 
   public static native void nativeDeactivatePopup();
 
@@ -368,6 +371,10 @@ public class Framework
   public static native void nativeSetIsolinesLayerEnabled(boolean enabled);
 
   public static native boolean nativeIsIsolinesLayerEnabled();
+
+  public static native void nativeSetOutdoorsLayerEnabled(boolean enabled);
+
+  public static native boolean nativeIsOutdoorsLayerEnabled();
 
   @NonNull
   public static native MapObject nativeDeleteBookmarkFromMapObject();

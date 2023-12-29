@@ -790,10 +790,13 @@
 "book_button" = "حجز";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "التفاصيل على KAYAK";
+"more_on_kayak" = "الصور والتعليقات والحجز";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "تذهب مكافأة الإحالة التي يتم تلقيها لكل حجز من خلال هذا الرابط إلى تطوير Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "التفاصيل على Kayak";
 
 "placepage_call_button" = "اتصال";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "تحديث";
 
-"placepage_add_place_button" = "إضافة مكان ما للخريطة";
+"placepage_add_place_button" = "أضف مكانًا إلى OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "هل ترغب في إرساله لجميع المستخدمين؟";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "مترو الانفاق";
 
-"layers_title" = "طبقات الخريطة";
+"layers_title" = "أنماط الخريطة وطبقاتها";
 
 "subway_data_unavailable" = "خريطة مترو الانفاق غير متوفرة";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ar:About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "جولة على الأقدام";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "موقف سيارات";
 
-"type.amenity.parking.fee" = "موقف سيارات مدفوع";
+"type.amenity.parking.fee" = "موقف سيارات";
 
 "type.amenity.parking.multi.storey" = "موقف سيارات متعدد الطوابق";
+
+"type.amenity.parking.multi.storey.fee" = "موقف سيارات متعدد الطوابق";
 
 "type.amenity.parking.no.access" = "موقف سيارات خاص";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "موقف سيارات تحت الأرض";
 
-"type.amenity.parking.underground.fee" = "موقف سيارات مدفوع الأجر تحت الأرض";
+"type.amenity.parking.underground.fee" = "موقف سيارات تحت الأرض";
 
 "type.amenity.parking.underground.private" = "موقف سيارات خاص تحت الأرض";
 
 "type.amenity.parking.street_side" = "موقف سيارات على جانب الشارع";
 
-"type.amenity.parking.street_side.fee" = "موقف سيارات مدفوع الأجر على جانب الشارع";
+"type.amenity.parking.street_side.fee" = "موقف سيارات على جانب الشارع";
 
 "type.amenity.parking.street_side.private" = "موقف سيارات خاص على جانب الشارع";
 
 "type.amenity.parking.lane" = "وقوف السيارات لين";
 
-"type.amenity.parking.lane.fee" = "موقف سيارات مدفوع الأجر";
+"type.amenity.parking.lane.fee" = "وقوف السيارات لين";
 
 "type.amenity.parking.lane.private" = "موقف سيارات خاص بالممر";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "المدخل الرئيسي";
 
 "type.entrance.exit" = "مخرج";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "مجانية";
 
 "type.healthcare.laboratory" = "مختبر طبي";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "حديقة";
 
 "type.leisure.golf_course" = "ملعب غولف";
+
+"type.leisure.hackerspace" = "هاكرزبيس";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "محطة مترو";
 
+"type.railway.station.subway.singapore" = "محطة مترو";
+
 "type.railway.station.subway.sofia" = "محطة مترو";
 
 "type.railway.station.subway.spb" = "محطة مترو";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "مدخل المترو";
 
 "type.railway.subway_entrance.shiraz" = "مدخل المترو";
+
+"type.railway.subway_entrance.singapore" = "مدخل المترو";
 
 "type.railway.subway_entrance.sofia" = "مدخل المترو";
 

@@ -299,9 +299,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Оновити мапу</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Сервіси Google Play</string>
+	<string name="google_play_services">Служби визначення місцезнаходження Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Щоб визначити ваше поточне місцезнаходження, використовуйте сервіси Google Play</string>
+	<string name="pref_use_google_play">Швидке визначення приблизного місця розташування за допомогою Bluetooth, WiFi або мобільної мережі</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Завантажити мапи з дороги</string>
 	<!-- Text for routing error dialog -->
@@ -517,9 +517,11 @@
 	<string name="minute">хв</string>
 	<string name="placepage_more_button">Ще</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Докладніше на KAYAK</string>
+	<string name="more_on_kayak">Фото, відгуки, бронювання</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Реферальний бонус, отриманий за кожне бронювання за цим посиланням, йде на розробку Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Докладніше на Kayak</string>
 	<string name="placepage_edit_bookmark_button">Редагувати мiтку</string>
 	<string name="editor_comment_hint">Коментар…</string>
 	<string name="editor_reset_edits_message">Скинути всі локальні виправлення?</string>
@@ -538,7 +540,7 @@
 	<string name="error_enter_correct_twitter_page">Введіть вірну веб-адресу Twitter сторінки або і\'мя користувача</string>
 	<string name="error_enter_correct_vk_page">Введіть вірну веб-адресу VK сторінки або і\'мя користувача</string>
 	<string name="error_enter_correct_line_page">Введіть вірну веб-адресу LINE сторінки або LINE ID</string>
-	<string name="placepage_add_place_button">Додати на мапу</string>
+	<string name="placepage_add_place_button">Додати місце на OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Надіслати усім користувачам?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -614,13 +616,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d треків</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Налаштування супроводу</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Приватність</string>
 	<string name="privacy_policy">Політика конфіденційності</string>
 	<string name="terms_of_use">Умови використання</string>
 	<string name="button_layer_traffic">Затор</string>
 	<string name="button_layer_subway">Метрополітен</string>
-	<string name="layers_title">Зображення мапи</string>
+	<string name="layers_title">Стилі та шари мапи</string>
 	<string name="subway_data_unavailable">Мапа метрополітену недоступна</string>
 	<string name="bookmarks_empty_list_title">Список порожній</string>
 	<string name="bookmarks_empty_list_message">Щоб додати нову мітку, натисніть на значок зірочки в картці об’єкта</string>
@@ -762,6 +764,8 @@
 	<string name="aa_grant_permissions">Надавати дозволи</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Підключено до автомобіля</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Активний відпочинок</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адреса/блок</string>
@@ -848,20 +852,21 @@
 	<string name="type.amenity.nightclub">Нічний клуб</string>
 	<string name="type.amenity.nursing_home">Будинок для людей похилого віку</string>
 	<string name="type.amenity.parking">Парковка</string>
-	<string name="type.amenity.parking.fee">Платна парковка</string>
+	<string name="type.amenity.parking.fee">Парковка</string>
 	<string name="type.amenity.parking.multi.storey">Багатоповерховий паркінг</string>
+	<string name="type.amenity.parking.multi.storey.fee">Багатоповерховий паркінг</string>
 	<string name="type.amenity.parking.no.access">Приватна парковка</string>
 	<string name="type.amenity.parking.permissive">Приватна парковка</string>
 	<string name="type.amenity.parking.private">Приватна парковка</string>
 	<string name="type.amenity.parking.park_and_ride">Парковка</string>
 	<string name="type.amenity.parking.underground">Підземний паркінг</string>
-	<string name="type.amenity.parking.underground.fee">Платний підземний паркінг</string>
+	<string name="type.amenity.parking.underground.fee">Підземний паркінг</string>
 	<string name="type.amenity.parking.underground.private">Приватний підземний паркінг</string>
 	<string name="type.amenity.parking.street_side">Парковка з боку вулиці</string>
-	<string name="type.amenity.parking.street_side.fee">Платне паркування з боку вулиці</string>
+	<string name="type.amenity.parking.street_side.fee">Парковка з боку вулиці</string>
 	<string name="type.amenity.parking.street_side.private">Приватна парковка з боку вулиці</string>
 	<string name="type.amenity.parking.lane">Парковка по смугах</string>
-	<string name="type.amenity.parking.lane.fee">Платна смуга для паркування</string>
+	<string name="type.amenity.parking.lane.fee">Парковка по смугах</string>
 	<string name="type.amenity.parking.lane.private">Автостоянка на окремій смузі</string>
 	<string name="type.amenity.parking_entrance">Вхід на паркінг</string>
 	<string name="type.amenity.parking_entrance.private">Приватний під\'їзд для паркування</string>
@@ -1113,6 +1118,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Головний вхід</string>
 	<string name="type.entrance.exit">Виходьте.</string>
+	<string name="type.fee.no">Безкоштовно</string>
 	<string name="type.healthcare.laboratory">Медична лабораторія</string>
 	<string name="type.healthcare.physiotherapist">Фізіотерапевт</string>
 	<string name="type.healthcare.alternative">Альтернативна медицина</string>
@@ -1712,6 +1718,7 @@
 	<string name="type.railway.station.subway.sf">Метро</string>
 	<string name="type.railway.station.subway.shanghai">Метро</string>
 	<string name="type.railway.station.subway.shiraz">Метро</string>
+	<string name="type.railway.station.subway.singapore">Метро</string>
 	<string name="type.railway.station.subway.sofia">Метро</string>
 	<string name="type.railway.station.subway.spb">Метро</string>
 	<string name="type.railway.station.subway.stockholm">Метро</string>
@@ -1826,6 +1833,7 @@
 	<string name="type.railway.subway_entrance.sf">Вхід до метро</string>
 	<string name="type.railway.subway_entrance.shanghai">Вхід до метро</string>
 	<string name="type.railway.subway_entrance.shiraz">Вхід до метро</string>
+	<string name="type.railway.subway_entrance.singapore">Вхід до метро</string>
 	<string name="type.railway.subway_entrance.sofia">Вхід до метро</string>
 	<string name="type.railway.subway_entrance.spb">Вхід до метро</string>
 	<string name="type.railway.subway_entrance.stockholm">Вхід до метро</string>

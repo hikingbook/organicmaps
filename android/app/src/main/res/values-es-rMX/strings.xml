@@ -18,6 +18,10 @@
 	<string name="pref_tts_test_voice_title">Pruebe las instrucciones de voz (TTS, Text-To-Speech)</string>
 	<!-- Settings «Route» category: Pop-up message when clicking «Test Voice Directions» -->
 	<string name="pref_tts_playing_test_voice">Verifique el volumen o la configuración de texto a voz del sistema si no escucha la voz ahora.</string>
+	<!-- Preference title -->
+	<string name="google_play_services">Servicios de ubicación de Google Play</string>
+	<!-- Preference text -->
+	<string name="pref_use_google_play">Determine rápidamente su ubicación aproximada mediante Bluetooth, WiFi o red móvil</string>
 	<!-- red color -->
 	<string name="red">Rojo</string>
 	<!-- yellow color -->
@@ -54,9 +58,12 @@
 	<!-- SECTION: Strings for downloading map from search -->
 	<string name="editor_other_info">Enviar nota a los editores de OSM</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Detalles sobre KAYAK</string>
+	<string name="more_on_kayak">Fotos, reseñas, reservas.</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">El bono de recomendación recibido por cada reserva a través de este enlace se destina al desarrollo de Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Detalles sobre Kayak</string>
+	<string name="placepage_add_place_button">Agregar lugar a OpenStreetMap</string>
 	<string name="transliteration_title">Transliteración al alfabeto latino</string>
 	<string name="dialog_error_storage_title">Problema de acceso al almacenamiento</string>
 	<string name="dialog_error_storage_message">El almacenamiento externo no está disponible. Es posible que se haya quitado o dañado la tarjeta SD, o que el sistema de archivos solo permita la lectura. Revíselo y escríbanos a support\@organicmaps.app</string>
@@ -91,13 +98,11 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d rastreos</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Configuraciones de rastreo</string>
 	<string name="privacy_policy">Política de Privacidad</string>
 	<string name="terms_of_use">Términos de uso</string>
 	<string name="button_layer_traffic">Tráfico</string>
 	<string name="button_layer_subway">Metro</string>
-	<string name="layers_title">Capas del mapa</string>
+	<string name="layers_title">Estilos y capas de mapas</string>
 	<string name="subway_data_unavailable">El mapa del metro no está disponible</string>
 	<string name="bookmarks_empty_list_title">Esta lista está vacía</string>
 	<string name="bookmarks_empty_list_message">Para añadir un marcador, toque un lugar en el mapa y después toque el ícono de estrella</string>
@@ -218,20 +223,21 @@
 	<string name="type.amenity.bicycle_parking">Estacionamiento de bicicletas</string>
 	<string name="type.amenity.motorcycle_parking">Estacionamiento de motocicletas</string>
 	<string name="type.amenity.parking">Estacionamiento</string>
-	<string name="type.amenity.parking.fee">Estacionamiento de pago</string>
+	<string name="type.amenity.parking.fee">Estacionamiento</string>
 	<string name="type.amenity.parking.multi.storey">Estacionamiento de varios pisos</string>
+	<string name="type.amenity.parking.multi.storey.fee">Estacionamiento de varios pisos</string>
 	<string name="type.amenity.parking.no.access">Estacionamiento privado</string>
 	<string name="type.amenity.parking.permissive">Estacionamiento privado</string>
 	<string name="type.amenity.parking.private">Estacionamiento privado</string>
 	<string name="type.amenity.parking.park_and_ride">Estacionamiento</string>
 	<string name="type.amenity.parking.underground">Estacionamiento subterráneo</string>
-	<string name="type.amenity.parking.underground.fee">Estacionamiento subterráneo de pago</string>
+	<string name="type.amenity.parking.underground.fee">Estacionamiento subterráneo</string>
 	<string name="type.amenity.parking.underground.private">Estacionamiento subterráneo privado</string>
 	<string name="type.amenity.parking.street_side">Estacionamiento en la calle</string>
-	<string name="type.amenity.parking.street_side.fee">Estacionamiento en la calle de pago</string>
+	<string name="type.amenity.parking.street_side.fee">Estacionamiento en la calle</string>
 	<string name="type.amenity.parking.street_side.private">Estacionamiento en la calle privado</string>
 	<string name="type.amenity.parking.lane">Estacionamiento en carril</string>
-	<string name="type.amenity.parking.lane.fee">Estacionamiento en carril de pago</string>
+	<string name="type.amenity.parking.lane.fee">Estacionamiento en carril</string>
 	<string name="type.amenity.parking.lane.private">Estacionamiento en carril privado</string>
 	<string name="type.amenity.parking_entrance">Entrada al estacionamiento</string>
 	<string name="type.amenity.parking_entrance.private">Entrada al estacionamiento privado</string>
@@ -362,6 +368,7 @@
 	<string name="type.landuse.landfill">Vertedero</string>
 	<string name="type.landuse.railway">Estructuras ferroviarias</string>
 	<string name="type.leisure.dog_park">Lugar para pasear al perro</string>
+	<string name="type.leisure.hackerspace">Espacio hacker</string>
 	<string name="type.leisure.nature_reserve">Reserva</string>
 	<string name="type.leisure.park">Parque</string>
 	<string name="type.leisure.park.no.access">Parque</string>
@@ -476,6 +483,7 @@
 	<string name="type.railway.subway_entrance.sf">Entrada de metro</string>
 	<string name="type.railway.subway_entrance.shanghai">Entrada de metro</string>
 	<string name="type.railway.subway_entrance.shiraz">Entrada de metro</string>
+	<string name="type.railway.subway_entrance.singapore">Entrada de metro</string>
 	<string name="type.railway.subway_entrance.sofia">Entrada de metro</string>
 	<string name="type.railway.subway_entrance.spb">Entrada de metro</string>
 	<string name="type.railway.subway_entrance.stockholm">Entrada de metro</string>

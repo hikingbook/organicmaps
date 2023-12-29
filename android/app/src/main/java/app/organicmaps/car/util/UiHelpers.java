@@ -14,6 +14,7 @@ import androidx.car.app.model.Row;
 import androidx.car.app.navigation.model.MapController;
 import androidx.core.graphics.drawable.IconCompat;
 
+import app.organicmaps.Map;
 import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.bookmarks.data.Metadata;
@@ -102,9 +103,6 @@ public final class UiHelpers
   @Nullable
   public static Row getPlaceOpeningHoursRow(@NonNull MapObject place, @NonNull CarContext context)
   {
-    if (!place.hasMetadata())
-      return null;
-
     final String ohStr = place.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
     final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
     final boolean isEmptyTT = (timetables == null || timetables.length == 0);
@@ -157,7 +155,7 @@ public final class UiHelpers
   private static Action createLocationButton(@NonNull CarContext context)
   {
     final Action.Builder builder = new Action.Builder();
-    final int locationMode = LocationState.nativeGetMode();
+    final int locationMode = Map.isEngineCreated() ? LocationState.getMode() : LocationState.NOT_FOLLOW_NO_POSITION;
     CarColor tintColor = Colors.DEFAULT;
 
     @DrawableRes int drawableRes;

@@ -309,9 +309,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">تحديث الخريطة</string>
 	<!-- Preference title -->
-	<string name="google_play_services">خدمات Google Play</string>
+	<string name="google_play_services">خدمات الموقع في جوجل بلاي</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">استخدام خدمات Google Play لتحديد موقعك الحالي</string>
+	<string name="pref_use_google_play">حدد موقعك التقريبي بسرعة باستخدام Bluetooth أو WiFi أو شبكة الهاتف المحمول</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">تنزيل الخرائط على طول طريقك</string>
 	<!-- Text for routing error dialog -->
@@ -528,9 +528,11 @@
 	<string name="minute">د</string>
 	<string name="placepage_more_button">المزيد</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">التفاصيل على KAYAK</string>
+	<string name="more_on_kayak">الصور والتعليقات والحجز</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">تذهب مكافأة الإحالة التي يتم تلقيها لكل حجز من خلال هذا الرابط إلى تطوير Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">التفاصيل على Kayak</string>
 	<string name="placepage_edit_bookmark_button">تحرير العلامة المرجعية</string>
 	<string name="editor_comment_hint">تعليق…</string>
 	<string name="editor_reset_edits_message">هل تريد مسح كافة التغييرات المحلية؟</string>
@@ -549,7 +551,7 @@
 	<string name="error_enter_correct_twitter_page">أدخل اسم مستخدم او موقع ويب خاص بتويتر صالح</string>
 	<string name="error_enter_correct_vk_page">أدخل اسم حساب أو عنوان ويب خاص بموقع VK صالح</string>
 	<string name="error_enter_correct_line_page">أدخل رقم تعريفي خاص بتطبيق LINE أو موقع ويب خاص بتطيق LINE صالح</string>
-	<string name="placepage_add_place_button">إضافة مكان ما للخريطة</string>
+	<string name="placepage_add_place_button">أضف مكانًا إلى OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">هل ترغب في إرساله لجميع المستخدمين؟</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -623,13 +625,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">مسار %d</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">إعدادات التتبع</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">خصوصية</string>
 	<string name="privacy_policy">سياسة الخصوصية</string>
 	<string name="terms_of_use">شروط الاستخدام</string>
 	<string name="button_layer_traffic">حركة مرور</string>
 	<string name="button_layer_subway">مترو الانفاق</string>
-	<string name="layers_title">طبقات الخريطة</string>
+	<string name="layers_title">أنماط الخريطة وطبقاتها</string>
 	<string name="subway_data_unavailable">خريطة مترو الانفاق غير متوفرة</string>
 	<string name="bookmarks_empty_list_title">هذه اللائحة فارغة</string>
 	<string name="bookmarks_empty_list_message">لإضافة إشارة مرجعية ، اضغط على مكان على الخريطة ثم انقر على رمز النجمة</string>
@@ -769,6 +771,8 @@
 	<string name="aa_grant_permissions">أذونات المنح</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">متصل بالسيارة</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">جولة على الأقدام</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">العنوان / البلوك</string>
@@ -854,20 +858,21 @@
 	<string name="type.amenity.nightclub">نادي ليلي</string>
 	<string name="type.amenity.nursing_home">دار تمريض</string>
 	<string name="type.amenity.parking">موقف سيارات</string>
-	<string name="type.amenity.parking.fee">موقف سيارات مدفوع</string>
+	<string name="type.amenity.parking.fee">موقف سيارات</string>
 	<string name="type.amenity.parking.multi.storey">موقف سيارات متعدد الطوابق</string>
+	<string name="type.amenity.parking.multi.storey.fee">موقف سيارات متعدد الطوابق</string>
 	<string name="type.amenity.parking.no.access">موقف سيارات خاص</string>
 	<string name="type.amenity.parking.permissive">موقف سيارات خاص</string>
 	<string name="type.amenity.parking.private">موقف سيارات خاص</string>
 	<string name="type.amenity.parking.park_and_ride">موقف اصطفاف وركوب</string>
 	<string name="type.amenity.parking.underground">موقف سيارات تحت الأرض</string>
-	<string name="type.amenity.parking.underground.fee">موقف سيارات مدفوع الأجر تحت الأرض</string>
+	<string name="type.amenity.parking.underground.fee">موقف سيارات تحت الأرض</string>
 	<string name="type.amenity.parking.underground.private">موقف سيارات خاص تحت الأرض</string>
 	<string name="type.amenity.parking.street_side">موقف سيارات على جانب الشارع</string>
-	<string name="type.amenity.parking.street_side.fee">موقف سيارات مدفوع الأجر على جانب الشارع</string>
+	<string name="type.amenity.parking.street_side.fee">موقف سيارات على جانب الشارع</string>
 	<string name="type.amenity.parking.street_side.private">موقف سيارات خاص على جانب الشارع</string>
 	<string name="type.amenity.parking.lane">وقوف السيارات لين</string>
-	<string name="type.amenity.parking.lane.fee">موقف سيارات مدفوع الأجر</string>
+	<string name="type.amenity.parking.lane.fee">وقوف السيارات لين</string>
 	<string name="type.amenity.parking.lane.private">موقف سيارات خاص بالممر</string>
 	<string name="type.amenity.parking_entrance">مدخل موقف سيارات</string>
 	<string name="type.amenity.parking_entrance.private">مدخل خاص لوقوف السيارات</string>
@@ -1123,6 +1128,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">المدخل الرئيسي</string>
 	<string name="type.entrance.exit">مخرج</string>
+	<string name="type.fee.no">مجانية</string>
 	<string name="type.healthcare.laboratory">مختبر طبي</string>
 	<string name="type.healthcare.physiotherapist">اخصائي علاج طبيعي</string>
 	<string name="type.healthcare.alternative">الطب البديل</string>
@@ -1413,6 +1419,7 @@
 	<string name="type.leisure.garden">حديقة</string>
 	<string name="type.leisure.garden.residential">حديقة</string>
 	<string name="type.leisure.golf_course">ملعب غولف</string>
+	<string name="type.leisure.hackerspace">هاكرزبيس</string>
 	<string name="type.leisure.marina">مرسى</string>
 	<string name="type.leisure.nature_reserve">محمية طبيعية</string>
 	<string name="type.leisure.outdoor_seating">جلوس في الهواء الطلق</string>
@@ -1672,6 +1679,7 @@
 	<string name="type.railway.station.subway.sf">محطة مترو</string>
 	<string name="type.railway.station.subway.shanghai">محطة مترو</string>
 	<string name="type.railway.station.subway.shiraz">محطة مترو</string>
+	<string name="type.railway.station.subway.singapore">محطة مترو</string>
 	<string name="type.railway.station.subway.sofia">محطة مترو</string>
 	<string name="type.railway.station.subway.spb">محطة مترو</string>
 	<string name="type.railway.station.subway.stockholm">محطة مترو</string>
@@ -1783,6 +1791,7 @@
 	<string name="type.railway.subway_entrance.sf">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.shanghai">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.shiraz">مدخل المترو</string>
+	<string name="type.railway.subway_entrance.singapore">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.sofia">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.spb">مدخل المترو</string>
 	<string name="type.railway.subway_entrance.stockholm">مدخل المترو</string>

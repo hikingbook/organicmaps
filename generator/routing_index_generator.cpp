@@ -273,8 +273,7 @@ void CalcCrossMwmTransitions(
 {
   VehicleMaskBuilder const maskMaker(country, countryParentNameGetterFn);
   std::map<uint32_t, base::GeoObjectId> featureIdToOsmId;
-  CHECK(ParseWaysFeatureIdToOsmIdMapping(mappingFile, featureIdToOsmId),
-        ("Can't parse feature id to osm id mapping. File:", mappingFile));
+  ParseWaysFeatureIdToOsmIdMapping(mappingFile, featureIdToOsmId);
 
   auto const & path = base::JoinPath(intermediateDir, CROSS_MWM_OSM_WAYS_DIR, country);
 
@@ -492,7 +491,7 @@ void CalcCrossMwmConnectors(
 template <typename CrossMwmId>
 void FillWeights(string const & path, string const & mwmFile, string const & country,
                  CountryParentNameGetterFn const & countryParentNameGetterFn,
-                 bool disableCrossMwmProgress, CrossMwmConnectorBuilderEx<CrossMwmId> & builder)
+                 CrossMwmConnectorBuilderEx<CrossMwmId> & builder)
 {
   base::Timer timer;
 
@@ -673,7 +672,7 @@ void SerializeCrossMwm(string const & mwmFile, string const & sectionName,
 void BuildRoutingCrossMwmSection(string const & path, string const & mwmFile,
                                  string const & country, string const & intermediateDir,
                                  CountryParentNameGetterFn const & countryParentNameGetterFn,
-                                 string const & osmToFeatureFile, bool disableCrossMwmProgress)
+                                 string const & osmToFeatureFile)
 {
   LOG(LINFO, ("Building cross mwm section for", country));
   CrossMwmConnectorBuilderEx<base::GeoObjectId> builder;
@@ -681,7 +680,9 @@ void BuildRoutingCrossMwmSection(string const & path, string const & mwmFile,
   CalcCrossMwmConnectors(path, mwmFile, intermediateDir, country, countryParentNameGetterFn,
                          osmToFeatureFile, {} /* edgeIdToFeatureId */, builder);
 
-  FillWeights(path, mwmFile, country, countryParentNameGetterFn, disableCrossMwmProgress, builder);
+  // We use leaps for cars only. To use leaps for other vehicle types add weights generation
+  // here and change WorldGraph mode selection rule in IndexRouter::CalculateSubroute.
+  FillWeights(path, mwmFile, country, countryParentNameGetterFn, builder);
 
   SerializeCrossMwm(mwmFile, CROSS_MWM_FILE_TAG, builder);
 }

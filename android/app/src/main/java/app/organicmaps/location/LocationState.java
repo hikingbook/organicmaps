@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import app.organicmaps.Map;
+
 public final class LocationState
 {
   public static final String LOCATION_TAG = LocationState.class.getPackage().getName();
@@ -63,21 +65,15 @@ public final class LocationState
 
   private LocationState() {}
 
-  /**
-   * Checks if location state on the map is active (so its not turned off or pending).
-   */
-  static boolean isTurnedOn()
+  @Value
+  public static int getMode()
   {
-    return hasLocation(nativeGetMode());
+    if (!Map.isEngineCreated())
+      throw new IllegalStateException("Location mode is undefined until engine is created");
+    return nativeGetMode();
   }
 
-  static boolean hasLocation(int mode)
-  {
-    return (mode > NOT_FOLLOW_NO_POSITION);
-  }
-
-  @SuppressWarnings("unused")
-  static String nameOf(@Value int mode)
+  public static String nameOf(@Value int mode)
   {
     switch (mode)
     {

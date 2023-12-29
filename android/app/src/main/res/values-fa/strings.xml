@@ -270,9 +270,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">بروزرسانی نقشه</string>
 	<!-- Preference title -->
-	<string name="google_play_services">خدمات Google Play</string>
+	<string name="google_play_services">خدمات مکان Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">استفاده از Google Play Services برای تعیین موقعیت کنونی شما</string>
+	<string name="pref_use_google_play">به سرعت مکان تقریبی خود را با استفاده از بلوتوث، WiFi یا شبکه تلفن همراه تعیین کنید</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">دانلود تمامی نقشه‌ها در طول مسیر‌تان</string>
 	<!-- Text for routing error dialog -->
@@ -486,9 +486,11 @@
 	<string name="minute">دقیقه</string>
 	<string name="placepage_more_button">بیشتر</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">جزئیات در KAYAK</string>
+	<string name="more_on_kayak">عکس ها، نظرات، رزرو</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">پاداش ارجاعی دریافت شده برای هر رزرو از طریق این پیوند به سمت توسعه نقشه های ارگانیک می رود.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">جزئیات در Kayak</string>
 	<string name="placepage_edit_bookmark_button">ویرایش نشانه‌ها</string>
 	<string name="editor_comment_hint">اظهار نظر</string>
 	<string name="editor_reset_edits_message">آیا تغییرات محلی را نادیده می گیرید؟</string>
@@ -500,7 +502,7 @@
 	<string name="error_enter_correct_phone">شماره تلفن معتبری وارد نمایید</string>
 	<string name="error_enter_correct_web">ادرس وب معتبری وارد نمایید</string>
 	<string name="error_enter_correct_email">ایمیل معتبری وارد نمایید</string>
-	<string name="placepage_add_place_button">اضافه کردن یک مکان به نقشه</string>
+	<string name="placepage_add_place_button">مکان را به OpenStreetMap اضافه کنید</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">آیا می خواهید آن را برای دیگر کاربران ارسال کنید؟</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -578,13 +580,13 @@
 	  <item quantity="one">%d رد</item>
 	  <item quantity="other">%d رد</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">تنظیمات ردیابی</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">حریم شخصی</string>
 	<string name="privacy_policy">سیاست حریم خصوصی</string>
 	<string name="terms_of_use">شرایط استفاده</string>
 	<string name="button_layer_traffic">ترافیک</string>
 	<string name="button_layer_subway">مترو</string>
-	<string name="layers_title">لایه‌های نقشه</string>
+	<string name="layers_title">سبک ها و لایه های نقشه</string>
 	<string name="subway_data_unavailable">نقشه مترو موجود نیست</string>
 	<string name="bookmarks_empty_list_title">این لیست خالی است</string>
 	<string name="bookmarks_empty_list_message">برای افزودن یک نشانه، روی یک مکان روی نقشه ضربه بزنید و سپس روی نماد ستاره ضربه بزنید</string>
@@ -713,6 +715,8 @@
 	<string name="aa_grant_permissions">اعطای مجوزها</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">متصل به ماشین</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">پیاده روی</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">آدرس/بلاک</string>
@@ -784,20 +788,21 @@
 	<string name="type.amenity.nightclub">کلوپ شبانه</string>
 	<string name="type.amenity.nursing_home">خانه سالمندان</string>
 	<string name="type.amenity.parking">پارکینگ</string>
-	<string name="type.amenity.parking.fee">ﯽﻟﻮﭘ ﮓﻨﯿﮐﺭﺎﭘ</string>
+	<string name="type.amenity.parking.fee">پارکینگ</string>
 	<string name="type.amenity.parking.multi.storey">ﻪﻘﺒﻃ ﺪﻨﭼ ﮓﻨﯿﮐﺭﺎﭘ</string>
+	<string name="type.amenity.parking.multi.storey.fee">ﻪﻘﺒﻃ ﺪﻨﭼ ﮓﻨﯿﮐﺭﺎﭘ</string>
 	<string name="type.amenity.parking.no.access">ﯽﺻﺎﺼﺘﺧﺍ ﮓﻨﯿﮐﺭﺎﭘ</string>
 	<string name="type.amenity.parking.permissive">ﯽﺻﺎﺼﺘﺧﺍ ﮓﻨﯿﮐﺭﺎﭘ</string>
 	<string name="type.amenity.parking.private">ﯽﺻﺎﺼﺘﺧﺍ ﮓﻨﯿﮐﺭﺎﭘ</string>
 	<string name="type.amenity.parking.park_and_ride">پارکینگ</string>
 	<string name="type.amenity.parking.underground">ﯽﻨﯿﻣﺯ ﺮﯾﺯ ﮓﻨﯿﮐﺭﺎﭘ</string>
-	<string name="type.amenity.parking.underground.fee">پارکینگ زیرزمینی پولی</string>
+	<string name="type.amenity.parking.underground.fee">ﯽﻨﯿﻣﺯ ﺮﯾﺯ ﮓﻨﯿﮐﺭﺎﭘ</string>
 	<string name="type.amenity.parking.underground.private">پارکینگ زیرزمینی اختصاصی</string>
 	<string name="type.amenity.parking.street_side">پارکینگ کنار خیابان</string>
-	<string name="type.amenity.parking.street_side.fee">پارکینگ کنار خیابان پولی</string>
+	<string name="type.amenity.parking.street_side.fee">پارکینگ کنار خیابان</string>
 	<string name="type.amenity.parking.street_side.private">پارکینگ کنار خیابان خصوصی</string>
 	<string name="type.amenity.parking.lane">پارکینگ لاین</string>
-	<string name="type.amenity.parking.lane.fee">پارکینگ لاین پولی</string>
+	<string name="type.amenity.parking.lane.fee">پارکینگ لاین</string>
 	<string name="type.amenity.parking.lane.private">پارکینگ لاین خصوصی</string>
 	<string name="type.amenity.parking_entrance">ﮓﻨﯿﮐﺭﺎﭘ ﯼﺩﻭﺭﻭ</string>
 	<string name="type.amenity.parking_entrance.private">ورودی پارکینگ اختصاصی</string>
@@ -921,6 +926,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">ﯽﻠﺻﺍ ﯼﺩﻭﺭﻭ</string>
 	<string name="type.entrance.exit">خارج شوید</string>
+	<string name="type.fee.no">رایگان</string>
 	<string name="type.healthcare.laboratory">ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ</string>
 	<string name="type.healthcare.physiotherapist">فیزیوتراپیست</string>
 	<string name="type.healthcare.alternative">طب جایگزین</string>
@@ -1180,6 +1186,7 @@
 	<string name="type.leisure.garden">گردشگری</string>
 	<string name="type.leisure.garden.residential">گردشگری</string>
 	<string name="type.leisure.golf_course">زمین گلف</string>
+	<string name="type.leisure.hackerspace">فضای هکرها</string>
 	<string name="type.leisure.outdoor_seating">نشستن در فضای باز</string>
 	<string name="type.leisure.park">پارک</string>
 	<string name="type.leisure.park.no.access">پارک</string>
@@ -1427,6 +1434,7 @@
 	<string name="type.railway.station.subway.sf">حمل و نقل</string>
 	<string name="type.railway.station.subway.shanghai">حمل و نقل</string>
 	<string name="type.railway.station.subway.shiraz">حمل و نقل</string>
+	<string name="type.railway.station.subway.singapore">حمل و نقل</string>
 	<string name="type.railway.station.subway.sofia">حمل و نقل</string>
 	<string name="type.railway.station.subway.spb">حمل و نقل</string>
 	<string name="type.railway.station.subway.stockholm">حمل و نقل</string>
@@ -1538,6 +1546,7 @@
 	<string name="type.railway.subway_entrance.sf">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.shanghai">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.shiraz">ورودی مترو</string>
+	<string name="type.railway.subway_entrance.singapore">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.sofia">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.spb">ورودی مترو</string>
 	<string name="type.railway.subway_entrance.stockholm">ورودی مترو</string>

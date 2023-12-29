@@ -24,6 +24,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.organicmaps.MwmActivity;
+import app.organicmaps.R;
+import app.organicmaps.location.LocationHelper;
+import app.organicmaps.routing.RoutingController;
+import app.organicmaps.util.StringUtils;
+import app.organicmaps.util.UiUtils;
+import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
+import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -106,7 +114,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
   {
     Intent intent = new Intent(adapter.mActivity, MwmActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-    intent.putExtra(MwmActivity.EXTRA_TASK, new Factory.ShowCountryTask(item.id));
+    intent.putExtra(MwmActivity.EXTRA_COUNTRY_ID, item.id);
     adapter.mActivity.startActivity(intent);
 
     if (!(adapter.mActivity instanceof MwmActivity))

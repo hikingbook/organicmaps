@@ -298,9 +298,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Mise à jour carte</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Services Google Play</string>
+	<string name="google_play_services">Services de localisation de Google Play</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Utilisez les Services Google Play pour obtenir votre emplacement actuel</string>
+	<string name="pref_use_google_play">Détermine rapidement ta position approximative via Bluetooth, WiFi ou le réseau mobile</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Téléchargez toutes les cartes le long de votre itinéraire</string>
 	<!-- Text for routing error dialog -->
@@ -517,9 +517,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Plus</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Détails sur KAYAK</string>
+	<string name="more_on_kayak">Photos, commentaires, réservations</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">La prime de parrainage reçue pour chaque réservation effectuée par l\'intermédiaire de ce lien sert à développer Organic Maps.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Détails sur Kayak</string>
 	<string name="placepage_edit_bookmark_button">Éditer le signet</string>
 	<string name="editor_comment_hint">Commentaire…</string>
 	<string name="editor_reset_edits_message">Abandonner toutes les modifications locales ?</string>
@@ -538,7 +540,7 @@
 	<string name="error_enter_correct_twitter_page">Saisissez une adresse web, un nom de compte Twitter valide</string>
 	<string name="error_enter_correct_vk_page">Saisissez une adresse web, un nom de compte VK valide</string>
 	<string name="error_enter_correct_line_page">Entrez une adresse web ou un ID de LINE valide</string>
-	<string name="placepage_add_place_button">Ajouter un lieu sur la carte</string>
+	<string name="placepage_add_place_button">Ajouter un lieu sur OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Souhaitez-vous l’envoyer à tous les utilisateurs ?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -615,13 +617,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d pistes</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Paramètres de suivi</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Vie privée</string>
 	<string name="privacy_policy">Politique de confidentialité</string>
 	<string name="terms_of_use">Conditions d\'utilisation</string>
 	<string name="button_layer_traffic">Trafic</string>
 	<string name="button_layer_subway">Métro</string>
-	<string name="layers_title">Couches de carte</string>
+	<string name="layers_title">Styles et couches de cartes</string>
 	<string name="subway_data_unavailable">La carte du métro n\'est pas disponible</string>
 	<string name="bookmarks_empty_list_title">Cette liste est vide</string>
 	<string name="bookmarks_empty_list_message">Pour ajouter un signet, appuyez sur un lieu sur la carte, puis appuyez sur l\'icône étoile</string>
@@ -667,9 +669,9 @@
 	<!-- A generic "No" button in dialogs -->
 	<string name="no">Non</string>
 	<!-- E.g. "WiFi:Yes" -->
-	<string name="yes_available">oui</string>
+	<string name="yes_available">Oui</string>
 	<!-- E.g. "WiFi:No" -->
-	<string name="no_available">non</string>
+	<string name="no_available">Non</string>
 	<string name="trip_finished">Vous êtes arrivé !</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -763,6 +765,8 @@
 	<string name="aa_grant_permissions">Accorder l\'accès</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Connecté à la voiture</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Randonnée</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Bloc</string>
@@ -846,20 +850,21 @@
 	<string name="type.amenity.nightclub">Discothèque</string>
 	<string name="type.amenity.nursing_home">Maison de retraite</string>
 	<string name="type.amenity.parking">Stationnement</string>
-	<string name="type.amenity.parking.fee">Stationnement payant</string>
+	<string name="type.amenity.parking.fee">Stationnement</string>
 	<string name="type.amenity.parking.multi.storey">Stationnement à plusieurs étages</string>
+	<string name="type.amenity.parking.multi.storey.fee">Stationnement à plusieurs étages</string>
 	<string name="type.amenity.parking.no.access">Stationnement privé</string>
 	<string name="type.amenity.parking.permissive">Stationnement privé</string>
 	<string name="type.amenity.parking.private">Stationnement privé</string>
 	<string name="type.amenity.parking.park_and_ride">Parking relais</string>
 	<string name="type.amenity.parking.underground">Stationnement souterrain</string>
-	<string name="type.amenity.parking.underground.fee">Parking souterrain payant</string>
+	<string name="type.amenity.parking.underground.fee">Stationnement souterrain</string>
 	<string name="type.amenity.parking.underground.private">Parking privé souterrain</string>
 	<string name="type.amenity.parking.street_side">Stationnement latéral sur voie</string>
-	<string name="type.amenity.parking.street_side.fee">Stationnement latéral sur voie payant</string>
+	<string name="type.amenity.parking.street_side.fee">Stationnement latéral sur voie</string>
 	<string name="type.amenity.parking.street_side.private">Stationnement latéral sur voie privée</string>
 	<string name="type.amenity.parking.lane">Stationnement le long de la voie</string>
-	<string name="type.amenity.parking.lane.fee">Stationnement payant le long de la voie</string>
+	<string name="type.amenity.parking.lane.fee">Stationnement le long de la voie</string>
 	<string name="type.amenity.parking.lane.private">Stationnement sur voie privée</string>
 	<string name="type.amenity.parking_entrance">Entrée parking</string>
 	<string name="type.amenity.parking_entrance.private">Entrée parking privé</string>
@@ -1105,6 +1110,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Entrée principale</string>
 	<string name="type.entrance.exit">Sortie</string>
+	<string name="type.fee.no">Gratuit</string>
 	<string name="type.healthcare.laboratory">Laboratoire médical</string>
 	<string name="type.healthcare.physiotherapist">Physiothérapeute</string>
 	<string name="type.healthcare.alternative">Médecine alternative</string>
@@ -1675,6 +1681,7 @@
 	<string name="type.railway.station.subway.sf">Station de métro</string>
 	<string name="type.railway.station.subway.shanghai">Station de métro</string>
 	<string name="type.railway.station.subway.shiraz">Station de métro</string>
+	<string name="type.railway.station.subway.singapore">Station de métro</string>
 	<string name="type.railway.station.subway.sofia">Station de métro</string>
 	<string name="type.railway.station.subway.spb">Station de métro</string>
 	<string name="type.railway.station.subway.stockholm">Station de métro</string>
@@ -1789,6 +1796,7 @@
 	<string name="type.railway.subway_entrance.sf">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.shanghai">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.shiraz">Entrée du métro</string>
+	<string name="type.railway.subway_entrance.singapore">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.sofia">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.spb">Entrée du métro</string>
 	<string name="type.railway.subway_entrance.stockholm">Entrée du métro</string>

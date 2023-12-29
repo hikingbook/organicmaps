@@ -310,7 +310,7 @@
 "faq" = "Вопросы и ответы";
 
 /* Button in the main menu */
-"donate" = "Поддержать рублём";
+"donate" = "Поддержать деньгами";
 
 /* Button in the main Help dialog */
 "how_to_support_us" = "Помочь проекту";
@@ -790,10 +790,13 @@
 "book_button" = "Забронировать";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Подробнее на KAYAK";
+"more_on_kayak" = "Фотографии, отзывы, бронирование";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Реферальный бонус, полученный за каждое бронирование по этой ссылке, идёт на разработку Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Подробнее на Kayak";
 
 "placepage_call_button" = "Позвонить";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Обновить";
 
-"placepage_add_place_button" = "Добавить место на карту";
+"placepage_add_place_button" = "Добавить место в OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Отправить всем пользователям?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Метро";
 
-"layers_title" = "Слои карты";
+"layers_title" = "Стили и слои карты";
 
 "subway_data_unavailable" = "Карта метро недоступна";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/RU:О_проекте";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Активный отдых";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Парковка";
 
-"type.amenity.parking.fee" = "Платная парковка";
+"type.amenity.parking.fee" = "Парковка";
 
 "type.amenity.parking.multi.storey" = "Многоэтажная парковка";
+
+"type.amenity.parking.multi.storey.fee" = "Многоэтажная парковка";
 
 "type.amenity.parking.no.access" = "Частная парковка";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Подземный паркинг";
 
-"type.amenity.parking.underground.fee" = "Платная подземная парковка";
+"type.amenity.parking.underground.fee" = "Подземный паркинг";
 
 "type.amenity.parking.underground.private" = "Частная подземная парковка";
 
 "type.amenity.parking.street_side" = "Придорожная парковка";
 
-"type.amenity.parking.street_side.fee" = "Платная придорожная парковка";
+"type.amenity.parking.street_side.fee" = "Придорожная парковка";
 
 "type.amenity.parking.street_side.private" = "Частная придорожная парковка";
 
 "type.amenity.parking.lane" = "Парковочная полоса";
 
-"type.amenity.parking.lane.fee" = "Платная парковочная полоса";
+"type.amenity.parking.lane.fee" = "Парковочная полоса";
 
 "type.amenity.parking.lane.private" = "Частная парковочная полоса";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Главный вход";
 
 "type.entrance.exit" = "Выход";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Бесплатно";
 
 "type.healthcare.laboratory" = "Медицинская лаборатория";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Частный сад";
 
 "type.leisure.golf_course" = "Площадка для гольфа";
+
+"type.leisure.hackerspace" = "Хакерспейс";
 
 "type.leisure.ice_rink" = "Каток";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Метро";
 
+"type.railway.station.subway.singapore" = "Метро";
+
 "type.railway.station.subway.sofia" = "Метро";
 
 "type.railway.station.subway.spb" = "Метро";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Вход в метро";
 
 "type.railway.subway_entrance.shiraz" = "Вход в метро";
+
+"type.railway.subway_entrance.singapore" = "Вход в метро";
 
 "type.railway.subway_entrance.sofia" = "Вход в метро";
 

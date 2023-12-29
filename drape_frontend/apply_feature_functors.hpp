@@ -43,7 +43,7 @@ public:
 
 protected:
   void FillCommonParams(CommonOverlayViewParams & p) const;
-  double PriorityToDepth(int priority, drule::rule_type_t ruleType, double areaDepth) const;
+  double PriorityToDepth(int priority, drule::TypeT ruleType, double areaDepth) const;
 
   TInsertShapeFn m_insertShape;
   FeatureType & m_f;
@@ -175,7 +175,7 @@ class ApplyLineFeatureAdditional : public BaseApplyFeature
 public:
   ApplyLineFeatureAdditional(TileKey const & tileKey, TInsertShapeFn const & insertShape,
                              FeatureType & f, double currentScaleGtoP, CaptionDescription const & captions,
-                             std::vector<m2::SharedSpline> const & clippedSplines);
+                             std::vector<m2::SharedSpline> && clippedSplines);
 
   void ProcessAdditionalLineRules(PathTextRuleProto const * pathtextRule, ShieldRuleProto const * shieldRule,
                                   ref_ptr<dp::TextureManager> texMng, ftypes::RoadShieldsSetT const & roadShields,

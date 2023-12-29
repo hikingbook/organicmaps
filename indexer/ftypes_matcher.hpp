@@ -188,12 +188,6 @@ enum class SuburbType
   Count
 };
 
-static_assert(base::Underlying(SuburbType::Residential) <
-                  base::Underlying(SuburbType::Neighbourhood),
-              "");
-static_assert(base::Underlying(SuburbType::Neighbourhood) < base::Underlying(SuburbType::Suburb),
-              "");
-
 class IsSuburbChecker : public BaseChecker
 {
   IsSuburbChecker();
@@ -467,6 +461,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsRecyclingTypeChecker);
 };
 
+class IsFeeTypeChecker : public BaseChecker
+{
+  IsFeeTypeChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsFeeTypeChecker);
+};
+
 class IsCityChecker : public BaseChecker
 {
   IsCityChecker();
@@ -505,7 +507,7 @@ public:
 
 /// Type of locality (do not change values and order - they have detalization order)
 /// Country < State < City < ...
-enum class LocalityType
+enum class LocalityType : int8_t
 {
   None = -1,
   Country = 0,
@@ -516,6 +518,8 @@ enum class LocalityType
   Count
 };
 
+LocalityType LocalityFromString(std::string_view s);
+
 static_assert(base::Underlying(LocalityType::Country) < base::Underlying(LocalityType::State), "");
 static_assert(base::Underlying(LocalityType::State) < base::Underlying(LocalityType::City), "");
 static_assert(base::Underlying(LocalityType::City) < base::Underlying(LocalityType::Town), "");
@@ -525,9 +529,21 @@ static_assert(base::Underlying(LocalityType::Village) < base::Underlying(Localit
 class IsLocalityChecker : public BaseChecker
 {
   IsLocalityChecker();
+
 public:
   LocalityType GetType(uint32_t t) const;
-  LocalityType GetType(feature::TypesHolder const & types) const;
+
+  template <class Types> LocalityType GetType(Types const & types) const
+  {
+    for (uint32_t const t : types)
+    {
+      LocalityType const type = GetType(t);
+      if (type != LocalityType::None)
+        return type;
+    }
+    return LocalityType::None;
+  }
+
   LocalityType GetType(FeatureType & f) const;
 
   DECLARE_CHECKER_INSTANCE(IsLocalityChecker);
@@ -579,6 +595,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsRailwaySubwayEntranceChecker);
 };
 
+class IsPlatformChecker : public BaseChecker
+{
+  IsPlatformChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsPlatformChecker);
+};
+
 class IsAddressInterpolChecker : public BaseChecker
 {
   IsAddressInterpolChecker();
@@ -595,6 +619,7 @@ public:
 /// @name Get city radius and population.
 /// @param r Radius in meters.
 //@{
+uint64_t GetDefPopulation(LocalityType localityType);
 uint64_t GetPopulation(FeatureType & ft);
 double GetRadiusByPopulation(uint64_t p);
 double GetRadiusByPopulationForRouting(uint64_t p, LocalityType localityType);

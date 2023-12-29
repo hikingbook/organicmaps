@@ -13,6 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -33,18 +34,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NavUtils;
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import app.organicmaps.BuildConfig;
-import app.organicmaps.MwmActivity;
-import app.organicmaps.MwmApplication;
-import app.organicmaps.R;
-import app.organicmaps.util.concurrency.UiThread;
-import app.organicmaps.util.log.Logger;
-import app.organicmaps.util.log.LogsManager;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -53,6 +47,13 @@ import java.text.DecimalFormatSymbols;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Map;
+
+import app.organicmaps.BuildConfig;
+import app.organicmaps.MwmActivity;
+import app.organicmaps.R;
+import app.organicmaps.util.concurrency.UiThread;
+import app.organicmaps.util.log.Logger;
+import app.organicmaps.util.log.LogsManager;
 
 @Keep
 public class Utils
@@ -721,6 +722,13 @@ public class Utils
         }
       });
     }
+  }
+
+  public static <T> T getParcelable(@NonNull Bundle in, @Nullable String key,
+                                    @NonNull Class<T> clazz)
+  {
+    in.setClassLoader(clazz.getClassLoader());
+    return BundleCompat.getParcelable(in, key, clazz);
   }
 
   @SuppressWarnings("deprecation")

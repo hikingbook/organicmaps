@@ -130,7 +130,7 @@ void ExtractLineParams(LineRuleProto const & lineRule, LineViewParams & params)
     int const count = dd.dd_size();
     params.m_pattern.reserve(count);
     for (int i = 0; i < count; ++i)
-      params.m_pattern.push_back(dp::PatternFloat2Pixel(dd.dd(i) * scale));
+      params.m_pattern.push_back(dp::PatternFloat2Pixel(std::max(dd.dd(i) * scale, 1.0)));
   }
 
   switch (lineRule.cap())
@@ -395,7 +395,7 @@ void ApplyPointFeature::ExtractCaptionParams(CaptionDefProto const * primaryProt
   }
 }
 
-double BaseApplyFeature::PriorityToDepth(int priority, drule::rule_type_t ruleType, double areaDepth) const
+double BaseApplyFeature::PriorityToDepth(int priority, drule::TypeT ruleType, double areaDepth) const
 {
   double depth = priority;
 
@@ -891,9 +891,9 @@ void ApplyLineFeatureGeometry::ProcessRule(LineRuleProto const & lineRule)
 ApplyLineFeatureAdditional::ApplyLineFeatureAdditional(TileKey const & tileKey, TInsertShapeFn const & insertShape,
                                                        FeatureType & f, double currentScaleGtoP,
                                                        CaptionDescription const & captions,
-                                                       std::vector<m2::SharedSpline> const & clippedSplines)
+                                                       std::vector<m2::SharedSpline> && clippedSplines)
   : TBase(tileKey, insertShape, f, captions)
-  , m_clippedSplines(clippedSplines)
+  , m_clippedSplines(std::move(clippedSplines))
   , m_currentScaleGtoP(currentScaleGtoP)
 {
   ASSERT(!m_clippedSplines.empty(), ());

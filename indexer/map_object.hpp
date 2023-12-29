@@ -88,6 +88,8 @@ public:
   std::vector<std::string> GetRecyclingTypes() const;
   /// @returns translated recycling type(s).
   std::vector<std::string> GetLocalizedRecyclingTypes() const;
+  /// @returns translated fee type.
+  std::string GetLocalizedFeeType() const;
   /// @returns translated and formatted cuisines.
   std::string FormatCuisines() const;
 
@@ -97,6 +99,9 @@ public:
   Internet GetInternet() const;
   int GetStars() const;
   ftraits::WheelchairAvailability GetWheelchairType() const;
+
+  /// @returns true if feature has ATM type.
+  bool HasAtm() const;
 
   /// @returns formatted elevation in feet or meters, or empty string.
   std::string GetElevationFormatted() const;

@@ -6,8 +6,6 @@
 package app.organicmaps.editor;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -483,7 +481,7 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
 
   private static TextInputEditText findInput(View blockWithInput)
   {
-    return (TextInputEditText) blockWithInput.findViewById(R.id.input);
+    return blockWithInput.findViewById(R.id.input);
   }
 
   private TextInputEditText findInputAndInitBlock(View blockWithInput, @DrawableRes int icon, @StringRes int hint)
@@ -496,7 +494,7 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
     ((ImageView) blockWithInput.findViewById(R.id.icon)).setImageResource(icon);
     final TextInputLayout input = blockWithInput.findViewById(R.id.custom_input);
     input.setHint(hint);
-    return (TextInputEditText) input.findViewById(R.id.input);
+    return input.findViewById(R.id.input);
   }
 
   @Override
@@ -523,7 +521,7 @@ public class EditorFragment extends BaseMwmFragment implements View.OnClickListe
     else if (id == R.id.add_langs)
       mParent.addLanguage();
     else if (id == R.id.about_osm)
-      startActivity(new Intent((Intent.ACTION_VIEW), Uri.parse(getString(R.string.osm_wiki_about_url))));
+      Utils.openUrl(requireActivity(), getString(R.string.osm_wiki_about_url));
     else if (id == R.id.reset)
       reset();
   }

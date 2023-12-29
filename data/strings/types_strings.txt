@@ -1945,7 +1945,7 @@
     ko = 음악 학교
     nb = Musikkskole
     nl = Muziekschool
-    pl = Szkoła Muzyczna
+    pl = Szkoła muzyczna
     pt = Escola de música
     ro = Scoala de Muzica
     ru = Музыкальная школа
@@ -2737,43 +2737,7 @@
     zh-Hant = 停車場
 
   [type.amenity.parking.fee]
-    en = Paid Parking
-    af = Betaalde parkering
-    ar = موقف سيارات مدفوع
-    be = Платная паркоўка
-    bg = Платен паркинг
-    cs = Placené parkoviště
-    da = Betalt parkering
-    de = Kostenpflichtiger Parkplatz
-    el = Χώρος στάθμευσης επί πληρωμή
-    es = Aparcamiento de pago
-    es-MX = Estacionamiento de pago
-    et = Tasuline parkimine
-    eu = Ordaindutako aparkalekua
-    fa = ﯽﻟﻮﭘ ﮓﻨﯿﮐﺭﺎﭘ
-    fi = Maksullinen pysäköinti
-    fr = Stationnement payant
-    he = םולשתב הינח
-    hu = Fizetős parkolás
-    id = Parkir Berbayar
-    it = Parcheggio a pagamento
-    ja = 有料駐車場
-    ko = 유료 주차장
-    nb = Betalt parkering
-    nl = Betaald parkeren
-    pl = Płatny parking
-    pt = Estacionamento pago
-    ro = Parcare cu plată
-    ru = Платная парковка
-    sk = Platené parkovisko
-    sv = Betald parkering
-    sw = Maegesho ya Kulipwa
-    th = ที่จอดรถแบบเสียค่าบริการ
-    tr = Ücretli Otopark
-    uk = Платна парковка
-    vi = Đậu xe trả phí
-    zh-Hans = 付费停车
-    zh-Hant = 付費停車
+    ref = type.amenity.parking
 
   [type.amenity.parking.multi.storey]
     en = Multi Storey Parking
@@ -2814,6 +2778,9 @@
     vi = Bãi đậu xe nhiều tầng
     zh-Hans = 多层停车场
     zh-Hant = 多層停車場
+
+  [type.amenity.parking.multi.storey.fee]
+    ref = type.amenity.parking.multi.storey
 
   [type.amenity.parking.no.access]
     ref = type.amenity.parking.private
@@ -2938,44 +2905,7 @@
     zh-Hant = 地下停車場
 
   [type.amenity.parking.underground.fee]
-    en = Paid Underground Parking
-    ar = موقف سيارات مدفوع الأجر تحت الأرض
-    be = Платная падземная паркоўка
-    bg = Платен подземен паркинг
-    ca = Aparcament subterrani de pagament
-    cs = Placené podzemní parkoviště
-    da = Betalt underjordisk parkering
-    de = Kostenpflichtige Tiefgarage
-    el = Υπόγειος χώρος στάθμευσης επί πληρωμή
-    es = Aparcamiento subterráneo de pago
-    es-MX = Estacionamiento subterráneo de pago
-    et = Tasuline maa-alune parkimine
-    eu = Ordaindutako lurpeko aparkalekua
-    fa = پارکینگ زیرزمینی پولی
-    fi = Maksullinen maanalainen pysäköinti
-    fr = Parking souterrain payant
-    he = חניה תת קרקעית בתשלום
-    hu = Fizetős mélygarázs
-    id = Parkir bawah tanah berbayar
-    it = Parcheggio sotterraneo a pagamento
-    ja = 有料地下駐車場
-    ko = 유료 지하 주차장
-    mr = सशुल्क भूमिगत पार्किंग
-    nb = Betalt underjordisk parkering
-    nl = Betaald ondergronds parkeren
-    pl = Płatny parking podziemny
-    pt = Estacionamento subterrâneo pago
-    ro = Parcare subterană plătită
-    ru = Платная подземная парковка
-    sk = Platené podzemné parkovisko
-    sv = Betald underjordisk parkering
-    sw = Maegesho ya chini ya ardhi yanayolipwa
-    th = ที่จอดรถใต้ดินแบบชำระเงิน
-    tr = Ücretli yeraltı otoparkı
-    uk = Платний підземний паркінг
-    vi = Bãi đậu xe ngầm trả phí
-    zh-Hans = 付费地下停车场
-    zh-Hant = 收費地下停車場
+    ref = type.amenity.parking.underground
 
   [type.amenity.parking.underground.private]
     en = Private Underground Parking
@@ -3060,44 +2990,7 @@
     zh-Hant = 街邊停車
 
   [type.amenity.parking.street_side.fee]
-    en = Paid Street-Side Parking
-    ar = موقف سيارات مدفوع الأجر على جانب الشارع
-    be = Платная паркоўка з боку вуліцы
-    bg = Платен паркинг от страната на улицата
-    ca = Aparcament al carrer de pagament
-    cs = Placené parkování na ulici
-    da = Betalt parkering på gadesiden
-    de = Kostenpflichtige Parkbucht
-    el = Πληρωμένη στάθμευση στο δρόμο
-    es = Aparcamiento en la calle de pago
-    es-MX = Estacionamiento en la calle de pago
-    et = Tasuline tänavaäärne parkimine
-    eu = Ordaindutako kale alboko aparkalekua
-    fa = پارکینگ کنار خیابان پولی
-    fi = Maksullinen kadunvarsipysäköinti
-    fr = Stationnement latéral sur voie payant
-    he = חניה ברחוב בתשלום
-    hu = Fizetős utcai parkolás
-    id = Parkir di tepi jalan berbayar
-    it = Parcheggio lato strada a pagamento
-    ja = 有料路上駐車場
-    ko = 유료 노상 주차장
-    mr = पेड स्ट्रीट साइड पार्किंग
-    nb = Betalt parkering på gatesiden
-    nl = Betaald parkeren aan de straatkant
-    pl = Płatny parking przy ulicy
-    pt = Estacionamento ao lado da rua pago
-    ro = Plătită parcare laterală la stradă
-    ru = Платная придорожная парковка
-    sk = Platené parkovanie na strane ulice
-    sv = Betald gata sidoparkering
-    sw = Maegesho yanayolipishwa ya barabarani
-    th = ที่จอดรถริมถนนแบบชำระเงิน
-    tr = Ücretli cadde tarafı otopark
-    uk = Платне паркування з боку вулиці
-    vi = Bãi đậu xe trả phí bên đường
-    zh-Hans = 路边付费停车场
-    zh-Hant = 付費街邊停車場
+    ref = type.amenity.parking.street_side
 
   [type.amenity.parking.street_side.private]
     en = Private Street-Side Parking
@@ -3141,7 +3034,6 @@
     zh-Hant = 私人街邊停車場
 
   [type.amenity.parking.lane]
-    ref = type.amenity.parking
     en = Lane Parking
     ar = وقوف السيارات لين
     be = Завулак паркоўкі
@@ -3183,49 +3075,9 @@
     zh-Hant = 車道停車
 
   [type.amenity.parking.lane.fee]
-    ref = type.amenity.parking
-    en = Paid Lane Parking
-    ar = موقف سيارات مدفوع الأجر
-    be = Платная паркоўка
-    bg = Платен паркинг
-    ca = Aparcament de carril de pagament
-    cs = Placené parkování v pruzích
-    da = Betalt baneparkering
-    de = Bezahltes parken auf der straße
-    el = Χώρος στάθμευσης επί πληρωμή
-    es = Aparcamiento en carril de pago
-    es-MX = Estacionamiento en carril de pago
-    et = Tasuline parkimine
-    eu = Ordaindutako erreiaren aparkalekua
-    fa = پارکینگ لاین پولی
-    fi = Maksullinen pysäköintikaista
-    fr = Stationnement payant le long de la voie
-    he = חנייה בנתיב בתשלום
-    hu = Fizetős sávos parkolás
-    id = Parkir jalur berbayar
-    it = Parcheggio a pagamento in corsia
-    ja = 有料レーン駐車場
-    ko = 유료 차선 주차
-    mr = सशुल्क लेन पार्किंग
-    nb = Betalt parkering i kjørefelt
-    nl = Betaald parkeren op rijstroken
-    pl = Płatny parking na pasie ruchu
-    pt = Estacionamento paralelo à estrada pago
-    pt-BR = Estacionamento na rua pago
-    ro = Parcare pe bandă cu plată
-    ru = Платная парковочная полоса
-    sk = Platené parkovanie v jazdných pruhoch
-    sv = Avgiftsbelagd körfältsparkering
-    sw = Maegesho ya njia ya kulipwa
-    th = ที่จอดรถเลนแบบชำระเงิน
-    tr = Ücretli şerit park
-    uk = Платна смуга для паркування
-    vi = Đỗ xe trên làn đường phải trả tiền
-    zh-Hans = 收费车道停车场
-    zh-Hant = 收費車道停車
+    ref = type.amenity.parking.lane
 
   [type.amenity.parking.lane.private]
-    ref = type.amenity.parking.lane
     en = Private Lane Parking
     ar = موقف سيارات خاص بالممر
     be = Прыватная паркоўка
@@ -3965,7 +3817,7 @@
     mr = टपालघर
     nb = Postkontor
     nl = Postkantoor
-    pl = Urząd Pocztowy
+    pl = Urząd pocztowy
     pt = Posto de correios
     pt-BR = Correios
     ro = Oficiu poștal
@@ -5171,7 +5023,7 @@
     da = Parkeringsbilletmaskine
     de = Parkautomat
     el = Εισιτήρια στάθμευσης
-    es = Máquina de pago de tique de aparcamiento
+    es = Máquina de pago de aparcamiento
     et = Parkimispiletid
     eu = Aparkatzeko txartelak ordaintzeko makina
     fa = پارکو متر
@@ -10895,7 +10747,7 @@
     mr = बाहेर पडा
     nb = Utgang
     nl = Ga naar
-    pl = Wyjdź
+    pl = Wyjście
     pt = Sai
     pt-BR = Sair
     ro = Ieșire
@@ -10909,6 +10761,49 @@
     vi = Lối ra
     zh-Hans = 退出
     zh-Hant = 出口
+
+  [type.fee.yes]
+    en = 💲
+
+  [type.fee.no]
+    en = Free
+    ar = مجانية
+    be = бясплатна
+    bg = Безплатно
+    ca = Gratuït
+    cs = Zdarma
+    da = Gratis
+    de = Kostenlos
+    el = Δωρεάν
+    es = Gratis
+    et = Tasuta
+    eu = Doan
+    fa = رایگان
+    fi = Ilmainen
+    fr = Gratuit
+    he = חינם
+    hu = Ingyenes
+    id = Gratis
+    it = Gratuito
+    ja = 無料
+    ko = 무료
+    lt = Nemokama
+    mr = विनामूल्य
+    nb = Gratis
+    nl = Gratis
+    pl = Bezpłatne
+    pt = Gratuito
+    ro = Gratuit
+    ru = Бесплатно
+    sk = Zadarmo
+    sv = Gratis
+    sw = Bila
+    th = ฟรี
+    tr = Ücretsiz
+    uk = Безкоштовно
+    vi = Miễn phí
+    zh-Hans = 免费
+    zh-Hant = 免費
 
   [type.healthcare.laboratory]
     en = Medical Laboratory
@@ -10935,7 +10830,7 @@
     mr = वैद्यकीय प्रयोगशाळा
     nb = Medisinsk laboratorium
     nl = Medisch laboratorium
-    pl = Laboratorium Medyczne
+    pl = Laboratorium medyczne
     pt = Laboratório médico
     pt-BR = Laboratório médico
     ro = Laborator medical
@@ -12173,6 +12068,7 @@
     fi = Jalankulkualue
     it = Area pedonale
     mr = पादचारी झोन
+    pl = Obszar deptaka
     ru = Пешеходная зона
     tr = Yaya Alanı
     uk = Пішохідна зона
@@ -12187,7 +12083,7 @@
     fi = Jalankulkusilta
     mr = पादचारी पूल
     nl = Voetgangersbrug
-    pl = Most pieszy
+    pl = Most dla pieszych
     pt-BR = Ponte para pedestres
     ru = Пешеходный мост
 
@@ -12201,7 +12097,7 @@
     fi = Jalankulkutunneli
     mr = पादचारी बोगदा
     nl = Voetgangerstunnel
-    pl = Tunel pieszy
+    pl = Tunel dla pieszych
     pt-BR = Túnel para pedestres
     ru = Пешеходный тоннель
 
@@ -12327,7 +12223,7 @@
     mr = रस्ता
     nb = Gate
     nl = Straat
-    pl = Ulica
+    pl = Droga lokalna
     pt = Rua residencial
     pt-BR = Rua residencial
     ro = Stradă
@@ -12602,7 +12498,7 @@
     mr = सेवा मार्ग
     nb = Service-vei
     nl = Straat
-    pl = Ulica
+    pl = Droga dojazdowa
     pt = Estrada de acesso ou serviço
     pt-BR = Estrada de acesso ou serviço
     ro = Stradă
@@ -12632,6 +12528,7 @@
     et = Sissesõidutee
     fi = Ajotie
     mr = चालकमार्ग
+    pl = Droga podjazdowa
     pt-BR = Via de acesso
     ru = Подъезд
     uk = Під'їзд
@@ -12850,7 +12747,7 @@
     mr = ट्रॅक
     nb = Traktor/Skogsbilvei
     nl = Straat
-    pl = Droga polna/leśna
+    pl = Droga na pola lub do lasu
     pt = Carreiro florestal ou agrícola
     pt-BR = Estrada rústica
     ro = Stradă
@@ -13136,7 +13033,7 @@
     mr = ऐतिहासिक
     nb = Historisk gjenstand
     nl = Historisch object
-    pl = Historyczne
+    pl = Obiekt historyczny
     pt = Objeto histórico
     ro = Obiect istoric
     ru = Исторический объект
@@ -16033,6 +15930,23 @@
     zh-Hans = 高尔夫球场
     zh-Hant = 高爾夫球場
 
+  [type.leisure.hackerspace]
+    en = Hackerspace
+    ar = هاكرزبيس
+    be = Хакерская прастора
+    es-MX = Espacio hacker
+    fa = فضای هکرها
+    he = האקרספייס
+    hi = हैकर्सस्पेस
+    ja = ハッカースペース
+    ko = 해커스 스페이스
+    mr = हॅकरस्पेस
+    ru = Хакерспейс
+    th = แฮกเกอร์สเปซ
+    vi = Không gian tin tặc
+    zh-Hans = 创客空间
+    zh-Hant = 駭客空間
+
   [type.leisure.ice_rink]
     en = Ice Rink
     af = Ysskaatsbaan
@@ -17079,7 +16993,7 @@
     mr = पाण्याचा नळ
     nb = Vannkran
     nl = Waterkraan
-    pl = Woda pitna
+    pl = Kran z wodą
     pt = Torneira de água
     pt-BR = Torneira de água
     ro = Robinet cu apă
@@ -17950,10 +17864,11 @@
     ar = حمة
     be = Геатэрмальная крыніца
     bg = Геотермален извор
+    ca = Font termal
     cs = Termální pramen
     da = Varm kilde
     de = Thermalquelle
-    el = Ιαματικές πηγές
+    el = Θερμή πηγή
     es = Aguas termales
     et = Kuumaveeallikas
     eu = Ur termal
@@ -17961,14 +17876,14 @@
     fi = Kuuma lähde
     fr = Source chaude
     he = מעיין חם
-    hu = Termálvíz
+    hu = Melegvizű forrás
     id = Mata air panas
     it = Sorgente calda
     ja = 温泉
     ko = 온천
     mr = गरम पाण्याचे झरे
     nb = Varm kilde
-    nl = Heetwaterbron
+    nl = Hete bron
     pl = Gorące źródło
     pt = Nascente de água quente
     ro = Izvor termal
@@ -21967,6 +21882,9 @@
   [type.railway.station.subway.shiraz]
     ref = type.railway.station.subway
 
+  [type.railway.station.subway.singapore]
+    ref = type.railway.station.subway
+
   [type.railway.station.subway.sofia]
     ref = type.railway.station.subway
 
@@ -22383,6 +22301,9 @@
     ref = type.railway.subway_entrance
 
   [type.railway.subway_entrance.shiraz]
+    ref = type.railway.subway_entrance
+
+  [type.railway.subway_entrance.singapore]
     ref = type.railway.subway_entrance
 
   [type.railway.subway_entrance.sofia]
@@ -25834,7 +25755,7 @@
     mr = वाईन विक्रेता
     nb = Alkoholutsalg
     nl = Wijnhandel
-    pl = Sklep monopolowy
+    pl = Sklep z winami
     pt = Loja de vinhos
     pt-BR = Loja de vinhos
     ro = Vinărie
@@ -28592,7 +28513,7 @@
     et = Suvila
     eu = Txaleta
     fa = هتل
-    fi = Alppimaja
+    fi = Mökki
     fr = Meublé de tourisme
     hu = Turistaház
     it = Chalet

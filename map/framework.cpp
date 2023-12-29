@@ -4,8 +4,6 @@
 #include "map/user_mark.hpp"
 #include "map/track_mark.hpp"
 
-#include "ge0/geo_url_parser.hpp"
-#include "ge0/parser.hpp"
 #include "ge0/url_generator.hpp"
 
 #include "routing/index_router.hpp"
@@ -103,6 +101,7 @@ char const kAllowAutoZoom[] = "AutoZoom";
 char const kTrafficEnabledKey[] = "TrafficEnabled";
 char const kTransitSchemeEnabledKey[] = "TransitSchemeEnabled";
 char const kIsolinesEnabledKey[] = "IsolinesEnabled";
+char const kOutdoorsEnabledKey[] = "OutdoorsEnabled";
 char const kTrafficSimplifiedColorsKey[] = "TrafficSimplifiedColors";
 char const kLargeFontsSize[] = "LargeFontsSize";
 char const kTranslitMode[] = "TransliterationMode";
@@ -346,7 +345,6 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
 
   m_bmManager->InitRegionAddressGetter(m_featuresFetcher.GetDataSource(), *m_infoGetter);
 
-  m_parsedMapApi.SetBookmarkManager(m_bmManager.get());
   m_routingManager.SetBookmarkManager(m_bmManager.get());
   m_searchMarks.SetBookmarkManager(m_bmManager.get());
 
@@ -619,7 +617,7 @@ search::ReverseGeocoder::Address Framework::GetAddressAtPoint(m2::PointD const &
   search::ReverseGeocoder const coder(m_featuresFetcher.GetDataSource());
   search::ReverseGeocoder::Address addr;
   /// @todo Call exact address manually here?
-  coder.GetNearbyAddress(pt, 0.5 /* maxDistanceM */, addr);
+  coder.GetNearbyAddress(pt, 0.5 /* maxDistanceM */, addr, true /* placeAsStreet */);
   return addr;
 }
 
@@ -962,11 +960,11 @@ m2::PointD const & Framework::GetViewportCenter() const
   return m_currentModelView.GetOrg();
 }
 
-void Framework::SetViewportCenter(m2::PointD const & pt, int zoomLevel /* = -1 */,
-                                  bool isAnim /* = true */)
+void Framework::SetViewportCenter(m2::PointD const & pt, int zoomLevel /* = -1 */, bool isAnim /* = true */,
+                                  bool trackVisibleViewport /* = false */)
 {
   if (m_drapeEngine != nullptr)
-    m_drapeEngine->SetModelViewCenter(pt, zoomLevel, isAnim, false /* trackVisibleViewport */);
+    m_drapeEngine->SetModelViewCenter(pt, zoomLevel, isAnim, trackVisibleViewport);
 }
 
 m2::RectD Framework::GetCurrentViewport() const
@@ -1757,106 +1755,6 @@ void Framework::SetWidgetLayout(gui::TWidgetsLayoutInfo && layout)
   m_drapeEngine->SetWidgetLayout(std::move(layout));
 }
 
-bool Framework::ShowMapForURL(string const & url)
-{
-  m2::PointD point;
-  double scale = 0;
-  string name;
-  ApiMarkPoint const * apiMark = nullptr;
-
-  enum ResultT { FAILED, NEED_CLICK, NO_NEED_CLICK };
-  ResultT result = FAILED;
-
-  // It's an API request, parsed in parseAndSetApiURL and nativeParseAndSetApiUrl.
-  if (m_parsedMapApi.IsValid())
-  {
-    if (!m_parsedMapApi.GetViewportParams(point, scale))
-    {
-      point = {0, 0};
-      scale = 0;
-    }
-
-    apiMark = m_parsedMapApi.GetSinglePoint();
-    result = apiMark ? NEED_CLICK : NO_NEED_CLICK;
-  }
-  else if (strings::StartsWith(url, "om") || strings::StartsWith(url, "ge0"))
-  {
-    // Note that om scheme is used to encode both API and ge0 links.
-    ge0::Ge0Parser parser;
-    ge0::Ge0Parser::Result parseResult;
-
-    if (parser.Parse(url, parseResult))
-    {
-      point = mercator::FromLatLon(parseResult.m_lat, parseResult.m_lon);
-      scale = parseResult.m_zoomLevel;
-      name = std::move(parseResult.m_name);
-      result = NEED_CLICK;
-    }
-  }
-  else  // Actually, we can parse any geo url scheme with correct coordinates.
-  {
-    geo::GeoURLInfo const info = geo::UnifiedParser().Parse(url);
-    if (info.IsValid())
-    {
-      point = mercator::FromLatLon(info.m_lat, info.m_lon);
-      scale = info.m_zoom;
-      result = NEED_CLICK;
-    }
-  }
-
-  if (result != FAILED)
-  {
-    // Always hide current map selection.
-    DeactivateMapSelection(true /* notifyUI */);
-
-    // Set viewport and stop follow mode.
-    StopLocationFollow();
-
-    // ShowRect function interferes with ActivateMapSelection and we have strange behaviour as a result.
-    // Use more obvious SetModelViewCenter here.
-    if (m_drapeEngine)
-      m_drapeEngine->SetModelViewCenter(point, scale, true, true);
-
-    if (result != NO_NEED_CLICK)
-    {
-      place_page::BuildInfo info;
-      info.m_needAnimationOnSelection = false;
-      if (apiMark != nullptr)
-      {
-        info.m_mercator = apiMark->GetPivot();
-        info.m_userMarkId = apiMark->GetId();
-      }
-      else
-      {
-        info.m_mercator = point;
-      }
-
-      m_currentPlacePageInfo = BuildPlacePageInfo(info);
-      if (!name.empty())
-        m_currentPlacePageInfo->SetCustomName(name);
-      ActivateMapSelection();
-    }
-
-    return true;
-  }
-
-  return false;
-}
-
-url_scheme::ParsedMapApi::ParsingResult Framework::ParseAndSetApiURL(string const & url)
-{
-  using namespace url_scheme;
-
-  // Clear every current API-mark.
-  {
-    auto editSession = GetBookmarkManager().GetEditSession();
-    editSession.ClearGroup(UserMark::Type::API);
-    editSession.SetIsVisible(UserMark::Type::API, true);
-  }
-
-  return m_parsedMapApi.SetUrlAndParse(url);
-}
-
 Framework::ParsedRoutingData Framework::GetParsedRoutingData() const
 {
   return Framework::ParsedRoutingData(m_parsedMapApi.GetRoutePoints(),
@@ -1871,6 +1769,11 @@ url_scheme::SearchRequest Framework::GetParsedSearchRequest() const
 std::string const & Framework::GetParsedAppName() const
 {
   return m_parsedMapApi.GetAppName();
+}
+
+std::string const & Framework::GetParsedBackUrl() const
+{
+  return m_parsedMapApi.GetGlobalBackUrl();
 }
 
 ms::LatLon Framework::GetParsedCenterLatLon() const
@@ -2594,6 +2497,19 @@ void Framework::SaveIsolinesEnabled(bool enabled)
   settings::Set(kIsolinesEnabledKey, enabled);
 }
 
+bool Framework::LoadOutdoorsEnabled()
+{
+  bool enabled;
+  if (!settings::Get(kOutdoorsEnabledKey, enabled))
+    enabled = false;
+  return enabled;
+}
+
+void Framework::SaveOutdoorsEnabled(bool enabled)
+{
+  settings::Set(kOutdoorsEnabledKey, enabled);
+}
+
 void Framework::EnableChoosePositionMode(bool enable, bool enableBounds, bool applyPosition,
                                          m2::PointD const & position)
 {
@@ -2857,8 +2773,7 @@ void SetStreet(search::ReverseGeocoder const & coder, DataSource const & dataSou
 {
   // Get exact feature's street address (if any) from mwm,
   // together with all nearby streets.
-  vector<search::ReverseGeocoder::Street> streets;
-  coder.GetNearbyStreets(ft, streets);
+  auto const streets = coder.GetNearbyStreets(ft);
 
   string street = coder.GetFeatureStreetName(ft);
 
@@ -2943,9 +2858,7 @@ bool Framework::CreateMapObject(m2::PointD const & mercator, uint32_t const feat
     return false;
 
   search::ReverseGeocoder const coder(m_featuresFetcher.GetDataSource());
-  vector<search::ReverseGeocoder::Street> streets;
-
-  coder.GetNearbyStreets(mwmId, mercator, streets);
+  auto const streets = coder.GetNearbyStreets(mwmId, mercator);
   emo.SetNearbyStreets(TakeSomeStreetsAndLocalize(streets, m_featuresFetcher.GetDataSource()));
 
   // TODO(mgsergio): Check emo is a poi. For now it is the only option.
@@ -3281,10 +3194,10 @@ void Framework::FillDescription(FeatureType & ft, place_page::Info & info) const
   auto const deviceLang = StringUtf8Multilang::GetLangIndex(languages::GetCurrentNorm());
   auto const langPriority = feature::GetDescriptionLangPriority(regionData, deviceLang);
 
-  std::string description = m_descriptionsLoader->GetDescription(ft.GetID(), langPriority);
-  if (!description.empty())
+  std::string wikiDescription = m_descriptionsLoader->GetWikiDescription(ft.GetID(), langPriority);
+  if (!wikiDescription.empty())
   {
-    info.SetDescription(std::move(description));
+    info.SetWikiDescription(std::move(wikiDescription));
     info.SetOpeningMode(m_routingManager.IsRoutingActive()
                         ? place_page::OpeningMode::Preview
                         : place_page::OpeningMode::PreviewPlus);

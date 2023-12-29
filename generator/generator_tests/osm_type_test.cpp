@@ -17,7 +17,6 @@
 
 #include "base/file_name_utils.hpp"
 
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -54,9 +53,12 @@ void TestSurfaceTypes(std::string const & surface, std::string const & smoothnes
         "Got:", psurface));
 }
 
-FeatureBuilderParams GetFeatureBuilderParams(Tags const & tags)
+FeatureBuilderParams GetFeatureBuilderParams(
+    Tags const & tags,
+    OsmElement::EntityType type = OsmElement::EntityType::Unknown)
 {
   OsmElement e;
+  e.m_type = type;
   FillXmlElement(tags, &e);
   FeatureBuilderParams params;
 
@@ -197,8 +199,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
     TEST_EQUAL(params.house.Get(), "42", ());
   }
 
-  using AddrType = feature::AddressData::Type;
-
   {
     Tags const tags = {
       { "addr:conscriptionnumber", "223" },
@@ -216,8 +216,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
     TEST(params.IsTypeExist(addrType), ());
 
     TEST_EQUAL(params.house.Get(), "223/5", ());
-    TEST_EQUAL(params.GetAddressData().Get(AddrType::Street), "Řetězová", ());
-    TEST_EQUAL(params.GetAddressData().Get(AddrType::Postcode), "11000", ());
+    TEST_EQUAL(params.GetStreet(), "Řetězová", ());
+    TEST_EQUAL(params.GetPostcode(), "11000", ());
   }
 
   {
@@ -234,15 +234,85 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Address)
 
     auto const params = GetFeatureBuilderParams(tags);
 
-    TEST_EQUAL(params.m_types.size(), 4, (params));
-    TEST(params.IsTypeExist(addrType), ());
+    TEST_EQUAL(params.m_types.size(), 3, (params));
     TEST(params.IsTypeExist(GetType({"entrance", "main"})), ());
     TEST(params.IsTypeExist(GetType({"wheelchair", "no"})), ());
     TEST(params.IsTypeExist(GetType({"internet_access", "wlan"})), ());
 
     TEST_EQUAL(params.house.Get(), "41", ());
-    TEST_EQUAL(params.GetAddressData().Get(AddrType::Street), "Leutschenbachstrasse", ());
-    TEST_EQUAL(params.GetAddressData().Get(AddrType::Postcode), "8050", ());
+    TEST_EQUAL(params.GetStreet(), "Leutschenbachstrasse", ());
+    TEST_EQUAL(params.GetPostcode(), "8050", ());
+  }
+
+  {
+    Tags const tags = {
+      {"addr:city", "Šķaune"},
+      {"addr:country", "LV"},
+      {"addr:district", "Krāslavas novads"},
+      {"addr:housename", "Rozemnieki"},
+      {"addr:postcode", "LV-5695"},
+      {"addr:subdistrict", "Šķaunes pagasts"},
+      {"ref:LV:addr", "104934702"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(addrType), ());
+
+    TEST_EQUAL(params.house.Get(), "Rozemnieki", ());
+    TEST(params.GetStreet().empty(), ());
+    TEST_EQUAL(params.GetPostcode(), "LV-5695", ());
+  }
+
+  {
+    Tags const tags = {
+      {"building", "yes"},
+      {"contact:city", "Paris"},
+      {"contact:housenumber", "13"},
+      {"contact:phone", "+33 1 44 77 60 60"},
+      {"contact:postcode", "75001"},
+      {"contact:street", "Place Vendôme"},
+      {"contact:website", "https://www.justice.gouv.fr/"},
+      {"government", "ministry"},
+      {"historic", "manor"},
+      {"layer", "1"},
+      {"name", "Ministère de la Justice"},
+      {"office", "government"},
+      {"wikidata", "Q3145763"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+    TEST_EQUAL(params.m_types.size(), 3, (params));
+
+    TEST_EQUAL(params.house.Get(), "13", ());
+    TEST_EQUAL(params.GetStreet(), "Place Vendôme", ());
+    TEST_EQUAL(params.GetPostcode(), "75001", ());
+  }
+
+  {
+    Tags const tags = {
+      {"addr:city", "München"},
+      {"addr:country", "DE"},
+      {"addr:housenumber", "27"},
+      {"addr:postcode", "80339"},
+      {"addr:street", "Ligsalzstraße"},
+      {"clothes", "children"},
+      {"disused:shop", "clothes"},
+      {"name", "Westendprinz"},
+      {"operator", "Meike Hannig"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(addrType), ());
+
+    TEST_EQUAL(params.house.Get(), "27", ());
+    TEST_EQUAL(params.GetStreet(), "Ligsalzstraße", ());
+    TEST_EQUAL(params.GetPostcode(), "80339", ());
+
+    TEST(params.name.IsEmpty(), ());
+    TEST(!params.GetMetadata().Has(feature::Metadata::FMD_OPERATOR), ());
   }
 }
 
@@ -375,8 +445,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Capital)
 {
   {
     Tags const tags = {
-      { "admin_level", "6" },
-      { "capital", "yes" },
+      { "capital", "6" },
       { "place", "city" },
     };
 
@@ -413,6 +482,47 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Capital)
     TEST(params.IsTypeExist(GetType({"place", "city", "capital", "2"})), (params));
     TEST(params.IsTypeExist(GetType({"boundary", "administrative", "4"})), (params));
     TEST(params.IsTypeExist(GetType({"place", "city", "capital", "4"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      {"capital", "yes"},
+      {"place", "town"},
+      {"admin_level", "7"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"place", "city", "capital", "2"})), (params));
+    TEST(params.IsTypeExist(GetType({"place", "city", "capital", "7"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      {"capital", "yes"},
+      {"admin_level", "7"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 0, (params));
+  }
+}
+
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_DePlace)
+{
+  {
+    Tags const tags = {
+      {"de:place", "town"},
+      {"name", "xyz"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"place", "town"})), (params));
+    TEST(!params.IsEmptyNames(), ());
   }
 }
 
@@ -555,6 +665,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Hwtag)
         {"foot", "no"},
         {"bicycle", "yes"},
         {"oneway:bicycle", "no"},
+        {"motor_vehicle", "yes"},
     };
 
     auto const params = GetFeatureBuilderParams(tags);
@@ -566,11 +677,13 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Hwtag)
     TEST(params.IsTypeExist(GetType({"hwtag", "nofoot"})), ());
     TEST(params.IsTypeExist(GetType({"hwtag", "yesbicycle"})), ());
     TEST(params.IsTypeExist(GetType({"hwtag", "bidir_bicycle"})), ());
+    // We don't put yescar tag for features that already Yes by default.
+    //TEST(params.IsTypeExist(GetType({"hwtag", "yescar"})), ());
   }
 
   {
     Tags const tags = {
-        {"foot", "yes"},
+        {"foot", "designated"},
         {"cycleway", "lane"},
         {"highway", "primary"},
     };
@@ -582,52 +695,252 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Hwtag)
     TEST(params.IsTypeExist(GetType({"hwtag", "yesfoot"})), ());
     TEST(params.IsTypeExist(GetType({"hwtag", "yesbicycle"})), ());
   }
+
+  {
+    Tags const tags = {
+        {"foot", "use_sidepath"},
+        {"sidewalk", "left"},
+        {"cycleway:both", "separate"},
+        {"highway", "primary"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 3, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "primary"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nofoot"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nocycleway"})), ());
+    // No cycleway doesn't mean that bicycle is not allowed.
+    //TEST(params.IsTypeExist(GetType({"hwtag", "nobicycle"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"foot", "unknown"},
+        {"bicycle", "dismount"},
+        {"highway", "bridleway"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "bridleway"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"motor_vehicle", "yes"},
+        {"motorcar", "no"},
+        {"highway", "track"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "track"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nocar"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"foot", "no"},
+        {"bicycle", "no"},
+        {"sidewalk:left", "yes"},
+        {"cycleway:right", "yes"},
+        {"highway", "trunk"},
+        {"motorcar", "designated"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 3, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "trunk"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nofoot"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nobicycle"})), ());
+    //TEST(params.IsTypeExist(GetType({"hwtag", "yescar"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"foot", "yes"},
+        {"bicycle", "yes"},
+        {"sidewalk", "no"},
+        {"cycleway", "no"},
+        {"highway", "path"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 3, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "path", "bicycle"})), (params));
+    TEST(params.IsTypeExist(GetType({"hwtag", "yesfoot"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "yesbicycle"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"sidewalk:both", "no"},
+        {"bicycle_road", "yes"},
+        {"highway", "residential"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 3, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "residential"})), (params));
+    TEST(params.IsTypeExist(GetType({"hwtag", "nosidewalk"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "yesbicycle"})), ());
+  }
+
+  {
+    Tags const tags = {
+      {"bench", "yes"},
+      {"bicycle", "yes"},
+      {"bin", "yes"},
+      {"foot", "designated"},
+      {"highway", "footway"},
+      {"lit", "yes"},
+      {"public_transport", "platform"},
+      {"railway", "platform"},
+      {"shelter", "yes"},
+      {"smoothness", "good"},
+      {"surface", "paving_stones"},
+      {"tactile_paving", "yes"},
+      {"traffic_sign", "DE:239,DE:1022-10"},
+      {"tram", "yes"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 8, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "footway"})), (params));
+    TEST(params.IsTypeExist(GetType({"hwtag", "yesbicycle"})), ());
+    TEST(!params.IsTypeExist(GetType({"hwtag", "yesfoot"})), ());
+
+    /// @todo One platform is enough.
+    TEST(params.IsTypeExist(GetType({"railway", "platform"})), (params));
+    TEST(params.IsTypeExist(GetType({"public_transport", "platform"})), (params));
+  }
 }
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Surface)
 {
+  TestSurfaceTypes("asphalt", "excellent", "", "paved_good");
   TestSurfaceTypes("asphalt", "", "", "paved_good");
+  TestSurfaceTypes("asphalt", "intermediate", "", "paved_bad");
   TestSurfaceTypes("asphalt", "bad", "", "paved_bad");
   TestSurfaceTypes("asphalt", "", "0", "paved_bad");
 
   TestSurfaceTypes("cobblestone", "good", "", "paved_good");
   TestSurfaceTypes("cobblestone", "", "", "paved_bad");
   TestSurfaceTypes("cobblestone", "intermediate", "", "paved_bad");
+  TestSurfaceTypes("cobblestone", "very_bad", "", "paved_bad");
 
+  TestSurfaceTypes("compacted", "good", "", "unpaved_good");
   TestSurfaceTypes("compacted", "", "", "unpaved_good");
   TestSurfaceTypes("fine_gravel", "", "", "unpaved_good");
   TestSurfaceTypes("fine_gravel", "intermediate", "", "unpaved_good");
-  TestSurfaceTypes("pebblestone", "bad", "", "unpaved_good");      // Hack in DetermineSurface.
+  TestSurfaceTypes("pebblestone", "bad", "", "unpaved_bad");
   TestSurfaceTypes("pebblestone", "horrible", "", "unpaved_bad");
 
-  // We definitely should store more than 4 surface options.
-  // Gravel (widely used tag) always goes to unpaved_bad which is strange sometimes.
-  // At the same time, we can't definitely say that it's unpaved_good :)
   TestSurfaceTypes("gravel", "excellent", "", "unpaved_good");
-  TestSurfaceTypes("gravel", "", "", "unpaved_bad");
+  TestSurfaceTypes("gravel", "good", "", "unpaved_good");
+  TestSurfaceTypes("gravel", "", "", "unpaved_good");
+  TestSurfaceTypes("gravel", "", "1.5", "unpaved_bad");
   TestSurfaceTypes("gravel", "intermediate", "", "unpaved_bad");
+  TestSurfaceTypes("gravel", "bad", "", "unpaved_bad");
+  TestSurfaceTypes("gravel", "very_bad", "", "unpaved_bad");
 
-  TestSurfaceTypes("paved", "intermediate", "", "paved_good");
-  TestSurfaceTypes("", "intermediate", "", "unpaved_good");
-
+  TestSurfaceTypes("paved", "", "", "paved_good");
   TestSurfaceTypes("paved", "", "2", "paved_good");
+  TestSurfaceTypes("paved", "intermediate", "", "paved_bad");
   TestSurfaceTypes("", "excellent", "", "paved_good");
-  TestSurfaceTypes("wood", "", "", "paved_bad");
+  TestSurfaceTypes("", "intermediate", "", "paved_bad");
   TestSurfaceTypes("wood", "good", "", "paved_good");
   TestSurfaceTypes("wood", "", "3", "paved_good");
+  TestSurfaceTypes("wood", "", "", "paved_bad");
+
   TestSurfaceTypes("pebblestone", "", "4", "unpaved_good");
-  TestSurfaceTypes("unpaved", "", "", "unpaved_bad");
+  TestSurfaceTypes("pebblestone", "", "", "unpaved_good");
+  TestSurfaceTypes("unpaved", "", "2", "unpaved_good");
+  TestSurfaceTypes("unpaved", "", "", "unpaved_good");
+  TestSurfaceTypes("unpaved", "intermediate", "", "unpaved_bad");
+  TestSurfaceTypes("unpaved", "bad", "", "unpaved_bad");
+
+  TestSurfaceTypes("ground", "good", "2", "unpaved_good");
+  TestSurfaceTypes("ground", "", "5", "unpaved_good");
+  TestSurfaceTypes("ground", "", "3", "unpaved_good");
+  TestSurfaceTypes("ground", "", "2.5", "unpaved_bad");
+  TestSurfaceTypes("ground", "", "", "unpaved_bad");
+  TestSurfaceTypes("ground", "", "1", "unpaved_bad");
+  TestSurfaceTypes("ground", "intermediate", "", "unpaved_bad");
+  TestSurfaceTypes("ground", "bad", "", "unpaved_bad");
+  TestSurfaceTypes("mud", "good", "1", "unpaved_good");
+  TestSurfaceTypes("mud", "", "3", "unpaved_good");
   TestSurfaceTypes("mud", "", "", "unpaved_bad");
 
-  /// @todo Is it better paved_bad?
-  TestSurfaceTypes("", "bad", "", "unpaved_good");
-
+  TestSurfaceTypes("", "bad", "", "paved_bad");
+  TestSurfaceTypes("", "unknown", "", "paved_bad");
   TestSurfaceTypes("", "horrible", "", "unpaved_bad");
-  TestSurfaceTypes("ground", "", "1", "unpaved_bad");
-  TestSurfaceTypes("mud", "", "3", "unpaved_good");
-  TestSurfaceTypes("ground", "", "5", "unpaved_good");
   TestSurfaceTypes("unknown", "", "", "unpaved_good");
-  TestSurfaceTypes("", "unknown", "", "unpaved_good");
+  TestSurfaceTypes("unknown", "unknown", "", "unpaved_good");
+
+  TestSurfaceTypes("asphalt;concrete", "", "", "paved_good");
+  TestSurfaceTypes("concrete:plates", "", "", "paved_good");
+  TestSurfaceTypes("cobblestone:flattened", "", "", "paved_bad");
+  TestSurfaceTypes("dirt/sand", "", "", "unpaved_bad");
+
+  {
+    Tags const tags = {
+        {"highway", "trunk"},
+        {"smoothness", "intermediate"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "trunk"})), (params));
+  }
+
+  {
+    Tags const tags = {
+        {"highway", "motorway"},
+        {"smoothness", "intermediate"},
+        {"surface", "asphalt"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "motorway"})), (params));
+  }
+
+  {
+    Tags const tags = {
+        {"highway", "track"},
+        {"smoothness", "bad"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "track"})), (params));
+    TEST(params.IsTypeExist(GetType({"psurface", "unpaved_bad"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      {"highway", "track"},
+      {"tracktype", "grade1"},
+      {"smoothness", "intermediate"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"highway", "track", "grade1"})), (params));
+    TEST(params.IsTypeExist(GetType({"psurface", "paved_bad"})), (params));
+  }
 }
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
@@ -636,6 +949,10 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
   TEST(routing::PedestrianModel::AllLimitsInstance().IsRoadType(ferryType), ());
   TEST(routing::BicycleModel::AllLimitsInstance().IsRoadType(ferryType), ());
   TEST(routing::CarModel::AllLimitsInstance().IsRoadType(ferryType), ());
+
+  auto const yesCar = GetType({"hwtag", "yescar"});
+  auto const noFoot = GetType({"hwtag", "nofoot"});
+  auto const yesBicycle = GetType({"hwtag", "yesbicycle"});
 
   {
     Tags const tags = {
@@ -649,17 +966,52 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
     TEST(params.IsTypeExist(GetType({"hwtag", "nocar"})), ());
   }
 
+  uint32_t const shuttleType = GetType({"route", "shuttle_train"});
+  /// @todo Strange, but they are processed by foot/bicycle=yes/no in VehicleModel.
+  //TEST(routing::PedestrianModel::AllLimitsInstance().IsRoadType(shuttleType), ());
+  //TEST(routing::BicycleModel::AllLimitsInstance().IsRoadType(shuttleType), ());
+  TEST(routing::CarModel::AllLimitsInstance().IsRoadType(shuttleType), ());
+
   {
     Tags const tags = {
       { "route", "shuttle_train" },
+      { "bicycle", "yes" },
+      { "foot", "no" },
+      { "motorcar", "yes" },
     };
 
     auto const params = GetFeatureBuilderParams(tags);
 
-    TEST_EQUAL(params.m_types.size(), 1, (params));
-    uint32_t const type = GetType({"route", "shuttle_train"});
-    TEST(params.IsTypeExist(type), (params));
-    TEST(routing::CarModel::AllLimitsInstance().IsRoadType(type), ());
+    TEST_EQUAL(params.m_types.size(), 4, (params));
+    TEST(params.IsTypeExist(shuttleType), (params));
+    TEST(params.IsTypeExist(yesBicycle), (params));
+    TEST(params.IsTypeExist(noFoot), (params));
+    TEST(params.IsTypeExist(yesCar), (params));
+  }
+
+  {
+    Tags const tags = {
+      { "route", "train" },
+      { "shuttle", "yes" },
+      { "motor_vehicle", "yes" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(shuttleType), (params));
+    TEST(params.IsTypeExist(yesCar), (params));
+  }
+
+  {
+    Tags const tags = {
+      { "route", "train" },
+      { "shuttle", "no" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 0, (params));
   }
 
   {
@@ -674,9 +1026,28 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Ferry)
 
     TEST_EQUAL(params.m_types.size(), 4, (params));
     TEST(params.IsTypeExist(ferryType), (params));
-    TEST(params.IsTypeExist(GetType({"hwtag", "yescar"})), ());
-    TEST(params.IsTypeExist(GetType({"hwtag", "nofoot"})), ());
+    TEST(params.IsTypeExist(yesCar), ());
+    TEST(params.IsTypeExist(noFoot), ());
     TEST(params.IsTypeExist(GetType({"hwtag", "nobicycle"})), ());
+  }
+
+  {
+    Tags const tags = {
+        {"ferry", "path"},
+        {"bicycle", "no"},
+        {"route", "ferry"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    // - Existing ferry=path forces to set bicycle/foot=yes. Finally, bicycle=yes prevails on bicycle=no.
+    // Only one way like this in all OSM: https://www.openstreetmap.org/way/913507515
+    // - Assume nocar for ferries by default, unless otherwise specified
+    TEST_EQUAL(params.m_types.size(), 4, (params));
+    TEST(params.IsTypeExist(GetType({"route", "ferry"})), ());
+    TEST(params.IsTypeExist(yesBicycle), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "yesfoot"})), ());
+    TEST(params.IsTypeExist(GetType({"hwtag", "nocar"})), ());
   }
 }
 
@@ -872,6 +1243,35 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Subway)
 
     TEST_EQUAL(params.m_types.size(), 1, (params));
     TEST(params.IsTypeExist(GetType({"railway", "station", "subway", "minsk"})), (params));
+  }
+}
+
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_PublicTransport)
+{
+  {
+    Tags const tags = {
+      { "name", "Платонава" },
+      { "public_transport", "stop_position" },
+      { "tram", "yes" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags, OsmElement::EntityType::Node);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"railway", "tram_stop"})), (params));
+  }
+
+  {
+    Tags const tags = {
+      { "funicular", "yes" },
+      { "name", "Gare Pfaffenthal-Kirchberg" },
+      { "public_transport", "stop_position" },
+    };
+
+    auto const params = GetFeatureBuilderParams(tags, OsmElement::EntityType::Node);
+
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"railway", "station", "funicular"})), (params));
   }
 }
 
@@ -1209,9 +1609,10 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ReuseTags)
 
     auto const params = GetFeatureBuilderParams(tags);
 
-    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST_EQUAL(params.m_types.size(), 3, (params));
     TEST(params.IsTypeExist(GetType({"amenity", "parking", "private"})), (params));
     TEST(params.IsTypeExist(GetType({"amenity", "parking", "fee"})), (params));
+    TEST(params.IsTypeExist(GetType({"fee", "yes"})), (params));
   }
 }
 
@@ -1399,6 +1800,17 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Recycling)
 
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_Metadata)
 {
+  auto const getDescr = [](FeatureBuilderParams const & params, std::string_view lang)
+  {
+    std::string buffer(params.GetMetadata().Get(feature::Metadata::FMD_DESCRIPTION));
+    TEST(!buffer.empty(), ());
+    auto const mlStr = StringUtf8Multilang::FromBuffer(std::move(buffer));
+
+    std::string_view desc;
+    mlStr.GetString(StringUtf8Multilang::GetLangIndex(lang), desc);
+    return std::string(desc);
+  };
+
   {
     Tags const tags = {
       {"amenity", "restaurant" },
@@ -1409,14 +1821,42 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_Metadata)
 
     TEST_EQUAL(params.m_types.size(), 1, (params));
     TEST(params.IsTypeExist(GetType({"amenity", "restaurant"})), (params));
+    TEST_EQUAL(getDescr(params, "ru"), "Хорошие настойки", ());
+  }
 
-    std::string buffer(params.GetMetadata().Get(feature::Metadata::FMD_DESCRIPTION));
-    TEST(!buffer.empty(), ());
-    auto const mlStr = StringUtf8Multilang::FromBuffer(std::move(buffer));
+  {
+    Tags const tags = {
+      {"amenity", "atm" },
+      {"operator", "Default"},
+      {"operator:en", "English"},
+      {"brand::kk", "KK language"},
+      {"brand:en", "English"},
+      {"description", "Default"},
+      {"description::kk", "KK language"},
+    };
 
-    std::string_view desc;
-    mlStr.GetString(StringUtf8Multilang::GetLangIndex("ru"), desc);
-    TEST_EQUAL(desc, "Хорошие настойки", ());
+    auto const params = GetFeatureBuilderParams(tags);
+    TEST_EQUAL(params.m_types.size(), 1, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "atm"})), (params));
+    TEST_EQUAL(params.GetMetadata().Get(feature::Metadata::FMD_OPERATOR), "Default", ());
+    TEST_EQUAL(params.GetMetadata().Get(feature::Metadata::FMD_BRAND), "English", ());
+    TEST_EQUAL(getDescr(params, "default"), "Default", ());
+  }
+
+  {
+    Tags const tags = {
+      {"amenity", "cafe"},
+      {"internet_access", "wlan"},
+      {"internet_access:password", "corrientes4199"},
+      {"name", "Jimbo"},
+      {"wifi", "corrientes4199"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "cafe"})), (params));
+    TEST(params.IsTypeExist(GetType({"internet_access", "wlan"})), (params));
+    TEST_EQUAL(params.GetMetadata().Get(feature::Metadata::FMD_INTERNET), "wlan", ());
   }
 }
 
@@ -1953,6 +2393,8 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"emergency", "defibrillator"},
     {"emergency", "fire_hydrant"},
     {"emergency", "phone"},
+    {"fee", "no"},
+    {"fee", "yes"},
     {"highway", "bridleway"},
     {"highway", "busway"},
     {"highway", "bus_stop"},
@@ -2152,7 +2594,6 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
     {"railway", "subway_entrance"},
     {"railway", "tram"},
     {"railway", "tram_stop"},
-    {"route", "shuttle_train"},
     {"shop", "alcohol"},
     {"shop", "bakery"},
     {"shop", "beauty"},
@@ -2293,6 +2734,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
 
   Tags const exTypes = {
       {"route", "ferry"},
+      {"route", "shuttle_train"},
   };
 
   for (auto const & type : exTypes)
@@ -2344,20 +2786,14 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     {{"addr:interpolation"}, {{"addr:interpolation", "all"}}},
     {{"aeroway", "aerodrome", "international"}, {{"aeroway", "aerodrome"}, {"aerodrome", "international"}}},
     {{"amenity", "grave_yard", "christian"}, {{"amenity", "grave_yard"}, {"religion", "christian"}}},
-    {{"amenity", "parking"}, {{"amenity", "parking"}, {"fee", "no"}}},
-    {{"amenity", "parking", "fee"}, {{"amenity", "parking"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "lane"}, {{"amenity", "parking"}, {"parking", "lane"}}},
-    {{"amenity", "parking", "lane", "fee"}, {{"amenity", "parking"}, {"parking", "lane"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "multi-storey"}, {{"amenity", "parking"}, {"parking", "multi-storey"}}},
-    {{"amenity", "parking", "multi-storey", "fee"}, {{"amenity", "parking"}, {"parking", "multi-storey"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "no-access"}, {{"amenity", "parking"}, {"access", "no"}}},
     {{"amenity", "parking", "park_and_ride"}, {{"amenity", "parking"}, {"parking", "park_and_ride"}}},
     {{"amenity", "parking", "permissive"}, {{"amenity", "parking"}, {"access", "permissive"}}},
     {{"amenity", "parking", "private"}, {{"amenity", "parking"}, {"access", "private"}}},
     {{"amenity", "parking", "street_side"}, {{"amenity", "parking"}, {"parking", "street_side"}}},
-    {{"amenity", "parking", "street_side", "fee"}, {{"amenity", "parking"}, {"parking", "street_side"}, {"fee", "any_value"}}},
     {{"amenity", "parking", "underground"}, {{"amenity", "parking"}, {"location", "underground"}}},
-    {{"amenity", "parking", "underground", "fee"}, {{"amenity", "parking"}, {"parking", "underground"}, {"fee", "any_value"}}},
     {{"amenity", "parking_space", "permissive"}, {{"amenity", "parking_space"}, {"access", "permissive"}}},
     {{"amenity", "parking_space", "private"}, {{"amenity", "parking_space"}, {"access", "private"}}},
     {{"amenity", "parking_space", "underground"}, {{"amenity", "parking_space"}, {"parking", "underground"}}},
@@ -2645,4 +3081,29 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
     TEST(params.IsTypeExist(GetType(type.first)), (type, params));
   }
 }
+
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_MultipleComplexTypesSmoke)
+{
+  using Type = std::vector<std::string>;
+  std::vector<std::pair<std::vector<Type>, Tags>> const complexTypes = {
+    {{{"amenity", "parking"}, {"fee", "no"}}, {{"amenity", "parking"}, {"fee", "no"}}},
+    {{{"amenity", "parking", "fee"}, {"fee", "yes"}}, {{"amenity", "parking"}, {"fee", "any_value"}}},
+    {{{"amenity", "parking", "lane", "fee"}, {"fee", "yes"}}, {{"amenity", "parking"}, {"parking", "lane"}, {"fee", "any_value"}}},
+    {{{"amenity", "parking", "multi-storey", "fee"}, {"fee", "yes"}}, {{"amenity", "parking"}, {"parking", "multi-storey"}, {"fee", "any_value"}}},
+    {{{"amenity", "parking", "street_side", "fee"}, {"fee", "yes"}}, {{"amenity", "parking"}, {"parking", "street_side"}, {"fee", "any_value"}}},
+    {{{"amenity", "parking", "underground", "fee"}, {"fee", "yes"}}, {{"amenity", "parking"}, {"parking", "underground"}, {"fee", "any_value"}}},
+  };
+
+  for (auto const & type : complexTypes)
+  {
+    auto const & results = type.first;
+    auto const params = GetFeatureBuilderParams(type.second);
+    TEST_EQUAL(params.m_types.size(), results.size(), (type, params));
+    for (auto const & result : results)
+    {
+      TEST(params.IsTypeExist(GetType(result)), (type, params));
+    }
+  }
+}
+
 }  // namespace osm_type_test

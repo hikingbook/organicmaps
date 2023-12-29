@@ -296,9 +296,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">Eguneratu mapa</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play Zerbitzuak</string>
+	<string name="google_play_services">Google Play Kokapen Zerbitzuak</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Erabili Google Play zerbitzuak zure uneko kokapena zehazteko</string>
+	<string name="pref_use_google_play">Zehaztu azkar zure gutxi gorabeherako kokapena Bluetooth, WiFi edo sare mugikorra erabiliz</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Deskargatu zure arrastoaren mapa guztiak</string>
 	<!-- Text for routing error dialog -->
@@ -513,9 +513,11 @@
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Gehiago</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">Xehetasunak KAYAK-en</string>
+	<string name="more_on_kayak">Argazkiak, iritziak, erreserba</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">Esteka honen bidez erreserba bakoitzeko jasotzen den erreferentzia-bonua Organic Maps garatzera doa.</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Xehetasunak Kayak-en</string>
 	<string name="placepage_edit_bookmark_button">Editatu markagailua</string>
 	<string name="editor_comment_hint">Iruzkina…</string>
 	<string name="editor_reset_edits_message">Tokiko aldaketa guztiak berrezarri nahi dituzu?</string>
@@ -534,7 +536,7 @@
 	<string name="error_enter_correct_twitter_page">Sartu baliozko Twitter erabiltzaile izena edo web helbide bat</string>
 	<string name="error_enter_correct_vk_page">Sartu baliozko web helbide bat edo VK kontuaren izena</string>
 	<string name="error_enter_correct_line_page">Sartu baliozko web helbidea edo LINEko IDa</string>
-	<string name="placepage_add_place_button">Gehitu toki bat mapan</string>
+	<string name="placepage_add_place_button">Gehitu lekua OpenStreetMap-era</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Erabiltzaile guztiei bidali nahi diezu?</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -612,13 +614,13 @@
 	  <item quantity="one">arrasto %d</item>
 	  <item quantity="other">%d arrasto</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">Jarraipen ezarpenak</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">Pribatutasuna</string>
 	<string name="privacy_policy">Pribatutasun politika</string>
 	<string name="terms_of_use">Erabilera baldintzak</string>
 	<string name="button_layer_traffic">Trafikoa</string>
 	<string name="button_layer_subway">Metroa</string>
-	<string name="layers_title">Mapako geruzak</string>
+	<string name="layers_title">Maparen estiloak eta geruzak</string>
 	<string name="subway_data_unavailable">Metroaren mapa ez dago erabilgarri</string>
 	<string name="bookmarks_empty_list_title">Zerrenda hau hutsik dago</string>
 	<string name="bookmarks_empty_list_message">Markagailu bat gehitzeko, ukitu mapako toki bat eta, ondoren, ukitu izarraren ikonoa</string>
@@ -664,9 +666,9 @@
 	<!-- A generic "No" button in dialogs -->
 	<string name="no">Ez</string>
 	<!-- E.g. "WiFi:Yes" -->
-	<string name="yes_available">bai</string>
+	<string name="yes_available">Bai</string>
 	<!-- E.g. "WiFi:No" -->
-	<string name="no_available">ez</string>
+	<string name="no_available">Ez</string>
 	<string name="trip_finished">Iritsi zara!</string>
 	<string name="ok">Ados</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -758,6 +760,8 @@
 	<string name="aa_grant_permissions">Eman baimenak</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Kotxearekin konektatuta</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">Mendi ibilaldiak</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Helbidea/Blokea</string>
@@ -842,20 +846,21 @@
 	<string name="type.amenity.nightclub">Diskoteka</string>
 	<string name="type.amenity.nursing_home">Zaharren egoitza</string>
 	<string name="type.amenity.parking">Aparkalekua</string>
-	<string name="type.amenity.parking.fee">Ordaindutako aparkalekua</string>
+	<string name="type.amenity.parking.fee">Aparkalekua</string>
 	<string name="type.amenity.parking.multi.storey">Solairu anitzeko aparkalekua</string>
+	<string name="type.amenity.parking.multi.storey.fee">Solairu anitzeko aparkalekua</string>
 	<string name="type.amenity.parking.no.access">Aparkaleku pribatua</string>
 	<string name="type.amenity.parking.permissive">Aparkaleku pribatua</string>
 	<string name="type.amenity.parking.private">Aparkaleku pribatua</string>
 	<string name="type.amenity.parking.park_and_ride">Aparkalekua</string>
 	<string name="type.amenity.parking.underground">Lurpeko Aparkalekua</string>
-	<string name="type.amenity.parking.underground.fee">Ordaindutako lurpeko aparkalekua</string>
+	<string name="type.amenity.parking.underground.fee">Lurpeko Aparkalekua</string>
 	<string name="type.amenity.parking.underground.private">Lurpeko aparkaleku pribatua</string>
 	<string name="type.amenity.parking.street_side">Kale alboko aparkalekua</string>
-	<string name="type.amenity.parking.street_side.fee">Ordaindutako kale alboko aparkalekua</string>
+	<string name="type.amenity.parking.street_side.fee">Kale alboko aparkalekua</string>
 	<string name="type.amenity.parking.street_side.private">Kale alboko aparkaleku pribatua</string>
 	<string name="type.amenity.parking.lane">Erreiaren aparkalekua</string>
-	<string name="type.amenity.parking.lane.fee">Ordaindutako erreiaren aparkalekua</string>
+	<string name="type.amenity.parking.lane.fee">Erreiaren aparkalekua</string>
 	<string name="type.amenity.parking.lane.private">Errei pribatuko aparkalekua</string>
 	<string name="type.amenity.parking_entrance">Aparkalekuaren sarrera</string>
 	<string name="type.amenity.parking_entrance.private">Aparkaleku pribatuaren sarrera</string>
@@ -1108,6 +1113,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Sarrera Nagusia</string>
 	<string name="type.entrance.exit">Irten</string>
+	<string name="type.fee.no">Doan</string>
 	<string name="type.healthcare.laboratory">Medikuntza laborategia</string>
 	<string name="type.healthcare.physiotherapist">Fisioterapeuta</string>
 	<string name="type.healthcare.alternative">Medikuntza alternatiboa</string>
@@ -1625,6 +1631,7 @@
 	<string name="type.railway.station.subway.sf">Metroa</string>
 	<string name="type.railway.station.subway.shanghai">Metroa</string>
 	<string name="type.railway.station.subway.shiraz">Metroa</string>
+	<string name="type.railway.station.subway.singapore">Metroa</string>
 	<string name="type.railway.station.subway.sofia">Metroa</string>
 	<string name="type.railway.station.subway.spb">Metroa</string>
 	<string name="type.railway.station.subway.stockholm">Metroa</string>
@@ -1736,6 +1743,7 @@
 	<string name="type.railway.subway_entrance.sf">Metroko sarrera</string>
 	<string name="type.railway.subway_entrance.shanghai">Metroko sarrera</string>
 	<string name="type.railway.subway_entrance.shiraz">Metroko sarrera</string>
+	<string name="type.railway.subway_entrance.singapore">Metroko sarrera</string>
 	<string name="type.railway.subway_entrance.sofia">Metroko sarrera</string>
 	<string name="type.railway.subway_entrance.spb">Metroko sarrera</string>
 	<string name="type.railway.subway_entrance.stockholm">Metroko sarrera</string>

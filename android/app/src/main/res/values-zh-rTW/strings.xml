@@ -288,9 +288,9 @@
 	<!-- Item in context menu. -->
 	<string name="downloader_update_map">更新地圖</string>
 	<!-- Preference title -->
-	<string name="google_play_services">Google Play 服務</string>
+	<string name="google_play_services">Google Play 定位服務</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">使用 Google Play 服務來獲得您的目前位置</string>
+	<string name="pref_use_google_play">使用藍牙、WiFi 或行動網路快速確定您的大致位置</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">下載沿線地圖</string>
 	<!-- Text for routing error dialog -->
@@ -503,9 +503,11 @@
 	<string name="minute">分鐘</string>
 	<string name="placepage_more_button">更多</string>
 	<!-- A referral link on the place page for some hotels -->
-	<string name="more_on_kayak">KAYAK 上的詳細資訊</string>
+	<string name="more_on_kayak">照片、評論、預訂</string>
 	<!-- An explanation dialog shown when clicking on more_on_kayak link. -->
 	<string name="dialog_kayak_disclaimer">透過此連結進行的每次預訂收到的推薦獎金將用於開發有機地圖</string>
+	<!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
+	<string name="dialog_kayak_button">Kayak 上的詳細資訊</string>
 	<string name="placepage_edit_bookmark_button">編輯書籤</string>
 	<string name="editor_comment_hint">註解…</string>
 	<string name="editor_reset_edits_message">重設所有本機變更？</string>
@@ -521,7 +523,7 @@
 	<string name="error_enter_correct_instagram_page">輸入有效 Instagram 網址或帳號名稱</string>
 	<string name="error_enter_correct_twitter_page">輸入有效推特網址或使用者名稱</string>
 	<string name="error_enter_correct_vk_page">輸入有效 VK 網益止或帳號名稱</string>
-	<string name="placepage_add_place_button">增加地點到地圖上</string>
+	<string name="placepage_add_place_button">將地點新增至 OpenStreetMap</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">您想要發給所有用戶嗎？</string>
 	<!-- Dialog before publishing the modifications to the public map. -->
@@ -595,13 +597,13 @@
 	<plurals name="tracks">
 	  <item quantity="other">%d 軌跡</item>
 	</plurals>
-	<!-- used to choose between the Google and Android location services -->
-	<string name="subtittle_opt_out">跟蹤設置</string>
+	<!-- Settings privacy group in settings screen -->
+	<string name="privacy">隱私</string>
 	<string name="privacy_policy">隱私政策</string>
 	<string name="terms_of_use">使用條款</string>
 	<string name="button_layer_traffic">路況</string>
 	<string name="button_layer_subway">捷運</string>
-	<string name="layers_title">地圖圖層</string>
+	<string name="layers_title">地圖樣式和圖層</string>
 	<string name="subway_data_unavailable">捷運圖層不可用</string>
 	<string name="bookmarks_empty_list_title">列表為空</string>
 	<string name="bookmarks_empty_list_message">要增加新標籤，請點一下對象卡片中的星型圖標</string>
@@ -692,7 +694,7 @@
 	<string name="transit_not_found">本區域的地鐵導航目前不可用</string>
 	<string name="dialog_pedestrian_route_is_long_header">未找到捷運路線圖</string>
 	<string name="dialog_pedestrian_route_is_long_message">選擇捷運站附近的起點和終點</string>
-	<string name="button_layer_isolines">高度</string>
+	<string name="button_layer_isolines">等高線</string>
 	<string name="isolines_activation_error_dialog">如需使用等高線，請更新或下載所需區域的地圖</string>
 	<string name="isolines_location_error_dialog">暫時無法獲取該地區的等高線</string>
 	<string name="elevation_profile_ascent">上坡</string>
@@ -703,6 +705,7 @@
 	<string name="elevation_profile_distance">距離：</string>
 	<string name="elevation_profile_time">時間：</string>
 	<string name="isolines_toast_zooms_1_10">放大地圖以查看等高線</string>
+	<string name="download_map_title">下載世界地圖</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disconnect_usb_cable_title">拔除 USB 線</string>
 	<string name="enable_keep_screen_on">保持螢幕開啟</string>
@@ -732,6 +735,8 @@
 	<string name="aa_grant_permissions">授予權限</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">連接到汽車</string>
+	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
+	<string name="button_layer_outdoor">遠足</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">地址/區塊</string>
@@ -816,20 +821,21 @@
 	<string name="type.amenity.nightclub">夜店</string>
 	<string name="type.amenity.nursing_home">養老院</string>
 	<string name="type.amenity.parking">停車場</string>
-	<string name="type.amenity.parking.fee">付費停車</string>
+	<string name="type.amenity.parking.fee">停車場</string>
 	<string name="type.amenity.parking.multi.storey">多層停車場</string>
+	<string name="type.amenity.parking.multi.storey.fee">多層停車場</string>
 	<string name="type.amenity.parking.no.access">私人停車場</string>
 	<string name="type.amenity.parking.permissive">私人停車場</string>
 	<string name="type.amenity.parking.private">私人停車場</string>
 	<string name="type.amenity.parking.park_and_ride">停車場</string>
 	<string name="type.amenity.parking.underground">地下停車場</string>
-	<string name="type.amenity.parking.underground.fee">收費地下停車場</string>
+	<string name="type.amenity.parking.underground.fee">地下停車場</string>
 	<string name="type.amenity.parking.underground.private">私人地下停車場</string>
 	<string name="type.amenity.parking.street_side">街邊停車</string>
-	<string name="type.amenity.parking.street_side.fee">付費街邊停車場</string>
+	<string name="type.amenity.parking.street_side.fee">街邊停車</string>
 	<string name="type.amenity.parking.street_side.private">私人街邊停車場</string>
 	<string name="type.amenity.parking.lane">車道停車</string>
-	<string name="type.amenity.parking.lane.fee">收費車道停車</string>
+	<string name="type.amenity.parking.lane.fee">車道停車</string>
 	<string name="type.amenity.parking.lane.private">私人車道停車</string>
 	<string name="type.amenity.parking_entrance">停車場入口</string>
 	<string name="type.amenity.parking_entrance.private">私人停車場入口</string>
@@ -1040,6 +1046,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">主要入口</string>
 	<string name="type.entrance.exit">出口</string>
+	<string name="type.fee.no">免費</string>
 	<string name="type.healthcare.laboratory">醫學實驗室</string>
 	<string name="type.healthcare.physiotherapist">物理治療師</string>
 	<string name="type.healthcare.alternative">替代藥物</string>
@@ -1301,6 +1308,7 @@
 	<string name="type.leisure.garden">花園</string>
 	<string name="type.leisure.garden.residential">花園</string>
 	<string name="type.leisure.golf_course">高爾夫球場</string>
+	<string name="type.leisure.hackerspace">駭客空間</string>
 	<string name="type.leisure.nature_reserve">自然保護區</string>
 	<string name="type.leisure.outdoor_seating">戶外座位</string>
 	<string name="type.leisure.park">公園</string>
@@ -1552,6 +1560,7 @@
 	<string name="type.railway.station.subway.sf">捷運站</string>
 	<string name="type.railway.station.subway.shanghai">捷運站</string>
 	<string name="type.railway.station.subway.shiraz">捷運站</string>
+	<string name="type.railway.station.subway.singapore">捷運站</string>
 	<string name="type.railway.station.subway.sofia">捷運站</string>
 	<string name="type.railway.station.subway.spb">捷運站</string>
 	<string name="type.railway.station.subway.stockholm">捷運站</string>
@@ -1663,6 +1672,7 @@
 	<string name="type.railway.subway_entrance.sf">地鐵入口</string>
 	<string name="type.railway.subway_entrance.shanghai">地鐵入口</string>
 	<string name="type.railway.subway_entrance.shiraz">地鐵入口</string>
+	<string name="type.railway.subway_entrance.singapore">地鐵入口</string>
 	<string name="type.railway.subway_entrance.sofia">地鐵入口</string>
 	<string name="type.railway.subway_entrance.spb">地鐵入口</string>
 	<string name="type.railway.subway_entrance.stockholm">地鐵入口</string>

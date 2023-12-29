@@ -71,7 +71,8 @@ public final class Map
   @Nullable
   private CallbackUnsupported mCallbackUnsupported;
 
-  private static int currentDpi = 0;
+  // Anyway it is not working as expected and looks suspicious for me.
+  private static int sCurrentDpi = 0;
 
   public Map(DisplayType mapType)
   {
@@ -144,10 +145,13 @@ public final class Map
     Logger.d(TAG, "mSurfaceCreated = " + mSurfaceCreated);
     if (nativeIsEngineCreated())
     {
-      if (currentDpi != surfaceDpi)
+      if (sCurrentDpi != surfaceDpi)
       {
-        currentDpi = surfaceDpi;
-        nativeUpdateEngineDpi(currentDpi);
+        // Do not invoke Framework::UdateDpi after initial surface creation.
+        if (sCurrentDpi != 0)
+          nativeUpdateEngineDpi(surfaceDpi);
+        sCurrentDpi = surfaceDpi;
+
         setupWidgets(context, surfaceFrame.width(), surfaceFrame.height());
       }
       if (!nativeAttachSurface(surface))
@@ -313,9 +317,9 @@ public final class Map
     return nativeIsEngineCreated();
   }
 
-  public static boolean showMapForUrl(String url)
+  public static void executeMapApiRequest()
   {
-    return nativeShowMapForUrl(url);
+    nativeExecuteMapApiRequest();
   }
 
   private void setupWidgets(final Context context, int width, int height)
@@ -375,7 +379,7 @@ public final class Map
   private static native void nativeSetRenderingInitializationFinishedListener(
       @Nullable MapRenderingListener listener);
 
-  private static native boolean nativeShowMapForUrl(String url);
+  private static native void nativeExecuteMapApiRequest();
 
   // Surface
   private static native boolean nativeAttachSurface(Surface surface);

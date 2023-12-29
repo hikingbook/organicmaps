@@ -63,7 +63,7 @@ bool Metadata::TypeFromString(string_view k, Metadata::EType & outType)
     outType = Metadata::EType::FMD_FAX_NUMBER;
   else if (k == "stars")
     outType = Metadata::FMD_STARS;
-  else if (k == "operator")
+  else if (strings::StartsWith(k, "operator"))
     outType = Metadata::FMD_OPERATOR;
   else if (k == "url" || k == "website" || k == "contact:website")
     outType = Metadata::FMD_WEBSITE;
@@ -95,6 +95,7 @@ bool Metadata::TypeFromString(string_view k, Metadata::EType & outType)
     outType = Metadata::FMD_TURN_LANES_BACKWARD;
   else if (k == "email" || k == "contact:email")
     outType = Metadata::FMD_EMAIL;
+  // Process only _main_ tag here, needed for editor ser/des. Actual postcode parsing happens in GetNameAndType.
   else if (k == "addr:postcode")
     outType = Metadata::FMD_POSTCODE;
   else if (k == "wikipedia")
@@ -117,12 +118,34 @@ bool Metadata::TypeFromString(string_view k, Metadata::EType & outType)
     outType = Metadata::FMD_LEVEL;
   else if (k == "iata")
     outType = Metadata::FMD_AIRPORT_IATA;
+  else if (strings::StartsWith(k, "brand"))
+    outType = Metadata::FMD_BRAND;
   else if (k == "duration")
     outType = Metadata::FMD_DURATION;
   else
     return false;
 
   return true;
+}
+
+void Metadata::ClearPOIAttribs()
+{
+  for (auto i = m_metadata.begin(); i != m_metadata.end();)
+  {
+    if (i->first != Metadata::FMD_ELE &&
+        i->first != Metadata::FMD_POSTCODE &&
+        i->first != Metadata::FMD_FLATS &&
+        i->first != Metadata::FMD_HEIGHT &&
+        i->first != Metadata::FMD_MIN_HEIGHT &&
+        i->first != Metadata::FMD_BUILDING_LEVELS &&
+        i->first != Metadata::FMD_TEST_ID &&
+        i->first != Metadata::FMD_BUILDING_MIN_LEVEL)
+    {
+      i = m_metadata.erase(i);
+    }
+    else
+      ++i;
+  }
 }
 
 void RegionData::SetLanguages(vector<string> const & codes)
@@ -256,10 +279,8 @@ string DebugPrint(Metadata const & metadata)
   return res;
 }
 
-string DebugPrint(feature::AddressData const & addressData)
+string DebugPrint(AddressData const & addressData)
 {
-  return std::string("AddressData [")
-          .append("Street = \"").append(addressData.Get(AddressData::Type::Street)).append("\"; ")
-          .append("Postcode = \"").append(addressData.Get(AddressData::Type::Postcode)).append("\"]");
+  return string("AddressData { Street = \"").append(addressData.Get(AddressData::Type::Street)) + "\" }";
 }
 }  // namespace feature

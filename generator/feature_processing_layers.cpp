@@ -1,13 +1,9 @@
 #include "generator/feature_processing_layers.hpp"
-
-#include "generator/coastlines_generator.hpp"
-#include "generator/feature_maker.hpp"
-#include "generator/gen_mwm_info.hpp"
+#include "generator/feature_maker_base.hpp"
+#include "generator/feature_merger.hpp"
 #include "generator/generate_info.hpp"
 #include "generator/place_processor.hpp"
-#include "generator/type_helper.hpp"
 
-#include "indexer/classificator.hpp"
 #include "indexer/feature_visibility.hpp"
 #include "indexer/ftypes_matcher.hpp"
 
@@ -57,30 +53,18 @@ size_t LayerBase::GetChainSize() const
   return size;
 }
 
-void LayerBase::SetNext(std::shared_ptr<LayerBase> next)
-{
-  m_next = next;
-}
-
-std::shared_ptr<LayerBase> LayerBase::Add(std::shared_ptr<LayerBase> next)
+void LayerBase::Add(std::shared_ptr<LayerBase> next)
 {
   if (m_next)
     m_next->Add(next);
   else
     m_next = next;
-
-  return next;
-}
-
-RepresentationLayer::RepresentationLayer(std::shared_ptr<ComplexFeaturesMixer> const & complexFeaturesMixer)
-  : m_complexFeaturesMixer(complexFeaturesMixer)
-{
 }
 
 void RepresentationLayer::Handle(FeatureBuilder & fb)
 {
-  if (m_complexFeaturesMixer)
-    m_complexFeaturesMixer->Process([&](FeatureBuilder & fb){ LayerBase::Handle(fb); }, fb);
+//  if (m_complexFeaturesMixer)
+//    m_complexFeaturesMixer->Process([&](FeatureBuilder & fb){ LayerBase::Handle(fb); }, fb);
 
   auto const sourceType = fb.GetMostGenericOsmId().GetType();
   auto const geomType = fb.GetGeomType();
@@ -96,7 +80,7 @@ void RepresentationLayer::Handle(FeatureBuilder & fb)
   {
     switch (geomType)
     {
-    case feature::GeomType::Area:
+    case GeomType::Area:
     {
       // All closed geometry OsmWays fall through here.
       // E.g. a closed way with tags [amenity=restaurant][wifi=yes][cuisine=*]
@@ -120,7 +104,7 @@ void RepresentationLayer::Handle(FeatureBuilder & fb)
       }
       break;
     }
-    case feature::GeomType::Line:
+    case GeomType::Line:
       LayerBase::Handle(fb);
       break;
     default:
@@ -133,8 +117,12 @@ void RepresentationLayer::Handle(FeatureBuilder & fb)
   {
     switch (geomType)
     {
-    case feature::GeomType::Area:
+    case GeomType::Area:
       HandleArea(fb, params);
+      break;
+    // We transform place relations into points (see BuildFromRelation).
+    case GeomType::Point:
+      LayerBase::Handle(fb);
       break;
     default:
       UNREACHABLE();
@@ -166,24 +154,24 @@ void RepresentationLayer::HandleArea(FeatureBuilder & fb, FeatureBuilderParams c
 // static
 bool RepresentationLayer::CanBeArea(FeatureParams const & params)
 {
-  return CanGenerateLike(params.m_types, feature::GeomType::Area);
+  return CanGenerateLike(params.m_types, GeomType::Area);
 }
 
 // static
 bool RepresentationLayer::CanBePoint(FeatureParams const & params)
 {
-  return CanGenerateLike(params.m_types, feature::GeomType::Point);
+  return CanGenerateLike(params.m_types, GeomType::Point);
 }
 
 // static
 bool RepresentationLayer::CanBeLine(FeatureParams const & params)
 {
-  return CanGenerateLike(params.m_types, feature::GeomType::Line);
+  return CanGenerateLike(params.m_types, GeomType::Line);
 }
 
 void PrepareFeatureLayer::Handle(FeatureBuilder & fb)
 {
-  if (feature::RemoveUselessTypes(fb.GetParams().m_types, fb.GetGeomType()))
+  if (RemoveUselessTypes(fb.GetParams().m_types, fb.GetGeomType()))
   {
     fb.PreSerializeAndRemoveUselessNamesForIntermediate();
     FixLandType(fb);
@@ -203,8 +191,8 @@ void RepresentationCoastlineLayer::Handle(FeatureBuilder & fb)
   {
     switch (geomType)
     {
-    case feature::GeomType::Area:
-    case feature::GeomType::Line:
+    case GeomType::Area:
+    case GeomType::Line:
       LayerBase::Handle(fb);
       break;
     default:
@@ -227,7 +215,7 @@ void PrepareCoastlineFeatureLayer::Handle(FeatureBuilder & fb)
   if (fb.IsArea())
   {
     auto & params = fb.GetParams();
-    feature::RemoveUselessTypes(params.m_types, fb.GetGeomType());
+    RemoveUselessTypes(params.m_types, fb.GetGeomType());
   }
 
   fb.PreSerializeAndRemoveUselessNamesForIntermediate();
@@ -248,12 +236,13 @@ void WorldLayer::Handle(FeatureBuilder & fb)
     LayerBase::Handle(fb);
 }
 
-void CountryLayer::Handle(feature::FeatureBuilder & fb)
+void CountryLayer::Handle(FeatureBuilder & fb)
 {
   if (fb.RemoveInvalidTypes() && PreprocessForCountryMap(fb))
     LayerBase::Handle(fb);
 }
 
+/*
 void PreserializeLayer::Handle(FeatureBuilder & fb)
 {
   if (fb.PreSerialize())
@@ -271,8 +260,8 @@ std::shared_ptr<ComplexFeaturesMixer> ComplexFeaturesMixer::Clone()
   return std::make_shared<ComplexFeaturesMixer>(m_hierarchyNodesSet);
 }
 
-void ComplexFeaturesMixer::Process(std::function<void(feature::FeatureBuilder &)> next,
-                                   feature::FeatureBuilder const & fb)
+void ComplexFeaturesMixer::Process(std::function<void(FeatureBuilder &)> next,
+                                   FeatureBuilder const & fb)
 {
   if (!next)
     return;
@@ -307,7 +296,7 @@ void ComplexFeaturesMixer::Process(std::function<void(feature::FeatureBuilder &)
   }
 }
 
-feature::FeatureBuilder ComplexFeaturesMixer::MakeComplexLineFrom(feature::FeatureBuilder const & fb)
+FeatureBuilder ComplexFeaturesMixer::MakeComplexLineFrom(FeatureBuilder const & fb)
 {
   CHECK(fb.IsArea() || fb.IsLine(), ());
   CHECK(fb.IsGeometryClosed(), ());
@@ -320,7 +309,7 @@ feature::FeatureBuilder ComplexFeaturesMixer::MakeComplexLineFrom(feature::Featu
   return lineFb;
 }
 
-feature::FeatureBuilder ComplexFeaturesMixer::MakeComplexAreaFrom(feature::FeatureBuilder const & fb)
+FeatureBuilder ComplexFeaturesMixer::MakeComplexAreaFrom(FeatureBuilder const & fb)
 {
   CHECK(fb.IsArea() || fb.IsLine(), ());
   CHECK(fb.IsGeometryClosed(), ());
@@ -333,4 +322,5 @@ feature::FeatureBuilder ComplexFeaturesMixer::MakeComplexAreaFrom(feature::Featu
   params.SetType(m_complexEntryType);
   return areaFb;
 }
+*/
 }  // namespace generator

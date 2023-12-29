@@ -7,12 +7,21 @@ import androidx.annotation.IntDef;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.ParcelCompat;
+
+import app.organicmaps.Framework;
+import app.organicmaps.routing.RoutePointInfo;
+import app.organicmaps.search.Popularity;
+import app.organicmaps.util.Utils;
+import app.organicmaps.widget.placepage.PlacePageData;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import app.organicmaps.routing.RoutePointInfo;
 import app.organicmaps.search.Popularity;
@@ -45,6 +54,9 @@ public class MapObject implements PlacePageData
   public static final int OPENING_MODE_DETAILS = 2;
   public static final int OPENING_MODE_FULL = 3;
 
+  private static String kHttp = "http://";
+  private static String kHttps = "https://";
+
   @NonNull
   private final FeatureId mFeatureId;
   @MapObjectType
@@ -53,10 +65,11 @@ public class MapObject implements PlacePageData
   private String mTitle;
   @Nullable
   private final String mSecondaryTitle;
-  private String mSubtitle;
+  private final String mSubtitle;
   private double mLat;
   private double mLon;
   private final String mAddress;
+  @NonNull
   private final Metadata mMetadata;
   private final String mApiId;
   private final RoutePointInfo mRoutePointInfo;
@@ -97,7 +110,7 @@ public class MapObject implements PlacePageData
     mAddress = address;
     mLat = lat;
     mLon = lon;
-    mMetadata = metadata;
+    mMetadata = metadata != null ? metadata : new Metadata();
     mApiId = apiId;
     mRoutePointInfo = routePointInfo;
     mOpeningMode = openingMode;
@@ -110,8 +123,7 @@ public class MapObject implements PlacePageData
 
   protected MapObject(@MapObjectType int type, Parcel source)
   {
-    //noinspection ResourceType
-    this(source.readParcelable(FeatureId.class.getClassLoader()), // FeatureId
+    this(Objects.requireNonNull(ParcelCompat.readParcelable(source, FeatureId.class.getClassLoader(), FeatureId.class)), // FeatureId
          type, // MapObjectType
          source.readString(), // Title
          source.readString(), // SecondaryTitle
@@ -119,12 +131,12 @@ public class MapObject implements PlacePageData
          source.readString(), // Address
          source.readDouble(), // Lat
          source.readDouble(), // Lon
-         source.readParcelable(Metadata.class.getClassLoader()),
+         ParcelCompat.readParcelable(source, Metadata.class.getClassLoader(), Metadata.class),
          source.readString(), // ApiId;
-         source.readParcelable(RoutePointInfo.class.getClassLoader()), // RoutePointInfo
+         ParcelCompat.readParcelable(source, RoutePointInfo.class.getClassLoader(), RoutePointInfo.class), // RoutePointInfo
          source.readInt(), // mOpeningMode
-         source.readParcelable(Popularity.class.getClassLoader()),
-         source.readString(),
+         Objects.requireNonNull(ParcelCompat.readParcelable(source, Popularity.class.getClassLoader(), Popularity.class)),
+         Objects.requireNonNull(source.readString()),
          source.readInt(),
          null // mRawTypes
         );
@@ -258,9 +270,30 @@ public class MapObject implements PlacePageData
     return res == null ? "" : res;
   }
 
-  public boolean hasMetadata()
+  @NonNull
+  public String getWebsiteUrl(boolean strip)
   {
-    return mMetadata != null && !mMetadata.isEmpty();
+    final String website = getMetadata(Metadata.MetadataType.FMD_WEBSITE);
+    final int len = website.length();
+    if (strip && len > 1)
+    {
+      final int start = website.startsWith(kHttps) ? kHttps.length() : (website.startsWith(kHttp) ? kHttp.length() : 0);
+      final int end = website.endsWith("/") ? len - 1 : len;
+      return website.substring(start, end);
+    }
+    return website;
+  }
+
+  @NonNull
+  public String getKayakUrl()
+  {
+    final String uri = getMetadata(Metadata.MetadataType.FMD_EXTERNAL_URI);
+    if (TextUtils.isEmpty(uri))
+      return "";
+    final Date firstDay = new Date();
+    final Date lastDay = new Date(firstDay.getTime() + (1000 * 60 * 60 * 24));
+    final String res = Framework.nativeGetKayakHotelLink(Utils.getCountryCode(), uri, firstDay, lastDay);
+    return res == null ? "" : res;
   }
 
   public String getApiId()
@@ -291,6 +324,11 @@ public class MapObject implements PlacePageData
     return !TextUtils.isEmpty(getMetadata(Metadata.MetadataType.FMD_PHONE_NUMBER));
   }
 
+  public boolean hasAtm()
+  {
+    return mRawTypes.contains("amenity-atm");
+  }
+
   public final boolean isMyPosition()
   {
     return mMapObjectType == MY_POSITION;
@@ -299,11 +337,6 @@ public class MapObject implements PlacePageData
   public final boolean isBookmark()
   {
     return mMapObjectType == BOOKMARK;
-  }
-
-  public final boolean isApiPoint()
-  {
-    return mMapObjectType == API_POINT;
   }
 
   @Nullable
@@ -380,7 +413,7 @@ public class MapObject implements PlacePageData
     return mFeatureId.hashCode();
   }
 
-  public static final Creator<MapObject> CREATOR = new Creator<MapObject>()
+  public static final Creator<MapObject> CREATOR = new Creator<>()
   {
     @Override
     public MapObject createFromParcel(Parcel source)

@@ -790,10 +790,13 @@
 "book_button" = "Rezervare";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Detalii pe KAYAK";
+"more_on_kayak" = "Fotografii, comentarii, rezervări";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Bonusul de recomandare primit pentru fiecare rezervare prin acest link este destinat dezvoltării Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Detalii pe Kayak";
 
 "placepage_call_button" = "Apelează";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Actualizează";
 
-"placepage_add_place_button" = "Adaugă un loc pe hartă";
+"placepage_add_place_button" = "Adaugă un loc pe OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Vrei să-l trimiți tuturor utilizatorilor?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metrou";
 
-"layers_title" = "Straturile hărții";
+"layers_title" = "Stiluri și straturi de hartă";
 
 "subway_data_unavailable" = "Harta de metrou nu este disponibilă";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Drumeție";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parcare";
 
-"type.amenity.parking.fee" = "Parcare cu plată";
+"type.amenity.parking.fee" = "Parcare";
 
 "type.amenity.parking.multi.storey" = "Parcare cu mai multe etaje";
+
+"type.amenity.parking.multi.storey.fee" = "Parcare cu mai multe etaje";
 
 "type.amenity.parking.no.access" = "Parcare privată";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Parcare subterană";
 
-"type.amenity.parking.underground.fee" = "Parcare subterană plătită";
+"type.amenity.parking.underground.fee" = "Parcare subterană";
 
 "type.amenity.parking.underground.private" = "Parcare subterană privată";
 
 "type.amenity.parking.street_side" = "Parcare pe partea stradală";
 
-"type.amenity.parking.street_side.fee" = "Plătită parcare laterală la stradă";
+"type.amenity.parking.street_side.fee" = "Parcare pe partea stradală";
 
 "type.amenity.parking.street_side.private" = "Privat parcare laterală pe stradă";
 
 "type.amenity.parking.lane" = "Parcare pe bandă";
 
-"type.amenity.parking.lane.fee" = "Parcare pe bandă cu plată";
+"type.amenity.parking.lane.fee" = "Parcare pe bandă";
 
 "type.amenity.parking.lane.private" = "Parcare pe alee privată";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Intrarea principala";
 
 "type.entrance.exit" = "Ieșire";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratuit";
 
 "type.healthcare.laboratory" = "Laborator medical";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Sit arheologic";
 
 "type.leisure.golf_course" = "Teren de golf";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metrou";
 
+"type.railway.station.subway.singapore" = "Metrou";
+
 "type.railway.station.subway.sofia" = "Metrou";
 
 "type.railway.station.subway.spb" = "Metrou";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Intrare în metro";
 
 "type.railway.subway_entrance.shiraz" = "Intrare în metro";
+
+"type.railway.subway_entrance.singapore" = "Intrare în metro";
 
 "type.railway.subway_entrance.sofia" = "Intrare în metro";
 
