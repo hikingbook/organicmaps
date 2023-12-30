@@ -790,10 +790,13 @@
 "book_button" = "预約";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "KAYAK 上的详细信息";
+"more_on_kayak" = "照片、评论、预订";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "每次通过此链接预订所获得的推荐奖金将用于 Organic Maps 的开发。";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Kayak 上的详细信息";
 
 "placepage_call_button" = "呼叫";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "更新";
 
-"placepage_add_place_button" = "添加地点到地图上";
+"placepage_add_place_button" = "将地点添加到 OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "您想要发给所有用户吗？";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "地铁";
 
-"layers_title" = "地图图层";
+"layers_title" = "地图样式和图层";
 
 "subway_data_unavailable" = "地铁地图不可用";
 
@@ -1161,7 +1164,7 @@
 
 "dialog_pedestrian_route_is_long_message" = "选择地铁站附近的起点和终点";
 
-"button_layer_isolines" = "高度";
+"button_layer_isolines" = "等高线";
 
 "isolines_activation_error_dialog" = "如需使用高度线，请更新或下载所需区域的地图";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "徒步旅行";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "停车场";
 
-"type.amenity.parking.fee" = "付费停车";
+"type.amenity.parking.fee" = "停车场";
 
 "type.amenity.parking.multi.storey" = "多层停车场";
+
+"type.amenity.parking.multi.storey.fee" = "多层停车场";
 
 "type.amenity.parking.no.access" = "私人停车场";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "地下停车场";
 
-"type.amenity.parking.underground.fee" = "付费地下停车场";
+"type.amenity.parking.underground.fee" = "地下停车场";
 
 "type.amenity.parking.underground.private" = "私人地下停车场";
 
 "type.amenity.parking.street_side" = "路边停车场";
 
-"type.amenity.parking.street_side.fee" = "路边付费停车场";
+"type.amenity.parking.street_side.fee" = "路边停车场";
 
 "type.amenity.parking.street_side.private" = "私人街边停车场";
 
 "type.amenity.parking.lane" = "车道停车";
 
-"type.amenity.parking.lane.fee" = "收费车道停车场";
+"type.amenity.parking.lane.fee" = "车道停车";
 
 "type.amenity.parking.lane.private" = "私家车道停车场";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "主要入口";
 
 "type.entrance.exit" = "退出";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "免费";
 
 "type.healthcare.laboratory" = "医学实验室";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "居民区花园";
 
 "type.leisure.golf_course" = "高尔夫球场";
+
+"type.leisure.hackerspace" = "创客空间";
 
 "type.leisure.ice_rink" = "滑冰场";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "地铁车站";
 
+"type.railway.station.subway.singapore" = "地铁车站";
+
 "type.railway.station.subway.sofia" = "地铁车站";
 
 "type.railway.station.subway.spb" = "地铁车站";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "地铁出入口";
 
 "type.railway.subway_entrance.shiraz" = "地铁出入口";
+
+"type.railway.subway_entrance.singapore" = "地铁出入口";
 
 "type.railway.subway_entrance.sofia" = "地铁出入口";
 

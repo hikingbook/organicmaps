@@ -790,10 +790,13 @@
 "book_button" = "Book";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Details on KAYAK";
+"more_on_kayak" = "Photos, reviews, booking";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "The referral bonus received for each booking through this link goes towards the development of Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Details on Kayak";
 
 "placepage_call_button" = "Call";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Update";
 
-"placepage_add_place_button" = "Add a place to the map";
+"placepage_add_place_button" = "Add Place to OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Do you want to send it to all users?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Subway";
 
-"layers_title" = "Map layers";
+"layers_title" = "Map Styles and Layers";
 
 "subway_data_unavailable" = "Subway map is unavailable";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Outdoors";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parking";
 
-"type.amenity.parking.fee" = "Paid Parking";
+"type.amenity.parking.fee" = "Parking";
 
 "type.amenity.parking.multi.storey" = "Multi Storey Parking";
+
+"type.amenity.parking.multi.storey.fee" = "Multi Storey Parking";
 
 "type.amenity.parking.no.access" = "Private Parking";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Underground Parking";
 
-"type.amenity.parking.underground.fee" = "Paid Underground Parking";
+"type.amenity.parking.underground.fee" = "Underground Parking";
 
 "type.amenity.parking.underground.private" = "Private Underground Parking";
 
 "type.amenity.parking.street_side" = "Street-Side Parking";
 
-"type.amenity.parking.street_side.fee" = "Paid Street-Side Parking";
+"type.amenity.parking.street_side.fee" = "Street-Side Parking";
 
 "type.amenity.parking.street_side.private" = "Private Street-Side Parking";
 
 "type.amenity.parking.lane" = "Lane Parking";
 
-"type.amenity.parking.lane.fee" = "Paid Lane Parking";
+"type.amenity.parking.lane.fee" = "Lane Parking";
 
 "type.amenity.parking.lane.private" = "Private Lane Parking";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Main Entrance";
 
 "type.entrance.exit" = "Exit";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Free";
 
 "type.healthcare.laboratory" = "Medical Laboratory";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Residential Garden";
 
 "type.leisure.golf_course" = "Golf Course";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Subway Station";
 
+"type.railway.station.subway.singapore" = "Subway Station";
+
 "type.railway.station.subway.sofia" = "Subway Station";
 
 "type.railway.station.subway.spb" = "Subway Station";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Subway Entrance";
 
 "type.railway.subway_entrance.shiraz" = "Subway Entrance";
+
+"type.railway.subway_entrance.singapore" = "Subway Entrance";
 
 "type.railway.subway_entrance.sofia" = "Subway Entrance";
 

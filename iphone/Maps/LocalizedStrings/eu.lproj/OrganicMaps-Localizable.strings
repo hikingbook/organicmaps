@@ -790,10 +790,13 @@
 "book_button" = "Erreserba";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Xehetasunak KAYAK-en";
+"more_on_kayak" = "Argazkiak, iritziak, erreserba";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Esteka honen bidez erreserba bakoitzeko jasotzen den erreferentzia-bonua Organic Maps garatzera doa.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Xehetasunak Kayak-en";
 
 "placepage_call_button" = "Deitu";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Eguneratu";
 
-"placepage_add_place_button" = "Gehitu toki bat mapan";
+"placepage_add_place_button" = "Gehitu lekua OpenStreetMap-era";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Erabiltzaile guztiei bidali nahi diezu?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metroa";
 
-"layers_title" = "Mapako geruzak";
+"layers_title" = "Maparen estiloak eta geruzak";
 
 "subway_data_unavailable" = "Metroaren mapa ez dago erabilgarri";
 
@@ -1061,10 +1064,10 @@
 "no" = "Ez";
 
 /* E.g. "WiFi:Yes" */
-"yes_available" = "bai";
+"yes_available" = "Bai";
 
 /* E.g. "WiFi:No" */
-"no_available" = "ez";
+"no_available" = "Ez";
 
 "trip_finished" = "Iritsi zara!";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Mendi ibilaldiak";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Aparkalekua";
 
-"type.amenity.parking.fee" = "Ordaindutako aparkalekua";
+"type.amenity.parking.fee" = "Aparkalekua";
 
 "type.amenity.parking.multi.storey" = "Solairu anitzeko aparkalekua";
+
+"type.amenity.parking.multi.storey.fee" = "Solairu anitzeko aparkalekua";
 
 "type.amenity.parking.no.access" = "Aparkaleku pribatua";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Lurpeko Aparkalekua";
 
-"type.amenity.parking.underground.fee" = "Ordaindutako lurpeko aparkalekua";
+"type.amenity.parking.underground.fee" = "Lurpeko Aparkalekua";
 
 "type.amenity.parking.underground.private" = "Lurpeko aparkaleku pribatua";
 
 "type.amenity.parking.street_side" = "Kale alboko aparkalekua";
 
-"type.amenity.parking.street_side.fee" = "Ordaindutako kale alboko aparkalekua";
+"type.amenity.parking.street_side.fee" = "Kale alboko aparkalekua";
 
 "type.amenity.parking.street_side.private" = "Kale alboko aparkaleku pribatua";
 
 "type.amenity.parking.lane" = "Erreiaren aparkalekua";
 
-"type.amenity.parking.lane.fee" = "Ordaindutako erreiaren aparkalekua";
+"type.amenity.parking.lane.fee" = "Erreiaren aparkalekua";
 
 "type.amenity.parking.lane.private" = "Errei pribatuko aparkalekua";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Sarrera Nagusia";
 
 "type.entrance.exit" = "Irten";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Doan";
 
 "type.healthcare.laboratory" = "Medikuntza laborategia";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Lorategi";
 
 "type.leisure.golf_course" = "Golf kurtsoa";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metroa";
 
+"type.railway.station.subway.singapore" = "Metroa";
+
 "type.railway.station.subway.sofia" = "Metroa";
 
 "type.railway.station.subway.spb" = "Metroa";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Metroko sarrera";
 
 "type.railway.subway_entrance.shiraz" = "Metroko sarrera";
+
+"type.railway.subway_entrance.singapore" = "Metroko sarrera";
 
 "type.railway.subway_entrance.sofia" = "Metroko sarrera";
 

@@ -790,10 +790,13 @@
 "book_button" = "رزرو";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "جزئیات در KAYAK";
+"more_on_kayak" = "عکس ها، نظرات، رزرو";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "پاداش ارجاعی دریافت شده برای هر رزرو از طریق این پیوند به سمت توسعه نقشه های ارگانیک می رود.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "جزئیات در Kayak";
 
 "placepage_call_button" = "تماس";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "بروزرسانی";
 
-"placepage_add_place_button" = "اضافه کردن یک مکان به نقشه";
+"placepage_add_place_button" = "مکان را به OpenStreetMap اضافه کنید";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "آیا می خواهید آن را برای دیگر کاربران ارسال کنید؟";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "مترو";
 
-"layers_title" = "لایه‌های نقشه";
+"layers_title" = "سبک ها و لایه های نقشه";
 
 "subway_data_unavailable" = "نقشه مترو موجود نیست";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Fa:About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "پیاده روی";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "پارکینگ";
 
-"type.amenity.parking.fee" = "ﯽﻟﻮﭘ ﮓﻨﯿﮐﺭﺎﭘ";
+"type.amenity.parking.fee" = "پارکینگ";
 
 "type.amenity.parking.multi.storey" = "ﻪﻘﺒﻃ ﺪﻨﭼ ﮓﻨﯿﮐﺭﺎﭘ";
+
+"type.amenity.parking.multi.storey.fee" = "ﻪﻘﺒﻃ ﺪﻨﭼ ﮓﻨﯿﮐﺭﺎﭘ";
 
 "type.amenity.parking.no.access" = "ﯽﺻﺎﺼﺘﺧﺍ ﮓﻨﯿﮐﺭﺎﭘ";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "ﯽﻨﯿﻣﺯ ﺮﯾﺯ ﮓﻨﯿﮐﺭﺎﭘ";
 
-"type.amenity.parking.underground.fee" = "پارکینگ زیرزمینی پولی";
+"type.amenity.parking.underground.fee" = "ﯽﻨﯿﻣﺯ ﺮﯾﺯ ﮓﻨﯿﮐﺭﺎﭘ";
 
 "type.amenity.parking.underground.private" = "پارکینگ زیرزمینی اختصاصی";
 
 "type.amenity.parking.street_side" = "پارکینگ کنار خیابان";
 
-"type.amenity.parking.street_side.fee" = "پارکینگ کنار خیابان پولی";
+"type.amenity.parking.street_side.fee" = "پارکینگ کنار خیابان";
 
 "type.amenity.parking.street_side.private" = "پارکینگ کنار خیابان خصوصی";
 
 "type.amenity.parking.lane" = "پارکینگ لاین";
 
-"type.amenity.parking.lane.fee" = "پارکینگ لاین پولی";
+"type.amenity.parking.lane.fee" = "پارکینگ لاین";
 
 "type.amenity.parking.lane.private" = "پارکینگ لاین خصوصی";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "ﯽﻠﺻﺍ ﯼﺩﻭﺭﻭ";
 
 "type.entrance.exit" = "خارج شوید";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "رایگان";
 
 "type.healthcare.laboratory" = "ﯽﮑﺷﺰﭘ ﻩﺎﮕﺸﯾﺎﻣﺯﺁ";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "گردشگری";
 
 "type.leisure.golf_course" = "زمین گلف";
+
+"type.leisure.hackerspace" = "فضای هکرها";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "حمل و نقل";
 
+"type.railway.station.subway.singapore" = "حمل و نقل";
+
 "type.railway.station.subway.sofia" = "حمل و نقل";
 
 "type.railway.station.subway.spb" = "حمل و نقل";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "ورودی مترو";
 
 "type.railway.subway_entrance.shiraz" = "ورودی مترو";
+
+"type.railway.subway_entrance.singapore" = "ورودی مترو";
 
 "type.railway.subway_entrance.sofia" = "ورودی مترو";
 

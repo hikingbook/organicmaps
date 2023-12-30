@@ -102,7 +102,7 @@
 "transport" = "Liikenne";
 
 /* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "Polttoaine";
+"fuel" = "Huoltoasema";
 
 /* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
 "parking" = "Parkkipaikka";
@@ -153,7 +153,7 @@
 "wifi" = "WiFi";
 
 /* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "Kierrätys";
+"recycling" = "Jätteiden kierrätys";
 
 /* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
 "water" = "Vesi";
@@ -599,11 +599,11 @@
 
 "opens_at" = "Aukeaa kello %@";
 
-"opens_in" = "Opens in %@";
+"opens_in" = "Avautuu %@ kuluttua";
 
 "closes_at" = "Sulkeutuu kello %@";
 
-"closes_in" = "Closes in %@";
+"closes_in" = "Sulkeutuu %@ kuluttua";
 
 "closed" = "Suljettu";
 
@@ -790,10 +790,13 @@
 "book_button" = "Varaa";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Lisätietoa osoitteessa KAYAK";
+"more_on_kayak" = "Kuvat, arvostelut, varaus";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Jokaisesta tämän linkin kautta tehdystä varauksesta saatu suosittelubonus käytetään Organic Mapsin kehittämiseen.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Lisätietoa osoitteessa Kayak";
 
 "placepage_call_button" = "Soita";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Päivitä";
 
-"placepage_add_place_button" = "Lisää paikka kartalle";
+"placepage_add_place_button" = "Lisää paikka OpenStreetMapiin";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Haluatko lähettää sen kaikille käyttäjille?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metro";
 
-"layers_title" = "Karttatasot";
+"layers_title" = "Karttatyylit ja tasot";
 
 "subway_data_unavailable" = "Metrokartta ei ole saatavilla";
 
@@ -1061,10 +1064,10 @@
 "no" = "Ei";
 
 /* E.g. "WiFi:Yes" */
-"yes_available" = "kyllä";
+"yes_available" = "Kyllä";
 
 /* E.g. "WiFi:No" */
-"no_available" = "ei";
+"no_available" = "Ei";
 
 "trip_finished" = "Olet perillä!";
 
@@ -1228,6 +1231,9 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
+
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Vaellus";
 
 
 /********** Types **********/
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parkkipaikka";
 
-"type.amenity.parking.fee" = "Maksullinen pysäköinti";
+"type.amenity.parking.fee" = "Parkkipaikka";
 
 "type.amenity.parking.multi.storey" = "Monikerroksinen pysäköinti";
+
+"type.amenity.parking.multi.storey.fee" = "Monikerroksinen pysäköinti";
 
 "type.amenity.parking.no.access" = "Yksityinen pysäköinti";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Maanalainen pysäköinti";
 
-"type.amenity.parking.underground.fee" = "Maksullinen maanalainen pysäköinti";
+"type.amenity.parking.underground.fee" = "Maanalainen pysäköinti";
 
 "type.amenity.parking.underground.private" = "Yksityinen maanalainen pysäköintialue";
 
 "type.amenity.parking.street_side" = "Kadun puolella pysäköinti";
 
-"type.amenity.parking.street_side.fee" = "Maksullinen kadunvarsipysäköinti";
+"type.amenity.parking.street_side.fee" = "Kadun puolella pysäköinti";
 
 "type.amenity.parking.street_side.private" = "Yksityinen katu puolella pysäköinti";
 
 "type.amenity.parking.lane" = "Kaistapysäköinti";
 
-"type.amenity.parking.lane.fee" = "Maksullinen pysäköintikaista";
+"type.amenity.parking.lane.fee" = "Kaistapysäköinti";
 
 "type.amenity.parking.lane.private" = "Yksityinen kaista pysäköinti";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Pääsisäänkäynti";
 
 "type.entrance.exit" = "Ulos";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Ilmainen";
 
 "type.healthcare.laboratory" = "Lääketieteellinen laboratorio";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Puutarha";
 
 "type.leisure.golf_course" = "Golf-rata";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metro";
 
+"type.railway.station.subway.singapore" = "Metro";
+
 "type.railway.station.subway.sofia" = "Metro";
 
 "type.railway.station.subway.spb" = "Metro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Metron sisäänkäynti";
 
 "type.railway.subway_entrance.shiraz" = "Metron sisäänkäynti";
+
+"type.railway.subway_entrance.singapore" = "Metron sisäänkäynti";
 
 "type.railway.subway_entrance.sofia" = "Metron sisäänkäynti";
 
@@ -3734,7 +3752,7 @@
 
 "type.tourism.caravan_site" = "Asuntovaunupaikka";
 
-"type.tourism.chalet" = "Alppimaja";
+"type.tourism.chalet" = "Mökki";
 
 "type.tourism.gallery" = "Nähtävyydet";
 

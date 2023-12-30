@@ -790,10 +790,13 @@
 "book_button" = "Book";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Detaljer på KAYAK";
+"more_on_kayak" = "Fotos, anmeldelser, booking";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Henvisningsbonussen, der modtages for hver booking via dette link, går til udviklingen af Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Detaljer på Kayak";
 
 "placepage_call_button" = "Ring";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Opdater";
 
-"placepage_add_place_button" = "Tilføj et sted på kortet";
+"placepage_add_place_button" = "Tilføj sted til OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Ønsker du at sende det til alle brugere?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Undergrundsbane";
 
-"layers_title" = "Kortlag";
+"layers_title" = "Kortstile og -lag";
 
 "subway_data_unavailable" = "Kort over undergrundsbaner er ikke tilgængeligt";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Da:Om_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Vandring";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parkering";
 
-"type.amenity.parking.fee" = "Betalt parkering";
+"type.amenity.parking.fee" = "Parkering";
 
 "type.amenity.parking.multi.storey" = "Parkering i flere etager";
+
+"type.amenity.parking.multi.storey.fee" = "Parkering i flere etager";
 
 "type.amenity.parking.no.access" = "Privat parkering";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Underjordisk parkering";
 
-"type.amenity.parking.underground.fee" = "Betalt underjordisk parkering";
+"type.amenity.parking.underground.fee" = "Underjordisk parkering";
 
 "type.amenity.parking.underground.private" = "Privat underjordisk parkering";
 
 "type.amenity.parking.street_side" = "Parkering på gadesiden";
 
-"type.amenity.parking.street_side.fee" = "Betalt parkering på gadesiden";
+"type.amenity.parking.street_side.fee" = "Parkering på gadesiden";
 
 "type.amenity.parking.street_side.private" = "Privat gade sideparkering";
 
 "type.amenity.parking.lane" = "Parkering på kørebane";
 
-"type.amenity.parking.lane.fee" = "Betalt baneparkering";
+"type.amenity.parking.lane.fee" = "Parkering på kørebane";
 
 "type.amenity.parking.lane.private" = "Privat vej parkering";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Hovedindgang";
 
 "type.entrance.exit" = "Udgang";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Gratis";
 
 "type.healthcare.laboratory" = "Medicinsk laboratorium";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Have";
 
 "type.leisure.golf_course" = "Golf";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metro";
 
+"type.railway.station.subway.singapore" = "Metro";
+
 "type.railway.station.subway.sofia" = "Metro";
 
 "type.railway.station.subway.spb" = "Metro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Indgang til undergrundsbane";
 
 "type.railway.subway_entrance.shiraz" = "Indgang til undergrundsbane";
+
+"type.railway.subway_entrance.singapore" = "Indgang til undergrundsbane";
 
 "type.railway.subway_entrance.sofia" = "Indgang til undergrundsbane";
 

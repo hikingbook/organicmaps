@@ -790,10 +790,13 @@
 "book_button" = "Rezervasyon";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "KAYAK hakkında detaylar";
+"more_on_kayak" = "Fotoğraflar, yorumlar, rezervasyon";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Bu bağlantı üzerinden yapılan her rezervasyon için alınan yönlendirme bonusu Organic Maps'in geliştirilmesine harcanmaktadır.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Kayak hakkında detaylar";
 
 "placepage_call_button" = "Ara";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Yenile";
 
-"placepage_add_place_button" = "Haritaya bir yer ekle";
+"placepage_add_place_button" = "OpenStreetMap'e Yer Ekle";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Bunu tüm kullanıcılara göndermek ister misiniz?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metro";
 
-"layers_title" = "Harita katmanları";
+"layers_title" = "Harita Stilleri ve Katmanları";
 
 "subway_data_unavailable" = "Metro haritası mevcut değil";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Tr:About";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Yürüyüş";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Otopark";
 
-"type.amenity.parking.fee" = "Ücretli Otopark";
+"type.amenity.parking.fee" = "Otopark";
 
 "type.amenity.parking.multi.storey" = "Çok Katlı Otopark";
+
+"type.amenity.parking.multi.storey.fee" = "Çok Katlı Otopark";
 
 "type.amenity.parking.no.access" = "Özel Otopark";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Yeraltı otoparkı";
 
-"type.amenity.parking.underground.fee" = "Ücretli yeraltı otoparkı";
+"type.amenity.parking.underground.fee" = "Yeraltı otoparkı";
 
 "type.amenity.parking.underground.private" = "Özel yeraltı otoparkı";
 
 "type.amenity.parking.street_side" = "Sokak tarafı otopark";
 
-"type.amenity.parking.street_side.fee" = "Ücretli cadde tarafı otopark";
+"type.amenity.parking.street_side.fee" = "Sokak tarafı otopark";
 
 "type.amenity.parking.street_side.private" = "Özel sokak tarafı otopark";
 
 "type.amenity.parking.lane" = "Şerit park";
 
-"type.amenity.parking.lane.fee" = "Ücretli şerit park";
+"type.amenity.parking.lane.fee" = "Şerit park";
 
 "type.amenity.parking.lane.private" = "Özel şerit otopark";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Ana giriş";
 
 "type.entrance.exit" = "Çıkış";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Ücretsiz";
 
 "type.healthcare.laboratory" = "Tıbbi Laboratuvar";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Konut Bahçesi";
 
 "type.leisure.golf_course" = "Golf Sahası";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Buz Pateni Pisti";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metro";
 
+"type.railway.station.subway.singapore" = "Metro";
+
 "type.railway.station.subway.sofia" = "Metro";
 
 "type.railway.station.subway.spb" = "Metro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Metro Girişi";
 
 "type.railway.subway_entrance.shiraz" = "Metro Girişi";
+
+"type.railway.subway_entrance.singapore" = "Metro Girişi";
 
 "type.railway.subway_entrance.sofia" = "Metro Girişi";
 
