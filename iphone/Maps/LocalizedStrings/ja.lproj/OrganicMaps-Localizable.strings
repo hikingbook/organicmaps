@@ -790,10 +790,13 @@
 "book_button" = "予約";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "KAYAK で詳細表示";
+"more_on_kayak" = "写真、レビュー、予約";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "このリンクを経由した予約の紹介ボーナスは、Organic Mapsの発展のために使われる。";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Kayak で詳細表示";
 
 "placepage_call_button" = "コール";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "更新";
 
-"placepage_add_place_button" = "地図上に場所を追加";
+"placepage_add_place_button" = "OpenStreetMapに場所を追加する";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "全てのユーザーに送信しますか？";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "地下鉄";
 
-"layers_title" = "マップレイヤー";
+"layers_title" = "マップのスタイルとレイヤー";
 
 "subway_data_unavailable" = "地下鉄路線図はご利用いただけません";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/JA:参加する";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "ハイキング";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "駐車場";
 
-"type.amenity.parking.fee" = "有料駐車場";
+"type.amenity.parking.fee" = "駐車場";
 
 "type.amenity.parking.multi.storey" = "立体駐車場";
+
+"type.amenity.parking.multi.storey.fee" = "立体駐車場";
 
 "type.amenity.parking.no.access" = "専用駐車場";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "地下駐車場";
 
-"type.amenity.parking.underground.fee" = "有料地下駐車場";
+"type.amenity.parking.underground.fee" = "地下駐車場";
 
 "type.amenity.parking.underground.private" = "専用地下駐車場";
 
 "type.amenity.parking.street_side" = "路上駐車";
 
-"type.amenity.parking.street_side.fee" = "有料路上駐車場";
+"type.amenity.parking.street_side.fee" = "路上駐車";
 
 "type.amenity.parking.street_side.private" = "プライベート・ストリート・サイド・パーキング";
 
 "type.amenity.parking.lane" = "レーンパーキング";
 
-"type.amenity.parking.lane.fee" = "有料レーン駐車場";
+"type.amenity.parking.lane.fee" = "レーンパーキング";
 
 "type.amenity.parking.lane.private" = "専用レーン駐車場";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "正面玄関";
 
 "type.entrance.exit" = "終了する";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "無料";
 
 "type.healthcare.laboratory" = "医療研究所";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "庭園";
 
 "type.leisure.golf_course" = "ゴルフコース";
+
+"type.leisure.hackerspace" = "ハッカースペース";
 
 "type.leisure.ice_rink" = "アイスリンク";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "地下鉄";
 
+"type.railway.station.subway.singapore" = "地下鉄";
+
 "type.railway.station.subway.sofia" = "地下鉄";
 
 "type.railway.station.subway.spb" = "地下鉄";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "地下鉄入り口";
 
 "type.railway.subway_entrance.shiraz" = "地下鉄入り口";
+
+"type.railway.subway_entrance.singapore" = "地下鉄入り口";
 
 "type.railway.subway_entrance.sofia" = "地下鉄入り口";
 

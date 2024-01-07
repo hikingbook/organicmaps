@@ -790,10 +790,13 @@
 "book_button" = "예약";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "KAYAK의 세부 정보";
+"more_on_kayak" = "사진, 리뷰, 예약";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "이 링크를 통해 예약할 때마다 받는 추천 보너스는 오가닉맵 개발에 사용됩니다.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Kayak의 세부 정보";
 
 "placepage_call_button" = "전화";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "최신 정보";
 
-"placepage_add_place_button" = "지도에 장소 추가";
+"placepage_add_place_button" = "오픈스트리트맵에 장소 추가";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "이를 모든 사용자에게 전송하시겠습니까?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "지하철";
 
-"layers_title" = "맵 레이어";
+"layers_title" = "맵 스타일 및 레이어";
 
 "subway_data_unavailable" = "지하철 지도가 가용하지 않습니다.";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ko:OpenStreetMap_소개";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "하이킹";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "주차";
 
-"type.amenity.parking.fee" = "유료 주차장";
+"type.amenity.parking.fee" = "주차";
 
 "type.amenity.parking.multi.storey" = "다층 주차장";
+
+"type.amenity.parking.multi.storey.fee" = "다층 주차장";
 
 "type.amenity.parking.no.access" = "전용 주차장";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "지하주차장";
 
-"type.amenity.parking.underground.fee" = "유료 지하 주차장";
+"type.amenity.parking.underground.fee" = "지하주차장";
 
 "type.amenity.parking.underground.private" = "전용 지하 주차장";
 
 "type.amenity.parking.street_side" = "노상 주차장";
 
-"type.amenity.parking.street_side.fee" = "유료 노상 주차장";
+"type.amenity.parking.street_side.fee" = "노상 주차장";
 
 "type.amenity.parking.street_side.private" = "전용 노상 주차장";
 
 "type.amenity.parking.lane" = "차선 주차";
 
-"type.amenity.parking.lane.fee" = "유료 차선 주차";
+"type.amenity.parking.lane.fee" = "차선 주차";
 
 "type.amenity.parking.lane.private" = "전용 차선 주차";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "정문";
 
 "type.entrance.exit" = "종료";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "무료";
 
 "type.healthcare.laboratory" = "의료 연구실";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "정원";
 
 "type.leisure.golf_course" = "골프장";
+
+"type.leisure.hackerspace" = "해커스 스페이스";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "지하철";
 
+"type.railway.station.subway.singapore" = "지하철";
+
 "type.railway.station.subway.sofia" = "지하철";
 
 "type.railway.station.subway.spb" = "지하철";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "지하철 입구";
 
 "type.railway.subway_entrance.shiraz" = "지하철 입구";
+
+"type.railway.subway_entrance.singapore" = "지하철 입구";
 
 "type.railway.subway_entrance.sofia" = "지하철 입구";
 

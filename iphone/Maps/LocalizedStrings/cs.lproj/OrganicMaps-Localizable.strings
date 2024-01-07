@@ -790,10 +790,13 @@
 "book_button" = "Rezervace";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Podrobnosti na KAYAK";
+"more_on_kayak" = "Fotografie, recenze, rezervace";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Bonus za každou rezervaci provedenou prostřednictvím tohoto odkazu je určen na rozvoj služby Organic Maps.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "Podrobnosti na Kayak";
 
 "placepage_call_button" = "Volat";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "Aktualizovat";
 
-"placepage_add_place_button" = "Přidat místo na mapu";
+"placepage_add_place_button" = "Přidat místo do OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "Chcete jej poslat všem uživatelům?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "Metro";
 
-"layers_title" = "Úrovně mapy";
+"layers_title" = "Styly a vrstvy mapy";
 
 "subway_data_unavailable" = "Mapa metra není dostupná";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "Pěší turistika";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "Parkoviště";
 
-"type.amenity.parking.fee" = "Placené parkoviště";
+"type.amenity.parking.fee" = "Parkoviště";
 
 "type.amenity.parking.multi.storey" = "Vícepodlažní parkoviště";
+
+"type.amenity.parking.multi.storey.fee" = "Vícepodlažní parkoviště";
 
 "type.amenity.parking.no.access" = "Soukromé parkoviště";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Podzemní parkoviště";
 
-"type.amenity.parking.underground.fee" = "Placené podzemní parkoviště";
+"type.amenity.parking.underground.fee" = "Podzemní parkoviště";
 
 "type.amenity.parking.underground.private" = "Soukromé podzemní parkoviště";
 
 "type.amenity.parking.street_side" = "Parkování na straně ulice";
 
-"type.amenity.parking.street_side.fee" = "Placené parkování na ulici";
+"type.amenity.parking.street_side.fee" = "Parkování na straně ulice";
 
 "type.amenity.parking.street_side.private" = "Soukromé parkování na ulici";
 
 "type.amenity.parking.lane" = "Parkovací pruh";
 
-"type.amenity.parking.lane.fee" = "Placené parkování v pruzích";
+"type.amenity.parking.lane.fee" = "Parkovací pruh";
 
 "type.amenity.parking.lane.private" = "Soukromý parkovací pruh";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "Hlavní vchod";
 
 "type.entrance.exit" = "Exit";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "Zdarma";
 
 "type.healthcare.laboratory" = "Lékařská laboratoř";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "Zahrada";
 
 "type.leisure.golf_course" = "Golf";
+
+"type.leisure.hackerspace" = "Hackerspace";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "Metro";
 
+"type.railway.station.subway.singapore" = "Metro";
+
 "type.railway.station.subway.sofia" = "Metro";
 
 "type.railway.station.subway.spb" = "Metro";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "Vchod do podchodu";
 
 "type.railway.subway_entrance.shiraz" = "Vchod do podchodu";
+
+"type.railway.subway_entrance.singapore" = "Vchod do podchodu";
 
 "type.railway.subway_entrance.sofia" = "Vchod do podchodu";
 

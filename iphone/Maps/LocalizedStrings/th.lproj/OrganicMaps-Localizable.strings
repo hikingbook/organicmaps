@@ -790,10 +790,13 @@
 "book_button" = "จอง";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "รายละเอียดบน KAYAK";
+"more_on_kayak" = "รูปภาพ รีวิว การจอง";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "โบนัสการแนะนำที่ได้รับสำหรับการจองแต่ละครั้งผ่านลิงก์นี้จะนำไปใช้ในการพัฒนาแผนที่ทั่วไป";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "รายละเอียดบน Kayak";
 
 "placepage_call_button" = "โทร";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "อัปเดต";
 
-"placepage_add_place_button" = "เพิ่มสถานที่ไปยังแผนที่";
+"placepage_add_place_button" = "เพิ่มสถานที่ลงใน OpenStreetMap";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "คุณต้องการส่งมันให้ผู้ใช้ทั้งหมดหรือไม่?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "รถไฟใต้ดิน";
 
-"layers_title" = "ชั้นแผนที่";
+"layers_title" = "รูปแบบและเลเยอร์ของแผนที่";
 
 "subway_data_unavailable" = "แผนที่รถไฟใต้ดินไม่พร้อมใช้งาน";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "การเดินป่า";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "ที่จอดรถ";
 
-"type.amenity.parking.fee" = "ที่จอดรถแบบเสียค่าบริการ";
+"type.amenity.parking.fee" = "ที่จอดรถ";
 
 "type.amenity.parking.multi.storey" = "ที่จอดรถหลายชั้น";
+
+"type.amenity.parking.multi.storey.fee" = "ที่จอดรถหลายชั้น";
 
 "type.amenity.parking.no.access" = "ที่จอดรถส่วนตัว";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "ที่จอดรถใต้ดิน";
 
-"type.amenity.parking.underground.fee" = "ที่จอดรถใต้ดินแบบชำระเงิน";
+"type.amenity.parking.underground.fee" = "ที่จอดรถใต้ดิน";
 
 "type.amenity.parking.underground.private" = "ที่จอดรถใต้ดินส่วนตัว";
 
 "type.amenity.parking.street_side" = "ที่จอดรถริมถนน";
 
-"type.amenity.parking.street_side.fee" = "ที่จอดรถริมถนนแบบชำระเงิน";
+"type.amenity.parking.street_side.fee" = "ที่จอดรถริมถนน";
 
 "type.amenity.parking.street_side.private" = "ที่จอดรถริมถนนส่วนตัว";
 
 "type.amenity.parking.lane" = "ที่จอดรถเลน";
 
-"type.amenity.parking.lane.fee" = "ที่จอดรถเลนแบบชำระเงิน";
+"type.amenity.parking.lane.fee" = "ที่จอดรถเลน";
 
 "type.amenity.parking.lane.private" = "ที่จอดรถเลนส่วนตัว";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "ทางเข้าหลัก";
 
 "type.entrance.exit" = "ทางออก";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "ฟรี";
 
 "type.healthcare.laboratory" = "ห้องปฏิบัติการทางการแพทย์";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "สวน";
 
 "type.leisure.golf_course" = "สนามกอล์ฟ";
+
+"type.leisure.hackerspace" = "แฮกเกอร์สเปซ";
 
 "type.leisure.ice_rink" = "Ice Rink";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "รถไฟ";
 
+"type.railway.station.subway.singapore" = "รถไฟ";
+
 "type.railway.station.subway.sofia" = "รถไฟ";
 
 "type.railway.station.subway.spb" = "รถไฟ";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "ทางเข้ารถไฟใต้ดิน";
 
 "type.railway.subway_entrance.shiraz" = "ทางเข้ารถไฟใต้ดิน";
+
+"type.railway.subway_entrance.singapore" = "ทางเข้ารถไฟใต้ดิน";
 
 "type.railway.subway_entrance.sofia" = "ทางเข้ารถไฟใต้ดิน";
 

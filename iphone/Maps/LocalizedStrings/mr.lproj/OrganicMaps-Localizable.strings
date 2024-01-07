@@ -790,10 +790,13 @@
 "book_button" = "पुस्तक";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "कायाक वर तपशील";
+"more_on_kayak" = "फोटोपुनरावलोकनेबुकिंगबुकिंग";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "या लिंकद्वारे प्रत्येक बुकिंगसाठी मिळणारा रेफरल बोनस ऑरगॅनिक नकाशांच्या विकासासाठी जातो.";
+
+/* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_button" = "कायाक वर तपशील";
 
 "placepage_call_button" = "फोन करा";
 
@@ -830,7 +833,7 @@
 
 "refresh" = "अद्ययावत करा";
 
-"placepage_add_place_button" = "नकाशावर एक ठिकाण जोडा";
+"placepage_add_place_button" = "OpenStreetMap मध्ये ठिकाण जोडा";
 
 /* Displayed when saving some edits to the map to warn against publishing personal data */
 "editor_share_to_all_dialog_title" = "तुम्ही ते सर्व वापरकर्त्यांना पाठवू इच्छिता?";
@@ -973,7 +976,7 @@
 
 "button_layer_subway" = "भुयारी मार्ग";
 
-"layers_title" = "नकाशा स्तर";
+"layers_title" = "नकाशा शैली आणि स्तर";
 
 "subway_data_unavailable" = "भुयारी नकाशा अनुपलब्ध आहे";
 
@@ -1229,6 +1232,9 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
+"button_layer_outdoor" = "गिर्यारोहण";
+
 
 /********** Types **********/
 
@@ -1398,9 +1404,11 @@
 
 "type.amenity.parking" = "वाहनतळ";
 
-"type.amenity.parking.fee" = "Paid Parking";
+"type.amenity.parking.fee" = "वाहनतळ";
 
 "type.amenity.parking.multi.storey" = "Multi Storey Parking";
+
+"type.amenity.parking.multi.storey.fee" = "Multi Storey Parking";
 
 "type.amenity.parking.no.access" = "Private Parking";
 
@@ -1412,19 +1420,19 @@
 
 "type.amenity.parking.underground" = "Underground Parking";
 
-"type.amenity.parking.underground.fee" = "सशुल्क भूमिगत पार्किंग";
+"type.amenity.parking.underground.fee" = "Underground Parking";
 
 "type.amenity.parking.underground.private" = "खाजगी भूमिगत पार्किंग";
 
 "type.amenity.parking.street_side" = "स्ट्रीट साइड पार्किंग";
 
-"type.amenity.parking.street_side.fee" = "पेड स्ट्रीट साइड पार्किंग";
+"type.amenity.parking.street_side.fee" = "स्ट्रीट साइड पार्किंग";
 
 "type.amenity.parking.street_side.private" = "खाजगी रस्त्यावरील बाजूचे पार्किंग";
 
 "type.amenity.parking.lane" = "लेन पार्किंग";
 
-"type.amenity.parking.lane.fee" = "सशुल्क लेन पार्किंग";
+"type.amenity.parking.lane.fee" = "लेन पार्किंग";
 
 "type.amenity.parking.lane.private" = "खाजगी लेन पार्किंग";
 
@@ -1933,6 +1941,10 @@
 "type.entrance.main" = "मुख्य प्रवेशद्वार";
 
 "type.entrance.exit" = "बाहेर पडा";
+
+"type.fee.yes" = "💲";
+
+"type.fee.no" = "विनामूल्य";
 
 "type.healthcare.laboratory" = "वैद्यकीय प्रयोगशाळा";
 
@@ -2504,6 +2516,8 @@
 "type.leisure.garden.residential" = "बाग";
 
 "type.leisure.golf_course" = "गोल्फचे मैदान";
+
+"type.leisure.hackerspace" = "हॅकरस्पेस";
 
 "type.leisure.ice_rink" = "हिम क्रीडा क्षेत्र";
 
@@ -3128,6 +3142,8 @@
 
 "type.railway.station.subway.shiraz" = "भुयारी मार्ग";
 
+"type.railway.station.subway.singapore" = "भुयारी मार्ग";
+
 "type.railway.station.subway.sofia" = "भुयारी मार्ग";
 
 "type.railway.station.subway.spb" = "भुयारी मार्ग";
@@ -3355,6 +3371,8 @@
 "type.railway.subway_entrance.shanghai" = "भुयारी प्रवेशद्वार";
 
 "type.railway.subway_entrance.shiraz" = "भुयारी प्रवेशद्वार";
+
+"type.railway.subway_entrance.singapore" = "भुयारी प्रवेशद्वार";
 
 "type.railway.subway_entrance.sofia" = "भुयारी प्रवेशद्वार";
 
