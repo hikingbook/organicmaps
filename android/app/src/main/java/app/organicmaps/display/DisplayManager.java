@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2024.
 package app.organicmaps.display;
 
 import android.content.Context;
@@ -7,10 +8,10 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import app.organicmaps.MwmApplication;
-import app.organicmaps.util.log.Logger;
-
 import java.util.Objects;
+
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
+import app.organicmaps.util.log.Logger;
 
 public class DisplayManager
 {
@@ -45,8 +46,9 @@ public class DisplayManager
   @NonNull
   public static DisplayManager from(@NonNull Context context)
   {
-    final MwmApplication app = (MwmApplication) context.getApplicationContext();
-    return app.getDisplayManager();
+//    final MwmApplication app = (MwmApplication) context.getApplicationContext();
+//    return app.getDisplayManager();
+    return OrganicmapsFrameworkAdapter.INSTANCE.getDisplayManager();
   }
 
   public boolean isCarConnected()
