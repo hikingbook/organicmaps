@@ -72,14 +72,14 @@
     case .route:
       if let adapter = DeepLinkRouteStrategyAdapter(url) {
         MWMRouter.buildApiRoute(with: adapter.type, start: adapter.p1, finish: adapter.p2)
-        MapsAppDelegate.theApp().showMap()
+//        MapsAppDelegate.theApp().showMap()
         return true
       }
       return false;
 
     case .map:
       DeepLinkParser.executeMapApiRequest()
-      MapsAppDelegate.theApp().showMap()
+//      MapsAppDelegate.theApp().showMap()
       return true
 
     case .search:
