@@ -3,7 +3,10 @@ package app.organicmaps.widget.placepage;
 import androidx.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
+
 import app.organicmaps.Framework;
 
 public class AxisValueFormatter extends DefaultValueFormatter
@@ -19,7 +22,7 @@ public class AxisValueFormatter extends DefaultValueFormatter
   }
 
   @Override
-  public String getFormattedValue(float value)
+  public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler)
   {
     return Framework.nativeFormatAltitude(value).toString(mChart.getContext());
   }
