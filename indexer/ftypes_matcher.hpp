@@ -126,6 +126,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsBicycleRentalChecker);
 };
 
+class IsParkingChecker : public BaseChecker
+{
+  IsParkingChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsParkingChecker);
+};
+
 class IsRecyclingCentreChecker : public BaseChecker
 {
   IsRecyclingCentreChecker();
@@ -305,6 +313,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsIsolineChecker);
 };
 
+class IsPisteChecker : public BaseChecker
+{
+  IsPisteChecker();
+public:
+  DECLARE_CHECKER_INSTANCE(IsPisteChecker);
+};
+
+/// @todo Should be merged/replaced with search::IsPoiChecker in model.cpp ?
 class IsPoiChecker : public BaseChecker
 {
   IsPoiChecker();
@@ -411,15 +427,6 @@ public:
   uint32_t GetType() const { return m_types[0]; }
 };
 
-class IsShopChecker : public BaseChecker
-{
-public:
-  DECLARE_CHECKER_INSTANCE(IsShopChecker);
-
-private:
-  IsShopChecker();
-};
-
 class IsEatChecker : public BaseChecker
 {
 public:
@@ -469,11 +476,12 @@ public:
   DECLARE_CHECKER_INSTANCE(IsFeeTypeChecker);
 };
 
-class IsCityChecker : public BaseChecker
+class IsToiletsChecker : public BaseChecker
 {
-  IsCityChecker();
+  IsToiletsChecker();
+
 public:
-  DECLARE_CHECKER_INSTANCE(IsCityChecker);
+  DECLARE_CHECKER_INSTANCE(IsToiletsChecker);
 };
 
 class IsCapitalChecker : public BaseChecker

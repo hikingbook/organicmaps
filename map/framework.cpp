@@ -206,11 +206,6 @@ void Framework::SetMyPositionModeListener(TMyPositionModeChanged && fn)
   m_myPositionListener = std::move(fn);
 }
 
-void Framework::SetMyPositionPendingTimeoutListener(df::DrapeEngine::UserPositionPendingTimeoutHandler && fn)
-{
-  m_myPositionPendingTimeoutListener = std::move(fn);
-}
-
 EMyPositionMode Framework::GetMyPositionMode() const
 {
   return m_drapeEngine ? m_drapeEngine->GetMyPositionMode() : PendingPosition;
@@ -1014,7 +1009,7 @@ void Framework::SetViewportListener(TViewportChangedFn const & fn)
   m_viewportChangedFn = fn;
 }
 
-#if defined(OMIM_OS_MAC) || defined(OMIM_OS_LINUX)
+#if defined(OMIM_OS_DESKTOP)
 void Framework::NotifyGraphicsReady(TGraphicsReadyFn const & fn, bool needInvalidate)
 {
   if (m_drapeEngine != nullptr)
@@ -1418,11 +1413,7 @@ void Framework::FillSearchResultsMarks(SearchResultsIterT beg, SearchResultsIter
     {
       auto const fID = r.GetFeatureID();
       mark->SetFoundFeature(fID);
-
-      if (r.m_details.m_isHotel)
-        mark->SetHotelType();
-      else
-        mark->SetFromType(r.GetFeatureType());
+      mark->SetFromType(r.GetFeatureType());
       mark->SetVisited(m_searchMarks.IsVisited(fID));
       mark->SetSelected(m_searchMarks.IsSelected(fID));
     }
@@ -1541,14 +1532,6 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
     GetPlatform().RunTask(Platform::Thread::Gui, [this, position, hasPosition]()
     {
       OnUserPositionChanged(position, hasPosition);
-    });
-  });
-  m_drapeEngine->SetUserPositionPendingTimeoutListener([this]()
-  {
-    GetPlatform().RunTask(Platform::Thread::Gui, [this]()
-    {
-      if (m_myPositionPendingTimeoutListener)
-        m_myPositionPendingTimeoutListener();
     });
   });
 

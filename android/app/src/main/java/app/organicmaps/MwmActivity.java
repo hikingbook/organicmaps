@@ -70,7 +70,6 @@ import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.maplayer.MapButtonsController;
 import app.organicmaps.maplayer.MapButtonsViewModel;
-import app.organicmaps.maplayer.Mode;
 import app.organicmaps.maplayer.ToggleMapLayerFragment;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.isolines.IsolinesState;
@@ -115,7 +114,6 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.organicmaps.SplashActivity.EXTRA_INITIAL_INTENT;
 import static app.organicmaps.location.LocationState.FOLLOW;
 import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
 import static app.organicmaps.location.LocationState.LOCATION_TAG;
@@ -578,9 +576,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     mPointChooserToolbar = mPointChooser.findViewById(R.id.toolbar_point_chooser);
     UiUtils.showHomeUpButton(mPointChooserToolbar);
-    mPointChooserToolbar.setNavigationOnClickListener(v -> {
-      closePositionChooser();
-    });
+    mPointChooserToolbar.setNavigationOnClickListener(v -> closePositionChooser());
     mPointChooser.findViewById(R.id.done).setOnClickListener(
         v ->
         {
@@ -729,33 +725,23 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     switch (button)
     {
-      case zoomIn:
-        Map.zoomIn();
-        break;
-      case zoomOut:
-        Map.zoomOut();
-        break;
-      case myPosition:
+      case zoomIn -> Map.zoomIn();
+      case zoomOut -> Map.zoomOut();
+      case myPosition ->
+      {
         Logger.i(LOCATION_TAG, "The location button pressed");
         // Calls onMyPositionModeChanged(mode + 1).
         LocationState.nativeSwitchToNextMode();
-        break;
-      case toggleMapLayer:
-        toggleMapLayerBottomSheet();
-        break;
-      case bookmarks:
-        showBookmarks();
-        break;
-      case search:
-        showSearch("");
-        break;
-      case menu:
+      }
+      case toggleMapLayer -> toggleMapLayerBottomSheet();
+      case bookmarks -> showBookmarks();
+      case search -> showSearch("");
+      case menu ->
+      {
         closeFloatingPanels();
         showBottomSheet(MAIN_MENU_ID);
-        break;
-      case help:
-        showHelp();
-        break;
+      }
+      case help -> showHelp();
     }
   }
 
@@ -1016,10 +1002,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   protected void onNewIntent(Intent intent)
   {
-    // {@link see BaseMwmFragmentActivity.onCreate()}
-    final Intent initialIntent = IntentCompat.getParcelableExtra(intent, EXTRA_INITIAL_INTENT, Intent.class);
-    if (initialIntent != null)
-      intent = initialIntent;
     setIntent(intent);
     super.onNewIntent(intent);
     if (isMapRendererActive())
@@ -1051,7 +1033,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mNavigationController.refresh();
     refreshLightStatusBar();
 
-    LocationState.nativeSetLocationPendingTimeoutListener(this::onLocationPendingTimeout);
     SensorHelper.from(this).addListener(this);
   }
 
@@ -1076,7 +1057,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     if (mOnmapDownloader != null)
       mOnmapDownloader.onPause();
-    LocationState.nativeRemoveLocationPendingTimeoutListener();
     SensorHelper.from(this).removeListener(this);
     dismissLocationErrorDialog();
     dismissAlertDialog();
@@ -1094,6 +1074,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     LocationState.nativeSetListener(this);
     LocationHelper.from(this).addListener(this);
     mSearchController.attach(this);
+    Utils.keepScreenOn(Config.isKeepScreenOnEnabled() || RoutingController.get().isNavigating(), getWindow());
   }
 
   @Override
@@ -1651,7 +1632,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void openKayakLink(@NonNull String url)
   {
-    if (Config.isKayakDisclaimerAccepted())
+    if (Config.isKayakDisclaimerAccepted() || !Config.isKayakReferralAllowed())
     {
       Utils.openUrl(this, url);
       return;
@@ -1711,11 +1692,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     RoutingController controller = RoutingController.get();
     if (controller.isPlanning() || controller.isBuilding() || controller.isErrorEncountered())
       showAddStartOrFinishFrame(controller, true);
-
-    if (newMode == FOLLOW || newMode == FOLLOW_AND_ROTATE)
-      Utils.keepScreenOn(Config.isKeepScreenOnEnabled() || RoutingController.get().isNavigating(), getWindow());
-    else
-      Utils.keepScreenOn(RoutingController.get().isNavigating(), getWindow());
 
     final LocationHelper locationHelper = LocationHelper.from(this);
 
@@ -1971,54 +1947,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
       builder.setPositiveButton(R.string.location_settings, (dialog, which) -> startActivity(intent));
     }
     mLocationErrorDialog = builder.show();
-  }
-
-  /**
-   * Called by the core when location updates were not received after the 30 second deadline.
-   */
-  @UiThread
-  private void onLocationPendingTimeout()
-  {
-    // Sic: the callback can be called after the activity is destroyed because of being queued.
-    if (isDestroyed())
-    {
-      Logger.w(LOCATION_TAG, "Ignore late callback from core because activity is already destroyed");
-      return;
-    }
-
-    if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
-    {
-      Logger.d(LOCATION_TAG, "Don't show 'location timeout' error dialog in NOT_FOLLOW_NO_POSITION mode");
-      return;
-    }
-
-    Logger.d(LOCATION_TAG, "services = " + LocationUtils.areLocationServicesTurnedOn(this));
-
-    //
-    // For all cases below we don't stop location provider until user explicitly clicks "Stop" in the dialog.
-    //
-
-    if (mLocationErrorDialog != null && mLocationErrorDialog.isShowing())
-    {
-      Logger.d(LOCATION_TAG, "Don't show 'location timeout' error dialog because another dialog is in progress");
-      return;
-    }
-
-    mLocationErrorDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.current_location_unknown_title)
-        .setMessage(R.string.current_location_unknown_message)
-        .setOnDismissListener(dialog -> mLocationErrorDialog = null)
-        .setNegativeButton(R.string.current_location_unknown_stop_button, (dialog, which) ->
-        {
-          Logger.w(LOCATION_TAG, "Disabled by user");
-          // Calls onMyPositionModeChanged(NOT_FOLLOW_NO_POSITION).
-          LocationState.nativeOnLocationError(LocationState.ERROR_GPS_OFF);
-        })
-        .setPositiveButton(R.string.current_location_unknown_continue_button, (dialog, which) ->
-        {
-          // Do nothing - provider will continue to search location.
-        })
-        .show();
   }
 
   @Override

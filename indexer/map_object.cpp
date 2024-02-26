@@ -28,8 +28,6 @@ constexpr char const * kYes = "yes";
 constexpr char const * kNo = "no";
 }  // namespace
 
-char const * MapObject::kFieldsSeparator = " • ";
-
 string DebugPrint(osm::Internet internet)
 {
   switch (internet)
@@ -171,6 +169,11 @@ string MapObject::GetLocalizedFeeType() const
 bool MapObject::HasAtm() const
 {
   return feature::HasAtm(m_types);
+}
+
+bool MapObject::HasToilets() const
+{
+  return feature::HasToilets(m_types);
 }
 
 string MapObject::FormatCuisines() const
