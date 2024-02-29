@@ -162,15 +162,6 @@ area|z15-[natural=hot_spring],
 
 /* 4.TOURISM */
 
-/* 4.1 Main POI */
-node|z14-[tourism=information][information=mobile],
-area|z14-[tourism=information][information=mobile]
-{text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
-
-node|z14-[tourism=information][information=mobile],
-area|z14-[tourism=information][information=mobile]
-{icon-image: mobile.svg;text-offset: 1;icon-min-distance: 10;}
-
 /* 4.2 Apartament */
 
 node|z11-[tourism=alpine_hut],
@@ -291,6 +282,14 @@ node|z15-[tourism=information][information=guidepost],
 {icon-image: guidepost.svg;}
 node|z15-[tourism=information][information=map],
 {icon-image: map.svg;}
+
+node|z14-[tourism=information][information=mobile],
+area|z14-[tourism=information][information=mobile]
+{text: name;text-offset: 1;font-size: 10;text-color: @poi_label;}
+
+node|z14-[tourism=information][information=mobile],
+area|z14-[tourism=information][information=mobile]
+{icon-image: mobile.svg;text-offset: 1;icon-min-distance: 10;}
 
 node|z14-[man_made=survey_point],
 {icon-image: survey_point-m.svg; font-size: 11;}
