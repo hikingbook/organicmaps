@@ -80,7 +80,7 @@
 	<string name="core_my_places">Meine Orte</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Name</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Adresse</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Liste</string>
@@ -106,7 +106,7 @@
 	<string name="move_maps">Karten verschieben?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Fehler beim Verschieben der Karten</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Dies kann einige Minuten in Anspruch nehmen.\nBitte warten…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Maßeinheiten</string>
@@ -192,7 +192,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">In die Zwischenablage kopiert: %1$s</string>
+	<string name="copied_to_clipboard">In die Zwischenablage kopiert: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Fertig</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -494,15 +494,14 @@
 	<string name="editor_operator">Betreiber oder Eigentümer</string>
 	<string name="downloader_no_downloaded_maps_title">Keine Karten geladen</string>
 	<string name="downloader_no_downloaded_maps_message">Laden Sie die für die Suche nach Orten erforderlichen Karten und verwenden Sie die Navigation offline.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Standortsuche fortsetzen?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Standort nicht gefunden. Möglicherweise befinden Sie sich in einem Gebäude oder einem Tunnel.</string>
-	<string name="current_location_unknown_continue_button">Fortsetzen</string>
-	<string name="current_location_unknown_stop_button">Anhalten</string>
+	<string name="stop">Anhalten</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">ft</string>
@@ -642,7 +641,7 @@
 	<string name="power_managment_setting_never">Niemals</string>
 	<string name="power_managment_setting_auto">Auto</string>
 	<string name="power_managment_setting_manual_max">Maximale Stromsparung</string>
-	<string name="enable_logging_warning_message">Diese Option wird aktiviert, um Aktivitäten zwecks Diagnostik aufzuzeichnen. Das hilft unserem Team, Probleme mit der App zu erkennen. Aktivieren Sie diese Option nur auf Ersuchen des Organic Maps-Supports.</string>
+	<string name="enable_logging_warning_message">Diese Option wird aktiviert, um Aktivitäten zwecks Diagnostik aufzuzeichnen. Das hilft unserem Team, Probleme mit der App zu erkennen. Aktivieren Sie diese Option, reproduzieren Sie das Problem und senden Sie die Protokolle über die Schaltfläche \"Fehler melden\" an uns.</string>
 	<string name="access_rules_author_only">Online bearbeiten</string>
 	<string name="driving_options_title">Routenbeschränkungen</string>
 	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -667,6 +666,8 @@
 	<string name="yes_available">Ja</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nein</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Kapazität: %s</string>
 	<string name="trip_finished">Sie sind angekommen!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -720,6 +721,7 @@
 	<string name="elevation_profile_distance">Entf.:</string>
 	<string name="elevation_profile_time">Dauer:</string>
 	<string name="isolines_toast_zooms_1_10">Karte vergrößern, um Höhenlinien sichtbar zu machen</string>
+	<string name="downloader_loading_ios">Herunterladen</string>
 	<string name="download_map_title">Herunterladen der Weltkarte</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">Ordner kann nicht erstellt und Dateien können nicht auf den Gerätespeicher oder die SD-Karte verschoben werden</string>
@@ -762,6 +764,11 @@
 	<string name="aa_connected_to_car_notification_title">Mit dem Auto verbunden</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Wandern</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Webbrowser ist nicht verfügbar</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Die OpenStreetMap-Autorisierung ist aufgrund neuer Einschränkungen in Google Play vorübergehend nicht verfügbar 😾\nUnser Team arbeitet daran, dieses Problem zu beheben. Bitte habe etwas Geduld 🙏</string>
+	<string name="volume">Lautstärke</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Block</string>
@@ -912,6 +919,7 @@
 	<string name="type.amenity.telephone">Telefon</string>
 	<string name="type.amenity.theatre">Theater</string>
 	<string name="type.amenity.toilets">Toilette</string>
+	<string name="type.toilets.yes">Toilette</string>
 	<string name="type.amenity.townhall">Rathaus</string>
 	<string name="type.amenity.university">Universität</string>
 	<string name="type.amenity.vending_machine">Verkaufsautomat</string>
@@ -975,7 +983,8 @@
 	<string name="type.boundary.protected_area.5">Geschützter Bereich</string>
 	<string name="type.boundary.protected_area.6">Geschützter Bereich</string>
 	<string name="type.building">Gebäude</string>
-	<string name="type.building.address">Gebäude</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Adresse</string>
 	<string name="type.building.has_parts">Gebäude</string>
 	<string name="type.building_part">Gebäude</string>
 	<string name="type.building.train_station">Bahnhof</string>
@@ -1135,6 +1144,8 @@
 	<string name="type.highway.cycleway.tunnel">Tunnel</string>
 	<string name="type.highway.elevator">Aufzug</string>
 	<string name="type.highway.footway">Fußweg</string>
+	<string name="type.highway.footway.sidewalk">Bürgersteig</string>
+	<string name="type.highway.footway.crossing">Fußgängerübergang</string>
 	<string name="type.highway.footway.alpine_hiking">Alpinwanderweg</string>
 	<string name="type.highway.footway.area">Fußweg</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1473,7 +1484,6 @@
 	<string name="type.natural.scrub">Dickicht</string>
 	<string name="type.natural.spring">Quelle</string>
 	<string name="type.natural.strait">Meerenge</string>
-	<string name="type.natural.tree">Baum</string>
 	<string name="type.natural.tree_row">Baumreihe</string>
 	<string name="type.natural.vineyard">Weinberg</string>
 	<string name="type.natural.volcano">Vulkan</string>
@@ -1537,7 +1547,6 @@
 	<string name="type.power.plant.hydro">Wasserkraftwerk</string>
 	<string name="type.power.plant.solar">Solarkraftwerk</string>
 	<string name="type.power.plant.wind">Windkraftanlage</string>
-	<string name="type.power.pole">Nieder-/Mittelspannungsmast</string>
 	<string name="type.power.station">Umspannwerk</string>
 	<string name="type.power.substation">Umspannwerk</string>
 	<string name="type.power.tower">Hochspannungsmast</string>
@@ -2050,16 +2059,26 @@
 	<string name="type.aerialway.platter">Tellerlift</string>
 	<string name="type.aerialway.rope_tow">Seillift</string>
 	<string name="type.aerialway.t.bar">Schlepplift (T-Bügel)</string>
-	<string name="type.piste_type">Pistentyp</string>
 	<string name="type.piste_type.downhill">Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.area">Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.advanced">Schwierige Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.advanced.area">Schwierige Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.easy">Leichte Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.easy.area">Leichte Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.expert">Profi-Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.expert.area">Profi-Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.freeride">Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.intermediate">Mittelschwere Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.intermediate.area">Mittelschwere Ski-Abfahrt</string>
 	<string name="type.piste_type.downhill.novice">Anfängerfreundliche Ski-Abfahrt</string>
+	<string name="type.piste_type.downhill.novice.area">Anfängerfreundliche Ski-Abfahrt</string>
 	<string name="type.piste_type.nordic">Langlaufloipe</string>
 	<string name="type.piste_type.sled">Rodelbahn</string>
+	<string name="type.piste_type.sled.area">Rodelbahn</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Schneewanderweg</string>
+	<string name="type.piste_type.connection">Pistenanschluss</string>
+	<string name="type.piste_type.skitour">Skitour Pfad</string>
 	<string name="type.amenity.events_venue">Veranstaltungszentrum</string>
 	<string name="type.shop.auction">Auktion</string>
 	<string name="type.shop.collector">Sammlerstücke</string>

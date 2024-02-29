@@ -403,7 +403,6 @@ world  +
     highway  +
         bridleway  +
             bridge  -
-            permissive  -
             tunnel  -
             {}
         bus_stop  -
@@ -414,7 +413,6 @@ world  +
         construction  -
         cycleway  +
             bridge  -
-            permissive  -
             tunnel  -
             {}
         elevator  -
@@ -422,18 +420,19 @@ world  +
             alpine_hiking  -
             area  -
             bridge  -
+            crossing  -
             demanding_alpine_hiking  -
             demanding_mountain_hiking  -
             difficult_alpine_hiking  -
             hiking  -
             mountain_hiking  -
-            permissive  -
             trail_visibility_bad  -
             trail_visibility_excellent  -
             trail_visibility_good  -
             trail_visibility_horrible  -
             trail_visibility_intermediate  -
             trail_visibility_no  -
+            sidewalk  -
             tunnel  -
             {}
         ford  -
@@ -460,7 +459,6 @@ world  +
             hiking  -
             horse  -
             mountain_hiking  -
-            permissive  -
             trail_visibility_bad  -
             trail_visibility_excellent  -
             trail_visibility_good  -
@@ -531,7 +529,6 @@ world  +
             grade4  -
             grade5  -
             no-access  -
-            permissive  -
             tunnel  -
             {}
         traffic_signals  -
@@ -686,7 +683,6 @@ world  +
         golf_course  -
         hackerspace  -
         ice_rink  -
-        landscape_reserve  -
         marina  -
         nature_reserve  -
         outdoor_seating  -
@@ -769,7 +765,6 @@ world  +
         scrub  -
         spring  -
         strait  -
-        tree  -
         tree_row  -
         volcano  -
         water  +
@@ -806,16 +801,33 @@ world  +
         yes  -
         {}
     piste:type  +
+        connection  -
         downhill  +
-            advanced  -
-            easy  -
-            expert  -
+            advanced  +
+                area  -
+                {}
+            area  -
+            easy  +
+                area  -
+                {}
+            expert  +
+                area  -
+                {}
             freeride  -
-            intermediate  -
-            novice  -
+            intermediate  +
+                area  -
+                {}
+            novice  +
+                area  -
+                {}
             {}
+        hike  -
         nordic  -
-        sled  -
+        skitour  -
+        sled  +
+            area  -
+            {}
+        snow_park  -
         {}
     place  +
         city  +
@@ -869,7 +881,6 @@ world  +
             solar  -
             wind  -
             {}
-        pole  -
         station  -
         substation  -
         tower  -
@@ -967,6 +978,7 @@ world  +
                 bengalore  -
                 berlin  -
                 bilbao  -
+                boston  -
                 brasilia  -
                 brescia  -
                 brussels  -
@@ -1085,6 +1097,7 @@ world  +
             bengalore  -
             berlin  -
             bilbao  -
+            boston  -
             brasilia  -
             brescia  -
             brussels  -
@@ -1367,6 +1380,9 @@ world  +
         tennis  -
         volleyball  -
         yoga  -
+        {}
+    toilets  +
+        yes  -
         {}
     tourism  +
         alpine_hut  -

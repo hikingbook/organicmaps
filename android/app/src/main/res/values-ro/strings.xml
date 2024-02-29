@@ -80,7 +80,7 @@
 	<string name="core_my_places">Locurile mele</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Denumire</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Adresă</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Listă</string>
@@ -94,7 +94,7 @@
 	<string name="maps_storage_downloaded">Hărți</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">Muți hărțile?</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Poate dura câteva minute.\nAșteaptă…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Unități de măsură</string>
@@ -180,7 +180,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Copiat în notițe: %1$s</string>
+	<string name="copied_to_clipboard">Copiat în notițe: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Gata</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -414,6 +414,8 @@
 	<string name="day_off_today">Închis astăzi</string>
 	<string name="day_off">Închis</string>
 	<string name="today">Azi</string>
+	<string name="opens_in">Deschide în %s</string>
+	<string name="closes_in">Închide în %s</string>
 	<string name="closed">Închis</string>
 	<string name="edit_opening_hours">Modifică orele de funcționare</string>
 	<string name="no_osm_account">Nu ai un cont OpenStreetMap?</string>
@@ -482,17 +484,17 @@
 	<string name="editor_operator">Proprietar</string>
 	<string name="downloader_no_downloaded_maps_title">Nu ai descărcat nicio hartă</string>
 	<string name="downloader_no_downloaded_maps_message">Descarcă hărți pentru a căuta un loc și a naviga fără conectare la internet.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Continui cu detectarea poziției tale actuale?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Poziția actuală este necunoscută. Poate te afli într-o clădire sau un tunel.</string>
-	<string name="current_location_unknown_continue_button">Continuă</string>
-	<string name="current_location_unknown_stop_button">Oprește</string>
+	<string name="stop">Oprește</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<string name="miles_per_hour">mph</string>
+	<string name="hour">h</string>
 	<string name="minute">min</string>
 	<string name="placepage_more_button">Mai mult</string>
 	<!-- A referral link on the place page for some hotels -->
@@ -652,6 +654,8 @@
 	<string name="yes_available">Da</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nu</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Capacitate: %s</string>
 	<string name="trip_finished">Ai ajuns!</string>
 	<string name="ok">Bine</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -705,6 +709,7 @@
 	<string name="elevation_profile_distance">Dist.:</string>
 	<string name="elevation_profile_time">Timp:</string>
 	<string name="isolines_toast_zooms_1_10">Mărește harta pentru a vedea izoliniile</string>
+	<string name="downloader_loading_ios">Se descarcă</string>
 	<string name="download_map_title">Descarcă harta lumii</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Eroare de conectare</string>
@@ -739,6 +744,11 @@
 	<string name="aa_connected_to_car_notification_title">Conectat la mașină</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Drumeție</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Browserul web nu este disponibil</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Autorizarea OpenStreetMap este temporar indisponibilă din cauza noilor restricții din Google Play 😾\nEchipa noastră lucrează pentru a rezolva această problemă. Vă rugăm să aveți răbdare 🙏</string>
+	<string name="volume">Volum</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresă/Bloc</string>
@@ -866,6 +876,7 @@
 	<string name="type.amenity.telephone">Telefon</string>
 	<string name="type.amenity.theatre">Teatru</string>
 	<string name="type.amenity.toilets">Toaletă</string>
+	<string name="type.toilets.yes">Toaletă</string>
 	<string name="type.amenity.townhall">Primărie</string>
 	<string name="type.amenity.university">Universitate</string>
 	<string name="type.amenity.vending_machine.cigarettes">Automat de țigări</string>
@@ -901,7 +912,8 @@
 	<string name="type.boundary.protected_area.5">Zonă protejată</string>
 	<string name="type.boundary.protected_area.6">Zonă protejată</string>
 	<string name="type.building">Clădire</string>
-	<string name="type.building.address">Clădire</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Adresă</string>
 	<string name="type.building.has_parts">Clădire</string>
 	<string name="type.building_part">Clădire</string>
 	<string name="type.building.garage">Garaj</string>
@@ -932,90 +944,92 @@
 	<string name="type.craft.shoemaker">Reparații încălțăminte</string>
 	<string name="type.craft.winery">Vinărie</string>
 	<string name="type.craft.tailor">Croitor</string>
-	<string name="type.cuisine.african">Bucătărie african</string>
-	<string name="type.cuisine.american">Bucătărie american</string>
-	<string name="type.cuisine.arab">Bucătărie arăbesc</string>
-	<string name="type.cuisine.argentinian">Bucătărie argentinian</string>
-	<string name="type.cuisine.asian">Bucătărie asiatic</string>
-	<string name="type.cuisine.austrian">Bucătărie austriac</string>
-	<string name="type.cuisine.bagel">Chiflă</string>
-	<string name="type.cuisine.balkan">Bucătărie balcanic</string>
+	<string name="type.cuisine.african">Bucătărie africană</string>
+	<string name="type.cuisine.american">Bucătărie americană</string>
+	<string name="type.cuisine.arab">Bucătărie arabă</string>
+	<string name="type.cuisine.argentinian">Bucătărie argentiniană</string>
+	<string name="type.cuisine.asian">Bucătărie asiatică</string>
+	<string name="type.cuisine.austrian">Bucătărie austriacă</string>
+	<string name="type.cuisine.bagel">Bagel</string>
+	<string name="type.cuisine.balkan">Bucătărie balcanică</string>
 	<string name="type.cuisine.barbecue">Grătar</string>
-	<string name="type.cuisine.bavarian">Bucătărie bavarez</string>
-	<string name="type.cuisine.beef_bowl">Ciorbă de văcuță</string>
-	<string name="type.cuisine.brazilian">Bucătărie brazilian</string>
+	<string name="type.cuisine.bavarian">Bucătărie bavareză</string>
+	<string name="type.cuisine.beef_bowl">Gyudon</string>
+	<string name="type.cuisine.brazilian">Bucătărie braziliană</string>
 	<string name="type.cuisine.breakfast">Mic dejun</string>
+	<string name="type.cuisine.bubble_tea">Ceai cu perle</string>
 	<string name="type.cuisine.burger">Burger</string>
 	<string name="type.cuisine.buschenschank">Tavernă</string>
 	<string name="type.cuisine.cake">Tort</string>
-	<string name="type.cuisine.caribbean">Bucătărie caribbean</string>
+	<string name="type.cuisine.caribbean">Bucătărie caraibă</string>
 	<string name="type.cuisine.chicken">Pui</string>
-	<string name="type.cuisine.chinese">Bucătărie chinez</string>
-	<string name="type.cuisine.coffee_shop">Cafea</string>
-	<string name="type.cuisine.crepe">Crep</string>
-	<string name="type.cuisine.croatian">Bucătărie croat</string>
+	<string name="type.cuisine.chinese">Bucătărie chineză</string>
+	<string name="type.cuisine.coffee_shop">Cafenea</string>
+	<string name="type.cuisine.crepe">Clătite</string>
+	<string name="type.cuisine.croatian">Bucătărie croată</string>
 	<string name="type.cuisine.curry">Curry</string>
 	<string name="type.cuisine.deli">Deli</string>
-	<string name="type.cuisine.diner">Cină</string>
-	<string name="type.cuisine.donut">Gogoașă</string>
-	<string name="type.cuisine.ethiopian">Bucătărie etiopian</string>
-	<string name="type.cuisine.filipino">Bucătărie filipinez</string>
+	<string name="type.cuisine.diner">Diner</string>
+	<string name="type.cuisine.donut">Gogoși</string>
+	<string name="type.cuisine.ethiopian">Bucătărie etiopiană</string>
+	<string name="type.cuisine.filipino">Bucătărie filipineză</string>
 	<string name="type.cuisine.fine_dining">Restaurant elegant</string>
 	<string name="type.cuisine.fish">Pește</string>
-	<string name="type.cuisine.french">Bucătărie francez</string>
-	<string name="type.cuisine.friture">Prăjit</string>
-	<string name="type.cuisine.georgian">Bucătărie georgian</string>
-	<string name="type.cuisine.german">Bucătărie german</string>
-	<string name="type.cuisine.greek">Bucătărie grecesc</string>
+	<string name="type.cuisine.fish_and_chips">Pește și cartofi pai</string>
+	<string name="type.cuisine.french">Bucătărie franceză</string>
+	<string name="type.cuisine.friture">Cartofi prăjiți</string>
+	<string name="type.cuisine.georgian">Bucătărie georgiană</string>
+	<string name="type.cuisine.german">Bucătărie germană</string>
+	<string name="type.cuisine.greek">Bucătărie grecească</string>
 	<string name="type.cuisine.grill">Grătar</string>
-	<string name="type.cuisine.heuriger">Heuriger</string>
+	<string name="type.cuisine.heuriger">Tavernă</string>
 	<string name="type.cuisine.hotdog">Hot dog</string>
-	<string name="type.cuisine.hungarian">Bucătărie maghiar</string>
+	<string name="type.cuisine.hungarian">Bucătărie maghiară</string>
 	<string name="type.cuisine.ice_cream">Înghețată</string>
-	<string name="type.cuisine.indian">Bucătărie indian</string>
-	<string name="type.cuisine.indonesian">Bucătărie indonezian</string>
-	<string name="type.cuisine.international">Bucătărie internațional</string>
-	<string name="type.cuisine.irish">Bucătărie irlandez</string>
-	<string name="type.cuisine.italian">Bucătărie italian</string>
-	<string name="type.cuisine.italian_pizza">Italian, pizza</string>
-	<string name="type.cuisine.japanese">Bucătărie japonez</string>
+	<string name="type.cuisine.indian">Bucătărie indiană</string>
+	<string name="type.cuisine.indonesian">Bucătărie indoneziană</string>
+	<string name="type.cuisine.international">Bucătărie internațională</string>
+	<string name="type.cuisine.irish">Bucătărie irlandeză</string>
+	<string name="type.cuisine.italian">Bucătărie italiană</string>
+	<string name="type.cuisine.italian_pizza">Pizza</string>
+	<string name="type.cuisine.japanese">Bucătărie japoneză</string>
 	<string name="type.cuisine.kebab">Kebab</string>
-	<string name="type.cuisine.korean">Coreean</string>
-	<string name="type.cuisine.lao">Bucătărie lao</string>
-	<string name="type.cuisine.lebanese">Bucătărie libanez</string>
-	<string name="type.cuisine.local">Bucătărie local</string>
-	<string name="type.cuisine.malagasy">Bucătărie malgaș</string>
-	<string name="type.cuisine.malaysian">Bucătărie malaysian</string>
-	<string name="type.cuisine.mediterranean">Bucătărie cu specific mediteranean</string>
-	<string name="type.cuisine.mexican">Bucătărie mexican</string>
-	<string name="type.cuisine.moroccan">Bucătărie marocan</string>
+	<string name="type.cuisine.korean">Bucătărie coreană</string>
+	<string name="type.cuisine.lao">Bucătărie laoțiană</string>
+	<string name="type.cuisine.lebanese">Bucătărie libaneză</string>
+	<string name="type.cuisine.local">Bucătărie locală</string>
+	<string name="type.cuisine.malagasy">Bucătărie malgașă</string>
+	<string name="type.cuisine.malaysian">Bucătărie malaysiană</string>
+	<string name="type.cuisine.mediterranean">Bucătărie mediteraneeană</string>
+	<string name="type.cuisine.mexican">Bucătărie mexicană</string>
+	<string name="type.cuisine.moroccan">Bucătărie marocană</string>
 	<string name="type.cuisine.noodles">Tăiței</string>
-	<string name="type.cuisine.oriental">Bucătărie oriental</string>
-	<string name="type.cuisine.pancake">Clătită</string>
+	<string name="type.cuisine.oriental">Bucătărie orientală</string>
+	<string name="type.cuisine.pancake">Clătite americane</string>
 	<string name="type.cuisine.pasta">Paste</string>
-	<string name="type.cuisine.persian">Bucătărie persan</string>
-	<string name="type.cuisine.peruvian">Bucătărie peruan</string>
+	<string name="type.cuisine.persian">Bucătărie persană</string>
+	<string name="type.cuisine.peruvian">Bucătărie peruană</string>
 	<string name="type.cuisine.pizza">Pizza</string>
-	<string name="type.cuisine.polish">Bucătărie polonez</string>
-	<string name="type.cuisine.portuguese">Bucătărie portughez</string>
+	<string name="type.cuisine.polish">Bucătărie poloneză</string>
+	<string name="type.cuisine.portuguese">Bucătărie portugheză</string>
 	<string name="type.cuisine.ramen">Ramen</string>
-	<string name="type.cuisine.regional">Bucătărie regional</string>
-	<string name="type.cuisine.russian">Bucătărie rusesc</string>
+	<string name="type.cuisine.regional">Bucătărie regională</string>
+	<string name="type.cuisine.russian">Bucătărie rusă</string>
 	<string name="type.cuisine.sandwich">Sandwich</string>
-	<string name="type.cuisine.sausage">Cârnat</string>
-	<string name="type.cuisine.savory_pancakes">Clătite delicioase</string>
+	<string name="type.cuisine.sausage">Cârnați</string>
+	<string name="type.cuisine.savory_pancakes">Clătite sărate</string>
 	<string name="type.cuisine.seafood">Fructe de mare</string>
 	<string name="type.cuisine.soba">Soba</string>
-	<string name="type.cuisine.spanish">Bucătărie spaniol</string>
-	<string name="type.cuisine.steak_house">Restaurant steakhouse</string>
+	<string name="type.cuisine.spanish">Bucătărie spaniolă</string>
+	<string name="type.cuisine.steak_house">Steakhouse</string>
 	<string name="type.cuisine.sushi">Sushi</string>
 	<string name="type.cuisine.tapas">Tapas</string>
 	<string name="type.cuisine.tea">Ceai</string>
-	<string name="type.cuisine.thai">Bucătărie tailandez</string>
-	<string name="type.cuisine.turkish">Bucătărie turcesc</string>
-	<string name="type.cuisine.vegan">Bucătărie vegan</string>
-	<string name="type.cuisine.vegetarian">Bucătărie vegetarian</string>
-	<string name="type.cuisine.vietnamese">Bucătărie vietnamez</string>
+	<string name="type.cuisine.thai">Bucătărie tailandeză</string>
+	<string name="type.cuisine.turkish">Bucătărie turcă</string>
+	<string name="type.cuisine.vegan">Bucătărie vegană</string>
+	<string name="type.cuisine.vegetarian">Bucătărie vegetariană</string>
+	<string name="type.cuisine.vietnamese">Bucătărie vietnameză</string>
 	<string name="type.emergency.assembly_point">Punct de adunare de urgență</string>
 	<string name="type.emergency.defibrillator">Defibrilator</string>
 	<string name="type.emergency.fire_hydrant">Hidrant</string>
@@ -1054,6 +1068,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.cycleway.tunnel">Tunel</string>
 	<string name="type.highway.footway">Cale</string>
+	<string name="type.highway.footway.sidewalk">Trotuar</string>
+	<string name="type.highway.footway.crossing">Trecere de pietoni</string>
 	<string name="type.highway.footway.alpine_hiking">Cale</string>
 	<string name="type.highway.footway.area">Cale</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1343,7 +1359,6 @@
 	<string name="type.natural.scrub">Boschet</string>
 	<string name="type.natural.spring">Izvor</string>
 	<string name="type.natural.strait">Strâmtoare</string>
-	<string name="type.natural.tree">Arbore</string>
 	<string name="type.natural.tree_row">Rândul de copaci</string>
 	<string name="type.natural.vineyard">Vie</string>
 	<string name="type.natural.volcano">Vulcan</string>
@@ -1400,7 +1415,6 @@
 	<string name="type.power.plant.hydro">Centrală hidroelectrică</string>
 	<string name="type.power.plant.solar">Centrală solară</string>
 	<string name="type.power.plant.wind">Centrală eoliană</string>
-	<string name="type.power.pole">Stâlp de electricitate</string>
 	<string name="type.power.substation">Stație subterană</string>
 	<string name="type.power.tower">Stâlp de electricitate</string>
 	<string name="type.railway.funicular">Funicular</string>
@@ -1857,6 +1871,10 @@
 	<string name="type.wheelchair.limited">Parțial utilat pentru invalizi</string>
 	<string name="type.wheelchair.no">Nu este utilat pentru invalizi</string>
 	<string name="type.wheelchair.yes">Utilat pentru invalizi</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Zăpadă Hiking Trail</string>
+	<string name="type.piste_type.connection">Conexiune Piste</string>
+	<string name="type.piste_type.skitour">Traseul Skitour</string>
 	<string name="type.amenity.events_venue">Locul de desfășurare a evenimentelor</string>
 	<string name="type.shop.auction">Licitație</string>
 	<string name="type.shop.collector">Colecții</string>

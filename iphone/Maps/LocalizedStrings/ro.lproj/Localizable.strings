@@ -80,7 +80,7 @@
 /* Default bookmark list name */
 "core_my_places" = "Locurile mele";
 
-/* Editor title above street and house number */
+/* Editor title above street and house number, duplicates [type.building.address] in types_strings.txt */
 "address" = "Adresă";
 
 /* Settings button in system menu */
@@ -189,6 +189,9 @@
 
 /* Share by email button text, also used in editor and About. */
 "email" = "E-mail";
+
+/* Text for message when used successfully copied something */
+"copied_to_clipboard" = "Copiat în notițe: %@";
 
 /* place preview title */
 "info" = "Info";
@@ -593,17 +596,17 @@
 
 "today" = "Azi";
 
-"opens_tomorrow_at" = "Opens tomorrow at %@";
+"opens_tomorrow_at" = "Deschide mâine la %@";
 
-"opens_dayoftheweek_at" = "Opens %1$@ at %2$@";
+"opens_dayoftheweek_at" = "Deschide %1$@ la %2$@";
 
-"opens_at" = "Opens at %@";
+"opens_at" = "Deschide la %@";
 
-"opens_in" = "Opens in %@";
+"opens_in" = "Deschide în %@";
 
-"closes_at" = "Closes at %@";
+"closes_at" = "Închide la %@";
 
-"closes_in" = "Closes in %@";
+"closes_in" = "Închide în %@";
 
 "closed" = "Închis";
 
@@ -743,15 +746,7 @@
 
 "downloader_no_downloaded_maps_message" = "Descarcă hărți pentru a căuta un loc și a naviga fără conectare la internet.";
 
-/* Error title that appears after certain time without location. */
-"current_location_unknown_title" = "Continui cu detectarea poziției tale actuale?";
-
-/* Error that appears after certain time without location. */
-"current_location_unknown_message" = "Poziția actuală este necunoscută. Poate te afli într-o clădire sau un tunel.";
-
-"current_location_unknown_continue_button" = "Continuă";
-
-"current_location_unknown_stop_button" = "Oprește";
+"stop" = "Oprește";
 
 "current_location_unknown_error_title" = "Poziția actuală este necunoscută.";
 
@@ -761,19 +756,31 @@
 
 "location_services_disabled_message" = "Activează accesul la geolocalizare din setările dispozitivului";
 
-"location_services_disabled_1" = "1. Deschide setările";
+"location_services_disabled_1" = "1. Deschide Configurări";
 
 "location_services_disabled_2" = "2. Apasă pe Localizare";
 
-/* iOS Dialog for the case when the location permission is not granted */
+/* iOS Dialog for the case when the location permission is not granted; you might find the exact wording for your language here: https://support.apple.com/en-us/102647 (replace 'en-us' in URL with your language/region) */
 "location_services_disabled_3" = "3. Alege „În timp ce folosești aplicația”";
 
+"location_services_disabled_on_device_2" = "2. Selectează Intimitate și securitate";
+
+"location_services_disabled_on_device_3" = "3. Selectează Servicii de localizare";
+
+"location_services_disabled_on_device_4" = "4. Activează Servicii de localizare";
+
+"location_services_disabled_on_device_additional_message" = "Sau continuă să folosești Organic Maps fără Locație";
+
+/* abbreviation for meters */
 "m" = "m";
 
+/* abbreviation for kilometers */
 "km" = "km";
 
+/* abbreviation for kilometers per hour */
 "kilometers_per_hour" = "km/h";
 
+/* abbreviation for mile(s) */
 "mi" = "mi";
 
 /* A unit of measure */
@@ -1068,6 +1075,9 @@
 
 /* E.g. "WiFi:No" */
 "no_available" = "Nu";
+
+/* To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... */
+"capacity" = "Capacitate: %@";
 
 "trip_finished" = "Ai ajuns!";
 
@@ -1545,6 +1555,8 @@
 
 "type.amenity.toilets" = "Toaletă";
 
+"type.toilets.yes" = "Toaletă";
+
 "type.amenity.townhall" = "Primărie";
 
 "type.amenity.university" = "Universitate";
@@ -1689,7 +1701,8 @@
 
 "type.building" = "Clădire";
 
-"type.building.address" = "Clădire";
+/* Duplicates [address] in strings.txt */
+"type.building.address" = "Adresă";
 
 "type.building.has_parts" = "Clădire";
 
@@ -1752,33 +1765,33 @@
 
 "type.craft.tailor" = "Croitor";
 
-"type.cuisine.african" = "Bucătărie african";
+"type.cuisine.african" = "Bucătărie africană";
 
-"type.cuisine.american" = "Bucătărie american";
+"type.cuisine.american" = "Bucătărie americană";
 
-"type.cuisine.arab" = "Bucătărie arăbesc";
+"type.cuisine.arab" = "Bucătărie arabă";
 
-"type.cuisine.argentinian" = "Bucătărie argentinian";
+"type.cuisine.argentinian" = "Bucătărie argentiniană";
 
-"type.cuisine.asian" = "Bucătărie asiatic";
+"type.cuisine.asian" = "Bucătărie asiatică";
 
-"type.cuisine.austrian" = "Bucătărie austriac";
+"type.cuisine.austrian" = "Bucătărie austriacă";
 
-"type.cuisine.bagel" = "Chiflă";
+"type.cuisine.bagel" = "Bagel";
 
-"type.cuisine.balkan" = "Bucătărie balcanic";
+"type.cuisine.balkan" = "Bucătărie balcanică";
 
 "type.cuisine.barbecue" = "Grătar";
 
-"type.cuisine.bavarian" = "Bucătărie bavarez";
+"type.cuisine.bavarian" = "Bucătărie bavareză";
 
-"type.cuisine.beef_bowl" = "Ciorbă de văcuță";
+"type.cuisine.beef_bowl" = "Gyudon";
 
-"type.cuisine.brazilian" = "Bucătărie brazilian";
+"type.cuisine.brazilian" = "Bucătărie braziliană";
 
 "type.cuisine.breakfast" = "Mic dejun";
 
-"type.cuisine.bubble_tea" = "Bubble Tea";
+"type.cuisine.bubble_tea" = "Ceai cu perle";
 
 "type.cuisine.burger" = "Burger";
 
@@ -1786,127 +1799,127 @@
 
 "type.cuisine.cake" = "Tort";
 
-"type.cuisine.caribbean" = "Bucătărie caribbean";
+"type.cuisine.caribbean" = "Bucătărie caraibă";
 
 "type.cuisine.chicken" = "Pui";
 
-"type.cuisine.chinese" = "Bucătărie chinez";
+"type.cuisine.chinese" = "Bucătărie chineză";
 
-"type.cuisine.coffee_shop" = "Cafea";
+"type.cuisine.coffee_shop" = "Cafenea";
 
-"type.cuisine.crepe" = "Crep";
+"type.cuisine.crepe" = "Clătite";
 
-"type.cuisine.croatian" = "Bucătărie croat";
+"type.cuisine.croatian" = "Bucătărie croată";
 
 "type.cuisine.curry" = "Curry";
 
 "type.cuisine.deli" = "Deli";
 
-"type.cuisine.diner" = "Cină";
+"type.cuisine.diner" = "Diner";
 
-"type.cuisine.donut" = "Gogoașă";
+"type.cuisine.donut" = "Gogoși";
 
-"type.cuisine.ethiopian" = "Bucătărie etiopian";
+"type.cuisine.ethiopian" = "Bucătărie etiopiană";
 
-"type.cuisine.filipino" = "Bucătărie filipinez";
+"type.cuisine.filipino" = "Bucătărie filipineză";
 
 "type.cuisine.fine_dining" = "Restaurant elegant";
 
 "type.cuisine.fish" = "Pește";
 
-"type.cuisine.fish_and_chips" = "Fish and Chips";
+"type.cuisine.fish_and_chips" = "Pește și cartofi pai";
 
-"type.cuisine.french" = "Bucătărie francez";
+"type.cuisine.french" = "Bucătărie franceză";
 
-"type.cuisine.friture" = "Prăjit";
+"type.cuisine.friture" = "Cartofi prăjiți";
 
-"type.cuisine.georgian" = "Bucătărie georgian";
+"type.cuisine.georgian" = "Bucătărie georgiană";
 
-"type.cuisine.german" = "Bucătărie german";
+"type.cuisine.german" = "Bucătărie germană";
 
-"type.cuisine.greek" = "Bucătărie grecesc";
+"type.cuisine.greek" = "Bucătărie grecească";
 
 "type.cuisine.grill" = "Grătar";
 
-"type.cuisine.heuriger" = "Heuriger";
+"type.cuisine.heuriger" = "Tavernă";
 
 "type.cuisine.hotdog" = "Hot dog";
 
-"type.cuisine.hungarian" = "Bucătărie maghiar";
+"type.cuisine.hungarian" = "Bucătărie maghiară";
 
 "type.cuisine.ice_cream" = "Înghețată";
 
-"type.cuisine.indian" = "Bucătărie indian";
+"type.cuisine.indian" = "Bucătărie indiană";
 
-"type.cuisine.indonesian" = "Bucătărie indonezian";
+"type.cuisine.indonesian" = "Bucătărie indoneziană";
 
-"type.cuisine.international" = "Bucătărie internațional";
+"type.cuisine.international" = "Bucătărie internațională";
 
-"type.cuisine.irish" = "Bucătărie irlandez";
+"type.cuisine.irish" = "Bucătărie irlandeză";
 
-"type.cuisine.italian" = "Bucătărie italian";
+"type.cuisine.italian" = "Bucătărie italiană";
 
-"type.cuisine.italian_pizza" = "Italian, pizza";
+"type.cuisine.italian_pizza" = "Pizza";
 
-"type.cuisine.japanese" = "Bucătărie japonez";
+"type.cuisine.japanese" = "Bucătărie japoneză";
 
 "type.cuisine.kebab" = "Kebab";
 
-"type.cuisine.korean" = "Coreean";
+"type.cuisine.korean" = "Bucătărie coreană";
 
-"type.cuisine.lao" = "Bucătărie lao";
+"type.cuisine.lao" = "Bucătărie laoțiană";
 
-"type.cuisine.lebanese" = "Bucătărie libanez";
+"type.cuisine.lebanese" = "Bucătărie libaneză";
 
-"type.cuisine.local" = "Bucătărie local";
+"type.cuisine.local" = "Bucătărie locală";
 
-"type.cuisine.malagasy" = "Bucătărie malgaș";
+"type.cuisine.malagasy" = "Bucătărie malgașă";
 
-"type.cuisine.malaysian" = "Bucătărie malaysian";
+"type.cuisine.malaysian" = "Bucătărie malaysiană";
 
-"type.cuisine.mediterranean" = "Bucătărie cu specific mediteranean";
+"type.cuisine.mediterranean" = "Bucătărie mediteraneeană";
 
-"type.cuisine.mexican" = "Bucătărie mexican";
+"type.cuisine.mexican" = "Bucătărie mexicană";
 
-"type.cuisine.moroccan" = "Bucătărie marocan";
+"type.cuisine.moroccan" = "Bucătărie marocană";
 
 "type.cuisine.noodles" = "Tăiței";
 
-"type.cuisine.oriental" = "Bucătărie oriental";
+"type.cuisine.oriental" = "Bucătărie orientală";
 
-"type.cuisine.pancake" = "Clătită";
+"type.cuisine.pancake" = "Clătite americane";
 
 "type.cuisine.pasta" = "Paste";
 
-"type.cuisine.persian" = "Bucătărie persan";
+"type.cuisine.persian" = "Bucătărie persană";
 
-"type.cuisine.peruvian" = "Bucătărie peruan";
+"type.cuisine.peruvian" = "Bucătărie peruană";
 
 "type.cuisine.pizza" = "Pizza";
 
-"type.cuisine.polish" = "Bucătărie polonez";
+"type.cuisine.polish" = "Bucătărie poloneză";
 
-"type.cuisine.portuguese" = "Bucătărie portughez";
+"type.cuisine.portuguese" = "Bucătărie portugheză";
 
 "type.cuisine.ramen" = "Ramen";
 
-"type.cuisine.regional" = "Bucătărie regional";
+"type.cuisine.regional" = "Bucătărie regională";
 
-"type.cuisine.russian" = "Bucătărie rusesc";
+"type.cuisine.russian" = "Bucătărie rusă";
 
 "type.cuisine.sandwich" = "Sandwich";
 
-"type.cuisine.sausage" = "Cârnat";
+"type.cuisine.sausage" = "Cârnați";
 
-"type.cuisine.savory_pancakes" = "Clătite delicioase";
+"type.cuisine.savory_pancakes" = "Clătite sărate";
 
 "type.cuisine.seafood" = "Fructe de mare";
 
 "type.cuisine.soba" = "Soba";
 
-"type.cuisine.spanish" = "Bucătărie spaniol";
+"type.cuisine.spanish" = "Bucătărie spaniolă";
 
-"type.cuisine.steak_house" = "Restaurant steakhouse";
+"type.cuisine.steak_house" = "Steakhouse";
 
 "type.cuisine.sushi" = "Sushi";
 
@@ -1914,15 +1927,15 @@
 
 "type.cuisine.tea" = "Ceai";
 
-"type.cuisine.thai" = "Bucătărie tailandez";
+"type.cuisine.thai" = "Bucătărie tailandeză";
 
-"type.cuisine.turkish" = "Bucătărie turcesc";
+"type.cuisine.turkish" = "Bucătărie turcă";
 
-"type.cuisine.vegan" = "Bucătărie vegan";
+"type.cuisine.vegan" = "Bucătărie vegană";
 
-"type.cuisine.vegetarian" = "Bucătărie vegetarian";
+"type.cuisine.vegetarian" = "Bucătărie vegetariană";
 
-"type.cuisine.vietnamese" = "Bucătărie vietnamez";
+"type.cuisine.vietnamese" = "Bucătărie vietnameză";
 
 "type.emergency" = "Emergency";
 
@@ -2006,6 +2019,10 @@
 "type.highway.elevator" = "Elevator";
 
 "type.highway.footway" = "Cale";
+
+"type.highway.footway.sidewalk" = "Trotuar";
+
+"type.highway.footway.crossing" = "Trecere de pietoni";
 
 "type.highway.footway.alpine_hiking" = "Cale";
 
@@ -2521,8 +2538,6 @@
 
 "type.leisure.ice_rink" = "Ice Rink";
 
-"type.leisure.landscape_reserve" = "Landscape Reserve";
-
 "type.leisure.marina" = "Marina";
 
 "type.leisure.nature_reserve" = "Rezervație naturală";
@@ -2691,8 +2706,6 @@
 
 "type.natural.strait" = "Strâmtoare";
 
-"type.natural.tree" = "Arbore";
-
 "type.natural.tree_row" = "Rândul de copaci";
 
 "type.natural.vineyard" = "Vie";
@@ -2820,8 +2833,6 @@
 "type.power.plant.solar" = "Centrală solară";
 
 "type.power.plant.wind" = "Centrală eoliană";
-
-"type.power.pole" = "Stâlp de electricitate";
 
 "type.power.station" = "Power Station";
 
@@ -3862,25 +3873,45 @@
 
 "type.aerialway.t.bar" = "T-bar Lift";
 
-"type.piste_type" = "Piste Type";
-
 "type.piste_type.downhill" = "Downhill Ski Run";
+
+"type.piste_type.downhill.area" = "Downhill Ski Run";
 
 "type.piste_type.downhill.advanced" = "Downhill Ski Run";
 
+"type.piste_type.downhill.advanced.area" = "Downhill Ski Run";
+
 "type.piste_type.downhill.easy" = "Downhill Ski Run";
 
+"type.piste_type.downhill.easy.area" = "Downhill Ski Run";
+
 "type.piste_type.downhill.expert" = "Downhill Ski Run";
+
+"type.piste_type.downhill.expert.area" = "Downhill Ski Run";
 
 "type.piste_type.downhill.freeride" = "Downhill Ski Run";
 
 "type.piste_type.downhill.intermediate" = "Downhill Ski Run";
 
+"type.piste_type.downhill.intermediate.area" = "Downhill Ski Run";
+
 "type.piste_type.downhill.novice" = "Downhill Ski Run";
+
+"type.piste_type.downhill.novice.area" = "Downhill Ski Run";
 
 "type.piste_type.nordic" = "Nordic Ski Trail";
 
 "type.piste_type.sled" = "Sledding Piste";
+
+"type.piste_type.sled.area" = "Sledding Piste";
+
+"type.piste_type.snow_park" = "Snow Park";
+
+"type.piste_type.hike" = "Zăpadă Hiking Trail";
+
+"type.piste_type.connection" = "Conexiune Piste";
+
+"type.piste_type.skitour" = "Traseul Skitour";
 
 "type.amenity.events_venue" = "Locul de desfășurare a evenimentelor";
 

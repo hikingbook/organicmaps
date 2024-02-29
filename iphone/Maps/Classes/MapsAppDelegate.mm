@@ -407,24 +407,21 @@ void InitLocalizedStrings() {
   return YES;
 }
 
-//#pragma mark - CPApplicationDelegate implementation
-//
-//- (void)application:(UIApplication *)application
-//  didConnectCarInterfaceController:(CPInterfaceController *)interfaceController
-//           toWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
-//  if (@available(iOS 13.0, *)) {
-//    window.overrideUserInterfaceStyle = UIUserInterfaceStyleUnspecified;
-//  }
-//  [self.carplayService setupWithWindow:window interfaceController:interfaceController];
-//  [self updateAppearanceFromWindow:self.window toWindow:window isCarplayActivated:YES];
-//}
-//
-//- (void)application:(UIApplication *)application
-//  didDisconnectCarInterfaceController:(CPInterfaceController *)interfaceController
-//                           fromWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
-//  [self.carplayService destroy];
-//  [self updateAppearanceFromWindow:window toWindow:self.window isCarplayActivated:NO];
-//}
+// #pragma mark - CPApplicationDelegate implementation
+
+// - (void)application:(UIApplication *)application
+//   didConnectCarInterfaceController:(CPInterfaceController *)interfaceController
+//            toWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
+//   [self.carplayService setupWithWindow:window interfaceController:interfaceController];
+//   [self updateAppearanceFromWindow:self.window toWindow:window isCarplayActivated:YES];
+// }
+
+// - (void)application:(UIApplication *)application
+//   didDisconnectCarInterfaceController:(CPInterfaceController *)interfaceController
+//                            fromWindow:(CPWindow *)window API_AVAILABLE(ios(12.0)) {
+//   [self.carplayService destroy];
+//   [self updateAppearanceFromWindow:window toWindow:self.window isCarplayActivated:NO];
+// }
 
 - (void)updateAppearanceFromWindow:(UIWindow *)sourceWindow
                           toWindow:(UIWindow *)destinationWindow

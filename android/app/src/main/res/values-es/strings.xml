@@ -80,7 +80,7 @@
 	<string name="core_my_places">Mis lugares</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nombre</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Dirección</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Lista</string>
@@ -106,7 +106,7 @@
 	<string name="move_maps">¿Mover mapas?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Error al mover los archivos de mapas</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Esto podría tardar varios minutos.\nPor favor, espere…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Unidades de medida</string>
@@ -117,7 +117,7 @@
 	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
 	<string name="eat">Dónde comer</string>
 	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Alimentación</string>
+	<string name="food">Provisiones</string>
 	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
 	<string name="transport">Transporte</string>
 	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
@@ -192,7 +192,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Copiado al portapapeles: %1$s</string>
+	<string name="copied_to_clipboard">Copiado al portapapeles: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Hecho</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -498,15 +498,14 @@
 	<string name="editor_operator">Operador</string>
 	<string name="downloader_no_downloaded_maps_title">No ha descargado ningún mapa</string>
 	<string name="downloader_no_downloaded_maps_message">Descargue mapas para encontrar la ubicación y navegar sin conexión.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">¿Continuar detectando su ubicación actual?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">La ubicación actual es desconocida. Quizá esté en un edificio o en un túnel.</string>
-	<string name="current_location_unknown_continue_button">Continuar</string>
-	<string name="current_location_unknown_stop_button">Detener</string>
+	<string name="stop">Detener</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">pie</string>
@@ -671,6 +670,8 @@
 	<string name="yes_available">Sí</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">No</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Capacidad: %s</string>
 	<string name="trip_finished">¡Ya ha llegado!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -724,6 +725,7 @@
 	<string name="elevation_profile_distance">Dist.:</string>
 	<string name="elevation_profile_time">Tiempo:</string>
 	<string name="isolines_toast_zooms_1_10">Amplíe el mapa para ver las isolíneas</string>
+	<string name="downloader_loading_ios">Descargando</string>
 	<string name="download_map_title">Descarga el mapa mundial</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">No se ha podido crear la carpeta y mover los ficheros en la memoria interna del dispositivo o en la tarjeta SD</string>
@@ -766,6 +768,11 @@
 	<string name="aa_connected_to_car_notification_title">Conectado al coche</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Senderismo</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">El navegador web no está disponible</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">La autorización de OpenStreetMap no está disponible temporalmente debido a nuevas restricciones en Google Play 😾🙏nNuestro equipo está trabajando para resolver este problema. Por favor, ten paciencia 🙏</string>
+	<string name="volume">Volumen</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Dirección/Bloque</string>
@@ -923,6 +930,7 @@
 	<string name="type.amenity.telephone">Teléfono</string>
 	<string name="type.amenity.theatre">Teatro</string>
 	<string name="type.amenity.toilets">WC</string>
+	<string name="type.toilets.yes">WC</string>
 	<string name="type.amenity.townhall">Ayuntamiento</string>
 	<string name="type.amenity.university">Universidad</string>
 	<string name="type.amenity.vending_machine">Máquina expendedora</string>
@@ -995,7 +1003,8 @@
 	<string name="type.boundary.protected_area.5">Área protegida</string>
 	<string name="type.boundary.protected_area.6">Área protegida</string>
 	<string name="type.building">Edificio</string>
-	<string name="type.building.address">Edificio</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Dirección</string>
 	<string name="type.building.has_parts">Edificio</string>
 	<string name="type.building_part">Edificio</string>
 	<string name="type.building.garage">Garaje</string>
@@ -1158,6 +1167,8 @@
 	<string name="type.highway.cycleway.tunnel">Túnel</string>
 	<string name="type.highway.elevator">Ascensor</string>
 	<string name="type.highway.footway">Camino</string>
+	<string name="type.highway.footway.sidewalk">Acera</string>
+	<string name="type.highway.footway.crossing">Paso de peatones</string>
 	<string name="type.highway.footway.alpine_hiking">Senderismo alpino</string>
 	<string name="type.highway.footway.area">Zona peatonal</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1416,7 +1427,6 @@
 	<string name="type.leisure.garden.residential">Jardín residencial</string>
 	<string name="type.leisure.golf_course">Campo de golf</string>
 	<string name="type.leisure.ice_rink">Pisa de patinaje</string>
-	<string name="type.leisure.landscape_reserve">Reserva natural</string>
 	<string name="type.leisure.marina">Marina</string>
 	<string name="type.leisure.nature_reserve">Reserva natural</string>
 	<string name="type.leisure.outdoor_seating">Asientos al aire libre</string>
@@ -1495,7 +1505,6 @@
 	<string name="type.natural.scrub">Matorrales</string>
 	<string name="type.natural.spring">Manantial</string>
 	<string name="type.natural.strait">Estrecho</string>
-	<string name="type.natural.tree">Árbol</string>
 	<string name="type.natural.tree_row">Fila de árboles</string>
 	<string name="type.natural.vineyard">Viña</string>
 	<string name="type.natural.volcano">Volcán</string>
@@ -1559,7 +1568,6 @@
 	<string name="type.power.plant.hydro">Planta de energía hidroeléctrica</string>
 	<string name="type.power.plant.solar">Planta de energía solar</string>
 	<string name="type.power.plant.wind">Planta eólica</string>
-	<string name="type.power.pole">Poste eléctrico</string>
 	<string name="type.power.station">Estación eléctrica</string>
 	<string name="type.power.substation">Subestación eléctrica</string>
 	<string name="type.power.tower">Poste eléctrico</string>
@@ -2056,16 +2064,26 @@
 	<string name="type.aerialway.platter">Telesilla de disco</string>
 	<string name="type.aerialway.rope_tow">Telesilla de cuerda</string>
 	<string name="type.aerialway.t.bar">Telesilla barra en T</string>
-	<string name="type.piste_type">Tipo de pista</string>
 	<string name="type.piste_type.downhill">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.advanced">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.advanced.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.easy">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.easy.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.expert">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.expert.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.freeride">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.intermediate">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.intermediate.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.downhill.novice">Pista de esquí alpino</string>
+	<string name="type.piste_type.downhill.novice.area">Pista de esquí alpino</string>
 	<string name="type.piste_type.nordic">Pista de esquí nórdico</string>
 	<string name="type.piste_type.sled">Pista para trineos</string>
+	<string name="type.piste_type.sled.area">Pista para trineos</string>
+	<string name="type.piste_type.snow_park">Parque de nieve</string>
+	<string name="type.piste_type.hike">Senderismo en la nieve</string>
+	<string name="type.piste_type.connection">Conexión de pistas</string>
+	<string name="type.piste_type.skitour">Sendero Skitour</string>
 	<string name="type.amenity.events_venue">Lugar para eventos</string>
 	<string name="type.shop.auction">Subasta</string>
 	<string name="type.shop.collector">Coleccionables</string>

@@ -434,14 +434,20 @@ string GetLocalizedFeeType(TypesHolder const & types)
   auto localized_types = GetLocalizedTypes(isFeeType, types);
   ASSERT_LESS_OR_EQUAL ( localized_types.size(), 1, () );
   if (localized_types.empty())
-      return "";
+    return "";
   return localized_types[0];
 }
 
 bool HasAtm(TypesHolder const & types)
 {
-    auto const & isAtmType = ftypes::IsATMChecker::Instance();
-    return isAtmType(types);
+  auto const & isAtmType = ftypes::IsATMChecker::Instance();
+  return isAtmType(types);
+}
+
+bool HasToilets(TypesHolder const & types)
+{
+  auto const & isToiletsType = ftypes::IsToiletsChecker::Instance();
+  return isToiletsType(types);
 }
 
 } // namespace feature

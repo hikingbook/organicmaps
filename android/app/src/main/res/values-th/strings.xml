@@ -82,7 +82,7 @@
 	<string name="core_my_places">สถานที่ของฉัน</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">ชื่อ</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">ที่อยู่</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">รายการ</string>
@@ -96,7 +96,7 @@
 	<string name="maps_storage_downloaded">แผนที่</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">ลบแผนที่?</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">นี่อาจจะใช้เวลาสองสามนาที\nโปรดรอ…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">หน่วยการวัด</string>
@@ -181,7 +181,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">อีเมล</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด: %1$s</string>
+	<string name="copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">เสร็จแล้ว</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -474,15 +474,14 @@
 	<string name="editor_operator">เจ้าของ</string>
 	<string name="downloader_no_downloaded_maps_title">คุณยังไม่ได้ดาวน์โหลดแผนที่</string>
 	<string name="downloader_no_downloaded_maps_message">ดาวน์โหลดแผนที่เพื่อค้นหาสถานที่ และนำทางแบบออฟไลน์</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">ค้นหาที่ตั้งปัจจุบันต่อไปหรือไม่?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">ไม่ทราบชื่อสถานที่ปัจจุบัน คุณอาจจะอยู่ในอาคาร หรือ ในอุโมงค์</string>
-	<string name="current_location_unknown_continue_button">ดำเนินการต่อ</string>
-	<string name="current_location_unknown_stop_button">หยุด</string>
+	<string name="stop">หยุด</string>
+	<!-- abbreviation for meters -->
 	<string name="m">ม.</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">กม.</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">กม./ชม.</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">ไมล์</string>
 	<!-- A unit of measure -->
 	<string name="ft">ฟุต</string>
@@ -636,6 +635,8 @@
 	<string name="yes_available">ใช่</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">ไม่ใช่</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">ความจุ: %s</string>
 	<string name="trip_finished">คุณมาถึงแล้ว!</string>
 	<string name="ok">โอเค</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -689,6 +690,7 @@
 	<string name="elevation_profile_distance">ระยะทาง</string>
 	<string name="elevation_profile_time">เวลา:</string>
 	<string name="isolines_toast_zooms_1_10">ขยายเข้าเพื่อสำรวจเส้นชั้นความสูง</string>
+	<string name="downloader_loading_ios">การดาวน์โหลด</string>
 	<string name="enable_keep_screen_on">เปิดหน้าจอไว้</string>
 	<!-- Description in preferences -->
 	<string name="enable_keep_screen_on_description">เมื่อเปิดใช้งาน หน้าจอจะเปิดอยู่เสมอเมื่อแสดงแผนที่</string>
@@ -714,6 +716,9 @@
 	<string name="aa_connected_to_car_notification_title">เชื่อมต่อกับรถยนต์</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">การเดินป่า</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">เว็บเบราว์เซอร์ไม่พร้อมใช้งาน</string>
+	<string name="volume">ระดับเสียง</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">ที่อยู่/บล็อค</string>
@@ -851,6 +856,7 @@
 	<string name="type.amenity.telephone">โทรศัพท์</string>
 	<string name="type.amenity.theatre">โรงละคร</string>
 	<string name="type.amenity.toilets">ห้องน้ำ</string>
+	<string name="type.toilets.yes">ห้องน้ำ</string>
 	<string name="type.amenity.townhall">ศาลากลางจังหวัด</string>
 	<string name="type.amenity.university">มหาวิทยาลัย</string>
 	<string name="type.amenity.vending_machine.cigarettes">เครื่องขายบุหรี่</string>
@@ -886,7 +892,8 @@
 	<string name="type.boundary.protected_area.5">พื้นที่คุ้มครอง</string>
 	<string name="type.boundary.protected_area.6">พื้นที่คุ้มครอง</string>
 	<string name="type.building">อาคาร</string>
-	<string name="type.building.address">อาคาร</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">ที่อยู่</string>
 	<string name="type.building.has_parts">อาคาร</string>
 	<string name="type.building_part">อาคาร</string>
 	<string name="type.building.garage">อาคารจอดรถ</string>
@@ -1040,6 +1047,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.cycleway.tunnel">อุโมงค์</string>
 	<string name="type.highway.footway">เส้นทาง</string>
+	<string name="type.highway.footway.sidewalk">ทางเท้า</string>
+	<string name="type.highway.footway.crossing">ทางม้าลาย</string>
 	<string name="type.highway.footway.alpine_hiking">เส้นทาง</string>
 	<string name="type.highway.footway.area">เส้นทาง</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1331,7 +1340,6 @@
 	<string name="type.natural.scrub">ป่าละเมาะ</string>
 	<string name="type.natural.spring">ฤดูใบไม้ผลิ</string>
 	<string name="type.natural.strait">ช่องแคบ</string>
-	<string name="type.natural.tree">ต้นไม้</string>
 	<string name="type.natural.tree_row">แถวต้นไม้</string>
 	<string name="type.natural.vineyard">ไร่องุ่น</string>
 	<string name="type.natural.volcano">ภูเขาไฟ</string>
@@ -1388,7 +1396,6 @@
 	<string name="type.power.plant.hydro">โรงไฟฟ้าพลังน้ำ</string>
 	<string name="type.power.plant.solar">โรงไฟฟ้าพลังงานแสงอาทิตย์</string>
 	<string name="type.power.plant.wind">โรงไฟฟ้าพลังงานลม</string>
-	<string name="type.power.pole">เสาไฟฟ้า</string>
 	<string name="type.power.substation">สถานีไฟฟ้า</string>
 	<string name="type.power.tower">เสาไฟฟ้า</string>
 	<string name="type.railway.funicular">รถกระเช้าไฟฟ้า</string>
@@ -1851,6 +1858,10 @@
 	<string name="type.wheelchair.limited">พื้นที่จำกัดการใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุ</string>
 	<string name="type.wheelchair.no">พื้นที่ไม่สามารถใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุ</string>
 	<string name="type.wheelchair.yes">พื้นใช้รถเข็นสำหรับผู้ป่วย/ผู้สูงอายุได้</string>
+	<string name="type.piste_type.snow_park">สโนว์พาร์ค</string>
+	<string name="type.piste_type.hike">เส้นทางเดินป่าหิมะ</string>
+	<string name="type.piste_type.connection">การเชื่อมต่อทางสกี</string>
+	<string name="type.piste_type.skitour">เส้นทางสกีทัวร์</string>
 	<string name="type.amenity.events_venue">สถานที่จัดงาน</string>
 	<string name="type.shop.auction">ประมูล</string>
 	<string name="type.shop.collector">ของสะสม</string>

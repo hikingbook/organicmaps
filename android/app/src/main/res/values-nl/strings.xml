@@ -80,7 +80,7 @@
 	<string name="core_my_places">Mijn plaatsen</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Naam</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Adres</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Lijst</string>
@@ -106,7 +106,7 @@
 	<string name="move_maps">Kaarten verplaatsen?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Fout bij het verplaatsen van kaartbestanden</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Dit kan enkele minuten duren.\nEven geduld…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Afstandseenheid</string>
@@ -192,7 +192,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Naar het klembord gekopieerd: %1$s</string>
+	<string name="copied_to_clipboard">Naar het klembord gekopieerd: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Klaar</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -494,15 +494,14 @@
 	<string name="editor_operator">Uitvoerder</string>
 	<string name="downloader_no_downloaded_maps_title">U hebt geen kaarten gedownload</string>
 	<string name="downloader_no_downloaded_maps_message">Download kaarten om een locatie te zoeken en offline te navigeren.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Doorgaan met het detecteren van uw huidige locatie?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Huidige locatie is onbekend. Misschien bevindt u zich in een gebouw of tunnel.</string>
-	<string name="current_location_unknown_continue_button">Doorgaan</string>
-	<string name="current_location_unknown_stop_button">Stoppen</string>
+	<string name="stop">Stoppen</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mijl</string>
 	<!-- A unit of measure -->
 	<string name="ft">voet</string>
@@ -664,6 +663,8 @@
 	<string name="yes_available">Ja</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Nee</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Capaciteit: %s</string>
 	<string name="trip_finished">U bent aangekomen!</string>
 	<string name="ok">Goed</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -717,6 +718,7 @@
 	<string name="elevation_profile_distance">Afst.:</string>
 	<string name="elevation_profile_time">Op weg</string>
 	<string name="isolines_toast_zooms_1_10">Zoom in om hoogtelijnen te bekijken</string>
+	<string name="downloader_loading_ios">Downloaden</string>
 	<string name="download_map_title">Download de wereldkaart</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">Het lukt niet om een map aan te maken en bestanden naar het interne geheugen of een SD-kaart te verplaatsen</string>
@@ -759,6 +761,11 @@
 	<string name="aa_connected_to_car_notification_title">Verbonden met auto</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Wandelen</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Webbrowser is niet beschikbaar</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMap-autorisatie is tijdelijk niet beschikbaar vanwege nieuwe beperkingen in Google Play 😾 Ons team werkt eraan om dit probleem op te lossen. Even geduld 🙏</string>
+	<string name="volume">Volume</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adres/blok</string>
@@ -915,6 +922,7 @@
 	<string name="type.amenity.telephone">Telefoon</string>
 	<string name="type.amenity.theatre">Theater</string>
 	<string name="type.amenity.toilets">Toiletten</string>
+	<string name="type.toilets.yes">Toiletten</string>
 	<string name="type.amenity.townhall">Gemeentehuis</string>
 	<string name="type.amenity.university">Universiteit</string>
 	<string name="type.amenity.vending_machine">Automaat</string>
@@ -987,7 +995,8 @@
 	<string name="type.boundary.protected_area.5">Beschermd gebied</string>
 	<string name="type.boundary.protected_area.6">Beschermd gebied</string>
 	<string name="type.building">Gebouw</string>
-	<string name="type.building.address">Gebouw</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Adres</string>
 	<string name="type.building.has_parts">Gebouw</string>
 	<string name="type.building_part">Gebouw</string>
 	<string name="type.building.garage">Garage</string>
@@ -1148,6 +1157,8 @@
 	<string name="type.highway.cycleway.tunnel">Fietstunnel</string>
 	<string name="type.highway.elevator">Lift</string>
 	<string name="type.highway.footway">Voetpad</string>
+	<string name="type.highway.footway.sidewalk">Stoep</string>
+	<string name="type.highway.footway.crossing">Voetgangersoversteekplaats</string>
 	<string name="type.highway.footway.alpine_hiking">Alpine wandelpad</string>
 	<string name="type.highway.footway.area">Voetgangerszone</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1408,7 +1419,6 @@
 	<string name="type.leisure.garden.residential">Tuin</string>
 	<string name="type.leisure.golf_course">Golfbaan</string>
 	<string name="type.leisure.ice_rink">Schaatsbaan</string>
-	<string name="type.leisure.landscape_reserve">Landschapsreservaat</string>
 	<string name="type.leisure.marina">Jachthaven</string>
 	<string name="type.leisure.nature_reserve">Natuurreservaat</string>
 	<string name="type.leisure.outdoor_seating">Zitplaatsen buiten</string>
@@ -1491,7 +1501,6 @@
 	<string name="type.natural.scrub">Kreupel bos</string>
 	<string name="type.natural.spring">Bron</string>
 	<string name="type.natural.strait">Zeestraat</string>
-	<string name="type.natural.tree">Boom</string>
 	<string name="type.natural.tree_row">Bomenrij</string>
 	<string name="type.natural.vineyard">Wijngaard</string>
 	<string name="type.natural.volcano">Vulkaan</string>
@@ -1555,7 +1564,6 @@
 	<string name="type.power.plant.hydro">Waterkrachtcentrale</string>
 	<string name="type.power.plant.solar">Zonne-energiecentrale</string>
 	<string name="type.power.plant.wind">Windkrachtcentrale</string>
-	<string name="type.power.pole">Elektriciteitspaal</string>
 	<string name="type.power.station">Transformatorstation</string>
 	<string name="type.power.substation">Transformatorstation</string>
 	<string name="type.power.tower">Elektriciteitsmast</string>
@@ -2075,16 +2083,26 @@
 	<string name="type.aerialway.platter">Sleeplift</string>
 	<string name="type.aerialway.rope_tow">Touwlift</string>
 	<string name="type.aerialway.t.bar">Sleeplift (T-beugel)</string>
-	<string name="type.piste_type">Pistesoort</string>
 	<string name="type.piste_type.downhill">Ski-afdaling</string>
+	<string name="type.piste_type.downhill.area">Ski-afdaling</string>
 	<string name="type.piste_type.downhill.advanced">Moeilijke afdaling</string>
+	<string name="type.piste_type.downhill.advanced.area">Moeilijke afdaling</string>
 	<string name="type.piste_type.downhill.easy">Makkelijke afdaling</string>
+	<string name="type.piste_type.downhill.easy.area">Makkelijke afdaling</string>
 	<string name="type.piste_type.downhill.expert">Afdaling voor experts</string>
+	<string name="type.piste_type.downhill.expert.area">Afdaling voor experts</string>
 	<string name="type.piste_type.downhill.freeride">Ski-afdaling</string>
 	<string name="type.piste_type.downhill.intermediate">Gemiddelde afdaling</string>
+	<string name="type.piste_type.downhill.intermediate.area">Gemiddelde afdaling</string>
 	<string name="type.piste_type.downhill.novice">Beginnersafdaling</string>
+	<string name="type.piste_type.downhill.novice.area">Beginnersafdaling</string>
 	<string name="type.piste_type.nordic">Langlaufroute</string>
 	<string name="type.piste_type.sled">Sleebaan</string>
+	<string name="type.piste_type.sled.area">Sleebaan</string>
+	<string name="type.piste_type.snow_park">Sneeuwpark</string>
+	<string name="type.piste_type.hike">Sneeuwwandelpad</string>
+	<string name="type.piste_type.connection">Pisteverbinding</string>
+	<string name="type.piste_type.skitour">Skitourspoor</string>
 	<string name="type.amenity.events_venue">Evenementenlocatie</string>
 	<string name="type.shop.auction">Veiling</string>
 	<string name="type.shop.collector">Verzamelobjecten</string>

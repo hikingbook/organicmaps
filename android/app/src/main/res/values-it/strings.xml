@@ -80,7 +80,7 @@
 	<string name="core_my_places">I miei luoghi</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nome</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Indirizzo</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Elenco</string>
@@ -94,7 +94,7 @@
 	<string name="maps_storage_downloaded">Mappe</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">Vuoi spostare le mappe?</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Questo può richiedere diversi minuti.\nAttendere prego…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Unità di misura</string>
@@ -180,7 +180,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Copiato in appunti: %1$s</string>
+	<string name="copied_to_clipboard">Copiato in appunti: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Fatto</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -484,15 +484,14 @@
 	<string name="editor_operator">Proprietario</string>
 	<string name="downloader_no_downloaded_maps_title">Non hai scaricato mappe</string>
 	<string name="downloader_no_downloaded_maps_message">Scarica mappe per trovare un luogo e navigare offline.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Continuare a rilevare la tua posizione attuale?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">La posizione attuale è sconosciuta. È possibile che ci si trovi all\'interno di un edificio o un tunnel.</string>
-	<string name="current_location_unknown_continue_button">Continua</string>
-	<string name="current_location_unknown_stop_button">Ferma</string>
+	<string name="stop">Ferma</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<string name="miles_per_hour">mph</string>
 	<string name="minute">min</string>
@@ -654,6 +653,8 @@
 	<string name="yes_available">Sì</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">No</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Capacità: %s</string>
 	<string name="trip_finished">Sei arrivato!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -707,6 +708,7 @@
 	<string name="elevation_profile_distance">Dist.:</string>
 	<string name="elevation_profile_time">Tempo:</string>
 	<string name="isolines_toast_zooms_1_10">Ingrandisci mappa per vedere l\'isolinea</string>
+	<string name="downloader_loading_ios">Download in corso</string>
 	<string name="download_map_title">Scarica la mappa del mondo</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="connection_failure">Errore di connessione</string>
@@ -745,6 +747,11 @@
 	<string name="aa_connected_to_car_notification_title">Collegato all\'auto</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Escursioni</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Il browser web non è disponibile</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">L\'autorizzazione di OpenStreetMap è temporaneamente non disponibile a causa delle nuove restrizioni di Google Play 😾\nIl nostro team sta lavorando per risolvere questoproblema. Ti preghiamo di essere paziente 🙏</string>
+	<string name="volume">Volume</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Indirizzo/Blocco</string>
@@ -902,6 +909,7 @@
 	<string name="type.amenity.telephone">Telefono</string>
 	<string name="type.amenity.theatre">Teatro</string>
 	<string name="type.amenity.toilets">Servizi igienici</string>
+	<string name="type.toilets.yes">Servizi igienici</string>
 	<string name="type.amenity.townhall">Municipio</string>
 	<string name="type.amenity.university">Università</string>
 	<string name="type.amenity.vending_machine">Distributore automatico</string>
@@ -972,7 +980,8 @@
 	<string name="type.boundary.protected_area.5">Area protetta</string>
 	<string name="type.boundary.protected_area.6">Area protetta</string>
 	<string name="type.building">Edificio</string>
-	<string name="type.building.address">Edificio</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Indirizzo</string>
 	<string name="type.building.has_parts">Edificio</string>
 	<string name="type.building_part">Edificio</string>
 	<string name="type.building.garage">Garage</string>
@@ -1135,6 +1144,8 @@
 	<string name="type.highway.cycleway.tunnel">Tunnel</string>
 	<string name="type.highway.elevator">Ascensore</string>
 	<string name="type.highway.footway">Sentiero</string>
+	<string name="type.highway.footway.sidewalk">Marciapiede</string>
+	<string name="type.highway.footway.crossing">Attraversamento pedonale</string>
 	<string name="type.highway.footway.alpine_hiking">Sentiero</string>
 	<string name="type.highway.footway.area">Sentiero</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1464,7 +1475,6 @@
 	<string name="type.natural.scrub">Boscaglia</string>
 	<string name="type.natural.spring">Sorgente</string>
 	<string name="type.natural.strait">Stretto</string>
-	<string name="type.natural.tree">Albero</string>
 	<string name="type.natural.tree_row">Fila di alberi</string>
 	<string name="type.natural.vineyard">Vigneto</string>
 	<string name="type.natural.volcano">Vulcano</string>
@@ -1528,7 +1538,6 @@
 	<string name="type.power.plant.hydro">Centrale idroelettrica</string>
 	<string name="type.power.plant.solar">Centrale solare</string>
 	<string name="type.power.plant.wind">Centrale eolica</string>
-	<string name="type.power.pole">Palo elettrico</string>
 	<string name="type.power.substation">Sottostazione elettrica</string>
 	<string name="type.power.tower">Pilone elettrico</string>
 	<string name="type.psurface">Superficie</string>
@@ -2017,11 +2026,21 @@
 	<string name="type.wheelchair.no">Non accessibile ai disabili</string>
 	<string name="type.wheelchair.yes">Accessibile ai disabili</string>
 	<string name="type.piste_type.downhill.advanced">Pista difficile</string>
+	<string name="type.piste_type.downhill.advanced.area">Pista difficile</string>
 	<string name="type.piste_type.downhill.easy">Pista facile</string>
+	<string name="type.piste_type.downhill.easy.area">Pista facile</string>
 	<string name="type.piste_type.downhill.expert">Pista per esperti</string>
+	<string name="type.piste_type.downhill.expert.area">Pista per esperti</string>
 	<string name="type.piste_type.downhill.intermediate">Pista media</string>
+	<string name="type.piste_type.downhill.intermediate.area">Pista media</string>
 	<string name="type.piste_type.downhill.novice">Pista per principianti</string>
+	<string name="type.piste_type.downhill.novice.area">Pista per principianti</string>
 	<string name="type.piste_type.sled">Pista per slitte</string>
+	<string name="type.piste_type.sled.area">Pista per slitte</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Sentiero escursionistico della neve</string>
+	<string name="type.piste_type.connection">Connessione alle piste</string>
+	<string name="type.piste_type.skitour">Sentiero Skitour</string>
 	<string name="type.amenity.events_venue">Sede degli eventi</string>
 	<string name="type.shop.auction">Asta</string>
 	<string name="type.shop.collector">Oggetti da collezione</string>

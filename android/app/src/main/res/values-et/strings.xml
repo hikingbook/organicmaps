@@ -72,7 +72,7 @@
 	<string name="core_my_places">Minu kohad</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nimi</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Aadress</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Loetelu</string>
@@ -98,7 +98,7 @@
 	<string name="move_maps">Teisaldada kaardid?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Kaardipaanide teisaldamine ebaõnnestus</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">See võib võtta mitu minutit.\nPalun oota…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Mõõtühikud</string>
@@ -184,7 +184,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">E-post</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Kopeeritud vahemällu: %1$s</string>
+	<string name="copied_to_clipboard">Kopeeritud vahemällu: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Valmis</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -486,15 +486,14 @@
 	<string name="editor_operator">Omanik</string>
 	<string name="downloader_no_downloaded_maps_title">Sa ei ole kaarte alla laadinud</string>
 	<string name="downloader_no_downloaded_maps_message">Lae alla kaardid asukoha otsimiseks ja võrguühenduseta navigeerimise kasutamiseks.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Jätka oma hetkeasukoha määramist?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Hetkeasukoht on teadmata. Võib-olla oled hoones sees või tunnelis.</string>
-	<string name="current_location_unknown_continue_button">Jätka</string>
-	<string name="current_location_unknown_stop_button">Lõpeta</string>
+	<string name="stop">Lõpeta</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">jalga</string>
@@ -658,6 +657,8 @@
 	<string name="yes_available">Jah</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Ei</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Mahutavus: %s</string>
 	<string name="trip_finished">Oled kohal!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -711,6 +712,7 @@
 	<string name="elevation_profile_distance">Kaugus:</string>
 	<string name="elevation_profile_time">Aeg:</string>
 	<string name="isolines_toast_zooms_1_10">Isojoonte sirvimiseks suurenda kaarti</string>
+	<string name="downloader_loading_ios">Allalaadimine</string>
 	<string name="download_map_title">Maailma kaardi allalaadimine</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">Seadme sisemällu või mälukaardile ei saa kausta luua ja faile teisaldada</string>
@@ -749,6 +751,11 @@
 	<string name="aa_connected_to_car_notification_title">Ühendatud autoga</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Matkamine</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Veebibrauser ei ole saadaval</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMapi autoriseerimine on ajutiselt kättesaamatu Google Play uute piirangute tõttu 😾\nMeie meeskond töötab selle probleemi lahendamise kallal. Palun olge kannatlik 🙏</string>
+	<string name="volume">Helitugevus</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Aadress/plokk</string>
@@ -906,6 +913,7 @@
 	<string name="type.amenity.telephone">Telefon</string>
 	<string name="type.amenity.theatre">Teater</string>
 	<string name="type.amenity.toilets">Tualett</string>
+	<string name="type.toilets.yes">Tualett</string>
 	<string name="type.amenity.townhall">Raekoda</string>
 	<string name="type.amenity.university">Ülikool</string>
 	<string name="type.amenity.vending_machine">Müügiautomaat</string>
@@ -978,7 +986,8 @@
 	<string name="type.boundary.protected_area.5">Kaitseala</string>
 	<string name="type.boundary.protected_area.6">Kaitseala</string>
 	<string name="type.building">Hoone</string>
-	<string name="type.building.address">Hoone</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Aadress</string>
 	<string name="type.building.has_parts">Hoone</string>
 	<string name="type.building_part">Hoone</string>
 	<string name="type.building.garage">Garaaž</string>
@@ -1141,6 +1150,8 @@
 	<string name="type.highway.cycleway.tunnel">Jalgratta tunnel</string>
 	<string name="type.highway.elevator">Lift</string>
 	<string name="type.highway.footway">Jalgrada</string>
+	<string name="type.highway.footway.sidewalk">Kõnnitee</string>
+	<string name="type.highway.footway.crossing">Jalakäijate ülekäigurada</string>
 	<string name="type.highway.footway.alpine_hiking">Alpi matkarada</string>
 	<string name="type.highway.footway.area">Jalakäijate ala</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1404,7 +1415,6 @@
 	<string name="type.leisure.garden.residential">Elamu aed</string>
 	<string name="type.leisure.golf_course">Golfirada</string>
 	<string name="type.leisure.ice_rink">Liuväli</string>
-	<string name="type.leisure.landscape_reserve">Maastikukaitseala</string>
 	<string name="type.leisure.marina">Marina</string>
 	<string name="type.leisure.nature_reserve">Looduskaitseala</string>
 	<string name="type.leisure.outdoor_seating">Istekohad õues</string>
@@ -1487,7 +1497,6 @@
 	<string name="type.natural.scrub">Võsa</string>
 	<string name="type.natural.spring">Allikas</string>
 	<string name="type.natural.strait">Väin</string>
-	<string name="type.natural.tree">Puu</string>
 	<string name="type.natural.tree_row">Puude rida</string>
 	<string name="type.natural.vineyard">Viinamarjaistandus</string>
 	<string name="type.natural.volcano">Vulkaan</string>
@@ -1552,7 +1561,6 @@
 	<string name="type.power.plant.hydro">Hüdroelektrijaam</string>
 	<string name="type.power.plant.solar">Päikeseelektrijaam</string>
 	<string name="type.power.plant.wind">Tuuleelektrijaam</string>
-	<string name="type.power.pole">Elektripost</string>
 	<string name="type.power.station">Elektrijaam</string>
 	<string name="type.power.substation">Alajaam</string>
 	<string name="type.power.tower">Elektripost</string>
@@ -2069,16 +2077,26 @@
 	<string name="type.aerialway.platter">Plaatlift</string>
 	<string name="type.aerialway.rope_tow">Köislift</string>
 	<string name="type.aerialway.t.bar">Ankurlift</string>
-	<string name="type.piste_type">Punkti liik</string>
 	<string name="type.piste_type.downhill">Mäesuusarada</string>
+	<string name="type.piste_type.downhill.area">Mäesuusarada</string>
 	<string name="type.piste_type.downhill.advanced">Raske laskumine</string>
+	<string name="type.piste_type.downhill.advanced.area">Raske laskumine</string>
 	<string name="type.piste_type.downhill.easy">Kerge laskumine</string>
+	<string name="type.piste_type.downhill.easy.area">Kerge laskumine</string>
 	<string name="type.piste_type.downhill.expert">Professionaalne laskumine</string>
+	<string name="type.piste_type.downhill.expert.area">Professionaalne laskumine</string>
 	<string name="type.piste_type.downhill.freeride">Tasuta mäesuusatamine</string>
 	<string name="type.piste_type.downhill.intermediate">Keskmise raskusastmega laskumine</string>
+	<string name="type.piste_type.downhill.intermediate.area">Keskmise raskusastmega laskumine</string>
 	<string name="type.piste_type.downhill.novice">Algajasõbralik laskumine</string>
+	<string name="type.piste_type.downhill.novice.area">Algajasõbralik laskumine</string>
 	<string name="type.piste_type.nordic">Murdmaa suusarada</string>
 	<string name="type.piste_type.sled">Kelgurada</string>
+	<string name="type.piste_type.sled.area">Kelgurada</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Lumi matkarada</string>
+	<string name="type.piste_type.connection">Piste ühendus</string>
+	<string name="type.piste_type.skitour">Skituuri rada</string>
 	<string name="type.amenity.events_venue">Ürituste toimumiskoht</string>
 	<string name="type.shop.auction">Oksjon</string>
 	<string name="type.shop.collector">Kollektsioneeritavad esemed</string>

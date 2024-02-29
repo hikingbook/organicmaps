@@ -83,7 +83,7 @@
 	<string name="core_my_places">Paikkani</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nimi</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Osoite</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Luettelo</string>
@@ -109,7 +109,7 @@
 	<string name="move_maps">Siirrä karttoja?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Karttatiedostojen siirtovirhe</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Tämä voi kestää useita minuutteja.\nOdota hetki…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Mittayksiköt</string>
@@ -194,7 +194,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Sähköposti</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Kopioitu leikepöydälle: %1$s</string>
+	<string name="copied_to_clipboard">Kopioitu leikepöydälle: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Valmis</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -500,15 +500,14 @@
 	<string name="editor_operator">Operaattori</string>
 	<string name="downloader_no_downloaded_maps_title">Et ole ladannut yhtään karttaa</string>
 	<string name="downloader_no_downloaded_maps_message">Lataa karttoja löytääksesi paikkoja ja navigoidaksesi offline-tilassa.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Jatketaanko sijaintisi havaitsemista?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Nykyistä sijaintiasi ei voitu määrittää. Kenties olet rakennuksessa tai tunnelissa.</string>
-	<string name="current_location_unknown_continue_button">Jatka</string>
-	<string name="current_location_unknown_stop_button">Pysäytä</string>
+	<string name="stop">Pysäytä</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">ft</string>
@@ -673,6 +672,8 @@
 	<string name="yes_available">Kyllä</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Ei</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Kapasiteetti: %s</string>
 	<string name="trip_finished">Olet perillä!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -726,6 +727,7 @@
 	<string name="elevation_profile_distance">Etäisyys:</string>
 	<string name="elevation_profile_time">Aika:</string>
 	<string name="isolines_toast_zooms_1_10">Suurenna kartta nähdäksesi korkeuskäyrät</string>
+	<string name="downloader_loading_ios">Ladataan</string>
 	<string name="download_map_title">Lataa maailmankartta</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">Kansion luonti ja tiedoston siirto ei onnistu laitteen muistissa tai SD-koritlla</string>
@@ -764,6 +766,11 @@
 	<string name="aa_connected_to_car_notification_title">Liitetty autoon</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Vaellus</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Verkkoselain ei ole käytettävissä</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMap-valtuutus ei ole tilapäisesti käytettävissä Google Playn uusien rajoitusten vuoksi 😾\nTiimimme työskentelee tämän ongelman ratkaisemiseksi. Ole kärsivällinen 🙏</string>
+	<string name="volume">Äänenvoimakkuus</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Osoite/lohko</string>
@@ -907,6 +914,7 @@
 	<string name="type.recycling.green_waste">Biojäte</string>
 	<string name="type.recycling.cartons">Kartonki</string>
 	<string name="type.amenity.restaurant">Ravintola</string>
+	<string name="type.amenity.sanitary_dump_station">Jäteveden tyhjennyspiste</string>
 	<string name="type.amenity.school">Koulu</string>
 	<string name="type.amenity.shelter">Katos</string>
 	<string name="type.amenity.public_bath">Julkinen kylpylä</string>
@@ -916,6 +924,7 @@
 	<string name="type.amenity.telephone">Puhelin</string>
 	<string name="type.amenity.theatre">Teatteri</string>
 	<string name="type.amenity.toilets">WC</string>
+	<string name="type.toilets.yes">WC</string>
 	<string name="type.amenity.townhall">Kaupungintalo</string>
 	<string name="type.amenity.university">Yliopisto</string>
 	<string name="type.amenity.vending_machine">Myyntiautomaatti</string>
@@ -934,6 +943,7 @@
 	<string name="type.amenity.veterinary">Eläinlääkäri</string>
 	<string name="type.amenity.waste_basket">Roskakori</string>
 	<string name="type.amenity.waste_disposal">Roska</string>
+	<string name="type.amenity.waste_transfer_station">Jätteiden vastaanottoasema</string>
 	<string name="type.amenity.water_point">Vesipiste</string>
 	<string name="type.barrier">Este</string>
 	<string name="type.barrier.block">Este</string>
@@ -985,7 +995,8 @@
 	<string name="type.boundary.protected_area.5">Suojeltu alue</string>
 	<string name="type.boundary.protected_area.6">Suojeltu alue</string>
 	<string name="type.building">Rakennus</string>
-	<string name="type.building.address">Rakennus</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Osoite</string>
 	<string name="type.building.has_parts">Rakennus</string>
 	<string name="type.building_part">Rakennus</string>
 	<string name="type.building.garage">Autotalli</string>
@@ -1147,6 +1158,7 @@
 	<string name="type.highway.cycleway.tunnel">Tunneli</string>
 	<string name="type.highway.elevator">Hissi</string>
 	<string name="type.highway.footway">Polku</string>
+	<string name="type.highway.footway.crossing">Jalankulkijoiden ylitys</string>
 	<string name="type.highway.footway.alpine_hiking">Polku</string>
 	<string name="type.highway.footway.area">Jalankulkualue</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1403,6 +1415,8 @@
 	<string name="type.leisure.garden">Puutarha</string>
 	<string name="type.leisure.garden.residential">Puutarha</string>
 	<string name="type.leisure.golf_course">Golf-rata</string>
+	<string name="type.leisure.hackerspace">Hacklab</string>
+	<string name="type.leisure.marina">Venesatama</string>
 	<string name="type.leisure.nature_reserve">Luonnonsuojelualue</string>
 	<string name="type.leisure.outdoor_seating">Ulkona istuminen</string>
 	<string name="type.leisure.park">Puisto</string>
@@ -1421,6 +1435,7 @@
 	<string name="type.leisure.swimming_pool.private">Uima-allas</string>
 	<string name="type.leisure.water_park">Vesipuisto</string>
 	<string name="type.man_made.chimney">Tehtaan piippu</string>
+	<string name="type.man_made.flagpole">Lipputanko</string>
 	<string name="type.man_made.lighthouse">Majakka</string>
 	<string name="type.man_made.surveillance">Valvontakamera</string>
 	<string name="type.man_made.tower">Torni</string>
@@ -1463,7 +1478,6 @@
 	<string name="type.natural.scrub">Tiheiköt</string>
 	<string name="type.natural.spring">Lähde</string>
 	<string name="type.natural.strait">Salmi</string>
-	<string name="type.natural.tree">Puu</string>
 	<string name="type.natural.tree_row">Puurivi</string>
 	<string name="type.natural.vineyard">Viinitila</string>
 	<string name="type.natural.volcano">Tulivuori</string>
@@ -1520,7 +1534,6 @@
 	<string name="type.power.plant.hydro">Vesivoimalaitos</string>
 	<string name="type.power.plant.solar">Aurinkovoimala</string>
 	<string name="type.power.plant.wind">Tuulivoimala</string>
-	<string name="type.power.pole">Sähköpylväs</string>
 	<string name="type.power.substation">Muuntoasema</string>
 	<string name="type.power.tower">Sähköpylväs</string>
 	<string name="type.railway.funicular">Köysirata</string>
@@ -1800,6 +1813,7 @@
 	<string name="type.shop.car_parts">Auton osat</string>
 	<string name="type.shop.car_repair">Autokorjaamo</string>
 	<string name="type.shop.car_repair.tyres">Rengashuolto</string>
+	<string name="type.shop.caravan">Matkailu- ja retkeilyautokauppias</string>
 	<string name="type.shop.carpet">Matot</string>
 	<string name="type.shop.chemist">Kosmetiikkamyymälä</string>
 	<string name="type.shop.chocolate">Suklaakauppa</string>
@@ -1829,6 +1843,7 @@
 	<string name="type.shop.greengrocer">Vihanneskauppias</string>
 	<string name="type.shop.grocery">Päivittäistavarakauppa</string>
 	<string name="type.shop.hairdresser">Kampaamo</string>
+	<string name="type.shop.hardware">Rautakauppa</string>
 	<string name="type.shop.health_food">Terveysruokakauppa</string>
 	<string name="type.shop.herbalist">Yrttikauppa</string>
 	<string name="type.shop.hifi">HiFi Audio</string>
@@ -1996,14 +2011,25 @@
 	<string name="type.aerialway.rope_tow">Naruhissi</string>
 	<string name="type.aerialway.t.bar">Ankkurihissi</string>
 	<string name="type.piste_type.downhill">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.area">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.advanced">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.advanced.area">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.easy">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.easy.area">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.expert">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.expert.area">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.freeride">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.intermediate">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.intermediate.area">Laskettelurinne</string>
 	<string name="type.piste_type.downhill.novice">Laskettelurinne</string>
+	<string name="type.piste_type.downhill.novice.area">Laskettelurinne</string>
 	<string name="type.piste_type.nordic">Latu</string>
 	<string name="type.piste_type.sled">Kelkkarata</string>
+	<string name="type.piste_type.sled.area">Kelkkarata</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Lumi vaellusreitti</string>
+	<string name="type.piste_type.connection">Pisteen yhteys</string>
+	<string name="type.piste_type.skitour">Skitour Trail</string>
 	<string name="type.amenity.events_venue">Tapahtumapaikka</string>
 	<string name="type.shop.auction">Huutokauppa</string>
 	<string name="type.shop.collector">Keräilyesineet</string>

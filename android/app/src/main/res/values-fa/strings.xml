@@ -79,7 +79,7 @@
 	<string name="core_my_places">مکان من</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">نام</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">آدرس</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">لیست</string>
@@ -93,7 +93,7 @@
 	<string name="maps_storage_downloaded">نقشه‌ها</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">آیا نقشه‌ها جابه‌جا شود؟</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">ممکن است چند دقیقه طول بکشد.\nلطفا صبر کنید…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">واحد اندازه‌گیری</string>
@@ -168,7 +168,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">ایمیل</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">کپی در کلیپ‌برد: %1$s</string>
+	<string name="copied_to_clipboard">کپی در کلیپ‌برد: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">انجام شد</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -469,15 +469,14 @@
 	<string name="editor_operator">مالک</string>
 	<string name="downloader_no_downloaded_maps_title">شما هیچ نقشه دانلود شده ای ندارید</string>
 	<string name="downloader_no_downloaded_maps_message">برای جست وجو یک مکان و استفاده از قابلیت ناوبری، نقشه‌ها را دانلود کنید.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">آیا یافتن مکان‌تان را ادامه می دهید؟</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">مکان شما ناشناس مانده است.ممکن است شما داخل یک ساختمان یا تونل باشید.</string>
-	<string name="current_location_unknown_continue_button">ادامه</string>
-	<string name="current_location_unknown_stop_button">توقف</string>
+	<string name="stop">توقف</string>
+	<!-- abbreviation for meters -->
 	<string name="m">متر</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">کیلومتر</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">کیلومتربرساعت (km/h)</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">مایل</string>
 	<!-- A unit of measure -->
 	<string name="ft">فوت</string>
@@ -635,6 +634,8 @@
 	<string name="yes_available">بلی</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">خیر</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">ظرفیت: %s</string>
 	<string name="trip_finished">شما به مقصد رسیدید!</string>
 	<string name="ok">موافقت کردن</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -688,6 +689,7 @@
 	<string name="elevation_profile_distance">مسافت</string>
 	<string name="elevation_profile_time">زمان:</string>
 	<string name="isolines_toast_zooms_1_10">برای بررسی خطوط تراز زوم کنید</string>
+	<string name="downloader_loading_ios">در حال دانلود</string>
 	<string name="enable_keep_screen_on">صفحه نمایش را روشن بگذارید</string>
 	<!-- Description in preferences -->
 	<string name="enable_keep_screen_on_description">وقتی فعال باشد، هنگام نمایش نقشه، صفحه همیشه روشن خواهد بود.</string>
@@ -717,6 +719,9 @@
 	<string name="aa_connected_to_car_notification_title">متصل به ماشین</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">پیاده روی</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">مرورگر وب در دسترس نیست</string>
+	<string name="volume">میزان صدا</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">آدرس/بلاک</string>
@@ -851,6 +856,7 @@
 	<string name="type.amenity.telephone">تلفن خانه</string>
 	<string name="type.amenity.theatre">سرگرمی</string>
 	<string name="type.amenity.toilets">دستشویی</string>
+	<string name="type.toilets.yes">دستشویی</string>
 	<string name="type.amenity.townhall">گردشگری</string>
 	<string name="type.amenity.university">دانشگاه</string>
 	<string name="type.amenity.vending_machine.cigarettes">ماشین سیگار فروشی</string>
@@ -886,7 +892,8 @@
 	<string name="type.boundary.protected_area.5">منطقه حفاظت شده</string>
 	<string name="type.boundary.protected_area.6">منطقه حفاظت شده</string>
 	<string name="type.building">ساختمان</string>
-	<string name="type.building.address">ساختمان</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">آدرس</string>
 	<string name="type.building.has_parts">ساختمان</string>
 	<string name="type.building_part">ساختمان</string>
 	<string name="type.building.garage">گاراژ</string>
@@ -955,6 +962,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.cycleway.tunnel">تونل</string>
 	<string name="type.highway.footway">مسیر</string>
+	<string name="type.highway.footway.sidewalk">پیاده رو</string>
+	<string name="type.highway.footway.crossing">محل عبور عابر پیاده</string>
 	<string name="type.highway.footway.alpine_hiking">مسیر</string>
 	<string name="type.highway.footway.area">مسیر</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1245,7 +1254,6 @@
 	<string name="type.natural.scrub">بوته زار</string>
 	<string name="type.natural.spring">چشمه</string>
 	<string name="type.natural.strait">تنگه</string>
-	<string name="type.natural.tree">درخت</string>
 	<string name="type.natural.tree_row">ردیف درخت</string>
 	<string name="type.natural.vineyard">تاکستان</string>
 	<string name="type.natural.volcano">اتشفشان</string>
@@ -1302,7 +1310,6 @@
 	<string name="type.power.plant.hydro">نیروگاه برق آبی</string>
 	<string name="type.power.plant.solar">نیروگاه خورشیدی</string>
 	<string name="type.power.plant.wind">نیروگاه بادی</string>
-	<string name="type.power.pole">برج قدرت</string>
 	<string name="type.power.tower">برج قدرت</string>
 	<string name="type.railway.funicular">فونیکولور</string>
 	<string name="type.railway.halt">ایستگاه قطار</string>
@@ -1764,6 +1771,10 @@
 	<string name="type.wheelchair.limited">دسترسی محدود با صندلی چرخ دار</string>
 	<string name="type.wheelchair.no">بدون دسترسی با صندلی چرخ دار</string>
 	<string name="type.wheelchair.yes">دسترسی کامل با صندلی چرخ دار</string>
+	<string name="type.piste_type.snow_park">پارک برفی</string>
+	<string name="type.piste_type.hike">مسیر پیاده روی برفی</string>
+	<string name="type.piste_type.connection">اتصال پیست</string>
+	<string name="type.piste_type.skitour">مسیر اسکیتور</string>
 	<string name="type.amenity.events_venue">محل برگزاری رویدادها</string>
 	<string name="type.shop.auction">حراج</string>
 	<string name="type.shop.collector">کلکسیونی ها</string>

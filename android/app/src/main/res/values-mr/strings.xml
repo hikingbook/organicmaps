@@ -72,7 +72,7 @@
 	<string name="core_my_places">माझी ठिकाणे</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">नाव</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">पत्ता</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">यादी</string>
@@ -84,7 +84,7 @@
 	<string name="maps_storage_summary">नकाशे डाउनलोड करायचे ठिकाण निवडा</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">नकाशे हलवायचे?</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">यास काही मिनिटे लागू शकतात.\nकृपया प्रतीक्षा करा…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">मापन एकके</string>
@@ -168,7 +168,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">ई-मेल</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">क्लिपबोर्डावर कॉपी केले: %1$s</string>
+	<string name="copied_to_clipboard">क्लिपबोर्डावर कॉपी केले: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">झाले</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -465,15 +465,14 @@
 	<string name="editor_operator">मालक</string>
 	<string name="downloader_no_downloaded_maps_title">तुम्ही कोणतेही नकाशे डाउनलोड केलेले नाहीत</string>
 	<string name="downloader_no_downloaded_maps_message">स्थान शोधण्यासाठी नकाशे डाउनलोड करा आणि ऑफलाइन मार्गनिर्देशन वापरा.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">तुमचे वर्तमान स्थान शोधणे सुरू ठेवायचे का?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">वर्तमान स्थान अज्ञात आहे. कदाचित तुम्ही एखाद्या इमारतीत किंवा बोगद्यात असाल.</string>
-	<string name="current_location_unknown_continue_button">चालू</string>
-	<string name="current_location_unknown_stop_button">थांबा</string>
+	<string name="stop">थांबा</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">किमी</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">फूट</string>
@@ -633,6 +632,8 @@
 	<string name="yes_available">होय</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">नाही</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">क्षमता: %s</string>
 	<string name="trip_finished">तुम्ही पोचलात!</string>
 	<string name="ok">ठीक आहे</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -686,6 +687,7 @@
 	<string name="elevation_profile_distance">अंतर.:</string>
 	<string name="elevation_profile_time">वेळ:</string>
 	<string name="isolines_toast_zooms_1_10">समोच्च रेषा पाहायला नकाशा विशाल (झूम) करा</string>
+	<string name="downloader_loading_ios">डाउनलोड करत आहे</string>
 	<string name="download_map_title">जगाचा नकाशा डाउनलोड करा</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">उपकरणाच्या अंतर्गत मेमरी किंवा SD-card वर फोल्डर तयार करण्यात आणि फायली हलविण्यात अक्षम</string>
@@ -724,6 +726,9 @@
 	<string name="aa_connected_to_car_notification_title">कारला जोडलेले</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">गिर्यारोहण</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">वेब ब्राउझर उपलब्ध नाही</string>
+	<string name="volume">व्हॉल्यूम</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
@@ -860,6 +865,7 @@
 	<string name="type.amenity.telephone">फोन</string>
 	<string name="type.amenity.theatre">नाट्यगृह</string>
 	<string name="type.amenity.toilets">शौचालय</string>
+	<string name="type.toilets.yes">शौचालय</string>
 	<string name="type.amenity.townhall">नगर भवन</string>
 	<string name="type.amenity.university">विद्यापीठ</string>
 	<string name="type.amenity.vending_machine">विक्रीयंत्र</string>
@@ -929,7 +935,8 @@
 	<string name="type.boundary.protected_area.5">संरक्षित क्षेत्र</string>
 	<string name="type.boundary.protected_area.6">संरक्षित क्षेत्र</string>
 	<string name="type.building">इमारत</string>
-	<string name="type.building.address">इमारत</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">पत्ता</string>
 	<string name="type.building.has_parts">इमारत</string>
 	<string name="type.building_part">इमारत</string>
 	<string name="type.building.garage">गराज</string>
@@ -1025,6 +1032,8 @@
 	<string name="type.highway.cycleway.tunnel">बोगदा</string>
 	<string name="type.highway.elevator">उद्वाहक(लिफ्ट)</string>
 	<string name="type.highway.footway">पादचारी मार्ग</string>
+	<string name="type.highway.footway.sidewalk">फुटपाथ</string>
+	<string name="type.highway.footway.crossing">पादचारी ओलांडणे</string>
 	<string name="type.highway.footway.alpine_hiking">पथ</string>
 	<string name="type.highway.footway.area">पादचारी झोन</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1358,7 +1367,6 @@
 	<string name="type.natural.scrub">खुरटी झाडे</string>
 	<string name="type.natural.spring">झरे</string>
 	<string name="type.natural.strait">सामुद्रधुनी</string>
-	<string name="type.natural.tree">झाड</string>
 	<string name="type.natural.tree_row">झाडाची रांग</string>
 	<string name="type.natural.vineyard">द्राक्षमळा</string>
 	<string name="type.natural.volcano">ज्वालामुखी</string>
@@ -1423,7 +1431,6 @@
 	<string name="type.power.plant.hydro">जलविद्युत प्रकल्प</string>
 	<string name="type.power.plant.solar">सौर ऊर्जा संयंत्र</string>
 	<string name="type.power.plant.wind">पवन ऊर्जा संयंत्र</string>
-	<string name="type.power.pole">विद्युत मनोरा</string>
 	<string name="type.power.station">विद्युत घर</string>
 	<string name="type.power.substation">विद्युत सबस्टेशन</string>
 	<string name="type.power.tower">विद्युत मनोरा</string>
@@ -1874,6 +1881,10 @@
 	<string name="type.wheelchair.limited">चाकखुर्चीसाठी मर्यादित प्रवेश</string>
 	<string name="type.wheelchair.no">चाकखुर्चीसाठी प्रवेश नाही</string>
 	<string name="type.wheelchair.yes">चाकखुर्चीसाठी प्रवेश</string>
+	<string name="type.piste_type.snow_park">स्नो पार्क</string>
+	<string name="type.piste_type.hike">स्नो हायकिंग ट्रेल</string>
+	<string name="type.piste_type.connection">Piste कनेक्शन</string>
+	<string name="type.piste_type.skitour">Skitour ट्रेल</string>
 	<string name="type.amenity.events_venue">कार्यक्रमाचे ठिकाण</string>
 	<string name="type.shop.auction">लिलाव</string>
 	<string name="type.shop.collector">संग्रहणीय वस्तू</string>

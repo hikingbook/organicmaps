@@ -81,7 +81,7 @@
 	<string name="core_my_places">Οι τοποθεσίες μου</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Όνομα</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Διεύθυνση</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Λίστα</string>
@@ -95,7 +95,7 @@
 	<string name="maps_storage_downloaded">Χάρτες</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">Να γίνει μετακίνηση χαρτών;</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Αυτό μπορεί να διαρκέσει αρκετά λεπτά. \nΠαρακαλώ περιμένετε…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Μονάδες μέτρησης</string>
@@ -180,7 +180,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Αντιγράφηκε στο Πρόχειρο: %1$s</string>
+	<string name="copied_to_clipboard">Αντιγράφηκε στο Πρόχειρο: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Ολοκληρώθηκε</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -475,12 +475,7 @@
 	<string name="editor_operator">Ιδιοκτήτης</string>
 	<string name="downloader_no_downloaded_maps_title">Δεν έχετε κατεβάσει χάρτες</string>
 	<string name="downloader_no_downloaded_maps_message">Κατεβάστε χάρτες για να αναζητήσετε μια τοποθεσία και να χρησιμοποιήσετε την πλοήγησης χωρίς σύνδεση.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Να συνεχίσει να ανιχνεύεται η τρέχουσα θέση σας;</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Η τρέχουσα τοποθεσία είναι άγνωστη. Ίσως είστε σε ένα κτίριο ή σε μια σήραγγα.</string>
-	<string name="current_location_unknown_continue_button">Συνέχεια</string>
-	<string name="current_location_unknown_stop_button">Στοπ</string>
+	<string name="stop">Στοπ</string>
 	<string name="placepage_more_button">Περισσότερα</string>
 	<!-- A referral link on the place page for some hotels -->
 	<string name="more_on_kayak">Φωτογραφίες, κριτικές, κράτηση</string>
@@ -628,6 +623,8 @@
 	<string name="yes_available">Ναι</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Όχι</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Χωρητικότητα: %s</string>
 	<string name="trip_finished">Έχετε φτάσει!</string>
 	<string name="ok">Καλώς</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -681,6 +678,7 @@
 	<string name="elevation_profile_distance">Απόστ.:</string>
 	<string name="elevation_profile_time">Διαρκ:</string>
 	<string name="isolines_toast_zooms_1_10">Μεγεθύνετε για να δείτε περιγράμματα</string>
+	<string name="downloader_loading_ios">Φόρτωση</string>
 	<string name="enable_keep_screen_on">Κρατήστε την οθόνη ανοιχτή</string>
 	<!-- Description in preferences -->
 	<string name="enable_keep_screen_on_description">Όταν είναι ενεργοποιημένη, η οθόνη θα είναι πάντα αναμμένη όταν εμφανίζεται ο χάρτης.</string>
@@ -708,6 +706,11 @@
 	<string name="aa_connected_to_car_notification_title">Συνδεδεμένο με το αυτοκίνητο</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Πεζοπορία</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Το πρόγραμμα περιήγησης στο Web δεν είναι διαθέσιμο</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Η εξουσιοδότηση του OpenStreetMap δεν είναι προσωρινά διαθέσιμη λόγω νέων περιορισμών στο Google Play 😾\nΗ ομάδα μας εργάζεται για την επίλυση αυτού του προβλήματος. Παρακαλούμε να είστε υπομονετικοί 🙏</string>
+	<string name="volume">Ένταση ήχου</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Διεύθυνση/Μπλοκ</string>
@@ -849,6 +852,7 @@
 	<string name="type.amenity.telephone">Τηλέφωνο</string>
 	<string name="type.amenity.theatre">Θέατρο</string>
 	<string name="type.amenity.toilets">Τουαλέτα</string>
+	<string name="type.toilets.yes">Τουαλέτα</string>
 	<string name="type.amenity.townhall">Δημαρχείο</string>
 	<string name="type.amenity.university">Πανεπιστήμιο</string>
 	<string name="type.amenity.vending_machine.cigarettes">Αυτόματος πωλητής τσιγάρων</string>
@@ -884,7 +888,8 @@
 	<string name="type.boundary.protected_area.5">Προστατευόμενη Περιοχή</string>
 	<string name="type.boundary.protected_area.6">Προστατευόμενη Περιοχή</string>
 	<string name="type.building">Κτίριο</string>
-	<string name="type.building.address">Κτίριο</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Διεύθυνση</string>
 	<string name="type.building.has_parts">Κτίριο</string>
 	<string name="type.building_part">Κτίριο</string>
 	<string name="type.building.garage">Γκαράζ</string>
@@ -1038,6 +1043,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.cycleway.tunnel">Σήραγγα</string>
 	<string name="type.highway.footway">Διαδρομή</string>
+	<string name="type.highway.footway.sidewalk">Πεζοδρόμιο</string>
+	<string name="type.highway.footway.crossing">Διάβαση πεζών</string>
 	<string name="type.highway.footway.alpine_hiking">Διαδρομή</string>
 	<string name="type.highway.footway.area">Διαδρομή</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1331,7 +1338,6 @@
 	<string name="type.natural.scrub">Θαμνώδες περιοχή</string>
 	<string name="type.natural.spring">Πηγή νερού</string>
 	<string name="type.natural.strait">Πορθμός</string>
-	<string name="type.natural.tree">Δέντρο</string>
 	<string name="type.natural.tree_row">Σειρά δέντρων</string>
 	<string name="type.natural.vineyard">Αμπελώνας</string>
 	<string name="type.natural.volcano">Ηφαίστειο</string>
@@ -1388,7 +1394,6 @@
 	<string name="type.power.plant.hydro">Υδροηλεκτρικό εργοστάσιο</string>
 	<string name="type.power.plant.solar">Ηλιακός σταθμός παραγωγής ενέργειας</string>
 	<string name="type.power.plant.wind">Αιολική μονάδα παραγωγής ενέργειας</string>
-	<string name="type.power.pole">Πυλώνες μεταφοράς ρεύματος</string>
 	<string name="type.power.substation">Υποσταθμός</string>
 	<string name="type.power.tower">Πυλώνες μεταφοράς ρεύματος</string>
 	<string name="type.railway.funicular">Μονωτικό τρενάκι</string>
@@ -1852,6 +1857,10 @@
 	<string name="type.wheelchair.limited">Μερικώς εξοπλισμένο για άτομα με ειδικές ανάγκες</string>
 	<string name="type.wheelchair.no">Δεν υπάρχει πρόβλεψη για άτομα με ειδικές ανάγκες</string>
 	<string name="type.wheelchair.yes">Εξοπλισμένο για άτομα με ειδικές ανάγκες</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Μονοπάτι πεζοπορίας χιονιού</string>
+	<string name="type.piste_type.connection">Σύνδεση πίστας</string>
+	<string name="type.piste_type.skitour">Μονοπάτι Skitour</string>
 	<string name="type.amenity.events_venue">Κέντρο εκδηλώσεων</string>
 	<string name="type.shop.auction">Δημοπρασία</string>
 	<string name="type.shop.collector">Συλλεκτικά αντικείμενα</string>

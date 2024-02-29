@@ -131,10 +131,10 @@ public:
     return m_table->GetVersion();
   }
 
-  void Serialize(Writer & writer, bool preserveHostEndiannes) override
+  void Serialize(Writer & writer) override
   {
     EnsureTableLoaded();
-    m_table->Serialize(writer, preserveHostEndiannes);
+    m_table->Serialize(writer);
   }
 
 private:
@@ -1783,7 +1783,7 @@ void Geocoder::TraceResult(Tracer & tracer, BaseContext const & ctx, MwmSet::Mwm
 {
   SCOPE_GUARD(emitParse, [&]() { tracer.EmitParse(ctx.m_tokens); });
 
-  if (!Model::IsPoi(type) && type != Model::TYPE_BUILDING)
+  if (!Model::IsPoiOrBuilding(type))
     return;
 
   if (mwmId != m_context->GetId())

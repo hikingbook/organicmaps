@@ -80,7 +80,7 @@
 	<string name="core_my_places">Moje místa</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Název</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Adresa</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Seznam</string>
@@ -94,7 +94,7 @@
 	<string name="maps_storage_downloaded">Mapy</string>
 	<!-- Question dialog for transferring maps from one storage to another -->
 	<string name="move_maps">Přesunout mapy?</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Tato akce může trvat několik minut.\nProsím čekejte…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Měřicí jednotky</string>
@@ -179,7 +179,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Zkopírováno do schránky: %1$s</string>
+	<string name="copied_to_clipboard">Zkopírováno do schránky: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Hotovo</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -478,15 +478,14 @@
 	<string name="editor_operator">Operátor</string>
 	<string name="downloader_no_downloaded_maps_title">Nemáte stažené žádné mapy</string>
 	<string name="downloader_no_downloaded_maps_message">Stáhněte si mapy a hledejte cestu a její cíl, i když jste offline.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Pokračovat se zjišťováním současné polohy?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">Nezjistili jsme vaši současnou polohu. Možná jste v budově nebo tunelu.</string>
-	<string name="current_location_unknown_continue_button">Pokračovat</string>
-	<string name="current_location_unknown_stop_button">Zastavit</string>
+	<string name="stop">Zastavit</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mil</string>
 	<!-- A unit of measure -->
 	<string name="ft">stopa</string>
@@ -642,6 +641,8 @@
 	<string name="yes_available">Ano</string>
 	<!-- E.g. "WiFi:No" -->
 	<string name="no_available">Ne</string>
+	<!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+	<string name="capacity">Kapacita: %s</string>
 	<string name="trip_finished">Přijeli jste!</string>
 	<string name="ok">Ok</string>
 	<!-- max. 10 symbols, both iOS and Android -->
@@ -695,6 +696,8 @@
 	<string name="elevation_profile_distance">Vzdál.:</string>
 	<string name="elevation_profile_time">Čas:</string>
 	<string name="isolines_toast_zooms_1_10">Přiblížit pro prozkoumání izolinií</string>
+	<string name="downloader_loading_ios">Probíhá stahování</string>
+	<string name="download_map_title">Stáhnout mapu světa</string>
 	<string name="enable_keep_screen_on">Nechat obrazovku zapnutou</string>
 	<!-- Description in preferences -->
 	<string name="enable_keep_screen_on_description">Je-li tato funkce povolena, bude obrazovka při zobrazení mapy vždy zapnutá.</string>
@@ -726,6 +729,11 @@
 	<string name="aa_connected_to_car_notification_title">Připojení k automobilu</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Pěší turistika</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">Webový prohlížeč není k dispozici</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Autorizace OpenStreetMap je dočasně nedostupná kvůli novým omezením v Google Play 😾\nNáš tým pracuje na vyřešení tohoto problému. Buďte prosím trpěliví 🙏</string>
+	<string name="volume">Hlasitost</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresa/blok</string>
@@ -859,6 +867,7 @@
 	<string name="type.amenity.telephone">Telefon</string>
 	<string name="type.amenity.theatre">Divadlo</string>
 	<string name="type.amenity.toilets">Záchody</string>
+	<string name="type.toilets.yes">Záchody</string>
 	<string name="type.amenity.townhall">Radnice</string>
 	<string name="type.amenity.university">Univerzita</string>
 	<string name="type.amenity.vending_machine.cigarettes">Automat na cigarety</string>
@@ -894,7 +903,8 @@
 	<string name="type.boundary.protected_area.5">Chráněné území</string>
 	<string name="type.boundary.protected_area.6">Chráněné území</string>
 	<string name="type.building">Stavba</string>
-	<string name="type.building.address">Stavba</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Adresa</string>
 	<string name="type.building.has_parts">Stavba</string>
 	<string name="type.building_part">Stavba</string>
 	<string name="type.building.garage">Garáž</string>
@@ -1048,6 +1058,8 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.cycleway.tunnel">Tunel</string>
 	<string name="type.highway.footway">Cesta</string>
+	<string name="type.highway.footway.sidewalk">Chodník</string>
+	<string name="type.highway.footway.crossing">Přechod pro chodce</string>
 	<string name="type.highway.footway.alpine_hiking">Cesta</string>
 	<string name="type.highway.footway.area">Cesta</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1338,7 +1350,6 @@
 	<string name="type.natural.scrub">Křoviny</string>
 	<string name="type.natural.spring">Pramen</string>
 	<string name="type.natural.strait">Průliv</string>
-	<string name="type.natural.tree">Strom</string>
 	<string name="type.natural.tree_row">Řada stromů</string>
 	<string name="type.natural.vineyard">Vinice</string>
 	<string name="type.natural.volcano">Sopka</string>
@@ -1395,7 +1406,6 @@
 	<string name="type.power.plant.hydro">Vodní elektrárna</string>
 	<string name="type.power.plant.solar">Solární elektrárna</string>
 	<string name="type.power.plant.wind">Větrná elektrárna</string>
-	<string name="type.power.pole">Sloup elektrického vedení</string>
 	<string name="type.power.substation">Rozvodna</string>
 	<string name="type.power.tower">Sloup elektrického vedení</string>
 	<string name="type.railway.funicular">Lanovka</string>
@@ -1853,6 +1863,10 @@
 	<string name="type.wheelchair.limited">Omezený vstup pro vozíčkáře</string>
 	<string name="type.wheelchair.no">Bez přístupu pro vozíčkáře</string>
 	<string name="type.wheelchair.yes">Plný vstup pro vozíčkáře</string>
+	<string name="type.piste_type.snow_park">Snow Park</string>
+	<string name="type.piste_type.hike">Zimní stezka</string>
+	<string name="type.piste_type.connection">Piste Connection</string>
+	<string name="type.piste_type.skitour">Stezka Skitour</string>
 	<string name="type.amenity.events_venue">Místo konání akcí</string>
 	<string name="type.shop.auction">Aukce</string>
 	<string name="type.shop.collector">Sběratelské předměty</string>

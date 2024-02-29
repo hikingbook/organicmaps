@@ -124,13 +124,13 @@ public class ChartController implements OnChartValueSelectedListener,
 //  private void initAxises()
 //  {
 //    XAxis x = mChart.getXAxis();
-//    x.setLabelCount(CHART_X_LABEL_COUNT, false);
+//   x.setLabelCount(CHART_X_LABEL_COUNT, false);
 //    x.setDrawGridLines(false);
 //    x.setGranularity(CHART_AXIS_GRANULARITY);
-//    x.setGranularityEnabled(true);
+//   x.setGranularityEnabled(true);
 //    x.setTextColor(ThemeUtils.getColor(mContext, R.attr.elevationProfileAxisLabelColor));
 //    x.setPosition(XAxis.XAxisPosition.BOTTOM);
-//    x.setAxisLineColor(ThemeUtils.getColor(mContext, R.attr.dividerHorizontal));
+//    x.setAxisLineColor(ThemeUtils.getColor(mContext, androidx.appcompat.R.attr.dividerHorizontal));
 //    x.setAxisLineWidth(mContext.getResources().getDimensionPixelSize(R.dimen.divider_height));
 //    ValueFormatter xAxisFormatter = new AxisValueFormatter(mChart);
 //    x.setValueFormatter(xAxisFormatter);

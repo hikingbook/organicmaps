@@ -92,14 +92,14 @@ class TabAdapter extends FragmentPagerAdapter
 //      super(viewPager);
 //      mContext = viewPager.getContext();
 //    }
-//
+
 //    @Override
 //    public void onTabSelected(TabLayout.Tab tab)
 //    {
 //      super.onTabSelected(tab);
-//      Graphics.tint(mContext, tab.getIcon(), R.attr.colorAccent);
+//      Graphics.tint(mContext, tab.getIcon(), androidx.appcompat.R.attr.colorAccent);
 //    }
-//
+
 //    @Override
 //    public void onTabUnselected(TabLayout.Tab tab)
 //    {

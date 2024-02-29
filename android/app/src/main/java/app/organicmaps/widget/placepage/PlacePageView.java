@@ -107,6 +107,8 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
   private TextView mTvLevel;
   private View mAtm;
   private TextView mTvAtm;
+  private View mCapacity;
+  private TextView mTvCapacity;
   private View mCuisine;
   private TextView mTvCuisine;
   private View mEntrance;
@@ -243,6 +245,8 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     mTvLevel = mFrame.findViewById(R.id.tv__place_level);
     mAtm = mFrame.findViewById(R.id.ll__place_atm);
     mTvAtm = mFrame.findViewById(R.id.tv__place_atm);
+    mCapacity = mFrame.findViewById(R.id.ll__place_capacity);
+    mTvCapacity = mFrame.findViewById(R.id.tv__place_capacity);
     mCuisine = mFrame.findViewById(R.id.ll__place_cuisine);
     mTvCuisine = mFrame.findViewById(R.id.tv__place_cuisine);
     mEntrance = mFrame.findViewById(R.id.ll__place_entrance);
@@ -259,6 +263,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     mOperator.setOnLongClickListener(this);
     mLevel.setOnLongClickListener(this);
     mAtm.setOnLongClickListener(this);
+    mCapacity.setOnLongClickListener(this);
 
     mDownloaderIcon = new DownloaderStatusIcon(mPreview.findViewById(R.id.downloader_status_frame));
 
@@ -398,6 +403,10 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     refreshWiFi();
     refreshMetadataOrHide(mMapObject.getMetadata(Metadata.MetadataType.FMD_FLATS), mEntrance, mTvEntrance);
     refreshMetadataOrHide(mMapObject.getMetadata(Metadata.MetadataType.FMD_LEVEL), mLevel, mTvLevel);
+
+    final String cap = mMapObject.getMetadata(Metadata.MetadataType.FMD_CAPACITY);
+    refreshMetadataOrHide(!TextUtils.isEmpty(cap) ? getString(R.string.capacity, cap) : "", mCapacity, mTvCapacity);
+
     refreshMetadataOrHide(mMapObject.hasAtm() ? getString(R.string.type_amenity_atm) : "", mAtm, mTvAtm);
 
 //    showTaxiOffer(mapObject);
@@ -567,6 +576,8 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
       items.add(mTvLevel.getText().toString());
     else if (id == R.id.ll__place_atm)
       items.add(mTvAtm.getText().toString());
+    else if (id == R.id.ll__place_capacity)
+      items.add(mTvCapacity.getText().toString());
 
     final Context context = requireContext();
     if (items.size() == 1)

@@ -525,9 +525,8 @@ Java_app_organicmaps_downloader_MapManager_nativeUnsubscribeOnCountryChanged(JNI
                                                                                  jclass clazz) {
     g_framework->NativeFramework()->SetCurrentCountryChangedListener(nullptr);
 
-    ASSERT(g_countryChangedListener, ());
-    env->DeleteGlobalRef(g_countryChangedListener);
-    g_countryChangedListener = nullptr;
+  env->DeleteGlobalRef(g_countryChangedListener);
+  g_countryChangedListener = nullptr;
 }
 
 // static boolean nativeHasUnsavedEditorChanges(String root);

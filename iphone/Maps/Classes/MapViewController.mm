@@ -508,6 +508,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   self.disableStandbyOnLocationStateMode = NO;
   switch (mode) {
     case MWMMyPositionModeNotFollowNoPosition:
+      [MWMLocationManager stop];
       break;
     case MWMMyPositionModePendingPosition:
       [MWMLocationManager start];
@@ -520,20 +521,6 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
     case MWMMyPositionModeFollowAndRotate:
       self.disableStandbyOnLocationStateMode = YES;
       break;
-  }
-}
-
-- (void)processMyPositionPendingTimeout {
-  [MWMLocationManager stop];
-  NSArray<id<MWMLocationModeListener>> *objects = self.listeners.allObjects;
-  for (id<MWMLocationModeListener> object in objects) {
-    [object processMyPositionPendingTimeout];
-  }
-  BOOL const isMapVisible = (self.navigationController.visibleViewController == self);
-  if (isMapVisible && ![MWMLocationManager isLocationProhibited]) {
-    [self.alertController presentLocationNotFoundAlertWithOkBlock:^{
-      GetFramework().SwitchMyPositionNextMode();
-    }];
   }
 }
 

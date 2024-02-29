@@ -78,7 +78,7 @@
 	<string name="core_my_places">Meus locais</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nome</string>
-	<!-- Editor title above street and house number -->
+	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Endereço</string>
 	<!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
 	<string name="list">Lista</string>
@@ -104,7 +104,7 @@
 	<string name="move_maps">Mover mapas?</string>
 	<!-- Error moving map files from one storage to another -->
 	<string name="move_maps_error">Erro ao mover arquivos de mapas</string>
-	<!-- Ask to wait user several minutes (some long process in modal dialog). -->
+	<!-- Ask user to wait several minutes (some long process in modal dialog). -->
 	<string name="wait_several_minutes">Isto pode demorar alguns minutos.\nPor favor aguarde…</string>
 	<!-- Measurement units title in settings activity -->
 	<string name="measurement_units">Unidades de medida</string>
@@ -190,7 +190,7 @@
 	<!-- Share by email button text, also used in editor and About. -->
 	<string name="email">Email</string>
 	<!-- Text for message when used successfully copied something -->
-	<string name="copied_to_clipboard">Copiado para a área de transferência: %1$s</string>
+	<string name="copied_to_clipboard">Copiado para a área de transferência: %s</string>
 	<!-- Used for bookmark editing -->
 	<string name="done">Feito</string>
 	<!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -483,15 +483,14 @@
 	<string name="editor_operator">Operador</string>
 	<string name="downloader_no_downloaded_maps_title">Você não fez o download de nenhum mapa</string>
 	<string name="downloader_no_downloaded_maps_message">Baixe mapas para pesquisar locais e usar navegação offline.</string>
-	<!-- Error title that appears after certain time without location. -->
-	<string name="current_location_unknown_title">Continuar detectando sua localização atual?</string>
-	<!-- Error that appears after certain time without location. -->
-	<string name="current_location_unknown_message">A localização atual é desconhecida. Talvez você esteja em um edifício ou túnel.</string>
-	<string name="current_location_unknown_continue_button">Continuar</string>
-	<string name="current_location_unknown_stop_button">Parar</string>
+	<string name="stop">Parar</string>
+	<!-- abbreviation for meters -->
 	<string name="m">m</string>
+	<!-- abbreviation for kilometers -->
 	<string name="km">km</string>
+	<!-- abbreviation for kilometers per hour -->
 	<string name="kilometers_per_hour">km/h</string>
+	<!-- abbreviation for mile(s) -->
 	<string name="mi">mi</string>
 	<!-- A unit of measure -->
 	<string name="ft">ft</string>
@@ -696,6 +695,7 @@
 	<string name="elevation_profile_distance">Dist.:</string>
 	<string name="elevation_profile_time">Tempo:</string>
 	<string name="isolines_toast_zooms_1_10">Use o zoom para explorar as isolinhas</string>
+	<string name="downloader_loading_ios">Baixando</string>
 	<string name="download_map_title">Baixar mapa mundial</string>
 	<!-- Used in DownloadResources startup screen -->
 	<string name="disk_error">Não foi possível criar a pasta e mover os arquivos à memória interna ou sdcard do dispositivo</string>
@@ -734,6 +734,10 @@
 	<string name="aa_grant_permissions">Conceder permissão</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Conectado ao carro</string>
+	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
+	<string name="browser_not_available">O navegador da Web não está disponível</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">A autorização do OpenStreetMap está temporariamente indisponível devido a novas restrições no Google Play 😾\nNossa equipe está trabalhando para resolver esse problema. Por favor, seja paciente 🙏</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Endereço/Bloco</string>
@@ -756,7 +760,6 @@
 	<string name="type.aeroway.taxiway">Pista de rolagem</string>
 	<string name="type.aeroway.terminal">Aerogare de passageiros</string>
 	<string name="type.amenity">Amenidades</string>
-	<string name="type.amenity.arts_centre">Centros de arte</string>
 	<string name="type.amenity.atm">Caixa eletrônico</string>
 	<string name="type.amenity.bank">Banco</string>
 	<string name="type.amenity.bar">Drinqueria</string>
@@ -866,6 +869,7 @@
 	<string name="type.amenity.telephone">Telefone</string>
 	<string name="type.amenity.theatre">Teatro</string>
 	<string name="type.amenity.toilets">Banheiro</string>
+	<string name="type.toilets.yes">Banheiro</string>
 	<string name="type.amenity.townhall">Prefeitura ou subprefeitura</string>
 	<string name="type.amenity.university">Universidade</string>
 	<string name="type.amenity.vending_machine">Máquina de venda automática</string>
@@ -935,7 +939,8 @@
 	<string name="type.boundary.protected_area.5">Área protegida</string>
 	<string name="type.boundary.protected_area.6">Área protegida</string>
 	<string name="type.building">Edifício</string>
-	<string name="type.building.address">Edifício</string>
+	<!-- Duplicates [address] in strings.txt -->
+	<string name="type.building.address">Endereço</string>
 	<string name="type.building.has_parts">Edifício</string>
 	<string name="type.building_part">Edifício</string>
 	<string name="type.building.garage">Garagem</string>
@@ -1080,6 +1085,8 @@
 	<string name="type.highway.cycleway.tunnel">Túnel para ciclistas</string>
 	<string name="type.highway.elevator">Elevador</string>
 	<string name="type.highway.footway">Caminho pedonal</string>
+	<string name="type.highway.footway.sidewalk">Calçada</string>
+	<string name="type.highway.footway.crossing">Travessia de pedestres</string>
 	<string name="type.highway.footway.alpine_hiking">Caminho pedonal</string>
 	<string name="type.highway.footway.area">Área de pedestres</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
@@ -1313,7 +1320,6 @@
 	<string name="type.leisure.garden.residential">Jardim residencial</string>
 	<string name="type.leisure.golf_course">Campo de golfe</string>
 	<string name="type.leisure.ice_rink">Rinque de patinação</string>
-	<string name="type.leisure.landscape_reserve">Reserva natural</string>
 	<string name="type.leisure.marina">Marina</string>
 	<string name="type.leisure.nature_reserve">Reserva natural</string>
 	<string name="type.leisure.park">Parque</string>
@@ -1389,7 +1395,6 @@
 	<string name="type.power.plant.hydro">Usina hidrelétrica</string>
 	<string name="type.power.plant.solar">Planta de energia solar</string>
 	<string name="type.power.plant.wind">Usina de energia eólica</string>
-	<string name="type.power.pole">Poste de eletricidade</string>
 	<string name="type.power.station">Subestação elétrica</string>
 	<string name="type.power.substation">Subestação elétrica</string>
 	<string name="type.power.tower">Torre de eletricidade</string>
@@ -1853,16 +1858,25 @@
 	<string name="type.aerialway.platter">Telesqui de disco</string>
 	<string name="type.aerialway.rope_tow">Telesqui de corda</string>
 	<string name="type.aerialway.t.bar">Telesqui de barra em T</string>
-	<string name="type.piste_type">Tipo de pista</string>
 	<string name="type.piste_type.downhill">Esqui alpino</string>
+	<string name="type.piste_type.downhill.area">Esqui alpino</string>
 	<string name="type.piste_type.downhill.advanced">Esqui alpino avançado</string>
+	<string name="type.piste_type.downhill.advanced.area">Esqui alpino avançado</string>
 	<string name="type.piste_type.downhill.easy">Esqui alpino fácil</string>
+	<string name="type.piste_type.downhill.easy.area">Esqui alpino fácil</string>
 	<string name="type.piste_type.downhill.expert">Esqui alpino avançado</string>
+	<string name="type.piste_type.downhill.expert.area">Esqui alpino avançado</string>
 	<string name="type.piste_type.downhill.freeride">Esqui alpino livre</string>
 	<string name="type.piste_type.downhill.intermediate">Esqui alpino intermédio</string>
+	<string name="type.piste_type.downhill.intermediate.area">Esqui alpino intermédio</string>
 	<string name="type.piste_type.downhill.novice">Esqui alpino iniciante</string>
+	<string name="type.piste_type.downhill.novice.area">Esqui alpino iniciante</string>
 	<string name="type.piste_type.nordic">Pista tipo nórdico</string>
 	<string name="type.piste_type.sled">Pista para trenós</string>
+	<string name="type.piste_type.sled.area">Pista para trenós</string>
+	<string name="type.piste_type.hike">Trilha de caminhada na neve</string>
+	<string name="type.piste_type.connection">Conexão às pistas</string>
+	<string name="type.piste_type.skitour">Trilha de esqui de passeio</string>
 	<string name="type.amenity.events_venue">Local do evento</string>
 	<string name="type.shop.collector">Colecionáveis</string>
 </resources>

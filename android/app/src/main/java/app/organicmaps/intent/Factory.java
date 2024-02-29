@@ -5,9 +5,6 @@
 
 package app.organicmaps.intent;
 
-import static app.organicmaps.api.Const.EXTRA_PICK_POINT;
-
-import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,7 +17,6 @@ import java.io.File;
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
 import app.organicmaps.MwmActivity;
-import app.organicmaps.MwmApplication;
 import app.organicmaps.api.ParsedRoutingData;
 import app.organicmaps.api.ParsedSearchRequest;
 import app.organicmaps.api.RequestType;
@@ -31,6 +27,7 @@ import app.organicmaps.bookmarks.data.MapObject;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.search.SearchActivity;
 import app.organicmaps.search.SearchEngine;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.StorageUtils;
 import app.organicmaps.util.concurrency.ThreadPool;
 
@@ -38,7 +35,7 @@ public class Factory
 {
   public static boolean isStartedForApiResult(@NonNull Intent intent)
   {
-    return intent.getBooleanExtra(EXTRA_PICK_POINT, false);
+    return (intent.getFlags() & Intent.FLAG_ACTIVITY_FORWARD_RESULT) != 0;
   }
 
   public static class KmzKmlProcessor implements IntentProcessor
@@ -57,12 +54,11 @@ public class Factory
       if (uri == null)
         return false;
 
-      Application app = MwmApplication.from(activity);
-      final File tempDir = new File(StorageUtils.getTempPath(app));
+//      Application app = MwmApplication.from(activity);
+//      final File tempDir = new File(StorageUtils.getTempPath(app));
+      final File tempDir = new File(StorageUtils.getTempPath(OrganicmapsFrameworkAdapter.INSTANCE.getApplication()));
       final ContentResolver resolver = activity.getContentResolver();
-      ThreadPool.getStorage().execute(() -> {
-        BookmarkManager.INSTANCE.importBookmarksFile(resolver, uri, tempDir);
-      });
+      ThreadPool.getStorage().execute(() -> BookmarkManager.INSTANCE.importBookmarksFile(resolver, uri, tempDir));
       return false;
     }
   }

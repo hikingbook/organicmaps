@@ -5,6 +5,8 @@
 
 #include "indexer/classificator.hpp"
 
+#include "platform/localization.hpp"
+
 #include "geometry/mercator.hpp"
 
 #include "base/string_utils.hpp"
@@ -64,6 +66,18 @@ uint32_t Result::GetFeatureType() const
   return m_featureType;
 }
 
+std::string Result::GetLocalizedFeatureType() const
+{
+  ASSERT_EQUAL(m_resultType, Type::Feature, ());
+  return platform::GetLocalizedTypeName(classif().GetReadableObjectName(m_featureType));
+}
+
+std::string Result::GetFeatureDescription() const
+{
+  ASSERT_EQUAL(m_resultType, Type::Feature, ());
+  return GetLocalizedFeatureType() + GetDescription();
+}
+
 m2::PointD Result::GetFeatureCenter() const
 {
   ASSERT(HasPoint(), ());
@@ -107,6 +121,7 @@ bool Result::IsEqualFeature(Result const & r) const
   if (ftypes::IsPublicTransportStopChecker::Instance()(m_featureType))
     return PointDistance(m_center, r.m_center) < 150.0;
 
+  /// @todo Keep this check until RemoveDuplicatingLinear will be fixed.
   // Filter same streets (with 'same logical street distance' threshold).
   if (ftypes::IsWayChecker::Instance().GetSearchRank(m_featureType) != ftypes::IsWayChecker::Default)
     return PointDistance(m_center, r.m_center) < 2000.0;
