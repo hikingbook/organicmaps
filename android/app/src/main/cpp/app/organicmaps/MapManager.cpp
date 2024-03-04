@@ -67,7 +67,7 @@ struct CountryItemBuilder
   jclass m_class;
   jmethodID m_ctor;
   jfieldID m_Id, m_Name, m_DirectParentId, m_TopmostParentId, m_DirectParentName, m_TopmostParentName,
-          m_Description, m_Size, m_EnqueuedSize, m_TotalSize, m_ChildCount, m_TotalChildCount,
+          m_Description, m_Size, m_EnqueuedSize, m_TotalSize, m_ChildCount, m_TotalChildCount, m_downloadedChildCount,
           m_Present, m_Progress, m_DownloadedBytes, m_BytesToDownload, m_Category, m_Status, m_ErrorCode, m_HikingbookProMapStatus, m_HikingbookProMapSize;
 
   CountryItemBuilder(JNIEnv *env)
@@ -87,6 +87,7 @@ struct CountryItemBuilder
     m_TotalSize = env->GetFieldID(m_class, "totalSize", "J");
     m_ChildCount = env->GetFieldID(m_class, "childCount", "I");
     m_TotalChildCount = env->GetFieldID(m_class, "totalChildCount", "I");
+    m_downloadedChildCount = env->GetFieldID(m_class, "downloadedChildCount", "I");
     m_Present = env->GetFieldID(m_class, "present", "Z");
     m_Progress = env->GetFieldID(m_class, "progress", "F");
     m_DownloadedBytes = env->GetFieldID(m_class, "downloadedBytes", "J");
@@ -232,6 +233,7 @@ static void UpdateItem(JNIEnv * env, jobject item, storage::NodeAttrs const & at
   // Child counts
   env->SetIntField(item, ciBuilder.m_ChildCount, attrs.m_downloadingMwmCounter);
   env->SetIntField(item, ciBuilder.m_TotalChildCount, attrs.m_mwmCounter);
+  env->SetIntField(item, ciBuilder.m_downloadedChildCount, attrs.m_localMwmCounter);
 
     // Status and error code
     UpdateItemShort(env, item, attrs.m_status, attrs.m_error, attrs.m_hikingbookProMapStatus);
