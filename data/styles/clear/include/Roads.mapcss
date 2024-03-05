@@ -683,21 +683,6 @@ line|z14-[highway=raceway],
 {color: @track;opacity: 0.7;}
 line|z15-[leisure=track][!area],
 {color: @sport;opacity: 0.7;}
-line|z14-[highway=path],
-line|z14-[highway=footway][sac_scale],
-{color: @path;opacity: 1;}
-/* Reference: https://github.com/alpha-rudy/taiwan-topo/blob/4aa4c8d219bf3ba4739ed1ae2fa19a74f01976f9/osm_scripts/process_osm.py */
-line|z14-[highway=path][trail_visibility=bad],
-line|z14-[highway=path][trail_visibility=horrible],
-line|z14-[highway=path][trail_visibility=no],
-line|z14-[highway=path][sac_scale=demanding_alpine_hiking],
-line|z14-[highway=path][sac_scale=difficult_alpine_hiking],
-line|z14-[highway=footway][trail_visibility=bad],
-line|z14-[highway=footway][trail_visibility=horrible],
-line|z14-[highway=footway][trail_visibility=no],
-line|z14-[highway=footway][sac_scale=demanding_alpine_hiking],
-line|z14-[highway=footway][sac_scale=difficult_alpine_hiking],
-{color: @difficult_alpine_hiking_path;opacity: 1;}
 line|z14-[highway=bridleway]
 {color: @bridleway;opacity: 0.6;}
 line|z15-[highway=footway],
