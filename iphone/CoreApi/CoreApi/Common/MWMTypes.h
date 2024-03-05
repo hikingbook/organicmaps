@@ -17,8 +17,6 @@ typedef NS_ENUM(NSUInteger, MWMTheme) {
   MWMThemeNight,
   MWMThemeVehicleDay,
   MWMThemeVehicleNight,
-  MWMThemeOutdoorDay,
-  MWMThemeOutdoorNight,
   MWMThemeAuto
 };
 

@@ -49,10 +49,6 @@
         return isOutdoor ? MapStyleOutdoorsDark : MapStyleDark;
       case MWMThemeVehicleNight:
         return MapStyleVehicleDark;
-      case MWMThemeOutdoorDay:
-        return MapStyleOutdoorsClear;
-      case MWMThemeOutdoorNight:
-        return MapStyleOutdoorsDark;
       case MWMThemeAuto:
         NSAssert(NO, @"Invalid theme");
         return MapStyleClear;
