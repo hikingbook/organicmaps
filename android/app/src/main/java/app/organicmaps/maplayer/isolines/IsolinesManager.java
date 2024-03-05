@@ -11,7 +11,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import app.organicmaps.Framework;
-import app.organicmaps.MwmApplication;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 
 public class IsolinesManager
 {
@@ -46,12 +46,13 @@ public class IsolinesManager
     registerListener();
   }
 
-//  @NonNull
-//  public static IsolinesManager from(@NonNull Context context)
-//  {
+  @NonNull
+  public static IsolinesManager from(@NonNull Context context)
+  {
 //    MwmApplication app = (MwmApplication) context.getApplicationContext();
 //   return app.getIsolinesManager();
-//  }
+    return OrganicmapsFrameworkAdapter.INSTANCE.getIsolinesManager();
+  }
 
   private static native void nativeAddListener(@NonNull OnIsolinesChangedListener listener);
   private static native void nativeRemoveListener(@NonNull OnIsolinesChangedListener listener);

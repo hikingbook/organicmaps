@@ -36,6 +36,8 @@ import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
+import app.organicmaps.maplayer.isolines.IsolinesManager;
+import app.organicmaps.maplayer.subway.SubwayManager;
 import app.organicmaps.util.log.LogsManager;
 
 public enum OrganicmapsFrameworkAdapter {
@@ -135,6 +137,18 @@ public enum OrganicmapsFrameworkAdapter {
     public DisplayManager getDisplayManager()
     {
         return mwmApplication.getDisplayManager();
+    }
+
+    @NonNull
+    public IsolinesManager getIsolinesManager()
+    {
+        return mwmApplication.getIsolinesManager();
+    }
+
+    @NonNull
+    public SubwayManager getSubwayManager()
+    {
+        return mwmApplication.getSubwayManager();
     }
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
@@ -404,17 +418,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     public void clearLines() {
         BookmarkManager.INSTANCE.nativeClearLines();
-    }
-
-    /**
-     * Iso Lines
-     */
-    public boolean isIsoLinesEnabled() {
-        return Framework.nativeIsIsolinesLayerEnabled();
-    }
-
-    public void toggleIsoLines() {
-        Framework.nativeSetIsolinesLayerEnabled(!Framework.nativeIsIsolinesLayerEnabled());
     }
 
     /**

@@ -37,6 +37,9 @@ import app.organicmaps.downloader.MapManager;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
+import app.organicmaps.maplayer.isolines.IsolinesManager;
+import app.organicmaps.maplayer.subway.SubwayManager;
+import app.organicmaps.maplayer.traffic.TrafficManager;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.search.SearchEngine;
 import app.organicmaps.settings.StoragePathManager;
@@ -56,13 +59,13 @@ public class MwmApplication extends Application implements Application.ActivityL
   @NonNull
   private static final String TAG = MwmApplication.class.getSimpleName();
 
-//  @SuppressWarnings("NotNullFieldNotInitialized")
-//  @NonNull
-//  private SubwayManager mSubwayManager;
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
+  private SubwayManager mSubwayManager;
 
-//  @SuppressWarnings("NotNullFieldNotInitialized")
-//  @NonNull
-//  private IsolinesManager mIsolinesManager;
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
+  private IsolinesManager mIsolinesManager;
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
@@ -94,16 +97,16 @@ public class MwmApplication extends Application implements Application.ActivityL
     return mTopActivity != null ? mTopActivity.get() : null;
   }
 
-//  @NonNull
-//  public SubwayManager getSubwayManager()
-//  {
-//    return mSubwayManager;
-//  }
+  @NonNull
+  public SubwayManager getSubwayManager()
+  {
+    return mSubwayManager;
+  }
 
-//  public IsolinesManager getIsolinesManager()
-//  {
-//    return mIsolinesManager;
-//  }
+  public IsolinesManager getIsolinesManager()
+  {
+    return mIsolinesManager;
+  }
 
   @NonNull
   public LocationHelper getLocationHelper()
@@ -171,8 +174,8 @@ public class MwmApplication extends Application implements Application.ActivityL
 //    NavigationService.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
     registerActivityLifecycleCallbacks(this);
-//    mSubwayManager = new SubwayManager(this);
-//    mIsolinesManager = new IsolinesManager(this);
+    mSubwayManager = new SubwayManager(this);
+    mIsolinesManager = new IsolinesManager(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     mLocationHelper = new LocationHelper(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     mSensorHelper = new SensorHelper(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
     mDisplayManager = new DisplayManager();
@@ -251,9 +254,9 @@ public class MwmApplication extends Application implements Application.ActivityL
 //    TtsPlayer.INSTANCE.initialize(this);
     ThemeSwitcher.INSTANCE.restart(false);
 //    RoutingController.get().initialize(this);
-//    TrafficManager.INSTANCE.initialize();
-//    SubwayManager.from(this).initialize();
-//    IsolinesManager.from(this).initialize();
+    TrafficManager.INSTANCE.initialize();
+    SubwayManager.from(this).initialize();
+    IsolinesManager.from(this).initialize();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(mProcessLifecycleObserver);
 
     Logger.i(TAG, "Framework initialized");

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import app.organicmaps.Framework;
 import app.organicmaps.MwmApplication;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 
 public class SubwayManager
 {
@@ -46,12 +47,13 @@ public class SubwayManager
     nativeAddListener(mSchemeChangedListener);
   }
 
-//  @NonNull
-//  public static SubwayManager from(@NonNull Context context)
-//  {
+  @NonNull
+  public static SubwayManager from(@NonNull Context context)
+  {
 //    MwmApplication app = (MwmApplication) context.getApplicationContext();
 //    return app.getSubwayManager();
-//  }
+    return OrganicmapsFrameworkAdapter.INSTANCE.getSubwayManager();
+  }
   private static native void nativeAddListener(@NonNull OnTransitSchemeChangedListener listener);
 
   private static native void nativeRemoveListener(@NonNull OnTransitSchemeChangedListener listener);
