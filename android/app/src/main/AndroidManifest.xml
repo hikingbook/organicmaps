@@ -69,6 +69,7 @@
       android:theme="@style/MwmTheme"
       android:supportsRtl="true"
       android:networkSecurityConfig="@xml/network_security_config"
+      android:gwpAsanMode="always"
       tools:targetApi="33">
 
     <!-- Allows for config and orientation change without killing/restarting main activity -->
