@@ -118,12 +118,7 @@ extern "C"
 // static String nativeGetRoot();
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_downloader_MapManager_nativeGetRoot(JNIEnv *env, jclass clazz) {
-    try {
-        return jni::ToJavaString(env, GetStorage().GetRootId());
-    }
-    catch(...) {
-        return jni::ToJavaString(env, "Countries");
-    }
+    return jni::ToJavaString(env, GetStorage().GetRootId());
 }
 
 // static boolean nativeMoveFile(String oldFile, String newFile);
@@ -356,55 +351,46 @@ Java_app_organicmaps_downloader_MapManager_nativeIsDownloading(JNIEnv *env, jcla
 }
 
 static void StartBatchingCallbacks() {
-    try {
-        CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("StartBatchingCallbacks"));
-        ASSERT(!g_isBatched, ());
-        ASSERT(g_batchedCallbackData.empty(), ());
+    CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("StartBatchingCallbacks"));
+    ASSERT(!g_isBatched, ());
+    ASSERT(g_batchedCallbackData.empty(), ());
 
-        g_isBatched = true;
-    }
-    catch(...) {
-        g_isBatched = true;
-    }
+    g_isBatched = true;
 }
 
 static void EndBatchingCallbacks(JNIEnv *env) {
-    try {
-        CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("EndBatchingCallbacks"));
+    CHECK_THREAD_CHECKER(g_batchingThreadChecker, ("EndBatchingCallbacks"));
 
-        auto const &listBuilder = jni::ListBuilder::Instance(env);
+    auto const & listBuilder = jni::ListBuilder::Instance(env);
 
-        for (auto &key: g_batchedCallbackData) {
-            // Allocate resulting ArrayList
-            jni::TScopedLocalRef const list(env, listBuilder.CreateArray(env, key.second.size()));
+    for (auto & key : g_batchedCallbackData)
+    {
+        // Allocate resulting ArrayList
+        jni::TScopedLocalRef const list(env, listBuilder.CreateArray(env, key.second.size()));
 
-            for (TBatchedData const &dataItem: key.second) {
-                // Create StorageCallbackData instance…
-                static jclass batchDataClass = jni::GetGlobalClassRef(env,
-                                                                      "app/organicmaps/downloader/MapManager$StorageCallbackData");
-                static jmethodID batchDataCtor = jni::GetConstructorID(env, batchDataClass,
-                                                                       "(Ljava/lang/String;IIIZ)V");
+        for (TBatchedData const & dataItem : key.second)
+        {
+            // Create StorageCallbackData instance…
+            static jclass batchDataClass = jni::GetGlobalClassRef(env, "app/organicmaps/downloader/MapManager$StorageCallbackData");
+            static jmethodID batchDataCtor = jni::GetConstructorID(env, batchDataClass, "(Ljava/lang/String;IIIZ)V");
 
-                jni::TScopedLocalRef const id(env, jni::ToJavaString(env, dataItem.m_countryId));
-                jni::TScopedLocalRef const item(env,
-                                                env->NewObject(batchDataClass, batchDataCtor,
-                                                               id.get(),
-                                                               static_cast<jint>(dataItem.m_newOrganicMapStatus),
-                                                               static_cast<jint>(dataItem.m_newHikingbookProMapStatus),
-                                                               static_cast<jint>(dataItem.m_errorCode),
-                                                               dataItem.m_isLeaf));
-                // …and put it into the resulting list
-                env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
-            }
-
-            g_batchedCallbackData.clear();
-            g_isBatched = false;
+            jni::TScopedLocalRef const id(env, jni::ToJavaString(env, dataItem.m_countryId));
+            jni::TScopedLocalRef const item(env, env->NewObject(batchDataClass, batchDataCtor, id.get(),
+                                                                static_cast<jint>(dataItem.m_newOrganicMapStatus),
+                                                                static_cast<jint>(dataItem.m_newHikingbookProMapStatus),
+                                                                static_cast<jint>(dataItem.m_errorCode),
+                                                                dataItem.m_isLeaf));
+            // …and put it into the resulting list
+            env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
         }
+
+        // Invoke Java callback
+        jmethodID const method = jni::GetMethodID(env, key.first, "onStatusChanged", "(Ljava/util/List;)V");
+        env->CallVoidMethod(key.first, method, list.get());
     }
-    catch(...) {
-        g_batchedCallbackData.clear();
-        g_isBatched = false;
-    }
+
+    g_batchedCallbackData.clear();
+    g_isBatched = false;
 }
 
 // static void nativeDownload(String root);
@@ -609,25 +595,20 @@ JNIEXPORT jboolean JNICALL
 Java_app_organicmaps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JNIEnv *env,
                                                                               jclass clazz,
                                                                               jstring root) {
-    try {
-        auto const countryId = jni::ToNativeString(env, root);
-        auto const localFile = GetStorage().GetLatestLocalFile(countryId);
-        if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
-            return false;
-        }
+    auto const countryId = jni::ToNativeString(env, root);
+    auto const localFile = GetStorage().GetLatestLocalFile(countryId);
+    if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
+        return false;
+    }
 
-        auto const path = localFile->GetPath(MapFileType::Map);
-        Platform &pl = GetPlatform();
-        auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
-        if (version.GetFormat() < version::Format::v11) {
-            Java_app_organicmaps_downloader_MapManager_nativeDelete(env, clazz, root);
-            return true;
-        }
-        return false;
+    auto const path = localFile->GetPath(MapFileType::Map);
+    Platform &pl = GetPlatform();
+    auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
+    if (version.GetFormat() < version::Format::v11) {
+        Java_app_organicmaps_downloader_MapManager_nativeDelete(env, clazz, root);
+        return true;
     }
-    catch(...) {
-        return false;
-    }
+    return false;
 }
 
 // static @Nullable void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
