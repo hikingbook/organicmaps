@@ -98,6 +98,9 @@ using namespace storage;
 
     switch (nodeAttrs.m_status) {
       case NodeStatus::NotDownloaded:
+            m_autoDownloadCountryId = kInvalidCountryId;
+            [self showDownloadRequest];
+            break;
       case NodeStatus::Partly: {
         MapViewController *controller = self.controller;
         BOOL const isMapVisible = [controller.navigationController.topViewController isEqual:controller];
@@ -298,13 +301,11 @@ using namespace storage;
 - (IBAction)downloadAction {
     // Added by Zheng-Xiang Ke
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
-        if (![delegate downloadDialog:self shouldDownloadMap:@(m_countryId.c_str())]) {
-            return;
-        }
+    if ([delegate respondsToSelector:@selector(downloadDialog:presentMapStyle:)]) {
+        [delegate downloadDialog:self presentMapStyle:@(m_countryId.c_str())];
     }
-  [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
-                                 onSuccess:^{ [self showInQueue]; }];
+//  [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
+//                                 onSuccess:^{ [self showInQueue]; }];
 }
 
 #pragma mark - Properties
