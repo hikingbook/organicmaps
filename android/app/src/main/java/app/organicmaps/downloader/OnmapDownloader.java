@@ -41,7 +41,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   public IDownloaderDelegate downloaderDelegate;
 
   private int mStorageSubscriptionSlot;
-  private int mPreviousCountryItemStatus;
 
   @Nullable
   private CountryItem mCurrentCountry;
@@ -89,12 +88,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     public void onCurrentCountryChanged(String countryId)
     {
       mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
-      if (mCurrentCountry != null) {
-        mPreviousCountryItemStatus = countryItemStatus();
-      }
       updateState(false);
       if (downloaderDelegate != null) {
-        downloaderDelegate.onCurrentCountryChanged(countryId);
+        downloaderDelegate.onCurrentCountryChanged(mCurrentCountry);
       }
     }
   };
@@ -108,9 +104,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   {
     if (country == null) return false;
 
-    boolean enqueued = country.status == CountryItem.STATUS_ENQUEUED;
-    boolean progress = country.status == CountryItem.STATUS_PROGRESS;
-    boolean applying = country.status == CountryItem.STATUS_APPLYING;
+    boolean enqueued = country.status == CountryItem.STATUS_ENQUEUED || country.hikingbookProMapStatus == CountryItem.STATUS_ENQUEUED;
+    boolean progress = country.status == CountryItem.STATUS_PROGRESS || country.hikingbookProMapStatus == CountryItem.STATUS_PROGRESS;
+    boolean applying = country.status == CountryItem.STATUS_APPLYING || country.hikingbookProMapStatus == CountryItem.STATUS_APPLYING;
     return enqueued || progress || applying;
   }
 
@@ -133,7 +129,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       boolean failed = (status == CountryItem.STATUS_FAILED);
 
       showFrame = (enqueued || progress || failed ||
-                   status == CountryItem.STATUS_DOWNLOADABLE);
+                  status == CountryItem.STATUS_DOWNLOADABLE);
 
       if (showFrame)
       {
@@ -166,11 +162,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
           }
           else
           {
-            long size = mCurrentCountry.totalSize;
-            if (getMapSource() == MapSource.HIKINGBOOK_PRO_MAPS) {
-              size = mCurrentCountry.hikingbookProMapSize;
-            }
-            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), size);
+            sizeText = "";
+//            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), mCurrentCountry.totalSize);
 
             if (shouldAutoDownload &&
                 Config.isAutodownloadEnabled() &&
@@ -196,6 +189,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         }
 
         mSize.setText(sizeText);
+        mSize.setVisibility(sizeText.isBlank() ? View.GONE : View.VISIBLE);
       }
     }
 
@@ -211,19 +205,13 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   }
 
   private int countryItemStatus() {
+    if (mCurrentCountry == null) {
+      return CountryItem.STATUS_UNKNOWN;
+    }
     if (getMapSource() == MapSource.HIKINGBOOK_PRO_MAPS) {
       return mCurrentCountry.hikingbookProMapStatus;
     }
     return mCurrentCountry.status;
-  }
-
-  private void setCountryItemStatus(int status) {
-    if (getMapSource() == MapSource.HIKINGBOOK_PRO_MAPS) {
-      mCurrentCountry.hikingbookProMapStatus = status;
-    }
-    else {
-      mCurrentCountry.status = status;
-    }
   }
 
   public OnmapDownloader(Fragment fragment)
@@ -247,26 +235,19 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         if (mCurrentCountry == null)
           return;
 
-        // Modified by Ke, Zheng-Xiang
-        setCountryItemStatus(mPreviousCountryItemStatus);
-        updateState(false);
-
         MapManager.nativeCancel(mCurrentCountry.id);
         setAutodownloadLocked(true);
       }
     });
       mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null :
       mCurrentCountry.id, () -> {
-      if (downloaderDelegate != null && !downloaderDelegate.shouldDownloadMap(mCurrentCountry)) {
+      if (downloaderDelegate != null) {
+        downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
         return;
       }
+
       if (mCurrentCountry == null)
         return;
-
-      // Modified by Ke, Zheng-Xiang
-      mPreviousCountryItemStatus = countryItemStatus();
-      setCountryItemStatus(CountryItem.STATUS_ENQUEUED);
-      updateState(false);
 
       boolean retry = (countryItemStatus() == CountryItem.STATUS_FAILED);
       if (retry)
@@ -340,8 +321,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   }
 
   public interface IDownloaderDelegate {
-    boolean shouldDownloadMap(CountryItem countryItem);
     MapSource getMapSourceForCountry(CountryItem countryItem);
-    void onCurrentCountryChanged(String countryId);
+
+    void downloadButtonDidClick(CountryItem countryItem);
+    void onCurrentCountryChanged(CountryItem countryItem);
   }
 }
