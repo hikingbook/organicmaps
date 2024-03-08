@@ -118,10 +118,9 @@ MapSource LocalCountryFile::GetMapSource() const
 {
     if (m_countryFile.IsHikingbookProMapAvailable()) {
         auto size = GetSize(MapFileType::Map);
-        if (size == m_countryFile.GetRemoteSize()) {
-            return MapSource::Organicmaps;
-        }
-        else if (size == m_countryFile.GetHikingbookProMapRemoteSize()) {
+        auto proMapSizeDiff = max(size, m_countryFile.GetHikingbookProMapRemoteSize()) - min(size, m_countryFile.GetHikingbookProMapRemoteSize());
+        auto organicmapSizeDiff = max(size, m_countryFile.GetRemoteSize()) - min(size, m_countryFile.GetRemoteSize());
+        if (proMapSizeDiff == 0 || proMapSizeDiff < organicmapSizeDiff) {
             return MapSource::HikingbookProMaps;
         }
     }
