@@ -7,6 +7,7 @@
 #import "MapViewController.h"
 #import "Hikingbook-Swift-Header.h"
 #import "MWMMapDownloadDialogDelegate.h"
+#import "Masonry/Masonry.h"
 
 #include <CoreApi/Framework.h>
 
@@ -85,16 +86,20 @@ using namespace storage;
     }
     self.node.text = @(nodeAttrs.m_nodeLocalName.c_str());
     self.node.textColor = [UIColor blackPrimaryText];
-    self.nodeSize.hidden = NO;
-    self.nodeSize.textColor = [UIColor blackSecondaryText];
-      switch ([self mapSourceForCountry:@(self->m_countryId.c_str())]) {
-      case hikingbookProMaps:
-          self.nodeSize.text = formattedSize(nodeAttrs.m_hikingbookProMapSize);
-          break;
-      default:
-          self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
-          break;
-      }
+      
+    // nodeSize label should be hidden when presenting map size
+    [self hideNodeSizeLabel:YES];
+      
+//    self.nodeSize.hidden = NO;
+//    self.nodeSize.textColor = [UIColor blackSecondaryText];
+//      switch ([self mapSourceForCountry:@(self->m_countryId.c_str())]) {
+//      case hikingbookProMaps:
+//          self.nodeSize.text = formattedSize(nodeAttrs.m_hikingbookProMapSize);
+//          break;
+//      default:
+//          self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+//          break;
+//      }
 
     switch (nodeAttrs.m_status) {
       case NodeStatus::NotDownloaded:
@@ -175,6 +180,7 @@ using namespace storage;
 - (void)showError:(NodeErrorCode)errorCode {
   if (errorCode == NodeErrorCode::NoError)
     return;
+  [self hideNodeSizeLabel:NO];
   self.nodeSize.textColor = [UIColor red];
   self.nodeSize.text = L(@"country_status_download_failed");
   self.downloadButton.hidden = YES;
@@ -217,6 +223,7 @@ using namespace storage;
 }
 
 - (void)showDownloading:(CGFloat)progress {
+  [self hideNodeSizeLabel:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
   self.nodeSize.text =
     [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
@@ -233,6 +240,7 @@ using namespace storage;
 }
 
 - (void)showInQueue {
+  [self hideNodeSizeLabel:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
   self.nodeSize.text = L(@"downloader_queued");
   self.downloadButton.hidden = YES;
@@ -324,4 +332,13 @@ using namespace storage;
   return _skipDownloadTimes;
 }
 
+#pragma mark - Update UI
+- (void)hideNodeSizeLabel:(BOOL)isHidden {
+    CGFloat height = isHidden ? 0 : 30;
+    self.nodeSize.hidden = isHidden;
+    [self.nodeSize mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(height);
+    }];
+    
+}
 @end
