@@ -34,6 +34,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private final View mFrame;
   private final TextView mParent;
   private final TextView mTitle;
+  private final TextView mMapSource;
   private final TextView mSize;
   private final WheelProgressView mProgress;
   private final Button mButton;
@@ -135,6 +136,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       {
         boolean hasParent = !CountryItem.isRoot(mCurrentCountry.topmostParentId);
 
+        UiUtils.showIf(progress || enqueued, mMapSource);
+        UiUtils.showIf(progress || enqueued, mSize);
         UiUtils.showIf(progress || enqueued, mProgress);
         UiUtils.showIf(!progress && !enqueued, mButton);
         UiUtils.showIf(hasParent, mParent);
@@ -143,6 +146,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
           mParent.setText(mCurrentCountry.topmostParentName);
 
         mTitle.setText(mCurrentCountry.name);
+
+        mMapSource.setText(getMapSource().name());
 
         String sizeText;
 
@@ -189,7 +194,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         }
 
         mSize.setText(sizeText);
-        mSize.setVisibility(sizeText.isBlank() ? View.GONE : View.VISIBLE);
       }
     }
 
@@ -220,6 +224,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mFrame = fragment.getView().findViewById(R.id.onmap_downloader);
     mParent = mFrame.findViewById(R.id.downloader_parent);
     mTitle = mFrame.findViewById(R.id.downloader_title);
+    mMapSource = mFrame.findViewById(R.id.downloader_map_source);
     mSize = mFrame.findViewById(R.id.downloader_size);
     mNumMapLimit = (TextView)mFrame.findViewById(R.id.text_view_num_maps_limit);
 
