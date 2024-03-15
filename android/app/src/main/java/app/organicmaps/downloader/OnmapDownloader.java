@@ -147,7 +147,11 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
         mTitle.setText(mCurrentCountry.name);
 
-        mMapSource.setText(getMapSource().name());
+        String mapSourceName = getMapSource().name();
+        if (downloaderDelegate != null) {
+          mapSourceName = downloaderDelegate.l10nMapSource(getMapSource());
+        }
+        mMapSource.setText(mapSourceName);
 
         String sizeText;
 
@@ -203,7 +207,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private MapSource getMapSource() {
     MapSource mapSource = MapSource.ORGANIC_MAPS;
     if (downloaderDelegate != null) {
-      mapSource = downloaderDelegate.getMapSourceForCountry(mCurrentCountry);
+      mapSource = downloaderDelegate.getMainDownloadMapSource(mCurrentCountry);
     }
     return mapSource;
   }
@@ -326,9 +330,11 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   }
 
   public interface IDownloaderDelegate {
-    MapSource getMapSourceForCountry(CountryItem countryItem);
+    MapSource getMainDownloadMapSource(CountryItem countryItem);
 
     void downloadButtonDidClick(CountryItem countryItem);
     void onCurrentCountryChanged(CountryItem countryItem);
+
+    String l10nMapSource(MapSource mapSource);
   }
 }
