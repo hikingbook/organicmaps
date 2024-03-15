@@ -47,6 +47,8 @@ using namespace storage;
 @property(strong, nonatomic) IBOutlet UIButton *downloadButton;
 @property(strong, nonatomic) IBOutlet UIView *progressWrapper;
 @property(strong, nonatomic) IBOutlet UILabel *numDownloadedMapsLimitLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
+@property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
 
 @property(weak, nonatomic) MapViewController *controller;
 @property(nonatomic) MWMCircularProgress *progress;
@@ -88,7 +90,7 @@ using namespace storage;
     self.node.textColor = [UIColor blackPrimaryText];
       
     // nodeSize label should be hidden when presenting map size
-    [self hideNodeSizeLabel:YES];
+    [self hideMapInfoStackView:YES];
       
 //    self.nodeSize.hidden = NO;
 //    self.nodeSize.textColor = [UIColor blackSecondaryText];
@@ -180,7 +182,7 @@ using namespace storage;
 - (void)showError:(NodeErrorCode)errorCode {
   if (errorCode == NodeErrorCode::NoError)
     return;
-  [self hideNodeSizeLabel:NO];
+  [self hideMapInfoStackView:NO];
   self.nodeSize.textColor = [UIColor red];
   self.nodeSize.text = L(@"country_status_download_failed");
   self.downloadButton.hidden = YES;
@@ -223,7 +225,7 @@ using namespace storage;
 }
 
 - (void)showDownloading:(CGFloat)progress {
-  [self hideNodeSizeLabel:NO];
+  [self hideMapInfoStackView:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
   self.nodeSize.text =
     [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
@@ -240,7 +242,7 @@ using namespace storage;
 }
 
 - (void)showInQueue {
-  [self hideNodeSizeLabel:NO];
+  [self hideMapInfoStackView:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
   self.nodeSize.text = L(@"downloader_queued");
   self.downloadButton.hidden = YES;
@@ -271,6 +273,16 @@ using namespace storage;
         mapSource = [delegate downloadDialog:self mapSourceForCountry:countryId];
     }
     return mapSource;
+}
+
+- (NSString *) mapStyleString:(MWMMapSource)mapSource {
+    NSString *text = @"";
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:l10nMapSource:)]) {
+        text = [delegate downloadDialog:self l10nMapSource:mapSource];
+        
+    }
+    return text;
 }
 
 #pragma mark - MWMStorageObserver
@@ -333,12 +345,17 @@ using namespace storage;
 }
 
 #pragma mark - Update UI
-- (void)hideNodeSizeLabel:(BOOL)isHidden {
-    CGFloat height = isHidden ? 0 : 30;
-    self.nodeSize.hidden = isHidden;
-    [self.nodeSize mas_updateConstraints:^(MASConstraintMaker *make) {
+- (void)hideMapInfoStackView:(BOOL)isHidden {
+    if (!isHidden) {
+
+        self.mapStyleLabel.text = [self mapStyleString:[self mapSourceForCountry:@(m_countryId.c_str())]];
+        self.mapStyleLabel.textColor = [UIColor blackPrimaryText];
+    };
+    
+    CGFloat height = isHidden ? 0 : 50;
+    self.mapInfoStackView.hidden = isHidden;
+    [self.mapInfoStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(height);
     }];
-    
 }
 @end
