@@ -354,7 +354,7 @@ using namespace storage;
     
     CGFloat height = isHidden ? 0 : 50;
     self.mapInfoStackView.hidden = isHidden;
-    [self.mapInfoStackView mas_updateConstraints:^(MASConstraintMaker *make) {
+    [self.mapInfoStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(height);
     }];
 }
