@@ -275,6 +275,16 @@ using namespace storage;
     return mapSource;
 }
 
+- (NSString *) mapStyleString:(MWMMapSource)mapSource {
+    NSString *text = @"";
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:l10nMapSource:)]) {
+        text = [delegate downloadDialog:self l10nMapSource:mapSource];
+        
+    }
+    return text;
+}
+
 #pragma mark - MWMStorageObserver
 
 - (void)processCountryEvent:(NSString *)countryId {
@@ -337,10 +347,9 @@ using namespace storage;
 #pragma mark - Update UI
 - (void)hideMapInfoStackView:(BOOL)isHidden {
     if (!isHidden) {
-        id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-        if ([delegate respondsToSelector:@selector(downloadDialog:updateMapStyleLabel:downloadingMapForCountry:)]) {
-          [delegate downloadDialog:self updateMapStyleLabel:self.mapStyleLabel downloadingMapForCountry:@(m_countryId.c_str())];
-        }
+
+        self.mapStyleLabel.text = [self mapStyleString:[self mapSourceForCountry:@(m_countryId.c_str())]];
+        self.mapStyleLabel.textColor = [UIColor blackPrimaryText];
     };
     
     CGFloat height = isHidden ? 0 : 50;
