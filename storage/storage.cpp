@@ -1757,7 +1757,8 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
     nodeAttrs.m_localMwmCounter += 1;
     nodeAttrs.m_localMwmSize += localFile->GetSize(MapFileType::Map);
   });
-  nodeAttrs.m_present = m_localFiles.find(countryId) != m_localFiles.end();
+  auto isDownloading = nodeAttrs.m_status == NodeStatus::Downloading || nodeAttrs.m_status == NodeStatus::Applying || nodeAttrs.m_status == NodeStatus::InQueue || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Downloading || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Applying || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::InQueue;
+  nodeAttrs.m_present = m_localFiles.find(countryId) != m_localFiles.end() && !isDownloading;
 
   // Parents information.
   nodeAttrs.m_parentInfo.clear();

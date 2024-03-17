@@ -103,7 +103,12 @@ using namespace storage;
 //          break;
 //      }
 
-    switch (nodeAttrs.m_status) {
+    NodeStatus status = nodeAttrs.m_status;
+    MWMMapSource mapSource = [self mapSourceForCountry:@(m_countryId.c_str())];
+    if (mapSource == hikingbookProMaps) {
+        status = nodeAttrs.m_hikingbookProMapStatus;
+    }
+    switch (status) {
       case NodeStatus::NotDownloaded:
             m_autoDownloadCountryId = kInvalidCountryId;
             [self showDownloadRequest];
@@ -118,7 +123,7 @@ using namespace storage;
           }
         if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap) {
           m_autoDownloadCountryId = m_countryId;
-          [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
+          [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:mapSource
                                          onSuccess:^{
                                                       [self showInQueue];
                                                     }];
