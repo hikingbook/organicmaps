@@ -136,7 +136,12 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       {
         boolean hasParent = !CountryItem.isRoot(mCurrentCountry.topmostParentId);
 
-        UiUtils.showIf(progress || enqueued, mMapSource);
+        String mapSourceName = "";
+        if (downloaderDelegate != null) {
+          mapSourceName = downloaderDelegate.l10nMapSource(getMapSource());
+        }
+
+        UiUtils.showIf(!mapSourceName.isBlank() && (progress || enqueued), mMapSource);
         UiUtils.showIf(progress || enqueued, mSize);
         UiUtils.showIf(progress || enqueued, mProgress);
         UiUtils.showIf(!progress && !enqueued, mButton);
@@ -147,10 +152,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
         mTitle.setText(mCurrentCountry.name);
 
-        String mapSourceName = getMapSource().name();
-        if (downloaderDelegate != null) {
-          mapSourceName = downloaderDelegate.l10nMapSource(getMapSource());
-        }
         mMapSource.setText(mapSourceName);
 
         String sizeText;
