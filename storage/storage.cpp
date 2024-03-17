@@ -1706,11 +1706,30 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
   nodeAttrs.m_nodeLocalDescription =
       m_countryNameGetter.Get(countryId + LOCALIZATION_DESCRIPTION_SUFFIX);
     
+  // Hikingbook Pro Maps
+  nodeAttrs.m_hikingbookProMapSize = nodeValue.GetSubtreeHikingbookProMwmSizeBytes();
+  nodeAttrs.m_hikingbookProMapStatus = GetNodeStatus(*node, MapSource::HikingbookProMaps).status;
+    
   // Progress.
-  if (nodeAttrs.m_status == NodeStatus::OnDisk)
+  auto isDownloading = nodeAttrs.m_status == NodeStatus::Downloading || nodeAttrs.m_status == NodeStatus::Applying || nodeAttrs.m_status == NodeStatus::InQueue || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Downloading || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Applying || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::InQueue;
+  if (isDownloading) {
+      CountriesVec subtree;
+      node->ForEachInSubtree(
+          [&subtree](CountryTree::Node const & d) { subtree.push_back(d.Value().Name()); });
+
+      nodeAttrs.m_downloadingProgress = CalculateProgress(subtree);
+  }
+  else if (nodeAttrs.m_status == NodeStatus::OnDisk)
   {
     // Group or leaf node is on disk and up to date.
     MwmSize const subTreeSizeBytes = node->Value().GetSubtreeMwmSizeBytes();
+    nodeAttrs.m_downloadingProgress.m_bytesDownloaded = subTreeSizeBytes;
+    nodeAttrs.m_downloadingProgress.m_bytesTotal = subTreeSizeBytes;
+  }
+  else if (nodeAttrs.m_hikingbookProMapStatus == NodeStatus::OnDisk)
+  {
+    // Group or leaf node is on disk and up to date.
+    MwmSize const subTreeSizeBytes = node->Value().GetSubtreeHikingbookProMwmSizeBytes();
     nodeAttrs.m_downloadingProgress.m_bytesDownloaded = subTreeSizeBytes;
     nodeAttrs.m_downloadingProgress.m_bytesTotal = subTreeSizeBytes;
   }
@@ -1722,10 +1741,6 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
 
     nodeAttrs.m_downloadingProgress = CalculateProgress(subtree);
   }
-    
-    // Hikingbook Pro Maps
-    nodeAttrs.m_hikingbookProMapSize = nodeValue.GetSubtreeHikingbookProMwmSizeBytes();
-    nodeAttrs.m_hikingbookProMapStatus = GetNodeStatus(*node, MapSource::HikingbookProMaps).status;
     
   // Local mwm information and information about downloading mwms.
   nodeAttrs.m_localMwmCounter = 0;
@@ -1741,9 +1756,13 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
 
     // Downloading mwm information.
     StatusAndError const statusAndErr = GetNodeStatus(d, MapSource::Organicmaps);
+    StatusAndError const statusAndErrForHikingbookProMaps = GetNodeStatus(d, MapSource::HikingbookProMaps);
     ASSERT_NOT_EQUAL(statusAndErr.status, NodeStatus::Undefined, ());
-    if (statusAndErr.status != NodeStatus::NotDownloaded &&
-        statusAndErr.status != NodeStatus::Partly && d.ChildrenCount() == 0)
+    ASSERT_NOT_EQUAL(statusAndErrForHikingbookProMaps.status, NodeStatus::Undefined, ());
+    if (((statusAndErr.status != NodeStatus::NotDownloaded &&
+        statusAndErr.status != NodeStatus::Partly) || 
+         (statusAndErrForHikingbookProMaps.status != NodeStatus::NotDownloaded &&
+          statusAndErrForHikingbookProMaps.status != NodeStatus::Partly)) && d.ChildrenCount() == 0)
     {
       nodeAttrs.m_downloadingMwmCounter += 1;
       nodeAttrs.m_downloadingMwmSize += d.Value().GetSubtreeMwmSizeBytes();
@@ -1757,7 +1776,6 @@ void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) c
     nodeAttrs.m_localMwmCounter += 1;
     nodeAttrs.m_localMwmSize += localFile->GetSize(MapFileType::Map);
   });
-  auto isDownloading = nodeAttrs.m_status == NodeStatus::Downloading || nodeAttrs.m_status == NodeStatus::Applying || nodeAttrs.m_status == NodeStatus::InQueue || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Downloading || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::Applying || nodeAttrs.m_hikingbookProMapStatus == NodeStatus::InQueue;
   nodeAttrs.m_present = m_localFiles.find(countryId) != m_localFiles.end() && !isDownloading;
 
   // Parents information.
