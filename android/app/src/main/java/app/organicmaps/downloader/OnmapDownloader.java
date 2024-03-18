@@ -245,17 +245,17 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         if (mCurrentCountry == null)
           return;
 
-        MapManager.nativeCancel(mCurrentCountry.id);
+        if (downloaderDelegate != null) {
+          downloaderDelegate.cancelDownloadButtonDidClick(mCurrentCountry, getMapSource());
+        }
+        else {
+          MapManager.nativeCancel(mCurrentCountry.id);
+        }
         setAutodownloadLocked(true);
       }
     });
       mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null :
       mCurrentCountry.id, () -> {
-      if (downloaderDelegate != null) {
-        downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
-        return;
-      }
-
       if (mCurrentCountry == null)
         return;
 
@@ -267,8 +267,13 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       }
       else
       {
-        MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
+        if (downloaderDelegate != null) {
+          downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
+        }
+        else {
+          MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
 //        mActivity.requestPostNotificationsPermission();
+        }
       }
     }));
 
@@ -337,5 +342,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     void onCurrentCountryChanged(CountryItem countryItem);
 
     String l10nMapSource(MapSource mapSource);
+
+    void cancelDownloadButtonDidClick(CountryItem countryItem, MapSource mapSource);
   }
 }
