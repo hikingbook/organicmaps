@@ -103,8 +103,10 @@ using namespace storage;
 //          break;
 //      }
 
+      // Modified by Zheng-Xiang Ke
+      NSString *countryID = @(m_countryId.c_str());
     NodeStatus status = nodeAttrs.m_status;
-    MWMMapSource mapSource = [self mapSourceForCountry:@(m_countryId.c_str())];
+    MWMMapSource mapSource = [self mapSourceForCountry:countryID];
     if (mapSource == hikingbookProMaps) {
         status = nodeAttrs.m_hikingbookProMapStatus;
     }
@@ -119,11 +121,11 @@ using namespace storage;
           
           BOOL shouldDownloadMap = YES;
           if ([self.delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
-              shouldDownloadMap = [self.delegate downloadDialog:self shouldDownloadMap:@(m_countryId.c_str())];
+              shouldDownloadMap = [self.delegate downloadDialog:self shouldDownloadMap:countryID];
           }
         if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap) {
           m_autoDownloadCountryId = m_countryId;
-          [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:mapSource
+          [[MWMStorage sharedStorage] downloadNode:countryID mapSource:mapSource
                                          onSuccess:^{
                                                       [self showInQueue];
                                                     }];
@@ -311,13 +313,22 @@ using namespace storage;
 #pragma mark - MWMCircularProgressDelegate
 
 - (void)progressButtonPressed:(nonnull MWMCircularProgress *)progress {
+    // Modified by Zheng-Xiang Ke
+    NSString *countryID = @(m_countryId.c_str());
+    MWMMapSource mapSource = [self mapSourceForCountry:countryID];
   if (progress.state == MWMCircularProgressStateFailed) {
     [self showInQueue];
-    [[MWMStorage sharedStorage] retryDownloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]];
+    [[MWMStorage sharedStorage] retryDownloadNode:countryID mapSource:mapSource];
   } else {
     if (m_autoDownloadCountryId == m_countryId)
       self.isAutoDownloadCancelled = YES;
-    [[MWMStorage sharedStorage] cancelDownloadNode:@(m_countryId.c_str())];
+      id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+      if ([delegate respondsToSelector:@selector(downloadDialog:cancelDownload:mapSource:)]) {
+          [delegate downloadDialog:self cancelDownload:countryID mapSource:mapSource];
+      }
+      else {
+          [[MWMStorage sharedStorage] cancelDownloadNode:countryID];
+      }
   }
 }
 
@@ -325,12 +336,15 @@ using namespace storage;
 
 - (IBAction)downloadAction {
     // Added by Zheng-Xiang Ke
+    NSString *countryID = @(m_countryId.c_str());
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(downloadDialog:presentMapStyle:)]) {
-        [delegate downloadDialog:self presentMapStyle:@(m_countryId.c_str())];
+        [delegate downloadDialog:self presentMapStyle:countryID];
     }
-//  [[MWMStorage sharedStorage] downloadNode:@(m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(m_countryId.c_str())]
-//                                 onSuccess:^{ [self showInQueue]; }];
+    else {
+        [[MWMStorage sharedStorage] downloadNode:countryID mapSource:[self mapSourceForCountry:countryID]
+                                       onSuccess:^{ [self showInQueue]; }];
+    }
 }
 
 #pragma mark - Properties
