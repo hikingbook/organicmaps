@@ -18,5 +18,6 @@
 -(MWMMapSource)downloadDialog:(MWMMapDownloadDialog *)downloadDialog mapSourceForCountry:(NSString *)countryId;
 -(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog presentMapStyle:(NSString *)countryId;
 -(NSString *)downloadDialog:(MWMMapDownloadDialog *)downloadDialog l10nMapSource:(MWMMapSource)mapSorce;
+-(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog cancelDownload:(NSString *)countryId mapSource:(MWMMapSource)mapSorce;
 
 @end
