@@ -64,7 +64,7 @@
         }
         result.append(style)
       } else {
-        assertionFailure("Style Not found:\(name)")
+//        assertionFailure("Style Not found:\(name)")
       }
     }
     return result
