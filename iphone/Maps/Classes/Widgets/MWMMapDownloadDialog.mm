@@ -297,10 +297,11 @@ using namespace storage;
 - (void)processCountryEvent:(NSString *)countryId {
   if (m_countryId != countryId.UTF8String)
     return;
-  if (self.superview)
-    [self configDialog];
-  else
-    [self removeFromSuperview];
+  [self configDialog];
+//  if (self.superview)
+//    [self configDialog];
+//  else
+//    [self removeFromSuperview];
 }
 
 - (void)processCountry:(NSString *)countryId
