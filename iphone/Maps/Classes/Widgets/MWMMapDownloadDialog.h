@@ -11,6 +11,7 @@
 + (instancetype)dialogForController:(MapViewController *)controller;
 
 - (void)processViewportCountryEvent:(storage::CountryId const &)countryId;
+- (void)processCountryEvent:(NSString *)countryId;
 
 @property(weak, nonatomic, nullable) id<MWMMapDownloadDialogDelegate> delegate;
 
