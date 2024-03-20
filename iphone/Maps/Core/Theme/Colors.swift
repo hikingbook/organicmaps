@@ -1,7 +1,7 @@
 class DayColors: IColors {
   var clear = UIColor.clear
   var primaryDark = UIColor(24, 128, 68, alpha100)
-  var primary = UIColor(32, 152, 82, alpha100)
+  var primary = UIColor(223, 68, 59, alpha100) // Modified by Lei(Set it to match Hikingbook Primary color (Light mode))
   var secondary = UIColor(45, 137, 83, alpha100)
   // Light green color
   var primaryLight = UIColor(36, 180, 98, alpha100)
@@ -63,7 +63,7 @@ class DayColors: IColors {
 class NightColors: IColors {
   var clear = UIColor.clear
   var primaryDark = UIColor(25, 30, 35, alpha100)
-  var primary =  UIColor(45, 50, 55, alpha100)
+  var primary =  UIColor(250, 85, 85, alpha100) // Modified by Lei(Set it to match Hikingbook Primary color (Dark mode))
   var secondary =  UIColor(0x25, 0x28, 0x2b, alpha100)
   // Light green color
   var primaryLight = UIColor(65, 70, 75, alpha100)
