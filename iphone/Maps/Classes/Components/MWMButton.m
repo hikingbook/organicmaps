@@ -71,6 +71,9 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       case MWMButtonColoringWhiteText:
         self.tintColor = [UIColor whitePrimaryTextHighlighted];
         break;
+      case MWMButtonColoringPrimary: // Added by Lei
+        self.tintColor = [UIColor primary];
+        break;
       case MWMButtonColoringWhite:
       case MWMButtonColoringOther:
         break;
@@ -100,6 +103,7 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       case MWMButtonColoringBlue:
       case MWMButtonColoringOther:
       case MWMButtonColoringGray:
+      case MWMButtonColoringPrimary: // Added by Lei
         break;
     }
   }
@@ -139,6 +143,9 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       break;
     case MWMButtonColoringOther:
       self.imageView.image = [self imageForState:UIControlStateNormal];
+      break;
+    case MWMButtonColoringPrimary: // Added by Lei
+      self.tintColor = [UIColor primary];
       break;
   }
 }

@@ -47,7 +47,7 @@ static CGFloat angleWithProgress(CGFloat progress) { return 2.0 * M_PI * progres
   self.colors = [NSMutableDictionary dictionary];
   UIColor * progressColor = [_spinnerBackgroundColor isEqual:UIColor.clearColor]
                                 ? UIColor.whiteColor
-                                : [UIColor linkBlue];
+                                : [UIColor primary]; // Modified by Lei
   UIColor * clearColor = UIColor.clearColor;
   [self setSpinnerColoring:MWMImageColoringGray];
   [self setColor:clearColor forState:MWMCircularProgressStateNormal];

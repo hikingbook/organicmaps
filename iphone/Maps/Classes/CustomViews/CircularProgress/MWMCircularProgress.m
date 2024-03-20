@@ -33,7 +33,7 @@
               forStates:@[@(MWMCircularProgressStateNormal), @(MWMCircularProgressStateSelected),
                          @(MWMCircularProgressStateProgress), @(MWMCircularProgressStateSpinner)]];
   [progress setColoring:MWMButtonColoringOther forStates:@[@(MWMCircularProgressStateFailed)]];
-  [progress setColoring:MWMButtonColoringBlue forStates:@[@(MWMCircularProgressStateCompleted)]];
+  [progress setColoring:MWMButtonColoringPrimary forStates:@[@(MWMCircularProgressStateCompleted)]]; // Modified by Lei
 
   progress.rootView.suspendRefreshProgress = NO;
 

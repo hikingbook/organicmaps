@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)speedLimitWhite;
 + (UIColor *)speedLimitLightGray;
 + (UIColor *)speedLimitDarkGray;
++ (UIColor *)primary; // Added by Lei
 
 + (UIColor *)colorWithName:(NSString *)colorName;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
