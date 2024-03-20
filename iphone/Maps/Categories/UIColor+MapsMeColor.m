@@ -274,4 +274,10 @@ static NSDictionary<NSString *, UIColor *> *night;
 + (UIColor *)speedLimitDarkGray {
   return [UIColor colorWithRed:scaled(51) green:scaled(51) blue:scaled(50) alpha:alpha100];
 }
+
+// Added by Lei
++ (UIColor *)primary
+{
+  return StyleManager.shared.theme.colors.primary;
+}
 @end
