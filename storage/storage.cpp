@@ -1384,10 +1384,13 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
                     [&subtree](CountryTree::Node const & d) { subtree.push_back(d.Value().Name()); });
 
                 auto const downloadingProgress = CalculateProgress(subtree);
+                auto const remoteSize = node.Value().GetFile().GetRemoteSize();
+                auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
+                auto const organicmapSizeDiff = std::abs(static_cast<int64_t>(remoteSize - downloadingProgress.m_bytesTotal));
+                auto const proMapSizeDiff = std::abs(static_cast<int64_t>(hikingbookProMapRemoteSize - downloadingProgress.m_bytesTotal));
                 switch (mapSource) {
                     case MapSource::Organicmaps: {
-                        auto const remoteSize = node.Value().GetFile().GetRemoteSize();
-                        if (remoteSize != static_cast<uint64_t>(downloadingProgress.m_bytesTotal)) {
+                        if (proMapSizeDiff == 0 || proMapSizeDiff < organicmapSizeDiff) {
                             statusAndError.status = NodeStatus::NotDownloaded;
                             LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
                             if (localFile && localFile->GetMapSource() == mapSource) {
@@ -1397,8 +1400,7 @@ StatusAndError Storage::GetNodeStatus(CountryTree::Node const & node, MapSource 
                     }
                         break;
                     case MapSource::HikingbookProMaps: {
-                        auto const hikingbookProMapRemoteSize = node.Value().GetFile().GetHikingbookProMapRemoteSize();
-                        if (hikingbookProMapRemoteSize != static_cast<uint64_t>(downloadingProgress.m_bytesTotal)) {
+                        if (organicmapSizeDiff == 0 || proMapSizeDiff >= organicmapSizeDiff) {
                             statusAndError.status = NodeStatus::NotDownloaded;
                             LocalFilePtr const localFile = GetLatestLocalFile(node.Value().Name());
                             if (localFile && localFile->GetMapSource() == mapSource) {
