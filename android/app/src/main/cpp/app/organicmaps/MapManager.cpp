@@ -380,8 +380,12 @@ static void EndBatchingCallbacks(JNIEnv *env) {
                                                                 static_cast<jint>(dataItem.m_newHikingbookProMapStatus),
                                                                 static_cast<jint>(dataItem.m_errorCode),
                                                                 dataItem.m_isLeaf));
-            // …and put it into the resulting list
-            env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
+            // Workaround crashes
+            try {
+                // …and put it into the resulting list
+                env->CallBooleanMethod(list.get(), listBuilder.m_add, item.get());
+            }
+            catch(...) {}
         }
 
         // Invoke Java callback
