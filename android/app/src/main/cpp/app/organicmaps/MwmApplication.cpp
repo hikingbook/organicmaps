@@ -35,9 +35,11 @@ extern "C"
     {
       g_framework = std::make_unique<android::Framework>([onComplete = jni::make_global_ref(onComplete)]()
       {
-//        JNIEnv * env = jni::GetEnv();
-//        jmethodID const methodId = jni::GetMethodID(env, *onComplete, "run", "()V");
-//        env->CallVoidMethod(*onComplete, methodId);
+          if (*onComplete != nullptr) {
+              JNIEnv *env = jni::GetEnv();
+              jmethodID const methodId = jni::GetMethodID(env, *onComplete, "run", "()V");
+              env->CallVoidMethod(*onComplete, methodId);
+          }
       });
     }
   }
