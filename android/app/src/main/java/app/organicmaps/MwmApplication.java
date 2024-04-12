@@ -154,7 +154,7 @@ public class MwmApplication extends Application implements Application.ActivityL
   {
 //    super.onCreate();
     Logger.i(TAG, "Initializing application");
-    OrganicmapsFrameworkAdapter.INSTANCE.initApplication(this);
+    OrganicmapsFrameworkAdapter.INSTANCE.initApplicationIfNeed(this, "app.organicmaps");
     LogsManager.INSTANCE.initFileLogging(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
     // Set configuration directory as early as possible.

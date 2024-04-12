@@ -54,20 +54,23 @@ public enum OrganicmapsFrameworkAdapter {
     private Fragment fragment;
     private SharedPreferences sharedPreferences;
 
-    public void initApplication(Application application) {
-        if (this.application == null) {
-            this.application = application;
+    public void initApplicationIfNeed(Application application, String applicationID) {
+        if (this.application != null) {
+            return;
+        }
 
-            try {
-                LogsManager.INSTANCE.initFileLogging(application);
-            }
-            catch (Throwable e) {
-                Log.e(TAG, e.getLocalizedMessage());
-            }
+        this.applicationID = applicationID;
+        this.application = application;
 
-            if (application instanceof MwmApplication) {
-                mwmApplication = (MwmApplication) application;
-            }
+        try {
+            LogsManager.INSTANCE.initFileLogging(application);
+        }
+        catch (Throwable e) {
+            Log.e(TAG, e.getLocalizedMessage());
+        }
+
+        if (application instanceof MwmApplication) {
+            mwmApplication = (MwmApplication) application;
         }
     }
 
@@ -77,15 +80,10 @@ public enum OrganicmapsFrameworkAdapter {
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
-        initApplication(activity.getApplication());
     }
 
     public FragmentActivity getActivity() {
         return this.activity;
-    }
-
-    public void setApplicationID(String applicationID) {
-        this.applicationID = applicationID;
     }
 
     public String getApplicationID() {
@@ -108,12 +106,14 @@ public enum OrganicmapsFrameworkAdapter {
         return this.sharedPreferences;
     }
 
-    public void initCore() {
+    public void initCoreIfNeed(@NonNull Runnable onComplete) {
         try {
-            mwmApplication.onCreate();
-            mwmApplication.init(null);
+            if (!arePlatformAndCoreInitialized()) {
+                mwmApplication.onCreate();
+                mwmApplication.init(onComplete);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getLocalizedMessage());
         }
     }
 
