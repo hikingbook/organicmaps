@@ -398,7 +398,8 @@ public class MwmApplication extends Application implements Application.ActivityL
         {
           if (MapManager.nativeIsAutoretryFailed())
           {
-            DownloaderNotifier.notifyDownloadFailed(MwmApplication.this, item.countryId);
+//            DownloaderNotifier.notifyDownloadFailed(MwmApplication.this, item.countryId);
+            DownloaderNotifier.notifyDownloadFailed(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(), item.countryId);
           }
 
           return;
