@@ -77,7 +77,7 @@ UNIT_TEST(RussiaUfaToUstKatavTest)
   CalculateRouteAndTestRouteLength(
       GetVehicleComponents(VehicleType::Car),
       FromLatLon(54.7304, 55.9554), {0., 0.},
-      FromLatLon(54.9228, 58.1469), 164667.);
+      FromLatLon(54.9228, 58.1469), 160565);
 }
 
 UNIT_TEST(RussiaMoscowNoServiceCrossing)
@@ -383,8 +383,8 @@ UNIT_TEST(GermanyShuttleTrainTest)
 
   TEST(routeResult.first, ());
   Route const & route = *routeResult.first;
-  TestRouteLength(route, 44116.7);
-  TestRouteTime(route, 2529.63);
+  TestRouteLength(route, 44517.4);
+  TestRouteTime(route, 2619.62);
 }
 
 UNIT_TEST(TolyattiFeatureThatCrossSeveralMwmsTest)

@@ -246,8 +246,16 @@ public enum BookmarkManager
       tmpFile.delete();
     }
 
-    for (BookmarksLoadingListener listener : mListeners)
-      listener.onBookmarksFileLoaded(success);
+    if (success)
+    {
+      for (BookmarksLoadingListener listener : mListeners)
+        listener.onBookmarksFileImportSuccessful();
+    }
+    else
+    {
+      for (BookmarksLoadingListener listener : mListeners)
+        listener.onBookmarksFileImportFailed();
+    }
   }
 
   // Called from JNI.
@@ -426,17 +434,14 @@ public enum BookmarkManager
             filename = cursor.getString(columnIndex);
         }
       }
-      catch (Exception ex)
-      {
-        Logger.e(TAG, ex + " while querying " + uri);
-        ex.printStackTrace();
-      }
     }
 
     if (filename == null)
     {
       filename = uri.getPath();
-      int cut = filename.lastIndexOf('/');
+      if (filename == null)
+        return null;
+      final int cut = filename.lastIndexOf('/');
       if (cut != -1)
         filename = filename.substring(cut + 1);
     }
@@ -474,24 +479,43 @@ public enum BookmarkManager
   @WorkerThread
   public boolean importBookmarksFile(@NonNull ContentResolver resolver, @NonNull Uri uri, @NonNull File tempDir)
   {
-    final String filename = getBookmarksFilenameFromUri(resolver, uri);
-    if (filename == null)
-      return false;
-
-    Logger.w(TAG, "Downloading bookmarks file " + uri + " with file name " + filename);
-    final File tempFile = new File(tempDir, filename);
+    Logger.w(TAG, "Importing bookmarks from " + uri);
     try
     {
+      final String filename = getBookmarksFilenameFromUri(resolver, uri);
+      if (filename == null)
+      {
+        Logger.w(TAG, "Could not find a supported file type in " + uri);
+        UiThread.run(() -> {
+          for (BookmarksLoadingListener listener : mListeners)
+            listener.onBookmarksFileUnsupported(uri);
+        });
+        return false;
+      }
+
+      Logger.d(TAG, "Downloading bookmarks file from " + uri + " into " + filename);
+      final File tempFile = new File(tempDir, filename);
       StorageUtils.copyFile(resolver, uri, tempFile);
-    } catch (IOException e)
+      Logger.d(TAG, "Downloaded bookmarks file from " + uri + " into " + filename);
+      UiThread.run(() -> loadBookmarksFile(tempFile.getAbsolutePath(), true));
+      return true;
+    }
+    catch (IOException|SecurityException e)
     {
-      Logger.w(TAG, "Failed to download bookmarks file from " + uri, e);
+      Logger.e(TAG, "Could not download bookmarks file from " + uri, e);
+      UiThread.run(() -> {
+        for (BookmarksLoadingListener listener : mListeners)
+          listener.onBookmarksFileDownloadFailed(uri, e.toString());
+      });
       return false;
     }
+  }
 
-    UiThread.run(() -> loadBookmarksFile(tempFile.getAbsolutePath(), true));
-
-    return true;
+  @WorkerThread
+  public void importBookmarksFiles(@NonNull ContentResolver resolver, @NonNull List<Uri> uris, @NonNull File tempDir)
+  {
+    for (Uri uri: uris)
+      importBookmarksFile(resolver, uri, tempDir);
   }
 
   public boolean isAsyncBookmarksLoadingInProgress()
@@ -503,6 +527,10 @@ public enum BookmarkManager
   public List<BookmarkCategory> getCategories()
   {
     return mCurrentDataProvider.getCategories();
+  }
+  public int getCategoriesCount()
+  {
+    return mCurrentDataProvider.getCategoriesCount();
   }
 
   @NonNull
@@ -559,9 +587,9 @@ public enum BookmarkManager
     nativeSetChildCategoriesVisibility(catId, visible);
   }
 
-  public void prepareCategoryForSharing(long catId)
+  public void prepareCategoriesForSharing(long[] catIds)
   {
-    nativePrepareFileForSharing(catId);
+    nativePrepareFileForSharing(catIds);
   }
 
   public void setNotificationsEnabled(boolean enabled)
@@ -605,6 +633,7 @@ public enum BookmarkManager
   native BookmarkCategory nativeGetBookmarkCategory(long catId);
   @NonNull
   native BookmarkCategory[] nativeGetBookmarkCategories();
+  native int nativeGetBookmarkCategoriesCount();
   @NonNull
   native BookmarkCategory[] nativeGetChildrenCategories(long catId);
 
@@ -799,7 +828,7 @@ public enum BookmarkManager
 
   private static native void nativeSetAllCategoriesVisibility(boolean visible);
 
-  private static native void nativePrepareFileForSharing(long catId);
+  private static native void nativePrepareFileForSharing(long[] catIds);
 
   private static native boolean nativeIsCategoryEmpty(long catId);
 
@@ -895,7 +924,10 @@ public enum BookmarkManager
   {
     default void onBookmarksLoadingStarted() {}
     default void onBookmarksLoadingFinished() {}
-    default void onBookmarksFileLoaded(boolean success) {}
+    default void onBookmarksFileUnsupported(@NonNull Uri uri) {};
+    default void onBookmarksFileDownloadFailed(@NonNull Uri uri, @NonNull String string) {};
+    default void onBookmarksFileImportSuccessful() {};
+    default void onBookmarksFileImportFailed() {};
   }
 
   public interface BookmarksSortingListener

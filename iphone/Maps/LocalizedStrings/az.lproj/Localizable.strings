@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "Yükləmə uğursuz oldu";
 
-"about_menu_title" = "Organic Maps Haqqında";
+/* Text in About screen */
+"about_headline" = "Hər kəs üçün ödənişsiz və sevgi ilə hazırlanmış xəritə";
+
+/* Text in About screen */
+"about_proposition_1" = "• Reklam yoxdur, izləmə yoxdur, məlumatların toplanması yoxdur";
+
+/* Text in About screen */
+"about_proposition_2" = "• Batareyanın boşalması yoxdur, oflayn işləyir";
+
+/* Text in About screen */
+"about_proposition_3" = "• Sürətli, minimalist, icma tərəfindən hazırlanmışdır";
 
 "close" = "Yaxın";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "Yeni Siyahı əlavə edin";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "Əlfəcin Rəngi";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "Əlfəcin siyahı adı";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "Harada yemək";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "Harada yemək";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "Ərzaq mağazası";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "Ərzaq mağazası";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "Nəqliyyat";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "Nəqliyyat";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "Yanacaq doldurma məntəqəsi";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "Yanacaq doldurma məntəqəsi";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "Avtomobil dayanacağı";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "Avtomobil dayanacağı";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "Alış-veriş";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "Alış-veriş";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "İkinci əl";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "İkinci əl";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "Otel";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "Otel";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Görməli yerlər";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "Görməli yerlər";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "Əyləncə";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "Əyləncə";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "Bankomat";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "Bankomat";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "Gecə həyatı";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "Gecə həyatı";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "Ailə tətili";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "Ailə tətili";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "Bank";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "Bank";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "Aptek";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "Aptek";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "Xəstəxana";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "Xəstəxana";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Ayaqyolu";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "Ayaqyolu";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "Poçt";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "Poçt";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "Polis";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "Polis";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "Təkrar emal";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "Təkrar emal";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "Su";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "Su";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "Karvan qurğuları";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "Karvan qurğuları";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "Salam!\n\nOrganic Maps əlfəcinlərim əlavə olunub. Zəhmət olmasa Organic Maps-da onları açın. Əgər onu quraşdırmamısınızsa, bu linkə daxil olub cihazınıza yükləyə bilərsiniz: https://omaps.app/get?kmz\n\nOrganic Maps ilə səyahətdən həzz alın!";
 
@@ -200,10 +210,7 @@
 "done" = "Bitdi";
 
 /* Prints version number in About dialog */
-"version" = "Versiya: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "OpenStreetMap datası: %@";
+"version" = "Organic Maps versiyası: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "Marşrutlari";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "Böyütmə düymələri";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "Gecə rejimi";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "Görünüş";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "Parlaq";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "Tünd";
 
 /* Generic «Off» string */
 "off" = "Bağlı";
@@ -277,18 +290,6 @@
 "news" = "Xəbərlər";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "Proqramı qiymətləndirin";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "Bağışlamaq";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "Bu layihəni dəstəkləyin";
+/* Tex label above the Donate button */
+"donate_description" = "Ən yaxşı xəritələri birlikdə qurmaq üçün ianə edin!";
 
 /* Button in the main Help dialog */
 "copyright" = "Müəllif hüququ";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "Problemi bildirin";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "Yanlış xəritə məlumatlarını bildirin və ya düzəldin";
+
+/* Button in the About screen */
+"volunteer" = "Könüllü olmaq";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "İzləyin və bizimlə əlaqə saxlayın:";
 
 /* Alert text */
 "email_error_body" = "E-poçt müştəri xidməti hələ quraşdırılmayıb. Zəhmət olmasa e-poçt müştəri xidmətini konfiqurasiya edin və ya %@ vasitəsilə bizimlə əlaqə saxlayın.";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "Burada obyekti yerləşdirmək mümkün deyil";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "%@ tarixinə icma tərəfindən yaradılmış OpenStreetMap datası. OpenStreetMap.org saytında xəritəni necə redaktə etmək və yeniləmək haqqında ətraflı məlumat əldə edin";
+
 "login_to_make_edits_visible" = "OpenStreetMap.org saytına daxil olun ki, digər istifadəçilər sizin etdiyiniz dəyişiklikləri görə bilsinlər.";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "Siz heç bir xəritə endirməmisiniz";
 
 "downloader_no_downloaded_maps_message" = "Ünvanları tapmaq və oflayn naviqasiya etmək üçün xəritələri endirin.";
-
-"stop" = "Dayan";
 
 "current_location_unknown_error_title" = "Cari yer məlum deyil.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "Yoxla";
 
 "recent_track_background_dialog_message" = "Organic Maps son səyahət etdiyiniz marşrutu qeyd etmək üçün arxa fonda geolokasiyadan istifadə edir.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps reklam və izləmə olmadan sürətli və pulsuz oflayn xəritə tətbiqidir. Xəritələr izdiham mənbəyi olan OpenStreetMap.org məlumatlarına əsaslanır, ona görə də siz xəritə səhvlərini düzəldə və xəritəyə yeni obyektlər əlavə edə bilərsiniz. Organic Maps texnologiya həvəskarları tərəfindən boş vaxtlarında yaratdığı açıq mənbəli layihədir. Biz sizin rəy və dəstəyinizi yüksək qiymətləndiririk!";
 
 "general_settings" = "Ümumi Parametrlər";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "Sürət kameraları";
 
-/* Generic «Always» string */
-"always" = "Həmişə";
-
-/* Generic «Never» string */
-"never" = "Heç vaxt";
-
 "place_description_title" = "Məkan Təsviri";
 
-"speedcams_notice_message" = "Avtomatik - Sürət həddini aşmaq riski varsa, sürət kameraları barədə xəbərdarlıq edin\nHəmişə sürət kameraları haqqında xəbərdar edin\nHeç sürət kameraları haqqında xəbərdar etməyin";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "Sürətlə bağlı xəbərdarlıq edin";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "Həmişə xəbərdar edin";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "Heç xəbərdar etməyin";
 
 "power_managment_title" = "Enerji qənaət rejimi";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Yürüyüş";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "Bütün Əlfəcinləri və Parçaları ixrac edin";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "Rəng dəyişdirin";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "Xəritə";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "Həkim";
 
 "type.amenity.drinking_water" = "İçməli su";
+
+"type.drinking_water.yes" = "İçməli su";
 
 "type.amenity.driving_school" = "Sürücülük Məktəbi";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Qonşuluq sərhədi";
 
 "type.boundary.national_park" = "Milli park";
+
+"type.boundary.aboriginal_lands" = "Yerli torpaqlar";
 
 "type.boundary.protected_area" = "Qorunan ərazi";
 

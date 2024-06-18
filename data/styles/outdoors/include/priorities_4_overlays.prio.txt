@@ -94,6 +94,7 @@ highway-trunk-bridge::shield                        # shield::shield z10- (also 
 highway-trunk-tunnel::shield                        # shield::shield z10- (also has pathtext z10-, line z7-, line(casing) z12-)
 === 6740
 
+boundary-aboriginal_lands                           # caption z10- (also has area z10-)
 boundary-national_park                              # icon z10- (also has caption(optional) z11-, area z10-)
 boundary-protected_area                             # icon z10- (also has caption(optional) z11-)
 boundary-protected_area-1                           # icon z10- (also has caption(optional) z11-, area z10-)
@@ -259,18 +260,18 @@ route-ferry                                         # pathtext z10- (also has li
 
 highway-motorway_link                               # pathtext z10- (also has shield::shield z10-, line z10-)
 highway-motorway_link-bridge                        # pathtext z10- (also has shield::shield z10-, line z10-, line::bridgeblack z14-, line::bridgewhite z14-)
-highway-motorway_link-tunnel                        # pathtext z10- (also has shield::shield z10-, line z10-, line(casing) z12-)
+highway-motorway_link-tunnel                        # pathtext z10- (also has shield::shield z10-, line z10-, line(casing) z13-)
 highway-trunk_link                                  # pathtext z10- (also has shield::shield z10-, line z10-)
 highway-trunk_link-bridge                           # pathtext z10- (also has shield::shield z10-, line z10-, line::bridgeblack z14-, line::bridgewhite z14-)
-highway-trunk_link-tunnel                           # pathtext z10- (also has shield::shield z10-, line z10-, line(casing) z12-)
+highway-trunk_link-tunnel                           # pathtext z10- (also has shield::shield z10-, line z10-, line(casing) z13-)
 === 6150
 
 highway-motorway_link::shield                       # shield::shield z10- (also has pathtext z10-, line z10-)
 highway-motorway_link-bridge::shield                # shield::shield z10- (also has pathtext z10-, line z10-, line::bridgeblack z14-, line::bridgewhite z14-)
-highway-motorway_link-tunnel::shield                # shield::shield z10- (also has pathtext z10-, line z10-, line(casing) z12-)
+highway-motorway_link-tunnel::shield                # shield::shield z10- (also has pathtext z10-, line z10-, line(casing) z13-)
 highway-trunk_link::shield                          # shield::shield z10- (also has pathtext z10-, line z10-)
 highway-trunk_link-bridge::shield                   # shield::shield z10- (also has pathtext z10-, line z10-, line::bridgeblack z14-, line::bridgewhite z14-)
-highway-trunk_link-tunnel::shield                   # shield::shield z10- (also has pathtext z10-, line z10-, line(casing) z12-)
+highway-trunk_link-tunnel::shield                   # shield::shield z10- (also has pathtext z10-, line z10-, line(casing) z13-)
 === 6140
 
 highway-primary_link                                # pathtext z11- (also has shield::shield z11-, line z11-)
@@ -300,7 +301,7 @@ highway-secondary-tunnel                            # pathtext z10- (also has sh
 
 man_made-lighthouse                                 # icon z11- (also has caption(optional) z14-)
 natural-peak                                        # icon z10- (also has caption(optional) z11-)
-natural-volcano                                     # icon z10- (also has caption(optional) z10-)
+natural-volcano                                     # icon z10- (also has caption(optional) z13-)
 === 5400
 
 amenity-theatre                                     # icon z14- (also has caption(optional) z14-)
@@ -341,7 +342,7 @@ landuse-forest-mixed                                # icon z12- (also has captio
 
 natural-cave_entrance                               # icon z10- (also has caption(optional) z11-)
 natural-geyser                                      # icon z10- (also has caption(optional) z12-)
-natural-hot_spring                                  # icon z12- (also has caption(optional) z14-)
+natural-hot_spring                                  # icon z12- (also has caption(optional) z15-)
 natural-spring                                      # icon z12- (also has caption(optional) z14-)
 === 4650
 
@@ -685,7 +686,7 @@ waterway-weir                                       # pathtext z15- (also has li
 === 2900
 
 highway-ford                                        # icon z14- and pathtext z16- (also has line z13-)
-natural-rock                                        # icon z14-
+natural-rock                                        # icon z14- (also has caption(optional) z17-)
 === 2850
 
 highway-bridleway                                   # pathtext z13- (also has line z11-)
@@ -1189,6 +1190,13 @@ amenity-parking_entrance-permissive                 # icon z17- (also has captio
 building                                            # caption z16- (also has area z14-)
 building-garage                                     # caption z16- (also has area z14-)
 building-has_parts                                  # caption z16- (also has area z14-)
+power-plant                                         # icon z17-
+power-plant-coal                                    # icon z17-
+power-plant-gas                                     # icon z17-
+power-plant-hydro                                   # icon z17-
+power-plant-solar                                   # icon z17-
+power-plant-wind                                    # icon z13- (also has caption(optional) z16-)
+power-station                                       # icon z17- (also has caption(optional) z17-)
 === 230
 
 barrier-entrance                                    # icon z16- (also has caption(optional) z16-)
@@ -1228,14 +1236,7 @@ leisure-track-area                                  # caption z16- (also has are
 power-generator                                     # icon z17-
 power-generator-gas                                 # icon z17-
 power-generator-hydro                               # icon z17-
-power-generator-wind                                # icon z17-
-power-plant                                         # icon z17-
-power-plant-coal                                    # icon z17-
-power-plant-gas                                     # icon z17-
-power-plant-hydro                                   # icon z17-
-power-plant-solar                                   # icon z17-
-power-plant-wind                                    # icon z17-
-power-station                                       # icon z17- (also has caption(optional) z17-)
+power-generator-wind                                # icon z13- (also has caption(optional) z16-)
 === 120
 
 amenity-parking-lane-private                        # icon z19- (also has caption(optional) z19-, area z17-)
@@ -1428,7 +1429,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 
 # man_made-lighthouse                               # caption(optional) z14- (also has icon z11-)
 # natural-peak                                      # caption(optional) z11- (also has icon z10-)
-# natural-volcano                                   # caption(optional) z10- (also has icon z10-)
+# natural-volcano                                   # caption(optional) z13- (also has icon z10-)
 # === -4600
 
 # amenity-theatre                                   # caption(optional) z14- (also has icon z14-)
@@ -1468,7 +1469,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 
 # natural-cave_entrance                             # caption(optional) z11- (also has icon z10-)
 # natural-geyser                                    # caption(optional) z12- (also has icon z10-)
-# natural-hot_spring                                # caption(optional) z14- (also has icon z12-)
+# natural-hot_spring                                # caption(optional) z15- (also has icon z12-)
 # natural-spring                                    # caption(optional) z14- (also has icon z12-)
 # === -5350
 
@@ -1684,6 +1685,9 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # man_made-water_well                               # caption(optional) z14- (also has icon z12-)
 # man_made-windmill                                 # caption(optional) z16- (also has icon z16-)
 # === -6950
+
+# natural-rock                                      # caption(optional) z17- (also has icon z14-)
+# === -7150
 
 # amenity-townhall                                  # caption(optional) z16- (also has icon z16-)
 # tourism-hotel                                     # caption(optional) z16- (also has icon z16-)
@@ -2067,6 +2071,10 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # amenity-parking_entrance-permissive               # caption(optional) z19- (also has icon z17-)
 # === -9750
 
+# power-plant-wind                                  # caption(optional) z16- (also has icon z13-)
+# power-station                                     # caption(optional) z17- (also has icon z17-)
+# === -9770
+
 # barrier-entrance                                  # caption(optional) z16- (also has icon z16-)
 # entrance-main                                     # caption(optional) z18- (also has icon z18-)
 # === -9780
@@ -2091,7 +2099,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # landuse-industrial-mine                           # caption(optional) z15- (also has icon z15-, area z15-)
 # landuse-landfill                                  # caption(optional) z15- (also has icon z15-, area z15-)
 # landuse-quarry                                    # caption(optional) z15- (also has icon z15-, area z15-)
-# power-station                                     # caption(optional) z17- (also has icon z17-)
+# power-generator-wind                              # caption(optional) z16- (also has icon z13-)
 # === -9880
 
 # amenity-parking-lane-private                      # caption(optional) z19- (also has icon z19-, area z17-)

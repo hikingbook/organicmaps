@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "ההורדה נכשלה";
 
-"about_menu_title" = "אודות Organic Maps";
+/* Text in About screen */
+"about_headline" = "חינם לכולם, מיוצרים באהבה";
+
+/* Text in About screen */
+"about_proposition_1" = "• ללא מודעות, ללא מעקב, ללא איסוף נתונים";
+
+/* Text in About screen */
+"about_proposition_2" = "• אין ריקון סוללה, עובד במצב לא מקוון";
+
+/* Text in About screen */
+"about_proposition_3" = "• מהיר, מינימליסטי, שפותח על ידי הקהילה";
 
 "close" = "סגור";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "הוסף רשימה חדשה";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "צבע סימניה";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "שם רשימת הסימניות";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "איפה לאכול";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "איפה לאכול";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "מצרכים";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "מצרכים";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "תחבורה";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "תחבורה";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "דלק";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "דלק";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "חניה";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "חניה";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "קניות";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "קניות";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "יד שניה";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "יד שניה";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "בית מלון";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "בית מלון";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "נקודות עיניין";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "נקודות עיניין";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "בידור";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "בידור";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "כספומט";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "כספומט";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "חיי לילה";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "חיי לילה";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "שעשועים";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "שעשועים";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "בנק";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "בנק";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "בית מרקחת";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "בית מרקחת";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "בית חולים";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "בית חולים";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "שירותים";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "שירותים";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "דואר";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "דואר";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "משטרה";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "משטרה";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "מיחזור";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "מיחזור";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "מים";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "מים";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "עבור קרוואנים";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "עבור קרוואנים";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "שלום!\n\nמצורפות הסימניות שלי, אפשר לפתוח אותן ב-Organic Maps. אם צריך, ניתן להוריד את האפליקצייה מכאן: https://omaps.app/get?kmz\n\nתהנו לנווט עם Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "בוצע";
 
 /* Prints version number in About dialog */
-"version" = "גירסה: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "נתוני OpenStreetMap: %@";
+"version" = "גרסת מפות אורגניות: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "מסלולים";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "כפתורי זום";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "מצב לילה";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "מראה";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "בהיר";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "כהה";
 
 /* Generic «Off» string */
 "off" = "כבוי";
@@ -277,18 +290,6 @@
 "news" = "חדשות";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "דרגו את האפליקציה";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "לתרום";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "תמכו בפרויקט";
+/* Tex label above the Donate button */
+"donate_description" = "תרמו כדי לבנות יחד את המפות הטובות ביותר!";
 
 /* Button in the main Help dialog */
 "copyright" = "זכויות יוצרים";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "דווח על באג";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "דווח או תקן נתוני מפה שגויים";
+
+/* Button in the About screen */
+"volunteer" = "להתנדב";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "עקבו ופנו אלינו:";
 
 /* Alert text */
 "email_error_body" = "יישום הדוא\"ל לא הוגדר. אנא הגדירו אותו או השתמשו בכל דרך אחרת על מנת ליצור עמנו קשר בכתובת %@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "לא ניתן למקם כאן פריט";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "נתוני OpenStreetMap שנוצרו על ידי הקהילה החל מ-%@. למידע נוסף על איך לערוך ולעדכן את המפה ב-OpenStreetMap.org";
+
 "login_to_make_edits_visible" = "התחברו ל-openstreetmap.org כדי לפרסם את השינויים שלכם לעולם.";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "לא הורדת אף מפה";
 
 "downloader_no_downloaded_maps_message" = "הורד מפה כדי לחפש ולנווט ללא חיבור לאינטרנט.";
-
-"stop" = "הפסק";
 
 "current_location_unknown_error_title" = "המיקום הנוכחי לא ידוע.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "Check out";
 
 "recent_track_background_dialog_message" = "האפליקצייה Organic Maps משתמשת במיקום שלך ברקע כדי להקליט את המסלול האחרון שלך.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps היא אפליקציית מפות לא מקוונות מהירה, בחינם ובקוד פתוח, ללא פרסומות וללא מעקב. אם אתה רואה שגיאה במפה, אנא תקן אותה ב-OpenStreetMap. הפרויקט נוצר על ידי חובבים בזמננו הפנוי, אז אנו זקוקים למשוב ולתמיכה שלכם.";
 
 "general_settings" = "הגדרות כלליות";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "מצלמות מהירות";
 
-/* Generic «Always» string */
-"always" = "תמיד";
-
-/* Generic «Never» string */
-"never" = "אף פעם";
-
 "place_description_title" = "תיאור מיקום";
 
-"speedcams_notice_message" = "אוטומטי - הזהר מפני מצלמות מהירות אם יש חשש להפרזה במהירות\nתמיד - הזהר מפני מצלמות מהירות תמיד\nאף פעם - אל תזהיר מפני מצלמות מהירות אף פעם";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "הזהר כשהמהירות מופרזת";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "הזהר  תמיד";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "אל תזהיר אף פעם";
 
 "power_managment_title" = "מצב חיסכון בסוללה";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "טיול רגלי";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "ייצא את כל הסימניות והרצועות";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "שנה צבע";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "מפה";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "Doctor";
 
 "type.amenity.drinking_water" = "Drinking Water";
+
+"type.drinking_water.yes" = "Drinking Water";
 
 "type.amenity.driving_school" = "Driving School";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "National Park";
+
+"type.boundary.aboriginal_lands" = "ארצות ילידים";
 
 "type.boundary.protected_area" = "אזור מוגן";
 

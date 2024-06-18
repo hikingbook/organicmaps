@@ -31,7 +31,6 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.IntentCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
@@ -1976,10 +1975,50 @@ public class MwmActivity extends BaseMwmFragmentActivity
     RoutingController.get().start();
   }
 
-  public void onBookmarksFileLoaded(boolean success)
+  @Override
+  public void onBookmarksFileUnsupported(@NonNull Uri uri)
   {
-    Utils.showSnackbar(this, findViewById(R.id.coordinator),
-                        success ? R.string.load_kmz_successful : R.string.load_kmz_failed);
+    dismissAlertDialog();
+    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+        .setTitle(R.string.load_kmz_title)
+        .setMessage(getString(R.string.unknown_file_type, uri))
+        .setPositiveButton(R.string.ok, null)
+        .setNegativeButton(R.string.report_a_bug, (dialog, which) -> Utils.sendBugReport(this,
+            getString(R.string.load_kmz_title), getString(R.string.unknown_file_type, uri)))
+        .setOnDismissListener(dialog -> mAlertDialog = null)
+        .show();
+  }
+
+  @Override
+  public void onBookmarksFileDownloadFailed(@NonNull Uri uri, @NonNull String error)
+  {
+    dismissAlertDialog();
+    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+        .setTitle(R.string.load_kmz_title)
+        .setMessage(getString(R.string.failed_to_open_file, uri, error))
+        .setPositiveButton(R.string.ok, null)
+        .setNegativeButton(R.string.report_a_bug, (dialog, which) -> Utils.sendBugReport(this,
+            getString(R.string.load_kmz_title), getString(R.string.failed_to_open_file, uri, error)))
+        .setOnDismissListener(dialog -> mAlertDialog = null)
+        .show();
+  }
+
+  @Override
+  public void onBookmarksFileImportSuccessful()
+  {
+    Utils.showSnackbar(this, findViewById(R.id.coordinator), R.string.load_kmz_successful);
+  }
+
+  @Override
+  public void onBookmarksFileImportFailed()
+  {
+    dismissAlertDialog();
+    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+        .setTitle(R.string.load_kmz_title)
+        .setMessage(R.string.load_kmz_failed)
+        .setPositiveButton(R.string.ok, null)
+        .setOnDismissListener(dialog -> mAlertDialog = null)
+        .show();
   }
 
   @Override

@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "Échec lors du téléchargement";
 
-"about_menu_title" = "À propos de Organic Maps";
+/* Text in About screen */
+"about_headline" = "Gratuit pour tout le monde, fait avec amour";
+
+/* Text in About screen */
+"about_proposition_1" = "• Pas d'annonces, pas de suivi, pas de collecte de données";
+
+/* Text in About screen */
+"about_proposition_2" = "• Pas d'épuisement de la batterie, fonctionne hors ligne";
+
+/* Text in About screen */
+"about_proposition_3" = "• Rapide, minimaliste, développé par la communauté";
 
 "close" = "Fermer";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "Créer une nouvelle liste";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "Couleur du signet";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "Nom du groupe de signets";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "Un endroit pour manger";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "Un endroit pour manger";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "Epiceries";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "Epiceries";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "Transport";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "Transport";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "Stations-service";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "Stations-service";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "Stationnement";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "Stationnement";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "Shopping";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "Shopping";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "D'occasion";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "D'occasion";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "Hôtel";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "Hôtel";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Sites touristiques";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "Sites touristiques";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "Divertissement";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "Divertissement";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "DAB";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "DAB";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "Vie nocturne";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "Vie nocturne";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "Vacances en famille";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "Vacances en famille";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "Banque";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "Banque";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "Pharmacie";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "Pharmacie";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "Hôpital";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "Hôpital";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Toilettes";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "Toilettes";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "Poste";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "Poste";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "Police";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "Police";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "Recyclage";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "Recyclage";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "Eau";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "Eau";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "Aménagements pour camping-car";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "Aménagements pour camping-car";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "Bonjour !\n\nVous trouverez ci-joint mes signets de l'appli Organic Maps. Veuillez les ouvrir si vous avez installé Organic Maps. Si vous ne l'avez pas, téléchargez l'application pour votre appareil iOS ou Android en suivant ce lien : https://omaps.app/get?kmz\n\nBon voyage avec Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "Terminé";
 
 /* Prints version number in About dialog */
-"version" = "Version : %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "Données OpenStreetMap : %@";
+"version" = "Version d'Organic Maps : %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "Parcours";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "Boutons de zoom";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "Mode nuit";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "Apparence";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "Claire";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "Sombre";
 
 /* Generic «Off» string */
 "off" = "Désactivé";
@@ -277,18 +290,6 @@
 "news" = "Nouvelles";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "Évaluer l'appli";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "Faire un don";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "Soutenir le projet";
+/* Tex label above the Donate button */
+"donate_description" = "Fais un don pour construire ensemble les meilleures cartes !";
 
 /* Button in the main Help dialog */
 "copyright" = "Tous droits réservés";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "Signaler un bug";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "Signaler ou corriger des données cartographiques incorrectes";
+
+/* Button in the About screen */
+"volunteer" = "Se porter volontaire";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "Suis et contacte-nous :";
 
 /* Alert text */
 "email_error_body" = "Le client de courriel n'a pas été configuré. Veuillez le configurer ou nous contacter à %@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "Aucun objet ne peut être localisé ici";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "Données OpenStreetMap créées par la communauté en date du %@. Pour en savoir plus sur la façon de modifier et de mettre à jour la carte, consulte le site OpenStreetMap.org.";
+
 "login_to_make_edits_visible" = "Connectez vous à votre compte openstreetmap.org pour que d'autres utilisateurs puissent voir vos changements.";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "Vous n'avez téléchargé aucune carte";
 
 "downloader_no_downloaded_maps_message" = "Téléchargez des cartes pour rechercher un lieu et utiliser la navigation hors ligne";
-
-"stop" = "Arrêter";
 
 "current_location_unknown_error_title" = "L'emplacement actuel est inconnu.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "Consultez";
 
 "recent_track_background_dialog_message" = "Organic Maps utilise votre géolocalisation en arrière-plan pour enregistrer vos itinéraires récents.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps est une application de cartographie hors ligne gratuite et open source. Pas de pubs. Pas de localisation. Si vous voyez une erreur sur la carte, veuillez la corriger dans OpenStreetMap. Le projet est créé par des passionnés pendant notre temps libre, nous avons donc besoin de vos commentaires et de votre soutien.";
 
 "general_settings" = "Paramètres généraux";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "Radars de vitesse";
 
-/* Generic «Always» string */
-"always" = "Toujours";
-
-/* Generic «Never» string */
-"never" = "Jamais";
-
 "place_description_title" = "Description d'endroit";
 
-"speedcams_notice_message" = "Auto - Alerte sur les radars en cas de risque de dépassement de la limite de vitesse\nToujours - Toujours avertir des radars\nJamais - Jamais avertir à propos des radars";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "Avertir en cas de dépassement de la limite de vitesse";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "Toujours avertir";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "Jamais avertir";
 
 "power_managment_title" = "Mode économie d'énergie";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Randonnée";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "Exporter tous les signets et toutes les pistes";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "Change de couleur";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "Carte";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "Cabinet médical";
 
 "type.amenity.drinking_water" = "Eau potable";
+
+"type.drinking_water.yes" = "Eau potable";
 
 "type.amenity.driving_school" = "Auto-école";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Frontière de quartier";
 
 "type.boundary.national_park" = "Parc national";
+
+"type.boundary.aboriginal_lands" = "Terres indigènes";
 
 "type.boundary.protected_area" = "Zone protégée";
 

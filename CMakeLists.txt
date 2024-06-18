@@ -62,31 +62,22 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${OMIM_ROOT}/cmake")
 include(OmimHelpers)
 include(OmimTesting)
 
-if (CMAKE_SYSTEM_NAME MATCHES "Linux")
-  set(LINUX_DETECTED TRUE)
-endif()
-
-if (CMAKE_SYSTEM_NAME MATCHES "Android")
-  set(ANDROID_DETECTED TRUE)
-  if ((${OS} MATCHES "mac"))
-    set(DARWIN TRUE)
-  endif()
-endif()
-
-
-omim_set_platform_var(PLATFORM_IPHONE "iphone-.*")
-omim_set_platform_var(PLATFORM_ANDROID "android-.*" ${ANDROID_DETECTED})
-omim_set_platform_var(PLATFORM_MAC "macx-.*" ${APPLE})
-omim_set_platform_var(PLATFORM_WIN "win32-.*" ${WIN32})
-omim_set_platform_var(PLATFORM_LINUX "linux-.*" ${LINUX_DETECTED})
-
-if (PLATFORM_LINUX OR PLATFORM_MAC OR PLATFORM_WIN)
-  set(PLATFORM_DESKTOP TRUE)
-else()
+set(PLATFORM_DESKTOP TRUE)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(PLATFORM_LINUX TRUE)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(PLATFORM_MAC TRUE)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  set(PLATFORM_WIN TRUE)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Android")
+  set(PLATFORM_ANDROID TRUE)
   set(PLATFORM_DESKTOP FALSE)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "iOS")
+  set(PLATFORM_IPHONE TRUE)
+  set(PLATFORM_DESKTOP FALSE)
+else()
+  message(FATAL_ERROR "Unsupported platform: ${CMAKE_SYSTEM_NAME}")
 endif()
-
-# End of setting the target platform
 
 # Sanitizer
 if (PLATFORM_DESKTOP)
@@ -113,7 +104,7 @@ if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   add_definitions(-DDEBUG -fno-omit-frame-pointer)
 elseif (${CMAKE_BUILD_TYPE} MATCHES "Rel")
   add_definitions(-DRELEASE)
-  add_compile_options(-Ofast)
+  add_compile_options(-Ofast)  # Also enables -ffast-math
 else()
   message(FATAL_ERROR "Unknown build type: " ${CMAKE_BUILD_TYPE})
 endif()
@@ -139,6 +130,7 @@ option(SKIP_QT_GUI "Skip building of Qt GUI" OFF)
 option(BUILD_MAPSHOT "Build mapshot tool" OFF)
 option(USE_PCH "Use precompiled headers" OFF)
 option(NJOBS "Number of parallel processes" OFF)
+option(ENABLE_VULKAN_DIAGNOSTICS "Enable Vulkan diagnostics" OFF)
 
 if (NJOBS)
   message(STATUS "Number of parallel processes: ${NJOBS}")
@@ -188,6 +180,11 @@ endif()
 
 if (USE_HEAPPROF)
   message(STATUS "Heap Profiler is enabled")
+endif()
+
+if (ENABLE_VULKAN_DIAGNOSTICS)
+  message(WARNING "Vulkan diagnostics are enabled. Be aware of performance impact!")
+  add_definitions(-DENABLE_VULKAN_DIAGNOSTICS)
 endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -292,10 +289,10 @@ if (USE_PCH)
 endif()
 
 # Should be on the root level, not in 3party, so tests can get these dependencies.
-# Should go before 3party as harfbuzz is using them.
-if (LINUX_DETECTED)
+if (PLATFORM_LINUX)
   find_package(ICU COMPONENTS uc i18n data REQUIRED)
   find_package(Freetype REQUIRED)
+  find_package(harfbuzz REQUIRED)
 endif()
 
 # Include 3party dependencies.

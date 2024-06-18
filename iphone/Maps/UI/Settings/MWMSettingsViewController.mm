@@ -168,18 +168,18 @@ using namespace power_management;
     case MWMThemeVehicleDay:
       NSAssert(false, @"Invalid case");
     case MWMThemeDay:
-      nightMode = L(@"off");
+      nightMode = L(@"pref_appearance_light");
       break;
     case MWMThemeVehicleNight:
       NSAssert(false, @"Invalid case");
     case MWMThemeNight:
-      nightMode = L(@"on");
+      nightMode = L(@"pref_appearance_dark");
       break;
     case MWMThemeAuto:
       nightMode = L(@"auto");
       break;
   }
-  [self.nightModeCell configWithTitle:L(@"pref_map_style_title") info:nightMode];
+  [self.nightModeCell configWithTitle:L(@"pref_appearance_title") info:nightMode];
 }
 
 - (void)show3dBuildingsAlert:(UITapGestureRecognizer *)recognizer {

@@ -18,9 +18,10 @@ import app.organicmaps.widget.placepage.PlacePageData;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,8 +73,8 @@ public class MapObject implements PlacePageData
   private final RoutePointInfo mRoutePointInfo;
   @OpeningMode
   private final int mOpeningMode;
-  @NonNull
-  private final Popularity mPopularity;
+//  @NonNull
+//  private final Popularity mPopularity;
   @NonNull
   private final RoadWarningMarkType mRoadWarningMarkType;
   @NonNull
@@ -84,7 +85,7 @@ public class MapObject implements PlacePageData
   public MapObject(@NonNull FeatureId featureId, @MapObjectType int mapObjectType, String title,
                    @Nullable String secondaryTitle, String subtitle, String address,
                    double lat, double lon, String apiId, @Nullable RoutePointInfo routePointInfo,
-                   @OpeningMode int openingMode, @NonNull Popularity popularity, @NonNull String description,
+                   @OpeningMode int openingMode, Popularity popularity, @NonNull String description,
                    int roadWarningType, @Nullable String[] rawTypes)
   {
     this(featureId, mapObjectType, title, secondaryTitle,
@@ -96,7 +97,7 @@ public class MapObject implements PlacePageData
   public MapObject(@NonNull FeatureId featureId, @MapObjectType int mapObjectType,
                    String title, @Nullable String secondaryTitle, String subtitle, String address,
                    double lat, double lon, Metadata metadata, String apiId,
-                   @Nullable RoutePointInfo routePointInfo, @OpeningMode int openingMode, @NonNull Popularity popularity,
+                   @Nullable RoutePointInfo routePointInfo, @OpeningMode int openingMode, Popularity popularity,
                    @NonNull String description, int roadWarningType, @Nullable String[] rawTypes)
   {
     mFeatureId = featureId;
@@ -111,7 +112,7 @@ public class MapObject implements PlacePageData
     mApiId = apiId;
     mRoutePointInfo = routePointInfo;
     mOpeningMode = openingMode;
-    mPopularity = popularity;
+    //mPopularity = popularity;
     mDescription = description;
     mRoadWarningMarkType = RoadWarningMarkType.values()[roadWarningType];
     if (rawTypes != null)
@@ -287,10 +288,11 @@ public class MapObject implements PlacePageData
     final String uri = getMetadata(Metadata.MetadataType.FMD_EXTERNAL_URI);
     if (TextUtils.isEmpty(uri))
       return "";
-    final Date firstDay = new Date();
-    final Date lastDay = new Date(firstDay.getTime() + (1000 * 60 * 60 * 24));
+    final Instant firstDay = Instant.now();
+    final long firstDaySec = firstDay.getEpochSecond();
+    final long lastDaySec = firstDay.plus(1, ChronoUnit.DAYS).getEpochSecond();
     final boolean isReferral = Config.isKayakReferralAllowed();
-    final String res = Framework.nativeGetKayakHotelLink(Utils.getCountryCode(), uri, firstDay, lastDay, isReferral);
+    final String res = Framework.nativeGetKayakHotelLink(Utils.getCountryCode(), uri, firstDaySec, lastDaySec, isReferral);
     return res == null ? "" : res;
   }
 
@@ -387,7 +389,7 @@ public class MapObject implements PlacePageData
     dest.writeString(mApiId);
     dest.writeParcelable(mRoutePointInfo, 0);
     dest.writeInt(mOpeningMode);
-    dest.writeParcelable(mPopularity, 0);
+    //dest.writeParcelable(mPopularity, 0);
     dest.writeString(mDescription);
     dest.writeInt(getRoadWarningMarkType().ordinal());
     // All collections are deserialized AFTER non-collection and primitive type objects,

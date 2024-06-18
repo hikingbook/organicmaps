@@ -42,9 +42,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">• Δεν υπάρχουν διαφημίσεις, χωρίς παρακολούθηση, χωρίς συλλογή δεδομένων</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Εξοικονομεί μπαταρία, δεν χρησιμοποιεί δεδομένα παρασκηνίου</string>
+	<string name="about_proposition_2">• Δεν υπάρχει αποστράγγιση μπαταρίας, λειτουργεί εκτός σύνδεσης</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">• Γρήγορη, μινιμαλιστική, χωρίς σκουπίδια</string>
+	<string name="about_proposition_3">• Γρήγορο, μινιμαλιστικό, αναπτυγμένο από την κοινότητα</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Εφαρμογή ανοιχτού κώδικα που δημιουργήθηκε από ενθουσιώδες και εθελοντές.</string>
 	<!-- The button that opens system location settings -->
@@ -103,52 +103,54 @@
 	<string name="measurement_units_summary">Επιλέξετε ανάμεσα σε μίλια και χιλιόμετρα</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">Πού να φάμε</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Παντοπωλεία</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Συγκοινωνία</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Βενζίνη</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Χώρος στάθμευσης</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Ψώνια</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Μεταχειρισμένα</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Ξενοδοχείο</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Αξιοθέατα</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Ψυχαγωγία</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">ATM</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Νυχτερινή Ζωή</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Οικογενειακές Διακοπές</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Τράπεζα</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Φαρμακείο</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Νοσοκομείο</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Τουαλέτα</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Ταχυδρομείο</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Αστυνομία</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Ανακύκλωση</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Νερό</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Για RV</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">Πού να φάμε</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Παντοπωλεία</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Συγκοινωνία</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Βενζίνη</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Χώρος στάθμευσης</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Ψώνια</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Μεταχειρισμένα</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Ξενοδοχείο</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Αξιοθέατα</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Ψυχαγωγία</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">ATM</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Νυχτερινή Ζωή</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Οικογενειακές Διακοπές</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Τράπεζα</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Φαρμακείο</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Νοσοκομείο</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Τουαλέτα</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Ταχυδρομείο</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Αστυνομία</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Ανακύκλωση</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Νερό</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Για RV</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Σημειώσεις</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -159,6 +161,10 @@
 	<string name="load_kmz_successful">Τα αγαπημένα φορτώθηκαν με επιτυχία! Μπορείτε να τα βρείτε στο χάρτη ή στην οθόνη Διαχείριση αγαπημένων.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">Η μεταφόρτωση των αγαπημένων απέτυχε. Το αρχείο μπορεί να είναι κατεστραμμένο ή ελαττωματικό.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">Ο τύπος αρχείου δεν αναγνωρίζεται από την εφαρμογή:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Απέτυχε να ανοίξει αρχείο %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Επεξεργασία</string>
 	<!-- Warning message when doing search around current position -->
@@ -453,8 +459,8 @@
 	<string name="editor_report_problem_other_title">Διαφορετικό πρόβλημα</string>
 	<string name="placepage_add_business_button">Προσθήκη επιχείρησης</string>
 	<string name="message_invalid_feature_position">Δε μπορεί να εντοπιστεί αντικείμενο εδώ</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Χαρτογραφικά δεδομένα από το OpenStreetMap από το %s. Είναι σαν τη Wikipedia όπου μπορείτε να προσθέσετε ή να επεξεργαστείτε θέσεις για όλους τους χρήστες του κόσμου.</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Δεδομένα OpenStreetMap που δημιουργήθηκαν από την κοινότητα από την %s. Μάθετε περισσότερα για τον τρόπο επεξεργασίας και ενημέρωσης του χάρτη στο OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">Συνδεθείτε ώστε άλλοι χρήστες να μπορούν να δουν τις αλλαγές που έχετε κάνει</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d από %2$d</string>
@@ -475,7 +481,6 @@
 	<string name="editor_operator">Ιδιοκτήτης</string>
 	<string name="downloader_no_downloaded_maps_title">Δεν έχετε κατεβάσει χάρτες</string>
 	<string name="downloader_no_downloaded_maps_message">Κατεβάστε χάρτες για να αναζητήσετε μια τοποθεσία και να χρησιμοποιήσετε την πλοήγησης χωρίς σύνδεση.</string>
-	<string name="stop">Στοπ</string>
 	<string name="placepage_more_button">Περισσότερα</string>
 	<!-- A referral link on the place page for some hotels -->
 	<string name="more_on_kayak">Φωτογραφίες, κριτικές, κράτηση</string>
@@ -586,13 +591,15 @@
 	<string name="bookmark_list_description_hint">Πληκτρολογήστε μια περιγραφή (κείμενο ή html)</string>
 	<string name="not_shared">Προσωπικός</string>
 	<string name="speedcams_alert_title">Κάμερες Ταχύτητας</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Πάντα</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Ποτέ</string>
 	<string name="place_description_title">Περιγραφή μέρους</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Κατέβασμα χαρτών</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Για να σας προειδοποιήσει για υπερβολική ταχύτητα</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Πάντα να ειδοποιούμαι</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Ποτέ να μην ειδοποιούμαι</string>
 	<string name="power_managment_title">Λειτουργία εξοικονόμησης ενέργειας</string>
 	<string name="power_managment_description">Εάν η λειτουργία εξοικονόμησης ενέργειας είναι ενεργοποιημένη, η εφαρμογή θα κλείνει τις λειτουργίες που καταναλώνουν ενέργεια ανάλογα με την τρέχουσα φόρτιση του τηλεφώνου</string>
 	<string name="power_managment_setting_never">Ποτέ</string>
@@ -686,8 +693,26 @@
 	<string name="splash_subtitle">Δεδομένα χάρτη από το OpenStreetMap</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/El:About_OpenStreetMap</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Σας ευχαριστούμε που χρησιμοποιείτε τους χάρτες μας που δημιουργήθηκαν από την κοινότητα!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Με τις δωρεές και την υποστήριξή σας, μπορούμε να δημιουργήσουμε τους καλύτερους χάρτες στον κόσμο!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Σας αρέσει η εφαρμογή μας; Παρακαλούμε δωρίστε για να υποστηρίξετε την ανάπτυξη! Δεν σας αρέσει ακόμα; Ενημερώστε μας και θα το διορθώσουμε!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Εάν γνωρίζετε έναν προγραμματιστή λογισμικού, μπορείτε να του ζητήσετε να εφαρμόσει μια δυνατότητα που χρειάζεστε.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Γνωρίζετε ότι μπορείτε να πατήσετε παρατεταμένα οποιοδήποτε μέρος στο χάρτη για να το επιλέξετε;</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Γνωρίζετε ότι μπορείτε να επιλέξετε την τρέχουσα τοποθεσία σας στο χάρτη;</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Μπορείτε να βοηθήσετε στη μετάφραση της εφαρμογής μας στη γλώσσα σας.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">Η εφαρμογή μας έχει αναπτυχθεί από λίγους ενθουσιώδεις και την κοινότητα.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Μπορείτε εύκολα να διορθώσετε και να βελτιώσετε τα δεδομένα χάρτη.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">Ο κύριος στόχος μας είναι να δημιουργήσουμε γρήγορους, εστιασμένους στο απόρρητο, εύχρηστους χάρτες που θα λατρέψετε.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Τώρα χρησιμοποιείτε τους Organic Maps στην οθόνη του τηλεφώνου</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -708,9 +733,13 @@
 	<string name="button_layer_outdoor">Πεζοπορία</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Το πρόγραμμα περιήγησης στο Web δεν είναι διαθέσιμο</string>
-	<!-- Text displayed in a dialog when OSM authorization is disabled -->
-	<string name="osm_login_not_available">Η εξουσιοδότηση του OpenStreetMap δεν είναι προσωρινά διαθέσιμη λόγω νέων περιορισμών στο Google Play 😾\nΗ ομάδα μας εργάζεται για την επίλυση αυτού του προβλήματος. Παρακαλούμε να είστε υπομονετικοί 🙏</string>
 	<string name="volume">Ένταση ήχου</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Εξαγωγή όλων των σελιδοδεικτών και των διαδρομών</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Ρυθμίσεις συστήματος σύνθεσης ομιλίας</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">Δεν βρέθηκαν οι ρυθμίσεις σύνθεσης ομιλίας, είστε σίγουροι ότι η συσκευή σας την υποστηρίζει;</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Διεύθυνση/Μπλοκ</string>
@@ -761,6 +790,7 @@
 	<string name="type.amenity.dentist">Οδοντίατρος</string>
 	<string name="type.amenity.doctors">Γιατροί</string>
 	<string name="type.amenity.drinking_water">Πόσιμο νερό</string>
+	<string name="type.drinking_water.yes">Πόσιμο νερό</string>
 	<string name="type.amenity.driving_school">Σχολή οδήγησης</string>
 	<string name="type.amenity.exhibition_centre">Εκθεσιακό Κέντρο</string>
 	<string name="type.amenity.money_transfer">Μεταφορά χρημάτων</string>
@@ -880,6 +910,7 @@
 	<string name="type.barrier.swing_gate">Ανυψούμενη μπάρα</string>
 	<string name="type.barrier.toll_booth">Σταθμός διοδίων</string>
 	<string name="type.boundary.national_park">Εθνικό πάρκο</string>
+	<string name="type.boundary.aboriginal_lands">Αυτόχθονες εκτάσεις</string>
 	<string name="type.boundary.protected_area">Προστατευόμενη Περιοχή</string>
 	<string name="type.boundary.protected_area.1">Προστατευόμενη Περιοχή</string>
 	<string name="type.boundary.protected_area.2">Προστατευόμενη Περιοχή</string>

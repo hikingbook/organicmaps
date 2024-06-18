@@ -276,7 +276,9 @@ public:
 
   kml::MarkGroupId GetCategoryId(std::string const & name) const;
 
-  kml::GroupIdCollection const & GetBmGroupsIdList() const { return m_bmGroupsIdList; }
+  kml::GroupIdCollection const & GetUnsortedBmGroupsIdList() const { return m_unsortedBmGroupsIdList; }
+  kml::GroupIdCollection GetSortedBmGroupIdList() const;
+  size_t GetBmGroupsCount() const { return m_unsortedBmGroupsIdList.size(); };
   bool HasBmCategory(kml::MarkGroupId groupId) const;
   kml::MarkGroupId LastEditedBMCategory();
   kml::PredefinedColor LastEditedBMColor() const;
@@ -316,31 +318,32 @@ public:
       FileError
     };
 
-    SharingResult(kml::MarkGroupId categoryId, std::string const & sharingPath)
-      : m_categoryId(categoryId)
+    SharingResult(kml::GroupIdCollection && categoriesIds, std::string && sharingPath)
+      : m_categoriesIds(categoriesIds)
       , m_code(Code::Success)
-      , m_sharingPath(sharingPath)
+      , m_sharingPath(std::move(sharingPath))
     {}
 
-    SharingResult(kml::MarkGroupId categoryId, Code code)
-      : m_categoryId(categoryId)
+    SharingResult(kml::GroupIdCollection && categoriesIds, Code code)
+      : m_categoriesIds(std::move(categoriesIds))
       , m_code(code)
     {}
 
-    SharingResult(kml::MarkGroupId categoryId, Code code, std::string const & errorString)
-      : m_categoryId(categoryId)
+    SharingResult(kml::GroupIdCollection && categoriesIds, Code code, std::string && errorString)
+      : m_categoriesIds(std::move(categoriesIds))
       , m_code(code)
-      , m_errorString(errorString)
+      , m_errorString(std::move(errorString))
     {}
 
-    kml::MarkGroupId m_categoryId;
+    kml::MarkIdCollection m_categoriesIds;
     Code m_code;
     std::string m_sharingPath;
     std::string m_errorString;
   };
 
   using SharingHandler = platform::SafeCallback<void(SharingResult const & result)>;
-  void PrepareFileForSharing(kml::MarkGroupId categoryId, SharingHandler && handler);
+  void PrepareFileForSharing(kml::GroupIdCollection && categoriesIds, SharingHandler && handler);
+  void PrepareAllFilesForSharing(SharingHandler && handler);
 
   bool IsCategoryEmpty(kml::MarkGroupId categoryId) const;
 
@@ -363,7 +366,6 @@ public:
   bool SaveBookmarkCategory(kml::MarkGroupId groupId);
   bool SaveBookmarkCategory(kml::MarkGroupId groupId, Writer & writer, KmlFileType fileType) const;
 
-  static void UpdateLastModifiedTime(KMLDataCollection & collection);
   // Used for LoadBookmarks() and unit tests only. Does *not* update last modified time.
   void CreateCategories(KMLDataCollection && dataCollection, bool autoSave = false);
 
@@ -427,6 +429,7 @@ private:
 
     void OnAddLine(kml::TrackId lineId);
     void OnDeleteLine(kml::TrackId lineId);
+    void OnUpdateLine(kml::TrackId lineId);
 
     void OnAddGroup(kml::MarkGroupId groupId);
     void OnDeleteGroup(kml::MarkGroupId groupId);
@@ -454,6 +457,7 @@ private:
     kml::MarkIdSet const & GetUpdatedMarkIds() const override { return m_updatedMarks; }
     kml::TrackIdSet const & GetCreatedLineIds() const override { return m_createdLines; }
     kml::TrackIdSet const & GetRemovedLineIds() const override { return m_removedLines; }
+    kml::TrackIdSet const & GetUpdatedLineIds() const override { return m_updatedLines; }
     kml::GroupIdSet const & GetBecameVisibleGroupIds() const override { return m_becameVisibleGroups; }
     kml::GroupIdSet const & GetBecameInvisibleGroupIds() const override { return m_becameInvisibleGroups; }
     bool IsGroupVisible(kml::MarkGroupId groupId) const override;
@@ -481,6 +485,7 @@ private:
 
     kml::TrackIdSet m_createdLines;
     kml::TrackIdSet m_removedLines;
+    kml::TrackIdSet m_updatedLines;
 
     kml::GroupIdSet m_createdGroups;
     kml::GroupIdSet m_removedGroups;
@@ -720,7 +725,7 @@ private:
   ScreenBase m_viewport;
 
   CategoriesCollection m_categories;
-  kml::GroupIdCollection m_bmGroupsIdList;
+  kml::GroupIdCollection m_unsortedBmGroupsIdList;
 
   std::string m_lastCategoryUrl;
   kml::MarkGroupId m_lastEditedGroupId = kml::kInvalidMarkGroupId;

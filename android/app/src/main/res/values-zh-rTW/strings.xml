@@ -41,9 +41,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">•沒有廣告，不會跟踪您，更不會收集您的數據</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• 節省電池電量，不使用後台數據</string>
+	<string name="about_proposition_2">• 無電池消耗，離線工作</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">•快速，簡約，不含垃圾軟體</string>
+	<string name="about_proposition_3">• 快速、簡約、由社區開發</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">由愛好者和志願者創建的開源應用程序。</string>
 	<!-- The button that opens system location settings -->
@@ -102,52 +102,54 @@
 	<string name="measurement_units_summary">選擇公里或英哩</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">在哪兒吃</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">食物</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">運輸</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">加油站</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">停車場</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">購物</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">二手</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">旅館</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">旅遊景點</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">娛樂</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">自動櫃員機</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">夜生活</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">親子休閒</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">銀行</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">藥局</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">醫院</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">廁所</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">郵局</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">警察局</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">無線網路</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">回收</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">水</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">房車用</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">在哪兒吃</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">食物</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">運輸</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">加油站</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">停車場</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">購物</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">二手</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">旅館</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">旅遊景點</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">娛樂</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">自動櫃員機</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">夜生活</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">親子休閒</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">銀行</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">藥局</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">醫院</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">廁所</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">郵局</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">警察局</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">無線網路</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">回收</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">水</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">房車用</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">描述說明</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -159,6 +161,10 @@
 	<string name="load_kmz_successful">書籤上傳成功！ 您可以在地圖上或是書籤管理畫面中找到書籤。</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">書籤上傳失敗。 檔案可能有毀損或是不完全。</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">應用程式無法識別該文件類型：\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">無法開啟文件 %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">編輯</string>
 	<!-- Warning message when doing search around current position -->
@@ -464,8 +470,8 @@
 	<string name="editor_report_problem_other_title">不同的問題</string>
 	<string name="placepage_add_business_button">將地點添加到 OpenStreetMap</string>
 	<string name="message_invalid_feature_position">物件無法設置在這裡</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">截止到 %s 的 OpenStreetMap 地圖數據。就像 Wikipedia 一樣，您可以為世界上所有用戶添加或編輯位置。</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">截至 %s 的社群創建的 OpenStreetMap 資料。請訪問 OpenStreetMap.org 以了解有關如何編輯和更新地圖的更多信息</string>
 	<string name="login_to_make_edits_visible">登入來讓其他使用者能看到您所作出的修改。</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d個/共%2$d個</string>
@@ -486,7 +492,6 @@
 	<string name="editor_operator">營運者</string>
 	<string name="downloader_no_downloaded_maps_title">您尚未下載任何地圖</string>
 	<string name="downloader_no_downloaded_maps_message">下載地圖來尋找位置和離線瀏覽。</string>
-	<string name="stop">停止</string>
 	<!-- abbreviation for meters -->
 	<string name="m">公尺</string>
 	<!-- abbreviation for kilometers -->
@@ -614,13 +619,15 @@
 	<string name="bookmark_list_description_hint">增加說明(文字或html)</string>
 	<string name="not_shared">私人</string>
 	<string name="speedcams_alert_title">超速照相機</string>
-	<!-- Generic «Always» string -->
-	<string name="always">總是</string>
-	<!-- Generic «Never» string -->
-	<string name="never">從不</string>
 	<string name="place_description_title">地點說明</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">載入地圖</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">警告超速</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">始終提醒照相機</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">永遠不會對照相機發出警告</string>
 	<string name="power_managment_title">省電模式</string>
 	<string name="power_managment_description">如果開啟省電模式，應用程序將根據手機的當前電量關閉耗電功能</string>
 	<string name="power_managment_setting_never">從不</string>
@@ -719,8 +726,26 @@
 	<string name="enable_show_on_lock_screen_description">啟用後，即使設備已鎖定，應用程式仍會在鎖定螢幕上運作。</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">地圖數據來自 OpenStreetMap</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">感謝您使用我們社區構建的地圖！</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">有了您的捐贈和支持，我們可以創建世界上最好的地圖！</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">您喜歡我們的應用程序嗎？ 請捐款支持發展！ 還不喜歡嗎？ 請告訴我們，我們會修復它！</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">如果您認識軟體開發人員，您可以要求他或她實現您需要的功能。</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">您知道您可以長按地圖上的任何位置來選擇它嗎？</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">您知道您可以在地圖上選擇您目前的位置嗎？</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">您可以幫助將我們的應用程序翻譯成您的語言。</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">我們的應用程序是由一些愛好者和社區開發的。</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">您可以輕鬆修復和改進地圖數據。</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">我們的主要目標是構建您會喜歡的快速、注重隱私、易於使用的地圖。</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">您現在正在手機螢幕上使用有機地圖</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -742,6 +767,12 @@
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">網路瀏覽器不可用</string>
 	<string name="volume">音量</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">匯出所有書籤和曲目</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">系統語音合成設定</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">未找到語音合成設置，您確定您的設備支援它嗎？</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">地址/區塊</string>
@@ -799,6 +830,7 @@
 	<string name="type.amenity.dentist">牙醫</string>
 	<string name="type.amenity.doctors">醫師診間</string>
 	<string name="type.amenity.drinking_water">飲用水</string>
+	<string name="type.drinking_water.yes">飲用水</string>
 	<string name="type.amenity.driving_school">駕訓班</string>
 	<string name="type.amenity.exhibition_centre">展覽中心</string>
 	<string name="type.amenity.money_transfer">匯款</string>
@@ -922,6 +954,7 @@
 	<string name="type.barrier.swing_gate">遮斷機</string>
 	<string name="type.barrier.toll_booth">收費站</string>
 	<string name="type.boundary.national_park">國家公園</string>
+	<string name="type.boundary.aboriginal_lands">原住民土地</string>
 	<string name="type.boundary.protected_area">保護區</string>
 	<string name="type.boundary.protected_area.1">保護區</string>
 	<string name="type.boundary.protected_area.2">保護區</string>

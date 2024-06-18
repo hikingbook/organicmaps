@@ -161,6 +161,11 @@ extension BookmarksListViewController: UITableViewDelegate {
     }
     return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
   }
+
+  func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    guard let section = sections?[indexPath.section] else { fatalError() }
+    presenter.editItem(in: section, at: indexPath.row)
+  }
 }
 
 extension BookmarksListViewController: UISearchBarDelegate {
@@ -221,6 +226,10 @@ extension BookmarksListViewController: IBookmarksListView {
     actionSheet.addAction(UIAlertAction(title: L("cancel"), style: .cancel, handler: nil))
     actionSheet.popoverPresentationController?.barButtonItem = sortToolbarItem
     present(actionSheet, animated: true)
+  }
+
+  func showColorPicker(with pickerType: ColorPickerType, _ completionHandler: ((UIColor) -> Void)?) {
+    ColorPicker.shared.present(from: self, pickerType: pickerType, completionHandler: completionHandler)
   }
 
   func enableEditing(_ enable: Bool) {

@@ -43,9 +43,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">• Tidak ada iklan, tidak ada pelacakan, tidak ada pengumpulan data</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Menghemat baterai, tidak menggunakan data latar belakang</string>
+	<string name="about_proposition_2">• Tidak menguras baterai, bekerja secara offline</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">• Cepat, minimalis, tidak ada sampah</string>
+	<string name="about_proposition_3">• Cepat, minimalis, dikembangkan oleh komunitas</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Aplikasi open-source yang dibuat oleh penggemar dan sukarelawan.</string>
 	<!-- The button that opens system location settings -->
@@ -104,52 +104,54 @@
 	<string name="measurement_units_summary">Pilihlah antara mil dan kilometer</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">Tempat makan</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Toserba</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Transportasi</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Bahan bakar</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Parkir</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Berbelanja</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Tangan kedua</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Hotel</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Pemandangan</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Hiburan</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">ATM</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Kehidupan Malam</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Liburan keluarga</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Bank</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Apotek</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Rumah sakit</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Toilet</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Pos</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Polisi</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Mendaur ulang</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Air</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Untuk RV</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">Tempat makan</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Toserba</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Transportasi</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Bahan bakar</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Parkir</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Berbelanja</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Tangan kedua</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Hotel</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Pemandangan</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Hiburan</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">ATM</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Kehidupan Malam</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Liburan keluarga</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Bank</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Apotek</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Rumah sakit</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Toilet</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Pos</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Polisi</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Mendaur ulang</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Air</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Untuk RV</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Catatan</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -160,6 +162,10 @@
 	<string name="load_kmz_successful">Penanda berhasil dimuat! Anda dapat menemukannya pada peta atau pada layar Pengelola Penanda Lokasi.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">Gagal mengunggah penanda lokasi. Berkas mungkin rusak.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">Jenis file tidak dikenali oleh aplikasi:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Gagal membuka file %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Edit</string>
 	<!-- Warning message when doing search around current position -->
@@ -452,8 +458,8 @@
 	<string name="editor_report_problem_other_title">Masalah yang berbeda</string>
 	<string name="placepage_add_business_button">Tambahkan organisasi</string>
 	<string name="message_invalid_feature_position">Objek tidak dapat diletakkan di sini</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Data kartografi dari OpenStreetMap pada %s. Ini seperti Wikipedia di mana Anda dapat menambahkan atau mengedit tempat untuk semua pengguna di seluruh dunia.</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Data OpenStreetMap yang dibuat oleh komunitas pada tanggal %s. Pelajari lebih lanjut mengenai cara mengedit dan memperbarui peta di OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">Masuk agar pengguna lain dapat melihat perubahan yang Anda buat.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d dari %2$d</string>
@@ -474,7 +480,6 @@
 	<string name="editor_operator">Pemilik</string>
 	<string name="downloader_no_downloaded_maps_title">Tidak ada peta apa pun yang diunduh</string>
 	<string name="downloader_no_downloaded_maps_message">Unduh peta untuk menemukan lokasi dan bernavigasi secara offline.</string>
-	<string name="stop">Berhenti</string>
 	<!-- abbreviation for meters -->
 	<string name="m">m</string>
 	<!-- abbreviation for kilometers -->
@@ -599,13 +604,15 @@
 	<string name="bookmark_list_description_hint">Ketikkan deskripsi (teks atau html)</string>
 	<string name="not_shared">Pribadi</string>
 	<string name="speedcams_alert_title">Kamera cepat</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Selalu</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Tidak pernah</string>
 	<string name="place_description_title">Deskripsi Tempat</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Pengunduh peta</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Untuk memperingatkan Anda agar tidak ngebut</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Selalu peringatkan</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Jangan pernah peringatkan</string>
 	<string name="power_managment_title">Mode hemat daya</string>
 	<string name="power_managment_description">Saat mode otomatis dipilih, aplikasi mulai menonaktifkan fitur yang menghabiskan daya baterai, bergantung pada tingkat daya baterai saat ini</string>
 	<string name="power_managment_setting_never">Jangan pernah</string>
@@ -699,8 +706,26 @@
 	<string name="splash_subtitle">Data peta dari OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/id/</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Terima kasih telah menggunakan peta buatan komunitas kami!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Dengan donasi dan dukungan Anda, kami dapat membuat peta terbaik di Dunia!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Apakah Anda menyukai aplikasi kami? Silakan berdonasi untuk mendukung pengembangan! Belum menyukainya? Harap beri tahu kami, dan kami akan memperbaikinya!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Jika Anda mengenal seorang pengembang perangkat lunak, Anda dapat memintanya untuk mengimplementasikan fitur yang Anda perlukan.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Tahukah Anda bahwa Anda dapat mengetuk lama tempat mana pun di peta untuk memilihnya?</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Tahukah Anda bahwa Anda dapat memilih lokasi Anda saat ini di peta?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Anda dapat membantu menerjemahkan aplikasi kami ke dalam bahasa Anda.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">Aplikasi kami dikembangkan oleh beberapa peminat dan komunitas.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Anda dapat dengan mudah memperbaiki dan meningkatkan data peta.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">Tujuan utama kami adalah membuat peta yang cepat, berfokus pada privasi, dan mudah digunakan yang akan Anda sukai.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Anda sekarang menggunakan Organic Maps pada layar ponsel</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -721,9 +746,13 @@
 	<string name="button_layer_outdoor">Pendakian</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Browser web tidak tersedia</string>
-	<!-- Text displayed in a dialog when OSM authorization is disabled -->
-	<string name="osm_login_not_available">Otorisasi OpenStreetMap untuk sementara tidak tersedia karena adanya pembatasan baru di Google Play 😾\nTim kami sedang bekerja untuk menyelesaikan masalah ini. Mohon bersabar 🙏</string>
 	<string name="volume">Volume</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Mengekspor semua Penanda dan Trek</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Pengaturan sistem sintesis ucapan</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">Pengaturan Sintesis Ucapan tidak ditemukan, apakah Anda yakin perangkat Anda mendukungnya?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Alamat/Blokir</string>
@@ -765,6 +794,7 @@
 	<string name="type.amenity.dentist">Dokter gigi</string>
 	<string name="type.amenity.doctors">Praktik dokter</string>
 	<string name="type.amenity.drinking_water">Air minum</string>
+	<string name="type.drinking_water.yes">Air minum</string>
 	<string name="type.amenity.driving_school">Sekolah Mengemudi</string>
 	<string name="type.amenity.exhibition_centre">Pusat pameran</string>
 	<string name="type.amenity.money_transfer">Transfer uang</string>
@@ -881,6 +911,7 @@
 	<string name="type.barrier.swing_gate">Polisi tidur</string>
 	<string name="type.barrier.toll_booth">Gerbang tol</string>
 	<string name="type.boundary.national_park">Taman Nasional</string>
+	<string name="type.boundary.aboriginal_lands">Tanah adat</string>
 	<string name="type.boundary.protected_area">Kawasan Lindung</string>
 	<string name="type.boundary.protected_area.1">Kawasan Lindung</string>
 	<string name="type.boundary.protected_area.2">Kawasan Lindung</string>

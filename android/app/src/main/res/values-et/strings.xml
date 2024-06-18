@@ -37,7 +37,9 @@
 	<string name="try_again">Proovi uuesti</string>
 	<string name="about_menu_title">Organic Maps kohta</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Säästab akut, ei kasuta taustaandmeid</string>
+	<string name="about_proposition_2">• Ei tühjenda akut, töötab võrguühenduseta</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• Kiire, minimalistlik, kogukonna poolt välja töötatud</string>
 	<!-- The button that opens system location settings -->
 	<string name="location_settings">Asukoha seaded</string>
 	<string name="close">Sulge</string>
@@ -106,52 +108,54 @@
 	<string name="measurement_units_summary">Vali miilide ja kilomeetrite vahel</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">Kus süüa</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Toidukaubad</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Transport</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Tanklad</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Parkla</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Poed</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Kasutatud</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Hotell</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Vaatamisväärsused</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Meelelahutus</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">Pangaautomaat</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Ööelu</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Perepuhkus</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Pank</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Apteek</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Haigla</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Tualett</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Post</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Politsei</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Taaskasutus</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Vesi</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Haagiselamud</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">Kus süüa</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Toidukaubad</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Transport</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Tanklad</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Parkla</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Poed</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Kasutatud</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Hotell</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Vaatamisväärsused</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Meelelahutus</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">Pangaautomaat</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Ööelu</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Perepuhkus</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Pank</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Apteek</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Haigla</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Tualett</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Post</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Politsei</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Taaskasutus</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Vesi</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Haagiselamud</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Märkmed</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -163,6 +167,10 @@
 	<string name="load_kmz_successful">Järjehoidjad edukalt laetud! Leiad need kaardil või järjehoidjate halduri ekraanil.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">Järjehoidjate laadimine ebaõnnestus. Fail võib olla vigane.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">Rakendus ei tunnista failitüüpi:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Faili avamine ebaõnnestus %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Muuda</string>
 	<!-- Warning message when doing search around current position -->
@@ -466,6 +474,8 @@
 	<string name="editor_report_problem_other_title">Erinev probleem</string>
 	<string name="placepage_add_business_button">Lisa ettevõte</string>
 	<string name="message_invalid_feature_position">Ükski objekt ei saa siin asuda</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Ühenduse loodud OpenStreetMapi andmed alates %s. Lisateave selle kohta, kuidas kaarti redigeerida ja uuendada, on aadressil OpenStreetMap.org.</string>
 	<string name="login_to_make_edits_visible">Logi sisse OpenStreetMap.org keskkonda, et teised kasutajad näeksid Sinu tehtud muudatusi.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d/%2$d</string>
@@ -486,7 +496,6 @@
 	<string name="editor_operator">Omanik</string>
 	<string name="downloader_no_downloaded_maps_title">Sa ei ole kaarte alla laadinud</string>
 	<string name="downloader_no_downloaded_maps_message">Lae alla kaardid asukoha otsimiseks ja võrguühenduseta navigeerimise kasutamiseks.</string>
-	<string name="stop">Lõpeta</string>
 	<!-- abbreviation for meters -->
 	<string name="m">m</string>
 	<!-- abbreviation for kilometers -->
@@ -620,13 +629,15 @@
 	<string name="bookmark_list_description_hint">Sisesta kirjeldus (tekst või html)</string>
 	<string name="not_shared">Privaatne</string>
 	<string name="speedcams_alert_title">Kiiruskaamerad</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Alati</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Mitte kunagi</string>
 	<string name="place_description_title">Koha kirjeldus</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Kaartide allalaadija</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Hoiatused kui on oht ületada piirkiirust</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Hoiata alati eest</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Ära kunagi hoiata eest</string>
 	<string name="power_managment_title">Energiasäästlik režiim</string>
 	<string name="power_managment_description">Kui on valitud automaatrežiim, hakkab rakendus aku tühjendamise funktsioone olenevalt praegusest aku laetuse tasemest keelama</string>
 	<string name="power_managment_setting_never">Mitte kunagi</string>
@@ -731,8 +742,26 @@
 	<string name="enable_show_on_lock_screen_description">Kui lubatud, ei pea te seadet iga kord avama, kui rakendus töötab.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">OpenStreetMap kaardiandmed</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Aitäh, et kasutate meie kogukonna koostatud kaarte!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Teie annetuste ja toetusega saame luua maailma parimaid kaarte!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Kas teile meeldib meie rakendus? Palun annetage arengu toetamiseks! Ei meeldi veel? Palun andke meile teada ja me parandame selle!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Kui teate mõnda tarkvaraarendajat, võite paluda tal rakendada teile vajalik funktsioon.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Kas teate, et saate selle valimiseks pikalt puudutada mis tahes kohta kaardil?</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Kas tead, et saad kaardil valida oma praeguse asukoha?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Saate aidata meie rakendust oma keelde tõlkida.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">Meie rakenduse on välja töötanud mõned entusiastid ja kogukond.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Saate hõlpsasti kaardiandmeid parandada ja täiustada.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">Meie põhieesmärk on luua kiireid, privaatsusele keskenduvaid ja hõlpsasti kasutatavaid kaarte, mis teile meeldivad.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Nüüd kasutate telefoni ekraanil Organic Maps</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -753,9 +782,13 @@
 	<string name="button_layer_outdoor">Matkamine</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Veebibrauser ei ole saadaval</string>
-	<!-- Text displayed in a dialog when OSM authorization is disabled -->
-	<string name="osm_login_not_available">OpenStreetMapi autoriseerimine on ajutiselt kättesaamatu Google Play uute piirangute tõttu 😾\nMeie meeskond töötab selle probleemi lahendamise kallal. Palun olge kannatlik 🙏</string>
 	<string name="volume">Helitugevus</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Ekspordi kõik järjehoidjad ja lood</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Kõnesünteesi süsteemi seaded</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">Kõnesünteesi seadeid ei leitud, kas olete kindel, et teie seade toetab seda?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Aadress/plokk</string>
@@ -814,6 +847,7 @@
 	<string name="type.amenity.dentist">Hambaarst</string>
 	<string name="type.amenity.doctors">Arst</string>
 	<string name="type.amenity.drinking_water">Joogivesi</string>
+	<string name="type.drinking_water.yes">Joogivesi</string>
 	<string name="type.amenity.driving_school">Autokool</string>
 	<string name="type.amenity.exhibition_centre">Näituste keskus</string>
 	<string name="type.amenity.money_transfer">Raha ülekanne</string>
@@ -978,6 +1012,7 @@
 	<string name="type.boundary.administrative.state">Osariigi piir</string>
 	<string name="type.boundary.administrative.suburb">Eeslinna piir</string>
 	<string name="type.boundary.national_park">Rahvuspark</string>
+	<string name="type.boundary.aboriginal_lands">Põlisrahvaste maad</string>
 	<string name="type.boundary.protected_area">Kaitseala</string>
 	<string name="type.boundary.protected_area.1">Kaitseala</string>
 	<string name="type.boundary.protected_area.2">Kaitseala</string>

@@ -691,7 +691,7 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   bool const canEditOrAdd = featureStatus != FeatureStatus::Obsolete && CanEditMap() &&
                             isMapVersionEditable;
   info.SetCanEditOrAdd(canEditOrAdd);
-  info.SetPopularity(m_popularityLoader.Get(ft.GetID()));
+  //info.SetPopularity(m_popularityLoader.Get(ft.GetID()));
 
   // Fill countryId for place page info
   auto const & types = info.GetTypes();
@@ -2636,12 +2636,12 @@ bool Framework::ParseDrapeDebugCommand(string const & query)
     SavePreferredGraphicsAPI(dp::ApiVersion::Vulkan);
     return true;
   }
-#endif
   if (query == "?gl")
   {
     SavePreferredGraphicsAPI(dp::ApiVersion::OpenGLES3);
     return true;
   }
+#endif
   return false;
 }
 
@@ -2666,7 +2666,7 @@ bool Framework::ParseEditorDebugCommand(search::SearchParams const & params)
 
       search::Result res(feature::GetCenter(*ft), string(ft->GetReadableName()));
       res.SetAddress(std::move(edit.second));
-      res.FromFeature(fid, feature::TypesHolder(*ft).GetBestType(), {});
+      res.FromFeature(fid, feature::TypesHolder(*ft).GetBestType(), 0, {});
 
       results.AddResultNoChecks(std::move(res));
     }

@@ -9,6 +9,7 @@
 @class MWMBookmarksSection;
 @class MWMCarPlayBookmarkObject;
 @class MWMTrack;
+@class UIColor;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -83,13 +84,15 @@ NS_SWIFT_NAME(BookmarksManager)
 - (MWMTrackIDCollection)trackIdsForCategory:(MWMMarkGroupID)categoryId;
 
 - (void)shareCategory:(MWMMarkGroupID)groupId;
+- (void)shareAllCategories;
 - (NSURL *)shareCategoryURL;
 - (void)finishShareCategory;
 
 - (void)setNotificationsEnabled:(BOOL)enabled;
 - (BOOL)areNotificationsEnabled;
 
-- (NSArray<MWMBookmarkGroup *> *)userCategories;
+- (NSArray<MWMBookmarkGroup *> *)sortedUserCategories;
+- (size_t)userCategoriesCount;
 - (MWMBookmarkGroup *)categoryWithId:(MWMMarkGroupID)groupId;
 - (MWMBookmarkGroup *)categoryForBookmarkId:(MWMMarkID)bookmarkId;
 - (MWMBookmarkGroup *)categoryForTrackId:(MWMTrackID)trackId;
@@ -100,12 +103,19 @@ NS_SWIFT_NAME(BookmarksManager)
                  color:(MWMBookmarkColor)color
            description:(NSString *)description;
 
+- (void)updateBookmark:(MWMMarkID)bookmarkId
+              setColor:(MWMBookmarkColor)color;
+
 - (void)moveBookmark:(MWMMarkID)bookmarkId
            toGroupId:(MWMMarkGroupID)groupId;
 
 - (void)updateTrack:(MWMTrackID)trackId
          setGroupId:(MWMMarkGroupID)groupId
+              color:(UIColor *)color
               title:(NSString *)title;
+
+- (void)updateTrack:(MWMTrackID)trackId
+           setColor:(UIColor *)color;
 
 - (void)moveTrack:(MWMTrackID)trackId
         toGroupId:(MWMMarkGroupID)groupId;

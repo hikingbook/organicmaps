@@ -1,5 +1,6 @@
 package app.organicmaps.settings;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import androidx.preference.Preference;
 import androidx.preference.SeekBarPreference;
 import androidx.preference.TwoStatePreference;
 
+import app.organicmaps.Framework;
 import app.organicmaps.R;
 import app.organicmaps.sound.LanguageData;
 import app.organicmaps.sound.TtsPlayer;
@@ -49,7 +52,6 @@ public class VoiceInstructionsSettingsFragment extends BaseXmlSettingsFragment
   @NonNull
   @SuppressWarnings("NotNullFieldNotInitialized")
   private Preference mTtsVoiceTest;
-
   private List<String> mTtsTestStringArray;
   private int mTestStringIndex;
 
@@ -115,6 +117,25 @@ public class VoiceInstructionsSettingsFragment extends BaseXmlSettingsFragment
     mTtsPrefEnabled = getPreference(getString(R.string.pref_tts_enabled));
     mTtsPrefLanguages = getPreference(getString(R.string.pref_tts_language));
     mTtsLangInfo = getPreference(getString(R.string.pref_tts_info));
+
+    Preference mTtsOpenSystemSettings = getPreference(getString(R.string.pref_tts_open_system_settings));
+    mTtsOpenSystemSettings.setOnPreferenceClickListener(pref -> {
+      try
+      {
+        final Intent intent = new Intent()
+                .setAction("com.android.settings.TTS_SETTINGS")
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        return true;
+      }
+      catch(ActivityNotFoundException e)
+      {
+        CharSequence noTtsSettingString = getString(R.string.pref_tts_no_system_tts);
+        Toast.makeText(super.getSettingsActivity(), noTtsSettingString, Toast.LENGTH_LONG).show();
+        return false;
+      }
+    });
+
     mTtsVoiceTest = getPreference(getString(R.string.pref_tts_test_voice));
     mTtsVoiceTest.setOnPreferenceClickListener(pref -> {
       if (mTtsTestStringArray == null)
@@ -130,6 +151,7 @@ public class VoiceInstructionsSettingsFragment extends BaseXmlSettingsFragment
 
     initVolume();
     initTtsLangInfoLink();
+    initSpeedCamerasPrefs();
     updateTts();
   }
 
@@ -279,5 +301,27 @@ public class VoiceInstructionsSettingsFragment extends BaseXmlSettingsFragment
       Utils.openUrl(requireContext(), ttsInfoUrl);
       return false;
     });
+  }
+
+  private void initSpeedCamerasPrefs()
+  {
+    final ListPreference pref = getPreference(getString(R.string.pref_tts_speed_cameras));
+    pref.setSummary(pref.getEntry());
+    pref.setOnPreferenceChangeListener((preference, newValue) -> {
+      final String speedCamModeValue = (String) newValue;
+      final SettingsPrefsFragment.SpeedCameraMode newCamMode = SettingsPrefsFragment.SpeedCameraMode.valueOf(speedCamModeValue);
+      final CharSequence summary = pref.getEntries()[newCamMode.ordinal()];
+      pref.setSummary(summary);
+      if (pref.getValue().equals(newValue))
+        return true;
+
+      onSpeedCamerasPrefChanged(newCamMode);
+      return true;
+    });
+  }
+
+  private void onSpeedCamerasPrefChanged(@NonNull SettingsPrefsFragment.SpeedCameraMode newCamMode)
+  {
+    Framework.setSpeedCamerasMode(newCamMode);
   }
 }

@@ -37,7 +37,9 @@
 	<string name="try_again">Torna-ho a intentar</string>
 	<string name="about_menu_title">Quant a l\'Organic Maps</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Estalvia la bateria, no utilitza dades de fons</string>
+	<string name="about_proposition_2">• Sense consum de bateria, funciona fora de línia</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• Ràpid, minimalista, desenvolupat per la comunitat</string>
 	<!-- The button that opens system location settings -->
 	<string name="location_settings">Paràmetres d\'ubicació</string>
 	<string name="close">Tanca</string>
@@ -106,52 +108,54 @@
 	<string name="measurement_units_summary">Trieu entre milles i quilòmetres</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">On menjar</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Queviures</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Transport</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Benzinera</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Aparcament</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Compres</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Segona mà</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Hotel</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Turisme</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Entreteniment</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">Caixer automàtic</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Vida nocturna</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Oci familiar</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Banc</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Farmàcia</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Hospital</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Lavabos</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Oficina postal</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Policia</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Reciclatge</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Aigua</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Caravanes</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">On menjar</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Queviures</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Transport</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Benzinera</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Aparcament</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Compres</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Segona mà</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Hotel</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Turisme</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Entreteniment</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">Caixer automàtic</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Vida nocturna</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Oci familiar</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Banc</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Farmàcia</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Hospital</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Lavabos</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Oficina postal</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Policia</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Reciclatge</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Aigua</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Caravanes</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notes</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -163,6 +167,10 @@
 	<string name="load_kmz_successful">Els marcadors s\'han carregat correctament! Podeu trobar-los en el mapa o en la pantalla de gestió de marcadors.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">No s\'ha pogut carregar els marcadors. El fitxer pot ser malmès o defectuós.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">L\'aplicació no reconeix el tipus de fitxer:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">No s\'ha pogut obrir el fitxer %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Edita</string>
 	<!-- Warning message when doing search around current position -->
@@ -467,6 +475,8 @@
 	<string name="editor_report_problem_other_title">Un altre problema</string>
 	<string name="placepage_add_business_button">Afegeix un negoci</string>
 	<string name="message_invalid_feature_position">No s\'ha trobat cap objecte aquí</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Dades d\'OpenStreetMap creades per la comunitat a partir de %s. Obteniu més informació sobre com editar i actualitzar el mapa a OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">Inicieu sessió perquè altres usuaris puguin veure els canvis que heu fet</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d de %2$d</string>
@@ -487,7 +497,6 @@
 	<string name="editor_operator">Propietari</string>
 	<string name="downloader_no_downloaded_maps_title">No heu baixat cap mapa</string>
 	<string name="downloader_no_downloaded_maps_message">Baixeu mapes per a cercar una ubicacio i usar la navegació sense connexió.</string>
-	<string name="stop">Atura\'t</string>
 	<!-- abbreviation for meters -->
 	<string name="m">m</string>
 	<!-- abbreviation for kilometers -->
@@ -622,13 +631,15 @@
 	<string name="bookmark_list_description_hint">Escriviu una descripció (text o html)</string>
 	<string name="not_shared">Privat</string>
 	<string name="speedcams_alert_title">Radars</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Sempre</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Mai</string>
 	<string name="place_description_title">Descripció del lloc</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Descàrrega de mapes</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Avisa en excedir el límit de velocitat</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Sempre avisa</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">No n\'avisis mai</string>
 	<string name="power_managment_title">Mode d\'estalvi d\'energia</string>
 	<string name="power_managment_description">Si està seleccionat el mode automàtic, l\'aplicació desactivarà funcions que consumeixen energia, depenent del nivell de càrrega actual de la bateria</string>
 	<string name="power_managment_setting_never">Mai</string>
@@ -737,8 +748,26 @@
 	<string name="translated_om_site_url">https://organicmaps.app/ca/</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ca:About</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Gràcies per utilitzar els nostres mapes creats per la comunitat!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Amb les vostres donacions i suport, podem crear els millors mapes del món!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Us agrada la nostra aplicació? Feu una donació per donar suport al desenvolupament! Encara no us agrada? Si us plau, feu-nos-ho saber i ho solucionarem!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Si coneixeu un desenvolupador de programari, podeu demanar-li que implementi una funcionalitat que necessiteu.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Sabíeu que podeu tocar llargament qualsevol lloc del mapa per seleccionar-lo?</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Sabíeu que podeu seleccionar la vostra ubicació actual al mapa?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Podeu ajudar a traduir la nostra aplicació a la vostra llengua.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">La nostra aplicació està desenvolupada per uns quants entusiastes i la comunitat.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Podeu corregir i millorar fàcilment les dades del mapa.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">El nostre objectiu principal és crear mapes ràpids, centrats en la privadesa i fàcils d\'utilitzar que us encantaran.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Ara esteu utilitzant els Organic Maps a la pantalla del telèfon</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -760,6 +789,12 @@
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">El navegador web no està disponible</string>
 	<string name="volume">Volum</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Exporta totes les adreces d\'interès i pistes</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Configuració de la síntesi de veu del sistema</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">No s\'ha trobat la configuració de la síntesi de veu, esteu segur que el vostre dispositiu l\'admet?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adreça/Bloc</string>
@@ -794,6 +829,7 @@
 	<string name="type.waterway.ditch">Sèquia de drenatge</string>
 	<string name="type.natural.water.wastewater">Aigües residuals</string>
 	<string name="type.barrier.turnstile">Torniquet</string>
+	<string name="type.boundary.aboriginal_lands">Terres indígenes</string>
 	<string name="type.boundary.protected_area">Àrea Protegida</string>
 	<string name="type.boundary.protected_area.1">Àrea Protegida</string>
 	<string name="type.boundary.protected_area.2">Àrea Protegida</string>

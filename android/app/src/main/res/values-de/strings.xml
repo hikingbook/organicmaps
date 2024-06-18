@@ -41,9 +41,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">• Keine Werbung, kein Tracking, keine Datenerfassung</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Schont den Akku, keine Hintergrunddaten</string>
+	<string name="about_proposition_2">• Kein Datenverbrauch, funktioniert offline</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">• Schnell, minimalistisch, keine Bloatware</string>
+	<string name="about_proposition_3">• Schnell, minimalistisch, von der Gemeinschaft entwickelt</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Open-Source-Anwendung von Enthusiasten und Freiwilligen.</string>
 	<!-- The button that opens system location settings -->
@@ -114,52 +114,54 @@
 	<string name="measurement_units_summary">Wählen Sie zwischen Kilometern und Meilen</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">Essmöglichkeiten</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Lebensmittel</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Verkehr</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Tankstelle</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Parkplatz</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Shopping</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Second-hand</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Hotel</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Sehenswürdigkeit</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Unterhaltung</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">Geldautomat</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Nachtleben</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Freizeit mit Kindern</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Bank</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Apotheke</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Krankenhaus</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Toilette</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Post</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Polizeistation</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WLAN</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Recycling</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Wasser</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Einrichtungen für Wohnmobile</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">Essmöglichkeiten</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Lebensmittel</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Verkehr</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Tankstelle</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Parkplatz</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Shopping</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Second-hand</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Hotel</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Sehenswürdigkeit</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Unterhaltung</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">Geldautomat</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Nachtleben</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Freizeit mit Kindern</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Bank</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Apotheke</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Krankenhaus</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Toilette</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Post</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Polizeistation</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WLAN</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Recycling</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Wasser</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Einrichtungen für Wohnmobile</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Notizen</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -171,6 +173,10 @@
 	<string name="load_kmz_successful">Lesezeichen erfolgreich geladen! Sie können diese nun auf Ihrer Karte oder im Lesezeichen-Manager anzeigen.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">Laden der Lesezeichen fehlgeschlagen. Die Datei könnte beschädigt oder defekt sein.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">Der Dateityp wird von der App nicht erkannt:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Datei konnte nicht geöffnet werden %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Bearbeiten</string>
 	<!-- Warning message when doing search around current position -->
@@ -472,8 +478,8 @@
 	<string name="editor_report_problem_other_title">Ein anderes Problem</string>
 	<string name="placepage_add_business_button">Organisation hinzufügen</string>
 	<string name="message_invalid_feature_position">Ein Objekt kann hier nicht positioniert werden</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Kartografische Daten von OpenStreetMap vom %s. OSM ist wie Wikipedia für Karten, wo Sie Orte hinzufügen oder bearbeiten können.</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Von der Gemeinschaft erstellte OpenStreetMap-Daten (Stand: %s). Erfahre mehr darüber, wie du die Karte bearbeiten und aktualisieren kannst unter OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">Melden Sie sich an, damit andere Benutzer Ihre Änderungen sehen können.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d von %2$d</string>
@@ -494,7 +500,6 @@
 	<string name="editor_operator">Betreiber oder Eigentümer</string>
 	<string name="downloader_no_downloaded_maps_title">Keine Karten geladen</string>
 	<string name="downloader_no_downloaded_maps_message">Laden Sie die für die Suche nach Orten erforderlichen Karten und verwenden Sie die Navigation offline.</string>
-	<string name="stop">Anhalten</string>
 	<!-- abbreviation for meters -->
 	<string name="m">m</string>
 	<!-- abbreviation for kilometers -->
@@ -629,13 +634,15 @@
 	<string name="bookmark_list_description_hint">Fügen Sie die Beschreibung hinzu (Text oder html)</string>
 	<string name="not_shared">Persönlich</string>
 	<string name="speedcams_alert_title">Blitzer</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Immer</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Niemals</string>
 	<string name="place_description_title">Ortsbeschreibung</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Karten werden geladen</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Warnen wenn zu schnell</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Immer warnen</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Niemals warnen</string>
 	<string name="power_managment_title">Stromsparmodus</string>
 	<string name="power_managment_description">Wenn der Stromsparmodus aktiviert ist, wird die App stromintensive Funktionen je nach aktuellem Ladezustand des Akkus deaktivieren</string>
 	<string name="power_managment_setting_never">Niemals</string>
@@ -744,8 +751,26 @@
 	<string name="translated_om_site_url">https://organicmaps.app/de/</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/DE:Über_OSM</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Danke, dass du unsere von der Gemeinschaft erstellten Karten benutzt!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Mit Ihren Spenden und Ihrer Unterstützung können wir die besten Karten der Welt erstellen!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Gefällt Ihnen unsere App? Bitte spenden Sie, um die Entwicklung zu unterstützen! Gefällt es Ihnen noch nicht? Bitte lassen Sie uns wissen warum und wir werden das Problem beheben!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Wenn Sie einen Softwareentwickler kennen, können Sie ihn oder sie bitten, eine Funktion zu implementieren, die Sie benötigen.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Wussten Sie, dass Sie jeden Ort auf der Karte lange antippen können, um ihn auszuwählen?</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Wussten Sie, dass Sie Ihren aktuellen Standort auf der Karte auswählen können?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Sie können dabei helfen, unsere App in Ihre Sprache zu übersetzen.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">Unsere App wird von einigen Enthusiasten und der Community entwickelt.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Sie können die Kartendaten einfach reparieren und verbessern.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">Unser Hauptziel ist es, schnelle, datenschutzorientierte und benutzerfreundliche Karten zu erstellen, die Sie lieben werden.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Du verwendest jetzt Organic Maps auf dem Telefondisplay</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -766,9 +791,13 @@
 	<string name="button_layer_outdoor">Wandern</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Webbrowser ist nicht verfügbar</string>
-	<!-- Text displayed in a dialog when OSM authorization is disabled -->
-	<string name="osm_login_not_available">Die OpenStreetMap-Autorisierung ist aufgrund neuer Einschränkungen in Google Play vorübergehend nicht verfügbar 😾\nUnser Team arbeitet daran, dieses Problem zu beheben. Bitte habe etwas Geduld 🙏</string>
 	<string name="volume">Lautstärke</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Alle Lesezeichen und Tracks exportieren</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Einstellungen des Sprachsynthesesystems</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">Die Einstellungen für die Sprachsynthese wurden nicht gefunden. Bist du sicher, dass dein Gerät sie unterstützt?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Block</string>
@@ -823,6 +852,7 @@
 	<string name="type.amenity.dentist">Zahnarzt</string>
 	<string name="type.amenity.doctors">Arztpraxis</string>
 	<string name="type.amenity.drinking_water">Trinkwasser</string>
+	<string name="type.drinking_water.yes">Trinkwasser</string>
 	<string name="type.amenity.driving_school">Fahrschule</string>
 	<string name="type.amenity.exhibition_centre">Ausstellungszentrum</string>
 	<string name="type.amenity.money_transfer">Geldtransfer</string>
@@ -975,6 +1005,7 @@
 	<string name="type.boundary.administrative.8">Verwaltungsgrenze</string>
 	<string name="type.boundary.administrative.9">Verwaltungsgrenze</string>
 	<string name="type.boundary.national_park">Nationalpark</string>
+	<string name="type.boundary.aboriginal_lands">Indigene länder</string>
 	<string name="type.boundary.protected_area">Geschützter Bereich</string>
 	<string name="type.boundary.protected_area.1">Geschützter Bereich</string>
 	<string name="type.boundary.protected_area.2">Geschützter Bereich</string>

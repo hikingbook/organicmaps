@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "डाउनलोड अयशस्वी";
 
-"about_menu_title" = "Organic Maps बद्दल";
+/* Text in About screen */
+"about_headline" = "Free for everyone, made with love";
+
+/* Text in About screen */
+"about_proposition_1" = "• No ads, no tracking, no data collection";
+
+/* Text in About screen */
+"about_proposition_2" = "• बॅटरी संपत नाही, ऑफलाइन कार्य करते";
+
+/* Text in About screen */
+"about_proposition_3" = "• जलद, मिनिमलिस्ट, समुदायाद्वारे विकसित";
 
 "close" = "बंद";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "नवीन यादी जोडा";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "खूणपत्र रंग";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "खूणपत्र यादीचे नाव";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "जेवायचे ठिकाण";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "जेवायचे ठिकाण";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "किराणा";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "किराणा";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "वाहतूक";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "वाहतूक";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "पेट्रोल";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "पेट्रोल";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "वाहनतळ";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "वाहनतळ";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "खरेदी";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "खरेदी";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "वापरलेले";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "वापरलेले";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "मुक्कामगृह";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "मुक्कामगृह";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "पर्यटन";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "पर्यटन";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "मनोरंजन";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "मनोरंजन";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "ATM";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "ATM";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "नाईटलाईफ";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "नाईटलाईफ";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "कौटुंबिक सुट्टी";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "कौटुंबिक सुट्टी";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "बँक";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "बँक";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "औषधालय";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "औषधालय";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "रुग्णालय";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "रुग्णालय";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "शौचालय";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "शौचालय";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "टपाल";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "टपाल";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "पोलीस";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "पोलीस";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "भंगारवाला";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "भंगारवाला";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "पाणी";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "पाणी";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "RV Facilities";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "RV Facilities";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "नमस्कार!\n\nOrganic Maps ऍप मधील माझे खूणपत्रे संलग्न केले आहेत. तुम्ही Organic Maps इन्स्टॉल केले असल्यास हे खूणपत्रे उघडा. इन्स्टॉल केले नसल्यास, पुढील दुव्यावर जाऊन तुमच्या iOS किंवा अँड्रॉइड उपकरणावर हे डाउनलोड करा: https://omaps.app/get?kmz\n\nOrganic Maps सह प्रवासाचा आनंद घ्या!";
 
@@ -200,10 +210,7 @@
 "done" = "झाले";
 
 /* Prints version number in About dialog */
-"version" = "आवृत्ती: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "OpenStreetMap डेटा: %@";
+"version" = "Organic Maps आवृत्ती: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "ट्रॅक";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "झूम बटणे";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "रात्र मोड";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "प्रतिमा";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "प्रकाश";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "अंधार";
 
 /* Generic «Off» string */
 "off" = "बंद";
@@ -277,18 +290,6 @@
 "news" = "बातम्या";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "ऍप मानांकित करा";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "Donate";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "प्रकल्पाला पाठठिंबा द्या";
+/* Tex label above the Donate button */
+"donate_description" = "एकत्र सर्वोत्तम नकाशे तयार करण्यासाठी देणगी द्या!";
 
 /* Button in the main Help dialog */
 "copyright" = "प्रकाशन अधिकार (कॉपीराईट)";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "त्रुटी कळवा";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "चुकीच्या नकाशा डेटाचा अहवाल द्या किंवा त्याचे निराकरण करा";
+
+/* Button in the About screen */
+"volunteer" = "स्वयंसेवक करण्यासाठी";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "अनुसरण करा आणि आमच्याशी संपर्क साधा:";
 
 /* Alert text */
 "email_error_body" = "ईमेल वाहक सेट केलेले नाही. कृपया ते सेट करा किंवा वेगळ्या पद्धतीने आमच्याशी %@ वर संपर्क करा";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "इथे कोणतीही वस्तू ठेवू शकत नाही";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "समुदाय-निर्मित OpenStreetMap डेटा %@ नुसार. OpenStreetMap.org वर नकाशा संपादित आणि अपडेट कसा करायचा याबद्दल अधिक जाणून घ्या";
+
 "login_to_make_edits_visible" = "इतर वापरकर्त्यांना तुम्ही केलेले बदल दिसण्यासाठी लॉग इन करा";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "तुम्ही कोणतेही नकाशे डाउनलोड केलेले नाहीत";
 
 "downloader_no_downloaded_maps_message" = "स्थान शोधण्यासाठी नकाशे डाउनलोड करा आणि ऑफलाइन मार्गनिर्देशन वापरा.";
-
-"stop" = "थांबा";
 
 "current_location_unknown_error_title" = "वर्तमान स्थान अज्ञात आहे.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "तपासा";
 
 "recent_track_background_dialog_message" = "तुम्ही अलीकडे प्रवास केलेला मार्ग रेकॉर्ड करण्यासाठी Organic Maps पार्श्वभूमीत तुमचे स्थान वापरते.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps हे एक विनामूल्य, जलद व ऑफलाईन नकाशांचे ऍप आहे जिथे जाहिरातीही नसतात व तुम्ही माहिती देखील गोळा केला जात नाही. हे नकाशे OpenStreetMap ह्या जनयोगदान प्रकल्पावर आधारित असल्याने नकाशातील त्रुट्या सुधारणे, नवीन ठिकाण जोडणे हे आपण स्वतः करू शकता. Organic Maps हा काही उत्साही लोकांनी त्यांच्या ऐत्यावेळात निर्माण केलेला मुक्त स्त्रोत स्वरूपाचा प्रकल्प आहे. तुमचा पाठिंबा व अभिप्राय बहुमोल आहे.";
 
 "general_settings" = "सामान्य सेटिंग";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "वेग कॅमेरे";
 
-/* Generic «Always» string */
-"always" = "नेहमी";
-
-/* Generic «Never» string */
-"never" = "कधीच नाही";
-
 "place_description_title" = "ठिकाणाचे वर्णन";
 
-"speedcams_notice_message" = "स्वयं - वेगमर्यादा ओलांडण्याचा धोका असल्यास वेगकॅमबद्दल चेतावणी द्या\nनेहमी - नेहमी वेगकॅमबद्दल चेतावणी द्या\nकधीही नाही - वेगकॅमबद्दल कधीही चेतावणी देऊ नका";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "वेगाबद्दल चेतावणी द्या";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "नेहमी चेतावणी द्या";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "कधीही चेतावणी देऊ नका";
 
 "power_managment_title" = "ऊर्जा बचत मोड";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "गिर्यारोहण";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "सर्व बुकमार्क आणि ट्रॅक निर्यात करा";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "रंग बदला";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "नकाशा";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "डॉक्टर";
 
 "type.amenity.drinking_water" = "पिण्याचे पाणी";
+
+"type.drinking_water.yes" = "पिण्याचे पाणी";
 
 "type.amenity.driving_school" = "वाहनचालक शाळा";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "उपनगर सीमा";
 
 "type.boundary.national_park" = "राष्ट्रीय उद्यान";
+
+"type.boundary.aboriginal_lands" = "स्वदेशी जमिनी";
 
 "type.boundary.protected_area" = "संरक्षित क्षेत्र";
 

@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "Η λήψη απέτυχε";
 
-"about_menu_title" = "Σχετικά με το Organic Maps";
+/* Text in About screen */
+"about_headline" = "Δωρεάν για όλους, φτιαγμένα με αγάπη";
+
+/* Text in About screen */
+"about_proposition_1" = "• Δεν υπάρχουν διαφημίσεις, χωρίς παρακολούθηση, χωρίς συλλογή δεδομένων";
+
+/* Text in About screen */
+"about_proposition_2" = "• Δεν υπάρχει αποστράγγιση μπαταρίας, λειτουργεί εκτός σύνδεσης";
+
+/* Text in About screen */
+"about_proposition_3" = "• Γρήγορο, μινιμαλιστικό, αναπτυγμένο από την κοινότητα";
 
 "close" = "Κλείσιμο";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "Προσθέστε νέο σύνολο";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "Χρώμα αγαπημένου";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "Όνομα συνόλου αγαπημένων";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "Πού να φάμε";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "Πού να φάμε";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "Παντοπωλεία";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "Παντοπωλεία";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "Συγκοινωνία";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "Συγκοινωνία";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "Βενζίνη";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "Βενζίνη";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "Χώρος στάθμευσης";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "Χώρος στάθμευσης";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "Ψώνια";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "Ψώνια";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "Μεταχειρισμένα";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "Μεταχειρισμένα";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "Ξενοδοχείο";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "Ξενοδοχείο";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Αξιοθέατα";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "Αξιοθέατα";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "Ψυχαγωγία";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "Ψυχαγωγία";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "ATM";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "ATM";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "Νυχτερινή Ζωή";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "Νυχτερινή Ζωή";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "Οικογενειακές Διακοπές";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "Οικογενειακές Διακοπές";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "Τράπεζα";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "Τράπεζα";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "Φαρμακείο";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "Φαρμακείο";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "Νοσοκομείο";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "Νοσοκομείο";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Τουαλέτα";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "Τουαλέτα";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "Ταχυδρομείο";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "Ταχυδρομείο";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "Αστυνομία";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "Αστυνομία";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "Ανακύκλωση";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "Ανακύκλωση";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "Νερό";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "Νερό";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "Για RV";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "Για RV";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "Ολοκληρώθηκε";
 
 /* Prints version number in About dialog */
-"version" = "Έκδοση: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "Δεδομένα OpenStreetMap: %@";
+"version" = "Έκδοση Organic Maps: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "Διαδρομές";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "Πλήκτρα μεγέθυνσης";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "Νυχτερινή λειτουργία";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "Εμφάνιση";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "Ανοιχτόχρωμη";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "Σκουρόχρωμη";
 
 /* Generic «Off» string */
 "off" = "Απενεργ.";
@@ -277,18 +290,6 @@
 "news" = "Νέα";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "Βαθμολογήστε την εφαρμογή";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "Προσφέρω";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "Υποστηρίξτε το έργο";
+/* Tex label above the Donate button */
+"donate_description" = "Κάντε δωρεά για να φτιάξουμε μαζί τους καλύτερους χάρτες!";
 
 /* Button in the main Help dialog */
 "copyright" = "Πνευματικά δικαιώματα";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "Αναφορά σφάλματος";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "Αναφορά ή διόρθωση εσφαλμένων δεδομένων χάρτη";
+
+/* Button in the About screen */
+"volunteer" = "Για να γίνεις εθελοντής";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "Ακολουθήστε και επικοινωνήστε μαζί μας:";
 
 /* Alert text */
 "email_error_body" = "Το πρόγραμμα-client ηλεκτρονικού ταχυδρομείου έχει δεν έχει ρυθμιστεί. Ρυθμίστε το ή χρησιμοποιήστε άλλο τρόπο να επικοινωνήσετε μαζί μας στη διεύθυνση %@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "Δε μπορεί να εντοπιστεί αντικείμενο εδώ";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "Δεδομένα OpenStreetMap που δημιουργήθηκαν από την κοινότητα από την %@. Μάθετε περισσότερα για τον τρόπο επεξεργασίας και ενημέρωσης του χάρτη στο OpenStreetMap.org";
+
 "login_to_make_edits_visible" = "Συνδεθείτε ώστε άλλοι χρήστες να μπορούν να δουν τις αλλαγές που έχετε κάνει";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "Δεν έχετε κατεβάσει χάρτες";
 
 "downloader_no_downloaded_maps_message" = "Κατεβάστε χάρτες για να αναζητήσετε μια τοποθεσία και να χρησιμοποιήσετε την πλοήγησης χωρίς σύνδεση.";
-
-"stop" = "Στοπ";
 
 "current_location_unknown_error_title" = "Η τρέχουσα τοποθεσία είναι άγνωστη.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "Αναχώρηση";
 
 "recent_track_background_dialog_message" = "Το Organic Maps χρησιμοποιεί τη γεωγραφική σας τοποθεσία στο παρασκήνιο για την καταγραφή των πρόσφατων διαδρομών σας.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Οι Organic Maps είναι μια δωρεάν και ανοιχτού κώδικα εφαρμογή χαρτών εκτός σύνδεσης. Χωρίς διαφημίσεις. Χωρίς εντοπισμό. Εάν δείτε κάποιο σφάλμα στον χάρτη, διορθώστε το στο OpenStreetMap. Το έργο δημιουργείται από λάτρεις στον ελεύθερο χρόνο μας, επομένως χρειαζόμαστε τα σχόλια και την υποστήριξή σας.";
 
 "general_settings" = "Γενικές ρυθμίσεις";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "Κάμερες Ταχύτητας";
 
-/* Generic «Always» string */
-"always" = "Πάντα";
-
-/* Generic «Never» string */
-"never" = "Ποτέ";
-
 "place_description_title" = "Περιγραφή μέρους";
 
-"speedcams_notice_message" = "Αυτόματο- Να ειδοποιούμαι για κάμερες αν υπάρχει κίνδυνος να υπερβώ το όριο ταχύτητας\nΠάντα- Πάντα να ειδοποιούμαι για κάμερες\nΠοτέ- Ποτέ να μην ειδοποιούμαι για κάμερες";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "Για να σας προειδοποιήσει για υπερβολική ταχύτητα";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "Πάντα να ειδοποιούμαι";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "Ποτέ να μην ειδοποιούμαι";
 
 "power_managment_title" = "Λειτουργία εξοικονόμησης ενέργειας";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Πεζοπορία";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "Εξαγωγή όλων των σελιδοδεικτών και των διαδρομών";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "Αλλαγή χρώματος";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "Χάρτης";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "Γιατροί";
 
 "type.amenity.drinking_water" = "Πόσιμο νερό";
+
+"type.drinking_water.yes" = "Πόσιμο νερό";
 
 "type.amenity.driving_school" = "Σχολή οδήγησης";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "Εθνικό πάρκο";
+
+"type.boundary.aboriginal_lands" = "Αυτόχθονες εκτάσεις";
 
 "type.boundary.protected_area" = "Προστατευόμενη Περιοχή";
 

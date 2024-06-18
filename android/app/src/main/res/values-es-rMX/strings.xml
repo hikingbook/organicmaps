@@ -4,16 +4,24 @@
 <!-- Language: es-MX -->
 <resources>
 	<!-- SECTION: Strings -->
+	<!-- Text in About screen -->
+	<string name="about_proposition_2">• Sin consumo de batería, funciona sin conexión</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_3">• Rápido, minimalista, desarrollado por la comunidad.</string>
 	<!-- The button that opens system location settings -->
 	<string name="location_settings">Configuración de ubicación</string>
 	<!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
 	<string name="address">Dirección</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Reciclaje</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Agua</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Reciclaje</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Agua</string>
+
+	<!-- SECTION: Other translations -->
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Fallo al abrir el archivo %1$s\n\n%2$s</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Automático</string>
 	<!-- Settings «Route» category: «Test Voice Directions» title -->
@@ -58,6 +66,8 @@
 	<string name="blue_gray">Gris azulado</string>
 
 	<!-- SECTION: Strings for downloading map from search -->
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Datos de OpenStreetMap creados por la comunidad a partir de %s. Obtenga más información sobre cómo editar y actualizar el mapa en OpenStreetMap.org</string>
 	<string name="editor_other_info">Enviar nota a los editores de OSM</string>
 	<!-- A referral link on the place page for some hotels -->
 	<string name="more_on_kayak">Fotos, reseñas, reservas.</string>
@@ -116,13 +126,15 @@
 	<string name="bookmark_list_description_hint">Introduzca una descripción (texto o html)</string>
 	<string name="not_shared">Privado</string>
 	<string name="speedcams_alert_title">Cámaras de velocidad</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Siempre</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Nunca</string>
 	<string name="place_description_title">Descripción de lugares</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Descargar mapas</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">Avisar al exceder velocidad límite</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Siempre dar aviso</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Nunca dar aviso</string>
 	<string name="power_managment_title">Modo de ahorro de energía</string>
 	<string name="power_managment_description">Si el modo de ahorro de energía está activado, la aplicación desactivará las funciones de ahorro de energía, en función de la carga actual del teléfono</string>
 	<string name="power_managment_setting_never">Nunca</string>
@@ -219,6 +231,12 @@
 	<string name="aa_grant_permissions">Conceder permisos</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
 	<string name="aa_connected_to_car_notification_title">Conectado al automóvil</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Exportar todos los marcadores y pistas</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Configuración de síntesis de voz del sistema</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">No se encontraron las configuraciones de síntesis de voz. ¿Está seguro de que su dispositivo la admite?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.amenity">Infraestructura</string>
@@ -526,9 +544,6 @@
 	<string name="type.sport.soccer">Fútbol</string>
 	<string name="type.sport.tennis">Cancha de tenis</string>
 	<string name="type.waterway.fish_pass">Escalera de pescado</string>
-	<string name="type.wheelchair.limited">Parcialmente equipado para discapacitados</string>
-	<string name="type.wheelchair.no">No equipado para discapacitados</string>
-	<string name="type.wheelchair.yes">Equipado para discapacitados</string>
 	<string name="type.piste_type.hike">Ruta de senderismo en la nieve</string>
 	<string name="type.piste_type.connection">Conexión de pista</string>
 	<string name="type.piste_type.skitour">Sendero de esquí</string>

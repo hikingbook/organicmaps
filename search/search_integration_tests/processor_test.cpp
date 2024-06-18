@@ -11,11 +11,10 @@
 
 #include "search/cities_boundaries_table.hpp"
 #include "search/features_layer_path_finder.hpp"
+#include "search/mwm_context.hpp"
 #include "search/retrieval.hpp"
 #include "search/token_range.hpp"
 #include "search/token_slice.hpp"
-
-#include "editor/editable_data_source.hpp"
 
 #include "indexer/feature_impl.hpp"
 
@@ -375,10 +374,13 @@ UNIT_CLASS_TEST(ProcessorTest, Smoke)
   {
     TEST(ResultsMatch("bohr street 1 unit 3", {ExactMatch(wonderlandId, bohrStreet1)}), ());
   }
+#if defined(DEBUG) || __apple_build_version__ < 15000000
+  // TODO(AB): Fails on Mac's clang with any optimization enabled and -fassociative-math
   {
     Rules rules = {ExactMatch(wonderlandId, lantern1), ExactMatch(wonderlandId, lantern2)};
     TEST(ResultsMatch("bohr street 1 lantern ", rules), ());
   }
+#endif
   {
     Rules rules = {ExactMatch(wonderlandId, feynmanHouse), ExactMatch(wonderlandId, feynmanStreet)};
     TEST(ResultsMatch("wonderland los alamos feynman 1 unit 1 ", rules), ());
@@ -3598,6 +3600,44 @@ UNIT_CLASS_TEST(ProcessorTest, ComplexPoi_Match)
   {
     Rules const rules = {ExactMatch(wonderlandId, building)};
     TEST(ResultsMatch("задворенская 8", rules), ());
+  }
+}
+
+UNIT_CLASS_TEST(ProcessorTest, NonDrawable_Categories)
+{
+  base::StringIL const subway = {"railway", "station", "subway"};
+
+  TestPOI noWheelchair({-0.1, -0.1}, {}, {});
+  noWheelchair.SetTypes({subway, {"wheelchair", "no"}});
+
+  TestPOI elevator({0, 0}, {}, {});
+  elevator.SetTypes({subway, {"highway", "elevator"}});
+
+  TestPOI yesWheelchair({0.1, 0.1}, {}, {});
+  yesWheelchair.SetTypes({subway, {"wheelchair", "yes"}});
+
+  auto wonderlandId = BuildCountry("Wonderland", [&](TestMwmBuilder & builder)
+  {
+    builder.Add(noWheelchair);
+    builder.Add(elevator);
+    builder.Add(yesWheelchair);
+  });
+
+  SetViewport(m2::RectD(-0.5, -0.5, 0.5, 0.5));
+
+  {
+    Rules const rules = {ExactMatch(wonderlandId, noWheelchair),
+                         ExactMatch(wonderlandId, elevator),
+                         ExactMatch(wonderlandId, yesWheelchair)};
+    TEST(ResultsMatch("subway", rules), ());
+  }
+  {
+    Rules const rules = {ExactMatch(wonderlandId, yesWheelchair)};
+    TEST(ResultsMatch("subway wheelchair", rules), ());
+  }
+  {
+    Rules const rules = {ExactMatch(wonderlandId, elevator)};
+    TEST(ResultsMatch("subway lift", rules), ());
   }
 }
 

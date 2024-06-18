@@ -43,9 +43,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">• ไม่มีโฆษณาไม่มีการติดตามไม่มีการรวบรวมข้อมูล</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• ประหยัดแบตเตอรี่ ไม่ใช้ข้อมูลพื้นหลัง</string>
+	<string name="about_proposition_2">• ไม่มีแบตเตอรี่หมด ทำงานแบบออฟไลน์</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">•เร็วเรียบง่ายไม่มีขยะ</string>
+	<string name="about_proposition_3">• รวดเร็ว เรียบง่าย พัฒนาโดยชุมชน</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">แอปพลิเคชันโอเพนซอร์ซที่สร้างขึ้นโดยผู้ที่ชื่นชอบและอาสาสมัคร</string>
 	<!-- The button that opens system location settings -->
@@ -104,52 +104,54 @@
 	<string name="measurement_units_summary">เลือกระหว่างไมล์และกิโลเมตร</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">กินร้านไหนดี</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">ซื้อของกินของใช้</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">การขนส่ง</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">ก๊าซ</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">ที่จอดรถ</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">ช็อปปิง</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">มือสอง</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">โรงแรม</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">สถานที่ท่องเที่ยว</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">แหล่งบันเทิง</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">เอทีเอ็ม</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">ไนท์ไลฟ์</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">วันหยุดสำหรับครอบครัว</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">ธนาคาร</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">ร้านขายยา</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">คลินิก</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">ห้องน้ำ</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">ไปรษณีย์</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">ตำรวจ</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">การรีไซเคิล</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">น้ำ</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">สำหรับ RV</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">กินร้านไหนดี</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">ซื้อของกินของใช้</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">การขนส่ง</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">ก๊าซ</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">ที่จอดรถ</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">ช็อปปิง</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">มือสอง</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">โรงแรม</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">สถานที่ท่องเที่ยว</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">แหล่งบันเทิง</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">เอทีเอ็ม</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">ไนท์ไลฟ์</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">วันหยุดสำหรับครอบครัว</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">ธนาคาร</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">ร้านขายยา</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">คลินิก</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">ห้องน้ำ</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">ไปรษณีย์</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">ตำรวจ</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">การรีไซเคิล</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">น้ำ</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">สำหรับ RV</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">บันทึก</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -160,6 +162,10 @@
 	<string name="load_kmz_successful">โหลดบุ๊กมาร์กสำเร็จแล้ว! คุณสามารถหาพวกมันได้บนแผนที่หรือบนหน้าจอโปรแกรมจัดการบุ๊กมาร์ก</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">การอัปโหลดล้มเหลว ไฟล์อาจเสียหายหรือมีข้อบกพร่อง</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">แอปไม่รู้จักประเภทไฟล์:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">ไม่สามารถเปิดไฟล์ได้ %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">แก้ไข</string>
 	<!-- Warning message when doing search around current position -->
@@ -452,8 +458,8 @@
 	<string name="editor_report_problem_other_title">ปัญหาอีกอย่างหนึ่ง</string>
 	<string name="placepage_add_business_button">เพิ่มองค์กร</string>
 	<string name="message_invalid_feature_position">ไม่สามารถตั้งวัตถุได้ที่นี่</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">ข้อมูลการทำแผนที่จาก OpenStreetMap ณ ปี %sมันเป็นเหมือนวิกิพีเดียที่คุณสามารถเพิ่มหรือแก้ไขสถานที่สำหรับผู้ใช้ทุกคนทั่วโลก</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">ข้อมูล OpenStreetMap ที่สร้างโดยชุมชน ณ %s เรียนรู้เพิ่มเติมเกี่ยวกับวิธีแก้ไขและอัปเดตแผนที่ได้ที่ OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">ล็อกอินเพื่อให้ผู้ใช้คนอื่นสามารถเห็นการเปลี่ยนแปลงของคุณได้</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d จาก %2$d</string>
@@ -474,7 +480,6 @@
 	<string name="editor_operator">เจ้าของ</string>
 	<string name="downloader_no_downloaded_maps_title">คุณยังไม่ได้ดาวน์โหลดแผนที่</string>
 	<string name="downloader_no_downloaded_maps_message">ดาวน์โหลดแผนที่เพื่อค้นหาสถานที่ และนำทางแบบออฟไลน์</string>
-	<string name="stop">หยุด</string>
 	<!-- abbreviation for meters -->
 	<string name="m">ม.</string>
 	<!-- abbreviation for kilometers -->
@@ -598,13 +603,15 @@
 	<string name="bookmark_list_description_hint">พิมพ์รายละเอียด (ข้อความหรือ html)</string>
 	<string name="not_shared">ส่วนตัว</string>
 	<string name="speedcams_alert_title">กล้องตรวจจับความเร็ว</string>
-	<!-- Generic «Always» string -->
-	<string name="always">ทุกครั้ง</string>
-	<!-- Generic «Never» string -->
-	<string name="never">ไม่ต้องเตือน</string>
 	<string name="place_description_title">รายละเอียดของสถานที่</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">ตัวดาวน์โหลดแผนที่</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">เตือนเรื่องการขับรถเร็ว</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">เตือนเกี่ยวกับกล้องตรวจจับความเร็วเสมอ</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">ไม่เคยเตือนเกี่ยวกับกล้องตรวจจับความเร็ว</string>
 	<string name="power_managment_title">โหมดประหยัดพลังงาน</string>
 	<string name="power_managment_description">เมื่อโหมดอัตโนมัตินั้นถูกเลือก แอปพลิเคชันจะเริ่มหยุดการใช้พลังงานจากแบตเตอรีขึ้นอยู่กับจำนวนไฟในแบตเตอรีว่าเหลือเท่าไร</string>
 	<string name="power_managment_setting_never">ไม่ใช้</string>
@@ -696,8 +703,26 @@
 	<string name="enable_keep_screen_on_description">เมื่อเปิดใช้งาน หน้าจอจะเปิดอยู่เสมอเมื่อแสดงแผนที่</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">ข้อมูลแผนที่จาก OpenStreetMap</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">ขอขอบคุณที่ใช้แผนที่ที่สร้างโดยชุมชนของเรา!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">ด้วยการบริจาคและการสนับสนุนของคุณ เราสามารถสร้างแผนที่ที่ดีที่สุดในโลกได้!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">คุณชอบแอพของเราหรือไม่? กรุณาบริจาคเพื่อสนับสนุนการพัฒนา! ยังไม่ชอบมันเหรอ? โปรดแจ้งให้เราทราบ และเราจะแก้ไขมัน!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">หากคุณรู้จักนักพัฒนาซอฟต์แวร์ คุณสามารถขอให้เขาหรือเธอใช้คุณลักษณะที่คุณต้องการได้</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">คุณรู้ไหมว่าคุณสามารถแตะสถานที่ใดก็ได้บนแผนที่ค้างไว้เพื่อเลือกได้</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">คุณรู้หรือไม่ว่าคุณสามารถเลือกตำแหน่งปัจจุบันของคุณบนแผนที่ได้?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">คุณสามารถช่วยแปลแอปของเราเป็นภาษาของคุณได้</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">แอพของเราได้รับการพัฒนาโดยผู้ที่ชื่นชอบและชุมชนบางส่วน</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">คุณสามารถแก้ไขและปรับปรุงข้อมูลแผนที่ได้อย่างง่ายดาย</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">เป้าหมายหลักของเราคือการสร้างแผนที่ที่รวดเร็ว เน้นความเป็นส่วนตัว และใช้งานง่ายที่คุณจะหลงรัก</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">ขณะนี้คุณกำลังใช้แผนที่ทั่วไปบนหน้าจอโทรศัพท์</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -719,6 +744,12 @@
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">เว็บเบราว์เซอร์ไม่พร้อมใช้งาน</string>
 	<string name="volume">ระดับเสียง</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">ส่งออกบุ๊กมาร์กและแทร็กทั้งหมด</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">การตั้งค่าการสังเคราะห์เสียงพูดของระบบ</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">ไม่พบการตั้งค่าการสังเคราะห์เสียง คุณแน่ใจหรือไม่ว่าอุปกรณ์ของคุณรองรับ</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">ที่อยู่/บล็อค</string>
@@ -765,6 +796,7 @@
 	<string name="type.amenity.dentist">ทันตแพทย์</string>
 	<string name="type.amenity.doctors">ห้องแพทย์</string>
 	<string name="type.amenity.drinking_water">น้ำดื่ม</string>
+	<string name="type.drinking_water.yes">น้ำดื่ม</string>
 	<string name="type.amenity.driving_school">โรงเรียนสอนขับรถ</string>
 	<string name="type.amenity.exhibition_centre">ศูนย์นิทรรศการ</string>
 	<string name="type.amenity.money_transfer">การโอนเงิน</string>
@@ -884,6 +916,7 @@
 	<string name="type.barrier.swing_gate">ไม้กั้น</string>
 	<string name="type.barrier.toll_booth">ด่านเก็บเงิน</string>
 	<string name="type.boundary.national_park">อุทยานแห่งชาติ</string>
+	<string name="type.boundary.aboriginal_lands">ดินแดนพื้นเมือง</string>
 	<string name="type.boundary.protected_area">พื้นที่คุ้มครอง</string>
 	<string name="type.boundary.protected_area.1">พื้นที่คุ้มครอง</string>
 	<string name="type.boundary.protected_area.2">พื้นที่คุ้มครอง</string>

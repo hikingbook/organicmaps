@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "การดาวน์โหลดล้มเหลว";
 
-"about_menu_title" = "เกี่ยวกับ Organic Maps";
+/* Text in About screen */
+"about_headline" = "ฟรีสำหรับทุกคนทำด้วยความรัก";
+
+/* Text in About screen */
+"about_proposition_1" = "• ไม่มีโฆษณาไม่มีการติดตามไม่มีการรวบรวมข้อมูล";
+
+/* Text in About screen */
+"about_proposition_2" = "• ไม่มีแบตเตอรี่หมด ทำงานแบบออฟไลน์";
+
+/* Text in About screen */
+"about_proposition_3" = "• รวดเร็ว เรียบง่าย พัฒนาโดยชุมชน";
 
 "close" = "ปิด";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "เพิ่มชุดใหม่";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "สีของบุ๊กมาร์ก";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "ชื่อของชุดบุ๊กมาร์ก";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "กินร้านไหนดี";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "กินร้านไหนดี";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "ซื้อของกินของใช้";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "ซื้อของกินของใช้";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "การขนส่ง";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "การขนส่ง";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "ก๊าซ";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "ก๊าซ";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "ที่จอดรถ";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "ที่จอดรถ";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "ช็อปปิง";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "ช็อปปิง";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "มือสอง";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "มือสอง";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "โรงแรม";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "โรงแรม";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "สถานที่ท่องเที่ยว";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "สถานที่ท่องเที่ยว";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "แหล่งบันเทิง";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "แหล่งบันเทิง";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "เอทีเอ็ม";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "เอทีเอ็ม";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "ไนท์ไลฟ์";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "ไนท์ไลฟ์";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "วันหยุดสำหรับครอบครัว";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "วันหยุดสำหรับครอบครัว";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "ธนาคาร";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "ธนาคาร";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "ร้านขายยา";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "ร้านขายยา";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "คลินิก";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "คลินิก";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "ห้องน้ำ";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "ห้องน้ำ";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "ไปรษณีย์";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "ไปรษณีย์";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "ตำรวจ";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "ตำรวจ";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "การรีไซเคิล";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "การรีไซเคิล";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "น้ำ";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "น้ำ";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "สำหรับ RV";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "สำหรับ RV";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "เสร็จแล้ว";
 
 /* Prints version number in About dialog */
-"version" = "เวอร์ชัน: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "ข้อมูล OpenStreetMap: %@";
+"version" = "เวอร์ชัน Organic Maps: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "การติดตาม";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "ปุ่มซูม";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "โหมดกลางคืน";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "รูปแบบ";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "สว่าง";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "มืด";
 
 /* Generic «Off» string */
 "off" = "ปิด";
@@ -277,18 +290,6 @@
 "news" = "ข่าว";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "ให้คะแนนแอป";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "บริจาค";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "สนับสนุนโครงการ";
+/* Tex label above the Donate button */
+"donate_description" = "บริจาคเพื่อสร้างแผนที่ที่ดีที่สุดด้วยกัน!";
 
 /* Button in the main Help dialog */
 "copyright" = "ลิขสิทธิ์";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "แจ้งข้อผิดพลาด";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "รายงานหรือแก้ไขข้อมูลแผนที่ที่ไม่ถูกต้อง";
+
+/* Button in the About screen */
+"volunteer" = "อาสาสมัคร";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "ติดตามและติดต่อเรา:";
 
 /* Alert text */
 "email_error_body" = "อีเมลลูกค้ายังไม่ได้รับการจัดตั้งขึ้น กรุณาตั้งค่าหรือใช้วิธีอื่นที่จะติดต่อเราที่ %@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "ไม่สามารถตั้งวัตถุได้ที่นี่";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "ข้อมูล OpenStreetMap ที่สร้างโดยชุมชน ณ %@ เรียนรู้เพิ่มเติมเกี่ยวกับวิธีแก้ไขและอัปเดตแผนที่ได้ที่ OpenStreetMap.org";
+
 "login_to_make_edits_visible" = "ล็อกอินเพื่อให้ผู้ใช้คนอื่นสามารถเห็นการเปลี่ยนแปลงของคุณได้";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "คุณยังไม่ได้ดาวน์โหลดแผนที่";
 
 "downloader_no_downloaded_maps_message" = "ดาวน์โหลดแผนที่เพื่อค้นหาสถานที่ และนำทางแบบออฟไลน์";
-
-"stop" = "หยุด";
 
 "current_location_unknown_error_title" = "ไม่ทราบชื่อของที่ตั้งปัจจุบัน";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "ตรวจชม";
 
 "recent_track_background_dialog_message" = "Organic Maps ใช้ตำแหน่งทางภูมิศาสตร์ของคุณในพื้นหลังเพื่อบันทึกเส้นทางที่คุณเดินทางเมื่อเร็ว ๆ นี้";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps เป็นแอปพลิเคชันแผนที่ออฟไลน์แบบโอเพนซอร์สฟรี ไม่มีโฆษณา ไม่มีการติดตาม. หากคุณเห็นข้อผิดพลาดบนแผนที่ โปรดแก้ไขใน OpenStreetMap โครงการนี้สร้างขึ้นโดยผู้ที่ชื่นชอบในเวลาว่าง เราจึงต้องการความคิดเห็นและการสนับสนุนจากคุณ";
 
 "general_settings" = "การตั้งค่าทั่วไป";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "กล้องตรวจจับความเร็ว";
 
-/* Generic «Always» string */
-"always" = "ทุกครั้ง";
-
-/* Generic «Never» string */
-"never" = "ไม่ต้องเตือน";
-
 "place_description_title" = "รายละเอียดของสถานที่";
 
-"speedcams_notice_message" = "อัตโนมัติ - เตือนเกี่ยวกับกล้องตรวจจับความเร็วหากมีความเป็นได้ว่าจะขับเร็วเกิดกำหนด\nทุกครั้ง - เตือนเกี่ยวกับกล้องตรวจจับความเร็วเสมอ\nไม่ต้องเตือน - ไม่เคยเตือนเกี่ยวกับกล้องตรวจจับความเร็ว";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "เตือนเรื่องการขับรถเร็ว";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "เตือนเกี่ยวกับกล้องตรวจจับความเร็วเสมอ";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "ไม่เคยเตือนเกี่ยวกับกล้องตรวจจับความเร็ว";
 
 "power_managment_title" = "โหมดประหยัดพลังงาน";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "การเดินป่า";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "ส่งออกบุ๊กมาร์กและแทร็กทั้งหมด";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "เปลี่ยนสี";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "แผนที่";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "ห้องแพทย์";
 
 "type.amenity.drinking_water" = "น้ำดื่ม";
+
+"type.drinking_water.yes" = "น้ำดื่ม";
 
 "type.amenity.driving_school" = "โรงเรียนสอนขับรถ";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "อุทยานแห่งชาติ";
+
+"type.boundary.aboriginal_lands" = "ดินแดนพื้นเมือง";
 
 "type.boundary.protected_area" = "พื้นที่คุ้มครอง";
 

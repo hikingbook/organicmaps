@@ -41,9 +41,9 @@
 	<!-- Text in About screen -->
 	<string name="about_proposition_1">• Ingen annoncer, ingen sporing, ingen dataindsamling</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Sparer batteriet, bruger ikke baggrundsdata</string>
+	<string name="about_proposition_2">• Intet batteridræn, fungerer offline</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_3">• Hurtig, minimalistisk, intet skrammel</string>
+	<string name="about_proposition_3">• Hurtig, minimalistisk, udviklet af fællesskabet</string>
 	<!-- Text in About screen -->
 	<string name="about_developed_by_enthusiasts">Open source-applikation oprettet af entusiaster og frivillige.</string>
 	<!-- The button that opens system location settings -->
@@ -102,52 +102,54 @@
 	<string name="measurement_units_summary">Vælg mellem mil eller kilometer</string>
 
 	<!-- SECTION: Search categories -->
-	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! -->
-	<string name="eat">Spisesteder</string>
-	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @food! -->
-	<string name="food">Dagligvarer</string>
-	<!-- Search category for public transport; any changes should be duplicated in categories.txt @transport! -->
-	<string name="transport">Transport</string>
-	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! -->
-	<string name="fuel">Benzin</string>
-	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @parking! -->
-	<string name="parking">Parkering</string>
-	<!-- Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! -->
-	<string name="shopping">Indkøb</string>
-	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! -->
-	<string name="secondhand">Brugt</string>
-	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @hotel! -->
-	<string name="hotel">Hotel</string>
-	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! -->
-	<string name="tourism">Seværdigheder</string>
-	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! -->
-	<string name="entertainment">Underholdning</string>
-	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @atm! -->
-	<string name="atm">Hæveautomat</string>
-	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! -->
-	<string name="nightlife">Natteliv</string>
-	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! -->
-	<string name="children">Familieferie</string>
-	<!-- Search category for banks; any changes should be duplicated in categories.txt @bank! -->
-	<string name="bank">Bank</string>
-	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! -->
-	<string name="pharmacy">Apotek</string>
-	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @hospital! -->
-	<string name="hospital">Hospital</string>
-	<!-- Search category for toilets; any changes should be duplicated in categories.txt @toilet! -->
-	<string name="toilet">Toilet</string>
-	<!-- Search category for post offices; any changes should be duplicated in categories.txt @post! -->
-	<string name="post">Post</string>
-	<!-- Search category for police; any changes should be duplicated in categories.txt @police! -->
-	<string name="police">Politi</string>
-	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! -->
-	<string name="wifi">WiFi</string>
-	<!-- Search category for recycling; any changes should be duplicated in categories.txt @recycling! -->
-	<string name="recycling">Genbrug</string>
-	<!-- Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type -->
-	<string name="water">Vand</string>
-	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @rv! -->
-	<string name="rv">Til RV</string>
+	<!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
+	<string name="category_eat">Spisesteder</string>
+	<!-- Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! -->
+	<string name="category_food">Dagligvarer</string>
+	<!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
+	<string name="category_transport">Transport</string>
+	<!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
+	<string name="category_fuel">Benzin</string>
+	<!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
+	<string name="category_parking">Parkering</string>
+	<!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
+	<string name="category_shopping">Indkøb</string>
+	<!-- Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! -->
+	<string name="category_secondhand">Brugt</string>
+	<!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
+	<string name="category_hotel">Hotel</string>
+	<!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
+	<string name="category_tourism">Seværdigheder</string>
+	<!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+	<string name="category_entertainment">Underholdning</string>
+	<!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
+	<string name="category_atm">Hæveautomat</string>
+	<!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
+	<string name="category_nightlife">Natteliv</string>
+	<!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
+	<string name="category_children">Familieferie</string>
+	<!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
+	<string name="category_bank">Bank</string>
+	<!-- Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! -->
+	<string name="category_pharmacy">Apotek</string>
+	<!-- Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! -->
+	<string name="category_hospital">Hospital</string>
+	<!-- Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! -->
+	<string name="category_toilet">Toilet</string>
+	<!-- Search category for post offices; any changes should be duplicated in categories.txt @category_post! -->
+	<string name="category_post">Post</string>
+	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
+	<string name="category_police">Politi</string>
+	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
+	<string name="category_wifi">WiFi</string>
+	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
+	<string name="category_recycling">Genbrug</string>
+	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+	<string name="category_water">Vand</string>
+	<!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
+	<string name="category_rv">Til RV</string>
+
+	<!-- SECTION: Other translations -->
 	<!-- Notes field in Bookmarks view -->
 	<string name="description">Noter</string>
 	<!-- Email Subject when sharing bookmark list -->
@@ -158,6 +160,10 @@
 	<string name="load_kmz_successful">Bogmærkerne er indlæst! Du kan nu finde dem på kortet eller i Bogmærke Manager sektionen.</string>
 	<!-- Kml file loading failed -->
 	<string name="load_kmz_failed">Bogmærkerne kunne ikke indlæses. Fil kan være skadet eller defekte.</string>
+	<!-- Failed to recognize the format of a bookmarks or tracks file. -->
+	<string name="unknown_file_type">Filtypen genkendes ikke af appen:\n%1$s</string>
+	<!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
+	<string name="failed_to_open_file">Kunne ikke åbne filen %1$s\n\n%2$s</string>
 	<!-- resource for context menu -->
 	<string name="edit">Rediger</string>
 	<!-- Warning message when doing search around current position -->
@@ -452,8 +458,8 @@
 	<string name="editor_report_problem_other_title">Et anderledes problem</string>
 	<string name="placepage_add_business_button">Tilføj organisationen</string>
 	<string name="message_invalid_feature_position">Et objekt kan ikke placeres her</string>
-	<!-- Text in About and OSM Login screens. %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Kartografiske data fra OpenStreetMap fra %s. Det er som Wikipedia, hvor du kan tilføje eller redigere steder for alle brugere over hele verden.</string>
+	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
+	<string name="osm_presentation">Fællesskabsskabte OpenStreetMap-data fra %s. Få mere at vide om, hvordan du redigerer og opdaterer kortet på OpenStreetMap.org</string>
 	<string name="login_to_make_edits_visible">Log på så andre brugere kan se ændringerne som du har foretaget.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
 	<string name="downloader_of">%1$d af %2$d</string>
@@ -474,7 +480,6 @@
 	<string name="editor_operator">Bruger</string>
 	<string name="downloader_no_downloaded_maps_title">Du har ikke hentet alle kort</string>
 	<string name="downloader_no_downloaded_maps_message">Download kort for at finde position og navigere offline.</string>
-	<string name="stop">Stop</string>
 	<!-- abbreviation for meters -->
 	<string name="m">m</string>
 	<!-- abbreviation for kilometers -->
@@ -599,13 +604,15 @@
 	<string name="bookmark_list_description_hint">Lav en beskrivelse (tekst eller html)</string>
 	<string name="not_shared">Privat</string>
 	<string name="speedcams_alert_title">Fartkameraer</string>
-	<!-- Generic «Always» string -->
-	<string name="always">Altid</string>
-	<!-- Generic «Never» string -->
-	<string name="never">Aldrig</string>
 	<string name="place_description_title">Beskrivelse af sted</string>
 	<!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
 	<string name="notification_channel_downloader">Korthenter</string>
+	<!-- "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit -->
+	<string name="pref_tts_speedcams_auto">At advare dig om hastighedsoverskridelser</string>
+	<!-- Speed camera settings menu option - Always warn (about speedcams) -->
+	<string name="pref_tts_speedcams_always">Advar altid</string>
+	<!-- Speed camera settings menu option - Never warn (about speedcams) -->
+	<string name="pref_tts_speedcams_never">Advar aldrig</string>
 	<string name="power_managment_title">Strømsparetilstand</string>
 	<string name="power_managment_description">Når automatisk tilstand er valgt, begynder applikationen at deaktivere funktioner, med højt batteri-strømforbrug, afhængigt af det aktuelle batteriniveau</string>
 	<string name="power_managment_setting_never">Aldrig</string>
@@ -699,8 +706,26 @@
 	<string name="splash_subtitle">Kortdata fra OpenStreetMap</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
 	<string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Da:Om_OpenStreetMap</string>
-	<!-- Tip #00 -->
+	<!-- App Tip #00 -->
 	<string name="app_tip_00">Tak, fordi du bruger vores community-byggede kort!</string>
+	<!-- App tip #01 -->
+	<string name="app_tip_01">Med dine donationer og støtte kan vi skabe de bedste kort i verden!</string>
+	<!-- App tip #02 -->
+	<string name="app_tip_02">Kan du lide vores app? Donér venligst for at støtte udviklingen! Kan du ikke lide det endnu? Fortæl os det, så ordner vi det!</string>
+	<!-- App tip #03 -->
+	<string name="app_tip_03">Hvis du kender en softwareudvikler, kan du bede ham eller hende om at implementere en funktion, som du har brug for.</string>
+	<!-- App tip #04 -->
+	<string name="app_tip_04">Ved du, at du kan trykke længe på et hvilket som helst sted på kortet for at vælge det?</string>
+	<!-- App tip #05 -->
+	<string name="app_tip_05">Ved du, at du kan vælge din nuværende placering på kortet?</string>
+	<!-- App tip #06 -->
+	<string name="app_tip_06">Du kan hjælpe med at oversætte vores app til dit sprog.</string>
+	<!-- App tip #07 -->
+	<string name="app_tip_07">Vores app er udviklet af nogle få entusiaster og samfundet.</string>
+	<!-- App tip #08 -->
+	<string name="app_tip_08">Du kan nemt rette og forbedre kortdataene.</string>
+	<!-- App tip #09 -->
+	<string name="app_tip_09">Vores hovedmål er at bygge hurtige, privatlivsfokuserede, brugervenlige kort, som du vil elske.</string>
 	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
 	<string name="aa_used_on_the_phone_screen">Du bruger nu Organic Maps på telefonens skærm.</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
@@ -721,9 +746,13 @@
 	<string name="button_layer_outdoor">Vandring</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Webbrowser er ikke tilgængelig</string>
-	<!-- Text displayed in a dialog when OSM authorization is disabled -->
-	<string name="osm_login_not_available">OpenStreetMap-godkendelse er midlertidigt utilgængelig på grund af nye begrænsninger i Google Play 😾\nVores team arbejder på at løse dette problem. Vær venligst tålmo$ig 🙏</string>
 	<string name="volume">Lydstyrke</string>
+	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
+	<string name="bookmarks_export">Eksporter alle bogmærker og spor</string>
+	<!-- button in (app) TTS settings, to open the system TTS settings. -->
+	<string name="pref_tts_open_system_settings">Indstillinger for talesyntese-system</string>
+	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
+	<string name="pref_tts_no_system_tts">Indstillingerne for talesyntese blev ikke fundet, er du sikker på, at din enhed understøtter det?</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/blok</string>
@@ -767,6 +796,7 @@
 	<string name="type.amenity.dentist">Tandlæge</string>
 	<string name="type.amenity.doctors">Lægekontor</string>
 	<string name="type.amenity.drinking_water">Vand</string>
+	<string name="type.drinking_water.yes">Vand</string>
 	<string name="type.amenity.driving_school">Køreskole</string>
 	<string name="type.amenity.exhibition_centre">Udstillingscenter</string>
 	<string name="type.amenity.money_transfer">Pengeoverførsel</string>
@@ -880,6 +910,7 @@
 	<string name="type.barrier.swing_gate">Bom</string>
 	<string name="type.barrier.toll_booth">Betalingsstation</string>
 	<string name="type.boundary.national_park">National park</string>
+	<string name="type.boundary.aboriginal_lands">Oprindelige lande</string>
 	<string name="type.boundary.protected_area">Beskyttet område</string>
 	<string name="type.boundary.protected_area.1">Beskyttet område</string>
 	<string name="type.boundary.protected_area.2">Beskyttet område</string>

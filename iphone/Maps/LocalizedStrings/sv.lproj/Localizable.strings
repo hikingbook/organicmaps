@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "Downloading har misslyckats";
 
-"about_menu_title" = "Om Organic Maps";
+/* Text in About screen */
+"about_headline" = "Gratis för alla, gjorda med kärlek";
+
+/* Text in About screen */
+"about_proposition_1" = "• Inga annonser, ingen spårning, ingen datainsamling";
+
+/* Text in About screen */
+"about_proposition_2" = "• Ingen batteriförbrukning, fungerar offline";
+
+/* Text in About screen */
+"about_proposition_3" = "• Snabb, minimalistisk, utvecklad av gemenskapen";
 
 "close" = "Stäng";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "Lägg till ny samling";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "Bokmärkesfärg";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "Bokmärkessamlingens namn";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "Var att äta";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "Var att äta";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "Produkter";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "Produkter";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "Transport";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "Transport";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "Bensin";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "Bensin";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "Parkering";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "Parkering";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "Shopping";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "Shopping";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "Begagnad";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "Begagnad";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "Hotell";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "Hotell";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "Sevärdheter";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "Sevärdheter";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "Underhållning";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "Underhållning";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "Bankomat";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "Bankomat";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "Nattliv";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "Nattliv";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "Semester med barn";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "Semester med barn";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "Bank";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "Bank";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "Apotek";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "Apotek";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "Sjukhus";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "Sjukhus";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "Toalett";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "Toalett";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "Post";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "Post";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "Polis";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "Polis";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "WiFi";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "WiFi";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "Återvinning";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "Återvinning";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "Vatten";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "Vatten";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "För husbil";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "För husbil";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "Hello!\n\nAttached are my bookmarks; please open them in Organic Maps. If you don't have it installed you can download it here: https://omaps.app/get?kmz\n\nEnjoy travelling with Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "Klar";
 
 /* Prints version number in About dialog */
-"version" = "Version: %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "OpenStreetMap-data: %@";
+"version" = "Organic Maps version: %@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "Rutter";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "Zoom-knappar";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "Nattläge";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "Utseende";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "Ljust";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "Mörkt";
 
 /* Generic «Off» string */
 "off" = "Av";
@@ -277,18 +290,6 @@
 "news" = "Nyheter";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "OpenStreetMap";
 
 /* Text in menu */
 "rate_the_app" = "Ge appen ett betyg";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "Donera";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "Stöd projektet";
+/* Tex label above the Donate button */
+"donate_description" = "Donera för att bygga de bästa kartorna tillsammans!";
 
 /* Button in the main Help dialog */
 "copyright" = "Copyright";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "Rapportera en bugg";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "Rapportera eller korrigera felaktiga kartdata";
+
+/* Button in the About screen */
+"volunteer" = "Att arbeta frivilligt";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "Följ och kontakta oss:";
 
 /* Alert text */
 "email_error_body" = "Emailklienten har inte konfigurerats. Konfigurera den eller använd ett annat sätt att kontakta oss på %@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "Ett objekt kan inte placeras här";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "Gemenskapsskapade OpenStreetMap-data från och med %@. Läs mer om hur du redigerar och uppdaterar kartan på OpenStreetMap.org";
+
 "login_to_make_edits_visible" = "Logga in så att andra användare kan se de ändringar du gjort.";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "Du har inte laddat ner några kartor";
 
 "downloader_no_downloaded_maps_message" = "Ladda ner kartor för att hitta platsen och navigera offline.";
-
-"stop" = "Stopp";
 
 "current_location_unknown_error_title" = "Den nuvarande platsen är okänd.";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "Kolla in";
 
 "recent_track_background_dialog_message" = "Organic Maps använder din geografiska position i bakgrunden för att spela in din senaste resta rutt.";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps är en gratis offlinekartapplikation med öppen källkod. Inga annonser. Ingen spårning. Om du ser ett fel på kartan, åtgärda det i OpenStreetMap. Projektet skapas av entusiaster på vår fritid, så vi behöver din feedback och support.";
 
 "general_settings" = "Allmänna inställningar";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "Hastighetskameror";
 
-/* Generic «Always» string */
-"always" = "Alltid";
-
-/* Generic «Never» string */
-"never" = "Aldrig";
-
 "place_description_title" = "Beskrivning av platsen";
 
-"speedcams_notice_message" = "Auto - Varna om fartkameror om det finns risk att överskrida hastighetsgränsen\nAlltid - Varna alltid om kameror\nAldrig - Varna aldrig om kameror";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "För att varna dig för fortkörning";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "Varna alltid";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "Varna aldrig";
 
 "power_managment_title" = "Energisparläge";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Vandring";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "Exportera alla bokmärken och spår";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "Ändra färg";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "Karta";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "Läkarmottagning";
 
 "type.amenity.drinking_water" = "Dricksvatten";
+
+"type.drinking_water.yes" = "Dricksvatten";
 
 "type.amenity.driving_school" = "Körskola";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "Nationalpark";
+
+"type.boundary.aboriginal_lands" = "Ursprungsbefolkningens marker";
 
 "type.boundary.protected_area" = "Skyddat område";
 

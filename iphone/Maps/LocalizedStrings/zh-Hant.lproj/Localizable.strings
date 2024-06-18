@@ -50,7 +50,17 @@
 /* Message to display at the center of the screen when the country download has failed */
 "country_status_download_failed" = "下載失敗";
 
-"about_menu_title" = "關於 Organic Maps";
+/* Text in About screen */
+"about_headline" = "對每個人都免費，用愛製成";
+
+/* Text in About screen */
+"about_proposition_1" = "•沒有廣告，不會跟踪您，更不會收集您的數據";
+
+/* Text in About screen */
+"about_proposition_2" = "• 無電池消耗，離線工作";
+
+/* Text in About screen */
+"about_proposition_3" = "• 快速、簡約、由社區開發";
 
 "close" = "關閉";
 
@@ -61,9 +71,6 @@
 
 /* "Add new bookmark list" dialog title */
 "add_new_set" = "新增收藏夾";
-
-/* Bookmark Color dialog title */
-"bookmark_color" = "書籤顏色";
 
 /* Add Bookmark list dialog - hint when the list name is empty */
 "bookmark_set_name" = "收藏夾名稱";
@@ -92,74 +99,77 @@
 
 /********** Search categories **********/
 
-/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @eat! */
-"eat" = "在哪兒吃";
+/* Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! */
+"category_eat" = "在哪兒吃";
 
-/* Search category for grocery stores; any changes should be duplicated in categories.txt @food! */
-"food" = "食物";
+/* Search category for grocery stores; any changes should be duplicated in categories.txt @category_food! */
+"category_food" = "食物";
 
-/* Search category for public transport; any changes should be duplicated in categories.txt @transport! */
-"transport" = "運輸";
+/* Search category for public transport; any changes should be duplicated in categories.txt @category_transport! */
+"category_transport" = "運輸";
 
-/* Search category for fuel stations; any changes should be duplicated in categories.txt @fuel! */
-"fuel" = "加油站";
+/* Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! */
+"category_fuel" = "加油站";
 
-/* Search category for parking lots; any changes should be duplicated in categories.txt @parking! */
-"parking" = "停車場";
+/* Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! */
+"category_parking" = "停車場";
 
-/* Search category for clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @shopping! */
-"shopping" = "購物";
+/* Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! */
+"category_shopping" = "購物";
 
-/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @secondhand! */
-"secondhand" = "二手";
+/* Search category for second_hand/charity/antique/auction shops; any changes should be duplicated in categories.txt @category_secondhand! */
+"category_secondhand" = "二手";
 
-/* Search category for places to stay; any changes should be duplicated in categories.txt @hotel! */
-"hotel" = "旅館";
+/* Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! */
+"category_hotel" = "旅館";
 
-/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @tourism! */
-"tourism" = "旅遊景點";
+/* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
+"category_tourism" = "旅遊景點";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @entertainment! */
-"entertainment" = "娛樂";
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+"category_entertainment" = "娛樂";
 
-/* Search category for ATMs; any changes should be duplicated in categories.txt @atm! */
-"atm" = "自動櫃員機";
+/* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
+"category_atm" = "自動櫃員機";
 
-/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @nightlife! */
-"nightlife" = "夜生活";
+/* Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! */
+"category_nightlife" = "夜生活";
 
-/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @children! */
-"children" = "親子休閒";
+/* Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! */
+"category_children" = "親子休閒";
 
-/* Search category for banks; any changes should be duplicated in categories.txt @bank! */
-"bank" = "銀行";
+/* Search category for banks; any changes should be duplicated in categories.txt @category_bank! */
+"category_bank" = "銀行";
 
-/* Search category for pharmacies; any changes should be duplicated in categories.txt @pharmacy! */
-"pharmacy" = "藥局";
+/* Search category for pharmacies; any changes should be duplicated in categories.txt @category_pharmacy! */
+"category_pharmacy" = "藥局";
 
-/* Search category for hospitals; any changes should be duplicated in categories.txt @hospital! */
-"hospital" = "醫院";
+/* Search category for hospitals; any changes should be duplicated in categories.txt @category_hospital! */
+"category_hospital" = "醫院";
 
-/* Search category for toilets; any changes should be duplicated in categories.txt @toilet! */
-"toilet" = "廁所";
+/* Search category for toilets; any changes should be duplicated in categories.txt @category_toilet! */
+"category_toilet" = "廁所";
 
-/* Search category for post offices; any changes should be duplicated in categories.txt @post! */
-"post" = "郵局";
+/* Search category for post offices; any changes should be duplicated in categories.txt @category_post! */
+"category_post" = "郵局";
 
-/* Search category for police; any changes should be duplicated in categories.txt @police! */
-"police" = "警察局";
+/* Search category for police; any changes should be duplicated in categories.txt @category_police! */
+"category_police" = "警察局";
 
-/* Search category for WiFi access; any changes should be duplicated in categories.txt @wifi! */
-"wifi" = "無線網路";
+/* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
+"category_wifi" = "無線網路";
 
-/* Search category for recycling; any changes should be duplicated in categories.txt @recycling! */
-"recycling" = "回收";
+/* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
+"category_recycling" = "回收";
 
-/* Search category for water; any changes should be duplicated in categories.txt @water! also used to sort bookmarks by type */
-"water" = "水";
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+"category_water" = "水";
 
-/* Search category for RV facilities; any changes should be duplicated in categories.txt @rv! */
-"rv" = "房車用";
+/* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
+"category_rv" = "房車用";
+
+
+/********** Other translations **********/
 
 "share_bookmarks_email_body" = "你好！\n\n附件為 Organic Maps app 的書籤，如果你有安裝 Organic Maps 則直接開啟，如果沒有的話，請先在 iOS 或是 Android 裝置，從下面連結下載：https://omaps.app/get?kmz\n\n旅行時用上 Organic Maps!";
 
@@ -200,10 +210,7 @@
 "done" = "完成";
 
 /* Prints version number in About dialog */
-"version" = "版本： %@";
-
-/* Data version in «About» screen, %@ is replaced by a local, human readable date. */
-"data_version" = "OpenStreetMap 數據：%@";
+"version" = "有機地圖版本：%@";
 
 /* Title for tracks category in bookmarks manager */
 "tracks_title" = "軌跡";
@@ -217,8 +224,14 @@
 
 "pref_zoom_title" = "縮放按鈕";
 
-/* Settings «Map» category: «Night style» title */
-"pref_map_style_title" = "夜間模式";
+/* Settings «Map» category: «Appearance» title */
+"pref_appearance_title" = "外觀";
+
+/* Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_light" = "淺色";
+
+/* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
+"pref_appearance_dark" = "深色";
 
 /* Generic «Off» string */
 "off" = "關閉";
@@ -277,18 +290,6 @@
 "news" = "新聞";
 
 /* Text in menu */
-"github" = "GitHub";
-
-/* Text in menu */
-"telegram" = "Telegram";
-
-/* Text in menu */
-"matrix" = "[Matrix]";
-
-/* Text in menu */
-"mastodon" = "Mastodon";
-
-/* Text in menu */
 "facebook" = "Facebook";
 
 /* Text in menu */
@@ -299,9 +300,6 @@
 
 /* Text in the editor */
 "vk" = "VK";
-
-/* Text in menu */
-"openstreetmap" = "開放街圖";
 
 /* Text in menu */
 "rate_the_app" = "為我們評分";
@@ -315,14 +313,23 @@
 /* Button in the main menu */
 "donate" = "捐助我們";
 
-/* Button in the main Help dialog */
-"how_to_support_us" = "支持項目";
+/* Tex label above the Donate button */
+"donate_description" = "捐款共同打造最好的地圖！";
 
 /* Button in the main Help dialog */
 "copyright" = "版權";
 
 /* Text in menu + Button in the main Help dialog */
 "report_a_bug" = "報告問題";
+
+/* Button in the About screen */
+"report_incorrect_map_bug" = "報告或修復不正確的地圖數據";
+
+/* Button in the About screen */
+"volunteer" = "志工服務";
+
+/* "Social media" section header in the About screen */
+"follow_us" = "關注並聯絡我們：";
 
 /* Alert text */
 "email_error_body" = "電子郵件客戶端尚未建立。請設定或使用任何其他方式與我們聯絡%@";
@@ -704,6 +711,9 @@
 
 "message_invalid_feature_position" = "物件無法設置在這裡";
 
+/* Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. */
+"osm_presentation" = "截至 %@ 的社群創建的 OpenStreetMap 資料。請訪問 OpenStreetMap.org 以了解有關如何編輯和更新地圖的更多信息";
+
 "login_to_make_edits_visible" = "登入來讓其他使用者能看到您所作出的修改。";
 
 /* Error dialog no space */
@@ -745,8 +755,6 @@
 "downloader_no_downloaded_maps_title" = "您尚未下載任何地圖";
 
 "downloader_no_downloaded_maps_message" = "下載地圖來尋找位置和離線瀏覽。";
-
-"stop" = "停止";
 
 "current_location_unknown_error_title" = "目前位置未知。";
 
@@ -861,9 +869,6 @@
 "sharing_call_action_look" = "看一看";
 
 "recent_track_background_dialog_message" = "Organic Maps使用背景中的地理位置記錄您最近去過的路徑。";
-
-/* Text under the version number in the Help dialog. TODO: Synchronize other translations with English. */
-"about_description" = "Organic Maps 是一款免費的開源離線地圖 app。沒有廣告，不會追蹤您。如果您在地圖上看到錯誤，請在 OpenStreetMap 中修復吧。這個專案由愛好者在我們的空閒時間創建，因此我們需要您的回饋和支援。";
 
 "general_settings" = "一般設定";
 
@@ -1005,15 +1010,16 @@
 
 "speedcams_alert_title" = "超速照相機";
 
-/* Generic «Always» string */
-"always" = "總是";
-
-/* Generic «Never» string */
-"never" = "從不";
-
 "place_description_title" = "地點說明";
 
-"speedcams_notice_message" = "自動 - 如果存在超出速度限制的風險，則對速度照相機發出警告\n總是 - 始終提醒照相機\n從不 - 永遠不會對照相機發出警告";
+/* "Speed cameras" settings menu option (should be short! no more than 47-50 chars) to warn a driver if there is a risk of exceeding the speed limit */
+"pref_tts_speedcams_auto" = "警告超速";
+
+/* Speed camera settings menu option - Always warn (about speedcams) */
+"pref_tts_speedcams_always" = "始終提醒照相機";
+
+/* Speed camera settings menu option - Never warn (about speedcams) */
+"pref_tts_speedcams_never" = "永遠不會對照相機發出警告";
 
 "power_managment_title" = "省電模式";
 
@@ -1245,6 +1251,15 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "遠足";
 
+/* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
+"bookmarks_export" = "匯出所有書籤和曲目";
+
+/* Text for the editing the Track's color button. */
+"change_color" = "換顏色";
+
+/* Main screen title "Map" displayed in the navigation back button's menu. */
+"map" = "地圖";
+
 
 /********** Types **********/
 
@@ -1359,6 +1374,8 @@
 "type.amenity.doctors" = "醫師診間";
 
 "type.amenity.drinking_water" = "飲用水";
+
+"type.drinking_water.yes" = "飲用水";
 
 "type.amenity.driving_school" = "駕訓班";
 
@@ -1684,6 +1701,8 @@
 "type.boundary.administrative.suburb" = "Suburb Boundary";
 
 "type.boundary.national_park" = "國家公園";
+
+"type.boundary.aboriginal_lands" = "原住民土地";
 
 "type.boundary.protected_area" = "保護區";
 
