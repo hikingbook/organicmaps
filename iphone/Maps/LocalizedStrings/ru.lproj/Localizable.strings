@@ -171,22 +171,22 @@
 
 /********** Other translations **********/
 
-"share_bookmarks_email_body" = "Здравствуйте!\n\nВ прикрепленном файле мои метки из офлайновых карт Organic Maps. Для того чтобы открыть этот файл, вам потребуется приложение Organic Maps, которое можно установить по ссылке: https://omaps.app/get?kmz\n\nСпасибо!";
+"share_bookmarks_email_body" = "Здравствуйте!\n\nВ прикреплённом файле мои метки из офлайновых карт Organic Maps. Для того чтобы открыть этот файл, вам потребуется приложение Organic Maps, которое можно установить по ссылке: https://omaps.app/get?kmz\n\nСпасибо!";
 
 /* message title of loading file */
 "load_kmz_title" = "Загрузка меток";
 
 /* Kmz file successful loading */
-"load_kmz_successful" = "Метки успешно загружены! Вы можете увидеть их на карте или в ваших сохраненных метках.";
+"load_kmz_successful" = "Метки успешно загружены! Вы можете увидеть их на карте или в ваших сохранённых метках.";
 
 /* Kml file loading failed */
-"load_kmz_failed" = "Файл с метками не был загружен. Возможно, файл поврежден или неисправен.";
+"load_kmz_failed" = "Файл с метками не был загружен. Возможно, файл повреждён или неисправен.";
 
 /* resource for context menu */
 "edit" = "Редактировать";
 
 /* Warning message when doing search around current position */
-"unknown_current_position" = "Ваше местоположение еще не определено";
+"unknown_current_position" = "Ваше местоположение ещё не определено";
 
 /* Subject for emailed bookmark */
 "bookmark_share_email_subject" = "Смотри мою метку на карте Organic Maps";
@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Голосовые инструкции";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Проговаривать названия улиц";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "При включении название улицы или съезда, на который нужно повернуть, будет произноситься вслух.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Язык подсказок";
 
@@ -277,7 +283,7 @@
 
 "duration_1_day" = "1 сутки";
 
-"recent_track_help_text" = "Эта функция позволяет записывать пройденный путь за определенный период времени и видеть его на карте. Внимание: активация этой функции может привести к повышенному расходу батареи. Записанный трек будет удален с карты по истечении этого срока.";
+"recent_track_help_text" = "Эта функция позволяет записывать пройденный путь за определённый период времени и видеть его на карте. Внимание: активация этой функции может привести к повышенному расходу батареи. Записанный трек будет удалён с карты по истечении этого срока.";
 
 "placepage_distance" = "Расстояние";
 
@@ -326,7 +332,7 @@
 "report_incorrect_map_bug" = "Сообщить или исправить неправильные данные на карте";
 
 /* Button in the About screen */
-"volunteer" = "Cтать волонтером";
+"volunteer" = "Cтать волонтёром";
 
 /* "Social media" section header in the About screen */
 "follow_us" = "Подписывайтесь и пишите нам:";
@@ -629,6 +635,8 @@
 
 "login" = "Войти";
 
+"login_osm" = "Войти в OpenStreetMap";
+
 "forgot_password" = "Забыли пароль?";
 
 "osm_account" = "OSM Аккаунт";
@@ -673,7 +681,7 @@
 
 "please_note" = "Обратите внимание";
 
-"downloader_delete_map_dialog" = "Вместе с картой удалятся и внесенные вами правки на этой карте.";
+"downloader_delete_map_dialog" = "Вместе с картой удалятся и внесённые вами правки на этой карте.";
 
 "downloader_update_maps" = "Обновите карты";
 
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Добавление";
 
 "editor_edit_place_name_hint" = "Название места";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "На местном языке";
 
 "editor_edit_place_category_title" = "Категория";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Удалить метку";
 
-"editor_edits_sent_message" = "Предложенные вами изменения отправлены";
+"editor_edits_sent_message" = "Ваша заметка будет отправлена в OpenStreetMap";
 
 "editor_comment_hint" = "Коментарий…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Редакторы OpenStreetMap проверят изменения и свяжутся с вами, если у них возникнут вопросы.";
 
-"navigation_stop_button" = "стоп";
+"navigation_stop_button" = "Cтоп";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Выключить запись недавно пройденого пути?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Упс, произошла ошибка. Попробуйте авторизоваться повторно.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Пожалуйста войдите в аккаунт OpenStreetMap.org, чтобы публиковать ваши изменения карты. Подробности по";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "ссылке";
+
 "core_entrance" = "Вход";
 
 "error_enter_correct_name" = "Пожалуйста, введите название правильно";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Популярно";
 
-"export_file" = "Экспортировать файл";
+"export_file" = "Экспорт KMZ";
+
+"export_file_gpx" = "Экспорт GPX";
 
 "delete_list" = "Удалить список";
 
@@ -1004,7 +1023,7 @@
 
 "bookmark_list_description_hint" = "Добавьте описание (текст или html)";
 
-"tags_loading_error_subtitle" = "Во время загрузки тегов произошла ошибка, пожалуйста, попробуйте еще раз";
+"tags_loading_error_subtitle" = "Во время загрузки тегов произошла ошибка, пожалуйста, попробуйте ещё раз";
 
 "download_button" = "Скачать";
 
@@ -1023,7 +1042,7 @@
 
 "power_managment_title" = "Режим энергосбережения";
 
-"power_managment_description" = "Если режим энергосбережения включен, приложение будет отключать энергозатратные функции в зависимости от текущего заряда телефона";
+"power_managment_description" = "Если режим энергосбережения включён, приложение будет отключать энергозатратные функции в зависимости от текущего заряда телефона";
 
 "power_managment_setting_never" = "Никогда";
 
@@ -1097,13 +1116,13 @@
 
 "dialog_routing_unable_locate_route_carplay" = "Невозможно построить маршрут. Выберите другие точки маршрута";
 
-"dialog_routing_download_files_carplay" = "Чтобы построить маршрут, загрузите недостающие карты на своем устройстве";
+"dialog_routing_download_files_carplay" = "Чтобы построить маршрут, загрузите недостающие карты на своём устройстве";
 
 "dialog_routing_system_error_carplay" = "Произошла ошибка. Перезапустите приложение";
 
 "dialog_routing_rebuild_from_current_location_carplay" = "Маршрут будет перестроен от вашего текущего местоположения";
 
-"dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будет изменен на автомобильный";
+"dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будет изменён на автомобильный";
 
 "ok" = "Ок";
 
@@ -1111,7 +1130,7 @@
 
 "speedcams_alert_title_carplay_2" = "Инфо о камерах";
 
-"download_map_carplay" = "Скачайте карты в приложении Organic Maps на своем устройстве";
+"download_map_carplay" = "Скачайте карты в приложении Organic Maps на своём устройстве";
 
 "carplay_roundabout_exit" = "%@ съезд";
 
@@ -1126,6 +1145,8 @@
 "sort_distance" = "Сортировать по расстоянию";
 
 "sort_date" = "Сортировать по дате";
+
+"sort_name" = "Сортировать по имени";
 
 "week_ago_sorttype" = "Неделю назад";
 
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/RU:О_проекте";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Сейчас Вы используете Organic Maps на экране телефона";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Сейчас Вы используете Organic Maps на экране автомобиля";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Продолжить в телефоне";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "Продолжить в авто";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Активный отдых";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Карта";
+
+"drive_through" = "С окошком для водителей";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Ссылка на меню";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Включить синхронизацию с iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "Синхронизация с iCloud - это экспериментальная функция, которая находится в стадии разработки. Убедитесь, что вы сделали резервную копию всех своих закладок и треков.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud отключен";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Чтобы воспользоваться этой функцией, включите iCloud в настройках своего устройства.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Включить";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Резервная копия";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Ошибка: Не удалось выполнить синхронизацию из-за ошибки подключения";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Ошибка: Не удалось выполнить синхронизацию из-за превышения квоты iCloud";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Ошибка: iCloud недоступен";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Бар";
 
-"type.amenity.bbq" = "Место для пикника";
+"type.amenity.bbq" = "Барбекю-гриль";
 
 "type.amenity.bench" = "Скамейка";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Школа";
 
-"type.amenity.shelter" = "Укрытие";
+/* Weather shelter (including sun shelters and natural rock shelters). */
+"type.amenity.shelter" = "Навес";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Навес";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Хижина для ночлега";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Бивачный навес";
 
 "type.amenity.public_bath" = "Общественная баня";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Административная граница";
 
-"type.boundary.administrative.10" = "Административная граница";
-
-"type.boundary.administrative.11" = "Административная граница";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "Граница страны";
 
-"type.boundary.administrative.3" = "Административная граница";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Граница региона";
 
-"type.boundary.administrative.4" = "Административная граница";
-
-"type.boundary.administrative.5" = "Административная граница";
-
-"type.boundary.administrative.6" = "Административная граница";
-
-"type.boundary.administrative.7" = "Административная граница";
-
-"type.boundary.administrative.8" = "Административная граница";
-
-"type.boundary.administrative.9" = "Административная граница";
-
-"type.boundary.administrative.city" = "Граница города";
-
-"type.boundary.administrative.country" = "Граница страны";
-
-"type.boundary.administrative.county" = "Граница округа";
-
-"type.boundary.administrative.municipality" = "Граница муниципалитета";
-
-"type.boundary.administrative.nation" = "Граница страны";
-
-"type.boundary.administrative.region" = "Граница региона";
-
-"type.boundary.administrative.state" = "Граница штата";
-
-"type.boundary.administrative.suburb" = "Граница пригорода";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Граница региона";
 
 "type.boundary.national_park" = "Национальный парк";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Выход";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Бесплатно";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Пешеходный переход";
 
-"type.highway.footway.alpine_hiking" = "Тропа";
-
 "type.highway.footway.area" = "Пешеходная зона";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Пешеходный мост";
-
-"type.highway.footway.demanding_alpine_hiking" = "Тропа";
-
-"type.highway.footway.demanding_mountain_hiking" = "Тропа";
-
-"type.highway.footway.difficult_alpine_hiking" = "Тропа";
-
-"type.highway.footway.hiking" = "Тропа";
-
-"type.highway.footway.mountain_hiking" = "Тропа";
-
-"type.highway.footway.permissive" = "Пешеходная дорожка";
-
-"type.highway.footway.trail_visibility_bad" = "Тропа";
-
-"type.highway.footway.trail_visibility_excellent" = "Тропа";
-
-"type.highway.footway.trail_visibility_good" = "Тропа";
-
-"type.highway.footway.trail_visibility_horrible" = "Тропа";
-
-"type.highway.footway.trail_visibility_intermediate" = "Тропа";
-
-"type.highway.footway.trail_visibility_no" = "Тропа";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Пешеходный тоннель";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Тропа";
 
-"type.highway.path.alpine_hiking" = "Тропа";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Сложная или плохо видимая тропа";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Очень сложная или неразличимая тропа";
 
 "type.highway.path.bicycle" = "Велопешеходная дорожка";
+
+"type.highway.footway.bicycle" = "Велопешеходная дорожка";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Мост";
 
-"type.highway.path.demanding_alpine_hiking" = "Тропа";
-
-"type.highway.path.demanding_mountain_hiking" = "Тропа";
-
-"type.highway.path.difficult_alpine_hiking" = "Тропа";
-
-"type.highway.path.hiking" = "Тропа";
-
 "type.highway.path.horse" = "Конная тропа";
-
-"type.highway.path.mountain_hiking" = "Тропа";
-
-"type.highway.path.permissive" = "Тропа";
-
-"type.highway.path.trail_visibility_bad" = "Тропа";
-
-"type.highway.path.trail_visibility_excellent" = "Тропа";
-
-"type.highway.path.trail_visibility_good" = "Тропа";
-
-"type.highway.path.trail_visibility_horrible" = "Тропа";
-
-"type.highway.path.trail_visibility_intermediate" = "Тропа";
-
-"type.highway.path.trail_visibility_no" = "Тропа";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Тоннель";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Грунтовка";
 
-"type.highway.track.grade2" = "Грунтовка";
-
-"type.highway.track.grade3" = "Грунтовка";
-
-"type.highway.track.grade4" = "Грунтовка";
-
-"type.highway.track.grade5" = "Грунтовка";
-
 "type.highway.track.no.access" = "Грунтовка";
-
-"type.highway.track.permissive" = "Грунтовка";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Тоннель";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Образовательные учреждения";
 
-"type.landuse.farm" = "Ферма";
-
 "type.landuse.farmland" = "Сельскохозяйственная земля";
 
 "type.landuse.farmyard" = "Сельскохозяйственная земля";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Частный сад";
 
 "type.leisure.golf_course" = "Площадка для гольфа";
+
+"type.leisure.miniature_golf" = "Минигольф";
 
 "type.leisure.hackerspace" = "Хакерспейс";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Природа";
 
-"type.natural.bare_rock" = "Скалы";
+/* A rocky land cover. */
+"type.natural.bare_rock" = "Каменная порода";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Галька";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Каменистая осыпь";
 
 "type.natural.bay" = "Залив";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Аквариум";
 
-"type.tourism.alpine_hut" = "Горный отель";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Горный приют с обслуживанием";
 
-"type.tourism.apartment" = "Апартаменты";
+"type.tourism.apartment" = "Квартира для отдыха";
 
 "type.tourism.artwork" = "Произведение искусства";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Достопримечательность";
 
-"type.tourism.attraction.animal" = "Достопримечательность";
+"type.attraction.animal" = "Вольер для животных";
 
 "type.tourism.attraction.specified" = "Достопримечательность";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Кемпинг для автодомов";
 
-"type.tourism.chalet" = "Шале";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Коттедж для отдыха";
 
 "type.tourism.gallery" = "Галерея";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Карта";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Туристический офис";
 
 "type.tourism.information.visitor_centre" = "Центр для посетителей";
@@ -3812,13 +3813,14 @@
 
 "type.tourism.picnic_site" = "Место для пикника";
 
-"type.tourism.resort" = "Дом отдыха";
+"type.leisure.resort" = "Дом отдыха";
 
 "type.tourism.theme_park" = "Парк развлечений";
 
 "type.tourism.viewpoint" = "Обзорная площадка";
 
-"type.tourism.wilderness_hut" = "Хижина в лесу";
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
+"type.tourism.wilderness_hut" = "Домик для туристов";
 
 "type.tourism.zoo" = "Зоопарк";
 
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Река";
 
 "type.waterway.river.tunnel" = "Река";
-
-"type.waterway.riverbank" = "Река";
 
 "type.waterway.stream" = "Река";
 

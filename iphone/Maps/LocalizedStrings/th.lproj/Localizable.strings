@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "คำแนะนำด้วยเสียง";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "ประกาศชื่อถนน";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "เมื่อเปิดใช้งาน ชื่อของถนนหรือทางออกที่จะเลี้ยวจะถูกพูดออกมาดัง ๆ";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "ภาษาสำหรับเสียง";
 
@@ -629,6 +635,8 @@
 
 "login" = "ล็อกอิน";
 
+"login_osm" = "เข้าสู่ระบบ OpenStreetMap";
+
 "forgot_password" = "ลืมรหัสผ่าน?";
 
 "osm_account" = "บัญชี OSM";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "กำลังเพิ่ม";
 
 "editor_edit_place_name_hint" = "ชื่อสถานที่";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "ตามที่เขียนเป็นภาษาท้องถิ่น";
 
 "editor_edit_place_category_title" = "หมวดหมู่";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "ลบ Bookmark";
 
-"editor_edits_sent_message" = "คำแนะนำการเปลี่ยนแปลงของคุณถูกส่งไปแล้ว";
+"editor_edits_sent_message" = "บันทึกของคุณจะถูกส่งไปยัง OpenStreetMap";
 
 "editor_comment_hint" = "ข้อคิดเห็น";
 
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "โอ๊ะ มีข้อผิดพลาดเกิดขึ้น ลองลงชื่อเข้าใช้อีกครั้ง";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "กรุณาเข้าสู่ระบบ OpenStreetMap เพื่ออัปโหลดการแก้ไขแผนที่ทั้งหมดของคุณโดยอัตโนมัติ เรียนรู้เพิ่มเติม";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "ที่นี่";
+
 "core_entrance" = "ทางเข้า";
 
 "error_enter_correct_name" = "กรุณาใส่ชื่อที่ถูกต้อง";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "ส่งออกไฟล์";
+"export_file" = "ส่งออก KMZ";
+
+"export_file_gpx" = "ส่งออก GPX";
 
 "delete_list" = "ลบรายการ";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "เรียงตามวันที่";
 
+"sort_name" = "เรียงตามชื่อ";
+
 "week_ago_sorttype" = "สัปดาห์ที่ผ่านมา";
 
 "month_ago_sorttype" = "เดือนที่ผ่านมา";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "ขณะนี้คุณกำลังใช้แผนที่ทั่วไปบนหน้าจอโทรศัพท์";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "ขณะนี้คุณกำลังใช้แผนที่ทั่วไปบนหน้าจอรถยนต์";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "ดำเนินการต่อบนโทรศัพท์";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "ไปที่หน้าจอรถ";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "การเดินป่า";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "แผนที่";
+
+"drive_through" = "ขับรถผ่าน";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "ลิงค์เมนู";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "เปิดใช้งานการซิงโครไนซ์ iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "การซิงโครไนซ์ iCloud เป็นคุณสมบัติทดลองที่อยู่ระหว่างการพัฒนา ตรวจสอบให้แน่ใจว่าคุณได้สำรองข้อมูลบุ๊กมาร์กและแทร็กทั้งหมดของคุณแล้ว";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud ถูกปิดใช้งาน";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "โปรดเปิดใช้งาน iCloud ในการตั้งค่าอุปกรณ์ของคุณเพื่อใช้คุณสมบัตินี้";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "เปิดใช้งาน";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "สำรองข้อมูล";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "ข้อผิดพลาด: ไม่สามารถซิงโครไนซ์ได้เนื่องจากข้อผิดพลาดในการเชื่อมต่อ";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "ข้อผิดพลาด: ไม่สามารถซิงโครไนซ์ได้เนื่องจากเกินโควต้า iCloud";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "ข้อผิดพลาด: iCloud ไม่พร้อมใช้งาน";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "บาร์";
 
-"type.amenity.bbq" = "เว็บไซต์ปิกนิก";
+"type.amenity.bbq" = "เตาย่างบาร์บีคิว";
 
 "type.amenity.bench" = "ม้านั่ง";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "โรงเรียน";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "ที่อยู่อาศัย";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "ที่อยู่อาศัย";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "กระท่อมพักแรม";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "ห้องอาบน้ำสาธารณะ";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "อุทยานแห่งชาติ";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "ทางออก";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "ฟรี";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "ทางม้าลาย";
 
-"type.highway.footway.alpine_hiking" = "เส้นทาง";
-
 "type.highway.footway.area" = "เส้นทาง";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "สะพาน";
-
-"type.highway.footway.demanding_alpine_hiking" = "เส้นทาง";
-
-"type.highway.footway.demanding_mountain_hiking" = "เส้นทาง";
-
-"type.highway.footway.difficult_alpine_hiking" = "เส้นทาง";
-
-"type.highway.footway.hiking" = "เส้นทาง";
-
-"type.highway.footway.mountain_hiking" = "เส้นทาง";
-
-"type.highway.footway.permissive" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_bad" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_excellent" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_good" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_horrible" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_intermediate" = "เส้นทาง";
-
-"type.highway.footway.trail_visibility_no" = "เส้นทาง";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "อุโมงค์";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "เส้นทาง";
 
-"type.highway.path.alpine_hiking" = "เส้นทาง";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "เส้นทาง";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "เส้นทาง";
 
 "type.highway.path.bicycle" = "เส้นทาง";
+
+"type.highway.footway.bicycle" = "เส้นทาง";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "สะพาน";
 
-"type.highway.path.demanding_alpine_hiking" = "เส้นทาง";
-
-"type.highway.path.demanding_mountain_hiking" = "เส้นทาง";
-
-"type.highway.path.difficult_alpine_hiking" = "เส้นทาง";
-
-"type.highway.path.hiking" = "เส้นทาง";
-
 "type.highway.path.horse" = "เส้นทาง";
-
-"type.highway.path.mountain_hiking" = "เส้นทาง";
-
-"type.highway.path.permissive" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_bad" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_excellent" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_good" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_horrible" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_intermediate" = "เส้นทาง";
-
-"type.highway.path.trail_visibility_no" = "เส้นทาง";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "อุโมงค์";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "ถนน";
 
-"type.highway.track.grade2" = "ถนน";
-
-"type.highway.track.grade3" = "ถนน";
-
-"type.highway.track.grade4" = "ถนน";
-
-"type.highway.track.grade5" = "ถนน";
-
 "type.highway.track.no.access" = "ถนน";
-
-"type.highway.track.permissive" = "ถนน";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "อุโมงค์";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "พื้นที่ทำการเกษตร";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "สวน";
 
 "type.leisure.golf_course" = "สนามกอล์ฟ";
+
+"type.leisure.miniature_golf" = "มินิกอล์ฟ";
 
 "type.leisure.hackerspace" = "แฮกเกอร์สเปซ";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "ธรรมชาติ";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "เปลือยร็อค";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "ก้อนกรวด";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "หินกรวด";
 
 "type.natural.bay" = "อ่าว";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "พิพิธภัณฑ์สัตว์น้ำ";
 
-"type.tourism.alpine_hut" = "ที่พักบนภูเขาโรงแรม";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "บ้านพักบนภูเขา";
 
-"type.tourism.apartment" = "อพาร์ตเมนต์";
+"type.tourism.apartment" = "ฮอลิเดย์ อพาร์ตเมนต์";
 
 "type.tourism.artwork" = "งานศิลปะ";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "การท่องเที่ยว";
 
-"type.tourism.attraction.animal" = "การท่องเที่ยว";
+"type.attraction.animal" = "สิ่งที่แนบมากับสัตว์";
 
 "type.tourism.attraction.specified" = "การท่องเที่ยว";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "ขบวนนักเดินทาง";
 
-"type.tourism.chalet" = "ชาเลต์";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "กระท่อมวันหยุด";
 
 "type.tourism.gallery" = "สถานที่ท่องเที่ยว";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "แผนที่ท่องเที่ยว";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "ศูนย์บริการนักท่องเที่ยว";
 
 "type.tourism.information.visitor_centre" = "ศูนย์นักท่องเที่ยว";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "เว็บไซต์ปิกนิก";
 
-"type.tourism.resort" = "รีสอร์ต";
+"type.leisure.resort" = "รีสอร์ต";
 
 "type.tourism.theme_park" = "สถานที่ท่องเที่ยว";
 
 "type.tourism.viewpoint" = "จุดชมวิว";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "กระท่อมกลางป่า";
 
 "type.tourism.zoo" = "สวนสัตว์";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "แม่น้ำ";
 
 "type.waterway.river.tunnel" = "แม่น้ำ";
-
-"type.waterway.riverbank" = "แม่น้ำ";
 
 "type.waterway.stream" = "แม่น้ำ";
 

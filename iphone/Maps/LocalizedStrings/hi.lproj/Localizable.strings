@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "ध्वनि निर्देश";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "सड़कों के नाम की घोषणा करें";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "सक्षम होने पर, सड़क का नाम या मुड़ने के लिए निकास का नाम ज़ोर से बोला जाएगा।";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "आवाज की भाषा";
 
@@ -627,7 +633,9 @@
 
 "invalid_username_or_password" = "Invalid username or password.";
 
-"login" = "OpenStreetMap Login";
+"login" = "Login";
+
+"login_osm" = "Login to OpenStreetMap";
 
 "forgot_password" = "Forgot your password?";
 
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "जोड़ना";
 
 "editor_edit_place_name_hint" = "स्थान का नाम";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "जैसा कि स्थानीय भाषा में लिखा गया है";
 
 "editor_edit_place_category_title" = "वर्ग";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Delete Bookmark";
 
-"editor_edits_sent_message" = "Your suggested changes have been sent";
+"editor_edits_sent_message" = "आपका नोट OpenStreetMap पर भेजा जाएगा";
 
 "editor_comment_hint" = "Comment…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "OpenStreetMap editors will check the changes and contact you if they have any questions.";
 
-"navigation_stop_button" = "stop";
+"navigation_stop_button" = "Stop";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "क्या आप हाल ही में यात्रा किए गए मार्ग की रिकॉर्डिंग अक्षम करना चाहते हैं?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "उफ़, एक त्रुटि हुई. पुनः साइन इन करने का प्रयास करें.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "कृपया अपने सभी मानचित्र संपादनों को स्वचालित रूप से अपलोड करने के लिए OpenStreetMap पर लॉगिन करें। अधिक जानें";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "यहां";
+
 "core_entrance" = "Entrance";
 
 "error_enter_correct_name" = "Please enter a correct name";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "फ़ाइल निर्यात करें";
+"export_file" = "निर्यात KMZ";
+
+"export_file_gpx" = "जीपीएक्स निर्यात करें";
 
 "delete_list" = "Delete list";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Sort by date";
 
+"sort_name" = "नाम द्वारा क्रमबद्ध करें";
+
 "week_ago_sorttype" = "A week ago";
 
 "month_ago_sorttype" = "A month ago";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "अब आप फ़ोन स्क्रीन पर ऑर्गेनिक मानचित्र का उपयोग कर रहे हैं";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "अब आप कार स्क्रीन पर ऑर्गेनिक मानचित्र का उपयोग कर रहे हैं";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "फ़ोन पर जारी रखें";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "कार स्क्रीन पर";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "लंबी पैदल यात्रा";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "नक्शा";
+
+"drive_through" = "ड्राइव करते हुए किसी जगह से गुजरना";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "मेनू लिंक";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "iCloud सिंक्रोनाइज़ेशन सक्षम करें";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud सिंक्रोनाइज़ेशन विकासाधीन एक प्रायोगिक सुविधा है। सुनिश्चित करें कि आपने अपने सभी बुकमार्क और ट्रैक का बैकअप बना लिया है।";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud अक्षम है";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "कृपया इस सुविधा का उपयोग करने के लिए अपने डिवाइस की सेटिंग में iCloud सक्षम करें।";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "सक्षम";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "बैकअप";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "त्रुटि: कनेक्शन त्रुटि के कारण सिंक्रनाइज़ करने में विफल";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "त्रुटि: iCloud कोटा पार हो जाने के कारण सिंक्रनाइज़ करने में विफल";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "त्रुटि: iCloud उपलब्ध नहीं है";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "मधुशाला";
 
-"type.amenity.bbq" = "बार्बीक्यू";
+"type.amenity.bbq" = "बारबेक्यू";
 
 "type.amenity.bench" = "बेंच";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "विद्यालय";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "आश्रय";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "आश्रय";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "द्विवार्षिक झोपड़ी";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Public Bath";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "National Park";
 
@@ -1768,7 +1816,7 @@
 
 "type.craft.metal_construction" = "Metal Worker";
 
-"type.craft.painter" = "Painter";
+"type.craft.painter" = "House Painter";
 
 "type.craft.photographer" = "फोटोग्राफर";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Exit";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Free";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "पैदल पार पथ";
 
-"type.highway.footway.alpine_hiking" = "पथ";
-
 "type.highway.footway.area" = "पैदलपथ";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Pedestrian Bridge";
-
-"type.highway.footway.demanding_alpine_hiking" = "पथ";
-
-"type.highway.footway.demanding_mountain_hiking" = "पथ";
-
-"type.highway.footway.difficult_alpine_hiking" = "पथ";
-
-"type.highway.footway.hiking" = "पथ";
-
-"type.highway.footway.mountain_hiking" = "पथ";
-
-"type.highway.footway.permissive" = "पैदलपथ";
-
-"type.highway.footway.trail_visibility_bad" = "पथ";
-
-"type.highway.footway.trail_visibility_excellent" = "पथ";
-
-"type.highway.footway.trail_visibility_good" = "पथ";
-
-"type.highway.footway.trail_visibility_horrible" = "पथ";
-
-"type.highway.footway.trail_visibility_intermediate" = "पथ";
-
-"type.highway.footway.trail_visibility_no" = "पथ";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Pedestrian Tunnel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "पथ";
 
-"type.highway.path.alpine_hiking" = "पथ";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "पथ";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "पथ";
 
 "type.highway.path.bicycle" = "पथ";
+
+"type.highway.footway.bicycle" = "पथ";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Bridge";
 
-"type.highway.path.demanding_alpine_hiking" = "पथ";
-
-"type.highway.path.demanding_mountain_hiking" = "पथ";
-
-"type.highway.path.difficult_alpine_hiking" = "पथ";
-
-"type.highway.path.hiking" = "पथ";
-
 "type.highway.path.horse" = "पथ";
-
-"type.highway.path.mountain_hiking" = "पथ";
-
-"type.highway.path.permissive" = "पथ";
-
-"type.highway.path.trail_visibility_bad" = "पथ";
-
-"type.highway.path.trail_visibility_excellent" = "पथ";
-
-"type.highway.path.trail_visibility_good" = "पथ";
-
-"type.highway.path.trail_visibility_horrible" = "पथ";
-
-"type.highway.path.trail_visibility_intermediate" = "पथ";
-
-"type.highway.path.trail_visibility_no" = "पथ";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tunnel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "सड़क";
 
-"type.highway.track.grade2" = "सड़क";
-
-"type.highway.track.grade3" = "सड़क";
-
-"type.highway.track.grade4" = "सड़क";
-
-"type.highway.track.grade5" = "सड़क";
-
 "type.highway.track.no.access" = "सड़क";
-
-"type.highway.track.permissive" = "सड़क";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tunnel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "खेत";
-
 "type.landuse.farmland" = "Farmland";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "बाग";
 
 "type.leisure.golf_course" = "Golf Course";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "हैकर्सस्पेस";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "प्रकृति";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Bare Rock";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "कंकड़";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "रोड़ी";
 
 "type.natural.bay" = "खाड़ी";
 
@@ -3758,7 +3759,8 @@
 
 "type.tourism.aquarium" = "Aquarium";
 
-"type.tourism.alpine_hut" = "Alpine Lodging";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "माउंटेन लॉज";
 
 "type.tourism.apartment" = "अवकाश अपार्टमेंट";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "पर्यटन स्थल";
 
-"type.tourism.attraction.animal" = "पर्यटन स्थल";
+"type.attraction.animal" = "पशु बाड़ा";
 
 "type.tourism.attraction.specified" = "पर्यटन स्थल";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "कारवां स्थल";
 
-"type.tourism.chalet" = "षाले";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "हॉलिडे कॉटेज";
 
 "type.tourism.gallery" = "आर्ट गैलरी";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Tourist Map";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Tourist Office";
 
 "type.tourism.information.visitor_centre" = "Visitor Centre";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "पिकनिक स्थल";
 
-"type.tourism.resort" = "Resort";
+"type.leisure.resort" = "Resort";
 
 "type.tourism.theme_park" = "Theme Park";
 
 "type.tourism.viewpoint" = "दृष्टिकोण";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "चिड़ियाघर";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "नदी";
 
 "type.waterway.river.tunnel" = "नदी";
-
-"type.waterway.riverbank" = "River";
 
 "type.waterway.stream" = "Stream";
 

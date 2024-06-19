@@ -8,6 +8,7 @@
 //#import "MWMOsmAuthAlert.h"
 //#import "MWMPlaceDoesntExistAlert.h"
 //#import "MWMRoutingDisclaimerAlert.h"
+//#import "MWMOsmReauthAlert.h"
 
 #import "Hikingbook-Swift-Header.h"
 
@@ -159,6 +160,10 @@
 //+ (MWMAlert *)osmAuthAlert {
 //  return [MWMOsmAuthAlert alert];
 //}
+//+ (MWMAlert *)osmReauthAlert {
+//  return [MWMOsmReauthAlert alert];
+//}
+
 + (MWMAlert *)personalInfoWarningAlertWithBlock:(MWMVoidBlock)block {
   return [MWMDefaultAlert personalInfoWarningAlertWithBlock:block];
 }

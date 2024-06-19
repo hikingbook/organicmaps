@@ -112,7 +112,7 @@ Beloved institutional sponsors below have provided targeted grants to cover some
       <a href="https://summerofcode.withgoogle.com/"><img src="docs/sponsors/gsoc.svg" alt="Google Summer of Code" width="200px"></a>
     </td>
     <td>
-      <a href="https://summerofcode.withgoogle.com/">Google</a> backed 5 student's projects in the Google Summer of Code program during <a href="https://summerofcode.withgoogle.com/programs/2022/organizations/organic-maps">2022</a> and <a href="https://summerofcode.withgoogle.com/programs/2023/organizations/organic-maps">2023</a> programs. Noteworthy projects included Android Auto, Outdoor Style, and Wikipedia Dump Extractor.
+      <a href="https://summerofcode.withgoogle.com/">Google</a> backed 5 student's projects in the Google Summer of Code program during <a href="https://summerofcode.withgoogle.com/programs/2022/organizations/organic-maps">2022</a> and <a href="https://summerofcode.withgoogle.com/programs/2023/organizations/organic-maps">2023</a> programs. Noteworthy projects included Android Auto and Wikipedia Dump Extractor.
     </td>
   </tr>
   <tr>
@@ -174,6 +174,7 @@ and [Google Play](https://play.google.com/store/apps/details?id=app.organicmaps)
 - Join our [Telegram Group](https://t.me/OrganicMaps) to discuss with other users.
   - Присоединяйтесь к нашей [русскоязычной группе в Telegram](https://t.me/OrganicMapsRu) для обратной связи и помощи.
   - Diğer kullanıcılarla tartışmak için [Telegram Grubumuza](https://t.me/OrganicMapsTR) katılın.
+  - Rejoignez notre groupe [Telegram](https://t.me/OrganicMapsFR) pour obtenir de l'aide.
 - Contact us by [email](mailto:hello@organicmaps.app).
 - Follow our updates in
 [Mastodon](https://fosstodon.org/@organicmaps),

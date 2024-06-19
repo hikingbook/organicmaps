@@ -27,7 +27,7 @@
 "leave_a_review" = "Idatzi iritzia";
 
 /* Choose measurement on first launch alert - choose imperial system button */
-"miles" = "Milia";
+"miles" = "Miliak";
 
 /* A text for current gps location point/arrow selected on the map */
 "core_my_position" = "Nire kokapena";
@@ -253,6 +253,12 @@
 
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Ahots argibideak";
+
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Kaleen izenak iragarri";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Gaituta dagoenean, biratzeko kalearen edo irteeraren izena ozen esango da.";
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Ahots hizkuntza";
@@ -629,6 +635,8 @@
 
 "login" = "Saioa hasi";
 
+"login_osm" = "Hasi saioa OpenStreetMap-en";
+
 "forgot_password" = "Pasahitza ahaztu duzu?";
 
 "osm_account" = "OSM kontua";
@@ -673,7 +681,7 @@
 
 "please_note" = "Abisua";
 
-"downloader_delete_map_dialog" = "Maparen aldaketa guztiak maparekin batera ezabatuko dira.";
+"downloader_delete_map_dialog" = "Mapan egin dituzun aldaketa guztiak maparekin batera ezabatuko dira.";
 
 "downloader_update_maps" = "Eguneratu mapak";
 
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Gehitzen";
 
 "editor_edit_place_name_hint" = "Tokiaren izena";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Bertako hizkuntzan idatzita dagoenez";
 
 "editor_edit_place_category_title" = "Kategoria";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Ezabatu markagailua";
 
-"editor_edits_sent_message" = "Iradokitako aldaketak bidali dira";
+"editor_edits_sent_message" = "Zure oharra OpenStreetMap-era bidaliko da";
 
 "editor_comment_hint" = "Iruzkina…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "OpenStreetMap editoreek aldaketak egiaztatuko dituzte eta zurekin harremanetan jarriko dira zalantzaren bat izanez gero.";
 
-"navigation_stop_button" = "gelditu";
+"navigation_stop_button" = "Gelditu";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Bidaiatutako azken ibilbidearen grabaketa desaktibatu nahi duzu?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Errore bat gertatu da. Saiatu berriro saioa hasten.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Hasi saioa OpenStreetMap-en zure mapen aldaketa guztiak automatikoki kargatzeko. Lortu informazio gehiago";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "hemen";
+
 "core_entrance" = "Sarrera";
 
 "error_enter_correct_name" = "Mesedez, idatzi baliozko izen bat";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Ospetsua";
 
-"export_file" = "Esportatu fitxategia";
+"export_file" = "Esportatu KMZ";
+
+"export_file_gpx" = "Esportatu GPX";
 
 "delete_list" = "Ezabatu zerrenda";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Ordenatu dataren arabera";
 
+"sort_name" = "Ordenatu izenaren arabera";
+
 "week_ago_sorttype" = "Duela aste bat";
 
 "month_ago_sorttype" = "Duela hilabete bat";
@@ -1248,8 +1269,20 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Organic Maps telefonoaren pantailan erabiltzen ari zara";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Organic Maps autoaren pantailan erabiltzen ari zara";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Jarraitu telefonoan";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "Autoaren pantailara";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "Mendi ibilaldiak";
+"button_layer_outdoor" = "Landa-eremua";
 
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "Esportatu Laster-marka eta Pista guztiak";
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Mapa";
+
+"drive_through" = "Drive-through";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Menuaren esteka";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Gaitu iCloud sinkronizazioa";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud sinkronizazioa garatzen ari den ezaugarri esperimental bat da. Ziurtatu zure laster-marka eta ibilbide guztien babeskopia egin duzula.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud desgaituta dago";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Mesedez, gaitu iCloud zure gailuaren ezarpenetan eginbide hau erabiltzeko.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Gaitu";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Babeskopia";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Errorea: Ezin izan da sinkronizatu konexio-errore baten ondorioz";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Errorea: Ezin izan da sinkronizatu iCloud kuota gainditu delako";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Errorea: iCloud ez dago erabilgarri";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Taberna";
 
-"type.amenity.bbq" = "Piknika";
+"type.amenity.bbq" = "Barbakoa parrilla";
 
 "type.amenity.bench" = "Bankua";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Eskola";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Aterpea";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Aterpea";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Bivouac Borda";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Bainu Publikoa";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Muga administratiboa";
 
-"type.boundary.administrative.10" = "Muga administratiboa";
-
-"type.boundary.administrative.11" = "Muga administratiboa";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "Herrialdeko muga";
 
-"type.boundary.administrative.3" = "Muga administratiboa";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Eskualdeko muga";
 
-"type.boundary.administrative.4" = "Muga administratiboa";
-
-"type.boundary.administrative.5" = "Muga administratiboa";
-
-"type.boundary.administrative.6" = "Muga administratiboa";
-
-"type.boundary.administrative.7" = "Muga administratiboa";
-
-"type.boundary.administrative.8" = "Muga administratiboa";
-
-"type.boundary.administrative.9" = "Muga administratiboa";
-
-"type.boundary.administrative.city" = "Hiriko muga";
-
-"type.boundary.administrative.country" = "Herrialdeko muga";
-
-"type.boundary.administrative.county" = "Eskualdeko muga";
-
-"type.boundary.administrative.municipality" = "Udalerriko muga";
-
-"type.boundary.administrative.nation" = "Nazio muga";
-
-"type.boundary.administrative.region" = "Eskualdeko muga";
-
-"type.boundary.administrative.state" = "Estatuko muga";
-
-"type.boundary.administrative.suburb" = "Auzoko muga";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Eskualdeko muga";
 
 "type.boundary.national_park" = "Parke Nazionala";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Irten";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Doan";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Oinezkoen pasabidea";
 
-"type.highway.footway.alpine_hiking" = "Bidea";
-
 "type.highway.footway.area" = "Bidea";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Zubia";
-
-"type.highway.footway.demanding_alpine_hiking" = "Bidea";
-
-"type.highway.footway.demanding_mountain_hiking" = "Bidea";
-
-"type.highway.footway.difficult_alpine_hiking" = "Bidea";
-
-"type.highway.footway.hiking" = "Bidea";
-
-"type.highway.footway.mountain_hiking" = "Bidea";
-
-"type.highway.footway.permissive" = "Bidea";
-
-"type.highway.footway.trail_visibility_bad" = "Bidea";
-
-"type.highway.footway.trail_visibility_excellent" = "Bidea";
-
-"type.highway.footway.trail_visibility_good" = "Bidea";
-
-"type.highway.footway.trail_visibility_horrible" = "Bidea";
-
-"type.highway.footway.trail_visibility_intermediate" = "Bidea";
-
-"type.highway.footway.trail_visibility_no" = "Bidea";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Tunel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Bidea";
 
-"type.highway.path.alpine_hiking" = "Bidea";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Bidea";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Bidea";
 
 "type.highway.path.bicycle" = "Bidea";
+
+"type.highway.footway.bicycle" = "Bidea";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Zubia";
 
-"type.highway.path.demanding_alpine_hiking" = "Bidea";
-
-"type.highway.path.demanding_mountain_hiking" = "Bidea";
-
-"type.highway.path.difficult_alpine_hiking" = "Bidea";
-
-"type.highway.path.hiking" = "Bidea";
-
 "type.highway.path.horse" = "Bidea";
-
-"type.highway.path.mountain_hiking" = "Bidea";
-
-"type.highway.path.permissive" = "Bidea";
-
-"type.highway.path.trail_visibility_bad" = "Bidea";
-
-"type.highway.path.trail_visibility_excellent" = "Bidea";
-
-"type.highway.path.trail_visibility_good" = "Bidea";
-
-"type.highway.path.trail_visibility_horrible" = "Bidea";
-
-"type.highway.path.trail_visibility_intermediate" = "Bidea";
-
-"type.highway.path.trail_visibility_no" = "Bidea";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tunel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Kalea";
 
-"type.highway.track.grade2" = "Kalea";
-
-"type.highway.track.grade3" = "Kalea";
-
-"type.highway.track.grade4" = "Kalea";
-
-"type.highway.track.grade5" = "Kalea";
-
 "type.highway.track.no.access" = "Kalea";
-
-"type.highway.track.permissive" = "Kalea";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tunel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "Nekazaritza-lurra";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Lorategi";
 
 "type.leisure.golf_course" = "Golf kurtsoa";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Natura";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Harkaitz biluzi";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Harri koskor";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Srika";
 
 "type.natural.bay" = "Badia";
 
@@ -3752,15 +3753,16 @@
 
 "type.sport.badminton" = "Badminton";
 
-"type.sport.pelota" = "Eusko pilota";
+"type.sport.pelota" = "Euskal pilota";
 
 "type.tourism" = "Turismoa";
 
 "type.tourism.aquarium" = "Aquariuma";
 
-"type.tourism.alpine_hut" = "Kabina";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Mendiko ostatua";
 
-"type.tourism.apartment" = "Apartamentuak";
+"type.tourism.apartment" = "Oporretako apartamentua";
 
 "type.tourism.artwork" = "Artelanak";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Erakarpen turistikoa";
 
-"type.tourism.attraction.animal" = "Erakarpen turistikoa";
+"type.attraction.animal" = "Animalien itxitura";
 
 "type.tourism.attraction.specified" = "Erakarpen turistikoa";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Karabana gunea";
 
-"type.tourism.chalet" = "Txaleta";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Oporretako Etxea";
 
 "type.tourism.gallery" = "Turismoa";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Mapa turistikoa";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Turismo bulegoa";
 
 "type.tourism.information.visitor_centre" = "Bisitarien Zentroa";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "Piknika";
 
-"type.tourism.resort" = "Resort";
+"type.leisure.resort" = "Resort";
 
 "type.tourism.theme_park" = "Parke tematiko";
 
 "type.tourism.viewpoint" = "Bista panoramikoa";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Kabina";
 
 "type.tourism.zoo" = "Zoo";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Ibai";
 
 "type.waterway.river.tunnel" = "Ibai";
-
-"type.waterway.riverbank" = "Ibai";
 
 "type.waterway.stream" = "Ibai";
 

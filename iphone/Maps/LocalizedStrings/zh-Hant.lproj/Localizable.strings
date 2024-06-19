@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "語音指示";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "宣布街道名稱";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "啟用後，將大聲說出要轉入的街道或出口的名稱。";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "語音語言";
 
@@ -629,6 +635,8 @@
 
 "login" = "登入";
 
+"login_osm" = "登錄 OpenStreetMap";
+
 "forgot_password" = "忘記密碼";
 
 "osm_account" = "OSM 帳號";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "新增中";
 
 "editor_edit_place_name_hint" = "該地點的名稱";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "因為它是用當地語言寫的";
 
 "editor_edit_place_category_title" = "類別";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "刪除書籤";
 
-"editor_edits_sent_message" = "您的建議已傳送";
+"editor_edits_sent_message" = "您的註釋將發送至 OpenStreetMap";
 
 "editor_comment_hint" = "註解…";
 
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "噢，發生錯誤。請嘗試再次登入。";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "請登入 OpenStreetMap 自動上傳您所有的地圖編輯內容。了解更多";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "此處";
+
 "core_entrance" = "入口";
 
 "error_enter_correct_name" = "請輸入正確的名稱";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "受歡迎的";
 
-"export_file" = "導出文件";
+"export_file" = "出口KMZ";
+
+"export_file_gpx" = "導出GPX";
 
 "delete_list" = "刪除列表";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "按日期排序";
 
+"sort_name" = "按名稱分類";
+
 "week_ago_sorttype" = "一週前";
 
 "month_ago_sorttype" = "一個月前";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "您現在正在手機螢幕上使用有機地圖";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "您現在正在汽車螢幕上使用有機地圖";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "繼續打電話";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "到車用螢幕";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "遠足";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "地圖";
+
+"drive_through" = "免下車服務";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "選單連結";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "啟用 iCloud 同步";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud 同步是一項正在開發中的實驗性功能。確保您已備份所有書籤和曲目。";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud 已停用";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "請在您的裝置設定中啟用 iCloud 以使用此功能。";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "使能夠";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "备份";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "錯誤：由於連線錯誤而無法同步";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "錯誤：由於超出 iCloud 配額而無法同步";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "錯誤：iCloud 不可用";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "酒吧";
 
-"type.amenity.bbq" = "野餐";
+"type.amenity.bbq" = "烤肉架";
 
 "type.amenity.bench" = "長板凳";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "學校";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "隱藏處";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "隱藏處";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "露營小屋";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "公共浴場";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "國家公園";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "出口";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "免費";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "行人穿越道";
 
-"type.highway.footway.alpine_hiking" = "具攀爬地形、有暴露感的步道";
-
 "type.highway.footway.area" = "人行步道";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "橋";
-
-"type.highway.footway.demanding_alpine_hiking" = "暴露感重、可能需攀爬陡峭岩石的步道";
-
-"type.highway.footway.demanding_mountain_hiking" = "可能需手腳並用、或需穿越碎石地形的步道";
-
-"type.highway.footway.difficult_alpine_hiking" = "暴露感極重、需攀爬困難岩石地形的步道";
-
-"type.highway.footway.hiking" = "維護良好的平緩步道";
-
-"type.highway.footway.mountain_hiking" = "穩定上升、有時有陡坡的步道";
-
-"type.highway.footway.permissive" = "人行步道";
-
-"type.highway.footway.trail_visibility_bad" = "部分路段無清楚路徑的步道";
-
-"type.highway.footway.trail_visibility_excellent" = "路徑與指標清楚可見的步道";
-
-"type.highway.footway.trail_visibility_good" = "路徑與指標大多清楚可見的步道";
-
-"type.highway.footway.trail_visibility_horrible" = "通常路跡不明的步道";
-
-"type.highway.footway.trail_visibility_intermediate" = "路徑通常清楚的步道";
-
-"type.highway.footway.trail_visibility_no" = "絕大多數都路跡不明的步道";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "隧道";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "人行步道";
 
-"type.highway.path.alpine_hiking" = "具攀爬地形、有暴露感的步道";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "人行步道";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "人行步道";
 
 "type.highway.path.bicycle" = "人行步道";
+
+"type.highway.footway.bicycle" = "人行步道";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "橋";
 
-"type.highway.path.demanding_alpine_hiking" = "暴露感重、可能需攀爬陡峭岩石的步道";
-
-"type.highway.path.demanding_mountain_hiking" = "可能需手腳並用、或需穿越碎石地形的步道";
-
-"type.highway.path.difficult_alpine_hiking" = "暴露感極重、需攀爬困難岩石地形的步道";
-
-"type.highway.path.hiking" = "維護良好的平緩步道";
-
 "type.highway.path.horse" = "人行步道";
-
-"type.highway.path.mountain_hiking" = "穩定上升、有時有陡坡的步道";
-
-"type.highway.path.permissive" = "人行步道";
-
-"type.highway.path.trail_visibility_bad" = "部分路段無清楚路徑的步道";
-
-"type.highway.path.trail_visibility_excellent" = "路徑與指標清楚可見的步道";
-
-"type.highway.path.trail_visibility_good" = "路徑與指標大多清楚可見的步道";
-
-"type.highway.path.trail_visibility_horrible" = "通常路跡不明的步道";
-
-"type.highway.path.trail_visibility_intermediate" = "路徑通常清楚的步道";
-
-"type.highway.path.trail_visibility_no" = "絕大多數都路跡不明的步道";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "隧道";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "土路";
 
-"type.highway.track.grade2" = "土路";
-
-"type.highway.track.grade3" = "土路";
-
-"type.highway.track.grade4" = "土路";
-
-"type.highway.track.grade5" = "土路";
-
 "type.highway.track.no.access" = "土路";
-
-"type.highway.track.permissive" = "土路";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "隧道";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "農業用地";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "花園";
 
 "type.leisure.golf_course" = "高爾夫球場";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "駭客空間";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "自然";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "岩石";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "卵石";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "碎石";
 
 "type.natural.bay" = "海灣";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "水族館";
 
-"type.tourism.alpine_hut" = "山上住宿";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "山間小屋";
 
-"type.tourism.apartment" = "公寓";
+"type.tourism.apartment" = "假日公寓";
 
 "type.tourism.artwork" = "藝術品";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "景點";
 
-"type.tourism.attraction.animal" = "景點";
+"type.attraction.animal" = "動物圍欄";
 
 "type.tourism.attraction.specified" = "景點";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "營區";
 
-"type.tourism.chalet" = "木屋";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "度假小屋";
 
 "type.tourism.gallery" = "旅遊景點";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "旅遊地圖";
 
-"type.tourism.information.mobile" = "手機通訊點";
-
 "type.tourism.information.office" = "旅遊辦事處";
 
 "type.tourism.information.visitor_centre" = "遊客中心";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "野餐";
 
-"type.tourism.resort" = "度假酒店";
+"type.leisure.resort" = "度假酒店";
 
 "type.tourism.theme_park" = "旅遊景點";
 
 "type.tourism.viewpoint" = "視野";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "山屋";
 
 "type.tourism.zoo" = "動物園";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "河流";
 
 "type.waterway.river.tunnel" = "河流";
-
-"type.waterway.riverbank" = "河流";
 
 "type.waterway.stream" = "溪";
 

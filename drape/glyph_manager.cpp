@@ -1,27 +1,34 @@
 #include "drape/glyph_manager.hpp"
 
+#include "drape/font_constants.hpp"
+#include "drape/glyph.hpp"
+#include "drape/harfbuzz_shaping.hpp"
+
 #include "platform/platform.hpp"
 
+#include "coding/hex.hpp"
 #include "coding/reader.hpp"
+#include "coding/string_utf8_multilang.hpp"
 
-#include "base/string_utils.hpp"
+#include "base/internal/message.hpp"
 #include "base/logging.hpp"
-#include "base/math.hpp"
-
-#include "3party/sdf_image/sdf_image.h"
-
-#include <limits>
-#include <memory>
-#include <set>
-#include <sstream>
-#include <string>
-#include <utility>
+#include "base/macros.hpp"
+#include "base/stl_helpers.hpp"
+#include "base/string_utils.hpp"
 
 #include <ft2build.h>
-#include FT_TYPES_H
-#include FT_SYSTEM_H
+#include <hb-ft.h>
+
+#include <limits>
+#include <sstream>
+#include <string>
+#include <vector>
+
 #include FT_FREETYPE_H
+#include FT_MODULE_H
+#include FT_SYSTEM_H
 #include FT_STROKER_H
+#include FT_TYPES_H
 
 #undef __FTERRORS_H__
 #define FT_ERRORDEF(e, v, s) {e, s},
@@ -37,32 +44,20 @@ FreetypeError constexpr g_FT_Errors[] =
 #include FT_ERRORS_H
 
 #ifdef DEBUG
-  #define FREETYPE_CHECK(x) \
+#define FREETYPE_CHECK(x) \
     do \
     { \
       FT_Error const err = (x); \
       if (err) \
-        LOG(LWARNING, ("Freetype:", g_FT_Errors[err].m_code, g_FT_Errors[err].m_message)); \
-    } while (false)
-
-  #define FREETYPE_CHECK_RETURN(x, msg) \
-    do \
-    { \
-      FT_Error const err = (x); \
-      if (err) \
-      { \
-        LOG(LWARNING, ("Freetype", g_FT_Errors[err].m_code, g_FT_Errors[err].m_message, msg)); \
-        return; \
-      } \
+        LOG(LERROR, ("Freetype:", g_FT_Errors[err].m_code, g_FT_Errors[err].m_message)); \
     } while (false)
 #else
-  #define FREETYPE_CHECK(x) x
-  #define FREETYPE_CHECK_RETURN(x, msg) FREETYPE_CHECK(x)
+#define FREETYPE_CHECK(x) x
 #endif
 
 namespace dp
 {
-static int constexpr kInvalidFont = -1;
+int constexpr kInvalidFont = -1;
 
 template <typename ToDo>
 void ParseUniBlocks(std::string const & uniBlocksFile, ToDo toDo)
@@ -122,176 +117,187 @@ class Font
 {
 public:
   DECLARE_EXCEPTION(InvalidFontException, RootException);
+  DISALLOW_COPY_AND_MOVE(Font);
 
-  Font(uint32_t sdfScale, ReaderPtr<Reader> fontReader, FT_Library lib)
-    : m_fontReader(fontReader)
+  Font(ReaderPtr<Reader> && fontReader, FT_Library lib)
+    : m_fontReader(std::move(fontReader))
     , m_fontFace(nullptr)
-    , m_sdfScale(sdfScale)
   {
-    m_stream.base = nullptr;
+    std::memset(&m_stream, 0, sizeof(m_stream));
     m_stream.size = static_cast<unsigned long>(m_fontReader.Size());
-    m_stream.pos = 0;
     m_stream.descriptor.pointer = &m_fontReader;
-    m_stream.pathname.pointer = nullptr;
     m_stream.read = &Font::Read;
     m_stream.close = &Font::Close;
-    m_stream.memory = nullptr;
-    m_stream.cursor = nullptr;
-    m_stream.limit = nullptr;
 
-    FT_Open_Args args;
+    FT_Open_Args args = {};
     args.flags = FT_OPEN_STREAM;
-    args.memory_base = 0;
-    args.memory_size = 0;
-    args.pathname = 0;
     args.stream = &m_stream;
-    args.driver = 0;
-    args.num_params = 0;
-    args.params = 0;
 
     FT_Error const err = FT_Open_Face(lib, &args, 0, &m_fontFace);
     if (err || !IsValid())
       MYTHROW(InvalidFontException, (g_FT_Errors[err].m_code, g_FT_Errors[err].m_message));
   }
 
-  bool IsValid() const
+  ~Font()
   {
-    return m_fontFace != nullptr && m_fontFace->num_glyphs > 0;
+    ASSERT(m_fontFace, ());
+    if (m_harfbuzzFont)
+      hb_font_destroy(m_harfbuzzFont);
+
+    FREETYPE_CHECK(FT_Done_Face(m_fontFace));
   }
 
-  void DestroyFont()
-  {
-    if (m_fontFace != nullptr)
-    {
-      FREETYPE_CHECK(FT_Done_Face(m_fontFace));
-      m_fontFace = nullptr;
-    }
-  }
+  bool IsValid() const { return m_fontFace && m_fontFace->num_glyphs > 0; }
 
-  bool HasGlyph(strings::UniChar unicodePoint) const
-  {
-    return FT_Get_Char_Index(m_fontFace, unicodePoint) != 0;
-  }
+  bool HasGlyph(strings::UniChar unicodePoint) const { return FT_Get_Char_Index(m_fontFace, unicodePoint) != 0; }
 
-  GlyphManager::Glyph GetGlyph(strings::UniChar unicodePoint, uint32_t baseHeight, bool isSdf) const
+  Glyph GetGlyph(strings::UniChar unicodePoint, uint32_t glyphHeight) const
   {
-    uint32_t const glyphHeight = isSdf ? baseHeight * m_sdfScale : baseHeight;
+    FREETYPE_CHECK(FT_Set_Pixel_Sizes(m_fontFace, 0, glyphHeight));
 
-    FREETYPE_CHECK(FT_Set_Pixel_Sizes(m_fontFace, glyphHeight, glyphHeight));
+    // FT_LOAD_RENDER with FT_RENDER_MODE_SDF uses bsdf driver that is around 3x times faster
+    // than sdf driver, activated by FT_LOAD_DEFAULT + FT_RENDER_MODE_SDF
     FREETYPE_CHECK(FT_Load_Glyph(m_fontFace, FT_Get_Char_Index(m_fontFace, unicodePoint), FT_LOAD_RENDER));
+    FREETYPE_CHECK(FT_Render_Glyph(m_fontFace->glyph, FT_RENDER_MODE_SDF));
 
     FT_Glyph glyph;
     FREETYPE_CHECK(FT_Get_Glyph(m_fontFace->glyph, &glyph));
 
     FT_BBox bbox;
-    FT_Glyph_Get_CBox(glyph, FT_GLYPH_BBOX_PIXELS , &bbox);
+    FT_Glyph_Get_CBox(glyph, FT_GLYPH_BBOX_PIXELS, &bbox);
 
     FT_Bitmap const bitmap = m_fontFace->glyph->bitmap;
 
-    float const scale = isSdf ? 1.0f / m_sdfScale : 1.0f;
-
     SharedBufferManager::shared_buffer_ptr_t data;
-    uint32_t imageWidth = bitmap.width;
-    uint32_t imageHeight = bitmap.rows;
     if (bitmap.buffer != nullptr)
     {
-      if (isSdf)
-      {
-        sdf_image::SdfImage const img(bitmap.rows, bitmap.pitch, bitmap.buffer, m_sdfScale * kSdfBorder);
-        imageWidth = std::round(img.GetWidth() * scale);
-        imageHeight = std::round(img.GetHeight() * scale);
-
-        data = SharedBufferManager::instance().reserveSharedBuffer(bitmap.rows * bitmap.pitch);
-        memcpy(data->data(), bitmap.buffer, data->size());
-      }
-      else
-      {
-        int const border = kSdfBorder;
-        imageHeight += 2 * border;
-        imageWidth += 2 * border;
-
-        data = SharedBufferManager::instance().reserveSharedBuffer(imageWidth * imageHeight);
-        auto ptr = data->data();
-        memset(ptr, 0, data->size());
-
-        for (size_t row = border; row < bitmap.rows + border; ++row)
-        {
-          size_t const dstBaseIndex = row * imageWidth + border;
-          size_t const srcBaseIndex = (row - border) * bitmap.pitch;
-          for (int column = 0; column < bitmap.pitch; ++column)
-            ptr[dstBaseIndex + column] = bitmap.buffer[srcBaseIndex + column];
-        }
-      }
+      data = SharedBufferManager::instance().reserveSharedBuffer(bitmap.rows * bitmap.pitch);
+      std::memcpy(data->data(), bitmap.buffer, data->size());
     }
 
-    GlyphManager::Glyph result;
-    result.m_image = GlyphManager::GlyphImage
-    {
-      imageWidth, imageHeight,
-      bitmap.rows, bitmap.pitch,
-      data
-    };
-
-    result.m_metrics = GlyphManager::GlyphMetrics
-    {
-      static_cast<float>(glyph->advance.x >> 16) * scale,
-      static_cast<float>(glyph->advance.y >> 16) * scale,
-      static_cast<float>(bbox.xMin) * scale,
-      static_cast<float>(bbox.yMin) * scale,
-      true
-    };
-
+    Glyph result;
+    result.m_image = {bitmap.width, bitmap.rows, data};
+    // Glyph image has SDF borders that should be taken into an account.
+    result.m_metrics = {static_cast<float>(glyph->advance.x >> 16), static_cast<float>(glyph->advance.y >> 16),
+                        static_cast<float>(bbox.xMin + kSdfBorder), static_cast<float>(bbox.yMin + kSdfBorder), true};
     result.m_code = unicodePoint;
-    result.m_fixedSize = isSdf ? GlyphManager::kDynamicGlyphSize
-                               : static_cast<int>(baseHeight);
     FT_Done_Glyph(glyph);
 
     return result;
   }
 
-  void GetCharcodes(std::vector<FT_ULong> & charcodes)
+  GlyphImage GetGlyphImage(uint16_t glyphId, int pixelHeight, bool sdf) const
+  {
+    FREETYPE_CHECK(FT_Set_Pixel_Sizes(m_fontFace, 0, pixelHeight));
+    // FT_LOAD_RENDER with FT_RENDER_MODE_SDF uses bsdf driver that is around 3x times faster
+    // than sdf driver, activated by FT_LOAD_DEFAULT + FT_RENDER_MODE_SDF
+    FREETYPE_CHECK(FT_Load_Glyph(m_fontFace, glyphId, FT_LOAD_RENDER));
+    if (sdf)
+      FREETYPE_CHECK(FT_Render_Glyph(m_fontFace->glyph, FT_RENDER_MODE_SDF));
+
+    FT_Bitmap const & bitmap = m_fontFace->glyph->bitmap;
+
+    SharedBufferManager::shared_buffer_ptr_t data;
+    if (bitmap.buffer != nullptr)
+    {
+      // Bitmap is stored without a padding.
+      data = SharedBufferManager::instance().reserveSharedBuffer(bitmap.width * bitmap.rows);
+      auto ptr = data->data();
+
+      for (unsigned int row = 0; row < bitmap.rows; ++row)
+      {
+        unsigned int const dstBaseIndex = row * bitmap.width;
+        int const srcBaseIndex = static_cast<int>(row) * bitmap.pitch;
+        for (unsigned int column = 0; column < bitmap.width; ++column)
+          ptr[dstBaseIndex + column] = bitmap.buffer[srcBaseIndex + column];
+      }
+    }
+    return {bitmap.width, bitmap.rows, data};
+  }
+
+  void GetCharcodes(std::vector<FT_ULong> & charcodes) const
   {
     FT_UInt gindex;
     charcodes.push_back(FT_Get_First_Char(m_fontFace, &gindex));
     while (gindex)
       charcodes.push_back(FT_Get_Next_Char(m_fontFace, charcodes.back(), &gindex));
 
-    sort(charcodes.begin(), charcodes.end());
-    charcodes.erase(unique(charcodes.begin(), charcodes.end()), charcodes.end());
+    base::SortUnique(charcodes);
   }
 
   static unsigned long Read(FT_Stream stream, unsigned long offset, unsigned char * buffer, unsigned long count)
   {
     if (count != 0)
     {
-      ReaderPtr<Reader> * reader = reinterpret_cast<ReaderPtr<Reader> *>(stream->descriptor.pointer);
+      auto * reader = reinterpret_cast<ReaderPtr<Reader> *>(stream->descriptor.pointer);
       reader->Read(offset, buffer, count);
     }
 
     return count;
   }
 
-  static void Close(FT_Stream){}
+  static void Close(FT_Stream) {}
 
-  void MarkGlyphReady(strings::UniChar code, int fixedHeight)
+  void MarkGlyphReady(strings::UniChar code)
   {
-    m_readyGlyphs.emplace(code, fixedHeight);
+    m_readyGlyphs.emplace(code);
   }
 
-  bool IsGlyphReady(strings::UniChar code, int fixedHeight) const
+  bool IsGlyphReady(strings::UniChar code) const
   {
-    return m_readyGlyphs.find(std::make_pair(code, fixedHeight)) != m_readyGlyphs.end();
+    return m_readyGlyphs.find(code) != m_readyGlyphs.end();
   }
 
   std::string GetName() const { return std::string(m_fontFace->family_name) + ':' + m_fontFace->style_name; }
+
+  void Shape(hb_buffer_t * hbBuffer, int fontPixelSize, int fontIndex, text::TextMetrics & outMetrics)
+  {
+    // TODO(AB): This code is not thread safe.
+
+    // TODO(AB): Do not set the same font size every time.
+    FREETYPE_CHECK(FT_Set_Pixel_Sizes(m_fontFace, 0 /* pixel_width */, fontPixelSize /* pixel_height */));
+    if (!m_harfbuzzFont)
+      m_harfbuzzFont = hb_ft_font_create(m_fontFace, nullptr);
+    //else
+    // Call on each font size change.
+    //  hb_ft_font_changed(m_harfbuzzFont);
+
+    // Shape!
+    hb_shape(m_harfbuzzFont, hbBuffer, nullptr, 0);
+
+    // Get the glyph and position information.
+    unsigned int glyphCount;
+    hb_glyph_info_t const * glyphInfo = hb_buffer_get_glyph_infos(hbBuffer, &glyphCount);
+    hb_glyph_position_t const * glyphPos = hb_buffer_get_glyph_positions(hbBuffer, &glyphCount);
+
+    for (unsigned int i = 0; i < glyphCount; ++i)
+    {
+      // TODO(AB): Check for missing glyph ID?
+      auto const glyphId = static_cast<uint16_t>(glyphInfo[i].codepoint);
+
+      // TODO(AB): Load each glyph only once for the given font size? Or is run cache more efficient?
+      FT_Int32 constexpr flags = FT_LOAD_DEFAULT;
+      FREETYPE_CHECK(FT_Load_Glyph(m_fontFace, glyphId, flags));
+
+      auto const & currPos = glyphPos[i];
+      // TODO(AB): Use floats for subpixel precision?
+      hb_position_t const xOffset  = (currPos.x_offset + static_cast<int32_t>(m_fontFace->glyph->metrics.horiBearingX)) >> 6;
+      hb_position_t const yOffset  = (currPos.y_offset + static_cast<int32_t>(m_fontFace->glyph->metrics.horiBearingY)) >> 6;
+      hb_position_t const xAdvance = currPos.x_advance >> 6;
+      auto const height = static_cast<int32_t>(m_fontFace->glyph->metrics.height >> 6);
+
+      outMetrics.AddGlyphMetrics(static_cast<int16_t>(fontIndex), glyphId, xOffset, yOffset, xAdvance, height);
+    }
+  }
 
 private:
   ReaderPtr<Reader> m_fontReader;
   FT_StreamRec_ m_stream;
   FT_Face m_fontFace;
-  uint32_t m_sdfScale;
 
-  std::set<std::pair<strings::UniChar, int>> m_readyGlyphs;
+  std::set<strings::UniChar> m_readyGlyphs;
+
+  hb_font_t* m_harfbuzzFont {nullptr};
 };
 
 // Information about single unicode block.
@@ -345,21 +351,29 @@ using TUniBlockIter = TUniBlocks::const_iterator;
 
 struct GlyphManager::Impl
 {
+  DISALLOW_COPY_AND_MOVE(Impl);
+
+  Impl() = default;
+
+  ~Impl()
+  {
+    m_fonts.clear();
+    if (m_library)
+      FREETYPE_CHECK(FT_Done_FreeType(m_library));
+  }
+
   FT_Library m_library;
   TUniBlocks m_blocks;
   TUniBlockIter m_lastUsedBlock;
   std::vector<std::unique_ptr<Font>> m_fonts;
-
-  uint32_t m_baseGlyphHeight;
-  uint32_t m_sdfScale;
 };
 
-GlyphManager::GlyphManager(GlyphManager::Params const & params)
-  : m_impl(new Impl())
-{
-  m_impl->m_baseGlyphHeight = params.m_baseGlyphHeight;
-  m_impl->m_sdfScale = params.m_sdfScale;
+// Destructor is defined where pimpl's destructor is already known.
+GlyphManager::~GlyphManager() = default;
 
+GlyphManager::GlyphManager(Params const & params)
+  : m_impl(std::make_unique<Impl>())
+{
   using TFontAndBlockName = std::pair<std::string, std::string>;
   using TFontLst = buffer_vector<TFontAndBlockName, 64>;
 
@@ -387,6 +401,11 @@ GlyphManager::GlyphManager(GlyphManager::Params const & params)
 
   FREETYPE_CHECK(FT_Init_FreeType(&m_impl->m_library));
 
+  // Default Freetype spread/sdf border is 8.
+  static constexpr FT_Int kSdfBorder = dp::kSdfBorder;
+  for (auto const module : {"sdf", "bsdf"})
+    FREETYPE_CHECK(FT_Property_Set(m_impl->m_library, module, "spread", &kSdfBorder));
+
   for (auto const & fontName : params.m_fonts)
   {
     bool ignoreFont = false;
@@ -402,8 +421,7 @@ GlyphManager::GlyphManager(GlyphManager::Params const & params)
     std::vector<FT_ULong> charCodes;
     try
     {
-      m_impl->m_fonts.emplace_back(std::make_unique<Font>(params.m_sdfScale, GetPlatform().GetReader(fontName),
-                                                          m_impl->m_library));
+      m_impl->m_fonts.emplace_back(std::make_unique<Font>(GetPlatform().GetReader(fontName), m_impl->m_library));
       m_impl->m_fonts.back()->GetCharcodes(charCodes);
     }
     catch(RootException const & e)
@@ -474,7 +492,7 @@ GlyphManager::GlyphManager(GlyphManager::Params const & params)
       node.second = static_cast<int>(uniBlock.m_end + 1 - uniBlock.m_start + m_impl->m_fonts.size());
     });
 
-    for (CoverNode & node : coverInfo)
+    for (CoverNode const & node : coverInfo)
     {
       UnicodeBlock & uniBlock = m_impl->m_blocks[node.first];
       uniBlock.m_fontsWeight.resize(m_impl->m_fonts.size(), 0);
@@ -503,25 +521,8 @@ GlyphManager::GlyphManager(GlyphManager::Params const & params)
       LOG_SHORT(LDEBUG, (b.m_name, "is in", params.m_fonts[ind]));
     }
   }
-}
 
-GlyphManager::~GlyphManager()
-{
-  for (auto const & f : m_impl->m_fonts)
-    f->DestroyFont();
 
-  FREETYPE_CHECK(FT_Done_FreeType(m_impl->m_library));
-  delete m_impl;
-}
-
-uint32_t GlyphManager::GetBaseGlyphHeight() const
-{
-  return m_impl->m_baseGlyphHeight;
-}
-
-uint32_t GlyphManager::GetSdfScale() const
-{
-  return m_impl->m_sdfScale;
 }
 
 int GlyphManager::GetFontIndex(strings::UniChar unicodePoint)
@@ -550,6 +551,14 @@ int GlyphManager::GetFontIndex(strings::UniChar unicodePoint)
   m_impl->m_lastUsedBlock = iter;
 
   return FindFontIndexInBlock(*m_impl->m_lastUsedBlock, unicodePoint);
+}
+
+int GlyphManager::GetFontIndex(std::u16string_view sv)
+{
+  // Only get font for the first character.
+  // TODO(AB): Make sure that text runs are split by fonts.
+  auto it = sv.begin();
+  return GetFontIndex(utf8::unchecked::next16(it));
 }
 
 int GlyphManager::GetFontIndexImmutable(strings::UniChar unicodePoint) const
@@ -581,59 +590,15 @@ int GlyphManager::FindFontIndexInBlock(UnicodeBlock const & block, strings::UniC
   return kInvalidFont;
 }
 
-GlyphManager::Glyph GlyphManager::GetGlyph(strings::UniChar unicodePoint, int fixedHeight)
+Glyph GlyphManager::GetGlyph(strings::UniChar unicodePoint)
 {
   int const fontIndex = GetFontIndex(unicodePoint);
   if (fontIndex == kInvalidFont)
-    return GetInvalidGlyph(fixedHeight);
+    return GetInvalidGlyph();
 
   auto const & f = m_impl->m_fonts[fontIndex];
-  bool const isSdf = fixedHeight < 0;
-  Glyph glyph = f->GetGlyph(unicodePoint, isSdf ? m_impl->m_baseGlyphHeight : fixedHeight, isSdf);
+  Glyph glyph = f->GetGlyph(unicodePoint, kBaseFontSizePixels);
   glyph.m_fontIndex = fontIndex;
-  return glyph;
-}
-
-// static
-GlyphManager::Glyph GlyphManager::GenerateGlyph(Glyph const & glyph, uint32_t sdfScale)
-{
-  if (glyph.m_image.m_data != nullptr)
-  {
-    GlyphManager::Glyph resultGlyph;
-    resultGlyph.m_metrics = glyph.m_metrics;
-    resultGlyph.m_fontIndex = glyph.m_fontIndex;
-    resultGlyph.m_code = glyph.m_code;
-    resultGlyph.m_fixedSize = glyph.m_fixedSize;
-
-    if (glyph.m_fixedSize < 0)
-    {
-      sdf_image::SdfImage img(glyph.m_image.m_bitmapRows, glyph.m_image.m_bitmapPitch,
-                              glyph.m_image.m_data->data(), sdfScale * kSdfBorder);
-
-      img.GenerateSDF(1.0f / static_cast<float>(sdfScale));
-
-      ASSERT(img.GetWidth() == glyph.m_image.m_width, ());
-      ASSERT(img.GetHeight() == glyph.m_image.m_height, ());
-
-      size_t const bufferSize = base::NextPowOf2(glyph.m_image.m_width * glyph.m_image.m_height);
-      resultGlyph.m_image.m_data = SharedBufferManager::instance().reserveSharedBuffer(bufferSize);
-
-      img.GetData(*resultGlyph.m_image.m_data);
-    }
-    else
-    {
-      size_t const bufferSize = base::NextPowOf2(glyph.m_image.m_width * glyph.m_image.m_height);
-      resultGlyph.m_image.m_data = SharedBufferManager::instance().reserveSharedBuffer(bufferSize);
-      resultGlyph.m_image.m_data->assign(glyph.m_image.m_data->begin(), glyph.m_image.m_data->end());
-    }
-
-    resultGlyph.m_image.m_width = glyph.m_image.m_width;
-    resultGlyph.m_image.m_height = glyph.m_image.m_height;
-    resultGlyph.m_image.m_bitmapRows = 0;
-    resultGlyph.m_image.m_bitmapPitch = 0;
-
-    return resultGlyph;
-  }
   return glyph;
 }
 
@@ -641,10 +606,10 @@ void GlyphManager::MarkGlyphReady(Glyph const & glyph)
 {
   ASSERT_GREATER_OR_EQUAL(glyph.m_fontIndex, 0, ());
   ASSERT_LESS(glyph.m_fontIndex, static_cast<int>(m_impl->m_fonts.size()), ());
-  m_impl->m_fonts[glyph.m_fontIndex]->MarkGlyphReady(glyph.m_code, glyph.m_fixedSize);
+  m_impl->m_fonts[glyph.m_fontIndex]->MarkGlyphReady(glyph.m_code);
 }
 
-bool GlyphManager::AreGlyphsReady(strings::UniString const & str, int fixedSize) const
+bool GlyphManager::AreGlyphsReady(strings::UniString const & str) const
 {
   for (auto const & code : str)
   {
@@ -652,28 +617,24 @@ bool GlyphManager::AreGlyphsReady(strings::UniString const & str, int fixedSize)
     if (fontIndex == kInvalidFont)
       return false;
 
-    if (!m_impl->m_fonts[fontIndex]->IsGlyphReady(code, fixedSize))
+    if (!m_impl->m_fonts[fontIndex]->IsGlyphReady(code))
       return false;
   }
 
   return true;
 }
 
-GlyphManager::Glyph GlyphManager::GetInvalidGlyph(int fixedSize) const
+Glyph const & GlyphManager::GetInvalidGlyph() const
 {
-  strings::UniChar constexpr kInvalidGlyphCode = 0x9;
-  int constexpr kFontId = 0;
-
   static bool s_inited = false;
   static Glyph s_glyph;
 
   if (!s_inited)
   {
+    strings::UniChar constexpr kInvalidGlyphCode = 0x9;
+    int constexpr kFontId = 0;
     ASSERT(!m_impl->m_fonts.empty(), ());
-    bool const isSdf = fixedSize < 0 ;
-    s_glyph = m_impl->m_fonts[kFontId]->GetGlyph(kInvalidGlyphCode,
-                                                 isSdf ? m_impl->m_baseGlyphHeight : fixedSize,
-                                                 isSdf);
+    s_glyph = m_impl->m_fonts[kFontId]->GetGlyph(kInvalidGlyphCode, kBaseFontSizePixels);
     s_glyph.m_metrics.m_isValid = false;
     s_glyph.m_fontIndex = kFontId;
     s_glyph.m_code = kInvalidGlyphCode;
@@ -682,4 +643,74 @@ GlyphManager::Glyph GlyphManager::GetInvalidGlyph(int fixedSize) const
 
   return s_glyph;
 }
+
+GlyphImage GlyphManager::GetGlyphImage(int fontIndex, uint16_t glyphId, int pixelHeight, bool sdf)
+{
+  return m_impl->m_fonts[fontIndex]->GetGlyphImage(glyphId, pixelHeight, sdf);
+}
+
+namespace
+{
+hb_language_t OrganicMapsLanguageToHarfbuzzLanguage(int8_t lang)
+{
+  // TODO(AB): can langs be converted faster?
+  auto const svLang = StringUtf8Multilang::GetLangByCode(lang);
+  auto const hbLanguage = hb_language_from_string(svLang.data(), static_cast<int>(svLang.size()));
+  if (hbLanguage == HB_LANGUAGE_INVALID)
+    return hb_language_get_default();
+  return hbLanguage;
+}
+}  // namespace
+
+text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHeight, int8_t lang)
+{
+  auto const runs = harfbuzz_shaping::GetTextSegments(utf8);
+
+  // TODO(AB): Optimize language conversion.
+  hb_language_t const hbLanguage = OrganicMapsLanguageToHarfbuzzLanguage(lang);
+
+  text::TextMetrics allGlyphs;
+
+  // TODO(AB): Cache runs.
+  // TODO(AB): Cache buffer.
+  hb_buffer_t *buf = hb_buffer_create();
+  for (auto const & substring : runs.m_segments)
+  {
+    hb_buffer_clear_contents(buf);
+
+    // TODO(AB): Some substrings use different fonts.
+    // TODO(AB): Will surrogates work properly? Would it be safer to convert/use utf-32?
+    //std::u16string_view const sv{runs.text.data() + substring.m_start, static_cast<size_t>(substring.m_length)};
+    hb_buffer_add_utf16(buf, reinterpret_cast<const uint16_t *>(runs.m_text.data()), static_cast<int>(runs.m_text.size()),
+                        substring.m_start, substring.m_length);
+    hb_buffer_set_direction(buf, substring.m_direction);
+    hb_buffer_set_script(buf, substring.m_script);
+    hb_buffer_set_language(buf, hbLanguage);
+
+    // TODO(AB): Check not only the first character to determine font for the run, but all chars.
+    auto firstCharacterIter{runs.m_text.begin() + substring.m_start};
+    auto const firstCharacterUnicode = utf8::unchecked::next16(firstCharacterIter);
+
+    int const fontIndex = GetFontIndex(firstCharacterUnicode);
+    if (fontIndex < 0)
+    {
+      // TODO(AB): Add missing glyph character's metrics
+      LOG(LWARNING, ("Skip run because no font was found for character", NumToHex(firstCharacterUnicode)));
+      continue;
+    }
+
+    m_impl->m_fonts[fontIndex]->Shape(buf, fontPixelHeight, fontIndex, allGlyphs);
+  }
+  // Tidy up.
+  // TODO(AB): avoid recreating buffer each time.
+  hb_buffer_destroy(buf);
+
+  return allGlyphs;
+}
+
+text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHeight, char const * lang)
+{
+  return ShapeText(utf8, fontPixelHeight, StringUtf8Multilang::GetLangIndex(lang));
+}
+
 }  // namespace dp

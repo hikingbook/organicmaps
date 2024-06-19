@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Hlasové instrukce";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Oznamujte názvy ulic";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Je-li povoleno, bude nahlas vyslovován název ulice nebo výjezdu, na který se má odbočit.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Jazyk hlasu";
 
@@ -629,6 +635,8 @@
 
 "login" = "Přihlásit se";
 
+"login_osm" = "Přihlaste se do OpenStreetMap";
+
 "forgot_password" = "Zapomenuté heslo?";
 
 "osm_account" = "Účet OSM";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Probíhá přidávání";
 
 "editor_edit_place_name_hint" = "Název místa";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Jak je napsáno v místním jazyce";
 
 "editor_edit_place_category_title" = "Kategorie";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Smazat záložku";
 
-"editor_edits_sent_message" = "Odeslali jsme Vámi navržené změny";
+"editor_edits_sent_message" = "Vaše poznámka bude odeslána do OpenStreetMap";
 
 "editor_comment_hint" = "Poznámka…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Redaktoři OpenStreetMap zkontrolují změny a budou vás kontaktovat, pokud budou mít nějaké dotazy.";
 
-"navigation_stop_button" = "stop";
+"navigation_stop_button" = "Stop";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Zakázat zaznamenávání vaší nedávno ujeté trasy?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Jejda, došlo k chybě. Zkuste se přihlásit znovu.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Přihlaste se do OpenStreetMap, abyste mohli automaticky nahrávat všechny své úpravy mapy. Více informací";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "zde";
+
 "core_entrance" = "Vstup";
 
 "error_enter_correct_name" = "Zadejte prosím správný název";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "Exportovat soubor";
+"export_file" = "Export KMZ";
+
+"export_file_gpx" = "Export GPX";
 
 "delete_list" = "Smazat seznam";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Třídit dle data";
 
+"sort_name" = "Řazení podle názvu";
+
 "week_ago_sorttype" = "Před týdnem";
 
 "month_ago_sorttype" = "Před měsícem";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Na obrazovce telefonu nyní používáte aplikaci Organic Maps";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Na obrazovce auta nyní používáte aplikaci Organic Maps";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Pokračujte v telefonu";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "Na obrazovku auta";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Pěší turistika";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Mapa";
+
+"drive_through" = "Průjezd";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Odkaz na menu";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Povolení synchronizace s iCloudem";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "Synchronizace iCloudu je experimentální funkce, která se vyvíjí. Ujistěte se, že jste si vytvořili zálohu všech svých záložek a skladeb.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "Služba iCloud je vypnutá";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Chcete-li tuto funkci používat, povolte v nastavení zařízení službu iCloud.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Povolit";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Záloha";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Chyba: Nepodařilo se synchronizovat z důvodu chyby připojení";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Chyba: Nepodařilo se synchronizovat z důvodu překročení kvóty iCloudu";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Chyba: iCloud není k dispozici";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Bar";
 
-"type.amenity.bbq" = "Piknik";
+"type.amenity.bbq" = "Grilování";
 
 "type.amenity.bench" = "Lavička";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Škola";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Přístřešek";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Přístřešek";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Bivakovací Chata";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Veřejné lázně";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "Národní park";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Exit";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Zdarma";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Přechod pro chodce";
 
-"type.highway.footway.alpine_hiking" = "Cesta";
-
 "type.highway.footway.area" = "Cesta";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Most";
-
-"type.highway.footway.demanding_alpine_hiking" = "Cesta";
-
-"type.highway.footway.demanding_mountain_hiking" = "Cesta";
-
-"type.highway.footway.difficult_alpine_hiking" = "Cesta";
-
-"type.highway.footway.hiking" = "Cesta";
-
-"type.highway.footway.mountain_hiking" = "Cesta";
-
-"type.highway.footway.permissive" = "Cesta";
-
-"type.highway.footway.trail_visibility_bad" = "Cesta";
-
-"type.highway.footway.trail_visibility_excellent" = "Cesta";
-
-"type.highway.footway.trail_visibility_good" = "Cesta";
-
-"type.highway.footway.trail_visibility_horrible" = "Cesta";
-
-"type.highway.footway.trail_visibility_intermediate" = "Cesta";
-
-"type.highway.footway.trail_visibility_no" = "Cesta";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Tunel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Cesta";
 
-"type.highway.path.alpine_hiking" = "Cesta";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Cesta";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Cesta";
 
 "type.highway.path.bicycle" = "Cesta";
+
+"type.highway.footway.bicycle" = "Cesta";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Most";
 
-"type.highway.path.demanding_alpine_hiking" = "Cesta";
-
-"type.highway.path.demanding_mountain_hiking" = "Cesta";
-
-"type.highway.path.difficult_alpine_hiking" = "Cesta";
-
-"type.highway.path.hiking" = "Cesta";
-
 "type.highway.path.horse" = "Cesta";
-
-"type.highway.path.mountain_hiking" = "Cesta";
-
-"type.highway.path.permissive" = "Cesta";
-
-"type.highway.path.trail_visibility_bad" = "Cesta";
-
-"type.highway.path.trail_visibility_excellent" = "Cesta";
-
-"type.highway.path.trail_visibility_good" = "Cesta";
-
-"type.highway.path.trail_visibility_horrible" = "Cesta";
-
-"type.highway.path.trail_visibility_intermediate" = "Cesta";
-
-"type.highway.path.trail_visibility_no" = "Cesta";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tunel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Ulice";
 
-"type.highway.track.grade2" = "Ulice";
-
-"type.highway.track.grade3" = "Ulice";
-
-"type.highway.track.grade4" = "Ulice";
-
-"type.highway.track.grade5" = "Ulice";
-
 "type.highway.track.no.access" = "Ulice";
-
-"type.highway.track.permissive" = "Ulice";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tunel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "Orná půda";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Zahrada";
 
 "type.leisure.golf_course" = "Golf";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Příroda";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Holá skála";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Oblázky";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Kamenité sutě";
 
 "type.natural.bay" = "Záliv";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Akvárium";
 
-"type.tourism.alpine_hut" = "Ubytování v horách";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Horská chata";
 
-"type.tourism.apartment" = "Byty";
+"type.tourism.apartment" = "Prázdninový apartmán";
 
 "type.tourism.artwork" = "Umělecké dílo";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Atrakce";
 
-"type.tourism.attraction.animal" = "Atrakce";
+"type.attraction.animal" = "Ohrada pro zvířata";
 
 "type.tourism.attraction.specified" = "Atrakce";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Kemp pro obytné přívěsy";
 
-"type.tourism.chalet" = "Chalet";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Rekreační chata";
 
 "type.tourism.gallery" = "Pamětihodnost";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Turistická mapa";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Informační centrum";
 
 "type.tourism.information.visitor_centre" = "Návštěvnické centrum";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "Piknik";
 
-"type.tourism.resort" = "Letovisko";
+"type.leisure.resort" = "Letovisko";
 
 "type.tourism.theme_park" = "Pamětihodnost";
 
 "type.tourism.viewpoint" = "Vyhlídka";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Chata v divočině";
 
 "type.tourism.zoo" = "zoologická zahrada";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Řeka";
 
 "type.waterway.river.tunnel" = "Řeka";
-
-"type.waterway.riverbank" = "Řeka";
 
 "type.waterway.stream" = "Řeka";
 

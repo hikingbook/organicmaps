@@ -48,8 +48,10 @@ class InfoItemViewController: UIViewController {
 }
 
 protocol PlacePageInfoViewControllerDelegate: AnyObject {
+  func viewWillAppear()
   func didPressCall()
   func didPressWebsite()
+  func didPressWebsiteMenu()
   func didPressKayak()
   func didPressWikipedia()
   func didPressWikimediaCommons()
@@ -78,6 +80,7 @@ class PlacePageInfoViewController: UIViewController {
   private var rawOpeningHoursView: InfoItemViewController?
   private var phoneView: InfoItemViewController?
   private var websiteView: InfoItemViewController?
+  private var websiteMenuView: InfoItemViewController?
   private var kayakView: InfoItemViewController?
   private var wikipediaView: InfoItemViewController?
   private var wikimediaCommonsView: InfoItemViewController?
@@ -96,6 +99,7 @@ class PlacePageInfoViewController: UIViewController {
   private var coordinatesView: InfoItemViewController?
   private var capacityView: InfoItemViewController?
   private var wheelchairView: InfoItemViewController?
+  private var driveThroughView: InfoItemViewController?
 
   var placePageInfoData: PlacePageInfoData!
   weak var delegate: PlacePageInfoViewControllerDelegate?
@@ -157,7 +161,19 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(website)
       })
     }
-    
+
+    if let websiteMenu = placePageInfoData.websiteMenu {
+      websiteView = createInfoItem(L("website_menu"),
+                                   icon: UIImage(named: "ic_placepage_website_menu"),
+                                   style: .link,
+                                   tapHandler: { [weak self] in
+        self?.delegate?.didPressWebsiteMenu()
+      },
+                                   longPressHandler: { [weak self] in
+        self?.delegate?.didCopy(websiteMenu)
+      })
+    }
+
     if let wikipedia = placePageInfoData.wikipedia {
       wikipediaView = createInfoItem(L("read_in_wikipedia"),
                                      icon: UIImage(named: "ic_placepage_wiki"),
@@ -200,6 +216,10 @@ class PlacePageInfoViewController: UIViewController {
 
     if let wheelchair = placePageInfoData.wheelchair {
       wheelchairView = createInfoItem(wheelchair, icon: UIImage(named: "ic_placepage_wheelchair"))
+    }
+    
+    if let driveThrough = placePageInfoData.driveThrough {
+      driveThroughView = createInfoItem(driveThrough, icon: UIImage(named: "ic_placepage_drive_through"))
     }
     
     if let email = placePageInfoData.email {
@@ -316,6 +336,11 @@ class PlacePageInfoViewController: UIViewController {
       coordinatesView?.accessoryImage.image = UIImage(named: "ic_placepage_change")
       coordinatesView?.accessoryImage.isHidden = false
     }
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    delegate?.viewWillAppear()
   }
 
   // MARK: private

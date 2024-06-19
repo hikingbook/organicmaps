@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,7 +40,6 @@ import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-
 import app.organicmaps.Framework.PlacePageActivationListener;
 import app.organicmaps.api.Const;
 import app.organicmaps.base.BaseMwmFragmentActivity;
@@ -58,6 +59,8 @@ import app.organicmaps.editor.Editor;
 import app.organicmaps.editor.EditorActivity;
 import app.organicmaps.editor.EditorHostFragment;
 import app.organicmaps.editor.FeatureCategoryActivity;
+import app.organicmaps.editor.OsmLoginActivity;
+import app.organicmaps.editor.OsmOAuth;
 import app.organicmaps.editor.ReportFragment;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.intent.Factory;
@@ -250,6 +253,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       RoutingController.get().restoreRoute();
 
     processIntent();
+    migrateOAuthCredentials();
   }
 
   /**
@@ -301,6 +305,35 @@ public class MwmActivity extends BaseMwmFragmentActivity
     {
       if (ip.process(intent, this))
         break;
+    }
+  }
+
+  private void migrateOAuthCredentials()
+  {
+    if (OsmOAuth.containsOAuth1Credentials(this))
+    {
+      // Remove old OAuth v1 secrets
+      OsmOAuth.clearOAuth1Credentials(this);
+
+      // Notify user to re-login
+      dismissAlertDialog();
+      final DialogInterface.OnClickListener navigateToLoginHandler = (dialog, which) -> startActivity(new Intent(MwmActivity.this, OsmLoginActivity.class));
+
+      final int marginBase = getResources().getDimensionPixelSize(R.dimen.margin_base);
+      final float textSize = getResources().getDimension(R.dimen.line_spacing_extra_1);
+      final TextView text = new TextView(this);
+      text.setText(getText(R.string.alert_reauth_message));
+      text.setPadding(marginBase, marginBase, marginBase, marginBase);
+      text.setTextSize(textSize);
+      text.setMovementMethod(LinkMovementMethod.getInstance());
+
+      mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+              .setTitle(R.string.login_osm)
+              .setView(text)
+              .setPositiveButton(R.string.login, navigateToLoginHandler)
+              .setNegativeButton(R.string.cancel, null)
+              .setOnDismissListener(dialog -> mAlertDialog = null)
+              .show();
     }
   }
 
@@ -1083,8 +1116,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
     Framework.nativeRemovePlacePageActivationListener(this);
     BookmarkManager.INSTANCE.removeLoadingListener(this);
     LocationHelper.from(this).removeListener(this);
-    LocationState.nativeRemoveListener();
-    RoutingController.get().detach();
+    if (mDisplayManager.isDeviceDisplayUsed() && !RoutingController.get().isNavigating())
+    {
+      LocationState.nativeRemoveListener();
+      RoutingController.get().detach();
+    }
     IsolinesManager.from(getApplicationContext()).detach();
     mSearchController.detach();
     Utils.keepScreenOn(false, getWindow());
@@ -1284,8 +1320,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (navBottomSheetLineFrame != null)
       offsetY = Math.max(offsetY, navBottomSheetLineFrame.getHeight() + navBottomSheetNavBar.getHeight());
 
-    mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY);
-    mMapFragment.updateMyPositionRoutingOffset(offsetY);
+    if (mDisplayManager.isDeviceDisplayUsed())
+    {
+      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY);
+      mMapFragment.updateMyPositionRoutingOffset(offsetY);
+    }
   }
 
   @Override

@@ -252,7 +252,13 @@
 "pref_map_3d_buildings_disabled_summary" = "Os edifícios 3D são desativados no modo de economia de energia";
 
 /* Settings «Route» category: «Tts enabled» title */
-"pref_tts_enable_title" = "Instruções de voz";
+"pref_tts_enable_title" = "Orientação por voz";
+
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Anunciar nomes de ruas";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Quando ativado, o nome da rua ou saída para virar será falado em voz alta.";
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Idioma da voz";
@@ -308,7 +314,7 @@
 "help" = "Ajuda";
 
 /* Button in the main Help dialog */
-"faq" = "Perguntas e respostas";
+"faq" = "Perguntas frequentes";
 
 /* Button in the main menu */
 "donate" = "Doar";
@@ -326,7 +332,7 @@
 "report_incorrect_map_bug" = "Relatar ou corrigir dados incorretos do mapa";
 
 /* Button in the About screen */
-"volunteer" = "Para ser voluntário";
+"volunteer" = "Voluntarie-se";
 
 /* "Social media" section header in the About screen */
 "follow_us" = "Siga-nos e entre em contato conosco:";
@@ -563,9 +569,9 @@
 /* Text for allday switch. */
 "editor_time_allday" = "O dia todo (24 horas)";
 
-"editor_time_open" = "Abre";
+"editor_time_open" = "Aberto";
 
-"editor_time_close" = "Fecha";
+"editor_time_close" = "Fechado";
 
 "editor_time_add_closed" = "Inserir horas sem funcionamento";
 
@@ -628,6 +634,8 @@
 "invalid_username_or_password" = "Nome de usuário ou senha inválida.";
 
 "login" = "Login";
+
+"login_osm" = "Entrar no OpenStreetMap";
 
 "forgot_password" = "Esqueceu sua senha?";
 
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Adicionando";
 
 "editor_edit_place_name_hint" = "Nome do lugar";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Como escrito na língua local";
 
 "editor_edit_place_category_title" = "Categoria";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Apagar favorito";
 
-"editor_edits_sent_message" = "Suas sugestões de mudança foram enviadas";
+"editor_edits_sent_message" = "A sua nota será enviada ao OpenStreetMap";
 
 "editor_comment_hint" = "Comentar…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Os editores do OpenStreetMap verificarão as mudanças e entrarão em contato com você se tiverem alguma dúvida.";
 
-"navigation_stop_button" = "parar";
+"navigation_stop_button" = "Parar";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Desabilitar registro de sua rota recente?";
@@ -889,10 +900,10 @@
 
 "mobile_data_option_not_today" = "Não utilizar hoje";
 
-"mobile_data" = "Internet Móvel";
+"mobile_data" = "Internet móvel";
 
 /* NOTE to translators: please synchronize your translation with the English one. */
-"mobile_data_description" = "Para visualizar informações detalhadas sobre os locais, tais como fotos, preços e análises, é necessário acesso à internet móvel.";
+"mobile_data_description" = "Para visualizar informações detalhadas sobre os locais, tais como fotos, preços e avaliações, é necessário acesso à internet móvel.";
 
 "mobile_data_option_never" = "Nunca utilizar";
 
@@ -930,6 +941,12 @@
 "start_from_my_position" = "Iniciar a partir de";
 
 "profile_authorization_error" = "Ups, ocorreu um erro. Tente iniciar sessão novamente.";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Faça login no OpenStreetMap para carregar automaticamente todas as edições de mapas que você fizer. Saiba mais";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "aqui";
 
 "core_entrance" = "Entrada";
 
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "Exportar arquivo";
+"export_file" = "Exportar KMZ";
+
+"export_file_gpx" = "Exportar GPX";
 
 "delete_list" = "Deletar lista";
 
@@ -1031,7 +1050,7 @@
 
 "power_managment_setting_manual_max" = "Máxima economia de energia";
 
-"driving_options_title" = "Opções de direção";
+"driving_options_title" = "Opções de trajeto";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "Evitar pedágios";
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Ordenar por data";
 
+"sort_name" = "Classificar por nome";
+
 "week_ago_sorttype" = "Uma semana atrás";
 
 "month_ago_sorttype" = "Um mês atrás";
@@ -1180,11 +1201,11 @@
 
 "dialog_pedestrian_route_is_long_message" = "Escolha outro ponto de início ou fim perto da estação de metrô";
 
-"button_layer_isolines" = "Topográfica";
+"button_layer_isolines" = "Relevo";
 
-"isolines_activation_error_dialog" = "Para ativar e usar a camada topográfica, atualize ou baixe o mapa da região";
+"isolines_activation_error_dialog" = "Para ativar e usar a camada Relevo, atualize ou baixe o mapa da região";
 
-"isolines_location_error_dialog" = "A camada topográfica ainda não está disponível para esta região";
+"isolines_location_error_dialog" = "A camada Relevo ainda não está disponível para esta região";
 
 "elevation_profile_diff_level" = "Nível de dificuldade";
 
@@ -1248,8 +1269,20 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Pt:Sobre_o_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Agora você está usando o Organic Maps na tela do telefone";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Agora você está usando o Organic Maps na tela do carro";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Continuar no celular";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "Para tela do carro";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "Caminhadas";
+"button_layer_outdoor" = "Ar livre";
 
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "Exportar todos os favoritos e trilhas";
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Mapa";
+
+"drive_through" = "Drive-through";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Link do cardápio";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Ativar a sincronização do iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "A sincronização do iCloud é um recurso experimental em desenvolvimento. Certifique-se de que você tenha feito um backup de todos os seus favoritos e faixas.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "O iCloud está desativado";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Ative o iCloud nas configurações do seu dispositivo para usar esse recurso.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Ativar";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Cópia de segurança";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Erro: Falha na sincronização devido a erro de conexão";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Erro: Falha ao sincronizar devido à cota do iCloud excedida";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Erro: o iCloud não está disponível";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Drinqueria";
 
-"type.amenity.bbq" = "Local de piquenique";
+"type.amenity.bbq" = "Churrasqueira";
 
 "type.amenity.bench" = "Assento";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Escola";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Abrigo";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Abrigo";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Cabana Básica";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Abrigo tipo alpendre";
 
 "type.amenity.public_bath" = "Banho público";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Fronteira administrativa";
 
-"type.boundary.administrative.10" = "Fronteira administrativa";
-
-"type.boundary.administrative.11" = "Fronteira administrativa";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "Fronteira de país";
 
-"type.boundary.administrative.3" = "Fronteira administrativa";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Fronteira de região";
 
-"type.boundary.administrative.4" = "Fronteira administrativa";
-
-"type.boundary.administrative.5" = "Fronteira administrativa";
-
-"type.boundary.administrative.6" = "Fronteira administrativa";
-
-"type.boundary.administrative.7" = "Fronteira administrativa";
-
-"type.boundary.administrative.8" = "Fronteira administrativa";
-
-"type.boundary.administrative.9" = "Fronteira administrativa";
-
-"type.boundary.administrative.city" = "Fronteira de cidade";
-
-"type.boundary.administrative.country" = "Fronteira de país";
-
-"type.boundary.administrative.county" = "Fronteira de condado";
-
-"type.boundary.administrative.municipality" = "Fronteira de município";
-
-"type.boundary.administrative.nation" = "Fronteira de nação";
-
-"type.boundary.administrative.region" = "Fronteira de região";
-
-"type.boundary.administrative.state" = "Fronteira de estado";
-
-"type.boundary.administrative.suburb" = "Fronteira de subúrbio";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Fronteira de região";
 
 "type.boundary.national_park" = "Parque nacional";
 
@@ -1972,9 +2020,9 @@
 /* This is for main/primary entrances, for secondary entrances see type.entrance */
 "type.entrance.main" = "Entrada principal";
 
-"type.entrance.exit" = "Sair";
+"type.entrance.exit" = "Saída";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Gratuito";
 
@@ -2043,22 +2091,10 @@
 
 "type.highway.footway.crossing" = "Travessia de pedestres";
 
-"type.highway.footway.alpine_hiking" = "Caminho pedonal";
-
 "type.highway.footway.area" = "Área de pedestres";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Ponte para pedestres";
-
-"type.highway.footway.demanding_alpine_hiking" = "Caminho pedonal difícil";
-
-"type.highway.footway.demanding_mountain_hiking" = "Caminho pedonal difícil";
-
-"type.highway.footway.difficult_alpine_hiking" = "Caminho pedonal difícil";
-
-"type.highway.footway.hiking" = "Caminho pedonal";
-
-"type.highway.footway.mountain_hiking" = "Caminho pedonal";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Túnel para pedestres";
@@ -2093,26 +2129,20 @@
 
 "type.highway.path" = "Caminho";
 
-"type.highway.path.alpine_hiking" = "Caminho pedonal";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Caminho";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Caminho";
 
 "type.highway.path.bicycle" = "Caminho para ciclistas";
+
+"type.highway.footway.bicycle" = "Caminho para ciclistas";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Ponte";
 
-"type.highway.path.demanding_alpine_hiking" = "Caminho pedonal difícil";
-
-"type.highway.path.demanding_mountain_hiking" = "Caminho pedonal difícil";
-
-"type.highway.path.difficult_alpine_hiking" = "Caminho pedonal difícil";
-
-"type.highway.path.hiking" = "Caminho pedonal";
-
 "type.highway.path.horse" = "Caminho para cavaleiros";
-
-"type.highway.path.mountain_hiking" = "Caminho pedonal";
-
-"type.highway.path.permissive" = "Caminho";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Túnel";
@@ -2235,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Estrada rústica";
 
-"type.highway.track.grade2" = "Estrada rústica";
-
-"type.highway.track.grade3" = "Estrada rústica";
-
-"type.highway.track.grade4" = "Estrada rústica";
-
-"type.highway.track.grade5" = "Estrada rústica";
-
 "type.highway.track.no.access" = "Estrada rústica";
-
-"type.highway.track.permissive" = "Estrada rústica";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Túnel rodoviário";
@@ -2455,8 +2475,6 @@
 
 "type.landuse.education" = "Instituições educacionais";
 
-"type.landuse.farm" = "Fazenda";
-
 "type.landuse.farmland" = "Campo agrícola";
 
 "type.landuse.farmyard" = "Pátio de fazenda";
@@ -2526,6 +2544,8 @@
 "type.leisure.garden.residential" = "Jardim residencial";
 
 "type.leisure.golf_course" = "Campo de golfe";
+
+"type.leisure.miniature_golf" = "Minigolfe";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2635,7 +2655,14 @@
 
 "type.natural" = "Natureza";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Zona rochosa";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Seixos";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Pedregulho pedregoso";
 
 "type.natural.bay" = "Baía";
 
@@ -3732,13 +3759,14 @@
 
 "type.tourism.aquarium" = "Aquário";
 
-"type.tourism.alpine_hut" = "Abrigo de montanha";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Alojamento na montanha";
 
-"type.tourism.apartment" = "Apartamentos";
+"type.tourism.apartment" = "Apartamento de temporada";
 
 "type.tourism.artwork" = "Obra de arte";
 
-"type.tourism.artwork.architecture" = "Obra de arte de arquitetura";
+"type.tourism.artwork.architecture" = "Arte arquitetônica";
 
 "type.tourism.artwork.painting" = "Pintura";
 
@@ -3748,17 +3776,18 @@
 
 "type.tourism.attraction" = "Atração turística";
 
-"type.tourism.attraction.animal" = "Atração turística";
+"type.attraction.animal" = "Recinto para animais";
 
 "type.tourism.attraction.specified" = "Atração turística";
 
-"type.tourism.camp_site" = "Parque de campismo";
+"type.tourism.camp_site" = "Local de camping";
 
 "type.tourism.caravan_site" = "Área de trailers";
 
-"type.tourism.chalet" = "Chalé";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Casa de férias";
 
-"type.tourism.gallery" = "Galeria";
+"type.tourism.gallery" = "Galeria de arte";
 
 "type.tourism.guest_house" = "Pousada";
 
@@ -3784,33 +3813,34 @@
 
 "type.tourism.picnic_site" = "Local de piqueniques";
 
-"type.tourism.resort" = "Resort";
+"type.leisure.resort" = "Resort";
 
 "type.tourism.theme_park" = "Parque de diversão";
 
 "type.tourism.viewpoint" = "Mirante";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Cabana";
 
 "type.tourism.zoo" = "Zoológico";
 
-"type.tourism.zoo.petting" = "Jardim Zoológico";
+"type.tourism.zoo.petting" = "Fazendinha";
 
 "type.traffic_calming" = "Redutor de velocidade";
 
 "type.traffic_calming.bump" = "Quebra-molas";
 
-"type.traffic_calming.hump" = "Quebra-molas longa";
+"type.traffic_calming.hump" = "Quebra-molas longo";
 
 "type.waterway" = "Curso de água";
 
 "type.waterway.canal" = "Canal";
 
-"type.waterway.canal.tunnel" = "Canal";
+"type.waterway.canal.tunnel" = "Túnel de canal";
 
 "type.waterway.fish_pass" = "Escada de peixes";
 
-"type.waterway.dam" = "Usina";
+"type.waterway.dam" = "Barragem";
 
 "type.barrier.ditch" = "Vala";
 
@@ -3831,8 +3861,6 @@
 "type.waterway.river" = "Rio";
 
 "type.waterway.river.tunnel" = "Rio";
-
-"type.waterway.riverbank" = "Rio";
 
 "type.waterway.stream" = "Ribeiro";
 

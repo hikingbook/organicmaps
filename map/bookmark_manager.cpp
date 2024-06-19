@@ -16,6 +16,7 @@
 
 #include "geometry/mercator.hpp"
 
+#include "coding/file_reader.hpp"
 #include "coding/file_writer.hpp"
 #include "coding/internal/file_data.hpp"
 #include "coding/serdes_json.hpp"
@@ -83,9 +84,9 @@ std::string GetFileNameForExport(BookmarkManager::KMLDataCollectionPtr::element_
   return fileName;
 }
 
-BookmarkManager::SharingResult ExportSingleFile(BookmarkManager::KMLDataCollectionPtr::element_type::value_type const & kmlToShare)
+BookmarkManager::SharingResult ExportSingleFileKml(BookmarkManager::KMLDataCollectionPtr::element_type::value_type const & kmlToShare)
 {
-  std::string fileName = GetFileNameForExport(kmlToShare);
+  std::string const fileName = GetFileNameForExport(kmlToShare);
 
   auto const filePath = base::JoinPath(GetPlatform().TmpDir(), fileName + std::string{kKmlExtension});
   SCOPE_GUARD(fileGuard, std::bind(&base::DeleteFileX, filePath));
@@ -101,6 +102,16 @@ BookmarkManager::SharingResult ExportSingleFile(BookmarkManager::KMLDataCollecti
     return {{categoryId}, BookmarkManager::SharingResult::Code::ArchiveError, "Could not create archive."};
 
   return {{categoryId}, std::move(tmpFilePath)};
+}
+
+BookmarkManager::SharingResult ExportSingleFileGpx(BookmarkManager::KMLDataCollectionPtr::element_type::value_type const & kmlToShare)
+{
+  std::string const fileName = GetFileNameForExport(kmlToShare);
+  auto filePath = base::JoinPath(GetPlatform().TmpDir(), fileName + std::string{kGpxExtension});
+  auto const categoryId = kmlToShare.second->m_categoryData.m_id;
+  if (!SaveKmlFileSafe(*kmlToShare.second, filePath, KmlFileType::Gpx))
+    return {{categoryId}, BookmarkManager::SharingResult::Code::FileError, "Bookmarks file does not exist."};
+  return {{categoryId}, std::move(filePath)};
 }
 
 std::string BuildIndexFile(std::vector<std::string> const & filesForIndex)
@@ -172,12 +183,18 @@ BookmarkManager::SharingResult ExportMultipleFiles(BookmarkManager::KMLDataColle
   return {std::move(categoriesIds), std::move(kmzFilePath)};
 }
 
-BookmarkManager::SharingResult GetFileForSharing(BookmarkManager::KMLDataCollectionPtr collection)
+BookmarkManager::SharingResult GetFileForSharing(BookmarkManager::KMLDataCollectionPtr collection, KmlFileType kmlFileType)
 {
-  if (collection->size() == 1)
-    return ExportSingleFile(collection->front());
-  else
+  if (collection->size() > 1)
     return ExportMultipleFiles(collection);
+  switch (kmlFileType)
+  {
+  case KmlFileType::Text: return ExportSingleFileKml(collection->front());
+  case KmlFileType::Gpx: return ExportSingleFileGpx(collection->front());
+  default:
+    LOG(LERROR, ("Unexpected file type", kmlFileType));
+    return {{collection->front().second->m_categoryData.m_id}, BookmarkManager::SharingResult::Code::FileError,"Unexpected file type"};
+  }
 }
 
 
@@ -188,6 +205,7 @@ std::string ToString(BookmarkManager::SortingType type)
   case BookmarkManager::SortingType::ByTime: return "ByTime";
   case BookmarkManager::SortingType::ByType: return "ByType";
   case BookmarkManager::SortingType::ByDistance: return "ByDistance";
+  case BookmarkManager::SortingType::ByName: return "ByName";
   }
   UNREACHABLE();
 }
@@ -200,6 +218,8 @@ bool GetSortingType(std::string const & typeStr, BookmarkManager::SortingType & 
     type = BookmarkManager::SortingType::ByType;
   else if (typeStr == ToString(BookmarkManager::SortingType::ByDistance))
     type = BookmarkManager::SortingType::ByDistance;
+  else if (typeStr == ToString(BookmarkManager::SortingType::ByName))
+    type = BookmarkManager::SortingType::ByName;
   else
     return false;
   return true;
@@ -468,10 +488,10 @@ void BookmarkManager::OnEditSessionClosed()
 {
   ASSERT_GREATER(m_openedEditSessionsCount, 0, ());
   if (--m_openedEditSessionsCount == 0)
-    NotifyChanges();
+    NotifyChanges(true /* saveChangesOnDisk */);
 }
 
-void BookmarkManager::NotifyChanges()
+void BookmarkManager::NotifyChanges(bool saveChangesOnDisk)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
@@ -506,7 +526,11 @@ void BookmarkManager::NotifyChanges()
         categoriesToSave.push_back(groupId);
     }
 
-    SaveBookmarks(categoriesToSave);
+    // During the category reloading/updating the file saving should be skipped
+    // because of the file is already up to date.
+    if (saveChangesOnDisk)
+      SaveBookmarks(categoriesToSave);
+
     SendBookmarksChanges(m_bookmarksChangesTracker);
   }
   m_bookmarksChangesTracker.ResetChanges();
@@ -638,7 +662,8 @@ std::vector<BookmarkManager::SortingType> BookmarkManager::GetAvailableSortingTy
     sortingTypes.push_back(SortingType::ByDistance);
   if (byTimeChecked)
     sortingTypes.push_back(SortingType::ByTime);
-
+  // Sorting by name should always be possible.
+  sortingTypes.push_back(SortingType::ByName);
   return sortingTypes;
 }
 
@@ -683,6 +708,12 @@ std::string BookmarkManager::GetSortedByTimeBlockName(SortedByTimeBlockType bloc
 std::string BookmarkManager::GetTracksSortedBlockName()
 {
   return platform::GetLocalizedString("tracks_title");
+}
+
+// static
+std::string BookmarkManager::GetBookmarksSortedBlockName()
+{
+  return platform::GetLocalizedString("bookmarks");
 }
 
 // static
@@ -1129,6 +1160,16 @@ void BookmarkManager::SortTracksByTime(std::vector<SortTrackData> & tracks)
             });
 }
 
+// static
+void BookmarkManager::SortTracksByName(std::vector<SortTrackData> & tracks)
+{
+  std::sort(tracks.begin(), tracks.end(),
+            [](SortTrackData const & lbm, SortTrackData const & rbm)
+            {
+              return lbm.m_name < rbm.m_name;
+            });
+}
+
 void BookmarkManager::SortByDistance(std::vector<SortBookmarkData> const & bookmarksForSort,
                                      std::vector<SortTrackData> const & tracksForSort,
                                      m2::PointD const & myPosition,
@@ -1325,6 +1366,33 @@ void BookmarkManager::SortByType(std::vector<SortBookmarkData> const & bookmarks
   }
 }
 
+void BookmarkManager::SortByName(std::vector<SortBookmarkData> const & bookmarksForSort,
+                                 std::vector<SortTrackData> const & tracksForSort,
+                                 SortedBlocksCollection & sortedBlocks)
+{
+  std::vector<SortTrackData> sortedTracks = tracksForSort;
+  SortTracksByName(sortedTracks);
+  AddTracksSortedBlock(sortedTracks, sortedBlocks);
+
+  std::vector<SortBookmarkData const *> sortedMarks;
+  sortedMarks.reserve(bookmarksForSort.size());
+  for (auto const & mark : bookmarksForSort)
+    sortedMarks.push_back(&mark);
+
+  std::sort(sortedMarks.begin(), sortedMarks.end(),
+            [](SortBookmarkData const * lbm, SortBookmarkData const * rbm)
+            {
+              return lbm->m_name < rbm->m_name;
+            });
+
+  // Put all bookmarks into one block
+  SortedBlock bookmarkBlock;
+  bookmarkBlock.m_blockName = GetBookmarksSortedBlockName();
+  for (auto mark : sortedMarks)
+    bookmarkBlock.m_markIds.push_back(mark->m_id);
+  sortedBlocks.push_back(bookmarkBlock);
+}
+
 void BookmarkManager::GetSortedCategoryImpl(SortParams const & params,
                                             std::vector<SortBookmarkData> const & bookmarksForSort,
                                             std::vector<SortTrackData> const & tracksForSort,
@@ -1341,6 +1409,9 @@ void BookmarkManager::GetSortedCategoryImpl(SortParams const & params,
     return;
   case SortingType::ByType:
     SortByType(bookmarksForSort, tracksForSort, sortedBlocks);
+    return;
+  case SortingType::ByName:
+    SortByName(bookmarksForSort, tracksForSort, sortedBlocks);
     return;
   }
   UNREACHABLE();
@@ -1496,6 +1567,17 @@ std::string BookmarkManager::GetCategoryFileName(kml::MarkGroupId categoryId) co
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   return GetBmCategory(categoryId)->GetFileName();
+}
+
+kml::MarkGroupId BookmarkManager::GetCategoryByFileName(std::string const & fileName) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  for (auto const & c : m_categories)
+  {
+    if (c.second->GetFileName() == fileName)
+      return c.second->GetID();
+  }
+  return kml::kInvalidMarkGroupId;
 }
 
 m2::RectD BookmarkManager::GetCategoryRect(kml::MarkGroupId categoryId, bool addIconsSize) const
@@ -1815,20 +1897,16 @@ void BookmarkManager::LoadMetadata()
     return;
 
   Metadata metadata;
-  std::vector<uint8_t> jsonStr;
-
-  auto const charPtr = [&jsonStr]()
-  {
-    return reinterpret_cast<char const *>(jsonStr.data());
-  };
+  std::string json;
 
   try
   {
-    jsonStr = base::ReadFile(metadataFilePath);
-    if (jsonStr.empty())
+    FileReader(metadataFilePath).ReadAsString(json);
+
+    if (json.empty())
       return;
 
-    coding::DeserializerJson des(charPtr());
+    coding::DeserializerJson des(json);
     des(metadata);
   }
   catch (FileReader::Exception const & exception)
@@ -1838,8 +1916,7 @@ void BookmarkManager::LoadMetadata()
   }
   catch (base::Json::Exception const & exception)
   {
-    LOG(LWARNING, ("Exception while parsing file:", metadataFilePath, "reason:", exception.what(),
-                   "json:", charPtr()));
+    LOG(LWARNING, ("Exception while parsing file:", metadataFilePath, "reason:", exception.what(), "json:", json));
     return;
   }
 
@@ -1917,12 +1994,24 @@ void BookmarkManager::LoadBookmark(std::string const & filePath, bool isTemporar
   // Defer bookmark loading in case of another asynchronous process.
   if (!m_loadBookmarksFinished || m_asyncLoadingInProgress)
   {
-    m_bookmarkLoadingQueue.emplace_back(filePath, isTemporaryFile);
+    m_bookmarkLoadingQueue.emplace_back(filePath, isTemporaryFile, false);
     return;
   }
 
   NotifyAboutStartAsyncLoading();
   LoadBookmarkRoutine(filePath, isTemporaryFile);
+}
+
+void BookmarkManager::ReloadBookmark(std::string const & filePath)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  if (!m_loadBookmarksFinished || m_asyncLoadingInProgress)
+  {
+    m_bookmarkLoadingQueue.emplace_back(filePath, false, true);
+    return;
+  }
+  NotifyAboutStartAsyncLoading();
+  ReloadBookmarkRoutine(filePath);
 }
 
 void BookmarkManager::LoadBookmarkRoutine(std::string const & filePath, bool isTemporaryFile)
@@ -1976,6 +2065,36 @@ void BookmarkManager::LoadBookmarkRoutine(std::string const & filePath, bool isT
   });
 }
 
+void BookmarkManager::ReloadBookmarkRoutine(std::string const & filePath)
+{
+  GetPlatform().RunTask(Platform::Thread::File, [this, filePath]()
+  {
+    if (m_needTeardown)
+      return;
+
+    auto const ext = GetLowercaseFileExt(filePath);
+    std::unique_ptr<kml::FileData> kmlData;
+    if (ext == kKmlExtension)
+      kmlData = LoadKmlFile(filePath, KmlFileType::Text);
+    else if (ext == kGpxExtension)
+      kmlData = LoadKmlFile(filePath, KmlFileType::Gpx);
+    else
+      ASSERT(false, ("Unsupported bookmarks extension", ext));
+
+    if (m_needTeardown)
+      return;
+
+    auto collection = std::make_shared<KMLDataCollection>();
+    if (kmlData)
+      collection->emplace_back(std::move(filePath), std::move(kmlData));
+
+    if (m_needTeardown)
+      return;
+
+    NotifyAboutFinishAsyncLoading(std::move(collection));
+  });
+}
+
 void BookmarkManager::NotifyAboutStartAsyncLoading()
 {
   if (m_needTeardown)
@@ -2011,7 +2130,10 @@ void BookmarkManager::NotifyAboutFinishAsyncLoading(KMLDataCollectionPtr && coll
     if (!m_bookmarkLoadingQueue.empty())
     {
       ASSERT(m_asyncLoadingInProgress, ());
-      LoadBookmarkRoutine(m_bookmarkLoadingQueue.front().m_filename,
+      if (m_bookmarkLoadingQueue.front().m_isReloading)
+        ReloadBookmarkRoutine(m_bookmarkLoadingQueue.front().m_filename);
+      else
+        LoadBookmarkRoutine(m_bookmarkLoadingQueue.front().m_filename,
                           m_bookmarkLoadingQueue.front().m_isTemporaryFile);
       m_bookmarkLoadingQueue.pop_front();
     }
@@ -2212,6 +2334,20 @@ bool BookmarkManager::HasBmCategory(kml::MarkGroupId groupId) const
   return (IsBookmarkCategory(groupId) && GetBmCategorySafe(groupId) != nullptr);
 }
 
+bool BookmarkManager::HasBookmark(kml::MarkId markId) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  ASSERT(IsBookmark(markId), ());
+  return (GetBookmark(markId) != nullptr);
+}
+
+bool BookmarkManager::HasTrack(kml::TrackId trackId) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  ASSERT(IsBookmark(trackId), ());
+  return (GetTrack(trackId) != nullptr);
+}
+
 void BookmarkManager::UpdateBmGroupIdList()
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
@@ -2280,6 +2416,17 @@ kml::MarkGroupId BookmarkManager::CreateBookmarkCategory(std::string const & nam
   return groupId;
 }
 
+void BookmarkManager::UpdateBookmarkCategory(kml::MarkGroupId & groupId, kml::CategoryData && data, bool autoSave /* = true */)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  CHECK_NOT_EQUAL(m_categories.count(groupId), 0, ());
+  // The current implementation reloads the provided group.
+  /// @todo implement more accurate merging instead of full reloading
+  ClearGroup(groupId);
+  m_categories.emplace(groupId, std::make_unique<BookmarkCategory>(std::move(data), autoSave));
+  m_changesTracker.OnAddGroup(groupId);
+}
+
 BookmarkCategory * BookmarkManager::CreateBookmarkCompilation(kml::CategoryData && data)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
@@ -2314,7 +2461,7 @@ void BookmarkManager::CheckAndResetLastIds()
     idStorage.ResetTrackId();
 }
 
-bool BookmarkManager::DeleteBmCategory(kml::MarkGroupId groupId)
+bool BookmarkManager::DeleteBmCategory(kml::MarkGroupId groupId, bool deleteFile)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   auto it = m_categories.find(groupId);
@@ -2324,7 +2471,8 @@ bool BookmarkManager::DeleteBmCategory(kml::MarkGroupId groupId)
   ClearGroup(groupId);
   m_changesTracker.OnDeleteGroup(groupId);
 
-  FileWriter::DeleteFileX(it->second->GetFileName());
+  if (deleteFile)
+    FileWriter::DeleteFileX(it->second->GetFileName());
 
   DeleteCompilations(it->second->GetCategoryData().m_compilationIds);
   m_categories.erase(it);
@@ -2432,6 +2580,7 @@ void BookmarkManager::CreateCategories(KMLDataCollection && dataCollection, bool
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   kml::GroupIdSet loadedGroups;
 
+  bool isUpdating = false;
   for (auto const & [fileName, fileDataPtr] : dataCollection)
   {
     auto & fileData = *fileDataPtr;
@@ -2471,9 +2620,16 @@ void BookmarkManager::CreateCategories(KMLDataCollection && dataCollection, bool
 
     UserMarkIdStorage::Instance().EnableSaving(false);
 
+    auto groupId = GetCategoryByFileName(fileName);
     // Set autoSave = false now to avoid useless saving in NotifyChanges().
     // autoSave flag will be assigned in the end of this function.
-    auto const groupId = CreateBookmarkCategory(std::move(categoryData), false /* autoSave */);
+    if (groupId != kml::kInvalidMarkGroupId)
+    {
+      isUpdating = true;
+      UpdateBookmarkCategory(groupId, std::move(categoryData), false /* autoSave */);
+    }
+    else
+      groupId = CreateBookmarkCategory(std::move(categoryData), false /* autoSave */);
     loadedGroups.insert(groupId);
     auto * group = GetBmCategory(groupId);
     group->SetFileName(fileName);
@@ -2532,7 +2688,9 @@ void BookmarkManager::CreateCategories(KMLDataCollection && dataCollection, bool
   }
   m_restoringCache.clear();
 
-  NotifyChanges();
+  // During the updating process the file shouldn't be re-saved on disk because it should be already up to date.
+  // In other case race condition may occur when multiple devices are used.
+  NotifyChanges(!isUpdating /* saveChangesOnDisk */);
 
   for (auto const & groupId : loadedGroups)
     GetBmCategory(groupId)->EnableAutoSave(autoSave);
@@ -2704,7 +2862,7 @@ void BookmarkManager::SaveBookmarks(kml::GroupIdCollection const & groupIdCollec
   });
 }
 
-void BookmarkManager::PrepareFileForSharing(kml::GroupIdCollection && categoriesIds, SharingHandler && handler)
+void BookmarkManager::PrepareFileForSharing(kml::GroupIdCollection && categoriesIds, SharingHandler && handler, KmlFileType kmlFileType)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   ASSERT(handler, ());
@@ -2723,13 +2881,13 @@ void BookmarkManager::PrepareFileForSharing(kml::GroupIdCollection && categories
 
   if (m_testModeEnabled)
   {
-    handler(GetFileForSharing(std::move(collection)));
+    handler(GetFileForSharing(std::move(collection), kmlFileType));
   }
   else
   {
     GetPlatform().RunTask(Platform::Thread::File,
-                          [collection = std::move(collection), handler = std::move(handler)]() mutable
-                          { handler(GetFileForSharing(std::move(collection))); });
+                          [collection = std::move(collection), handler = std::move(handler), kmlFileType = kmlFileType]() mutable
+                          { handler(GetFileForSharing(std::move(collection), kmlFileType)); });
   }
 }
 
@@ -2737,7 +2895,18 @@ void BookmarkManager::PrepareAllFilesForSharing(SharingHandler && handler)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   ASSERT(handler, ());
-  PrepareFileForSharing(decltype(m_unsortedBmGroupsIdList){m_unsortedBmGroupsIdList}, std::move(handler));
+  PrepareFileForSharing(decltype(m_unsortedBmGroupsIdList){m_unsortedBmGroupsIdList}, std::move(handler), KmlFileType::Text);
+}
+
+bool BookmarkManager::AreAllCategoriesEmpty() const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  for (auto const & c : m_categories)
+  {
+    if (!c.second->IsEmpty())
+      return false;
+  }
+  return true;
 }
 
 bool BookmarkManager::IsCategoryEmpty(kml::MarkGroupId categoryId) const
@@ -2851,7 +3020,7 @@ void BookmarkManager::SetNotificationsEnabled(bool enabled)
 
   m_notificationsEnabled = enabled;
   if (m_notificationsEnabled && m_openedEditSessionsCount == 0)
-    NotifyChanges();
+    NotifyChanges(true /* saveChangesOnDisk */);
 }
 
 bool BookmarkManager::AreNotificationsEnabled() const
@@ -3382,10 +3551,10 @@ void BookmarkManager::EditSession::SetCategoryCustomProperty(kml::MarkGroupId ca
 
 bool BookmarkManager::EditSession::DeleteBmCategory(kml::MarkGroupId groupId)
 {
-  return m_bmManager.DeleteBmCategory(groupId);
+  return m_bmManager.DeleteBmCategory(groupId, true);
 }
 
 void BookmarkManager::EditSession::NotifyChanges()
 {
-  m_bmManager.NotifyChanges();
+  m_bmManager.NotifyChanges(true /* saveChangesOnDisk */);
 }

@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "تعليمات صوتية";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "أعلن أسماء الشوارع";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "عند التمكين ، سيتم نطق اسم الشارع أو المخرج الذي سيتم تشغيله بصوت عالٍ.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "لغة الصوت";
 
@@ -629,6 +635,8 @@
 
 "login" = "تسجيل الدخول";
 
+"login_osm" = "تسجيل الدخول الى OpenStreetMap";
+
 "forgot_password" = "هل نسيت كلمة المرور؟";
 
 "osm_account" = "حساب على خريطة الشارع المفتوحة";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "يتم الإضافة";
 
 "editor_edit_place_name_hint" = "اسم المكان";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "كما هو مكتوب باللغة المحلية";
 
 "editor_edit_place_category_title" = "الفئة";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "حذف العلامة المرجعية";
 
-"editor_edits_sent_message" = "لقد تم إرسال التغييرات التي اقترحتها";
+"editor_edits_sent_message" = "سيتم إرسال ملاحظتك إلى OpenStreetMap";
 
 "editor_comment_hint" = "تعليق…";
 
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "عفوًا، كان هناك خطأ. حاول تسجيل الدخول مرة اخرى.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "برجاء تسجيل الدخول إلى OpenStreetMap لتحميل جميع تعديلات الخريطة تلقائيًا. تعرف على المزيد";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "هنا";
+
 "core_entrance" = "المدخل";
 
 "error_enter_correct_name" = "الرجاء إدخال اسم صحيح";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "رائج";
 
-"export_file" = "ملف التصدير";
+"export_file" = "تصدير KMZ";
+
+"export_file_gpx" = "تصدير GPX";
 
 "delete_list" = "حذف القائمة";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "رتّب حسب التاريخ";
 
+"sort_name" = "الترتيب حسب الاسم";
+
 "week_ago_sorttype" = "منذ أسبوع";
 
 "month_ago_sorttype" = "منذ شهر";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ar:About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "أنت الآن تستخدم الخرائط العضوية على شاشة الهاتف";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "أنت الآن تستخدم الخرائط العضوية على شاشة السيارة";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "تواصل على الهاتف";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "إلى شاشة السيارة";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "جولة على الأقدام";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "الخريطة";
+
+"drive_through" = "الشراء من السيارة";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "رابط القائمة";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "تمكين مزامنة iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "تعد مزامنة iCloud ميزة تجريبية قيد التطوير. تأكد من عمل نسخة احتياطية لجميع الإشارات المرجعية والمسارات الخاصة بك.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "تم تعطيل iCloud";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "يرجى تمكين iCloud في إعدادات جهازك لاستخدام هذه الميزة.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "يُمكَِن";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "دعم";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "خطأ: فشل المزامنة بسبب خطأ في الاتصال";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "خطأ: فشل في المزامنة بسبب تجاوز حصة iCloud النسبية";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "خطأ: iCloud غير متوفر";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "حانة";
 
-"type.amenity.bbq" = "مكان نزهة";
+"type.amenity.bbq" = "شواية شواء";
 
 "type.amenity.bench" = "مصطبة";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "مدرسة";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "ملجأ";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "ملجأ";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "كوخ إقامة مؤقتة";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "حمام عام";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "حدود إدارية";
 
-"type.boundary.administrative.10" = "حدود إدارية";
-
-"type.boundary.administrative.11" = "حدود إدارية";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "حدود دولية";
 
-"type.boundary.administrative.3" = "حدود إدارية";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "حدود منطقة";
 
-"type.boundary.administrative.4" = "حدود إدارية";
-
-"type.boundary.administrative.5" = "حدود إدارية";
-
-"type.boundary.administrative.6" = "حدود إدارية";
-
-"type.boundary.administrative.7" = "حدود إدارية";
-
-"type.boundary.administrative.8" = "حدود إدارية";
-
-"type.boundary.administrative.9" = "حدود إدارية";
-
-"type.boundary.administrative.city" = "حدود مدينة";
-
-"type.boundary.administrative.country" = "حدود دولية";
-
-"type.boundary.administrative.county" = "حدود مقاطعة";
-
-"type.boundary.administrative.municipality" = "حدود بلدية";
-
-"type.boundary.administrative.nation" = "حدود دولية";
-
-"type.boundary.administrative.region" = "حدود منطقة";
-
-"type.boundary.administrative.state" = "حدود محافظة";
-
-"type.boundary.administrative.suburb" = "حدود ضاحية";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "حدود منطقة";
 
 "type.boundary.national_park" = "منتزه وطني";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "مخرج";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "مجانية";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "عبور المشاة";
 
-"type.highway.footway.alpine_hiking" = "مسار";
-
 "type.highway.footway.area" = "منطقة مشاة";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "جسر للمشاة";
-
-"type.highway.footway.demanding_alpine_hiking" = "مسار";
-
-"type.highway.footway.demanding_mountain_hiking" = "مسار";
-
-"type.highway.footway.difficult_alpine_hiking" = "مسار";
-
-"type.highway.footway.hiking" = "مسار";
-
-"type.highway.footway.mountain_hiking" = "مسار";
-
-"type.highway.footway.permissive" = "مسار للمشاة";
-
-"type.highway.footway.trail_visibility_bad" = "مسار";
-
-"type.highway.footway.trail_visibility_excellent" = "مسار";
-
-"type.highway.footway.trail_visibility_good" = "مسار";
-
-"type.highway.footway.trail_visibility_horrible" = "مسار";
-
-"type.highway.footway.trail_visibility_intermediate" = "مسار";
-
-"type.highway.footway.trail_visibility_no" = "مسار";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "نفق للمشاة";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "مسار";
 
-"type.highway.path.alpine_hiking" = "مسار";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "مسار";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "مسار";
 
 "type.highway.path.bicycle" = "مسار للمشاة والدراجات معاً";
+
+"type.highway.footway.bicycle" = "مسار للمشاة والدراجات معاً";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "جسر";
 
-"type.highway.path.demanding_alpine_hiking" = "مسار";
-
-"type.highway.path.demanding_mountain_hiking" = "مسار";
-
-"type.highway.path.difficult_alpine_hiking" = "مسار";
-
-"type.highway.path.hiking" = "مسار";
-
 "type.highway.path.horse" = "مسار";
-
-"type.highway.path.mountain_hiking" = "مسار";
-
-"type.highway.path.permissive" = "مسار";
-
-"type.highway.path.trail_visibility_bad" = "مسار";
-
-"type.highway.path.trail_visibility_excellent" = "مسار";
-
-"type.highway.path.trail_visibility_good" = "مسار";
-
-"type.highway.path.trail_visibility_horrible" = "مسار";
-
-"type.highway.path.trail_visibility_intermediate" = "مسار";
-
-"type.highway.path.trail_visibility_no" = "مسار";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "نفق";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "شارع";
 
-"type.highway.track.grade2" = "شارع";
-
-"type.highway.track.grade3" = "شارع";
-
-"type.highway.track.grade4" = "شارع";
-
-"type.highway.track.grade5" = "شارع";
-
 "type.highway.track.no.access" = "شارع";
-
-"type.highway.track.permissive" = "شارع";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "نفق";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "مؤسسة تعليمية";
 
-"type.landuse.farm" = "مزرعة";
-
 "type.landuse.farmland" = "حقل";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "حديقة";
 
 "type.leisure.golf_course" = "ملعب غولف";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "هاكرزبيس";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "طبيعة";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "صخور عارية";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "الحصى";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "حصى";
 
 "type.natural.bay" = "خليج";
 
@@ -3758,7 +3759,8 @@
 
 "type.tourism.aquarium" = "حوض سمك";
 
-"type.tourism.alpine_hut" = "مساكن جبلية";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "لودج الجبل";
 
 "type.tourism.apartment" = "شُقَق عطلة";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "مكان جذاب";
 
-"type.tourism.attraction.animal" = "مكان جذاب";
+"type.attraction.animal" = "الضميمة الحيوانية";
 
 "type.tourism.attraction.specified" = "مكان جذاب";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "موقع لمراكب ترفيه";
 
-"type.tourism.chalet" = "شاليه";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "عطلة المنزلية";
 
 "type.tourism.gallery" = "معرض الفني";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "خريطة سياحية";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "مكتب سياحة";
 
 "type.tourism.information.visitor_centre" = "مركز الزوار";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "موقع نزهة";
 
-"type.tourism.resort" = "منتجع";
+"type.leisure.resort" = "منتجع";
 
 "type.tourism.theme_park" = "مدينة العاب";
 
 "type.tourism.viewpoint" = "نقطة منظر";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "كوخ برية";
 
 "type.tourism.zoo" = "حديقة حيوان";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "نهر";
 
 "type.waterway.river.tunnel" = "نهر";
-
-"type.waterway.riverbank" = "نهر";
 
 "type.waterway.stream" = "تيار مائي";
 

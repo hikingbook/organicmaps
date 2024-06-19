@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "음성 지침";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "\"거리 이름 발표\"";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "\"사용하도록 설정하면 회전할 거리 또는 출구의 이름을 소리내어 말합니다.\"";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "음성 언어";
 
@@ -629,6 +635,8 @@
 
 "login" = "로그인";
 
+"login_osm" = "OpenStreetMap에 로그인";
+
 "forgot_password" = "암호를 잊으 셨나요?";
 
 "osm_account" = "OSM 계정";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "첨가 중";
 
 "editor_edit_place_name_hint" = "장소 이름";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "현지 언어로 작성되었으므로";
 
 "editor_edit_place_category_title" = "범주";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "즐겨찾기 삭제";
 
-"editor_edits_sent_message" = "귀하의 제안 변경사항이 전송되었습니다";
+"editor_edits_sent_message" = "메모가 오픈스트리트맵으로 전송됩니다";
 
 "editor_comment_hint" = "설명…";
 
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "죄송합니다. 오류가 발생했습니다. 다시 로그인해 보세요.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "모든 지도 편집 내용을 자동으로 업로드하려면 오픈스트리트맵에 로그인하세요. 자세히 알아보기";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "여기";
+
 "core_entrance" = "입구";
 
 "error_enter_correct_name" = "올바른 이름을 입력하세요.";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "파일 내보내기";
+"export_file" = "KMZ 내보내기";
+
+"export_file_gpx" = "GPX 내보내기";
 
 "delete_list" = "리스트 삭제";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "날짜로 분류";
 
+"sort_name" = "이름별로 정렬";
+
 "week_ago_sorttype" = "일주일 전";
 
 "month_ago_sorttype" = "한달 전";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ko:OpenStreetMap_소개";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "이제 휴대폰 화면에서 유기적 지도를 사용하고 있습니다";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "이제 자동차 화면에서 유기적 지도를 사용하고 있습니다";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "전화기에서 계속";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "차량 화면으로 이동";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "하이킹";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "지도";
+
+"drive_through" = "드라이브 스루";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "메뉴 링크";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "iCloud 동기화 활성화";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud 동기화는 개발 중인 실험적 기능입니다. 모든 북마크와 트랙을 백업해 두었는지 확인하세요.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud가 비활성화됨";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "이 기능을 사용하려면 기기 설정에서 iCloud를 활성화하세요.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "사용";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "백업";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "오류입니다: 연결 오류로 인해 동기화하지 못했습니다.";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "오류입니다: iCloud 할당량이 초과되어 동기화하지 못했습니다.";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "오류: iCloud를 사용할 수 없습니다.";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "바";
 
-"type.amenity.bbq" = "소풍 사이트";
+"type.amenity.bbq" = "바비큐 그릴";
 
 "type.amenity.bench" = "벤치";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "학교";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "대피소";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "대피소";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "비박 오두막";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "대중목욕탕";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "국립 공원";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "종료";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "무료";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "횡단보도";
 
-"type.highway.footway.alpine_hiking" = "길";
-
 "type.highway.footway.area" = "길";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "다리";
-
-"type.highway.footway.demanding_alpine_hiking" = "길";
-
-"type.highway.footway.demanding_mountain_hiking" = "길";
-
-"type.highway.footway.difficult_alpine_hiking" = "길";
-
-"type.highway.footway.hiking" = "길";
-
-"type.highway.footway.mountain_hiking" = "길";
-
-"type.highway.footway.permissive" = "길";
-
-"type.highway.footway.trail_visibility_bad" = "길";
-
-"type.highway.footway.trail_visibility_excellent" = "길";
-
-"type.highway.footway.trail_visibility_good" = "길";
-
-"type.highway.footway.trail_visibility_horrible" = "길";
-
-"type.highway.footway.trail_visibility_intermediate" = "길";
-
-"type.highway.footway.trail_visibility_no" = "길";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "터널";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "길";
 
-"type.highway.path.alpine_hiking" = "길";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "길";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "길";
 
 "type.highway.path.bicycle" = "길";
+
+"type.highway.footway.bicycle" = "길";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "다리";
 
-"type.highway.path.demanding_alpine_hiking" = "길";
-
-"type.highway.path.demanding_mountain_hiking" = "길";
-
-"type.highway.path.difficult_alpine_hiking" = "길";
-
-"type.highway.path.hiking" = "길";
-
 "type.highway.path.horse" = "길";
-
-"type.highway.path.mountain_hiking" = "길";
-
-"type.highway.path.permissive" = "길";
-
-"type.highway.path.trail_visibility_bad" = "길";
-
-"type.highway.path.trail_visibility_excellent" = "길";
-
-"type.highway.path.trail_visibility_good" = "길";
-
-"type.highway.path.trail_visibility_horrible" = "길";
-
-"type.highway.path.trail_visibility_intermediate" = "길";
-
-"type.highway.path.trail_visibility_no" = "길";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "터널";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "거리";
 
-"type.highway.track.grade2" = "거리";
-
-"type.highway.track.grade3" = "거리";
-
-"type.highway.track.grade4" = "거리";
-
-"type.highway.track.grade5" = "거리";
-
 "type.highway.track.no.access" = "거리";
-
-"type.highway.track.permissive" = "거리";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "터널";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "농지";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "정원";
 
 "type.leisure.golf_course" = "골프장";
+
+"type.leisure.miniature_golf" = "미니골프";
 
 "type.leisure.hackerspace" = "해커스 스페이스";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "자연";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "베어 락";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "페블";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "스토니 스크리";
 
 "type.natural.bay" = "만";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "수족관";
 
-"type.tourism.alpine_hut" = "고산 오두막";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "마운틴 롯지";
 
-"type.tourism.apartment" = "아파트";
+"type.tourism.apartment" = "홀리데이 아파트";
 
 "type.tourism.artwork" = "작품";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "관광 명소";
 
-"type.tourism.attraction.animal" = "관광 명소";
+"type.attraction.animal" = "동물 인클로저";
 
 "type.tourism.attraction.specified" = "관광 명소";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "카라반 사용가능 캠핑장";
 
-"type.tourism.chalet" = "별장";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "홀리데이 코티지";
 
 "type.tourism.gallery" = "갤러리";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "관광안내도";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "관광정보센터";
 
 "type.tourism.information.visitor_centre" = "방문자 센터";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "피크닉 장소";
 
-"type.tourism.resort" = "리조트";
+"type.leisure.resort" = "리조트";
 
 "type.tourism.theme_park" = "테마 파크";
 
 "type.tourism.viewpoint" = "관점";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "황야 오두막";
 
 "type.tourism.zoo" = "동물원";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "강";
 
 "type.waterway.river.tunnel" = "강";
-
-"type.waterway.riverbank" = "강";
 
 "type.waterway.stream" = "강";
 

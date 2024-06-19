@@ -216,6 +216,10 @@
 	<string name="pref_map_3d_buildings_disabled_summary">Tòa nhà 3D bị tắt ở chế độ tiết kiệm năng lượng</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Hướng dẫn bằng Giọng nói</string>
+	<!-- Settings «Route» category: «Tts announce street names» title -->
+	<string name="pref_tts_street_names_title">Thông báo tên đường</string>
+	<!-- Settings «Route» category: «Tts announce street names» description -->
+	<string name="pref_tts_street_names_description">Nếu bật, sẽ đọc to tên đường hoặc lối ra để rẽ vào.</string>
 	<!-- Settings «Route» category: «Tts language» title -->
 	<string name="pref_tts_language_title">Ngôn ngữ Giọng nói</string>
 	<!-- Settings «Route» category: «Test Voice Directions» title -->
@@ -451,6 +455,8 @@
 	<string name="editor_edit_place_title">Chỉnh sửa</string>
 	<string name="editor_add_place_title">Nhập</string>
 	<string name="editor_edit_place_name_hint">Tên địa điểm</string>
+	<!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
+	<string name="editor_default_language_hint">Vì nó được viết bằng ngôn ngữ địa phương</string>
 	<string name="editor_edit_place_category_title">Thể loại</string>
 	<string name="detailed_problem_description">Mô tả chi tiết của vấn đề</string>
 	<string name="editor_report_problem_other_title">Một vấn đề khác</string>
@@ -476,6 +482,8 @@
 	<string name="editor_detailed_description">Những thay đổi đề nghị của bạn sẽ được gửi đến cộng đồng OpenStreetMap. Mô tả các chi tiết không thể sửa trong Organic Maps.</string>
 	<string name="editor_more_about_osm">Thông tin bổ sung về OpenStreetMap</string>
 	<string name="editor_operator">Đơn vị điều hành</string>
+	<string name="editor_category_unsuitable_title">Không thể tìm thấy một danh mục phù hợp?</string>
+	<string name="editor_category_unsuitable_text">Bản đồ không phải trả tiền chỉ cho phép thêm các danh mục điểm đơn giản, nghĩa là không có thị trấn, đường, hồ, đường viền tòa nhà, v.v. Vui lòng thêm các danh mục đó trực tiếp vào <a href="https://www.openstreetmap.org">OpenStreetMap.org</a>. Hãy xem <a href="https://organicmaps.app/faq/editing/advanced-map-editing">hướng dẫn</a> của chúng tôi để biết hướng dẫn chi tiết từng bước.</string>
 	<string name="downloader_no_downloaded_maps_title">Bạn chưa tải về bất kỳ bản đồ nào</string>
 	<string name="downloader_no_downloaded_maps_message">Tải về bản đồ để tìm địa điểm và định hướng ngoại tuyến.</string>
 	<!-- abbreviation for meters -->
@@ -515,7 +523,7 @@
 	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Chắc chắn rằng bạn không nhập bất kỳ thông tin cá nhân nào.</string>
 	<string name="editor_share_to_all_dialog_message_2">Các biên tập viên của OpenStreetMap sẽ kiểm tra các thay đổi và liên hệ với bạn nếu họ có bất kỳ câu hỏi nào.</string>
-	<string name="navigation_stop_button">dừng</string>
+	<string name="navigation_stop_button">Dừng</string>
 	<!-- For the first routing -->
 	<string name="accept">Chấp nhận</string>
 	<!-- For the first routing -->
@@ -548,6 +556,8 @@
 	<string name="routing_add_finish_point">Bổ sung điểm kết thúc để lập kế hoạch lộ trình</string>
 	<string name="placepage_remove_stop">Xóa</string>
 	<string name="placepage_add_stop">Thêm điểm dừng</string>
+	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
+	<string name="alert_reauth_message">Vui lòng đăng nhập vào OpenStreetMap để tự động tải lên tất cả các chỉnh sửa bản đồ của bạn. Tìm hiểu thêm <a href="https://github.com/organicmaps/organicmaps/issues/6144">tại đây</a>.</string>
 	<string name="dialog_error_storage_title">Vấn đề truy cập ổ lưu trữ</string>
 	<string name="dialog_error_storage_message">Ổ lưu trữ bên ngoài không khả dụng, có thể Thẻ SD đã bị tháo, bị hỏng hoặc hệ thống tập tin được thiết lập chỉ đọc. Hãy kiểm tra và liên hệ với chúng tôi qua support\@organicmaps.app</string>
 	<string name="setting_emulate_bad_storage">Giả lập ổ lưu trữ hỏng</string>
@@ -595,7 +605,8 @@
 	<string name="bookmarks_empty_list_title">Danh sách trống</string>
 	<string name="bookmarks_empty_list_message">Để thêm dấu trang, hãy nhấn vào một địa điểm trên bản đồ và sau đó nhấn vào biểu tượng dấu sao</string>
 	<string name="category_desc_more">…thêm</string>
-	<string name="export_file">Xuất tập tin</string>
+	<string name="export_file">Xuất KMZ</string>
+	<string name="export_file_gpx">Xuất GPX</string>
 	<string name="delete_list">Xóa danh sách</string>
 	<string name="public_access">Truy cập công khai</string>
 	<string name="limited_access">Truy cập hạn chế</string>
@@ -657,6 +668,8 @@
 	<string name="by_distance">Theo khoảng cách</string>
 	<!-- Android -->
 	<string name="by_date">Theo ngày</string>
+	<!-- Android -->
+	<string name="by_name">Theo Tên</string>
 	<string name="week_ago_sorttype">Tuần trước</string>
 	<string name="month_ago_sorttype">Tháng trước</string>
 	<string name="moremonth_ago_sorttype">Hơn một tháng trước</string>
@@ -722,16 +735,16 @@
 	<string name="app_tip_08">Bạn có thể dễ dàng sửa chữa và cải thiện dữ liệu bản đồ.</string>
 	<!-- App tip #09 -->
 	<string name="app_tip_09">Mục tiêu chính của chúng tôi là xây dựng các bản đồ nhanh chóng, tập trung vào quyền riêng tư, dễ sử dụng mà bạn sẽ yêu thích.</string>
-	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
-	<string name="aa_used_on_the_phone_screen">Bạn hiện đang sử dụng bản đồ không phải trả tiền trên màn hình điện thoại</string>
+	<!-- Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen -->
+	<string name="car_used_on_the_phone_screen">Bạn hiện đang sử dụng bản đồ không phải trả tiền trên màn hình điện thoại</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
-	<string name="aa_used_on_the_car_screen">Bạn hiện đang sử dụng bản đồ không phải trả tiền trên màn hình ô tô</string>
+	<string name="car_used_on_the_car_screen">Bạn hiện đang sử dụng bản đồ không phải trả tiền trên màn hình ô tô</string>
 	<!-- Displayed on the phone screen. Android Auto connected -->
 	<string name="aa_connected_title">Bạn đã kết nối với Android Auto</string>
 	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
-	<string name="aa_continue_on_the_phone">Tiếp tục trên điện thoại</string>
-	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
-	<string name="aa_continue_in_the_car">Đến màn hình ô tô</string>
+	<string name="car_continue_on_the_phone">Tiếp tục trên điện thoại</string>
+	<!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="car_continue_in_the_car">Đến màn hình ô tô</string>
 	<!-- Ask user to grant location permissions -->
 	<string name="aa_location_permissions_request">Ứng dụng này yêu cầu quyền truy cập vào vị trí của bạn cho mục đích điều hướng.</string>
 	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
@@ -749,6 +762,15 @@
 	<string name="pref_tts_open_system_settings">Cài đặt tổng hợp giọng nói của hệ thống</string>
 	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
 	<string name="pref_tts_no_system_tts">Không tìm thấy cài đặt Tổng hợp giọng nói, bạn có chắc thiết bị của mình hỗ trợ nó không?</string>
+	<string name="drive_through">Lái xe qua</string>
+	<string name="clear_the_search">Xóa tìm kiếm</string>
+	<string name="zoom_in">Phóng to</string>
+	<!-- Accessibility text for the zoom-out button on the map -->
+	<string name="zoom_out">Thu nhỏ</string>
+	<!-- Restaurant or other food place's menu URL field in the Editor -->
+	<string name="website_menu">Liên kết thực đơn</string>
+	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
+	<string name="view_menu">Xem thực đơn</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Địa chỉ/Khối</string>
@@ -762,7 +784,7 @@
 	<string name="type.amenity.arts_centre">Trung tâm nghệ thuật</string>
 	<string name="type.amenity.bank">Ngân hàng</string>
 	<string name="type.amenity.bar">Quán bar</string>
-	<string name="type.amenity.bbq">Điểm cắm trại</string>
+	<string name="type.amenity.bbq">Nướng thịt nướng</string>
 	<string name="type.amenity.bench">Xe đạp</string>
 	<string name="type.amenity.bicycle_parking">Chỗ Đậu Xe Đạp</string>
 	<string name="type.amenity.bicycle_rental">Cho thuê xe đạp</string>
@@ -878,7 +900,12 @@
 	<string name="type.recycling.small_appliances">Chất thải đồ điện</string>
 	<string name="type.amenity.restaurant">Quán ăn</string>
 	<string name="type.amenity.school">Trường học</string>
+	<!-- Weather shelter (including sun shelters and natural rock shelters). -->
 	<string name="type.amenity.shelter">Chổ nương thân</string>
+	<!-- A weather shelter by the public transport stop. -->
+	<string name="type.amenity.shelter.public_transport">Chổ nương thân</string>
+	<!-- Compared to wilderness_hut its smaller and simpler, without a fireplace. -->
+	<string name="type.amenity.shelter.basic_hut">Túp lều Bivouac</string>
 	<string name="type.amenity.public_bath">Nhà tắm công cộng</string>
 	<string name="type.amenity.shower">Nhà tắm</string>
 	<string name="type.amenity.stripclub">Câu lạc bộ thoát y</string>
@@ -1079,22 +1106,9 @@
 	<string name="type.highway.footway">Đường</string>
 	<string name="type.highway.footway.sidewalk">Đường đi bộ</string>
 	<string name="type.highway.footway.crossing">Vạch qua đường</string>
-	<string name="type.highway.footway.alpine_hiking">Đường</string>
 	<string name="type.highway.footway.area">Đường</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.footway.bridge">Cầu</string>
-	<string name="type.highway.footway.demanding_alpine_hiking">Đường</string>
-	<string name="type.highway.footway.demanding_mountain_hiking">Đường</string>
-	<string name="type.highway.footway.difficult_alpine_hiking">Đường</string>
-	<string name="type.highway.footway.hiking">Đường</string>
-	<string name="type.highway.footway.mountain_hiking">Đường</string>
-	<string name="type.highway.footway.permissive">Đường</string>
-	<string name="type.highway.footway.trail_visibility_bad">Đường</string>
-	<string name="type.highway.footway.trail_visibility_excellent">Đường</string>
-	<string name="type.highway.footway.trail_visibility_good">Đường</string>
-	<string name="type.highway.footway.trail_visibility_horrible">Đường</string>
-	<string name="type.highway.footway.trail_visibility_intermediate">Đường</string>
-	<string name="type.highway.footway.trail_visibility_no">Đường</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.footway.tunnel">Đường hầm</string>
 	<string name="type.highway.ford">Đập tràn</string>
@@ -1115,23 +1129,15 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.motorway_link.tunnel">Đường hầm</string>
 	<string name="type.highway.path">Đường</string>
-	<string name="type.highway.path.alpine_hiking">Đường</string>
+	<!-- Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. -->
+	<string name="type.highway.path.difficult">Đường</string>
+	<!-- Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. -->
+	<string name="type.highway.path.expert">Đường</string>
 	<string name="type.highway.path.bicycle">Đường</string>
+	<string name="type.highway.footway.bicycle">Đường</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.path.bridge">Cầu</string>
-	<string name="type.highway.path.demanding_alpine_hiking">Đường</string>
-	<string name="type.highway.path.demanding_mountain_hiking">Đường</string>
-	<string name="type.highway.path.difficult_alpine_hiking">Đường</string>
-	<string name="type.highway.path.hiking">Đường</string>
 	<string name="type.highway.path.horse">Đường</string>
-	<string name="type.highway.path.mountain_hiking">Đường</string>
-	<string name="type.highway.path.permissive">Đường</string>
-	<string name="type.highway.path.trail_visibility_bad">Đường</string>
-	<string name="type.highway.path.trail_visibility_excellent">Đường</string>
-	<string name="type.highway.path.trail_visibility_good">Đường</string>
-	<string name="type.highway.path.trail_visibility_horrible">Đường</string>
-	<string name="type.highway.path.trail_visibility_intermediate">Đường</string>
-	<string name="type.highway.path.trail_visibility_no">Đường</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.path.tunnel">Đường hầm</string>
 	<string name="type.highway.pedestrian">Phố</string>
@@ -1204,12 +1210,7 @@
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.track.bridge">Cầu</string>
 	<string name="type.highway.track.grade1">Phố</string>
-	<string name="type.highway.track.grade2">Phố</string>
-	<string name="type.highway.track.grade3">Phố</string>
-	<string name="type.highway.track.grade4">Phố</string>
-	<string name="type.highway.track.grade5">Phố</string>
 	<string name="type.highway.track.no.access">Phố</string>
-	<string name="type.highway.track.permissive">Phố</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.track.tunnel">Đường hầm</string>
 	<string name="type.highway.traffic_signals">Đèn Giao Thông</string>
@@ -1338,7 +1339,12 @@
 	<string name="type.man_made.windmill">Cối xay gió</string>
 	<string name="type.military.bunker">Boongke</string>
 	<string name="type.natural">Tự nhiên</string>
+	<!-- A rocky land cover. -->
 	<string name="type.natural.bare_rock">Đá trần</string>
+	<!-- A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. -->
+	<string name="type.natural.shingle">Ván lợp</string>
+	<!-- A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. -->
+	<string name="type.natural.scree">Sàng</string>
 	<string name="type.natural.bay">Vịnh</string>
 	<string name="type.natural.beach">Bãi biển</string>
 	<string name="type.natural.beach.sand">Bãi cát</string>
@@ -1838,19 +1844,21 @@
 	<string name="type.sport.badminton">Cầu lông</string>
 	<string name="type.sport.pelota">Pơ mu Basque</string>
 	<string name="type.tourism.aquarium">Bể nuôi cá</string>
-	<string name="type.tourism.alpine_hut">Nhà ở trên núi</string>
-	<string name="type.tourism.apartment">Căn hộ</string>
+	<!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
+	<string name="type.tourism.alpine_hut">Nhà nghỉ trên núi</string>
+	<string name="type.tourism.apartment">Căn hộ nghỉ dưỡng</string>
 	<string name="type.tourism.artwork">Du lịch</string>
 	<string name="type.tourism.artwork.architecture">Du lịch</string>
 	<string name="type.tourism.artwork.painting">Du lịch</string>
 	<string name="type.tourism.artwork.sculpture">Du lịch</string>
 	<string name="type.tourism.artwork.statue">Du lịch</string>
 	<string name="type.tourism.attraction">Hấp dẫn</string>
-	<string name="type.tourism.attraction.animal">Hấp dẫn</string>
+	<string name="type.attraction.animal">Bao vây động vật</string>
 	<string name="type.tourism.attraction.specified">Hấp dẫn</string>
 	<string name="type.tourism.camp_site">Cắm trại</string>
 	<string name="type.tourism.caravan_site">Khu lễ hội hóa trang</string>
-	<string name="type.tourism.chalet">Khách sạn</string>
+	<!-- A rentable countryside vacation house. -->
+	<string name="type.tourism.chalet">Nha nghi</string>
 	<string name="type.tourism.gallery">Diểm tham quan</string>
 	<string name="type.tourism.guest_house">Nhà khách</string>
 	<string name="type.tourism.hostel">Nhà trọ</string>
@@ -1864,9 +1872,10 @@
 	<string name="type.tourism.motel">Nhà nghỉ</string>
 	<string name="type.tourism.museum">Bảo tàng</string>
 	<string name="type.tourism.picnic_site">Điểm cắm trại</string>
-	<string name="type.tourism.resort">Khu nghỉ dưỡng</string>
+	<string name="type.leisure.resort">Khu nghỉ dưỡng</string>
 	<string name="type.tourism.theme_park">Diểm tham quan</string>
 	<string name="type.tourism.viewpoint">Điểm nhìn</string>
+	<!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
 	<string name="type.tourism.wilderness_hut">Nhà tạm trú</string>
 	<string name="type.tourism.zoo">Vườn bách thú</string>
 	<string name="type.tourism.zoo.petting">Vườn thú cưng</string>
@@ -1879,7 +1888,6 @@
 	<string name="type.waterway.lock_gate">Cổng Khóa</string>
 	<string name="type.waterway.river">Sông</string>
 	<string name="type.waterway.river.tunnel">Sông</string>
-	<string name="type.waterway.riverbank">Sông</string>
 	<string name="type.waterway.stream">Sông</string>
 	<string name="type.waterway.stream.ephemeral">Sông</string>
 	<string name="type.waterway.stream.intermittent">Sông</string>

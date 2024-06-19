@@ -12,11 +12,10 @@
 
 namespace gui
 {
-Handle::Handle(uint32_t id, dp::Anchor anchor, m2::PointF const & pivot, m2::PointF const & size)
+Handle::Handle(uint32_t id, dp::Anchor anchor, m2::PointF const & pivot)
   : dp::OverlayHandle(dp::OverlayID(FeatureID(MwmSet::MwmId{}, id)), anchor, 0 /* priority */,
                       1 /* minVisibleScale */, false /* isBillboard */)
   , m_pivot(glsl::ToVec2(pivot))
-  , m_size(size)
 {}
 
 bool Handle::Update(ScreenBase const & screen)
@@ -200,12 +199,9 @@ void ShapeControl::AddShape(dp::RenderState const & state, drape_ptr<dp::RenderB
   ASSERT(bucket->GetOverlayHandlesCount() == 1, ());
 
   drape_ptr<dp::OverlayHandle> handle = bucket->PopOverlayHandle();
-  ASSERT(dynamic_cast<Handle *>(handle.get()) != nullptr, ());
+  ASSERT(dynamic_cast<Handle *>(handle.get()), ());
 
-  m_shapesInfo.emplace_back(ShapeInfo());
-  ShapeInfo & info = m_shapesInfo.back();
-  info.m_state = state;
-  info.m_buffer = bucket->MoveBuffer();
-  info.m_handle = drape_ptr<Handle>(static_cast<Handle *>(handle.release()));
+  m_shapesInfo.emplace_back(state, std::move(bucket->MoveBuffer()),
+                            drape_ptr<Handle>(static_cast<Handle *>(handle.release())));
 }
 }  // namespace gui

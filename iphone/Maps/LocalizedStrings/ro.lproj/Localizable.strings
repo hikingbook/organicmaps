@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instrucțiuni vocale";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Anunțați numele străzilor";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Când este activată, numele străzii sau al ieșirii pe care să o pornim va fi rostit cu voce tare.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Limba ghidului vocal";
 
@@ -629,6 +635,8 @@
 
 "login" = "Autentificare";
 
+"login_osm" = "Conectați-vă la OpenStreetMap";
+
 "forgot_password" = "Ai uitat parola?";
 
 "osm_account" = "Cont OSM";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Adaugă";
 
 "editor_edit_place_name_hint" = "Numele locului";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Așa cum este scris în limba locală";
 
 "editor_edit_place_category_title" = "Categorie";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Șterge locul preferat";
 
-"editor_edits_sent_message" = "Modificările sugerate au fost trimise";
+"editor_edits_sent_message" = "Nota dvs. va fi trimisă către OpenStreetMap";
 
 "editor_comment_hint" = "Comentariu…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Editorii OpenStreetMap vor verifica modificările și vor lua legătura cu dvs. dacă au întrebări.";
 
-"navigation_stop_button" = "oprește";
+"navigation_stop_button" = "Oprește";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Dezactivezi înregistrarea celui mai recent traseu efectuat?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "A apărut o eroare. Încearcă să te conectezi din nou.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Vă rugăm să vă conectați la OpenStreetMap pentru a încărca automat toate modificările aduse hărții. Aflați mai multe";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "aici";
+
 "core_entrance" = "Intrare";
 
 "error_enter_correct_name" = "Introdu un nume corect";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Populare";
 
-"export_file" = "Exportă fișierul";
+"export_file" = "Export KMZ";
+
+"export_file_gpx" = "Exportați GPX";
 
 "delete_list" = "Șterge lista";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Sortează după dată";
 
+"sort_name" = "Sortează după nume";
+
 "week_ago_sorttype" = "Acum o săptămână";
 
 "month_ago_sorttype" = "Acum o lună";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Acum utilizați Organic Maps pe ecranul telefonului";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Acum utilizați Organic Maps pe ecranul mașinii";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Continuați în telefon";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "La ecranul mașinii";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Drumeție";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Hartă";
+
+"drive_through" = "Servire în mașină";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Legătura de meniu";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Activați Sincronizarea iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "Sincronizarea iCloud este o funcție experimentală aflată în curs de dezvoltare. Asigurați-vă că ați făcut o copie de rezervă a tuturor marcajelor și pieselor dvs.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud este dezactivat";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Vă rugăm să activați iCloud în setările dispozitivului dvs. pentru a utiliza această funcție.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Activați";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Backup";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Eroare: Nu s-a reușit sincronizarea din cauza unei erori de conexiune";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Eroare: Nu s-a reușit sincronizarea din cauza depășirii cotei iCloud";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Eroare: iCloud nu este disponibil";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Bar";
 
-"type.amenity.bbq" = "Locații picnic";
+"type.amenity.bbq" = "Grătar";
 
 "type.amenity.bench" = "Banchetă";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Școală";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Adăpost";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Adăpost";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Baracă de Bivuac";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Baie publică";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "Parcul național";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Ieșire";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Gratuit";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Trecere de pietoni";
 
-"type.highway.footway.alpine_hiking" = "Cale";
-
 "type.highway.footway.area" = "Cale";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Pod";
-
-"type.highway.footway.demanding_alpine_hiking" = "Cale";
-
-"type.highway.footway.demanding_mountain_hiking" = "Cale";
-
-"type.highway.footway.difficult_alpine_hiking" = "Cale";
-
-"type.highway.footway.hiking" = "Cale";
-
-"type.highway.footway.mountain_hiking" = "Cale";
-
-"type.highway.footway.permissive" = "Cale";
-
-"type.highway.footway.trail_visibility_bad" = "Cale";
-
-"type.highway.footway.trail_visibility_excellent" = "Cale";
-
-"type.highway.footway.trail_visibility_good" = "Cale";
-
-"type.highway.footway.trail_visibility_horrible" = "Cale";
-
-"type.highway.footway.trail_visibility_intermediate" = "Cale";
-
-"type.highway.footway.trail_visibility_no" = "Cale";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Tunel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Cale";
 
-"type.highway.path.alpine_hiking" = "Cale";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Cale";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Cale";
 
 "type.highway.path.bicycle" = "Cale";
+
+"type.highway.footway.bicycle" = "Cale";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Pod";
 
-"type.highway.path.demanding_alpine_hiking" = "Cale";
-
-"type.highway.path.demanding_mountain_hiking" = "Cale";
-
-"type.highway.path.difficult_alpine_hiking" = "Cale";
-
-"type.highway.path.hiking" = "Cale";
-
 "type.highway.path.horse" = "Cale";
-
-"type.highway.path.mountain_hiking" = "Cale";
-
-"type.highway.path.permissive" = "Cale";
-
-"type.highway.path.trail_visibility_bad" = "Cale";
-
-"type.highway.path.trail_visibility_excellent" = "Cale";
-
-"type.highway.path.trail_visibility_good" = "Cale";
-
-"type.highway.path.trail_visibility_horrible" = "Cale";
-
-"type.highway.path.trail_visibility_intermediate" = "Cale";
-
-"type.highway.path.trail_visibility_no" = "Cale";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tunel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Stradă";
 
-"type.highway.track.grade2" = "Stradă";
-
-"type.highway.track.grade3" = "Stradă";
-
-"type.highway.track.grade4" = "Stradă";
-
-"type.highway.track.grade5" = "Stradă";
-
 "type.highway.track.no.access" = "Stradă";
-
-"type.highway.track.permissive" = "Stradă";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tunel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "Teren arabil";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Sit arheologic";
 
 "type.leisure.golf_course" = "Teren de golf";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Natură";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Piatră goală";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Pietriș";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Grohotiș";
 
 "type.natural.bay" = "Golf";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Acvariu";
 
-"type.tourism.alpine_hut" = "Cabană de munte";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Cabana de munte";
 
-"type.tourism.apartment" = "Apartamente";
+"type.tourism.apartment" = "Apartament de vacanță";
 
 "type.tourism.artwork" = "Turism";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Punct de atracție";
 
-"type.tourism.attraction.animal" = "Punct de atracție";
+"type.attraction.animal" = "Incintă pentru animale";
 
 "type.tourism.attraction.specified" = "Punct de atracție";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Teren pentru campare";
 
-"type.tourism.chalet" = "Cabană";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Cabană de vacanță";
 
 "type.tourism.gallery" = "Galerie";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Hartă turistică";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Birou de informații turistice";
 
 "type.tourism.information.visitor_centre" = "Centrul pentru vizitatori";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "Locații picnic";
 
-"type.tourism.resort" = "Stațiuni";
+"type.leisure.resort" = "Stațiuni";
 
 "type.tourism.theme_park" = "Parc de distracții";
 
 "type.tourism.viewpoint" = "Punct de vedere";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Cabană în pădure";
 
 "type.tourism.zoo" = "Grădină zoologică";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Râu";
 
 "type.waterway.river.tunnel" = "Râu";
-
-"type.waterway.riverbank" = "Râu";
 
 "type.waterway.stream" = "Râu";
 

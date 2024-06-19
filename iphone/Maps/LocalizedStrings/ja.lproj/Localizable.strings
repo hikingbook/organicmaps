@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "音声指示";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "通りの名前を発表";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "有効にすると、右折する通りまたは出口の名前が読み上げられます。";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "音声言語";
 
@@ -629,6 +635,8 @@
 
 "login" = "ログイン";
 
+"login_osm" = "OpenStreetMapにログイン";
+
 "forgot_password" = "パスワードをお忘れですか？";
 
 "osm_account" = "OSMアカウント";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "追加中";
 
 "editor_edit_place_name_hint" = "場所の名前";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "現地の言葉でこう書かれている。";
 
 "editor_edit_place_category_title" = "カテゴリ";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "ブックマークを削除";
 
-"editor_edits_sent_message" = "変更の提案を送信しました";
+"editor_edits_sent_message" = "あなたのメモはOpenStreetMapに送られる";
 
 "editor_comment_hint" = "コメント…";
 
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "エラーが発生しました。もう一度サインインしてみてください。";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "すべてのマップ編集を自動的にアップロードするには、OpenStreetMapにログインしてください。詳しくは";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "こちら";
+
 "core_entrance" = "入口";
 
 "error_enter_correct_name" = "正しい名前を入力してください";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "人気";
 
-"export_file" = "ファイルのエクスポート";
+"export_file" = "KMZをエクスポートする";
+
+"export_file_gpx" = "GPXをエクスポートする";
 
 "delete_list" = "リストを削除";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "日付で並び替え";
 
+"sort_name" = "名前でソートする";
+
 "week_ago_sorttype" = "1週間前";
 
 "month_ago_sorttype" = "1ケ月前";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/JA:参加する";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "端末の画面でOrganic Mapsを使用している";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "あなたは今、車の画面でオーガニック・マップを使用している";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "電話で続ける";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "車のスクリーンへ";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "ハイキング";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "地図";
+
+"drive_through" = "ドライブスルー";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "メニューリンク";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "iCloud同期を有効にする";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud同期は開発中の実験的機能である。すべてのブックマークとトラックのバックアップをとっておくこと。";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloudが無効になっている";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "この機能を使うには、デバイスの設定でiCloudを有効にしてほしい。";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "有効にする";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "バックアップ";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "エラー：接続エラーにより同期に失敗した";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "エラー：iCloudのクォータが超過したため、同期に失敗しました。";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "エラー：iCloudが利用できない";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "居酒屋";
 
-"type.amenity.bbq" = "ピクニック";
+"type.amenity.bbq" = "バーベキューグリル";
 
 "type.amenity.bench" = "ベンチ";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "学校";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "避難所";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "避難所";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "ビバーク小屋";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "公衆浴場";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "行政境界";
 
-"type.boundary.administrative.10" = "行政境界";
-
-"type.boundary.administrative.11" = "行政境界";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "行政境界";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "行政境界";
-
-"type.boundary.administrative.5" = "行政境界";
-
-"type.boundary.administrative.6" = "行政境界";
-
-"type.boundary.administrative.7" = "行政境界";
-
-"type.boundary.administrative.8" = "行政境界";
-
-"type.boundary.administrative.9" = "行政境界";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "国立公園";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "終了する";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "無料";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "横断歩道";
 
-"type.highway.footway.alpine_hiking" = "歩道";
-
 "type.highway.footway.area" = "歩道";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "橋";
-
-"type.highway.footway.demanding_alpine_hiking" = "歩道";
-
-"type.highway.footway.demanding_mountain_hiking" = "歩道";
-
-"type.highway.footway.difficult_alpine_hiking" = "歩道";
-
-"type.highway.footway.hiking" = "歩道";
-
-"type.highway.footway.mountain_hiking" = "歩道";
-
-"type.highway.footway.permissive" = "歩道";
-
-"type.highway.footway.trail_visibility_bad" = "歩道";
-
-"type.highway.footway.trail_visibility_excellent" = "歩道";
-
-"type.highway.footway.trail_visibility_good" = "歩道";
-
-"type.highway.footway.trail_visibility_horrible" = "歩道";
-
-"type.highway.footway.trail_visibility_intermediate" = "歩道";
-
-"type.highway.footway.trail_visibility_no" = "歩道";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "トンネル";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "歩道";
 
-"type.highway.path.alpine_hiking" = "歩道";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "歩道";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "歩道";
 
 "type.highway.path.bicycle" = "歩道";
+
+"type.highway.footway.bicycle" = "歩道";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "橋";
 
-"type.highway.path.demanding_alpine_hiking" = "歩道";
-
-"type.highway.path.demanding_mountain_hiking" = "歩道";
-
-"type.highway.path.difficult_alpine_hiking" = "歩道";
-
-"type.highway.path.hiking" = "歩道";
-
 "type.highway.path.horse" = "歩道";
-
-"type.highway.path.mountain_hiking" = "歩道";
-
-"type.highway.path.permissive" = "歩道";
-
-"type.highway.path.trail_visibility_bad" = "歩道";
-
-"type.highway.path.trail_visibility_excellent" = "歩道";
-
-"type.highway.path.trail_visibility_good" = "歩道";
-
-"type.highway.path.trail_visibility_horrible" = "歩道";
-
-"type.highway.path.trail_visibility_intermediate" = "歩道";
-
-"type.highway.path.trail_visibility_no" = "歩道";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "トンネル";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "ストリート";
 
-"type.highway.track.grade2" = "ストリート";
-
-"type.highway.track.grade3" = "ストリート";
-
-"type.highway.track.grade4" = "ストリート";
-
-"type.highway.track.grade5" = "ストリート";
-
 "type.highway.track.no.access" = "ストリート";
-
-"type.highway.track.permissive" = "ストリート";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "トンネル";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "農地";
-
 "type.landuse.farmland" = "農地";
 
 "type.landuse.farmyard" = "農地";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "庭園";
 
 "type.leisure.golf_course" = "ゴルフコース";
+
+"type.leisure.miniature_golf" = "ミニゴルフ";
 
 "type.leisure.hackerspace" = "ハッカースペース";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "自然";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "岩肌";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "小石";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "石がゴロゴロしている";
 
 "type.natural.bay" = "港湾";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "水族館";
 
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
 "type.tourism.alpine_hut" = "山小屋";
 
-"type.tourism.apartment" = "アパート";
+"type.tourism.apartment" = "ホリデー・アパート";
 
 "type.tourism.artwork" = "芸術";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "アトラクション";
 
-"type.tourism.attraction.animal" = "動物";
+"type.attraction.animal" = "アニマル・エンクロージャー";
 
 "type.tourism.attraction.specified" = "アトラクション";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "オートキャンプ場";
 
-"type.tourism.chalet" = "シャレー";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "ホリデー・コテージ";
 
 "type.tourism.gallery" = "美術館";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "観光マップ";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "観光案内所";
 
 "type.tourism.information.visitor_centre" = "ビジターセンター";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "ピクニック場";
 
-"type.tourism.resort" = "リゾート";
+"type.leisure.resort" = "リゾート";
 
 "type.tourism.theme_park" = "テーマパーク";
 
 "type.tourism.viewpoint" = "観光スポット";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "無人小屋";
 
 "type.tourism.zoo" = "動物園";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "河川";
 
 "type.waterway.river.tunnel" = "河川";
-
-"type.waterway.riverbank" = "河川";
 
 "type.waterway.stream" = "小川";
 

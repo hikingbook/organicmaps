@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Sesli Yönlendirme";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Sokak İsimlerini Duyur";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Etkinleştirildiğinde, dönülecek sokağın veya çıkışın adı yüksek sesle söylenecektir.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Ses Dili";
 
@@ -629,6 +635,8 @@
 
 "login" = "Oturum aç";
 
+"login_osm" = "OpenStreetMap'e giriş yap";
+
 "forgot_password" = "Şifreni mi unuttun?";
 
 "osm_account" = "OSM Hesabı";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Ekleme";
 
 "editor_edit_place_name_hint" = "Yerin adı";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Yerel dilde yazıldığı gibi";
 
 "editor_edit_place_category_title" = "Kategori";
 
@@ -786,7 +797,7 @@
 "km" = "km";
 
 /* abbreviation for kilometers per hour */
-"kilometers_per_hour" = "km/s";
+"kilometers_per_hour" = "km/sa";
 
 /* abbreviation for mile(s) */
 "mi" = "mil";
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Yer İmini Sil";
 
-"editor_edits_sent_message" = "Önerdiğiniz değişiklikler gönderildi";
+"editor_edits_sent_message" = "Notunuz OpenStreetMap'e gönderilecektir";
 
 "editor_comment_hint" = "Yorum…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "OpenStreetMap editörleri değişikliklerinizi kontrol edecek ve bir soruları olursa sizinle iletişime geçecekler.";
 
-"navigation_stop_button" = "dur";
+"navigation_stop_button" = "Dur";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "En son seyahat edilen rotanızı kaydetmeyi devre dışı bırakmak istiyor musunuz?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Üzgünüz, bir hata oluştu. Tekrar oturum açmayı deneyin.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Tüm harita düzenlemelerinizi otomatik olarak yüklemek için lütfen OpenStreetMap'e giriş yapın. Daha fazla bilgi";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "burada";
+
 "core_entrance" = "Giriş";
 
 "error_enter_correct_name" = "Lütfen doğru bir isim girin";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popüler";
 
-"export_file" = "Dosyayı dışa aktar";
+"export_file" = "KMZ'yi Dışa Aktar";
+
+"export_file_gpx" = "GPX'i Dışa Aktar";
 
 "delete_list" = "Listeyi sil";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Tarihe göre sırala";
 
+"sort_name" = "İsme göre sırala";
+
 "week_ago_sorttype" = "Bir hafta önce";
 
 "month_ago_sorttype" = "Bir ay önce";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Tr:About";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Artık telefon ekranında Organic Maps kullanıyorsunuz";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Şu anda araç ekranında Organic Maps kullanıyorsunuz";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Telefonda devam edin";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "Araba ekranına";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Yürüyüş";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Harita";
+
+"drive_through" = "Arabaya servis";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Menü bağlantısı";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "iCloud Senkronizasyonunu Etkinleştir";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "iCloud senkronizasyonu geliştirme aşamasında olan deneysel bir özelliktir. Tüm yer imlerinizin ve parçalarınızın yedeğini aldığınızdan emin olun.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud Devre Dışı";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Bu özelliği kullanmak için lütfen cihazınızın ayarlarında iCloud'u etkinleştirin.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Etkinleştir";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Yedekleme";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Hata oluştu: Bağlantı hatası nedeniyle senkronizasyon başarısız oldu";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Hata: iCloud kotası aşıldığı için senkronize edilemedi";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Hata: iCloud kullanılamıyor";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Bar";
 
-"type.amenity.bbq" = "Piknik Alanı";
+"type.amenity.bbq" = "Barbekü ızgara";
 
 "type.amenity.bench" = "Bank";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Okul";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Barınak";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Barınak";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Bivouac Kulübe";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Hamam";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "İdari Sınır";
 
-"type.boundary.administrative.10" = "İdari Sınır";
-
-"type.boundary.administrative.11" = "İdari Sınır";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "Ulusal Sınır";
 
-"type.boundary.administrative.3" = "İdari Sınır";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Bölgesel Sınır";
 
-"type.boundary.administrative.4" = "İdari Sınır";
-
-"type.boundary.administrative.5" = "İdari Sınır";
-
-"type.boundary.administrative.6" = "İdari Sınır";
-
-"type.boundary.administrative.7" = "İdari Sınır";
-
-"type.boundary.administrative.8" = "İdari Sınır";
-
-"type.boundary.administrative.9" = "İdari Sınır";
-
-"type.boundary.administrative.city" = "Şehir Sınırı";
-
-"type.boundary.administrative.country" = "Ulusal Sınır";
-
-"type.boundary.administrative.county" = "İlçe Sınırı";
-
-"type.boundary.administrative.municipality" = "Belediye Sınırı";
-
-"type.boundary.administrative.nation" = "Ulusal Sınır";
-
-"type.boundary.administrative.region" = "Bölgesel Sınır";
-
-"type.boundary.administrative.state" = "Devlet Sınırı";
-
-"type.boundary.administrative.suburb" = "Mahalle Sınırı";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Bölgesel Sınır";
 
 "type.boundary.national_park" = "Ulusal Park";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Çıkış";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Ücretsiz";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Yaya Geçidi";
 
-"type.highway.footway.alpine_hiking" = "Yol";
-
 "type.highway.footway.area" = "Yaya Alanı";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Köprü";
-
-"type.highway.footway.demanding_alpine_hiking" = "Yol";
-
-"type.highway.footway.demanding_mountain_hiking" = "Yol";
-
-"type.highway.footway.difficult_alpine_hiking" = "Yol";
-
-"type.highway.footway.hiking" = "Yol";
-
-"type.highway.footway.mountain_hiking" = "Yol";
-
-"type.highway.footway.permissive" = "Yaya Yolu";
-
-"type.highway.footway.trail_visibility_bad" = "Yol";
-
-"type.highway.footway.trail_visibility_excellent" = "Yol";
-
-"type.highway.footway.trail_visibility_good" = "Yol";
-
-"type.highway.footway.trail_visibility_horrible" = "Yol";
-
-"type.highway.footway.trail_visibility_intermediate" = "Yol";
-
-"type.highway.footway.trail_visibility_no" = "Yol";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Tünel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Yol";
 
-"type.highway.path.alpine_hiking" = "Yol";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Yol";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Yol";
 
 "type.highway.path.bicycle" = "Bisiklet ve Yürüyüş Yolu";
+
+"type.highway.footway.bicycle" = "Bisiklet ve Yürüyüş Yolu";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Köprü";
 
-"type.highway.path.demanding_alpine_hiking" = "Yol";
-
-"type.highway.path.demanding_mountain_hiking" = "Yol";
-
-"type.highway.path.difficult_alpine_hiking" = "Yol";
-
-"type.highway.path.hiking" = "Yol";
-
 "type.highway.path.horse" = "Atlı Yolu";
-
-"type.highway.path.mountain_hiking" = "Yol";
-
-"type.highway.path.permissive" = "Yol";
-
-"type.highway.path.trail_visibility_bad" = "Yol";
-
-"type.highway.path.trail_visibility_excellent" = "Yol";
-
-"type.highway.path.trail_visibility_good" = "Yol";
-
-"type.highway.path.trail_visibility_horrible" = "Yol";
-
-"type.highway.path.trail_visibility_intermediate" = "Yol";
-
-"type.highway.path.trail_visibility_no" = "Yol";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tünel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Pist";
 
-"type.highway.track.grade2" = "Pist";
-
-"type.highway.track.grade3" = "Pist";
-
-"type.highway.track.grade4" = "Pist";
-
-"type.highway.track.grade5" = "Pist";
-
 "type.highway.track.no.access" = "Pist";
-
-"type.highway.track.permissive" = "Pist";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tünel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Çiftlik";
-
 "type.landuse.farmland" = "Tarım Arazileri";
 
 "type.landuse.farmyard" = "Çiftlik Bölgesi";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Konut Bahçesi";
 
 "type.leisure.golf_course" = "Golf Sahası";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Doğa";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Çıplak Kaya";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Çakıl Taşları";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Kayşat";
 
 "type.natural.bay" = "Koy";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Akvaryum";
 
-"type.tourism.alpine_hut" = "Dağda Konaklama";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Dağ Köşkü";
 
-"type.tourism.apartment" = "Apart Otel";
+"type.tourism.apartment" = "Tatil Apartmanı";
 
 "type.tourism.artwork" = "Sanat";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Görülecek Yerler";
 
-"type.tourism.attraction.animal" = "Hayvanat bahçesi";
+"type.attraction.animal" = "Hayvan Muhafazası";
 
 "type.tourism.attraction.specified" = "Görülecek Yerler";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Karavan Parkı";
 
-"type.tourism.chalet" = "Dağ Evi";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Tatil Kulübesi";
 
 "type.tourism.gallery" = "Galeri";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Turist Haritası";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Turizm Ofisi";
 
 "type.tourism.information.visitor_centre" = "Ziyaretçi Merkezi";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "Piknik Alanı";
 
-"type.tourism.resort" = "Tatil Köyü";
+"type.leisure.resort" = "Tatil Köyü";
 
 "type.tourism.theme_park" = "Tema Parkı";
 
 "type.tourism.viewpoint" = "Manzara";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Vahşi Doğa Kulübesi";
 
 "type.tourism.zoo" = "Hayvanat Bahçesi";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Nehir";
 
 "type.waterway.river.tunnel" = "Nehir";
-
-"type.waterway.riverbank" = "Nehir";
 
 "type.waterway.stream" = "Nehir";
 

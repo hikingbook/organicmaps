@@ -3,6 +3,7 @@
 #include "map/bookmark_helpers.hpp"
 
 #include "indexer/feature_utils.hpp"
+#include "indexer/ftypes_matcher.hpp"
 #include "indexer/road_shields_parser.hpp"
 
 #include "platform/localization.hpp"
@@ -68,6 +69,7 @@ void Info::SetFromFeatureType(FeatureType & ft)
   else if (!m_primaryFeatureName.empty())
   {
     m_uiTitle = m_primaryFeatureName;
+    m_uiSecondaryTitle = out.secondary;
   }
   else
   {
@@ -97,7 +99,7 @@ void Info::SetFromFeatureType(FeatureType & ft)
   m_uiSubtitle = FormatSubtitle(!emptyTitle /* withType */);
 
   // apply to all types after checks
-  m_hotelType = ftypes::IsHotelChecker::Instance().GetHotelType(ft);
+  m_isHotel = ftypes::IsHotelChecker::Instance()(ft);
 }
 
 void Info::SetMercator(m2::PointD const & mercator)
@@ -184,7 +186,7 @@ std::string Info::FormatSubtitle(bool withType) const
   // Toilets.
   if (HasToilets())
     append(feature::kToiletsSymbol);
-    
+
   // Drinking Water
   auto const drinkingWater = feature::FormatDrinkingWater(GetTypes());
   if (!drinkingWater.empty())

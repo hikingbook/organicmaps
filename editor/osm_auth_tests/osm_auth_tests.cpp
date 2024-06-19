@@ -1,19 +1,18 @@
 #include "testing/testing.hpp"
 
+#include "platform/platform.hpp"
 #include "editor/osm_auth.hpp"
 
 #include <string>
 
+namespace osm_auth
+{
 using osm::OsmOAuth;
-using osm::KeySecret;
 
 char const * kValidOsmUser = "OrganicMapsTestUser";
 char const * kValidOsmPassword = "12345678";
-namespace
-{
-constexpr char const * kInvalidOsmPassword = "123";
-constexpr char const * kForgotPasswordEmail = "osmtest1@organicmaps.app";
-}  // namespace
+static constexpr char const * kInvalidOsmPassword = "123";
+static constexpr char const * kForgotPasswordEmail = "osmtest1@organicmaps.app";
 
 UNIT_TEST(OSM_Auth_InvalidLogin)
 {
@@ -47,3 +46,4 @@ UNIT_TEST(OSM_Auth_ForgotPassword)
   TEST_EQUAL(result, false, ("Incorrect email"));
 }
 */
+}  // namespace osm_auth

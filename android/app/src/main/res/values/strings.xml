@@ -236,6 +236,10 @@
 	<string name="pref_map_3d_buildings_disabled_summary">3D buildings are disabled in power saving mode</string>
 	<!-- Settings «Route» category: «Tts enabled» title -->
 	<string name="pref_tts_enable_title">Voice Instructions</string>
+	<!-- Settings «Route» category: «Tts announce street names» title -->
+	<string name="pref_tts_street_names_title">Announce Street Names</string>
+	<!-- Settings «Route» category: «Tts announce street names» description -->
+	<string name="pref_tts_street_names_description">When enabled, the name of the street or exit to turn onto will be spoken aloud.</string>
 	<!-- Settings «Route» category: «Tts language» title -->
 	<string name="pref_tts_language_title">Voice Language</string>
 	<!-- Settings «Route» category: «Test Voice Directions» title -->
@@ -465,7 +469,7 @@
 	<string name="edit_opening_hours">Edit business hours</string>
 	<string name="no_osm_account">Don\'t have an OpenStreetMap account?</string>
 	<string name="register_at_openstreetmap">Register at OpenStreetMap</string>
-	<string name="login">OpenStreetMap Login</string>
+	<string name="login">Login</string>
 	<string name="login_osm">Login to OpenStreetMap</string>
 	<string name="password">Password</string>
 	<string name="forgot_password">Forgot your password?</string>
@@ -502,6 +506,8 @@
 	<string name="editor_edit_place_title">Editing</string>
 	<string name="editor_add_place_title">Adding</string>
 	<string name="editor_edit_place_name_hint">Name of the place</string>
+	<!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
+	<string name="editor_default_language_hint">As it is written in the local language</string>
 	<string name="editor_edit_place_category_title">Category</string>
 	<string name="detailed_problem_description">Detailed description of the issue</string>
 	<string name="editor_report_problem_other_title">Different problem</string>
@@ -527,6 +533,8 @@
 	<string name="editor_detailed_description">Your suggested map changes will be sent to the OpenStreetMap community. Please describe any additional details that cannot be edited in Organic Maps.</string>
 	<string name="editor_more_about_osm">More about OpenStreetMap</string>
 	<string name="editor_operator">Owner</string>
+	<string name="editor_category_unsuitable_title">Can\'t find a suitable category?</string>
+	<string name="editor_category_unsuitable_text">Organic Maps allows to add simple point categories only, that means no towns, roads, lakes, building outlines, etc. Please add such categories directly to <a href="https://www.openstreetmap.org">OpenStreetMap.org</a>. Check our <a href="https://organicmaps.app/faq/editing/advanced-map-editing">guide</a> for detailed step by step instructions.</string>
 	<string name="downloader_no_downloaded_maps_title">You haven\'t downloaded any maps</string>
 	<string name="downloader_no_downloaded_maps_message">Download maps to search and navigate offline.</string>
 	<!-- abbreviation for meters -->
@@ -573,7 +581,7 @@
 	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Make sure you did not enter any private or personal data.</string>
 	<string name="editor_share_to_all_dialog_message_2">OpenStreetMap editors will check the changes and contact you if they have any questions.</string>
-	<string name="navigation_stop_button">stop</string>
+	<string name="navigation_stop_button">Stop</string>
 	<!-- For the first routing -->
 	<string name="accept">Accept</string>
 	<!-- For the first routing -->
@@ -606,6 +614,8 @@
 	<string name="routing_add_finish_point">Add a destination to plan a route</string>
 	<string name="placepage_remove_stop">Remove</string>
 	<string name="placepage_add_stop">Add Stop</string>
+	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
+	<string name="alert_reauth_message">Please login to OpenStreetMap to automatically upload all your map edits. Learn more <a href="https://github.com/organicmaps/organicmaps/issues/6144">here</a>.</string>
 	<string name="dialog_error_storage_title">Storage access problem</string>
 	<string name="dialog_error_storage_message">External storage is not accessible. The SD Card may have been removed, damaged, or the file system is read-only. Please, check your SD Card or contact us at support\@organicmaps.app</string>
 	<string name="setting_emulate_bad_storage">Emulate bad storage</string>
@@ -656,7 +666,8 @@
 	<string name="bookmarks_empty_list_title">This list is empty</string>
 	<string name="bookmarks_empty_list_message">To add a bookmark, tap a place on the map and then tap the star icon</string>
 	<string name="category_desc_more">…more</string>
-	<string name="export_file">Export file</string>
+	<string name="export_file">Export KMZ</string>
+	<string name="export_file_gpx">Export GPX</string>
 	<string name="delete_list">Delete list</string>
 	<string name="public_access">Public access</string>
 	<string name="limited_access">Limited access</string>
@@ -718,6 +729,8 @@
 	<string name="by_distance">By distance</string>
 	<!-- Android -->
 	<string name="by_date">By date</string>
+	<!-- Android -->
+	<string name="by_name">By name</string>
 	<string name="week_ago_sorttype">A week ago</string>
 	<string name="month_ago_sorttype">A month ago</string>
 	<string name="moremonth_ago_sorttype">More than a month ago</string>
@@ -806,16 +819,16 @@
 	<string name="app_tip_08">You can easily fix and improve the map data.</string>
 	<!-- App tip #09 -->
 	<string name="app_tip_09">Our main goal is to build fast, privacy-focused, easy-to-use maps that you will love.</string>
-	<!-- Text on the Android Auto placeholder screen that maps are displayed on the phone screen -->
-	<string name="aa_used_on_the_phone_screen">You are now using Organic Maps on the phone screen</string>
+	<!-- Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen -->
+	<string name="car_used_on_the_phone_screen">You are now using Organic Maps on the phone screen</string>
 	<!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
-	<string name="aa_used_on_the_car_screen">You are now using Organic Maps on the car screen</string>
+	<string name="car_used_on_the_car_screen">You are now using Organic Maps on the car screen</string>
 	<!-- Displayed on the phone screen. Android Auto connected -->
 	<string name="aa_connected_title">You are connected to Android Auto</string>
 	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
-	<string name="aa_continue_on_the_phone">Continue on the phone</string>
-	<!-- Displayed on the Android Auto screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
-	<string name="aa_continue_in_the_car">To the car screen</string>
+	<string name="car_continue_on_the_phone">Continue on the phone</string>
+	<!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
+	<string name="car_continue_in_the_car">To the car screen</string>
 	<!-- Ask user to grant location permissions -->
 	<string name="aa_location_permissions_request">This application requires access to your location for navigation purposes.</string>
 	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
@@ -833,6 +846,15 @@
 	<string name="pref_tts_open_system_settings">Speech synthesis system settings</string>
 	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
 	<string name="pref_tts_no_system_tts">Speech Synthesis settings were not found, are you sure your device supports it?</string>
+	<string name="drive_through">Drive-through</string>
+	<string name="clear_the_search">Clear the search</string>
+	<string name="zoom_in">Zoom in</string>
+	<!-- Accessibility text for the zoom-out button on the map -->
+	<string name="zoom_out">Zoom out</string>
+	<!-- Restaurant or other food place's menu URL field in the Editor -->
+	<string name="website_menu">Menu Link</string>
+	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
+	<string name="view_menu">View Menu</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Address/Block</string>
@@ -859,7 +881,7 @@
 	<string name="type.amenity.atm">ATM</string>
 	<string name="type.amenity.bank">Bank</string>
 	<string name="type.amenity.bar">Bar</string>
-	<string name="type.amenity.bbq">Picnic Site</string>
+	<string name="type.amenity.bbq">Barbecue Grill</string>
 	<string name="type.amenity.bench">Bench</string>
 	<string name="type.amenity.bicycle_parking">Bicycle Parking</string>
 	<string name="type.amenity.bicycle_rental">Bicycle Rental</string>
@@ -983,7 +1005,14 @@
 	<string name="type.amenity.restaurant">Restaurant</string>
 	<string name="type.amenity.sanitary_dump_station">Holding Tank Dump Station</string>
 	<string name="type.amenity.school">School</string>
+	<!-- Weather shelter (including sun shelters and natural rock shelters). -->
 	<string name="type.amenity.shelter">Shelter</string>
+	<!-- A weather shelter by the public transport stop. -->
+	<string name="type.amenity.shelter.public_transport">Shelter</string>
+	<!-- Compared to wilderness_hut its smaller and simpler, without a fireplace. -->
+	<string name="type.amenity.shelter.basic_hut">Bivouac Hut</string>
+	<!-- A traditional 3-walled shelter (one side open), suitable for overnight camping. -->
+	<string name="type.amenity.shelter.lean_to">Lean-to Shelter</string>
 	<string name="type.amenity.public_bath">Public Bath</string>
 	<string name="type.amenity.shower">Shower</string>
 	<string name="type.amenity.stripclub">Stripclub</string>
@@ -1037,24 +1066,12 @@
 	<string name="type.barrier.wall">Wall</string>
 	<string name="type.boundary">Boundary</string>
 	<string name="type.boundary.administrative">Administrative Boundary</string>
-	<string name="type.boundary.administrative.10">Administrative Boundary</string>
-	<string name="type.boundary.administrative.11">Administrative Boundary</string>
+	<!-- Borders between countries. -->
 	<string name="type.boundary.administrative.2">National Border</string>
-	<string name="type.boundary.administrative.3">Administrative Boundary</string>
-	<string name="type.boundary.administrative.4">Administrative Boundary</string>
-	<string name="type.boundary.administrative.5">Administrative Boundary</string>
-	<string name="type.boundary.administrative.6">Administrative Boundary</string>
-	<string name="type.boundary.administrative.7">Administrative Boundary</string>
-	<string name="type.boundary.administrative.8">Administrative Boundary</string>
-	<string name="type.boundary.administrative.9">Administrative Boundary</string>
-	<string name="type.boundary.administrative.city">City Boundary</string>
-	<string name="type.boundary.administrative.country">National Border</string>
-	<string name="type.boundary.administrative.county">County Boundary</string>
-	<string name="type.boundary.administrative.municipality">Municipality Boundary</string>
-	<string name="type.boundary.administrative.nation">National Border</string>
-	<string name="type.boundary.administrative.region">Regional Boundary</string>
-	<string name="type.boundary.administrative.state">State Boundary</string>
-	<string name="type.boundary.administrative.suburb">Suburb Boundary</string>
+	<!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
+	<string name="type.boundary.administrative.3">Regional Boundary</string>
+	<!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
+	<string name="type.boundary.administrative.4">Regional Boundary</string>
 	<string name="type.boundary.national_park">National Park</string>
 	<string name="type.boundary.aboriginal_lands">Indigenous Lands</string>
 	<string name="type.boundary.protected_area">Protected Area</string>
@@ -1090,7 +1107,7 @@
 	<string name="type.craft.key_cutter">Key Cutting</string>
 	<string name="type.craft.locksmith">Locksmith</string>
 	<string name="type.craft.metal_construction">Metal Worker</string>
-	<string name="type.craft.painter">Painter</string>
+	<string name="type.craft.painter">House Painter</string>
 	<string name="type.craft.photographer">Photographer</string>
 	<string name="type.shop.camera">Camera Shop</string>
 	<string name="type.craft.plumber">Plumber</string>
@@ -1194,7 +1211,7 @@
 	<!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
 	<string name="type.entrance.main">Main Entrance</string>
 	<string name="type.entrance.exit">Exit</string>
-	<string name="type.fee.yes">💲</string>
+	<string name="type.fee.yes">$</string>
 	<string name="type.fee.no">Free</string>
 	<string name="type.healthcare.laboratory">Medical Laboratory</string>
 	<string name="type.healthcare.physiotherapist">Physiotherapist</string>
@@ -1232,22 +1249,9 @@
 	<string name="type.highway.footway">Foot Path</string>
 	<string name="type.highway.footway.sidewalk">Sidewalk</string>
 	<string name="type.highway.footway.crossing">Pedestrian Crossing</string>
-	<string name="type.highway.footway.alpine_hiking">Trail requires use of hand to advance in certain sections, and terrain is quite exposed</string>
 	<string name="type.highway.footway.area">Pedestrian Area</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.footway.bridge">Pedestrian Bridge</string>
-	<string name="type.highway.footway.demanding_alpine_hiking">Trail with exposed and demanding terrain and may include steep rock scrambles</string>
-	<string name="type.highway.footway.demanding_mountain_hiking">Trail may require hands for balance and cross fields of loose scree or talus</string>
-	<string name="type.highway.footway.difficult_alpine_hiking">Trail with severely exposed and difficult craggy terrain</string>
-	<string name="type.highway.footway.hiking">Well-cleared trail with level or slightly inclined terrain</string>
-	<string name="type.highway.footway.mountain_hiking">Trail with steady ascent and occasional steep sections</string>
-	<string name="type.highway.footway.permissive">Foot Path</string>
-	<string name="type.highway.footway.trail_visibility_bad">Trail with sometimes invisible or unclear paths</string>
-	<string name="type.highway.footway.trail_visibility_excellent">Trail with unambiguous path and clear markers everywhere</string>
-	<string name="type.highway.footway.trail_visibility_good">Trail with mostly clear path and markers</string>
-	<string name="type.highway.footway.trail_visibility_horrible">Trail often pathless</string>
-	<string name="type.highway.footway.trail_visibility_intermediate">Trail with mostly visible paths</string>
-	<string name="type.highway.footway.trail_visibility_no">Trail mostly pathless</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.footway.tunnel">Pedestrian Tunnel</string>
 	<string name="type.highway.ford">Ford</string>
@@ -1268,23 +1272,15 @@
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.motorway_link.tunnel">Tunnel</string>
 	<string name="type.highway.path">Path</string>
-	<string name="type.highway.path.alpine_hiking">Trail requires use of hand to advance in certain sections, and terrain is quite exposed</string>
+	<!-- Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. -->
+	<string name="type.highway.path.difficult">Difficult or Indistinct Trail</string>
+	<!-- Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. -->
+	<string name="type.highway.path.expert">Expert or Indiscernible Trail</string>
 	<string name="type.highway.path.bicycle">Cycle &amp; Foot Path</string>
+	<string name="type.highway.footway.bicycle">Cycle &amp; Foot Path</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.path.bridge">Bridge</string>
-	<string name="type.highway.path.demanding_alpine_hiking">Trail with exposed and demanding terrain and may include steep rock scrambles</string>
-	<string name="type.highway.path.demanding_mountain_hiking">Trail may require hands for balance and cross fields of loose scree or talus</string>
-	<string name="type.highway.path.difficult_alpine_hiking">Trail with severely exposed and difficult craggy terrain</string>
-	<string name="type.highway.path.hiking">Well-cleared trail with level or slightly inclined terrain</string>
 	<string name="type.highway.path.horse">Bridle Path</string>
-	<string name="type.highway.path.mountain_hiking">Trail with steady ascent and occasional steep sections</string>
-	<string name="type.highway.path.permissive">Path</string>
-	<string name="type.highway.path.trail_visibility_bad">Trail with sometimes invisible or unclear paths</string>
-	<string name="type.highway.path.trail_visibility_excellent">Trail with unambiguous path and clear markers everywhere</string>
-	<string name="type.highway.path.trail_visibility_good">Trail with mostly clear path and markers</string>
-	<string name="type.highway.path.trail_visibility_horrible">Trail often pathless</string>
-	<string name="type.highway.path.trail_visibility_intermediate">Trail with mostly visible paths</string>
-	<string name="type.highway.path.trail_visibility_no">Trail mostly pathless</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.path.tunnel">Tunnel</string>
 	<string name="type.highway.pedestrian">Pedestrian Street</string>
@@ -1358,12 +1354,7 @@
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.track.bridge">Bridge</string>
 	<string name="type.highway.track.grade1">Track</string>
-	<string name="type.highway.track.grade2">Track</string>
-	<string name="type.highway.track.grade3">Track</string>
-	<string name="type.highway.track.grade4">Track</string>
-	<string name="type.highway.track.grade5">Track</string>
 	<string name="type.highway.track.no.access">Track</string>
-	<string name="type.highway.track.permissive">Track</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.track.tunnel">Tunnel</string>
 	<string name="type.highway.traffic_signals">Traffic Lights</string>
@@ -1473,7 +1464,6 @@
 	<string name="type.landuse.commercial">Commercial Area</string>
 	<string name="type.landuse.construction">Construction Area</string>
 	<string name="type.landuse.education">Educational Facility</string>
-	<string name="type.landuse.farm">Farm</string>
 	<string name="type.landuse.farmland">Farmland</string>
 	<string name="type.landuse.farmyard">Farmyard</string>
 	<string name="type.landuse.field">Field</string>
@@ -1509,6 +1499,7 @@
 	<string name="type.leisure.garden">Garden</string>
 	<string name="type.leisure.garden.residential">Residential Garden</string>
 	<string name="type.leisure.golf_course">Golf Course</string>
+	<string name="type.leisure.miniature_golf">Minigolf</string>
 	<string name="type.leisure.hackerspace">Hackerspace</string>
 	<string name="type.leisure.ice_rink">Ice Rink</string>
 	<string name="type.leisure.marina">Marina</string>
@@ -1563,7 +1554,12 @@
 	<string name="type.military.bunker">Bunker</string>
 	<string name="type.mountain_pass">Mountain Pass</string>
 	<string name="type.natural">Nature</string>
+	<!-- A rocky land cover. -->
 	<string name="type.natural.bare_rock">Bare Rock</string>
+	<!-- A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. -->
+	<string name="type.natural.shingle">Shingle</string>
+	<!-- A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. -->
+	<string name="type.natural.scree">Scree</string>
 	<string name="type.natural.bay">Bay</string>
 	<string name="type.natural.beach">Beach</string>
 	<string name="type.natural.beach.sand">Sandy Beach</string>
@@ -2114,7 +2110,8 @@
 	<string name="type.sport.pelota">Basque Pelota</string>
 	<string name="type.tourism">Tourism</string>
 	<string name="type.tourism.aquarium">Aquarium</string>
-	<string name="type.tourism.alpine_hut">Alpine Lodging</string>
+	<!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
+	<string name="type.tourism.alpine_hut">Mountain Lodge</string>
 	<string name="type.tourism.apartment">Holiday Apartment</string>
 	<string name="type.tourism.artwork">Artwork</string>
 	<string name="type.tourism.artwork.architecture">Architectural Artwork</string>
@@ -2122,11 +2119,12 @@
 	<string name="type.tourism.artwork.sculpture">Sculpture</string>
 	<string name="type.tourism.artwork.statue">Statue</string>
 	<string name="type.tourism.attraction">Attraction</string>
-	<string name="type.tourism.attraction.animal">Animal Enclosure</string>
+	<string name="type.attraction.animal">Animal Enclosure</string>
 	<string name="type.tourism.attraction.specified">Attraction</string>
 	<string name="type.tourism.camp_site">Campground</string>
 	<string name="type.tourism.caravan_site">RV Park</string>
-	<string name="type.tourism.chalet">Chalet</string>
+	<!-- A rentable countryside vacation house. -->
+	<string name="type.tourism.chalet">Holiday Cottage</string>
 	<string name="type.tourism.gallery">Art Gallery</string>
 	<string name="type.tourism.guest_house">Guest House</string>
 	<string name="type.tourism.hostel">Hostel</string>
@@ -2135,15 +2133,15 @@
 	<string name="type.tourism.information.board">Information Board</string>
 	<string name="type.tourism.information.guidepost">Guidepost</string>
 	<string name="type.tourism.information.map">Tourist Map</string>
-	<string name="type.tourism.information.mobile">Cellular Signal</string>
 	<string name="type.tourism.information.office">Tourist Office</string>
 	<string name="type.tourism.information.visitor_centre">Visitor Centre</string>
 	<string name="type.tourism.motel">Motel</string>
 	<string name="type.tourism.museum">Museum</string>
 	<string name="type.tourism.picnic_site">Picnic Site</string>
-	<string name="type.tourism.resort">Resort</string>
+	<string name="type.leisure.resort">Resort</string>
 	<string name="type.tourism.theme_park">Theme Park</string>
 	<string name="type.tourism.viewpoint">Viewpoint</string>
+	<!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
 	<string name="type.tourism.wilderness_hut">Wilderness Hut</string>
 	<string name="type.tourism.zoo">Zoo</string>
 	<string name="type.tourism.zoo.petting">Petting Zoo</string>
@@ -2165,7 +2163,6 @@
 	<string name="type.waterway.lock_gate">Lock Gate</string>
 	<string name="type.waterway.river">River</string>
 	<string name="type.waterway.river.tunnel">River</string>
-	<string name="type.waterway.riverbank">River</string>
 	<string name="type.waterway.stream">Stream</string>
 	<string name="type.waterway.stream.ephemeral">Ephemeral Stream</string>
 	<string name="type.waterway.stream.intermittent">Intermittent Stream</string>

@@ -35,4 +35,7 @@
 + (NSString *)donateUrl;
 + (BOOL)isNY;
 
++ (BOOL)iCLoudSynchronizationEnabled;
++ (void)setICLoudSynchronizationEnabled:(BOOL)iCLoudSyncEnabled;
+
 @end

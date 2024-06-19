@@ -183,7 +183,7 @@
 "load_kmz_failed" = "Не вдалося завантажити мітки. Файл може бути пошкодженим або несправним.";
 
 /* resource for context menu */
-"edit" = "Редаґувати";
+"edit" = "Редагувати";
 
 /* Warning message when doing search around current position */
 "unknown_current_position" = "Ваше місце розташування не визначено";
@@ -253,6 +253,12 @@
 
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Голосові інструкції";
+
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Проговорювати назви вулиць";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Якщо ввімкнено, назва вулиці або виїзду, на яку потрібно повернути, буде вимовлена вголос.";
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Мова підказок";
@@ -629,6 +635,8 @@
 
 "login" = "Увійти";
 
+"login_osm" = "Увійдіть до OpenStreetMap";
+
 "forgot_password" = "Забули пароль?";
 
 "osm_account" = "Обліковий запис OSM";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Додавання";
 
 "editor_edit_place_name_hint" = "Назва місця";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Місцевою мовою";
 
 "editor_edit_place_category_title" = "Категорія";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Видалити мiтку";
 
-"editor_edits_sent_message" = "Зміни, що ви запропонували, відправлено";
+"editor_edits_sent_message" = "Вашу замітку буде надіслано в OpenStreetMap";
 
 "editor_comment_hint" = "Коментар…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Редактори OpenStreetMap перевірять зміни та зв’яжуться з вами, якщо у них виникнуть запитання.";
 
-"navigation_stop_button" = "стоп";
+"navigation_stop_button" = "Cтоп";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Вимкнути запис нещодавно пройденого шляху?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Ой, трапилася помилка. Спробуйте увійти знову.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Будь ласка увійдіть в акаунт OpenStreetMap.org, щоб автоматично публікувати зміни до мапи. Подробиці за";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "посиланням";
+
 "core_entrance" = "Вхід";
 
 "error_enter_correct_name" = "Будь ласка, введіть коректне ім'я";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "Експортувати файл";
+"export_file" = "Експорт КМЗ";
+
+"export_file_gpx" = "Експорт GPX";
 
 "delete_list" = "Видалити список";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Сортувати за датою";
 
+"sort_name" = "Сортувати за ім'ям";
+
 "week_ago_sorttype" = "Тиждень тому";
 
 "month_ago_sorttype" = "Місяць тому";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Uk:Про_проект";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Зараз ви використовуєте Organic Maps на екрані телефону";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Ви використовуєте Organic Maps на екрані автомобіля";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Продовжуйте в телефоні";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "На екран автомобіля";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Активний відпочинок";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Мапа";
+
+"drive_through" = "З віконцем для водіїв";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Посилання на меню";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Увімкнути синхронізацію з iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "Синхронізація з iCloud - це експериментальна функція, яка перебуває на стадії розробки. Переконайтеся, що ви зробили резервну копію всіх ваших закладок і треків.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud вимкнено";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Щоб скористатися цією функцією, увімкніть iCloud у налаштуваннях вашого пристрою.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Увімкнути";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Резервне копіювання";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Помилка: Не вдалося синхронізувати через помилку з'єднання";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Помилка: Не вдалося синхронізувати через перевищення квоти iCloud";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Помилка: iCloud недоступний";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Бар";
 
-"type.amenity.bbq" = "Пікнік";
+"type.amenity.bbq" = "Барбекю-гриль";
 
 "type.amenity.bench" = "Лавка";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "Школа";
 
-"type.amenity.shelter" = "Укриття";
+/* Weather shelter (including sun shelters and natural rock shelters). */
+"type.amenity.shelter" = "Навіс";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Навіс";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Хатинка-бівуак";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Бівуачний навіс";
 
 "type.amenity.public_bath" = "Громадська лазня";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Адміністративний поділ";
 
-"type.boundary.administrative.10" = "Адміністративний поділ";
-
-"type.boundary.administrative.11" = "Адміністративний поділ";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "Кордон країни";
 
-"type.boundary.administrative.3" = "Адміністративний поділ";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Областний поділ";
 
-"type.boundary.administrative.4" = "Адміністративний поділ";
-
-"type.boundary.administrative.5" = "Адміністративний поділ";
-
-"type.boundary.administrative.6" = "Адміністративний поділ";
-
-"type.boundary.administrative.7" = "Адміністративний поділ";
-
-"type.boundary.administrative.8" = "Адміністративний поділ";
-
-"type.boundary.administrative.9" = "Адміністративний поділ";
-
-"type.boundary.administrative.city" = "Межа міста";
-
-"type.boundary.administrative.country" = "Кордон країни";
-
-"type.boundary.administrative.county" = "Поділ округа";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "Кордон країни";
-
-"type.boundary.administrative.region" = "Областний поділ";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Приміська межа";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Областний поділ";
 
 "type.boundary.national_park" = "Національний парк";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Виходьте.";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Безкоштовно";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Пішохідний перехід";
 
-"type.highway.footway.alpine_hiking" = "Стежка";
-
 "type.highway.footway.area" = "Пішохідна зона";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Міст";
-
-"type.highway.footway.demanding_alpine_hiking" = "Стежка";
-
-"type.highway.footway.demanding_mountain_hiking" = "Стежка";
-
-"type.highway.footway.difficult_alpine_hiking" = "Стежка";
-
-"type.highway.footway.hiking" = "Стежка";
-
-"type.highway.footway.mountain_hiking" = "Стежка";
-
-"type.highway.footway.permissive" = "Пішохідна доріжка";
-
-"type.highway.footway.trail_visibility_bad" = "Стежка";
-
-"type.highway.footway.trail_visibility_excellent" = "Стежка";
-
-"type.highway.footway.trail_visibility_good" = "Стежка";
-
-"type.highway.footway.trail_visibility_horrible" = "Стежка";
-
-"type.highway.footway.trail_visibility_intermediate" = "Стежка";
-
-"type.highway.footway.trail_visibility_no" = "Стежка";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Тунель";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Стежка";
 
-"type.highway.path.alpine_hiking" = "Стежка";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Стежка";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Стежка";
 
 "type.highway.path.bicycle" = "Велопішохідна доріжка";
+
+"type.highway.footway.bicycle" = "Велопішохідна доріжка";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Міст";
 
-"type.highway.path.demanding_alpine_hiking" = "Стежка";
-
-"type.highway.path.demanding_mountain_hiking" = "Стежка";
-
-"type.highway.path.difficult_alpine_hiking" = "Стежка";
-
-"type.highway.path.hiking" = "Стежка";
-
 "type.highway.path.horse" = "Кінна стежка";
-
-"type.highway.path.mountain_hiking" = "Стежка";
-
-"type.highway.path.permissive" = "Стежка";
-
-"type.highway.path.trail_visibility_bad" = "Стежка";
-
-"type.highway.path.trail_visibility_excellent" = "Стежка";
-
-"type.highway.path.trail_visibility_good" = "Стежка";
-
-"type.highway.path.trail_visibility_horrible" = "Стежка";
-
-"type.highway.path.trail_visibility_intermediate" = "Стежка";
-
-"type.highway.path.trail_visibility_no" = "Стежка";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Тунель";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Ґрунтівка";
 
-"type.highway.track.grade2" = "Ґрунтівка";
-
-"type.highway.track.grade3" = "Ґрунтівка";
-
-"type.highway.track.grade4" = "Ґрунтівка";
-
-"type.highway.track.grade5" = "Ґрунтівка";
-
 "type.highway.track.no.access" = "Ґрунтівка";
-
-"type.highway.track.permissive" = "Ґрунтівка";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Тунель";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Освітній заклади";
 
-"type.landuse.farm" = "Ферма";
-
 "type.landuse.farmland" = "Сільськогосподарська земля";
 
 "type.landuse.farmyard" = "Сільськогосподарська земля";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Частный сад";
 
 "type.leisure.golf_course" = "Майданчик для гольфу";
+
+"type.leisure.miniature_golf" = "Мінігольф";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Природа";
 
-"type.natural.bare_rock" = "Скелi";
+/* A rocky land cover. */
+"type.natural.bare_rock" = "Кам'яна порода";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Галька";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Кам'янистий осип";
 
 "type.natural.bay" = "Затока";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Акваріум";
 
-"type.tourism.alpine_hut" = "Гірський готель";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Гірський притулок з обслуговуванням";
 
-"type.tourism.apartment" = "Апартаменти";
+"type.tourism.apartment" = "Апартаменти для відпочинку";
 
 "type.tourism.artwork" = "Витвір мистецтва";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Пам’ятне місце";
 
-"type.tourism.attraction.animal" = "Пам’ятне місце";
+"type.attraction.animal" = "Вольєр для тварин";
 
 "type.tourism.attraction.specified" = "Пам’ятне місце";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "Кемпінг для автобудинків";
 
-"type.tourism.chalet" = "Шале";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Котедж для відпочинку";
 
 "type.tourism.gallery" = "Пам’ятні місця";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Мапа";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Туристичний офіс";
 
 "type.tourism.information.visitor_centre" = "Центр для відвідувачів";
@@ -3812,13 +3813,14 @@
 
 "type.tourism.picnic_site" = "Пікнік";
 
-"type.tourism.resort" = "Будинок відпочинку";
+"type.leisure.resort" = "Будинок відпочинку";
 
 "type.tourism.theme_park" = "Парк розваг";
 
 "type.tourism.viewpoint" = "Оглядний майданчик";
 
-"type.tourism.wilderness_hut" = "Хибара";
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
+"type.tourism.wilderness_hut" = "Хатка для туристів";
 
 "type.tourism.zoo" = "Зоопарк";
 
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "Річка";
 
 "type.waterway.river.tunnel" = "Річка";
-
-"type.waterway.riverbank" = "Річка";
 
 "type.waterway.stream" = "Річка";
 

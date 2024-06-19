@@ -254,6 +254,12 @@
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instruccions de veu";
 
+/* Settings «Route» category: «Tts announce street names» title */
+"pref_tts_street_names_title" = "Anuncia els noms dels carrers";
+
+/* Settings «Route» category: «Tts announce street names» description */
+"pref_tts_street_names_description" = "Quan s'activa, el nom del carrer o la sortida per girar es pronunciarà en veu alta.";
+
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Llengua de la veu";
 
@@ -629,6 +635,8 @@
 
 "login" = "Inicia sessió";
 
+"login_osm" = "Login to OpenStreetMap";
+
 "forgot_password" = "Heu oblidat la contrasenya?";
 
 "osm_account" = "Compte OSM";
@@ -702,6 +710,9 @@
 "editor_add_place_title" = "Addició";
 
 "editor_edit_place_name_hint" = "Nom del lloc";
+
+/* The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name */
+"editor_default_language_hint" = "Com està escrit en la llengua local";
 
 "editor_edit_place_category_title" = "Categoria";
 
@@ -823,7 +834,7 @@
 
 "placepage_delete_bookmark_button" = "Esborra el marcador";
 
-"editor_edits_sent_message" = "S'han enviat els canvis que heu suggerit";
+"editor_edits_sent_message" = "La vostra nota s'enviarà a OpenStreetMap";
 
 "editor_comment_hint" = "Comentari…";
 
@@ -858,7 +869,7 @@
 
 "editor_share_to_all_dialog_message_2" = "Revisarem els canvis. Si tenim cap pregunta contactem amb vós via correu electrònic.";
 
-"navigation_stop_button" = "atura't";
+"navigation_stop_button" = "Atura't";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Voleu desactivar l'enregistrament de la ruta recent?";
@@ -931,6 +942,12 @@
 
 "profile_authorization_error" = "Ups, s'ha produït un error. Proveu d'iniciar sessió una altra vegada.";
 
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
+"alert_reauth_message_ios" = "Si us plau, inicieu sessió a OpenStreetMap per carregar automàticament totes les edicions de mapes. Més informació";
+
+/* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's link part */
+"alert_reauth_link_text_ios" = "aquí";
+
 "core_entrance" = "Entrada";
 
 "error_enter_correct_name" = "Introduïu un nom correcte";
@@ -996,7 +1013,9 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "Exporta com a fitxer";
+"export_file" = "Exporta KMZ";
+
+"export_file_gpx" = "Exporta GPX";
 
 "delete_list" = "Esborra la llista";
 
@@ -1127,6 +1146,8 @@
 
 "sort_date" = "Ordena per data";
 
+"sort_name" = "Ordena per nom";
+
 "week_ago_sorttype" = "Fa una setmana";
 
 "month_ago_sorttype" = "Fa un mes";
@@ -1248,6 +1269,18 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ca:About";
 
+/* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
+"car_used_on_the_phone_screen" = "Ara esteu utilitzant els Organic Maps a la pantalla del telèfon";
+
+/* Text on the phone placeholder screen that maps are displayed on the car screen */
+"car_used_on_the_car_screen" = "Ara esteu utilitzant els Organic Maps a la pantalla del cotxe";
+
+/* Displayed on the phone screen. Button to display maps on the phone screen instead of a car */
+"car_continue_on_the_phone" = "Continueu al telèfon";
+
+/* Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! */
+"car_continue_in_the_car" = "A la pantalla del cotxe";
+
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Senderisme";
 
@@ -1259,6 +1292,38 @@
 
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Mapa";
+
+"drive_through" = "Servei al cotxe";
+
+/* Restaurant or other food place's menu URL field in the Editor */
+"website_menu" = "Enllaç del menú";
+
+/* Title for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_title" = "Activa la sincronització d'iCloud";
+
+/* Message for the "Enable iCloud Syncronization" alert. */
+"enable_icloud_synchronization_message" = "La sincronització d'iCloud és una característica experimental en desenvolupament. Assegureu-vos que heu fet una còpia de seguretat de tots els vostres marcadors i pistes.";
+
+/* Title for the "iCloud is Disabled" alert. */
+"icloud_disabled_title" = "iCloud està desactivat";
+
+/* Message for the "iCloud is Disabled" alert. */
+"icloud_disabled_message" = "Activa iCloud a la configuració del teu dispositiu per utilitzar aquesta funció.";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+"enable" = "Activa";
+
+/* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
+"backup" = "Còpia de seguretat";
+
+/* iCloud error message: Failed to synchronize due to connection error */
+"icloud_synchronization_error_connection_error" = "Error: no s'ha pogut sincronitzar a causa d'un error de connexió";
+
+/* iCloud error message: Failed to synchronize due to iCloud quota exceeded */
+"icloud_synchronization_error_quota_exceeded" = "Error: no s'ha pogut sincronitzar perquè s'ha superat la quota d'iCloud";
+
+/* iCloud error message: iCloud is not available */
+"icloud_synchronization_error_cloud_is_unavailable" = "Error: iCloud no està disponible";
 
 
 /********** Types **********/
@@ -1311,7 +1376,7 @@
 
 "type.amenity.bar" = "Bar";
 
-"type.amenity.bbq" = "Picnic Site";
+"type.amenity.bbq" = "Barbacoa";
 
 "type.amenity.bench" = "Bench";
 
@@ -1556,7 +1621,17 @@
 
 "type.amenity.school" = "School";
 
+/* Weather shelter (including sun shelters and natural rock shelters). */
 "type.amenity.shelter" = "Shelter";
+
+/* A weather shelter by the public transport stop. */
+"type.amenity.shelter.public_transport" = "Shelter";
+
+/* Compared to wilderness_hut its smaller and simpler, without a fireplace. */
+"type.amenity.shelter.basic_hut" = "Cabana Bivac";
+
+/* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
+"type.amenity.shelter.lean_to" = "Lean-to Shelter";
 
 "type.amenity.public_bath" = "Bany Públic";
 
@@ -1664,41 +1739,14 @@
 
 "type.boundary.administrative" = "Administrative Boundary";
 
-"type.boundary.administrative.10" = "Administrative Boundary";
-
-"type.boundary.administrative.11" = "Administrative Boundary";
-
+/* Borders between countries. */
 "type.boundary.administrative.2" = "National Border";
 
-"type.boundary.administrative.3" = "Administrative Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.3" = "Regional Boundary";
 
-"type.boundary.administrative.4" = "Administrative Boundary";
-
-"type.boundary.administrative.5" = "Administrative Boundary";
-
-"type.boundary.administrative.6" = "Administrative Boundary";
-
-"type.boundary.administrative.7" = "Administrative Boundary";
-
-"type.boundary.administrative.8" = "Administrative Boundary";
-
-"type.boundary.administrative.9" = "Administrative Boundary";
-
-"type.boundary.administrative.city" = "City Boundary";
-
-"type.boundary.administrative.country" = "National Border";
-
-"type.boundary.administrative.county" = "County Boundary";
-
-"type.boundary.administrative.municipality" = "Municipality Boundary";
-
-"type.boundary.administrative.nation" = "National Border";
-
-"type.boundary.administrative.region" = "Regional Boundary";
-
-"type.boundary.administrative.state" = "State Boundary";
-
-"type.boundary.administrative.suburb" = "Suburb Boundary";
+/* Country's primary subdivision borders, e.g. between regions, provinces, states.. */
+"type.boundary.administrative.4" = "Regional Boundary";
 
 "type.boundary.national_park" = "National Park";
 
@@ -1768,7 +1816,7 @@
 
 "type.craft.metal_construction" = "Metal Worker";
 
-"type.craft.painter" = "Painter";
+"type.craft.painter" = "House Painter";
 
 "type.craft.photographer" = "Photographer";
 
@@ -1974,7 +2022,7 @@
 
 "type.entrance.exit" = "Sortida";
 
-"type.fee.yes" = "💲";
+"type.fee.yes" = "$";
 
 "type.fee.no" = "Gratuït";
 
@@ -2043,36 +2091,10 @@
 
 "type.highway.footway.crossing" = "Pas de vianants";
 
-"type.highway.footway.alpine_hiking" = "Trail requires use of hand to advance in certain sections, and terrain is quite exposed";
-
 "type.highway.footway.area" = "Foot Path";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.footway.bridge" = "Pedestrian Bridge";
-
-"type.highway.footway.demanding_alpine_hiking" = "Trail with exposed and demanding terrain and may include steep rock scrambles";
-
-"type.highway.footway.demanding_mountain_hiking" = "Trail may require hands for balance and cross fields of loose scree or talus";
-
-"type.highway.footway.difficult_alpine_hiking" = "Trail with severely exposed and difficult craggy terrain";
-
-"type.highway.footway.hiking" = "Well-cleared trail with level or slightly inclined terrain";
-
-"type.highway.footway.mountain_hiking" = "Trail with steady ascent and occasional steep sections";
-
-"type.highway.footway.permissive" = "Foot Path";
-
-"type.highway.footway.trail_visibility_bad" = "Trail with sometimes invisible or unclear paths";
-
-"type.highway.footway.trail_visibility_excellent" = "Trail with unambiguous path and clear markers everywhere";
-
-"type.highway.footway.trail_visibility_good" = "Trail with mostly clear path and markers";
-
-"type.highway.footway.trail_visibility_horrible" = "Trail often pathless";
-
-"type.highway.footway.trail_visibility_intermediate" = "Trail with mostly visible paths";
-
-"type.highway.footway.trail_visibility_no" = "Trail mostly pathless";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.footway.tunnel" = "Pedestrian Tunnel";
@@ -2107,38 +2129,20 @@
 
 "type.highway.path" = "Path";
 
-"type.highway.path.alpine_hiking" = "Path";
+/* Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. */
+"type.highway.path.difficult" = "Path";
+
+/* Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. */
+"type.highway.path.expert" = "Path";
 
 "type.highway.path.bicycle" = "Path";
+
+"type.highway.footway.bicycle" = "Path";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.path.bridge" = "Bridge";
 
-"type.highway.path.demanding_alpine_hiking" = "Path";
-
-"type.highway.path.demanding_mountain_hiking" = "Path";
-
-"type.highway.path.difficult_alpine_hiking" = "Path";
-
-"type.highway.path.hiking" = "Path";
-
 "type.highway.path.horse" = "Path";
-
-"type.highway.path.mountain_hiking" = "Path";
-
-"type.highway.path.permissive" = "Path";
-
-"type.highway.path.trail_visibility_bad" = "Path";
-
-"type.highway.path.trail_visibility_excellent" = "Path";
-
-"type.highway.path.trail_visibility_good" = "Path";
-
-"type.highway.path.trail_visibility_horrible" = "Path";
-
-"type.highway.path.trail_visibility_intermediate" = "Path";
-
-"type.highway.path.trail_visibility_no" = "Path";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.path.tunnel" = "Tunnel";
@@ -2261,17 +2265,7 @@
 
 "type.highway.track.grade1" = "Track";
 
-"type.highway.track.grade2" = "Track";
-
-"type.highway.track.grade3" = "Track";
-
-"type.highway.track.grade4" = "Track";
-
-"type.highway.track.grade5" = "Track";
-
 "type.highway.track.no.access" = "Track";
-
-"type.highway.track.permissive" = "Track";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.track.tunnel" = "Tunnel";
@@ -2481,8 +2475,6 @@
 
 "type.landuse.education" = "Educational Facility";
 
-"type.landuse.farm" = "Farm";
-
 "type.landuse.farmland" = "Farmland";
 
 "type.landuse.farmyard" = "Farmyard";
@@ -2552,6 +2544,8 @@
 "type.leisure.garden.residential" = "Garden";
 
 "type.leisure.golf_course" = "Golf Course";
+
+"type.leisure.miniature_golf" = "Minigolf";
 
 "type.leisure.hackerspace" = "Hackerspace";
 
@@ -2661,7 +2655,14 @@
 
 "type.natural" = "Nature";
 
+/* A rocky land cover. */
 "type.natural.bare_rock" = "Bare Rock";
+
+/* A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. */
+"type.natural.shingle" = "Còdol";
+
+/* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
+"type.natural.scree" = "Scree";
 
 "type.natural.bay" = "Bay";
 
@@ -3758,9 +3759,10 @@
 
 "type.tourism.aquarium" = "Aquari";
 
-"type.tourism.alpine_hut" = "Alpine Lodging";
+/* Typically serviced, staff is present and food is available (compared to wilderness_hut). */
+"type.tourism.alpine_hut" = "Lodge de muntanya";
 
-"type.tourism.apartment" = "Holiday Apartment";
+"type.tourism.apartment" = "Apartament de vacances";
 
 "type.tourism.artwork" = "Artwork";
 
@@ -3774,7 +3776,7 @@
 
 "type.tourism.attraction" = "Attraction";
 
-"type.tourism.attraction.animal" = "Attraction";
+"type.attraction.animal" = "Recinte d'animals";
 
 "type.tourism.attraction.specified" = "Attraction";
 
@@ -3782,7 +3784,8 @@
 
 "type.tourism.caravan_site" = "RV Park";
 
-"type.tourism.chalet" = "Chalet";
+/* A rentable countryside vacation house. */
+"type.tourism.chalet" = "Casa rural de vacances";
 
 "type.tourism.gallery" = "Art Gallery";
 
@@ -3800,8 +3803,6 @@
 
 "type.tourism.information.map" = "Tourist Map";
 
-"type.tourism.information.mobile" = "Cellular Signal";
-
 "type.tourism.information.office" = "Tourist Office";
 
 "type.tourism.information.visitor_centre" = "Visitor Centre";
@@ -3812,12 +3813,13 @@
 
 "type.tourism.picnic_site" = "Picnic Site";
 
-"type.tourism.resort" = "Resort";
+"type.leisure.resort" = "Resort";
 
 "type.tourism.theme_park" = "Theme Park";
 
 "type.tourism.viewpoint" = "Viewpoint";
 
+/* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Wilderness Hut";
 
 "type.tourism.zoo" = "Zoo";
@@ -3859,8 +3861,6 @@
 "type.waterway.river" = "River";
 
 "type.waterway.river.tunnel" = "River";
-
-"type.waterway.riverbank" = "River";
 
 "type.waterway.stream" = "Stream";
 
