@@ -5,11 +5,6 @@ protocol BMCView: AnyObject {
   func conversionFinished(success: Bool)
 }
 
-enum BMCShareCategoryStatus {
-  case success(URL)
-  case error(title: String, text: String)
-}
-
 final class BMCDefaultViewModel: NSObject {
   private let manager = BookmarksManager.shared()
 
@@ -24,9 +19,6 @@ final class BMCDefaultViewModel: NSObject {
   private var isAuthenticated = false
   private var filesPrepared = false
 
-  typealias OnPreparedToShareHandler = (BMCShareCategoryStatus) -> Void
-  private var onPreparedToShareCategory: OnPreparedToShareHandler?
-
   let minCategoryNameLength: UInt = 0
   let maxCategoryNameLength: UInt = 60
 
@@ -36,11 +28,14 @@ final class BMCDefaultViewModel: NSObject {
   }
 
   private func setCategories() {
-    categories = manager.userCategories()
+    categories = manager.sortedUserCategories()
   }
 
   private func setActions() {
     actions = [.create]
+    if !manager.areAllCategoriesEmpty() {
+      actions.append(.exportAll)
+    }
   }
 
   private func setNotifications() {
@@ -129,23 +124,25 @@ extension BMCDefaultViewModel {
 
     let category = categories[index]
     categories.remove(at: index)
-    manager.deleteCategory(category.categoryId)
     view?.delete(at: [IndexPath(row: index, section: section)])
+    manager.deleteCategory(category.categoryId)
   }
 
   func checkCategory(name: String) -> Bool {
     return manager.checkCategoryName(name)
   }
 
-  func shareCategoryFile(at index: Int, handler: @escaping OnPreparedToShareHandler) {
+  func shareCategoryFile(at index: Int, fileType: KmlFileType, handler: @escaping SharingResultCompletionHandler) {
     let category = categories[index]
-    onPreparedToShareCategory = handler
-    manager.shareCategory(category.categoryId)
+    manager.shareCategory(category.categoryId, fileType: fileType, completion: handler)
+  }
+
+  func shareAllCategories(handler: @escaping SharingResultCompletionHandler) {
+    manager.shareAllCategories(completion: handler)
   }
 
   func finishShareCategory() {
     manager.finishShareCategory()
-    onPreparedToShareCategory = nil
   }
 
   func addToObserverList() {
@@ -171,19 +168,11 @@ extension BMCDefaultViewModel: BookmarksObserver {
     reloadData()
   }
 
-  func onBookmarkDeleted(_: MWMMarkID) {
+  func onBookmarksCategoryDeleted(_ groupId: MWMMarkGroupID) {
     reloadData()
   }
 
-  func onBookmarksCategoryFilePrepared(_ status: BookmarksShareStatus) {
-    switch status {
-    case .success:
-      onPreparedToShareCategory?(.success(manager.shareCategoryURL()))
-    case .emptyCategory:
-      onPreparedToShareCategory?(.error(title: L("bookmarks_error_title_share_empty"), text: L("bookmarks_error_message_share_empty")))
-    case .archiveError: fallthrough
-    case .fileError:
-      onPreparedToShareCategory?(.error(title: L("dialog_routing_system_error"), text: L("bookmarks_error_message_share_general")))
-    }
+  func onBookmarkDeleted(_: MWMMarkID) {
+    reloadData()
   }
 }

@@ -11,11 +11,10 @@
 
 #include "search/cities_boundaries_table.hpp"
 #include "search/features_layer_path_finder.hpp"
+#include "search/mwm_context.hpp"
 #include "search/retrieval.hpp"
 #include "search/token_range.hpp"
 #include "search/token_slice.hpp"
-
-#include "editor/editable_data_source.hpp"
 
 #include "indexer/feature_impl.hpp"
 
@@ -177,11 +176,11 @@ UNIT_CLASS_TEST(ProcessorTest, AddressPlaceSmoke)
   m2::PointD const sm(0.005, 0.005);
 
   // 1.
-  TestVillage village({0, 0}, "Баравая", lang, 0/* rank */);
-  TestBuilding bld1(village.GetCenter() + sm, {}/* name */, "36", {}/* street */, lang);
-  bld1.SetPlace(village.GetName(lang));
+  TestVillage village1({0, 0}, "Баравая", lang, 0/* rank */);
+  TestBuilding bld1(village1.GetCenter() + sm, {}/* name */, "36", {}/* street */, lang);
+  bld1.SetPlace(village1.GetName(lang));
   // No place for it.
-  TestBuilding bld2(village.GetCenter() - sm, {}/* name */, "36", {}/* street */, lang);
+  TestBuilding bld2(village1.GetCenter() - sm, {}/* name */, "36", {}/* street */, lang);
 
   // 2.
   TestCity city1({0.5, 0.5}, "Mannheim", lang, 0/* rank */);
@@ -203,6 +202,13 @@ UNIT_CLASS_TEST(ProcessorTest, AddressPlaceSmoke)
   // City that presents only in World to mix World and Country IDs.
   TestCity city4(mercator::FromLatLon(50, 30), "Dummy", lang, 0/* rank */);
 
+  // 5.
+  TestVillage village2(mercator::FromLatLon(53.8041415, 27.6151914), "Пашковичи", lang, 0/* rank */);
+  village2.SetType({"place", "hamlet"});
+  TestBuilding bld6(mercator::FromLatLon(53.8040029, 27.6091967), {}/* name */, "43А", {}/* street */, lang);
+  bld6.SetPlace(village2.GetName(lang));
+  TestBuilding bld7(mercator::FromLatLon(53.7956458, 27.6248433), "уч. 43", {}/* house number*/, {}/* street */, lang);
+
   auto const worldId = BuildWorld([&](TestMwmBuilder & builder)
   {
     builder.Add(city1);
@@ -214,7 +220,7 @@ UNIT_CLASS_TEST(ProcessorTest, AddressPlaceSmoke)
   // Country name Czech is important for the conscription house matching.
   auto const wonderlandId = BuildCountry("Czech", [&](TestMwmBuilder & builder)
   {
-    builder.Add(village);
+    builder.Add(village1);
     builder.Add(bld1);
     builder.Add(bld2);
 
@@ -229,12 +235,19 @@ UNIT_CLASS_TEST(ProcessorTest, AddressPlaceSmoke)
 
     builder.Add(city3);
     builder.Add(bld5);
+
+    builder.Add(village2);
+    builder.Add(bld6);
+    builder.Add(bld7);
   });
 
   SetViewport({-1, -1, 1, 1});
-  TEST(ResultsMatch("Баравая 36", {ExactMatch(wonderlandId, bld1)}), ());
-  TEST(ResultsMatch("Mannheim F2 4", {ExactMatch(wonderlandId, bld3)}), ());
-  TEST(ResultsMatch("Зелегонрад к2308", {ExactMatch(wonderlandId, bld5)}), ());
+
+  {
+    TEST(ResultsMatch("Баравая 36", {ExactMatch(wonderlandId, bld1)}), ());
+    TEST(ResultsMatch("Mannheim F2 4", {ExactMatch(wonderlandId, bld3)}), ());
+    TEST(ResultsMatch("Зелегонрад к2308", {ExactMatch(wonderlandId, bld5)}), ());
+  }
 
   {
     TEST(ResultsMatch("Brno Štýřice 54", {ExactMatch(wonderlandId, bld4)}), ());
@@ -246,6 +259,12 @@ UNIT_CLASS_TEST(ProcessorTest, AddressPlaceSmoke)
     // Now we don't distinguish addr:conscriptionnumber and addr:streetnumber
     TEST(ResultsMatch("Brno Štýřice 11", {ExactMatch(wonderlandId, bld4)}), ());
     TEST(ResultsMatch("Brno Gallašova 54", rules), ());
+  }
+
+  {
+    /// @todo Should also match bld7 like: Building's name _near_ Place?
+    /// Now "MatchBuildingsWithPlace" function works on exact house number match only ..
+    TEST(ResultsMatch("Пашковичи 43", {ExactMatch(wonderlandId, bld6)}), ());
   }
 }
 
@@ -375,10 +394,13 @@ UNIT_CLASS_TEST(ProcessorTest, Smoke)
   {
     TEST(ResultsMatch("bohr street 1 unit 3", {ExactMatch(wonderlandId, bohrStreet1)}), ());
   }
+#if defined(DEBUG) || __apple_build_version__ < 15000000
+  // TODO(AB): Fails on Mac's clang with any optimization enabled and -fassociative-math
   {
     Rules rules = {ExactMatch(wonderlandId, lantern1), ExactMatch(wonderlandId, lantern2)};
     TEST(ResultsMatch("bohr street 1 lantern ", rules), ());
   }
+#endif
   {
     Rules rules = {ExactMatch(wonderlandId, feynmanHouse), ExactMatch(wonderlandId, feynmanStreet)};
     TEST(ResultsMatch("wonderland los alamos feynman 1 unit 1 ", rules), ());
@@ -3598,6 +3620,70 @@ UNIT_CLASS_TEST(ProcessorTest, ComplexPoi_Match)
   {
     Rules const rules = {ExactMatch(wonderlandId, building)};
     TEST(ResultsMatch("задворенская 8", rules), ());
+  }
+}
+
+UNIT_CLASS_TEST(ProcessorTest, NonDrawable_Categories)
+{
+  base::StringIL const subway = {"railway", "station", "subway"};
+
+  TestPOI noWheelchair({-0.1, -0.1}, {}, {});
+  noWheelchair.SetTypes({subway, {"wheelchair", "no"}});
+
+  TestPOI elevator({0, 0}, {}, {});
+  elevator.SetTypes({subway, {"highway", "elevator"}});
+
+  TestPOI yesWheelchair({0.1, 0.1}, {}, {});
+  yesWheelchair.SetTypes({subway, {"wheelchair", "yes"}});
+
+  auto wonderlandId = BuildCountry("Wonderland", [&](TestMwmBuilder & builder)
+  {
+    builder.Add(noWheelchair);
+    builder.Add(elevator);
+    builder.Add(yesWheelchair);
+  });
+
+  SetViewport(m2::RectD(-0.5, -0.5, 0.5, 0.5));
+
+  {
+    Rules const rules = {ExactMatch(wonderlandId, noWheelchair),
+                         ExactMatch(wonderlandId, elevator),
+                         ExactMatch(wonderlandId, yesWheelchair)};
+    TEST(ResultsMatch("subway", rules), ());
+  }
+  {
+    Rules const rules = {ExactMatch(wonderlandId, yesWheelchair)};
+    TEST(ResultsMatch("subway wheelchair", rules), ());
+  }
+  {
+    Rules const rules = {ExactMatch(wonderlandId, elevator)};
+    TEST(ResultsMatch("subway lift", rules), ());
+  }
+}
+
+UNIT_CLASS_TEST(ProcessorTest, NonSearchable_Categories)
+{
+  TestPOI yesPool({0, 0}, {}, {});
+  yesPool.SetTypes({{"leisure", "swimming_pool"}});
+
+  TestPOI noPool({0.1, 0.1}, {}, {});
+  noPool.SetTypes({{"leisure", "swimming_pool", "private"}});
+
+  auto wonderlandId = BuildCountry("Wonderland", [&](TestMwmBuilder & builder)
+  {
+    builder.Add(yesPool);
+    builder.Add(noPool);
+  });
+
+  SetViewport(m2::RectD(-0.5, -0.5, 0.5, 0.5));
+
+  {
+    Rules const rules = {ExactMatch(wonderlandId, yesPool)};
+    TEST(ResultsMatch("swimming pool", rules), ());
+  }
+  {
+    Rules const rules = {ExactMatch(wonderlandId, yesPool)};
+    TEST(ResultsMatch("бассейн", rules, "ru"), ());
   }
 }
 

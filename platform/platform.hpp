@@ -103,7 +103,7 @@ protected:
   std::string m_settingsDir;
 
   /// Used in Android only to get corret GUI elements layout.
-  bool m_isTablet;
+  bool m_isTablet = false;
 
   /// Returns last system call error as EError.
   static EError ErrnoToError();
@@ -113,9 +113,9 @@ protected:
 
   std::unique_ptr<base::TaskLoop> m_guiThread;
 
-  std::unique_ptr<base::thread_pool::delayed::ThreadPool> m_networkThread;
-  std::unique_ptr<base::thread_pool::delayed::ThreadPool> m_fileThread;
-  std::unique_ptr<base::thread_pool::delayed::ThreadPool> m_backgroundThread;
+  std::unique_ptr<base::DelayedThreadPool> m_networkThread;
+  std::unique_ptr<base::DelayedThreadPool> m_fileThread;
+  std::unique_ptr<base::DelayedThreadPool> m_backgroundThread;
 
   platform::BatteryLevelTracker m_batteryTracker;
 
@@ -238,6 +238,8 @@ public:
 
   /// @return 0 in case of failure.
   static time_t GetFileCreationTime(std::string const & path);
+  /// @return 0 in case of failure.
+  static time_t GetFileModificationTime(std::string const & path);
 
   /// Used to check available free storage space for downloading.
   enum TStorageStatus
@@ -320,7 +322,7 @@ public:
 
   template <typename Task>
   base::TaskLoop::PushResult RunDelayedTask(
-      Thread thread, base::thread_pool::delayed::ThreadPool::Duration const & delay, Task && task)
+      Thread thread, base::DelayedThreadPool::Duration const & delay, Task && task)
   {
     ASSERT(m_networkThread && m_fileThread && m_backgroundThread, ());
     switch (thread)

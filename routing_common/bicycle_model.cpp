@@ -32,8 +32,8 @@ SpeedKMpH constexpr kSpeedOnFootwayKMpH = {5.0 /* weight */, 7.0 /* eta */};
 HighwayBasedSpeeds const kDefaultSpeeds = {
     // {highway class : InOutCitySpeedKMpH(in city(weight, eta), out city(weight eta))}
     /// @see Russia_UseTrunk for Trunk weights.
-    {HighwayType::HighwayTrunk, InOutCitySpeedKMpH(SpeedKMpH(5.0, 18.0))},
-    {HighwayType::HighwayTrunkLink, InOutCitySpeedKMpH(SpeedKMpH(5.0, 18.0))},
+    {HighwayType::HighwayTrunk, InOutCitySpeedKMpH(SpeedKMpH(5.5, 18.0))},
+    {HighwayType::HighwayTrunkLink, InOutCitySpeedKMpH(SpeedKMpH(5.5, 18.0))},
     {HighwayType::HighwayPrimary, InOutCitySpeedKMpH(SpeedKMpH(10.0, 18.0), SpeedKMpH(14.0, 18.0))},
     {HighwayType::HighwayPrimaryLink, InOutCitySpeedKMpH(SpeedKMpH(10.0, 18.0), SpeedKMpH(14.0, 18.0))},
     {HighwayType::HighwaySecondary, InOutCitySpeedKMpH(SpeedKMpH(15.0, 18.0), SpeedKMpH(20.0, 18.0))},
@@ -226,22 +226,20 @@ bool BicycleModel::IsBicycleOnedir(feature::TypesHolder const & types) const
   return types.Has(m_onedirBicycleType);
 }
 
-SpeedKMpH BicycleModel::GetTypeSpeed(feature::TypesHolder const & types, SpeedParams const & speedParams) const
+SpeedKMpH BicycleModel::GetSpeed(FeatureTypes const & types, SpeedParams const & speedParams) const
 {
   return GetTypeSpeedImpl(types, speedParams, false /* isCar */);
 }
 
-bool BicycleModel::IsOneWay(FeatureType & f) const
+bool BicycleModel::IsOneWay(FeatureTypes const & types) const
 {
-  feature::TypesHolder const types(f);
-
   if (IsBicycleOnedir(types))
     return true;
 
   if (IsBicycleBidir(types))
     return false;
 
-  return VehicleModel::IsOneWay(f);
+  return VehicleModel::IsOneWay(types);
 }
 
 SpeedKMpH const & BicycleModel::GetOffroadSpeed() const { return bicycle_model::kSpeedOffroadKMpH; }

@@ -90,6 +90,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint *sideButtonsAreaKeyboard;
 @property(strong, nonatomic) IBOutlet UIImageView *carplayPlaceholderLogo;
 //@property(strong, nonatomic) BookmarksCoordinator * bookmarksCoordinator;
+@property(strong, nonatomic) IBOutlet UIView *carplayPlaceholderView;
 
 @property(strong, nonatomic) NSHashTable<id<MWMLocationModeListener>> *listeners;
 
@@ -316,6 +317,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  self.title = L(@"map");
+
   // On iOS 10 (it was reproduced, it may be also on others), mapView can be uninitialized
   // when onGetFocus is called, it can lead to missing of onGetFocus call and a deadlock on the start.
   // As soon as mapView must exist before onGetFocus, so we have to defer onGetFocus call.
@@ -340,6 +343,12 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
         MWMMyPositionModeNotFollowNoPosition : MWMMyPositionModePendingPosition];
   }
 
+  // if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
+  //   self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+  
+  // Added in https://github.com/organicmaps/organicmaps/pull/7333
+  // After all users migrate to OAuth2 we can remove next code
+  // [self migrateOAuthCredentials];
 
   /// @todo: Uncomment update dialog when will be ready to handle big traffic bursts.
   /*
@@ -369,7 +378,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-  if (!self.mapView.drapeEngineCreated)
+  if (!self.mapView.drapeEngineCreated && !MapsAppDelegate.isTestsEnvironment)
     [self.mapView createDrapeEngine];
 }
 
@@ -394,7 +403,6 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  [self.alertController presentEditorViralAlert];
 
   [ud setObject:[NSDate date] forKey:kUDViralAlertWasShown];
-  [ud synchronize];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -419,6 +427,15 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)updateStatusBarStyle {
   [self setNeedsStatusBarAppearanceUpdate];
 }
+
+//- (void)migrateOAuthCredentials {
+//  if (osm_auth_ios::AuthorizationHaveOAuth1Credentials())
+//  {
+//    osm_auth_ios::AuthorizationClearOAuth1Credentials();
+//    [self.alertController presentOsmReauthAlert];
+//  }
+//}
+
 - (id)initWithCoder:(NSCoder *)coder {
   NSLog(@"MapViewController initWithCoder Started");
   self = [super initWithCoder:coder];
@@ -582,20 +599,14 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//  if ([segue.identifier isEqualToString:kEditorSegue]) {
-//    MWMEditorViewController *dvc = segue.destinationViewController;
-//    [dvc setFeatureToEdit:static_cast<id<MWMFeatureHolder>>(sender).featureId];
-//  } else if ([segue.identifier isEqualToString:kDownloaderSegue]) {
-//    MWMDownloadMapsViewController *dvc = segue.destinationViewController;
-//    NSNumber *mode = sender;
-//    dvc.mode = (MWMMapDownloaderMode)mode.integerValue;
-//  } else if ([segue.identifier isEqualToString:kMap2FBLoginSegue]) {
-//    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
-//    dvc.authType = MWMWebViewAuthorizationTypeFacebook;
-//  } else if ([segue.identifier isEqualToString:kMap2GoogleLoginSegue]) {
-//    MWMAuthorizationWebViewLoginViewController *dvc = segue.destinationViewController;
-//    dvc.authType = MWMWebViewAuthorizationTypeGoogle;
-//  }
+// if ([segue.identifier isEqualToString:kEditorSegue]) {
+//   MWMEditorViewController *dvc = segue.destinationViewController;
+//   [dvc setFeatureToEdit:static_cast<id<MWMFeatureHolder>>(sender).featureId];
+// } else if ([segue.identifier isEqualToString:kDownloaderSegue]) {
+//   MWMDownloadMapsViewController *dvc = segue.destinationViewController;
+//   NSNumber *mode = sender;
+//   dvc.mode = (MWMMapDownloaderMode)mode.integerValue;
+// }
 }
 
 #pragma mark - MWMKeyboard
@@ -660,7 +671,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 #pragma mark - CarPlay map append/remove
 
 - (void)disableCarPlayRepresentation {
-  self.carplayPlaceholderLogo.hidden = YES;
+  self.carplayPlaceholderView.hidden = YES;
   self.mapView.frame = self.view.bounds;
   [self.view insertSubview:self.mapView atIndex:0];
   [[self.mapView.topAnchor constraintEqualToAnchor:self.view.topAnchor] setActive:YES];
@@ -682,7 +693,7 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
   if (!self.controlsView.isHidden) {
     self.controlsView.hidden = YES;
   }
-  self.carplayPlaceholderLogo.hidden = NO;
+  self.carplayPlaceholderView.hidden = NO;
 }
 
 #pragma mark - MWMBookmarksObserver

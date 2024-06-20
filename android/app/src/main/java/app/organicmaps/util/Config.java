@@ -350,12 +350,6 @@ public final class Config
     return url;
   }
 
-  @SuppressWarnings("ConstantConditions") // BuildConfig
-  public static boolean isOsmLoginEnabled(@NonNull Context context)
-  {
-    return !BuildConfig.FLAVOR.equals("google");
-  }
-
   public static void init(@NonNull Context context)
   {
     PreferenceManager.setDefaultValues(context, R.xml.prefs_main, false);
@@ -419,6 +413,7 @@ public final class Config
       String ENABLED = "TtsEnabled";
       String LANGUAGE = "TtsLanguage";
       String VOLUME = "TtsVolume";
+      String STREETS = "TtsStreetNames";
     }
 
     public interface Defaults
@@ -428,6 +423,8 @@ public final class Config
       float VOLUME_MIN = 0.0f;
       float VOLUME_MAX = 1.0f;
       float VOLUME = VOLUME_MAX;
+
+      boolean STREETS = false; // TTS may mangle some languages, do not announce streets by default
     }
 
     public static boolean isEnabled()
@@ -460,6 +457,17 @@ public final class Config
     {
       setFloat(Keys.VOLUME, volume);
     }
+
+    public static boolean getAnnounceStreets()
+    {
+      return getBool(Keys.STREETS, Defaults.STREETS);
+    }
+
+    public static void setAnnounceStreets(boolean enabled)
+    {
+      setBool(Keys.STREETS, enabled);
+    }
+
   }
 
   private static native boolean nativeHasConfigValue(String name);

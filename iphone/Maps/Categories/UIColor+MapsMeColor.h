@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)speedLimitLightGray;
 + (UIColor *)speedLimitDarkGray;
 + (UIColor *)primary; // Added by Lei
++ (UIColor *)carplayPlaceholderBackground;
 
 + (UIColor *)colorWithName:(NSString *)colorName;
 + (UIColor *)colorFromHexString:(NSString *)hexString;

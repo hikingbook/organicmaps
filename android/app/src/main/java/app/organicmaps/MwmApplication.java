@@ -271,8 +271,8 @@ public class MwmApplication extends Application implements Application.ActivityL
     nativeAddLocalization("core_my_places", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_my_places));
     nativeAddLocalization("core_my_position", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_my_position));
     nativeAddLocalization("core_placepage_unknown_place", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.core_placepage_unknown_place));
-    nativeAddLocalization("postal_code",  OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.postal_code));
-    nativeAddLocalization("wifi", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.wifi));
+    nativeAddLocalization("postal_code", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.postal_code));
+    nativeAddLocalization("wifi", OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getString(R.string.category_wifi));
   }
 
   public boolean arePlatformAndCoreInitialized()

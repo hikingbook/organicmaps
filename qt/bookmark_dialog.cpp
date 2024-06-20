@@ -170,7 +170,7 @@ void BookmarkDialog::OnExportClick()
   if (name.isEmpty())
     return;
 
-  m_framework.GetBookmarkManager().PrepareFileForSharing(categoryIt->second,
+  m_framework.GetBookmarkManager().PrepareFileForSharing({categoryIt->second},
     [this, name](BookmarkManager::SharingResult const & result)
   {
     if (result.m_code == BookmarkManager::SharingResult::Code::Success)
@@ -191,7 +191,7 @@ void BookmarkDialog::OnExportClick()
       ask.addButton(tr("OK"), QMessageBox::NoRole);
       ask.exec();
     }
-  });
+  }, KmlFileType::Text);
 }
 
 void BookmarkDialog::OnDeleteClick()
@@ -268,7 +268,7 @@ void BookmarkDialog::FillTree()
 
   if (!bm.IsAsyncLoadingInProgress())
   {
-    for (auto catId : bm.GetBmGroupsIdList())
+    for (auto catId : bm.GetUnsortedBmGroupsIdList())
     {
       auto categoryItem = CreateTreeItem(bm.GetCategoryName(catId), categoriesItem);
       m_categories[categoryItem] = catId;

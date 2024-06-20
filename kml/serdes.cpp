@@ -51,13 +51,6 @@ std::string const kExtendedDataFooter =
 
 std::string const kCompilationFooter = "</" + kCompilation + ">\n";
 
-std::string_view constexpr kIndent0 = {};
-std::string_view constexpr kIndent2 = {"  "};
-std::string_view constexpr kIndent4 = {"    "};
-std::string_view constexpr kIndent6 = {"      "};
-std::string_view constexpr kIndent8 = {"        "};
-std::string_view constexpr kIndent10 = {"          "};
-
 std::string GetLocalizableString(LocalizableString const & s, int8_t lang)
 {
   auto const it = s.find(lang);
@@ -143,39 +136,7 @@ BookmarkIcon GetIcon(std::string const & iconName)
   return BookmarkIcon::None;
 }
 
-void SaveStringWithCDATA(KmlWriter::WriterWrapper & writer, std::string s)
-{
-  if (s.empty())
-    return;
-
-  // Expat loads XML 1.0 only. Sometimes users copy and paste bookmark descriptions or even names from the web.
-  // Rarely, in these copy-pasted texts, there are invalid XML1.0 symbols.
-  // See https://en.wikipedia.org/wiki/Valid_characters_in_XML
-  // A robust solution requires parsing invalid XML on loading (then users can restore "bad" XML files), see
-  // https://github.com/organicmaps/organicmaps/issues/3837
-  // When a robust solution is implemented, this workaround can be removed for better performance/battery.
-  //
-  // This solution is a simple ASCII-range check that does not check symbols from other unicode ranges
-  // (they will require a more complex and slower approach of converting UTF-8 string to unicode first).
-  // It should be enough for many cases, according to user reports and wrong characters in their data.
-  s.erase(std::remove_if(s.begin(), s.end(), [](unsigned char c)
-  {
-    if (c >= 0x20 || c == 0x09 || c == 0x0a || c == 0x0d)
-      return false;
-    return true;
-  }), s.end());
-
-  if (s.empty())
-    return;
-
-  // According to kml/xml spec, we need to escape special symbols with CDATA.
-  if (s.find_first_of("<&") != std::string::npos)
-    writer << "<![CDATA[" << s << "]]>";
-  else
-    writer << s;
-}
-
-void SaveStyle(KmlWriter::WriterWrapper & writer, std::string const & style,
+void SaveStyle(Writer & writer, std::string const & style,
                std::string_view const & indent)
 {
   if (style.empty())
@@ -190,7 +151,7 @@ void SaveStyle(KmlWriter::WriterWrapper & writer, std::string const & style,
          << indent << kIndent2 << "</Style>\n";
 }
 
-void SaveColorToABGR(KmlWriter::WriterWrapper & writer, uint32_t rgba)
+void SaveColorToABGR(Writer & writer, uint32_t rgba)
 {
   writer << NumToHex(static_cast<uint8_t>(rgba & 0xFF))
          << NumToHex(static_cast<uint8_t>((rgba >> 8) & 0xFF))
@@ -207,7 +168,7 @@ std::string TimestampToString(Timestamp const & timestamp)
   return strTimeStamp;
 }
 
-void SaveLocalizableString(KmlWriter::WriterWrapper & writer, LocalizableString const & str,
+void SaveLocalizableString(Writer & writer, LocalizableString const & str,
                            std::string const & tagName, std::string_view const & indent)
 {
   writer << indent << "<mwm:" << tagName << ">\n";
@@ -222,7 +183,7 @@ void SaveLocalizableString(KmlWriter::WriterWrapper & writer, LocalizableString 
 }
 
 template <class StringViewLike>
-void SaveStringsArray(KmlWriter::WriterWrapper & writer,
+void SaveStringsArray(Writer & writer,
                       std::vector<StringViewLike> const & stringsArray,
                       std::string const & tagName, std::string_view const & indent)
 {
@@ -246,7 +207,7 @@ void SaveStringsArray(KmlWriter::WriterWrapper & writer,
   writer << indent << "</mwm:" << tagName << ">\n";
 }
 
-void SaveStringsMap(KmlWriter::WriterWrapper & writer,
+void SaveStringsMap(Writer & writer,
                     std::map<std::string, std::string> const & stringsMap,
                     std::string const & tagName, std::string_view const & indent)
 {
@@ -263,11 +224,11 @@ void SaveStringsMap(KmlWriter::WriterWrapper & writer,
   writer << indent << "</mwm:" << tagName << ">\n";
 }
 
-void SaveCategoryData(KmlWriter::WriterWrapper & writer, CategoryData const & categoryData,
+void SaveCategoryData(Writer & writer, CategoryData const & categoryData,
                       std::string const & extendedServerId,
                       std::vector<CategoryData> const * compilationData);
 
-void SaveCategoryExtendedData(KmlWriter::WriterWrapper & writer, CategoryData const & categoryData,
+void SaveCategoryExtendedData(Writer & writer, CategoryData const & categoryData,
                               std::string const & extendedServerId,
                               std::vector<CategoryData> const * compilationData)
 {
@@ -356,7 +317,7 @@ void SaveCategoryExtendedData(KmlWriter::WriterWrapper & writer, CategoryData co
     writer << kIndent4 << kCompilationFooter;
 }
 
-void SaveCategoryData(KmlWriter::WriterWrapper & writer, CategoryData const & categoryData,
+void SaveCategoryData(Writer & writer, CategoryData const & categoryData,
                       std::string const & extendedServerId,
                       std::vector<CategoryData> const * compilationData)
 {
@@ -383,7 +344,7 @@ void SaveCategoryData(KmlWriter::WriterWrapper & writer, CategoryData const & ca
   SaveCategoryExtendedData(writer, categoryData, extendedServerId, compilationData);
 }
 
-void SaveBookmarkExtendedData(KmlWriter::WriterWrapper & writer, BookmarkData const & bookmarkData)
+void SaveBookmarkExtendedData(Writer & writer, BookmarkData const & bookmarkData)
 {
   writer << kIndent4 << kExtendedDataHeader;
   if (!bookmarkData.m_name.empty())
@@ -455,7 +416,7 @@ void SaveBookmarkExtendedData(KmlWriter::WriterWrapper & writer, BookmarkData co
   writer << kIndent4 << kExtendedDataFooter;
 }
 
-void SaveBookmarkData(KmlWriter::WriterWrapper & writer, BookmarkData const & bookmarkData)
+void SaveBookmarkData(Writer & writer, BookmarkData const & bookmarkData)
 {
   writer << kIndent2 << "<Placemark>\n";
   writer << kIndent4 << "<name>";
@@ -486,7 +447,7 @@ void SaveBookmarkData(KmlWriter::WriterWrapper & writer, BookmarkData const & bo
   writer << kIndent2 << "</Placemark>\n";
 }
 
-void SaveTrackLayer(KmlWriter::WriterWrapper & writer, TrackLayer const & layer,
+void SaveTrackLayer(Writer & writer, TrackLayer const & layer,
                     std::string_view const & indent)
 {
   writer << indent << "<color>";
@@ -495,7 +456,7 @@ void SaveTrackLayer(KmlWriter::WriterWrapper & writer, TrackLayer const & layer,
   writer << indent << "<width>" << strings::to_string(layer.m_lineWidth) << "</width>\n";
 }
 
-void SaveTrackGeometry(KmlWriter::WriterWrapper & writer, MultiGeometry const & geom)
+void SaveTrackGeometry(Writer & writer, MultiGeometry const & geom)
 {
   size_t const sz = geom.m_lines.size();
   if (sz == 0)
@@ -532,7 +493,7 @@ void SaveTrackGeometry(KmlWriter::WriterWrapper & writer, MultiGeometry const & 
     writer << kIndent4 << "</MultiGeometry>\n";
 }
 
-void SaveTrackExtendedData(KmlWriter::WriterWrapper & writer, TrackData const & trackData)
+void SaveTrackExtendedData(Writer & writer, TrackData const & trackData)
 {
   writer << kIndent4 << kExtendedDataHeader;
   SaveLocalizableString(writer, trackData.m_name, "name", kIndent6);
@@ -558,7 +519,7 @@ void SaveTrackExtendedData(KmlWriter::WriterWrapper & writer, TrackData const & 
   writer << kIndent4 << kExtendedDataFooter;
 }
 
-void SaveTrackData(KmlWriter::WriterWrapper & writer, TrackData const & trackData)
+void SaveTrackData(Writer & writer, TrackData const & trackData)
 {
   writer << kIndent2 << "<Placemark>\n";
   writer << kIndent4 << "<name>";
@@ -639,12 +600,6 @@ bool ParsePointWithAltitude(std::string_view s, char const * delim,
   return false;
 }
 }  // namespace
-
-KmlWriter::WriterWrapper & KmlWriter::WriterWrapper::operator<<(std::string_view str)
-{
-  m_writer.Write(str.data(), str.length());
-  return *this;
-}
 
 void KmlWriter::Write(FileData const & fileData)
 {

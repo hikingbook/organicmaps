@@ -210,29 +210,19 @@ public final class MapManager
 
   public static boolean warn3gAndDownload(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
   {
-    return warnOn3g(activity, countryId, new Runnable()
-    {
-      @Override
-      public void run()
-      {
-        if (onAcceptListener != null)
-          onAcceptListener.run();
-        nativeDownload(countryId, mapSource.getValue());
-      }
+    return warnOn3g(activity, countryId, () -> {
+      if (onAcceptListener != null)
+        onAcceptListener.run();
+      nativeDownload(countryId, mapSource.getValue());
     });
   }
 
   public static boolean warn3gAndRetry(Activity activity, final String countryId, final MapSource mapSource, @Nullable final Runnable onAcceptListener)
   {
-    return warnOn3g(activity, countryId, new Runnable()
-    {
-      @Override
-      public void run()
-      {
-        if (onAcceptListener != null)
-          onAcceptListener.run();
-        nativeRetry(countryId, mapSource.getValue());
-      }
+    return warnOn3g(activity, countryId, () -> {
+      if (onAcceptListener != null)
+        onAcceptListener.run();
+      nativeRetry(countryId, mapSource.getValue());
     });
   }
 

@@ -192,6 +192,10 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 //  });
 //}
 
+// - (void)presentOsmReauthAlert {
+//   [self displayAlert:[MWMAlert osmReauthAlert]];
+// }
+
 - (void)presentConvertBookmarksAlertWithCount:(NSUInteger)count block:(nonnull MWMVoidBlock)block {
   auto alert = [MWMAlert convertBookmarksAlertWithCount:count block:block];
   [self displayAlert:alert];

@@ -24,7 +24,9 @@ import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.concurrency.UiThread;
 import app.organicmaps.util.log.Logger;
-import app.organicmaps.widget.placepage.CoordinatesFormat;
+
+import java.time.LocalTime;
+import java.util.concurrent.TimeUnit;
 
 
 @androidx.annotation.UiThread
@@ -199,7 +201,7 @@ public class RoutingController
 
   private boolean isDrivingOptionsBuildError()
   {
-    return !ResultCodesHelper.isMoreMapsNeeded(mLastResultCode) && RoutingOptions.hasAnyOptions();
+    return !ResultCodesHelper.isMoreMapsNeeded(mLastResultCode) && RoutingOptions.hasAnyOptions() && !isRulerRouterType();
   }
 
   private void setState(State newState)
@@ -352,7 +354,7 @@ public class RoutingController
   private void initLastRouteType(@Nullable MapObject startPoint, @Nullable MapObject endPoint,
                                  boolean fromApi)
   {
-    if (isSubwayEnabled() && !fromApi)
+    if (shouldForceTransitRoute(fromApi))
     {
       mLastRouterType = Framework.ROUTER_TYPE_TRANSIT;
       return;
@@ -366,6 +368,11 @@ public class RoutingController
   private boolean isSubwayEnabled()
   {
     return mContainer != null && mContainer.isSubwayEnabled();
+  }
+
+  private boolean shouldForceTransitRoute(boolean fromApi)
+  {
+    return mState == State.NONE && isSubwayEnabled() && !fromApi;
   }
 
   public void prepare(final @Nullable MapObject startPoint, final @Nullable MapObject endPoint,
@@ -919,9 +926,7 @@ public class RoutingController
 
   static String formatArrivalTime(int seconds)
   {
-    Calendar current = Calendar.getInstance();
-    current.set(Calendar.SECOND, 0);
-    current.add(Calendar.SECOND, seconds);
-    return StringUtils.formatUsingUsLocale("%d:%02d", current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE));
+    final LocalTime time = LocalTime.now().plusSeconds(seconds);
+    return StringUtils.formatUsingUsLocale("%d:%02d", time.getHour(), time.getMinute());
   }
 }

@@ -35,6 +35,7 @@ import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.sound.MediaPlayerWrapper;
 import app.organicmaps.sound.TtsPlayer;
+import app.organicmaps.util.Config;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.LocationUtils;
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
@@ -43,6 +44,7 @@ import app.organicmaps.util.log.Logger;
 public class NavigationService extends Service implements LocationListener
 {
   private static final String TAG = NavigationService.class.getSimpleName();
+  private static final String STOP_NAVIGATION = "STOP_NAVIGATION";
 
   private static final String CHANNEL_ID = "NAVIGATION";
   private static final int NOTIFICATION_ID = 12345678;
@@ -137,6 +139,11 @@ public class NavigationService extends Service implements LocationListener
     final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent,
         PendingIntent.FLAG_CANCEL_CURRENT | FLAG_IMMUTABLE);
 
+    final Intent exitIntent = new Intent(context, NavigationService.class);
+    exitIntent.setAction(STOP_NAVIGATION);
+    final PendingIntent exitPendingIntent = PendingIntent.getService(context, 0, exitIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
+
     mNotificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
         .setCategory(NotificationCompat.CATEGORY_NAVIGATION)
         .setPriority(NotificationManager.IMPORTANCE_LOW)
@@ -144,8 +151,9 @@ public class NavigationService extends Service implements LocationListener
         .setOngoing(true)
         .setShowWhen(false)
         .setOnlyAlertOnce(true)
-        .setSmallIcon(R.drawable.ic_notification)
+        .setSmallIcon(R.drawable.ic_splash)
         .setContentIntent(pendingIntent)
+        .addAction(0, context.getString(R.string.core_exit), exitPendingIntent)
         .setColorized(isColorizedSupported())
         .setColor(ContextCompat.getColor(context, R.color.notification));
 
@@ -184,6 +192,14 @@ public class NavigationService extends Service implements LocationListener
   @Override
   public int onStartCommand(@NonNull Intent intent, int flags, int startId)
   {
+    final String action = intent.getAction();
+    if (action != null && action.equals(STOP_NAVIGATION))
+    {
+      RoutingController.get().cancel();
+      stopSelf();
+      return START_NOT_STICKY;
+    }
+
     if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
       // The system restarts the service if the app's process has crashed or been stopped. It would be nice to
@@ -250,9 +266,10 @@ public class NavigationService extends Service implements LocationListener
     if (!routingController.isNavigating())
       return;
 
-//    final String[] turnNotifications = Framework.nativeGenerateNotifications();
+    // Voice the turn notification first.
+//    final String[] turnNotifications = Framework.nativeGenerateNotifications(Config.TTS.getAnnounceStreets());
 //    if (turnNotifications != null)
-//     TtsPlayer.INSTANCE.playTurnNotifications(turnNotifications);
+//      TtsPlayer.INSTANCE.playTurnNotifications(turnNotifications);
 
     // TODO: consider to create callback mechanism to transfer 'ROUTE_IS_FINISHED' event from
     // the core to the platform code (https://github.com/organicmaps/organicmaps/issues/3589),

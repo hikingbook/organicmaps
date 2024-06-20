@@ -31,6 +31,7 @@ import app.organicmaps.editor.ProfileActivity;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationProviderFactory;
+import app.organicmaps.routing.RoutingOptions;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.NetworkPolicy;
 import app.organicmaps.util.PowerManagment;
@@ -58,7 +59,6 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     initMeasureUnitsPrefsCallbacks();
     initZoomPrefsCallbacks();
     initMapStylePrefsCallbacks();
-    initSpeedCamerasPrefs();
     initAutoDownloadPrefsCallbacks();
     initLargeFontSizePrefsCallbacks();
     initTransliterationPrefsCallbacks();
@@ -81,26 +81,10 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     pref.setSummary(Config.TTS.isEnabled() ? R.string.on : R.string.off);
   }
 
-  private void initSpeedCamerasPrefs()
+  private void updateRoutingSettingsPrefsSummary()
   {
-    final ListPreference pref = getPreference(getString(R.string.pref_speed_cameras));
-    pref.setSummary(pref.getEntry());
-    pref.setOnPreferenceChangeListener((preference, newValue) -> {
-      final String speedCamModeValue = (String) newValue;
-      final SpeedCameraMode newCamMode = SpeedCameraMode.valueOf(speedCamModeValue);
-      final CharSequence summary = pref.getEntries()[newCamMode.ordinal()];
-      pref.setSummary(summary);
-      if (pref.getValue().equals(newValue))
-        return true;
-
-      onSpeedCamerasPrefChanged(newCamMode);
-      return true;
-    });
-  }
-
-  private void onSpeedCamerasPrefChanged(@NonNull SpeedCameraMode newCamMode)
-  {
-    Framework.setSpeedCamerasMode(newCamMode);
+    final Preference pref = getPreference(getString(R.string.prefs_routing));
+    pref.setSummary(RoutingOptions.hasAnyOptions() ? R.string.on : R.string.off);
   }
 
   @Override
@@ -109,6 +93,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     super.onResume();
 
     updateVoiceInstructionsPrefsSummary();
+    updateRoutingSettingsPrefsSummary();
   }
 
   @Override
@@ -283,7 +268,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     ((TwoStatePreference) pref).setChecked(isHistoryEnabled);
     pref.setOnPreferenceChangeListener((preference, newValue) -> {
       boolean newVal = (Boolean) newValue;
-      if (newVal != isHistoryEnabled)
+      if (newVal != Config.isSearchHistoryEnabled())
       {
         Config.setSearchHistoryEnabled(newVal);
         if (newVal)

@@ -237,22 +237,17 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mProgress = controls.findViewById(R.id.wheel_downloader_progress);
     mButton = controls.findViewById(R.id.downloader_button);
 
-    mProgress.setOnClickListener(new View.OnClickListener()
-    {
-      @Override
-      public void onClick(View v)
-      {
-        if (mCurrentCountry == null)
-          return;
+    mProgress.setOnClickListener(v -> {
+      if (mCurrentCountry == null)
+        return;
 
-        if (downloaderDelegate != null) {
-          downloaderDelegate.cancelDownloadButtonDidClick(mCurrentCountry, getMapSource());
-        }
-        else {
-          MapManager.nativeCancel(mCurrentCountry.id);
-        }
-        setAutodownloadLocked(true);
+      if (downloaderDelegate != null) {
+        downloaderDelegate.cancelDownloadButtonDidClick(mCurrentCountry, getMapSource());
       }
+      else {
+        MapManager.nativeCancel(mCurrentCountry.id);
+      }
+      setAutodownloadLocked(true);
     });
       mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null :
       mCurrentCountry.id, () -> {

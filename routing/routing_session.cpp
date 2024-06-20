@@ -425,25 +425,18 @@ void RoutingSession::GetRouteFollowingInfo(FollowingInfo & info) const
 
   info.m_completionPercent = GetCompletionPercent();
 
-  double const timeToNearestTurnSec = m_route->GetCurrentTimeToNearestTurnSec();
-
   // Lane information and next street name.
-  if (distanceToTurnMeters < kShowLanesMinDistInMeters || timeToNearestTurnSec < 60.0)
+  info.m_displayedStreetName = info.m_targetName;
+  info.m_lanes.clear();
+  if (distanceToTurnMeters < kShowLanesMinDistInMeters || m_route->GetCurrentTimeToNearestTurnSec() < 60.0)
   {
-    info.m_displayedStreetName = info.m_targetName;
     // There are two nested loops below. Outer one is for lanes and inner one (ctor of
     // SingleLaneInfo) is
     // for each lane's directions. The size of turn.m_lanes is relatively small. Less than 10 in
     // most cases.
-    info.m_lanes.clear();
     info.m_lanes.reserve(turn.m_lanes.size());
     for (size_t j = 0; j < turn.m_lanes.size(); ++j)
       info.m_lanes.emplace_back(turn.m_lanes[j]);
-  }
-  else
-  {
-    info.m_displayedStreetName = "";
-    info.m_lanes.clear();
   }
 
   // Pedestrian info.
@@ -483,7 +476,7 @@ void RoutingSession::PassCheckpoints()
   }
 }
 
-void RoutingSession::GenerateNotifications(std::vector<std::string> & notifications)
+void RoutingSession::GenerateNotifications(std::vector<std::string> & notifications, bool announceStreets)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   notifications.clear();
@@ -500,7 +493,15 @@ void RoutingSession::GenerateNotifications(std::vector<std::string> & notificati
   // Generate turns notifications.
   std::vector<turns::TurnItemDist> turns;
   if (m_route->GetNextTurns(turns))
-    m_turnNotificationsMgr.GenerateTurnNotifications(turns, notifications);
+  {
+    RouteSegment::RoadNameInfo nextStreetInfo;
+
+    // only populate nextStreetInfo if TtsStreetNames is enabled
+    if (announceStreets)
+      m_route->GetNextTurnStreetName(nextStreetInfo);
+
+    m_turnNotificationsMgr.GenerateTurnNotifications(turns, notifications, nextStreetInfo);
+  }
 
   m_speedCameraManager.GenerateNotifications(notifications);
 }
@@ -784,6 +785,27 @@ bool RoutingSession::IsRouteValid() const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   return m_route && m_route->IsValid();
+}
+
+bool RoutingSession::GetRouteJunctionPoints(std::vector<m2::PointD> & routeJunctionPoints) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  ASSERT(m_route, ());
+
+  if (!m_route->IsValid())
+    return false;
+
+  auto const & segments = m_route->GetRouteSegments();
+  routeJunctionPoints.reserve(segments.size());
+
+  for (size_t i = 0; i < segments.size(); ++i)
+  {
+    auto const & junction = segments[i].GetJunction();
+    routeJunctionPoints.push_back(junction.GetPoint());
+  }
+
+  ASSERT_EQUAL(routeJunctionPoints.size(), routeJunctionPoints.size(), ());
+  return true;
 }
 
 bool RoutingSession::GetRouteAltitudesAndDistancesM(std::vector<double> & routeSegDistanceM,

@@ -9,19 +9,22 @@
 @class MWMBookmarksSection;
 @class MWMCarPlayBookmarkObject;
 @class MWMTrack;
+@class UIColor;
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, MWMBookmarksSortingType) {
   MWMBookmarksSortingTypeByType,
   MWMBookmarksSortingTypeByDistance,
-  MWMBookmarksSortingTypeByTime
+  MWMBookmarksSortingTypeByTime,
+  MWMBookmarksSortingTypeByName
 } NS_SWIFT_NAME(BookmarksSortingType);
 
 typedef void (^PingCompletionBlock)(BOOL success);
 typedef void (^ElevationPointChangedBlock)(double distance);
 typedef void (^SearchBookmarksCompletionBlock)(NSArray<MWMBookmark *> *bookmarks);
 typedef void (^SortBookmarksCompletionBlock)(NSArray<MWMBookmarksSection *> * _Nullable sortedSections);
+typedef void (^SharingResultCompletionHandler)(MWMBookmarksShareStatus status, NSURL * _Nullable urlToALocalFile);
 
 NS_SWIFT_NAME(BookmarksManager)
 @interface MWMBookmarksManager : NSObject
@@ -33,8 +36,11 @@ NS_SWIFT_NAME(BookmarksManager)
 
 - (BOOL)areBookmarksLoaded;
 - (void)loadBookmarks;
+- (void)reloadCategoryAtFilePath:(NSString *)filePath;
+- (void)deleteCategoryAtFilePath:(NSString *)filePath;
 
-- (BOOL)isCategoryNotEmpty:(MWMMarkGroupID)groupId;
+- (BOOL)areAllCategoriesEmpty;
+- (BOOL)isCategoryEmpty:(MWMMarkGroupID)groupId;
 - (void)prepareForSearch:(MWMMarkGroupID)groupId;
 - (NSString *)getCategoryName:(MWMMarkGroupID)groupId;
 - (uint64_t)getCategoryMarksCount:(MWMMarkGroupID)groupId;
@@ -57,6 +63,9 @@ NS_SWIFT_NAME(BookmarksManager)
 - (void)setUserCategoriesVisible:(BOOL)isVisible;
 - (void)deleteCategory:(MWMMarkGroupID)groupId;
 - (BOOL)checkCategoryName:(NSString *)name;
+- (BOOL)hasCategory:(MWMMarkGroupID)groupId;
+- (BOOL)hasBookmark:(MWMMarkID)bookmarkId;
+- (BOOL)hasTrack:(MWMTrackID)trackId;
 - (NSArray<NSNumber *> *)availableSortingTypes:(MWMMarkGroupID)groupId hasMyPosition:(BOOL)hasMyPosition;
 - (void)sortBookmarks:(MWMMarkGroupID)groupId
           sortingType:(MWMBookmarksSortingType)sortingType
@@ -82,14 +91,31 @@ NS_SWIFT_NAME(BookmarksManager)
 
 - (MWMTrackIDCollection)trackIdsForCategory:(MWMMarkGroupID)categoryId;
 
-- (void)shareCategory:(MWMMarkGroupID)groupId;
-- (NSURL *)shareCategoryURL;
+/**
+ Shares a specific category with the given group ID.
+
+ @param groupId The identifier for the category to be shared.
+ @param fileType Text/Binary/GPX
+ @param completion A block that handles the result of the share operation and takes two parameters:
+                   - status: The status of the share operation, of type `MWMBookmarksShareStatus`.
+                   - urlToALocalFile: The local file URL containing the shared data. This parameter is guaranteed to be non-nil only if `status` is `MWMBookmarksShareStatusSuccess`. In other cases, it will be nil.
+*/
+- (void)shareCategory:(MWMMarkGroupID)groupId fileType:(MWMKmlFileType)fileType completion:(SharingResultCompletionHandler)completion;
+/**
+ Shares all categories.
+
+ @param completion A block that handles the result of the share operation and takes two parameters:
+                   - status: The status of the share operation, of type `MWMBookmarksShareStatus`.
+                   - urlToALocalFile: The local file URL containing the shared data. This parameter is guaranteed to be non-nil only if `status` is `MWMBookmarksShareStatusSuccess`.  In other cases, it will be nil.
+*/
+- (void)shareAllCategoriesWithCompletion:(SharingResultCompletionHandler)completion;
 - (void)finishShareCategory;
 
 - (void)setNotificationsEnabled:(BOOL)enabled;
 - (BOOL)areNotificationsEnabled;
 
-- (NSArray<MWMBookmarkGroup *> *)userCategories;
+- (NSArray<MWMBookmarkGroup *> *)sortedUserCategories;
+- (size_t)userCategoriesCount;
 - (MWMBookmarkGroup *)categoryWithId:(MWMMarkGroupID)groupId;
 - (MWMBookmarkGroup *)categoryForBookmarkId:(MWMMarkID)bookmarkId;
 - (MWMBookmarkGroup *)categoryForTrackId:(MWMTrackID)trackId;
@@ -100,12 +126,19 @@ NS_SWIFT_NAME(BookmarksManager)
                  color:(MWMBookmarkColor)color
            description:(NSString *)description;
 
+- (void)updateBookmark:(MWMMarkID)bookmarkId
+              setColor:(MWMBookmarkColor)color;
+
 - (void)moveBookmark:(MWMMarkID)bookmarkId
            toGroupId:(MWMMarkGroupID)groupId;
 
 - (void)updateTrack:(MWMTrackID)trackId
          setGroupId:(MWMMarkGroupID)groupId
+              color:(UIColor *)color
               title:(NSString *)title;
+
+- (void)updateTrack:(MWMTrackID)trackId
+           setColor:(UIColor *)color;
 
 - (void)moveTrack:(MWMTrackID)trackId
         toGroupId:(MWMMarkGroupID)groupId;

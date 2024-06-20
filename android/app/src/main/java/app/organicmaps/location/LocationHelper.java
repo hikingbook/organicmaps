@@ -3,6 +3,7 @@ package app.organicmaps.location;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.location.Location;
@@ -24,6 +25,7 @@ import app.organicmaps.Map;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.bookmarks.data.FeatureId;
 import app.organicmaps.bookmarks.data.MapObject;
+import app.organicmaps.routing.JunctionInfo;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.LocationUtils;
@@ -55,7 +57,7 @@ public class LocationHelper implements BaseLocationProvider.Listener
   private boolean mActive;
 
   @NonNull
-  private GnssStatusCompat.Callback mGnssStatusCallback = new GnssStatusCompat.Callback()
+  private final GnssStatusCompat.Callback mGnssStatusCallback = new GnssStatusCompat.Callback()
   {
     @Override
     public void onStarted()
@@ -233,6 +235,17 @@ public class LocationHelper implements BaseLocationProvider.Listener
         " downgrading to use native provider");
     mLocationProvider.stop();
     mLocationProvider = new AndroidNativeProvider(mContext, this);
+    mActive = true;
+    mLocationProvider.start(mInterval);
+  }
+
+  // RouteSimulationProvider doesn't really require location permissions.
+  @SuppressLint("MissingPermission")
+  public void startNavigationSimulation(JunctionInfo[] points)
+  {
+    Logger.i(TAG);
+    mLocationProvider.stop();
+    mLocationProvider = new RouteSimulationProvider(mContext, this, points);
     mActive = true;
     mLocationProvider.start(mInterval);
   }

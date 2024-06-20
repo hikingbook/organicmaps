@@ -13,7 +13,6 @@
 #include "base/assert.hpp"
 #include "base/string_utils.hpp"
 
-#include <algorithm>
 #include <string>
 
 namespace routing
@@ -168,11 +167,12 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
   size_t const count = feature.GetPointsCount();
   CHECK(altitudes == nullptr || altitudes->size() == count, ());
 
-  m_highwayType = vehicleModel.GetHighwayType(feature);
+  feature::TypesHolder types(feature);
+  m_highwayType = vehicleModel.GetHighwayType(types);
 
-  m_valid = vehicleModel.IsRoad(feature);
-  m_isOneWay = vehicleModel.IsOneWay(feature);
-  m_isPassThroughAllowed = vehicleModel.IsPassThroughAllowed(feature);
+  m_valid = vehicleModel.IsRoad(types);
+  m_isOneWay = vehicleModel.IsOneWay(types);
+  m_isPassThroughAllowed = vehicleModel.IsPassThroughAllowed(types);
 
   uint32_t const fID = feature.GetID().m_index;
   m_inCity = attrs.m_cityRoads.IsCityRoad(fID);
@@ -181,11 +181,10 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
                      m_highwayType ? attrs.m_maxSpeeds.GetDefaultSpeed(m_inCity, *m_highwayType) : kInvalidSpeed,
                      m_inCity);
   params.m_forward = true;
-  m_forwardSpeed = vehicleModel.GetSpeed(feature, params);
+  m_forwardSpeed = vehicleModel.GetSpeed(types, params);
   params.m_forward = false;
-  m_backwardSpeed = vehicleModel.GetSpeed(feature, params);
+  m_backwardSpeed = vehicleModel.GetSpeed(types, params);
 
-  feature::TypesHolder types(feature);
   auto const & optionsClassfier = RoutingOptionsClassifier::Instance();
   for (uint32_t type : types)
   {
@@ -207,12 +206,13 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
       // Since we store integer altitudes, 1 is a possible error for 2 points.
       geometry::Altitude constexpr kError = 1;
 
-      auto const altDiff = abs((*altitudes)[i] - (*altitudes)[i-1]);
-      if (altDiff > kError)
+      auto const altDiff = (*altitudes)[i] - (*altitudes)[i-1];
+      auto const absDiff = abs(altDiff) - kError;
+      if (absDiff > 0)
       {
         double const dist = ms::DistanceOnEarth(m_junctions[i-1].GetLatLon(), m_junctions[i].GetLatLon());
-        if ((altDiff - kError) / dist > 0.3)
-          LOG(LWARNING, ("Altitudes jump:", m_junctions[i-1], m_junctions[i]));
+        if (absDiff / dist >= 1.0)
+          LOG(LWARNING, ("Altitudes jump:", altDiff, "/", dist, m_junctions[i-1], m_junctions[i]));
       }
     }
 #endif

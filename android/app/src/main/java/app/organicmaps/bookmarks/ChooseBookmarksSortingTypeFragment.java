@@ -79,6 +79,8 @@ public class ChooseBookmarksSortingTypeFragment extends BaseMwmDialogFragment
           return R.id.sort_by_distance;
         case BookmarkManager.SORT_BY_TIME:
           return R.id.sort_by_time;
+        case BookmarkManager.SORT_BY_NAME:
+          return R.id.sort_by_name;
       }
     }
     return R.id.sort_by_default;
@@ -93,7 +95,7 @@ public class ChooseBookmarksSortingTypeFragment extends BaseMwmDialogFragment
     if (args == null)
       throw new AssertionError("Arguments of choose sorting type view can't be null.");
 
-    UiUtils.hide(view, R.id.sort_by_type, R.id.sort_by_distance, R.id.sort_by_time);
+    UiUtils.hide(view, R.id.sort_by_type, R.id.sort_by_distance, R.id.sort_by_time, R.id.sort_by_name);
 
     @BookmarkManager.SortingType
     int[] availableSortingTypes = args.getIntArray(EXTRA_SORTING_TYPES);
@@ -156,5 +158,7 @@ public class ChooseBookmarksSortingTypeFragment extends BaseMwmDialogFragment
       setSortingType(BookmarkManager.SORT_BY_DISTANCE);
     else if (id == R.id.sort_by_time)
       setSortingType(BookmarkManager.SORT_BY_TIME);
+    else if (id == R.id.sort_by_name)
+      setSortingType(BookmarkManager.SORT_BY_NAME);
   }
 }

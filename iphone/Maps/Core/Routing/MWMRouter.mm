@@ -190,7 +190,8 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 + (NSArray<NSString *> *)turnNotifications {
   NSMutableArray<NSString *> *turnNotifications = [@[] mutableCopy];
   std::vector<std::string> notifications;
-  GetFramework().GetRoutingManager().GenerateNotifications(notifications);
+  auto announceStreets = [NSUserDefaults.standardUserDefaults boolForKey:@"UserDefaultsNeedToEnableStreetNamesTTS"];
+  GetFramework().GetRoutingManager().GenerateNotifications(notifications, announceStreets);
 
   for (auto const &text : notifications)
     [turnNotifications addObject:@(text.c_str())];
@@ -393,8 +394,8 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
       altitudes->CalculateAscentDescent(totalAscentM, totalDescentM);
 
       auto const localizedUnits = platform::GetLocalizedAltitudeUnits();
-      router.totalAscent = @(platform::Distance::CreateAltitudeFormatted(totalAscentM).ToString().c_str());
-      router.totalDescent = @(platform::Distance::CreateAltitudeFormatted(totalDescentM).ToString().c_str());
+      router.totalAscent = @(platform::Distance::FormatAltitude(totalAscentM).c_str());
+      router.totalDescent = @(platform::Distance::FormatAltitude(totalDescentM).c_str());
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -578,7 +579,7 @@ char const *kRenderAltitudeImagesQueueLabel = "mapsme.mwmrouter.renderAltitudeIm
 }
 
 + (BOOL)hasActiveDrivingOptions {
-  return [MWMRoutingOptions new].hasOptions;
+  return [MWMRoutingOptions new].hasOptions && self.type != MWMRouterTypeRuler;
 }
 
 + (void)avoidRoadTypeAndRebuild:(MWMRoadType)type {

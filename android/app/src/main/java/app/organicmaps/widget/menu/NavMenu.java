@@ -23,10 +23,8 @@ import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class NavMenu
@@ -203,16 +201,11 @@ public class NavMenu
 
   private void updateTimeEstimate(int seconds)
   {
-    final Calendar currentTime = Calendar.getInstance();
-    currentTime.add(Calendar.SECOND, seconds);
-    DateFormat timeFormat;
-    if (android.text.format.DateFormat.is24HourFormat(mTimeMinuteValue.getContext()))
-      timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-    else
-      timeFormat = new SimpleDateFormat("h:mm aa", Locale.getDefault());
-    mTimeEstimate.setText(timeFormat.format(currentTime.getTime()));
+    final String format = android.text.format.DateFormat.is24HourFormat(mTimeMinuteValue.getContext())
+            ? "HH:mm" : "h:mm a";
+    final LocalTime localTime = LocalTime.now().plusSeconds(seconds);
+    mTimeEstimate.setText(localTime.format(DateTimeFormatter.ofPattern(format)));
   }
-
 
   private void updateSpeedView(@NonNull RoutingInfo info)
   {

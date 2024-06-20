@@ -24,6 +24,6 @@ public class AxisValueFormatter extends DefaultValueFormatter
   @Override
   public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler)
   {
-    return Framework.nativeFormatAltitude(value).toString(mChart.getContext());
+    return Framework.nativeFormatAltitude(value);
   }
 }

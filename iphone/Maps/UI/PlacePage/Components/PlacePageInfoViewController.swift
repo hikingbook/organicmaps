@@ -48,8 +48,10 @@ class InfoItemViewController: UIViewController {
 }
 
 protocol PlacePageInfoViewControllerDelegate: AnyObject {
+  func viewWillAppear()
   func didPressCall()
   func didPressWebsite()
+  func didPressWebsiteMenu()
   func didPressKayak()
   func didPressWikipedia()
   func didPressWikimediaCommons()
@@ -78,6 +80,7 @@ class PlacePageInfoViewController: UIViewController {
   private var rawOpeningHoursView: InfoItemViewController?
   private var phoneView: InfoItemViewController?
   private var websiteView: InfoItemViewController?
+  private var websiteMenuView: InfoItemViewController?
   private var kayakView: InfoItemViewController?
   private var wikipediaView: InfoItemViewController?
   private var wikimediaCommonsView: InfoItemViewController?
@@ -95,6 +98,8 @@ class PlacePageInfoViewController: UIViewController {
   private var levelView: InfoItemViewController?
   private var coordinatesView: InfoItemViewController?
   private var capacityView: InfoItemViewController?
+  private var wheelchairView: InfoItemViewController?
+  private var driveThroughView: InfoItemViewController?
 
   var placePageInfoData: PlacePageInfoData!
   weak var delegate: PlacePageInfoViewControllerDelegate?
@@ -156,7 +161,19 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(website)
       })
     }
-    
+
+    if let websiteMenu = placePageInfoData.websiteMenu {
+      websiteView = createInfoItem(L("website_menu"),
+                                   icon: UIImage(named: "ic_placepage_website_menu"),
+                                   style: .link,
+                                   tapHandler: { [weak self] in
+        self?.delegate?.didPressWebsiteMenu()
+      },
+                                   longPressHandler: { [weak self] in
+        self?.delegate?.didCopy(websiteMenu)
+      })
+    }
+
     if let wikipedia = placePageInfoData.wikipedia {
       wikipediaView = createInfoItem(L("read_in_wikipedia"),
                                      icon: UIImage(named: "ic_placepage_wiki"),
@@ -197,6 +214,14 @@ class PlacePageInfoViewController: UIViewController {
       capacityView = createInfoItem(capacity, icon: UIImage(named: "ic_placepage_capacity"))
     }
 
+    if let wheelchair = placePageInfoData.wheelchair {
+      wheelchairView = createInfoItem(wheelchair, icon: UIImage(named: "ic_placepage_wheelchair"))
+    }
+    
+    if let driveThrough = placePageInfoData.driveThrough {
+      driveThroughView = createInfoItem(driveThrough, icon: UIImage(named: "ic_placepage_drive_through"))
+    }
+    
     if let email = placePageInfoData.email {
       emailView = createInfoItem(email,
                                  icon: UIImage(named: "ic_placepage_email"),
@@ -313,6 +338,11 @@ class PlacePageInfoViewController: UIViewController {
     }
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    delegate?.viewWillAppear()
+  }
+
   // MARK: private
   private func createInfoItem(_ info: String,
                               icon: UIImage?,
@@ -331,7 +361,7 @@ class PlacePageInfoViewController: UIViewController {
 
   private func addToStack(_ viewController: UIViewController) {
     addChild(viewController)
-    stackView.addArrangedSubviewWithSeparator(viewController.view)
+    stackView.addArrangedSubviewWithSeparator(viewController.view, insets: UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0))
     viewController.didMove(toParent: self)
   }
 
@@ -347,31 +377,12 @@ class PlacePageInfoViewController: UIViewController {
 }
 
 private extension UIStackView {
-  func addArrangedSubviewWithSeparator(_ view: UIView) {
+  func addArrangedSubviewWithSeparator(_ view: UIView, insets: UIEdgeInsets = .zero) {
     if !arrangedSubviews.isEmpty {
       view.addSeparator(thickness: CGFloat(1.0),
                         color: StyleManager.shared.theme?.colors.blackDividers,
-                        insets: UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0))
+                        insets: insets)
     }
     addArrangedSubview(view)
-  }
-}
-
-private extension UIView {
-  func addSeparator(thickness: CGFloat,
-                    color: UIColor?,
-                    insets: UIEdgeInsets) {
-    let lineView = UIView()
-    lineView.styleName = "Divider"
-    lineView.backgroundColor = color ?? .black
-    lineView.isUserInteractionEnabled = false
-    lineView.translatesAutoresizingMaskIntoConstraints = false
-    addSubview(lineView)
-    NSLayoutConstraint.activate([
-      lineView.heightAnchor.constraint(equalToConstant: thickness),
-      lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.left),
-      lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
-      lineView.topAnchor.constraint(equalTo: topAnchor, constant: insets.top),
-    ])
   }
 }

@@ -25,6 +25,7 @@
         android:padding="@dimen/margin_half_plus">
         <ImageView
           android:id="@+id/icon"
+          style="@style/MwmWidget.Editor.MetadataIcon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_centerVertical="true"
@@ -175,6 +176,10 @@
               android:background="?dividerHorizontal"/>
         </RelativeLayout>
 
+        <include
+            android:id="@+id/block_website_menu"
+            layout="@layout/item_editor_input"/>
+
         <RelativeLayout
             android:id="@+id/block_phone"
             style="@style/MwmWidget.Editor.MetadataBlock.Clickable">
@@ -227,7 +232,7 @@
               android:layout_centerVertical="true"
               android:layout_marginStart="@dimen/editor_margin_left"
               android:layout_toStartOf="@+id/sw__wifi"
-              android:text="@string/wifi"/>
+              android:text="@string/category_wifi"/>
           <androidx.appcompat.widget.SwitchCompat
               android:id="@+id/sw__wifi"
               android:layout_width="wrap_content"

@@ -49,7 +49,7 @@ public:
     uint16_t m_minutesUntilOpen = 0;
 
     uint16_t m_minutesUntilClosed = 0;
-      
+
     std::string m_description;
 
     bool m_isInitialized = false;
@@ -59,7 +59,7 @@ public:
   static auto constexpr kPopularityHighPriorityMinDistance = 50000.0;
 
   Result(m2::PointD const & pt, std::string const & name) : m_center(pt), m_str(name) {}
-  void FromFeature(FeatureID const & id, uint32_t featureType, Details const & details);
+  void FromFeature(FeatureID const & id, uint32_t mainType, uint32_t matchedType, Details const & details);
 
   void SetAddress(std::string && address) { m_address = std::move(address); }
   void SetType(Result::Type type) { m_resultType = type; }
@@ -89,11 +89,10 @@ public:
 
   // Precondition: GetResultType() == Type::Feature.
   uint32_t GetFeatureType() const;
-  
-  // Precondition: GetResultType() == Type::Feature.
+  bool IsSameType(uint32_t type) const;
+
   std::string GetLocalizedFeatureType() const;
-  
-  // Precondition: GetResultType() == Type::Feature.
+  // Secondary title for the result.
   std::string GetFeatureDescription() const;
 
   // Center point of a feature.
@@ -148,7 +147,8 @@ private:
   m2::PointD m_center;
   std::string m_str;
   std::string m_address;
-  uint32_t m_featureType = 0;
+  uint32_t m_mainType = 0;
+  uint32_t m_matchedType = 0;
   std::string m_suggestionStr;
   buffer_vector<std::pair<uint16_t, uint16_t>, 4> m_hightlightRanges;
 

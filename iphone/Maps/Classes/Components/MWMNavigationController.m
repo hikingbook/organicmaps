@@ -43,10 +43,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
   UIViewController * topVC = self.viewControllers.lastObject;
-  topVC.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                            style:UIBarButtonItemStylePlain
-                                                                           target:nil
-                                                                           action:nil];
+  [self setupNavigationBackButtonItemFor:topVC];
   [super pushViewController:viewController animated:animated];
 }
 
@@ -54,11 +51,7 @@
   [viewControllers enumerateObjectsUsingBlock:^(UIViewController * vc, NSUInteger idx, BOOL * stop) {
     if (idx == viewControllers.count - 1)
       return;
-
-    vc.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:nil
-                                                                          action:nil];
+    [self setupNavigationBackButtonItemFor:vc];
   }];
   [super setViewControllers:viewControllers animated:animated];
 }
@@ -67,12 +60,26 @@
 {
   [super traitCollectionDidChange: previousTraitCollection];
   // Update the app theme when the device appearance is changing.
-  [MWMThemeManager invalidate];
+  if ((self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
+      || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass) || (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle)) {
+    [MWMThemeManager invalidate];
+  }
 }
 
 - (BOOL)shouldAutorotate
 {
   return YES;
+}
+
+- (void)setupNavigationBackButtonItemFor:(UIViewController *)viewController {
+  if (@available(iOS 14.0, *)) {
+    viewController.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
+  } else {
+    viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                                       style:UIBarButtonItemStylePlain
+                                                                                      target:nil
+                                                                                      action:nil];
+  }
 }
 
 @end

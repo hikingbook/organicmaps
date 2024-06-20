@@ -48,7 +48,7 @@ class SimpleTimetableAdapter extends RecyclerView.Adapter<SimpleTimetableAdapter
 
   private final Fragment mFragment;
 
-  private List<Timetable> mItems = new ArrayList<>();
+  private List<Timetable> mItems;
   private Timetable mComplementItem;
   private int mPickingPosition;
 
@@ -342,14 +342,7 @@ class SimpleTimetableAdapter extends RecyclerView.Adapter<SimpleTimetableAdapter
       // Save index of the day to get it back when checkbox will be toggled.
       checkBox.setTag(dayIndex);
       days.put(dayIndex, checkBox);
-      day.setOnClickListener(new View.OnClickListener()
-      {
-        @Override
-        public void onClick(View v)
-        {
-          checkBox.toggle();
-        }
-      });
+      day.setOnClickListener(v -> checkBox.toggle());
 
       ((TextView) day.findViewById(R.id.tv__day)).setText(TimeFormatUtils.formatShortWeekday(dayIndex));
     }
@@ -379,14 +372,7 @@ class SimpleTimetableAdapter extends RecyclerView.Adapter<SimpleTimetableAdapter
     {
       super(itemView);
       mAdd = itemView.findViewById(R.id.btn__add_time);
-      mAdd.setOnClickListener(new View.OnClickListener()
-      {
-        @Override
-        public void onClick(View v)
-        {
-          addTimetable();
-        }
-      });
+      mAdd.setOnClickListener(v -> addTimetable());
     }
 
     @Override
