@@ -76,22 +76,23 @@ final class ThemeManager: NSObject {
   @objc static func invalidate() {
     instance.update(theme: MWMSettings.theme())
   }
-
-//  @available(iOS 13.0, *)
-//  private func updateSystemUserInterfaceStyle(_ theme: MWMTheme) {
-//    let userInterfaceStyle: UIUserInterfaceStyle = { theme in
-//      switch theme {
-//      case .day: fallthrough
-//      case .vehicleDay: return .light
-//      case .night: fallthrough
-//      case .vehicleNight: return .dark
-//      case .auto: return .unspecified
-//      @unknown default:
-//        fatalError()
-//      }
-//    }(theme)
-//    UIApplication.shared.delegate?.window??.overrideUserInterfaceStyle = userInterfaceStyle
-//  }
+    
+  // Update the user interface style for the entire app
+  @available(iOS 13.0, *)
+  private func updateSystemUserInterfaceStyle(_ theme: MWMTheme) {
+    let userInterfaceStyle: UIUserInterfaceStyle = { theme in
+      switch theme {
+      case .day: fallthrough
+      case .vehicleDay: return .light
+      case .night: fallthrough
+      case .vehicleNight: return .dark
+      case .auto: return .unspecified
+      @unknown default:
+        fatalError()
+      }
+    }(theme)
+    UIApplication.shared.delegate?.window??.overrideUserInterfaceStyle = userInterfaceStyle
+  }
 
   @available(iOS, deprecated:13.0)
   @objc static var autoUpdates: Bool {
