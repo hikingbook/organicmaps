@@ -18,9 +18,9 @@ final class ThemeManager: NSObject {
 //  }
 
   private func update(theme: MWMTheme) {
-    if #available(iOS 13.0, *) {
-      updateSystemUserInterfaceStyle(theme)
-    }
+//    if #available(iOS 13.0, *) {
+//      updateSystemUserInterfaceStyle(theme)
+//    }
 
     let actualTheme: MWMTheme = { theme in
       let isVehicleRouting = MWMRouter.isRoutingActive() && (MWMRouter.type() == .vehicle)
@@ -76,7 +76,8 @@ final class ThemeManager: NSObject {
   @objc static func invalidate() {
     instance.update(theme: MWMSettings.theme())
   }
-
+    
+  // Update the user interface style for the entire app
   @available(iOS 13.0, *)
   private func updateSystemUserInterfaceStyle(_ theme: MWMTheme) {
     let userInterfaceStyle: UIUserInterfaceStyle = { theme in
