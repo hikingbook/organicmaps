@@ -361,14 +361,14 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   if (!topCountryIds.empty())
     store.InsertTopCountryGeoIds(id, topCountryIds);
 
-  int nodeSize;
+  MwmSize nodeSize;
   FromJSONObjectOptionalField(node, "s", nodeSize);
   ASSERT_LESS_OR_EQUAL(0, nodeSize, ());
 
   string nodeHash;
   FromJSONObjectOptionalField(node, "sha1_base64", nodeHash);
     
-    int hikingbookProMapNodeSize;
+    MwmSize hikingbookProMapNodeSize;
     FromJSONObjectOptionalField(node, "hikingbook_pro_map_s", hikingbookProMapNodeSize);
     
     string hikingbookProMapNodeHash;
