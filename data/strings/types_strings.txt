@@ -12322,42 +12322,6 @@
   [type.highway.footway.permissive]
     ref = type.highway.footway
 
-  [type.highway.footway.trail_visibility_bad]
-    ref = type.highway.path
-    en = Trail with sometimes invisible or unclear paths
-    zh-Hans = 部分路段无清楚路径的步道
-    zh-Hant = 部分路段無清楚路徑的步道
-
-  [type.highway.footway.trail_visibility_excellent]
-    ref = type.highway.path
-    en = Trail with unambiguous path and clear markers everywhere
-    zh-Hans = 路径与指标清楚可见的步道
-    zh-Hant = 路徑與指標清楚可見的步道
-
-  [type.highway.footway.trail_visibility_good]
-    ref = type.highway.path
-    en = Trail with mostly clear path and markers
-    zh-Hans = 路径与指标大多清楚可见的步道
-    zh-Hant = 路徑與指標大多清楚可見的步道
-
-  [type.highway.footway.trail_visibility_horrible]
-    ref = type.highway.path
-    en = Trail often pathless
-    zh-Hans = 通常路迹不明的步道
-    zh-Hant = 通常路跡不明的步道
-
-  [type.highway.footway.trail_visibility_intermediate]
-    ref = type.highway.path
-    en = Trail with mostly visible paths
-    zh-Hans = 路径通常清楚的步道
-    zh-Hant = 路徑通常清楚的步道
-
-  [type.highway.footway.trail_visibility_no]
-    ref = type.highway.path
-    en = Trail mostly pathless
-    zh-Hans = 绝大多数都路迹不明的步道
-    zh-Hant = 絕大多數都路跡不明的步道
-
   [type.highway.footway.tunnel]
     ref = type.highway.road.tunnel
     en = Pedestrian Tunnel
@@ -12634,6 +12598,8 @@
     en = Difficult or Indistinct Trail
     de = Schwieriger oder kaum erkennbarer Pfad
     ru = Сложная или плохо видимая тропа
+    zh-Hans = 困难地形或路迹不明
+    zh-Hant = 困難地形或路跡不明
 
   [type.highway.path.expert]
     comment = Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme.
@@ -12641,6 +12607,8 @@
     en = Expert or Indiscernible Trail
     de = Alpinwanderweg oder wegloser Pfad
     ru = Очень сложная или неразличимая тропа
+    zh-Hans = 极困难地形或路迹难以辨识
+    zh-Hant = 極困難地形或路跡難以辨識
 
   [type.highway.path.bicycle]
     ref = type.highway.path
@@ -12740,42 +12708,6 @@
 
   [type.highway.path.permissive]
     ref = type.highway.path
-
-  [type.highway.path.trail_visibility_bad]
-    ref = type.highway.path
-    en = Trail with sometimes invisible or unclear paths
-    zh-Hans = 部分路段无清楚路径的步道
-    zh-Hant = 部分路段無清楚路徑的步道
-
-  [type.highway.path.trail_visibility_excellent]
-    ref = type.highway.path
-    en = Trail with unambiguous path and clear markers everywhere
-    zh-Hans = 路径与指标清楚可见的步道
-    zh-Hant = 路徑與指標清楚可見的步道
-
-  [type.highway.path.trail_visibility_good]
-    ref = type.highway.path
-    en = Trail with mostly clear path and markers
-    zh-Hans = 路径与指标大多清楚可见的步道
-    zh-Hant = 路徑與指標大多清楚可見的步道
-
-  [type.highway.path.trail_visibility_horrible]
-    ref = type.highway.path
-    en = Trail often pathless
-    zh-Hans = 通常路迹不明的步道
-    zh-Hant = 通常路跡不明的步道
-
-  [type.highway.path.trail_visibility_intermediate]
-    ref = type.highway.path
-    en = Trail with mostly visible paths
-    zh-Hans = 路径通常清楚的步道
-    zh-Hant = 路徑通常清楚的步道
-
-  [type.highway.path.trail_visibility_no]
-    ref = type.highway.path
-    en = Trail mostly pathless
-    zh-Hans = 绝大多数都路迹不明的步道
-    zh-Hant = 絕大多數都路跡不明的步道
 
   [type.highway.path.tunnel]
     ref = type.highway.road.tunnel

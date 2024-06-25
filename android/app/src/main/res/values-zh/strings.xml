@@ -1162,9 +1162,16 @@
 	<string name="type.highway.footway">步行道路</string>
 	<string name="type.highway.footway.sidewalk">人行道</string>
 	<string name="type.highway.footway.crossing">行人过街天桥</string>
+	<string name="type.highway.footway.alpine_hiking">具攀爬地形、有暴露感的步道</string>
 	<string name="type.highway.footway.area">步行道路</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.footway.bridge">桥</string>
+	<string name="type.highway.footway.demanding_alpine_hiking">暴露感重、可能需攀爬陡峭岩石的步道</string>
+	<string name="type.highway.footway.demanding_mountain_hiking">可能需手脚并用、或需穿越碎石地形的步道</string>
+	<string name="type.highway.footway.difficult_alpine_hiking">暴露感极重、需攀爬困难岩石地形的步道</string>
+	<string name="type.highway.footway.hiking">维护良好的平缓步道</string>
+	<string name="type.highway.footway.mountain_hiking">稳定上升、有时有陡坡的步道</string>
+	<string name="type.highway.footway.permissive">步行道路</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.footway.tunnel">隧道</string>
 	<string name="type.highway.ford">浅滩</string>
@@ -1186,14 +1193,20 @@
 	<string name="type.highway.motorway_link.tunnel">隧道</string>
 	<string name="type.highway.path">小道</string>
 	<!-- Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. -->
-	<string name="type.highway.path.difficult">小道</string>
+	<string name="type.highway.path.difficult">困难地形或路迹不明</string>
 	<!-- Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. -->
-	<string name="type.highway.path.expert">小道</string>
+	<string name="type.highway.path.expert">极困难地形或路迹难以辨识</string>
 	<string name="type.highway.path.bicycle">小道</string>
 	<string name="type.highway.footway.bicycle">小道</string>
 	<!-- These translations are used for all type.highway.*.bridge. -->
 	<string name="type.highway.path.bridge">桥</string>
+	<string name="type.highway.path.demanding_alpine_hiking">暴露感重、可能需攀爬陡峭岩石的步道</string>
+	<string name="type.highway.path.demanding_mountain_hiking">可能需手脚并用、或需穿越碎石地形的步道</string>
+	<string name="type.highway.path.difficult_alpine_hiking">暴露感极重、需攀爬困难岩石地形的步道</string>
+	<string name="type.highway.path.hiking">维护良好的平缓步道</string>
 	<string name="type.highway.path.horse">小道</string>
+	<string name="type.highway.path.mountain_hiking">稳定上升、有时有陡坡的步道</string>
+	<string name="type.highway.path.permissive">小道</string>
 	<!-- These translations are used for all type.highway.*.tunnel. -->
 	<string name="type.highway.path.tunnel">隧道</string>
 	<string name="type.highway.pedestrian">步行街</string>
@@ -1999,6 +2012,7 @@
 	<string name="type.tourism.information.board">标示</string>
 	<string name="type.tourism.information.guidepost">指路牌</string>
 	<string name="type.tourism.information.map">旅游地图</string>
+	<string name="type.tourism.information.mobile">手机通讯点</string>
 	<string name="type.tourism.information.office">旅游咨询中心</string>
 	<string name="type.tourism.information.visitor_centre">游客中心</string>
 	<string name="type.tourism.motel">汽车旅馆</string>
