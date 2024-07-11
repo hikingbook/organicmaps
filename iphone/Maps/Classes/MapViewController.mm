@@ -317,7 +317,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.title = L(@"map");
+// Update the title will change both the navigation title and the tab bar item title simultaneously
+//  self.title = L(@"map");
 
   // On iOS 10 (it was reproduced, it may be also on others), mapView can be uninitialized
   // when onGetFocus is called, it can lead to missing of onGetFocus call and a deadlock on the start.
