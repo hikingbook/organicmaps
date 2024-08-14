@@ -1,7 +1,3 @@
-/**
- * Author by Zheng-Xiag, Date on 01/07/23.
- * Comment: Downgrade com.google.android.gms:play-services-location to v20.0.0
- */
 package app.organicmaps.location;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -78,23 +74,18 @@ class GoogleFusedLocationProvider extends BaseLocationProvider
   {
     Logger.d(TAG);
 
-    final LocationRequest locationRequest = LocationRequest.create();
-    locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-    locationRequest.setInterval(interval);
-    locationRequest.setWaitForAccurateLocation(true);
-
-//    final LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval)
-//        // Wait a few seconds for accurate locations initially, when accurate locations could not be computed on the device immediately.
-//        // https://github.com/organicmaps/organicmaps/issues/2149
-//        .setWaitForAccurateLocation(true)
-//        // The desired location granularity should correspond to the client permission level. The client will be
-//        // delivered fine locations while it has the Manifest.permission.ACCESS_FINE_LOCATION permission, coarse
-//        // locations while it has only the Manifest.permission.ACCESS_COARSE_LOCATION permission, and no location
-//        // if it lacks either.
-//        .setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
-//        // Sets the maximum age of an initial historical location delivered for this request.
-//        .setMaxUpdateAgeMillis(60 * 60 * 1000L) // 1 hour
-//        .build();
+    final LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval)
+        // Wait a few seconds for accurate locations initially, when accurate locations could not be computed on the device immediately.
+        // https://github.com/organicmaps/organicmaps/issues/2149
+        .setWaitForAccurateLocation(true)
+        // The desired location granularity should correspond to the client permission level. The client will be
+        // delivered fine locations while it has the Manifest.permission.ACCESS_FINE_LOCATION permission, coarse
+        // locations while it has only the Manifest.permission.ACCESS_COARSE_LOCATION permission, and no location
+        // if it lacks either.
+        .setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
+        // Sets the maximum age of an initial historical location delivered for this request.
+        .setMaxUpdateAgeMillis(60 * 60 * 1000L) // 1 hour
+        .build();
 
     LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
     builder.addLocationRequest(locationRequest);
