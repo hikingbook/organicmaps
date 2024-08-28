@@ -266,6 +266,8 @@
 	<string name="compass_calibration_recommended">Melhore a direcção das setas movendo o telemóvel num movimento em forma de oito para calibrar a bússola.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Mova o telemóvel num movimento em forma de oito para calibrar a bússola e fixar a direcção da seta no mapa.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Dê um toque longo no mapa novamente para ver a interface</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Atualizar tudo</string>
 	<!-- Cancel all button text -->
@@ -365,6 +367,7 @@
 	<string name="dialog_routing_system_error">Erro de sistema</string>
 	<string name="dialog_routing_application_error">Não foi possível criar uma rota devido a um erro na aplicação.</string>
 	<string name="dialog_routing_try_again">Tente novamente</string>
+	<string name="not_now">Agora não</string>
 	<string name="dialog_routing_download_and_build_cross_route">Quer descarregar o mapa e traçar uma rota melhor, mas que se estenda por mais de um mapa?</string>
 	<string name="dialog_routing_download_cross_route">Descarregue o mapa para traçar uma rota melhor que vai além dos limites deste mapa.</string>
 
@@ -378,7 +381,8 @@
 	<string name="categories">Categorias</string>
 	<string name="history">Histórico</string>
 	<string name="search_not_found">Lamento, mas não foram encontrados resultados.</string>
-	<string name="search_not_found_query">Por favor, tente outro termo de pesquisa.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Descarregue a região onde está a pesquisar ou tente adicionar o nome de uma cidade ou aldeia próxima.</string>
 	<string name="search_history_title">Histórico de pesquisas</string>
 	<string name="search_history_text">Ver as pesquisas recentes.</string>
 	<string name="clear_search">Limpar histórico de pesquisas</string>
@@ -429,6 +433,8 @@
 	<string name="no_osm_account">Não tem uma conta no OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Crie uma conta no OpenStreetMap</string>
 	<string name="login">Iniciar sessão</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Sessão não iniciada</string>
 	<string name="login_osm">Entrar no OpenStreetMap</string>
 	<string name="password">Palavra-chave</string>
 	<string name="forgot_password">Esqueceu-se da palavra-chave?</string>
@@ -467,7 +473,6 @@
 	<string name="editor_edit_place_category_title">Categoria</string>
 	<string name="detailed_problem_description">Descrição detalhada do problema</string>
 	<string name="editor_report_problem_other_title">Um problema diferente</string>
-	<string name="placepage_add_business_button">Adicionar uma organização</string>
 	<string name="message_invalid_feature_position">Nenhum objeto pode ser posicionado aqui</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Dados do OpenStreetMap criados pela comunidade a partir de %s. Sabe mais sobre como editar e atualizar o mapa em OpenStreetMap.org</string>
@@ -559,8 +564,10 @@
 	<string name="learn_more">Saber mais</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Saída</string>
-	<string name="routing_add_start_point">Adicionar ponto de partida para planear uma rota</string>
-	<string name="routing_add_finish_point">Adicionar final da viagem para planear uma rota</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Use a busca ou toque no mapa para adicionar um ponto de partida do percurso</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Use a busca ou toque no mapa para adicionar um ponto de destino</string>
 	<string name="placepage_remove_stop">Remover</string>
 	<string name="placepage_add_stop">Adicionar paragem</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -574,6 +581,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Ocultar tudo</string>
 	<string name="bookmark_lists_show_all">Mostrar tudo</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d favorito</item>
+	  <item quantity="other">%d favoritos</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Criar nova lista</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importar favoritos e trilhas</string>
@@ -592,14 +603,7 @@
 	  <item quantity="one">%d ficheiro encontrado. Pode vê-lo depois da conversão.</item>
 	  <item quantity="other">%d ficheiros encontrados. Pode vê-los depois da conversão.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d objeto</item>
-	  <item quantity="other">%d objetos</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d lugar</item>
-	  <item quantity="other">%d lugares</item>
-	</plurals>
+	<string name="restore">Restaurar</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d percurso</item>
 	  <item quantity="other">%d percursos</item>
@@ -770,6 +774,8 @@
 	<string name="button_layer_outdoor">Caminhadas</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">O navegador de Internet não está disponível</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">A autorização do OpenStreetMap está temporariamente indisponível devido a novas restrições no Google Play 😾\nA nossa equipa está a trabalhar para resolver este problema. Por favor, seja paciente 🙏</string>
 	<string name="volume">Volume</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Exportar todos os favoritos e trilhos</string>
@@ -786,6 +792,15 @@
 	<string name="website_menu">Link do menu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Ver menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Autosserviço</string>
+	<string name="select_option">Selecionar opção</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Assentos ao ar livre</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Desativar o modo de economia de energia</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Para uma navegação mais precisa, recomendamos que desactive o modo de poupança de energia nas definições da bateria do telemóvel.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Morada/Bloco</string>
@@ -2094,4 +2109,8 @@
 	<string name="type.amenity.events_venue">Local dos eventos</string>
 	<string name="type.shop.auction">Leilão</string>
 	<string name="type.shop.collector">Objectos de colecção</string>
+	<string name="type.self_service.yes">Auto-atendimento disponível</string>
+	<string name="type.self_service.only">Somente autosserviço</string>
+	<string name="type.self_service.partially">Autosserviço parcial</string>
+	<string name="type.self_service.no">Sem autosserviço</string>
 </resources>

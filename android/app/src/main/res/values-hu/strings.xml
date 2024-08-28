@@ -153,7 +153,7 @@
 	<!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
 	<string name="category_police">Rendőrség</string>
 	<!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
-	<string name="category_wifi">WiFi</string>
+	<string name="category_wifi">Wi-Fi</string>
 	<!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
 	<string name="category_recycling">Újrahasznosítás</string>
 	<!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
@@ -195,7 +195,7 @@
 	<!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
 	<string name="share">Megosztás</string>
 	<!-- Share by email button text, also used in editor and About. -->
-	<string name="email">Email</string>
+	<string name="email">E-mail</string>
 	<!-- Text for message when used successfully copied something -->
 	<string name="copied_to_clipboard">A vágólapra másolva: %s</string>
 	<!-- Used for bookmark editing -->
@@ -213,7 +213,7 @@
 	<string name="prefs_group_information">Információk</string>
 	<string name="prefs_group_route">Navigáció</string>
 	<string name="pref_zoom_title">Nagyítás/kicsinyítés gombok</string>
-	<string name="pref_zoom_summary">Mutassa a kijelzőn</string>
+	<string name="pref_zoom_summary">Megjelenítés a kijelzőn</string>
 	<!-- Settings «Map» category: «Night style» title -->
 	<string name="pref_map_style_title">Éjszakai üzemmód</string>
 	<!-- Generic «Off» string -->
@@ -264,9 +264,9 @@
 	<!-- Button in the main Help dialog -->
 	<string name="faq">Gyakran Ismételt Kérdések</string>
 	<!-- Button in the main menu -->
-	<string name="donate">Adományozni</string>
+	<string name="donate">Adományozás</string>
 	<!-- Button in the main Help dialog -->
-	<string name="how_to_support_us">Támogassa a projektet</string>
+	<string name="how_to_support_us">A projekt támogatása</string>
 	<!-- Button in the main Help dialog -->
 	<string name="copyright">Szerzői jog</string>
 	<!-- Text in menu + Button in the main Help dialog -->
@@ -275,6 +275,8 @@
 	<string name="compass_calibration_recommended">Javítsa a nyíl irányát a telefon nyolcas mozgatásával az iránytű kalibrálásához.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Mozgassa a telefont egy nyolcas mozdulattal az iránytű kalibrálásához és a nyíl irányának rögzítéséhez a térképen.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Érintse meg újra hosszan a térképet a kezelőfelület megjelenítéséhez.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Mindegyik frissítése</string>
 	<!-- Cancel all button text -->
@@ -303,7 +305,7 @@
 	<!-- Preference title -->
 	<string name="google_play_services">Google Play helymeghatározási szolgáltatások</string>
 	<!-- Preference text -->
-	<string name="pref_use_google_play">Bluetooth, WiFi vagy mobilhálózat segítségével gyorsan meghatározhatja hozzávetőleges tartózkodási helyét</string>
+	<string name="pref_use_google_play">Bluetooth, Wi-Fi vagy mobilhálózat segítségével gyorsan meghatározhatja hozzávetőleges tartózkodási helyét</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">Tölts le térképeket az útvonal mellett</string>
 	<!-- Text for routing error dialog -->
@@ -374,6 +376,7 @@
 	<string name="dialog_routing_system_error">Rendszerhiba</string>
 	<string name="dialog_routing_application_error">Egy alkalmazáshiba miatt nem sikerült az útvonal létrehozása.</string>
 	<string name="dialog_routing_try_again">Kérjük, próbálja újra</string>
+	<string name="not_now">Most nem</string>
 	<string name="dialog_routing_download_and_build_cross_route">Szeretné letölteni a térképet és létrehozni egy optimálisabb útvonalat, amely több, mint egy térképen terül el?</string>
 	<string name="dialog_routing_download_cross_route">Töltse le a térképet, hogy létrehozzon egy optimálisabb útvonalat, amely áthalad a jelenlegi térkép szélén.</string>
 
@@ -386,10 +389,11 @@
 	<string name="hide">Elrejt</string>
 	<string name="categories">Kategóriák</string>
 	<string name="history">Előzmények</string>
-	<string name="search_not_found">Sajnos, semmit nem találtam.</string>
-	<string name="search_not_found_query">Próbáljon másik lekérdezést.</string>
-	<string name="search_history_title">Előző keresések</string>
-	<string name="search_history_text">Aktuális keresés gyors elérése.</string>
+	<string name="search_not_found">Sajnos, semmit sem találtunk.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Töltse le a keresett régiót, vagy próbálja meg hozzáadni egy közeli város/falu nevét.</string>
+	<string name="search_history_title">Keresési előzmények</string>
+	<string name="search_history_text">Legutóbbi keresések gyors elérése.</string>
 	<string name="clear_search">A keresési előzmények törlése</string>
 	<string name="p2p_your_location">Az Ön helyzete</string>
 	<string name="p2p_start">Indítás</string>
@@ -436,6 +440,8 @@
 	<string name="no_osm_account">Nem rendelkezel még OpenStreetMap-felhasználói fiókkal?</string>
 	<string name="register_at_openstreetmap">Regisztráció</string>
 	<string name="login">Bejelentkezés</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Nincs bejelentkezve</string>
 	<string name="login_osm">Jelentkezzen be az OpenStreetMap-be</string>
 	<string name="password">Jelszó</string>
 	<string name="forgot_password">Elfelejtett jelszó?</string>
@@ -454,7 +460,7 @@
 	<string name="cuisine">Konyha</string>
 	<string name="select_cuisine">Válassz Konyhát</string>
 	<!-- login text field -->
-	<string name="email_or_username">Email vagy felhasználónév</string>
+	<string name="email_or_username">E-mail vagy felhasználónév</string>
 	<string name="level">Szint</string>
 	<string name="downloader_delete_map_dialog">A térképekkel együtt minden rajtuk végzett módosítás is törlésre kerül.</string>
 	<string name="downloader_update_maps">Térképek frissítése</string>
@@ -473,8 +479,7 @@
 	<string name="editor_default_language_hint">Ahogy a helyi nyelven írva van</string>
 	<string name="editor_edit_place_category_title">Kategória</string>
 	<string name="detailed_problem_description">A probléma részletes leírása</string>
-	<string name="editor_report_problem_other_title">Különböző problémaDifferent problem</string>
-	<string name="placepage_add_business_button">Szervezet hozzáadása</string>
+	<string name="editor_report_problem_other_title">Különböző probléma</string>
 	<string name="message_invalid_feature_position">Célpont áthelyezése ide nem lehetséges</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Közösség által létrehozott OpenStreetMap adatok %s-tól. Tudjon meg többet a térkép szerkesztéséről és frissítéséről az OpenStreetMap.org oldalon.</string>
@@ -530,7 +535,7 @@
 	<!-- Phone number error message -->
 	<string name="error_enter_correct_phone">Adja meg a helyes telefonszámot</string>
 	<string name="error_enter_correct_web">Adj meg egy érvényes weboldalcímet</string>
-	<string name="error_enter_correct_email">Adj meg egy érvényes email-címet</string>
+	<string name="error_enter_correct_email">Adj meg egy érvényes e-mail címet</string>
 	<string name="placepage_add_place_button">Hely hozzáadása az OpenStreetMap-hez</string>
 	<!-- Displayed when saving some edits to the map to warn against publishing personal data -->
 	<string name="editor_share_to_all_dialog_title">Szeretnéd elküldeni az összes felhasználónak?</string>
@@ -562,12 +567,14 @@
 	<string name="prefs_languages_information">TTS rendszert használunk a hangnavigációhoz. Sok Android-os készülék használja a Google TTS-t; töltse le vagy frissítse a Google Play áruházból (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
 	<string name="prefs_languages_information_off">Egyes nyelveknél másik beszédszintetizátort vagy további nyelvi csomagot kell telepítenie az alkalmazás-áruházból (Google Play, Galaxy Store, App Gallery, FDroid). Nyissa meg a készülék beállításait → Nyelv és bevitel → Beszéd → Szöveg-beszéd átalakító kimenet. Itt kezelheti a beszédszintézis beállításokat (például nyelvi csomag letöltése kapcsolat nélküli használatra) és másik szövegfelolvasót jelölhe tki.</string>
 	<string name="prefs_languages_information_off_link">További tájékoztatást találhat még ebben az útmutatóban.</string>
-	<string name="transliteration_title">Átírás latin nyelvre</string>
+	<string name="transliteration_title">Átírás latin betűkre</string>
 	<string name="learn_more">Tudjon meg többet</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Kilépés</string>
-	<string name="routing_add_start_point">Adjon hozzá kiindulási pontot az útvonal megtervezéséhez</string>
-	<string name="routing_add_finish_point">Adjon hozzá végpontot az útvonal tervezéséhez</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Használja a keresést, vagy koppintson a térképre az útvonal kezdőpontjának hozzáadásához</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Használja a keresést, vagy koppintson a térképre egy célpont hozzáadásához</string>
 	<string name="placepage_remove_stop">Eltávolítja</string>
 	<string name="placepage_add_stop">Hozzáad megállót</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -581,6 +588,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Összes elrejtése</string>
 	<string name="bookmark_lists_show_all">Összes megjelenítése</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">könyvjelzők %d</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Új lista létrehozása</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Könyvjelzők és sávok importálása</string>
@@ -599,12 +609,7 @@
 	  <item quantity="one">%d fájlt találtunk. Látni fogja őket a megtérés után.</item>
 	  <item quantity="other">%d fájl található. Látni fogja őket a megtérés után.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">%d hely</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">%d hely</item>
-	</plurals>
+	<string name="restore">Visszaállítás</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d út</item>
 	</plurals>
@@ -641,7 +646,7 @@
 	<string name="power_managment_setting_never">Soha</string>
 	<string name="power_managment_setting_auto">Automatikus</string>
 	<string name="power_managment_setting_manual_max">Maximális energiatakarékosság</string>
-	<string name="enable_logging_warning_message">Az opció bekapcsolja a diagnosztikai célú naplózást. Hasznos lehet a support csapatunknak, akik elhárítják az alkalmazás hibáit. Csak a Organic Maps support kérésére kapcsold be ezt az opciót.</string>
+	<string name="enable_logging_warning_message">Az opció bekapcsolja a diagnosztikai célú naplózást. Hasznos lehet a terméktámogatási csapatunknak, akik elhárítják az alkalmazás hibáit. Csak az Organic Maps terméktámogatásának kérésére kapcsold be ezt az opciót.</string>
 	<string name="access_rules_author_only">Online szerkesztés</string>
 	<string name="driving_options_title">Útvonaltervezési lehetőségek</string>
 	<!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -777,6 +782,8 @@
 	<string name="button_layer_outdoor">Túrázás</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">A webböngésző nem elérhető</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Az OpenStreetMap engedélyezése átmenetileg nem elérhető a Google Play új korlátozásai miatt 😾\nCsapatunk dolgozik a probléma megoldásán. Kérjük, legyen türelemmel 🙏</string>
 	<string name="volume">Hangerő</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Az összes könyvjelző és sáv exportálása</string>
@@ -793,6 +800,13 @@
 	<string name="website_menu">Menü link</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Menü megtekintése</string>
+	<string name="select_option">Válassza ki a lehetőséget</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Kültéri ülőhelyek</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Kapcsolja ki az energiatakarékos módot</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">A legpontosabb navigáció érdekében javasoljuk az energiatakarékos üzemmód kikapcsolását a telefon akkumulátor-beállításaiban.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Cím/blokk</string>
@@ -1937,4 +1951,8 @@
 	<string name="type.amenity.events_venue">Rendezvények helyszíne</string>
 	<string name="type.shop.auction">Aukció</string>
 	<string name="type.shop.collector">Gyűjthető tárgyak</string>
+	<string name="type.self_service.yes">Önkiszolgálás elérhető</string>
+	<string name="type.self_service.only">Csak önkiszolgálás</string>
+	<string name="type.self_service.partially">Részleges önkiszolgálás</string>
+	<string name="type.self_service.no">Nincs önkiszolgálás</string>
 </resources>

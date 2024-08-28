@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hey, Organic Maps'da mənim hal-hazırda olduğum ünvana baxın!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Paylaşın";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "E-poçt";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Audio Dil";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Test səsli göstərişlər (TTS, Text-to-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Digər";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompas kalibrlənməsi";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "İnterfeysi görmək üçün yenidən xəritəyə uzun müddət toxunun";
 
 /* Update all button text */
 "downloader_update_all_button" = "Hamısını yeniləyin";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Zəhmət olmasa bir daha cəhd edin";
 
-"not_now" = "İndi yox";
-
 "dialog_routing_download_and_build_cross_route" = "Xəritəni endirmək və çoxsaylı xəritələr arasında daha rahat marşrut yaratmaq istərdinizmi?";
 
 "dialog_routing_download_cross_route" = "Bu xəritənin sərhədlərini keçən daha rahat marşrut yaratmaq üçün xəritəni endirin.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Üzr istəyirik, heç bir nəticə tapılmadı.";
 
-"search_not_found_query" = "Axtarış kriteriyalarınızı dəyişməyə cəhd edin.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Axtardığınız bölgəni endirin və ya yaxınlıqdakı şəhər/kənd adını əlavə etməyə cəhd edin.";
 
 "search_history_title" = "Axtarış tarixçəsi";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Nəqliyyat məlumatları mövcud deyil";
 
+"enable_logging" = "Girişi aktivləşdirin";
+
+"log_file_size" = "Giriş faylının ölçüsü: %@";
+
 "transliteration_title" = "Latın transliterasiyası";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Çıx";
 
-"routing_add_start_point" = "Marşrutu planlaşdırmaq üçün başlanğıc nöqtəsi əlavə edin";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Marşrutun başlanğıc nöqtəsi əlavə etmək üçün axtarışdan istifadə edin və ya xəritədə klikləyin";
 
-"routing_add_finish_point" = "Marşrutu planlaşdırmaq üçün təyinat əlavə edin";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Təyinat nöqtəsi əlavə etmək üçün axtarışdan istifadə edin və ya xəritədə klikləyin";
 
 "planning_route_manage_route" = "Marşrutu idarə et";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Dayanacaq nöqtəsini əlavə edin";
 
 "start_from_my_position" = "Buradan başlayın";
-
-"profile_authorization_error" = "Bağışlayın, xəta baş verdi. Yenidən daxil olmağa çalışın.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Bütün xəritə redaktələrinizi avtomatik yükləmək üçün OpenStreetMap-a daxil olun.";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Hamısını göstər";
 
 "bookmarks_create_new_group" = "Yeni siyahı yaradın";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Əlfəcinləri və fraqmentləri idxal edin";
 
 "downloader_hide_screen" = "Ekranı Gizlət";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Bəzi fayllar çevrilmədi.";
 
-"bookmarks_restore_title" = "Bu versiya bərpa edilsin?";
-
-"error_system_message" = "Naməlum xəta baş verdi";
-
 "restore" = "Bərpa";
 
 "privacy_policy" = "Gizlilik Siyasəti";
 
 "terms_of_use" = "İstifadə qaydaları";
-
-"button_layer_traffic" = "Nəqliyyat";
 
 "button_layer_subway" = "Metro";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Avtomatik";
 
 "power_managment_setting_manual_max" = "Maksimum enerji qənaəti";
+
+"enable_logging_warning_message" = "Yardım dialoq qutusunda “Problemi bildir” istifadə etməklə probleminizlə bağlı ətraflı diaqnostik jurnalları qeyd etmək və bizə göndərmək üçün bu seçimi müvəqqəti aktivləşdirin. Qeydlərə məkan məlumatı daxil ola bilər";
 
 "driving_options_title" = "Marşrutlaşdırma seçimləri";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Marşrut cari yerinizdən yenidən yaradılacaq";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Marşrut sürücülük marşrutuna çevriləcək";
+
+"not_all_shown_bookmarks_carplay" = "Bütün əlfəcinlər göstərilmir";
+
+"switch_to_phone_bookmarks_carplay" = "Bütün əlfəcinləri görmək üçün telefona keçin";
 
 "ok" = "Yaxşı";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Tr:About";
 
+/* App Tip #00 */
+"app_tip_00" = "İcma tərəfindən yaradılmış xəritələrimizdən istifadə etdiyiniz üçün təşəkkür edirik!";
+
+/* App tip #01 */
+"app_tip_01" = "With your donations and support, we can create the best maps in the World!";
+
+/* App tip #02 */
+"app_tip_02" = "Do you like our app? Please donate to support the development! Don't like it yet? Please let us know why, and we will fix it!";
+
+/* App tip #03 */
+"app_tip_03" = "If you know a software developer, you can ask him or her to implement a feature that you need.";
+
+/* App tip #04 */
+"app_tip_04" = "Do you know that you can long-tap any place on the map to select it?";
+
+/* App tip #05 */
+"app_tip_05" = "Did you know that your current location on the map can be selected?";
+
+/* App tip #06 */
+"app_tip_06" = "You can help to translate our app into your language.";
+
+/* App tip #07 */
+"app_tip_07" = "Our app is developed by a few enthusiasts and the community.";
+
+/* App tip #08 */
+"app_tip_08" = "You can easily fix and improve the map data.";
+
+/* App tip #09 */
+"app_tip_09" = "Our main goal is to build fast, privacy-focused, easy-to-use maps that you will love.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "İndi telefon ekranında Organic Maps istifadə edirsiniz";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Menyu keçidi";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Tərtibatçılara səhv hesabatı göndərmək istərdinizmi?\nÜzvi Xəritələr heç bir səhv məlumatını avtomatik toplamadığından istifadəçilərimizə etibar edirik. Üzvi Xəritələri dəstəklədiyiniz üçün əvvəlcədən təşəkkür edirik!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "iCloud Sinxronizasiyasını aktivləşdirin";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Yedəkləmə";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud sinxronizasiya uğursuzluğu";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Xəta: Bağlantı xətası səbəbindən sinxronizasiya alınmadı";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Xəta: iCloud mövcud deyil";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Başqa Tətbiqdə Açın";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Çöldə oturma";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Son Silinmiş Siyahılar";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Sil";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Hamısını Sil";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Bərpa et";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Hamısını bərpa et";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Hərrac";
 
 "type.shop.collector" = "Kolleksiya əşyaları";
+
+"type.self_service.yes" = "Özünə xidmət mövcuddur";
+
+"type.self_service.only" = "Yalnız özünə xidmət";
+
+"type.self_service.partially" = "Qismən özünəxidmət";
+
+"type.self_service.no" = "Özünə xidmət yoxdur";

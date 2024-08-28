@@ -293,6 +293,8 @@
 	<string name="compass_calibration_recommended">قم بتحسين اتجاه السهم عن طريق تحريك الهاتف في حركة على شكل ثمانية لمعايرة البوصلة.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">حرك الهاتف في حركة على شكل ثمانية لمعايرة البوصلة وإصلاح اتجاه السهم على الخريطة.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">اضغط مطولاً على الخريطة مرة أخرى لرؤية الواجهة</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">تحديث الكل</string>
 	<!-- Cancel all button text -->
@@ -392,6 +394,7 @@
 	<string name="dialog_routing_system_error">خطأ في النظام</string>
 	<string name="dialog_routing_application_error">تعذر إنشاء مسار نتيجة وجود خطأ في التطبيق.</string>
 	<string name="dialog_routing_try_again">الرجاء إعادة المحاولة</string>
+	<string name="not_now">ليس الآن</string>
 	<string name="dialog_routing_download_and_build_cross_route">هل ترغب في تنزيل الخريطة وإنشاء مسار أفضل يمتد عبر أكثر من خريطة؟</string>
 	<string name="dialog_routing_download_cross_route">تنزيل خرائط إضافية لإنشاء مسار أفضل يعبر حافة هذه الخريطة.</string>
 
@@ -405,7 +408,8 @@
 	<string name="categories">التصنيفات</string>
 	<string name="history">سجل البحث</string>
 	<string name="search_not_found">المعذرة، لم أعثر على أية نتائج.</string>
-	<string name="search_not_found_query">يرجى تجربة معاير بحث أخرى.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">قم بتنزيل المنطقة التي تبحث فيها أو حاول إضافة اسم بلدة/قرية قريبة.</string>
 	<string name="search_history_title">سجل البحث</string>
 	<string name="search_history_text">عرض عمليات البحث الأخيرة.</string>
 	<string name="clear_search">مسح سجل البحث</string>
@@ -458,6 +462,8 @@
 	<string name="no_osm_account">ليس لديك حساب في خريطة الشارع المفتوحة؟</string>
 	<string name="register_at_openstreetmap">التسجيل في خريطة الشارع المفتوحة</string>
 	<string name="login">تسجيل الدخول</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">لم يتم تسجيل الدخول</string>
 	<string name="login_osm">تسجيل الدخول الى OpenStreetMap</string>
 	<string name="password">كلمة المرور</string>
 	<string name="forgot_password">هل نسيت كلمة المرور؟</string>
@@ -499,7 +505,6 @@
 	<string name="editor_edit_place_category_title">الفئة</string>
 	<string name="detailed_problem_description">وصف مفصّل للمشكلة</string>
 	<string name="editor_report_problem_other_title">مشكلة أخرى</string>
-	<string name="placepage_add_business_button">إضافة مؤسسة</string>
 	<string name="message_invalid_feature_position">لا يمكن تحديد موقع الكائن هنا</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">بيانات OpenStreetMap التي أنشأها المجتمع اعتبارًا من %s. تعرف على المزيد حول كيفية تعديل الخريطة وتحديثها على OpenStreetMap.org</string>
@@ -598,8 +603,10 @@
 	<string name="learn_more">معرفة المزيد</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">خروج</string>
-	<string name="routing_add_start_point">أضف نقطة البداية لتخطيط المسار</string>
-	<string name="routing_add_finish_point">أضف النهاية لتخطيط المسار</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">استخدام البحث أو النقر على الخريطة لإضافة نقطة بداية الطريق</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">استخدام البحث أو النقر على الخريطة لإضافة نقطة وجهة</string>
 	<string name="placepage_remove_stop">إزالة</string>
 	<string name="placepage_add_stop">إضافة نقطة توقف</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -613,6 +620,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">إخفاء الكل</string>
 	<string name="bookmark_lists_show_all">إظهار الكل</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d من الإشارات المرجعية</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">إنشاء قائمة جديدة</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">استيراد الإشارات المرجعية والمسارات</string>
@@ -630,12 +640,7 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">تم العثور على %d ملفات. سوف تراهم بعد التحويل.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">غرض %d</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">مكان %d</item>
-	</plurals>
+	<string name="restore">استعادة</string>
 	<plurals name="tracks">
 	  <item quantity="other">مسار %d</item>
 	</plurals>
@@ -815,6 +820,8 @@
 	<string name="button_layer_outdoor">جولة على الأقدام</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">متصفح الويب غير متوفر</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">تفويض OpenStreetMap غير متاح مؤقتًا بسبب القيود الجديدة في Google Play 😾\nيعمل فريقنا على حل هذه المشكلة. يرجى التحلي بالصبر 🙏</string>
 	<string name="volume">مستوى الصوت</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">تصدير كافة الإشارات المرجعية والمسارات</string>
@@ -831,6 +838,15 @@
 	<string name="website_menu">رابط القائمة</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">عرض القائمة</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">الخدمة الذاتية</string>
+	<string name="select_option">حدد الخيار</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">مقاعد خارجية</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">إيقاف تشغيل وضع توفير الطاقة</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">للحصول على التنقل الأكثر دقة، نوصي بتعطيل وضع توفير الطاقة في إعدادات بطارية الهاتف.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">العنوان / البلوك</string>
@@ -1482,9 +1498,12 @@
 	<string name="type.leisure.swimming_pool.private">مسبح خاص</string>
 	<string name="type.leisure.water_park">مدينة مائية</string>
 	<string name="type.leisure.beach_resort">منتجع شاطئي</string>
+	<string name="type.man_made.cairn">كوم من الحجارة</string>
 	<string name="type.man_made.chimney">مدخنة</string>
+	<string name="type.man_made.survey_point">نقطة مسح ميداني</string>
 	<string name="type.man_made.flagpole">سارية علم</string>
 	<string name="type.man_made.lighthouse">منارة</string>
+	<string name="type.man_made.mast">عمود برج</string>
 	<string name="type.man_made.pier">رصيف بحري</string>
 	<string name="type.man_made.pipeline">خط أنبوب</string>
 	<string name="type.man_made.pipeline.overground">خط أنبوب فوق الارض</string>
@@ -2074,4 +2093,8 @@
 	<string name="type.amenity.events_venue">مكان الأحداث</string>
 	<string name="type.shop.auction">مزاد علني</string>
 	<string name="type.shop.collector">مقتنيات</string>
+	<string name="type.self_service.yes">الخدمة الذاتية متاحة</string>
+	<string name="type.self_service.only">الخدمة الذاتية فقط</string>
+	<string name="type.self_service.partially">خدمة ذاتية جزئية</string>
+	<string name="type.self_service.no">لا توجد خدمة ذاتية</string>
 </resources>

@@ -266,6 +266,8 @@
 	<string name="compass_calibration_recommended">Migliorare la direzione della freccia muovendo il telefono con un movimento a otto per calibrare la bussola.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Muovere il telefono con un movimento a otto per calibrare la bussola e fissare la direzione della freccia sulla mappa.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Tocca di nuovo a lungo sulla mappa per visualizzare l\'interfaccia</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Aggiorna tutte</string>
 	<!-- Cancel all button text -->
@@ -365,6 +367,7 @@
 	<string name="dialog_routing_system_error">Errore di sistema</string>
 	<string name="dialog_routing_application_error">Impossibile creare il percorso a causa di un errore dell\'applicazione.</string>
 	<string name="dialog_routing_try_again">Riprova</string>
+	<string name="not_now">Non ora</string>
 	<string name="dialog_routing_download_and_build_cross_route">Vuoi scaricare la mappa e creare un percorso migliore che si estende su più mappe?</string>
 	<string name="dialog_routing_download_cross_route">Scarica altre mappe per creare un percorso migliore che attraversi i confini di questa mappa.</string>
 
@@ -378,7 +381,8 @@
 	<string name="categories">Categorie</string>
 	<string name="history">Cronologia</string>
 	<string name="search_not_found">Non ho trovato nulla.</string>
-	<string name="search_not_found_query">Prova con un\'altra ricerca.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Scarichi la regione in cui sta effettuando la ricerca o provi ad aggiungere il nome di una città/villaggio vicino.</string>
 	<string name="search_history_title">Cronologia delle ricerche</string>
 	<string name="search_history_text">Visualizza le ricerche recenti.</string>
 	<string name="clear_search">Cancella сronologia ricerche</string>
@@ -431,6 +435,8 @@
 	<string name="no_osm_account">Non hai un account OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Iscriviti</string>
 	<string name="login">Accedi</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Non sei connesso</string>
 	<string name="login_osm">Accedi a OpenStreetMap</string>
 	<string name="password">Password</string>
 	<string name="forgot_password">Hai dimenticato la password?</string>
@@ -472,7 +478,6 @@
 	<string name="editor_edit_place_category_title">Categoria</string>
 	<string name="detailed_problem_description">Descrizione dettagliata del problema</string>
 	<string name="editor_report_problem_other_title">Un problema diverso</string>
-	<string name="placepage_add_business_button">Aggiungi attività</string>
 	<string name="message_invalid_feature_position">Nessun oggetto può essere posizionato qui</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Dati OpenStreetMap creati dalla comunità al %s. Per saperne di più su come modificare e aggiornare la mappa, visita OpenStreetMap.org</string>
@@ -568,8 +573,10 @@
 	<string name="learn_more">Scopri di più</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Uscita</string>
-	<string name="routing_add_start_point">Aggiungi un punto di partenza per pianificare un percorso</string>
-	<string name="routing_add_finish_point">Aggiungi un punto di arrivo per pianificare un percorso</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Usa la ricerca o tocca la mappa per aggiungere un punto di partenza del percorso</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Usa la ricerca o tocca la mappa per aggiungere un punto di destinazione</string>
 	<string name="placepage_remove_stop">Rimuovi</string>
 	<string name="placepage_add_stop">Aggiungi sosta</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -583,6 +590,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Nascondi tutto</string>
 	<string name="bookmark_lists_show_all">Mostra tutto</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d preferito</item>
+	  <item quantity="other">%d preferiti</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Crea un nuovo elenco</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importazione di segnalibri e tracce</string>
@@ -601,14 +612,7 @@
 	  <item quantity="one">%d file è stato trovato. Lo vedrai dopo la conversione.</item>
 	  <item quantity="other">%d file trovati. Li vedrai dopo la conversione.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d oggetto</item>
-	  <item quantity="other">%d oggetti</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d luogo</item>
-	  <item quantity="other">%d luoghi</item>
-	</plurals>
+	<string name="restore">Ripristina</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d percorso</item>
 	  <item quantity="other">%d percorsi</item>
@@ -743,6 +747,8 @@
 	<string name="enable_show_on_lock_screen_description">Quando è abilitata, non è necessario sbloccare il dispositivo ogni volta mentre l\'app è in esecuzione.</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Dati della mappa da OpenStreetMap</string>
+	<!-- A link to the TTS FAQ -->
+	<string name="tts_info_link">https://organicmaps.app/it/faq/sintesi-vocale-tts-su-android/</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/it/</string>
 	<!-- Link to OSM wiki for Editor, Profile and About pages -->
@@ -787,6 +793,8 @@
 	<string name="button_layer_outdoor">Escursioni</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Il browser web non è disponibile</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">L\'autorizzazione di OpenStreetMap è temporaneamente non disponibile a causa di nuove restrizioni in Google Play 😾\nIl nostro team sta lavorando per risolvere questo problema. La preghiamo di essere paziente 🙏</string>
 	<string name="volume">Volume</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Esporta tutti i segnalibri e le tracce</string>
@@ -803,6 +811,15 @@
 	<string name="website_menu">Link al menu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Visualizza menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Self service</string>
+	<string name="select_option">Seleziona l\'opzione</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Posti a sedere all\'aperto</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Disattiva la modalità di risparmio energetico</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Per una navigazione più accurata, ti consigliamo di disabilitare la modalità di risparmio energetico nelle impostazioni della batteria del telefono.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Indirizzo/Blocco</string>
@@ -2087,4 +2104,8 @@
 	<string name="type.amenity.events_venue">Sede degli eventi</string>
 	<string name="type.shop.auction">Asta</string>
 	<string name="type.shop.collector">Oggetti da collezione</string>
+	<string name="type.self_service.yes">Disponibile in self-service</string>
+	<string name="type.self_service.only">Solo self-service</string>
+	<string name="type.self_service.partially">Self-service parziale</string>
+	<string name="type.self_service.no">Nessun self-service</string>
 </resources>

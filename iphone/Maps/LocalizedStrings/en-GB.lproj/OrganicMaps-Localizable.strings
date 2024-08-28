@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hey, check out my current location on the Organic Maps map!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Share";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -263,6 +260,9 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Voice Language";
 
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Test Voice Directions (TTS, Text-To-Speech)";
+
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Other";
 
@@ -283,7 +283,7 @@
 
 "duration_1_day" = "1 day";
 
-"recent_track_help_text" = "Record and show your traveled path within the given period of time on the map. Please note: this noticably increases battery usage.";
+"recent_track_help_text" = "Record and show your traveled path within the given period of time on the map. Please note: this noticeably increases battery usage.";
 
 "placepage_distance" = "Distance";
 
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Compass calibration";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Long-tap on the map again to see the interface";
 
 /* Update all button text */
 "downloader_update_all_button" = "Update All";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Please try again";
 
-"not_now" = "Not Now";
-
 "dialog_routing_download_and_build_cross_route" = "Would you like to download the map and create a more optimal route spanning more than one map?";
 
 "dialog_routing_download_cross_route" = "Download additional maps to create a better route that crosses the boundaries of this map.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Oops, no results found.";
 
-"search_not_found_query" = "Try changing your search criteria.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Download the region where you are searching or try adding a nearby town/village name.";
 
 "search_history_title" = "Search History";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Traffic data is not available";
 
+"enable_logging" = "Enable logging";
+
+"log_file_size" = "Log file size: %@";
+
 "transliteration_title" = "Transliteration into Latin alphabet";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Exit";
 
-"routing_add_start_point" = "Add a starting point to plan a route";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Use search or tap on the map to add a route starting point";
 
-"routing_add_finish_point" = "Add a destination to plan a route";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Use search or tap on the map to add a destination point";
 
 "planning_route_manage_route" = "Manage Route";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Add Stop";
 
 "start_from_my_position" = "Start from";
-
-"profile_authorization_error" = "Oops, there was an error. Try signing in again.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Please login to OpenStreetMap to automatically upload all your map edits. Learn more";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Show all";
 
 "bookmarks_create_new_group" = "Create a new list";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Import Bookmarks and Tracks";
 
 "downloader_hide_screen" = "Hide Screen";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Some files were not converted.";
 
-"bookmarks_restore_title" = "Restore this version?";
-
-"error_system_message" = "An unknown error occurred";
-
 "restore" = "Restore";
 
 "privacy_policy" = "Privacy policy";
 
 "terms_of_use" = "Terms of use";
-
-"button_layer_traffic" = "Traffic";
 
 "button_layer_subway" = "Metro";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "When battery is low";
 
 "power_managment_setting_manual_max" = "Always";
+
+"enable_logging_warning_message" = "Enable this option temporarily to record and manually send detailed diagnostic logs about your issue to us using \"Report a bug\" in the Help dialog. Logs may include location info.";
 
 "driving_options_title" = "Routing options";
 
@@ -1124,6 +1129,10 @@
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "The route will be converted into an automobile one";
 
+"not_all_shown_bookmarks_carplay" = "Not all bookmarks are shown";
+
+"switch_to_phone_bookmarks_carplay" = "Switch to the phone to see all bookmarks";
+
 "ok" = "OK";
 
 "speedcams_alert_title_carplay_1" = "Speedсams";
@@ -1197,7 +1206,7 @@
 
 "transit_not_found" = "Metro navigation in this region is not available yet";
 
-"dialog_pedestrian_route_is_long_header" = "Metro route is not found";
+"dialog_pedestrian_route_is_long_header" = "No metro route found";
 
 "dialog_pedestrian_route_is_long_message" = "Please choose a start or end point closer to a metro station";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Thank you for using our community-built maps!";
+
+/* App tip #01 */
+"app_tip_01" = "With your donations and support, we can create the best maps in the World!";
+
+/* App tip #02 */
+"app_tip_02" = "Do you like our app? Please donate to support the development! Don't like it yet? Please let us know why, and we will fix it!";
+
+/* App tip #03 */
+"app_tip_03" = "If you know a software developer, you can ask him or her to implement a feature that you need.";
+
+/* App tip #04 */
+"app_tip_04" = "Do you know that you can long-tap any place on the map to select it?";
+
+/* App tip #05 */
+"app_tip_05" = "Did you know that your current location on the map can be selected?";
+
+/* App tip #06 */
+"app_tip_06" = "You can help to translate our app into your language.";
+
+/* App tip #07 */
+"app_tip_07" = "Our app is developed by a few enthusiasts and the community.";
+
+/* App tip #08 */
+"app_tip_08" = "You can easily fix and improve the map data.";
+
+/* App tip #09 */
+"app_tip_09" = "Our main goal is to build fast, privacy-focused, easy-to-use maps that you will love.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "You are now using Organic Maps on the phone screen";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Menu Link";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Would you like to send a bug report to the developers?\nWe rely on our users as Organic Maps doesn't collect any error information automatically. Thank you in advance for supporting Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Enable iCloud Syncronization";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Backup";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud synchronization failure";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Error: Failed to synchronize due to connection error";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Error: iCloud is not available";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Open In Another App";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Outdoor seating";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Recently Deleted Lists";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Clear";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Delete All";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Recover";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Recover All";
 
 
 /********** Types **********/
@@ -3571,7 +3637,7 @@
 
 "type.shop.hairdresser" = "Hairdresser";
 
-"type.shop.hardware" = "Ironmongers";
+"type.shop.hardware" = "Hardware Store";
 
 "type.shop.health_food" = "Health Food Shop";
 
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Auction";
 
 "type.shop.collector" = "Collectables";
+
+"type.self_service.yes" = "Self-service available";
+
+"type.self_service.only" = "Self-service only";
+
+"type.self_service.partially" = "Partial self-service";
+
+"type.self_service.no" = "No self-service";

@@ -281,6 +281,8 @@
 	<string name="compass_calibration_recommended">Βελτιώστε την κατεύθυνση των βελών μετακινώντας το τηλέφωνο με μια κίνηση σχήματος οκτώ για να καλιμπράρετε την πυξίδα.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Μετακινήστε το τηλέφωνο με μια κίνηση σχήματος οκτώ για να καλιμπράρετε την πυξίδα και να καθορίσετε την κατεύθυνση του βέλους στο χάρτη.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Πατήστε ξανά παρατεταμένα στο χάρτη για να δείτε το περιβάλλον εργασίας.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Ενημέρωση όλων</string>
 	<!-- Cancel all button text -->
@@ -380,6 +382,7 @@
 	<string name="dialog_routing_system_error">Σφάλμα συστήματος</string>
 	<string name="dialog_routing_application_error">Δεν είναι δυνατή η δημιουργία διαδρομής λόγω σφάλματος της εφαρμογής.</string>
 	<string name="dialog_routing_try_again">Προσπαθήστε ξανά</string>
+	<string name="not_now">Όχι τώρα</string>
 	<string name="dialog_routing_download_and_build_cross_route">Θέλετε να κατεβάσετε το χάρτη και να δημιουργήσετε μια πιο βέλτιστη διαδρομή που εκτείνεται σε περισσότερους από έναν χάρτες;</string>
 	<string name="dialog_routing_download_cross_route">Κατεβάστε επιπλέον χάρτες για να δημιουργηθεί μια καλύτερη διαδρομή που διασχίζει τα όρια αυτού του χάρτη.</string>
 
@@ -393,7 +396,8 @@
 	<string name="categories">Κατηγορίες</string>
 	<string name="history">Ιστορικό</string>
 	<string name="search_not_found">Ωχ, δε βρέθηκαν αποτελέσματα.</string>
-	<string name="search_not_found_query">Δοκιμάστε να αλλάξετε τα κριτήρια αναζήτησης.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Κατεβάστε την περιοχή στην οποία ψάχνετε ή δοκιμάστε να προσθέσετε το όνομα μιας κοντινής πόλης/χωριού.</string>
 	<string name="search_history_title">Ιστορικό αναζητήσεων</string>
 	<string name="search_history_text">Προβολή πρόσφατων αναζητήσεων.</string>
 	<string name="clear_search">Εκκαθάριση ιστορικού αναζητήσεων</string>
@@ -446,6 +450,8 @@
 	<string name="no_osm_account">Δεν έχετε λογαριασμό OpenStreetMap;</string>
 	<string name="register_at_openstreetmap">Εγγραφή στο OpenStreetMap</string>
 	<string name="login">Σύνδεση</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Δεν έχετε συνδεθεί</string>
 	<string name="login_osm">Συνδεθείτε στο OpenStreetMap</string>
 	<string name="password">Κωδικός πρόσβασης</string>
 	<string name="forgot_password">Ξαχάσατε τον κωδικό πρόσβασης;</string>
@@ -487,7 +493,6 @@
 	<string name="editor_edit_place_category_title">Κατηγορία</string>
 	<string name="detailed_problem_description">Λεπτομερής περιγραφή του θέματος</string>
 	<string name="editor_report_problem_other_title">Διαφορετικό πρόβλημα</string>
-	<string name="placepage_add_business_button">Προσθήκη επιχείρησης</string>
 	<string name="message_invalid_feature_position">Δε μπορεί να τοποθετηθεί αντικείμενο εδώ</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Δεδομένα OpenStreetMap που δημιουργήθηκαν από την κοινότητα στις %s. Μάθετε περισσότερα για τον τρόπο επεξεργασίας και ενημέρωσης του χάρτη στο OpenStreetMap.org</string>
@@ -581,8 +586,10 @@
 	<string name="learn_more">Μάθετε περισσότερα</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Έξοδος</string>
-	<string name="routing_add_start_point">Προσθέστε αφετηρία για να σχεδιάσετε μια διαδρομή</string>
-	<string name="routing_add_finish_point">Προσθέστε τελικό προορισμό, για να σχεδιάσετε μια διαδρομή</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Χρησιμοποιήστε την αναζήτηση ή πατήστε στο χάρτη για να προσθέσετε ένα σημείο εκκίνησης της διαδρομής</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Χρησιμοποιήστε την αναζήτηση ή πατήστε στο χάρτη για να προσθέσετε ένα σημείο προορισμού</string>
 	<string name="placepage_remove_stop">Αφαίρεση</string>
 	<string name="placepage_add_stop">Προσθήκη στάσης</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -596,6 +603,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Απόκρυψη όλων</string>
 	<string name="bookmark_lists_show_all">Εμφάνιση όλων</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d αγαπημένο</item>
+	  <item quantity="other">%d αγαπημένα</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Δημιουργία νέας λίστας</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Εισαγωγή σελιδοδεικτών και διαδρομών</string>
@@ -614,14 +625,7 @@
 	  <item quantity="one">Βρέθηκε %d αρχείο. Θα το δείτε μετά τη μετατροπή.</item>
 	  <item quantity="other">έχουν βρεθεί %d αρχεία. Θα τα δείτε μετά τη μετατροπή.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d αντικείμενο</item>
-	  <item quantity="other">%d αντικείμενα</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d τοποθεσία</item>
-	  <item quantity="other">%d τοποθεσίες</item>
-	</plurals>
+	<string name="restore">Επαναφορά</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d διαδρομή</item>
 	  <item quantity="other">%d διαδρομές</item>
@@ -802,6 +806,8 @@
 	<string name="button_layer_outdoor">Πεζοπορία</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Δεν είναι διαθέσιμος ο περιηγητής</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Η εξουσιοδότηση του OpenStreetMap δεν είναι προσωρινά διαθέσιμη λόγω νέων περιορισμών στο Google Play 😾\nΗ ομάδα μας εργάζεται για την επίλυση αυτού του προβλήματος. Παρακαλούμε να είστε υπομονετικοί 🙏</string>
 	<string name="volume">Ένταση ήχου</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Εξαγωγή όλων των σελιδοδεικτών και των διαδρομών</string>
@@ -818,6 +824,15 @@
 	<string name="website_menu">Σύνδεσμος μενού</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Προβολή μενού</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Αυτοεξυπηρέτηση</string>
+	<string name="select_option">Επιλέξτε επιλογή</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Εξωτερικά καθίσματα</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Απενεργοποίηση λειτουργίας εξοικονόμησης ενέργειας</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Για την πιο ακριβή πλοήγηση, συνιστούμε να απενεργοποιήσετε τη λειτουργία εξοικονόμησης ενέργειας στις ρυθμίσεις μπαταρίας του τηλεφώνου.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Διεύθυνση/Μπλοκ</string>
@@ -1972,4 +1987,8 @@
 	<string name="type.amenity.events_venue">Κέντρο εκδηλώσεων</string>
 	<string name="type.shop.auction">Δημοπρασία</string>
 	<string name="type.shop.collector">Συλλεκτικά αντικείμενα</string>
+	<string name="type.self_service.yes">Διαθέσιμη αυτοεξυπηρέτηση</string>
+	<string name="type.self_service.only">Μόνο αυτοεξυπηρέτηση</string>
+	<string name="type.self_service.partially">Μερική αυτοεξυπηρέτηση</string>
+	<string name="type.self_service.no">Δεν υπάρχει αυτοεξυπηρέτηση</string>
 </resources>

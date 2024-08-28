@@ -261,6 +261,8 @@
 	<string name="compass_calibration_recommended">나침반을 보정하기 위해 휴대폰을 8자 모양으로 움직여 화살표 방향을 개선하세요.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">휴대폰을 8자 모양으로 움직여 나침반을 보정하고 지도에서 화살표 방향을 수정합니다.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">지도를 다시 길게 탭하면 인터페이스가 표시됩니다.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">모두 업데이트</string>
 	<!-- Cancel all button text -->
@@ -360,6 +362,7 @@
 	<string name="dialog_routing_system_error">시스템 오류</string>
 	<string name="dialog_routing_application_error">애플리케이션 오류로 인해 경로를 설정하지 못했습니다.</string>
 	<string name="dialog_routing_try_again">다시 시도해주세요.</string>
+	<string name="not_now">나중에</string>
 	<string name="dialog_routing_download_and_build_cross_route">지도를 다운로드하여, 두 개 이상의 지도를 통과하는 더 최적화된 경로를 설정하시겠습니까?</string>
 	<string name="dialog_routing_download_cross_route">이 지도의 경계를 통과하는 더 최적화된 경로를 설정하려면 지도를 다운로드하세요.</string>
 
@@ -373,7 +376,8 @@
 	<string name="categories">범주</string>
 	<string name="history">내역</string>
 	<string name="search_not_found">죄송합니다. 아무것도 찾지 못했습니다.</string>
-	<string name="search_not_found_query">다른 쿼리를 시도하십시오.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">검색하려는 지역을 다운로드하거나 가까운 도시/마을 이름을 추가해 보세요.</string>
 	<string name="search_history_title">검색 기록</string>
 	<string name="search_history_text">최근 검색 쿼리에 신속하게 액세스할 수 있습니다.</string>
 	<string name="clear_search">이력 검색 지우기</string>
@@ -422,6 +426,8 @@
 	<string name="no_osm_account">OpenStreetMap에서 계정이 없습니까?</string>
 	<string name="register_at_openstreetmap">등록</string>
 	<string name="login">로그인</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">로그인되지 않음</string>
 	<string name="login_osm">OpenStreetMap에 로그인</string>
 	<string name="password">암호</string>
 	<string name="forgot_password">암호를 잊으 셨나요?</string>
@@ -460,7 +466,6 @@
 	<string name="editor_edit_place_category_title">범주</string>
 	<string name="detailed_problem_description">문제에 대한 자세한 설명</string>
 	<string name="editor_report_problem_other_title">다른 문제</string>
-	<string name="placepage_add_business_button">조직 추가</string>
 	<string name="message_invalid_feature_position">목적지를 이곳에서 찾을 수 없습니다</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">커뮤니티에서 만든 오픈스트리트맵 데이터(%s 기준). 지도를 편집하고 업데이트하는 방법에 대한 자세한 내용은 OpenStreetMap.org에서 확인하세요.</string>
@@ -552,8 +557,10 @@
 	<string name="learn_more">자세히 알아보기</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">끝내기</string>
-	<string name="routing_add_start_point">경로 계획을 세우기 위한 시작 지점을 추가하세요</string>
-	<string name="routing_add_finish_point">경로 계획을 세우기 위한 끝 지점을 추가하세요</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">검색을 사용하거나 지도를 탭하여 경로 시작점을 추가합니다</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">검색을 사용하거나 지도를 탭하여 목적지 지점을 추가합니다</string>
 	<string name="placepage_remove_stop">제거</string>
 	<string name="placepage_add_stop">스톱 추가</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -567,6 +574,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">모두 숨기기</string>
 	<string name="bookmark_lists_show_all">모두 표시</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d 북마크</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">새 목록 만들기</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">북마크 및 트랙 가져오기</string>
@@ -584,12 +594,7 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d 파일을 찾았습니다. 회심 후 그들을 볼 수 있습니다.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">%d 장소</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">%d 장소들</item>
-	</plurals>
+	<string name="restore">복원</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d 추적</item>
 	</plurals>
@@ -756,6 +761,8 @@
 	<string name="button_layer_outdoor">하이킹</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">웹 브라우저를 사용할 수 없습니다.</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">구글플레이의 새로운 제한 사항으로 인해 일시적으로 오픈스트리트맵 인증을 사용할 수 없습니다 😾\n저희 팀이 이 문제를 해결하기 위해 노력하고 있습니다. 잠시만 기다려주세요 🙏</string>
 	<string name="volume">볼륨</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">모든 북마크 및 트랙 내보내기</string>
@@ -772,6 +779,15 @@
 	<string name="website_menu">메뉴 링크</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">메뉴 보기</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">셀프 서비스</string>
+	<string name="select_option">옵션 선택</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">야외 좌석</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">절전 모드 해제</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">가장 정확한 내비게이션을 위해 휴대폰의 배터리 설정에서 절전 모드를 비활성화하는 것이 좋습니다.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">주소/블록</string>
@@ -1922,4 +1938,8 @@
 	<string name="type.amenity.events_venue">행사장</string>
 	<string name="type.shop.auction">경매</string>
 	<string name="type.shop.collector">수집품</string>
+	<string name="type.self_service.yes">셀프 서비스 사용 가능</string>
+	<string name="type.self_service.only">셀프 서비스 전용</string>
+	<string name="type.self_service.partially">부분 셀프 서비스</string>
+	<string name="type.self_service.no">셀프 서비스 없음</string>
 </resources>

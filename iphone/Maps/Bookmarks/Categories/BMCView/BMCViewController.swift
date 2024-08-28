@@ -40,12 +40,8 @@ final class BMCViewController: MWMViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    viewModel.reloadData()
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
     viewModel.addToObserverList()
+    viewModel.reloadData()
   }
 
   override func viewDidDisappear(_ animated: Bool) {
@@ -87,7 +83,7 @@ final class BMCViewController: MWMViewController {
           { [weak self] _, _, _, _ in
             self?.viewModel?.finishShareCategory()
           }
-          shareController?.present(inParentViewController: self, anchorView: anchorView)
+          shareController.present(inParentViewController: self, anchorView: anchorView)
         case .emptyCategory:
           MWMAlertViewController.activeAlert().presentInfoAlert(L("bookmarks_error_title_share_empty"),
                                                                 text: L("bookmarks_error_message_share_empty"))
@@ -96,6 +92,12 @@ final class BMCViewController: MWMViewController {
                                                                 text: L("bookmarks_error_message_share_general"))
         }
       }
+    }
+  }
+
+  private func showImportDialog() {
+    DocumentPicker.shared.present(from: self) { [viewModel] urls in
+      viewModel?.importCategories(from: urls)
     }
   }
 
@@ -151,12 +153,17 @@ final class BMCViewController: MWMViewController {
     let deleteAction = UIAlertAction(title: delete, style: .destructive, handler: { [viewModel] _ in
       viewModel!.deleteCategory(at: index)
     })
-    deleteAction.isEnabled = (viewModel.numberOfRows(section: .categories) > 1)
+    deleteAction.isEnabled = (viewModel.canDeleteCategory())
     actionSheet.addAction(deleteAction)
     let cancel = L("cancel")
     actionSheet.addAction(UIAlertAction(title: cancel, style: .cancel, handler: nil))
 
     present(actionSheet, animated: true, completion: nil)
+  }
+
+  private func openRecentlyDeleted() {
+    let recentlyDeletedController = RecentlyDeletedCategoriesViewController(viewModel: RecentlyDeletedCategoriesViewModel(bookmarksManager: BookmarksManager.shared()))
+    MapViewController.topViewController().navigationController?.pushViewController(recentlyDeletedController, animated: true)
   }
 }
 
@@ -195,7 +202,7 @@ extension BMCViewController: UITableViewDataSource {
   func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch viewModel.sectionType(section: section) {
     case .categories: fallthrough
-    case .actions: fallthrough
+    case .actions, .recentlyDeleted: fallthrough
     case .notifications: return viewModel.numberOfRows(section: section)
     }
   }
@@ -211,6 +218,8 @@ extension BMCViewController: UITableViewDataSource {
                                                     delegate: self)
     case .actions:
       return dequeCell(BMCActionsCell.self).config(model: viewModel.action(at: indexPath.row))
+    case .recentlyDeleted:
+      return dequeCell(BMCActionsCell.self).config(model: viewModel.recentlyDeletedCategories())
     case .notifications:
       return dequeCell(BMCNotificationsCell.self)
     }
@@ -223,7 +232,7 @@ extension BMCViewController: UITableViewDelegate {
       return false
     }
 
-    return viewModel.numberOfRows(section: .categories) > 1
+    return viewModel.canDeleteCategory()
   }
 
   func tableView(_ tableView: UITableView,
@@ -242,7 +251,7 @@ extension BMCViewController: UITableViewDelegate {
     switch viewModel.sectionType(section: section) {
     case .notifications: fallthrough
     case .categories: return 48
-    case .actions: return 24
+    case .actions, .recentlyDeleted: return 24
     }
   }
 
@@ -254,7 +263,7 @@ extension BMCViewController: UITableViewDelegate {
       categoriesHeader.title = L("bookmark_lists")
       categoriesHeader.delegate = self
       return categoriesHeader
-    case .actions: return actionsHeader
+    case .actions, .recentlyDeleted: return actionsHeader
     case .notifications: return notificationsHeader
     }
   }
@@ -268,7 +277,11 @@ extension BMCViewController: UITableViewDelegate {
       switch viewModel.action(at: indexPath.row) {
       case .create: createNewCategory()
       case .exportAll: shareAllCategories(anchor: tableView.cellForRow(at: indexPath))
+      case .import: showImportDialog()
+      default:
+        assertionFailure()
       }
+    case .recentlyDeleted: openRecentlyDeleted()
     default:
       assertionFailure()
     }

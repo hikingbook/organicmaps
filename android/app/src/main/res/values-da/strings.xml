@@ -261,6 +261,8 @@
 	<string name="compass_calibration_recommended">Forbedre pilens retning ved at bevæge telefonen i en ottetalsbevægelse for at kalibrere kompasset.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Bevæg telefonen i en ottetalsbevægelse for at kalibrere kompasset og fastgøre pilens retning på kortet.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Tryk længe på kortet igen for at se grænsefladen</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Opdatér alle</string>
 	<!-- Cancel all button text -->
@@ -360,6 +362,7 @@
 	<string name="dialog_routing_system_error">Systemfejl</string>
 	<string name="dialog_routing_application_error">Det lykkedes ikke at planlægge en rute. Der opstod en fejl i systemet.</string>
 	<string name="dialog_routing_try_again">Prøv igen</string>
+	<string name="not_now">Ikke nu</string>
 	<string name="dialog_routing_download_and_build_cross_route">Ønsker du at downloade kortet og planlægge en mere optimal rute, der strækker sig over mere end ét kort?</string>
 	<string name="dialog_routing_download_cross_route">Download kortet for at planlægge en mere optimal rute, der strækker sig ud over dette korts grænser.</string>
 
@@ -373,7 +376,8 @@
 	<string name="categories">Kategorier</string>
 	<string name="history">Historik</string>
 	<string name="search_not_found">Desværre, jeg fandt ikke noget.</string>
-	<string name="search_not_found_query">Prøv en anden forespørgsel.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Download den region, hvor du søger, eller prøv at tilføje et nærliggende bynavn.</string>
 	<string name="search_history_title">Søgehistorik</string>
 	<string name="search_history_text">Gå hurtigt ind på seneste forespørgsel.</string>
 	<string name="clear_search">Ryd historiksøgning</string>
@@ -422,6 +426,8 @@
 	<string name="no_osm_account">Ingen konto på OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Tilmeld dig</string>
 	<string name="login">Log ind</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Ikke logget ind</string>
 	<string name="login_osm">Log ind på OpenStreetMap</string>
 	<string name="password">Adgangskode</string>
 	<string name="forgot_password">Glemt adgangskode?</string>
@@ -462,7 +468,6 @@
 	<string name="editor_edit_place_category_title">Kategori</string>
 	<string name="detailed_problem_description">Detaljeret beskrivelse af problemet</string>
 	<string name="editor_report_problem_other_title">Et anderledes problem</string>
-	<string name="placepage_add_business_button">Tilføj organisationen</string>
 	<string name="message_invalid_feature_position">Et objekt kan ikke placeres her</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Fællesskabsskabte OpenStreetMap-data fra %s. Få mere at vide om, hvordan du redigerer og opdaterer kortet på OpenStreetMap.org</string>
@@ -553,8 +558,10 @@
 	<string name="learn_more">Flere oplysninger</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Afslut</string>
-	<string name="routing_add_start_point">Tilføj startpunkt for at planlægge en rute</string>
-	<string name="routing_add_finish_point">Tilføj slutpunkt for at planlægge en rute</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Brug søgning eller tryk på kortet for at tilføje et startpunkt for en rute</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Brug søgning eller tryk på kortet for at tilføje et destinationspunkt</string>
 	<string name="placepage_remove_stop">Fjern</string>
 	<string name="placepage_add_stop">Tilføj stop</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -568,6 +575,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Skjul alle</string>
 	<string name="bookmark_lists_show_all">Vis alle</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d bogmærker</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Opret ny liste</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importer bogmærker og spor</string>
@@ -586,12 +596,7 @@
 	  <item quantity="one">%d fil blev fundet. Du vil se det efter konvertering.</item>
 	  <item quantity="other">Der er fundet %d filer. Du vil se dem efter konvertering.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">%d sted</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">%d steder</item>
-	</plurals>
+	<string name="restore">Gendan</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d ruter</item>
 	</plurals>
@@ -758,6 +763,8 @@
 	<string name="button_layer_outdoor">Vandring</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Webbrowser er ikke tilgængelig</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMap-autorisation er midlertidigt utilgængelig på grund af nye begrænsninger i Google Play 😾\nVores team arbejder på at løse dette problem. Vær venligst tålmodig 🙏</string>
 	<string name="volume">Lydstyrke</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Eksporter alle bogmærker og spor</string>
@@ -774,6 +781,15 @@
 	<string name="website_menu">Link til menu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Vis menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Selvbetjening</string>
+	<string name="select_option">Vælg mulighed</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Udendørs siddepladser</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Sluk for strømsparetilstand</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">For at få den mest nøjagtige navigation anbefaler vi at deaktivere strømbesparende tilstand i telefonens batteriindstillinger.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/blok</string>
@@ -1896,4 +1912,8 @@
 	<string name="type.amenity.events_venue">Sted for arrangementer</string>
 	<string name="type.shop.auction">Auktion</string>
 	<string name="type.shop.collector">Samlerobjekter</string>
+	<string name="type.self_service.yes">Selvbetjening tilgængelig</string>
+	<string name="type.self_service.only">Kun selvbetjening</string>
+	<string name="type.self_service.partially">Delvis selvbetjening</string>
+	<string name="type.self_service.no">Ingen selvbetjening</string>
 </resources>

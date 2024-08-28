@@ -70,6 +70,8 @@
 	<string name="donate">Changia</string>
 	<!-- Button in the main Help dialog -->
 	<string name="how_to_support_us">Saidia mradi</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Gusa kwa muda mrefu kwenye ramani tena ili kuona kiolesura</string>
 	<!-- Preference title -->
 	<string name="google_play_services">Huduma za Mahali za Google Play</string>
 	<!-- Preference text -->
@@ -96,6 +98,10 @@
 	<string name="dialog_routing_intermediate_not_determined">Tafadhali badilisha eneo lako la kati.</string>
 
 	<!-- SECTION: Strings for downloading map from search -->
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Pakua eneo ambalo unatafuta au jaribu kuongeza jina la mji/kijiji kilicho karibu.</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Hujasajiliwa</string>
 	<string name="login_osm">Ingia kwa OpenStreetMap</string>
 	<string name="level">Ghorofa</string>
 	<!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
@@ -122,8 +128,10 @@
 	<string name="learn_more">Jua mengi zaidi</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Toka</string>
-	<string name="routing_add_start_point">Ongeza eneo la kuanzia ili kupanga njia ya kufuata</string>
-	<string name="routing_add_finish_point">Ongeza eneo la kumalizia ili kupanga njia ya kufuata</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Tumia utafutaji au uguse kwenye ramani ili kuongeza mahali pa kuanzia</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Tumia utafutaji au uguse kwenye ramani ili kuongeza mahali unakoenda</string>
 	<string name="placepage_remove_stop">Ondoa</string>
 	<string name="placepage_add_stop">Ongeza eneo la kusimama</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -137,6 +145,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Ficha zote</string>
 	<string name="bookmark_lists_show_all">Onyesha zote</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">Alamisho %d</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Unda orodha mpya</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Ingiza alamisho na nyimbo</string>
@@ -154,12 +165,7 @@
 	  <item quantity="one">Faili %d ilipatikana. Utaiona baada ya uongofu.</item>
 	  <item quantity="other">Files %d zimepatikana. Utawaona baada ya uongofu.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">Eneo %d</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">Maeneo %d</item>
-	</plurals>
+	<string name="restore">Rejesha</string>
 	<plurals name="tracks">
 	  <item quantity="other">Njia %d</item>
 	</plurals>
@@ -324,6 +330,8 @@
 	<string name="button_layer_outdoor">Kutembea kwa miguu</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Kivinjari cha wavuti hakipatikani</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Uidhinishaji wa OpenStreetMap haupatikani kwa muda kwa sababu ya vikwazo vipya katika Google Play 😾\nTimu yetu inajitahidi kusuluhisha suala hili. Tafadhali kuwa na subira 🙏</string>
 	<string name="volume">Kiwango</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Hamisha Alamisho na Nyimbo zote</string>
@@ -340,6 +348,15 @@
 	<string name="website_menu">Kiungo cha menyu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Tazama Menyu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Kujihudumia</string>
+	<string name="select_option">Chagua chaguo</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Viti vya nje</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Zima Hali ya Kuokoa Nguvu</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Kwa urambazaji sahihi zaidi, tunapendekeza kuzima hali ya kuokoa nishati katika mipangilio ya betri ya simu.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Anwani/Zuia</string>
@@ -953,4 +970,8 @@
 	<string name="type.amenity.events_venue">Ukumbi wa Matukio</string>
 	<string name="type.shop.auction">Mnada</string>
 	<string name="type.shop.collector">Mikusanyiko</string>
+	<string name="type.self_service.yes">Huduma ya kibinafsi inapatikana</string>
+	<string name="type.self_service.only">Kujihudumia pekee</string>
+	<string name="type.self_service.partially">Kujihudumia kwa sehemu</string>
+	<string name="type.self_service.no">Hakuna huduma binafsi</string>
 </resources>

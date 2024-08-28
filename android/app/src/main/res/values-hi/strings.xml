@@ -287,6 +287,8 @@
 	<string name="copyright">कॉपीराइट</string>
 	<!-- Text in menu + Button in the main Help dialog -->
 	<string name="report_a_bug">एक बग रिपोर्ट करो</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">इंटरफ़ेस देखने के लिए मानचित्र पर फिर से देर तक टैप करें</string>
 	<!-- Cancel all button text -->
 	<string name="downloader_cancel_all">सब रद्द करो</string>
 	<!-- Downloaded maps list header -->
@@ -329,7 +331,8 @@
 	<string name="categories">श्रेणियाँ</string>
 	<string name="history">इतिहास</string>
 	<string name="search_not_found">उफ़, कोई परिणाम नहीं मिला.</string>
-	<string name="search_not_found_query">अपना खोज मानदण्ड बदलने का प्रयास करें।</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">उस क्षेत्र को डाउनलोड करें जहां आप खोज रहे हैं या पास के शहर/गांव का नाम जोड़ने का प्रयास करें।</string>
 	<string name="search_history_title">खोज इतिहास</string>
 	<string name="clear_search">स्पष्ट इतिहास की खोज</string>
 	<!-- Place Page link to Wikipedia article (if map object has it). -->
@@ -353,6 +356,8 @@
 	<string name="edit_opening_hours">व्यावसायिक घंटे संपादित करें</string>
 	<string name="no_osm_account">आपके पास अभी तक OpenStreetMap खाता नहीं है?</string>
 	<string name="register_at_openstreetmap">Openstreetmap पर पंजीकरण करें</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">साइन इन नहीं किया गया है</string>
 	<string name="edit_place">स्थान संपादित करें</string>
 	<string name="add_language">एक भाषा जोड़ें</string>
 	<string name="street">गली</string>
@@ -370,7 +375,6 @@
 	<!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
 	<string name="editor_default_language_hint">जैसा कि स्थानीय भाषा में लिखा गया है</string>
 	<string name="editor_edit_place_category_title">वर्ग</string>
-	<string name="placepage_add_business_button">व्यवसाय जोड़ें</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">समुदाय-निर्मित OpenStreetMap डेटा %s तक। OpenStreetMap.org पर मानचित्र को संपादित और अपडेट करने के तरीके के बारे में और जानें</string>
 	<string name="login_to_make_edits_visible">अपने परिवर्तनों को दुनिया के सामने प्रकाशित करने के लिए openingstreetmap.org पर लॉग इन करें।</string>
@@ -415,8 +419,10 @@
 	<string name="prefs_languages_information_off">कुछ भाषाओं के लिए, आपको ऐप स्टोर (Google Play, Galaxy Store, App Gallery, FDroid) से एक स्पीच सिंथेसाइज़र या एक अतिरिक्त भाषा पैक इंस्टॉल करना होगा।\nअपने डिवाइस की सेटिंग्स खोलें → भाषा और इनपुट → स्पीच → टेक्स्ट टू स्पीच आउटपुट.\nयहां आप वाक् संश्लेषण के लिए सेटिंग्स प्रबंधित कर सकते हैं (उदाहरण के लिए, ऑफ़लाइन उपयोग के लिए भाषा पैक डाउनलोड करें) और एक अन्य टेक्स्ट-टू-स्पीच इंजन का चयन कर सकते हैं।</string>
 	<string name="prefs_languages_information_off_link">अधिक जानकारी के लिए कृपया इस गाइड को देखें।</string>
 	<string name="transliteration_title">लैटिन में लिप्यंतरण</string>
-	<string name="routing_add_start_point">मार्ग की योजना बनाने के लिए एक प्रारंभिक बिंदु जोड़ें</string>
-	<string name="routing_add_finish_point">मार्ग की योजना बनाने के लिए एक गंतव्य जोड़ें</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">मार्ग का प्रारंभिक बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">गंतव्य बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें</string>
 	<string name="placepage_add_stop">गंतव्य जोड़ें</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
 	<string name="alert_reauth_message">कृपया अपने सभी मानचित्र संपादनों को स्वचालित रूप से अपलोड करने के लिए OpenStreetMap पर लॉगिन करें। अधिक जानें <a href="https://github.com/organicmaps/organicmaps/issues/6144">यहां</a>।</string>
@@ -437,13 +443,6 @@
 	<string name="please_wait">कृपया प्रतीक्षा करें…</string>
 	<string name="phone_number">फ़ोन नंबर</string>
 	<string name="profile">OpenStreetMap प्रोफ़ाइल</string>
-	<plurals name="objects">
-	  <item quantity="one">%d वस्तु</item>
-	  <item quantity="other">%d वस्तुएं</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">%d स्थान</item>
-	</plurals>
 	<!-- Settings privacy group in settings screen -->
 	<string name="privacy">निजता</string>
 	<string name="privacy_policy">गोपनीयता नीति</string>
@@ -543,6 +542,8 @@
 	<string name="button_layer_outdoor">लंबी पैदल यात्रा</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">वेब ब्राउज़र उपलब्ध नहीं है</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Google Play में नए प्रतिबंधों के कारण OpenStreetMap प्राधिकरण अस्थायी रूप से अनुपलब्ध है 😾\nहमारी टीम इस समस्या को हल करने के लिए काम कर रही है। कृपया धैर्य रखें 🙏</string>
 	<string name="volume">आवाज़</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">सभी बुकमार्क और ट्रैक निर्यात करें</string>
@@ -559,6 +560,15 @@
 	<string name="website_menu">मेनू लिंक</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">मेनू देखें</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">स्वयं सेवा    hu = Önkiszolgáló</string>
+	<string name="select_option">विकल्प चुनें</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">घर के बाहर बैठने</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">पावर सेविंग मोड बंद करें</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">सबसे सटीक नेविगेशन के लिए, हम फ़ोन की बैटरी सेटिंग्स में पावर सेविंग मोड को अक्षम करने की सलाह देते हैं।</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.aerialway.cable_car">आकाशीय रज्जुमार्ग</string>
@@ -1202,4 +1212,8 @@
 	<string name="type.piste_type.hike">स्नो हाइकिंग ट्रेल</string>
 	<string name="type.piste_type.connection">पिस्ट कनेक्शन</string>
 	<string name="type.piste_type.skitour">स्किटौर ट्रेल</string>
+	<string name="type.self_service.yes">स्व-सेवा उपलब्ध है</string>
+	<string name="type.self_service.only">केवल स्व-सेवा</string>
+	<string name="type.self_service.partially">आंशिक स्व-सेवा</string>
+	<string name="type.self_service.no">कोई स्व-सेवा नहीं</string>
 </resources>

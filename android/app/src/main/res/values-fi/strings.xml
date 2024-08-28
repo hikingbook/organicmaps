@@ -282,6 +282,8 @@
 	<string name="compass_calibration_recommended">Paranna nuolien suuntaa liikuttamalla puhelinta kahdeksikon suuntaisesti kompassin kalibroimiseksi.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Liikuta puhelinta kahdeksikon suuntaisella liikkeellä kompassin kalibroimiseksi ja nuolen suunnan määrittämiseksi kartalla.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Näytä käyttöliittymä napauttamalla karttaa uudelleen pitkään.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Päivitä kaikki</string>
 	<!-- Cancel all button text -->
@@ -381,6 +383,7 @@
 	<string name="dialog_routing_system_error">Järjestelmävirhe</string>
 	<string name="dialog_routing_application_error">Reittiä ei voi luoda sovellusvirheen vuoksi.</string>
 	<string name="dialog_routing_try_again">Yritä uudelleen</string>
+	<string name="not_now">Ei nyt</string>
 	<string name="dialog_routing_download_and_build_cross_route">Haluatko ladata kartan ja luoda paremman reitin, joka ulottuu usealle kartalle?</string>
 	<string name="dialog_routing_download_cross_route">Lataa kartta ja luo parempi reitti, joka ylittää tämän kartan reunan.</string>
 
@@ -394,7 +397,8 @@
 	<string name="categories">Luokat</string>
 	<string name="history">Historia</string>
 	<string name="search_not_found">Pahoittelut, hakutuloksia ei ole.</string>
-	<string name="search_not_found_query">Yritä jotain toista hakusanaa.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Lataa alue, jolta etsit, tai yritä lisätä läheisen kaupungin tai kylän nimi.</string>
 	<string name="search_history_title">Hakuhistoria</string>
 	<string name="search_history_text">Näytä viimeaikaiset hakusi.</string>
 	<string name="clear_search">Poista hakuhistoria</string>
@@ -447,6 +451,8 @@
 	<string name="no_osm_account">Eikö sinulla ole OpenStreetMap-tiliä?</string>
 	<string name="register_at_openstreetmap">Rekisteröidy</string>
 	<string name="login">Kirjaudu sisään</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Et ole kirjautunut sisään</string>
 	<string name="login_osm">Kirjaudu OpenStreetMapiin</string>
 	<string name="password">Salasana</string>
 	<string name="forgot_password">Unohtuiko salasana?</string>
@@ -488,7 +494,6 @@
 	<string name="editor_edit_place_category_title">Kategoria</string>
 	<string name="detailed_problem_description">Ongelman tarkka kuvaus</string>
 	<string name="editor_report_problem_other_title">Eri ongelma</string>
-	<string name="placepage_add_business_button">Lisää organisaatio</string>
 	<string name="message_invalid_feature_position">Kohdetta ei voida asettaa tänne</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Yhteisön luomat OpenStreetMap-tiedot %s:sta alkaen. Lisätietoja kartan muokkaamisesta ja päivittämisestä osoitteessa OpenStreetMap.org.</string>
@@ -587,8 +592,10 @@
 	<string name="learn_more">Lisätietoja</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Poistu</string>
-	<string name="routing_add_start_point">Lisää alkupiste reitin suunnittelua varten</string>
-	<string name="routing_add_finish_point">Lisää määränpää reitin suunnittelua varten</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Käytä hakua tai napauta karttaa lisätäksesi reitin lähtöpisteen</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Käytä hakua tai napauta karttaa lisätäksesi kohdepisteen.</string>
 	<string name="placepage_remove_stop">Poista</string>
 	<string name="placepage_add_stop">Lisää pysähdys</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -602,6 +609,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Piilota kaikki</string>
 	<string name="bookmark_lists_show_all">Näytä kaikki</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d kirjanmerkki</item>
+	  <item quantity="other">%d kirjanmerkkiä</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Luo uusi luettelo</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Kirjanmerkkien ja reittien tuominen</string>
@@ -620,14 +631,7 @@
 	  <item quantity="one">%d tiedosto löydettiin. Näet sen muunnoksen jälkeen.</item>
 	  <item quantity="other">%d tiedostoa löydettiin. Näet ne muunnoksen jälkeen.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d kohde</item>
-	  <item quantity="other">%d kohdetta</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d paikka</item>
-	  <item quantity="other">%d paikkaa</item>
-	</plurals>
+	<string name="restore">Palauta</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d reitti</item>
 	  <item quantity="other">%d reittiä</item>
@@ -806,6 +810,8 @@
 	<string name="button_layer_outdoor">Vaellus</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Verkkoselain ei ole käytettävissä</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMap-valtuutus ei ole tilapäisesti käytettävissä Google Playn uusien rajoitusten vuoksi 😾\nTiimimme työskentelee ongelman ratkaisemiseksi. Ole kärsivällinen 🙏</string>
 	<string name="volume">Äänenvoimakkuus</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Vie kaikki kirjanmerkit ja kappaleet</string>
@@ -822,6 +828,15 @@
 	<string name="website_menu">Valikkolinkki</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Näytä valikko</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Itsepalvelu</string>
+	<string name="select_option">Valitse vaihtoehto</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Ulkona istuminen</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Poista virransäästötila käytöstä</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Jotta navigointi olisi mahdollisimman tarkkaa, suosittelemme virransäästötilan poistamista käytöstä puhelimen akkuasetuksista.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Osoite/lohko</string>
@@ -2070,4 +2085,8 @@
 	<string name="type.amenity.events_venue">Tapahtumapaikka</string>
 	<string name="type.shop.auction">Huutokauppa</string>
 	<string name="type.shop.collector">Keräilyesineet</string>
+	<string name="type.self_service.yes">Itsepalvelu saatavilla</string>
+	<string name="type.self_service.only">Vain itsepalvelu</string>
+	<string name="type.self_service.partially">Osittainen itsepalvelu</string>
+	<string name="type.self_service.no">Ei itsepalvelua</string>
 </resources>

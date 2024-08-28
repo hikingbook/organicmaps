@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Zobacz moją aktualną lokalizację na mapie przy użyciu Organic Maps";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Udostępnij";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Język komunikatów";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testuj wskazówki głosowe (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Inny";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kalibracja kompasu";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Ponownie dotknij długo mapy, aby wyświetlić interfejs";
 
 /* Update all button text */
 "downloader_update_all_button" = "Aktualizuj wszystkie";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Spróbuj ponownie";
 
-"not_now" = "Nie teraz";
-
 "dialog_routing_download_and_build_cross_route" = "Chcesz pobrać mapę i wyznaczyć lepszą trasę, obejmującą więcej map?";
 
 "dialog_routing_download_cross_route" = "Pobierz mapę i wyznacz lepszą trasę, wykraczającą poza granice bieżącej mapy.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Przepraszamy, nic nie znaleziono.";
 
-"search_not_found_query" = "Wpisz inne zapytanie.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Proszę pobrać region, w którym Państwo szukają lub spróbować dodać nazwę pobliskiego miasta/wsi.";
 
 "search_history_title" = "Historia wyszukiwania";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Dane o ruchu są niedostępne";
 
+"enable_logging" = "Włącz zbieranie danych";
+
+"log_file_size" = "Rozmiar pliku dziennika: %@";
+
 "transliteration_title" = "Transkrypcja na alfabet łaciński";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Wyjście";
 
-"routing_add_start_point" = "Aby zaplanować trasę, dodaj punkt początkowy";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Użyj funkcji wyszukiwania lub dotknij mapy, aby dodać punkt początkowy trasy";
 
-"routing_add_finish_point" = "Aby zaplanować trasę, dodaj punkt końcowy";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Użyj funkcji wyszukiwania lub dotknij mapy, aby dodać punkt docelowy";
 
 "planning_route_manage_route" = "Zarządzaj trasą";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Dodaj postój";
 
 "start_from_my_position" = "Zacznij od";
-
-"profile_authorization_error" = "Ups, nastąpił błąd. Spróbuj zalogować się ponownie.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Zaloguj się do OpenStreetMap, aby automatycznie przesyłać wszystkie zmiany na mapie. Dowiedz się więcej";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Pokaż wszystkie";
 
 "bookmarks_create_new_group" = "Utwórz nową listę";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Importuj zakładki i trasy";
 
 "downloader_hide_screen" = "Ukryj ekran";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Sommige bestanden waren niet geconverteerd.";
 
-"bookmarks_restore_title" = "Przywróć tę wersję?";
-
-"error_system_message" = "Wystąpił nieznany błąd";
-
 "restore" = "Przywróć";
 
 "privacy_policy" = "Polityka prywatności";
 
 "terms_of_use" = "Warunki użytkowania";
-
-"button_layer_traffic" = "Ruch drogowy";
 
 "button_layer_subway" = "Metro";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automatycznie";
 
 "power_managment_setting_manual_max" = "Maksymalna oszczędność energii";
+
+"enable_logging_warning_message" = "Ta opcja zostaje włączona do zbierania danych działań w celach diagnostycznych. Pomaga to zespołowi zidentyfikować problemy z aplikacją. Włączaj opcję tylko na żądanie wsparcia technicznego Organic Maps.";
 
 "driving_options_title" = "Ustawienia nawigacji";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Trasa zostanie przebudowana z Twojej bieżącej lokalizacji";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Trasa zostanie zmieniona na samochodową";
+
+"not_all_shown_bookmarks_carplay" = "Nie wszystkie zakładki są wyświetlane";
+
+"switch_to_phone_bookmarks_carplay" = "Przełącz się na telefon, aby zobaczyć wszystkie zakładki";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Pl:Wstęp";
 
+/* App Tip #00 */
+"app_tip_00" = "Dziękujemy za korzystanie z naszych map stworzonych przez społeczność!";
+
+/* App tip #01 */
+"app_tip_01" = "Dzięki Twoim darowiznom i wsparciu możemy tworzyć najlepsze mapy na świecie!";
+
+/* App tip #02 */
+"app_tip_02" = "Czy podoba Ci się nasza aplikacja? Przekaż darowiznę, aby wesprzeć rozwój! Jeszcze ci się to nie podoba? Daj nam znać, a my to naprawimy!";
+
+/* App tip #03 */
+"app_tip_03" = "Jeśli znasz programistę, możesz poprosić go o wdrożenie potrzebnej funkcji.";
+
+/* App tip #04 */
+"app_tip_04" = "Czy wiesz, że możesz długo dotknąć dowolnego miejsca na mapie, aby je wybrać?";
+
+/* App tip #05 */
+"app_tip_05" = "Czy wiesz, że możesz wybrać swoją aktualną lokalizację na mapie?";
+
+/* App tip #06 */
+"app_tip_06" = "Możesz pomóc w tłumaczeniu naszej aplikacji na swój język.";
+
+/* App tip #07 */
+"app_tip_07" = "Nasza aplikacja jest rozwijana przez kilku entuzjastów i społeczność.";
+
+/* App tip #08 */
+"app_tip_08" = "Możesz łatwo naprawić i ulepszyć dane mapy.";
+
+/* App tip #09 */
+"app_tip_09" = "Naszym głównym celem jest tworzenie szybkich, zapewniających prywatność i łatwych w użyciu map, które pokochasz.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Korzystasz teraz z Organic Maps na ekranie telefonu";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Link do menu";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Chcesz wysłać raport o błędzie do deweloperów?\nPolegamy na naszych użytkownikach, ponieważ Organic Maps nie zbiera żadnych informacji o błędach automatycznie. Z góry dziękujemy za wspieranie Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Włącz synchronizację iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Kopia zapasowa";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Błąd synchronizacji iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Błąd: Nie udało się zsynchronizować z powodu błędu połączenia";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Błąd: usługa iCloud jest niedostępna";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Otwórz w innej aplikacji";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Siedzenia na zewnątrz";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Ostatnio usunięte listy";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Wyczyść";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Usuń wszystko";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Odzyskaj";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Odzyskaj wszystko";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Dom aukcyjny";
 
 "type.shop.collector" = "Przedmioty kolekcjonerskie";
+
+"type.self_service.yes" = "Dostępna samoobsługa";
+
+"type.self_service.only" = "Tylko samoobsługa";
+
+"type.self_service.partially" = "Częściowa samoobsługa";
+
+"type.self_service.no" = "Brak samoobsługi";

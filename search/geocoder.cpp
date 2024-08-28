@@ -628,12 +628,11 @@ void Geocoder::GoImpl(vector<MwmInfoPtr> const & infos, bool inViewport)
     {
       MatchRegions(ctx, Region::TYPE_COUNTRY);
 
+      // Probably, we should process all MWMs "until the end" but I left some _better-than-before_
+      // reasonable criteria (ContinueSearch) not to hang a lot.
       auto const & mwmType = m_context->GetType();
-      if (mwmType.m_viewportIntersected || mwmType.m_containsUserPosition ||
-          !m_preRanker.HaveFullyMatchedResult())
-      {
+      if (mwmType.m_viewportIntersected || mwmType.m_containsUserPosition || m_preRanker.ContinueSearch())
         MatchAroundPivot(ctx);
-      }
     }
 
     if (updatePreranker)
@@ -1574,7 +1573,9 @@ void Geocoder::MatchPOIsAndBuildings(BaseContext & ctx, size_t curToken, CBV con
           continue;
       }
       else if (layer.m_sortedFeatures->empty() ||
-               house_numbers::LooksLikeHouseNumberStrict(layer.m_subQuery))
+              /// @todo The crutch, but can't invent a better solution now. Should refactor layers iteration.
+              /// @see ProcessorTest_Smoke and Numeric_POI_Name tests.
+               (house_numbers::LooksLikeHouseNumberStrict(layer.m_subQuery) && numTokens > 1))
       {
         continue;
       }

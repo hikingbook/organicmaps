@@ -266,6 +266,8 @@
 	<string name="compass_calibration_recommended">Îmbunătățiți direcția săgeții prin mișcarea telefonului într-o mișcare în opt pentru a calibra busola.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Mișcați telefonul într-o mișcare în formă de opt pentru a calibra busola și a fixa direcția săgeții pe hartă.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Atingeți lung pe hartă din nou pentru a vedea interfața</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualizează tot</string>
 	<!-- Cancel all button text -->
@@ -365,6 +367,7 @@
 	<string name="dialog_routing_system_error">Eroare de sistem</string>
 	<string name="dialog_routing_application_error">Crearea traseului a eșuat din cauza unei erori a aplicației.</string>
 	<string name="dialog_routing_try_again">Încearcă din nou</string>
+	<string name="not_now">Nu acum</string>
 	<string name="dialog_routing_download_and_build_cross_route">Vrei să descarci harta și să creezi un traseu mai bun care include mai multe hărți?</string>
 	<string name="dialog_routing_download_cross_route">Descarcă hărți suplimentare pentru a crea un traseu mai bun care să traverseze limitele acestei hărți.</string>
 
@@ -378,7 +381,8 @@
 	<string name="categories">Categorii</string>
 	<string name="history">Cronologie</string>
 	<string name="search_not_found">Nu s-a găsit nimic.</string>
-	<string name="search_not_found_query">Încearcă să modifici condițiile căutării.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Descărcați regiunea în care căutați sau încercați să adăugați numele unei localități din apropiere.</string>
 	<string name="search_history_title">Istoricul căutărilor</string>
 	<string name="search_history_text">Arată căutările recente.</string>
 	<string name="clear_search">Șterge istoricul căutărilor</string>
@@ -431,6 +435,8 @@
 	<string name="no_osm_account">Nu ai un cont OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Înscrie-te</string>
 	<string name="login">Autentificare</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Neautentificat</string>
 	<string name="login_osm">Conectați-vă la OpenStreetMap</string>
 	<string name="password">Parola</string>
 	<string name="forgot_password">Ai uitat parola?</string>
@@ -472,7 +478,6 @@
 	<string name="editor_edit_place_category_title">Categorie</string>
 	<string name="detailed_problem_description">Descriere detaliată a problemei</string>
 	<string name="editor_report_problem_other_title">Altă problemă</string>
-	<string name="placepage_add_business_button">Adaugă o firmă</string>
 	<string name="message_invalid_feature_position">Niciun obiect nu poate fi poziționat aici</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Date OpenStreetMap create de comunitate la data de %s. Aflați mai multe despre cum să editați și să actualizați harta la OpenStreetMap.org</string>
@@ -569,8 +574,10 @@
 	<string name="learn_more">Mai multe</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Ieșire</string>
-	<string name="routing_add_start_point">Adaugă un punct de plecare pentru a planifica un traseu</string>
-	<string name="routing_add_finish_point">Adaugă un punct de sosire pentru a planifica un traseu</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Utilizați funcția de căutare sau atingeți ușor pe hartă pentru a adăuga un punct de plecare</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Utilizați funcția de căutare sau atingeți ușor pe hartă pentru a adăuga un punct de destinație</string>
 	<string name="placepage_remove_stop">Elimină</string>
 	<string name="placepage_add_stop">Adaugă oprire</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -584,6 +591,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Ascunde tot</string>
 	<string name="bookmark_lists_show_all">Arată tot</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d preferat</item>
+	  <item quantity="other">%d preferate</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Creează o listă nouă</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importați marcaje și piese</string>
@@ -602,14 +613,7 @@
 	  <item quantity="one">A fost găsit %d fișier. Îl vei vedea după conversiune.</item>
 	  <item quantity="other">Au fost găsite %d fișiere. Le vei vedea după conversiune.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d obiect</item>
-	  <item quantity="other">%d obiecte</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d loc</item>
-	  <item quantity="other">%d locuri</item>
-	</plurals>
+	<string name="restore">Restabilește</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d traseu</item>
 	  <item quantity="other">%d trasee</item>
@@ -784,6 +788,8 @@
 	<string name="button_layer_outdoor">Drumeție</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Browserul web nu este disponibil</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Autorizația OpenStreetMap nu este disponibilă temporar din cauza noilor restricții din Google Play 😾\nEchipa noastră lucrează pentru a rezolva această problemă. Vă rugăm să aveți răbdare 🙏</string>
 	<string name="volume">Volum</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Exportați toate marcajele și piesele</string>
@@ -800,6 +806,15 @@
 	<string name="website_menu">Legătura de meniu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Vezi meniul</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Autoservire</string>
+	<string name="select_option">Selectați opțiunea</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Scaune în aer liber</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Dezactivați modul de economisire a energiei</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Pentru o navigare cât mai precisă, vă recomandăm să dezactivați modul de economisire a energiei în setările pentru baterie ale telefonului.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresă/Bloc</string>
@@ -1931,4 +1946,8 @@
 	<string name="type.amenity.events_venue">Locul de desfășurare a evenimentelor</string>
 	<string name="type.shop.auction">Licitație</string>
 	<string name="type.shop.collector">Colecții</string>
+	<string name="type.self_service.yes">Autoservire disponibilă</string>
+	<string name="type.self_service.only">Numai autoservire</string>
+	<string name="type.self_service.partially">Autoservire parțială</string>
+	<string name="type.self_service.no">Fără autoservire</string>
 </resources>

@@ -5,6 +5,7 @@
 #import "MWMBookmarkGroup.h"
 #import "MWMCarPlayBookmarkObject.h"
 #import "MWMTrack+Core.h"
+#import "RecentlyDeletedCategory+Core.h"
 
 #include "Framework.h"
 
@@ -203,6 +204,11 @@ static KmlFileType convertFileTypeToCore(MWMKmlFileType fileType) {
   self.bm.LoadBookmarks();
 }
 
+- (void)loadBookmarkFile:(NSURL *)url
+{
+  self.bm.LoadBookmark(url.path.UTF8String, false /* isTemporaryFile */);
+}
+
 - (void)reloadCategoryAtFilePath:(NSString *)filePath
 {
   self.bm.ReloadBookmark(filePath.UTF8String);
@@ -350,7 +356,7 @@ static KmlFileType convertFileTypeToCore(MWMKmlFileType fileType) {
 
 - (void)deleteCategory:(MWMMarkGroupID)groupId
 {
-  self.bm.GetEditSession().DeleteBmCategory(groupId);
+  self.bm.GetEditSession().DeleteBmCategory(groupId, false /* move to the Trash */);
   [self loopObservers:^(id<MWMBookmarksObserver> observer) {
     if ([observer respondsToSelector:@selector(onBookmarksCategoryDeleted:)])
       [observer onBookmarksCategoryDeleted:groupId];
@@ -766,6 +772,10 @@ static KmlFileType convertFileTypeToCore(MWMKmlFileType fileType) {
   }
 }
 
+- (BOOL)hasRecentlyDeletedBookmark {
+  return self.bm.HasRecentlyDeletedBookmark();
+}
+
 - (void)setCategory:(MWMMarkGroupID)groupId authorType:(MWMBookmarkGroupAuthorType)author
 {
   switch (author)
@@ -776,6 +786,37 @@ static KmlFileType convertFileTypeToCore(MWMKmlFileType fileType) {
     case MWMBookmarkGroupAuthorTypeTraveler:
       self.bm.GetEditSession().SetCategoryCustomProperty(groupId, @"author_type".UTF8String, @"tourist".UTF8String);
   }
+}
+
+// MARK: - RecentlyDeletedCategoriesManager
+- (uint64_t)recentlyDeletedCategoriesCount {
+  return self.bm.GetRecentlyDeletedCategoriesCount();
+}
+
+- (NSArray<RecentlyDeletedCategory *> *)getRecentlyDeletedCategories {
+  auto const categoriesCollection = self.bm.GetRecentlyDeletedCategories();
+  NSMutableArray<RecentlyDeletedCategory *> * recentlyDeletedCategories = [[NSMutableArray alloc] initWithCapacity:categoriesCollection->size()];
+
+  for (auto const & [filePath, categoryPtr] : * categoriesCollection) {
+    ASSERT(categoryPtr, ("Recently deleted category shouldn't be nil."));
+    RecentlyDeletedCategory * category = [[RecentlyDeletedCategory alloc] initWithCategoryData:categoryPtr->m_categoryData filePath:filePath];
+    [recentlyDeletedCategories addObject:category];
+  }
+  return recentlyDeletedCategories;
+}
+
+- (void)deleteRecentlyDeletedCategoryAtURLs:(NSArray<NSURL *> *)urls {
+  std::vector<std::string> filePaths;
+  for (NSURL * url in urls)
+    filePaths.push_back(url.filePathURL.path.UTF8String);
+  self.bm.DeleteRecentlyDeletedCategoriesAtPaths(filePaths);
+}
+
+- (void)recoverRecentlyDeletedCategoriesAtURLs:(NSArray<NSURL *> *)urls {
+  std::vector<std::string> filePaths;
+  for (NSURL * url in urls)
+    filePaths.push_back(url.filePathURL.path.UTF8String);
+  self.bm.RecoverRecentlyDeletedCategoriesAtPaths(filePaths);
 }
 
 #pragma mark - Helpers

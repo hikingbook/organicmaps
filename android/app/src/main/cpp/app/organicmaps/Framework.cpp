@@ -58,10 +58,8 @@
 
 #include "3party/open-location-code/openlocationcode.h"
 
-#include <cstdint>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <android/api-level.h>
@@ -596,7 +594,12 @@ void Framework::ExecuteMapApiRequest()
 
 void Framework::DeactivatePopup()
 {
-  m_work.DeactivateMapSelection(false);
+  m_work.DeactivateMapSelection();
+}
+
+void Framework::DeactivateMapSelectionCircle()
+{
+  m_work.DeactivateMapSelectionCircle();
 }
 
 /*
@@ -881,8 +884,7 @@ Java_app_organicmaps_Framework_nativeGetParsedCenterLatLon(JNIEnv * env, jclass)
 }
 
 JNIEXPORT void JNICALL
-Java_app_organicmaps_Framework_nativePlacePageActivationListener(JNIEnv *env, jclass clazz,
-                                                                     jobject jListener)
+Java_app_organicmaps_Framework_nativePlacePageActivationListener(JNIEnv *env, jclass, jobject jListener)
 {
   LOG(LINFO, ("Set global map object listener"));
   g_placePageActivationListener = env->NewGlobalRef(jListener);
@@ -890,9 +892,12 @@ Java_app_organicmaps_Framework_nativePlacePageActivationListener(JNIEnv *env, jc
   jmethodID const activatedId = jni::GetMethodID(env, g_placePageActivationListener,
                                                  "onPlacePageActivated",
                                                  "(Lapp/organicmaps/widget/placepage/PlacePageData;)V");
-  // void onPlacePageDeactivated(boolean switchFullScreenMode);
+  // void onPlacePageDeactivated();
   jmethodID const deactivateId = jni::GetMethodID(env, g_placePageActivationListener,
-                                                  "onPlacePageDeactivated", "(Z)V");
+                                                  "onPlacePageDeactivated", "()V");
+  // void onPlacePageDeactivated();
+  jmethodID const switchFullscreenId = jni::GetMethodID(env, g_placePageActivationListener,
+                                                        "onSwitchFullScreenMode", "()V");
   auto const fillPlacePage = [activatedId]()
   {
     JNIEnv * env = jni::GetEnv();
@@ -909,12 +914,18 @@ Java_app_organicmaps_Framework_nativePlacePageActivationListener(JNIEnv *env, jc
     }
     env->CallVoidMethod(g_placePageActivationListener, activatedId, placePageDataRef.get());
   };
-  auto const closePlacePage = [deactivateId](bool switchFullScreenMode)
+  auto const closePlacePage = [deactivateId]()
   {
     JNIEnv * env = jni::GetEnv();
-    env->CallVoidMethod(g_placePageActivationListener, deactivateId, switchFullScreenMode);
+    env->CallVoidMethod(g_placePageActivationListener, deactivateId);
   };
-  frm()->SetPlacePageListeners(fillPlacePage, closePlacePage, fillPlacePage);
+  auto const switchFullscreen = [switchFullscreenId]()
+  {
+    JNIEnv * env = jni::GetEnv();
+    env->CallVoidMethod(g_placePageActivationListener, switchFullscreenId);
+  };
+
+  frm()->SetPlacePageListeners(fillPlacePage, closePlacePage, fillPlacePage, switchFullscreen);
 }
 
 JNIEXPORT void JNICALL
@@ -926,7 +937,7 @@ Java_app_organicmaps_Framework_nativeRemovePlacePageActivationListener(JNIEnv *e
   if (!env->IsSameObject(g_placePageActivationListener, jListener))
     return;
 
-  frm()->SetPlacePageListeners({} /* onOpen */, {} /* onClose */, {} /* onUpdate */);
+  frm()->SetPlacePageListeners({} /* onOpen */, {} /* onClose */, {} /* onUpdate */, {} /* onSwitchFullScreen */);
   LOG(LINFO, ("Remove global map object listener"));
   env->DeleteGlobalRef(g_placePageActivationListener);
   g_placePageActivationListener = nullptr;
@@ -1234,15 +1245,15 @@ Java_app_organicmaps_Framework_nativeGetRouteFollowingInfo(JNIEnv * env, jclass)
 
   static jclass const klass = jni::GetGlobalClassRef(env, "app/organicmaps/routing/RoutingInfo");
   // Java signature : RoutingInfo(Distance distToTarget, Distance distToTurn,
-  //                              String currentStreet, String nextStreet,
+  //                              String currentStreet, String nextStreet, String nextNextStreet,
   //                              double completionPercent, int vehicleTurnOrdinal, int
   //                              vehicleNextTurnOrdinal, int pedestrianTurnOrdinal, int exitNum,
   //                              int totalTime, SingleLaneInfo[] lanes)
   static jmethodID const ctorRouteInfoID =
       jni::GetConstructorID(env, klass,
                             "(Lapp/organicmaps/util/Distance;Lapp/organicmaps/util/Distance;"
-                            "Ljava/lang/String;Ljava/lang/String;DIIIII"
-                            "[Lapp/organicmaps/routing/SingleLaneInfo;ZZ)V");
+                            "Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIIIII"
+                            "[Lapp/organicmaps/routing/SingleLaneInfo;DZZ)V");
 
   vector<routing::FollowingInfo::SingleLaneInfoClient> const & lanes = info.m_lanes;
   jobjectArray jLanes = nullptr;
@@ -1274,10 +1285,11 @@ Java_app_organicmaps_Framework_nativeGetRouteFollowingInfo(JNIEnv * env, jclass)
   auto const shouldPlaySignal = frm()->GetRoutingManager().GetSpeedCamManager().ShouldPlayBeepSignal();
   jobject const result = env->NewObject(
       klass, ctorRouteInfoID, ToJavaDistance(env, info.m_distToTarget),
-      ToJavaDistance(env, info.m_distToTurn), jni::ToJavaString(env, info.m_sourceName),
-      jni::ToJavaString(env, info.m_displayedStreetName), info.m_completionPercent, info.m_turn,
-      info.m_nextTurn, info.m_pedestrianTurn, info.m_exitNum, info.m_time, jLanes,
-      static_cast<jboolean>(isSpeedCamLimitExceeded), static_cast<jboolean>(shouldPlaySignal));
+      ToJavaDistance(env, info.m_distToTurn), jni::ToJavaString(env, info.m_currentStreetName),
+      jni::ToJavaString(env, info.m_nextStreetName), jni::ToJavaString(env, info.m_nextNextStreetName),
+      info.m_completionPercent, info.m_turn, info.m_nextTurn, info.m_pedestrianTurn, info.m_exitNum,
+      info.m_time, jLanes, info.m_speedLimitMps, static_cast<jboolean>(isSpeedCamLimitExceeded),
+      static_cast<jboolean>(shouldPlaySignal));
   ASSERT(result, (jni::DescribeException()));
   return result;
 }
@@ -1443,6 +1455,12 @@ JNIEXPORT void JNICALL
 Java_app_organicmaps_Framework_nativeDeactivatePopup(JNIEnv * env, jclass)
 {
   return g_framework->DeactivatePopup();
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_Framework_nativeDeactivateMapSelectionCircle(JNIEnv * env, jclass)
+{
+  return g_framework->DeactivateMapSelectionCircle();
 }
 
 JNIEXPORT void JNICALL

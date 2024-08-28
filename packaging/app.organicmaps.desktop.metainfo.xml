@@ -94,23 +94,108 @@
   <url type="vcs-browser">https://github.com/organicmaps/organicmaps/</url>
   <url type="contribute">https://github.com/organicmaps/organicmaps/blob/master/docs/CONTRIBUTING.md</url>
 
-  <launchable type="desktop-id">OrganicMaps.desktop</launchable>
+  <launchable type="desktop-id">app.organicmaps.desktop.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image>https://organicmaps.app/images/screenshots/Desktop_light_routing.png</image>
+      <caption>Routing in dark mode</caption>
     </screenshot>
     <screenshot>
       <image>https://organicmaps.app/images/screenshots/Desktop_dark_routing.png</image>
+      <caption>Routing in light mode</caption>
     </screenshot>
     <screenshot>
       <image>https://organicmaps.app/images/screenshots/Desktop_light_overview.png</image>
+      <caption>Map overview in light mode</caption>
     </screenshot>
     <screenshot>
       <image>https://organicmaps.app/images/screenshots/Desktop_dark_overview.png</image>
+      <caption>Map overview in dark mode</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+   <release version="2024.08.15-21" date="2024-08-15">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>OpenStreetMap data as of August 10</li>
+           <li>Improved routing in cases of bad surface and missing speed limit</li>
+           <li>Display road shields in India</li>
+           <li>Self-service and outdoor seating support</li>
+           <li>Use NotoSans font instead of Serif for Hebrew</li>
+           <li>Add transliteration enable/disable setting</li>
+           <li>Traffic light icons are displayed in car navigation mode</li>
+           <li>Selected places with WiFi show emoji symbol 🛜</li>
+           <li>Fixed wrong selection of a bookmarked place when tapping on its title</li>
+           <li>Disabled map rotation snapping to the north angle</li>
+           <li>Properly export modified bookmark names in GPX</li>
+           <li>Fixed import of KMB files</li>
+         </ul>
+       <p>Translation updates:</p>
+         <ul>
+           <li>Improved Catalan, Chinese, Hebrew, Hindi, Hungarian, Japanese,  Spanish, Turkish, Ukrainian translations</li>
+           <li>Updated Cyprus, Iraq, Spain map region names and translations</li>
+         </ul>
+     </description>
+   </release>
+   <release version="2024.07.27-8" date="2024-07-27">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>OpenStreetMap data as of July 23</li>
+           <li>Fixed multiline RTL texts</li>
+           <li>Fixed indentation for Chinese, Japanese and Korean characters when Noto font is used</li>
+         </ul>
+     </description>
+   </release>
+   <release version="2024.07.08-3" date="2024-07-08">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>Better address search in the USA based on Topologically Integrated Geographic Encoding and Referencing system (TIGER) data. Map size for the USA has increased from 10Gb to 13Gb (including Wikipedia and elevation data)</li>
+           <li>Fixed rendering of texts in Indic (covering Devanagari, Bengali, Gujarati, Gurmukhi, Kannada, Malayalam, Oriya, Tamil, Telugu), Arabic (N'Ko, Syriac, Mongolian), Thai and Lao, Khmer, Myanmar, Tibetan, Hangul, Hebrew scripts</li>
+           <li>New Malayalam and Bengali fonts</li>
+           <li>OSM data as of July 2, 2024</li>
+           <li>A selected place now shows more types/categories/amenities</li>
+           <li>Display major roads earlier on the world overview map</li>
+           <li>Display good quality fine gravel pedestrian paths as white dashed</li>
+           <li>Support more road/path surface types (bricks, stone, grass paver, soil)</li>
+           <li>Mountain search also shows volcanoes</li>
+           <li>Better search results for faraway places</li>
+           <li>Search now finds places with a number in their names</li>
+           <li>Find parcel lockers using their ref numbers</li>
+         </ul>
+       <p>Linux Desktop:</p>
+         <ul>
+           <li>Fix a generic Wayland icon displayed instead of Organic Maps icon on some systems</li>
+         </ul>
+       <p>Translation updates:</p>
+         <ul>
+           <li>Updated Belarusian, Chinese, Dutch, Euskara, Hungarian, Polish, Portuguese, Russian, Ukrainian translations</li>
+         </ul>
+     </description>
+   </release>
+   <release version="2024.06.02-12" date="2024-06-02">
+     <description>
+       <p>Highlights:</p>
+         <ul>
+           <li>New OpenStreetMap data as of May 28, 2024</li>
+           <li>Search for US zip codes and UK (GB) postcodes</li>
+           <li>Fix missing addresses in fitness centers details</li>
+           <li>Add "pastry" and "cakes" search keywords</li>
+           <li>Fix Wikipedia links that contain a question mark</li>
+         </ul>
+       <p>Linux Desktop:</p>
+         <ul>
+           <li>Improve selected place details dialog</li>
+         </ul>
+       <p>Translation updates:</p>
+         <ul>
+           <li>Updated Czech, German, Portuguese translations</li>
+         </ul>
+     </description>
+   </release>
    <release version="2024.05.11-3" date="2024-05-11">
      <description>
        <p>Highlights:</p>

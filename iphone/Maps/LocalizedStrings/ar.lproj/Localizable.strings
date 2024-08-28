@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "مرحباً، تحقق من موقعي الحالي على خريطة Organic Maps!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "مشاركة";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "البريد الالكتروني";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "لغة الصوت";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "اختبار الاتجاهات الصوتية (TTS، تحويل النص إلى كلام)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "آخر";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "معايرة البوصلة";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "اضغط مطولاً على الخريطة مرة أخرى لرؤية الواجهة";
 
 /* Update all button text */
 "downloader_update_all_button" = "تحديث الكل";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "الرجاء إعادة المحاولة";
 
-"not_now" = "ليس الآن";
-
 "dialog_routing_download_and_build_cross_route" = "هل ترغب في تنزيل الخريطة وإنشاء مسار أفضل يمتد عبر أكثر من خريطة؟";
 
 "dialog_routing_download_cross_route" = "تنزيل خرائط إضافية لإنشاء مسار أفضل يعبر حافة هذه الخريطة.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "المعذرة، لم أعثر على أية نتائج.";
 
-"search_not_found_query" = "يرجى تجربة معاير بحث أخرى.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "قم بتنزيل المنطقة التي تبحث فيها أو حاول إضافة اسم بلدة/قرية قريبة.";
 
 "search_history_title" = "سجل البحث";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "البيانات المرورية غير متاحة";
 
+"enable_logging" = "تفعيل التسجيل";
+
+"log_file_size" = "حجم ملف السجل: %@";
+
 "transliteration_title" = "كتابة جميع الاسماء بالحروف اللاتينية بشكل حرفي";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "خروج";
 
-"routing_add_start_point" = "أضف نقطة البداية لتخطيط المسار";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "استخدام البحث أو النقر على الخريطة لإضافة نقطة بداية الطريق";
 
-"routing_add_finish_point" = "أضف النهاية لتخطيط المسار";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "استخدام البحث أو النقر على الخريطة لإضافة نقطة وجهة";
 
 "planning_route_manage_route" = "إدارة المسار";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "إضافة نقطة توقف";
 
 "start_from_my_position" = "بدء من";
-
-"profile_authorization_error" = "عفوًا، كان هناك خطأ. حاول تسجيل الدخول مرة اخرى.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "برجاء تسجيل الدخول إلى OpenStreetMap لتحميل جميع تعديلات الخريطة تلقائيًا. تعرف على المزيد";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "إظهار الكل";
 
 "bookmarks_create_new_group" = "إنشاء قائمة جديدة";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "استيراد الإشارات المرجعية والمسارات";
 
 "downloader_hide_screen" = "إخفاء الشاشة";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "لم يتم تحويل بعض الملفات.";
 
-"bookmarks_restore_title" = "استعادة هذا النسخة؟";
-
-"error_system_message" = "حدث خطأ غير معروف";
-
 "restore" = "استعادة";
 
 "privacy_policy" = "سياسة الخصوصية";
 
 "terms_of_use" = "شروط الاستخدام";
-
-"button_layer_traffic" = "حركة مرور";
 
 "button_layer_subway" = "مترو الانفاق";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "تلقائي";
 
 "power_managment_setting_manual_max" = "توفير الطاقة الأقصى";
+
+"enable_logging_warning_message" = "هذا الخيار يقوم ببدأ تسجيل سجلات التطبيق لإغراض التشخيصة. يمكن أن يكون مفيدًا لفريق الدعم الخاص بنا لحل المشاكل التي تواجهكم داخل التطبيق. قم بتفعيل هذا الخيار بشكل مؤقت فقط في حالة طلب الدعم من Organic Maps.";
 
 "driving_options_title" = "خيارات رسم المسار";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "سيتم إعادة رسم الطريق من موقعك الحالي";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "سيتم تعديل الطريق ليكون خاص بالسيارة";
+
+"not_all_shown_bookmarks_carplay" = "لا يتم عرض جميع الإشارات المرجعية";
+
+"switch_to_phone_bookmarks_carplay" = "قم بالتبديل إلى الهاتف لرؤية جميع الإشارات المرجعية";
 
 "ok" = "موافق";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ar:About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "شكرًا لك على استخدام الخرائط التي أنشأها مجتمعنا!";
+
+/* App tip #01 */
+"app_tip_01" = "بتبرعاتكم ودعمكم، يمكننا إنشاء أفضل الخرائط في العالم!";
+
+/* App tip #02 */
+"app_tip_02" = "هل تحب التطبيق لدينا؟ يرجى التبرع لدعم التنمية! لا أحب ذلك حتى الآن؟ واسمحوا لنا أن نعرف، وسوف نقوم بإصلاحه!";
+
+/* App tip #03 */
+"app_tip_03" = "إذا كنت تعرف أحد مطوري البرامج، فيمكنك أن تطلب منه تنفيذ الميزة التي تحتاجها.";
+
+/* App tip #04 */
+"app_tip_04" = "هل تعلم أنه يمكنك النقر لفترة طويلة على أي مكان على الخريطة لتحديده؟";
+
+/* App tip #05 */
+"app_tip_05" = "هل تعلم أنه يمكنك تحديد موقعك الحالي على الخريطة؟";
+
+/* App tip #06 */
+"app_tip_06" = "يمكنك المساعدة في ترجمة تطبيقنا إلى لغتك.";
+
+/* App tip #07 */
+"app_tip_07" = "تم تطوير تطبيقنا من قبل عدد قليل من المتحمسين والمجتمع.";
+
+/* App tip #08 */
+"app_tip_08" = "يمكنك بسهولة إصلاح وتحسين بيانات الخريطة.";
+
+/* App tip #09 */
+"app_tip_09" = "هدفنا الرئيسي هو إنشاء خرائط سريعة وسهلة الاستخدام تركز على الخصوصية والتي ستعجبك.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "أنت الآن تستخدم الخرائط العضوية على شاشة الهاتف";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "رابط القائمة";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "هل ترغب في إرسال تقرير عن الأخطاء إلى المطورين؟\nنحن نعتمد على مستخدمينا لأن تطبيق Organic Maps لا يجمع أي معلومات عن الأخطاء تلقائيًا. شكرًا لك مقدمًا على دعم الخرائط العضوية!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "تمكين مزامنة iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "دعم";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "فشل مزامنة iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "خطأ: فشل المزامنة بسبب خطأ في الاتصال";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "خطأ: iCloud غير متوفر";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "فتح في تطبيق آخر";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "مقاعد خارجية";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "القوائم المحذوفة مؤخراً";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "مسح";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "حذف الكل";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "استرداد";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "استرداد الكل";
 
 
 /********** Types **********/
@@ -2627,19 +2693,19 @@
 
 "type.man_made.breakwater" = "Breakwater";
 
-"type.man_made.cairn" = "Cairn";
+"type.man_made.cairn" = "كوم من الحجارة";
 
 "type.man_made.chimney" = "مدخنة";
 
 "type.man_made.cutline" = "Cutline";
 
-"type.man_made.survey_point" = "Survey Point";
+"type.man_made.survey_point" = "نقطة مسح ميداني";
 
 "type.man_made.flagpole" = "سارية علم";
 
 "type.man_made.lighthouse" = "منارة";
 
-"type.man_made.mast" = "Mast";
+"type.man_made.mast" = "عمود برج";
 
 "type.man_made.pier" = "رصيف بحري";
 
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "مزاد علني";
 
 "type.shop.collector" = "مقتنيات";
+
+"type.self_service.yes" = "الخدمة الذاتية متاحة";
+
+"type.self_service.only" = "الخدمة الذاتية فقط";
+
+"type.self_service.partially" = "خدمة ذاتية جزئية";
+
+"type.self_service.no" = "لا توجد خدمة ذاتية";

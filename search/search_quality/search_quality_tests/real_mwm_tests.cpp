@@ -108,7 +108,7 @@ public:
     {
       auto const it = std::find_if(prefixes.begin(), prefixes.end(), [name = r.GetString()](char const * prefix)
       {
-        return strings::StartsWith(name, prefix);
+        return name.starts_with(prefix);
       });
 
       TEST(it != prefixes.end(), (r));
@@ -1039,7 +1039,7 @@ UNIT_CLASS_TEST(MwmTestsFixture, Streets_Rank)
     };
 
     /// @todo Streets should be highwer. Now POIs additional rank is greater than Streets rank.
-    processRequest("Santa Fe ", 19);
+    processRequest("Santa Fe ", 20);
     /// @todo Prefix search gives POIs (Starbucks) near "Avenida Santa Fe". Some WTFs for street's ranking here:
     /// - gives 'Full Prefix' name's rank
     /// - gives m_matchedFraction: 0.777778, while 'st' should be counted for streets definitely
@@ -1263,8 +1263,8 @@ UNIT_CLASS_TEST(MwmTestsFixture, PostOffice_Viewport)
     TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
     Range allRange(results, true /* all */);
 
-    /// @todo office are near the "Poststrasse". Remove after fixing _near the street_ penalty.
-    EqualClassifType(allRange, GetClassifTypes({{"amenity", "post_office"}, {"office"}}));
+    /// @todo townhall and office are near the "Poststrasse". Remove after fixing _near the street_ penalty.
+    EqualClassifType(allRange, GetClassifTypes({{"amenity", "post_office"}, {"amenity", "townhall"}, {"office"}}));
   }
 }
 
@@ -1380,6 +1380,28 @@ UNIT_CLASS_TEST(MwmTestsFixture, UK_Postcodes_Timing)
     auto const & results = request->Results();
     TEST(!results.empty(), ());
     TEST_LESS(duration_cast<seconds>(request->ResponseTime()).count(), 3, ());
+  }
+}
+
+UNIT_CLASS_TEST(MwmTestsFixture, CompleteSearch_DistantMWMs)
+{
+  RegisterLocalMapsByPrefix("Russia_Kabardino-Balkaria");
+
+  // Buenos Aires (Palermo)
+  ms::LatLon const center(-34.58524, -58.42516);
+  SetViewportAndLoadMaps(center);
+
+  {
+    auto request = MakeRequest("Эльбрус");
+    auto const & results = request->Results();
+    TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
+  }
+
+  {
+    auto request = MakeRequest("гора Эльбрус", "ru");
+    auto const & results = request->Results();
+    TEST_GREATER(results.size(), kPopularPoiResultsCount, ());
+    EqualClassifType(Range(results, 0, 1), GetClassifTypes({{"natural", "volcano"}}));
   }
 }
 

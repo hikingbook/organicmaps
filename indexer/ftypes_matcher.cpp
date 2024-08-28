@@ -186,18 +186,6 @@ IsATMChecker::IsATMChecker()
   m_types.push_back(c.GetTypeByPath({"amenity", "atm"}));
 }
 
-IsPaymentTerminalChecker::IsPaymentTerminalChecker()
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "payment_terminal"}));
-}
-
-IsMoneyExchangeChecker::IsMoneyExchangeChecker()
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "bureau_de_change"}));
-}
-
 IsSpeedCamChecker::IsSpeedCamChecker()
 {
   Classificator const & c = classif();
@@ -210,40 +198,19 @@ IsPostBoxChecker::IsPostBoxChecker()
   m_types.push_back(c.GetTypeByPath({"amenity", "post_box"}));
 }
 
-IsPostOfficeChecker::IsPostOfficeChecker()
+IsPostPoiChecker::IsPostPoiChecker()
 {
   Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "post_office"}));
+  for (char const * val : {"post_office", "post_box", "parcel_locker"})
+    m_types.push_back(c.GetTypeByPath({"amenity", val}));
 }
 
-IsFuelStationChecker::IsFuelStationChecker()
+IsOperatorOthersPoiChecker::IsOperatorOthersPoiChecker()
 {
   Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "fuel"}));
-}
-
-IsCarSharingChecker::IsCarSharingChecker()
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "car_sharing"}));
-}
-
-IsCarRentalChecker::IsCarRentalChecker()
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "car_rental"}));
-}
-
-IsBicycleRentalChecker::IsBicycleRentalChecker()
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "bicycle_rental"}));
-}
-
-IsParkingChecker::IsParkingChecker() : BaseChecker(2 /* level */)
-{
-  Classificator const & c = classif();
-  m_types.push_back(c.GetTypeByPath({"amenity", "parking"}));
+  for (char const * val : {"bicycle_rental", "bureau_de_change", "car_sharing", "car_rental", "fuel",
+                           "parking", "payment_terminal", "university", "vending_machine"})
+    m_types.push_back(c.GetTypeByPath({"amenity", val}));
 }
 
 IsRecyclingCentreChecker::IsRecyclingCentreChecker() : BaseChecker(3 /* level */)
@@ -388,12 +355,10 @@ IsStreetOrSquareChecker::IsStreetOrSquareChecker()
 
 IsAddressObjectChecker::IsAddressObjectChecker() : BaseChecker(1 /* level */)
 {
-  base::StringIL const paths = {
-    "building", "entrance", "amenity", "shop", "tourism", "historic", "office", "craft", "leisure", "addr:interpolation"
-  };
+  m_types = OneLevelPOIChecker().GetTypes();
 
   Classificator const & c = classif();
-  for (auto const & p : paths)
+  for (auto const * p : {"addr:interpolation", "building", "entrance"})
     m_types.push_back(c.GetTypeByPath({p}));
 }
 
@@ -458,27 +423,52 @@ IsPisteChecker::IsPisteChecker() : BaseChecker(1 /* level */)
   m_types.push_back(classif().GetTypeByPath({"piste:type"}));
 }
 
-IsPoiChecker::IsPoiChecker() : BaseChecker(1 /* level */)
+
+OneLevelPOIChecker::OneLevelPOIChecker() : ftypes::BaseChecker(1 /* level */)
 {
-  string_view const poiTypes[] = {
-    "amenity",
-    "shop",
-    "tourism",
-    "leisure",
-    "sport",
-    "craft",
-    "man_made",
-    "emergency",
-    "office",
-    "historic",
-    "railway",
-    "highway",
-    "aeroway",
-    "healthcare",
+  Classificator const & c = classif();
+
+  for (auto const * path : {"amenity",  "craft", "healthcare", "historic", "leisure", "office", "railway",
+                            "shop", "sport", "tourism"})
+    m_types.push_back(c.GetTypeByPath({path}));
+}
+
+TwoLevelPOIChecker::TwoLevelPOIChecker() : ftypes::BaseChecker(2 /* level */)
+{
+  Classificator const & c = classif();
+  base::StringIL arr[] = {
+      {"aeroway", "terminal"},
+      {"aeroway", "gate"},
+      {"building", "train_station"},
+      {"emergency", "defibrillator"},
+      {"emergency", "fire_hydrant"},
+      {"emergency", "phone"},
+      {"highway", "bus_stop"},
+      {"highway", "elevator"},
+      {"highway", "ford"},
+      {"highway", "raceway"},
+      {"highway", "rest_area"},
+      {"highway", "services"},
+      {"highway", "speed_camera"},
+      {"man_made", "lighthouse"},
+      {"man_made", "water_tap"},
+      {"man_made", "water_well"},
+      {"natural", "beach"},
+      {"natural", "geyser"},
+      {"natural", "cave_entrance"},
+      {"natural", "spring"},
+      {"natural", "volcano"},
+      {"waterway", "waterfall"}
   };
 
-  for (auto const & type : poiTypes)
-    m_types.push_back(classif().GetTypeByPath({type}));
+  for (auto const & path : arr)
+    m_types.push_back(c.GetTypeByPath(path));
+}
+
+
+IsAmenityChecker::IsAmenityChecker() : BaseChecker(1 /* level */)
+{
+  m_types.push_back(classif().GetTypeByPath({"amenity"}));
 }
 
 AttractionsChecker::AttractionsChecker() : BaseChecker(2 /* level */)
@@ -847,23 +837,6 @@ IsAddressInterpolChecker::IsAddressInterpolChecker() : BaseChecker(1 /* level */
   m_types.push_back(c.GetTypeByPath({"addr:interpolation"}));
   m_odd = c.GetTypeByPath({"addr:interpolation", "odd"});
   m_even = c.GetTypeByPath({"addr:interpolation", "even"});
-}
-
-feature::InterpolType IsAddressInterpolChecker::GetInterpolType(FeatureType & ft) const
-{
-  for (uint32_t t : feature::TypesHolder(ft))
-  {
-    if (t == m_odd)
-      return feature::InterpolType::Odd;
-    if (t == m_even)
-      return feature::InterpolType::Even;
-
-    ftype::TruncValue(t, 1);
-    if (t == m_types[0])
-      return feature::InterpolType::Any;
-  }
-
-  return feature::InterpolType::None;
 }
 
 

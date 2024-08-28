@@ -204,12 +204,11 @@ UNIT_TEST(Russia_Moscow_Leningradskiy39RepublicOfSouthAfricaCapeTownCenterRouteT
   /// @todo Interesting numbers here
   /// - GraphHopper: 13703 km, 153 h
   /// - Google: 15289 km, 198 h (via Europe?!)
-  /// - OM: 14201 km, 183 h
+  /// - OM: 14486 km, 185 h
   /// - OSRM, Valhalla are failed
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
       FromLatLon(55.79721, 37.53786), {0., 0.},
-      FromLatLon(-33.9286, 18.41837), 14'201'000);
-
+      FromLatLon(-33.9286, 18.41837), 14'493'000);
 }
 
 UNIT_TEST(AlbaniaToMontenegroCrossTest)
@@ -247,16 +246,16 @@ UNIT_TEST(CanadaBridgeCrossToEdwardIsland)
 UNIT_TEST(ParisCrossDestinationInForwardHeapCase)
 {
   // Forward.
-  // OM makes the same as OSRM. GraphHopper and Valhalla make detour via Goussainville (146km).
+  // Updated after fixing primary/trunk factors. Route looks good, but it differs from OSRM/Valhalla/GraphHopper.
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
       FromLatLon(49.85015, 2.24296), {0., 0.},
-      FromLatLon(48.85458, 2.36291), 132897);
+      FromLatLon(48.85458, 2.36291), 128749);
 
   // Backward.
-  // OM makes the same as OSRM. GraphHopper and Valhalla make different detours.
+  // OM makes the same as GraphHopper and Valhalla. OSRM makes a bit shorter route.
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
       FromLatLon(48.85458, 2.36291), {0., 0.},
-      FromLatLon(49.85027, 2.24283), 131509);
+      FromLatLon(49.85027, 2.24283), 136653);
 }
 
 UNIT_TEST(RussiaSmolenskRussiaMoscowTimeTest)
@@ -397,6 +396,7 @@ UNIT_TEST(TolyattiFeatureThatCrossSeveralMwmsTest)
   Route const & route = *routeResult.first;
 
   // GraphHopper and Valhalla agree here, but OSRM makes a short route via Syzran.
+  /// @todo Now like the OSRM short route, after updating primary/trunk factors.
   TestRouteLength(route, 166157);
   TestRouteTime(route, 7958.85);
 }
@@ -505,10 +505,11 @@ UNIT_TEST(RussiaMoscowNotCrossingTollRoadTest)
   }
 
   {
-    // Normal route via the motorway toll road - long but fast (like Valhalla).
-    // - 20595.3 is OK (Graphopper)
+    // Normal route via the motorway toll road - long but fast (like Graphopper).
+    // - 20595.4 is OK (Graphopper)
     // - 19203.7 is OK (OSRM)
-    CalculateRouteAndTestRouteLength(vehicleComponents, start, {0.0, 0.0}, finish[0], 21930.7);
+    // - 21930.7 is OK (Valhalla)
+    CalculateRouteAndTestRouteLength(vehicleComponents, start, {0.0, 0.0}, finish[0], 20594.4);
     CalculateRouteAndTestRouteLength(vehicleComponents, start, {0.0, 0.0}, finish[1], 22015.4);
   }
 }
@@ -791,12 +792,21 @@ UNIT_TEST(Slovenia_Croatia_CrossBorderPenalty)
 
 UNIT_TEST(USA_Birmingham_AL_KeyWest_FL_NoMotorway)
 {
-  RoutingOptionSetter optionsGuard(RoutingOptions::Motorway);
-
-  // Closer to OSRM and GraphHopper.
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
-      FromLatLon(33.5209837, -86.807945), {0., 0.},
-      FromLatLon(24.5534713, -81.7932587), 1'495'860);
+      FromLatLon(28.9666499, -82.127271), {0., 0.},
+      FromLatLon(25.8633542, -80.3878891), 457734);
+
+  /// @note These tests works good on release server, my desktop release skips MWM Florida_Orlando ...
+  /// 15 vs 8 cross-mwm candidates.
+
+  auto const start = FromLatLon(33.5209837, -86.807945);
+  auto const finish = FromLatLon(24.5534713, -81.7932587);
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+      start, {0., 0.}, finish, 1'471'410);
+
+  RoutingOptionSetter optionsGuard(RoutingOptions::Motorway);
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+      start, {0., 0.}, finish, 1'495'860);
 }
 
 UNIT_TEST(Turkey_Salarialaca_Sanliurfa)
@@ -848,7 +858,7 @@ UNIT_TEST(Germany_Netherlands_AvoidLoops)
   TEST(routeResult.first, ());
   Route const & route = *routeResult.first;
   TestRouteLength(route, 405159);
-  TestRouteTime(route, 14100);
+  TestRouteTime(route, 13946);
 }
 
 UNIT_TEST(Germany_Cologne_Croatia_Zagreb)
@@ -952,6 +962,7 @@ UNIT_TEST(Netherlands_CrossMwm_Ferry)
 // https://github.com/organicmaps/organicmaps/issues/6278
 UNIT_TEST(Turkey_PreferSecondary_NotResidential)
 {
+  /// @todo Now the app wrongly takes tertiary (no limits) vs primary/secondary (with maxspeed = 30).
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
                                    FromLatLon(41.0529, 28.9201), {0., 0.},
                                    FromLatLon(41.0731, 28.9407), 4783.85);
@@ -985,6 +996,35 @@ UNIT_TEST(Spain_NoMaxSpeeds_KeepTrunk_NotTrunkLink)
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
                                    FromLatLon(43.3773971, -3.43177355), {0., 0.},
                                    FromLatLon(43.3685773, -3.42580007), 1116.79);
+}
+
+// https://github.com/organicmaps/organicmaps/issues/8823
+UNIT_TEST(LATAM_UsePrimary_NotTrunkDetour)
+{
+  // 10247 or less should be here.
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+                                   FromLatLon(4.737768, -74.077599), {0., 0.},
+                                   FromLatLon(4.684999, -74.046393), 10247.3);
+
+  /// @todo Still have the strange detour at the end. Due to the 20/30 km/h assignment for the primary_link.
+  /// Looks like it is bad to assign maxspeed for _all_ connected links if it is defined for the middle one.
+}
+
+// https://github.com/organicmaps/organicmaps/issues/8729
+// https://github.com/organicmaps/organicmaps/issues/8541
+UNIT_TEST(USA_UseDirt_WithMaxspeed)
+{
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+                                   FromLatLon(46.5361985, -111.943183), {0., 0.},
+                                   FromLatLon(46.4925409, -112.105446), 20906.5);
+
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+                                   FromLatLon(46.7336967, -111.926), {0., 0.},
+                                   FromLatLon(46.7467037, -111.917147), 3527.79);
+
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car),
+                                   FromLatLon(42.3889581, 19.7812567), {0., 0.},
+                                   FromLatLon(42.3878106, 19.7831402), 247.139);
 }
 
 } // namespace route_test
