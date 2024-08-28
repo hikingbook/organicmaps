@@ -407,7 +407,7 @@ public final class MapManager
   /**
    * Update local map registration.
    */
-  public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser);
+  public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser, boolean isBeforeProMapGracePeriod, int numDownloadedMapsLimit);
 
   public static native int nativeGetHikingbookProMapSize(String root);
 
