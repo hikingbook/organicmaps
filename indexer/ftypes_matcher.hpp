@@ -52,22 +52,6 @@ public:
   DECLARE_CHECKER_INSTANCE(IsATMChecker);
 };
 
-class IsPaymentTerminalChecker : public BaseChecker
-{
-  IsPaymentTerminalChecker();
-
-public:
-  DECLARE_CHECKER_INSTANCE(IsPaymentTerminalChecker);
-};
-
-class IsMoneyExchangeChecker : public BaseChecker
-{
-  IsMoneyExchangeChecker();
-
-public:
-  DECLARE_CHECKER_INSTANCE(IsMoneyExchangeChecker);
-};
-
 class IsSpeedCamChecker : public BaseChecker
 {
   IsSpeedCamChecker();
@@ -83,51 +67,20 @@ public:
   DECLARE_CHECKER_INSTANCE(IsPostBoxChecker);
 };
 
-class IsPostOfficeChecker : public BaseChecker
+class IsPostPoiChecker : public BaseChecker
 {
-  IsPostOfficeChecker();
+  IsPostPoiChecker();
 
 public:
-  DECLARE_CHECKER_INSTANCE(IsPostOfficeChecker);
+  DECLARE_CHECKER_INSTANCE(IsPostPoiChecker);
 };
 
-class IsFuelStationChecker : public BaseChecker
+class IsOperatorOthersPoiChecker : public BaseChecker
 {
-  IsFuelStationChecker();
-public:
-  DECLARE_CHECKER_INSTANCE(IsFuelStationChecker);
-};
-
-class IsCarSharingChecker : public BaseChecker
-{
-  IsCarSharingChecker();
+  IsOperatorOthersPoiChecker();
 
 public:
-  DECLARE_CHECKER_INSTANCE(IsCarSharingChecker);
-};
-
-class IsCarRentalChecker : public BaseChecker
-{
-  IsCarRentalChecker();
-
-public:
-  DECLARE_CHECKER_INSTANCE(IsCarRentalChecker);
-};
-
-class IsBicycleRentalChecker : public BaseChecker
-{
-  IsBicycleRentalChecker();
-
-public:
-  DECLARE_CHECKER_INSTANCE(IsBicycleRentalChecker);
-};
-
-class IsParkingChecker : public BaseChecker
-{
-  IsParkingChecker();
-
-public:
-  DECLARE_CHECKER_INSTANCE(IsParkingChecker);
+  DECLARE_CHECKER_INSTANCE(IsOperatorOthersPoiChecker);
 };
 
 class IsRecyclingCentreChecker : public BaseChecker
@@ -316,12 +269,42 @@ public:
   DECLARE_CHECKER_INSTANCE(IsPisteChecker);
 };
 
-/// @todo Should be merged/replaced with search::IsPoiChecker in model.cpp ?
-class IsPoiChecker : public BaseChecker
+
+class OneLevelPOIChecker : public ftypes::BaseChecker
 {
-  IsPoiChecker();
+public:
+  OneLevelPOIChecker();
+};
+
+/// Describes 2-level POI-exception types that don't belong to any POI-common classes
+/// (amenity, shop, tourism, ...). Used in search algo and search categories index generation.
+class TwoLevelPOIChecker : public ftypes::BaseChecker
+{
+public:
+  TwoLevelPOIChecker();
+};
+
+class IsPoiChecker
+{
 public:
   DECLARE_CHECKER_INSTANCE(IsPoiChecker);
+
+  bool operator()(FeatureType & ft) const { return m_oneLevel(ft) || m_twoLevel(ft); }
+  template <class T> bool operator()(T const & t) const { return m_oneLevel(t) || m_twoLevel(t); }
+
+private:
+  OneLevelPOIChecker const m_oneLevel;
+  TwoLevelPOIChecker const m_twoLevel;
+};
+
+
+class IsAmenityChecker : public BaseChecker
+{
+  IsAmenityChecker();
+public:
+  DECLARE_CHECKER_INSTANCE(IsAmenityChecker);
+
+  uint32_t GetType() const { return m_types[0]; }
 };
 
 class AttractionsChecker : public BaseChecker
@@ -588,7 +571,27 @@ class IsAddressInterpolChecker : public BaseChecker
 public:
   DECLARE_CHECKER_INSTANCE(IsAddressInterpolChecker);
 
-  feature::InterpolType GetInterpolType(FeatureType & ft) const;
+  template <class Range> feature::InterpolType GetInterpolType(Range const & range) const
+  {
+    for (uint32_t t : range)
+    {
+      if (t == m_odd)
+        return feature::InterpolType::Odd;
+      if (t == m_even)
+        return feature::InterpolType::Even;
+
+      ftype::TruncValue(t, 1);
+      if (t == m_types[0])
+        return feature::InterpolType::Any;
+    }
+
+    return feature::InterpolType::None;
+  }
+
+  feature::InterpolType GetInterpolType(FeatureType & ft) const
+  {
+    return GetInterpolType(feature::TypesHolder(ft));
+  }
 };
 
 

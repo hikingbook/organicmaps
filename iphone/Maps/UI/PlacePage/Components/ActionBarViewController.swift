@@ -5,6 +5,7 @@ protocol ActionBarViewControllerDelegate: AnyObject {
 class ActionBarViewController: UIViewController {
   @IBOutlet var stackView: UIStackView!
   var downloadButton: ActionBarButton? = nil
+  var bookmarkButton: ActionBarButton? = nil
   var popoverSourceView: UIView? {
     stackView.arrangedSubviews.last
   }
@@ -50,6 +51,9 @@ class ActionBarViewController: UIViewController {
         downloadButton = button
         updateDownloadButtonState(placePageData.mapNodeAttributes!.nodeStatus)
       }
+      if buttonType == .bookmark {
+        bookmarkButton = button
+      }
     }
   }
 
@@ -61,6 +65,7 @@ class ActionBarViewController: UIViewController {
     visibleButtons.removeAll()
     additionalButtons.removeAll()
     downloadButton = nil
+    bookmarkButton = nil
     configureButtons()
   }
 
@@ -86,6 +91,15 @@ class ActionBarViewController: UIViewController {
     @unknown default:
       fatalError()
     }
+  }
+
+  func updateBookmarkButtonState(isSelected: Bool) {
+    guard let bookmarkButton else { return }
+    if !isSelected && BookmarksManager.shared().hasRecentlyDeletedBookmark() {
+      bookmarkButton.setBookmarkButtonState(.recover)
+      return
+    }
+    bookmarkButton.setBookmarkButtonState(isSelected ? .delete : .save)
   }
 
   private func configButton1() {
@@ -137,12 +151,8 @@ class ActionBarViewController: UIViewController {
   }
 
   private func configButton4() {
-    if additionalButtons.isEmpty {
-      visibleButtons.append(.share)
-    } else {
-      additionalButtons.append(.share)
-      visibleButtons.append(.more)
-    }
+    guard !additionalButtons.isEmpty else { return }
+    additionalButtons.count == 1 ? visibleButtons.append(additionalButtons[0]) : visibleButtons.append(.more)
   }
 
   private func showMore() {

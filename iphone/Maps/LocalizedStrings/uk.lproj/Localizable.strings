@@ -171,7 +171,7 @@
 
 /********** Other translations **********/
 
-"share_bookmarks_email_body" = "Привіт!\n\nДодаю мої закладки; відкрийте їх у Organic Maps. Якщо застосунок не встановлено, ви можете завантажити його тут: https://omaps.app/get?kmz\n\nНасолоджуйтесь подорожами з Organic Maps!";
+"share_bookmarks_email_body" = "Привіт!\n\nДодаю мої мiтки; відкрийте їх у Organic Maps. Якщо застосунок не встановлено, ви можете завантажити його тут: https://omaps.app/get?kmz\n\nНасолоджуйтесь подорожами з Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Завантаження мiток";
@@ -193,9 +193,6 @@
 
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Поглянь на моє поточне місцезнаходження на мапі Organic Maps";
-
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Подiлитись";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "Ел. пошта";
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Мова підказок";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Тестування голосових підказок (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Інша";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Калібрування компаса";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Ще раз потримайте палець на карті, щоб побачити інтерфейс";
 
 /* Update all button text */
 "downloader_update_all_button" = "Оновити всі";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Спробуйте знову";
 
-"not_now" = "Не зараз";
-
 "dialog_routing_download_and_build_cross_route" = "Завантажити мапу і побудувати більш оптимальний маршрут з перетином межі мапи?";
 
 "dialog_routing_download_cross_route" = "Для побудови більш оптимального маршруту з перетином межі потрібно завантажити мапу.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "На жаль, нічого не знайдено.";
 
-"search_not_found_query" = "Спробуйте змінити запит.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Завантажте регіон, де ви шукаєте, або спробуйте додати назву найближчого міста/села.";
 
 "search_history_title" = "Історія пошуку";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Дані про трафік недоступні";
 
+"enable_logging" = "Включити логіювання";
+
+"log_file_size" = "Розмір файлу журналу: %@.";
+
 "transliteration_title" = "Транслітерація латинськими літерами";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Вихід";
 
-"routing_add_start_point" = "Вкажіть початкову точку для побудови маршруту";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Скористайтеся пошуком або торкніться мапи, щоб додати початкову точку маршруту";
 
-"routing_add_finish_point" = "Вкажіть кінцеву точку для побудови маршруту";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Скористайтеся пошуком або торкніться мапи, щоб додати пункт призначення";
 
 "planning_route_manage_route" = "Редагування маршруту";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Додати зупинку";
 
 "start_from_my_position" = "Почати з";
-
-"profile_authorization_error" = "Ой, трапилася помилка. Спробуйте увійти знову.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Будь ласка увійдіть в акаунт OpenStreetMap.org, щоб автоматично публікувати зміни до мапи. Подробиці за";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Показати всі";
 
 "bookmarks_create_new_group" = "Створити новий список";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Імпортувати мітки та маршрути";
 
 "downloader_hide_screen" = "Приховати екран";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Деякі файли не конвертувалися.";
 
-"bookmarks_restore_title" = "Відновити цю версію?";
-
-"error_system_message" = "Виникла невідома помилка";
-
 "restore" = "Відновити";
 
 "privacy_policy" = "Політика конфіденційності";
 
 "terms_of_use" = "Умови використання";
-
-"button_layer_traffic" = "Затор";
 
 "button_layer_subway" = "Метрополітен";
 
@@ -1013,7 +1016,7 @@
 
 "popular_place" = "Popular";
 
-"export_file" = "Експорт КМЗ";
+"export_file" = "Експорт KMZ";
 
 "export_file_gpx" = "Експорт GPX";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Автоматично";
 
 "power_managment_setting_manual_max" = "Максимальне енергозбереження";
+
+"enable_logging_warning_message" = "Дана опція вмикається для логування дій з метою діагностики. Це допомагає команді виявити проблеми з додатком. Тимчасово включайте цю настройку тільки для відправки детальної інформації про знайдену вами проблему в додатку через кнопку \"Сповістити про помилку\".";
 
 "driving_options_title" = "Налаштування об’їзду";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Маршрут буде перебудовано від вашого поточного місця розташування";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут буде змінено на автомобільний";
+
+"not_all_shown_bookmarks_carplay" = "Відображаються не всі мітки";
+
+"switch_to_phone_bookmarks_carplay" = "Перейдіть на телефон, щоб побачити всі мітки";
 
 "ok" = "Ок";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Uk:Про_проект";
 
+/* App Tip #00 */
+"app_tip_00" = "Дякуємо, що користуєтесь нашими мапами, створеними спільнотою!";
+
+/* App tip #01 */
+"app_tip_01" = "Завдяки вашим пожертвам і підтримці ми зможемо створити найкращі карти світу!";
+
+/* App tip #02 */
+"app_tip_02" = "Вам подобається наш додаток? Підтримайте його розвиток грошима! Поки ще не подобається? Будь ласка, повідомте нам, чому, і ми це виправимо!";
+
+/* App tip #03 */
+"app_tip_03" = "Якщо у вас є знайомий розробник програмного забезпечення, ви можете попросити його реалізувати потрібну вам функцію.";
+
+/* App tip #04 */
+"app_tip_04" = "Чи знаєте ви, що можна вибрати будь-яке місце на карті, довго тримаючи палець на точці?";
+
+/* App tip #05 */
+"app_tip_05" = "А ви знали, що своє місцезнаходження на карті можна вибрати?";
+
+/* App tip #06 */
+"app_tip_06" = "Ви можете допомогти перекласти наш додаток на вашу мову.";
+
+/* App tip #07 */
+"app_tip_07" = "Наша програма розроблена кількома ентузіастами та спільнотою.";
+
+/* App tip #08 */
+"app_tip_08" = "Ви можете легко виправити та покращити дані карти.";
+
+/* App tip #09 */
+"app_tip_09" = "Наша головна мета – створити швидкі, конфіденційні та прості у використанні карти, які вам сподобаються.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Зараз ви використовуєте Organic Maps на екрані телефону";
 
@@ -1298,11 +1337,14 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Посилання на меню";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Бажаєте надіслати розробникам звіт про помилку?\nМи покладаємося на наших користувачів, оскільки Organic Maps не збирає інформацію про помилки автоматично. Заздалегідь дякуємо за підтримку Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Увімкнути синхронізацію з iCloud";
 
 /* Message for the "Enable iCloud Syncronization" alert. */
-"enable_icloud_synchronization_message" = "Синхронізація з iCloud - це експериментальна функція, яка перебуває на стадії розробки. Переконайтеся, що ви зробили резервну копію всіх ваших закладок і треків.";
+"enable_icloud_synchronization_message" = "Синхронізація з iCloud - це експериментальна функція, яка перебуває на стадії розробки. Переконайтеся, що ви зробили резервну копію всіх ваших мiток і треків.";
 
 /* Title for the "iCloud is Disabled" alert. */
 "icloud_disabled_title" = "iCloud вимкнено";
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Резервне копіювання";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Збій синхронізації iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Помилка: Не вдалося синхронізувати через помилку з'єднання";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Помилка: iCloud недоступний";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Відкрити в іншій програмі";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Сидіння на відкритому повітрі";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Нещодавно видалені списки";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Очистити";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Видалити все";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Відновити";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Відновити все";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Аукціон";
 
 "type.shop.collector" = "Колекційні речі";
+
+"type.self_service.yes" = "Доступне самообслуговування";
+
+"type.self_service.only" = "Тільки самообслуговування";
+
+"type.self_service.partially" = "Часткове самообслуговування";
+
+"type.self_service.no" = "Самообслуговування відсутнє";

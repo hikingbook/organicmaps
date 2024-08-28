@@ -24,7 +24,7 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (void)zoomMap:(MWMZoomMode)mode;
 + (void)moveMap:(UIOffset)offset;
 + (void)scrollMap:(double)distanceX :(double) distanceY;
-+ (void)deactivateMapSelection:(BOOL)notifyUI NS_SWIFT_NAME(deactivateMapSelection(notifyUI:));
++ (void)deactivateMapSelection;
 + (void)switchMyPositionMode;
 + (void)stopLocationFollow;
 + (NSArray<NSString *> *)obtainLastSearchQueries;
@@ -34,12 +34,13 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (void)searchInDownloader:(NSString *)query
                inputLocale:(NSString *)locale
                 completion:(SearchInDownloaderCompletions)completion;
-+ (BOOL)canEditMap;
++ (BOOL)canEditMapAtViewportCenter;
 + (void)showOnMap:(MWMMarkGroupID)categoryId;
 + (void)showBookmark:(MWMMarkID)bookmarkId;
 + (void)showTrack:(MWMTrackID)trackId;
 + (void)updatePlacePageData;
 + (void)updateAfterDeleteBookmark;
++ (int)currentZoomLevel;
 
 @end
 

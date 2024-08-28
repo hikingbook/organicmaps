@@ -1,4 +1,5 @@
 #import "MWMDefaultAlert.h"
+//#import "SwiftBridge.h"
 
 #include <CoreApi/Framework.h>
 
@@ -21,15 +22,6 @@ static CGFloat const kDividerTopConstant = -8.;
 static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
 
 @implementation MWMDefaultAlert
-
-+ (instancetype)authErrorAlertWithRetryBlock:(MWMVoidBlock)retryBlock {
-  return [self defaultAlertWithTitle:L(@"profile_authorization_error")
-                             message:nil
-                    rightButtonTitle:L(@"downloader_retry")
-                     leftButtonTitle:L(@"cancel")
-                   rightButtonAction:retryBlock
-                     log:@"Authorization Error Alert"];
-}
 
 + (instancetype)routeFileNotExistAlert {
   return [self defaultAlertWithTitle:L(@"dialog_routing_download_files")
@@ -82,17 +74,6 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
                                       rightButtonTitle:L(@"ok")
                                        leftButtonTitle:nil
                                      rightButtonAction:nil
-                                       log:@"No Connection Alert"];
-  [alert setNeedsCloseAlertAfterEnterBackground];
-  return alert;
-}
-
-+ (instancetype)searchQuickFilterNoConnectionAlertWithOkBlock:(MWMVoidBlock)okBlock {
-  MWMDefaultAlert *alert = [self defaultAlertWithTitle:L(@"choose_dates_online_only_dialog_message")
-                                               message:nil
-                                      rightButtonTitle:L(@"choose_dates_online_only_dialog_cta")
-                                       leftButtonTitle:L(@"cancel")
-                                     rightButtonAction:okBlock
                                        log:@"No Connection Alert"];
   [alert setNeedsCloseAlertAfterEnterBackground];
   return alert;
@@ -181,15 +162,6 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
                      log:@"Incorrect Feature Possition Alert"];
 }
 
-+ (instancetype)internalErrorAlert {
-  return [self defaultAlertWithTitle:L(@"dialog_routing_system_error")
-                             message:L(@"error_system_message")
-                    rightButtonTitle:L(@"ok")
-                     leftButtonTitle:nil
-                   rightButtonAction:nil
-                     log:@"Internal Error Alert"];
-}
-
 + (instancetype)notEnoughSpaceAlert {
   MWMDefaultAlert *alert = [self defaultAlertWithTitle:L(@"downloader_no_space_title")
                                                message:L(@"migration_no_space_message")
@@ -260,17 +232,6 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
   }
 }
 
-+ (instancetype)disableAutoDownloadAlertWithOkBlock:(MWMVoidBlock)okBlock {
-  MWMDefaultAlert *alert = [self defaultAlertWithTitle:L(@"disable_auto_download")
-                                               message:nil
-                                      rightButtonTitle:L(@"_disable")
-                                       leftButtonTitle:L(@"cancel")
-                                     rightButtonAction:okBlock
-                                       log:@"Disable Auto Download Alert"];
-  [alert setNeedsCloseAlertAfterEnterBackground];
-  return alert;
-}
-
 + (instancetype)downloaderNoConnectionAlertWithOkBlock:(MWMVoidBlock)okBlock cancelBlock:(MWMVoidBlock)cancelBlock {
   MWMDefaultAlert *alert = [self defaultAlertWithTitle:L(@"downloader_status_failed")
                                                message:L(@"common_check_internet_connection_dialog")
@@ -302,17 +263,6 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
                                      rightButtonAction:okBlock
                                        log:@"Downloader Internal Error Alert"];
   alert.leftButtonAction = cancelBlock;
-  [alert setNeedsCloseAlertAfterEnterBackground];
-  return alert;
-}
-
-+ (instancetype)downloaderNeedUpdateAlertWithOkBlock:(MWMVoidBlock)okBlock {
-  MWMDefaultAlert *alert = [self defaultAlertWithTitle:L(@"downloader_need_update_title")
-                                               message:L(@"downloader_need_update_message")
-                                      rightButtonTitle:L(@"downloader_status_outdated")
-                                       leftButtonTitle:L(@"not_now")
-                                     rightButtonAction:okBlock
-                                       log:@"Downloader Need Update Alert"];
   [alert setNeedsCloseAlertAfterEnterBackground];
   return alert;
 }
@@ -377,19 +327,6 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
                      log:nil];
 }
 
-+ (instancetype)restoreBookmarkAlertWithMessage:(NSString *)message
-                              rightButtonAction:(MWMVoidBlock)rightButton
-                               leftButtonAction:(MWMVoidBlock)leftButton {
-  MWMDefaultAlert *alert = [NSBundle.mainBundle loadNibNamed:kDefaultAlertNibName owner:self options:nil].firstObject;
-  alert.titleLabel.text = L(@"bookmarks_restore_title");
-  alert.messageLabel.text = message;
-  [alert.rightButton setTitle:L(@"restore") forState:UIControlStateNormal];
-  [alert.leftButton setTitle:L(@"cancel") forState:UIControlStateNormal];
-  alert.leftButtonAction = leftButton;
-  alert.rightButtonAction = rightButton;
-  return alert;
-}
-
 + (instancetype)bookmarkConversionErrorAlert {
   return [self defaultAlertWithTitle:L(@"bookmarks_convert_error_title")
                              message:L(@"bookmarks_convert_error_message")
@@ -410,6 +347,17 @@ static NSString *const kDefaultAlertNibName = @"MWMDefaultAlert";
   [alert setNeedsCloseAlertAfterEnterBackground];
   return alert;
 }
+
+//+ (instancetype)bugReportAlertWithTitle:(NSString *)title {
+//  MWMDefaultAlert *alert = [self defaultAlertWithTitle:title
+//                                               message:L(@"bugreport_alert_message")
+//                                      rightButtonTitle:L(@"report_a_bug")
+//                                       leftButtonTitle:L(@"cancel")
+//                                     rightButtonAction:^{ [MailComposer sendBugReport]; }
+//                                                   log:nil];
+//  [alert setNeedsCloseAlertAfterEnterBackground];
+//  return alert;
+//}
 
 + (instancetype)defaultAlertWithTitle:(NSString *)title
                               message:(NSString *)message

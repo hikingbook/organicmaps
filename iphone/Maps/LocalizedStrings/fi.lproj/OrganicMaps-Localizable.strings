@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hei, kurkkaa tämänhetkinen sijaintini Organic Maps:n kartalla!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Jaa";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Sähköposti";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Äänen kieli";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testaa puheohjeita (TTS, Text-To-Speech).";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Muu";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompassin kalibrointi";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Näytä käyttöliittymä napauttamalla karttaa uudelleen pitkään.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Päivitä kaikki";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Yritä uudelleen";
 
-"not_now" = "Ei nyt";
-
 "dialog_routing_download_and_build_cross_route" = "Haluatko ladata kartan ja luoda paremman reitin, joka ulottuu usealle kartalle?";
 
 "dialog_routing_download_cross_route" = "Lataa kartta ja luo parempi reitti, joka ylittää tämän kartan reunan.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Pahoittelut, hakutuloksia ei ole.";
 
-"search_not_found_query" = "Yritä jotain toista hakusanaa.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Lataa alue, jolta etsit, tai yritä lisätä läheisen kaupungin tai kylän nimi.";
 
 "search_history_title" = "Hakuhistoria";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Liikennetietoja ei ole saatavilla";
 
+"enable_logging" = "Ota loki käyttöön";
+
+"log_file_size" = "Lokitiedoston koko: %@";
+
 "transliteration_title" = "Translitterointi latinalaisiksi aakkosiksi";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Poistu";
 
-"routing_add_start_point" = "Lisää alkupiste reitin suunnittelua varten";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Käytä hakua tai napauta karttaa lisätäksesi reitin lähtöpisteen";
 
-"routing_add_finish_point" = "Lisää määränpää reitin suunnittelua varten";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Käytä hakua tai napauta karttaa lisätäksesi kohdepisteen.";
 
 "planning_route_manage_route" = "Hallitse reittiä";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Lisää pysähdys";
 
 "start_from_my_position" = "Aloita kohdasta";
-
-"profile_authorization_error" = "Tapahtui virhe. Yritä kirjautua sisään uudelleen.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Kirjaudu sisään OpenStreetMapiin, jotta voit ladata kaikki karttamuutoksesi automaattisesti. Lisätietoja";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Näytä kaikki";
 
 "bookmarks_create_new_group" = "Luo uusi luettelo";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Kirjanmerkkien ja reittien tuominen";
 
 "downloader_hide_screen" = "Piilota näyttö";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Joitakin tiedostoja ei muunnettu.";
 
-"bookmarks_restore_title" = "Palauta tämä versio?";
-
-"error_system_message" = "Tuntematon virhe tapahtui";
-
 "restore" = "Palauta";
 
 "privacy_policy" = "Yksityisyyskäytäntö";
 
 "terms_of_use" = "Käyttöehdot";
-
-"button_layer_traffic" = "Liikenne";
 
 "button_layer_subway" = "Metro";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automaattinen";
 
 "power_managment_setting_manual_max" = "Täysi virransäästö";
+
+"enable_logging_warning_message" = "Valinta ottaa käyttöön lokikirjaukset diagnostiikkaa varten. Se voi auttaa tukihenkilöstöämme, kun he korjaavat sovelluksen ongelmia. Ota tämä ominaisuus käyttöön vain, jos Organic Maps:n tuki pyytää.";
 
 "driving_options_title" = "Reititysvalinnat";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Reitti luodaan nykyisestä sijainnista";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Reitti muutetaan autoilijan reitiksi";
+
+"not_all_shown_bookmarks_carplay" = "Kaikkia kirjanmerkkejä ei näytetä";
+
+"switch_to_phone_bookmarks_carplay" = "Siirry puhelimeen nähdäksesi kaikki kirjanmerkit";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Kiitos, että käytät yhteisön laatimia karttojamme!";
+
+/* App tip #01 */
+"app_tip_01" = "Lahjoituksellasi ja tuellasi voimme luoda maailman parhaat kartat!";
+
+/* App tip #02 */
+"app_tip_02" = "Pidätkö sovelluksestamme? Lahjoita tukemaan kehitystä! Etkö pidä siitä vielä? Kerro meille, niin korjaamme asian!";
+
+/* App tip #03 */
+"app_tip_03" = "Jos tunnet ohjelmistokehittäjän, voit pyytää häntä ottamaan käyttöön tarvitsemasi ominaisuuden.";
+
+/* App tip #04 */
+"app_tip_04" = "Tiesitkö, että voit valita mitä tahansa paikkaa kartalla pitkään napauttamalla sen?";
+
+/* App tip #05 */
+"app_tip_05" = "Tiesitkö, että voit valita nykyisen sijaintisi kartalta?";
+
+/* App tip #06 */
+"app_tip_06" = "Voit auttaa kääntämään sovelluksemme kielellesi.";
+
+/* App tip #07 */
+"app_tip_07" = "Sovelluksemme on muutaman harrastajan ja yhteisön kehittämä.";
+
+/* App tip #08 */
+"app_tip_08" = "Voit helposti korjata ja parantaa karttatietoja.";
+
+/* App tip #09 */
+"app_tip_09" = "Päätavoitteemme on rakentaa nopeita, yksityisyyteen keskittyviä, helppokäyttöisiä karttoja, joista pidät.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Käytät nyt puhelimen näytöllä Organic Maps -palvelua.";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Valikkolinkki";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Haluatko lähettää vikailmoituksen kehittäjille?\nLuotamme käyttäjiin, sillä Organic Maps ei kerää virhetietoja automaattisesti. Kiitos etukäteen Organic Mapsin tukemisesta!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Ota iCloud-synkronointi käyttöön";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Varmuuskopiointi";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud-synkronoinnin epäonnistuminen";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Virhe: Synkronointi epäonnistui yhteysvirheen vuoksi.";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Virhe: iCloud ei ole käytettävissä";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Avaa toisessa sovelluksessa";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Ulkona istuminen";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Äskettäin poistetut luettelot";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Tyhjennä";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Poista kaikki";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Palauta";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Palauta kaikki";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Huutokauppa";
 
 "type.shop.collector" = "Keräilyesineet";
+
+"type.self_service.yes" = "Itsepalvelu saatavilla";
+
+"type.self_service.only" = "Vain itsepalvelu";
+
+"type.self_service.partially" = "Osittainen itsepalvelu";
+
+"type.self_service.no" = "Ei itsepalvelua";

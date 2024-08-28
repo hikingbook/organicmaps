@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Poți vedea poziția mea pe harta Organic Maps!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Trimite";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "E-mail";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Limba ghidului vocal";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testarea indicațiilor vocale (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Altceva";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Calibrare busolă";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Atingeți lung pe hartă din nou pentru a vedea interfața";
 
 /* Update all button text */
 "downloader_update_all_button" = "Actualizează tot";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Încearcă din nou";
 
-"not_now" = "Nu acum";
-
 "dialog_routing_download_and_build_cross_route" = "Vrei să descarci harta și să creezi un traseu mai bun care include mai multe hărți?";
 
 "dialog_routing_download_cross_route" = "Descarcă hărți suplimentare pentru a crea un traseu mai bun care să traverseze limitele acestei hărți.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Nu s-a găsit nimic.";
 
-"search_not_found_query" = "Încearcă să modifici condițiile căutării.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Descărcați regiunea în care căutați sau încercați să adăugați numele unei localități din apropiere.";
 
 "search_history_title" = "Istoricul căutărilor";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Datele privind traficul nu sunt disponibile";
 
+"enable_logging" = "Activează jurnalizarea";
+
+"log_file_size" = "Dimensiunea fișierului jurnal: %@";
+
 "transliteration_title" = "Transcrie în alfabet latin";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Ieșire";
 
-"routing_add_start_point" = "Adaugă un punct de plecare pentru a planifica un traseu";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Utilizați funcția de căutare sau atingeți ușor pe hartă pentru a adăuga un punct de plecare";
 
-"routing_add_finish_point" = "Adaugă un punct de sosire pentru a planifica un traseu";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Utilizați funcția de căutare sau atingeți ușor pe hartă pentru a adăuga un punct de destinație";
 
 "planning_route_manage_route" = "Gestionare traseu";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Adaugă oprire";
 
 "start_from_my_position" = "Pornește de la";
-
-"profile_authorization_error" = "A apărut o eroare. Încearcă să te conectezi din nou.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Vă rugăm să vă conectați la OpenStreetMap pentru a încărca automat toate modificările aduse hărții. Aflați mai multe";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Arată tot";
 
 "bookmarks_create_new_group" = "Creează o listă nouă";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Importați marcaje și piese";
 
 "downloader_hide_screen" = "Ascunde pagina";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Unele fișiere nu au fost convertite.";
 
-"bookmarks_restore_title" = "Restabilești această versiune?";
-
-"error_system_message" = "A apărut o eroare necunoscută";
-
 "restore" = "Restabilește";
 
 "privacy_policy" = "Confidențialitate";
 
 "terms_of_use" = "Termeni de utilizare";
-
-"button_layer_traffic" = "Trafic";
 
 "button_layer_subway" = "Metrou";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automat";
 
 "power_managment_setting_manual_max" = "Economisire maximă a energiei";
+
+"enable_logging_warning_message" = "Opțiunea activează jurnalizarea în scopuri de diagnosticare. Aceasta poate fi utilă echipei noastre pentru a rezolva problemele cu aplicația. Activează temporar această opțiune pentru a înregistra și a ne trimite jurnale detaliate despre problema ta.";
 
 "driving_options_title" = "Opțiuni de ocolire";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Traseul va fi refăcut de la locul în care te afli";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Traseul va fi înlocuit cu unul pentru autovehicule";
+
+"not_all_shown_bookmarks_carplay" = "Nu sunt afișate toate marcajele";
+
+"switch_to_phone_bookmarks_carplay" = "Treceți la telefon pentru a vedea toate marcajele";
 
 "ok" = "Bine";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Vă mulțumim că utilizați hărțile create de comunitatea noastră!";
+
+/* App tip #01 */
+"app_tip_01" = "Cu donațiile și sprijinul dumneavoastră, putem crea cele mai bune hărți din lume!";
+
+/* App tip #02 */
+"app_tip_02" = "Îți place aplicația noastră? Vă rugăm să donați pentru a sprijini dezvoltarea! Nu-ți place încă? Vă rugăm să ne anunțați și vom remedia!";
+
+/* App tip #03 */
+"app_tip_03" = "Dacă cunoașteți un dezvoltator de software, îi puteți cere să implementeze o caracteristică de care aveți nevoie.";
+
+/* App tip #04 */
+"app_tip_04" = "Știți că puteți atinge lung orice loc de pe hartă pentru a-l selecta?";
+
+/* App tip #05 */
+"app_tip_05" = "Știți că vă puteți selecta locația curentă pe hartă?";
+
+/* App tip #06 */
+"app_tip_06" = "Puteți ajuta la traducerea aplicației noastre în limba dvs.";
+
+/* App tip #07 */
+"app_tip_07" = "Aplicația noastră este dezvoltată de câțiva entuziaști și de comunitate.";
+
+/* App tip #08 */
+"app_tip_08" = "Puteți remedia și îmbunătăți cu ușurință datele hărții.";
+
+/* App tip #09 */
+"app_tip_09" = "Scopul nostru principal este să construim hărți rapide, axate pe confidențialitate și ușor de utilizat, care să vă placă.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Acum utilizați Organic Maps pe ecranul telefonului";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Legătura de meniu";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Doriți să trimiteți un raport de eroare dezvoltatorilor?\nNe bazăm pe utilizatorii noștri, deoarece Organic Maps nu colectează automat nicio informație privind erorile. Vă mulțumim anticipat pentru susținerea Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Activați Sincronizarea iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Backup";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Eșecul sincronizării iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Eroare: Nu s-a reușit sincronizarea din cauza unei erori de conexiune";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Eroare: iCloud nu este disponibil";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Deschidere în altă aplicație";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Scaune în aer liber";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Liste șterse recent";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Șterge";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Ștergeți toate";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Recuperare";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Recuperează tot";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Licitație";
 
 "type.shop.collector" = "Colecții";
+
+"type.self_service.yes" = "Autoservire disponibilă";
+
+"type.self_service.only" = "Numai autoservire";
+
+"type.self_service.partially" = "Autoservire parțială";
+
+"type.self_service.no" = "Fără autoservire";

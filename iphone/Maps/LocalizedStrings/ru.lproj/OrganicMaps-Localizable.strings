@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Посмотри на карте Organic Maps, где я сейчас нахожусь";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Поделиться";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Язык подсказок";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Проверить голосовые подсказки (TTS, Text-To-Speech).";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Другой";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Калибровка компаса";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Долгое нажатие на карту вернёт интерфейс обратно";
 
 /* Update all button text */
 "downloader_update_all_button" = "Обновить все";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Попробуйте снова";
 
-"not_now" = "Не сейчас";
-
 "dialog_routing_download_and_build_cross_route" = "Загрузить карту и построить более оптимальный маршрут с пересечением границы карты?";
 
 "dialog_routing_download_cross_route" = "Для построения более оптимального маршрута с пересечением границы требуется загрузить карту.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "К сожалению, мы ничего не нашли.";
 
-"search_not_found_query" = "Попробуйте изменить условия поиска.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Загрузите регион, в котором ищете, или попробуйте добавить название близлежащего города/деревни.";
 
 "search_history_title" = "История поиска";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Данные о пробках недоступны";
 
+"enable_logging" = "Включить запись логов";
+
+"log_file_size" = "Размер файла логов: %@";
+
 "transliteration_title" = "Латинская транслитерация";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Выход";
 
-"routing_add_start_point" = "Добавьте стартовую точку, чтобы построить маршрут";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Используйте поиск или коснитесь карты, чтобы добавить начальную точку маршрута";
 
-"routing_add_finish_point" = "Добавьте конечную точку, чтобы построить маршрут";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Используйте поиск или коснитесь карты, чтобы добавить точку назначения";
 
 "planning_route_manage_route" = "Изменить маршрут";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Заехать";
 
 "start_from_my_position" = "Начать от";
-
-"profile_authorization_error" = "Упс, произошла ошибка. Попробуйте авторизоваться повторно.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Пожалуйста войдите в аккаунт OpenStreetMap.org, чтобы публиковать ваши изменения карты. Подробности по";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Показать все";
 
 "bookmarks_create_new_group" = "Создать новый список";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Импортировать метки и треки";
 
 "downloader_hide_screen" = "Скрыть";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Некоторые файлы не конвертировались.";
 
-"bookmarks_restore_title" = "Восстановить эту версию?";
-
-"error_system_message" = "Произошла неизвестная ошибка";
-
 "restore" = "Восстановить";
 
 "privacy_policy" = "Политика конфиденциальности";
 
 "terms_of_use" = "Условия использования";
-
-"button_layer_traffic" = "Пробки";
 
 "button_layer_subway" = "Метро";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Авто";
 
 "power_managment_setting_manual_max" = "Максимальное энергосбережение";
+
+"enable_logging_warning_message" = "Данная настройка включается для записи действий в целях диагностики, чтобы помочь нашей команде выявить проблемы с приложением. Временно включайте эту настройку только для отправки детальной информации о найденной вами проблеме в приложении через кнопку \"Сообщить о проблеме\".";
 
 "driving_options_title" = "Настройки объезда";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Маршрут будет перестроен от вашего текущего местоположения";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будет изменён на автомобильный";
+
+"not_all_shown_bookmarks_carplay" = "Отображаются не все метки";
+
+"switch_to_phone_bookmarks_carplay" = "Переключитесь на телефон, чтобы увидеть все метки";
 
 "ok" = "Ок";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/RU:О_проекте";
 
+/* App Tip #00 */
+"app_tip_00" = "Спасибо, что пользуетесь нашими картами, созданными сообществом!";
+
+/* App tip #01 */
+"app_tip_01" = "Благодаря вашим пожертвованиям и поддержке мы сможем создать лучшие карты на свете!";
+
+/* App tip #02 */
+"app_tip_02" = "Вам нравится наше приложение? Поддержите его развитие деньгами! Пока ещё не нравится? Пожалуйста, сообщите нам, почему, и мы это исправим!";
+
+/* App tip #03 */
+"app_tip_03" = "Если вы знаете толкового разработчика программного обеспечения, попросите его реализовать нужную вам функцию для приложения.";
+
+/* App tip #04 */
+"app_tip_04" = "Знаете ли вы, что любое место на карте можно выбрать, подержав там палец в течение секунды?";
+
+/* App tip #05 */
+"app_tip_05" = "А вы знали, что своё местоположение на карте можно выбрать?";
+
+/* App tip #06 */
+"app_tip_06" = "Вы можете помочь перевести наше приложение на ваш язык.";
+
+/* App tip #07 */
+"app_tip_07" = "Наше приложение разработано несколькими энтузиастами и сообществом.";
+
+/* App tip #08 */
+"app_tip_08" = "Вы можете легко исправить и улучшить данные карты.";
+
+/* App tip #09 */
+"app_tip_09" = "Наша главная цель — создать быстрые, конфиденциальные и простые в использовании карты, которые вам понравятся.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Сейчас Вы используете Organic Maps на экране телефона";
 
@@ -1298,11 +1337,14 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Ссылка на меню";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Хотите отправить разработчикам сообщение об ошибке?\nМы полагаемся на наших пользователей, так как Organic Maps не собирает информацию об ошибках автоматически. Заранее спасибо за поддержку Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Включить синхронизацию с iCloud";
 
 /* Message for the "Enable iCloud Syncronization" alert. */
-"enable_icloud_synchronization_message" = "Синхронизация с iCloud - это экспериментальная функция, которая находится в стадии разработки. Убедитесь, что вы сделали резервную копию всех своих закладок и треков.";
+"enable_icloud_synchronization_message" = "Синхронизация с iCloud - это экспериментальная функция, которая находится в стадии разработки. Убедитесь, что вы сделали резервную копию всех своих меток и треков.";
 
 /* Title for the "iCloud is Disabled" alert. */
 "icloud_disabled_title" = "iCloud отключен";
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Резервная копия";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Сбой синхронизации iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Ошибка: Не удалось выполнить синхронизацию из-за ошибки подключения";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Ошибка: iCloud недоступен";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Открыть в другом приложении";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Сидения на открытом воздухе";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Недавно удаленные списки";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Очистить";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Удалить всё";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Восстановить";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Восстановить всё";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Аукцион";
 
 "type.shop.collector" = "Коллекции";
+
+"type.self_service.yes" = "Самообслуживание доступно";
+
+"type.self_service.only" = "Только самообслуживание";
+
+"type.self_service.partially" = "Частичное самообслуживание";
+
+"type.self_service.no" = "Никакого самообслуживания";

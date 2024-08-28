@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hey, check out my current location on the Organic Maps map!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "اشتراک گذاری";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "ایمیل";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "زبان صوت";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "تست مسیرهای صوتی (TTS، تبدیل متن به گفتار)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "بیشتر";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "تنظیم کردن قطب نما";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "دوباره روی نقشه ضربه طولانی بزنید تا رابط کاربری را ببینید";
 
 /* Update all button text */
 "downloader_update_all_button" = "آپدیت همه";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "لطفا دوباره تلاش کنید";
 
-"not_now" = "اکنون خیر";
-
 "dialog_routing_download_and_build_cross_route" = "ایا مایل به دانلود نقشه و ایجاد مسیر‌های بهینه بیشتری که نقشه‌های بیشتری را پوشش میدهد هستید؟";
 
 "dialog_routing_download_cross_route" = "دانلود نقشه‌های اضافی برای ایجاد مسیری بهتر که حاشیه‌های این نقشه را رد می کند.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "متاسفانه چیزی پیدا نشد";
 
-"search_not_found_query" = "با تغییر در معیار‌های جستجو دوباره امتحان کنید";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "منطقه ای را که در آن جستجو می کنید دانلود کنید یا نام شهر/ روستای اطراف را اضافه کنید.";
 
 "search_history_title" = "سوابق جستجو";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "اطلاعات ترافیکی موجود نیست";
 
+"enable_logging" = "ورود به سیستم را فعال کنید";
+
+"log_file_size" = "اندازه فایل گزارش: %@";
+
 "transliteration_title" = "ترجمه به لاتین";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "خروج";
 
-"routing_add_start_point" = "یک نقطه شروع برای برنامه ریزی یک مسیر اضافه کنید";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "برای افزودن نقطه شروع مسیر، از جستجو استفاده کنید یا روی نقشه ضربه بزنید";
 
-"routing_add_finish_point" = "یک مقصد برای برنامه ریزی یک مسیر اضافه کنید";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "برای افزودن نقطه مقصد، از جستجو استفاده کنید یا روی نقشه ضربه بزنید";
 
 "planning_route_manage_route" = "مدیریت مسیر";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "اضافه کردن توقف";
 
 "start_from_my_position" = "شروع از";
-
-"profile_authorization_error" = "اوه، یک خطا وجود داشت سعی کنید دوباره وارد سیستم شوید";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "لطفاً به OpenStreetMap وارد شوید تا به طور خودکار تمام ویرایش های نقشه خود را آپلود کنید.";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "نمایش همه";
 
 "bookmarks_create_new_group" = "ایجاد لیست جدید";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "وارد کردن نشانکu200cها و آهنگu200cها";
 
 "downloader_hide_screen" = "پنهان کردن صفحه";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "بعضی از فایل‌ها تبدیل نشد.";
 
-"bookmarks_restore_title" = "این نسخه برگردد؟";
-
-"error_system_message" = "خطای ناشناخته‌ای رخ داد";
-
 "restore" = "بازیابی";
 
 "privacy_policy" = "سیاست حریم خصوصی";
 
 "terms_of_use" = "شرایط استفاده";
-
-"button_layer_traffic" = "ترافیک";
 
 "button_layer_subway" = "مترو";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "خودکار";
 
 "power_managment_setting_manual_max" = "حداکثر ذخیره انرژی";
+
+"enable_logging_warning_message" = "این گزینه ثبت گزارش را برای اهداف تشخیصی فعال می‌کند. برای کارکنان بخش پشتیبانی که مشکلات برنامه را عیب یابی می‌کنند، مفید باشد. این گزینه را تنها در صورت درخواست پشتیبانی Organic Maps فعال کنید.";
 
 "driving_options_title" = "گزینه‌های رانندگی";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "مسیر از مکان فعلی شما بازسازی خواهد شد";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "مسیر به مسیر خودرویی تغییر خواهد کرد";
+
+"not_all_shown_bookmarks_carplay" = "همه نشانک ها نشان داده نمی شوند";
+
+"switch_to_phone_bookmarks_carplay" = "برای دیدن همه نشانکu200cها به تلفن بروید";
 
 "ok" = "موافقت کردن";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Fa:About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "از شما برای استفاده از نقشه های ساخته شده توسط جامعه سپاسگزاریم!";
+
+/* App tip #01 */
+"app_tip_01" = "با کمک های مالی و حمایت شما، ما می توانیم بهترین نقشه های جهان را ایجاد کنیم!";
+
+/* App tip #02 */
+"app_tip_02" = "آیا برنامه ما را دوست دارید؟ لطفا برای حمایت از توسعه کمک مالی کنید! هنوز آن را دوست ندارید؟ لطفا به ما اطلاع دهید، و ما آن را تعمیر خواهیم کرد!";
+
+/* App tip #03 */
+"app_tip_03" = "اگر یک توسعه‌دهنده نرم‌افزار را می‌شناسید، می‌توانید از او بخواهید ویژگی مورد نیاز خود را پیاده‌سازی کند.";
+
+/* App tip #04 */
+"app_tip_04" = "آیا می‌دانید که می‌توانید روی هر مکانی روی نقشه ضربه طولانی بزنید تا آن را انتخاب کنید؟";
+
+/* App tip #05 */
+"app_tip_05" = "آیا می دانید که می توانید مکان فعلی خود را روی نقشه انتخاب کنید؟";
+
+/* App tip #06 */
+"app_tip_06" = "شما می توانید به ترجمه برنامه ما به زبان خود کمک کنید.";
+
+/* App tip #07 */
+"app_tip_07" = "برنامه ما توسط تعدادی از علاقه مندان و جامعه توسعه یافته است.";
+
+/* App tip #08 */
+"app_tip_08" = "شما به راحتی می توانید داده های نقشه را اصلاح و بهبود دهید.";
+
+/* App tip #09 */
+"app_tip_09" = "هدف اصلی ما ساختن نقشه هایی سریع، متمرکز بر حریم خصوصی و با کاربری آسان است که شما عاشق آن خواهید شد.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "اکنون در حال استفاده از نقشه های ارگانیک در صفحه گوشی هستید";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "لینک منو";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "آیا می خواهید یک گزارش اشکال برای توسعه دهندگان ارسال کنید؟\nما به کاربران خود تکیه می کنیم زیرا نقشه های ارگانیک هیچ گونه اطلاعات خطا را به طور خودکار جمع آوری نمی کند. پیشاپیش از شما برای حمایت از نقشه های ارگانیک سپاسگزاریم!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "همگام سازی iCloud را فعال کنید";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "پشتیبان گیری";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "همگام سازی iCloud شکست خورده است";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "خطا: به دلیل خطای اتصال همگام سازی نشد";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "خطا: iCloud در دسترس نیست";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "در یک برنامه دیگر باز کنید";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "نشستن در فضای باز";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "لیست های اخیرا حذف شده";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "پاک کردن";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "حذف همه";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "بازیابی";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "بازیابی همه";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "حراج";
 
 "type.shop.collector" = "کلکسیونی ها";
+
+"type.self_service.yes" = "سلف سرویس در دسترس است";
+
+"type.self_service.only" = "فقط سلف سرویس";
+
+"type.self_service.partially" = "سلف سرویس جزئی";
+
+"type.self_service.no" = "بدون سلف سرویس";

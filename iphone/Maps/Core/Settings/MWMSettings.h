@@ -38,4 +38,8 @@
 + (BOOL)iCLoudSynchronizationEnabled;
 + (void)setICLoudSynchronizationEnabled:(BOOL)iCLoudSyncEnabled;
 
++ (void)initializeLogging;
++ (BOOL)isFileLoggingEnabled;
++ (void)setFileLoggingEnabled:(BOOL)fileLoggingEnabled;
+
 @end

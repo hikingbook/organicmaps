@@ -358,6 +358,7 @@
 	<string name="dialog_routing_system_error">Erro de sistema</string>
 	<string name="dialog_routing_application_error">Não foi possível traçar uma rota devido a um erro no aplicativo.</string>
 	<string name="dialog_routing_try_again">Por favor, tente novamente</string>
+	<string name="not_now">Agora não</string>
 	<string name="dialog_routing_download_and_build_cross_route">Deseja baixar o mapa e traçar uma rota melhor, mas que se estenda por mais de um mapa?</string>
 	<string name="dialog_routing_download_cross_route">Baixe o mapa para traçar uma rota melhor que vai além dos limites desse mapa.</string>
 
@@ -371,7 +372,8 @@
 	<string name="categories">Categorias</string>
 	<string name="history">Histórico</string>
 	<string name="search_not_found">Sinto muito, nenhum resultado foi encontrado.</string>
-	<string name="search_not_found_query">Por favor, tente outro termo de busca.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Faça o download da região onde está pesquisando ou tente adicionar o nome de uma cidade ou povoado ao redor.</string>
 	<string name="search_history_title">Histórico de busca</string>
 	<string name="search_history_text">Visualizar as buscas recentes.</string>
 	<string name="clear_search">Limpar histórico de pesquisa</string>
@@ -447,7 +449,6 @@
 	<string name="editor_edit_place_category_title">Categoria</string>
 	<string name="detailed_problem_description">Descrição detalhada do problema</string>
 	<string name="editor_report_problem_other_title">Um problema diferente</string>
-	<string name="placepage_add_business_button">Adicionar uma empresa</string>
 	<string name="message_invalid_feature_position">Nenhum objeto pode ser posicionado aqui</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Dados do OpenStreetMap criados pela comunidade a partir de %s. Saiba mais sobre como editar e atualizar o mapa em OpenStreetMap.org</string>
@@ -537,8 +538,10 @@
 	<string name="learn_more">Saber mais</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Saída</string>
-	<string name="routing_add_start_point">Adicionar ponto de partida para planejar uma rota</string>
-	<string name="routing_add_finish_point">Adicionar ponto final da viagem para planejar uma rota</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Use a busca ou toque no mapa para adicionar um ponto de partida da rota</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Use a busca ou toque no mapa para adicionar um ponto de destino</string>
 	<string name="placepage_remove_stop">Remover</string>
 	<string name="placepage_add_stop">Adicionar parada</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -552,6 +555,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Ocultar tudo</string>
 	<string name="bookmark_lists_show_all">Exibir tudo</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d favorito</item>
+	  <item quantity="other">%d favoritos</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Criar nova lista</string>
 	<string name="bookmarks_error_message_share_general">Impossível compartilhar devido a um erro do aplicativo</string>
 	<string name="bookmarks_error_title_share_empty">Erro de compartilhamento</string>
@@ -568,14 +575,7 @@
 	  <item quantity="one">%d arquivo foi encontrado. Você vai ver depois da conversão.</item>
 	  <item quantity="other">%d arquivos foram encontrados. Você os verá depois da conversão.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d objeto</item>
-	  <item quantity="other">%d objetos</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d lugar</item>
-	  <item quantity="other">%d lugares</item>
-	</plurals>
+	<string name="restore">Restaurar</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d percurso</item>
 	  <item quantity="other">%d percursos</item>
@@ -742,6 +742,8 @@
 	<string name="button_layer_outdoor">Ar livre</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">O navegador da Web não está disponível</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">A autorização do OpenStreetMap está temporariamente indisponível devido a novas restrições no Google Play 😾\nNossa equipe está trabalhando para resolver esse problema. Por favor, seja paciente 🙏 Você pode ter certeza de que o OpenStreetMap está indisponível.</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Exportar todos os favoritos e trilhas</string>
 	<!-- button in (app) TTS settings, to open the system TTS settings. -->
@@ -753,6 +755,13 @@
 	<string name="website_menu">Link do cardápio</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Exibir menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Autoatendimento</string>
+	<string name="select_option">Selecionar opção</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Desativar o modo de economia de energia</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Para obter uma navegação mais precisa, recomendamos que você desative o modo de economia de energia nas configurações de bateria do telefone.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Endereço/Bloco</string>
@@ -1846,4 +1855,8 @@
 	<string name="type.piste_type.skitour">Trilha de esqui de passeio</string>
 	<string name="type.amenity.events_venue">Local do evento</string>
 	<string name="type.shop.collector">Colecionáveis</string>
+	<string name="type.self_service.yes">Autoatendimento disponível</string>
+	<string name="type.self_service.only">Somente autoatendimento</string>
+	<string name="type.self_service.partially">Autoatendimento parcial</string>
+	<string name="type.self_service.no">Sem autoatendimento</string>
 </resources>

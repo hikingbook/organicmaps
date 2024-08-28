@@ -594,20 +594,23 @@ string DetermineSurfaceAndHighwayType(OsmElement * p)
 
   // According to https://wiki.openstreetmap.org/wiki/Key:surface
   static base::StringIL pavedSurfaces = {
-      "asphalt",  "cobblestone", "chipseal", "concrete",
-      "metal", "paved", "paving_stones", "sett", "unhewn_cobblestone", "wood"
+      "asphalt", "cobblestone", "chipseal", "concrete", "grass_paver", "stone",
+      "metal", "paved", "paving_stones", "sett", "brick", "bricks", "unhewn_cobblestone", "wood"
   };
 
   // All not explicitly listed surface types are considered unpaved good, e.g. "compacted", "fine_gravel".
   static base::StringIL badSurfaces = {
-      "cobblestone", "dirt", "earth", "grass", "gravel", "ground", "metal", "mud", "rock", "unpaved",
-      "pebblestone", "sand", "sett", "snow", "stepping_stones", "unhewn_cobblestone", "wood", "woodchips"
+      "cobblestone", "dirt", "earth", "soil", "grass", "gravel", "ground", "metal", "mud", "rock", "stone", "unpaved",
+      "pebblestone", "sand", "sett", "brick", "bricks", "snow", "stepping_stones", "unhewn_cobblestone",
+      "grass_paver", "wood", "woodchips"
   };
 
   static base::StringIL veryBadSurfaces = {
-      "dirt", "earth", "grass", "ground", "mud", "rock", "sand", "snow",
+      "dirt", "earth", "soil", "grass", "ground", "mud", "rock", "sand", "snow",
       "stepping_stones", "woodchips"
   };
+
+  // surface=tartan/artificial_turf/clay are not used for highways (but for sport pitches etc).
 
   static base::StringIL veryBadSmoothness = {
       "very_bad",       "horrible",        "very_horrible", "impassable",
@@ -647,9 +650,6 @@ string DetermineSurfaceAndHighwayType(OsmElement * p)
     static base::StringIL goodPathSmoothness = {
         "excellent", "good", "very_good", "intermediate"
     };
-    static base::StringIL gravelSurface = {
-        "gravel", "fine_gravel", "pebblestone"
-    };
     bool const hasQuality = !smoothness.empty() || !trackGrade.empty();
     bool const isGood = (smoothness.empty() || Has(goodPathSmoothness, smoothness)) &&
                         (trackGrade.empty() || trackGrade == "grade1" || trackGrade == "grade2");
@@ -660,11 +660,11 @@ string DetermineSurfaceAndHighwayType(OsmElement * p)
                               (p->HasTag("lit") && !p->HasTag("lit", "no"));
 
     bool isFormed = !surface.empty() && Has(pavedSurfaces, surface);
-    // Treat "compacted" as formed when in good or default quality.
-    if (surface == "compacted" && isGood)
+    // Treat "compacted" and "fine_gravel" as formed when in good or default quality.
+    if ((surface == "compacted" || surface == "fine_gravel") && isGood)
       isFormed = true;
-    // Treat "gravel"-like surfaces as formed only when it has urban tags or a certain good quality and no trail tags.
-    if (Has(gravelSurface, surface) && isGood && (hasUrbanTags || (hasQuality && !hasTrailTags)))
+    // Treat pebble/gravel surfaces as formed only when it has urban tags or a certain good quality and no trail tags.
+    if ((surface == "gravel" || surface == "pebblestone") && isGood && (hasUrbanTags || (hasQuality && !hasTrailTags)))
       isFormed = true;
 
     auto const ConvertTo = [&](string const & newType)
@@ -795,7 +795,7 @@ string DeterminePathGrade(OsmElement * p)
 
   string scale = p->GetTag("sac_scale");
   string visibility = p->GetTag("trail_visibility");
-  
+
   if (scale.empty() && visibility.empty())
     return {};
 
@@ -1084,7 +1084,7 @@ void PostprocessElement(OsmElement * p, FeatureBuilderParams & params)
       {
         for (auto const & prefix : disusedPrefix)
         {
-          if (strings::StartsWith(tag.m_key, prefix))
+          if (tag.m_key.starts_with(prefix))
           {
             params.ClearPOIAttribs();
             goto exit;
@@ -1391,7 +1391,7 @@ void GetNameAndType(OsmElement * p, FeatureBuilderParams & params,
           // atoi error value (0) should match empty layer constant.
           static_assert(feature::LAYER_EMPTY == 0);
           params.layer = atoi(v.c_str());
-          params.layer = base::Clamp(params.layer, int8_t(feature::LAYER_LOW), int8_t(feature::LAYER_HIGH));
+          params.layer = base::Clamp(params.layer, int8_t{feature::LAYER_LOW}, int8_t{feature::LAYER_HIGH});
         }
       }},
   });

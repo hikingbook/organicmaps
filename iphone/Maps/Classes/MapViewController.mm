@@ -112,6 +112,20 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
 #pragma mark - Map Navigation
 
+//- (void)showOrUpdatePlacePage {
+//  if (!PlacePageData.hasData) {
+//    return;
+//  }
+//
+//  self.controlsManager.trafficButtonHidden = YES;
+//
+//  if (self.placePageVC != nil) {
+//    [PlacePageBuilder update:(PlacePageViewController *)self.placePageVC];
+//    return;
+//  }
+//  [self showRegularPlacePage];
+//}
+//
 //- (void)showRegularPlacePage {
 //  self.placePageVC = [PlacePageBuilder build];
 //  self.placePageContainer.hidden = NO;
@@ -128,26 +142,17 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  [self.placePageVC didMoveToParentViewController:self];
 //}
 
-//- (void)showPlacePage {
-//  if (!PlacePageData.hasData) {
-//    return;
-//  }
-//  
-//  self.controlsManager.trafficButtonHidden = YES;
-//  [self showRegularPlacePage];
-//}
-
 - (void)dismissPlacePage {
-  GetFramework().DeactivateMapSelection(true);
+  GetFramework().DeactivateMapSelection();
 }
 
 - (void)hideRegularPlacePage {
-  [self.placePageVC.view removeFromSuperview];
-  [self.placePageVC willMoveToParentViewController:nil];
-  [self.placePageVC removeFromParentViewController];
-  self.placePageVC = nil;
-  self.placePageContainer.hidden = YES;
-  [self setPlacePageTopBound:0 duration:0];
+    [self.placePageVC.view removeFromSuperview];
+    [self.placePageVC willMoveToParentViewController:nil];
+    [self.placePageVC removeFromParentViewController];
+    self.placePageVC = nil;
+    self.placePageContainer.hidden = YES;
+    [self setPlacePageTopBound:0 duration:0];
 }
 
 - (void)hidePlacePage {
@@ -157,38 +162,37 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  self.controlsManager.trafficButtonHidden = NO;
 }
 
-- (void)onMapObjectDeselected:(bool)switchFullScreenMode {
-  [self hidePlacePage];
-
+- (void)onMapObjectDeselected {
+    [self hidePlacePage];
 //  MWMSearchManager * searchManager = MWMSearchManager.manager;
-//  BOOL const isSearchResult = searchManager.state == MWMSearchManagerStateResult;
-//  BOOL const isNavigationDashboardHidden = [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
-//  if (isSearchResult) {
-//    if (isNavigationDashboardHidden) {
-//      searchManager.state = MWMSearchManagerStateMapSearch;
-//    } else {
-//      searchManager.state = MWMSearchManagerStateHidden;
+//    BOOL const isSearchResult = searchManager.state == MWMSearchManagerStateResult;
+//    BOOL const isNavigationDashboardHidden = [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
+//    if (isSearchResult) {
+//      if (isNavigationDashboardHidden) {
+//        searchManager.state = MWMSearchManagerStateMapSearch;
+//      } else {
+//        searchManager.state = MWMSearchManagerStateHidden;
+//      }
 //    }
-//  }
-//
-//  if (!switchFullScreenMode)
-//    return;
-//
-//  // TODO(AB): Switch to full screen mode directly from the tap, in one place, instead of
-//  // every call to onMapObjectDeselected.
-//  if (DeepLinkHandler.shared.isLaunchedByDeeplink)
-//    return;
-//
-//  BOOL const isSearchHidden = searchManager.state == MWMSearchManagerStateHidden;
-//  if (isSearchHidden && isNavigationDashboardHidden) {
-//    self.controlsManager.hidden = !self.controlsManager.hidden;
-//  }
+//     // Always show the controls during the navigation or planning mode.
+//    if (!isNavigationDashboardHidden)
+//      self.controlsManager.hidden = NO;
 }
 
 - (void)onMapObjectSelected {
   [self hidePlacePage];
-//  [self showPlacePage];
+//    [self showOrUpdatePlacePage];
 }
+
+//- (void)onSwitchFullScreen {
+//  BOOL const isNavigationDashboardHidden = MWMNavigationDashboardManager.sharedManager.state == MWMNavigationDashboardStateHidden;
+//  BOOL const isSearchHidden = MWMSearchManager.manager.state == MWMSearchManagerStateHidden;
+//  if (isSearchHidden && isNavigationDashboardHidden) {
+//    if (!self.controlsManager.hidden)
+//      [self dismissPlacePage];
+//    self.controlsManager.hidden = !self.controlsManager.hidden;
+//  }
+//}
 
 - (void)onMapObjectUpdated {
   //  [self.controlsManager updatePlacePage];
@@ -452,8 +456,10 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  Framework &f = GetFramework();
   // TODO: Review and improve this code.
 //  f.SetPlacePageListeners([self]() { [self onMapObjectSelected]; },
-//                          [self](bool switchFullScreen) { [self onMapObjectDeselected:switchFullScreen]; },
-//                          [self]() { [self onMapObjectUpdated]; });
+//                          [self]() { [self onMapObjectDeselected]; },
+//                          [self]() { [self onMapObjectUpdated]; },
+//                          [self]() { [self onSwitchFullScreen]; });
+
   // TODO: Review and improve this code.
 //  f.SetMyPositionModeListener([self](location::EMyPositionMode mode, bool routingActive) {
     // TODO: Two global listeners are subscribed to the same event from the core.

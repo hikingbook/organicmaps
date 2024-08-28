@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Гэй, глядзі дзе я зараз на мапе Organic Maps!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Абагуліць";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Электронная пошта";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Мова агучвання";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Тэставыя галасавыя ўказанні (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Іншы";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Каліброўка компаса";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Яшчэ раз доўга націсніце на карту, каб убачыць інтэрфейс";
 
 /* Update all button text */
 "downloader_update_all_button" = "Абнавіць усё";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Паспрабуйце зноў";
 
-"not_now" = "Не зараз";
-
 "dialog_routing_download_and_build_cross_route" = "Спампаваць мапу і пракласці лепшы маршрут праз некалькі мап?";
 
 "dialog_routing_download_cross_route" = "Спампаваць дадатковыя мапы, каб пракласці лепшы маршрут, які перасякае межы гэтай мапы.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Нічога не знойдзена.";
 
-"search_not_found_query" = "Паспрабуйце змяніць крытэрыі пошуку.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Спампуйце рэгіён, у якім вы шукаеце, або паспрабуйце дадаць назву бліжэйшага горада/вёскі.";
 
 "search_history_title" = "Гісторыя пошуку";
 
@@ -615,11 +617,11 @@
 
 "opens_at" = "Адкрываецца ў %@";
 
-"opens_in" = "Адкрываецца праз %@";
+"opens_in" = "Адчыняецца праз %@";
 
 "closes_at" = "Закрываецца ў %@";
 
-"closes_in" = "Закрываецца праз %@";
+"closes_in" = "Зачыняецца праз %@";
 
 "closed" = "Закрыта";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Інфармацыі пра рух няма";
 
+"enable_logging" = "Уключыць вядзенне журналу";
+
+"log_file_size" = "Памер файла журнала: %@";
+
 "transliteration_title" = "Транслітарацыя лацінкай";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Выхад";
 
-"routing_add_start_point" = "Дадайце пункт адпраўлення, каб пракласці маршрут";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Скарыстайцеся пошукам або націсніце на мапе, каб дадаць пачатак маршруту";
 
-"routing_add_finish_point" = "Дадайце пункт прызначэння, каб пракласці маршрут";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Скарыстайцеся пошукам або націсніце на мапе, каб дадаць пункт прызначэння";
 
 "planning_route_manage_route" = "Кіраваць маршрутам";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Дадаць прыпынак";
 
 "start_from_my_position" = "Пачаць ад";
-
-"profile_authorization_error" = "Ой-ёй, здарылася памылка. Паспрабуйце аўтарызавацца зноў.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Калі ласка, увайдзіце ў OpenStreetMap, каб аўтаматычна загрузіць усе вашыя праўкі карты. Даведайцеся больш";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Паказаць усе";
 
 "bookmarks_create_new_group" = "Стварыць новы спіс";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Імпартаваць закладкі і cцежкі";
 
 "downloader_hide_screen" = "Схаваць экран";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Некаторыя файлы не ператварыліся.";
 
-"bookmarks_restore_title" = "Аднавіць гэтую версію?";
-
-"error_system_message" = "Адбылася невядомая памылка";
-
 "restore" = "Аднавіць";
 
 "privacy_policy" = "Палітыка прыватнасці";
 
 "terms_of_use" = "Умовы выкарыстання";
-
-"button_layer_traffic" = "Рух";
 
 "button_layer_subway" = "Метро";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Аўтаматычна";
 
 "power_managment_setting_manual_max" = "Максімальнае захаванне энергіі";
+
+"enable_logging_warning_message" = "Опцыя ўключае запіс журнала падзей для мэтаў дыягностыкі. Гэта можа дапамагчы нашай камандзе вырашаць праблемы з праграмай. Уключайце гэтую опцыю часова, каб запісаць і паслаць нам дэталёвую інфармацыю пра знойденую вамі праблему праз кнопку \"Паведаміць аб памылцы\".";
 
 "driving_options_title" = "Налады пракладкі маршрута";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Маршрут будзе перапракладзены ад вашага цяперашняга месцазнаходжання";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Маршрут будзе ператвораны ў аўтамабільны";
+
+"not_all_shown_bookmarks_carplay" = "Не ўсе закладкі паказаны";
+
+"switch_to_phone_bookmarks_carplay" = "Пераключыцеся на тэлефон, каб убачыць усе закладкі";
 
 "ok" = "Ок";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Дзякуй за выкарыстанне нашых карт, створаных супольнасцю!";
+
+/* App tip #01 */
+"app_tip_01" = "Дзякуючы вашым ахвяраванням і падтрымцы мы можам стварыць лепшыя мапы у свеце!";
+
+/* App tip #02 */
+"app_tip_02" = "Вам падабаецца наша прылада? Калі ласка, ахвяруйце, каб падтрымаць развіццё! Яшчэ не падабаецца? Калі ласка, напішыце, чаму, і мы гэта выправім!";
+
+/* App tip #03 */
+"app_tip_03" = "Калі вы ведаеце распрацоўшчыка праграмнага забеспячэння, вы можаце папрасіць яго рэалізаваць неабходную вам функцыю.";
+
+/* App tip #04 */
+"app_tip_04" = "Любое месца на карце можна абраць, калі патрымаць там палец на працягу секунды.";
+
+/* App tip #05 */
+"app_tip_05" = "А вы ведалі, што сваё месцазнаходжанне на мапе можна абраць?";
+
+/* App tip #06 */
+"app_tip_06" = "Вы можаце дапамагчы перакласці нашу прыладу на вашу мову.";
+
+/* App tip #07 */
+"app_tip_07" = "Наша прылада распрацавана некалькімі энтузіястамі і супольнасцю.";
+
+/* App tip #08 */
+"app_tip_08" = "Вы можаце лёгка выправіць і палепшыць дадзеныя карты.";
+
+/* App tip #09 */
+"app_tip_09" = "Наша галоўная мэта - ствараць хуткія, арыентаваныя на прыватнасць і простыя ў выкарыстанні карты, якія вам спадабаюцца.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Вы выкарыстоўваеце Organic Maps на экране тэлефона";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Спасылка на меню";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Хочаце адправіць справаздачу пра памылку распрацоўшчыкам?\nМы разлічваем на нашых карыстальнікаў, бо Organic Maps не збірае ніякай інфармацыі пра памылкі аўтаматычна. Загадзя дзякуем за падтрымку Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Уключыць сінхранізацыю з iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Рэзервовае капіраванне";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Збой сінхранізацыі iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Памылка: не ўдалося сінхранізаваць з-за памылкі злучэння";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Памылка: iCloud недаступны";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Адкрыць у іншай прыладзе";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Месцы на адкрытым паветры";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Нядаўна выдаленыя спісы";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Ачысціць";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Выдаліць усё";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Аднавіць";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Аднавіць усё";
 
 
 /********** Types **********/
@@ -3845,7 +3911,7 @@
 
 "type.tourism.theme_park" = "Theme Park";
 
-"type.tourism.viewpoint" = "Viewpoint";
+"type.tourism.viewpoint" = "Аглядальная пляцоўка";
 
 /* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Турыстычная хатка";
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Аўкцыён";
 
 "type.shop.collector" = "Калекцыйныя прадметы";
+
+"type.self_service.yes" = "Маецца самаабслугоўванне";
+
+"type.self_service.only" = "Толькі самаабслугоўванне";
+
+"type.self_service.partially" = "Частковае самаабслугоўванне";
+
+"type.self_service.no" = "Няма самаабслугоўвання";

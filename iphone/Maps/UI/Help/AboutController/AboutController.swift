@@ -1,3 +1,5 @@
+import OSLog
+
 final class AboutController: MWMViewController {
 
   fileprivate struct AboutInfoTableViewCellModel {
@@ -275,8 +277,7 @@ private extension AboutController {
         case .faq:
           self?.navigationController?.pushViewController(FaqController(), animated: true)
         case .reportABug:
-          guard let link = aboutInfo.link else { fatalError("The recipient link should be provided to report a bug.") }
-          self?.sendEmailWith(header: "Organic Maps Bugreport", toRecipients: [link])
+          MailComposer.sendBugReport()
         case .reportMapDataProblem, .volunteer, .news:
           self?.openUrl(aboutInfo.link)
         case .rateTheApp:
@@ -303,10 +304,9 @@ private extension AboutController {
         case .twitter: fallthrough
         case .instagram: fallthrough
         case .linkedin:
-          self?.openUrl(socialMedia.link, inSafari: true)
+          self?.openUrl(socialMedia.link, externally: true)
         case .organicMapsEmail:
-          guard let link = socialMedia.link else { fatalError("The Organic Maps email link should be provided.") }
-          self?.sendEmailWith(header: "Organic Maps", toRecipients: [link])
+          MailComposer.sendEmail(toRecipients: [socialMedia.link])
         }
       })
     }
@@ -433,92 +433,6 @@ extension AboutController: UICollectionViewDelegateFlowLayout {
     return Constants.socialMediaCollectionViewSpacing
   }
 }
-
-// MARK: - Mail Composing
-private extension AboutController {
-  func sendEmailWith(header: String, toRecipients: [String]) {
-    func emailSubject(subject: String) -> String {
-      let appInfo = AppInfo.shared()
-      return String(format:"[%@-%@ iOS] %@", appInfo.bundleVersion, appInfo.buildNumber, subject)
-    }
-
-    func emailBody() -> String {
-      let appInfo = AppInfo.shared()
-      return String(format: "\n\n\n\n- %@ (%@)\n- Organic Maps %@-%@\n- %@-%@\n- %@\n",
-                    appInfo.deviceModel, UIDevice.current.systemVersion,
-                    appInfo.bundleVersion, appInfo.buildNumber,
-                    Locale.current.languageCode ?? "",
-                    Locale.current.regionCode ?? "",
-                    Locale.preferredLanguages.joined(separator: ", "))
-    }
-
-    func openOutlook(subject: String, body: String, recipients: [String]) -> Bool {
-      var components = URLComponents(string: "ms-outlook://compose")!
-      components.queryItems = [
-        URLQueryItem(name: "to", value: recipients.joined(separator: ";")),
-        URLQueryItem(name: "subject", value: subject),
-        URLQueryItem(name: "body", value: body),
-      ]
-
-      if let url = components.url, UIApplication.shared.canOpenURL(url) {
-        UIApplication.shared.open(url)
-        return true
-      }
-      return false
-    }
-
-    func openGmail(subject: String, body: String, recipients: [String]) -> Bool {
-      var components = URLComponents(string: "googlegmail://co")!
-      components.queryItems = [
-        URLQueryItem(name: "to", value: recipients.joined(separator: ";")),
-        URLQueryItem(name: "subject", value: subject),
-        URLQueryItem(name: "body", value: body),
-      ]
-
-      if let url = components.url, UIApplication.shared.canOpenURL(url) {
-        UIApplication.shared.open(url)
-        return true
-      }
-      return false
-    }
-    
-    func openDefaultMailApp(subject: String, body: String, recipients: [String]) -> Bool {
-      var components = URLComponents(string: "mailto:\(recipients.joined(separator: ";"))")
-      components?.queryItems = [
-        URLQueryItem(name: "subject", value: subject),
-        URLQueryItem(name: "body", value: body.replacingOccurrences(of: "\n", with: "\r\n")),
-      ]
-
-      if let url = components?.url, UIApplication.shared.canOpenURL(url) {
-        UIApplication.shared.open(url)
-        return true
-      }
-      return false
-    }
-
-    let subject = emailSubject(subject: header)
-    let body = emailBody()
-
-    // Before iOS 14, try to open alternate email apps first, assuming that if users installed them, they're using them.
-    let os = ProcessInfo().operatingSystemVersion
-    if (os.majorVersion < 14 && (openGmail(subject: subject, body: body, recipients: toRecipients) ||
-                                 openOutlook(subject: subject, body: body, recipients: toRecipients))) {
-      return
-    }
-    
-    // From iOS 14, it is possible to change the default mail app, and mailto should open a default mail app.
-    if openDefaultMailApp(subject: subject, body: body, recipients: toRecipients) {
-      return
-    } else {
-      let text = String(format:L("email_error_body"), toRecipients.joined(separator: ";"))
-      let alert = UIAlertController(title: L("email_error_title"), message: text, preferredStyle: .alert)
-      let action = UIAlertAction(title: L("ok"), style: .default, handler: nil)
-      alert.addAction(action)
-      present(alert, animated: true, completion: nil)
-    }
-  }
-}
-
 // MARK: - UIStackView + AddArrangedSubviewWithSeparator
 private extension UIStackView {
   func addArrangedSubviewWithSeparator(_ view: UIView) {

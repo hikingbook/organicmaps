@@ -5,6 +5,7 @@
 - [Desktop](#desktop-app)
 - [Android](#android-app)
 - [iOS](#ios-app)
+- [Map data and styles](#map-data-and-styles)
 
 ## System requirements
 
@@ -20,7 +21,7 @@ For _Windows_, it's necessary to enable symlink support:
 1. Activate _Windows Development Mode_ to enable symlinks globally:
   - Windows 10: _Settings_ -> _Update and Security_ -> _For Developers_ -> _Activate Developer Mode_
   - Windows 11: _Settings_ -> _Privacy and Security_ -> _For Developers_ -> _Activate Developer Mode_
-2. Enable [symlinks](https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks) support in git. The easiest way is to reinstall the latest [Git for Windows](https://gitforwindows.org/) with the "Enable Symlinks" checkbox checked. If you don't want to reinstall Git, then you can add `-c core.symlinks=true` parameter to the clone command below to enable symlinks for the repository.
+2. Enable [symlinks](https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks) support in git. The easiest way is to reinstall the latest [Git for Windows](https://git-scm.com/download/win) with the "Enable Symlinks" checkbox checked. If you don't want to reinstall Git, then you can add `-c core.symlinks=true` parameter to the clone command below to enable symlinks for the repository.
 
 ```bash
 git config --global core.symlinks true
@@ -126,7 +127,7 @@ sudo apt update && sudo apt install -y \
 | CMake     | `3.22.1`        | `20.04` and older       | Install newer `cmake` from [PPA](https://apt.kitware.com/) or from `snap`<br> with `sudo snap install --classic cmake` |
 | FreeType  | `2.13.1`        | `22.04` and older       | Install newer `libfreetype6` and `libfreetype-dev` from [PPA](https://launchpad.net/~reviczky/+archive/ubuntu/freetype) |
 | GeoClue   | `2.5.7`         | `20.04` and older       | Install newer `geoclue-2.0` from [PPA](https://launchpad.net/~savoury1/+archive/ubuntu/backports) |
-| Qt 6      | `6.2.0`         | `20.04` and older       | Add [PPA](https://launchpad.net/~savoury1/+archive/ubuntu/qt-6-2) and [install packages](#fully-supported-versions) |
+| Qt 6      | `6.4.0`         | `22.04` and older       | Build and install Qt 6.4 manually |
 
 
 ```bash
@@ -664,3 +665,6 @@ Select "OMaps" product scheme.
 - Choose either "iPhone _" or "iPad _" to run in the Simulator.
 
 Compile and run the project ("Product" → "Run").
+
+## Map data and styles
+See readme for the [map generator](https://github.com/organicmaps/organicmaps/blob/master/docs/MAPS.md) and [styles](https://github.com/organicmaps/organicmaps/blob/master/docs/STYLES.md) if you need to customize the map files and styles

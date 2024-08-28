@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.18)
 project(omim C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_STANDARD 17)
 # Our code does not rely on gnu extensions.
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_C_EXTENSIONS OFF)
@@ -26,7 +26,7 @@ if (APPLE AND NOT ("${CMAKE_SYSTEM_NAME}" STREQUAL Android))
   set(CMAKE_OBJC_VISIBILITY_PRESET hidden)
   enable_language(OBJCXX)
   set(CMAKE_OBJCXX_EXTENSIONS OFF)
-  set(CMAKE_OBJCXX_STANDARD 17)
+  set(CMAKE_OBJCXX_STANDARD 20)
   set(CMAKE_OBJCXX_FLAGS -fobjc-arc)
   set(CMAKE_OBJCXX_VISIBILITY_PRESET hidden)
 endif()
@@ -149,6 +149,12 @@ if (BUILD_DESIGNER)
   add_definitions(-DBUILD_DESIGNER)
 endif()
 
+option(BUILD_STANDALONE "Build standalone application" OFF)
+if (BUILD_STANDALONE)
+  message(STATUS "Standalone building is enabled")
+  add_definitions(-DBUILD_STANDALONE)
+endif()
+
 option(USE_ASAN "Enable Address Sanitizer" OFF)
 option(USE_TSAN "Enable Thread Sanitizer" OFF)
 option(USE_LIBFUZZER "Enable LibFuzzer" OFF)
@@ -166,9 +172,9 @@ if (NJOBS)
   set(CMAKE_JOB_POOL_PRECOMPILE_HEADER custom)
 endif()
 
-# GCC 8.1 is required to support <charconv> header inclusion in base/string_utils.hpp, otherwise 7.0 is sufficient
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.1)
-  message(FATAL_ERROR "Minimum supported g++ version is 8.1 yours is ${CMAKE_CXX_COMPILER_VERSION}")
+# GCC 10.0 is required to support <charconv> header inclusion in base/string_utils.hpp
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
+  message(FATAL_ERROR "Minimum supported g++ version is 10.0, yours is ${CMAKE_CXX_COMPILER_VERSION}")
 endif()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -273,6 +279,13 @@ if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
   endif()
   # PATHS are hard-coded hints where to look for qt6 in addition to other places.
   find_package(Qt6 COMPONENTS REQUIRED ${qt_components} PATHS $ENV{QT_PATH} /opt/homebrew/opt/qt@6 /usr/local/opt/qt@6 /usr/lib/x86_64-linux-gnu/qt6)
+
+  set(MINIMUM_REQUIRED_QT_VERSION 6.4.0)
+  if (Qt6Widgets_VERSION VERSION_LESS ${MINIMUM_REQUIRED_QT_VERSION})
+    message(FATAL_ERROR "Unsupported Qt version: ${Qt6Widgets_VERSION}, the minimum required is ${MINIMUM_REQUIRED_QT_VERSION}")
+  else()
+    message(STATUS "Found Qt version: ${Qt6Widgets_VERSION}")
+  endif()
 endif()
 
 # To allow #include "base/file_name.hpp" in all sources.

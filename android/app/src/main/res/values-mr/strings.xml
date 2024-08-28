@@ -250,6 +250,8 @@
 	<string name="compass_calibration_recommended">कंपास कॅलिब्रेट करण्यासाठी फोनला आकृती-आठ मोशनमध्ये हलवून बाणाची दिशा सुधारा.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">होकायंत्र कॅलिब्रेट करण्यासाठी आणि नकाशावर बाणाची दिशा निश्चित करण्यासाठी फोनला आकृती-आठ मोशनमध्ये हलवा.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">इंटरफेस पाहण्यासाठी पुन्हा नकाशावर दीर्घ टॅप करा</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">सर्व अद्ययावत</string>
 	<!-- Cancel all button text -->
@@ -349,6 +351,7 @@
 	<string name="dialog_routing_system_error">सिस्टम त्रुटी</string>
 	<string name="dialog_routing_application_error">ऍप त्रुटीमुळे मार्ग तयार करण्यात अक्षम.</string>
 	<string name="dialog_routing_try_again">कृपया पुर्नरप्रयत्न करा</string>
+	<string name="not_now">आता नाही</string>
 	<string name="dialog_routing_download_and_build_cross_route">एकापेक्षा जास्त नकाशात पसरलेला अधिक चांगला मार्ग तयार करण्यासाठी, नकाशा डाउनलोड केलेला चालेल का?</string>
 	<string name="dialog_routing_download_cross_route">या नकाशाच्या सीमा ओलांडणारा एक चांगला मार्ग तयार करण्यासाठी अधिक नकाशे डाउनलोड करा.</string>
 
@@ -362,7 +365,8 @@
 	<string name="categories">प्रवर्ग</string>
 	<string name="history">इतिहास</string>
 	<string name="search_not_found">अरेच्चा, काहीच सापडले नाही.</string>
-	<string name="search_not_found_query">तुमचे शोध निकष बदलण्याचा प्रयत्न करा.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">तुम्ही जिथे शोधत आहात तो प्रदेश डाउनलोड करा किंवा जवळच्या शहर/गावाचे नाव जोडण्याचा प्रयत्न करा.</string>
 	<string name="search_history_title">शोध इतिहास</string>
 	<string name="search_history_text">अलीकडील शोध पहा.</string>
 	<string name="clear_search">शोध इतिहास पुसून टाका</string>
@@ -413,6 +417,8 @@
 	<string name="no_osm_account">OpenStreetMap खाते नाही?</string>
 	<string name="register_at_openstreetmap">OpenStreetMap वर नोंदणी करा</string>
 	<string name="login">लॉग इन</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">साइन इन केलेले नाही</string>
 	<string name="password">पासवर्ड</string>
 	<string name="forgot_password">पासवर्ड विसरलात?</string>
 	<string name="logout">लॉग आऊट</string>
@@ -453,7 +459,6 @@
 	<string name="editor_edit_place_category_title">प्रवर्ग</string>
 	<string name="detailed_problem_description">समस्येचे तपशिलात वर्णन</string>
 	<string name="editor_report_problem_other_title">वेगळी समस्या</string>
-	<string name="placepage_add_business_button">व्यवसाय जोडा</string>
 	<string name="message_invalid_feature_position">इथे कोणतीही वस्तू ठेवू शकत नाही</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">समुदाय-निर्मित OpenStreetMap डेटा %s नुसार. OpenStreetMap.org वर नकाशा संपादित आणि अपडेट कसा करायचा याबद्दल अधिक जाणून घ्या</string>
@@ -549,8 +554,10 @@
 	<string name="learn_more">अधिक जाणून घ्या</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">बाहेर पडा</string>
-	<string name="routing_add_start_point">मार्ग नियोजित करण्यासाठी प्रारंभ बिंदू जोडा</string>
-	<string name="routing_add_finish_point">मार्ग नियोजित करण्यासाठी इष्टस्थान जोडा</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">मार्ग प्रारंभ बिंदू जोडण्यासाठी नकाशावर शोध वापरा किंवा टॅप करा</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">गंतव्य बिंदू जोडण्यासाठी नकाशावर शोधा किंवा टॅप करा</string>
 	<string name="placepage_remove_stop">काढा</string>
 	<string name="placepage_add_stop">स्टॉप जोडा</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -564,6 +571,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">सर्व लपवा</string>
 	<string name="bookmark_lists_show_all">सर्व दाखवा</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d खूणपत्र</item>
+	  <item quantity="other">%d खूणपत्रे</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">नवीन यादी जोडा</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">बुकमार्क आणि ट्रॅक आयात करा</string>
@@ -582,13 +593,7 @@
 	  <item quantity="one">%d फाईल सापडली. रूपांतरानंतर तुम्ही ती पाहू शकता.</item>
 	  <item quantity="other">%d फाईली सापडल्या. रूपांतरानंतर तुम्ही त्या पाहू शकता.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">%d वस्तू</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d ठिकाण</item>
-	  <item quantity="other">%d ठिकाणे</item>
-	</plurals>
+	<string name="restore">पूर्ववत् करा</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d ट्रॅक</item>
 	</plurals>
@@ -766,6 +771,8 @@
 	<string name="button_layer_outdoor">गिर्यारोहण</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">वेब ब्राउझर उपलब्ध नाही</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Google Play मधील नवीन निर्बंधांमुळे OpenStreetMap अधिकृतता तात्पुरती अनुपलब्ध आहे 😾\nआमची टीम या समस्येचे निराकरण करण्यासाठी काम करत आहे. कृपया धीर धरा 🙏</string>
 	<string name="volume">व्हॉल्यूम</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">सर्व बुकमार्क आणि ट्रॅक निर्यात करा</string>
@@ -782,6 +789,15 @@
 	<string name="website_menu">मेनू लिंक</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">मेनू पहा</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">स्व: सेवा    nb = Selvbetjening</string>
+	<string name="select_option">पर्याय निवडा    nb = Velg alternativ</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">बाहेरची आसनव्यवस्था    nb = Uteservering</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">पॉवर सेव्हिंग मोड बंद करा</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">सर्वात अचूक नेव्हिगेशनसाठी, आम्ही फोनच्या बॅटरी सेटिंग्जमध्ये पॉवर सेव्हिंग मोड अक्षम करण्याची शिफारस करतो.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
@@ -1931,4 +1947,8 @@
 	<string name="type.amenity.events_venue">कार्यक्रमाचे ठिकाण</string>
 	<string name="type.shop.auction">लिलाव</string>
 	<string name="type.shop.collector">संग्रहणीय वस्तू</string>
+	<string name="type.self_service.yes">स्वयं-सेवा उपलब्ध</string>
+	<string name="type.self_service.only">फक्त स्व-सेवा</string>
+	<string name="type.self_service.partially">आंशिक स्व-सेवा</string>
+	<string name="type.self_service.no">स्व-सेवा नाही</string>
 </resources>

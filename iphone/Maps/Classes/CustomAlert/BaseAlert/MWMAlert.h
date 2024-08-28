@@ -3,23 +3,19 @@
 
 @property(weak, nonatomic) MWMAlertViewController *alertController;
 
-+ (MWMAlert *)authErrorAlertWithRetryBlock:(MWMVoidBlock)retryBlock;
 + (MWMAlert *)locationAlertWithCancelBlock:(MWMVoidBlock)cancelBlock;
 //+ (MWMAlert *)routingDisclaimerAlertWithOkBlock:(MWMVoidBlock)block;
 + (MWMAlert *)disabledLocationAlert;
 + (MWMAlert *)locationServicesDisabledAlert;
 + (MWMAlert *)noWiFiAlertWithOkBlock:(MWMVoidBlock)okBlock andCancelBlock:(MWMVoidBlock)cancelBlock;
 + (MWMAlert *)noConnectionAlert;
-+ (MWMAlert *)searchQuickFilterNoConnectionAlert;
 + (MWMAlert *)deleteMapProhibitedAlert;
 + (MWMAlert *)unsavedEditsAlertWithOkBlock:(MWMVoidBlock)okBlock;
 + (MWMAlert *)locationServiceNotSupportedAlert;
 + (MWMAlert *)incorrectFeaturePositionAlert;
-+ (MWMAlert *)internalErrorAlert;
 + (MWMAlert *)notEnoughSpaceAlert;
 + (MWMAlert *)invalidUserNameOrPasswordAlert;
 + (MWMAlert *)point2PointAlertWithOkBlock:(MWMVoidBlock)okBlock needToRebuild:(BOOL)needToRebuild;
-+ (MWMAlert *)disableAutoDownloadAlertWithOkBlock:(MWMVoidBlock)okBlock;
 + (MWMAlert *)downloaderNoConnectionAlertWithOkBlock:(MWMVoidBlock)okBlock cancelBlock:(MWMVoidBlock)cancelBlock;
 + (MWMAlert *)downloaderNotEnoughSpaceAlert;
 + (MWMAlert *)downloaderInternalErrorAlertWithOkBlock:(MWMVoidBlock)okBlock cancelBlock:(MWMVoidBlock)cancelBlock;
@@ -39,10 +35,8 @@
 + (MWMAlert *)convertBookmarksAlertWithCount:(NSUInteger)count block:(MWMVoidBlock)block;
 //+ (MWMAlert *)spinnerAlertWithTitle:(NSString *)title cancel:(MWMVoidBlock)cancel;
 + (MWMAlert *)bookmarkConversionErrorAlert;
-+ (MWMAlert *)restoreBookmarkAlertWithMessage:(NSString *)message
-                            rightButtonAction:(MWMVoidBlock)rightButton
-                             leftButtonAction:(MWMVoidBlock)leftButton;
 + (MWMAlert *)tagsLoadingErrorAlertWithOkBlock:okBlock cancelBlock:cancelBlock;
++ (MWMAlert *)bugReportAlertWithTitle:(NSString *)title;
 
 + (MWMAlert *)defaultAlertWithTitle:(NSString *)title
                             message:(NSString *)message

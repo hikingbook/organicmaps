@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Podívej se na mou aktuální polohu na mapě na Organic Maps";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Sdílet";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Jazyk hlasu";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testování hlasových pokynů (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Ostatní";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kalibrace kompasu";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Dlouhým klepnutím na mapu znovu zobrazíte rozhraní.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Aktualizovat vše";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Prosím, zkuste to znovu";
 
-"not_now" = "Nyní ne";
-
 "dialog_routing_download_and_build_cross_route" = "Chcete mapu stáhnout a vytvořit optimálnější trasu, která vede přes více než jednu mapu?";
 
 "dialog_routing_download_cross_route" = "Stáhnout mapu a vytvořit optimálnější trasu, která překračuje hranice této mapy.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Omlouváme se, nic nebylo nalezeno.";
 
-"search_not_found_query" = "Zkuste zadat jiný hledaný výraz.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Stáhněte si oblast, ve které hledáte, nebo zkuste přidat název blízkého města/obce.";
 
 "search_history_title" = "Prohledat historii";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Data o provozu nejsou k dispozici";
 
+"enable_logging" = "Povolit protokolování";
+
+"log_file_size" = "Velikost souboru protokolu: %@";
+
 "transliteration_title" = "Přepis do latinky";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Ukončit";
 
-"routing_add_start_point" = "Zadejte výchozí bod pro plánování trasy";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Pomocí vyhledávání nebo klepnutím na mapu přidejte výchozí bod trasy";
 
-"routing_add_finish_point" = "Zadejte cílový bod pro plánování trasy";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Pomocí vyhledávání nebo klepnutím na mapu přidejte cílový bod";
 
 "planning_route_manage_route" = "Spravovat trasu";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Přidat zastávku";
 
 "start_from_my_position" = "Začít z";
-
-"profile_authorization_error" = "Jejda, došlo k chybě. Zkuste se přihlásit znovu.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Přihlaste se do OpenStreetMap, abyste mohli automaticky nahrávat všechny své úpravy mapy. Více informací";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Zobrazit vše";
 
 "bookmarks_create_new_group" = "Vytvořte nový seznam";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Import záložek a stop";
 
 "downloader_hide_screen" = "Skrýt obrazovku";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Některé soubory nebyly převedeny.";
 
-"bookmarks_restore_title" = "Obnovit tuto verzi?";
-
-"error_system_message" = "Nastala neznámá chyba";
-
 "restore" = "Obnovit";
 
 "privacy_policy" = "Zásady ochrany osobních údajů";
 
 "terms_of_use" = "Podmínky užívání";
-
-"button_layer_traffic" = "Zácpy";
 
 "button_layer_subway" = "Metro";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automatický";
 
 "power_managment_setting_manual_max" = "Maximální šetření baterií";
+
+"enable_logging_warning_message" = "Možnost zapne odesílání dat za diagnostickými účely. To nám pomáhá při řešení problémů s aplikací. Dočasně povolte pro nahrávání a odesílání logů našemu týmu o vašem problému.";
 
 "driving_options_title" = "Možnosti trasy";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Trasa bude přestavěna od vaší aktuální polohy";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Trasa bude upravena k autu jedna";
+
+"not_all_shown_bookmarks_carplay" = "Nezobrazují se všechny záložky";
+
+"switch_to_phone_bookmarks_carplay" = "Přepnutí do telefonu pro zobrazení všech záložek";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Děkujeme, že používáte naše komunitní mapy!";
+
+/* App tip #01 */
+"app_tip_01" = "S vašimi dary a podporou můžeme vytvořit ty nejlepší mapy na světě!";
+
+/* App tip #02 */
+"app_tip_02" = "Líbí se vám naše aplikace? Přispějte prosím na podporu rozvoje! Ještě se ti to nelíbí? Dejte nám prosím vědět a my to napravíme!";
+
+/* App tip #03 */
+"app_tip_03" = "Pokud znáte vývojáře softwaru, můžete ho požádat, aby implementoval funkci, kterou potřebujete.";
+
+/* App tip #04 */
+"app_tip_04" = "Víte, že libovolné místo na mapě můžete vybrat dlouhým klepnutím?";
+
+/* App tip #05 */
+"app_tip_05" = "Víte, že si na mapě můžete vybrat svou aktuální polohu?";
+
+/* App tip #06 */
+"app_tip_06" = "Můžete pomoci přeložit naši aplikaci do vašeho jazyka.";
+
+/* App tip #07 */
+"app_tip_07" = "Naše aplikace je vyvinuta několika nadšenci a komunitou.";
+
+/* App tip #08 */
+"app_tip_08" = "Mapová data můžete snadno opravit a vylepšit.";
+
+/* App tip #09 */
+"app_tip_09" = "Naším hlavním cílem je vytvářet rychlé, na soukromí zaměřené a snadno použitelné mapy, které si zamilujete.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Na obrazovce telefonu nyní používáte aplikaci Organic Maps";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Odkaz na menu";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Chcete poslat vývojářům hlášení o chybě?\nSpoléháme na naše uživatele, protože společnost Organic Maps neshromažďuje žádné informace o chybách automaticky. Předem vám děkujeme za podporu Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Povolení synchronizace s iCloudem";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Záloha";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Selhání synchronizace iCloudu";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Chyba: Nepodařilo se synchronizovat z důvodu chyby připojení";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Chyba: iCloud není k dispozici";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Otevřít v jiné aplikaci";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Venkovní posezení";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Nedávno odstraněné seznamy";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Vymazat";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Smazat vše";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Obnovit";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Obnovit vše";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Aukce";
 
 "type.shop.collector" = "Sběratelské předměty";
+
+"type.self_service.yes" = "K dispozici je samoobsluha";
+
+"type.self_service.only" = "Pouze samoobsluha";
+
+"type.self_service.partially" = "Částečná samoobsluha";
+
+"type.self_service.no" = "Žádná samoobsluha";

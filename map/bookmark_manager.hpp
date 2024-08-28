@@ -161,8 +161,10 @@ public:
     void SetCategoryAccessRules(kml::MarkGroupId categoryId, kml::AccessRules accessRules);
     void SetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key,
                                    std::string const & value);
-    bool DeleteBmCategory(kml::MarkGroupId groupId);
-
+    
+    /// Removes the category from the list of categories and deletes the related file.
+    /// @param permanently If true, the file will be removed from the disk. If false, the file will be marked as deleted and moved into a trash.
+    bool DeleteBmCategory(kml::MarkGroupId groupId, bool permanently);
     void NotifyChanges();
 
   private:
@@ -324,10 +326,11 @@ public:
       FileError
     };
 
-    SharingResult(kml::GroupIdCollection && categoriesIds, std::string && sharingPath)
+    SharingResult(kml::GroupIdCollection && categoriesIds, std::string && sharingPath, const std::string & mimeType)
       : m_categoriesIds(categoriesIds)
       , m_code(Code::Success)
       , m_sharingPath(std::move(sharingPath))
+      , m_mimeType(mimeType)
     {}
 
     SharingResult(kml::GroupIdCollection && categoriesIds, Code code)
@@ -344,6 +347,7 @@ public:
     kml::MarkIdCollection m_categoriesIds;
     Code m_code;
     std::string m_sharingPath;
+    std::string m_mimeType;
     std::string m_errorString;
   };
 
@@ -372,6 +376,16 @@ public:
   void EnableTestMode(bool enable);
   bool SaveBookmarkCategory(kml::MarkGroupId groupId);
   bool SaveBookmarkCategory(kml::MarkGroupId groupId, Writer & writer, KmlFileType fileType) const;
+
+  bool HasRecentlyDeletedBookmark() const { return m_recentlyDeletedBookmark.operator bool(); };
+  void ResetRecentlyDeletedBookmark();
+  
+  size_t GetRecentlyDeletedCategoriesCount() const;
+  BookmarkManager::KMLDataCollectionPtr GetRecentlyDeletedCategories();
+  bool IsRecentlyDeletedCategory(std::string const & filePath) const;
+
+  void RecoverRecentlyDeletedCategoriesAtPaths(std::vector<std::string> const & filePaths);
+  void DeleteRecentlyDeletedCategoriesAtPaths(std::vector<std::string> const & filePaths);
 
   // Used for LoadBookmarks() and unit tests only. Does *not* update last modified time.
   void CreateCategories(KMLDataCollection && dataCollection, bool autoSave = false);
@@ -576,7 +590,7 @@ private:
   void SetCategoryTags(kml::MarkGroupId categoryId, std::vector<std::string> const & tags);
   void SetCategoryAccessRules(kml::MarkGroupId categoryId, kml::AccessRules accessRules);
   void SetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key, std::string const & value);
-  bool DeleteBmCategory(kml::MarkGroupId groupId, bool deleteFile);
+  bool DeleteBmCategory(kml::MarkGroupId groupId, bool permanently);
   void ClearCategories();
 
   void MoveBookmark(kml::MarkId bmID, kml::MarkGroupId curGroupID, kml::MarkGroupId newGroupID);
@@ -735,6 +749,7 @@ private:
   AsyncLoadingCallbacks m_asyncLoadingCallbacks;
   std::atomic<bool> m_needTeardown;
   size_t m_openedEditSessionsCount = 0;
+  bool m_loadBookmarksCalled = false;
   bool m_loadBookmarksFinished = false;
   bool m_firstDrapeNotification = false;
   bool m_notificationsEnabled = true;
@@ -759,6 +774,8 @@ private:
   kml::MarkId m_trackInfoMarkId = kml::kInvalidMarkId;
   kml::TrackId m_selectedTrackId = kml::kInvalidTrackId;
   m2::PointF m_maxBookmarkSymbolSize;
+
+  std::unique_ptr<Bookmark> m_recentlyDeletedBookmark;
 
   bool m_asyncLoadingInProgress = false;
   struct BookmarkLoaderInfo

@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Γεια, δες την τρέχουσα τοποθεσία μου στο χάρτη του Organic Maps!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Κοινοποίηση";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Γλώσσα φωνής";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Δοκιμή φωνητικών οδηγιών (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Άλλo";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Καλιμπράρισμα πυξίδας";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Πατήστε ξανά παρατεταμένα στο χάρτη για να δείτε το περιβάλλον εργασίας.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Ενημέρωση όλων";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Προσπαθήστε ξανά";
 
-"not_now" = "Όχι τώρα";
-
 "dialog_routing_download_and_build_cross_route" = "Θέλετε να κατεβάσετε το χάρτη και να δημιουργήσετε μια πιο βέλτιστη διαδρομή που εκτείνεται σε περισσότερους από έναν χάρτες;";
 
 "dialog_routing_download_cross_route" = "Κατεβάστε επιπλέον χάρτες για να δημιουργηθεί μια καλύτερη διαδρομή που διασχίζει τα όρια αυτού του χάρτη.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Ωχ, δε βρέθηκαν αποτελέσματα.";
 
-"search_not_found_query" = "Δοκιμάστε να αλλάξετε τα κριτήρια αναζήτησης.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Κατεβάστε την περιοχή στην οποία ψάχνετε ή δοκιμάστε να προσθέσετε το όνομα μιας κοντινής πόλης/χωριού.";
 
 "search_history_title" = "Ιστορικό αναζητήσεων";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Οι πληροφορίες για την κίνηση δεν είναι διαθέσιμες";
 
+"enable_logging" = "Ενεργοποίηση δυνατότητας καταγραφής";
+
+"log_file_size" = "Μέγεθος αρχείου καταγραφής: %@";
+
 "transliteration_title" = "Μεταγραφή στα Λατινικά";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Έξοδος";
 
-"routing_add_start_point" = "Προσθέστε αφετηρία για να σχεδιάσετε μια διαδρομή";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Χρησιμοποιήστε την αναζήτηση ή πατήστε στο χάρτη για να προσθέσετε ένα σημείο εκκίνησης της διαδρομής";
 
-"routing_add_finish_point" = "Προσθέστε τελικό προορισμό, για να σχεδιάσετε μια διαδρομή";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Χρησιμοποιήστε την αναζήτηση ή πατήστε στο χάρτη για να προσθέσετε ένα σημείο προορισμού";
 
 "planning_route_manage_route" = "Διαχείριση διαδρομής";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Προσθήκη στάσης";
 
 "start_from_my_position" = "Έναρξη από";
-
-"profile_authorization_error" = "Ωχ, παρουσιάστηκε σφάλμα. Προσπαθήστε να συνδεθείτε ξανά.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Παρακαλούμε συνδεθείτε στο OpenStreetMap για να ανεβάσετε αυτόματα όλες τις επεξεργασίες του χάρτη σας. Μάθετε περισσότερα";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Εμφάνιση όλων";
 
 "bookmarks_create_new_group" = "Δημιουργία νέας λίστας";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Εισαγωγή σελιδοδεικτών και διαδρομών";
 
 "downloader_hide_screen" = "Απόκρυψη οθόνης";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Ορισμένα αρχεία δεν μετατράπηκαν.";
 
-"bookmarks_restore_title" = "Επαναφορά αυτής της έκδοσης;";
-
-"error_system_message" = "Συνέβη ένα μη αναγνωρίσιμο σφάλμα";
-
 "restore" = "Επαναφορά";
 
 "privacy_policy" = "Πολιτική απορρήτου";
 
 "terms_of_use" = "Όροι χρήσης";
-
-"button_layer_traffic" = "Κίνηση";
 
 "button_layer_subway" = "Μετρό";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Αυτόματα";
 
 "power_managment_setting_manual_max" = "Πάντα";
+
+"enable_logging_warning_message" = "Αυτή η λειτουργία είναι ενεργοποιημένη για την καταγραφή ενεργειών για διαγνωστικούς σκοπούς. Αυτό βοηθά την ομάδα να εντοπίζει προβλήματα με την εφαρμογή. Να ενεργοποιείτε τη λειτουργία μόνο κατόπιν αιτήματος της υποστήριξης του Organic Maps.";
 
 "driving_options_title" = "Ρυθμίσεις δρομολόγησης";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Η διαδρομή θα ξαναδημιουργηθεί από την τρέχουσα τοποθεσία σας";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Η διαδρομή θα μετατραπεί σε διαδρομή με αυτοκίνητο";
+
+"not_all_shown_bookmarks_carplay" = "Δεν εμφανίζονται όλοι οι σελιδοδείκτες";
+
+"switch_to_phone_bookmarks_carplay" = "Μεταβείτε στο τηλέφωνο για να δείτε όλους τους σελιδοδείκτες";
 
 "ok" = "Οκ";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/El:About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Σας ευχαριστούμε που χρησιμοποιείτε τους χάρτες μας που δημιουργήθηκαν από την κοινότητα!";
+
+/* App tip #01 */
+"app_tip_01" = "Με τις δωρεές και την υποστήριξή σας, μπορούμε να δημιουργήσουμε τους καλύτερους χάρτες στον κόσμο!";
+
+/* App tip #02 */
+"app_tip_02" = "Σας αρέσει η εφαρμογή μας; Παρακαλούμε κάντε μια δωρεά για να στηρίξετε την ανάπτυξη! Ακόμα δεν σας αρέσει; Ενημερώστε μας και θα το διορθώσουμε!";
+
+/* App tip #03 */
+"app_tip_03" = "Εάν γνωρίζετε έναν προγραμματιστή λογισμικού, μπορείτε να του ζητήσετε να υλοποιήσει μια λειτουργία που χρειάζεστε.";
+
+/* App tip #04 */
+"app_tip_04" = "Γνωρίζετε ότι μπορείτε να πατήσετε παρατεταμένα οποιοδήποτε μέρος στο χάρτη για να το επιλέξετε;";
+
+/* App tip #05 */
+"app_tip_05" = "Γνωρίζετε ότι μπορείτε να επιλέξετε την τρέχουσα τοποθεσία σας στο χάρτη;";
+
+/* App tip #06 */
+"app_tip_06" = "Μπορείτε να βοηθήσετε στη μετάφραση της εφαρμογής μας στη γλώσσα σας.";
+
+/* App tip #07 */
+"app_tip_07" = "Η εφαρμογή μας έχει αναπτυχθεί από λίγους θιασώτες και την κοινότητα.";
+
+/* App tip #08 */
+"app_tip_08" = "Μπορείτε εύκολα να διορθώσετε και να βελτιώσετε τα δεδομένα χάρτη.";
+
+/* App tip #09 */
+"app_tip_09" = "Ο κύριος στόχος μας είναι να δημιουργήσουμε γρήγορους, εύχρηστους και με σεβασμό στην ιδιωτικότητα χάρτες που θα λατρέψετε.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Αυτή τη στιγμή το Organic Maps βρίσκεται στην οθόνη του κινητού";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Σύνδεσμος μενού";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Θα θέλατε να στείλετε μια αναφορά σφάλματος στους προγραμματιστές;\nΒασιζόμαστε στους χρήστες μας, καθώς οι Organic Maps δεν συλλέγουν αυτόματα καμία πληροφορία σφάλματος. Σας ευχαριστούμε εκ των προτέρων για την υποστήριξη των Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Ενεργοποίηση συγχρονισμού iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Δημιουργία αντιγράφων ασφαλείας";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Αποτυχία συγχρονισμού iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Σφάλμα: Αποτυχία συγχρονισμού λόγω σφάλματος σύνδεσης";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Σφάλμα: Το iCloud δεν είναι διαθέσιμο";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Άνοιγμα σε άλλη εφαρμογή";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Εξωτερικά καθίσματα";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Πρόσφατα διαγραμμένες λίστες";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Εκκαθάριση";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Διαγραφή όλων";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Ανάκτηση";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Ανάκτηση όλων";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Δημοπρασία";
 
 "type.shop.collector" = "Συλλεκτικά αντικείμενα";
+
+"type.self_service.yes" = "Διαθέσιμη αυτοεξυπηρέτηση";
+
+"type.self_service.only" = "Μόνο αυτοεξυπηρέτηση";
+
+"type.self_service.partially" = "Μερική αυτοεξυπηρέτηση";
+
+"type.self_service.no" = "Δεν υπάρχει αυτοεξυπηρέτηση";

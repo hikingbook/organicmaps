@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hej, kolla på min nuvarande position på Organic Maps kartan!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Dela";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "E-post";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Röstspråk";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testa röstinstruktioner (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Övrigt";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompasskalibrering";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Tryck länge på kartan igen för att se gränssnittet";
 
 /* Update all button text */
 "downloader_update_all_button" = "Uppdatera alla";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Försök igen";
 
-"not_now" = "Inte nu";
-
 "dialog_routing_download_and_build_cross_route" = "Vill du ladda ned kartan och skapa en optimalare väg som sträcker sig över fler än en karta?";
 
 "dialog_routing_download_cross_route" = "Ladda ned kartan för att skapa en optimalare väg som sträcker sig utanför den här kartan.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Ledsen, jag hittade ingenting.";
 
-"search_not_found_query" = "Försök med en annan sökförfrågan.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Ladda ner den region där du söker eller försök att lägga till ett närliggande stads- eller bynamn.";
 
 "search_history_title" = "Sökhistorik";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafikdata är inte tillgänglig";
 
+"enable_logging" = "Aktivera loggning";
+
+"log_file_size" = "Loggfilens storlek: %@";
+
 "transliteration_title" = "Transkribering till latin";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Avsluta";
 
-"routing_add_start_point" = "Lägg till startpunkt för att planera en rutt";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Använd sökfunktionen eller tryck på kartan för att lägga till en startpunkt för rutten";
 
-"routing_add_finish_point" = "Lägg till slutpunkt för att planera en rutt";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Använd sökfunktionen eller tryck på kartan för att lägga till en destinationspunkt";
 
 "planning_route_manage_route" = "Hantera rutt";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Lägg till stopp";
 
 "start_from_my_position" = "Starta från";
-
-"profile_authorization_error" = "Hoppsan, ett fel har inträffat. Försök att logga in igen.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Logga in på OpenStreetMap för att automatiskt ladda upp alla dina kartredigeringar. Läs mer";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Visa alla";
 
 "bookmarks_create_new_group" = "Skapa ny lista";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Importera bokmärken och spår";
 
 "downloader_hide_screen" = "Dölj skärm";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Vissa filer konverterades inte.";
 
-"bookmarks_restore_title" = "Återställ den här versionen?";
-
-"error_system_message" = "Ett okänt fel uppstod";
-
 "restore" = "Återställa";
 
 "privacy_policy" = "Integritetspolicy";
 
 "terms_of_use" = "Allmänna villkor";
-
-"button_layer_traffic" = "Trafik";
 
 "button_layer_subway" = "Tunnelbana";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automatiskt";
 
 "power_managment_setting_manual_max" = "Maximal energibesparing";
+
+"enable_logging_warning_message" = "Denna funktion aktiveras för loggning av åtgärder för diagnostiska ändamål. Detta hjälper laget att identifiera problem med applikationen. Slå på funktionen endast på begäran av Organic Maps supporttjänst.";
 
 "driving_options_title" = "Omvägsinställningar";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Ruten kommer att byggas om från din nuvarande plats";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Ruten kommer att ändras till bil";
+
+"not_all_shown_bookmarks_carplay" = "Alla bokmärken visas inte";
+
+"switch_to_phone_bookmarks_carplay" = "Växla till telefonen för att se alla bokmärken";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Tack för att du använder våra gemenskapsbyggda kartor!";
+
+/* App tip #01 */
+"app_tip_01" = "Med dina donationer och stöd kan vi skapa de bästa kartorna i världen!";
+
+/* App tip #02 */
+"app_tip_02" = "Gillar du vår app? Vänligen donera för att stödja utvecklingen! Gillar du det inte ännu? Meddela oss, så fixar vi det!";
+
+/* App tip #03 */
+"app_tip_03" = "Om du känner en mjukvaruutvecklare kan du be honom eller henne att implementera en funktion som du behöver.";
+
+/* App tip #04 */
+"app_tip_04" = "Vet du att du kan trycka länge på vilken plats som helst på kartan för att välja den?";
+
+/* App tip #05 */
+"app_tip_05" = "Vet du att du kan välja din nuvarande plats på kartan?";
+
+/* App tip #06 */
+"app_tip_06" = "Du kan hjälpa till att översätta vår app till ditt språk.";
+
+/* App tip #07 */
+"app_tip_07" = "Vår app är utvecklad av ett fåtal entusiaster och samhället.";
+
+/* App tip #08 */
+"app_tip_08" = "Du kan enkelt fixa och förbättra kartdata.";
+
+/* App tip #09 */
+"app_tip_09" = "Vårt huvudmål är att bygga snabba, integritetsfokuserade, lättanvända kartor som du kommer att älska.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Du använder nu Organic Maps på telefonens skärm";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Länk till meny";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Vill du skicka en felrapport till utvecklarna?\nVi förlitar oss på våra användare eftersom organiska kartor inte samlar in någon felinformation automatiskt. Tack på förhand för att du stöder Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Aktivera iCloud-synkronisering";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Säkerhetskopiering";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "fel i iCloud-synkroniseringen";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Fel: Synkronisering misslyckades på grund av anslutningsfel";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Fel: iCloud är inte tillgängligt";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Öppna i en annan app";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Sittplatser utomhus";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Nyligen borttagna listor";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Rensa";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Radera alla";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Återställ";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Återställ allt";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Auktion";
 
 "type.shop.collector" = "Samlingsföremål";
+
+"type.self_service.yes" = "Självbetjäning tillgänglig";
+
+"type.self_service.only" = "Endast självbetjäning";
+
+"type.self_service.partially" = "Delvis självbetjäning";
+
+"type.self_service.no" = "Ingen självbetjäning";

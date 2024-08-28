@@ -263,6 +263,8 @@
 	<string name="compass_calibration_recommended">Perbaiki arah panah dengan menggerakkan ponsel dalam gerakan angka delapan untuk mengkalibrasi kompas.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Gerakkan ponsel dengan gerakan angka delapan untuk mengkalibrasi kompas dan memperbaiki arah panah pada peta.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Ketuk lama pada peta sekali lagi untuk melihat antarmuka</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Perbarui semua</string>
 	<!-- Cancel all button text -->
@@ -362,6 +364,7 @@
 	<string name="dialog_routing_system_error">Kesalahan sistem</string>
 	<string name="dialog_routing_application_error">Tidak dapat membuat rute karena kesalahan aplikasi.</string>
 	<string name="dialog_routing_try_again">Mohon coba lagi</string>
+	<string name="not_now">Jangan Sekarang</string>
 	<string name="dialog_routing_download_and_build_cross_route">Apakah Anda ingin mengunduh peta dan membuat rute yang lebih optimal yang meliputi lebih dari satu peta?</string>
 	<string name="dialog_routing_download_cross_route">Unduh peta untuk membuat rute yang lebih optimal yang melewati ujung peta ini.</string>
 
@@ -375,7 +378,8 @@
 	<string name="categories">Kategori</string>
 	<string name="history">Riwayat</string>
 	<string name="search_not_found">Maaf, saya tidak menemukan apa pun.</string>
-	<string name="search_not_found_query">Silakan coba kueri lainnya.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Unduh wilayah tempat Anda mencari atau coba tambahkan nama kota/desa terdekat.</string>
 	<string name="search_history_title">Riwayat Pencarian</string>
 	<string name="search_history_text">Akses kueri pencarian terbaru dengan cepat.</string>
 	<string name="clear_search">Bersihkan riwayat pencarian</string>
@@ -424,6 +428,8 @@
 	<string name="no_osm_account">Tidak ada akun di OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Mendaftar</string>
 	<string name="login">Masuk</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Belum masuk</string>
 	<string name="login_osm">Masuk ke OpenStreetMap</string>
 	<string name="password">Kata sandi</string>
 	<string name="forgot_password">Lupa kata sandi?</string>
@@ -462,7 +468,6 @@
 	<string name="editor_edit_place_category_title">Kategori</string>
 	<string name="detailed_problem_description">Gambaran terperinci tentang masalah</string>
 	<string name="editor_report_problem_other_title">Masalah yang berbeda</string>
-	<string name="placepage_add_business_button">Tambahkan organisasi</string>
 	<string name="message_invalid_feature_position">Objek tidak dapat diletakkan di sini</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Data OpenStreetMap yang dibuat oleh komunitas pada tanggal %s. Pelajari lebih lanjut mengenai cara mengedit dan memperbarui peta di OpenStreetMap.org</string>
@@ -554,8 +559,10 @@
 	<string name="learn_more">Pelajari selengkapnya</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Keluar</string>
-	<string name="routing_add_start_point">Tambahkan titik awal untuk merencanakan rute</string>
-	<string name="routing_add_finish_point">Tambahkan titik akhir untuk merencanakan rute</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Gunakan pencarian atau ketuk pada peta untuk menambahkan titik awal rute</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Gunakan pencarian atau ketuk pada peta untuk menambahkan titik tujuan</string>
 	<string name="placepage_remove_stop">Hapus</string>
 	<string name="placepage_add_stop">Tambah perhentian</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -569,6 +576,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Sembunyikan semua</string>
 	<string name="bookmark_lists_show_all">Perlihatkan semua</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d markah</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Buat daftar baru</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Impor penanda dan trek</string>
@@ -584,15 +594,9 @@
 	<string name="phone_number">Nomor telepon</string>
 	<string name="profile">Profil OpenStreetMap</string>
 	<plurals name="bookmarks_detect_message">
-	  <item quantity="one">%d file ditemukan. Anda akan melihatnya setelah mengonversi.</item>
 	  <item quantity="other">%d file telah ditemukan. Anda akan melihatnya setelah konversi.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">tempat %d</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">tempat %d</item>
-	</plurals>
+	<string name="restore">Mengembalikan</string>
 	<plurals name="tracks">
 	  <item quantity="other">trek %d</item>
 	</plurals>
@@ -759,6 +763,8 @@
 	<string name="button_layer_outdoor">Pendakian</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Browser web tidak tersedia</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Otorisasi OpenStreetMap untuk sementara tidak tersedia karena adanya pembatasan baru di Google Play 😾\nTim kami sedang berusaha untuk menyelesaikan masalah ini. Mohon bersabar 🙏</string>
 	<string name="volume">Volume</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Mengekspor semua Penanda dan Trek</string>
@@ -775,6 +781,15 @@
 	<string name="website_menu">Tautan menu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Lihat Menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Layanan mandiri</string>
+	<string name="select_option">Pilih opsi</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Tempat duduk di luar ruangan</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Matikan Mode Hemat Daya</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Untuk navigasi yang paling akurat, kami sarankan untuk menonaktifkan mode hemat daya dalam pengaturan baterai ponsel.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Alamat/Blokir</string>
@@ -1908,4 +1923,8 @@
 	<string name="type.amenity.events_venue">Tempat acara</string>
 	<string name="type.shop.auction">Lelang</string>
 	<string name="type.shop.collector">Barang koleksi</string>
+	<string name="type.self_service.yes">Tersedia layanan mandiri</string>
+	<string name="type.self_service.only">Hanya layanan mandiri</string>
+	<string name="type.self_service.partially">Layanan mandiri sebagian</string>
+	<string name="type.self_service.no">Tidak ada layanan mandiri</string>
 </resources>

@@ -2,14 +2,13 @@
 #include "platform/platform.hpp"
 
 #include "coding/internal/file_data.hpp"
-#include "coding/writer.hpp"
 
 #include "base/file_name_utils.hpp"
 #include "base/logging.hpp"
+#include "base/random.hpp"
 #include "base/string_utils.hpp"
 
 #include <algorithm>
-#include <random>
 #include <thread>
 
 #include "private.h"
@@ -20,17 +19,15 @@ namespace
 {
 std::string RandomString(size_t length)
 {
+  /// @todo Used for temp file name, so lower-upper case is strange here, no?
   static std::string_view constexpr kCharset =
       "0123456789"
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
       "abcdefghijklmnopqrstuvwxyz";
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<size_t> dis(0, kCharset.size() - 1);
+
+  base::UniformRandom<size_t> rand(0, kCharset.size() - 1);
   std::string str(length, 0);
-  std::generate_n(str.begin(), length, [&]() {
-    return kCharset[dis(gen)];
-  });
+  std::generate_n(str.begin(), length, [&rand]() { return kCharset[rand()]; });
   return str;
 }
 
@@ -204,6 +201,9 @@ void Platform::GetFontNames(FilesList & res) const
   /// @todo Actually, this list should present once in all our code.
   char constexpr const * arrDef[] = {
     "00_NotoNaskhArabic-Regular.ttf",
+    "00_NotoSansBengali-Regular.ttf",
+    "00_NotoSansHebrew-Regular.ttf",
+    "00_NotoSansMalayalam-Regular.ttf",
     "00_NotoSansThai-Regular.ttf",
     "00_NotoSerifDevanagari-Regular.ttf",
     "01_dejavusans.ttf",
@@ -295,16 +295,15 @@ void Platform::SetResourceDir(std::string const & path)
 // static
 bool Platform::MkDirChecked(std::string const & dirName)
 {
-  Platform::EError const ret = MkDir(dirName);
-  switch (ret)
+  switch (EError const ret = MkDir(dirName))
   {
-  case Platform::ERR_OK: return true;
-  case Platform::ERR_FILE_ALREADY_EXISTS:
+  case ERR_OK: return true;
+  case ERR_FILE_ALREADY_EXISTS:
   {
-    Platform::EFileType type;
+    EFileType type;
     if (!GetFileTypeChecked(dirName, type))
       return false;
-    if (type != EFileType::Directory)
+    if (type != Directory)
     {
       LOG(LERROR, (dirName, "exists, but not a dirName:", type));
       return false;
@@ -318,16 +317,16 @@ bool Platform::MkDirChecked(std::string const & dirName)
 // static
 bool Platform::MkDirRecursively(std::string const & dirName)
 {
+  CHECK(!dirName.empty(), ());
+
   std::string::value_type const sep[] = { base::GetNativeSeparator(), 0};
-  std::string path = strings::StartsWith(dirName, sep) ? sep : ".";
-  auto const tokens = strings::Tokenize(dirName, sep);
-  for (auto const & t : tokens)
+  std::string path = dirName.starts_with(sep[0]) ? sep : ".";
+  for (auto const & t : strings::Tokenize(dirName, sep))
   {
     path = base::JoinPath(path, std::string{t});
     if (!IsFileExistsByFullPath(path))
     {
-      auto const ret = MkDir(path);
-      switch (ret)
+      switch (MkDir(path))
       {
       case ERR_OK: break;
       case ERR_FILE_ALREADY_EXISTS:
@@ -344,7 +343,7 @@ bool Platform::MkDirRecursively(std::string const & dirName)
   return true;
 }
 
-unsigned Platform::CpuCores() const
+unsigned Platform::CpuCores()
 {
   unsigned const cores = std::thread::hardware_concurrency();
   return cores > 0 ? cores : 1;

@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hei, vaata minu hetkeasukohta Organic Maps kaardil!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Jaga";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "E-post";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Hääle keel";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Testi hääljuhised (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Muu";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kompassi kalibreerimine";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Puudutage pikalt kaardil uuesti, et näha kasutajaliidest.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Värskenda kõik";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Palun proovi uuesti";
 
-"not_now" = "Mitte praegu";
-
 "dialog_routing_download_and_build_cross_route" = "Kas sooviksid kaardi alla laadida ja luua optimaalsema rohkem kui ühte kaarti hõlmava marsruudi?";
 
 "dialog_routing_download_cross_route" = "Lae alla täiendavad kaardid, et luua parem, selle kaardi piire ületav marsruut.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Vabandust, tulemusi ei leitud.";
 
-"search_not_found_query" = "Proovi muuta otsingutingimusi.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Laadige alla piirkond, kus te otsite, või proovige lisada lähedalasuva linna/küla nimi.";
 
 "search_history_title" = "Otsinguajalugu";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Liiklusinfo ei ole saadaval";
 
+"enable_logging" = "Luba logimine";
+
+"log_file_size" = "Logifaili suurus: %@";
+
 "transliteration_title" = "Transliteratsioon ladina keelde";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Välju";
 
-"routing_add_start_point" = "Marsruudi planeerimiseks lisa lähtepunkt";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Marsruudi alguspunkti lisamiseks kasutage otsingut või puudutage kaarti";
 
-"routing_add_finish_point" = "Marsruudi planeerimiseks lisa sihtkoht";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Kasutage otsingut või koputage kaardil sihtkoha lisamiseks";
 
 "planning_route_manage_route" = "Halda marsruuti";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Lisa peatus";
 
 "start_from_my_position" = "Alusta kohast";
-
-"profile_authorization_error" = "Vabandust, tekkis viga. Proovi uuesti sisse logida.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Palun logige sisse OpenStreetMap'i, et laadida automaatselt üles kõik oma kaarditööd. Lisateave";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Kuva kõik";
 
 "bookmarks_create_new_group" = "Loo uus loetelu";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Importida järjehoidjaid ja lugusid";
 
 "downloader_hide_screen" = "Peida vaade";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Mõningaid faile ei teisendatud.";
 
-"bookmarks_restore_title" = "Taasta see versioon?";
-
-"error_system_message" = "Tekkis tundmatu viga";
-
 "restore" = "Taasta";
 
 "privacy_policy" = "Privaatsuspoliitika";
 
 "terms_of_use" = "Kasutustingimused";
-
-"button_layer_traffic" = "Liiklus";
 
 "button_layer_subway" = "Metroo";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automaatne";
 
 "power_managment_setting_manual_max" = "Maksimaalne energiasääst";
+
+"enable_logging_warning_message" = "See valik lülitab sisse logimise diagnostilistel eesmärkidel. Meie meeskonnale võib olla abi rakendusega seotud probleemide tõrkeotsingul. Lubage see valik ajutiselt, et salvestada ja saata meile oma probleemi üksikasjalikud logid.";
 
 "driving_options_title" = "Marsruutimise valikud";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Marsruut luuakse uuesti sinu hetkeasukohast";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "See marsruut teisendatakse autoga läbitavaks";
+
+"not_all_shown_bookmarks_carplay" = "Kõiki järjehoidjaid ei kuvata";
+
+"switch_to_phone_bookmarks_carplay" = "Kõigi järjehoidjate vaatamiseks lülitage telefonile";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Aitäh, et kasutate meie kogukonna koostatud kaarte!";
+
+/* App tip #01 */
+"app_tip_01" = "Teie annetuste ja toetusega saame luua maailma parimaid kaarte!";
+
+/* App tip #02 */
+"app_tip_02" = "Kas teile meeldib meie rakendus? Palun annetage arengu toetamiseks! Ei meeldi veel? Palun andke meile teada ja me parandame selle!";
+
+/* App tip #03 */
+"app_tip_03" = "Kui teate mõnda tarkvaraarendajat, võite paluda tal rakendada teile vajalik funktsioon.";
+
+/* App tip #04 */
+"app_tip_04" = "Kas teate, et saate selle valimiseks pikalt puudutada mis tahes kohta kaardil?";
+
+/* App tip #05 */
+"app_tip_05" = "Kas tead, et saad kaardil valida oma praeguse asukoha?";
+
+/* App tip #06 */
+"app_tip_06" = "Saate aidata meie rakendust oma keelde tõlkida.";
+
+/* App tip #07 */
+"app_tip_07" = "Meie rakenduse on välja töötanud mõned entusiastid ja kogukond.";
+
+/* App tip #08 */
+"app_tip_08" = "Saate hõlpsasti kaardiandmeid parandada ja täiustada.";
+
+/* App tip #09 */
+"app_tip_09" = "Meie põhieesmärk on luua kiireid, privaatsusele keskenduvaid ja hõlpsasti kasutatavaid kaarte, mis teile meeldivad.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Nüüd kasutate telefoni ekraanil Organic Maps";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Menüü link";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Kas soovite saata arendajatele veateate?\nMe toetume oma kasutajatele, kuna Organic Maps ei kogu automaatselt mingit veateavet. Täname teid juba ette Organic Maps'i toetamise eest!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Lubage iCloudi sünkroniseerimine";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Varukoopia";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloudi sünkroniseerimise tõrge";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Viga: Sünkroniseerimine ebaõnnestus ühenduse vea tõttu.";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Viga: iCloud ei ole saadaval";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Avatud teises rakenduses";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Istekohad õues";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Hiljuti kustutatud nimekirjad";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Kustuta";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Kustuta kõik";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Taasta";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Taasta kõik";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Oksjon";
 
 "type.shop.collector" = "Kollektsioneeritavad esemed";
+
+"type.self_service.yes" = "Iseteenindus saadaval";
+
+"type.self_service.only" = "Ainult iseteenindus";
+
+"type.self_service.partially" = "Osaline iseteenindus";
+
+"type.self_service.no" = "Iseteenindus puudub";

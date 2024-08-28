@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Organic Mapsで現在地を確認";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "共有";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Eメール";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "音声言語";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "音声案内をテストする（TTS、Text-To-Speech）";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "その他";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "コンパスの調整";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "インターフェイスを見るには、もう一度地図をロングタップする。";
 
 /* Update all button text */
 "downloader_update_all_button" = "全てをアップデート";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "もう一度お試しください";
 
-"not_now" = "後で";
-
 "dialog_routing_download_and_build_cross_route" = "マップをダウンロードし、複数マップを利用してより最適なルートを作成しますか？";
 
 "dialog_routing_download_cross_route" = "このマップの境界を越えて複数マップを利用し、より最適なルートを作成するには、マップをダウンロードしてください。";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "該当するものは見つかりませんでした。";
 
-"search_not_found_query" = "条件を変えて検索してみてください。";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "検索する地域をダウンロードするか、近隣の町村名を追加してみてください。";
 
 "search_history_title" = "検索履歴";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "交通データは利用できません";
 
+"enable_logging" = "ログを有効化";
+
+"log_file_size" = "ログファイルのサイズ: %@";
+
 "transliteration_title" = "ラテン文字への翻字";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "出口";
 
-"routing_add_start_point" = "ルートを計画するには出発地を追加してください";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "検索を使うか、地図上をタップしてルートの出発点を追加する";
 
-"routing_add_finish_point" = "ルートを計画するには目的地を追加してください";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "検索を使うか、地図上をタップして目的地を追加する";
 
 "planning_route_manage_route" = "ルートを編集";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "中間地点を追加";
 
 "start_from_my_position" = "出発地";
-
-"profile_authorization_error" = "エラーが発生しました。もう一度サインインしてみてください。";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "すべてのマップ編集を自動的にアップロードするには、OpenStreetMapにログインしてください。詳しくは";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "すべて表示";
 
 "bookmarks_create_new_group" = "新しいリストを作成する";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "ブックマークとトラックをインポートする";
 
 "downloader_hide_screen" = "画面を非表示";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "一部のファイルは変換されませんでした。";
 
-"bookmarks_restore_title" = "このバージョンを復元しますか？";
-
-"error_system_message" = "不明なエラーが発生しました";
-
 "restore" = "復元";
 
 "privacy_policy" = "プライバシーポリシー";
 
 "terms_of_use" = "利用規約";
-
-"button_layer_traffic" = "交通状況";
 
 "button_layer_subway" = "地下鉄";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "自動";
 
 "power_managment_setting_manual_max" = "最大電力節約";
+
+"enable_logging_warning_message" = "このオプションは診断目的でのデータ記録を有効にします。これはこのアプリケーションのトラブルシューティングを担当する当社のサポートスタッフの助けになります。このオプションはOrganic Mapsにリクエストされた場合にのみ有効にしてください。";
 
 "driving_options_title" = "経路オプション";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "ルートは現在位置から再計算されます";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "車ルートに変更されます";
+
+"not_all_shown_bookmarks_carplay" = "すべてのブックマークが表示されるわけではない";
+
+"switch_to_phone_bookmarks_carplay" = "携帯電話に切り替えてすべてのブックマークを見る";
 
 "ok" = "OK";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/JA:参加する";
 
+/* App Tip #00 */
+"app_tip_00" = "私たちのコミュニティが作った地図をご利用いただき、ありがとうございます！";
+
+/* App tip #01 */
+"app_tip_01" = "あなたの寄付とサポートがあれば、世界で最高の地図を作成できます。";
+
+/* App tip #02 */
+"app_tip_02" = "私たちのアプリは気に入っていますか? 開発をサポートするために寄付をお願いします！ まだ気に入らないですか？ お知らせください。修正させていただきます。";
+
+/* App tip #03 */
+"app_tip_03" = "ソフトウェア開発者を知っている場合は、必要な機能を実装するように依頼できます。";
+
+/* App tip #04 */
+"app_tip_04" = "地図上の任意の場所を長押しして選択できることをご存知ですか?";
+
+/* App tip #05 */
+"app_tip_05" = "地図上で現在地を選択できることをご存知ですか?";
+
+/* App tip #06 */
+"app_tip_06" = "私たちのアプリをあなたの言語に翻訳するのを手伝ってください。";
+
+/* App tip #07 */
+"app_tip_07" = "私たちのアプリは数人の愛好家とコミュニティによって開発されました。";
+
+/* App tip #08 */
+"app_tip_08" = "地図データを簡単に修正および改善できます。";
+
+/* App tip #09 */
+"app_tip_09" = "私たちの主な目標は、ユーザーに気に入っていただける、プライバシーを重視した使いやすいマップを高速に構築することです。";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "端末の画面でOrganic Mapsを使用している";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "メニューリンク";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "開発者にバグレポートを送りたいか？\nオーガニック・マップはエラー情報を自動収集しないため、我々はユーザーに依存している。Organic Mapsを応援してくださりありがとう！";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "iCloud同期を有効にする";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "バックアップ";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud同期の失敗";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "エラー：接続エラーにより同期に失敗した";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "エラー：iCloudが利用できない";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "別のアプリで開く";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "屋外席";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "最近削除されたリスト";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "クリア";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "すべて削除する";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "復元";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "すべて復元";
 
 
 /********** Types **********/
@@ -2688,7 +2754,7 @@
 "type.natural.shingle" = "小石";
 
 /* A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. */
-"type.natural.scree" = "石がゴロゴロしている";
+"type.natural.scree" = "がれ";
 
 "type.natural.bay" = "港湾";
 
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "オークション";
 
 "type.shop.collector" = "コレクタブル";
+
+"type.self_service.yes" = "セルフサービス可能";
+
+"type.self_service.only" = "セルフサービスのみ";
+
+"type.self_service.partially" = "一部セルフサービス";
+
+"type.self_service.no" = "セルフサービスはない";

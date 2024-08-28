@@ -25096,6 +25096,16 @@ cont {
 cont {
   name: "highway-motorway"
   element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
+  element {
     scale: 7
     lines {
       width: 0.9
@@ -25379,6 +25389,16 @@ cont {
 }
 cont {
   name: "highway-motorway-bridge"
+  element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
   element {
     scale: 7
     lines {
@@ -25759,6 +25779,16 @@ cont {
 }
 cont {
   name: "highway-motorway-tunnel"
+  element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
   element {
     scale: 7
     lines {
@@ -34917,6 +34947,13 @@ cont {
       priority: 4400
     }
   }
+  element {
+    scale: 20
+    symbol {
+      name: "speedcam-s"
+      priority: 4400
+    }
+  }
 }
 cont {
   name: "highway-steps"
@@ -37683,7 +37720,34 @@ cont {
   }
 }
 cont {
+  name: "highway-traffic_signals"
+  element {
+    scale: 19
+    symbol {
+      name: "traffic_signals"
+      priority: 3165
+    }
+  }
+  element {
+    scale: 20
+    symbol {
+      name: "traffic_signals"
+      priority: 3165
+    }
+  }
+}
+cont {
   name: "highway-trunk"
+  element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
   element {
     scale: 7
     lines {
@@ -37968,6 +38032,16 @@ cont {
 }
 cont {
   name: "highway-trunk-bridge"
+  element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
   element {
     scale: 7
     lines {
@@ -38348,6 +38422,16 @@ cont {
 }
 cont {
   name: "highway-trunk-tunnel"
+  element {
+    scale: 6
+    lines {
+      width: 0.8
+      color: 3019862822
+      priority: 310
+      join: BEVELJOIN
+      cap: BUTTCAP
+    }
+  }
   element {
     scale: 7
     lines {
@@ -63292,6 +63376,13 @@ cont {
       priority: 15
     }
   }
+  element {
+    scale: 20
+    area {
+      color: 3641313805
+      priority: 15
+    }
+  }
 }
 cont {
   name: "piste:type-downhill-area"
@@ -63339,6 +63430,13 @@ cont {
   }
   element {
     scale: 19
+    area {
+      color: 3653532415
+      priority: 15
+    }
+  }
+  element {
+    scale: 20
     area {
       color: 3653532415
       priority: 15
@@ -63523,6 +63621,13 @@ cont {
       priority: 15
     }
   }
+  element {
+    scale: 20
+    area {
+      color: 3641387003
+      priority: 15
+    }
+  }
 }
 cont {
   name: "piste:type-downhill-expert"
@@ -63697,6 +63802,13 @@ cont {
   }
   element {
     scale: 19
+    area {
+      color: 3642885669
+      priority: 15
+    }
+  }
+  element {
+    scale: 20
     area {
       color: 3642885669
       priority: 15
@@ -64008,6 +64120,13 @@ cont {
       priority: 15
     }
   }
+  element {
+    scale: 20
+    area {
+      color: 3657174555
+      priority: 15
+    }
+  }
 }
 cont {
   name: "piste:type-downhill-novice"
@@ -64182,6 +64301,13 @@ cont {
   }
   element {
     scale: 19
+    area {
+      color: 3227511598
+      priority: 15
+    }
+  }
+  element {
+    scale: 20
     area {
       color: 3227511598
       priority: 15
@@ -64778,6 +64904,13 @@ cont {
   }
   element {
     scale: 19
+    area {
+      color: 3653532415
+      priority: 15
+    }
+  }
+  element {
+    scale: 20
     area {
       color: 3653532415
       priority: 15

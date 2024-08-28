@@ -278,6 +278,8 @@
 	<string name="compass_calibration_recommended">שפר את כיוון החץ על ידי הזזת הטלפון בתנועה של שמונה כדי לכייל את המצפן.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">הזז את הטלפון בתנועה של דמות שמונה כדי לכייל את המצפן ולתקן את כיוון החץ במפה.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">לחץ לחיצה ארוכה במפה כדי להציג את הממשק</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">עדכן הכל</string>
 	<!-- Cancel all button text -->
@@ -371,6 +373,7 @@
 	<string name="dialog_routing_system_error">שגיאת מערכת</string>
 	<string name="dialog_routing_application_error">לא ניתן ליצור מסלול עקב שגיאת אפליקציה.</string>
 	<string name="dialog_routing_try_again">נסה שוב</string>
+	<string name="not_now">לא עכשיו</string>
 	<string name="dialog_routing_download_and_build_cross_route">האם ברצונך להוריד את המפה וליצור מסלול מיטבי יותר, הכולל יותר מאשר מפה אחת?</string>
 	<string name="dialog_routing_download_cross_route">הורד מפות נוספות כדי ליצור מסלול יותר טוב שחוצה את גבולות המפה הזו.</string>
 
@@ -384,7 +387,8 @@
 	<string name="categories">קטגוריות</string>
 	<string name="history">היסטוריה</string>
 	<string name="search_not_found">אופס, לא נמצאו תוצאות.</string>
-	<string name="search_not_found_query">נסו לשנות את תנאי החיפוש.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">יש להוריד את האזור בו החיפוש מתבצע או להוסיף שם עיר/כפר קרוב.</string>
 	<string name="search_history_title">חיפושים קודמים</string>
 	<string name="search_history_text">צפה בחיפושים האחרונים שלך.</string>
 	<string name="clear_search">נקה היסטוריית חיפוש</string>
@@ -437,6 +441,8 @@
 	<string name="no_osm_account">אין לך חשבון OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">הירשם ב-OpenStreetMap</string>
 	<string name="login">כניסה</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">לא מחובר</string>
 	<string name="login_osm">היכנס ל-OpenStreetMap</string>
 	<string name="password">סיסמה</string>
 	<string name="forgot_password">שכחת סיסמה?</string>
@@ -478,7 +484,6 @@
 	<string name="editor_edit_place_category_title">קטגוריה</string>
 	<string name="detailed_problem_description">תאור מפורט של הבעיה</string>
 	<string name="editor_report_problem_other_title">בעיה אחרת</string>
-	<string name="placepage_add_business_button">הוסף בית עסק</string>
 	<string name="message_invalid_feature_position">לא ניתן למקם כאן פריט</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">נתוני OpenStreetMap שנוצרו על ידי הקהילה החל מ-%s. למידע נוסף על איך לערוך ולעדכן את המפה ב-OpenStreetMap.org</string>
@@ -576,8 +581,10 @@
 	<string name="learn_more">למידע נוסף</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">יציאה</string>
-	<string name="routing_add_start_point">יש להוסיף נקודת התחלה כדי לתכנן מסלול</string>
-	<string name="routing_add_finish_point">יש להוסיף יעד כדי לתכנן מסלול</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">יש להוסיף נקודת התחלה למסלול באמצעות חיפוש או בלחיצה על המפה</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">יש לבחור נקודת יעד באמצעות חיפוש או בלחיצה על המפה</string>
 	<string name="placepage_remove_stop">הסרה</string>
 	<string name="placepage_add_stop">הוסף תחנה</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -591,6 +598,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">הסתר הכל</string>
 	<string name="bookmark_lists_show_all">הצג הכל</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">סימניה %d</item>
+	  <item quantity="other">%d סימניות</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">צור רשימה חדשה</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">ייבוא סימניות ומסלולים</string>
@@ -609,14 +620,7 @@
 	  <item quantity="one">נמצא קובץ %d. יהיה ניתן לראות אותו לאחר ההמרה.</item>
 	  <item quantity="other">נמצאו %d קבצים. יהיה ניתן לראות אותם לאחר ההמרה.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">פריט %d</item>
-	  <item quantity="other">%d פריטים</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">מקום %d</item>
-	  <item quantity="other">%d מקומות</item>
-	</plurals>
+	<string name="restore">שחזור</string>
 	<plurals name="tracks">
 	  <item quantity="one">מסלול %d</item>
 	  <item quantity="other">%d מסלולים</item>
@@ -795,6 +799,8 @@
 	<string name="button_layer_outdoor">טיול רגלי</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">דפדפן אינטרנט אינו זמין</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">הרשאת OpenStreetMap אינה זמינה באופן זמני עקב הגבלות חדשות ב-Google Play 😾\nהצוות שלנו עובד כדי לפתור בעיה זו. אנא התאזרו בסבלנות 🙏</string>
 	<string name="volume">כרך</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">ייצא את כל הסימניות והרצועות</string>
@@ -811,34 +817,92 @@
 	<string name="website_menu">קישור לתפריט</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">תפריט תצוגה</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">שירות עצמי</string>
+	<string name="select_option">בחר אפשרות</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">ישיבה בחוץ</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">כבה מצב חיסכון באנרגיה</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">לניווט המדויק ביותר, אנו ממליצים להשבית את מצב חיסכון בחשמל בהגדרות הסוללה של הטלפון.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">כתובת/חסימה</string>
 	<string name="type.addr_interpolation.even">כתובת/חסימה</string>
 	<string name="type.addr_interpolation.odd">כתובת/חסימה</string>
+	<string name="type.aeroway.aerodrome">שדה תעופה</string>
+	<string name="type.aeroway.aerodrome.international">שדה תעופה בינלאומי</string>
+	<string name="type.aeroway.apron">חניית מטוסים</string>
+	<string name="type.aeroway.gate">שער</string>
+	<string name="type.aeroway.helipad">מנחת מסוקים</string>
+	<string name="type.aeroway.runway">מסלול המראה</string>
+	<string name="type.aeroway.taxiway">מסלול הסעה</string>
+	<string name="type.amenity.atm">כספומט</string>
+	<string name="type.amenity.bank">בנק</string>
+	<string name="type.amenity.bar">בר</string>
 	<string name="type.amenity.bbq">מנגל</string>
+	<string name="type.amenity.bench">ספסל</string>
+	<string name="type.amenity.bicycle_parking">חניית אופניים</string>
+	<string name="type.amenity.bicycle_rental">השכרת אופניים</string>
+	<string name="type.amenity.bicycle_repair_station">תחנת תיקון אופניים</string>
+	<string name="type.amenity.brothel">בית בושת</string>
+	<string name="type.amenity.bus_station">תחנת אוטובוס</string>
+	<string name="type.amenity.cafe">קפה</string>
+	<string name="type.amenity.car_rental">השכרת רכב</string>
+	<string name="type.amenity.car_sharing">רכב שיתופי</string>
+	<string name="type.amenity.car_wash">שטיפת רכב</string>
+	<string name="type.amenity.casino">קזינו</string>
 	<string name="type.amenity.gambling">הימורים</string>
 	<string name="type.leisure.adult_gaming_centre">מרכז משחקים למבוגרים</string>
 	<string name="type.leisure.amusement_arcade">מִקמֶרֶת</string>
+	<string name="type.amenity.charging_station">תחנת טעינה</string>
 	<string name="type.amenity.charging_station.bicycle">תחנת טעינה לאופניים</string>
 	<string name="type.amenity.charging_station.motorcar">תחנת טעינה למכוניות</string>
-	<string name="type.leisure.bowling_alley">גנילואב םלוא</string>
+	<string name="type.amenity.cinema">קולנוע</string>
+	<string name="type.leisure.bowling_alley">אולם באולינג</string>
+	<string name="type.amenity.clinic">מרפאה</string>
+	<string name="type.amenity.college">מכללה</string>
+	<string name="type.amenity.community_centre">מרכז קהילתי</string>
 	<string name="type.amenity.compressed_air">אוויר דחוס</string>
 	<string name="type.amenity.conference_centre">מרכז כנסים</string>
+	<string name="type.amenity.courthouse">בית המשפט</string>
+	<string name="type.amenity.doctors">רופא</string>
+	<string name="type.amenity.drinking_water">מי שתיה</string>
+	<string name="type.drinking_water.yes">מי שתיה</string>
+	<string name="type.amenity.driving_school">בית ספר לנהיגה</string>
 	<string name="type.amenity.exhibition_centre">מרכז תערוכה</string>
 	<string name="type.amenity.money_transfer">העברת כספים</string>
-	<string name="type.amenity.music_school">הקיזומל רפס תיב</string>
-	<string name="type.amenity.language_school">תופשל רפס תיב</string>
+	<string name="type.amenity.music_school">בית ספר למוזיקה</string>
+	<string name="type.amenity.language_school">בית ספר לשפות</string>
+	<string name="type.office.diplomatic">שגרירות</string>
+	<string name="type.amenity.fast_food">מזון מהיר</string>
+	<string name="type.amenity.fire_station">תחנת כיבוי אש</string>
+	<string name="type.amenity.fountain">מזרקה</string>
+	<string name="type.amenity.fuel">תחנת דלק</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard">בית קברות</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">בית קברות נוצרי</string>
+	<string name="type.amenity.hospital">בית חולים</string>
+	<string name="type.amenity.ice_cream">גלידה</string>
+	<string name="type.amenity.internet_cafe">קפה אינטרנט</string>
+	<string name="type.amenity.kindergarten">גן ילדים</string>
+	<string name="type.amenity.library">ספריה</string>
 	<string name="type.amenity.loading_dock">רציף טעינה</string>
-	<string name="type.amenity.parking">היָנָחֲ</string>
-	<string name="type.amenity.parking.fee">היָנָחֲ</string>
-	<string name="type.amenity.parking.multi.storey">תומוק בר הינח</string>
-	<string name="type.amenity.parking.multi.storey.fee">תומוק בר הינח</string>
-	<string name="type.amenity.parking.no.access">תיטרפ הינח</string>
-	<string name="type.amenity.parking.permissive">תיטרפ הינח</string>
-	<string name="type.amenity.parking.private">תיטרפ הינח</string>
-	<string name="type.amenity.parking.underground">תיעקרק - תת הינח</string>
-	<string name="type.amenity.parking.underground.fee">תיעקרק - תת הינח</string>
+	<string name="type.amenity.marketplace">זירת מסחר</string>
+	<string name="type.amenity.motorcycle_parking">חניית אופנועים</string>
+	<string name="type.amenity.nightclub">מועדון לילה</string>
+	<string name="type.amenity.parking">חניה</string>
+	<string name="type.amenity.parking.fee">חניה</string>
+	<string name="type.amenity.parking.multi.storey">חניון רב קומות</string>
+	<string name="type.amenity.parking.multi.storey.fee">חניון רב קומות</string>
+	<string name="type.amenity.parking.no.access">חניה פרטית</string>
+	<string name="type.amenity.parking.permissive">חניה פרטית</string>
+	<string name="type.amenity.parking.private">חניה פרטית</string>
+	<string name="type.amenity.parking.park_and_ride">חניית חנה וסע</string>
+	<string name="type.amenity.parking.underground">חניה תת קרקעית</string>
+	<string name="type.amenity.parking.underground.fee">חניה תת קרקעית</string>
 	<string name="type.amenity.parking.underground.private">חניה תת קרקעית פרטית</string>
 	<string name="type.amenity.parking.street_side">חניה בצד הרחוב</string>
 	<string name="type.amenity.parking.street_side.fee">חניה בצד הרחוב</string>
@@ -846,15 +910,46 @@
 	<string name="type.amenity.parking.lane">חנייה בנתיב</string>
 	<string name="type.amenity.parking.lane.fee">חנייה בנתיב</string>
 	<string name="type.amenity.parking.lane.private">חניה פרטית בנתיב</string>
-	<string name="type.amenity.parking_entrance">הינחל הסינכ</string>
+	<string name="type.amenity.parking_entrance">כניסה לחניה</string>
 	<string name="type.amenity.parking_entrance.private">כניסה פרטית לחניה</string>
-	<string name="type.amenity.parking_entrance.permissive">הינחל הסינכ</string>
-	<string name="type.amenity.parking_space.disabled">םיכנל הינח</string>
+	<string name="type.amenity.parking_entrance.permissive">כניסה לחניה</string>
+	<string name="type.amenity.parking_space">מקום חניה</string>
+	<string name="type.amenity.parking_space.permissive">מקום חניה</string>
+	<string name="type.amenity.parking_space.private">מקום חניה</string>
+	<string name="type.amenity.parking_space.underground">מקום חניה</string>
+	<string name="type.amenity.parking_space.disabled">חניה לנכים</string>
+	<string name="type.amenity.payment_terminal">מסוף תשלום</string>
+	<string name="type.amenity.pharmacy">בית מרקחת</string>
+	<string name="type.amenity.place_of_worship">מקום דתי</string>
+	<string name="type.amenity.place_of_worship.christian">כנסיה</string>
 	<string name="type.amenity.place_of_worship.christian.mormon">כנסיית ישוע המשיח של קדושי אחרון הימים</string>
-	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">בית הכנסת של עדי יהוה</string>
+	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">כנסיה של עדי יהוה</string>
+	<string name="type.amenity.place_of_worship.jewish">בית כנסת</string>
+	<string name="type.amenity.place_of_worship.muslim">מסגד</string>
+	<string name="type.amenity.police">משטרה</string>
+	<string name="type.amenity.post_box">תיבת דואר</string>
+	<string name="type.amenity.post_office">דואר</string>
+	<string name="type.amenity.prison">בית כלא</string>
+	<string name="type.amenity.pub">פאב</string>
 
 	<!-- SECTION: Types: Recycling -->
-	<string name="type.recycling.batteries">תוללוס</string>
+	<string name="type.amenity.recycling.centre">מרכז מיחזור</string>
+	<string name="type.amenity.recycling">מיכל מיחזור</string>
+	<string name="type.amenity.recycling.container">מיכל מיחזור</string>
+	<string name="type.recycling.batteries">סוללות</string>
+	<string name="type.recycling.clothes">בגדים</string>
+	<string name="type.recycling.glass_bottles">בקבוקי זכוכית</string>
+	<string name="type.recycling.paper">נייר</string>
+	<string name="type.recycling.plastic">פלסטיק</string>
+	<string name="type.recycling.plastic_bottles">בקבוקי פלסטיק</string>
+	<string name="type.recycling.scrap_metal">גרוטאות מתכת</string>
+	<string name="type.recycling.small_appliances">פסולת אלקטרונית</string>
+	<string name="type.recycling.cardboard">קרטון</string>
+	<string name="type.recycling.cans">פחיות</string>
+	<string name="type.recycling.shoes">נעליים</string>
+	<string name="type.recycling.green_waste">פסולת אורגנית/ירוקה</string>
+	<string name="type.amenity.restaurant">מסעדה</string>
+	<string name="type.amenity.school">בית ספר</string>
 	<!-- Weather shelter (including sun shelters and natural rock shelters). -->
 	<string name="type.amenity.shelter">מחסה</string>
 	<!-- A weather shelter by the public transport stop. -->
@@ -864,7 +959,21 @@
 	<!-- A traditional 3-walled shelter (one side open), suitable for overnight camping. -->
 	<string name="type.amenity.shelter.lean_to">מחסה ללינה</string>
 	<string name="type.amenity.public_bath">אמבטיה ציבורית</string>
+	<string name="type.amenity.shower">מקלחת</string>
 	<string name="type.amenity.stripclub">מועדון חשפנות</string>
+	<string name="type.amenity.taxi">תחנת מוניות</string>
+	<string name="type.amenity.telephone">טלפון</string>
+	<string name="type.amenity.theatre">תיאטרון</string>
+	<string name="type.amenity.toilets">שירותים</string>
+	<string name="type.toilets.yes">שירותים</string>
+	<string name="type.amenity.townhall">בית העיריה</string>
+	<string name="type.amenity.university">אוניברסיטה</string>
+	<string name="type.amenity.vending_machine">מכונת ממכר אוטומטית</string>
+	<string name="type.amenity.vending_machine.cigarettes">מכונה לממכר סיגריות</string>
+	<string name="type.amenity.vending_machine.coffee">מכונה לממכר קפה</string>
+	<string name="type.amenity.vending_machine.newspapers">מתקן עיתונים</string>
+	<string name="type.amenity.vending_machine.parking_tickets">מדחן</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">מכונת כרטיסים</string>
 	<string name="type.amenity.vehicle_inspection">לבדיקה טכנית</string>
 	<string name="type.barrier.city_wall">חומת העיר</string>
 	<string name="type.waterway.ditch">תעלת ניקוז</string>
@@ -1150,6 +1259,10 @@
 	<string name="type.historic.wayside_shrine">מקדש בצד הדרך</string>
 	<string name="type.historic.wreck">לְנַפֵּץ</string>
 	<string name="type.landuse.basin">אגן מים</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery">בית קברות</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery.christian">בית קברות נוצרי</string>
 	<string name="type.landuse.flowerbed">מיטת פרחים</string>
 	<string name="type.leisure.dance">םידוקיר םלוא</string>
 	<string name="type.leisure.hackerspace">האקרספייס</string>
@@ -1292,6 +1405,7 @@
 	<string name="type.shop.rental">חנות להשכרה</string>
 	<string name="type.shop.rental.bicycle">חנות להשכרת אופניים</string>
 	<string name="type.shop.second_hand">היינש די תונח</string>
+	<string name="type.shop.shoes">חנות נעליים</string>
 	<string name="type.shop.agrarian">חנות חקלאית</string>
 	<string name="type.shop.antiques">תוֹקיתִעַ</string>
 	<string name="type.shop.appliance">חנות מוצרי חשמל</string>
@@ -1350,6 +1464,7 @@
 	<string name="type.sport.field_hockey">הדש יקוה</string>
 	<string name="type.sport.badminton">תיצונ</string>
 	<string name="type.sport.pelota">תיקסאב הטלפ</string>
+	<string name="type.tourism">תיירות</string>
 	<string name="type.tourism.aquarium">אַקוַרִיוּם</string>
 	<!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
 	<string name="type.tourism.alpine_hut">בקתת הרים</string>
@@ -1377,4 +1492,8 @@
 	<string name="type.amenity.events_venue">מקום אירועים</string>
 	<string name="type.shop.auction">מכירה פומבית</string>
 	<string name="type.shop.collector">פריטי אספנות</string>
+	<string name="type.self_service.yes">שירות עצמי זמין</string>
+	<string name="type.self_service.only">שירות עצמי בלבד</string>
+	<string name="type.self_service.partially">שירות עצמי חלקי</string>
+	<string name="type.self_service.no">אין שירות עצמי</string>
 </resources>
