@@ -648,7 +648,7 @@ Java_app_organicmaps_downloader_MapManager_nativeUpdateAllMapsRegistration(JNIEn
                     if (isWorldMap || (mapSource == MapSource::Organicmaps &&
                                        totalRegisteredMaps < numDownloadedMapsLimit)) {
                         s.RegisterCountryFiles(localCountryFile);
-                        f->RegisterMap(*localCountryFile);
+                        f->RegisterMap(*(localCountryFile.get()));
                         if (!isWorldMap) {
                             ++totalRegisteredMaps;
                         }
@@ -663,7 +663,7 @@ Java_app_organicmaps_downloader_MapManager_nativeUpdateAllMapsRegistration(JNIEn
             bool isWorldMap = localCountryFile->GetCountryName().find("World") != std::string::npos;
             if (isWorldMap) {
                 s.RegisterCountryFiles(localCountryFile);
-                f->RegisterMap(*localCountryFile);
+                f->RegisterMap(*(localCountryFile.get()));
             }
         }
         isUpdated = true;
