@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "अरे, ऑर्गेनिक मैप मानचित्र पर मेरा वर्तमान स्थान देखें!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "साझा करें";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "ईमेल";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "आवाज की भाषा";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "ध्वनि निर्देशों का परीक्षण करें (टीटीएस, टेक्स्ट-टू-स्पीच)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "अन्य";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "कम्पास अंशांकन";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "इंटरफ़ेस देखने के लिए मानचित्र पर फिर से देर तक टैप करें";
 
 /* Update all button text */
 "downloader_update_all_button" = "Update All";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Please try again";
 
-"not_now" = "Not Now";
-
 "dialog_routing_download_and_build_cross_route" = "Would you like to download the map and create a more optimal route spanning more than one map?";
 
 "dialog_routing_download_cross_route" = "Download additional maps to create a better route that crosses the boundaries of this map.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "उफ़, कोई परिणाम नहीं मिला.";
 
-"search_not_found_query" = "अपना खोज मानदण्ड बदलने का प्रयास करें।";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "उस क्षेत्र को डाउनलोड करें जहां आप खोज रहे हैं या पास के शहर/गांव का नाम जोड़ने का प्रयास करें।";
 
 "search_history_title" = "खोज इतिहास";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Traffic data is not available";
 
+"enable_logging" = "लॉगिंग करने देना";
+
+"log_file_size" = "लॉग फ़ाइल का आकार: %@";
+
 "transliteration_title" = "लैटिन में लिप्यंतरण";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Exit";
 
-"routing_add_start_point" = "मार्ग की योजना बनाने के लिए एक प्रारंभिक बिंदु जोड़ें";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "मार्ग का प्रारंभिक बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें";
 
-"routing_add_finish_point" = "मार्ग की योजना बनाने के लिए एक गंतव्य जोड़ें";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "गंतव्य बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें";
 
 "planning_route_manage_route" = "मार्ग प्रबंधित करें";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "गंतव्य जोड़ें";
 
 "start_from_my_position" = "Start from";
-
-"profile_authorization_error" = "उफ़, एक त्रुटि हुई. पुनः साइन इन करने का प्रयास करें.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "कृपया अपने सभी मानचित्र संपादनों को स्वचालित रूप से अपलोड करने के लिए OpenStreetMap पर लॉगिन करें। अधिक जानें";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "सब दिखाएं";
 
 "bookmarks_create_new_group" = "एक नई सूची बनाएं";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "बुकमार्क और सेटिंग्स आयात करें";
 
 "downloader_hide_screen" = "Hide Screen";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "कुछ फ़ाइलें परिवर्तित नहीं की गईं.";
 
-"bookmarks_restore_title" = "Restore this version?";
-
-"error_system_message" = "एक अज्ञात त्रुटि हुई";
-
 "restore" = "Restore";
 
 "privacy_policy" = "गोपनीयता नीति";
 
 "terms_of_use" = "उपयोग की शर्तें";
-
-"button_layer_traffic" = "Traffic";
 
 "button_layer_subway" = "भूमिगत मार्ग";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "जब बैटरी कम हो";
 
 "power_managment_setting_manual_max" = "हमेशा";
+
+"enable_logging_warning_message" = "सहायता संवाद में \"बग की रिपोर्ट करें\" का उपयोग करके हमें अपनी समस्या के बारे में विस्तृत डायग्नोस्टिक लॉग रिकॉर्ड करने और मैन्युअल रूप से भेजने के लिए इस विकल्प को अस्थायी रूप से सक्षम करें। लॉग में स्थान की जानकारी शामिल हो सकती है.";
 
 "driving_options_title" = "रूटिंग विकल्प";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "मार्ग आपके वर्तमान स्थान से फिर से बनाया जाएगा";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "मार्ग को ऑटोमोबाइल में परिवर्तित किया जाएगा";
+
+"not_all_shown_bookmarks_carplay" = "सभी बुकमार्क नहीं दिखाए गए हैं";
+
+"switch_to_phone_bookmarks_carplay" = "सभी बुकमार्क देखने के लिए फ़ोन पर स्विच करें";
 
 "ok" = "ठीक है";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "हमारे समुदाय-निर्मित मानचित्रों का उपयोग करने के लिए धन्यवाद!";
+
+/* App tip #01 */
+"app_tip_01" = "आपके दान और समर्थन से, हम दुनिया में सबसे अच्छे मानचित्र बना सकते हैं!";
+
+/* App tip #02 */
+"app_tip_02" = "क्या आपको हमारा ऐप पसंद है? कृपया विकास का समर्थन करने के लिए दान करें! अभी तक यह पसंद नहीं आया? कृपया हमें बताएं, और हम इसे ठीक कर देंगे!";
+
+/* App tip #03 */
+"app_tip_03" = "यदि आप किसी सॉफ़्टवेयर डेवलपर को जानते हैं, तो आप उससे वह सुविधा लागू करने के लिए कह सकते हैं जिसकी आपको आवश्यकता है।";
+
+/* App tip #04 */
+"app_tip_04" = "क्या आप जानते हैं कि आप मानचित्र पर किसी भी स्थान को चुनने के लिए उस पर देर तक टैप कर सकते हैं?";
+
+/* App tip #05 */
+"app_tip_05" = "क्या आप जानते हैं कि आप मानचित्र पर अपना वर्तमान स्थान चुन सकते हैं?";
+
+/* App tip #06 */
+"app_tip_06" = "आप हमारे ऐप को अपनी भाषा में अनुवाद करने में मदद कर सकते हैं।";
+
+/* App tip #07 */
+"app_tip_07" = "हमारा ऐप कुछ उत्साही लोगों और समुदाय द्वारा विकसित किया गया है।";
+
+/* App tip #08 */
+"app_tip_08" = "आप मानचित्र डेटा को आसानी से ठीक और सुधार सकते हैं।";
+
+/* App tip #09 */
+"app_tip_09" = "हमारा मुख्य लक्ष्य तेज़, गोपनीयता-केंद्रित, उपयोग में आसान मानचित्र बनाना है जो आपको पसंद आएंगे।";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "अब आप फ़ोन स्क्रीन पर ऑर्गेनिक मानचित्र का उपयोग कर रहे हैं";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "मेनू लिंक";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "क्या आप डेवलपर्स को बग रिपोर्ट भेजना चाहेंगे?\nहम अपने उपयोगकर्ताओं पर भरोसा करते हैं क्योंकि ऑर्गेनिक मैप्स स्वचालित रूप से कोई त्रुटि जानकारी एकत्र नहीं करता है। ऑर्गेनिक मैप्स का समर्थन करने के लिए अग्रिम धन्यवाद!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "iCloud सिंक्रोनाइज़ेशन सक्षम करें";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "बैकअप";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud सिंक्रनाइज़ेशन विफलता";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "त्रुटि: कनेक्शन त्रुटि के कारण सिंक्रनाइज़ करने में विफल";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "त्रुटि: iCloud उपलब्ध नहीं है";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "किसी अन्य ऐप में खोलें";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "घर के बाहर बैठने";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "हाल ही में हटाई गई सूचियाँ";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "साफ करें";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "सभी हटा दो";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "पुनः प्राप्त करें";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "सभी पुनः प्राप्त करें";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Auction";
 
 "type.shop.collector" = "Collectables";
+
+"type.self_service.yes" = "स्व-सेवा उपलब्ध है";
+
+"type.self_service.only" = "केवल स्व-सेवा";
+
+"type.self_service.partially" = "आंशिक स्व-सेवा";
+
+"type.self_service.no" = "कोई स्व-सेवा नहीं";

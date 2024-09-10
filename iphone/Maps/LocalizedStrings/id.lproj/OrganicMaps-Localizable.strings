@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hei, lihat lokasiku saat ini di peta Organic Maps!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Bagikan";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Surel";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Bahasa Suara";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Menguji petunjuk suara (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Lainnya";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kalibrasi kompas";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Ketuk lama pada peta sekali lagi untuk melihat antarmuka";
 
 /* Update all button text */
 "downloader_update_all_button" = "Perbarui semua";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Mohon coba lagi";
 
-"not_now" = "Jangan Sekarang";
-
 "dialog_routing_download_and_build_cross_route" = "Apakah Anda ingin mengunduh peta dan membuat rute yang lebih optimal yang meliputi lebih dari satu peta?";
 
 "dialog_routing_download_cross_route" = "Unduh peta untuk membuat rute yang lebih optimal yang melewati ujung peta ini.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Maaf, saya tidak menemukan apa pun.";
 
-"search_not_found_query" = "Silakan coba kueri lainnya.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Unduh wilayah tempat Anda mencari atau coba tambahkan nama kota/desa terdekat.";
 
 "search_history_title" = "Riwayat Pencarian";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Data lalu lintas tidak tersedia";
 
+"enable_logging" = "Aktifkan pencatatan";
+
+"log_file_size" = "Ukuran file log: %@";
+
 "transliteration_title" = "Transliterasi ke dalam bahasa Latin";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Keluar";
 
-"routing_add_start_point" = "Tambahkan titik awal untuk merencanakan rute";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Gunakan pencarian atau ketuk pada peta untuk menambahkan titik awal rute";
 
-"routing_add_finish_point" = "Tambahkan titik akhir untuk merencanakan rute";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Gunakan pencarian atau ketuk pada peta untuk menambahkan titik tujuan";
 
 "planning_route_manage_route" = "Kelola rute";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Tambah perhentian";
 
 "start_from_my_position" = "Mulai dari";
-
-"profile_authorization_error" = "Ah, tadi ada kesalahan. Coba masuk kembali.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Silahkan login ke OpenStreetMap untuk mengupload semua hasil edit peta Anda secara otomatis. Pelajari lebih lanjut";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Perlihatkan semua";
 
 "bookmarks_create_new_group" = "Buat daftar baru";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Impor penanda dan trek";
 
 "downloader_hide_screen" = "Sembunyikan Layar";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Beberapa file tidak dikonversi.";
 
-"bookmarks_restore_title" = "Kembalikan versi ini?";
-
-"error_system_message" = "Terjadi kesalahan yang tidak diketahui";
-
 "restore" = "Mengembalikan";
 
 "privacy_policy" = "Kebijakan privasi";
 
 "terms_of_use" = "Ketentuan penggunaan";
-
-"button_layer_traffic" = "Lalu lintas";
 
 "button_layer_subway" = "Kereta bawah tanah";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Otomatis";
 
 "power_managment_setting_manual_max" = "Hemat daya maksimum";
+
+"enable_logging_warning_message" = "Opsi ini mengaktifkan pencatatan untuk tujuan diagnostik. Bisa amat membantu bagi staf dukungan kami yang memecahkan masalah dalam aplikasi. Aktifkan opsi ini hanya saat diminta oleh dukungan Organic Maps.";
 
 "driving_options_title" = "Pilihan berkendara";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Rute akan dibuat ulang dari lokasi saat ini";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Rute akan diubah untuk mobil";
+
+"not_all_shown_bookmarks_carplay" = "Tidak semua penanda ditampilkan";
+
+"switch_to_phone_bookmarks_carplay" = "Beralih ke telepon untuk melihat semua penanda";
 
 "ok" = "Oke";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/About_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Terima kasih telah menggunakan peta buatan komunitas kami!";
+
+/* App tip #01 */
+"app_tip_01" = "Dengan donasi dan dukungan Anda, kami dapat membuat peta terbaik di Dunia!";
+
+/* App tip #02 */
+"app_tip_02" = "Apakah Anda menyukai aplikasi kami? Silakan berdonasi untuk mendukung pengembangan! Belum menyukainya? Harap beri tahu kami, dan kami akan memperbaikinya!";
+
+/* App tip #03 */
+"app_tip_03" = "Jika Anda mengenal seorang pengembang perangkat lunak, Anda dapat memintanya untuk mengimplementasikan fitur yang Anda perlukan.";
+
+/* App tip #04 */
+"app_tip_04" = "Tahukah Anda bahwa Anda dapat mengetuk lama tempat mana pun di peta untuk memilihnya?";
+
+/* App tip #05 */
+"app_tip_05" = "Tahukah Anda bahwa Anda dapat memilih lokasi Anda saat ini di peta?";
+
+/* App tip #06 */
+"app_tip_06" = "Anda dapat membantu menerjemahkan aplikasi kami ke dalam bahasa Anda.";
+
+/* App tip #07 */
+"app_tip_07" = "Aplikasi kami dikembangkan oleh beberapa peminat dan komunitas.";
+
+/* App tip #08 */
+"app_tip_08" = "Anda dapat dengan mudah memperbaiki dan meningkatkan data peta.";
+
+/* App tip #09 */
+"app_tip_09" = "Tujuan utama kami adalah membuat peta yang cepat, berfokus pada privasi, dan mudah digunakan yang akan Anda sukai.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Anda sekarang menggunakan Organic Maps pada layar ponsel";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Tautan menu";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Apakah Anda ingin mengirim laporan bug ke pengembang?\nKami mengandalkan pengguna kami karena Organic Maps tidak mengumpulkan informasi kesalahan secara otomatis. Terima kasih sebelumnya karena telah mendukung Peta Organik!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Mengaktifkan Sinkronisasi iCloud";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Cadangan";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Kegagalan sinkronisasi iCloud";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Kesalahan: Gagal menyinkronkan karena kesalahan koneksi";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Kesalahan: iCloud tidak tersedia";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Buka di Aplikasi Lain";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Tempat duduk di luar ruangan";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Daftar yang Baru Saja Dihapus";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Hapus";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Hapus Semua";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Pulihkan";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Pulihkan Semua";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Lelang";
 
 "type.shop.collector" = "Barang koleksi";
+
+"type.self_service.yes" = "Tersedia layanan mandiri";
+
+"type.self_service.only" = "Hanya layanan mandiri";
+
+"type.self_service.partially" = "Layanan mandiri sebagian";
+
+"type.self_service.no" = "Tidak ada layanan mandiri";

@@ -138,7 +138,11 @@ copy_resources(
   WorldCoasts.mwm
 
   00_NotoNaskhArabic-Regular.ttf
+  00_NotoSansBengali-Regular.ttf
+  00_NotoSansHebrew-Regular.ttf
+  00_NotoSansMalayalam-Regular.ttf
   00_NotoSansThai-Regular.ttf
+  00_NotoSerifDevanagari-Regular.ttf
   01_dejavusans.ttf
   02_droidsans-fallback.ttf
   03_jomolhari-id-a3d.ttf
@@ -153,13 +157,13 @@ install(DIRECTORY ${OMIM_ROOT}/data DESTINATION ${CMAKE_INSTALL_PREFIX}/share/or
 
 if (PLATFORM_LINUX)
   install(FILES ${OMIM_ROOT}/packaging/app.organicmaps.desktop.metainfo.xml DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo/)
-  install(FILES ${OMIM_ROOT}/qt/res/OrganicMaps.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)
+  install(FILES ${OMIM_ROOT}/qt/res/app.organicmaps.desktop.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)
   install(FILES ${OMIM_ROOT}/qt/res/logo.png DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/512x512/apps/ RENAME organicmaps.png)
 endif()
 
 if (NOT PLATFORM_LINUX)
   # On Linux, ICU data is loaded from the shared library.
-  copy_resources(icudt73l.dat)
+  copy_resources(icudt75l.dat)
 endif()
 
 if (PLATFORM_MAC)

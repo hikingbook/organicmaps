@@ -6,8 +6,8 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
-
 import app.organicmaps.BuildConfig;
+import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 
@@ -34,6 +34,7 @@ public final class Config
   private static final String KEY_MISC_AGPS_TIMESTAMP = "AGPSTimestamp";
   private static final String KEY_DONATE_URL = "DonateUrl";
   private static final String KEY_PREF_SEARCH_HISTORY = "SearchHistoryEnabled";
+  private static final String KEY_PREF_LONG_TAP_TOAST_SHOWN = "LongTapToastShown";
 
   /**
    * The total number of app launches.
@@ -350,6 +351,12 @@ public final class Config
     return url;
   }
 
+  @SuppressWarnings("ConstantConditions") // BuildConfig
+  public static boolean isOsmLoginEnabled(@NonNull Context context)
+  {
+    return !BuildConfig.FLAVOR.equals("google");
+  }
+
   public static void init(@NonNull Context context)
   {
     PreferenceManager.setDefaultValues(context, R.xml.prefs_main, false);
@@ -394,6 +401,18 @@ public final class Config
         .edit()
         .putBoolean(KEY_MISC_FIRST_START_DIALOG_SEEN, true)
         .apply();
+  }
+
+  public static boolean wasLongTapToastShown(@NonNull Context context)
+  {
+    return MwmApplication.prefs(context).getBoolean(KEY_PREF_LONG_TAP_TOAST_SHOWN, false);
+  }
+
+  public static void setLongTapToastShown(@NonNull Context context, Boolean newValue)
+  {
+    MwmApplication.prefs(context).edit()
+         .putBoolean(KEY_PREF_LONG_TAP_TOAST_SHOWN, newValue)
+         .apply();
   }
 
   public static boolean isSearchHistoryEnabled()

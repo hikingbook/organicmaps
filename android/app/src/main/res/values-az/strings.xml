@@ -280,6 +280,8 @@
 	<string name="compass_calibration_recommended">Kompası kalibrləmək və ox istiqamətini yaxşılaşdırmaq üçün telefonu səkkiz rəqəmi şəklinə çevirin.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Kompası kalibrləmək və xəritədə oxun istiqamətini düzəltmək üçün telefonu səkkiz rəqəmlə hərəkət etdirin.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">İnterfeysi görmək üçün yenidən xəritəyə uzun müddət toxunun</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Hamısını yeniləyin</string>
 	<!-- Cancel all button text -->
@@ -379,6 +381,7 @@
 	<string name="dialog_routing_system_error">Sistem xətası</string>
 	<string name="dialog_routing_application_error">Tətbiq xətası səbəbindən marşrut yaratmaq mümkün olmadı.</string>
 	<string name="dialog_routing_try_again">Zəhmət olmasa bir daha cəhd edin</string>
+	<string name="not_now">İndi yox</string>
 	<string name="dialog_routing_download_and_build_cross_route">Xəritəni endirmək və çoxsaylı xəritələr arasında daha rahat marşrut yaratmaq istərdinizmi?</string>
 	<string name="dialog_routing_download_cross_route">Bu xəritənin sərhədlərini keçən daha rahat marşrut yaratmaq üçün xəritəni endirin.</string>
 
@@ -392,7 +395,8 @@
 	<string name="categories">Kateqoriyalar</string>
 	<string name="history">Keçmiş</string>
 	<string name="search_not_found">Üzr istəyirik, heç bir nəticə tapılmadı.</string>
-	<string name="search_not_found_query">Axtarış kriteriyalarınızı dəyişməyə cəhd edin.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Axtardığınız bölgəni endirin və ya yaxınlıqdakı şəhər/kənd adını əlavə etməyə cəhd edin.</string>
 	<string name="search_history_title">Axtarış tarixçəsi</string>
 	<string name="search_history_text">Son axtarışlara baxın.</string>
 	<string name="clear_search">Axtarış Tarixçəsini silin</string>
@@ -445,6 +449,8 @@
 	<string name="no_osm_account">OpenStreetMap hesabınız yoxdur?</string>
 	<string name="register_at_openstreetmap">OpenStreetMap üçün qeydiyyatdan keçin</string>
 	<string name="login">Daxil ol</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Giriş edilməyib</string>
 	<string name="login_osm">OpenStreetMap-a daxil olun</string>
 	<string name="password">Parol</string>
 	<string name="forgot_password">Parolu unutmusunuz?</string>
@@ -486,7 +492,6 @@
 	<string name="editor_edit_place_category_title">Kateqoriya</string>
 	<string name="detailed_problem_description">Problemin ətraflı təsviri</string>
 	<string name="editor_report_problem_other_title">Fərqli problem</string>
-	<string name="placepage_add_business_button">Təşkilat əlavə edin</string>
 	<string name="message_invalid_feature_position">Burada obyekti yerləşdirmək mümkün deyil</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">%s tarixinə icma tərəfindən yaradılmış OpenStreetMap datası. OpenStreetMap.org saytında xəritəni necə redaktə etmək və yeniləmək haqqında ətraflı məlumat əldə edin</string>
@@ -585,8 +590,10 @@
 	<string name="learn_more">Daha ətraflı</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Çıx</string>
-	<string name="routing_add_start_point">Marşrutu planlaşdırmaq üçün başlanğıc nöqtəsi əlavə edin</string>
-	<string name="routing_add_finish_point">Marşrutu planlaşdırmaq üçün təyinat əlavə edin</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Marşrutun başlanğıc nöqtəsi əlavə etmək üçün axtarışdan istifadə edin və ya xəritədə klikləyin</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Təyinat nöqtəsi əlavə etmək üçün axtarışdan istifadə edin və ya xəritədə klikləyin</string>
 	<string name="placepage_remove_stop">Sil</string>
 	<string name="placepage_add_stop">Dayanacaq nöqtəsini əlavə edin</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -600,6 +607,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Hamısını gizlət</string>
 	<string name="bookmark_lists_show_all">Hamısını göstər</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d əlfəcin</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Yeni siyahı yaradın</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Əlfəcinləri və fraqmentləri idxal edin</string>
@@ -617,12 +627,7 @@
 	<plurals name="bookmarks_detect_message">
 	  <item quantity="other">%d fayl tapıldı. Dönüşümdən sonra onları görəcəksiniz.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="other">%d obyekt</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="other">%d yer</item>
-	</plurals>
+	<string name="restore">Bərpa</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d istiqamətlər</item>
 	</plurals>
@@ -784,6 +789,8 @@
 	<string name="aa_connected_to_car_notification_title">Avtomobilə qoşulub</string>
 	<!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
 	<string name="button_layer_outdoor">Yürüyüş</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMap avtorizasiyası Google Play-də yeni məhdudiyyətlər səbəbindən müvəqqəti olaraq əlçatan deyil 😾\nKomandamız bu problemi həll etmək üçün çalışır. Xahiş edirəm səbr edin 🙏</string>
 	<string name="volume">Həcm</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Bütün Əlfəcinləri və Parçaları ixrac edin</string>
@@ -800,6 +807,15 @@
 	<string name="website_menu">Menyu keçidi</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Menyuya baxın</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Özünəxidmət</string>
+	<string name="select_option">Seçim seçin</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Çöldə oturma</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Enerjiyə qənaət rejimini söndürün</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Ən dəqiq naviqasiya üçün telefonun batareya parametrlərində enerjiyə qənaət rejimini söndürməyi tövsiyə edirik.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Ünvan/Blok</string>
@@ -2099,4 +2115,8 @@
 	<string name="type.amenity.events_venue">Tədbir yeri</string>
 	<string name="type.shop.auction">Hərrac</string>
 	<string name="type.shop.collector">Kolleksiya əşyaları</string>
+	<string name="type.self_service.yes">Özünə xidmət mövcuddur</string>
+	<string name="type.self_service.only">Yalnız özünə xidmət</string>
+	<string name="type.self_service.partially">Qismən özünəxidmət</string>
+	<string name="type.self_service.no">Özünə xidmət yoxdur</string>
 </resources>

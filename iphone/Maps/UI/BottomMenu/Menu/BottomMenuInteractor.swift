@@ -49,7 +49,7 @@ extension BottomMenuInteractor: BottomMenuInteractorProtocol {
     if url == "https://organicmaps.app/donate/" {
       url = L("translated_om_site_url") + "donate/"
     }
-    viewController?.openUrl(url, inSafari: true)
+    viewController?.openUrl(url, externally: true)
   }
 
   func downloadMaps() {
@@ -72,6 +72,6 @@ extension BottomMenuInteractor: BottomMenuInteractorProtocol {
     }
     guard let viewController = viewController else { return }
     let vc = ActivityViewController.share(forMyPosition: coordinates)
-    vc?.present(inParentViewController: viewController, anchorView: cell.anchorView)
+    vc.present(inParentViewController: viewController, anchorView: cell.anchorView)
   }
 }

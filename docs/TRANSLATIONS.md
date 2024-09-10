@@ -1,5 +1,14 @@
 # Translations
 
+## Help us to review/proofread translations
+
+You can join our [GitHub translation teams](https://github.com/orgs/organicmaps/teams/translations/teams),
+so any contributor can tag all teams (or a specific language team) to get help with the review.
+
+Please respond in the relevant [GitHub discussion](https://github.com/orgs/organicmaps/discussions/8538), or let us know at hello@organicmaps.app
+
+## Contribute translations directly
+
 Adding and updating translations is easy!
 1. Change the translation file you want, e.g. [strings.txt](../data/strings/strings.txt) ([raw text version](https://raw.githubusercontent.com/organicmaps/organicmaps/master/data/strings/strings.txt))
 2. Commit your changes
@@ -25,7 +34,7 @@ Main:
 Additional:
 - Text-to-speech strings for navigation: [`data/strings/sound.txt`](../data/strings/sound.txt)
 
-- Android stores description: [`android/src/google/play/`](../android/src/google/play/)
+- Android stores description: [`android/app/src/fdroid/play/`](../android/app/src/fdroid/play/)
 - Apple AppStore description: [`iphone/metadata/`](../iphone/metadata/)
 
 - Popular brands of map features: [`data/strings/brands_strings.txt`](../data/strings/brands_strings.txt)

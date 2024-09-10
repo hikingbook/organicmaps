@@ -89,7 +89,7 @@ DrawWidget::DrawWidget(Framework & framework, std::unique_ptr<ScreenshotParams> 
   setFocusPolicy(Qt::StrongFocus);
 
   m_framework.SetPlacePageListeners([this]() { ShowPlacePage(); },
-                                    {} /* onClose */, {} /* onUpdate */);
+                                    {} /* onClose */, {} /* onUpdate */, {} /*onSwitchFullScreen */);
 
   auto & routingManager = m_framework.GetRoutingManager();
 
@@ -504,7 +504,7 @@ void DrawWidget::SubmitFakeLocationPoint(m2::PointD const & pt)
       LOG(LDEBUG, ("Distance:", loc.m_distToTarget, "Time:", loc.m_time,
                    DebugPrint(loc.m_pedestrianTurn),
                    "in", loc.m_distToTurn.ToString(),
-                   loc.m_targetName.empty() ? "" : "to " + loc.m_targetName ));
+                   loc.m_nextStreetName.empty() ? "" : "to " + loc.m_nextStreetName ));
     }
     else
     {
@@ -515,7 +515,7 @@ void DrawWidget::SubmitFakeLocationPoint(m2::PointD const & pt)
       LOG(LDEBUG, ("Distance:", loc.m_distToTarget, "Time:", loc.m_time, speed,
                    GetTurnString(loc.m_turn), (loc.m_exitNum != 0 ? ":" + std::to_string(loc.m_exitNum) : ""),
                    "in", loc.m_distToTurn.ToString(),
-                   loc.m_targetName.empty() ? "" : "to " + loc.m_targetName ));
+                   loc.m_nextStreetName.empty() ? "" : "to " + loc.m_nextStreetName ));
     }
   }
 }
@@ -703,7 +703,7 @@ void DrawWidget::ShowPlacePage()
   break;
   default: break;
   }
-  m_framework.DeactivateMapSelection(false);
+  m_framework.DeactivateMapSelection();
 }
 
 void DrawWidget::SetRuler(bool enabled)

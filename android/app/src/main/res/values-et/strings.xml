@@ -272,6 +272,8 @@
 	<string name="compass_calibration_recommended">Parandage noole suunda, liigutades telefoni kaheksakäigulise liigutusega, et kalibreerida kompass.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Liigutage telefoni kaheksakandilise liigutusega, et kalibreerida kompass ja määrata noole suund kaardil.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Puudutage pikalt kaardil uuesti, et näha kasutajaliidest.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Värskenda kõik</string>
 	<!-- Cancel all button text -->
@@ -371,6 +373,7 @@
 	<string name="dialog_routing_system_error">Süsteemi viga</string>
 	<string name="dialog_routing_application_error">Marsruuti ei saa koostada rakenduse vea tõttu.</string>
 	<string name="dialog_routing_try_again">Palun proovi uuesti</string>
+	<string name="not_now">Mitte praegu</string>
 	<string name="dialog_routing_download_and_build_cross_route">Kas sooviksid kaardi alla laadida ja luua optimaalsema rohkem kui ühte kaarti hõlmava marsruudi?</string>
 	<string name="dialog_routing_download_cross_route">Lae alla täiendavad kaardid, et luua parem, selle kaardi piire ületav marsruut.</string>
 
@@ -384,7 +387,8 @@
 	<string name="categories">Kategooriad</string>
 	<string name="history">Ajalugu</string>
 	<string name="search_not_found">Vabandust, tulemusi ei leitud.</string>
-	<string name="search_not_found_query">Proovi muuta otsingutingimusi.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Laadige alla piirkond, kus te otsite, või proovige lisada lähedalasuva linna/küla nimi.</string>
 	<string name="search_history_title">Otsinguajalugu</string>
 	<string name="search_history_text">Vaata hiljutisi otsinguid.</string>
 	<string name="clear_search">Tühjenda otsinguajalugu</string>
@@ -437,6 +441,8 @@
 	<string name="no_osm_account">Puudub OpenStreetMap konto?</string>
 	<string name="register_at_openstreetmap">Registreeru</string>
 	<string name="login">Logi sisse</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Pole sisse logitud</string>
 	<string name="login_osm">Logi sisse OpenStreetMap-i</string>
 	<string name="password">Salasõna</string>
 	<string name="forgot_password">Unustasid oma salasõna?</string>
@@ -478,7 +484,6 @@
 	<string name="editor_edit_place_category_title">Kategooria</string>
 	<string name="detailed_problem_description">Probleemi üksikasjalik kirjeldus</string>
 	<string name="editor_report_problem_other_title">Erinev probleem</string>
-	<string name="placepage_add_business_button">Lisa ettevõte</string>
 	<string name="message_invalid_feature_position">Ükski objekt ei saa siin asuda</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Ühenduse loodud OpenStreetMapi andmed alates %s. Lisateave selle kohta, kuidas kaarti redigeerida ja uuendada, on aadressil OpenStreetMap.org.</string>
@@ -577,8 +582,10 @@
 	<string name="learn_more">Lisateave</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Välju</string>
-	<string name="routing_add_start_point">Marsruudi planeerimiseks lisa lähtepunkt</string>
-	<string name="routing_add_finish_point">Marsruudi planeerimiseks lisa sihtkoht</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Marsruudi alguspunkti lisamiseks kasutage otsingut või puudutage kaarti</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Kasutage otsingut või koputage kaardil sihtkoha lisamiseks</string>
 	<string name="placepage_remove_stop">Eemalda</string>
 	<string name="placepage_add_stop">Lisa peatus</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -592,6 +599,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Peida kõik</string>
 	<string name="bookmark_lists_show_all">Kuva kõik</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d järjehoidja</item>
+	  <item quantity="other">%d järjehoidjat</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Loo uus loetelu</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importida järjehoidjaid ja lugusid</string>
@@ -610,14 +621,7 @@
 	  <item quantity="one">%d fail leiti. Näed seda peale teisendamist.</item>
 	  <item quantity="other">%d faili leiti. Näed neid peale teisendamist.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d objekt</item>
-	  <item quantity="other">%d objekti</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d koht</item>
-	  <item quantity="other">%d kohta</item>
-	</plurals>
+	<string name="restore">Taasta</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d rada</item>
 	</plurals>
@@ -795,6 +799,8 @@
 	<string name="button_layer_outdoor">Matkamine</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Veebibrauser ei ole saadaval</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">OpenStreetMapi autoriseerimine on ajutiselt kättesaamatu Google Play uute piirangute tõttu 😾\nMeie meeskond töötab selle probleemi lahendamise kallal. Palun olge kannatlik 🙏</string>
 	<string name="volume">Helitugevus</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Ekspordi kõik järjehoidjad ja lood</string>
@@ -811,6 +817,15 @@
 	<string name="website_menu">Menüü link</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Menüü vaatamine</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Iseteenindus</string>
+	<string name="select_option">Valige valik</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Istekohad õues</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Lülita välja energiasäästurežiim</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Kõige täpsema navigeerimise tagamiseks soovitame telefoni aku seadetes energiasäästurežiimi välja lülitada.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Aadress/plokk</string>
@@ -2144,4 +2159,8 @@
 	<string name="type.amenity.events_venue">Ürituste toimumiskoht</string>
 	<string name="type.shop.auction">Oksjon</string>
 	<string name="type.shop.collector">Kollektsioneeritavad esemed</string>
+	<string name="type.self_service.yes">Iseteenindus saadaval</string>
+	<string name="type.self_service.only">Ainult iseteenindus</string>
+	<string name="type.self_service.partially">Osaline iseteenindus</string>
+	<string name="type.self_service.no">Iseteenindus puudub</string>
 </resources>

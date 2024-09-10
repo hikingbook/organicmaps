@@ -157,7 +157,7 @@
 "category_police" = "Rendőrség";
 
 /* Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! */
-"category_wifi" = "WiFi";
+"category_wifi" = "Wi-Fi";
 
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "Újrahasznosítás";
@@ -194,11 +194,8 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Nézze meg a helyzetemet a Organic Maps térképen!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Megosztás";
-
 /* Share by email button text, also used in editor and About. */
-"email" = "Email";
+"email" = "E-mail";
 
 /* Text for message when used successfully copied something */
 "copied_to_clipboard" = "A vágólapra másolva: %@";
@@ -263,6 +260,9 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "A hangutasítások nyelve";
 
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Hangutasítások tesztelése (TTS, Text-To-Speech)";
+
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Egyéb";
 
@@ -317,7 +317,7 @@
 "faq" = "Gyakran Ismételt Kérdések";
 
 /* Button in the main menu */
-"donate" = "Adományozni";
+"donate" = "Adományozás";
 
 /* Tex label above the Donate button */
 "donate_description" = "Adományozz, hogy együtt építsük a legjobb térképeket!";
@@ -338,13 +338,16 @@
 "follow_us" = "Kövessen és lépjen kapcsolatba velünk:";
 
 /* Alert text */
-"email_error_body" = "Az email kliens nincs beállítva. Kérjük, konfiguráld vagy próbálj meg valamilyen más módon kapcsolatba lépni velünk a %@ email címen keresztül.";
+"email_error_body" = "Az e-mail kliens nincs beállítva. Kérjük, konfiguráld vagy próbálj meg valamilyen más módon kapcsolatba lépni velünk a %@ e-mail címen keresztül.";
 
 /* Alert title */
-"email_error_title" = "Hiba az email küldése során";
+"email_error_title" = "Hiba az e-mail küldése során";
 
 /* Settings item title */
 "pref_calibration_title" = "Iránytű kalibrálás";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Érintse meg újra hosszan a térképet a kezelőfelület megjelenítéséhez.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Mindegyik frissítése";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Kérjük, próbálja újra";
 
-"not_now" = "Most nem";
-
 "dialog_routing_download_and_build_cross_route" = "Szeretné letölteni a térképet és létrehozni egy optimálisabb útvonalat, amely több, mint egy térképen terül el?";
 
 "dialog_routing_download_cross_route" = "Töltse le a térképet, hogy létrehozzon egy optimálisabb útvonalat, amely áthalad a jelenlegi térkép szélén.";
@@ -534,13 +535,14 @@
 
 "history" = "Előzmények";
 
-"search_not_found" = "Sajnos, semmit nem találtam.";
+"search_not_found" = "Sajnos, semmit sem találtunk.";
 
-"search_not_found_query" = "Próbáljon másik lekérdezést.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Töltse le a keresett régiót, vagy próbálja meg hozzáadni egy közeli város/falu nevét.";
 
-"search_history_title" = "Előző keresések";
+"search_history_title" = "Keresési előzmények";
 
-"search_history_text" = "Aktuális keresés gyors elérése.";
+"search_history_text" = "Legutóbbi keresések gyors elérése.";
 
 "clear_search" = "A keresési előzmények törlése";
 
@@ -673,7 +675,7 @@
 "select_cuisine" = "Válassz Konyhát";
 
 /* login text field */
-"email_or_username" = "Email vagy felhasználónév";
+"email_or_username" = "E-mail vagy felhasználónév";
 
 "phone" = "Telefonszám";
 
@@ -855,7 +857,7 @@
 
 "error_enter_correct_web" = "Adj meg egy érvényes weboldalcímet";
 
-"error_enter_correct_email" = "Adj meg egy érvényes email-címet";
+"error_enter_correct_email" = "Adj meg egy érvényes e-mail címet";
 
 "refresh" = "Frissítés";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Forgalmi adatok nem állnak rendelkezésre";
 
-"transliteration_title" = "Átírás latin nyelvre";
+"enable_logging" = "Naplózás engedélyezése";
+
+"log_file_size" = "Naplófájl mérete: %@";
+
+"transliteration_title" = "Átírás latin betűkre";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Kilépés";
 
-"routing_add_start_point" = "Adjon hozzá kiindulási pontot az útvonal megtervezéséhez";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Használja a keresést, vagy koppintson a térképre az útvonal kezdőpontjának hozzáadásához";
 
-"routing_add_finish_point" = "Adjon hozzá végpontot az útvonal tervezéséhez";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Használja a keresést, vagy koppintson a térképre egy célpont hozzáadásához";
 
 "planning_route_manage_route" = "Útvonal kezelése";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Hozzáad megállót";
 
 "start_from_my_position" = "Kiindulás innen:";
-
-"profile_authorization_error" = "Hoppá, volt egy hiba. Próbáljon meg újra bejelentkezni.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Kérjük, jelentkezzen be az OpenStreetMap rendszerébe, hogy automatikusan feltölthesse az összes térképszerkesztését. További információ";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Összes megjelenítése";
 
 "bookmarks_create_new_group" = "Új lista létrehozása";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Könyvjelzők és sávok importálása";
 
 "downloader_hide_screen" = "Képernyő elrejtése";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Egyes fájlok nem konvertáltak.";
 
-"bookmarks_restore_title" = "A verzió visszaállítása?";
-
-"error_system_message" = "Ismeretlen hiba történt";
-
 "restore" = "Visszaállítás";
 
 "privacy_policy" = "Adatvédelmi irányelvek";
 
 "terms_of_use" = "Felhasználási feltételek";
-
-"button_layer_traffic" = "Forgalom";
 
 "button_layer_subway" = "Metró";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automatikus";
 
 "power_managment_setting_manual_max" = "Maximális energiatakarékosság";
+
+"enable_logging_warning_message" = "Az opció bekapcsolja a diagnosztikai célú naplózást. Hasznos lehet a terméktámogatási csapatunknak, akik elhárítják az alkalmazás hibáit. Csak az Organic Maps terméktámogatásának kérésére kapcsold be ezt az opciót.";
 
 "driving_options_title" = "Útvonaltervezési lehetőségek";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Az útvonal újra lesz tervezve a jelenlegi helyzetedről";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Az útvonal módosítva lesz egy autó számára";
+
+"not_all_shown_bookmarks_carplay" = "Nem minden könyvjelző jelenik meg";
+
+"switch_to_phone_bookmarks_carplay" = "Váltson a telefonra az összes könyvjelző megtekintéséhez";
 
 "ok" = "Oké";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Hu:Névjegy";
 
+/* App Tip #00 */
+"app_tip_00" = "Köszönjük, hogy használja a közösség által készített térképeinket!";
+
+/* App tip #01 */
+"app_tip_01" = "Adományaival és támogatásával létrehozhatjuk a világ legjobb térképes alkalmazását!";
+
+/* App tip #02 */
+"app_tip_02" = "Tetszik az alkalmazásunk? Kérjük, adományozzon a fejlesztés támogatása érdekében! Még nem tetszik? Kérjük, jelezze felénk miért, és mi megoldjuk!";
+
+/* App tip #03 */
+"app_tip_03" = "Ha ismer egy szoftverfejlesztőt, megkérheti őt egy olyan funkció megvalósítására, amelyre szüksége van.";
+
+/* App tip #04 */
+"app_tip_04" = "Tudja, hogy a térkép bármely pontjára hosszan koppintva kiválaszthatja azt?";
+
+/* App tip #05 */
+"app_tip_05" = "Tudja, hogy kijelölheti pozícióját a térképen?";
+
+/* App tip #06 */
+"app_tip_06" = "Ön is segíthet alkalmazásunkat lefordítani a nyelvére.";
+
+/* App tip #07 */
+"app_tip_07" = "Alkalmazásunkat néhány közreműködő és a közösség fejlesztette ki.";
+
+/* App tip #08 */
+"app_tip_08" = "Könnyedén javíthatja a térképadatokat.";
+
+/* App tip #09 */
+"app_tip_09" = "Fő célunk az, hogy gyors, az adatvédelemre fókuszáló, könnyen használható térképeket készítsünk, amelyeket szeretni fog.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Ön most az Organic Maps használja a telefon képernyőjén";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Menü link";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Szeretne hibajelentést küldeni a fejlesztőknek?\nFelhasználóinkra támaszkodunk, mivel az Organic Maps nem gyűjt automatikusan hibainformációkat. Előre is köszönjük, hogy támogatja az Organic Maps-et!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "iCloud-szinkronizálás engedélyezése";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Biztonsági mentés";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "iCloud-szinkronizálási hiba";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Hiba: A szinkronizálás sikertelen volt a kapcsolat hibája miatt.";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Hiba: Az iCloud nem elérhető";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Megnyitás egy másik alkalmazásban";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Kültéri ülőhelyek";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Nemrég törölt listák";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Törlés";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Mindent törölni";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Visszaállítás";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Mindent visszaállít";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Aukció";
 
 "type.shop.collector" = "Gyűjthető tárgyak";
+
+"type.self_service.yes" = "Önkiszolgálás elérhető";
+
+"type.self_service.only" = "Csak önkiszolgálás";
+
+"type.self_service.partially" = "Részleges önkiszolgálás";
+
+"type.self_service.no" = "Nincs önkiszolgálás";

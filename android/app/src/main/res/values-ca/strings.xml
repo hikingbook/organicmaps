@@ -14,7 +14,7 @@
 	<!-- Settings/Downloader - info for country when download fails -->
 	<string name="download_has_failed">La baixada ha fallat. Toqueu per a tornar-ho a intentar.</string>
 	<!-- Settings/Downloader - info for country which started downloading -->
-	<string name="downloading">S\'està baixant…</string>
+	<string name="downloading">S’està baixant…</string>
 	<!-- Choose measurement on first launch alert - choose metric system button -->
 	<string name="kilometres">Quilòmetres</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
@@ -28,30 +28,36 @@
 	<!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
 	<string name="search_map">Cerca en el mapa</string>
 	<!-- Location services are disabled by user alert - message -->
-	<string name="location_is_disabled_long_text">Teniu tots els serveis de geolocalització d\'aquest aparell desactivats. Activeu-los a la configuració.</string>
+	<string name="location_is_disabled_long_text">Tots els serveis de geolocalització d’aquest aparell o aplicació estan desactivats. Activeu-los a la configuració.</string>
 	<!-- View and button titles for accessibility -->
 	<string name="zoom_to_country">Mostra-ho al mapa</string>
 	<!-- Message to display at the center of the screen when the country download has failed -->
 	<string name="country_status_download_failed">La baixada ha fallat</string>
 	<!-- Button text for the button under the country_status_download_failed message -->
 	<string name="try_again">Torna-ho a intentar</string>
-	<string name="about_menu_title">Quant a l\'Organic Maps</string>
+	<string name="about_menu_title">Quant a l’Organic Maps</string>
 	<!-- Text in About screen -->
-	<string name="about_proposition_2">• Sense consum de bateria, funciona fora de línia</string>
+	<string name="about_headline">Gratuït per a tothom, fet amb amor</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_1">• Sense publicitat, rastreig ni recopilació de dades</string>
+	<!-- Text in About screen -->
+	<string name="about_proposition_2">• Consum de bateria mínim, funciona fora de línia</string>
 	<!-- Text in About screen -->
 	<string name="about_proposition_3">• Ràpid, minimalista, desenvolupat per la comunitat</string>
+	<!-- Text in About screen -->
+	<string name="about_developed_by_enthusiasts">Aplicació de codi obert creada per entusiastes i voluntaris.</string>
 	<!-- The button that opens system location settings -->
-	<string name="location_settings">Paràmetres d\'ubicació</string>
+	<string name="location_settings">Paràmetres d’ubicació</string>
 	<string name="close">Tanca</string>
-	<string name="unsupported_phone">L\'aplicació requereix acceleració per maquinari OpenGL. Malauradament, el vostre aparell no ho suporta.</string>
+	<string name="unsupported_phone">L’aplicació requereix acceleració per maquinari OpenGL. Malauradament, el vostre aparell no ho admet.</string>
 	<string name="download">Baixa</string>
 	<!-- Used in DownloadResources startup screen -->
-	<string name="disconnect_usb_cable">Desconnecteu el cable USB o inseriu una targeta de memòria per a usar l\'Organic Maps</string>
+	<string name="disconnect_usb_cable">Desconnecteu el cable USB o inseriu una targeta de memòria per a usar l’Organic Maps</string>
 	<!-- Used in DownloadResources startup screen -->
-	<string name="not_enough_free_space_on_sdcard">Allibereu espai en la targeta SD o emmagatzematge USB per a poder usar l\'aplicació</string>
-	<string name="download_resources">Abans d\'usar l\'aplicació, autoritzeu que baixem el mapa del món general al vostre aparell.\nUsarà %s d\'emmagatzematge.</string>
+	<string name="not_enough_free_space_on_sdcard">Allibereu espai en la targeta SD o emmagatzematge USB per a poder usar l’aplicació</string>
+	<string name="download_resources">Abans d’usar l’aplicació, autoritzeu que baixem el mapa del món general al vostre aparell.\nUsarà %s d’emmagatzematge.</string>
 	<string name="download_resources_continue">Ves al mapa</string>
-	<string name="downloading_country_can_proceed">S\'està baixant %s. Mentrestant, podeu\nanar al mapa.</string>
+	<string name="downloading_country_can_proceed">S’està baixant %s. Mentrestant, podeu\nanar al mapa.</string>
 	<string name="download_country_ask">Voleu baixar %s?</string>
 	<string name="update_country_ask">Voleu actualitzar %s?</string>
 	<!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -274,6 +280,8 @@
 	<string name="compass_calibration_recommended">Milloreu la direcció de la fletxa movent el telèfon amb un moviment de vuit per calibrar la brúixola.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Moveu el telèfon amb un moviment de vuit per calibrar la brúixola i fixar la direcció de la fletxa al mapa.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Toqueu llargament el mapa de nou per veure la interfície</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Actualitza-ho tot</string>
 	<!-- Cancel all button text -->
@@ -373,6 +381,7 @@
 	<string name="dialog_routing_system_error">Error de sistema</string>
 	<string name="dialog_routing_application_error">No s\'ha pogut crear la ruta a causa d\'un error de l\'aplicació.</string>
 	<string name="dialog_routing_try_again">Torneu-ho a intentar</string>
+	<string name="not_now">Ara no</string>
 	<string name="dialog_routing_download_and_build_cross_route">Voleu baixar el mapa i crar una ruta més òptima que travessi més d\'un mapa?</string>
 	<string name="dialog_routing_download_cross_route">Baixeu mapes addicionals per a crear una ruta millor que creua els límits d\'aquest mapa.</string>
 
@@ -386,7 +395,8 @@
 	<string name="categories">Categories</string>
 	<string name="history">Historial</string>
 	<string name="search_not_found">Ups! No s\'ha trobat cap resultat.</string>
-	<string name="search_not_found_query">Proveu de canviar els criteris de cerca.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Baixeu la regió on esteu cercant o proveu d\'afegir un nom de ciutat o poble proper.</string>
 	<string name="search_history_title">Historial de cerca</string>
 	<string name="search_history_text">Mostra les cerques recents.</string>
 	<string name="clear_search">Buida l\'historial de cerques.</string>
@@ -439,6 +449,8 @@
 	<string name="no_osm_account">No teniu commpte d\'OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Registre a OpenStreetMap</string>
 	<string name="login">Inicia sessió</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">No heu iniciat sessió</string>
 	<string name="password">Contrasenya</string>
 	<string name="forgot_password">Heu oblidat la contrasenya?</string>
 	<string name="logout">Tanca la sessió</string>
@@ -458,16 +470,16 @@
 	<string name="cuisine">Cuina</string>
 	<string name="select_cuisine">Trieu una cuina</string>
 	<!-- login text field -->
-	<string name="email_or_username">Adreça electrònica o nom d\'usuari</string>
+	<string name="email_or_username">Adreça electrònica o nom d’usuari</string>
 	<string name="editor_add_phone">Afegeix un telèfon</string>
 	<string name="level">Planta</string>
-	<string name="downloader_delete_map_dialog">Totes els canvis que heu fet en el mapa s\'esborraran conjuntament amb el mapa.</string>
+	<string name="downloader_delete_map_dialog">Totes les vostres edicions del mapa se suprimiran conjuntament amb aquest.</string>
 	<string name="downloader_update_maps">Actualitza els mapes</string>
 	<string name="downloader_mwm_migration_dialog">Per a crear una ruta, cal que actualitzeu tots els mapes i després torneu a planificar la ruta.</string>
 	<string name="downloader_search_field_hint">Troba el mapa</string>
-	<string name="common_check_internet_connection_dialog">Reviseu la configuració i assegureu-vos que l\'aparell està connectat a Internet.</string>
+	<string name="common_check_internet_connection_dialog">Reviseu els paràmetres i assegureu-vos que l’aparell està connectat a Internet.</string>
 	<string name="downloader_no_space_title">No hi ha prou espai</string>
-	<string name="downloader_no_space_message">Esborreu les dades no necessàries</string>
+	<string name="downloader_no_space_message">Suprimiu les dades no necessàries</string>
 	<string name="editor_login_error_dialog">Error en iniciar sessió.</string>
 	<string name="editor_profile_changes">Canvis verificats</string>
 	<string name="editor_focus_map_on_location">Arrossegueu el mapa per a indicar la ubicació correcta de l\'objecte.</string>
@@ -479,16 +491,15 @@
 	<string name="editor_edit_place_category_title">Categoria</string>
 	<string name="detailed_problem_description">Descripció detallada del problema</string>
 	<string name="editor_report_problem_other_title">Un altre problema</string>
-	<string name="placepage_add_business_button">Afegeix un negoci</string>
-	<string name="message_invalid_feature_position">No s\'ha trobat cap objecte aquí</string>
+	<string name="message_invalid_feature_position">No s’ha trobat cap objecte aquí</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
-	<string name="osm_presentation">Dades d\'OpenStreetMap creades per la comunitat a partir de %s. Obteniu més informació sobre com editar i actualitzar el mapa a OpenStreetMap.org</string>
-	<string name="login_to_make_edits_visible">Inicieu sessió perquè altres usuaris puguin veure els canvis que heu fet</string>
+	<string name="osm_presentation">Dades de l’OpenStreetMap creades per la comunitat a partir de %s. Obteniu més informació sobre com editar i actualitzar el mapa a OpenStreetMap.org</string>
+	<string name="login_to_make_edits_visible">Inicieu sessió a openstreetmap.org perquè altres usuaris puguin veure els vostres canvis.</string>
 	<!-- Downloaded 10 **of** 20 <- it is that "of" -->
-	<string name="downloader_of">%1$d de %2$d</string>
-	<string name="download_over_mobile_header">Voleu baixar-ho a través d\'una connexió de xarxa de telefònia mòbil?</string>
-	<string name="download_over_mobile_message">Això podria ser força car amb algunes tarifes d\'itinerància de dades.</string>
-	<string name="error_enter_correct_house_number">Introduïu un número d\'edifici vàlid</string>
+	<string name="downloader_of">%1$d/%2$d</string>
+	<string name="download_over_mobile_header">Voleu baixar-ho a través d’una connexió de xarxa mòbil?</string>
+	<string name="download_over_mobile_message">Podria ser força car amb algunes tarifes o amb itinerància de dades.</string>
+	<string name="error_enter_correct_house_number">Introduïu un número d’edifici vàlid</string>
 	<string name="editor_storey_number">Nombre de plantes (màxim %d)</string>
 	<!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
 	<string name="error_enter_correct_storey_number">El nombre de plantes no pot excedir de %d</string>
@@ -496,9 +507,9 @@
 	<string name="error_enter_correct_zip_code">Introduïu un codi postal vàlid</string>
 	<!-- Place Page title for long tap -->
 	<string name="core_placepage_unknown_place">Lloc desconegut</string>
-	<string name="editor_other_info">Envia una ota als editors d\'OSM</string>
+	<string name="editor_other_info">Envia una nota als editors de l’OSM</string>
 	<string name="editor_detailed_description_hint">Comentari detallat</string>
-	<string name="editor_detailed_description">Heu suggerit canvis en el mapa que s\'enviaran a la comunitat d\'OpenStreetMap. Descriviu qualsevol detall addicional que no es pot editar en l\'Organic Maps.</string>
+	<string name="editor_detailed_description">Heu suggerit canvis en el mapa que s’enviaran a la comunitat de l’OpenStreetMap. Descriviu qualsevol detall addicional que no es pugui editar amb l’Organic Maps.</string>
 	<string name="editor_more_about_osm">Més sobre l\'OpenStreetMap</string>
 	<string name="editor_operator">Propietari</string>
 	<string name="editor_category_unsuitable_title">No trobeu una categoria adequada?</string>
@@ -578,8 +589,10 @@
 	<string name="learn_more">Més informació</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Surt</string>
-	<string name="routing_add_start_point">Afegiu un punt inical per a planificar una ruta</string>
-	<string name="routing_add_finish_point">Afegeiu la destinació per a planificar la ruta</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Utilitzeu la cerca o toqueu el mapa per afegir un punt de partida de la ruta</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Utilitzeu la cerca o toqueu el mapa per afegir un punt de destinació</string>
 	<string name="placepage_remove_stop">Elimina</string>
 	<string name="placepage_add_stop">Afegeix una parada</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -593,6 +606,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Amaga-ho tot</string>
 	<string name="bookmark_lists_show_all">Mostra-ho tot</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d marcador</item>
+	  <item quantity="other">%d marcadors</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Crea una llista</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importa marcadors i les traces</string>
@@ -611,14 +628,7 @@
 	  <item quantity="one">S\'ha trobat %d fitxer. Podeu veure\'l després de la conversió.</item>
 	  <item quantity="other">S\'han trobat %d fiters. Podeu veure\'ls després de la conversió.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d objecte</item>
-	  <item quantity="other">%d objectes</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d lloc</item>
-	  <item quantity="other">%d llocs</item>
-	</plurals>
+	<string name="restore">Restaura</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d traça</item>
 	  <item quantity="other">%d traces</item>
@@ -788,11 +798,11 @@
 	<!-- Displayed on the phone screen. Android Auto connected -->
 	<string name="aa_connected_title">Us heu connectat a Android Auto</string>
 	<!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
-	<string name="car_continue_on_the_phone">Continueu al telèfon</string>
+	<string name="car_continue_on_the_phone">Continua al telèfon</string>
 	<!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
 	<string name="car_continue_in_the_car">A la pantalla del cotxe</string>
 	<!-- Ask user to grant location permissions -->
-	<string name="aa_location_permissions_request">Aquesta aplicació requereix accés a la vostra ubicació per a la navegació.</string>
+	<string name="aa_location_permissions_request">Aquesta aplicació requereix accés a la vostra ubicació per a navegar.</string>
 	<!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
 	<string name="aa_grant_permissions">Concedeix permisos</string>
 	<!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
@@ -801,58 +811,236 @@
 	<string name="button_layer_outdoor">Senderisme</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">El navegador web no està disponible</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">L\'autorització d\'OpenStreetMap no està disponible temporalment a causa de noves restriccions a Google Play 😾\nEl nostre equip està treballant per resoldre aquest problema. Si us plau, tingueu paciència 🙏</string>
 	<string name="volume">Volum</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Exporta totes les adreces d\'interès i pistes</string>
 	<!-- button in (app) TTS settings, to open the system TTS settings. -->
-	<string name="pref_tts_open_system_settings">Configuració de la síntesi de veu del sistema</string>
+	<string name="pref_tts_open_system_settings">Paràmetres de la síntesi de veu del sistema</string>
 	<!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
-	<string name="pref_tts_no_system_tts">No s\'ha trobat la configuració de la síntesi de veu, esteu segur que el vostre dispositiu l\'admet?</string>
+	<string name="pref_tts_no_system_tts">No s’han trobat els paràmetres de la síntesi de veu. Esteu segur que el vostre dispositiu l’admet?</string>
 	<string name="drive_through">Servei al cotxe</string>
-	<string name="clear_the_search">Esborra la cerca</string>
-	<string name="zoom_in">Ampliar</string>
+	<string name="clear_the_search">Elimina la cerca</string>
+	<string name="zoom_in">Apropa</string>
 	<!-- Accessibility text for the zoom-out button on the map -->
-	<string name="zoom_out">Disminuir el zoom</string>
+	<string name="zoom_out">Allunya</string>
 	<!-- Restaurant or other food place's menu URL field in the Editor -->
 	<string name="website_menu">Enllaç del menú</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
-	<string name="view_menu">Veure menú</string>
+	<string name="view_menu">Visualitza el menú</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Autoservei</string>
+	<string name="select_option">Seleccioneu l\'opció</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Seients a l\'aire lliure</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Desactiva el mode d\'estalvi d\'energia</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Per a una navegació més precisa, recomanem desactivar el mode d\'estalvi d\'energia a la configuració de la bateria del telèfon.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adreça/Bloc</string>
 	<string name="type.addr_interpolation.even">Adreça/Bloc</string>
 	<string name="type.addr_interpolation.odd">Adreça/Bloc</string>
+	<string name="type.aerialway">Transport aeri</string>
+	<string name="type.aerialway.cable_car">Telefèric</string>
+	<string name="type.aerialway.chair_lift">Telecadira</string>
+	<string name="type.aerialway.drag_lift">Telesquí</string>
+	<string name="type.aerialway.gondola">Telecabina</string>
+	<string name="type.aerialway.mixed_lift">Telemix</string>
+	<string name="type.aerialway.station">Estació de telefèric</string>
+	<string name="type.aeroway">Infraestructura aèria</string>
+	<string name="type.aeroway.aerodrome">Aeroport</string>
+	<string name="type.aeroway.aerodrome.international">Aeroport internacional</string>
+	<string name="type.aeroway.apron">Plataforma</string>
+	<string name="type.aeroway.gate">Porta d’embarcament</string>
+	<string name="type.aeroway.helipad">Heliport</string>
+	<string name="type.aeroway.runway">Pista d’enlairament</string>
+	<string name="type.aeroway.taxiway">Pista de rodatge</string>
+	<string name="type.aeroway.terminal">Terminal</string>
+	<string name="type.amenity">Infraestructura</string>
+	<string name="type.amenity.arts_centre">Centre d’art</string>
+	<string name="type.amenity.atm">Caixer automàtic</string>
+	<string name="type.amenity.bank">Banc</string>
+	<string name="type.amenity.bar">Bar</string>
 	<string name="type.amenity.bbq">Barbacoa</string>
-	<string name="type.amenity.gambling">Jocs d\'atzar</string>
+	<string name="type.amenity.bench">Seient</string>
+	<string name="type.amenity.bicycle_parking">Aparcament de bicicletes</string>
+	<string name="type.amenity.bicycle_rental">Lloguer de bicicletes</string>
+	<string name="type.amenity.bicycle_repair_station">Estació de reparació de bicicletes</string>
+	<string name="type.amenity.biergarten">Biergarten</string>
+	<string name="type.amenity.brothel">Bordell</string>
+	<string name="type.amenity.bureau_de_change">Casa de canvi</string>
+	<string name="type.amenity.bus_station">Estació d’autobusos</string>
+	<string name="type.amenity.cafe">Cafè</string>
+	<string name="type.amenity.car_rental">Lloguer de cotxes</string>
+	<string name="type.amenity.car_sharing">Cotxe multiusuari</string>
+	<string name="type.amenity.car_wash">Rentatge de cotxes</string>
+	<string name="type.amenity.casino">Casino</string>
+	<string name="type.amenity.gambling">Jocs d’aposta</string>
 	<string name="type.leisure.adult_gaming_centre">Centre de joc per a adults</string>
 	<string name="type.leisure.amusement_arcade">Arcade</string>
+	<string name="type.amenity.charging_station">Estació de recàrrega</string>
 	<string name="type.amenity.charging_station.bicycle">Estació de recàrrega de bicicletes</string>
 	<string name="type.amenity.charging_station.motorcar">Estació de recàrrega de cotxes</string>
+	<string name="type.amenity.childcare">Guarderia</string>
+	<string name="type.amenity.cinema">Cinema</string>
 	<string name="type.leisure.bowling_alley">Bolera</string>
+	<string name="type.amenity.clinic">Clínica</string>
+	<string name="type.amenity.college">Estudis postobligatoris</string>
+	<string name="type.amenity.community_centre">Centre comunitari</string>
 	<string name="type.amenity.compressed_air">Aire comprimit</string>
-	<string name="type.amenity.conference_centre">Centre de Conferències</string>
-	<string name="type.amenity.exhibition_centre">Centre d\'exposicions</string>
+	<string name="type.amenity.conference_centre">Centre de conferències</string>
+	<string name="type.amenity.courthouse">Jutjat</string>
+	<string name="type.amenity.dentist">Dentista</string>
+	<string name="type.amenity.doctors">Consultori mèdic</string>
+	<string name="type.amenity.drinking_water">Aigua potable</string>
+	<string name="type.drinking_water.yes">Aigua potable</string>
+	<string name="type.amenity.driving_school">Escola de conducció</string>
+	<string name="type.amenity.exhibition_centre">Centre d’exposicions</string>
 	<string name="type.amenity.money_transfer">Transferència de diners</string>
+	<string name="type.amenity.music_school">Escola de música</string>
+	<string name="type.amenity.language_school">Escola d’idiomes</string>
+	<string name="type.office.diplomatic">Ambaixada</string>
+	<string name="type.amenity.fast_food">Menjar ràpid</string>
+	<string name="type.amenity.ferry_terminal">Transbordador</string>
+	<string name="type.amenity.fire_station">Parc de bombers</string>
+	<string name="type.amenity.food_court">Zona de restaurants</string>
+	<string name="type.amenity.fountain">Brollador</string>
+	<string name="type.amenity.fuel">Benzinera</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard">Cementiri</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.amenity.grave_yard.christian">Cementiri cristià</string>
+	<string name="type.amenity.hospital">Hospital</string>
+	<string name="type.amenity.hunting_stand">Torre de caça</string>
+	<string name="type.amenity.ice_cream">Gelateria</string>
+	<string name="type.amenity.internet_cafe">Cafè Internet</string>
+	<string name="type.amenity.kindergarten">Escola bressol</string>
+	<string name="type.amenity.library">Biblioteca</string>
 	<string name="type.amenity.loading_dock">Moll de càrrega</string>
+	<string name="type.amenity.marketplace">Mercat</string>
+	<string name="type.amenity.motorcycle_parking">Aparcament de motocicletes</string>
+	<string name="type.amenity.nightclub">Club nocturn</string>
+	<string name="type.amenity.nursing_home">Residència d’ancians</string>
+	<string name="type.amenity.parking">Aparcament</string>
+	<string name="type.amenity.parking.fee">Aparcament</string>
+	<string name="type.amenity.parking.multi.storey">Edifici d’aparcament</string>
+	<string name="type.amenity.parking.multi.storey.fee">Edifici d’aparcament</string>
+	<string name="type.amenity.parking.no.access">Aparcament privat</string>
+	<string name="type.amenity.parking.permissive">Aparcament privat</string>
+	<string name="type.amenity.parking.private">Aparcament privat</string>
+	<string name="type.amenity.parking.park_and_ride">Aparcament d’enllaç</string>
+	<string name="type.amenity.parking.underground">Aparcament subterrani</string>
+	<string name="type.amenity.parking.underground.fee">Aparcament subterrani</string>
 	<string name="type.amenity.parking.underground.private">Aparcament subterrani privat</string>
 	<string name="type.amenity.parking.street_side">Aparcament al carrer</string>
 	<string name="type.amenity.parking.street_side.fee">Aparcament al carrer</string>
 	<string name="type.amenity.parking.street_side.private">Aparcament privat al carrer</string>
-	<string name="type.amenity.parking.lane">Aparcament del carril</string>
-	<string name="type.amenity.parking.lane.fee">Aparcament del carril</string>
+	<string name="type.amenity.parking.lane">Aparcament de carril</string>
+	<string name="type.amenity.parking.lane.fee">Aparcament de carril</string>
 	<string name="type.amenity.parking.lane.private">Aparcament de carril privat</string>
-	<string name="type.amenity.parking_entrance.private">Entrada d\'aparcament privat</string>
-	<string name="type.amenity.place_of_worship.christian.mormon">Església de Jesucrist dels Sants dels Últims Dies</string>
+	<string name="type.amenity.parking_entrance">Entrada a l’aparcament</string>
+	<string name="type.amenity.parking_entrance.private">Entrada a l’aparcament privat</string>
+	<string name="type.amenity.parking_entrance.permissive">Entrada a l’aparcament</string>
+	<string name="type.amenity.parking_space">Plaça d’aparcament</string>
+	<string name="type.amenity.parking_space.permissive">Plaça d’aparcament</string>
+	<string name="type.amenity.parking_space.private">Plaça d’aparcament</string>
+	<string name="type.amenity.parking_space.underground">Plaça d’aparcament</string>
+	<string name="type.amenity.parking_space.disabled">Plaça d’aparcament per a persones amb discapacitat</string>
+	<string name="type.amenity.payment_terminal">Terminal de pagament</string>
+	<string name="type.amenity.pharmacy">Farmàcia</string>
+	<string name="type.amenity.place_of_worship">Lloc de culte</string>
+	<string name="type.amenity.place_of_worship.buddhist">Temple budista</string>
+	<string name="type.amenity.place_of_worship.christian">Església</string>
+	<string name="type.amenity.place_of_worship.christian.mormon">Església de Jesucrist dels Sants dels Darrers Dies</string>
 	<string name="type.amenity.place_of_worship.christian.jehovahs_witness">Sala del Regne dels Testimonis de Jehovà</string>
+	<string name="type.amenity.place_of_worship.hindu">Temple hinduista</string>
+	<string name="type.amenity.place_of_worship.jewish">Sinagoga</string>
+	<string name="type.amenity.place_of_worship.muslim">Mesquita</string>
+	<string name="type.amenity.place_of_worship.shinto">Santuari xintoista</string>
+	<string name="type.amenity.place_of_worship.taoist">Temple taoista</string>
+	<string name="type.amenity.police">Policia</string>
+	<string name="type.amenity.post_box">Bústia</string>
+	<string name="type.amenity.post_office">Oficina de correus</string>
+	<string name="type.amenity.prison">Presó</string>
+	<string name="type.amenity.pub">Taverna</string>
+	<string name="type.amenity.public_bookcase">Intercanvi de llibres</string>
 
 	<!-- SECTION: Types: Recycling -->
+	<string name="type.amenity.recycling.centre">Centre de reciclatge</string>
+	<string name="type.amenity.recycling">Contenidor de reciclatge</string>
+	<string name="type.amenity.recycling.container">Contenidor de reciclatge</string>
+	<string name="type.recycling.batteries">Bateries</string>
+	<string name="type.recycling.clothes">Roba</string>
+	<string name="type.recycling.glass_bottles">Ampolles de vidre</string>
+	<string name="type.recycling.paper">Paper</string>
+	<string name="type.recycling.plastic">Plàstic</string>
+	<string name="type.recycling.plastic_bottles">Ampolles de plàstic</string>
+	<string name="type.recycling.scrap_metal">Residus de metall</string>
+	<string name="type.recycling.small_appliances">Residus electrònics</string>
+	<string name="type.recycling.cardboard">Cartó</string>
+	<string name="type.recycling.cans">Llaunes</string>
+	<string name="type.recycling.shoes">Calçat</string>
+	<string name="type.recycling.green_waste">Residus orgànics</string>
+	<string name="type.recycling.cartons">Envasos de cartó</string>
+	<string name="type.amenity.restaurant">Restaurant</string>
+	<string name="type.amenity.sanitary_dump_station">Estació de buidatge per a caravanes</string>
+	<string name="type.amenity.school">Escola</string>
+	<!-- Weather shelter (including sun shelters and natural rock shelters). -->
+	<string name="type.amenity.shelter">Refugi</string>
+	<!-- A weather shelter by the public transport stop. -->
+	<string name="type.amenity.shelter.public_transport">Refugi</string>
 	<!-- Compared to wilderness_hut its smaller and simpler, without a fireplace. -->
-	<string name="type.amenity.shelter.basic_hut">Cabana Bivac</string>
-	<string name="type.amenity.public_bath">Bany Públic</string>
+	<string name="type.amenity.shelter.basic_hut">Cabana bivac</string>
+	<!-- A traditional 3-walled shelter (one side open), suitable for overnight camping. -->
+	<string name="type.amenity.shelter.lean_to">Rafal</string>
+	<string name="type.amenity.public_bath">Bany públic</string>
+	<string name="type.amenity.shower">Dutxa</string>
 	<string name="type.amenity.stripclub">Club de striptease</string>
+	<string name="type.amenity.taxi">Desocupada de taxis</string>
+	<string name="type.amenity.telephone">Telèfon</string>
+	<string name="type.amenity.theatre">Teatre</string>
+	<string name="type.amenity.toilets">Vàter</string>
+	<string name="type.toilets.yes">Vàter</string>
+	<string name="type.amenity.townhall">Ajuntament</string>
+	<string name="type.amenity.university">Universitat</string>
+	<string name="type.amenity.vending_machine">Màquina expenedora</string>
+	<string name="type.amenity.vending_machine.cigarettes">Dispensador de cigarrets</string>
+	<string name="type.amenity.vending_machine.coffee">Dispensador de cafè</string>
+	<string name="type.amenity.vending_machine.drinks">Dispensador de begudes</string>
+	<string name="type.amenity.vending_machine.food">Dispensador d’aliments</string>
+	<string name="type.amenity.vending_machine.newspapers">Dispensador de periòdics</string>
+	<string name="type.amenity.vending_machine.parking_tickets">Parquímetre</string>
+	<string name="type.amenity.vending_machine.public_transport_tickets">Dispensador de bitllets de transport públic</string>
+	<string name="type.amenity.vending_machine.sweets">Dispensador de llaminadures</string>
+	<string name="type.amenity.vending_machine.excrement_bags">Dispensador de bosses d’excrements</string>
+	<string name="type.amenity.parcel_locker">Taquilla de paquets</string>
 	<string name="type.amenity.vehicle_inspection">Inspecció de vehicles</string>
+	<string name="type.amenity.vending_machine.fuel">Dispensador de combustible</string>
+	<string name="type.amenity.veterinary">Clínica veterinària</string>
+	<string name="type.amenity.waste_basket">Paperera</string>
+	<string name="type.amenity.waste_disposal">Contenidor d’escombraries</string>
+	<string name="type.amenity.waste_transfer_station">Estació de transferència de residus</string>
+	<string name="type.amenity.water_point">Punt d’aigua</string>
+	<string name="type.barrier">Barrera</string>
+	<string name="type.barrier.block">Bloc</string>
+	<string name="type.barrier.bollard">Bol·lard</string>
+	<string name="type.barrier.border_control">Control fronterer</string>
+	<string name="type.barrier.chain">Cadena</string>
+	<string name="type.barrier.city_wall">Muralla</string>
+	<string name="type.barrier.cycle_barrier">Barrera per a bicicletes</string>
 	<string name="type.waterway.ditch">Sèquia de drenatge</string>
+	<string name="type.natural.water.moat">Fossat</string>
 	<string name="type.natural.water.wastewater">Aigües residuals</string>
+	<string name="type.barrier.entrance">Entrada</string>
+	<string name="type.barrier.fence">Tanca</string>
+	<string name="type.barrier.gate">Reixat</string>
+	<string name="type.barrier.hedge">Tanca vegetal</string>
+	<string name="type.barrier.kissing_gate">Reixat</string>
+	<string name="type.barrier.lift_gate">Barrera llevadissa</string>
+	<string name="type.barrier.retaining_wall">Mur de contenció</string>
 	<string name="type.barrier.turnstile">Torniquet</string>
 	<string name="type.boundary.aboriginal_lands">Terres indígenes</string>
 	<string name="type.boundary.protected_area">Àrea Protegida</string>
@@ -881,14 +1069,42 @@
 	<string name="type.highway.footway.crossing">Pas de vianants</string>
 
 	<!-- SECTION: Types: Historic -->
-	<string name="type.historic.aircraft">Avions Històrics</string>
+	<string name="type.historic.aircraft">Avions històrics</string>
 	<string name="type.historic.anchor">Àncora històrica</string>
+	<string name="type.historic.archaeological_site">Jaciment arqueològic</string>
+	<string name="type.historic.battlefield">Camp de batalla</string>
+	<string name="type.historic.boundary_stone">Fita de frontera</string>
 	<string name="type.historic.cannon">Canó</string>
+	<string name="type.historic.castle">Castell</string>
+	<string name="type.historic.castle.defensive">Castell defensiu</string>
+	<string name="type.historic.castle.fortified_church">Església fortificada</string>
+	<string name="type.historic.castle.fortress">Fortificació</string>
+	<string name="type.historic.castle.hillfort">Castre</string>
+	<string name="type.historic.castle.manor">Casa pairal</string>
+	<string name="type.historic.castle.palace">Palau</string>
+	<string name="type.historic.castle.shiro">Castell japonès</string>
+	<string name="type.historic.castle.stately">Castell</string>
+	<string name="type.historic.citywalls">Muralla</string>
+	<string name="type.historic.fort">Fort</string>
+	<string name="type.historic.gallows">Forca</string>
 	<string name="type.historic.locomotive">Locomotora històrica</string>
-	<string name="type.historic.stone">Pedra Històrica</string>
-	<string name="type.historic.mine">Mina Històrica</string>
+	<string name="type.historic.memorial.cross">Creu commemorativa</string>
+	<string name="type.historic.memorial.plaque">Placa commemorativa</string>
+	<string name="type.historic.memorial.sculpture">Escultura</string>
+	<string name="type.historic.memorial.statue">Estàtua</string>
+	<string name="type.historic.stone">Pedra històrica</string>
+	<string name="type.historic.memorial.war_memorial">Memorial de guerra</string>
+	<string name="type.historic.mine">Mina històrica</string>
+	<string name="type.historic.monument">Monument</string>
 	<string name="type.historic.tank">Tanc històric</string>
 	<string name="type.historic.wreck">Naufragi</string>
+	<string name="type.junction">Cruïlla</string>
+	<string name="type.junction.circular">Rotonda</string>
+	<string name="type.junction.roundabout">Rotonda</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery">Cementiri</string>
+	<!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
+	<string name="type.landuse.cemetery.christian">Cementiri cristià</string>
 	<string name="type.landuse.flowerbed">Llit de flors</string>
 	<string name="type.leisure.miniature_golf">Minigolf</string>
 	<string name="type.leisure.outdoor_seating">Seients a l\'aire lliure</string>
@@ -934,9 +1150,22 @@
 	<string name="type.railway.rail.spur.tunnel">Túnel ferroviari</string>
 	<string name="type.railway.rail.service.tunnel">Túnel ferroviari</string>
 	<string name="type.railway.station.funicular">Funicular</string>
+	<string name="type.shop.bakery">Forn de pa</string>
 	<string name="type.shop.bathroom_furnishing">Mobles de bany</string>
+	<string name="type.shop.beauty">Saló de bellesa</string>
+	<string name="type.shop.beverages">Begudes</string>
+	<string name="type.shop.bicycle">Botiga de bicicletes</string>
+	<string name="type.shop.bookmaker">Casa d’apostes</string>
+	<string name="type.shop.books">Llibreria</string>
+	<string name="type.shop.butcher">Carnisseria</string>
 	<string name="type.shop.cannabis">Botiga de cànnabis</string>
+	<string name="type.shop.car">Concessionari de cotxes</string>
+	<string name="type.shop.caravan">Concessionari de caravanes</string>
 	<string name="type.shop.carpet">Catifes</string>
+	<string name="type.shop.chocolate">Xocolateria</string>
+	<string name="type.shop.clothes">Botiga de roba</string>
+	<string name="type.shop.convenience">Botiga a l’abast</string>
+	<string name="type.shop.cosmetics">Botiga de cosmètics</string>
 	<string name="type.shop.curtain">Cortines</string>
 	<string name="type.shop.fashion_accessories">Complements de moda</string>
 	<string name="type.shop.gas">Botiga de gas</string>
@@ -944,28 +1173,81 @@
 	<string name="type.shop.hifi">Àudio HiFi</string>
 	<string name="type.shop.motorcycle_repair">Reparació de motos</string>
 	<string name="type.shop.outpost">Punt de recollida</string>
+	<string name="type.shop.pastry">Forn de pa</string>
 	<string name="type.shop.pet_grooming">Peluca de mascotes</string>
 	<string name="type.shop.rental">Botiga de lloguer</string>
 	<string name="type.shop.rental.bicycle">Botiga de lloguer de bicicletes</string>
 	<string name="type.shop.agrarian">Botiga agrícola</string>
 	<string name="type.shop.appliance">Botiga d\'electrodomèstics</string>
+	<!-- maybe change to Art Gallery for en-US when supported -->
+	<string name="type.shop.art">Botiga d’art</string>
 	<string name="type.shop.bed">Botiga de llits</string>
 	<string name="type.tourism.aquarium">Aquari</string>
 	<!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
 	<string name="type.tourism.alpine_hut">Lodge de muntanya</string>
 	<string name="type.tourism.apartment">Apartament de vacances</string>
-	<string name="type.attraction.animal">Recinte d\'animals</string>
+	<string name="type.tourism.artwork">Obra d’art</string>
+	<string name="type.tourism.artwork.architecture">Art arquitectònic</string>
+	<string name="type.tourism.artwork.painting">Pintura</string>
+	<string name="type.tourism.artwork.sculpture">Escultura</string>
+	<string name="type.tourism.artwork.statue">Estàtua</string>
+	<string name="type.tourism.attraction">Atracció</string>
+	<string name="type.attraction.animal">Recinte d’animals</string>
+	<string name="type.tourism.attraction.specified">Atracció</string>
+	<string name="type.tourism.camp_site">Paratge d’acampada</string>
+	<string name="type.tourism.caravan_site">Zona de caravanes</string>
 	<!-- A rentable countryside vacation house. -->
 	<string name="type.tourism.chalet">Casa rural de vacances</string>
-	<string name="type.tourism.zoo.petting">Zoo d\'animals de companyia</string>
+	<string name="type.tourism.gallery">Galeria d’art</string>
+	<string name="type.tourism.guest_house">Casa d’hostes</string>
+	<string name="type.tourism.information">Información turística</string>
+	<string name="type.tourism.information.board">Tauler informatiu</string>
+	<string name="type.tourism.information.map">Mapa turístic</string>
+	<string name="type.tourism.information.office">Oficina de turisme</string>
+	<string name="type.tourism.information.visitor_centre">Centre de visitants</string>
+	<string name="type.tourism.museum">Museu</string>
+	<string name="type.tourism.theme_park">Parc temàtic</string>
+	<string name="type.tourism.viewpoint">Mirador</string>
+	<string name="type.tourism.zoo">Zoològic</string>
+	<string name="type.tourism.zoo.petting">Zoològic interactiu</string>
+	<string name="type.traffic_calming">Pacificació del trànsit</string>
+	<string name="type.waterway">Via aquàtica</string>
+	<string name="type.waterway.canal">Canal</string>
+	<string name="type.waterway.canal.tunnel">Túnel de canal</string>
 	<string name="type.waterway.fish_pass">Pas de peix</string>
+	<string name="type.waterway.dam">Presa</string>
+	<string name="type.barrier.ditch">Rasa</string>
 	<string name="type.natural.water.ditch">Sèquia de drenatge</string>
-	<string name="type.waterway.ditch.tunnel">Embaixada</string>
-	<string name="type.waterway.drain.tunnel">Embaixada</string>
+	<string name="type.waterway.ditch.tunnel">Canonada de drenatge</string>
+	<string name="type.waterway.dock">Moll</string>
+	<string name="type.waterway.drain">Desguàs</string>
+	<string name="type.natural.water.drain">Desguàs</string>
+	<string name="type.waterway.drain.tunnel">Canonada de drenatge</string>
+	<string name="type.waterway.lock_gate">Comporta de resclusa</string>
+	<string name="type.waterway.river">Riu</string>
+	<string name="type.waterway.river.tunnel">Riu</string>
+	<string name="type.waterway.stream">Corrent</string>
+	<string name="type.waterway.stream.ephemeral">Riera</string>
+	<string name="type.waterway.stream.intermittent">Rierol</string>
+	<string name="type.waterway.stream.tunnel">Corrent</string>
+	<string name="type.waterway.waterfall">Cascada</string>
+	<string name="type.waterway.weir">Sobreeixidor</string>
+	<string name="type.wheelchair">Cadira de rodes</string>
+	<string name="type.wheelchair.limited">Parcialment accessible en cadira de rodes</string>
+	<string name="type.wheelchair.no">No accessible en cadira de rodes</string>
+	<string name="type.wheelchair.yes">Accessible en cadira de rodes</string>
+	<string name="type.piste_type.nordic">Pista d’esquí nòrdic</string>
+	<string name="type.piste_type.sled">Pista de trineu</string>
+	<string name="type.piste_type.sled.area">Pista de trineu</string>
 	<string name="type.piste_type.snow_park">Parc de neu</string>
 	<string name="type.piste_type.hike">Ruta de senderisme de neu</string>
 	<string name="type.piste_type.connection">Connexió de pista</string>
-	<string name="type.piste_type.skitour">Ruta d\'esquí</string>
+	<string name="type.piste_type.skitour">Ruta d’esquí</string>
+	<string name="type.amenity.events_venue">Lloc d’esdeveniments</string>
 	<string name="type.shop.auction">Subhasta</string>
 	<string name="type.shop.collector">Col·leccionables</string>
+	<string name="type.self_service.yes">Autoservei disponible</string>
+	<string name="type.self_service.only">Només autoservei</string>
+	<string name="type.self_service.partially">Autoservei parcial</string>
+	<string name="type.self_service.no">Sense autoservei</string>
 </resources>

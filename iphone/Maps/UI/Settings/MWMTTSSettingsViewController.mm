@@ -2,6 +2,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MWMTextToSpeech+CPP.h"
 #import "Hikingbook-Swift-Header.h"
+#import "TTSTester.h"
+#import "SwiftBridge.h"
 
 #include <CoreApi/Framework.h>
 #include "LocaleTranslator.h"
@@ -63,16 +65,30 @@ struct VoiceInstructionCellStrategy : BaseCellStategy
 
 struct LanguageCellStrategy : BaseCellStategy
 {
+  TTSTester * ttsTester = [[TTSTester alloc] init];
+  
   UITableViewCell * BuildCell(UITableView * tableView, NSIndexPath * indexPath,
                               MWMTTSSettingsViewController * controller) override
   {
     NSInteger const row = indexPath.row;
+    // "Other" cell
     if (row == controller.languages.size())
     {
       Class cls = [SettingsTableViewLinkCell class];
       auto cell = static_cast<SettingsTableViewLinkCell *>(
           [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
       [cell configWithTitle:L(@"pref_tts_other_section_title") info:nil];
+      return cell;
+    }
+    
+    // "Test TTS" cell
+    if (row == controller.languages.size() + 1)
+    {
+      Class cls = [SettingsTableViewSelectableCell class];
+      auto cell = static_cast<SettingsTableViewSelectableCell *>(
+          [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+      [cell configWithTitle:L(@"pref_tts_test_voice_title")];
+      cell.accessoryType = UITableViewCellAccessoryNone;
       return cell;
     }
 
@@ -97,7 +113,7 @@ struct LanguageCellStrategy : BaseCellStategy
 
   size_t NumberOfRows(MWMTTSSettingsViewController * controller) const override
   {
-    return controller.languages.size() + 1;  // Number of languages + "Other" cell
+    return controller.languages.size() + 2;  // Number of languages + "Other" cell + "TTS Test" cell
   }
 
   NSString * TitleForHeader() const override { return L(@"pref_tts_language_title"); }
@@ -112,6 +128,12 @@ struct LanguageCellStrategy : BaseCellStategy
       return;
     }
 
+    if (row == controller.languages.size() + 1)
+    {
+      [ttsTester playRandomTestString];
+      return;
+    }
+    
     auto cell = [tableView cellForRowAtIndexPath:indexPath];
     if (m_selectedCell == cell)
       return;

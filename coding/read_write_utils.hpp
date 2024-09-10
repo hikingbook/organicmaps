@@ -5,24 +5,38 @@
 #include "base/buffer_vector.hpp"
 
 #include <algorithm>
-#include <cstddef>
-#include <cstdint>
 #include <string>
 #include <type_traits>
 #include <vector>
 
 namespace rw
 {
-  template <class TSink>
-  void Write(TSink & sink, uint32_t i)
+  template <class T, class TSink>
+  std::enable_if_t<std::is_integral_v<T> && std::is_unsigned_v<T>, void>
+  Write(TSink & sink, T i)
   {
     WriteVarUint(sink, i);
   }
 
-  template <class TSource>
-  void Read(TSource & src, uint32_t & i)
+  template <class T, class TSource>
+  std::enable_if_t<std::is_integral_v<T> && std::is_unsigned_v<T>, void>
+  Read(TSource & src, T & i)
   {
-    i = ReadVarUint<uint32_t>(src);
+    i = ReadVarUint<T>(src);
+  }
+
+  template <class T, class TSink>
+  std::enable_if_t<std::is_integral_v<T> && std::is_signed_v<T>, void>
+  Write(TSink & sink, T i)
+  {
+    WriteVarInt(sink, i);
+  }
+
+  template <class T, class TSource>
+  std::enable_if_t<std::is_integral_v<T> && std::is_signed_v<T>, void>
+  Read(TSource & src, T & i)
+  {
+    i = ReadVarInt<T>(src);
   }
 
   template <class TSink>
@@ -106,10 +120,9 @@ namespace rw
   void ReadVectorOfPOD(TSource & src, TCont & v)
   {
     typedef typename TCont::value_type ValueT;
-    /// This assert fails on std::pair<int, int> and OsmID class.
-    /// @todo Review this logic in future with new compiler abilities.
-    /// https://trello.com/c/hzCc9bzN/1254-is-trivial-copy-read-write-utils-hpp
-    //static_assert(std::is_trivially_copyable<ValueT>::value, "");
+    /// This assert fails on std::pair<int, int> and OsmID class because std::pair is not trivially copyable:
+    /// std::pair has a non-trivial copy-assignment and move-assignment operator.
+    //static_assert(std::is_trivially_copyable_v<ValueT>);
 
     uint32_t const count = ReadVarUint<uint32_t>(src);
     if (count > 0)
@@ -123,10 +136,9 @@ namespace rw
   void WriteVectorOfPOD(TSink & sink, TCont const & v)
   {
     typedef typename TCont::value_type ValueT;
-    /// This assert fails on std::pair<int, int> and OsmID class.
-    /// @todo Review this logic in future with new compiler abilities.
-    /// https://trello.com/c/hzCc9bzN/1254-is-trivial-copy-read-write-utils-hpp
-    //static_assert(std::is_trivially_copyable<ValueT>::value, "");
+    /// This assert fails on std::pair<int, int> and OsmID class because std::pair is not trivially copyable:
+    /// std::pair has a non-trivial copy-assignment and move-assignment operator.
+    //static_assert(std::is_trivially_copyable_v<ValueT>);
 
     uint32_t const count = static_cast<uint32_t>(v.size());
     WriteVarUint(sink, count);

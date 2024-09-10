@@ -15,6 +15,7 @@
 #include "search/engine.hpp"
 #include "search/locality_finder.hpp"
 
+#include "storage/storage.hpp"
 #include "storage/country_info_getter.hpp"
 #include "storage/storage_helpers.hpp"
 
@@ -103,6 +104,7 @@ char const kShowDebugInfo[] = "DebugInfo";
 
 auto constexpr kLargeFontsScaleFactor = 1.6;
 size_t constexpr kMaxTrafficCacheSizeBytes = 64 /* Mb */ * 1024 * 1024;
+auto constexpr kBuildingCentroidThreshold = 10.0;
 
 // TODO!
 // To adjust GpsTrackFilter was added secret command "?gpstrackaccuracy:xxx;"
@@ -111,7 +113,7 @@ size_t constexpr kMaxTrafficCacheSizeBytes = 64 /* Mb */ * 1024 * 1024;
 bool ParseSetGpsTrackMinAccuracyCommand(string const & query)
 {
   char const kGpsAccuracy[] = "?gpstrackaccuracy:";
-  if (!strings::StartsWith(query, kGpsAccuracy))
+  if (!query.starts_with(kGpsAccuracy))
     return false;
 
   size_t const end = query.find(';', sizeof(kGpsAccuracy) - 1);
@@ -306,8 +308,6 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   m_stringsBundle.SetDefaultString("core_my_places", "My Places");
   m_stringsBundle.SetDefaultString("core_my_position", "My Position");
   m_stringsBundle.SetDefaultString("postal_code", "Postal Code");
-  // Wi-Fi string is used in categories that's why does not have core_ prefix
-  m_stringsBundle.SetDefaultString("wifi", "WiFi");
 
   m_featuresFetcher.InitClassificator();
   m_featuresFetcher.SetOnMapDeregisteredCallback(bind(&Framework::OnMapDeregistered, this, _1));
@@ -654,7 +654,7 @@ void Framework::FillNotMatchedPlaceInfo(place_page::Info & info, m2::PointD cons
     info.SetCustomNameWithCoordinates(mercator, m_stringsBundle.GetString("core_placepage_unknown_place"));
   else
     info.SetCustomName(customTitle);
-  info.SetCanEditOrAdd(CanEditMap());
+  info.SetCanEditOrAdd(CanEditMapForPosition(mercator));
   info.SetMercator(mercator);
 }
 
@@ -671,7 +671,6 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   ASSERT_NOT_EQUAL(featureStatus, FeatureStatus::Deleted,
                    ("Deleted features cannot be selected from UI."));
   info.SetFeatureStatus(featureStatus);
-  info.SetLocalizedWifiString(m_stringsBundle.GetString("wifi"));
 
   if (ftypes::IsAddressObjectChecker::Instance()(ft))
     info.SetAddress(GetAddressAtPoint(feature::GetCenter(ft)).FormatAddress());
@@ -681,11 +680,9 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   FillDescription(ft, info);
 
   auto const mwmInfo = ft.GetID().m_mwmId.GetInfo();
-  bool const isMapVersionEditable = mwmInfo && mwmInfo->m_version.IsEditableMap();
-  bool const canEditOrAdd = featureStatus != FeatureStatus::Obsolete && CanEditMap() &&
-                            isMapVersionEditable;
+  bool const isMapVersionEditable = CanEditMapForPosition(info.GetMercator());
+  bool const canEditOrAdd = featureStatus != FeatureStatus::Obsolete && isMapVersionEditable;
   info.SetCanEditOrAdd(canEditOrAdd);
-  //info.SetPopularity(m_popularityLoader.Get(ft.GetID()));
 
   // Fill countryId for place page info
   auto const & types = info.GetTypes();
@@ -1273,6 +1270,7 @@ void Framework::SelectSearchResult(search::Result const & result, bool animation
   {
   case Result::Type::Feature:
     info.m_mercator = result.GetFeatureCenter();
+    info.m_match = place_page::BuildInfo::Match::Nothing;
     info.m_featureId = result.GetFeatureID();
     info.m_isGeometrySelectionAllowed = true;
     break;
@@ -1298,18 +1296,15 @@ void Framework::SelectSearchResult(search::Result const & result, bool animation
   }
 
   m_currentPlacePageInfo = BuildPlacePageInfo(info);
-  if (m_currentPlacePageInfo)
+  if (m_drapeEngine)
   {
-    if (m_drapeEngine)
-    {
-      if (scale < 0)
-        scale = GetFeatureViewportScale(m_currentPlacePageInfo->GetTypes());
-      m2::PointD const center = m_currentPlacePageInfo->GetMercator();
-      m_drapeEngine->SetModelViewCenter(center, scale, animation, true /* trackVisibleViewport */);
-    }
-
-    ActivateMapSelection();
+    if (scale < 0)
+      scale = GetFeatureViewportScale(m_currentPlacePageInfo->GetTypes());
+    m2::PointD const center = m_currentPlacePageInfo->GetMercator();
+    m_drapeEngine->SetModelViewCenter(center, scale, animation, true /* trackVisibleViewport */);
   }
+
+  ActivateMapSelection();
 }
 
 void Framework::ShowSearchResult(search::Result const & res, bool animation)
@@ -1462,7 +1457,7 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
     {
       // Deactivate selection (and hide place page) if we return to routing in F&R mode.
       if (routingActive && mode == location::FollowAndRotate)
-        DeactivateMapSelection(true /* notifyUI */);
+        DeactivateMapSelection();
 
       if (m_myPositionListener != nullptr)
         m_myPositionListener(mode, routingActive);
@@ -1844,11 +1839,13 @@ BookmarkManager const & Framework::GetBookmarkManager() const
 
 void Framework::SetPlacePageListeners(PlacePageEvent::OnOpen onOpen,
                                       PlacePageEvent::OnClose onClose,
-                                      PlacePageEvent::OnUpdate onUpdate)
+                                      PlacePageEvent::OnUpdate onUpdate,
+                                      PlacePageEvent::OnSwitchFullScreen onSwitchFullScreen)
 {
   m_onPlacePageOpen = std::move(onOpen);
   m_onPlacePageClose = std::move(onClose);
   m_onPlacePageUpdate = std::move(onUpdate);
+  m_onSwitchFullScreen = std::move(onSwitchFullScreen);
 
 #ifdef OMIM_OS_ANDROID
   // A click on the Search result from the search activity in Android calls
@@ -1880,6 +1877,8 @@ void Framework::ActivateMapSelection()
 
   auto & bm = GetBookmarkManager();
 
+  bm.ResetRecentlyDeletedBookmark();
+
   if (m_currentPlacePageInfo->GetSelectedObject() == df::SelectionShape::OBJECT_TRACK)
     bm.OnTrackSelected(m_currentPlacePageInfo->GetTrackId());
   else
@@ -1904,23 +1903,36 @@ void Framework::ActivateMapSelection()
     m_onPlacePageOpen();
 }
 
-void Framework::DeactivateMapSelection(bool notifyUI)
+void Framework::DeactivateMapSelection()
 {
-  bool const somethingWasAlreadySelected = m_currentPlacePageInfo.has_value();
+  if (m_onPlacePageClose)
+    m_onPlacePageClose();
 
-  if (notifyUI && m_onPlacePageClose)
-    m_onPlacePageClose(!somethingWasAlreadySelected);
-
-  if (somethingWasAlreadySelected)
+  if (m_currentPlacePageInfo)
   {
     DeactivateHotelSearchMark();
-    GetBookmarkManager().OnTrackDeselected();
+
+    auto & bm = GetBookmarkManager();
+    bm.OnTrackDeselected();
+    bm.ResetRecentlyDeletedBookmark();
 
     m_currentPlacePageInfo = {};
 
     if (m_drapeEngine != nullptr)
       m_drapeEngine->DeselectObject();
   }
+}
+
+void Framework::DeactivateMapSelectionCircle()
+{
+    if (m_drapeEngine != nullptr)
+        m_drapeEngine->DeselectObject();
+}
+
+void Framework::SwitchFullScreen()
+{
+  if (m_onSwitchFullScreen)
+    m_onSwitchFullScreen();
 }
 
 void Framework::InvalidateUserMarks()
@@ -1954,26 +1966,26 @@ void Framework::DeactivateHotelSearchMark()
 void Framework::OnTapEvent(place_page::BuildInfo const & buildInfo)
 {
   auto placePageInfo = BuildPlacePageInfo(buildInfo);
-  bool isRoutePoint = placePageInfo.has_value() && placePageInfo->IsRoutePoint();
+  bool isRoutePoint = placePageInfo.IsRoutePoint();
 
   if (m_routingManager.IsRoutingActive()
       && m_routingManager.GetCurrentRouterType() == routing::RouterType::Ruler
       && !buildInfo.m_isLongTap
       && !isRoutePoint)
   {
-    DeactivateMapSelection(true /* notifyUI */);
+    DeactivateMapSelection();
 
     // Continue route to the point
     RouteMarkData data;
-    data.m_title = placePageInfo ? placePageInfo->GetTitle() : std::string();
+    data.m_title = placePageInfo.GetTitle();
     data.m_subTitle = std::string();
     data.m_pointType = RouteMarkType::Finish;
     data.m_intermediateIndex = m_routingManager.GetRoutePointsCount() - 1;
     data.m_isMyPosition = false;
 
-    if (placePageInfo && placePageInfo->IsBookmark())
+    if (placePageInfo.IsBookmark())
       // Continue route to exact bookmark position.
-      data.m_position = placePageInfo->GetBookmarkData().m_point;
+      data.m_position = placePageInfo.GetBookmarkData().m_point;
     else
       data.m_position = buildInfo.m_mercator;
 
@@ -1986,7 +1998,11 @@ void Framework::OnTapEvent(place_page::BuildInfo const & buildInfo)
     return;
   }
 
-  if (placePageInfo)
+  if (buildInfo.m_isLongTap)
+  {
+    SwitchFullScreen();
+  }
+  else
   {
     auto const prevTrackId = m_currentPlacePageInfo ? m_currentPlacePageInfo->GetTrackId()
                                                     : kml::kInvalidTrackId;
@@ -2011,12 +2027,6 @@ void Framework::OnTapEvent(place_page::BuildInfo const & buildInfo)
     }
 
     ActivateMapSelection();
-  }
-  else
-  {
-    // UI is always notified even if empty map is tapped,
-    // because empty tap event switches on/off full screen map view mode.
-    DeactivateMapSelection(true /* notifyUI */);
   }
 }
 
@@ -2045,7 +2055,7 @@ FeatureID Framework::FindBuildingAtPoint(m2::PointD const & mercator) const
     m_featuresFetcher.ForEachFeature(rect, [&](FeatureType & ft)
     {
       if (!featureId.IsValid() &&
-        ft.GetGeomType() == feature::GeomType::Area &&
+          ft.GetGeomType() == feature::GeomType::Area &&
           ftypes::IsBuildingChecker::Instance()(ft) &&
           ft.GetLimitRect(kScale).IsPointInside(mercator) &&
           feature::GetMinDistanceMeters(ft, mercator) == 0.0)
@@ -2065,8 +2075,7 @@ void Framework::BuildTrackPlacePage(Track::TrackSelectionInfo const & trackSelec
   GetBookmarkManager().SetTrackSelectionInfo(trackSelectionInfo, true /* notifyListeners */);
 }
 
-std::optional<place_page::Info> Framework::BuildPlacePageInfo(
-    place_page::BuildInfo const & buildInfo)
+place_page::Info Framework::BuildPlacePageInfo(place_page::BuildInfo const & buildInfo)
 {
   place_page::Info outInfo;
   outInfo.SetBuildInfo(buildInfo);
@@ -2149,7 +2158,7 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
   auto const isFeatureMatchingEnabled = buildInfo.IsFeatureMatchingEnabled();
 
   // Using VisualParams inside FindTrackInTapPosition/GetDefaultTapRect requires drapeEngine.
-  if (m_drapeEngine != nullptr && buildInfo.IsTrackMatchingEnabled() && !buildInfo.m_isLongTap &&
+  if (m_drapeEngine != nullptr && buildInfo.IsTrackMatchingEnabled() &&
       !(isFeatureMatchingEnabled && selectedFeature.IsValid()))
   {
     auto const trackSelectionInfo = FindTrackInTapPosition(buildInfo);
@@ -2160,36 +2169,42 @@ std::optional<place_page::Info> Framework::BuildPlacePageInfo(
     }
   }
 
+  bool isBuildingSelected = false;
   if (isFeatureMatchingEnabled && !selectedFeature.IsValid())
+  {
     selectedFeature = FindBuildingAtPoint(buildInfo.m_mercator);
+    isBuildingSelected = selectedFeature.IsValid();
+  }
 
-  bool showMapSelection = false;
   if (selectedFeature.IsValid())
   {
+    // Selection circle should match feature
     FillFeatureInfo(selectedFeature, outInfo);
-    if (buildInfo.m_isLongTap)
-      outInfo.SetMercator(buildInfo.m_mercator);
-    showMapSelection = true;
+
+    if (buildInfo.IsUserMarkMatchingEnabled() && !outInfo.IsBookmark() && !isBuildingSelected)
+    {
+      // Search for a bookmark at POI position instead of tap position
+      auto mark = FindBookMarkInPosition(outInfo.GetMercator());
+      if (mark)
+        FillBookmarkInfo(*static_cast<Bookmark const *>(mark), outInfo);
+    }
+
+    if (isBuildingSelected)
+      outInfo.SetMercator(buildInfo.m_mercator); // Move selection circle to tap position inside a building.
   }
-  else if (buildInfo.m_isLongTap || buildInfo.m_source != place_page::BuildInfo::Source::User)
+  else
   {
     if (isFeatureMatchingEnabled)
       FillPointInfo(outInfo, buildInfo.m_mercator, {});
     else
       FillNotMatchedPlaceInfo(outInfo, buildInfo.m_mercator, {});
-    showMapSelection = true;
   }
 
-  if (showMapSelection)
-  {
-    outInfo.SetSelectedObject(df::SelectionShape::OBJECT_POI);
-    GetBookmarkManager().SelectionMark().SetPtOrg(outInfo.GetMercator());
-    SetPlacePageLocation(outInfo);
+  outInfo.SetSelectedObject(df::SelectionShape::OBJECT_POI);
+  GetBookmarkManager().SelectionMark().SetPtOrg(outInfo.GetMercator());
+  SetPlacePageLocation(outInfo);
 
-    return outInfo;
-  }
-
-  return {};
+  return outInfo;
 }
 
 void Framework::UpdatePlacePageInfoForCurrentSelection(
@@ -2200,7 +2215,8 @@ void Framework::UpdatePlacePageInfoForCurrentSelection(
 
   m_currentPlacePageInfo = BuildPlacePageInfo(overrideInfo.has_value() ? *overrideInfo :
     m_currentPlacePageInfo->GetBuildInfo());
-  if (m_currentPlacePageInfo && m_onPlacePageUpdate)
+
+  if (m_onPlacePageUpdate)
     m_onPlacePageUpdate();
 }
 
@@ -2250,6 +2266,26 @@ UserMark const * Framework::FindUserMarkInTapPosition(place_page::BuildInfo cons
     {
       return type == UserMark::Type::TRACK_INFO || type == UserMark::Type::TRACK_SELECTION;
     });
+  return mark;
+}
+
+UserMark const * Framework::FindBookMarkInPosition(m2::PointD const & mercator) const
+{
+  auto const & bm = GetBookmarkManager();
+
+  UserMark const * mark = bm.FindNearestUserMark(
+      [this, &mercator](UserMark::Type type)
+      {
+        if (type == UserMark::Type::BOOKMARK || type == UserMark::Type::TRACK_INFO)
+          return df::TapInfo::GetBookmarkTapRect(mercator, m_currentModelView);
+
+        if (type == UserMark::Type::ROUTING || type == UserMark::Type::ROAD_WARNING)
+          return df::TapInfo::GetRoutingPointTapRect(mercator, m_currentModelView);
+
+        return df::TapInfo::GetDefaultTapRect(mercator, m_currentModelView);
+      },
+      [](UserMark::Type type) { return true; });
+
   return mark;
 }
 
@@ -2819,9 +2855,10 @@ void SetHostingBuildingAddress(FeatureID const & hostingBuildingFid, DataSource 
 }
 }  // namespace
 
-bool Framework::CanEditMap() const
+bool Framework::CanEditMapForPosition(m2::PointD const & position) const
 {
-  return !GetStorage().IsDownloadInProgress();
+  ASSERT(m_infoGetter, ("CountryInfoGetter shouldn't be nullprt."));
+  return GetStorage().IsAllowedToEditVersion(m_infoGetter->GetRegionCountryId(position));
 }
 
 bool Framework::CreateMapObject(m2::PointD const & mercator, uint32_t const featureType,
@@ -3032,7 +3069,7 @@ bool Framework::RollBackChanges(FeatureID const & fid)
   if (rolledBack)
   {
     if (status == FeatureStatus::Created)
-      DeactivateMapSelection(true /* notifyUI */);
+      DeactivateMapSelection();
     else
       UpdatePlacePageInfoForCurrentSelection();
   }
@@ -3045,7 +3082,7 @@ void Framework::CreateNote(osm::MapObject const & mapObject,
   osm::Editor::Instance().CreateNote(mapObject.GetLatLon(), mapObject.GetID(), mapObject.GetTypes(),
                                      mapObject.GetDefaultName(), type, note);
   if (type == osm::Editor::NoteProblemType::PlaceDoesNotExist)
-    DeactivateMapSelection(true /* notifyUI */);
+    DeactivateMapSelection();
 }
 
 void Framework::RunUITask(function<void()> fn)

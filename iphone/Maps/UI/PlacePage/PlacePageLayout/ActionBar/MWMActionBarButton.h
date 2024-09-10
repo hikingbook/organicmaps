@@ -10,11 +10,16 @@ typedef NS_ENUM(NSInteger, MWMActionBarButtonType) {
   MWMActionBarButtonTypeRouteFrom,
   MWMActionBarButtonTypeRouteRemoveStop,
   MWMActionBarButtonTypeRouteTo,
-  MWMActionBarButtonTypeShare,
   MWMActionBarButtonTypeAvoidToll,
   MWMActionBarButtonTypeAvoidDirty,
   MWMActionBarButtonTypeAvoidFerry
 } NS_SWIFT_NAME(ActionBarButtonType);
+
+typedef NS_ENUM(NSInteger, MWMBookmarksButtonState) {
+  MWMBookmarksButtonStateSave,
+  MWMBookmarksButtonStateDelete,
+  MWMBookmarksButtonStateRecover,
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -46,6 +51,8 @@ NS_SWIFT_NAME(ActionBarButton)
                                 buttonType:(MWMActionBarButtonType)type
                                 isSelected:(BOOL)isSelected
                                 isEnabled:(BOOL)isEnabled;
+
+- (void)setBookmarkButtonState:(MWMBookmarksButtonState)state;
 
 @end
 

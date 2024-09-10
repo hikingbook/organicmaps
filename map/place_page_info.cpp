@@ -29,7 +29,7 @@ bool Info::IsBookmark() const
 bool Info::ShouldShowAddPlace() const
 {
   auto const isPointOrBuilding = IsPointType() || IsBuilding();
-  return m_canEditOrAdd && !(IsFeature() && isPointOrBuilding);
+  return !(IsFeature() && isPointOrBuilding);
 }
 
 void Info::SetFromFeatureType(FeatureType & ft)
@@ -96,7 +96,7 @@ void Info::SetFromFeatureType(FeatureType & ft)
       m_uiTitle.append(" (").append(lRef).append(")");
   }
 
-  m_uiSubtitle = FormatSubtitle(!emptyTitle /* withType */);
+  m_uiSubtitle = FormatSubtitle(IsFeature() /* withTypes */, !emptyTitle /* withMainType */);
 
   // apply to all types after checks
   m_isHotel = ftypes::IsHotelChecker::Instance()(ft);
@@ -108,7 +108,7 @@ void Info::SetMercator(m2::PointD const & mercator)
   m_buildInfo.m_mercator = mercator;
 }
 
-std::string Info::FormatSubtitle(bool withType) const
+std::string Info::FormatSubtitle(bool withTypes, bool withMainType) const
 {
   std::string result;
   auto const append = [&result](std::string_view sv)
@@ -121,8 +121,11 @@ std::string Info::FormatSubtitle(bool withType) const
   if (IsBookmark())
     append(m_bookmarkCategoryName);
 
-  if (withType)
-    append(GetLocalizedType());
+  if (!withTypes)
+    return result;
+
+  // Types
+  append(GetLocalizedAllTypes(withMainType));
 
   // Flats.
   auto const flats = GetMetadata(feature::Metadata::FMD_FLATS);
@@ -181,7 +184,7 @@ std::string Info::FormatSubtitle(bool withType) const
 
   // Internet.
   if (HasWifi())
-    append(m_localizedWifiString);
+    append(feature::kWifiSymbol);
 
   // Toilets.
   if (HasToilets())
@@ -282,14 +285,13 @@ void Info::SetFromBookmarkProperties(kml::Properties const & p)
 void Info::SetBookmarkId(kml::MarkId bookmarkId)
 {
   m_bookmarkId = bookmarkId;
-  m_uiSubtitle = FormatSubtitle(IsFeature() /* withType */);
+  m_uiSubtitle = FormatSubtitle(IsFeature() /* withTypes */, IsFeature() /* withMainType */);
 }
 
 bool Info::ShouldShowEditPlace() const
 {
-  return m_canEditOrAdd &&
-         // TODO(mgsergio): Does IsFeature() imply !IsMyPosition()?
-         !IsMyPosition() && IsFeature();
+  // TODO(mgsergio): Does IsFeature() imply !IsMyPosition()?
+  return !IsMyPosition() && IsFeature();
 }
 
 kml::LocalizableString Info::FormatNewBookmarkName() const

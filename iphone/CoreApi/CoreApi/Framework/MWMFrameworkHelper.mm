@@ -116,8 +116,8 @@
   GetFramework().Scroll(distanceX, distanceY);
 }
 
-+ (void)deactivateMapSelection:(BOOL)notifyUI {
-  GetFramework().DeactivateMapSelection(notifyUI);
++ (void)deactivateMapSelection {
+  GetFramework().DeactivateMapSelection();
 }
 
 + (void)switchMyPositionMode {
@@ -162,8 +162,9 @@
   GetFramework().GetSearchAPI().SearchInDownloader(std::move(params));
 }
 
-+ (BOOL)canEditMap {
-  return GetFramework().CanEditMap();
++ (BOOL)canEditMapAtViewportCenter {
+  auto const &f = GetFramework();
+  return f.CanEditMapForPosition(f.GetViewportCenter());
 }
 
 + (void)showOnMap:(MWMMarkGroupID)categoryId {
@@ -190,4 +191,9 @@
   buildInfo.m_source = place_page::BuildInfo::Source::Other;
   frm.UpdatePlacePageInfoForCurrentSelection(buildInfo);
 }
+
++ (int)currentZoomLevel {
+  return GetFramework().GetDrawScale();
+}
+
 @end

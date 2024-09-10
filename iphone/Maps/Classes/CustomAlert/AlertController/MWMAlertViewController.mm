@@ -45,10 +45,6 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 
 #pragma mark - Actions
 
-- (void)presentAuthErrorAlertWithRetryBlock:(nonnull MWMVoidBlock)retryBlock {
-  [self displayAlert:[MWMAlert authErrorAlertWithRetryBlock:retryBlock]];
-}
-
 - (void)presentLocationAlertWithCancelBlock:(MWMVoidBlock)cancelBlock {
   [self displayAlert:[MWMAlert locationAlertWithCancelBlock:cancelBlock]];
 }
@@ -62,9 +58,7 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 - (void)presentNoConnectionAlert {
   [self displayAlert:[MWMAlert noConnectionAlert]];
 }
-- (void)presentSearchQuickFilterNoConnectionAlert {
-  [self displayAlert:[MWMAlert searchQuickFilterNoConnectionAlert]];
-}
+
 - (void)presentDeleteMapProhibitedAlert {
   [self displayAlert:[MWMAlert deleteMapProhibitedAlert]];
 }
@@ -80,9 +74,6 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
   [self displayAlert:[MWMAlert incorrectFeaturePositionAlert]];
 }
 
-- (void)presentInternalErrorAlert {
-  [self displayAlert:[MWMAlert internalErrorAlert]];
-}
 - (void)presentNotEnoughSpaceAlert {
   [self displayAlert:[MWMAlert notEnoughSpaceAlert]];
 }
@@ -116,10 +107,6 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
 
 - (void)presentAlert:(routing::RouterResultCode)type {
   [self displayAlert:[MWMAlert alert:type]];
-}
-
-- (void)presentDisableAutoDownloadAlertWithOkBlock:(nonnull MWMVoidBlock)okBlock {
-  [self displayAlert:[MWMAlert disableAutoDownloadAlertWithOkBlock:okBlock]];
 }
 
 - (void)presentDownloaderNoConnectionAlertWithOkBlock:(nonnull MWMVoidBlock)okBlock
@@ -209,17 +196,13 @@ static NSString *const kAlertControllerNibIdentifier = @"MWMAlertViewController"
   [self displayAlert:[MWMAlert bookmarkConversionErrorAlert]];
 }
 
-- (void)presentRestoreBookmarkAlertWithMessage:(nonnull NSString *)message
-                             rightButtonAction:(nonnull MWMVoidBlock)rightButton
-                              leftButtonAction:(nonnull MWMVoidBlock)leftButton {
-  [self displayAlert:[MWMAlert restoreBookmarkAlertWithMessage:message
-                                             rightButtonAction:rightButton
-                                              leftButtonAction:leftButton]];
-}
-
 - (void)presentTagsLoadingErrorAlertWithOkBlock:(nonnull MWMVoidBlock)okBlock
                                     cancelBlock:(nonnull MWMVoidBlock)cancelBlock {
   [self displayAlert:[MWMAlert tagsLoadingErrorAlertWithOkBlock:okBlock cancelBlock:cancelBlock]];
+}
+
+- (void)presentBugReportAlertWithTitle:(nonnull NSString *)title {
+  [self displayAlert:[MWMAlert bugReportAlertWithTitle:title]];
 }
 
 - (void)presentDefaultAlertWithTitle:(nonnull NSString *)title

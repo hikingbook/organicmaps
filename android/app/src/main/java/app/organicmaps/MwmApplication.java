@@ -29,6 +29,8 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import app.organicmaps.background.OsmUploadWork;
+import app.organicmaps.downloader.Android7RootCertificateWorkaround;
+import app.organicmaps.downloader.DownloaderNotifier;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.CountryItem;
@@ -156,6 +158,8 @@ public class MwmApplication extends Application implements Application.ActivityL
     Logger.i(TAG, "Initializing application");
     OrganicmapsFrameworkAdapter.INSTANCE.initApplicationIfNeed(this, "app.organicmaps");
     LogsManager.INSTANCE.initFileLogging(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+
+    Android7RootCertificateWorkaround.initializeIfNeeded(this);
 
     // Set configuration directory as early as possible.
     // Other methods may explicitly use Config, which requires settingsDir to be set.

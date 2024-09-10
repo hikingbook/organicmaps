@@ -19,6 +19,7 @@
 	<string name="kilometres">Kilomètres</string>
 	<!-- Settings/Downloader - size string, only strings different from English should be translated -->
 	<string name="mb">Mo</string>
+	<string name="gb">Go</string>
 	<!-- Choose measurement on first launch alert - choose imperial system button -->
 	<string name="miles">Miles</string>
 	<!-- A text for current gps location point/arrow selected on the map -->
@@ -282,6 +283,8 @@
 	<string name="compass_calibration_recommended">Améliorez la direction de la flèche en déplaçant le téléphone en huit pour calibrer la boussole.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Déplacez le téléphone en huit pour calibrer la boussole et fixer la direction de la flèche sur la carte.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Appuie à nouveau longuement sur la carte pour voir l\'interface.</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Tout mettre à jour</string>
 	<!-- Cancel all button text -->
@@ -381,6 +384,7 @@
 	<string name="dialog_routing_system_error">Erreur système</string>
 	<string name="dialog_routing_application_error">Impossible de créer l\'itinéraire à cause d\'une erreur dans l\'application.</string>
 	<string name="dialog_routing_try_again">Veuillez réessayer</string>
+	<string name="not_now">Pas maintenant</string>
 	<string name="dialog_routing_download_and_build_cross_route">Voulez-vous télécharger la carte et créer un itinéraire plus direct s\'étendant sur plus d\'une carte?</string>
 	<string name="dialog_routing_download_cross_route">Téléchargez des cartes pour créer un itinéraire plus direct sortant des limites de cette carte.</string>
 
@@ -394,7 +398,8 @@
 	<string name="categories">Catégories</string>
 	<string name="history">Historique</string>
 	<string name="search_not_found">Désolé, je n\'ai rien trouvé.</string>
-	<string name="search_not_found_query">Veuillez essayer un autre mot-clé.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Téléchargez la région dans laquelle vous effectuez votre recherche ou essayez d\'ajouter le nom d\'une ville ou d\'un village proche.</string>
 	<string name="search_history_title">Historique de recherche</string>
 	<string name="search_history_text">Accédez rapidement aux dernières recherches.</string>
 	<string name="clear_search">Effacer l\'historique de recherche</string>
@@ -447,6 +452,8 @@
 	<string name="no_osm_account">Vous n\'avez pas de compte sur OpenStreetMap ?</string>
 	<string name="register_at_openstreetmap">S\'inscrire sur OpenStreetMap</string>
 	<string name="login">Connexion</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Non connecté•e</string>
 	<string name="login_osm">Se connecter à OpenStreetMap</string>
 	<string name="password">Mot de passe</string>
 	<string name="forgot_password">Mot de passe oublié ?</string>
@@ -470,6 +477,8 @@
 	<string name="email_or_username">Email ou nom d\'utilisateur</string>
 	<string name="editor_add_phone">Ajouter un numéro de téléphone</string>
 	<string name="level">Étage</string>
+	<!-- Building level -->
+	<string name="level_value_generic">Niveau : %s</string>
 	<string name="downloader_delete_map_dialog">Toutes vos modifications de la carte seront supprimées avec elle.</string>
 	<string name="downloader_update_maps">Mettre à jour les cartes</string>
 	<string name="downloader_mwm_migration_dialog">Pour créer un itinéraire, vous devez mettre à jour toutes les cartes puis reprogrammer l\'itinéraire.</string>
@@ -488,7 +497,6 @@
 	<string name="editor_edit_place_category_title">Catégorie</string>
 	<string name="detailed_problem_description">Description détaillée du problème</string>
 	<string name="editor_report_problem_other_title">Autre problème</string>
-	<string name="placepage_add_business_button">Ajouter une entreprise</string>
 	<string name="message_invalid_feature_position">Aucun objet ne peut être localisé ici</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Données OpenStreetMap créées par la communauté en date du %s. Pour en savoir plus sur la façon de modifier et de mettre à jour la carte, consulte le site OpenStreetMap.org.</string>
@@ -586,8 +594,10 @@
 	<string name="learn_more">En savoir plus</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Sortie</string>
-	<string name="routing_add_start_point">Ajouter un point de départ pour planifier un itinéraire</string>
-	<string name="routing_add_finish_point">Ajouter un point d\'arrivée pour planifier un itinéraire</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Utilise la recherche ou tape sur la carte pour ajouter un point de départ d\'itinéraire</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Utilise la recherche ou tape sur la carte pour ajouter un point de destination</string>
 	<string name="placepage_remove_stop">Supprimer</string>
 	<string name="placepage_add_stop">Ajouter un arrêt</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -601,6 +611,10 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Tout masquer</string>
 	<string name="bookmark_lists_show_all">Tout afficher</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d signet</item>
+	  <item quantity="other">%d signets</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Créer une nouvelle liste</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Importer des signets et des parcours</string>
@@ -619,14 +633,7 @@
 	  <item quantity="one">%d fichier a été trouvé. Vous le verrez après la conversion.</item>
 	  <item quantity="other">%d fichiers ont été trouvés. Vous les verrez après la conversion.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d objet</item>
-	  <item quantity="other">%d objets</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d lieu</item>
-	  <item quantity="other">%d lieux</item>
-	</plurals>
+	<string name="restore">Restaurer</string>
 	<plurals name="tracks">
 	  <item quantity="other">%d pistes</item>
 	</plurals>
@@ -808,6 +815,8 @@
 	<string name="button_layer_outdoor">Randonnée</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Le navigateur Web n\'est pas disponible</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">L\'autorisation OpenStreetMap est temporairement indisponible en raison de nouvelles restrictions dans Google Play 😾\nNotre équipe travaille à la résolution de ce problème. Veuillez faire preuve de patience 🙏</string>
 	<string name="volume">Volume</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Exporter tous les signets et toutes les pistes</string>
@@ -824,6 +833,15 @@
 	<string name="website_menu">Lien vers le menu</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Voir le menu</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Libre-service</string>
+	<string name="select_option">Sélectionner une option</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Places en terrasse</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Désactiver le mode économie d\'énergie</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Pour une navigation plus précise, nous te recommandons de désactiver le mode d\'économie d\'énergie dans les paramètres de la batterie du téléphone.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Bloc</string>
@@ -2097,4 +2115,8 @@
 	<string name="type.amenity.events_venue">Lieu des événements</string>
 	<string name="type.shop.auction">Vente aux enchères</string>
 	<string name="type.shop.collector">Objets de collection</string>
+	<string name="type.self_service.yes">Libre-service disponible</string>
+	<string name="type.self_service.only">En libre-service uniquement</string>
+	<string name="type.self_service.partially">En libre-service partiellement</string>
+	<string name="type.self_service.no">Pas en libre-service</string>
 </resources>

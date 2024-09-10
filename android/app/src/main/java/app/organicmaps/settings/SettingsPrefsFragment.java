@@ -27,6 +27,7 @@ import java.util.Map;
 import app.organicmaps.Framework;
 import app.organicmaps.R;
 import app.organicmaps.downloader.OnmapDownloader;
+import app.organicmaps.editor.OsmOAuth;
 import app.organicmaps.editor.ProfileActivity;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.location.LocationHelper;
@@ -87,11 +88,24 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     pref.setSummary(RoutingOptions.hasAnyOptions() ? R.string.on : R.string.off);
   }
 
+  private void updateProfileSettingsPrefsSummary()
+  {
+    final Preference pref = getPreference(getString(R.string.pref_osm_profile));
+    if (OsmOAuth.isAuthorized(requireContext()))
+    {
+      final String username = OsmOAuth.getUsername(requireContext());
+      pref.setSummary(username);
+    }
+    else
+      pref.setSummary(R.string.not_signed_in);
+  }
+
   @Override
   public void onResume()
   {
     super.onResume();
 
+    updateProfileSettingsPrefsSummary();
     updateVoiceInstructionsPrefsSummary();
     updateRoutingSettingsPrefsSummary();
   }

@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmToolbarFragment;
+import app.organicmaps.bookmarks.data.Metadata;
 import app.organicmaps.editor.data.Language;
 import app.organicmaps.editor.data.LocalizedName;
 import app.organicmaps.editor.data.LocalizedStreet;
@@ -55,7 +56,8 @@ public class EditorHostFragment extends BaseMwmToolbarFragment implements View.O
     STREET,
     CUISINE,
     LANGUAGE,
-    PHONE
+    PHONE,
+    SELF_SERVICE
   }
 
   private Mode mMode;
@@ -176,7 +178,7 @@ public class EditorHostFragment extends BaseMwmToolbarFragment implements View.O
   {
     switch (mMode)
     {
-      case OPENING_HOURS, STREET, CUISINE, LANGUAGE, PHONE -> editMapObject();
+      case OPENING_HOURS, STREET, CUISINE, LANGUAGE, PHONE, SELF_SERVICE -> editMapObject();
       default -> Utils.navigateToParent(requireActivity());
     }
     return true;
@@ -227,6 +229,11 @@ public class EditorHostFragment extends BaseMwmToolbarFragment implements View.O
   protected void editCuisine()
   {
     editWithFragment(Mode.CUISINE, R.string.select_cuisine, null, CuisineFragment.class, true);
+  }
+
+  protected void editSelfService()
+  {
+    editWithFragment(Mode.SELF_SERVICE, R.string.select_option, null, SelfServiceFragment.class, false);
   }
 
   protected void addLanguage()
@@ -303,6 +310,8 @@ public class EditorHostFragment extends BaseMwmToolbarFragment implements View.O
           Editor.nativeSetSelectedCuisines(cuisines);
           editMapObject();
         }
+        case SELF_SERVICE ->
+                setSelection(Metadata.MetadataType.FMD_SELF_SERVICE, ((SelfServiceFragment) getChildFragmentManager().findFragmentByTag(SelfServiceFragment.class.getName())).getSelection());
         case LANGUAGE -> editMapObject();
         case MAP_OBJECT ->
         {
@@ -396,6 +405,12 @@ public class EditorHostFragment extends BaseMwmToolbarFragment implements View.O
   public void setStreet(LocalizedStreet street)
   {
     Editor.nativeSetStreet(street);
+    editMapObject();
+  }
+
+  public void setSelection(Metadata.MetadataType metadata, String selection)
+  {
+    Editor.nativeSetMetadata(metadata.toInt(), selection);
     editMapObject();
   }
 

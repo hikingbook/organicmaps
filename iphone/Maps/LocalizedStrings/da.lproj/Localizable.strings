@@ -194,9 +194,6 @@
 /* Subject for emailed position */
 "my_position_share_email_subject" = "Hey, tjek min nuværende lokation ud på Organic Maps kortet!";
 
-/* Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. */
-"share" = "Del";
-
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
 
@@ -262,6 +259,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Stemmesprog";
+
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Test stemmeanvisninger (TTS, Text-To-Speech)";
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Andet";
@@ -345,6 +345,9 @@
 
 /* Settings item title */
 "pref_calibration_title" = "Kalibrering af kompas";
+
+/* Toast text when user hides UI with a long tap anywhere on the map */
+"long_tap_toast" = "Tryk længe på kortet igen for at se grænsefladen";
 
 /* Update all button text */
 "downloader_update_all_button" = "Opdatér alle";
@@ -506,8 +509,6 @@
 
 "dialog_routing_try_again" = "Prøv igen";
 
-"not_now" = "Ikke nu";
-
 "dialog_routing_download_and_build_cross_route" = "Ønsker du at downloade kortet og planlægge en mere optimal rute, der strækker sig over mere end ét kort?";
 
 "dialog_routing_download_cross_route" = "Download kortet for at planlægge en mere optimal rute, der strækker sig ud over dette korts grænser.";
@@ -536,7 +537,8 @@
 
 "search_not_found" = "Desværre, jeg fandt ikke noget.";
 
-"search_not_found_query" = "Prøv en anden forespørgsel.";
+/* The message when user did not find anything in the search. */
+"search_not_found_query" = "Download den region, hvor du søger, eller prøv at tilføje et nærliggende bynavn.";
 
 "search_history_title" = "Søgehistorik";
 
@@ -919,14 +921,20 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Trafikdata er ikke tilgængelige";
 
+"enable_logging" = "Aktiver logføring";
+
+"log_file_size" = "Logfilens størrelse: %@";
+
 "transliteration_title" = "Translitteration til latinsk";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Afslut";
 
-"routing_add_start_point" = "Tilføj startpunkt for at planlægge en rute";
+/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
+"routing_add_start_point" = "Brug søgning eller tryk på kortet for at tilføje et startpunkt for en rute";
 
-"routing_add_finish_point" = "Tilføj slutpunkt for at planlægge en rute";
+/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
+"routing_add_finish_point" = "Brug søgning eller tryk på kortet for at tilføje et destinationspunkt";
 
 "planning_route_manage_route" = "Administrer rute";
 
@@ -939,8 +947,6 @@
 "placepage_add_stop" = "Tilføj stop";
 
 "start_from_my_position" = "Start fra";
-
-"profile_authorization_error" = "Ups, der skete en fejl. Prøv at logge på igen.";
 
 /* For iOS message 'alert_reauth_message' should be splitted in two parts: message + link. Here's first part */
 "alert_reauth_message_ios" = "Log ind på OpenStreetMap for automatisk at uploade alle dine kortredigeringer. Få mere at vide";
@@ -960,6 +966,9 @@
 "bookmark_lists_show_all" = "Vis alle";
 
 "bookmarks_create_new_group" = "Opret ny liste";
+
+/* Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files */
+"bookmarks_import" = "Importer bogmærker og spor";
 
 "downloader_hide_screen" = "Skjul skærm";
 
@@ -991,17 +1000,11 @@
 
 "bookmarks_convert_error_message" = "Nogle filer blev ikke konverteret.";
 
-"bookmarks_restore_title" = "Gendan denne version?";
-
-"error_system_message" = "Der opstod en ukendt fejl";
-
 "restore" = "Gendan";
 
 "privacy_policy" = "Privatlivspolitik";
 
 "terms_of_use" = "Vilkår for bruger";
-
-"button_layer_traffic" = "Trafik";
 
 "button_layer_subway" = "Undergrundsbane";
 
@@ -1049,6 +1052,8 @@
 "power_managment_setting_auto" = "Automatisk";
 
 "power_managment_setting_manual_max" = "Maksimum strømbesparelse";
+
+"enable_logging_warning_message" = "Indstillingen aktiverer logning til diagnostiske formål. Det kan være nyttigt for vores supportere, der fejlfinder problemer med appen. Aktiver kun denne mulighed på anmodning fra Organic Maps support.";
 
 "driving_options_title" = "Køre muligheder";
 
@@ -1123,6 +1128,10 @@
 "dialog_routing_rebuild_from_current_location_carplay" = "Rute vil blive beregnet igen, ud fra din nuværende position";
 
 "dialog_routing_rebuild_for_vehicle_carplay" = "Rute vil blive ændret til en kørselsrute";
+
+"not_all_shown_bookmarks_carplay" = "Ikke alle bogmærker vises";
+
+"switch_to_phone_bookmarks_carplay" = "Skift til telefonen for at se alle bogmærker";
 
 "ok" = "Ok";
 
@@ -1269,6 +1278,36 @@
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Da:Om_OpenStreetMap";
 
+/* App Tip #00 */
+"app_tip_00" = "Tak, fordi du bruger vores community-byggede kort!";
+
+/* App tip #01 */
+"app_tip_01" = "Med dine donationer og støtte kan vi skabe de bedste kort i verden!";
+
+/* App tip #02 */
+"app_tip_02" = "Kan du lide vores app? Donér venligst for at støtte udviklingen! Kan du ikke lide det endnu? Fortæl os det, så ordner vi det!";
+
+/* App tip #03 */
+"app_tip_03" = "Hvis du kender en softwareudvikler, kan du bede ham eller hende om at implementere en funktion, som du har brug for.";
+
+/* App tip #04 */
+"app_tip_04" = "Ved du, at du kan trykke længe på et hvilket som helst sted på kortet for at vælge det?";
+
+/* App tip #05 */
+"app_tip_05" = "Ved du, at du kan vælge din nuværende placering på kortet?";
+
+/* App tip #06 */
+"app_tip_06" = "Du kan hjælpe med at oversætte vores app til dit sprog.";
+
+/* App tip #07 */
+"app_tip_07" = "Vores app er udviklet af nogle få entusiaster og samfundet.";
+
+/* App tip #08 */
+"app_tip_08" = "Du kan nemt rette og forbedre kortdataene.";
+
+/* App tip #09 */
+"app_tip_09" = "Vores hovedmål er at bygge hurtige, privatlivsfokuserede, brugervenlige kort, som du vil elske.";
+
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Du bruger nu Organic Maps på telefonens skærm.";
 
@@ -1298,6 +1337,9 @@
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Link til menu";
 
+/* Message for the bug report alert. */
+"bugreport_alert_message" = "Vil du gerne sende en fejlrapport til udviklerne?\nVi er afhængige af vores brugere, da Organic Maps ikke indsamler nogen fejloplysninger automatisk. Tak på forhånd for at støtte Organic Maps!";
+
 /* Title for the "Enable iCloud Syncronization" alert. */
 "enable_icloud_synchronization_title" = "Aktivér iCloud-synkronisering";
 
@@ -1316,6 +1358,9 @@
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "Sikkerhedskopiering";
 
+/* Title for the "iCloud synchronization failure" alert. */
+"icloud_synchronization_error_alert_title" = "Fejl i iCloud-synkronisering";
+
 /* iCloud error message: Failed to synchronize due to connection error */
 "icloud_synchronization_error_connection_error" = "Fejl: Kunne ikke synkronisere på grund af forbindelsesfejl";
 
@@ -1324,6 +1369,27 @@
 
 /* iCloud error message: iCloud is not available */
 "icloud_synchronization_error_cloud_is_unavailable" = "Fejl: iCloud er ikke tilgængelig";
+
+/* Title for the "Open In Another App" button on the PlacePage. */
+"open_in_app" = "Åbn i en anden app";
+
+/* To indicate if restaurant or other place has outdoor seating */
+"outdoor_seating" = "Udendørs siddepladser";
+
+/* Title for the "Recently Deleted Lists" button on the Bookmarks and Lists screen. */
+"bookmarks_recently_deleted" = "Nyligt slettede lister";
+
+/* Title for the "Clear" button on the Recently Deleted Lists screen. */
+"clear" = "Ryd";
+
+/* Title for the "Delete All" button on the Recently Deleted Lists screen. */
+"delete_all" = "Slet alle";
+
+/* Title for the "Recover" button on the Recently Deleted Lists screen. */
+"recover" = "Gendan";
+
+/* Title for the "Recover All" button on the Recently Deleted Lists screen. */
+"recover_all" = "Gendan alle";
 
 
 /********** Types **********/
@@ -3965,3 +4031,11 @@
 "type.shop.auction" = "Auktion";
 
 "type.shop.collector" = "Samlerobjekter";
+
+"type.self_service.yes" = "Selvbetjening tilgængelig";
+
+"type.self_service.only" = "Kun selvbetjening";
+
+"type.self_service.partially" = "Delvis selvbetjening";
+
+"type.self_service.no" = "Ingen selvbetjening";

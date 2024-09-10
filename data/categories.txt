@@ -188,7 +188,7 @@ tr:4Ulaşım
 uk:5Транспорт
 vi:Giao thông
 zh-Hans:交通
-zh-Hant:運輸
+zh-Hant:交通
 el:Συγκοινωνία
 he:תחבורה
 sk:Doprava
@@ -228,7 +228,7 @@ th:ก๊าซ
 tr:3Benzinlik|3Yakıt|3Akaryakıt|2Dizel|2Gaz
 uk:3бензин|3дызель|4паліва|газ
 vi:Khí đốt
-zh-Hans:汽油
+zh-Hans:加油站
 zh-Hant:加油站
 el:Υγρά Καύσιμα
 he:גז
@@ -353,8 +353,8 @@ th:โรงแรม
 tr:Otel|Oteller
 uk:4Готель|готелі
 vi:Khách sạn
-zh-Hans:旅店|酒店|賓館
-zh-Hant:飯店|酒店|宾馆
+zh-Hans:酒店|旅店|賓館
+zh-Hant:旅馆|飯店|酒店|宾馆
 el:4Ξενοδοχείο|Διαμονή|Ξενοδοχεία
 he:מלון|בתי
 sk:Hotel|Hotely
@@ -559,7 +559,7 @@ tr:3Bankamatik
 uk:3Банкомат
 vi:ATM
 zh-Hans:自动取款机
-zh-Hant:1自動櫃員機
+zh-Hant:1自動提款機
 el:ATM
 he:כספומט
 sk:3Bankomat
@@ -604,8 +604,8 @@ th:สำหรับ RV
 tr:4Karavan Tesisleri
 uk:Для автобудинків|5Автодім|5Автобудинок|5Трейлер|5Караван|Будинок на колесах
 vi:Đối với RV
-zh-Hans:房车用
-zh-Hant:房車用
+zh-Hans:房车设施
+zh-Hant:露營車設施
 ca:Autocaravana
 
 amenity-atm|@category_atm
@@ -725,7 +725,7 @@ tr:İkinci el
 uk:Секонд-хенд
 vi:Đồ cũ
 zh-Hans:二手货
-zh-Hant:二手
+zh-Hant:二手貨
 
 amenity-bank|@category_bank
 en:money|U+1F3E6|U+1F4B0|U+1F4B2|U+1F4B3|U+1F4B4|U+1F4B5|U+1F4B6|U+1F4B7
@@ -2925,7 +2925,8 @@ fa:اثارهنری
 
 tourism-viewpoint|@category_tourism
 en:4Viewpoint|Vista
-ru:4Обзорная площадка
+ru:4Смотровая площадка|Обзорная площадка
+be:4Аглядальная пляцоўка
 bg:пейзаж|гледка|забележителност
 ar:أماكن مشاهدة سياحية|سياحة|مناظر
 cs:3Vyhlídka|zajímavost
@@ -2954,8 +2955,8 @@ th:3จุดชมวิว|การท่องเที่ยว
 tr:3Manzara
 uk:4Оглядний майданчик|4місце огляду
 vi:Điểm nhìn
-zh-Hans:1观点|旅游|景点
-zh-Hant:1視野|景觀|景點|觀光|3旅遊景點
+zh-Hans:1观景点|旅游|景点
+zh-Hant:1觀景點|景觀|景點
 el:Θέα|ξάγναντο|τουρισμός|αξιοθέατα
 sk:3Vyhliadka
 sw:Genge|utalii
@@ -5174,9 +5175,10 @@ fa:کلینیک|مطب دکتر
 
 amenity-dentist
 en:4Dentist
-ru:4Стоматолог|дантист|зубной
-bg:4Зъболекар|4стоматолог
+ru:4Стоматолог|Дантист|Стоматология
 ar:طبيب أسنان
+be:4Стаматолаг|Стаматалогія
+bg:4Зъболекар|4стоматолог
 cs:Zubař
 da:Tandlæge
 nl:Tandarts
@@ -5201,7 +5203,7 @@ eu:4Odontologoa
 sv:Tandläkare
 th:ทันตแพทย์
 tr:Diş hekimi|dişçi
-uk:4Стоматолог|дантист
+uk:4Стоматолог|Дантист|Стоматологія
 vi:Nha sĩ
 zh-Hans:牙科医生
 zh-Hant:牙醫
@@ -5779,7 +5781,7 @@ sv:apotekare
 th:เภสัชกร
 uk:3ліки
 zh-Hans:药店|药剂师
-zh-Hant:成藥
+zh-Hant:藥局
 el:φαρμακείο|φαρμακοποιός|χορήγηση φαρμάκων
 fa:داروخانه
 
@@ -5815,7 +5817,7 @@ th:3ไปรษณีย์
 tr:3Posta
 uk:3Пошта
 vi:Bưu điện
-zh-Hans:1邮政
+zh-Hans:1邮局
 zh-Hant:1郵局
 el:Ταχυδρομείο
 he:דואר
@@ -5969,7 +5971,7 @@ fa:زباله دانی
 mr:कचरापेटी
 
 amenity-recycling-centre|@category_recycling
-en:4Recycling Centre|U+1F6AE|U+267B
+en:4Recycling Centre|Tip|Dump|U+1F6AE|U+267B
 en-US:4Recycling Center|U+1F6AE|U+267B
 be:5Пункт прыёму другаснай сыравіны
 ru:5Пункт приёма вторсырья
@@ -7432,7 +7434,7 @@ ru:Лифт
 tr:Asansör
 mr:उद्वाहक|एलिव्हेटर|लिफ्ट
 
-natural-peak
+@mountain
 en:Peak|mountain|mount|U+1F5FB|U+1F304
 ru:Гора|вершина|пик
 bg:Гора|планина|връх|пик
@@ -7469,6 +7471,10 @@ sk:Hora|pohorie
 sw:Kilele|mlima
 fa:قله|کوه|کوهستان
 mr:शिखर
+
+# Add at least one lang not to be skipped.
+natural-peak|@mountain
+en:Peak
 
 natural-saddle|mountain_pass
 en:4Saddle|Pass
@@ -13562,7 +13568,7 @@ sk:Jaskyňa
 fa:غار
 mr:गुहा
 
-natural-volcano
+natural-volcano|@mountain
 en:4Volcano
 ru:4Вулкан
 bg:4Вулкан

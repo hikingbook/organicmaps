@@ -111,8 +111,9 @@ DEFINE_string(
     "Path to file containing list of node ids we need to add to locality index. May be empty.");
 
 DEFINE_bool(generate_isolines_info, false, "Generate the isolines info section");
-DEFINE_string(isolines_path, "",
-              "Path to isolines directory. If set, adds isolines linear features.");
+DEFINE_string(isolines_path, "", "Path to isolines directory. If set, adds isolines linear features.");
+DEFINE_string(addresses_path, "", "Path to addresses directory. If set, adds addr:interpolation features.");
+
 // Routing.
 DEFINE_bool(make_routing_index, false, "Make sections with the routing information.");
 DEFINE_bool(make_cross_mwm, false,
@@ -253,6 +254,7 @@ MAIN_WITH_ERROR_HANDLING([](int argc, char ** argv)
   genInfo.m_idToWikidataFilename = FLAGS_idToWikidata;
   genInfo.m_complexHierarchyFilename = FLAGS_complex_hierarchy_data;
   genInfo.m_isolinesDir = FLAGS_isolines_path;
+  genInfo.m_addressesDir = FLAGS_addresses_path;
 
   // Use merged style.
   GetStyleReader().SetCurrentStyle(MapStyleMerged);
@@ -377,12 +379,12 @@ MAIN_WITH_ERROR_HANDLING([](int argc, char ** argv)
       if (!FLAGS_uk_postcodes_dataset.empty() || !FLAGS_us_postcodes_dataset.empty())
       {
         bool res = true;
-        if (!FLAGS_uk_postcodes_dataset.empty() && strings::StartsWith(country, "UK_"))
+        if (!FLAGS_uk_postcodes_dataset.empty() && country.starts_with("UK_"))
         {
           res = indexer::BuildPostcodePoints(path, country, indexer::PostcodePointsDatasetType::UK,
                                              FLAGS_uk_postcodes_dataset, true /*forceRebuild*/);
         }
-        else if (!FLAGS_us_postcodes_dataset.empty() && strings::StartsWith(country, "US_"))
+        else if (!FLAGS_us_postcodes_dataset.empty() && country.starts_with("US_"))
         {
           res = indexer::BuildPostcodePoints(path, country, indexer::PostcodePointsDatasetType::US,
                                              FLAGS_us_postcodes_dataset, true /*forceRebuild*/);
@@ -553,9 +555,15 @@ MAIN_WITH_ERROR_HANDLING([](int argc, char ** argv)
     if (FLAGS_generate_popular_places)
     {
       if (!FLAGS_wikipedia_pages.empty())
+      {
+        // Used for World.wmw (it doesn't have DESCRIPTIONS_FILE_TAG)
         BuildPopularPlacesFromWikiDump(dataFile, FLAGS_wikipedia_pages, FLAGS_idToWikidata);
+      }
       else
+      {
+        // Used for countries.
         BuildPopularPlacesFromDescriptions(dataFile);
+      }
     }
 
     if (FLAGS_generate_traffic_keys)

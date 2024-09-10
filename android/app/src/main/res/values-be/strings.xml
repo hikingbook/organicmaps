@@ -279,6 +279,8 @@
 	<string name="compass_calibration_recommended">Палепшыце кірунак стрэлкі, перамяшчаючы тэлефон у выглядзе васьмёркі, каб адкалібраваць компас.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Перамяшчайце тэлефон у выглядзе васьмёркі, каб адкалібраваць компас і зафіксаваць кірунак стрэлкі на карце.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Яшчэ раз доўга націсніце на карту, каб убачыць інтэрфейс</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Абнавіць усё</string>
 	<!-- Cancel all button text -->
@@ -378,6 +380,7 @@
 	<string name="dialog_routing_system_error">Памылка сістэмы</string>
 	<string name="dialog_routing_application_error">Не ўдалося пракласці маршрут з-за памылкі праграмы.</string>
 	<string name="dialog_routing_try_again">Паспрабуйце зноў</string>
+	<string name="not_now">Не зараз</string>
 	<string name="dialog_routing_download_and_build_cross_route">Спампаваць мапу і пракласці лепшы маршрут праз некалькі мап?</string>
 	<string name="dialog_routing_download_cross_route">Спампаваць дадатковыя мапы, каб пракласці лепшы маршрут, які перасякае межы гэтай мапы.</string>
 
@@ -391,7 +394,8 @@
 	<string name="categories">Катэгорыі</string>
 	<string name="history">Гісторыя</string>
 	<string name="search_not_found">Нічога не знойдзена.</string>
-	<string name="search_not_found_query">Паспрабуйце змяніць крытэрыі пошуку.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Спампуйце рэгіён, у якім вы шукаеце, або паспрабуйце дадаць назву бліжэйшага горада/вёскі.</string>
 	<string name="search_history_title">Гісторыя пошуку</string>
 	<string name="search_history_text">Праглядзець свае апошнія пошукі.</string>
 	<string name="clear_search">Ачысціць гісторыю пошуку</string>
@@ -437,13 +441,15 @@
 	<string name="day_off_today">Сёння закрыта</string>
 	<string name="day_off">Закрыта</string>
 	<string name="today">Сёння</string>
-	<string name="opens_in">Адкрываецца праз %s</string>
-	<string name="closes_in">Закрываецца праз %s</string>
+	<string name="opens_in">Адчыняецца праз %s</string>
+	<string name="closes_in">Зачыняецца праз %s</string>
 	<string name="closed">Закрыта</string>
 	<string name="edit_opening_hours">Правіць часы працы</string>
 	<string name="no_osm_account">Не зарэгістраваныя на OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Зарэгістравацца на OpenStreetMap</string>
 	<string name="login">Увайсці</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Не ўвайшлі ў сістэму</string>
 	<string name="login_osm">Увайсці ў OpenStreetMap</string>
 	<string name="password">Пароль</string>
 	<string name="forgot_password">Забылі пароль?</string>
@@ -484,7 +490,6 @@
 	<string name="editor_edit_place_category_title">Катэгорыя</string>
 	<string name="detailed_problem_description">Падрабязнае апісанне праблемы</string>
 	<string name="editor_report_problem_other_title">Іншая праблема</string>
-	<string name="placepage_add_business_button">Дадаць установу</string>
 	<string name="message_invalid_feature_position">Аб\'ект не можа знаходзіцца тут</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Створаныя супольнасцю даныя OpenStreetMap па стане на %s. Даведайцеся больш пра тое, як рэдагаваць і абнаўляць карту на OpenStreetMap.org</string>
@@ -579,8 +584,10 @@
 	<string name="learn_more">Даведацца больш</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Выхад</string>
-	<string name="routing_add_start_point">Дадайце пункт адпраўлення, каб пракласці маршрут</string>
-	<string name="routing_add_finish_point">Дадайце пункт прызначэння, каб пракласці маршрут</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Скарыстайцеся пошукам або націсніце на мапе, каб дадаць пачатак маршруту</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Скарыстайцеся пошукам або націсніце на мапе, каб дадаць пункт прызначэння</string>
 	<string name="placepage_remove_stop">Выдаліць</string>
 	<string name="placepage_add_stop">Дадаць прыпынак</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -594,6 +601,11 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Схаваць усе</string>
 	<string name="bookmark_lists_show_all">Паказаць усе</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="one">%d закладка</item>
+	  <item quantity="few">%d закладкі</item>
+	  <item quantity="other">%d закладак</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Стварыць новы спіс</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Імпартаваць закладкі і cцежкі</string>
@@ -608,19 +620,10 @@
 	<string name="please_wait">Пачакайце…</string>
 	<string name="phone_number">Нумар тэлефона</string>
 	<string name="profile">Профіль OpenStreetMap</string>
-	<plurals name="objects">
-	  <item quantity="few">%d аб\'екты</item>
-	  <item quantity="one">%d аб\'ект</item>
-	  <item quantity="other">%d аб\'ектаў</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="few">%d месцы</item>
-	  <item quantity="one">%d месца</item>
-	  <item quantity="other">%d месцаў</item>
-	</plurals>
+	<string name="restore">Аднавіць</string>
 	<plurals name="tracks">
-	  <item quantity="few">%d сцежкі</item>
 	  <item quantity="one">%d сцежка</item>
+	  <item quantity="few">%d сцежкі</item>
 	  <item quantity="other">%d сцежак</item>
 	</plurals>
 	<!-- Settings privacy group in settings screen -->
@@ -797,6 +800,8 @@
 	<string name="button_layer_outdoor">Актыўны адпачынак</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Вэб-браўзер недаступны</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Аўтарызацыя OpenStreetMap часова недаступная з-за новых абмежаванняў у Google Play 😾\nНаша каманда працуе над вырашэннем гэтай праблемы. Будзьце цярплівыя 🙏</string>
 	<string name="volume">Гучнасць</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Экспартаваць усе закладкі і трэкі</string>
@@ -813,6 +818,15 @@
 	<string name="website_menu">Спасылка на меню</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Паглядзець меню</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Самаабслугоўванне</string>
+	<string name="select_option">Выберыце варыянт</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Месцы на адкрытым паветры</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Выключыць рэжым энергазберажэння</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Для найбольш дакладнай навігацыі рэкамендуем адключыць рэжым энергазберажэння ў наладах батарэі тэлефона.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Адрас/Блок</string>
@@ -1367,6 +1381,7 @@
 	<string name="type.tourism.information.map">Карта</string>
 	<string name="type.tourism.information.office">Турыстычны офіс</string>
 	<string name="type.tourism.information.visitor_centre">Цэнтр для наведвальнікаў</string>
+	<string name="type.tourism.viewpoint">Аглядальная пляцоўка</string>
 	<!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
 	<string name="type.tourism.wilderness_hut">Турыстычная хатка</string>
 	<string name="type.tourism.zoo.petting">Хатні заапарк</string>
@@ -1387,4 +1402,8 @@
 	<string name="type.amenity.events_venue">Месца правядзення мерапрыемстваў</string>
 	<string name="type.shop.auction">Аўкцыён</string>
 	<string name="type.shop.collector">Калекцыйныя прадметы</string>
+	<string name="type.self_service.yes">Маецца самаабслугоўванне</string>
+	<string name="type.self_service.only">Толькі самаабслугоўванне</string>
+	<string name="type.self_service.partially">Частковае самаабслугоўванне</string>
+	<string name="type.self_service.no">Няма самаабслугоўвання</string>
 </resources>

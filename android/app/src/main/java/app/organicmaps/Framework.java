@@ -35,7 +35,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Locale;
 
@@ -84,7 +83,12 @@ public class Framework
     // Called from JNI
     @Keep
     @SuppressWarnings("unused")
-    void onPlacePageDeactivated(boolean switchFullScreenMode);
+    void onPlacePageDeactivated();
+
+    // Called from JNI
+    @Keep
+    @SuppressWarnings("unused")
+    void onSwitchFullScreenMode();
   }
 
   public interface RoutingListener
@@ -247,6 +251,7 @@ public class Framework
   public static native @Nullable String nativeGetParsedBackUrl();
 
   public static native void nativeDeactivatePopup();
+  public static native void nativeDeactivateMapSelectionCircle();
 
   public static native void nativeDeactivateMapSelection();
   public static native String nativeGetDataFileExt();

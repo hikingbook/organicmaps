@@ -36,25 +36,10 @@
       <string>d</string>
       <key>one</key>
       <string>Znaleziono %d plik. Zobaczysz to po konwersji.</string>
-      <key>other</key>
-      <string>Znaleziono %d plików. Zobaczysz je po konwersji.</string>
       <key>two</key>
       <string>Znaleziono %d pliki. Zobaczysz je po konwersji.</string>
-    </dict>
-  </dict>
-
-  <key>objects</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@value@</string>
-    <key>value</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>d</string>
       <key>other</key>
-      <string>%d miejsce</string>
+      <string>Znaleziono %d plików. Zobaczysz je po konwersji.</string>
     </dict>
   </dict>
 
@@ -68,8 +53,14 @@
       <string>NSStringPluralRuleType</string>
       <key>NSStringFormatValueTypeKey</key>
       <string>d</string>
-      <key>other</key>
+      <key>one</key>
+      <string>%d trasa</string>
+      <key>few</key>
+      <string>%d trasy</string>
+      <key>many</key>
       <string>%d tras</string>
+      <key>other</key>
+      <string>%d trasy</string>
     </dict>
   </dict>
 </dict>

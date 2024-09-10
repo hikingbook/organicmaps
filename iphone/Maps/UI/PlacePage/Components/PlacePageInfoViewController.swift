@@ -8,46 +8,72 @@ class InfoItemViewController: UIViewController {
 
   @IBOutlet var imageView: UIImageView!
   @IBOutlet var infoLabel: UILabel!
-  @IBOutlet var accessoryImage: UIImageView!
-  @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+  @IBOutlet var accessoryButton: UIButton!
+
+  private var tapGestureRecognizer: UITapGestureRecognizer!
+  private var longPressGestureRecognizer: UILongPressGestureRecognizer!
 
   var tapHandler: TapHandler?
   var longPressHandler: TapHandler?
-  
-  var style: Style = .regular {
-    didSet {
-      switch style {
-      case .regular:
-        imageView?.styleName = "MWMBlack"
-        infoLabel?.styleName = "blackPrimaryText"
-      case .link:
-        imageView?.styleName = "MWMBlue"
-        infoLabel?.styleName = "linkBlueText"
-      }
-      accessoryImage.styleName = "MWMBlack"
-    }
+  var accessoryImageTapHandler: TapHandler?
+
+  private var style: Style = .regular
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupView()
   }
 
-  @IBAction func onTap(_ sender: UITapGestureRecognizer) {
+  private func setupView() {
+    tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
+    longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:)))
+    view.addGestureRecognizer(tapGestureRecognizer)
+    view.addGestureRecognizer(longPressGestureRecognizer)
+    
+    accessoryButton.addTarget(self, action: #selector(onAccessoryButtonTap), for: .touchUpInside)
+    setStyle(style)
+  }
+
+  @objc
+  private func onTap() {
     tapHandler?()
   }
 
-  @IBAction func onLongPress(_ sender: UILongPressGestureRecognizer) {
+  @objc
+  private func onLongPress(_ sender: UILongPressGestureRecognizer) {
     guard sender.state == .began else { return }
     longPressHandler?()
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  @objc
+  private func onAccessoryButtonTap() {
+    accessoryImageTapHandler?()
+  }
 
-    if style == .link {
-      imageView.styleName = "MWMBlue"
-      infoLabel.styleName = "linkBlueText"
+  func setStyle(_ style: Style) {
+    switch style {
+    case .regular:
+      imageView?.setStyleAndApply("MWMBlack")
+      infoLabel?.setStyleAndApply("blackPrimaryText")
+    case .link:
+      imageView?.setStyleAndApply("MWMBlue")
+      infoLabel?.setStyleAndApply("linkBlueText")
     }
+    accessoryButton.setStyleAndApply("MWMBlack")
+    self.style = style
+  }
+
+  func setAccessory(image: UIImage?, tapHandler: TapHandler? = nil) {
+    accessoryButton.setTitle("", for: .normal)
+    accessoryButton.setImage(image, for: .normal)
+    accessoryButton.isHidden = image == nil
+    accessoryImageTapHandler = tapHandler
   }
 }
 
 protocol PlacePageInfoViewControllerDelegate: AnyObject {
+  var shouldShowOpenInApp: Bool { get }
+
   func viewWillAppear()
   func didPressCall()
   func didPressWebsite()
@@ -61,11 +87,12 @@ protocol PlacePageInfoViewControllerDelegate: AnyObject {
   func didPressVk()
   func didPressLine()
   func didPressEmail()
+  func didPressOpenInApp(from sourceView: UIView)
   func didCopy(_ content: String)
 }
 
 class PlacePageInfoViewController: UIViewController {
-  private struct Const {
+  private struct Constants {
     static let coordFormatIdKey = "PlacePageInfoViewController_coordFormatIdKey"
   }
   private typealias TapHandler = InfoItemViewController.TapHandler
@@ -97,24 +124,32 @@ class PlacePageInfoViewController: UIViewController {
   private var addressView: InfoItemViewController?
   private var levelView: InfoItemViewController?
   private var coordinatesView: InfoItemViewController?
+  private var openWithAppView: InfoItemViewController?
   private var capacityView: InfoItemViewController?
   private var wheelchairView: InfoItemViewController?
+  private var selfServiceView: InfoItemViewController?
+  private var outdoorSeatingView: InfoItemViewController?
   private var driveThroughView: InfoItemViewController?
 
   var placePageInfoData: PlacePageInfoData!
   weak var delegate: PlacePageInfoViewControllerDelegate?
   var coordinatesFormatId: Int {
-    get {
-      UserDefaults.standard.integer(forKey: Const.coordFormatIdKey)
-    }
-    set {
-      UserDefaults.standard.set(newValue, forKey: Const.coordFormatIdKey)
-    }
+    get { UserDefaults.standard.integer(forKey: Constants.coordFormatIdKey) }
+    set { UserDefaults.standard.set(newValue, forKey: Constants.coordFormatIdKey) }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupViews()
+  }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    delegate?.viewWillAppear()
+  }
+
+  // MARK: private
+  private func setupViews() {
     if let openingHours = placePageInfoData.openingHours {
       openingHoursView.openingHours = openingHours
       addToStack(openingHoursView)
@@ -201,7 +236,7 @@ class PlacePageInfoViewController: UIViewController {
     if let wifi = placePageInfoData.wifiAvailable {
       wifiView = createInfoItem(wifi, icon: UIImage(named: "ic_placepage_wifi"))
     }
-    
+
     if let atm = placePageInfoData.atm {
       atmView = createInfoItem(atm, icon: UIImage(named: "ic_placepage_atm"))
     }
@@ -209,7 +244,7 @@ class PlacePageInfoViewController: UIViewController {
     if let level = placePageInfoData.level {
       levelView = createInfoItem(level, icon: UIImage(named: "ic_placepage_level"))
     }
-    
+
     if let capacity = placePageInfoData.capacity {
       capacityView = createInfoItem(capacity, icon: UIImage(named: "ic_placepage_capacity"))
     }
@@ -217,11 +252,19 @@ class PlacePageInfoViewController: UIViewController {
     if let wheelchair = placePageInfoData.wheelchair {
       wheelchairView = createInfoItem(wheelchair, icon: UIImage(named: "ic_placepage_wheelchair"))
     }
-    
+
+    if let selfService = placePageInfoData.selfService {
+      selfServiceView = createInfoItem(selfService, icon: UIImage(named: "ic_placepage_self_service"))
+    }
+
+    if let outdoorSeating = placePageInfoData.outdoorSeating {
+      outdoorSeatingView = createInfoItem(outdoorSeating, icon: UIImage(named: "ic_placepage_outdoor_seating"))
+    }
+
     if let driveThrough = placePageInfoData.driveThrough {
       driveThroughView = createInfoItem(driveThrough, icon: UIImage(named: "ic_placepage_drive_through"))
     }
-    
+
     if let email = placePageInfoData.email {
       emailView = createInfoItem(email,
                                  icon: UIImage(named: "ic_placepage_email"),
@@ -233,7 +276,7 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(email)
       })
     }
-    
+
     if let facebook = placePageInfoData.facebook {
       facebookView = createInfoItem(facebook,
                                     icon: UIImage(named: "ic_placepage_facebook"),
@@ -245,7 +288,7 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(facebook)
       })
     }
-    
+
     if let instagram = placePageInfoData.instagram {
       instagramView = createInfoItem(instagram,
                                      icon: UIImage(named: "ic_placepage_instagram"),
@@ -257,7 +300,7 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(instagram)
       })
     }
-    
+
     if let twitter = placePageInfoData.twitter {
       twitterView = createInfoItem(twitter,
                                    icon: UIImage(named: "ic_placepage_twitter"),
@@ -269,7 +312,7 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(twitter)
       })
     }
-    
+
     if let vk = placePageInfoData.vk {
       vkView = createInfoItem(vk,
                               icon: UIImage(named: "ic_placepage_vk"),
@@ -281,7 +324,7 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(vk)
       })
     }
-    
+
     if let line = placePageInfoData.line {
       lineView = createInfoItem(line,
                                 icon: UIImage(named: "ic_placepage_line"),
@@ -293,22 +336,22 @@ class PlacePageInfoViewController: UIViewController {
         self?.delegate?.didCopy(line)
       })
     }
-    
+
     if let address = placePageInfoData.address {
       addressView = createInfoItem(address,
-                                   icon: UIImage(named: "ic_placepage_adress"),
+                                   icon: UIImage(named: "ic_placepage_address"),
                                    longPressHandler: { [weak self] in
         self?.delegate?.didCopy(address)
       })
     }
-    
+
     if let kayak = placePageInfoData.kayak {
       kayakView = createInfoItem(L("more_on_kayak"),
                                  icon: UIImage(named: "ic_placepage_kayak"),
                                  style: .link,
                                  tapHandler: { [weak self] in
         self?.delegate?.didPressKayak()
-      }, 
+      },
                                  longPressHandler: { [weak self] in
         self?.delegate?.didCopy(kayak)
       })
@@ -319,9 +362,10 @@ class PlacePageInfoViewController: UIViewController {
       if formatId >= coordFormats.count {
         formatId = 0
       }
-      
+
       coordinatesView = createInfoItem(coordFormats[formatId],
                                        icon: UIImage(named: "ic_placepage_coordinate"),
+                                       accessoryImage: UIImage(named: "ic_placepage_change"),
                                        tapHandler: { [unowned self] in
         let formatId = (self.coordinatesFormatId + 1) % coordFormats.count
         self.coordinatesFormatId = formatId
@@ -332,30 +376,37 @@ class PlacePageInfoViewController: UIViewController {
         let coordinates: String = coordFormats[self.coordinatesFormatId]
         self.delegate?.didCopy(coordinates)
       })
-
-      coordinatesView?.accessoryImage.image = UIImage(named: "ic_placepage_change")
-      coordinatesView?.accessoryImage.isHidden = false
     }
+
+    setupOpenWithAppView()
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    delegate?.viewWillAppear()
+  private func setupOpenWithAppView() {
+    guard let delegate, delegate.shouldShowOpenInApp else { return }
+    openWithAppView = createInfoItem(L("open_in_app"),
+                                     icon: UIImage(named: "ic_open_in_app"),
+                                     style: .link,
+                                     tapHandler: { [weak self] in
+      guard let self, let openWithAppView else { return }
+      self.delegate?.didPressOpenInApp(from: openWithAppView.view)
+    })
   }
 
-  // MARK: private
   private func createInfoItem(_ info: String,
                               icon: UIImage?,
                               style: Style = .regular,
+                              accessoryImage: UIImage? = nil,
                               tapHandler: TapHandler? = nil,
-                              longPressHandler: TapHandler? = nil) -> InfoItemViewController {
+                              longPressHandler: TapHandler? = nil,
+                              accessoryImageTapHandler: TapHandler? = nil) -> InfoItemViewController {
     let vc = storyboard!.instantiateViewController(ofType: InfoItemViewController.self)
     addToStack(vc)
     vc.imageView.image = icon
     vc.infoLabel.text = info
-    vc.style = style
+    vc.setStyle(style)
     vc.tapHandler = tapHandler
     vc.longPressHandler = longPressHandler
+    vc.setAccessory(image: accessoryImage, tapHandler: accessoryImageTapHandler)
     return vc;
   }
 

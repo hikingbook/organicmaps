@@ -6,11 +6,13 @@ package app.organicmaps;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static app.organicmaps.api.Const.EXTRA_PICK_POINT;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -22,10 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import app.organicmaps.display.DisplayManager;
+import app.organicmaps.intent.Factory;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.LocationUtils;
+import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeUtils;
+import app.organicmaps.util.Utils;
 import app.organicmaps.util.concurrency.UiThread;
 import app.organicmaps.util.log.Logger;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -43,7 +48,12 @@ public class SplashActivity extends AppCompatActivity
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
+  private ActivityResultLauncher<Intent> mApiRequest;
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
   private ActivityResultLauncher<String[]> mPermissionRequest;
+  @NonNull
+  private ActivityResultLauncher<SharingUtils.SharingIntent> mShareLauncher;
 
   @NonNull
   private final Runnable mInitCoreDelayedTask = this::init;
@@ -66,6 +76,11 @@ public class SplashActivity extends AppCompatActivity
 //    setContentView(R.layout.activity_splash);
 //    mPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
 //        result -> Config.setLocationRequested());
+    mApiRequest = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+      setResult(result.getResultCode(), result.getData());
+      finish();
+    });
+    mShareLauncher = SharingUtils.RegisterLauncher(this);
 
     if (DisplayManager.from(this).isCarDisplayUsed())
     {
@@ -106,17 +121,27 @@ public class SplashActivity extends AppCompatActivity
     super.onDestroy();
 //    mPermissionRequest.unregister();
 //    mPermissionRequest = null;
+    mApiRequest.unregister();
+    mApiRequest = null;
   }
 
-  private void showFatalErrorDialog(@StringRes int titleId, @StringRes int messageId)
+  private void showFatalErrorDialog(@StringRes int titleId, @StringRes int messageId, Exception error)
   {
     mCanceled = true;
     new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(titleId)
-        .setMessage(messageId)
-        .setNegativeButton(R.string.ok, (dialog, which) -> SplashActivity.this.finish())
-        .setCancelable(false)
-        .show();
+      .setTitle(titleId)
+      .setMessage(messageId)
+      .setPositiveButton(
+        R.string.report_a_bug,
+        (dialog, which) -> Utils.sendBugReport(
+          mShareLauncher,
+          this,
+          "Fatal Error",
+          Log.getStackTraceString(error)
+        )
+      )
+      .setCancelable(false)
+      .show();
   }
 
   private void init()
@@ -126,19 +151,11 @@ public class SplashActivity extends AppCompatActivity
 //    try
 //    {
 //      asyncContinue = app.init(this::processNavigation);
-//    } catch (IOException e)
+//    } catch (IOException error)
 //    {
-//      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message);
+//      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message, error);
 //      return;
-//    }
-//
-//    if (Config.isFirstLaunch(this) && LocationUtils.checkLocationPermission(this))
-//    {
-//      final LocationHelper locationHelper = app.getLocationHelper();
-//      locationHelper.onEnteredIntoFirstRun();
-//      if (!locationHelper.isActive())
-//        locationHelper.start();
-//    }
+//   }
 
 //    if (!asyncContinue)
 //      processNavigation();
@@ -155,13 +172,22 @@ public class SplashActivity extends AppCompatActivity
 //      return;
 //    }
 //
-//    // Re-use original intent to retain all flags and payload.
+//    // Re-use original intent with the known safe subset of flags to retain security permissions.
 //    // https://github.com/organicmaps/organicmaps/issues/6944
 //    final Intent intent = Objects.requireNonNull(getIntent());
 //    intent.setComponent(new ComponentName(this, DownloadResourcesLegacyActivity.class));
-//    // Flags like FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_RESET_TASK_IF_NEEDED will break the cold start of the app.
+//    // FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_RESET_TASK_IF_NEEDED break the cold start.
 //    // https://github.com/organicmaps/organicmaps/pull/7287
-//    intent.setFlags(intent.getFlags() & (Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_GRANT_READ_URI_PERMISSION));
+//    // FORWARD_RESULT_FLAG conflicts with the ActivityResultLauncher.
+//    // https://github.com/organicmaps/organicmaps/issues/8984
+//    intent.setFlags(intent.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//    if (Factory.isStartedForApiResult(intent))
+//    {
+//      // Wait for the result from MwmActivity for API callers.
+//      mApiRequest.launch(intent);
+//      return;
+//    }
 //
 //    Config.setFirstStartDialogSeen(this);
 //    startActivity(intent);

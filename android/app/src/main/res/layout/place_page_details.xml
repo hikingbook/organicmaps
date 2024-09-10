@@ -48,6 +48,7 @@
     <include layout="@layout/place_page_operator"/>
 
     <include layout="@layout/place_page_wifi"/>
+    <include layout="@layout/place_page_outdoor_seating"/>
 
     <androidx.fragment.app.FragmentContainerView
       android:id="@+id/place_page_links_fragment"
@@ -64,6 +65,8 @@
     <include layout="@layout/place_page_wheelchair" />
 
     <include layout="@layout/place_page_drive_through" />
+
+    <include layout="@layout/place_page_self_service" />
 
     <!-- ToDo: Address is missing compared with iOS. It's shown in title but anyway .. -->
 

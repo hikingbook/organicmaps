@@ -278,6 +278,8 @@
 	<string name="compass_calibration_recommended">Verbessern Sie die Pfeilrichtung, indem Sie das Telefon in einer Achterbewegung bewegen, um den Kompass zu kalibrieren.</string>
 	<!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
 	<string name="compass_calibration_required">Bewegen Sie das Telefon in einer Achterbewegung, um den Kompass zu kalibrieren und die Pfeilrichtung auf der Karte festzulegen.</string>
+	<!-- Toast text when user hides UI with a long tap anywhere on the map -->
+	<string name="long_tap_toast">Tippe erneut lange auf die Karte, um das Interface zu sehen</string>
 	<!-- Update all button text -->
 	<string name="downloader_update_all_button">Alle aktualisieren</string>
 	<!-- Cancel all button text -->
@@ -377,6 +379,7 @@
 	<string name="dialog_routing_system_error">Systemfehler</string>
 	<string name="dialog_routing_application_error">Route kann wegen eines Anwendungsfehlers nicht erstellt werden.</string>
 	<string name="dialog_routing_try_again">Bitte versuchen Sie es erneut</string>
+	<string name="not_now">Nicht jetzt</string>
 	<string name="dialog_routing_download_and_build_cross_route">Möchten Sie die Karte herunterladen und eine bessere Route erstellen, die mehr als eine Karte umfasst?</string>
 	<string name="dialog_routing_download_cross_route">Laden Sie zusätzliche Karten herunter, um eine bessere Route zu erstellen, die die Grenzen dieser Karte überschreitet.</string>
 
@@ -390,7 +393,8 @@
 	<string name="categories">Kategorien</string>
 	<string name="history">Verlauf</string>
 	<string name="search_not_found">Leider wurde nichts gefunden.</string>
-	<string name="search_not_found_query">Versuchen Sie bitte eine andere Suchanfrage.</string>
+	<!-- The message when user did not find anything in the search. -->
+	<string name="search_not_found_query">Laden Sie die Region herunter, in der Sie suchen, oder fügen Sie den Namen einer nahe gelegenen Stadt oder eines Dorfes hinzu.</string>
 	<string name="search_history_title">Suchverlauf</string>
 	<string name="search_history_text">Hier werden Ihre letzten Suchanfragen angezeigt.</string>
 	<string name="clear_search">Suchverlauf löschen</string>
@@ -441,6 +445,8 @@
 	<string name="no_osm_account">Kein Konto bei OpenStreetMap?</string>
 	<string name="register_at_openstreetmap">Bei OpenStretMap registrieren</string>
 	<string name="login">Bei OpenStreetMap anmelden</string>
+	<!-- Status message indicating that user did not login to OSM profile yet. -->
+	<string name="not_signed_in">Nicht angemeldet</string>
 	<string name="login_osm">Melden Sie sich bei OpenStreetMap an</string>
 	<string name="password">Passwort</string>
 	<string name="forgot_password">Passwort vergessen?</string>
@@ -464,6 +470,8 @@
 	<string name="email_or_username">Email oder Benutzername</string>
 	<string name="editor_add_phone">Telefon hinzufügen</string>
 	<string name="level">Stockwerk</string>
+	<!-- Building level -->
+	<string name="level_value_generic">Stock: %s</string>
 	<string name="downloader_delete_map_dialog">Alle Kartenänderungen werden zusammen mit der Karte gelöscht.</string>
 	<string name="downloader_update_maps">Karten aktualisieren</string>
 	<string name="downloader_mwm_migration_dialog">Um eine Route zu erstellen, müssen Sie alle Karten aktualisieren und dann die Route erneut planen.</string>
@@ -482,7 +490,6 @@
 	<string name="editor_edit_place_category_title">Kategorie</string>
 	<string name="detailed_problem_description">Detaillierte Beschreibung eines Problems</string>
 	<string name="editor_report_problem_other_title">Ein anderes Problem</string>
-	<string name="placepage_add_business_button">Organisation hinzufügen</string>
 	<string name="message_invalid_feature_position">Ein Objekt kann hier nicht positioniert werden</string>
 	<!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
 	<string name="osm_presentation">Von der Community erstellte OpenStreetMap-Daten (Stand: %s). Erfahre mehr darüber, wie du die Karte bearbeiten und aktualisieren kannst unter OpenStreetMap.org</string>
@@ -552,7 +559,7 @@
 	<!-- Dialog before publishing the modifications to the public map. -->
 	<string name="editor_share_to_all_dialog_message_1">Stellen Sie sicher, dass Sie keine persönlichen oder privaten Daten eingegeben haben.</string>
 	<string name="editor_share_to_all_dialog_message_2">Freiwillige von OpenStreetMap werden die Änderungen prüfen und sich bei Fragen mit Ihnen in Verbindung setzen.</string>
-	<string name="navigation_stop_button">Stopp</string>
+	<string name="navigation_stop_button">Beenden</string>
 	<!-- For the first routing -->
 	<string name="accept">Annehmen</string>
 	<!-- For the first routing -->
@@ -581,8 +588,10 @@
 	<string name="learn_more">Weitere Informationen</string>
 	<!-- Subway exits for public transport marks on the map -->
 	<string name="core_exit">Ausgang</string>
-	<string name="routing_add_start_point">Fügen Sie einen Startpunkt hinzu, um eine Route zu planen</string>
-	<string name="routing_add_finish_point">Fügen Sie ein Ziel hinzu, um eine Route zu planen</string>
+	<!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
+	<string name="routing_add_start_point">Verwende die Suche oder tippe auf die Karte, um einen Routenstartpunkt hinzuzufügen</string>
+	<!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
+	<string name="routing_add_finish_point">Verwende die Suche oder tippe auf die Karte, um einen Zielpunkt hinzuzufügen</string>
 	<string name="placepage_remove_stop">Entfernen</string>
 	<string name="placepage_add_stop">Stopp einfügen</string>
 	<!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -596,6 +605,9 @@
 	<!-- Do not display all bookmark lists on the map -->
 	<string name="bookmark_lists_hide_all">Alle ausblenden</string>
 	<string name="bookmark_lists_show_all">Alle anzeigen</string>
+	<plurals name="bookmarks_places">
+	  <item quantity="other">%d Lesezeichen</item>
+	</plurals>
 	<string name="bookmarks_create_new_group">Neue Liste erstellen</string>
 	<!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
 	<string name="bookmarks_import">Lesezeichen und Tracks importieren</string>
@@ -614,14 +626,7 @@
 	  <item quantity="one">%d Datei wurde gefunden. Sie werden sie nach der Konvertierung sehen.</item>
 	  <item quantity="other">%d Dateien wurden gefunden. Sie werden sie nach der Konvertierung sehen.</item>
 	</plurals>
-	<plurals name="objects">
-	  <item quantity="one">%d Objekt</item>
-	  <item quantity="other">%d Objekte</item>
-	</plurals>
-	<plurals name="places">
-	  <item quantity="one">%d Ort</item>
-	  <item quantity="other">%d Orte</item>
-	</plurals>
+	<string name="restore">Wiederherstellen</string>
 	<plurals name="tracks">
 	  <item quantity="one">%d Track</item>
 	  <item quantity="other">%d Tracks</item>
@@ -804,6 +809,8 @@
 	<string name="button_layer_outdoor">Wandern</string>
 	<!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
 	<string name="browser_not_available">Webbrowser ist nicht verfügbar</string>
+	<!-- Text displayed in a dialog when OSM authorization is disabled -->
+	<string name="osm_login_not_available">Die OpenStreetMap-Autorisierung ist aufgrund neuer Einschränkungen in Google Play vorübergehend nicht verfügbar 😾\nUnser Team arbeitet daran, dieses Problem zu beheben. Bitte haben Sie Geduld 🙏</string>
 	<string name="volume">Lautstärke</string>
 	<!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
 	<string name="bookmarks_export">Alle Lesezeichen und Tracks exportieren</string>
@@ -820,6 +827,15 @@
 	<string name="website_menu">Link zur Speisekarte</string>
 	<!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
 	<string name="view_menu">Speisekarte</string>
+	<!-- To indicate if the place proposed self service... -->
+	<string name="self_service">Selbstbedienung</string>
+	<string name="select_option">Option auswählen</string>
+	<!-- To indicate if restaurant or other place has outdoor seating -->
+	<string name="outdoor_seating">Sitzplätze im Freien</string>
+	<!-- Disclaimer title shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_title">Energiesparmodus deaktivieren</string>
+	<!-- Disclaimer summary shown when Power Saving Mode is enabled -->
+	<string name="power_save_dialog_summary">Für eine möglichst genaue Navigation empfehlen wir, den Energiesparmodus in den Akku-Einstellungen des Telefons zu deaktivieren.</string>
 
 	<!-- SECTION: Types -->
 	<string name="type.addr_interpolation">Adresse/Block</string>
@@ -2127,4 +2143,8 @@
 	<string name="type.amenity.events_venue">Veranstaltungszentrum</string>
 	<string name="type.shop.auction">Auktion</string>
 	<string name="type.shop.collector">Sammlerstücke</string>
+	<string name="type.self_service.yes">Selbstbedienung verfügbar</string>
+	<string name="type.self_service.only">Nur Selbstbedienung</string>
+	<string name="type.self_service.partially">Teilweise Selbstbedienung</string>
+	<string name="type.self_service.no">Keine Selbstbedienung</string>
 </resources>
