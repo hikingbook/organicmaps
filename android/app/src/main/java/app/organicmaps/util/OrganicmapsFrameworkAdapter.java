@@ -109,7 +109,6 @@ public enum OrganicmapsFrameworkAdapter {
     public void initCoreIfNeed(@NonNull Runnable onComplete) {
         try {
             if (!arePlatformAndCoreInitialized()) {
-                mwmApplication.onCreate();
                 mwmApplication.init(onComplete);
             }
         } catch (IOException e) {
@@ -124,30 +123,49 @@ public enum OrganicmapsFrameworkAdapter {
     @NonNull
     public LocationHelper getLocationHelper()
     {
+        if (mwmApplication.getLocationHelper() == null) {
+            mwmApplication.onCreate();
+        }
         return mwmApplication.getLocationHelper();
     }
 
     @NonNull
     public SensorHelper getSensorHelper()
     {
+        if (mwmApplication.getSensorHelper() == null) {
+            mwmApplication.onCreate();
+        }
         return mwmApplication.getSensorHelper();
     }
 
     @NonNull
     public DisplayManager getDisplayManager()
     {
+
+        if (mwmApplication.getDisplayManager() == null) {
+            mwmApplication.onCreate();
+        }
         return mwmApplication.getDisplayManager();
+
     }
 
     @NonNull
     public IsolinesManager getIsolinesManager()
     {
+
+        if (mwmApplication.getIsolinesManager() == null) {
+            mwmApplication.onCreate();
+        }
         return mwmApplication.getIsolinesManager();
     }
 
     @NonNull
     public SubwayManager getSubwayManager()
     {
+
+        if (mwmApplication.getSubwayManager() == null) {
+            mwmApplication.onCreate();
+        }
         return mwmApplication.getSubwayManager();
     }
 
