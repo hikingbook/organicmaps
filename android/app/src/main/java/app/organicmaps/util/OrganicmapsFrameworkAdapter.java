@@ -179,7 +179,7 @@ public enum OrganicmapsFrameworkAdapter {
         setFragment(fragment);
     }
 
-    public void onCreateMwmActivity(Bundle savedInstanceState) {
+    public void onCreateMwmActivity() {
         mwmActivity.mIsTabletLayout = getApplication().getResources().getBoolean(R.bool.tabletLayout);
         if (!mwmActivity.mIsTabletLayout)
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

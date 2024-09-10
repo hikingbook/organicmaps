@@ -55,6 +55,12 @@ import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
 import app.organicmaps.Framework.PlacePageActivationListener;
 import app.organicmaps.api.Const;
 import app.organicmaps.base.BaseMwmFragmentActivity;
@@ -86,7 +92,6 @@ import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.SensorListener;
 import app.organicmaps.maplayer.MapButtonsController;
-import app.organicmaps.maplayer.MapButtonsViewModel;
 import app.organicmaps.maplayer.ToggleMapLayerFragment;
 import app.organicmaps.maplayer.isolines.IsolinesState;
 import app.organicmaps.routing.NavigationController;
@@ -118,18 +123,6 @@ import app.organicmaps.widget.menu.MainMenu;
 import app.organicmaps.widget.placepage.PlacePageController;
 import app.organicmaps.widget.placepage.PlacePageData;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.POST_NOTIFICATIONS;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.organicmaps.location.LocationState.FOLLOW;
-import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
-import static app.organicmaps.location.LocationState.LOCATION_TAG;
 
 public class MwmActivity extends BaseMwmFragmentActivity
         implements PlacePageActivationListener,
