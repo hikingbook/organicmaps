@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -121,8 +122,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @NonNull
-    public LocationHelper getLocationHelper()
-    {
+    public LocationHelper getLocationHelper() {
         if (mwmApplication.getLocationHelper() == null) {
             mwmApplication.onCreate();
         }
@@ -130,8 +130,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @NonNull
-    public SensorHelper getSensorHelper()
-    {
+    public SensorHelper getSensorHelper() {
         if (mwmApplication.getSensorHelper() == null) {
             mwmApplication.onCreate();
         }
@@ -139,8 +138,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @NonNull
-    public DisplayManager getDisplayManager()
-    {
+    public DisplayManager getDisplayManager() {
 
         if (mwmApplication.getDisplayManager() == null) {
             mwmApplication.onCreate();
@@ -150,8 +148,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @NonNull
-    public IsolinesManager getIsolinesManager()
-    {
+    public IsolinesManager getIsolinesManager() {
 
         if (mwmApplication.getIsolinesManager() == null) {
             mwmApplication.onCreate();
@@ -160,9 +157,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @NonNull
-    public SubwayManager getSubwayManager()
-    {
-
+    public SubwayManager getSubwayManager() {
         if (mwmApplication.getSubwayManager() == null) {
             mwmApplication.onCreate();
         }
@@ -171,9 +166,10 @@ public enum OrganicmapsFrameworkAdapter {
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     public void restartLocation() {
-        if (arePlatformAndCoreInitialized()) {
-            getLocationHelper().restartWithNewMode();
+        if (!arePlatformAndCoreInitialized()) {
+            return;
         }
+        getLocationHelper().restartWithNewMode();
     }
 
     public void initActivity(AppCompatActivity activity, Fragment fragment) {
@@ -231,10 +227,16 @@ public enum OrganicmapsFrameworkAdapter {
         mwmActivity.onRenderingCreated();
     }
     public void nativeDeactivatePopup() {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativeDeactivatePopup();
     }
 
     public void nativeDeactivateMapSelection() {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativeDeactivateMapSelection();
     }
 
@@ -244,16 +246,25 @@ public enum OrganicmapsFrameworkAdapter {
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     public void myPositionClick() {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         LocationState.nativeSwitchToNextMode();
         if (!getLocationHelper().isActive())
             getLocationHelper().start();
     }
 
     public void setViewportCenter(double lat, double lon) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativeSetViewportCenter(lat, lon, SEARCH_IN_VIEWPORT_ZOOM);
     }
 
     public void zoomToPoint(double lat, double lon) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativeZoomToPoint(lat, lon, SEARCH_IN_VIEWPORT_ZOOM, true);
     }
 
@@ -283,6 +294,9 @@ public enum OrganicmapsFrameworkAdapter {
      * Bookmark CRUD
      */
     public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Long.MAX_VALUE;
+        }
         long catId = searchCategoryIDWithName(catName);
         if (catId == Long.MAX_VALUE) {
             return Long.MAX_VALUE;
@@ -299,6 +313,9 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void updateBookmark(long bmkId, String name, String description, int color, double lat, double lon) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.nativeUpdateBookmark(
                 bmkId,
                 name,
@@ -310,18 +327,30 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void deleteBookmark(long bmkId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.deleteBookmark(bmkId);
     }
 
     public void deleteAllBookmarksWithCategory(long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.nativeDeleteAllBookmarkWithCategory(catId);
     }
 
     public long searchBookmarkIDWithName(String bmkName, long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Long.MAX_VALUE;
+        }
         return BookmarkManager.INSTANCE.nativeSearchBookmarkIDWithName(bmkName, catId);
     }
 
     public void showBookmark(long bmkId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.showBookmarkOnMap(bmkId);
     }
 
@@ -329,38 +358,63 @@ public enum OrganicmapsFrameworkAdapter {
      * Bookmark Category CRUD
      */
     public long createCategory(@NonNull String catName) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Long.MAX_VALUE;
+        }
         return BookmarkManager.INSTANCE.createCategory(catName);
     }
 
     public void deleteCategory(long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.deleteCategory(catId);
     }
 
     public List<BookmarkCategory> getBookmarkCategories() {
+        if (!arePlatformAndCoreInitialized()) {
+            return new ArrayList<>();
+        }
         return Arrays.asList(BookmarkManager.INSTANCE.nativeGetBookmarkCategories());
     }
 
     public void toggleCategoryVisibility(Long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkCategory category =  BookmarkManager.INSTANCE.getCategoryById(catId);
         BookmarkManager.INSTANCE.toggleCategoryVisibility(category);
     }
 
     public void setCategoryVisibility(String catName, boolean visible) {
-        long catId = OrganicmapsFrameworkAdapter.INSTANCE.searchCategoryIDWithName(catName);
-        if (catId != Long.MAX_VALUE) {
-            BookmarkManager.INSTANCE.setVisibility(catId, visible);
+        if (!arePlatformAndCoreInitialized()) {
+            return;
         }
+        long catId = OrganicmapsFrameworkAdapter.INSTANCE.searchCategoryIDWithName(catName);
+        if (catId == Long.MAX_VALUE) {
+            return;
+        }
+        BookmarkManager.INSTANCE.setVisibility(catId, visible);
     }
 
     public boolean isCategoryVisible(long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return false;
+        }
         return BookmarkManager.INSTANCE.isVisible(catId);
     }
 
     public long searchCategoryIDWithName(@NonNull String catName) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Long.MAX_VALUE;
+        }
         return BookmarkManager.INSTANCE.nativeSearchCategoryIDWithName(catName);
     }
 
     public void showBookmarkCategoryOnMap(long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(catId);
     }
 
@@ -368,7 +422,7 @@ public enum OrganicmapsFrameworkAdapter {
      * Track CRUD
      */
     public long createTrack(long catId, String name, String description, Double[][] locations, int color, double lineWidth) {
-        if (locations.length <= 1) {
+        if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return Long.MAX_VALUE;
         }
         double[][] doubleLocations = new double[locations.length][2];
@@ -391,33 +445,39 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public boolean isTrackExistedInCategory(long catId) {
-        if (catId != Long.MAX_VALUE) {
-            int count = BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
-            return count > 0;
+        if (!arePlatformAndCoreInitialized() || catId == Long.MAX_VALUE) {
+            return false;
         }
-        return false;
+        int count = BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
+        return count > 0;
     }
 
     public void deleteTrack(long trackId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.deleteTrack(trackId);
     }
 
     public void deleteAllTracksInCategory(long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.nativeDeleteAllTracksInCategory(catId);
     }
 
     public int countTracksInCategory(long catId) {
-        if (catId != Long.MAX_VALUE) {
-            return BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
+        if (!arePlatformAndCoreInitialized() || catId == Long.MAX_VALUE) {
+            return 0;
         }
-        return 0;
+        return BookmarkManager.INSTANCE.nativeGetTracksCount(catId);
     }
 
     /**
      * Track Line CRUD
      */
     public int drawLineWithLocations(Double[][] locations, int color, double lineWidth) {
-        if (locations.length <= 1) {
+        if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return 0;
         }
         double[][] doubleLocations = new double[locations.length][2];
@@ -433,10 +493,16 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void removeLine(int lineId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.nativeRemoveLine(lineId);
     }
 
     public void clearLines() {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         BookmarkManager.INSTANCE.nativeClearLines();
     }
 
@@ -452,6 +518,9 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public boolean showLocation(Location location) {
+        if (!arePlatformAndCoreInitialized()) {
+            return false;
+        }
         String geoUrl = Framework.nativeGetGe0Url(location.getLatitude(), location.getLongitude(), 15, "");
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(geoUrl));
