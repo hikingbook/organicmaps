@@ -171,7 +171,9 @@ public enum OrganicmapsFrameworkAdapter {
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     public void restartLocation() {
-        getLocationHelper().restartWithNewMode();
+        if (arePlatformAndCoreInitialized()) {
+            getLocationHelper().restartWithNewMode();
+        }
     }
 
     public void initActivity(AppCompatActivity activity, Fragment fragment) {
