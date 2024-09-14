@@ -13,6 +13,7 @@ import app.organicmaps.Framework;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.subway.SubwayManager;
 import app.organicmaps.maplayer.traffic.TrafficManager;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.ThemeSwitcher;
 
 public enum Mode
@@ -72,6 +73,9 @@ public enum Mode
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
           Framework.nativeSetOutdoorsLayerEnabled(isEnabled);
+          if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized()) {
+              ThemeSwitcher.INSTANCE.initialize(context);
+          }
           ThemeSwitcher.INSTANCE.restart(true);
         }
       };
