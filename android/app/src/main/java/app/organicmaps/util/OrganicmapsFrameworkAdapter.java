@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import app.organicmaps.Framework;
+import app.organicmaps.Map;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -121,6 +122,10 @@ public enum OrganicmapsFrameworkAdapter {
         return mwmApplication.arePlatformAndCoreInitialized();
     }
 
+    public boolean isMapEngineCreated() {
+        return arePlatformAndCoreInitialized() && Map.isEngineCreated();
+    }
+
     @NonNull
     public LocationHelper getLocationHelper() {
         if (mwmApplication.getLocationHelper() == null) {
@@ -186,26 +191,32 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onResumeMwmActivity() {
-        if (mwmActivity.mOnmapDownloader != null)
+        if (mwmActivity.mOnmapDownloader != null && arePlatformAndCoreInitialized())
             mwmActivity.mOnmapDownloader.onResume();
 
         SensorHelper.from(activity).addListener(mwmActivity);
     }
 
     public void onPauseMwmActivity() {
-        if (mwmActivity.mOnmapDownloader != null)
+        if (mwmActivity.mOnmapDownloader != null && arePlatformAndCoreInitialized())
             mwmActivity.mOnmapDownloader.onPause();
 
         SensorHelper.from(activity).removeListener(mwmActivity);
     }
 
     public void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativePlacePageActivationListener(placePageActivationListener);
         LocationState.nativeSetListener(modeChangeListener);
         getLocationHelper().addListener(locationListener);
     }
 
     public void onStopMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
+        if (!arePlatformAndCoreInitialized()) {
+            return;
+        }
         Framework.nativeRemovePlacePageActivationListener(placePageActivationListener);
         LocationState.nativeRemoveListener();
         getLocationHelper().removeListener(locationListener);
