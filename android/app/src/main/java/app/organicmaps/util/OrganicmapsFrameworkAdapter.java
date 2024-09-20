@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -111,6 +110,7 @@ public enum OrganicmapsFrameworkAdapter {
     public void initCoreIfNeed(@NonNull Runnable onComplete) {
         try {
             if (!arePlatformAndCoreInitialized()) {
+                mwmApplication.onCreate();
                 mwmApplication.init(onComplete);
             }
         } catch (IOException e) {
