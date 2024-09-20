@@ -72,10 +72,11 @@ public enum Mode
         @Override
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
-          Framework.nativeSetOutdoorsLayerEnabled(isEnabled);
           if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized()) {
-              ThemeSwitcher.INSTANCE.initialize(context);
+            return;
           }
+          Framework.nativeSetOutdoorsLayerEnabled(isEnabled);
+          ThemeSwitcher.INSTANCE.initialize(context);
           ThemeSwitcher.INSTANCE.restart(true);
         }
       };
