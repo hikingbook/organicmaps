@@ -58,6 +58,9 @@ public enum Mode
         @Override
         public void setEnabled(@NonNull Context context, boolean isEnabled)
         {
+          if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized()) {
+            return;
+          }
           IsolinesManager.setEnabled(isEnabled);
         }
       },
