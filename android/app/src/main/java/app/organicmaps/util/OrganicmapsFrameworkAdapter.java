@@ -350,6 +350,7 @@ public enum OrganicmapsFrameworkAdapter {
             return;
         }
         BookmarkManager.INSTANCE.nativeDeleteAllBookmarkWithCategory(catId);
+        BookmarkManager.INSTANCE.nativeResetRecentlyDeletedBookmark();
     }
 
     public long searchBookmarkIDWithName(String bmkName, long catId) {
