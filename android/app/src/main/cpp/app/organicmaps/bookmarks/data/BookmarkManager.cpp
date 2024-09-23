@@ -1214,4 +1214,10 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeDrawCircle(JNIEnv * en
   return lineId;
 }
 
+JNIEXPORT void JNICALL
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeResetRecentlyDeletedBookmark(JNIEnv *)
+{
+    frm()->GetBookmarkManager().ResetRecentlyDeletedBookmark();
+}
+
 }  // extern "C"

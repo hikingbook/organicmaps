@@ -887,6 +887,9 @@ public enum BookmarkManager
 
   public native int nativeGetTracksCount(long catId);
 
+  @NonNull
+  public native void nativeResetRecentlyDeletedBookmark();
+
   public interface ElevationActivePointChangedListener
   {
     void onElevationActivePointChanged();

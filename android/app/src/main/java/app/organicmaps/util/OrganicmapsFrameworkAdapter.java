@@ -342,6 +342,7 @@ public enum OrganicmapsFrameworkAdapter {
             return;
         }
         BookmarkManager.INSTANCE.deleteBookmark(bmkId);
+        BookmarkManager.INSTANCE.nativeResetRecentlyDeletedBookmark();
     }
 
     public void deleteAllBookmarksWithCategory(long catId) {
