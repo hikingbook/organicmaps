@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2024.
 package app.organicmaps.util;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+
 import app.organicmaps.Framework;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -126,6 +128,12 @@ public enum ThemeSwitcher
       else
         style = Framework.MAP_STYLE_CLEAR;
     }
+
+    // Zheng-Xiang: Follow system mode
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+      uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
+    else
+      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
     if (!theme.equals(oldTheme))
     {
