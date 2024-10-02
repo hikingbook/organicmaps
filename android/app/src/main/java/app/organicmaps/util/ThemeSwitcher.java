@@ -102,10 +102,10 @@ public enum ThemeSwitcher
     int style;
     if (ThemeUtils.isNightTheme(mContext, theme))
     {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
-      else
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+//        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
+//      else
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
       if (RoutingController.get().isVehicleNavigation())
         style = Framework.MAP_STYLE_VEHICLE_DARK;
@@ -116,10 +116,10 @@ public enum ThemeSwitcher
     }
     else
     {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
-      else
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+//        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
+//      else
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
       if (RoutingController.get().isVehicleNavigation())
         style = Framework.MAP_STYLE_VEHICLE_CLEAR;
