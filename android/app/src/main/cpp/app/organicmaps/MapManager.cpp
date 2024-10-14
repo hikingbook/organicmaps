@@ -592,28 +592,6 @@ Java_app_organicmaps_downloader_MapManager_nativeGetSelectedCountry(JNIEnv *env,
     return (res == storage::kInvalidCountryId ? nullptr : jni::ToJavaString(env, res));
 }
 
-// Added by Zheng-Xiang Ke
-// static void nativeDeleteAllUnsupportedMaps(String root, int version);
-JNIEXPORT jboolean JNICALL
-Java_app_organicmaps_downloader_MapManager_nativeDeleteAllUnsupportedMaps(JNIEnv *env,
-                                                                              jclass clazz,
-                                                                              jstring root) {
-    auto const countryId = jni::ToNativeString(env, root);
-    auto const localFile = GetStorage().GetLatestLocalFile(countryId);
-    if (!localFile || !localFile->OnDisk(MapFileType::Map)) {
-        return false;
-    }
-
-    auto const path = localFile->GetPath(MapFileType::Map);
-    Platform &pl = GetPlatform();
-    auto const version = version::MwmVersion::Read(FilesContainerR(pl.GetReader(path, "f")));
-    if (version.GetFormat() < version::Format::v11) {
-        Java_app_organicmaps_downloader_MapManager_nativeDelete(env, clazz, root);
-        return true;
-    }
-    return false;
-}
-
 // static @Nullable void nativeUpdateLocalMapRegistration(boolean isPro, boolean isActivatedUser, int freeLimitNumDownloadedMaps);
 JNIEXPORT void JNICALL
 Java_app_organicmaps_downloader_MapManager_nativeUpdateAllMapsRegistration(JNIEnv *env,

@@ -400,11 +400,6 @@ public final class MapManager
   public static native @Nullable String nativeGetSelectedCountry();
 
   /**
-   * Removes latest map version for the given node {@code root}.
-   */
-  public static native boolean nativeDeleteAllUnsupportedMaps(String root);
-
-  /**
    * Update local map registration.
    */
   public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser, boolean isBeforeProMapGracePeriod, int numDownloadedMapsLimit);
