@@ -31,6 +31,7 @@ import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.display.DisplayManager;
+import app.organicmaps.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.intent.Factory;
 import app.organicmaps.location.LocationHelper;
@@ -154,7 +155,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     @NonNull
     public IsolinesManager getIsolinesManager() {
-
         if (mwmApplication.getIsolinesManager() == null) {
             mwmApplication.onCreate();
         }
@@ -539,5 +539,12 @@ public enum OrganicmapsFrameworkAdapter {
         intent.setData(Uri.parse(geoUrl));
         Factory.UrlProcessor urlProcessor = new Factory.UrlProcessor();
         return urlProcessor.process(intent, mwmActivity);
+    }
+
+    public String getCountryRoot() {
+        if (!arePlatformAndCoreInitialized()) {
+            return "Countries";
+        }
+        return MapManager.nativeGetRoot();
     }
 }
