@@ -256,8 +256,8 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
-    public void myPositionClick() {
-        if (!arePlatformAndCoreInitialized()) {
+    public void switchLocationStateToNextMode() {
+        if (!isMapEngineCreated()) {
             return;
         }
         LocationState.nativeSwitchToNextMode();
