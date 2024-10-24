@@ -1,6 +1,6 @@
 /**
  * Author by robin, Date on 11/14/21.
- * Updated by Zheng-Xiag, Date on 02/19/21.
+ * Updated by Zheng-Xiang, Date on 02/19/21.
  * Comment: Comment unused code
  */
 package app.organicmaps;
@@ -12,6 +12,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static app.organicmaps.location.LocationState.FOLLOW;
 import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
 import static app.organicmaps.location.LocationState.LOCATION_TAG;
+import static app.organicmaps.util.PowerManagment.POWER_MANAGEMENT_TAG;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -110,8 +111,8 @@ import app.organicmaps.settings.SettingsActivity;
 import app.organicmaps.settings.UnitLocale;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.LocationUtils;
-import app.organicmaps.util.PowerManagment;
 import app.organicmaps.util.OrganicmapsFrameworkAdapter;
+import app.organicmaps.util.PowerManagment;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.ThemeUtils;
@@ -124,19 +125,6 @@ import app.organicmaps.widget.menu.MainMenu;
 import app.organicmaps.widget.placepage.PlacePageController;
 import app.organicmaps.widget.placepage.PlacePageData;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.POST_NOTIFICATIONS;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.organicmaps.location.LocationState.FOLLOW;
-import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
-import static app.organicmaps.location.LocationState.LOCATION_TAG;
-import static app.organicmaps.util.PowerManagment.POWER_MANAGEMENT_TAG;
 
 public class MwmActivity extends BaseMwmFragmentActivity
         implements PlacePageActivationListener,
@@ -178,7 +166,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private static final String POWER_SAVE_DISCLAIMER_SHOWN = "POWER_SAVE_DISCLAIMER_SHOWN";
 
   @Nullable
-  private MapFragment mMapFragment;
+//  private MapFragment mMapFragment;
+  public MapFragment mMapFragment;
 
   private View mPointChooser;
   private Toolbar mPointChooserToolbar;

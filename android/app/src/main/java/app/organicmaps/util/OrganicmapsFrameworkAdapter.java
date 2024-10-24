@@ -191,15 +191,27 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onResumeMwmActivity() {
-        if (mwmActivity.mOnmapDownloader != null && arePlatformAndCoreInitialized())
-            mwmActivity.mOnmapDownloader.onResume();
+        if (arePlatformAndCoreInitialized()) {
+            if (mwmActivity.mMapFragment != null) {
+                mwmActivity.mMapFragment.onResume();
+            }
+            if (mwmActivity.mOnmapDownloader != null) {
+                mwmActivity.mOnmapDownloader.onResume();
+            }
+        }
 
         SensorHelper.from(activity).addListener(mwmActivity);
     }
 
     public void onPauseMwmActivity() {
-        if (mwmActivity.mOnmapDownloader != null && arePlatformAndCoreInitialized())
-            mwmActivity.mOnmapDownloader.onPause();
+        if (arePlatformAndCoreInitialized()) {
+            if (mwmActivity.mOnmapDownloader != null) {
+                mwmActivity.mOnmapDownloader.onPause();
+            }
+            if (mwmActivity.mMapFragment != null) {
+                mwmActivity.mMapFragment.onPause();
+            }
+        }
 
         SensorHelper.from(activity).removeListener(mwmActivity);
     }
