@@ -208,7 +208,7 @@ public enum OrganicmapsFrameworkAdapter {
             if (mwmActivity.mOnmapDownloader != null) {
                 mwmActivity.mOnmapDownloader.onPause();
             }
-            if (mwmActivity.mMapFragment != null) {
+            if (mwmActivity.mMapFragment != null && mwmActivity.mMapFragment.isAdded() && mwmActivity.mMapFragment.getContext() != null) {
                 mwmActivity.mMapFragment.onPause();
             }
         }
