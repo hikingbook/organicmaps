@@ -145,7 +145,6 @@ public enum OrganicmapsFrameworkAdapter {
 
     @NonNull
     public DisplayManager getDisplayManager() {
-
         if (mwmApplication.getDisplayManager() == null) {
             mwmApplication.onCreate();
         }
@@ -193,8 +192,15 @@ public enum OrganicmapsFrameworkAdapter {
     public void onResumeMwmActivity() {
         if (arePlatformAndCoreInitialized()) {
             if (mwmActivity.mMapFragment != null) {
-                mwmActivity.mMapFragment.onResume();
+                if (mwmActivity.isMapRendererActive()) {
+                    mwmActivity.mMapFragment.onResume();
+                } else {
+                    mwmActivity.mMapFragment.destroySurface();
+                    activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNow();
+                    mwmActivity.initViews(false);
+                }
             }
+
             if (mwmActivity.mOnmapDownloader != null) {
                 mwmActivity.mOnmapDownloader.onResume();
             }

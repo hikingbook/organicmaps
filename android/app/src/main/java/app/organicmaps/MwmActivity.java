@@ -974,10 +974,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initOnmapDownloader()
   {
+    if (mOnmapDownloader == null) {
 //    mOnmapDownloader = new OnmapDownloader(this);
-    mOnmapDownloader = new OnmapDownloader(OrganicmapsFrameworkAdapter.INSTANCE.getFragment());
-    if (mIsTabletLayout)
-      mPanelAnimator.registerListener(mOnmapDownloader);
+      mOnmapDownloader = new OnmapDownloader(OrganicmapsFrameworkAdapter.INSTANCE.getFragment());
+      if (mIsTabletLayout)
+        mPanelAnimator.registerListener(mOnmapDownloader);
+    }
   }
 
   private void initDisplayManager()
@@ -1094,7 +1096,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
 
-  private boolean isMapRendererActive()
+  public boolean isMapRendererActive()
   {
     return mMapFragment != null && Map.isEngineCreated()
             && mMapFragment.isContextCreated();
