@@ -195,7 +195,7 @@ public enum OrganicmapsFrameworkAdapter {
                 if (mwmActivity.isMapRendererActive()) {
                     mwmActivity.mMapFragment.onResume();
                 } else {
-                    if (mwmActivity.mMapFragment.isAdded()) {
+                    if (isMapFragmentAttached()) {
                         mwmActivity.mMapFragment.destroySurface();
                     }
                     activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNow();
@@ -216,7 +216,7 @@ public enum OrganicmapsFrameworkAdapter {
             if (mwmActivity.mOnmapDownloader != null) {
                 mwmActivity.mOnmapDownloader.onPause();
             }
-            if (mwmActivity.mMapFragment != null && mwmActivity.mMapFragment.isAdded() && mwmActivity.mMapFragment.getContext() != null) {
+            if (isMapFragmentAttached()) {
                 mwmActivity.mMapFragment.onPause();
             }
         }
@@ -566,5 +566,9 @@ public enum OrganicmapsFrameworkAdapter {
             return "Countries";
         }
         return MapManager.nativeGetRoot();
+    }
+
+    private boolean isMapFragmentAttached() {
+        return mwmActivity.mMapFragment != null && mwmActivity.mMapFragment.isAdded() && mwmActivity.mMapFragment.getContext() != null;
     }
 }
