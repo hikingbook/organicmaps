@@ -195,7 +195,9 @@ public enum OrganicmapsFrameworkAdapter {
                 if (mwmActivity.isMapRendererActive()) {
                     mwmActivity.mMapFragment.onResume();
                 } else {
-                    mwmActivity.mMapFragment.destroySurface();
+                    if (mwmActivity.mMapFragment.isAdded()) {
+                        mwmActivity.mMapFragment.destroySurface();
+                    }
                     activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNow();
                     mwmActivity.initViews(false);
                 }
