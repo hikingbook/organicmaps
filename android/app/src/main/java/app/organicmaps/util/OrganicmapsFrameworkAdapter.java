@@ -67,8 +67,8 @@ public enum OrganicmapsFrameworkAdapter {
         try {
             LogsManager.INSTANCE.initFileLogging(application);
         }
-        catch (Throwable e) {
-            Log.e(TAG, e.getLocalizedMessage());
+        catch (Exception e) {
+            Log.e(TAG, e.toString());
         }
 
         if (application instanceof MwmApplication) {
@@ -115,7 +115,7 @@ public enum OrganicmapsFrameworkAdapter {
                 mwmApplication.init(onComplete);
             }
         } catch (IOException e) {
-            Log.e(TAG, e.getLocalizedMessage());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -190,25 +190,29 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public void onResumeMwmActivity() {
-        if (arePlatformAndCoreInitialized()) {
-            if (mwmActivity.mMapFragment != null) {
-                if (mwmActivity.isMapRendererActive()) {
-                    mwmActivity.mMapFragment.onResume();
-                } else {
-                    if (isMapFragmentAttached()) {
-                        mwmActivity.mMapFragment.destroySurface();
+        try {
+            if (arePlatformAndCoreInitialized()) {
+                if (mwmActivity.mMapFragment != null) {
+                    if (mwmActivity.isMapRendererActive()) {
+                        mwmActivity.mMapFragment.onResume();
+                    } else {
+                        if (isMapFragmentAttached()) {
+                            mwmActivity.mMapFragment.destroySurface();
+                        }
+                        activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
+                        mwmActivity.initViews(false);
                     }
-                    activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
-                    mwmActivity.initViews(false);
+                }
+
+                if (mwmActivity.mOnmapDownloader != null) {
+                    mwmActivity.mOnmapDownloader.onResume();
                 }
             }
 
-            if (mwmActivity.mOnmapDownloader != null) {
-                mwmActivity.mOnmapDownloader.onResume();
-            }
+            SensorHelper.from(activity).addListener(mwmActivity);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
         }
-
-        SensorHelper.from(activity).addListener(mwmActivity);
     }
 
     public void onPauseMwmActivity() {
@@ -472,7 +476,7 @@ public enum OrganicmapsFrameworkAdapter {
                     color,
                     lineWidth
             );
-        } catch (Throwable e) {
+        } catch (Exception e) {
             return Long.MAX_VALUE;
         }
     }
