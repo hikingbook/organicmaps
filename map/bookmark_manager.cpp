@@ -3,6 +3,7 @@
 #include "map/user_mark.hpp"
 #include "map/user_mark_id_storage.hpp"
 #include "map/track_mark.hpp"
+#include "map/gps_tracker.hpp"
 
 #include "drape_frontend/drape_engine.hpp"
 #include "drape_frontend/selection_shape.hpp"
@@ -1141,6 +1142,63 @@ kml::CompilationType BookmarkManager::GetCompilationType(kml::MarkGroupId id) co
   return compilation->second->GetCategoryData().m_type;
 }
 
+void BookmarkManager::SaveTrackRecording(std::string trackName)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto const & tracker = GpsTracker::Instance();
+  CHECK(!tracker.IsEmpty(), ("Track recording should be not be empty"));
+
+  kml::MultiGeometry geometry;
+  geometry.m_lines.emplace_back();
+  geometry.m_timestamps.emplace_back();
+  auto & line = geometry.m_lines.back();
+  auto & timestamps = geometry.m_timestamps.back();
+  auto const trackSize = tracker.GetTrackSize();
+  line.reserve(trackSize);
+  timestamps.reserve(trackSize);
+
+  tracker.ForEachTrackPoint([&line, &timestamps](location::GpsInfo const & pt, size_t id)->bool
+  {
+    line.emplace_back(mercator::FromLatLon(pt.m_latitude, pt.m_longitude), pt.m_altitude);
+    timestamps.emplace_back(pt.m_timestamp);
+    return true;
+  });
+
+  kml::TrackData trackData;
+  trackData.m_geometry = std::move(geometry);
+
+  if (trackName.empty())
+    trackName = GenerateTrackRecordingName();
+  kml::SetDefaultStr(trackData.m_name, trackName);
+
+  kml::ColorData colorData;
+  colorData.m_rgba = GenerateTrackRecordingColor().GetRGBA();
+  kml::TrackLayer layer;
+  layer.m_color = std::move(colorData);
+
+  std::vector<kml::TrackLayer> m_layers;
+  m_layers.emplace_back(layer);
+  trackData.m_layers = std::move(m_layers);
+  trackData.m_timestamp = kml::TimestampClock::now();
+
+  auto editSession = GetEditSession();
+  auto const track = editSession.CreateTrack(std::move(trackData));
+  auto const groupId = LastEditedBMCategory();
+  AttachTrack(track->GetId(), groupId);
+}
+
+std::string BookmarkManager::GenerateTrackRecordingName() const
+{
+  /// @TODO(KK): - improve the track name generation
+  return platform::GetLocalizedMyPositionBookmarkName();
+}
+
+dp::Color BookmarkManager::GenerateTrackRecordingColor() const
+{
+  /// @TODO(KK): - improve the color generation
+  return kml::ColorFromPredefinedColor(kml::GetRandomPredefinedColor());
+}
+
 void BookmarkManager::PrepareBookmarksAddresses(std::vector<SortBookmarkData> & bookmarksForSort,
                                                 AddressesCollection & newAddresses)
 {
@@ -2256,6 +2314,20 @@ void BookmarkManager::UpdateBookmark(kml::MarkId bmID, kml::BookmarkData const &
 
   if (prevColor != bookmark->GetColor())
     SetLastEditedBmColor(bookmark->GetColor());
+}
+
+void BookmarkManager::ChangeTrackColor(kml::TrackId trackId, dp::Color color)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto * track = GetTrackForEdit(trackId);
+  track->SetColor(color);
+}
+
+void BookmarkManager::UpdateTrack(kml::TrackId trackId, kml::TrackData const & trackData)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto * track = GetTrackForEdit(trackId);
+  track->setData(trackData);
 }
 
 kml::MarkGroupId BookmarkManager::LastEditedBMCategory()
@@ -3576,6 +3648,16 @@ void BookmarkManager::EditSession::MoveBookmark(
 void BookmarkManager::EditSession::UpdateBookmark(kml::MarkId bmId, kml::BookmarkData const & bm)
 {
   return m_bmManager.UpdateBookmark(bmId, bm);
+}
+
+void BookmarkManager::EditSession::UpdateTrack(kml::TrackId trackId, kml::TrackData const & trackData)
+{
+  return m_bmManager.UpdateTrack(trackId,trackData);
+}
+
+void BookmarkManager::EditSession::ChangeTrackColor(kml::TrackId trackId, dp::Color color)
+{
+  m_bmManager.ChangeTrackColor(trackId, color);
 }
 
 void BookmarkManager::EditSession::AttachBookmark(kml::MarkId bmId, kml::MarkGroupId groupId)

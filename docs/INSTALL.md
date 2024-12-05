@@ -396,10 +396,10 @@ This is important, otherwise the following menus won't be visible.
 Install Android SDK and NDK:
 
 - Open "SDK Manager" (under "More Actions" in a welcome screen or a three-dot menu in a list of recent projects screen or "Tools" top menu item in an open project).
-- Select "Android 14.0 ("Upside Down Cake") / API Level 34" SDK.
+- Select "Android 15.0 ("Vanilla Ice Cream") / API Level 35" SDK.
 - Switch to "SDK Tools" tab.
 - Check "Show Package Details" checkbox.
-- Select "NDK (Side by side)" version **26.3.11579264**.
+- Select "NDK (Side by side)" version **27.1.12297006**.
 - Select "CMake" version **3.22.1**.
 - Click "Apply" and wait for downloads and installation to finish.
 - In the left pane menu select "Appearance & Behavior > System Settings > Memory Settings".
@@ -585,7 +585,7 @@ You can install
 [Android SDK](https://developer.android.com/sdk/index.html) and
 [NDK](https://developer.android.com/tools/sdk/ndk/index.html) without
 Android Studio. Please make sure that SDK for API Level 33,
-NDK version **26.3.11579264** and CMake version **3.22.1** are installed.
+NDK version **27.1.12297006** and CMake version **3.22.1** are installed.
 
 If you are low on RAM, disk space or traffic there are ways to reduce system requirements:
 - exclude the `cpp` folder from indexing. If you do not make any work on the C++ code, this will greatly improve the start-up performance and the ram usage of Android Studio. Click on the `Project` tab on the left, find the `cpp` folder (should be next to the `java` folder), right click on it and select `Mark Directory as` -> `Excluded` (red folder icon). Then restart Android Studio.
@@ -611,6 +611,14 @@ If you build the app from command line, the parameter can be passed via command 
 E.g.
 ```
 ./gradlew -Parm64 -PenableVulkanDiagnostics=ON runGoogleDebug
+```
+
+#### Enable tracing
+1. Set `enableTrace=ON` in `gradle.properties`.
+2. Follow the guide https://perfetto.dev/docs/quickstart/android-tracing to set-up Perfetto
+Example of command line for running system tracing:
+```
+./record_android_trace -a app.organicmaps.debug -o trace_file.perfetto-trace -t 30s -b 64mb sched freq idle am wm gfx view binder_driver hal dalvik camera input res memory
 ```
 
 ## iOS app

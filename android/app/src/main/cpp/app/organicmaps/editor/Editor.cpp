@@ -178,6 +178,16 @@ Java_app_organicmaps_editor_Editor_nativeShouldShowEditPlace(JNIEnv *, jclass)
 }
 
 JNIEXPORT jboolean JNICALL
+Java_app_organicmaps_editor_Editor_nativeShouldShowAddBusiness(JNIEnv *, jclass)
+{
+  ::Framework * frm = g_framework->NativeFramework();
+  if (!frm->HasPlacePageInfo())
+    return static_cast<jboolean>(false);
+
+  return g_framework->GetPlacePageInfo().ShouldShowAddBusiness();
+}
+
+JNIEXPORT jboolean JNICALL
 Java_app_organicmaps_editor_Editor_nativeShouldShowAddPlace(JNIEnv *, jclass)
 {
   ::Framework * frm = g_framework->NativeFramework();
@@ -287,14 +297,14 @@ Java_app_organicmaps_editor_Editor_nativeGetNearbyStreets(JNIEnv * env, jclass c
 }
 
 JNIEXPORT jobjectArray JNICALL
-Java_app_organicmaps_editor_Editor_nativeGetSupportedLanguages(JNIEnv * env, jclass clazz)
+Java_app_organicmaps_editor_Editor_nativeGetSupportedLanguages(JNIEnv * env, jclass clazz, jboolean includeServiceLangs)
 {
   using TLang = StringUtf8Multilang::Lang;
   //public Language(@NonNull String code, @NonNull String name)
   static jclass const langClass = jni::GetGlobalClassRef(env, "app/organicmaps/editor/data/Language");
   static jmethodID const langCtor = jni::GetConstructorID(env, langClass, "(Ljava/lang/String;Ljava/lang/String;)V");
 
-  return jni::ToJavaArray(env, langClass, StringUtf8Multilang::GetSupportedLanguages(),
+  return jni::ToJavaArray(env, langClass, StringUtf8Multilang::GetSupportedLanguages(includeServiceLangs),
                           [](JNIEnv * env, TLang const & lang)
                           {
                             jni::TScopedLocalRef const code(env, jni::ToJavaString(env, lang.m_code));

@@ -8,6 +8,9 @@ typedef NS_ENUM(NSUInteger, DeeplinkUrlType) {
   DeeplinkUrlTypeRoute,
   DeeplinkUrlTypeSearch,
   DeeplinkUrlTypeCrosshair,
+  DeeplinkUrlTypeOAuth2,
+  DeeplinkUrlTypeMenu,
+  DeeplinkUrlTypeSettings
 };
 
 @interface DeepLinkParser : NSObject

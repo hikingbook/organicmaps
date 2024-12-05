@@ -208,8 +208,8 @@ IsPostPoiChecker::IsPostPoiChecker()
 IsOperatorOthersPoiChecker::IsOperatorOthersPoiChecker()
 {
   Classificator const & c = classif();
-  for (char const * val : {"bicycle_rental", "bureau_de_change", "car_sharing", "car_rental", "fuel",
-                           "parking", "payment_terminal", "university", "vending_machine"})
+  for (char const * val : {"bicycle_rental", "bureau_de_change", "car_sharing", "car_rental", "fuel", "charging_station",
+                           "parking", "motorcycle_parking", "bicycle_parking", "payment_terminal", "university", "vending_machine"})
     m_types.push_back(c.GetTypeByPath({"amenity", val}));
 }
 
@@ -362,6 +362,13 @@ IsAddressObjectChecker::IsAddressObjectChecker() : BaseChecker(1 /* level */)
     m_types.push_back(c.GetTypeByPath({p}));
 }
 
+IsAddressChecker::IsAddressChecker() : BaseChecker(1 /* level */)
+{
+  Classificator const & c = classif();
+  for (auto const * p : {"addr:interpolation", "building", "entrance"})
+    m_types.push_back(c.GetTypeByPath({p}));
+}
+
 IsVillageChecker::IsVillageChecker()
 {
   // TODO (@y, @m, @vng): this list must be up-to-date with
@@ -474,6 +481,7 @@ IsAmenityChecker::IsAmenityChecker() : BaseChecker(1 /* level */)
 AttractionsChecker::AttractionsChecker() : BaseChecker(2 /* level */)
 {
   base::StringIL const primaryAttractionTypes[] = {
+      {"amenity", "arts_centre"},
       {"amenity", "grave_yard"},
       {"amenity", "fountain"},
       {"amenity", "place_of_worship"},
@@ -492,6 +500,9 @@ AttractionsChecker::AttractionsChecker() : BaseChecker(2 /* level */)
       {"historic", "gallows"},
       {"historic", "memorial"},
       {"historic", "monument"},
+      {"historic", "locomotive"},
+      {"historic", "tank"},
+      {"historic", "aircraft"},
       {"historic", "pillory"},
       {"historic", "ruins"},
       {"historic", "ship"},
@@ -710,6 +721,12 @@ IsPublicTransportStopChecker::IsPublicTransportStopChecker()
   m_types.push_back(c.GetTypeByPath({"highway", "bus_stop"}));
   m_types.push_back(c.GetTypeByPath({"railway", "halt"}));
   m_types.push_back(c.GetTypeByPath({"railway", "tram_stop"}));
+}
+
+IsTaxiChecker::IsTaxiChecker()
+{
+  Classificator const & c = classif();
+  m_types.push_back(c.GetTypeByPath({"amenity", "taxi"}));
 }
 
 IsMotorwayJunctionChecker::IsMotorwayJunctionChecker()

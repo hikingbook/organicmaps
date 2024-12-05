@@ -4,6 +4,7 @@
     en = Keep right.
     ar = الزم اليمين.
     be = Трымайцеся правей.
+    bg = Дръжте се вдясно.
     ca = Manteniu-vos a la dreta.
     cs = Držte se vpravo.
     da = Hold til højre.
@@ -14,6 +15,7 @@
     fa = با زاویه کم به راست گردش کنید.
     fi = Pysy oikealla.
     fr = Serrez à droite.
+    he = הצמד לימין
     hi = दायीं ओर रहें
     hr = Držite desno.
     hu = Jobbra tartson.
@@ -29,15 +31,15 @@
     ro = Păstrați la dreapta.
     ru = Держитесь правее.
     sk = Držte sa vpravo.
-    sr = Држите се десно.
+    sr = Скрените благо десно.
     sv = Håll höger.
     sw = Kaa kuria.
     th = ชิดขวาไว้
     tr = Sağdan devam edin.
     uk = Тримайтеся правіше.
     vi = Đi về phía phải.
-    zh-Hans = 向右行驶
-    zh-Hant = 向右走。
+    zh-Hans = 向右前方行驶。
+    zh-Hant = 向右前方行駛。
 
   [make_a_slight_right_turn_street]
     comment = Optionally used inside dist_direction_onto_street in position 3 when the normal make_a_slight_right_turn is insufficient. For most languages that don't need this, the value should be the word NULL
@@ -53,6 +55,7 @@
     en = Turn right.
     ar = انعطف يميناً.
     be = Павярніце направа.
+    bg = Завийте надясно.
     ca = Gireu a la dreta.
     cs = Odbočte vpravo.
     da = Drej til højre.
@@ -63,6 +66,7 @@
     fa = به راست گردش کنید.
     fi = Käänny oikealle.
     fr = Tournez à droite.
+    he = פנה ימינה
     hi = दायीं ओर मुड़ें।
     hr = Skrenite udesno.
     hu = Forduljon jobbra.
@@ -85,7 +89,7 @@
     tr = Sağa dönün.
     uk = Поверніть праворуч.
     vi = Rẽ phải.
-    zh-Hans = 右转
+    zh-Hans = 右转。
     zh-Hant = 右轉。
 
   [make_a_right_turn_street]
@@ -98,6 +102,7 @@
     en = Sharp right.
     ar = إلى أقصى اليمين.
     be = Рэзка павярніце направа.
+    bg = Завийте рязко надясно.
     ca = Gireu fortament a la dreta.
     cs = Ostře doprava.
     da = Skarpt til højre.
@@ -108,6 +113,7 @@
     fa = با زاویه تند به راست گردش کنید.
     fi = Jyrkkä oikea.
     fr = À droite toute.
+    he = פנה פניה חדה ימינה
     hi = तीव्रता से दाएं मुड़े।
     hr = Oštro udesno.
     hu = Kanyarodjon élesen jobbra.
@@ -123,14 +129,14 @@
     ro = Virați strâns la dreapta.
     ru = Резко поверните направо.
     sk = Ostro doprava.
-    sr = Оштро десно.
+    sr = Скрените оштро десно.
     sv = Skarpt höger.
     sw = Fanya kulia mkali.
     th = หักมุมขวา
     tr = Tam sağa dönün.
     uk = Різко вправо.
     vi = Rẽ ngoặt bên phải.
-    zh-Hans = 向右急转
+    zh-Hans = 向右急转。
     zh-Hant = 向右急轉。
 
   [make_a_sharp_right_turn_street]
@@ -142,6 +148,7 @@
     en = Enter the roundabout.
     ar = ادخل الدوار.
     be = Павярніце на круг.
+    bg = Влезте в кръговото движение.
     ca = Entreu a la rotonda.
     cs = Vjeďte na kruhový objezd.
     da = Kør ind i rundkørslen.
@@ -153,6 +160,7 @@
     fa = به میدان وارد شوید.
     fi = Aja liikenneympyrään.
     fr = Prenez le rond-point.
+    he = היכנס לכיכר
     hi = गोल चक्‍कर में प्रवेश करें।
     hr = Uđite na zaobilaznicu.
     hu = Hajtson be a körforgalomba.
@@ -176,8 +184,8 @@
     tr = Kavşağa girin.
     uk = В'їзд на кільцеву транспортну розв'язку.
     vi = Đi vào vòng xoay.
-    zh-Hans = 进入环岛。
-    zh-Hant = 進入環狀交叉路口。
+    zh-Hans = 驶入环岛。
+    zh-Hant = 駛入環狀交叉路口。
 
   [enter_the_roundabout_street]
     comment = Optionally used inside dist_direction_onto_street in position 3 when the normal enter_the_roundabout is insufficient. For most languages that don't need this, the value should be the word NULL
@@ -195,6 +203,7 @@
     en = Exit the roundabout.
     ar = اخرج من الدوار.
     be = Збочце з круга.
+    bg = Излезте от кръговото движение.
     ca = Sortiu de la rotonda.
     cs = Opusťte kruhový objezd.
     da = Forlad rundkørslen.
@@ -206,6 +215,7 @@
     fa = از میدان خارج شوید.
     fi = Poistu liikenneympyrästä.
     fr = Sortez du rond-point.
+    he = צא מהכיכר
     hi = परिपथ से बाहर निकलें।
     hr = Napustite zaobilaznicu.
     hu = Hagyja el a körforgalmat.
@@ -230,7 +240,7 @@
     uk = З'їзд з кільцевої транспортної розв'язки.
     vi = Ra khỏi vòng xoay.
     zh-Hans = 驶出环岛。
-    zh-Hant = 離開環狀交叉路口。
+    zh-Hant = 駛出環狀交叉路口。
 
   [leave_the_roundabout_street]
     comment = Optionally used inside dist_direction_onto_street in position 3 when the normal leave_the_roundabout is insufficient. For most languages that don't need this, the value should be the word NULL
@@ -248,6 +258,7 @@
     en = Keep left.
     ar = الزم اليسار.
     be = Трымайцеся лявей.
+    bg = Дръжте се вляво.
     ca = Manteniu-vos a l'esquerra.
     cs = Držte se vlevo.
     da = Hold til venstre.
@@ -258,6 +269,7 @@
     fa = با زاویه کم به چپ گردش کنید.
     fi = Pysy vasemmalla.
     fr = Serrez à gauche.
+    he = היצמד לשמאל
     hi = बायीं ओर रहें
     hr = Držite lijevo.
     hu = Balra tartson.
@@ -273,15 +285,15 @@
     ro = Păstrați la stânga.
     ru = Держитесь левее.
     sk = Držte sa vľavo.
-    sr = Држите се лево.
+    sr = Скрените благо лево.
     sv = Håll vänster.
     sw = Kaa kushoto.
     th = ชิดซ้ายไว้
     tr = Soldan devam edin.
     uk = Тримайтеся лівіше.
     vi = Đi về phía trái.
-    zh-Hans = 向左行驶
-    zh-Hant = 向左走。
+    zh-Hans = 向左前方行驶。
+    zh-Hant = 向左前方行駛。
 
   [make_a_slight_left_turn_street]
     comment = Optionally used inside dist_direction_onto_street in position 3 when the normal make_a_slight_left_turn is insufficient. For most languages that don't need this, the value should be the word NULL
@@ -297,6 +309,7 @@
     en = Turn left.
     ar = انعطف يساراً.
     be = Павярніце налева.
+    bg = Завийте наляво.
     ca = Gireu a l'esquerra.
     cs = Odbočte vlevo.
     da = Drej til venstre.
@@ -307,6 +320,7 @@
     fa = به چپ گردش کنید.
     fi = Käänny vasemmalle.
     fr = Tournez à gauche.
+    he = פנה שמאלה
     hi = बायीं ओर मुड़ें।
     hr = Skrenite ulijevo.
     hu = Forduljon balra.
@@ -329,7 +343,7 @@
     tr = Sola dönün.
     uk = Поверніть ліворуч.
     vi = Rẽ trái.
-    zh-Hans = 左转
+    zh-Hans = 左转。
     zh-Hant = 左轉。
 
   [make_a_left_turn_street]
@@ -342,6 +356,7 @@
     en = Sharp left.
     ar = إلى أقصى اليسار.
     be = Рэзка павярніце налева.
+    bg = Завийте рязко наляво.
     ca = Gireu fortament a l'esquerra.
     cs = Ostře doleva.
     da = Skarpt til venstre.
@@ -352,6 +367,7 @@
     fa = با زاویه تند به چپ گردش کنید.
     fi = Jyrkkä vasen.
     fr = À gauche toute.
+    he = פנה פניה חדה שמאלה
     hi = तीव्रता से बाएं मुड़े।
     hr = Oštro ulijevo.
     hu = Kanyarodjon élesen balra.
@@ -367,14 +383,14 @@
     ro = Virați strâns la stânga.
     ru = Резко поверните налево.
     sk = Ostro doľava.
-    sr = Оштро лево.
+    sr = Скрените оштро лево.
     sv = Skarpt vänster.
     sw = Fanya kushoto mkali.
     th = หักมุมซ้าย
     tr = Tam sola dönün.
     uk = Різкий поворот наліво.
     vi = Rẽ ngoặt bên trái.
-    zh-Hans = 向左急转
+    zh-Hans = 向左急转。
     zh-Hant = 向左急轉。
 
   [make_a_sharp_left_turn_street]
@@ -386,6 +402,7 @@
     en = Make a u-turn.
     ar = إستدر للعودة.
     be = Развярніцеся.
+    bg = Направете обратен завой.
     ca = Feu un canvi de sentit.
     cs = Otočte se do protisměru.
     da = Vend om.
@@ -396,6 +413,7 @@
     fa = دور بزنید.
     fi = Tee U-käännös.
     fr = Faites demi-tour.
+    he = פנה פניית פרסה
     hi = यू-टर्न लें।
     hr = Napravite poluzaokret.
     hu = Forduljon vissza.
@@ -412,14 +430,14 @@
     ro = Întoarceți-vă o sută optzeci de grade.
     ru = Развернитесь.
     sk = Otočte sa o stoosemdesiat stupňov.
-    sr = Урадите полукружно окретање, када буде могуће.
+    sr = Урадите полукружно окретање.
     sv = Gör en U-sväng.
     sw = Geuka urudi ulikotoka.
     th = กลับรถ
     tr = U dönüşü yapın.
     uk = Зробіть розворот.
     vi = Quay đầu.
-    zh-Hans = 掉头
+    zh-Hans = 掉头。
     zh-Hant = 掉頭。
 
   [make_a_u_turn_street]
@@ -436,6 +454,7 @@
     en = Go straight.
     ar = إستمر إلى الأمام.
     be = Рухайцеся прама.
+    bg = Продължете направо.
     ca = Seguiu tot recte.
     cs = Jeďte rovně.
     da = Fortsæt lige ud.
@@ -446,6 +465,7 @@
     fa = مستقیم بروید.
     fi = Aja suoraan.
     fr = Continuez tout droit.
+    he = המשך ישר
     hi = सीधे चलें।
     hr = Idite ravno.
     hu = Haladjon tovább egyenesen.
@@ -468,13 +488,14 @@
     tr = Düz ilerleyin.
     uk = Їдьте прямо.
     vi = Đi thẳng.
-    zh-Hans = 直行
-    zh-Hant = 直行。
+    zh-Hans = 继续直行。
+    zh-Hant = 繼續直行。
 
   [exit]
     en = Exit.
     ar = خروج.
     be = З'езд.
+    bg = Изход.
     ca = Sortida.
     cs = výstup.
     da = Afkørsel.
@@ -485,6 +506,7 @@
     fa = خروج.
     fi = Poistu.
     fr = Sortie.
+    he = יציאה.
     hi = बाहर जाएं.
     hr = Izlaz.
     hu = Hajtson ki!
@@ -501,21 +523,22 @@
     ro = Ieșire.
     ru = Съезд.
     sk = Použite výjazd.
-    sr = Излаз.
+    sr = Искључите се.
     sv = Utgång.
     sw = Kuondoka.
     th = ทางออก.
     tr = çıkın.
     uk = З'їзд.
     vi = Đi theo lối ra
-    zh-Hans = 驶出。
-    zh-Hant = 出口。
+    zh-Hans = 驶出当前路段。
+    zh-Hant = 駛出當前路段。
 
   [onto]
     comment = Used in dist_direction_onto_street in position 3 unless take_exit_number is specified. For languages that don't have an "onto" word, (e.g. eu, ja, ko), the value should be the word NULL
     en = onto
     ar = إلى
     be = на
+    bg = към
     cs = na
     da = ad
     de = auf
@@ -542,20 +565,22 @@
     ro = pe
     ru = на
     sk = na
+    sr = у улицу
     sv = in på
     sw = kwenye
     th = เข้าสู่
     tr = yönünde
     uk = на
     vi = vào
-    zh-Hans = 上
-    zh-Hant = 上
+    zh-Hans = 驶入到
+    zh-Hant = 駛入到
 
   [take_exit_number]
     comment = Used in dist_direction_onto_street instead of "Exit" when there's an exit number after. Replaces the "onto" string as well. (There is no take_exit_number_street since this string is only used when announcing street names anyway.)
     en = Take exit
     ar = خروج إلى
     be = З'езд на
+    bg = Вземете изхода
     ca = Agafeu la sortida
     cs = výstup na
     da = Afkørsel ad
@@ -566,6 +591,7 @@
     fa = خروجﺐﻫ
     fi = Poistu tielle
     fr = Sortie sur
+    he = צא ביציאה
     hi = बाहर जाएं पर
     hr = Izlaz na
     hu = Hajtson ki a
@@ -582,6 +608,7 @@
     ro = Ieșire pe
     ru = Съезд на
     sk = Výjazd na
+    sr = Изађите на излаз
     sv = Utgång in på
     sw = Kuondoka kwenye
     th = ทางออก เข้าสู่
@@ -600,6 +627,7 @@
     en = You’ll arrive.
     ar = سوف تصل.
     be = Вы прыбудзеце ў пункт прызначэння.
+    bg = Ще стигнете местоназначението си.
     ca = Arribareu a la destinació.
     cs = Přijedete do cíle.
     da = Ankommer du.
@@ -610,6 +638,7 @@
     fa = به مقصد خواهيد رسيد.
     fi = Olet perillä.
     fr = Vous arriverez.
+    he = תגיע ליעד.
     hi = गंतव्य स्थान
     hr = Stižete.
     hu = Megérkezik.
@@ -640,6 +669,7 @@
     en = You have arrived.
     ar = لقد وصلت.
     be = Вы прыбылі ў пункт прызначэння.
+    bg = Пристигнахте в местоназначението си.
     ca = Heu arribat.
     cs = Jste v cíli.
     da = Du er ankommet.
@@ -650,6 +680,7 @@
     fa = به مقصد رسيديد.
     fi = Olet saapunut.
     fr = Vous êtes arrivé.
+    he = הגעת ליעד
     hi = आप पहुंच गए हैं।
     hr = Stigli ste.
     hu = Megérkezett.
@@ -680,6 +711,7 @@
     en = In fifty meters
     ar = بعد خمسين متراً
     be = Праз пяцьдзесят метраў
+    bg = След петдесет метра
     ca = A cinquanta metres
     cs = Za padesát metrů
     da = Om halvtreds meter
@@ -690,6 +722,7 @@
     fa = در پنجاه متری
     fi = Viidenkymmenen metrin päässä
     fr = Dans cinquante mètres
+    he = בעוד חמישים מטר
     hi = पचास मीटर में।
     hr = Za pedeset metara
     hu = Ötven méter után
@@ -713,13 +746,14 @@
     tr = Elli metre sonra
     uk = Через п'ятдесят метрів
     vi = Trong năm mươi mét nữa
-    zh-Hans = 前方五十米
-    zh-Hant = 前方五十米
+    zh-Hans = 在五十米后
+    zh-Hant = 在五十公尺後
 
   [in_100_meters]
     en = In one hundred meters
     ar = بعد مئة متر
     be = Праз сто метраў
+    bg = След сто метра
     ca = A cent metres
     cs = Za sto metrů
     da = Om et hundrede meter
@@ -730,6 +764,7 @@
     fa = در صد متری
     fi = Sadan metrin päässä
     fr = Dans cents mètres
+    he = בעוד מאה מטר
     hi = एक सौ मीटर में।
     hr = Za stotinu metara
     hu = Száz méter után
@@ -753,13 +788,14 @@
     tr = Yüz metre sonra
     uk = Через сто метрів
     vi = Trong một trăm mét nữa
-    zh-Hans = 前方一百米
-    zh-Hant = 前方一百米
+    zh-Hans = 在一百米后
+    zh-Hant = 在一百公尺後
 
   [in_200_meters]
     en = In two hundred meters
     ar = بعد مئتين متر
     be = Праз дзвесце метраў
+    bg = След двеста метра
     ca = A dos-cents metres
     cs = Za dvě stě metrů
     da = Om to hundrede meter
@@ -770,6 +806,7 @@
     fa = در دویست متری
     fi = Kahdensadan metrin päässä
     fr = Dans deux cents mètres
+    he = בעוד מאתיים מטר
     hi = दो सौ मीटर में।
     hr = Za dvije stotine metara
     hu = Kétszáz méter után
@@ -793,13 +830,14 @@
     tr = İki yüz metre sonra
     uk = Через двісті метрів
     vi = Trong hai trăm mét nữa
-    zh-Hans = 前方两百米
-    zh-Hant = 前方兩百米
+    zh-Hans = 在两百米后
+    zh-Hant = 在兩百公尺後
 
   [in_250_meters]
     en = In two hundred and fifty meters
     ar = بعد مئتين وخمسين متراً
     be = Праз дзвесце пяцьдзесят метраў
+    bg = След двеста и петдесет метра
     ca = A dos-cents cinquanta metres
     cs = Za dvě stě padesát metrů
     da = Om to hundrede og halvtreds meter
@@ -810,6 +848,7 @@
     fa = در دوصد و پنجاه متر
     fi = Kahdensadanviidenkymmenen metrin päässä
     fr = Dans deux cents cinquante mètres
+    he = בעוד מאתיים וחמישים מטר
     hi = दो सौ पचास मीटर में।
     hr = Za dvije stotine i pedeset metara
     hu = Kétszázötven méter után
@@ -833,13 +872,14 @@
     tr = İki yüz elli metre sonra
     uk = Через двісті п'ятдесят метрів
     vi = Trong hai trăm năm mươi mét
-    zh-Hans = 前方两百五十米
-    zh-Hant = 前方兩百五十米
+    zh-Hans = 在两百五十米后
+    zh-Hant = 在兩百五十公尺後
 
   [in_300_meters]
     en = In three hundred meters
     ar = بعد ثلاثمئة متر
     be = Праз трыста метраў
+    bg = След триста метра
     ca = A tres-cents metres
     cs = Za tři sta metrů
     da = Om tre hundrede meter
@@ -850,6 +890,7 @@
     fa = در سیصد متری
     fi = Kolmensadan metrin päässä
     fr = Dans trois cents mètres
+    he = בעוד שלוש מאות מטר
     hi = तीन सौ मीटर में।
     hr = Za tri stotine metara
     hu = Háromszáz méter után
@@ -873,13 +914,14 @@
     tr = Üç yüz metre sonra
     uk = Через триста метрів
     vi = Trong ba trăm mét nữa
-    zh-Hans = 前方三百米
-    zh-Hant = 前方三百米
+    zh-Hans = 在三百米后
+    zh-Hant = 在三百公尺後
 
   [in_400_meters]
     en = In four hundred meters
     ar = بعد أربعمئة متر
     be = Праз чатырыста метраў
+    bg = След четиристотин метра
     ca = A quatre-cents metres
     cs = Za čtyři sta metrů
     da = Om fire hundrede meter
@@ -890,6 +932,7 @@
     fa = در چهارصد متری
     fi = Neljänsadan metrin päässä
     fr = Dans quatre cents mètres
+    he = בעוד ארבע מאות מטר
     hi = चार सौ मीटर में।
     hr = Za četiri stotine metara
     hu = Négyszáz méter után
@@ -913,13 +956,14 @@
     tr = Dört yüz metre sonra
     uk = Через чотириста метрів
     vi = Trong bốn trăm mét nữa
-    zh-Hans = 前方四百米
-    zh-Hant = 前方四百米
+    zh-Hans = 在四百米后
+    zh-Hant = 在四百公尺後
 
   [in_500_meters]
     en = In five hundred meters
     ar = بعد خمسمئة متر
     be = Праз пяцьсот метраў
+    bg = След петстотин метра
     ca = A cinc-cents metres
     cs = Za pět set metrů
     da = Om fem hundrede meter
@@ -930,6 +974,7 @@
     fa = در پانصد متری
     fi = Viidensadan metrin päässä
     fr = Dans cinq cents mètres
+    he = בעוד חמש מאות מטר
     hi = पांच सौ मीटर में।
     hr = Za pet stotina metara
     hu = Ötszáz méter után
@@ -953,13 +998,14 @@
     tr = Beş yüz metre sonra
     uk = Через п’ятсот метрів
     vi = Trong năm trăm mét nữa
-    zh-Hans = 前方五百米
-    zh-Hant = 前方五百米
+    zh-Hans = 在五百米后
+    zh-Hant = 在五百公尺後
 
   [in_600_meters]
     en = In six hundred meters
     ar = بعد ستمئة متر
     be = Праз шэсцьсот метраў
+    bg = След шестстотин метра
     ca = A sis-cents metres
     cs = Za šest set metrů
     da = Om seks hundrede meter
@@ -970,6 +1016,7 @@
     fa = در ششصد متری
     fi = Kuudensadan metrin päässä
     fr = Dans six cents mètres
+    he = בעוד שש מאות מטר
     hi = छह सौ मीटर में।
     hr = Za šest stotina metara
     hu = Hatszáz méter után
@@ -993,13 +1040,14 @@
     tr = Altı yüz metre sonra
     uk = Через шістсот метрів
     vi = Trong sáu trăm mét nữa
-    zh-Hans = 前方六百米
-    zh-Hant = 前方六百米
+    zh-Hans = 在六百米后
+    zh-Hant = 在六百公尺後
 
   [in_700_meters]
     en = In seven hundred meters
     ar = بعد سبعمئة متر
     be = Праз сямсот метраў
+    bg = След седемстотин метра
     ca = A set-cents metres
     cs = Za sedm set metrů
     da = Om syv hundrede meter
@@ -1010,6 +1058,7 @@
     fa = در هفتصد متری
     fi = Seitsemänsadan metrin päässä
     fr = Dans sept cents mètres
+    he = בעוד שבע מאות מטר
     hi = सात सौ मीटर में।
     hr = Za sedam stotina metara
     hu = Hétszáz méter után
@@ -1033,13 +1082,14 @@
     tr = Yedi yüz metre sonra
     uk = Через сімсот метрів
     vi = Trong bảy trăm mét nữa
-    zh-Hans = 前方七百米
-    zh-Hant = 前方七百米
+    zh-Hans = 在七百米后
+    zh-Hant = 在七百公尺後
 
   [in_750_meters]
     en = In seven hundred and fifty meters
     ar = بعد سبعمئة وخمسين مترًا
     be = Праз сямсот пяцьдзясят метраў
+    bg = След седемстотин и петдесет метра
     ca = A set-cents cinquanta metres
     cs = Za sedm set padesát metrů
     da = Om syv hundrede og halvtreds meter
@@ -1050,6 +1100,7 @@
     fa = در هفتصد و پنجاه متری
     fi = Seitsemänsadanviidenkymmenen metrin päässä
     fr = Dans sept cents cinquante mètres
+    he = בעוד שבע מאות וחמישים מטר
     hi = सात सौ पचास मीटर में।
     hr = Za sedam stotina i pedeset metara
     hu = Hétszázötven méter után
@@ -1073,13 +1124,14 @@
     tr = Yedi yüz elli metre sonra
     uk = Через сімсот п'ятьдесят метрів
     vi = Trong bảy trăm năm mươi mét nữa
-    zh-Hans = 前方七百五十米
-    zh-Hant = 前方七百五十米
+    zh-Hans = 在七百五十米后
+    zh-Hant = 在七百五十公尺後
 
   [in_800_meters]
     en = In eight hundred meters
     ar = بعد ثمانمئة متر
     be = Праз васямсот метраў
+    bg = След осемстотин метра
     ca = A vuit-cents
     cs = Za osm set metrů
     da = Om otte hundrede meter
@@ -1090,6 +1142,7 @@
     fa = در هشتصد متری
     fi = Kahdeksansadan metrin päässä
     fr = Dans huit cents mètres
+    he = בעוד 800 מטר
     hi = आठ सौ मीटर में।
     hr = Za osam stotina metara
     hu = Nyolcszáz méter után
@@ -1113,13 +1166,14 @@
     tr = Sekiz yüz metre sonra
     uk = Через вісімсот метрів
     vi = Trong tám trăm mét nữa
-    zh-Hans = 前方八百米
-    zh-Hant = 前方八百米
+    zh-Hans = 在八百米后
+    zh-Hant = 在八百公尺後
 
   [in_900_meters]
     en = In nine hundred meters
     ar = بعد تسعمئة متر
     be = Праз дзевяцьсот метраў
+    bg = След деветстотин метра
     ca = A nou-cents metres
     cs = Za devět se metrů
     da = Om ni hundrede meter
@@ -1130,6 +1184,7 @@
     fa = در نهصد متری
     fi = Yhdeksänsadan metrin päässä
     fr = Dans neuf cents mètres
+    he = בעוד 900 מטר
     hi = नौ सौ मीटर में।
     hr = Za devet stotina metara
     hu = Kilencszáz méter után
@@ -1153,13 +1208,14 @@
     tr = Dokuz yüz metre sonra
     uk = Через дев'ятсот метрів
     vi = Trong chín trăm mét nữa
-    zh-Hans = 前方九百米
-    zh-Hant = 前方九百米
+    zh-Hans = 在九百米后
+    zh-Hant = 在九百公尺後
 
   [in_1_kilometer]
     en = In one kilometer
     ar = بعد كيلومتر واحد
     be = Праз кіламетр
+    bg = След един километър
     ca = A un quilòmetre
     cs = Za jeden kilometr
     da = Om en kilometer
@@ -1170,6 +1226,7 @@
     fa = در یک کیلومتری
     fi = Yhden kilometrin päässä
     fr = Dans un kilomètre
+    he = בעוד קילומטר
     hi = एक किलोमीटर में।
     hr = Za jedan kilometar
     hu = Egy kilométer után
@@ -1193,13 +1250,14 @@
     tr = Bir kilometre sonra
     uk = Через однин кілометр
     vi = Trong một kilômét nữa
-    zh-Hans = 前方一公里
-    zh-Hant = 前方一千米
+    zh-Hans = 在一公里后
+    zh-Hant = 在一公里後
 
   [in_1_5_kilometers]
     en = In one and a half kilometers
     ar = بعد كيلومتر ونصف
     be = Праз паўтара кіламетра
+    bg = След километър и половина
     ca = A un quilòmetre i mig
     cs = Za jeden a půl kilometru
     da = Om halvanden kilometer
@@ -1210,6 +1268,7 @@
     fa = در یک و نیم کیلومتری
     fi = Puolentoista kilomertin päässä
     fr = Dans un virgule cinq kilomètre
+    he = בעוד קילומטר וחצי
     hi = डेढ़ किलोमीटर में।
     hr = Za jedan i pol kilometar
     hu = Másfél kilométer után
@@ -1233,13 +1292,14 @@
     tr = Bir buçuk kilometre sonra
     uk = Через півтора кілометра
     vi = Trong một kilômét rưỡi nữa
-    zh-Hans = 前方一点五公里
-    zh-Hant = 前方一千五百米
+    zh-Hans = 在一点五公里后
+    zh-Hant = 在一點五公里後
 
   [in_2_kilometers]
     en = In two kilometers
     ar = بعد كيلومترين
     be = Праз два кіламетры
+    bg = След два километра
     ca = A dos quilòmetres
     cs = Za dva kilometry
     da = Om to kilometer
@@ -1250,6 +1310,7 @@
     fa = در دو کیلومتری
     fi = Kahden kilometrin päässä
     fr = Dans deux kilomètres
+    he = בעוד שני קילומטר
     hi = दो किलोमीटर में।
     hr = Za dva kilometra
     hu = Két kilométer után
@@ -1273,13 +1334,14 @@
     tr = İki kilometre sonra
     uk = Через два кілометри
     vi = Trong hai kilômét nữa
-    zh-Hans = 前方两公里
-    zh-Hant = 前方兩千米
+    zh-Hans = 在两公里后
+    zh-Hant = 在兩公里后
 
   [in_2_5_kilometers]
     en = In two and a half kilometers
     ar = بعد كيلومترين ونصف
     be = Праз два з паловай кіламетры
+    bg = След два километра и половина
     ca = A dos quilòmetres i mig
     cs = Za dva a půl kilometru
     da = Om en kilometer
@@ -1290,6 +1352,7 @@
     fa = در دو و نیم کیلومتری
     fi = Kahden ja puolen kilometrin päässä
     fr = Dans deux virgule cinq kilomètres
+    he = בעוד שניים וחצי קילומטר
     hi = ढाई किलोमीटर में।
     hr = Za dva i pol kilometra
     hu = Két és fél kilométer után
@@ -1306,20 +1369,21 @@
     ro = După doi kilometri și jumătate
     ru = Через два с половиной километра
     sk = Po dva a pol kilometri
-    sr = За два а по километра
+    sr = За два и по километра
     sv = Om två och en halv kilometer
     sw = Kabla ya kilomita mbili na nusu
     th = อีกสองกิโลเมตรครึ่ง
     tr = İki buçuk kilometre sonra
     uk = Через два з половиною кілометра
     vi = Trong hai kilômét rưỡi nữa
-    zh-Hans = 前方两点五公里
-    zh-Hant = 前方兩千五百米
+    zh-Hans = 在两点五公里后
+    zh-Hant = 在兩點五公里后
 
   [in_3_kilometers]
     en = In three kilometers
     ar = بعد ثلاثة كيلومترات
     be = Праз тры кіламетры
+    bg = След три километра
     ca = A tres quilòmetres
     cs = Za tři kilometry
     da = Om tre kilometer
@@ -1330,6 +1394,7 @@
     fa = در سه کیلومتری
     fi = Kolmen kilometrin päässä
     fr = Dans trois kilomètres
+    he = בעוד  שלוש קילומטר
     hi = तीन किलोमीटर में।
     hr = Za tri kilometra
     hu = Három kilométer után
@@ -1353,13 +1418,14 @@
     tr = Üç kilometre sonra
     uk = Через три кілометри
     vi = Trong ba kilômét nữa
-    zh-Hans = 前方三公里
-    zh-Hant = 前方三千米
+    zh-Hans = 在三公里后
+    zh-Hant = 在三公里後
 
   [then]
     en = Then
     ar = ثم
     be = Потым
+    bg = След
     ca = Després
     cs = Poté
     da = Derefter
@@ -1370,6 +1436,7 @@
     fa = سپس
     fi = Sitten
     fr = Puis
+    he = ואז
     hi = फिर।
     hr = Zatim
     hu = Majd
@@ -1410,6 +1477,7 @@
     en = Take the first exit.
     ar = اسلك المخرج الأول.
     be = Збочце на першы з'езд.
+    bg = Вземете първия изход.
     ca = Agafeu la primera sortida.
     cs = Vyjeďte prvním výjezdem.
     da = Tag den første afkørsel.
@@ -1420,6 +1488,7 @@
     fa = اولین خروجی را داخل شوید.
     fi = Poistu ensimmäisestä liittymästä.
     fr = Prenez la première sortie.
+    he = צא ביציאה הראשונה.
     hi = पहला एग्जिट लें।
     hr = Izađite na prvom izlazu.
     hu = Hajtson ki az első kijáratnál.
@@ -1462,6 +1531,7 @@
     en = Take the second exit.
     ar = اسلك المخرج الثاني.
     be = Збочце на другі з'езд.
+    bg = Вземете втория изход.
     ca = Agafeu la segona sortida.
     cs = Vyjeďte druhým výjezdem.
     da = Tag den anden afkørsel.
@@ -1472,6 +1542,7 @@
     fa = دومین خروجی را داخل شوید.
     fi = Poistu toisesta liittymästä.
     fr = Prenez la deuxième sortie.
+    he = צא ביציאה השנייה.
     hi = दूसरा एग्जिट लें।
     hr = Izađite na drugom izlazu.
     hu = Hajtson ki a második kijáratnál.
@@ -1514,6 +1585,7 @@
     en = Take the third exit.
     ar = اسلك المخرج الثالث.
     be = Збочце на трэці з'езд.
+    bg = Вземете третия изход.
     ca = Agafeu la tercera sortida.
     cs = Vyjeďte třetím výjezdem.
     da = Tag den tredje afkørsel.
@@ -1524,6 +1596,7 @@
     fa = سومین خروجی را داخل شوید.
     fi = Poistu kolmannesta liittymästä.
     fr = Prenez la troisième sortie.
+    he = צא ביציאה השלישית.
     hi = तीसरा एग्जिट लें।
     hr = Izađite na trećem izlazu.
     hu = Hajtson ki a harmadik kijáratnál.
@@ -1566,6 +1639,7 @@
     en = Take the fourth exit.
     ar = اسلك المخرج الرابع.
     be = Збочце на чацвёрты з'езд.
+    bg = Вземете четвъртия изход.
     ca = Agafeu la quarta sortida.
     cs = Vyjeďte čtvrtým výjezdem.
     da = Tag den fjerde afkørsel.
@@ -1576,6 +1650,7 @@
     fa = چهارمین خروجی را داخل شوید.
     fi = Poistu neljännestä liittymästä.
     fr = Prenez la quatrième sortie.
+    he = צא ביציאה הרביעית.
     hi = चौथा एग्जिट लें।
     hr = Izađite na četvrtom izlazu.
     hu = Hajtson ki a negyedik kijáratnál.
@@ -1618,6 +1693,7 @@
     en = Take the fifth exit.
     ar = اسلك المخرج الخامس.
     be = Збочце на пяты з'езд.
+    bg = Вземете петия изход.
     ca = Agafeu la cinquena sortida.
     cs = Vyjeďte pátým výjezdem.
     da = Tag den femte afkørsel.
@@ -1628,6 +1704,7 @@
     fa = پنجمین خروجی را داخل شوید.
     fi = Poistu viidennestä liittymästä.
     fr = Prenez la cinquième sortie.
+    he = צא ביציאה החמישית.
     hi = पाँचवाँ एग्जिट लें।
     hr = Izađite na petom izlazu.
     hu = Hajtson ki az ötödik kijáratnál.
@@ -1670,6 +1747,7 @@
     en = Take the sixth exit.
     ar = اسلك المخرج السادس.
     be = Збочце на шосты з'езд.
+    bg = Вземете шестия изход.
     ca = Agafeu la sisena sortida.
     cs = Vyjeďte šestým výjezdem.
     da = Tag den sjette afkørsel.
@@ -1680,6 +1758,7 @@
     fa = ششمین خروجی را داخل شوید.
     fi = Poistu kuudennesta liittymästä.
     fr = Prenez la sixième sortie.
+    he = צא ביציאה השישית.
     hi = छठा एग्जिट लें।
     hr = Izađite na šestom izlazu.
     hu = Hajtson ki a hatodik kijáratnál.
@@ -1722,6 +1801,7 @@
     en = Take the seventh exit.
     ar = اسلك المخرج السابع.
     be = Збочце на сёмы з'езд.
+    bg = Вземете седмия изход.
     ca = Agafeu la setena sortida.
     cs = Vyjeďte sedmým výjezdem.
     da = Tag den syvende afkørsel.
@@ -1732,6 +1812,7 @@
     fa = هفتمین خروجی را داخل شوید.
     fi = Poistu seitsemännestä liittymästä.
     fr = Prenez la septième sortie.
+    he = צא ביציאה השביעית.
     hi = सातवाँ एग्जिट लें।
     hr = Izađite na sedmom izlazu.
     hu = Hajtson ki a hetedik kijáratnál.
@@ -1774,6 +1855,7 @@
     en = Take the eighth exit.
     ar = اسلك المخرج الثامن.
     be = Збочце на восьмы з'езд.
+    bg = Вземете осмия изход.
     ca = Agafeu la vuitena sortida.
     cs = Vyjeďte osmým výjezdem.
     da = Tag den ottende afkørsel.
@@ -1784,6 +1866,7 @@
     fa = هشتمین خروجی را داخل شوید.
     fi = Poistu kahdeksannesta liittymästä.
     fr = Prenez la huitième sortie.
+    he = צא ביציאה השמינית.
     hi = आठवाँ एग्जिट लें।
     hr = Izađite na osmom izlazu.
     hu = Hajtson ki a nyolcadik kijáratnál.
@@ -1826,6 +1909,7 @@
     en = Take the ninth exit.
     ar = اسلك المخرج التاسع.
     be = Збочце на дзявяты з'езд.
+    bg = Вземете деветия изход.
     ca = Agafeu la novena sortida.
     cs = Vyjeďte devátým výjezdem.
     da = Tag den niende afkørsel.
@@ -1836,6 +1920,7 @@
     fa = نهمین خروجی را داخل شوید.
     fi = Poistu yhdeksännestä liittymästä.
     fr = Prenez la neuvième sortie.
+    he = צא ביציאה התשיעית.
     hi = नौवें निकास को लें।
     hr = Izađite na devetom izlazu.
     hu = Hajtson ki a kilencedik kijáratnál.
@@ -1878,6 +1963,7 @@
     en = Take the tenth exit.
     ar = اسلك المخرج العاشر.
     be = Збочце на дзясяты з'езд.
+    bg = Вземете десетия изход.
     ca = Agafeu la desena sortida.
     cs = Vyjeďte desátým výjezdem.
     da = Tag den tiende afkørsel.
@@ -1888,6 +1974,7 @@
     fa = دهمین خروجی را داخل شوید.
     fi = Poistu kymmenennestä liittymästä.
     fr = Prenez la dixième sortie.
+    he = צא ביציאה העשירית.
     hi = दसवाँ एग्जिट लें।
     hr = Izađite na desetom izlazu.
     hu = Hajtson ki a tizedik kijáratnál.
@@ -1930,6 +2017,7 @@
     en = Take the eleventh exit.
     ar = اسلك المَخْرَج الحادي عشر.
     be = Збочце на адзінаццаты з'езд.
+    bg = Вземете единадесетия изход.
     ca = Agafeu la onzena sortida.
     cs = Vyjeďte jedenáctým výjezdem.
     da = Tag den ellevte afkørsel.
@@ -1940,6 +2028,7 @@
     fa = یازدهمین خروجی را داخل شوید.
     fi = Poistu yhdennestätoista liittymästä.
     fr = Prenez la onzième sortie.
+    he = צא ביציאה האחד עשר.
     hi = ग्‍यारहवाँ एग्जिट लें।
     hr = Izađite na jedanaestom izlazu.
     hu = Hajtson ki a tizenegyedik kijáratnál.
@@ -1982,6 +2071,7 @@
     en = In fifty feet
     ar = بعد خمسين قدمًا
     be = Праз пяцьдзесят футаў
+    bg = След петдесет фута
     ca = A cinquanta peus
     cs = Za padesát stop
     da = Om halvtreds fod
@@ -1992,6 +2082,7 @@
     fa = در پنجاه قدمی
     fi = Viidenkymmenen jalan päässä
     fr = Dans cinquante pieds
+    he = בעוד חמישים רגל
     hi = पचास फीट में।
     hr = Za pedeset stopa
     hu = Ötven láb után
@@ -2015,13 +2106,14 @@
     tr = Elli fit sonra
     uk = Через п'ятдесят футів
     vi = Trong năm mươi feet nữa
-    zh-Hans = 前方五十英尺
-    zh-Hant = 前方五十英尺
+    zh-Hans = 在五十英尺后
+    zh-Hant = 在五十英尺後
 
   [in_100_feet]
     en = In one hundred feet
     ar = بعد مئة قدم
     be = Праз сто футаў
+    bg = След сто фута
     ca = A cent peus
     cs = Za sto stop
     da = Om et hundrede fod
@@ -2032,6 +2124,7 @@
     fa = در یک صد قدمی
     fi = Sadan jalan päässä
     fr = Dans cent pieds
+    he = בעוד מאה רגל
     hi = सौ फीट में।
     hr = Za stotinu stopa
     hu = Száz láb után
@@ -2055,13 +2148,14 @@
     tr = Yüz fit sonra
     uk = Через сто футів
     vi = Trong một trăm feet nữa
-    zh-Hans = 前方一百英尺
-    zh-Hant = 前方一百英尺
+    zh-Hans = 在一百英尺后
+    zh-Hant = 在一百英尺後
 
   [in_200_feet]
     en = In two hundred feet
     ar = بعد مئتين قدم
     be = Праз дзвесце футаў
+    bg = След двеста фута
     ca = A dos-cents peus
     cs = Za dvě stě stop
     da = Om to hundrede fod
@@ -2072,6 +2166,7 @@
     fa = در دویست قدمی
     fi = Kahdensadan jalan päässä
     fr = Dans deux cents pieds
+    he = בעוד מאתיים רגל
     hi = दो सौ फीट में।
     hr = Za dvije stotine stopa
     hu = Kétszáz láb után
@@ -2095,13 +2190,14 @@
     tr = İki yüz fit sonra
     uk = Через двісті футів
     vi = Trong hai trăm feet nữa
-    zh-Hans = 前方两百英尺
-    zh-Hant = 前方兩百英尺
+    zh-Hans = 在两百英尺后
+    zh-Hant = 在兩百英尺後
 
   [in_300_feet]
     en = In three hundred feet
     ar = بعد ثلاثمئة قدم
     be = Праз трыста футаў
+    bg = След триста фута
     ca = A tres-cents peus
     cs = Za tři sta stop
     da = Om tre hundrede fod
@@ -2112,6 +2208,7 @@
     fa = در سیصد قدمی
     fi = Kolmensadan jalan päässä
     fr = Dans trois cents pieds
+    he = בעוד שלוש מאות רגל
     hi = तीन सौ फीट में।
     hr = Za tri stotine stopa
     hu = Háromszáz láb után
@@ -2135,13 +2232,14 @@
     tr = Üç yüz fit sonra
     uk = Через триста футів
     vi = Trong ba trăm feet nữa
-    zh-Hans = 前方三百英尺
-    zh-Hant = 前方三百英尺
+    zh-Hans = 在三百英尺后
+    zh-Hant = 在三百英尺後
 
   [in_400_feet]
     en = In four hundred feet
     ar = بعد أربعمئة قدم
     be = Праз чатырыста футаў
+    bg = След четиристотин фута
     ca = A quatre-cents peus
     cs = Za čtyři sta stop
     da = Om fire hundrede fod
@@ -2152,6 +2250,7 @@
     fa = در چهارصد قدمی
     fi = Neljänsadan jalan päässä
     fr = Dans quatre cents pieds
+    he = בעוד ארבע מאות רגל
     hi = चार सौ फीट में।
     hr = Za četiri stotine stopa
     hu = Négyszáz láb után
@@ -2175,13 +2274,14 @@
     tr = Dört yüz fit sonra
     uk = Через чотириста футів
     vi = Trong bốn trăm feet nữa
-    zh-Hans = 前方四百英尺
-    zh-Hant = 前方四百英尺
+    zh-Hans = 在四百英尺后
+    zh-Hant = 在四百英尺後
 
   [in_500_feet]
     en = In five hundred feet
     ar = بعد خمسمئة قدم
     be = Праз пяцьсот футаў
+    bg = След петстотин фута
     ca = A cinc-cents peus
     cs = Za pět set stop
     da = Om femte hundrede fod
@@ -2192,6 +2292,7 @@
     fa = در پانصد قدمی
     fi = Viidensadan jalan päässä
     fr = Dans cinq cents pieds
+    he = בעוד חמש מאות רגל
     hi = पांच सौ फीट में।
     hr = Za pet stotina stopa
     hu = Ötszáz láb után
@@ -2215,13 +2316,14 @@
     tr = Beş yüz fit sonra
     uk = Через п'ятсот футів
     vi = Trong năm trăm feet nữa
-    zh-Hans = 前方五百英尺
-    zh-Hant = 前方五百英尺
+    zh-Hans = 在五百英尺后
+    zh-Hant = 在五百英尺後
 
   [in_600_feet]
     en = In six hundred feet
     ar = بعد ستمئة قدم
     be = Праз шэсцьсот футаў
+    bg = След шестстотин фута
     ca = A sis-cents peus
     cs = Za šest set stop
     da = Om sjette hundrede fod
@@ -2232,6 +2334,7 @@
     fa = در ششصد قدمی
     fi = Kuudensadan jalan päässä
     fr = Dans six cents pieds
+    he = בעוד שש מאות רגל
     hi = छह सौ फीट में।
     hr = Za šest stotina stopa
     hu = Hatszáz láb után
@@ -2255,13 +2358,14 @@
     tr = Altı yüz fit sonra
     uk = Через шістсот футів
     vi = Trong sáu trăm feet nữa
-    zh-Hans = 前方六百英尺
-    zh-Hant = 前方六百英尺
+    zh-Hans = 在六百英尺后
+    zh-Hant = 在六百英尺後
 
   [in_700_feet]
     en = In seven hundred feet
     ar = بعد سبعمئة قدم
     be = Праз сямсот футаў
+    bg = След седемстотин фута
     ca = A set-cents peus
     cs = Za sedm set stop
     da = Om syv hundrede fod
@@ -2272,6 +2376,7 @@
     fa = در هفتصد قدمی
     fi = Seitsemänsadan jalan päässä
     fr = Dans sept cents pieds
+    he = בעוד שבע מאות רגל
     hi = सात सौ फीट में।
     hr = Za sedam stotina stopa
     hu = Hétszáz láb után
@@ -2295,13 +2400,14 @@
     tr = Yedi yüz fit sonra
     uk = Через сімсот футів
     vi = Trong bảy trăm feet nữa
-    zh-Hans = 前方七百英尺
-    zh-Hant = 前方七百英尺
+    zh-Hans = 在七百英尺后
+    zh-Hant = 在七百英尺後
 
   [in_800_feet]
     en = In eight hundred feet
     ar = بعد ثمانمئة قدم
     be = Праз васямсот футаў
+    bg = След осемстотин фута
     ca = A vuit-cents peus
     cs = Za osm set stop
     da = Om otte hundrede fod
@@ -2312,6 +2418,7 @@
     fa = در هشتصد قدمی
     fi = Kahdeksansadan jalan päässä
     fr = Dans huit cents pieds
+    he = בעוד שמונה מאות רגל
     hi = आठ सौ फीट में।
     hr = Za osam stotina stopa
     hu = Nyolcszáz láb után
@@ -2335,13 +2442,14 @@
     tr = Sekiz yüz fit sonra
     uk = Через вісімсот футів
     vi = Trong tám trăm feet nữa
-    zh-Hans = 前方八百英尺
-    zh-Hant = 前方八百英尺
+    zh-Hans = 在八百英尺后
+    zh-Hant = 在八百英尺後
 
   [in_900_feet]
     en = In nine hundred feet
     ar = بعد تسعمئة قدم
     be = Праз дзевяцьсот футаў
+    bg = След деветстотин фута
     ca = A nou-cents peus
     cs = Za devět set stop
     da = Om ni hundrede fod
@@ -2352,6 +2460,7 @@
     fa = در نه صد قدمی
     fi = Yhdeksänsadan jalan päässä
     fr = Dans neuf cents pieds
+    he = בעוד תשע מאות רגל
     hi = नौ सौ फीट में।
     hr = Za devet stotina stopa
     hu = Kilencszáz láb után
@@ -2375,13 +2484,14 @@
     tr = Dokuz yüz fit sonra
     uk = Через дев'ятсот футів
     vi = Trong chín trăm feet nữa
-    zh-Hans = 前方九百英尺
-    zh-Hant = 前方九百英尺
+    zh-Hans = 在九百英尺后
+    zh-Hant = 在九百英尺後
 
   [in_1000_feet]
     en = In one thousand feet
     ar = بعد ألف قدم
     be = Праз тысячу футаў
+    bg = След хиляда фута
     ca = A mil peus
     cs = Za tisíc stop
     da = Om et tusind fod
@@ -2392,6 +2502,7 @@
     fa = در یک هزار قدمی
     fi = Tuhannen jalan päässä
     fr = Dans mille pieds
+    he = בעוד אלף רגל
     hi = एक हजार फीट में।
     hr = Za tisuću stopa
     hu = Ezer láb után
@@ -2415,13 +2526,14 @@
     tr = Bin fit sonra
     uk = Через тисячу футів
     vi = Trong một ngàn feet nữa
-    zh-Hans = 前方一千英尺
-    zh-Hant = 前方一千英尺
+    zh-Hans = 在一千英尺后
+    zh-Hant = 在一千英尺後
 
   [in_1500_feet]
     en = In fifteen hundred feet
     ar = بعد ألف وخمسمئة قدم
     be = Праз тысячу пяцьсот футаў
+    bg = След хиляда и петстотин фута
     ca = A mil cinc-cents peus
     cs = Za tisíc pět set stop
     da = Om et tusind fem hundrede fod
@@ -2432,6 +2544,7 @@
     fa = در یک هزار و پانصد قدمی
     fi = Tuhannenviidensadan jalan päässä
     fr = Dans mille cinq cents pieds
+    he = בעוד אלף וחמש מאות רגל
     hi = एक हजार पांच सौ फीट में।
     hr = Za tisuću i pet stotina stopa
     hu = Ezerötszáz láb után
@@ -2455,13 +2568,14 @@
     tr = Bin beş yüz fit sonra
     uk = Через півтори тисячі футів
     vi = Trong một ngàn năm trăm feet nữa
-    zh-Hans = 前方一千五百英尺
-    zh-Hant = 前方一千五百英尺
+    zh-Hans = 在一千五百英尺后
+    zh-Hant = 在一千五百英尺後
 
   [in_2000_feet]
     en = In two thousand feet
     ar = بعد ألفي قدم
     be = Праз дзве тысячы футаў
+    bg = След две хиляди фута
     ca = A dos mil peus
     cs = Za dva tisíce stop
     da = Om to tusind fod
@@ -2472,6 +2586,7 @@
     fa = در دو هزار قدمی
     fi = Kahdentuhannen jalan päässä
     fr = Dans deux mille pieds
+    he = בעוד אלפיים רגל
     hi = दो हजार फीट में।
     hr = Za dvije tisuće stopa
     hu = Kétezer láb után
@@ -2495,13 +2610,14 @@
     tr = İki bin fit sonra
     uk = Через дві тисячі футів
     vi = Trong hai ngàn feet nữa
-    zh-Hans = 前方两千英尺
-    zh-Hant = 前方兩千英尺
+    zh-Hans = 在两千英尺后
+    zh-Hant = 在兩千英尺後
 
   [in_2500_feet]
     en = In twenty five hundred feet
     ar = بعد ألفين وخمسمئة قدم
     be = Праз дзве тысячы пяцьсот футаў
+    bg = След две хиляди и петстотин фута
     ca = A dos mil cinc-cents peus
     cs = Za dva tisíce pět set stop
     da = Om to tusinde fem hundrede fod
@@ -2512,6 +2628,7 @@
     fa = در پانصد و بیست قدمی
     fi = Kahdentuhannenviidensadan jalan päässä
     fr = Dans deux mille cinq cents pieds
+    he = בעוד אלפיים וחמש מאות רגל
     hi = दो हजार पांच सौ फीट में।
     hr = Za dvije tisuće i pet stotina stopa
     hu = Kétezer-ötszáz láb után
@@ -2535,13 +2652,14 @@
     tr = İki bin beş yüz fit sonra
     uk = Через дві з половиною тисячі футів
     vi = Trong hai ngàn năm trăm feet nữa
-    zh-Hans = 前方两千五百英尺
-    zh-Hant = 前方兩千五百英尺
+    zh-Hans = 在两千五百英尺后
+    zh-Hant = 在兩千五百英尺後
 
   [in_3000_feet]
     en = In three thousand feet
     ar = بعد ثلاثة آلاف قدم
     be = Праз тры тысячы футаў
+    bg = След три хиляди фута
     ca = A tres mil peus
     cs = Za tři tisíce stop
     da = Om tre tusind fod
@@ -2552,6 +2670,7 @@
     fa = در سه هزار قدمی
     fi = Kolmentuhannen jalan päässä
     fr = Dans trois mille pieds
+    he = בעוד שלושת אלפים רגל
     hi = तीन हजार फीट में।
     hr = Za tri tisuće stopa
     hu = Háromezer láb után
@@ -2575,13 +2694,14 @@
     tr = Üç bin fit sonra
     uk = Через три тисячі футів
     vi = Trong ba ngàn feet nữa
-    zh-Hans = 前方三千英尺
-    zh-Hant = 前方三千英尺
+    zh-Hans = 在三千英尺后
+    zh-Hant = 在三千英尺後
 
   [in_3500_feet]
     en = In thirty five hundred feet
     ar = بعد ثلاثة آلاف وخمسمئة قدم
     be = Праз тры тысячы пяцьсот футаў
+    bg = След три хиляди и петстотин фута
     ca = A tres mil cinc-cents peus
     cs = Za tři tisíce pět set stop
     da = Om tre tusind fem hundrede fod
@@ -2592,6 +2712,7 @@
     fa = در سه هزار و پانصد قدمی
     fi = Kolmentuhannenviidensadan jalan päässä
     fr = Dans trois mille cinq cents pieds
+    he = בעוד שלושת אלפים וחמש מאות רגל
     hi = तीन हजार पांच सौ फीट में।
     hr = Za tri tisuće i pet stotina stopa
     hu = Háromezer-ötszáz láb után
@@ -2615,13 +2736,14 @@
     tr = Üç bin beş yüz fit sonra
     uk = Через три з половиною тисячі футів
     vi = Trong ba ngàn năm trăm feet nữa
-    zh-Hans = 前方三千五百英尺
-    zh-Hant = 前方三千五百英尺
+    zh-Hans = 在三千五百英尺后
+    zh-Hant = 在三千五百英尺後
 
   [in_4000_feet]
     en = In four thousand feet
     ar = بعد أربعة آلاف قدم
     be = Праз чатыры тысячы футаў
+    bg = След четири хиляди фута
     ca = A quatre mil peus
     cs = Za čtyři tisíce stop
     da = Om fire tusind fod
@@ -2632,6 +2754,7 @@
     fa = در چهار هزار قدمی
     fi = Neljäntuhannen jalan päässä
     fr = Dans quatre mille pieds
+    he = בעוד ארבעת אלפים רגל
     hi = चार हजार फीट में।
     hr = Za četiri tisuće stopa
     hu = Négyezer láb után
@@ -2655,13 +2778,14 @@
     tr = Dört bin fit sonra
     uk = Через чотири тисячі футів
     vi = Trong bốn ngàn feet nữa
-    zh-Hans = 前方四千英尺
-    zh-Hant = 前方四千英尺
+    zh-Hans = 在四千英尺后
+    zh-Hant = 在四千英尺後
 
   [in_4500_feet]
     en = In forty five hundred feet
     ar = بعد أربعة آلاف وخمسمئة قدم
     be = Праз чатыры тысячы пяцьсот футаў
+    bg = След четири хиляди и петстотин фута
     ca = A quatre mil cinc-cents peus
     cs = Za čtyři tisíce pět set stop
     da = Om fire tusind fem hundrede fod
@@ -2672,6 +2796,7 @@
     fa = در چهار هزار و پانصد قدمی
     fi = Neljäntuhannenviidensadan jalan päässä
     fr = Dans quatre mille cinq cents pieds
+    he = בעוד ארבעת אלפים וחמש מאות רגל
     hi = चार हजार पांच सौ फीट में।
     hr = Za četiri tisuće i pet stotina stopa
     hu = Négyezer-ötszáz láb után
@@ -2695,13 +2820,14 @@
     tr = Dört bin beş yüz fit sonra
     uk = Через чотири з половиною тисячі футів
     vi = Trong bốn ngàn năm trăm feet nữa
-    zh-Hans = 前方四千五百英尺
-    zh-Hant = 前方四千五百英尺
+    zh-Hans = 在四千五百英尺后
+    zh-Hant = 在四千五百英尺後
 
   [in_5000_feet]
     en = In five thousand feet
     ar = بعد خمسة آلاف قدم
     be = Праз пяць тысяч футаў
+    bg = След пет хиляди фута
     ca = A cinc mil peus
     cs = Za pět tisíc stop
     da = Om fem tusind fod
@@ -2712,6 +2838,7 @@
     fa = در پنج هزار قدمی
     fi = Viidentuhannen jalan päässä
     fr = Dans cinq mille pieds
+    he = בעוד חמשת אלפים רגל
     hi = पांच हजार फीट में।
     hr = Za pet tisuća stopa
     hu = Ötezer láb után
@@ -2735,13 +2862,14 @@
     tr = Beş bin fit sonra
     uk = Через п'ять тисяч футів
     vi = Trong năm ngàn feet nữa
-    zh-Hans = 前方五千英尺
-    zh-Hant = 前方五千英尺
+    zh-Hans = 在五千英尺后
+    zh-Hant = 在五千英尺後
 
   [in_1_mile]
     en = In one mile
     ar = بعد ميل واحد
     be = Праз адну мілю
+    bg = След една миля
     ca = A un milla
     cs = Za jednu míli
     da = Om en mil
@@ -2752,6 +2880,7 @@
     fa = در یک مایلی
     fi = Mailin päässä
     fr = Dans un mile
+    he = בעוד מייל אחד
     hi = एक मील में।
     hr = Za jednu milju
     hu = Egy mérföld után
@@ -2775,13 +2904,14 @@
     tr = Bir mil sonra
     uk = Через одну милю
     vi = Trong một dặm nữa
-    zh-Hans = 前方一英里
-    zh-Hant = 前方一英里
+    zh-Hans = 在一英里后
+    zh-Hant = 在一英里後
 
   [in_1_5_miles]
     en = In one and a half miles
     ar = بعد ميل ونصف
     be = Праз паўтары мілі
+    bg = След една миля и половина
     ca = A una milla i mitja
     cs = Za jednu a půl míle
     da = Om halvanden mil
@@ -2792,6 +2922,7 @@
     fa = در یک و نیم مایلی
     fi = Puolentoista mailin päässä
     fr = Dans un virgule cinq mile
+    he = בעוד אחד וחצי מיילים
     hi = डेढ़ मील में।
     hr = Za jednu i pol milju
     hu = Másfél mérföld után
@@ -2815,13 +2946,14 @@
     tr = Bir buçuk mil sonra
     uk = Через півтори милі
     vi = Trong một dặm rưỡi nữa
-    zh-Hans = 前方一点五英里
-    zh-Hant = 前方一點五英里
+    zh-Hans = 在一点五英里后
+    zh-Hant = 在一點五英里後
 
   [in_2_miles]
     en = In two miles
     ar = بعد ميلين
     be = Праз дзве мілі
+    bg = След две мили
     ca = A dues milles
     cs = Za dvě míle
     da = Om to mil
@@ -2832,6 +2964,7 @@
     fa = در دو مایلی
     fi = Kahden mailin päässä
     fr = Dans deux miles
+    he = בעוד שני מיילים
     hi = दो मील में।
     hr = Za dvije milje
     hu = Két mérföld után
@@ -2855,13 +2988,14 @@
     tr = İki mil sonra
     uk = Через дві милі
     vi = Trong hai dặm nữa
-    zh-Hans = 前方两英里
-    zh-Hant = 前方兩英里
+    zh-Hans = 在两英里后
+    zh-Hant = 在兩英里後
 
   [unknown_camera]
     en = Camera ahead
     ar = الكاميرا أمامك
     be = Наперадзе камера
+    bg = Камера отпред
     ca = Càmera al davant
     cs = Radar vpředu
     da = Kamera foran dig
@@ -2873,6 +3007,7 @@
     fa = دوربین کنترل سرعت در نزدیکی
     fi = Edessä on kamera
     fr = Caméra devant
+    he = מצלמה לפניך
     hi = स्पीड कैमरा आगे
     hu = Kamera következik
     id = Diawasi kamera
@@ -2888,7 +3023,7 @@
     ro = Cameră frontală
     ru = Впереди камера
     sk = Pozor, radar!
-    sr = Пажња, радар!
+    sr = Пажња, прекршајна камера!
     sv = Kamera framför
     sw = Kamera Mbele
     th = มีกล้องอยู่ข้างหน้า

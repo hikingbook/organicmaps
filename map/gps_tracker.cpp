@@ -9,19 +9,14 @@
 
 #include "defines.hpp"
 
-using namespace std;
 using namespace std::chrono;
 
 namespace
 {
 
 char const kEnabledKey[] = "GpsTrackingEnabled";
-char const kDurationHours[] = "GpsTrackingDuration";
-uint32_t constexpr kDefaultDurationHours = 24;
 
-size_t constexpr kMaxItemCount = 100000; // > 24h with 1point/s
-
-inline string GetFilePath()
+inline std::string GetFilePath()
 {
   return base::JoinPath(GetPlatform().WritableDir(), GPS_TRACK_FILENAME);
 }
@@ -39,20 +34,6 @@ inline void SetSettingsIsEnabled(bool enabled)
   settings::Set(kEnabledKey, enabled);
 }
 
-inline hours GetSettingsDuration()
-{
-  uint32_t duration;
-  if (!settings::Get(kDurationHours, duration))
-    duration = kDefaultDurationHours;
-  return hours(duration);
-}
-
-inline void SetSettingsDuration(hours duration)
-{
-  uint32_t const hours = static_cast<uint32_t>(duration.count());
-  settings::Set(kDurationHours, hours);
-}
-
 } // namespace
 
 GpsTracker & GpsTracker::Instance()
@@ -63,7 +44,7 @@ GpsTracker & GpsTracker::Instance()
 
 GpsTracker::GpsTracker()
   : m_enabled(GetSettingsIsEnabled())
-  , m_track(GetFilePath(), kMaxItemCount, GetSettingsDuration(), make_unique<GpsTrackFilter>())
+  , m_track(GetFilePath(), std::make_unique<GpsTrackFilter>())
 {
 }
 
@@ -84,15 +65,14 @@ bool GpsTracker::IsEnabled() const
   return m_enabled;
 }
 
-void GpsTracker::SetDuration(hours duration)
+bool GpsTracker::IsEmpty() const
 {
-  SetSettingsDuration(duration);
-  m_track.SetDuration(duration);
+  return m_track.IsEmpty();
 }
 
-hours GpsTracker::GetDuration() const
+size_t GpsTracker::GetTrackSize() const
 {
-  return m_track.GetDuration();
+  return m_track.GetSize();
 }
 
 void GpsTracker::Connect(TGpsTrackDiffCallback const & fn)
@@ -110,4 +90,10 @@ void GpsTracker::OnLocationUpdated(location::GpsInfo const & info)
   if (!m_enabled)
     return;
   m_track.AddPoint(info);
+}
+
+void GpsTracker::ForEachTrackPoint(GpsTrackCallback const & callback) const
+{
+  CHECK(callback != nullptr, ("Callback should be provided"));
+  m_track.ForEachPoint(callback);
 }

@@ -99,7 +99,7 @@ namespace android
     void OnCompassUpdated(location::CompassInfo const & info, bool forceRedraw);
 
     bool CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi, bool firstLaunch,
-                           bool launchByDeepLink, uint32_t appVersionCode);
+                           bool launchByDeepLink, uint32_t appVersionCode, bool isCustomROM);
     bool IsDrapeEngineCreated() const;
     void UpdateDpi(int dpi);
     bool DestroySurfaceOnDetach();
@@ -158,8 +158,11 @@ namespace android
     void Scale(::Framework::EScaleMode mode);
     void Scale(m2::PointD const & centerPt, int targetZoom, bool animate);
 
+    void ChangeTrackColor(kml::TrackId trackId, dp::Color color);
     void ReplaceBookmark(kml::MarkId markId, kml::BookmarkData & bm);
+    void ReplaceTrack(kml::TrackId trackId, kml::TrackData & trackData);
     void MoveBookmark(kml::MarkId markId, kml::MarkGroupId curCat, kml::MarkGroupId newCat);
+    void MoveTrack(kml::TrackId trackId, kml::MarkGroupId curCat, kml::MarkGroupId newCat);
 
     ::Framework * NativeFramework();
 
@@ -188,7 +191,10 @@ namespace android
     void Set3dMode(bool allow3d, bool allow3dBuildings);
     void Get3dMode(bool & allow3d, bool & allow3dBuildings);
 
-    void SetChoosePositionMode(ChoosePositionMode mode, bool isBusiness, bool hasPosition, m2::PointD const & position);
+    void SetMapLanguageCode(std::string const & languageCode);
+    std::string GetMapLanguageCode();
+
+    void SetChoosePositionMode(ChoosePositionMode mode, bool isBusiness, m2::PointD const * optionalPosition);
     ChoosePositionMode GetChoosePositionMode();
 
     void UpdateMyPositionRoutingOffset(int offsetY);

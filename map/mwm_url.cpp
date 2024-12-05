@@ -59,6 +59,11 @@ std::string_view constexpr kLocale = "locale";
 std::string_view constexpr kSearchOnMap = "map";
 }  // namespace search
 
+namespace highlight_feature
+{
+std::string_view constexpr kHighlight = "highlight";
+}  // namespace feature highlight
+
 // See also kGe0Prefixes in ge0/parser.hpp
 constexpr std::array<std::string_view, 3> kLegacyMwmPrefixes = {{
   "mapsme://", "mwm://", "mapswithme://"
@@ -174,6 +179,38 @@ ParsedMapApi::UrlType ParsedMapApi::SetUrlAndParse(std::string const & raw)
       });
 
       return m_requestType = UrlType::Crosshair;
+    }
+    else if (type == "menu")
+    {
+      url.ForEachParam([this](auto const & key, auto const & value)
+      {
+        ParseInAppFeatureHighlightParam(key, value);
+      });
+      return m_requestType = UrlType::Menu;
+    }
+    else if (type == "settings")
+    {
+      url.ForEachParam([this](auto const & key, auto const & value)
+      {
+        ParseInAppFeatureHighlightParam(key, value);
+      });
+      return m_requestType = UrlType::Settings;
+    }
+    else if (type == "oauth2")
+    {
+      if (url.GetPath() != "osm/callback")
+        return m_requestType = UrlType::Incorrect;
+
+      url.ForEachParam([this](auto const & key, auto const & value)
+      {
+        if (key == "code")
+          m_oauth2code = value;
+      });
+
+      if (m_oauth2code.empty())
+        return m_requestType = UrlType::Incorrect;
+      else
+        return m_requestType = UrlType::OAuth2;
     }
     else if (checkForGe0Link)
     {
@@ -380,12 +417,30 @@ void ParsedMapApi::ParseCommonParam(std::string const & key, std::string const &
   }
 }
 
+InAppFeatureHighlightRequest::InAppFeatureType ParseInAppFeatureType(std::string const & value)
+{
+  if (value == "track-recorder")
+    return InAppFeatureHighlightRequest::InAppFeatureType::TrackRecorder;
+  if (value == "icloud")
+    return InAppFeatureHighlightRequest::InAppFeatureType::iCloud;
+  LOG(LERROR, ("Incorrect InAppFeatureType:", value));
+  return InAppFeatureHighlightRequest::InAppFeatureType::None;
+}
+
+void ParsedMapApi::ParseInAppFeatureHighlightParam(std::string const & key, std::string const & value)
+{
+  if (key == highlight_feature::kHighlight)
+    m_inAppFeatureHighlightRequest.m_feature = ParseInAppFeatureType(value);
+}
+
+
 void ParsedMapApi::Reset()
 {
   m_requestType = UrlType::Incorrect;
   m_mapPoints.clear();
   m_routePoints.clear();
   m_searchRequest = {};
+  m_oauth2code = {};
   m_globalBackUrl ={};
   m_appName = {};
   m_centerLatLon = ms::LatLon::Invalid();
@@ -393,6 +448,7 @@ void ParsedMapApi::Reset()
   m_version = 0;
   m_zoomLevel = 0.0;
   m_goBackOnBalloonClick = false;
+  m_inAppFeatureHighlightRequest = {};
 }
 
 void ParsedMapApi::ExecuteMapApiRequest(Framework & fm) const
@@ -467,6 +523,9 @@ std::string DebugPrint(ParsedMapApi::UrlType type)
   case ParsedMapApi::UrlType::Route: return "Route";
   case ParsedMapApi::UrlType::Search: return "Search";
   case ParsedMapApi::UrlType::Crosshair: return "Crosshair";
+  case ParsedMapApi::UrlType::OAuth2: return "OAuth2";
+  case ParsedMapApi::UrlType::Menu: return "Menu";
+  case ParsedMapApi::UrlType::Settings: return "Settings";
   }
   UNREACHABLE();
 }

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeObserver:(id<MWMLocationObserver>)observer NS_SWIFT_NAME(remove(observer:));
 
 + (void)setMyPositionMode:(MWMMyPositionMode)mode;
++ (void)checkLocationStatus;
 
 + (nullable CLLocation *)lastLocation;
 + (BOOL)isLocationProhibited;

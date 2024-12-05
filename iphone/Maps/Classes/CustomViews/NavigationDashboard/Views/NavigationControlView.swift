@@ -136,7 +136,7 @@ final class NavigationControlView: SolidTouchView, MWMTextToSpeechObserver, MapO
       ]
 
     if timePageControl.currentPage == 0 {
-      timeLabel.text = DateComponentsFormatter.etaString(from: TimeInterval(info.timeToTarget))
+      timeLabel.text = DurationFormatter.durationString(from: TimeInterval(info.timeToTarget))
     } else {
       timeLabel.text = info.arrival
     }

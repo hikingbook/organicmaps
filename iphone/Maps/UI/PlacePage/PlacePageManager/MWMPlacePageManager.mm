@@ -9,7 +9,7 @@
 #import "MWMMapViewControlsManager+AddPlace.h"
 #import "location_util.h"
 
-#import <CoreApi/CoreApi.h>
+#import <CoreApi/Framework.h>
 #import <CoreApi/StringUtils.h>
 
 #include "platform/downloader_defines.hpp"
@@ -150,12 +150,13 @@ using namespace storage;
 
 - (void)addBusiness
 {
-  [[MWMMapViewControlsManager manager] addPlace:YES hasPoint:NO point:m2::PointD()];
+  [[MWMMapViewControlsManager manager] addPlace:YES position:nullptr];
 }
 
 - (void)addPlace:(CLLocationCoordinate2D)coordinate
 {
-  [[MWMMapViewControlsManager manager] addPlace:NO hasPoint:YES point:location_helpers::ToMercator(coordinate)];
+  auto const position = location_helpers::ToMercator(coordinate);
+  [[MWMMapViewControlsManager manager] addPlace:NO position:&position];
 }
 
 - (void)addBookmark:(PlacePageData *)data {

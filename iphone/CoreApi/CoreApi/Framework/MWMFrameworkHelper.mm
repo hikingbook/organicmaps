@@ -1,5 +1,7 @@
 #import "MWMFrameworkHelper.h"
 #import "MWMMapSearchResult+Core.h"
+#import "ProductsConfiguration+Core.h"
+#import "Product+Core.h"
 
 #include "Framework.h"
 
@@ -7,6 +9,19 @@
 
 #include "platform/local_country_file_utils.hpp"
 #include "platform/network_policy_ios.h"
+
+static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(ProductsPopupCloseReason reason) {
+  switch (reason) {
+    case ProductsPopupCloseReasonClose:
+      return Framework::ProductsPopupCloseReason::Close;
+    case ProductsPopupCloseReasonSelectProduct:
+      return Framework::ProductsPopupCloseReason::SelectProduct;
+    case ProductsPopupCloseReasonAlreadyDonated:
+      return Framework::ProductsPopupCloseReason::AlreadyDonated;
+    case ProductsPopupCloseReasonRemindLater:
+      return Framework::ProductsPopupCloseReason::RemindLater;
+  }
+}
 
 @implementation MWMFrameworkHelper
 
@@ -194,6 +209,43 @@
 
 + (int)currentZoomLevel {
   return GetFramework().GetDrawScale();
+}
+
+// MARK: - TrackRecorder
+
++ (void)startTrackRecording {
+  GetFramework().StartTrackRecording();
+}
+
++ (void)stopTrackRecording {
+  GetFramework().StopTrackRecording();
+}
+
++ (void)saveTrackRecordingWithName:(nullable NSString *)name {
+  GetFramework().SaveTrackRecordingWithName(name == nil ? "" : name.UTF8String);
+}
+
++ (BOOL)isTrackRecordingEnabled {
+  return GetFramework().IsTrackRecordingEnabled();
+}
+
++ (BOOL)isTrackRecordingEmpty {
+  return GetFramework().IsTrackRecordingEmpty();
+}
+
+// MARK: - ProductsManager
+
++ (nullable ProductsConfiguration *)getProductsConfiguration {
+  auto const & config = GetFramework().GetProductsConfiguration();
+  return config.has_value() ? [[ProductsConfiguration alloc] init:config.value()] : nil;
+}
+
++ (void)didCloseProductsPopupWithReason:(ProductsPopupCloseReason)reason {
+  GetFramework().DidCloseProductsPopup(ConvertProductPopupCloseReasonToCore(reason));
+}
+
++ (void)didSelectProduct:(Product *)product {
+  GetFramework().DidSelectProduct({product.title.UTF8String, product.link.UTF8String});
 }
 
 @end

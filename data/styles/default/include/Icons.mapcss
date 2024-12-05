@@ -2,7 +2,7 @@
 2.NATURAL
 3.TRANSPORT
  3.1 Train Station
- 3.2 Subway Station
+ 3.2 Road Icons
  3.3 Tram Station
  3.4 Bus Station
  3.5 Ferry terminal
@@ -50,7 +50,7 @@ area|z18-[office],
 
 node|z18-[craft],
 area|z18-[craft],
-{icon-image: hand-m.svg;}
+{icon-image: craft-m.svg;}
 
 node|z16-[shop],
 area|z16-[shop],
@@ -178,6 +178,11 @@ node|z17-[natural=spring],
 node|z17-[natural=hot_spring],
 {icon-image: drinking-water-m.svg; font-size: 11;}
 
+node|z14-[natural=spring][drinking_water=not],
+{icon-image: drinking-water-no-s.svg; font-size: 10;}
+node|z17-[natural=spring][drinking_water=not],
+{icon-image: drinking-water-no-m.svg; font-size: 11;}
+
 node|z14[natural=geyser],
 {icon-image: geyser-s.svg;}
 node|z15-[natural=geyser],
@@ -200,6 +205,19 @@ node|z19-[amenity=drinking_water],
 node|z19-[man_made=water_tap],
 node|z19-[man_made=water_well],
 {icon-image: drinking-water-m.svg;}
+
+node|z16-[man_made=water_tap][drinking_water=not],
+node|z16-[man_made=water_well][drinking_water=not],
+node|z16-[amenity=water_point][drinking_water=not],
+{icon-image: none;}
+node|z18-[man_made=water_tap][drinking_water=not],
+node|z18-[man_made=water_well][drinking_water=not],
+node|z18-[amenity=water_point][drinking_water=not],
+{icon-image: drinking-water-no-s.svg;}
+node|z19-[man_made=water_tap][drinking_water=not],
+node|z19-[man_made=water_well][drinking_water=not],
+node|z19-[amenity=water_point][drinking_water=not],
+{icon-image: drinking-water-no-m.svg;}
 
 /* 3. TRANSPORT */
 
@@ -279,10 +297,10 @@ node|z17-[railway=station]::int_name,
 node|z17-[railway=halt]::int_name,
 {text-offset: 1;font-size: 12;text-halo-opacity: 0.9;}
 
-/* 3.2 Subway Station */
+/* 3.2 Road Icons */
 
-/*moved to Subways.mapcss*/
-
+node|z19-[highway=traffic_signals],
+{icon-image: traffic_signals.svg}
 
 node|z17-[highway=elevator],
 area|z17-[highway=elevator],
@@ -455,6 +473,13 @@ area|z16-[historic=tomb],
 node|z16-[tourism=aquarium],
 area|z16-[tourism=aquarium],
 node|z17-[attraction=animal],
+node|z17-[attraction=amusement_ride],
+node|z17-[attraction=carousel],
+node|z17-[attraction=roller_coaster],
+node|z17-[attraction=maze],
+node|z17-[attraction=historic],
+node|z17-[attraction=big_wheel],
+node|z17-[attraction=bumper_car],
 node|z17-[historic=ruins],
 area|z17-[historic=ruins],
 node|z17-[historic=wayside_shrine],
@@ -693,6 +718,15 @@ area|z16-[tourism=theme_park]
 node|z17-[attraction=animal],
 {icon-image: animal-m.svg;icon-min-distance: 24;}
 
+node|z17-[attraction=amusement_ride],
+node|z17-[attraction=carousel],
+node|z17-[attraction=roller_coaster],
+node|z17-[attraction=maze],
+node|z17-[attraction=historic],
+node|z17-[attraction=big_wheel],
+node|z17-[attraction=bumper_car],
+{icon-image: playground-m.svg;icon-min-distance: 24;}
+
 node|z15-[amenity=community_centre],
 area|z15-[amenity=community_centre],
 node|z16-[amenity=conference_centre],
@@ -831,7 +865,7 @@ node|z15[amenity=pub],
 area|z15[amenity=pub],
 node|z15[amenity=biergarten],
 area|z15[amenity=biergarten]
-{icon-image: beer-m.svg;icon-min-distance: 28;}
+{icon-image: pub-m.svg;icon-min-distance: 28;}
 
 node|z16-[amenity=cafe],
 area|z16-[amenity=cafe]
@@ -851,7 +885,7 @@ node|z16-[amenity=pub],
 area|z16-[amenity=pub],
 node|z16-[amenity=biergarten],
 area|z16-[amenity=biergarten]
-{icon-image: beer-m.svg;icon-min-distance: 12;}
+{icon-image: pub-m.svg;icon-min-distance: 12;}
 
 
 /* 5.AMENITY (infrastructure) */
@@ -952,6 +986,8 @@ node|z17-[amenity=courthouse],
 area|z17-[amenity=courthouse],
 node|z17-[amenity=nursing_home],
 area|z17-[amenity=nursing_home],
+node|z17-[amenity=social_facility],
+area|z17-[amenity=social_facility],
 node|z17-[amenity=kindergarten],
 area|z17-[amenity=kindergarten],
 node|z17-[amenity=childcare],
@@ -998,6 +1034,8 @@ node|z17-[aeroway=gate],
 area|z17-[aeroway=gate],
 node|z17-[sport],
 area|z17-[sport],
+node|z18-[amenity=dojo],
+area|z18-[amenity=dojo],
 node|z18-[amenity=vending_machine],
 area|z18-[amenity=vending_machine],
 node|z18-[amenity=post_box],
@@ -1030,6 +1068,7 @@ node|z18-[man_made=silo],
 area|z18-[man_made=silo],
 node|z18-[man_made=storage_tank],
 area|z18-[man_made=storage_tank],
+node|z18-[man_made=water_tower],
 node|z18-[amenity=bbq],
 area|z18-[amenity=bbq],
 node|z18-[amenity=brothel],
@@ -1226,6 +1265,7 @@ node|z17-[leisure=ice_rink]
 node|z17-[leisure=fitness_station]
 {icon-image: fitness_station-m.svg;icon-min-distance: 10;}
 node|z17-[leisure=sports_centre]
+node|z17-[leisure=sports_hall]
 {icon-image: pitch-m.svg;icon-min-distance: 10;}
 node|z17-[leisure=fitness_centre]
 {icon-image: fitness_centre-m.svg;icon-min-distance: 10;}
@@ -1245,6 +1285,9 @@ area|z15-[leisure=golf_course],
 node|z17-[leisure=miniature_golf],
 area|z17-[leisure=miniature_golf],
 {icon-image: golf-m.svg;icon-min-distance: 10;}
+
+node|z17-[amenity=dojo]
+{icon-image: martial-arts-m.svg;}
 
 node|z17-[sport],
 area|z17-[sport],
@@ -1491,7 +1534,7 @@ node|z16-[barrier=turnstile],
 {icon-image: dot-m.svg;font-size: 11;}
 
 node|z16-[barrier=entrance],
-{icon-image: barrier-entrance-s.svg; font-size: 11;}
+{icon-image: entrance-barrier-s.svg; font-size: 11;}
 
 node|z16-[barrier=gate],
 node|z16-[barrier=kissing_gate],
@@ -1560,6 +1603,10 @@ area|z17-[amenity=courthouse]
 node|z17-[amenity=nursing_home],
 area|z17-[amenity=nursing_home]
 {icon-image: home-m.svg;}
+
+node|z17-[amenity=social_facility],
+area|z17-[amenity=social_facility]
+{icon-image: social_facility-m.svg;}
 
 node|z17-[amenity=cinema],
 area|z17-[amenity=cinema]
@@ -1751,6 +1798,7 @@ node|z16-[man_made=silo],
 area|z16-[man_made=silo],
 node|z16-[man_made=storage_tank],
 area|z16-[man_made=storage_tank],
+node|z16-[man_made=water_tower],
 {icon-image: storage-tank.svg;font-size: 11;}
 
 node|z18-[amenity=bbq],
@@ -1759,7 +1807,7 @@ area|z18-[amenity=bbq]
 
 node|z18-[man_made=survey_point],
 {icon-image: survey_point-m.svg;font-size: 11;}
- 
+
 node|z19-[man_made=cairn]
 {icon-image: cairn-m.svg;font-size: 11;}
 
@@ -1816,6 +1864,8 @@ node|z16-[shop=bakery],
 area|z16-[shop=bakery],
 node|z16-[shop=pastry],
 area|z16-[shop=pastry],
+node|z16-[shop=pasta],
+area|z16-[shop=pasta],
 node|z16-[shop=beauty],
 area|z16-[shop=beauty],
 node|z16-[shop=cosmetics],
@@ -1971,10 +2021,10 @@ area|z17-[shop=mall],
 
 node|z16[shop=supermarket],
 area|z16[shop=supermarket],
-{icon-image: grocery-m.svg;font-size: 11;icon-min-distance: 16;}
+{icon-image: supermarket-m.svg;font-size: 11;icon-min-distance: 16;}
 node|z17-[shop=supermarket],
 area|z17-[shop=supermarket],
-{icon-image: grocery-m.svg;font-size: 11;icon-min-distance: 8;}
+{icon-image: supermarket-m.svg;font-size: 11;icon-min-distance: 8;}
 
 node|z16[shop=cheese],
 area|z16[shop=cheese]
@@ -2064,7 +2114,7 @@ area|z16[shop=video_games]
 {icon-image: video-games-m.svg;}
 node|z16[shop=tattoo],
 area|z16[shop=tattoo]
-{icon-image: hand-m.svg;}
+{icon-image: craft-m.svg;}
 node|z16[shop=erotic],
 area|z16[shop=erotic]
 {icon-image: erotic-m.svg;}
@@ -2075,7 +2125,7 @@ node|z16[shop=confectionery],
 area|z16[shop=confectionery],
 node|z16[shop=chocolate],
 area|z16[shop=chocolate]
-{icon-image: sweets-m.svg;}
+{icon-image: confectionery-m.svg;}
 node|z16[amenity=ice_cream],
 area|z16[amenity=ice_cream]
 {icon-image: ice_cream-m.svg;}
@@ -2291,7 +2341,7 @@ area|z17-[shop=video_games]
 {icon-image: video-games-m.svg;icon-min-distance: 24;}
 node|z17-[shop=tattoo],
 area|z17-[shop=tattoo]
-{icon-image: hand-m.svg;icon-min-distance: 24;}
+{icon-image: craft-m.svg;icon-min-distance: 24;}
 node|z17-[shop=erotic],
 area|z17-[shop=erotic]
 {icon-image: erotic-m.svg;icon-min-distance: 24;}
@@ -2302,7 +2352,7 @@ node|z17-[shop=confectionery],
 area|z17-[shop=confectionery],
 node|z17-[shop=chocolate],
 area|z17-[shop=chocolate]
-{icon-image: sweets-m.svg;icon-min-distance: 24;}
+{icon-image: confectionery-m.svg;icon-min-distance: 24;}
 node|z17-[amenity=ice_cream],
 area|z17-[amenity=ice_cream]
 {icon-image: ice_cream-m.svg;icon-min-distance: 24;}
@@ -2467,7 +2517,7 @@ node|z17-[craft=caterer],
 {icon-image:caterer-m.svg;}
 node|z17-[craft=confectionery],
 area|z17-[craft=confectionery]
-{icon-image:sweets-m.svg;}
+{icon-image:confectionery-m.svg;}
 node|z17-[craft=electrician],
 area|z17-[craft=electrician]
 {icon-image:electrician-m.svg;}

@@ -14,6 +14,7 @@ import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkInfo;
 import app.organicmaps.bookmarks.data.BookmarkManager;
+import app.organicmaps.bookmarks.data.IconClickListener;
 import app.organicmaps.bookmarks.data.SortedBlock;
 import app.organicmaps.content.DataSource;
 import app.organicmaps.widget.recycler.RecyclerClickListener;
@@ -47,6 +48,8 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
   private RecyclerClickListener mClickListener;
   @Nullable
   private RecyclerLongClickListener mLongClickListener;
+  private RecyclerClickListener mMoreClickListener;
+  private IconClickListener mIconClickListener;
 
   public static abstract class SectionsDataSource
   {
@@ -64,6 +67,11 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
     {
       return (!mDataSource.getData().getAnnotation().isEmpty() ||
               !mDataSource.getData().getDescription().isEmpty());
+    }
+
+    void invalidate()
+    {
+      mDataSource.invalidate();
     }
 
     public abstract int getSectionsCount();
@@ -95,12 +103,10 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
     {
       mBookmarksSectionIndex = SectionPosition.INVALID_POSITION;
       mTracksSectionIndex = SectionPosition.INVALID_POSITION;
-      mDescriptionSectionIndex = SectionPosition.INVALID_POSITION;
 
       mSectionsCount = 0;
-      // Hide the category description
-      if (hasDescription())
-       mDescriptionSectionIndex = mSectionsCount++;
+      // We must always show the description, even if it's blank.
+      mDescriptionSectionIndex = mSectionsCount++;
       if (getCategory().getTracksCount() > 0)
         mTracksSectionIndex = mSectionsCount++;
       if (getCategory().getBookmarksCount() > 0)
@@ -156,6 +162,9 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
     @Override
     public void onDelete(@NonNull SectionPosition pos)
     {
+      // we must invalidate datasource before calculate sections
+      invalidate();
+
       calculateSections();
     }
 
@@ -393,8 +402,14 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
     mLongClickListener = listener;
   }
 
-  void setMoreListener(@Nullable RecyclerClickListener listener)
+  public void setMoreListener(@Nullable RecyclerClickListener listener)
   {
+    mMoreClickListener = listener;
+  }
+
+  public void setIconClickListener(IconClickListener listener)
+  {
+    mIconClickListener = listener;
   }
 
   @Override
@@ -411,6 +426,8 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
                                                          false));
         trackHolder.setOnClickListener(mClickListener);
         trackHolder.setOnLongClickListener(mLongClickListener);
+        trackHolder.setTrackIconClickListener(mIconClickListener);
+        trackHolder.setMoreButtonClickListener(mMoreClickListener);
         holder = trackHolder;
         break;
       case TYPE_BOOKMARK:
@@ -524,30 +541,37 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<Holders.BaseBookma
 
   private void setMoreButtonVisibility(TextView text, TextView moreBtn)
   {
-    text.post(() ->
-    {
-      final int lineCount = text.getLineCount();
-      if (lineCount > MAX_VISIBLE_LINES)
-      {
-        text.setMaxLines(MAX_VISIBLE_LINES);
-        moreBtn.setVisibility(View.VISIBLE);
-      }
-      else
-        moreBtn.setVisibility(View.GONE);
-    });
+    text.post(() -> setShortModeDescription(text, moreBtn));
   }
 
-  private void onMoreButtonClicked(TextView text, TextView moreBtn)
+  private void onMoreButtonClicked(TextView textView, TextView moreBtn)
   {
-    if (text.getMaxLines() == MAX_VISIBLE_LINES)
+    if (isShortModeDescription(textView))
     {
-      text.setMaxLines(Integer.MAX_VALUE);
-      moreBtn.setVisibility(View.GONE);
+      setExpandedModeDescription(textView, moreBtn);
     }
     else
     {
-      text.setMaxLines(MAX_VISIBLE_LINES);
-      moreBtn.setVisibility(View.VISIBLE);
+      setShortModeDescription(textView, moreBtn);
     }
+  }
+
+  private boolean isShortModeDescription(TextView text)
+  {
+    return text.getMaxLines() == MAX_VISIBLE_LINES;
+  }
+
+  private void setExpandedModeDescription(TextView textView, TextView moreBtn)
+  {
+    textView.setMaxLines(Integer.MAX_VALUE);
+    moreBtn.setVisibility(View.GONE);
+  }
+
+  private void setShortModeDescription(TextView textView, TextView moreBtn)
+  {
+    textView.setMaxLines(MAX_VISIBLE_LINES);
+
+    boolean isDescriptionTooLong = textView.getLineCount() > MAX_VISIBLE_LINES;
+    moreBtn.setVisibility(isDescriptionTooLong ? View.VISIBLE : View.GONE);
   }
 }
