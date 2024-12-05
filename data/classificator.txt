@@ -60,6 +60,7 @@ world  +
         courthouse  -
         dentist  -
         doctors  -
+        dojo  -
         drinking_water  -
         driving_school  -
         events_venue  -
@@ -155,6 +156,7 @@ world  +
             public_transport  -
             {}
         shower  -
+        social_facility  -
         stripclub  -
         taxi  -
         telephone  -
@@ -180,7 +182,9 @@ world  +
         waste_basket  -
         waste_disposal  -
         waste_transfer_station  -
-        water_point  -
+        water_point  +
+            drinking_water_no  -
+            {}
         {}
     area:highway  +
         cycleway  -
@@ -200,7 +204,15 @@ world  +
         unclassified  -
         {}
     attraction  +
+        amusement_ride  -
         animal  -
+        big_wheel  -
+        bumper_car  -
+        carousel  -
+        historic  -
+        maze  -
+        roller_coaster  -
+        water_slide  -
         {}
     barrier  +
         block  -
@@ -374,6 +386,7 @@ world  +
     emergency  +
         assembly_point  -
         defibrillator  -
+        emergency_ward_entrance  -
         fire_hydrant  -
         phone  -
         {}
@@ -670,6 +683,7 @@ world  +
         sauna  -
         slipway  -
         sports_centre  -
+        sports_hall  -
         stadium  -
         swimming_pool  +
             private  -
@@ -699,9 +713,13 @@ world  +
             communication  -
             {}
         wastewater_plant  -
-        water_tap  -
+        water_tap  +
+            drinking_water_no  -
+            {}
         water_tower  -
-        water_well  -
+        water_well  +
+            drinking_water_no  -
+            {}
         windmill  -
         works  -
         {}
@@ -737,7 +755,9 @@ world  +
         scree  -
         scrub  -
         shingle  -
-        spring  -
+        spring  +
+            drinking_water_no  -
+            {}
         strait  -
         tree_row  -
         volcano  -
@@ -1285,6 +1305,7 @@ world  +
         outdoor  -
         outpost  -
         paint  -
+        pasta  -
         pastry  -
         pawnbroker  -
         perfumery  -

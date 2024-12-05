@@ -7,12 +7,40 @@
 
 typedef NS_ENUM(NSUInteger, MWMZoomMode) { MWMZoomModeIn = 0, MWMZoomModeOut };
 
+typedef NS_ENUM(NSInteger, ProductsPopupCloseReason) {
+  ProductsPopupCloseReasonClose,
+  ProductsPopupCloseReasonSelectProduct,
+  ProductsPopupCloseReasonAlreadyDonated,
+  ProductsPopupCloseReasonRemindLater
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^SearchInDownloaderCompletions)(NSArray<MWMMapSearchResult *> *results, BOOL finished);
 
+@protocol TrackRecorder <NSObject>
+
++ (void)startTrackRecording;
++ (void)stopTrackRecording;
++ (void)saveTrackRecordingWithName:(nullable NSString *)name;
++ (BOOL)isTrackRecordingEnabled;
++ (BOOL)isTrackRecordingEmpty;
+
+@end
+
+@class ProductsConfiguration;
+@class Product;
+
+@protocol ProductsManager <NSObject>
+
++ (nullable ProductsConfiguration *)getProductsConfiguration;
++ (void)didCloseProductsPopupWithReason:(ProductsPopupCloseReason)reason;
++ (void)didSelectProduct:(Product *)product;
+
+@end
+
 NS_SWIFT_NAME(FrameworkHelper)
-@interface MWMFrameworkHelper : NSObject
+@interface MWMFrameworkHelper : NSObject<TrackRecorder, ProductsManager>
 
 + (void)processFirstLaunch:(BOOL)hasLocation;
 + (void)setVisibleViewport:(CGRect)rect scaleFactor:(CGFloat)scale;

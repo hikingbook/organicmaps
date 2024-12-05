@@ -56,6 +56,8 @@
 #include "base/math.hpp"
 #include "base/sunrise_sunset.hpp"
 
+#include "ge0/url_generator.hpp"
+
 #include "3party/open-location-code/openlocationcode.h"
 
 #include <memory>
@@ -92,8 +94,7 @@ jobject g_placePageActivationListener = nullptr;
 
 android::AndroidVulkanContextFactory * CastFactory(drape_ptr<dp::GraphicsContextFactory> const & f)
 {
-  ASSERT(dynamic_cast<android::AndroidVulkanContextFactory *>(f.get()) != nullptr, ());
-  return static_cast<android::AndroidVulkanContextFactory *>(f.get());
+  return dynamic_cast<android::AndroidVulkanContextFactory *>(f.get());
 }
 }  // namespace
 
@@ -174,7 +175,7 @@ bool Framework::DestroySurfaceOnDetach()
 }
 
 bool Framework::CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi, bool firstLaunch,
-                                  bool launchByDeepLink, uint32_t appVersionCode)
+                                  bool launchByDeepLink, uint32_t appVersionCode, bool isCustomROM)
 {
   // Vulkan is supported only since Android 8.0, because some Android devices with Android 7.x
   // have fatal driver issue, which can lead to process termination and whole OS destabilization.
@@ -186,57 +187,51 @@ bool Framework::CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi
   if (vulkanForbidden)
     LOG(LWARNING, ("Vulkan API is forbidden on this device."));
 
+  m_vulkanContextFactory.reset();
+  m_oglContextFactory.reset();
+  ::Framework::DrapeCreationParams p;
+
   if (m_work.LoadPreferredGraphicsAPI() == dp::ApiVersion::Vulkan && !vulkanForbidden)
   {
-    m_vulkanContextFactory =
-        make_unique_dp<AndroidVulkanContextFactory>(appVersionCode, sdkVersion);
-    if (!CastFactory(m_vulkanContextFactory)->IsVulkanSupported())
+    auto vkFactory = make_unique_dp<AndroidVulkanContextFactory>(appVersionCode, sdkVersion, isCustomROM);
+    if (!vkFactory->IsVulkanSupported())
     {
       LOG(LWARNING, ("Vulkan API is not supported."));
-      m_vulkanContextFactory.reset();
     }
-
-    if (m_vulkanContextFactory)
+    else
     {
-      auto f = CastFactory(m_vulkanContextFactory);
-      f->SetSurface(env, jSurface);
-      if (!f->IsValid())
+      vkFactory->SetSurface(env, jSurface);
+      if (!vkFactory->IsValid())
       {
         LOG(LWARNING, ("Invalid Vulkan API context."));
-        m_vulkanContextFactory.reset();
+      }
+      else
+      {
+        p.m_apiVersion = dp::ApiVersion::Vulkan;
+        p.m_surfaceWidth = vkFactory->GetWidth();
+        p.m_surfaceHeight = vkFactory->GetHeight();
+
+        m_vulkanContextFactory = std::move(vkFactory);
       }
     }
   }
 
-  AndroidOGLContextFactory * oglFactory = nullptr;
   if (!m_vulkanContextFactory)
   {
-    m_oglContextFactory = make_unique_dp<dp::ThreadSafeFactory>(
-      new AndroidOGLContextFactory(env, jSurface));
-    oglFactory = m_oglContextFactory->CastFactory<AndroidOGLContextFactory>();
+    auto oglFactory = make_unique_dp<AndroidOGLContextFactory>(env, jSurface);
     if (!oglFactory->IsValid())
     {
       LOG(LWARNING, ("Invalid GL context."));
       return false;
     }
-  }
-
-  ::Framework::DrapeCreationParams p;
-  if (m_vulkanContextFactory)
-  {
-    auto f = CastFactory(m_vulkanContextFactory);
-    p.m_apiVersion = dp::ApiVersion::Vulkan;
-    p.m_surfaceWidth = f->GetWidth();
-    p.m_surfaceHeight = f->GetHeight();
-  }
-  else
-  {
-    CHECK(oglFactory != nullptr, ());
     p.m_apiVersion = oglFactory->IsSupportedOpenGLES3() ? dp::ApiVersion::OpenGLES3 :
                                                           dp::ApiVersion::OpenGLES2;
     p.m_surfaceWidth = oglFactory->GetWidth();
     p.m_surfaceHeight = oglFactory->GetHeight();
+
+    m_oglContextFactory = make_unique_dp<dp::ThreadSafeFactory>(oglFactory.release());
   }
+
   p.m_visualScale = static_cast<float>(dp::VisualScale(densityDpi));
   // Drape doesn't care about Editor vs Api mode differences.
   p.m_isChoosePositionMode = m_isChoosePositionMode != ChoosePositionMode::None;
@@ -448,12 +443,21 @@ void Framework::Get3dMode(bool & allow3d, bool & allow3dBuildings)
   m_work.Load3dMode(allow3d, allow3dBuildings);
 }
 
-void Framework::SetChoosePositionMode(ChoosePositionMode mode, bool isBusiness,
-                                      bool hasPosition, m2::PointD const & position)
+void Framework::SetMapLanguageCode(std::string const & languageCode)
+{
+  m_work.SetMapLanguageCode(languageCode);
+}
+
+std::string Framework::GetMapLanguageCode()
+{
+  return m_work.GetMapLanguageCode();
+}
+
+void Framework::SetChoosePositionMode(ChoosePositionMode mode, bool isBusiness, m2::PointD const * optionalPosition)
 {
   m_isChoosePositionMode = mode;
   m_work.BlockTapEvents(mode != ChoosePositionMode::None);
-  m_work.EnableChoosePositionMode(mode != ChoosePositionMode::None, isBusiness, hasPosition, position);
+  m_work.EnableChoosePositionMode(mode != ChoosePositionMode::None, isBusiness, optionalPosition);
 }
 
 ChoosePositionMode Framework::GetChoosePositionMode()
@@ -582,9 +586,24 @@ void Framework::ReplaceBookmark(kml::MarkId markId, kml::BookmarkData & bm)
   m_work.GetBookmarkManager().GetEditSession().UpdateBookmark(markId, bm);
 }
 
+void Framework::ReplaceTrack(kml::TrackId trackId, kml::TrackData & trackData)
+{
+  m_work.GetBookmarkManager().GetEditSession().UpdateTrack(trackId, trackData);
+}
+
+void Framework::ChangeTrackColor(kml::TrackId trackId, dp::Color color)
+{
+  m_work.GetBookmarkManager().GetEditSession().ChangeTrackColor(trackId, color);
+}
+
 void Framework::MoveBookmark(kml::MarkId markId, kml::MarkGroupId curCat, kml::MarkGroupId newCat)
 {
   m_work.GetBookmarkManager().GetEditSession().MoveBookmark(markId, curCat, newCat);
+}
+
+void Framework::MoveTrack(kml::TrackId trackId, kml::MarkGroupId curCat, kml::MarkGroupId newCat)
+{
+  m_work.GetBookmarkManager().GetEditSession().MoveTrack(trackId, curCat, newCat);
 }
 
 void Framework::ExecuteMapApiRequest()
@@ -863,6 +882,13 @@ Java_app_organicmaps_Framework_nativeGetParsedAppName(JNIEnv * env, jclass)
 }
 
 JNIEXPORT jstring JNICALL
+Java_app_organicmaps_Framework_nativeGetParsedOAuth2Code(JNIEnv * env, jclass)
+{
+  std::string const & code = frm()->GetParsedOAuth2Code();
+  return jni::ToJavaString(env, code);
+}
+
+JNIEXPORT jstring JNICALL
 Java_app_organicmaps_Framework_nativeGetParsedBackUrl(JNIEnv * env, jclass)
 {
   std::string const & backUrl = frm()->GetParsedBackUrl();
@@ -949,6 +975,15 @@ Java_app_organicmaps_Framework_nativeGetGe0Url(JNIEnv * env, jclass, jdouble lat
   ::Framework * fr = frm();
   double const scale = (zoomLevel > 0 ? zoomLevel : fr->GetDrawScale());
   string const url = fr->CodeGe0url(lat, lon, scale, jni::ToNativeString(env, name));
+  return jni::ToJavaString(env, url);
+}
+
+JNIEXPORT jstring JNICALL
+Java_app_organicmaps_Framework_nativeGetGeoUri(JNIEnv * env, jclass, jdouble lat, jdouble lon, jdouble zoomLevel, jstring name)
+{
+  ::Framework * fr = frm();
+  double const scale = (zoomLevel > 0 ? zoomLevel : fr->GetDrawScale());
+  string const url = ge0::GenerateGeoUri(lat, lon, scale, jni::ToNativeString(env, name));
   return jni::ToJavaString(env, url);
 }
 
@@ -1775,10 +1810,13 @@ JNIEXPORT void JNICALL
 Java_app_organicmaps_Framework_nativeSetChoosePositionMode(JNIEnv *, jclass, jint mode, jboolean isBusiness,
                                                            jboolean applyPosition)
 {
-  auto const pos = applyPosition && frm()->HasPlacePageInfo()
-      ? g_framework->GetPlacePageInfo().GetMercator()
-      : m2::PointD();
-  g_framework->SetChoosePositionMode(static_cast<android::ChoosePositionMode>(mode), isBusiness, applyPosition, pos);
+  // TODO(AB): Move this code into the Framework to share with iOS and other platforms.
+  auto const f = frm();
+  if (applyPosition && f->HasPlacePageInfo())
+    g_framework->SetChoosePositionMode(static_cast<android::ChoosePositionMode>(mode), isBusiness,
+                                       &f->GetCurrentPlacePageInfo().GetMercator());
+  else
+    g_framework->SetChoosePositionMode(static_cast<android::ChoosePositionMode>(mode), isBusiness, nullptr);
 }
 
 JNIEXPORT jint JNICALL

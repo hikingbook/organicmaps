@@ -59,8 +59,7 @@ UNIT_TEST(Transit_Piter_FrunzenskyaToPlochadVosstaniya)
   TEST_EQUAL(routeResult.second, RouterResultCode::NoError, ());
 
   /// @todo Check https://github.com/organicmaps/organicmaps/issues/1669 for details.
-  // Looks good now.
-  integration::TestRouteLength(*routeResult.first, 4868.12);
+  integration::TestRouteLength(*routeResult.first, 5837.21);
 
   TEST(routeResult.first, ());
   integration::CheckSubwayExistence(*routeResult.first);
@@ -80,7 +79,7 @@ UNIT_TEST(Transit_Piter_TooLongPedestrian)
   auto const & route = *routeResult.first;
 
   integration::CheckSubwayExistence(route);
-  integration::TestRouteLength(route, 22556.1);
+  integration::TestRouteLength(route, 23521.9);
   TEST_LESS(route.GetTotalTimeSec(), 3600 * 3, ());
 }
 
@@ -98,7 +97,7 @@ UNIT_TEST(Transit_Vatikan_NotEnoughGraphDataAtThenEnd)
   auto const & route = *routeResult.first;
 
   integration::CheckSubwayExistence(route);
-  integration::TestRouteLength(route, 7622.54);
+  integration::TestRouteLength(route, 7703.56);
   TEST_LESS(route.GetTotalTimeSec(), 4000, ());
 }
 

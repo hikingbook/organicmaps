@@ -4960,6 +4960,94 @@ cont {
   }
 }
 cont {
+  name: "amenity-pub"
+  element {
+    scale: 16
+    symbol {
+      name: "pub-m"
+      priority: 750
+      min_distance: 22
+    }
+    caption {
+      primary {
+        height: 12
+        color: 6710886
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9250
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "pub-m"
+      priority: 750
+      min_distance: 22
+    }
+    caption {
+      primary {
+        height: 13
+        color: 6710886
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9250
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "pub-m"
+      priority: 750
+      min_distance: 25
+    }
+    caption {
+      primary {
+        height: 14
+        color: 6710886
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9250
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "pub-m"
+      priority: 750
+      min_distance: 40
+    }
+    caption {
+      primary {
+        height: 14
+        color: 6710886
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9250
+    }
+  }
+  element {
+    scale: 20
+    symbol {
+      name: "pub-m"
+      priority: 750
+      min_distance: 40
+    }
+    caption {
+      primary {
+        height: 14
+        color: 6710886
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9250
+    }
+  }
+}
+cont {
   name: "amenity-restaurant"
   element {
     scale: 16
@@ -5637,6 +5725,33 @@ cont {
     scale: 20
     symbol {
       name: "drinking-water-m"
+      priority: 550
+      min_distance: 20
+    }
+  }
+}
+cont {
+  name: "amenity-water_point-drinking_water_no"
+  element {
+    scale: 18
+    symbol {
+      name: "drinking-water-no-m"
+      priority: 550
+      min_distance: 20
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "drinking-water-no-m"
+      priority: 550
+      min_distance: 20
+    }
+  }
+  element {
+    scale: 20
+    symbol {
+      name: "drinking-water-no-m"
       priority: 550
       min_distance: 20
     }
@@ -8568,6 +8683,57 @@ cont {
   }
 }
 cont {
+  name: "emergency-emergency_ward_entrance"
+  element {
+    scale: 18
+    symbol {
+      name: "entrance-emergency-s"
+      priority: 500
+    }
+    caption {
+      primary {
+        height: 13
+        color: 7566195
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9500
+    }
+  }
+  element {
+    scale: 19
+    symbol {
+      name: "entrance-emergency-s"
+      priority: 500
+    }
+    caption {
+      primary {
+        height: 13
+        color: 7566195
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9500
+    }
+  }
+  element {
+    scale: 20
+    symbol {
+      name: "entrance-emergency-s"
+      priority: 500
+    }
+    caption {
+      primary {
+        height: 13
+        color: 7566195
+        offset_y: 1
+        is_optional: true
+      }
+      priority: -9500
+    }
+  }
+}
+cont {
   name: "entrance"
   element {
     scale: 19
@@ -8619,7 +8785,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "exit-s"
+      name: "entrance-exit-s"
       priority: -10000
     }
     caption {
@@ -8641,7 +8807,7 @@ cont {
   element {
     scale: 20
     symbol {
-      name: "exit-s"
+      name: "entrance-exit-s"
       priority: -10000
     }
     caption {
@@ -8666,7 +8832,7 @@ cont {
   element {
     scale: 18
     symbol {
-      name: "main_entrance-s"
+      name: "entrance-main-s"
       priority: 20
     }
     caption {
@@ -8688,7 +8854,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "main_entrance-s"
+      name: "entrance-main-s"
       priority: 20
     }
     caption {
@@ -8710,7 +8876,7 @@ cont {
   element {
     scale: 20
     symbol {
-      name: "main_entrance-s"
+      name: "entrance-main-s"
       priority: 20
     }
     caption {
@@ -20228,17 +20394,45 @@ cont {
 cont {
   name: "highway-traffic_signals"
   element {
+    scale: 15
+    symbol {
+      name: "traffic_signals"
+      priority: 175
+    }
+  }
+  element {
+    scale: 16
+    symbol {
+      name: "traffic_signals"
+      priority: 175
+    }
+  }
+  element {
+    scale: 17
+    symbol {
+      name: "traffic_signals"
+      priority: 175
+    }
+  }
+  element {
+    scale: 18
+    symbol {
+      name: "traffic_signals"
+      priority: 175
+    }
+  }
+  element {
     scale: 19
     symbol {
       name: "traffic_signals"
-      priority: 3165
+      priority: 175
     }
   }
   element {
     scale: 20
     symbol {
       name: "traffic_signals"
-      priority: 3165
+      priority: 175
     }
   }
 }
@@ -80417,7 +80611,7 @@ cont {
   element {
     scale: 14
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 4
     }
@@ -80434,7 +80628,7 @@ cont {
   element {
     scale: 15
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 3
     }
@@ -80451,7 +80645,7 @@ cont {
   element {
     scale: 16
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 16
     }
@@ -80468,7 +80662,7 @@ cont {
   element {
     scale: 17
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 16
     }
@@ -80485,7 +80679,7 @@ cont {
   element {
     scale: 18
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 15
     }
@@ -80502,7 +80696,7 @@ cont {
   element {
     scale: 19
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 15
     }
@@ -80519,7 +80713,7 @@ cont {
   element {
     scale: 20
     symbol {
-      name: "grocery-m"
+      name: "supermarket-m"
       priority: 1650
       min_distance: 15
     }

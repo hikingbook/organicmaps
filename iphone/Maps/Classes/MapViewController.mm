@@ -41,6 +41,7 @@ NSString *const kDownloaderSegue = @"Map2MapDownloaderSegue";
 NSString *const kEditorSegue = @"Map2EditorSegue";
 NSString *const kUDViralAlertWasShown = @"ViralAlertWasShown";
 NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
+NSString *const kSettingsSegue = @"Map2Settings";
 }  // namespace
 
 @interface NSValueWrapper : NSObject
@@ -71,13 +72,17 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 
 @interface MapViewController () <MWMFrameworkDrapeObserver,
 //                                 MWMKeyboardObserver,
-                                 MWMBookmarksObserver>
+                                 MWMBookmarksObserver,
+                                 UIGestureRecognizerDelegate>
 
 @property(nonatomic, readwrite) MWMMapViewControlsManager *controlsManager;
 
 @property(nonatomic) BOOL disableStandbyOnLocationStateMode;
 
 @property(nonatomic) UserTouchesAction userTouchesAction;
+@property(nonatomic) CGPoint pointerLocation API_AVAILABLE(ios(14.0));
+@property(nonatomic) CGFloat currentScale;
+@property(nonatomic) CGFloat currentRotation;
 
 @property(nonatomic, readwrite) MWMMapDownloadDialog *downloadDialog;
 
@@ -321,6 +326,8 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  if (@available(iOS 14.0, *))
+    [self setupTrackPadGestureRecognizers];
 // Update the title will change both the navigation title and the tab bar item title simultaneously
 //  self.title = L(@"map");
 
@@ -390,6 +397,33 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 - (void)applyTheme {
   [super applyTheme];
 //  [MapsAppDelegate customizeAppearance];
+}
+
+- (void)setupTrackPadGestureRecognizers API_AVAILABLE(ios(14.0)) {
+  if (!NSProcessInfo.processInfo.isiOSAppOnMac)
+    return;
+  // Mouse zoom
+  UIPanGestureRecognizer * panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+  panRecognizer.allowedScrollTypesMask = UIScrollTypeMaskAll;
+  panRecognizer.allowedTouchTypes = @[@(UITouchTypeIndirect)];
+  [self.view addGestureRecognizer:panRecognizer];
+
+  // Trackpad zoom
+  UIPinchGestureRecognizer * pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+  pinchRecognizer.allowedTouchTypes = @[@(UITouchTypeIndirect)];
+  pinchRecognizer.delegate = self;
+  [self.view addGestureRecognizer:pinchRecognizer];
+
+  // Trackpad rotation
+  UIRotationGestureRecognizer * rotationRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+  rotationRecognizer.allowedTouchTypes = @[@(UITouchTypeIndirect | UITouchTypeDirect)];
+  rotationRecognizer.delegate = self;
+  [self.view addGestureRecognizer:rotationRecognizer];
+
+  // Pointer location
+  UIHoverGestureRecognizer * hoverRecognizer = [[UIHoverGestureRecognizer alloc] initWithTarget:self action:@selector(handlePointerHover:)];
+  hoverRecognizer.allowedTouchTypes = @[@(UITouchTypeIndirectPointer)];
+  [self.view addGestureRecognizer:hoverRecognizer];
 }
 
 - (void)showViralAlertIfNeeded {
@@ -489,6 +523,13 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 }
 
 #pragma mark - Open controllers
+- (void)openMenu {
+//  [self.controlsManager.tabBarController onMenuButtonPressed:self];
+}
+
+- (void)openSettings {
+  [self performSegueWithIdentifier:kSettingsSegue sender:nil];
+}
 
 - (void)openMapsDownloader:(MWMMapDownloaderMode)mode {
   [self performSegueWithIdentifier:kDownloaderSegue sender:@(mode)];
@@ -753,6 +794,86 @@ NSString *const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
 //  if (backURL != nil) {
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: backURL] options:@{} completionHandler:nil];
 //  }
+}
+
+// MARK: - Handle macOS trackpad gestures
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer API_AVAILABLE(ios(14.0)) {
+  switch (recognizer.state) {
+    case UIGestureRecognizerStateBegan:
+    case UIGestureRecognizerStateChanged:
+    {
+      CGPoint translation = [recognizer translationInView:self.view];
+      if (translation.x == 0 && CGPointEqualToPoint(translation, CGPointZero))
+        return;
+      self.userTouchesAction = UserTouchesActionScale;
+      static const CGFloat kScaleFactor = 0.9;
+      const CGFloat factor = translation.y > 0 ? 1 / kScaleFactor : kScaleFactor;
+      GetFramework().Scale(factor, [self getZoomPoint], false);
+      [recognizer setTranslation:CGPointZero inView:self.view];
+      break;
+    }
+    case UIGestureRecognizerStateEnded:
+      self.userTouchesAction = UserTouchesActionNone;
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)handlePinch:(UIPinchGestureRecognizer *)recognizer API_AVAILABLE(ios(14.0)) {
+  switch (recognizer.state) {
+    case UIGestureRecognizerStateBegan:
+      self.currentScale = 1.0;
+    case UIGestureRecognizerStateChanged:
+    {
+      const CGFloat scale = [recognizer scale];
+      static const CGFloat kScaleDeltaMultiplier = 4.0; // map trackpad scale to the map scale
+      const CGFloat delta = scale - self.currentScale;
+      const CGFloat scaleFactor = 1 + delta * kScaleDeltaMultiplier;
+      GetFramework().Scale(scaleFactor, [self getZoomPoint], false);
+      self.currentScale = scale;
+      break;
+    }
+    case UIGestureRecognizerStateEnded:
+      self.userTouchesAction = UserTouchesActionNone;
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)handleRotation:(UIRotationGestureRecognizer *)recognizer API_AVAILABLE(ios(14.0)) {
+  switch (recognizer.state) {
+    case UIGestureRecognizerStateBegan:
+    case UIGestureRecognizerStateChanged:
+    {
+      self.userTouchesAction = UserTouchesActionDrag;
+      GetFramework().Rotate(self.currentRotation == 0 ? recognizer.rotation : self.currentRotation + recognizer.rotation, false);
+      break;
+    }
+    case UIGestureRecognizerStateEnded:
+      self.currentRotation += recognizer.rotation;
+      self.userTouchesAction = UserTouchesActionNone;
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)handlePointerHover:(UIHoverGestureRecognizer *)recognizer API_AVAILABLE(ios(14.0)) {
+  self.pointerLocation = [recognizer locationInView:self.view];
+}
+
+- (m2::PointD)getZoomPoint API_AVAILABLE(ios(14.0)) {
+  const CGFloat scale = [UIScreen mainScreen].scale;
+  return m2::PointD(self.pointerLocation.x * scale, self.pointerLocation.y * scale);
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+  return YES;
 }
 
 @end

@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
-
+import androidx.core.view.ViewCompat;
 import app.organicmaps.base.BaseMwmFragmentActivity;
 import app.organicmaps.downloader.CountryItem;
 import app.organicmaps.downloader.MapManager;
@@ -32,6 +32,7 @@ import app.organicmaps.util.ConnectionState;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
+import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -192,6 +193,8 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
     super.onSafeCreate(savedInstanceState);
     UiUtils.setLightStatusBar(this, true);
     setContentView(R.layout.activity_download_resources);
+    final View view = getWindow().getDecorView().findViewById(android.R.id.content);
+    ViewCompat.setOnApplyWindowInsetsListener(view, PaddingInsetsListener.allSides());
     initViewsAndListeners();
     mApiRequest = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
       setResult(result.getResultCode(), result.getData());
@@ -292,7 +295,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
     mBtnNames[PAUSE] = getString(R.string.pause);
 
     mBtnListeners[RESUME] = v -> onResumeClicked();
-    mBtnNames[RESUME] = getString(R.string.continue_download);
+    mBtnNames[RESUME] = getString(R.string.continue_button);
 
     mBtnListeners[TRY_AGAIN] = v -> onTryAgainClicked();
     mBtnNames[TRY_AGAIN] = getString(R.string.try_again);

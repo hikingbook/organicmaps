@@ -3,6 +3,7 @@ package app.organicmaps.intent;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.IntentCompat;
@@ -18,6 +19,7 @@ import app.organicmaps.api.RoutePoint;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.bookmarks.data.FeatureId;
 import app.organicmaps.bookmarks.data.MapObject;
+import app.organicmaps.editor.OsmLoginActivity;
 import app.organicmaps.routing.RoutingController;
 import app.organicmaps.search.SearchActivity;
 import app.organicmaps.search.SearchEngine;
@@ -130,6 +132,19 @@ public class Factory
 
           return true;
         }
+        case RequestType.OAUTH2:
+        {
+          SearchEngine.INSTANCE.cancelInteractiveSearch();
+
+          final String oauth2code = Framework.nativeGetParsedOAuth2Code();
+          OsmLoginActivity.OAuth2Callback(target, oauth2code);
+
+          return true;
+        }
+
+        // Menu and Settings url types should be implemented to support deeplinking.
+        case RequestType.MENU:
+        case RequestType.SETTINGS:
       }
 
       return false;

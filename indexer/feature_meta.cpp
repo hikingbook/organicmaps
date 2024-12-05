@@ -15,6 +15,13 @@ char constexpr const * kBaseWikiUrl =
 #else
     ".wikipedia.org/wiki/";
 #endif
+
+char constexpr const * kBaseCommonsUrl =
+#ifdef OMIM_OS_MOBILE
+    "https://commons.m.wikimedia.org/wiki/";
+#else
+    "https://commons.wikimedia.org/wiki/";
+#endif
 } // namespace
 
 string Metadata::ToWikiURL(std::string v)
@@ -55,7 +62,12 @@ string Metadata::ToWikimediaCommonsURL(std::string const & v)
   if (v.empty())
     return v;
 
-  return "https://commons.wikimedia.org/wiki/" + v;
+  // Use the media viewer for single files
+  if (v.starts_with("File:"))
+    return kBaseCommonsUrl + v + "#/media/" + v;
+
+  // or standard if it's a category
+  return kBaseCommonsUrl + v;
 }
 
 // static
@@ -140,6 +152,8 @@ bool Metadata::TypeFromString(string_view k, Metadata::EType & outType)
     outType = Metadata::FMD_SELF_SERVICE;
   else if (k == "outdoor_seating")
     outType = Metadata::FMD_OUTDOOR_SEATING;
+  else if (k == "network")
+    outType = Metadata::FMD_NETWORK;
   else
     return false;
 
@@ -262,6 +276,7 @@ string ToString(Metadata::EType type)
   case Metadata::FMD_WEBSITE_MENU: return "website:menu";
   case Metadata::FMD_SELF_SERVICE: return "self_service";
   case Metadata::FMD_OUTDOOR_SEATING: return "outdoor_seating";
+  case Metadata::FMD_NETWORK: return "network";
   case Metadata::FMD_COUNT: CHECK(false, ("FMD_COUNT can not be used as a type."));
   };
 

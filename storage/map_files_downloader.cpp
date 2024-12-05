@@ -8,6 +8,8 @@
 #include "platform/platform.hpp"
 #include "platform/servers_list.hpp"
 #include "platform/settings.hpp"
+#include "platform/products.hpp"
+#include "platform/locale.hpp"
 
 #include "coding/url.hpp"
 
@@ -55,6 +57,7 @@ void MapFilesDownloader::RunMetaConfigAsync(std::function<void()> && callback)
         for (auto const & [mapSource, metaConfig] : metaConfigMap) {
             m_serversList[mapSource] = metaConfig.m_serversList;
             settings::Update(metaConfig.m_settings);
+            products::Update(metaConfig.m_productsConfig);
         }
 
       callback();
@@ -160,6 +163,12 @@ std::vector<std::string> MapFilesDownloader::MakeUrlList(MapSource mapSource, st
     }
 
   return urls;
+}
+
+std::string GetAcceptLanguage()
+{
+  auto const locale = platform::GetCurrentLocale();
+  return locale.m_language + "-" + locale.m_country;
 }
 
 // static
