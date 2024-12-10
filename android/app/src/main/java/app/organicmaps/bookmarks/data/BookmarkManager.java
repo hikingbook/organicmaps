@@ -869,7 +869,7 @@ public enum BookmarkManager
   public native long nativeSearchCategoryIDWithName(String categoryName);
 
   @NonNull
-  public native long nativeAddTrack(long catId, String trackName, String trackDescription, double[][] trackLocation, int color, double width);
+  public native long nativeAddTrack(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, int color, double width);
 
   @NonNull
   public native void nativeDeleteAllTracksInCategory(long catId);

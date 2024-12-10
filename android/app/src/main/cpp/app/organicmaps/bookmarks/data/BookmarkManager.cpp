@@ -1079,40 +1079,50 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeSearchCategoryIDWithNa
 
 JNIEXPORT jlong JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
-        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray locations, jint color, double width)
+        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray multipleLineLocations, jint color, double width)
 {
   if (!frm()->GetBookmarkManager().HasBmCategory(catId)) {
     return kml::kInvalidTrackId;
   }
 
   kml::TrackData trackData;
-  const jsize size = env->GetArrayLength(locations);
-
-  std::vector<m2::PointD> points;
-  for (jsize i = 0; i < size; ++i) {
-    jobject jlocationArray = env->GetObjectArrayElement(locations, i);
-    jdoubleArray * latlonData = reinterpret_cast<jdoubleArray *>(&jlocationArray);
-    double * latlon = env->GetDoubleArrayElements(* latlonData, NULL);
-    double lat = latlon[0];
-    double lon = latlon[1];
-    m2::PointD const point(mercator::FromLatLon(lat, lon));
-
-    auto shouldAdd = true;
-    if (!points.empty()) {
-        auto lastPoint = points.back();
-        shouldAdd = lastPoint.x != point.x || lastPoint.y != point.y;
-    }
-    if (shouldAdd) {
-        points.emplace_back(geometry::PointWithAltitude(point, 0));
-    }
-    env->DeleteLocalRef(jlocationArray);
+  const jsize numLines = env->GetArrayLength(multipleLineLocations);
+  for (jsize i = 0; i < numLines; ++i) {
+      jobject jlocationsObject = env->GetObjectArrayElement(multipleLineLocations, i);
+      auto jlocationsArray = reinterpret_cast<jobjectArray>(jlocationsObject);
+      const jsize size = env->GetArrayLength(jlocationsArray);
+      std::vector<geometry::PointWithAltitude> points;
+      points.reserve(size);
+      for (jsize j = 0; j < size; ++j) {
+          jobject jlocationArray = env->GetObjectArrayElement(jlocationsArray, j);
+          auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
+          const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
+          double *locationData = env->GetDoubleArrayElements(locationDoubleArray, nullptr);
+          if (sizeLocationDoubleArray >= 2) {
+              double lat = locationData[0];
+              double lon = locationData[1];
+              double altitude = 0;
+              if (sizeLocationDoubleArray >= 3) {
+                  altitude = locationData[2];
+              }
+              m2::PointD const point(mercator::FromLatLon(lat, lon));
+              if (points.empty() || points.back().GetPoint() != point) {
+                  points.emplace_back(point, altitude);
+              }
+          }
+          env->DeleteLocalRef(jlocationArray);
+      }
+      if (points.size() >= 2) {
+          trackData.m_geometry.m_lines.emplace_back(std::move(points));
+      }
+      env->DeleteLocalRef(jlocationsObject);
   }
-  if (points.size() < 2) {
+
+  if (trackData.m_geometry.m_lines.empty()) {
     return kml::kInvalidTrackId;
   }
-  trackData.m_geometry.FromPoints(points);
 
-  trackData.m_timestamp = std::chrono::time_point<std::chrono::system_clock>::max();
+  trackData.m_timestamp = kml::TimestampClock::now();
 
   kml::LocalizableString trackName;
   kml::SetDefaultStr(trackName, ToNativeString(env, name));
@@ -1160,22 +1170,20 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeDrawLineWithLocations(
 {
   const jsize size = env->GetArrayLength(locations);
   std::vector<m2::PointD> points;
+  points.reserve(size);
   for (jsize i = 0; i < size; ++i) {
-    auto jlocationArray = (env->GetObjectArrayElement(locations, i));
-    jdouble * latlonData = env->GetDoubleArrayElements((jdoubleArray) jlocationArray, 0);
-    double lat = latlonData[0];
-    double lon = latlonData[1];
-    m2::PointD const point(mercator::FromLatLon(lat, lon));
-
-    auto shouldAdd = true;
-    if (!points.empty()) {
-      auto lastPoint = points.back();
-      shouldAdd = lastPoint.x != point.x || lastPoint.y != point.y;
+    jobject jlocationArray = env->GetObjectArrayElement(locations, i);
+    auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
+    const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
+    double *locationData = env->GetDoubleArrayElements(locationDoubleArray, nullptr);
+    if (sizeLocationDoubleArray >= 2) {
+        double lat = locationData[0];
+        double lon = locationData[1];
+        m2::PointD const point(mercator::FromLatLon(lat, lon));
+        if (points.empty() || points.back() != point) {
+            points.emplace_back(point);
+        }
     }
-    if (shouldAdd) {
-      points.emplace_back(geometry::PointWithAltitude(point, 0));
-    }
-
     env->DeleteLocalRef(jlocationArray);
   }
   if (points.size() < 2) {

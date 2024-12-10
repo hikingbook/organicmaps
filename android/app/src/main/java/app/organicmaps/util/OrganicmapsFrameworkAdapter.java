@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
@@ -458,14 +457,15 @@ public enum OrganicmapsFrameworkAdapter {
     /**
      * Track CRUD
      */
-    public long createTrack(long catId, String name, String description, Double[][] locations, int color, double lineWidth) {
-        if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
+    public long createTrack(long catId, String name, String description, Location[][] locations, int color, double lineWidth) {
+        if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
-        double[][] doubleLocations = new double[locations.length][2];
-        for (int i = 0; i < locations.length; i++) {
-            doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
-        }
+        double[][][] doubleLocations = Arrays.stream(locations)
+                        .map(row -> Arrays.stream(row)
+                        .map(location -> new double[]{location.getLatitude(), location.getLongitude(), location.getAltitude()})
+                        .toArray(double[][]::new))
+                        .toArray(double[][][]::new);
 
         try {
             return BookmarkManager.INSTANCE.nativeAddTrack(
@@ -513,14 +513,14 @@ public enum OrganicmapsFrameworkAdapter {
     /**
      * Track Line CRUD
      */
-    public int drawLineWithLocations(Double[][] locations, int color, double lineWidth) {
+    public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
-            return 0;
+            return Integer.MAX_VALUE;
         }
-        double[][] doubleLocations = new double[locations.length][2];
-        for (int i = 0; i < locations.length; i++) {
-            doubleLocations[i] = Stream.of(locations[i]).mapToDouble(Double::doubleValue).toArray();
-        }
+
+        double[][] doubleLocations = Arrays.stream(locations)
+                .map(location -> new double[]{location.getLatitude(), location.getLongitude(), location.getAltitude()})
+                .toArray(double[][]::new);
 
         return BookmarkManager.INSTANCE.nativeDrawLineWithLocations(
                 doubleLocations,
