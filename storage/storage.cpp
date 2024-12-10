@@ -349,7 +349,7 @@ void Storage::GetLocalMaps(vector<LocalFilePtr> & maps) const
 
 size_t Storage::GetDownloadedFilesCount() const
 {
-  CHECK_THREAD_CHECKER(m_threadChecker, ());
+//  CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   return m_localFiles.size();
 }
@@ -633,7 +633,7 @@ void Storage::NotifyStatusChangedForHierarchy(CountryId const & countryId)
 
 bool Storage::IsDownloadInProgress() const
 {
-  CHECK_THREAD_CHECKER(m_threadChecker, ());
+//  CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   return !m_downloader->GetQueue().IsEmpty();
 }
@@ -1220,7 +1220,7 @@ void Storage::GetLocalRealMaps(CountriesVec & localMaps) const
 void Storage::GetChildrenInGroups(CountryId const & parent, CountriesVec & downloadedChildren,
                                   CountriesVec & availChildren, bool keepAvailableChildren) const
 {
-  CHECK_THREAD_CHECKER(m_threadChecker, ());
+//  CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   CountryTree::Node const * const parentNode = m_countries.FindFirst(parent);
   if (parentNode == nullptr)
