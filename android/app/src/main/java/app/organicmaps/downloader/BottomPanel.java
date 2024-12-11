@@ -127,5 +127,7 @@ class BottomPanel
     }
 
     UiUtils.showIf(show, mButton);
+
+    mFragment.requireView().requestApplyInsets();
   }
 }

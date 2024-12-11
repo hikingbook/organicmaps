@@ -12,12 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
-
 import app.organicmaps.R;
 import app.organicmaps.util.UiUtils;
+import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 
 public abstract class BaseToolbarActivity extends BaseMwmFragmentActivity
 {
@@ -38,8 +39,12 @@ public abstract class BaseToolbarActivity extends BaseMwmFragmentActivity
 //        toolbar.setTitle(getTitle());
 //      else
 //        toolbar.setTitle(title);
+//
+//      setupHomeButton(toolbar);
+//      displayToolbarAsActionBar();
+//
+//      ViewCompat.setOnApplyWindowInsetsListener(toolbar, PaddingInsetsListener.excludeBottom());
 //    }
-
   }
 
 
@@ -67,7 +72,7 @@ public abstract class BaseToolbarActivity extends BaseMwmFragmentActivity
     return R.id.fragment_container;
   }
 
-  public void stackFragment(@NonNull Class<? extends Fragment> fragmentClass,
+  public Fragment stackFragment(@NonNull Class<? extends Fragment> fragmentClass,
                             @Nullable String title, @Nullable Bundle args)
   {
     final int resId = getFragmentContentResId();
@@ -95,6 +100,8 @@ public abstract class BaseToolbarActivity extends BaseMwmFragmentActivity
 //        toolbar.setTitle(title);
 //      }
 //    }
+
+    return fragment;
   }
 
   @Override

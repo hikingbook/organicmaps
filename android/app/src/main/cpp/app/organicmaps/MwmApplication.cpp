@@ -23,7 +23,7 @@ extern "C"
                                                              jstring flavorName, jstring buildType,
                                                              jboolean isTablet)
   {
-    android::Platform::Instance().Initialize(env, context, thiz, apkPath, writablePath, privatePath, tmpPath,
+    android::Platform::Instance().Initialize(env, context, apkPath, writablePath, privatePath, tmpPath,
                                              flavorName, buildType, isTablet);
   }
 

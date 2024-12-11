@@ -20,12 +20,8 @@ public final class SearchRecents
 
   public static void refresh()
   {
-    final List<Pair<String, String>> pairs = new ArrayList<>();
-    nativeGetList(pairs);
     sRecents.clear();
-
-    for (Pair<String, String> pair : pairs)
-      sRecents.add(pair.second);
+    nativeGetList(sRecents);
   }
 
   public static int getSize()
@@ -40,7 +36,7 @@ public final class SearchRecents
 
   public static boolean add(@NonNull String query, @NonNull Context context)
   {
-    if (TextUtils.isEmpty(query) || sRecents.contains(query))
+    if (TextUtils.isEmpty(query))
       return false;
 
     nativeAdd(Language.getKeyboardLocale(context), query);
@@ -60,7 +56,7 @@ public final class SearchRecents
     sRecents.clear();
   }
 
-  private static native void nativeGetList(List<Pair<String, String>> result);
+  private static native void nativeGetList(List<String> result);
   private static native void nativeAdd(String locale, String query);
   private static native void nativeRemove(String query);
   private static native void nativeClear();

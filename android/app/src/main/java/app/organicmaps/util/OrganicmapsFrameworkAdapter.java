@@ -457,7 +457,7 @@ public enum OrganicmapsFrameworkAdapter {
     /**
      * Track CRUD
      */
-    public long createTrack(long catId, String name, String description, Location[][] locations, int color, double lineWidth) {
+    public long addTracks(long catId, String name, String description, Location[][] locations, int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -466,13 +466,19 @@ public enum OrganicmapsFrameworkAdapter {
                         .map(location -> new double[]{location.getLatitude(), location.getLongitude(), location.getAltitude()})
                         .toArray(double[][]::new))
                         .toArray(double[][][]::new);
+        double[][] doubleTimestamps = Arrays.stream(locations)
+                .map(row -> Arrays.stream(row)
+                        .mapToDouble(Location::getTime)
+                        .toArray())
+                        .toArray(double[][]::new);
 
         try {
-            return BookmarkManager.INSTANCE.nativeAddTrack(
+            return BookmarkManager.INSTANCE.nativeAddTracks(
                     catId,
                     name,
                     description,
                     doubleLocations,
+                    doubleTimestamps,
                     color,
                     lineWidth
             );

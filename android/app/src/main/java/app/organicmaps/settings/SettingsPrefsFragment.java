@@ -28,7 +28,9 @@ import app.organicmaps.Framework;
 import app.organicmaps.R;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.editor.OsmOAuth;
+import app.organicmaps.editor.LanguagesFragment;
 import app.organicmaps.editor.ProfileActivity;
+import app.organicmaps.editor.data.Language;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationProviderFactory;
@@ -43,7 +45,9 @@ import app.organicmaps.util.log.LogsManager;
 import app.organicmaps.search.SearchRecents;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class SettingsPrefsFragment extends BaseXmlSettingsFragment
+import java.util.Locale;
+
+public class SettingsPrefsFragment extends BaseXmlSettingsFragment implements LanguagesFragment.Listener
 {
   @Override
   protected int getXmlResources()
@@ -82,6 +86,13 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     pref.setSummary(Config.TTS.isEnabled() ? R.string.on : R.string.off);
   }
 
+  private void updateMapLanguageCodeSummary()
+  {
+    final Preference pref = getPreference(getString(R.string.pref_map_locale));
+    Locale locale = new Locale(MapLanguageCode.getMapLanguageCode());
+    pref.setSummary(locale.getDisplayLanguage());
+  }
+
   private void updateRoutingSettingsPrefsSummary()
   {
     final Preference pref = getPreference(getString(R.string.prefs_routing));
@@ -108,6 +119,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     updateProfileSettingsPrefsSummary();
     updateVoiceInstructionsPrefsSummary();
     updateRoutingSettingsPrefsSummary();
+    updateMapLanguageCodeSummary();
   }
 
   @Override
@@ -127,6 +139,11 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
       else if (key.equals(getString(R.string.pref_help)))
       {
         startActivity(new Intent(requireActivity(), HelpActivity.class));
+      }
+      else if (key.equals(getString(R.string.pref_map_locale)))
+      {
+        LanguagesFragment langFragment = (LanguagesFragment)getSettingsActivity().stackFragment(LanguagesFragment.class, getString(R.string.change_map_locale), null);
+        langFragment.setListener(this);
       }
     }
     return super.onPreferenceTreeClick(preference);
@@ -476,11 +493,19 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment
     category.removePreference(preference);
   }
 
+  @Override
+  public void onLanguageSelected(Language language)
+  {
+    MapLanguageCode.setMapLanguageCode(language.code);
+    getSettingsActivity().onBackPressed();
+  }
+
   enum ThemeMode
   {
     DEFAULT(R.string.theme_default),
     NIGHT(R.string.theme_night),
-    AUTO(R.string.theme_auto);
+    AUTO(R.string.theme_auto),
+    NAV_AUTO(R.string.theme_nav_auto);
 
     private final int mModeStringId;
 

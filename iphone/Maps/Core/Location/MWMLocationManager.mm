@@ -367,6 +367,12 @@ void setShowLocationAlert(BOOL needShow) {
   }
 }
 
++ (void)checkLocationStatus
+{
+  setShowLocationAlert(YES);
+  [self.manager processLocationStatus:self.manager.lastLocationStatus];
+}
+
 #pragma mark - Prediction
 
 - (MWMLocationPredictor *)predictor
@@ -443,7 +449,7 @@ void setShowLocationAlert(BOOL needShow) {
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     [MWMLocationManager refreshGeoModeSettingsFor:_locationManager geoMode:self.geoMode];
-    _locationManager.pausesLocationUpdatesAutomatically = YES;
+    _locationManager.pausesLocationUpdatesAutomatically = NO;
     _locationManager.headingFilter = 3.0;
   }
   return _locationManager;

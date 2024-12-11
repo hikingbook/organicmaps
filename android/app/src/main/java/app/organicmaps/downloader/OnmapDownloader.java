@@ -24,7 +24,10 @@ import app.organicmaps.util.Config;
 import app.organicmaps.util.ConnectionState;
 import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
+import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import app.organicmaps.widget.WheelProgressView;
+
+import java.util.List;
 
 public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 {
@@ -272,10 +275,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       }
     }));
 
-    ViewCompat.setOnApplyWindowInsetsListener(mFrame, (view, windowInsets) -> {
-      UiUtils.setViewInsetsPadding(view, windowInsets);
-      return windowInsets;
-    });
+    ViewCompat.setOnApplyWindowInsetsListener(mFrame, PaddingInsetsListener.allSides());
   }
 
   @Override

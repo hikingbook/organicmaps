@@ -852,12 +852,56 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeSetBookmarkParams(
   g_framework->ReplaceBookmark(static_cast<kml::MarkId>(bmk), bmData);
 }
 
+constexpr static uint8_t ExtractByte(uint32_t number, uint8_t byteIdx) { return (number >> (8 * byteIdx)) & 0xFF; }
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeSetTrackParams(
+    JNIEnv * env, jclass, jlong trackId,
+    jstring name, jint color, jstring descr)
+{
+  auto const * nTrack = frm()->GetBookmarkManager().GetTrack(static_cast<kml::TrackId>(trackId));
+  CHECK(nTrack, ("Track must not be null with id:", trackId));
+
+  kml::TrackData trackData(nTrack->GetData());
+  auto const trkName = jni::ToNativeString(env, name);
+  kml::SetDefaultStr(trackData.m_name, trkName);
+  kml::SetDefaultStr(trackData.m_description, jni::ToNativeString(env, descr));
+
+  uint8_t alpha = ExtractByte(color, 3);
+  trackData.m_layers[0].m_color.m_rgba = static_cast<uint32_t>(shift(color,8) + alpha);
+
+  g_framework->ReplaceTrack(static_cast<kml::TrackId>(trackId), trackData);
+}
+
+JNIEXPORT jstring JNICALL
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeGetTrackDescription(
+    JNIEnv * env, jclass, jlong trackId)
+{
+  return jni::ToJavaString(env, frm()->GetBookmarkManager().GetTrack(static_cast<kml::TrackId>(trackId))->GetDescription());
+}
+
 JNIEXPORT void JNICALL
 Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeChangeBookmarkCategory(
   JNIEnv *, jclass, jlong oldCat, jlong newCat, jlong bmk)
 {
   g_framework->MoveBookmark(static_cast<kml::MarkId>(bmk), static_cast<kml::MarkGroupId>(oldCat),
                             static_cast<kml::MarkGroupId>(newCat));
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeChangeTrackCategory(
+  JNIEnv *, jclass, jlong oldCat, jlong newCat, jlong trackId)
+{
+  g_framework->MoveTrack(static_cast<kml::TrackId>(trackId), static_cast<kml::MarkGroupId>(oldCat),
+                            static_cast<kml::MarkGroupId>(newCat));
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeChangeTrackColor(
+  JNIEnv *, jclass, jlong trackId, jint color)
+{
+  uint8_t alpha = ExtractByte(color, 3);
+  g_framework->ChangeTrackColor(static_cast<kml::TrackId>(trackId), static_cast<dp::Color>(shift(color,8) + alpha));
 }
 
 JNIEXPORT jobject JNICALL
@@ -1078,8 +1122,8 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeSearchCategoryIDWithNa
 }
 
 JNIEXPORT jlong JNICALL
-Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
-        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray multipleLineLocations, jint color, double width)
+Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTracks(
+        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray multipleLineLocations, jobjectArray timestamps, jint color, double width)
 {
   if (!frm()->GetBookmarkManager().HasBmCategory(catId)) {
     return kml::kInvalidTrackId;
@@ -1090,10 +1134,17 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
   for (jsize i = 0; i < numLines; ++i) {
       jobject jlocationsObject = env->GetObjectArrayElement(multipleLineLocations, i);
       auto jlocationsArray = reinterpret_cast<jobjectArray>(jlocationsObject);
-      const jsize size = env->GetArrayLength(jlocationsArray);
+      const jsize locationsSize = env->GetArrayLength(jlocationsArray);
       std::vector<geometry::PointWithAltitude> points;
-      points.reserve(size);
-      for (jsize j = 0; j < size; ++j) {
+      points.reserve(locationsSize);
+
+      jobject jtimestampsArray = env->GetObjectArrayElement(timestamps, i);
+      auto timestampsDoubleArray = reinterpret_cast<jdoubleArray>(jtimestampsArray);
+      const jsize timestampsSize = env->GetArrayLength(timestampsDoubleArray);
+      double *timestampData = env->GetDoubleArrayElements(timestampsDoubleArray, nullptr);
+      std::vector<double> pointTimestamps;
+      pointTimestamps.reserve(locationsSize);
+      for (jsize j = 0; j < locationsSize; ++j) {
           jobject jlocationArray = env->GetObjectArrayElement(jlocationsArray, j);
           auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
           const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
@@ -1108,12 +1159,26 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
               m2::PointD const point(mercator::FromLatLon(lat, lon));
               if (points.empty() || points.back().GetPoint() != point) {
                   points.emplace_back(point, altitude);
+                  if (j < timestampsSize) {
+                      auto const timestamp = timestampData[j];
+                      pointTimestamps.emplace_back(timestamp);
+
+                      auto const trackDataTimestamp = std::chrono::system_clock::from_time_t(time_t(timestamp));
+                      if (trackDataTimestamp < trackData.m_timestamp) {
+                          trackData.m_timestamp = trackDataTimestamp;
+                      }
+                  }
+                  else {
+                      auto const timestamp = timestampData[timestampsSize - 1] + j + 1;
+                      pointTimestamps.emplace_back(timestamp);
+                  }
               }
           }
           env->DeleteLocalRef(jlocationArray);
       }
       if (points.size() >= 2) {
           trackData.m_geometry.m_lines.emplace_back(std::move(points));
+          trackData.m_geometry.m_timestamps.emplace_back(std::move(pointTimestamps));
       }
       env->DeleteLocalRef(jlocationsObject);
   }
@@ -1121,8 +1186,6 @@ Java_app_organicmaps_bookmarks_data_BookmarkManager_nativeAddTrack(
   if (trackData.m_geometry.m_lines.empty()) {
     return kml::kInvalidTrackId;
   }
-
-  trackData.m_timestamp = kml::TimestampClock::now();
 
   kml::LocalizableString trackName;
   kml::SetDefaultStr(trackName, ToNativeString(env, name));

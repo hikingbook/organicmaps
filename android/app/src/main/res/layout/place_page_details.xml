@@ -47,6 +47,8 @@
 
     <include layout="@layout/place_page_operator"/>
 
+    <include layout="@layout/place_page_network"/>
+
     <include layout="@layout/place_page_wifi"/>
     <include layout="@layout/place_page_outdoor_seating"/>
 
@@ -71,6 +73,8 @@
     <!-- ToDo: Address is missing compared with iOS. It's shown in title but anyway .. -->
 
     <include layout="@layout/place_page_latlon"/>
+
+    <include layout="@layout/place_page_open_in"/>
   </LinearLayout>
 
   <include

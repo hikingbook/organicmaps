@@ -47,6 +47,7 @@
 #include "platform/location.hpp"
 #include "platform/platform.hpp"
 #include "platform/distance.hpp"
+#include "platform/products.hpp"
 
 #include "routing/router.hpp"
 
@@ -60,7 +61,6 @@
 
 #include <functional>
 #include <memory>
-#include <optional>
 #include <string>
 #include <vector>
 
@@ -341,7 +341,7 @@ public:
   void InvalidateRendering();
   void EnableDebugRectRendering(bool enabled);
 
-  void EnableChoosePositionMode(bool enable, bool enableBounds, bool applyPosition, m2::PointD const & position);
+  void EnableChoosePositionMode(bool enable, bool enableBounds, m2::PointD const * optionalPosition);
   void BlockTapEvents(bool block);
 
   using TCurrentCountryChanged = std::function<void(storage::CountryId const &)>;
@@ -363,7 +363,6 @@ private:
   void BuildTrackPlacePage(Track::TrackSelectionInfo const & trackSelectionInfo, place_page::Info & info);
   Track::TrackSelectionInfo FindTrackInTapPosition(place_page::BuildInfo const & buildInfo) const;
   UserMark const * FindUserMarkInTapPosition(place_page::BuildInfo const & buildInfo) const;
-  UserMark const * FindBookMarkInPosition(m2::PointD const & mercator) const;
   FeatureID FindBuildingAtPoint(m2::PointD const & mercator) const;
 
   void UpdateMinBuildingsTapZoom();
@@ -436,6 +435,12 @@ public:
   void ConnectToGpsTracker();
   void DisconnectFromGpsTracker();
 
+  void StartTrackRecording();
+  void StopTrackRecording();
+  void SaveTrackRecordingWithName(std::string const & name);
+  bool IsTrackRecordingEmpty() const;
+  bool IsTrackRecordingEnabled() const;
+
   void SetMapStyle(MapStyle mapStyle);
   void MarkMapStyle(MapStyle mapStyle);
   MapStyle GetMapStyle() const;
@@ -457,7 +462,7 @@ private:
   storage::CountryId m_lastReportedCountry;
   TCurrentCountryChanged m_currentCountryChanged;
 
-  void OnUpdateGpsTrackPointsCallback(std::vector<std::pair<size_t, location::GpsTrackInfo>> && toAdd,
+  void OnUpdateGpsTrackPointsCallback(std::vector<std::pair<size_t, location::GpsInfo>> && toAdd,
                                       std::pair<size_t, size_t> const & toRemove);
 
   CachingRankTableLoader m_popularityLoader;
@@ -465,8 +470,6 @@ private:
   std::unique_ptr<descriptions::Loader> m_descriptionsLoader;
 
 public:
-  using SearchRequest = search::QuerySaver::SearchRequest;
-
   // Moves viewport to the search result and taps on it.
   void SelectSearchResult(search::Result const & res, bool animation);
 
@@ -578,9 +581,11 @@ public:
 
   ParsedRoutingData GetParsedRoutingData() const;
   url_scheme::SearchRequest GetParsedSearchRequest() const;
+  std::string GetParsedOAuth2Code() const;
   std::string const & GetParsedAppName() const;
   std::string const & GetParsedBackUrl() const;
   ms::LatLon GetParsedCenterLatLon() const;
+  url_scheme::InAppFeatureHighlightRequest GetInAppFeatureHighlightRequest() const;
 
   using FeatureMatcher = std::function<bool(FeatureType & ft)>;
 
@@ -603,6 +608,8 @@ private:
                                std::string const & customTitle = {}) const;
   void FillPostcodeInfo(std::string const & postcode, m2::PointD const & mercator,
                         place_page::Info & info) const;
+
+  void FillUserMarkInfo(UserMark const * mark, place_page::Info & outInfo);
 
   void FillInfoFromFeatureType(FeatureType & ft, place_page::Info & info) const;
   void FillApiMarkInfo(ApiMarkPoint const & api, place_page::Info & info) const;
@@ -665,8 +672,8 @@ private:
 
 public:
   /// @name Data versions
-  bool IsDataVersionUpdated();
-  void UpdateSavedDataVersion();
+  // bool IsDataVersionUpdated();
+  // void UpdateSavedDataVersion();
   int64_t GetCurrentDataVersion() const;
 
 public:
@@ -677,6 +684,12 @@ public:
   void Allow3dMode(bool allow3d, bool allow3dBuildings);
   void Save3dMode(bool allow3d, bool allow3dBuildings);
   void Load3dMode(bool & allow3d, bool & allow3dBuildings);
+
+private:
+  void ApplyMapLanguageCode(std::string const & langCode);
+public:
+  static std::string GetMapLanguageCode();
+  void SetMapLanguageCode(std::string const & langCode);
 
   void SetLargeFontsSize(bool isLargeSize);
   bool LoadLargeFontsSize();
@@ -743,4 +756,24 @@ public:
   // PowerManager::Subscriber override.
   void OnPowerFacilityChanged(power_management::Facility const facility, bool enabled) override;
   void OnPowerSchemeChanged(power_management::Scheme const actualScheme) override;
+
+public:
+  std::optional<products::ProductsConfig> GetProductsConfiguration() const;
+
+  enum class ProductsPopupCloseReason
+  {
+    Close,
+    SelectProduct,
+    AlreadyDonated,
+    RemindLater
+  };
+
+  void DidCloseProductsPopup(ProductsPopupCloseReason reason) const;
+  void DidSelectProduct(products::ProductsConfig::Product const & product) const;
+
+private:
+  bool ShouldShowProducts() const;
+  uint32_t GetTimeoutForReason(ProductsPopupCloseReason reason) const;
+  std::string_view ToString(ProductsPopupCloseReason reason) const;
+  ProductsPopupCloseReason FromString(std::string const & str) const;
 };

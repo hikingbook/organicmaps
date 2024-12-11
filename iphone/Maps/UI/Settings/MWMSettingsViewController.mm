@@ -5,7 +5,7 @@
 #import "SwiftBridge.h"
 #import "MWMActivityViewController.h"
 
-#import <CoreApi/CoreApi.h>
+#import <CoreApi/Framework.h>
 
 #include "map/gps_tracker.hpp"
 
@@ -23,7 +23,6 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell *autoDownloadCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell *mobileInternetCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell *powerManagementCell;
-@property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell *recentTrackCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell *fontScaleCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell *transliterationCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell *compassCalibrationCell;
@@ -48,6 +47,32 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self configCells];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self highlightFeatureIfNeeded];
+}
+
+- (void)highlightFeatureIfNeeded {
+  UITableViewCell * cell = nil;
+  DeepLinkInAppFeatureHighlightData * featureToHighlight = [DeepLinkHandler.shared getInAppFeatureHighlightData];
+  if (!featureToHighlight || featureToHighlight.urlType != DeeplinkUrlTypeSettings)
+    return;
+  switch (featureToHighlight.feature) {
+    case InAppFeatureHighlightTypeNone:
+    case InAppFeatureHighlightTypeTrackRecorder:
+      // Еhere is no options for the track recorder yet.
+      break;
+    case InAppFeatureHighlightTypeICloud:
+      cell = self.iCloudSynchronizationCell;
+      break;
+  }
+  NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+  if (!cell || !indexPath)
+    return;
+  [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+  [cell highlight];
 }
 
 - (void)configCells {
@@ -131,33 +156,6 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
   }
   [self.powerManagementCell configWithTitle:L(@"power_managment_title") info:powerManagement];
 
-  NSString * recentTrack = nil;
-  if (!GpsTracker::Instance().IsEnabled()) {
-    recentTrack = L(@"duration_disabled");
-  } else {
-    switch (GpsTracker::Instance().GetDuration().count()) {
-      case 1:
-        recentTrack = L(@"duration_1_hour");
-        break;
-      case 2:
-        recentTrack = L(@"duration_2_hours");
-        break;
-      case 6:
-        recentTrack = L(@"duration_6_hours");
-        break;
-      case 12:
-        recentTrack = L(@"duration_12_hours");
-        break;
-      case 24:
-        recentTrack = L(@"duration_1_day");
-        break;
-      default:
-        NSAssert(false, @"Incorrect hours value");
-        break;
-    }
-  }
-  [self.recentTrackCell configWithTitle:L(@"pref_track_record_title") info:recentTrack];
-
   [self.fontScaleCell configWithDelegate:self title:L(@"big_font") isOn:[MWMSettings largeFontSize]];
 
   [self.transliterationCell configWithDelegate:self
@@ -191,7 +189,7 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
                                                 isOn:[MWMSettings iCLoudSynchronizationEnabled]];
 
   __weak __typeof(self) weakSelf = self;
-  [CloudStorageManager.shared addObserver:self synchronizationStateDidChangeHandler:^(CloudStorageSynchronizationState * state) {
+  [iCloudSynchronizaionManager.shared addObserver:self synchronizationStateDidChangeHandler:^(SynchronizationManagerState * state) {
     __strong auto strongSelf = weakSelf;
     [strongSelf.iCloudSynchronizationCell updateWithSynchronizationState:state];
   }];
@@ -354,8 +352,6 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
     [self performSegueWithIdentifier:@"SettingsToMobileInternetSegue" sender:nil];
   } else if (cell == self.powerManagementCell) {
     [self performSegueWithIdentifier:@"SettingsToPowerManagementSegue" sender:nil];
-  } else if (cell == self.recentTrackCell) {
-    [self performSegueWithIdentifier:@"SettingsToRecentTrackSegue" sender:nil];
   } else if (cell == self.nightModeCell) {
     [self performSegueWithIdentifier:@"SettingsToNightMode" sender:nil];
   } else if (cell == self.voiceInstructionsCell) {
