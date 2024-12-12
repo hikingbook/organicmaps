@@ -2297,14 +2297,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     Toast.makeText(this, R.string.track_recording, Toast.LENGTH_SHORT).show();
     TrackRecordingService.startForegroundService(getApplicationContext());
-    mMapButtonsViewModel.setTrackRecorderState(true);
+//    mMapButtonsViewModel.setTrackRecorderState(true);
     return true;
   }
 
   private void stopTrackRecording()
   {
     TrackRecordingService.stopService(getApplicationContext());
-    mMapButtonsViewModel.setTrackRecorderState(false);
+//    mMapButtonsViewModel.setTrackRecorderState(false);
   }
 
   private void saveAndStopTrackRecording()

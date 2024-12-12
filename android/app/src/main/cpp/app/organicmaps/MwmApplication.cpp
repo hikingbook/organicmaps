@@ -14,7 +14,7 @@ extern "C"
     android::Platform::Instance().SetSettingsDir(jni::ToNativeString(env, settingsPath));
   }
 
-  // void nativeInitPlatform(String apkPath, String storagePath, String privatePath, String tmpPath,
+  // void nativeInitPlatform(Context context, String apkPath, String writablePath, String privatePath, String tmpPath,
   // String flavorName, String buildType, boolean isTablet);
   JNIEXPORT void JNICALL
   Java_app_organicmaps_MwmApplication_nativeInitPlatform(JNIEnv * env, jobject thiz, jobject context,
@@ -23,7 +23,7 @@ extern "C"
                                                              jstring flavorName, jstring buildType,
                                                              jboolean isTablet)
   {
-    android::Platform::Instance().Initialize(env, context, apkPath, writablePath, privatePath, tmpPath,
+    android::Platform::Instance().Initialize(env, context, thiz, apkPath, writablePath, privatePath, tmpPath,
                                              flavorName, buildType, isTablet);
   }
 

@@ -18,23 +18,20 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.TwoStatePreference;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 
 import app.organicmaps.Framework;
 import app.organicmaps.R;
 import app.organicmaps.downloader.OnmapDownloader;
-import app.organicmaps.editor.OsmOAuth;
 import app.organicmaps.editor.LanguagesFragment;
+import app.organicmaps.editor.OsmOAuth;
 import app.organicmaps.editor.ProfileActivity;
 import app.organicmaps.editor.data.Language;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationProviderFactory;
 import app.organicmaps.routing.RoutingOptions;
+import app.organicmaps.search.SearchRecents;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.NetworkPolicy;
 import app.organicmaps.util.PowerManagment;
@@ -42,10 +39,6 @@ import app.organicmaps.util.SharedPropertiesUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.log.LogsManager;
-import app.organicmaps.search.SearchRecents;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.Locale;
 
 public class SettingsPrefsFragment extends BaseXmlSettingsFragment implements LanguagesFragment.Listener
 {
@@ -140,11 +133,11 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment implements La
       {
         startActivity(new Intent(requireActivity(), HelpActivity.class));
       }
-      else if (key.equals(getString(R.string.pref_map_locale)))
-      {
-        LanguagesFragment langFragment = (LanguagesFragment)getSettingsActivity().stackFragment(LanguagesFragment.class, getString(R.string.change_map_locale), null);
-        langFragment.setListener(this);
-      }
+//      else if (key.equals(getString(R.string.pref_map_locale)))
+//      {
+//        LanguagesFragment langFragment = (LanguagesFragment)getSettingsActivity().stackFragment(LanguagesFragment.class, getString(R.string.change_map_locale), null);
+//        langFragment.setListener(this);
+//      }
     }
     return super.onPreferenceTreeClick(preference);
   }
@@ -497,7 +490,7 @@ public class SettingsPrefsFragment extends BaseXmlSettingsFragment implements La
   public void onLanguageSelected(Language language)
   {
     MapLanguageCode.setMapLanguageCode(language.code);
-    getSettingsActivity().onBackPressed();
+//    getSettingsActivity().onBackPressed();
   }
 
   enum ThemeMode

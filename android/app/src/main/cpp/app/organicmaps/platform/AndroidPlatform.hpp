@@ -18,7 +18,7 @@ namespace android
 class Platform : public ::Platform
 {
 public:
-  void Initialize(JNIEnv * env, jobject functorProcessObject, jstring apkPath, jstring writablePath,
+  void Initialize(JNIEnv * env, jobject context, jobject functorProcessObject, jstring apkPath, jstring writablePath,
                   jstring privatePath, jstring tmpPath, jstring flavorName,
                   jstring buildType, bool isTablet);
 
@@ -49,6 +49,7 @@ public:
   static Platform & Instance();
 
 private:
+  jobject m_context = nullptr;
   AndroidSecureStorage m_secureStorage;
 };
 } // namespace android

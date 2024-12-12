@@ -29,10 +29,9 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import app.organicmaps.background.OsmUploadWork;
-import app.organicmaps.downloader.Android7RootCertificateWorkaround;
-import app.organicmaps.downloader.DownloaderNotifier;
 import app.organicmaps.bookmarks.data.BookmarkManager;
 import app.organicmaps.display.DisplayManager;
+import app.organicmaps.downloader.Android7RootCertificateWorkaround;
 import app.organicmaps.downloader.CountryItem;
 import app.organicmaps.downloader.DownloaderNotifier;
 import app.organicmaps.downloader.MapManager;
@@ -40,7 +39,6 @@ import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.location.TrackRecorder;
-import app.organicmaps.location.TrackRecordingService;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.subway.SubwayManager;
 import app.organicmaps.maplayer.traffic.TrafficManager;
@@ -176,9 +174,9 @@ public class MwmApplication extends Application implements Application.ActivityL
     mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getMainLooper());
     ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
-    DownloaderNotifier.createNotificationChannel(this);
-//    NavigationService.createNotificationChannel(this);
-//    TrackRecordingService.createNotificationChannel(this);
+    DownloaderNotifier.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+//    NavigationService.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+//    TrackRecordingService.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
     registerActivityLifecycleCallbacks(this);
     mSubwayManager = new SubwayManager(this);
@@ -220,7 +218,7 @@ public class MwmApplication extends Application implements Application.ActivityL
     // external storage is damaged or not available (read-only).
     createPlatformDirectories(writablePath, privatePath, tempPath);
 
-    nativeInitPlatform((Context)OrganicmapsFrameworkAdapter.INSTANCE.getApplication(),
+    nativeInitPlatform(OrganicmapsFrameworkAdapter.INSTANCE.getApplication(),
                        apkPath,
                        writablePath,
                        privatePath,
