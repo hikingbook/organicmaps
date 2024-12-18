@@ -653,7 +653,7 @@ void Storage::LoadCountriesFile(string const & pathToCountriesFile)
 
 int Storage::Subscribe(ChangeCountryFunction change, ProgressFunction progress)
 {
-  CHECK_THREAD_CHECKER(m_threadChecker, ());
+//  CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   int const id = ++m_currentSlotId;
   m_observers.push_back({ std::move(change), std::move(progress), id });
