@@ -1402,7 +1402,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     if (mDisplayManager.isDeviceDisplayUsed())
     {
-      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY);
+//      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY);
+      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY + offsetY1);
       mMapFragment.updateMyPositionRoutingOffset(offsetY);
     }
   }
