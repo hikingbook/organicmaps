@@ -528,7 +528,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     setContentView(R.layout.activity_map);
 
-    OrganicmapsFrameworkAdapter.INSTANCE.initActivity(this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()));
+    OrganicmapsFrameworkAdapter.INSTANCE.initActivityIfNecessary(this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()));
     mPlacePageViewModel = new ViewModelProvider(this).get(PlacePageViewModel.class);
 //    mMapButtonsViewModel = new ViewModelProvider(this).get(MapButtonsViewModel.class);
     // We don't need to manually handle removing the observers it follows the activity lifecycle
