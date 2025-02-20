@@ -635,6 +635,9 @@ bool Storage::IsDownloadInProgress() const
 {
 //  CHECK_THREAD_CHECKER(m_threadChecker, ());
 
+  if (m_downloader == nullptr) {
+      return false;
+  }
   return !m_downloader->GetQueue().IsEmpty();
 }
 
