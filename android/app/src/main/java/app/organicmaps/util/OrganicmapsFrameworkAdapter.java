@@ -29,6 +29,7 @@ import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
+import app.organicmaps.car.util.ThemeUtils;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
@@ -175,14 +176,9 @@ public enum OrganicmapsFrameworkAdapter {
         getLocationHelper().restartWithNewMode();
     }
 
-    public void initActivityIfNecessary(AppCompatActivity activity, Fragment fragment) {
-        boolean isNullActivity = this.activity == null;
-        if (isNullActivity) {
-            setActivity(activity);
-        }
-        if (isNullActivity || this.fragment == null) {
-            setFragment(fragment);
-        }
+    public void initActivity(AppCompatActivity activity, Fragment fragment) {
+        setActivity(activity);
+        setFragment(fragment);
     }
 
     public void onCreateMwmActivity() {
