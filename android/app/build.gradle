@@ -45,7 +45,6 @@ repositories {
 }
 
 apply plugin: 'com.android.application'
-apply from: 'secure.properties'
 if (googleFirebaseServicesEnabled) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'com.google.firebase.crashlytics'
@@ -247,6 +246,11 @@ android {
     }
   }
 
+  def securityPropertiesFileExists = file('secure.properties').exists()
+  if (securityPropertiesFileExists) {
+    apply from: 'secure.properties'
+  }
+
   signingConfigs {
     debug {
       storeFile file('debug.keystore')
@@ -256,10 +260,15 @@ android {
     }
 
     release {
-      storeFile file(spropStoreFile)
-      storePassword spropStorePassword
-      keyAlias spropKeyAlias
-      keyPassword spropKeyPassword
+      if (securityPropertiesFileExists) {
+        println('The release signing keys are available')
+        storeFile file(spropStoreFile)
+        storePassword spropStorePassword
+        keyAlias spropKeyAlias
+        keyPassword spropKeyPassword
+      } else {
+        println('The release signing keys are unavailable')
+      }
     }
   }
 
@@ -332,7 +341,7 @@ android {
 
   externalNativeBuild {
     cmake {
-      version '3.30.3+'
+      version '3.22.1+'
       buildStagingDirectory './nativeOutputs'
       path '../../CMakeLists.txt'
     }
@@ -390,8 +399,8 @@ dependencies {
   implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.0.21'))
   implementation 'androidx.annotation:annotation:1.9.1'
   implementation 'androidx.appcompat:appcompat:1.7.0'
-  implementation 'androidx.car.app:app:1.7.0-beta02'
-  implementation 'androidx.car.app:app-projected:1.7.0-beta02'
+  implementation 'androidx.car.app:app:1.7.0-beta03'
+  implementation 'androidx.car.app:app-projected:1.7.0-beta03'
   implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
   implementation 'androidx.fragment:fragment:1.8.5'
   implementation 'androidx.preference:preference:1.2.1'

@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "वैध पिनकोड प्रविष्ट करा";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "अज्ञात ठिकाण";
+"core_placepage_unknown_place" = "नकाशा बिंदू";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "OpenStreetMap स्वयंसेवकांसाठी टीप (पर्यायी)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "ऑपरेटर: %@";
+
+"editor_category_unsuitable_title" = "योग्य श्रेणी शोधू शकत नाही?";
+
+"editor_category_unsuitable_text" = "ऑरगॅनिक नकाशे फक्त साध्या बिंदू श्रेणी जोडण्याची परवानगी देतात, म्हणजे शहरे, रस्ते, तलाव, इमारत बाह्यरेखा इ. कृपया अशा श्रेणी थेट <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a> वर जोडा. तपशीलवार चरण-दर-चरण सूचनांसाठी आमचे <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">मार्गदर्शक</a> पहा.";
 
 "downloader_no_downloaded_maps_title" = "तुम्ही कोणतेही नकाशे डाउनलोड केलेले नाहीत";
 
@@ -815,6 +819,9 @@
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "कायाक वर तपशील";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Kayak अकषम कर";
 
 "placepage_call_button" = "फोन करा";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "उतरण";
 
-"elevation_profile_minaltitude" = "किमान उच्चता";
+"elevation_profile_min_elevation" = "किमान उंची";
 
-"elevation_profile_maxaltitude" = "कमाल उच्चता";
+"elevation_profile_max_elevation" = "कमाल उंची";
 
 "elevation_profile_difficulty" = "काठिण्य";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "ट्रॅक पुसून टाका";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "तुमची खात्री आहे की तुम्ही हा ट्रॅक हटवू इच्छिता?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "ट्रॅकचे नाव";
@@ -1401,6 +1411,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "मार्ग रिकामा आहे - जतन करण्यासाठी काहीही नाही";
+
+"edit_track" = "मार्ग संपादित करा";
 
 
 /********** Types **********/
@@ -3066,6 +3078,8 @@
 
 "type.railway.station.light_rail" = "रेल्वे स्थानक";
 
+"type.railway.station.light_rail.berlin" = "रेल्वे स्थानक";
+
 "type.railway.station.light_rail.london" = "रेल्वे स्थानक";
 
 "type.railway.station.light_rail.porto" = "रेल्वे स्थानक";
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "भुयारी मार्ग";
 
 "type.railway.station.subway.hiroshima" = "भुयारी मार्ग";
+
+"type.railway.station.subway.hongkong" = "भुयारी मार्ग";
 
 "type.railway.station.subway.isfahan" = "भुयारी मार्ग";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "भुयारी मार्ग";
 
 "type.railway.station.subway.shanghai" = "भुयारी मार्ग";
+
+"type.railway.station.subway.shenzhen" = "भुयारी मार्ग";
 
 "type.railway.station.subway.shiraz" = "भुयारी मार्ग";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "भुयारी प्रवेशद्वार";
 
+"type.railway.subway_entrance.hongkong" = "भुयारी प्रवेशद्वार";
+
 "type.railway.subway_entrance.isfahan" = "भुयारी प्रवेशद्वार";
 
 "type.railway.subway_entrance.istanbul" = "भुयारी प्रवेशद्वार";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "भुयारी प्रवेशद्वार";
 
 "type.railway.subway_entrance.shanghai" = "भुयारी प्रवेशद्वार";
+
+"type.railway.subway_entrance.shenzhen" = "भुयारी प्रवेशद्वार";
 
 "type.railway.subway_entrance.shiraz" = "भुयारी प्रवेशद्वार";
 

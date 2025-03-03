@@ -271,6 +271,9 @@
     <string name="faq">Spørsmål og svar</string>
     <!-- Button in the main menu -->
     <string name="donate">Donere</string>
+    <string name="already_donated">Allerede donert</string>
+    <string name="remind_me_later">Påminn senere</string>
+    <string name="support_organic_maps">Støtte Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Støtt prosjektet</string>
     <!-- Button in the main Help dialog -->
@@ -312,6 +315,10 @@
     <string name="google_play_services">Google Play Stedstjenester</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Finn raskt ut din omtrentlige posisjon via Bluetooth, WiFi eller mobilnettverk</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Hotellkoblinger</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Bilder, anmeldelser og bestillingslenker vises for hoteller som har en oppføring på Kayak.com. Henvisningsbonusen som mottas for hver bestilling gjennom disse lenkene går til utvikling av Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Last ned kart langs ruten</string>
     <!-- Text for routing error dialog -->
@@ -510,7 +517,7 @@
     <string name="editor_zip_code">Postnummer</string>
     <string name="error_enter_correct_zip_code">Angi riktig postnummer</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Ukjent sted</string>
+    <string name="core_placepage_unknown_place">Kartpunkt</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Merknad til OpenStreetMap-frivillige (valgfritt)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -518,6 +525,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Dine endringer lastes opp til den offentlige <a href="https://wiki.openstreetmap.org/wiki/About_OpenStreetMap">OpenStreetMap</a>-databasen. Vennligst ikke legg til personlig eller opphavsrettsbeskyttet informasjon.</string>
     <string name="editor_more_about_osm">Mer om OpenStreetMap</string>
+    <string name="editor_osm_history">Din redigeringshistorikk</string>
+    <string name="editor_osm_notes">Notater om kartdataene dine</string>
     <string name="editor_operator">Operatør</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operatør: %s</string>
@@ -547,6 +556,8 @@
     <string name="dialog_kayak_disclaimer">Henvisningsbonusen som mottas for hver bestilling via denne lenken, går til utviklingen av Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Mer informasjon om Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Deaktiver Kayak</string>
     <string name="placepage_edit_bookmark_button">Rediger bokmerke</string>
     <string name="editor_comment_hint">Kommentar…</string>
     <string name="editor_reset_edits_message">Nullstille alle lokale endringer?</string>
@@ -757,8 +768,8 @@
     <string name="isolines_location_error_dialog">Høydekurver er ikke tilgjengelige i dette området ennå</string>
     <string name="elevation_profile_ascent">Stigning</string>
     <string name="elevation_profile_descent">Nedstigning</string>
-    <string name="elevation_profile_minaltitude">Min. høyde</string>
-    <string name="elevation_profile_maxaltitude">Maks. høyde</string>
+    <string name="elevation_profile_min_elevation">Min. høyde</string>
+    <string name="elevation_profile_max_elevation">Maks. høyde</string>
     <string name="elevation_profile_difficulty">Vanskelighet</string>
     <string name="elevation_profile_distance">Avstand:</string>
     <string name="elevation_profile_time">I rute</string>
@@ -815,8 +826,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Til bilens skjerm</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Denne applikasjonen krever tilgang til posisjonen din for navigasjonsformål.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps trenger posisjonstilgang. Når det er trygt, kan du sjekke varslingen på telefonen.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Denne appen trenger din tillatelse</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps i Android Auto trenger en posisjonstillatelse for å fungere effektivt</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Gi tillatelser</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Tilkoblet til bil</string>
@@ -1578,6 +1593,7 @@
     <string name="type.railway.station">Togstasjon</string>
     <string name="type.railway.station.funicular">Kabelbane</string>
     <string name="type.railway.station.light_rail">Togstasjon</string>
+    <string name="type.railway.station.light_rail.berlin">Togstasjon</string>
     <string name="type.railway.station.light_rail.london">Togstasjon</string>
     <string name="type.railway.station.light_rail.porto">Togstasjon</string>
     <string name="type.railway.station.monorail">Togstasjon</string>
@@ -1620,6 +1636,7 @@
     <string name="type.railway.station.subway.hamburg">T-bane</string>
     <string name="type.railway.station.subway.helsinki">T-bane</string>
     <string name="type.railway.station.subway.hiroshima">T-bane</string>
+    <string name="type.railway.station.subway.hongkong">T-bane</string>
     <string name="type.railway.station.subway.isfahan">T-bane</string>
     <string name="type.railway.station.subway.istanbul">T-bane</string>
     <string name="type.railway.station.subway.izmir">T-bane</string>
@@ -1673,6 +1690,7 @@
     <string name="type.railway.station.subway.sendai">T-bane</string>
     <string name="type.railway.station.subway.sf">T-bane</string>
     <string name="type.railway.station.subway.shanghai">T-bane</string>
+    <string name="type.railway.station.subway.shenzhen">T-bane</string>
     <string name="type.railway.station.subway.shiraz">T-bane</string>
     <string name="type.railway.station.subway.singapore">T-bane</string>
     <string name="type.railway.station.subway.sofia">T-bane</string>
@@ -1732,6 +1750,7 @@
     <string name="type.railway.subway_entrance.hamburg">T-bane inngang</string>
     <string name="type.railway.subway_entrance.helsinki">T-bane inngang</string>
     <string name="type.railway.subway_entrance.hiroshima">T-bane inngang</string>
+    <string name="type.railway.subway_entrance.hongkong">T-bane inngang</string>
     <string name="type.railway.subway_entrance.isfahan">T-bane inngang</string>
     <string name="type.railway.subway_entrance.istanbul">T-bane inngang</string>
     <string name="type.railway.subway_entrance.izmir">T-bane inngang</string>
@@ -1785,6 +1804,7 @@
     <string name="type.railway.subway_entrance.sendai">T-bane inngang</string>
     <string name="type.railway.subway_entrance.sf">T-bane inngang</string>
     <string name="type.railway.subway_entrance.shanghai">T-bane inngang</string>
+    <string name="type.railway.subway_entrance.shenzhen">T-bane inngang</string>
     <string name="type.railway.subway_entrance.shiraz">T-bane inngang</string>
     <string name="type.railway.subway_entrance.singapore">T-bane inngang</string>
     <string name="type.railway.subway_entrance.sofia">T-bane inngang</string>

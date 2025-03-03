@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Εισάγετε έναν έγκυρο ταχυδρομικό κώδικα";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Άγνωστη τοποθεσία";
+"core_placepage_unknown_place" = "Σημείο χάρτη";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Σημείωση για τους εθελοντές του OpenStreetMap (προαιρετική)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Χειριστής: %@";
+
+"editor_category_unsuitable_title" = "Δεν μπορείτε να βρείτε την κατάλληλη κατηγορία;";
+
+"editor_category_unsuitable_text" = "Οι Οργανικοί Χάρτες επιτρέπουν την προσθήκη απλών κατηγοριών σημείων μόνο, δηλαδή όχι πόλεων, δρόμων, λιμνών, περιγραμμάτων κτιρίων κ.λπ. Παρακαλούμε προσθέστε τέτοιες κατηγορίες απευθείας στο <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Ελέγξτε τον <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">οδηγό μας</a> για λεπτομερείς οδηγίες βήμα προς βήμα.";
 
 "downloader_no_downloaded_maps_title" = "Δεν έχετε κατεβάσει χάρτες";
 
@@ -815,6 +819,9 @@
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "Λεπτομέρειες στο Kayak";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Απενεργοποίηση του Kayak";
 
 "placepage_call_button" = "Κλήση";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "Κατάβαση";
 
-"elevation_profile_minaltitude" = "Ελάχ. υψόμετρο";
+"elevation_profile_min_elevation" = "Ελάχ. υψόμετρο";
 
-"elevation_profile_maxaltitude" = "Μέγ. υψόμετρο";
+"elevation_profile_max_elevation" = "Μέγ. υψόμετρο";
 
 "elevation_profile_difficulty" = "Δυσκολία";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Διαγραφή διαδρομής";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το κομμάτι;";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Όνομα διαδρομής";
@@ -1401,6 +1411,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Η διαδρομή είναι άδεια - δεν υπάρχει τίποτα να αποθηκεύσετε";
+
+"edit_track" = "Επεξεργασία διαδρομής";
 
 
 /********** Types **********/
@@ -3066,6 +3078,8 @@
 
 "type.railway.station.light_rail" = "Σιδηροδρομικός σταθμός";
 
+"type.railway.station.light_rail.berlin" = "Σιδηροδρομικός σταθμός";
+
 "type.railway.station.light_rail.london" = "Σιδηροδρομικός σταθμός";
 
 "type.railway.station.light_rail.porto" = "Σιδηροδρομικός σταθμός";
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "Μετρό";
 
 "type.railway.station.subway.hiroshima" = "Μετρό";
+
+"type.railway.station.subway.hongkong" = "Μετρό";
 
 "type.railway.station.subway.isfahan" = "Μετρό";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "Μετρό";
 
 "type.railway.station.subway.shanghai" = "Μετρό";
+
+"type.railway.station.subway.shenzhen" = "Μετρό";
 
 "type.railway.station.subway.shiraz" = "Μετρό";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Είσοδος μετρό";
 
+"type.railway.subway_entrance.hongkong" = "Είσοδος μετρό";
+
 "type.railway.subway_entrance.isfahan" = "Είσοδος μετρό";
 
 "type.railway.subway_entrance.istanbul" = "Είσοδος μετρό";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "Είσοδος μετρό";
 
 "type.railway.subway_entrance.shanghai" = "Είσοδος μετρό";
+
+"type.railway.subway_entrance.shenzhen" = "Είσοδος μετρό";
 
 "type.railway.subway_entrance.shiraz" = "Είσοδος μετρό";
 

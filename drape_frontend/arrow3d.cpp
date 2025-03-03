@@ -290,12 +290,12 @@ Arrow3d::PreloadedData Arrow3d::PreloadMesh(std::optional<Arrow3dCustomDecl> con
 
 Arrow3d::Arrow3d(ref_ptr<dp::GraphicsContext> context, ref_ptr<dp::TextureManager> texMng,
                  PreloadedData && preloadedData)
-  : m_arrowMesh(context, dp::MeshObject::DrawPrimitive::Triangles)
+  : m_arrowMesh(context, dp::MeshObject::DrawPrimitive::Triangles, "Arrow3d")
   , m_arrowMeshTexturingEnabled(preloadedData.m_arrowMeshTexturingEnabled)
   , m_texCoordFlipping(std::move(preloadedData.m_texCoordFlipping))
   , m_shadowMesh(
         preloadedData.m_shadowMeshData.has_value()
-            ? make_unique_dp<dp::MeshObject>(context, dp::MeshObject::DrawPrimitive::Triangles)
+            ? make_unique_dp<dp::MeshObject>(context, dp::MeshObject::DrawPrimitive::Triangles, "Arrow3dShadow")
             : nullptr)
   , m_state(CreateRenderState(gpu::Program::Arrow3d, DepthLayer::OverlayLayer))
   , m_meshOffset(std::move(preloadedData.m_meshOffset))
@@ -497,10 +497,7 @@ std::pair<glsl::mat4, glsl::mat4> Arrow3d::CalculateTransform(ScreenBase const &
 
   if (screen.isPerspective())
   {
-    glm::mat4 pTo3dView;
-    auto const m = math::Matrix<float, 4, 4>(screen.Pto3dMatrix());
-    static_assert(sizeof(m) == sizeof(pTo3dView));
-    memcpy(&pTo3dView, &m, sizeof(pTo3dView));
+    glm::mat4 pTo3dView = glm::make_mat4x4(screen.Pto3dMatrix().m_data);
     auto postProjectionPerspective = pTo3dView * modelTransform;
     return std::make_pair(postProjectionPerspective, normalMatrix);
   }

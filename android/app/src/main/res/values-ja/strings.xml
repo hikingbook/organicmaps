@@ -274,6 +274,9 @@
     <string name="faq">よくある質問</string>
     <!-- Button in the main menu -->
     <string name="donate">寄付</string>
+    <string name="already_donated">寄付済み</string>
+    <string name="remind_me_later">後でリマインド</string>
+    <string name="support_organic_maps">Organic Maps を支援</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">プロジェクトを支援する</string>
     <!-- Button in the main Help dialog -->
@@ -315,6 +318,10 @@
     <string name="google_play_services">Google Play位置情報サービス</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Bluetooth、WiFi、またはモバイルネットワーク経由で、おおよその位置を素早く特定する</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.comホテルリンク</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Kayak.comに掲載されているホテルの写真、レビュー、予約リンクが表示されます。これらのリンクを経由して予約された場合、紹介ボーナスはOrganic Mapsの開発に使用されます。</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">ルート上の地図をダウンロード</string>
     <!-- Text for routing error dialog -->
@@ -516,7 +523,7 @@
     <string name="editor_zip_code">郵便番号</string>
     <string name="error_enter_correct_zip_code">正しい郵便番号を入力してください</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">不明な場所</string>
+    <string name="core_placepage_unknown_place">マップポイント</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">OpenStreetMapボランティアへの注意（オプション）</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -524,6 +531,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">あなたの編集は公開されている<a href="https://wiki.openstreetmap.org/wiki/JA:参加する">OpenStreetMap</a>データベースにアップロードされます。個人情報や著作権のある情報は追加しないでください。</string>
     <string name="editor_more_about_osm">OpenStreetMapについての詳細</string>
+    <string name="editor_osm_history">編集履歴</string>
+    <string name="editor_osm_notes">地図データのメモ</string>
     <string name="editor_operator">オペレーター</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">オペレーター: %s</string>
@@ -553,6 +562,8 @@
     <string name="dialog_kayak_disclaimer">このリンクを経由した予約の紹介ボーナスは、Organic Mapsの発展のために使われる。</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Kayak で詳細表示</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Kayakの無効化</string>
     <string name="placepage_edit_bookmark_button">ブックマークを編集</string>
     <string name="editor_comment_hint">コメント…</string>
     <string name="editor_reset_edits_message">ローカル編集をすべてリセットしますか?</string>
@@ -760,8 +771,8 @@
     <string name="isolines_location_error_dialog">地形レイヤーはこの地域ではまだ利用できません</string>
     <string name="elevation_profile_ascent">上昇</string>
     <string name="elevation_profile_descent">下降</string>
-    <string name="elevation_profile_minaltitude">最小高度</string>
-    <string name="elevation_profile_maxaltitude">最大高度</string>
+    <string name="elevation_profile_min_elevation">最小標高</string>
+    <string name="elevation_profile_max_elevation">最大標高</string>
     <string name="elevation_profile_difficulty">難易度</string>
     <string name="elevation_profile_distance">距離：</string>
     <string name="elevation_profile_time">時間：</string>
@@ -820,8 +831,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">車のスクリーンへ</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">このアプリケーションは、ナビゲーションのために位置情報へのアクセスを必要とする。</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">オーガニック・マップは位置情報へのアクセスを必要とする。安全になったら、携帯電話の通知をチェックしよう。</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">このアプリはあなたの許可を必要とする</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Android AutoのOrganic Mapsを有効に機能させるには、位置情報の許可が必要である。</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">許可を与える</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">自動車に接続されている</string>
@@ -1679,6 +1694,7 @@
     <string name="type.railway.station">鉄道駅</string>
     <string name="type.railway.station.funicular">フニクラ</string>
     <string name="type.railway.station.light_rail">鉄道駅</string>
+    <string name="type.railway.station.light_rail.berlin">鉄道駅</string>
     <string name="type.railway.station.light_rail.london">鉄道駅</string>
     <string name="type.railway.station.light_rail.porto">鉄道駅</string>
     <string name="type.railway.station.monorail">鉄道駅</string>
@@ -1721,6 +1737,7 @@
     <string name="type.railway.station.subway.hamburg">地下鉄</string>
     <string name="type.railway.station.subway.helsinki">地下鉄</string>
     <string name="type.railway.station.subway.hiroshima">地下鉄</string>
+    <string name="type.railway.station.subway.hongkong">地下鉄</string>
     <string name="type.railway.station.subway.isfahan">地下鉄</string>
     <string name="type.railway.station.subway.istanbul">地下鉄</string>
     <string name="type.railway.station.subway.izmir">地下鉄</string>
@@ -1774,6 +1791,7 @@
     <string name="type.railway.station.subway.sendai">地下鉄</string>
     <string name="type.railway.station.subway.sf">地下鉄</string>
     <string name="type.railway.station.subway.shanghai">地下鉄</string>
+    <string name="type.railway.station.subway.shenzhen">地下鉄</string>
     <string name="type.railway.station.subway.shiraz">地下鉄</string>
     <string name="type.railway.station.subway.singapore">地下鉄</string>
     <string name="type.railway.station.subway.sofia">地下鉄</string>
@@ -1833,6 +1851,7 @@
     <string name="type.railway.subway_entrance.hamburg">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.helsinki">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.hiroshima">地下鉄入り口</string>
+    <string name="type.railway.subway_entrance.hongkong">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.isfahan">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.istanbul">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.izmir">地下鉄入り口</string>
@@ -1886,6 +1905,7 @@
     <string name="type.railway.subway_entrance.sendai">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.sf">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.shanghai">地下鉄入り口</string>
+    <string name="type.railway.subway_entrance.shenzhen">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.shiraz">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.singapore">地下鉄入り口</string>
     <string name="type.railway.subway_entrance.sofia">地下鉄入り口</string>

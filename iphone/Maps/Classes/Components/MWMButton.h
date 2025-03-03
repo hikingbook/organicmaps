@@ -6,6 +6,7 @@ typedef NS_ENUM(NSUInteger, MWMButtonColoring)
   MWMButtonColoringWhite,
   MWMButtonColoringWhiteText,
   MWMButtonColoringGray,
+  MWMButtonColoringRed,
   MWMButtonColoringPrimary // Added by Lei
 };
 

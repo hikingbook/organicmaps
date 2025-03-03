@@ -257,6 +257,9 @@
     <string name="faq">Întrebări frecvente</string>
     <!-- Button in the main menu -->
     <string name="donate">Donează</string>
+    <string name="already_donated">Deja donat</string>
+    <string name="remind_me_later">Amintește mai târziu</string>
+    <string name="support_organic_maps">Susține Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Susține proiectul</string>
     <!-- Button in the main Help dialog -->
@@ -298,6 +301,10 @@
     <string name="google_play_services">Servicii de localizare Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Determinați rapid locația dvs. aproximativă prin Bluetooth, WiFi sau rețea mobilă</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Linkuri către hoteluri</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Fotografiile, recenziile, linkurile de rezervare sunt afișate pentru hotelurile care au o listă pe Kayak.com. Bonusul de recomandare primit pentru fiecare rezervare prin intermediul acestor linkuri este destinat dezvoltării Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Descarcă hărțile de pe traseu</string>
     <!-- Text for routing error dialog -->
@@ -498,7 +505,7 @@
     <string name="editor_zip_code">Cod poștal</string>
     <string name="error_enter_correct_zip_code">Introdu codul poștal corect</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Loc necunoscut</string>
+    <string name="core_placepage_unknown_place">Punct Hartă</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Notă pentru voluntarii OpenStreetMap (opțional)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -506,6 +513,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Edițiile dvs. sunt încărcate în baza de date publică <a href="https://wiki.openstreetmap.org/wiki/About_OpenStreetMap">OpenStreetMap</a>. Vă rugăm să nu adăugați informații personale sau protejate prin drepturi de autor.</string>
     <string name="editor_more_about_osm">Mai multe despre OpenStreetMap</string>
+    <string name="editor_osm_history">Istoricul dvs. de editare</string>
+    <string name="editor_osm_notes">Note privind datele hărții dvs.</string>
     <string name="editor_operator">Operator</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operator: %s</string>
@@ -533,6 +542,8 @@
     <string name="dialog_kayak_disclaimer">Bonusul de recomandare primit pentru fiecare rezervare prin acest link este destinat dezvoltării Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Detalii pe Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Dezactivați Kayak</string>
     <string name="placepage_edit_bookmark_button">Modifică locul preferat</string>
     <string name="editor_comment_hint">Comentariu…</string>
     <string name="editor_reset_edits_message">Ștergi toate modificările locale?</string>
@@ -745,8 +756,8 @@
     <string name="isolines_location_error_dialog">Stratul topografic nu este încă disponibil în această zonă</string>
     <string name="elevation_profile_ascent">Urcare</string>
     <string name="elevation_profile_descent">Coborâre</string>
-    <string name="elevation_profile_minaltitude">Înălțime minimă</string>
-    <string name="elevation_profile_maxaltitude">Înălțime maximă</string>
+    <string name="elevation_profile_min_elevation">Min. altitudine</string>
+    <string name="elevation_profile_max_elevation">Max. altitudine</string>
     <string name="elevation_profile_difficulty">Dificultate</string>
     <string name="elevation_profile_distance">Dist.:</string>
     <string name="elevation_profile_time">Timp:</string>
@@ -799,8 +810,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">La ecranul mașinii</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Această aplicație necesită accesul la locația dvs. în scopul navigării.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps are nevoie de acces la locație. Când este sigur, verificați notificarea de pe telefon.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Această aplicație are nevoie de permisiunea dvs.</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps din Android Auto are nevoie de o permisiune de localizare pentru a funcționa eficient</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Acordarea de permisiuni</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Conectat la mașină</string>
@@ -1546,6 +1561,7 @@
     <string name="type.railway.station">Gară</string>
     <string name="type.railway.station.funicular">Funicular</string>
     <string name="type.railway.station.light_rail">Gară</string>
+    <string name="type.railway.station.light_rail.berlin">Gară</string>
     <string name="type.railway.station.light_rail.london">Gară</string>
     <string name="type.railway.station.light_rail.porto">Gară</string>
     <string name="type.railway.station.monorail">Gară</string>
@@ -1588,6 +1604,7 @@
     <string name="type.railway.station.subway.hamburg">Metrou</string>
     <string name="type.railway.station.subway.helsinki">Metrou</string>
     <string name="type.railway.station.subway.hiroshima">Metrou</string>
+    <string name="type.railway.station.subway.hongkong">Metrou</string>
     <string name="type.railway.station.subway.isfahan">Metrou</string>
     <string name="type.railway.station.subway.istanbul">Metrou</string>
     <string name="type.railway.station.subway.izmir">Metrou</string>
@@ -1641,6 +1658,7 @@
     <string name="type.railway.station.subway.sendai">Metrou</string>
     <string name="type.railway.station.subway.sf">Metrou</string>
     <string name="type.railway.station.subway.shanghai">Metrou</string>
+    <string name="type.railway.station.subway.shenzhen">Metrou</string>
     <string name="type.railway.station.subway.shiraz">Metrou</string>
     <string name="type.railway.station.subway.singapore">Metrou</string>
     <string name="type.railway.station.subway.sofia">Metrou</string>
@@ -1700,6 +1718,7 @@
     <string name="type.railway.subway_entrance.hamburg">Intrare în metro</string>
     <string name="type.railway.subway_entrance.helsinki">Intrare în metro</string>
     <string name="type.railway.subway_entrance.hiroshima">Intrare în metro</string>
+    <string name="type.railway.subway_entrance.hongkong">Intrare în metro</string>
     <string name="type.railway.subway_entrance.isfahan">Intrare în metro</string>
     <string name="type.railway.subway_entrance.istanbul">Intrare în metro</string>
     <string name="type.railway.subway_entrance.izmir">Intrare în metro</string>
@@ -1753,6 +1772,7 @@
     <string name="type.railway.subway_entrance.sendai">Intrare în metro</string>
     <string name="type.railway.subway_entrance.sf">Intrare în metro</string>
     <string name="type.railway.subway_entrance.shanghai">Intrare în metro</string>
+    <string name="type.railway.subway_entrance.shenzhen">Intrare în metro</string>
     <string name="type.railway.subway_entrance.shiraz">Intrare în metro</string>
     <string name="type.railway.subway_entrance.singapore">Intrare în metro</string>
     <string name="type.railway.subway_entrance.sofia">Intrare în metro</string>

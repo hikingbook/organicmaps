@@ -264,6 +264,9 @@
     <string name="faq">Gyakran Ismételt Kérdések</string>
     <!-- Button in the main menu -->
     <string name="donate">Adományozás</string>
+    <string name="already_donated">Már adományozva</string>
+    <string name="remind_me_later">Emlékeztessen később</string>
+    <string name="support_organic_maps">Organic Maps támogatása</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">A projekt támogatása</string>
     <!-- Button in the main Help dialog -->
@@ -305,6 +308,10 @@
     <string name="google_play_services">Google Play helymeghatározási szolgáltatások</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Bluetooth, Wi-Fi vagy mobilhálózat segítségével gyorsan meghatározhatja hozzávetőleges tartózkodási helyét</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Hotel Linkek</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">A Kayak.com-on szereplő szállodák esetében fényképek, értékelések, foglalási linkek jelennek meg. Az ezeken a linkeken keresztül történő minden egyes foglalásért kapott ajánlói bónusz az Organic Maps fejlesztését szolgálja.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Tölts le térképeket az útvonal mellett</string>
     <!-- Text for routing error dialog -->
@@ -498,7 +505,7 @@
     <string name="editor_zip_code">Irányítószám</string>
     <string name="error_enter_correct_zip_code">Írja be a helyes irányítószámot</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Ismeretlen hely</string>
+    <string name="core_placepage_unknown_place">Térképpont</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Megjegyzés az OpenStreetMap önkénteseinek (nem kötelező)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -506,6 +513,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Az Ön szerkesztései feltöltődnek a nyilvános <a href="https://wiki.openstreetmap.org/wiki/Hu:Névjegy">OpenStreetMap</a> adatbázisba. Kérjük, ne adjon hozzá személyes vagy szerzői jogvédelem alatt álló információkat.</string>
     <string name="editor_more_about_osm">További részletek az OpenStreetMap-ról</string>
+    <string name="editor_osm_history">Az Ön szerkesztési előzményei</string>
+    <string name="editor_osm_notes">A térképadatok jegyzetei</string>
     <string name="editor_operator">Üzemeltető</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Üzemeltető: %s</string>
@@ -534,6 +543,8 @@
     <string name="dialog_kayak_disclaimer">Az ezen a linken keresztül történő minden egyes foglalásért kapott ajánlói bónusz az Organic Maps fejlesztését szolgálja.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Részletek a Kayak-on</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Kayak kikapcsolása</string>
     <string name="placepage_edit_bookmark_button">Könyvjelző szerkesztése</string>
     <string name="editor_comment_hint">Megjegyzés…</string>
     <string name="editor_reset_edits_message">Elveti az összes helyi módosítást?</string>
@@ -735,8 +746,8 @@
     <string name="isolines_location_error_dialog">Ezen a területen a topográfiai réteg még nem elérhető</string>
     <string name="elevation_profile_ascent">Felemelkedés</string>
     <string name="elevation_profile_descent">Leereszkedés</string>
-    <string name="elevation_profile_minaltitude">Min. magasság</string>
-    <string name="elevation_profile_maxaltitude">Max. magasság</string>
+    <string name="elevation_profile_min_elevation">Min. magasság</string>
+    <string name="elevation_profile_max_elevation">Max. magasság</string>
     <string name="elevation_profile_difficulty">Nehézség</string>
     <string name="elevation_profile_distance">Táv.:</string>
     <string name="elevation_profile_time">Idő</string>
@@ -788,8 +799,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Az autó képernyőjére</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Ez az alkalmazás navigációs célokra hozzáférést igényel az Ön tartózkodási helyéhez.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Az Organic Maps-nek szüksége van a helymeghatározáshoz való hozzáférésre. Ha biztonságos, ellenőrizze az értesítést a telefonján.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Ennek az alkalmazásnak szüksége van az Ön engedélyére</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Az Android Auto szerves térképeinek a hatékony működéshez helymeghatározási engedélyre van szükségük</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Engedélyek megadása</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Autóhoz csatlakoztatva</string>
@@ -1540,6 +1555,7 @@
     <string name="type.railway.station">Vasútállomás</string>
     <string name="type.railway.station.funicular">Sikló</string>
     <string name="type.railway.station.light_rail">Vasútállomás</string>
+    <string name="type.railway.station.light_rail.berlin">Vasútállomás</string>
     <string name="type.railway.station.light_rail.london">Vasútállomás</string>
     <string name="type.railway.station.light_rail.porto">Vasútállomás</string>
     <string name="type.railway.station.monorail">Vasútállomás</string>
@@ -1582,6 +1598,7 @@
     <string name="type.railway.station.subway.hamburg">Metrómegálló</string>
     <string name="type.railway.station.subway.helsinki">Metrómegálló</string>
     <string name="type.railway.station.subway.hiroshima">Metrómegálló</string>
+    <string name="type.railway.station.subway.hongkong">Metrómegálló</string>
     <string name="type.railway.station.subway.isfahan">Metrómegálló</string>
     <string name="type.railway.station.subway.istanbul">Metrómegálló</string>
     <string name="type.railway.station.subway.izmir">Metrómegálló</string>
@@ -1635,6 +1652,7 @@
     <string name="type.railway.station.subway.sendai">Metrómegálló</string>
     <string name="type.railway.station.subway.sf">Metrómegálló</string>
     <string name="type.railway.station.subway.shanghai">Metrómegálló</string>
+    <string name="type.railway.station.subway.shenzhen">Metrómegálló</string>
     <string name="type.railway.station.subway.shiraz">Metrómegálló</string>
     <string name="type.railway.station.subway.singapore">Metrómegálló</string>
     <string name="type.railway.station.subway.sofia">Metrómegálló</string>
@@ -1694,6 +1712,7 @@
     <string name="type.railway.subway_entrance.hamburg">Metróbejárat</string>
     <string name="type.railway.subway_entrance.helsinki">Metróbejárat</string>
     <string name="type.railway.subway_entrance.hiroshima">Metróbejárat</string>
+    <string name="type.railway.subway_entrance.hongkong">Metróbejárat</string>
     <string name="type.railway.subway_entrance.isfahan">Metróbejárat</string>
     <string name="type.railway.subway_entrance.istanbul">Metróbejárat</string>
     <string name="type.railway.subway_entrance.izmir">Metróbejárat</string>
@@ -1747,6 +1766,7 @@
     <string name="type.railway.subway_entrance.sendai">Metróbejárat</string>
     <string name="type.railway.subway_entrance.sf">Metróbejárat</string>
     <string name="type.railway.subway_entrance.shanghai">Metróbejárat</string>
+    <string name="type.railway.subway_entrance.shenzhen">Metróbejárat</string>
     <string name="type.railway.subway_entrance.shiraz">Metróbejárat</string>
     <string name="type.railway.subway_entrance.singapore">Metróbejárat</string>
     <string name="type.railway.subway_entrance.sofia">Metróbejárat</string>

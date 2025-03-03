@@ -271,6 +271,9 @@
     <string name="faq">Häufige Fragen und Antworten</string>
     <!-- Button in the main menu -->
     <string name="donate">Spenden</string>
+    <string name="already_donated">Bereits gespendet</string>
+    <string name="remind_me_later">Später erinnern</string>
+    <string name="support_organic_maps">Organic Maps unterstützen</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Unterstütze das Projekt</string>
     <!-- Button in the main Help dialog -->
@@ -312,6 +315,10 @@
     <string name="google_play_services">Google Play Standortdienste</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Ermitteln Sie schnell Ihren ungefähren Standort über Bluetooth, WLAN oder das Mobilfunknetz</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Hotel-Links</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Fotos, Bewertungen und Buchungslinks werden für Hotels angezeigt, die einen Eintrag auf Kayak.com haben. Der Empfehlungsbonus, den Sie für jede Buchung über diese Links erhalten, fließt in die Entwicklung von Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Karten entlang der Route herunterladen</string>
     <!-- Text for routing error dialog -->
@@ -446,7 +453,7 @@
     <string name="closed">Geschlossen</string>
     <string name="edit_opening_hours">Geschäftszeiten bearbeiten</string>
     <string name="no_osm_account">Kein Konto bei OpenStreetMap?</string>
-    <string name="register_at_openstreetmap">Bei OpenStretMap registrieren</string>
+    <string name="register_at_openstreetmap">Bei OpenStreetMap registrieren</string>
     <string name="login">Bei OpenStreetMap anmelden</string>
     <!-- Status message indicating that user did not login to OSM profile yet. -->
     <string name="not_signed_in">Nicht angemeldet</string>
@@ -512,7 +519,7 @@
     <string name="editor_zip_code">Postleitzahl</string>
     <string name="error_enter_correct_zip_code">Geben Sie die korrekte Postleitzahl ein</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Unbekannter Ort</string>
+    <string name="core_placepage_unknown_place">Kartenpunkt</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Hinweis an Freiwillige von OpenStreetMap (optional)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -520,6 +527,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Ihre Bearbeitungen werden in die öffentliche <a href="https://wiki.openstreetmap.org/wiki/DE:Über_OSM">OpenStreetMap</a> Datenbank hochgeladen. Bitte tragen Sie keine privaten oder urheberrechtlich geschützten Informationen ein.</string>
     <string name="editor_more_about_osm">Mehr Informationen über OpenStreetMap</string>
+    <string name="editor_osm_history">Ihr Bearbeitungsverlauf</string>
+    <string name="editor_osm_notes">Ihre Hinweise zu den Kartendaten</string>
     <string name="editor_operator">Betreiber</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Betreiber: %s</string>
@@ -544,11 +553,13 @@
     <string name="day">d</string>
     <string name="placepage_more_button">Mehr</string>
     <!-- A referral link on the place page for some hotels -->
-    <string name="more_on_kayak">Fotos, bewertungen, buchung</string>
+    <string name="more_on_kayak">Fotos, Bewertungen, Buchung</string>
     <!-- An explanation dialog shown when clicking on more_on_kayak link. -->
     <string name="dialog_kayak_disclaimer">Der Empfehlungsbonus, den wir für jede Buchung über diesen Link erhalten, fließt in die Entwicklung von Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Einzelheiten bei Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Kayak deaktivieren</string>
     <string name="placepage_edit_bookmark_button">Lesezeichen bearbeiten</string>
     <string name="editor_comment_hint">Kommentar…</string>
     <string name="editor_reset_edits_message">Alle lokalen Korrekturen verwerfen?</string>
@@ -759,8 +770,8 @@
     <string name="isolines_location_error_dialog">Topographieebene ist für dieses Gebiet noch nicht verfügbar</string>
     <string name="elevation_profile_ascent">Bergauf</string>
     <string name="elevation_profile_descent">Bergab</string>
-    <string name="elevation_profile_minaltitude">Min. Höhe</string>
-    <string name="elevation_profile_maxaltitude">Max. Höhe</string>
+    <string name="elevation_profile_min_elevation">Min. Höhe</string>
+    <string name="elevation_profile_max_elevation">Max. Höhe</string>
     <string name="elevation_profile_difficulty">Schwierigkeitsgrad</string>
     <string name="elevation_profile_distance">Entf.:</string>
     <string name="elevation_profile_time">Dauer:</string>
@@ -821,8 +832,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Zum Autobildschirm</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Diese Anwendung benötigt für die Navigation Zugriff auf deinen Standort.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps benötigt Zugriff auf den Standort. Wenn es sicher ist, überprüfe die Benachrichtigung auf deinem Telefon.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Diese App braucht deine Erlaubnis</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps in Android Auto benötigt eine Standortberechtigung, um effektiv zu funktionieren</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Erlaubnis erteilen</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Mit dem Auto verbunden</string>
@@ -897,6 +912,7 @@
     <string name="type.amenity">Infrastrukturobjekt</string>
     <string name="type.amenity.arts_centre">Kunstzentrum</string>
     <string name="type.amenity.atm">Geldautomat</string>
+    <string name="type.amenity.bank">Bankfiliale</string>
     <string name="type.amenity.bbq">Grillplatz</string>
     <string name="type.amenity.bench">Sitzbank</string>
     <string name="type.amenity.bicycle_parking">Fahrradständer</string>
@@ -1428,7 +1444,7 @@
     <string name="type.historic.mine">Historische Mine</string>
     <string name="type.historic.monument">Monument</string>
     <string name="type.historic.pillory">Pranger</string>
-    <string name="type.historic.ruins">Ruine</string>
+    <string name="type.historic.ruins">Historische Ruine</string>
     <string name="type.historic.ship">Schiff</string>
     <string name="type.historic.tank">Historischer Panzer</string>
     <string name="type.historic.tomb">Historische Grabstätte</string>
@@ -1695,9 +1711,10 @@
     <string name="type.railway.station">Bahnhof</string>
     <string name="type.railway.station.funicular">Standseilbahn</string>
     <string name="type.railway.station.light_rail">Stadtbahnbahnhof</string>
+    <string name="type.railway.station.light_rail.berlin">S-Bahnhof</string>
     <string name="type.railway.station.light_rail.london">Stadtbahnbahnhof</string>
     <string name="type.railway.station.light_rail.porto">Stadtbahnbahnhof</string>
-    <string name="type.railway.station.monorail">Bahnhof</string>
+    <string name="type.railway.station.monorail">Einschienenbahn-Station</string>
     <string name="type.railway.station.subway">U-Bahn-Station</string>
     <string name="type.railway.station.subway.adana">U-Bahn-Station</string>
     <string name="type.railway.station.subway.algiers">U-Bahn-Station</string>
@@ -1737,6 +1754,7 @@
     <string name="type.railway.station.subway.hamburg">U-Bahn-Station</string>
     <string name="type.railway.station.subway.helsinki">U-Bahn-Station</string>
     <string name="type.railway.station.subway.hiroshima">U-Bahn-Station</string>
+    <string name="type.railway.station.subway.hongkong">U-Bahn-Station</string>
     <string name="type.railway.station.subway.isfahan">U-Bahn-Station</string>
     <string name="type.railway.station.subway.istanbul">U-Bahn-Station</string>
     <string name="type.railway.station.subway.izmir">U-Bahn-Station</string>
@@ -1790,6 +1808,7 @@
     <string name="type.railway.station.subway.sendai">U-Bahn-Station</string>
     <string name="type.railway.station.subway.sf">U-Bahn-Station</string>
     <string name="type.railway.station.subway.shanghai">U-Bahn-Station</string>
+    <string name="type.railway.station.subway.shenzhen">U-Bahn-Station</string>
     <string name="type.railway.station.subway.shiraz">U-Bahn-Station</string>
     <string name="type.railway.station.subway.singapore">U-Bahn-Station</string>
     <string name="type.railway.station.subway.sofia">U-Bahn-Station</string>
@@ -1852,6 +1871,7 @@
     <string name="type.railway.subway_entrance.hamburg">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.helsinki">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.hiroshima">U-Bahn-Eingang</string>
+    <string name="type.railway.subway_entrance.hongkong">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.isfahan">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.istanbul">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.izmir">U-Bahn-Eingang</string>
@@ -1905,6 +1925,7 @@
     <string name="type.railway.subway_entrance.sendai">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.sf">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.shanghai">U-Bahn-Eingang</string>
+    <string name="type.railway.subway_entrance.shenzhen">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.shiraz">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.singapore">U-Bahn-Eingang</string>
     <string name="type.railway.subway_entrance.sofia">U-Bahn-Eingang</string>
@@ -1970,7 +1991,7 @@
     <string name="type.shop.florist">Florist</string>
     <string name="type.shop.funeral_directors">Bestattungsinstitut</string>
     <string name="type.shop.furniture">Möbelhaus</string>
-    <string name="type.shop.garden_centre">Gärtnerei</string>
+    <string name="type.shop.garden_centre">Gartencenter</string>
     <string name="type.shop.gas">Gas-Geschäft</string>
     <string name="type.shop.gift">Geschenkeladen</string>
     <string name="type.shop.greengrocer">Gemüseladen</string>
@@ -1992,7 +2013,7 @@
     <string name="type.shop.motorcycle_repair">Motorradwerkstatt</string>
     <string name="type.shop.music">Musikgeschäft</string>
     <string name="type.shop.musical_instrument">Musikinstrumenteladen</string>
-    <string name="type.shop.newsagent">Zeitungsstand</string>
+    <string name="type.shop.newsagent">Zeitungskiosk</string>
     <string name="type.shop.optician">Optiker</string>
     <string name="type.shop.outdoor">Outdoor-Ausrüstungs-Laden</string>
     <string name="type.shop.outpost">Abholpunkt</string>

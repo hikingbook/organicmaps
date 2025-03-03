@@ -276,6 +276,9 @@
     <string name="faq">Питання та відповіді</string>
     <!-- Button in the main menu -->
     <string name="donate">Підтримати грошима</string>
+    <string name="already_donated">Вже пожертвувано</string>
+    <string name="remind_me_later">Нагадати пізніше</string>
+    <string name="support_organic_maps">Підтримати Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Підтримайте проект</string>
     <!-- Button in the main Help dialog -->
@@ -317,6 +320,10 @@
     <string name="google_play_services">Служби визначення місцезнаходження Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Швидке визначення приблизного місця розташування за допомогою Bluetooth, WiFi або мобільної мережі</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Посилання на готелі Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Фотографії, відгуки, посилання на бронювання відображаються для готелів, які мають лістинг на Kayak.com. Реферальний бонус, отриманий за кожне бронювання за цими посиланнями, йде на розвиток Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Завантажити мапи з дороги</string>
     <!-- Text for routing error dialog -->
@@ -516,7 +523,7 @@
     <string name="editor_zip_code">Поштовий індекс</string>
     <string name="error_enter_correct_zip_code">Введіть коректний поштовий індекс</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Невідоме місце</string>
+    <string name="core_placepage_unknown_place">Точка на карті</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Примітка для волонтерів OpenStreetMap (необов\'язково)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -524,6 +531,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Ваші правки завантажуються до публічної бази даних <a href="https://wiki.openstreetmap.org/wiki/Uk:Про_проект">OpenStreetMap</a>. Будь ласка, не додавайте особисту або захищену авторським правом інформацію.</string>
     <string name="editor_more_about_osm">Більше про OpenStreetMap</string>
+    <string name="editor_osm_history">Ваша історія редагувань</string>
+    <string name="editor_osm_notes">Ваші нотатки на мапі</string>
     <string name="editor_operator">Оператор</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Оператор: %s</string>
@@ -553,6 +562,8 @@
     <string name="dialog_kayak_disclaimer">Реферальний бонус, отриманий за кожне бронювання за цим посиланням, йде на розробку Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Докладніше на Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Вимкнути Kayak</string>
     <string name="placepage_edit_bookmark_button">Редагувати мiтку</string>
     <string name="editor_comment_hint">Коментар…</string>
     <string name="editor_reset_edits_message">Скинути всі локальні виправлення?</string>
@@ -766,8 +777,8 @@
     <string name="isolines_location_error_dialog">Лінії висот ще недоступні в цьому регіоні</string>
     <string name="elevation_profile_ascent">Підйом</string>
     <string name="elevation_profile_descent">Спуск</string>
-    <string name="elevation_profile_minaltitude">Мін. висота</string>
-    <string name="elevation_profile_maxaltitude">Макс. висота</string>
+    <string name="elevation_profile_min_elevation">Мін. висота</string>
+    <string name="elevation_profile_max_elevation">Макс. висота</string>
     <string name="elevation_profile_difficulty">Складність</string>
     <string name="elevation_profile_distance">Відст.:</string>
     <string name="elevation_profile_time">Шлях:</string>
@@ -828,8 +839,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">На екран автомобіля</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Ця програма потребує доступу до вашого місцезнаходження для навігаційних цілей.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Для роботи Organic Maps потрібен доступ до місцезнаходження. Коли це буде безпечно, перевірте сповіщення на телефоні.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Ця програма потребує вашого дозволу</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Для ефективної роботи Organic Maps в Android Auto потрібен дозвіл на розташування</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Надавати дозволи</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Підключено до автомобіля</string>
@@ -1720,6 +1735,7 @@
     <string name="type.railway.station">Залізничний вокзал</string>
     <string name="type.railway.station.funicular">Фунікулер</string>
     <string name="type.railway.station.light_rail">Залізничний вокзал</string>
+    <string name="type.railway.station.light_rail.berlin">Залізничний вокзал</string>
     <string name="type.railway.station.light_rail.london">Залізничний вокзал</string>
     <string name="type.railway.station.light_rail.porto">Залізничний вокзал</string>
     <string name="type.railway.station.monorail">Залізничний вокзал</string>
@@ -1762,6 +1778,7 @@
     <string name="type.railway.station.subway.hamburg">Метро</string>
     <string name="type.railway.station.subway.helsinki">Метро</string>
     <string name="type.railway.station.subway.hiroshima">Метро</string>
+    <string name="type.railway.station.subway.hongkong">Метро</string>
     <string name="type.railway.station.subway.isfahan">Метро</string>
     <string name="type.railway.station.subway.istanbul">Метро</string>
     <string name="type.railway.station.subway.izmir">Метро</string>
@@ -1815,6 +1832,7 @@
     <string name="type.railway.station.subway.sendai">Метро</string>
     <string name="type.railway.station.subway.sf">Метро</string>
     <string name="type.railway.station.subway.shanghai">Метро</string>
+    <string name="type.railway.station.subway.shenzhen">Метро</string>
     <string name="type.railway.station.subway.shiraz">Метро</string>
     <string name="type.railway.station.subway.singapore">Метро</string>
     <string name="type.railway.station.subway.sofia">Метро</string>
@@ -1877,6 +1895,7 @@
     <string name="type.railway.subway_entrance.hamburg">Вхід до метро</string>
     <string name="type.railway.subway_entrance.helsinki">Вхід до метро</string>
     <string name="type.railway.subway_entrance.hiroshima">Вхід до метро</string>
+    <string name="type.railway.subway_entrance.hongkong">Вхід до метро</string>
     <string name="type.railway.subway_entrance.isfahan">Вхід до метро</string>
     <string name="type.railway.subway_entrance.istanbul">Вхід до метро</string>
     <string name="type.railway.subway_entrance.izmir">Вхід до метро</string>
@@ -1930,6 +1949,7 @@
     <string name="type.railway.subway_entrance.sendai">Вхід до метро</string>
     <string name="type.railway.subway_entrance.sf">Вхід до метро</string>
     <string name="type.railway.subway_entrance.shanghai">Вхід до метро</string>
+    <string name="type.railway.subway_entrance.shenzhen">Вхід до метро</string>
     <string name="type.railway.subway_entrance.shiraz">Вхід до метро</string>
     <string name="type.railway.subway_entrance.singapore">Вхід до метро</string>
     <string name="type.railway.subway_entrance.sofia">Вхід до метро</string>

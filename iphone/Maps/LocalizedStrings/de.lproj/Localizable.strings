@@ -613,7 +613,7 @@
 
 "no_osm_account" = "Kein Konto bei OpenStreetMap?";
 
-"register_at_openstreetmap" = "Bei OpenStretMap registrieren";
+"register_at_openstreetmap" = "Bei OpenStreetMap registrieren";
 
 "password_8_chars_min" = "Passwort (mindestens 8 Zeichen)";
 
@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Geben Sie die korrekte Postleitzahl ein";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Unbekannter Ort";
+"core_placepage_unknown_place" = "Kartenpunkt";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Hinweis an Freiwillige von OpenStreetMap (optional)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Betreiber: %@";
+
+"editor_category_unsuitable_title" = "Keine passende Kategorie gefunden?";
+
+"editor_category_unsuitable_text" = "Mit Organic Maps kann man nur einfache Punktkategorien hinzufügen, daher keine Städte, Straßen, Seen, Gebäudeumrisse, etc. Bitte füge solche Kategorien direkt bei <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a> hinzu. In unserem <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">Leitfaden</a> findest du eine detaillierte Schritt-für-Schritt-Anleitung.";
 
 "downloader_no_downloaded_maps_title" = "Keine Karten heruntergeladen";
 
@@ -808,13 +812,16 @@
 "book_button" = "Buchen";
 
 /* A referral link on the place page for some hotels */
-"more_on_kayak" = "Fotos, bewertungen, buchung";
+"more_on_kayak" = "Fotos, Bewertungen, Buchung";
 
 /* An explanation dialog shown when clicking on more_on_kayak link. */
 "dialog_kayak_disclaimer" = "Der Empfehlungsbonus, den wir für jede Buchung über diesen Link erhalten, fließt in die Entwicklung von Organic Maps.";
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "Einzelheiten bei Kayak";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Kayak deaktivieren";
 
 "placepage_call_button" = "Anrufen";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "Bergab";
 
-"elevation_profile_minaltitude" = "Min. Höhe";
+"elevation_profile_min_elevation" = "Min. Höhe";
 
-"elevation_profile_maxaltitude" = "Max. Höhe";
+"elevation_profile_max_elevation" = "Max. Höhe";
 
 "elevation_profile_difficulty" = "Schwierigkeitsgrad";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Track löschen";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Wollen Sie diesen Track wirklich löschen?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Name des Tracks";
@@ -1402,6 +1412,8 @@
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Route ist leer - nichts zu speichern";
 
+"edit_track" = "Track bearbeiten";
+
 
 /********** Types **********/
 
@@ -1449,7 +1461,7 @@
 
 "type.amenity.atm" = "Geldautomat";
 
-"type.amenity.bank" = "Bank";
+"type.amenity.bank" = "Bankfiliale";
 
 "type.amenity.bar" = "Bar";
 
@@ -2482,7 +2494,7 @@
 
 "type.historic.pillory" = "Pranger";
 
-"type.historic.ruins" = "Ruine";
+"type.historic.ruins" = "Historische Ruine";
 
 "type.historic.ship" = "Schiff";
 
@@ -3066,11 +3078,13 @@
 
 "type.railway.station.light_rail" = "Stadtbahnbahnhof";
 
+"type.railway.station.light_rail.berlin" = "S-Bahnhof";
+
 "type.railway.station.light_rail.london" = "Stadtbahnbahnhof";
 
 "type.railway.station.light_rail.porto" = "Stadtbahnbahnhof";
 
-"type.railway.station.monorail" = "Bahnhof";
+"type.railway.station.monorail" = "Einschienenbahn-Station";
 
 "type.railway.station.subway" = "U-Bahn-Station";
 
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "U-Bahn-Station";
 
 "type.railway.station.subway.hiroshima" = "U-Bahn-Station";
+
+"type.railway.station.subway.hongkong" = "U-Bahn-Station";
 
 "type.railway.station.subway.isfahan" = "U-Bahn-Station";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "U-Bahn-Station";
 
 "type.railway.station.subway.shanghai" = "U-Bahn-Station";
+
+"type.railway.station.subway.shenzhen" = "U-Bahn-Station";
 
 "type.railway.station.subway.shiraz" = "U-Bahn-Station";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "U-Bahn-Eingang";
 
+"type.railway.subway_entrance.hongkong" = "U-Bahn-Eingang";
+
 "type.railway.subway_entrance.isfahan" = "U-Bahn-Eingang";
 
 "type.railway.subway_entrance.istanbul" = "U-Bahn-Eingang";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "U-Bahn-Eingang";
 
 "type.railway.subway_entrance.shanghai" = "U-Bahn-Eingang";
+
+"type.railway.subway_entrance.shenzhen" = "U-Bahn-Eingang";
 
 "type.railway.subway_entrance.shiraz" = "U-Bahn-Eingang";
 
@@ -3618,7 +3640,7 @@
 
 "type.shop.furniture" = "Möbelhaus";
 
-"type.shop.garden_centre" = "Gärtnerei";
+"type.shop.garden_centre" = "Gartencenter";
 
 "type.shop.gas" = "Gas-Geschäft";
 
@@ -3664,7 +3686,7 @@
 
 "type.shop.musical_instrument" = "Musikinstrumenteladen";
 
-"type.shop.newsagent" = "Zeitungsstand";
+"type.shop.newsagent" = "Zeitungskiosk";
 
 "type.shop.optician" = "Optiker";
 

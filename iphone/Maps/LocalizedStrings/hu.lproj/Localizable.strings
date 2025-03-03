@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Írja be a helyes irányítószámot";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Ismeretlen hely";
+"core_placepage_unknown_place" = "Térképpont";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Megjegyzés az OpenStreetMap önkénteseinek (nem kötelező)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Üzemeltető: %@";
+
+"editor_category_unsuitable_title" = "Nem találja a megfelelő kategóriát?";
+
+"editor_category_unsuitable_text" = "Az Organic Maps csak egyszerű pontkategóriák hozzáadását teszi lehetővé, azaz nem tartalmaz városokat, utakat, tavakat, épületek körvonalait stb. Kérjük, hogy az ilyen kategóriákat közvetlenül a <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a> oldalon adja hozzá. A részletes, lépésről lépésre történő útmutatásért tekintse meg <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">útmutatónkat</a>.";
 
 "downloader_no_downloaded_maps_title" = "Még nem töltött le térképet";
 
@@ -815,6 +819,9 @@
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "Részletek a Kayak-on";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Kayak kikapcsolása";
 
 "placepage_call_button" = "Hívás";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "Leereszkedés";
 
-"elevation_profile_minaltitude" = "Min. magasság";
+"elevation_profile_min_elevation" = "Min. magasság";
 
-"elevation_profile_maxaltitude" = "Max. magasság";
+"elevation_profile_max_elevation" = "Max. magasság";
 
 "elevation_profile_difficulty" = "Nehézség";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Biztos, hogy törölni szeretné ezt a zeneszámot?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1411,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Az útvonal üres - nincs mit menteni";
+
+"edit_track" = "Útvonal szerkesztése";
 
 
 /********** Types **********/
@@ -3066,6 +3078,8 @@
 
 "type.railway.station.light_rail" = "Vasútállomás";
 
+"type.railway.station.light_rail.berlin" = "Vasútállomás";
+
 "type.railway.station.light_rail.london" = "Vasútállomás";
 
 "type.railway.station.light_rail.porto" = "Vasútállomás";
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "Metrómegálló";
 
 "type.railway.station.subway.hiroshima" = "Metrómegálló";
+
+"type.railway.station.subway.hongkong" = "Metrómegálló";
 
 "type.railway.station.subway.isfahan" = "Metrómegálló";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "Metrómegálló";
 
 "type.railway.station.subway.shanghai" = "Metrómegálló";
+
+"type.railway.station.subway.shenzhen" = "Metrómegálló";
 
 "type.railway.station.subway.shiraz" = "Metrómegálló";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Metróbejárat";
 
+"type.railway.subway_entrance.hongkong" = "Metróbejárat";
+
 "type.railway.subway_entrance.isfahan" = "Metróbejárat";
 
 "type.railway.subway_entrance.istanbul" = "Metróbejárat";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "Metróbejárat";
 
 "type.railway.subway_entrance.shanghai" = "Metróbejárat";
+
+"type.railway.subway_entrance.shenzhen" = "Metróbejárat";
 
 "type.railway.subway_entrance.shiraz" = "Metróbejárat";
 
