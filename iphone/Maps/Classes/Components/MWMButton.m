@@ -74,6 +74,9 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       case MWMButtonColoringPrimary: // Added by Lei
         self.tintColor = [UIColor primary];
         break;
+      case MWMButtonColoringRed:
+        self.tintColor = [UIColor buttonRed];
+        break;
       case MWMButtonColoringWhite:
       case MWMButtonColoringOther:
         break;
@@ -103,6 +106,7 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       case MWMButtonColoringBlue:
       case MWMButtonColoringOther:
       case MWMButtonColoringGray:
+      case MWMButtonColoringRed:
       case MWMButtonColoringPrimary: // Added by Lei
         break;
     }
@@ -141,6 +145,9 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
     case MWMButtonColoringGray:
       self.tintColor = [UIColor blackHintText];
       break;
+    case MWMButtonColoringRed:
+      self.tintColor = [UIColor red];
+      break;
     case MWMButtonColoringOther:
       self.imageView.image = [self imageForState:UIControlStateNormal];
       break;
@@ -148,24 +155,6 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
       self.tintColor = [UIColor primary];
       break;
   }
-}
-
-- (void)setColoringName:(NSString *)coloring
-{
-  if ([coloring isEqualToString:@"MWMBlue"])
-    self.coloring = MWMButtonColoringBlue;
-  else if ([coloring isEqualToString:@"MWMBlack"])
-    self.coloring = MWMButtonColoringBlack;
-  else if ([coloring isEqualToString:@"MWMWhite"])
-    self.coloring = MWMButtonColoringWhite;
-  else if ([coloring isEqualToString:@"MWMWhiteText"])
-    self.coloring = MWMButtonColoringWhiteText;
-  else if ([coloring isEqualToString:@"MWMOther"])
-    self.coloring = MWMButtonColoringOther;
-  else if ([coloring isEqualToString:@"MWMGray"])
-    self.coloring = MWMButtonColoringGray;
-  else
-    NSAssert(false, @"Invalid UIButton's coloring!");
 }
 
 @end

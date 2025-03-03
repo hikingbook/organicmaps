@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Introduza o código postal correto";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Local desconhecido";
+"core_placepage_unknown_place" = "Ponto do mapa";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Nota para os voluntários do OpenStreetMap (opcional)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Operador: %@";
+
+"editor_category_unsuitable_title" = "Não encontra uma categoria adequada?";
+
+"editor_category_unsuitable_text" = "O Organic Maps permite-lhe adicionar apenas categorias de pontos simples, ou seja, nada de cidades, estradas, lagos, contornos de edifícios etc. Por favor, adicione essas categorias diretamente ao <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Consulte o nosso <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">guia</a> para instruções detalhadas passo a passo.";
 
 "downloader_no_downloaded_maps_title" = "Não descarregou quaisquer mapas";
 
@@ -815,6 +819,9 @@
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "Detalhes em Kayak";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Desativar Kayak";
 
 "placepage_call_button" = "Telefonar";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "Descida";
 
-"elevation_profile_minaltitude" = "Altura mínima";
+"elevation_profile_min_elevation" = "Elevação mín.";
 
-"elevation_profile_maxaltitude" = "Altura máxima";
+"elevation_profile_max_elevation" = "Elevação máx.";
 
 "elevation_profile_difficulty" = "Dificuldade";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Apagar trajeto";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Tem a certeza de que pretende apagar este trajeto?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Nome do trajeto";
@@ -1401,6 +1411,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "O trajeto está vazio - não há nada para guardar";
+
+"edit_track" = "Editar trajeto";
 
 
 /********** Types **********/
@@ -3066,6 +3078,8 @@
 
 "type.railway.station.light_rail" = "Estação de comboios";
 
+"type.railway.station.light_rail.berlin" = "Estação de comboios";
+
 "type.railway.station.light_rail.london" = "Estação de comboios";
 
 "type.railway.station.light_rail.porto" = "Estação de comboios";
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "Estação de metro";
 
 "type.railway.station.subway.hiroshima" = "Estação de metro";
+
+"type.railway.station.subway.hongkong" = "Estação de metro";
 
 "type.railway.station.subway.isfahan" = "Estação de metro";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "Estação de metro";
 
 "type.railway.station.subway.shanghai" = "Estação de metro";
+
+"type.railway.station.subway.shenzhen" = "Estação de metro";
 
 "type.railway.station.subway.shiraz" = "Estação de metro";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Entrada do metro";
 
+"type.railway.subway_entrance.hongkong" = "Entrada do metro";
+
 "type.railway.subway_entrance.isfahan" = "Entrada do metro";
 
 "type.railway.subway_entrance.istanbul" = "Entrada do metro";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "Entrada do metro";
 
 "type.railway.subway_entrance.shanghai" = "Entrada do metro";
+
+"type.railway.subway_entrance.shenzhen" = "Entrada do metro";
 
 "type.railway.subway_entrance.shiraz" = "Entrada do metro";
 

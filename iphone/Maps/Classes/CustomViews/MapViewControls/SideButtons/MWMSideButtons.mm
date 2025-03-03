@@ -83,14 +83,14 @@ NSString * const kUDDidShowLongTapToShowSideButtonsToast = @"kUDDidShowLongTapTo
   {
     case MWMMyPositionModePendingPosition:
     {
-      [locBtn setStyleAndApply: @"ButtonPending"];
+      [locBtn setStyleNameAndApply: @"ButtonPending"];
       [locBtn.imageView startRotation:1];
       break;
     }
     case MWMMyPositionModeNotFollow:
-    case MWMMyPositionModeNotFollowNoPosition: [locBtn setStyleAndApply: @"ButtonGetPosition"]; break;
-    case MWMMyPositionModeFollow: [locBtn setStyleAndApply: @"ButtonFollow"]; break;
-    case MWMMyPositionModeFollowAndRotate: [locBtn setStyleAndApply: @"ButtonFollowAndRotate"]; break;
+    case MWMMyPositionModeNotFollowNoPosition: [locBtn setStyleNameAndApply: @"ButtonGetPosition"]; break;
+    case MWMMyPositionModeFollow: [locBtn setStyleNameAndApply: @"ButtonFollow"]; break;
+    case MWMMyPositionModeFollowAndRotate: [locBtn setStyleNameAndApply: @"ButtonFollowAndRotate"]; break;
   }
 }
 
@@ -140,18 +140,9 @@ NSString * const kUDDidShowLongTapToShowSideButtonsToast = @"kUDDidShowLongTapTo
 - (void)setHidden:(BOOL)hidden 
 {
   if (!self.hidden && hidden)
-    [self showLongTapToShowSideButtonsToastOnFirstHiding];
+    [[MWMToast toastWithText:L(@"long_tap_toast")] show];
 
   return [self.sideView setHidden:hidden animated:YES];
-}
-
-- (void)showLongTapToShowSideButtonsToastOnFirstHiding
-{
-  if (![NSUserDefaults.standardUserDefaults boolForKey:kUDDidShowLongTapToShowSideButtonsToast])
-  {
-    [[MWMToast toastWithText:L(@"long_tap_toast")] show];
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:kUDDidShowLongTapToShowSideButtonsToast];
-  }
 }
 
 @end

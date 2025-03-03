@@ -272,6 +272,9 @@
     <string name="faq">Пытанні і адказы</string>
     <!-- Button in the main menu -->
     <string name="donate">Падтрымаць грашыма</string>
+    <string name="already_donated">Ужо ахвяравана</string>
+    <string name="remind_me_later">Нагадаць пазней</string>
+    <string name="support_organic_maps">Падтрымаць Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Падтрымаць праект</string>
     <!-- Button in the main Help dialog -->
@@ -313,6 +316,10 @@
     <string name="google_play_services">Службы месцазнаходжання Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Хуткае вызначэнне прыблізнага месцазнаходжання з дапамогай Bluetooth, WiFi або мабільнай сеткі</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Спасылкі на гасцініцы Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Фота, агляды, спасылкі на браніраванне паказваюцца для гатэляў, якія ёсць у спісе на Kayak.com. Рэферальны бонус, атрыманы за кожнае браніраванне па гэтых спасылках, ідзе на развіццё Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Спампаваць усе мапы на вашым маршруце</string>
     <!-- Text for routing error dialog -->
@@ -512,7 +519,7 @@
     <string name="editor_zip_code">Паштовы індэкс</string>
     <string name="error_enter_correct_zip_code">Увядзіце правільны паштовы індэкс</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Невядомае месца</string>
+    <string name="core_placepage_unknown_place">Месца на мапе</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Заўвага для валанцёраў OpenStreetMap (неабавязкова)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -520,6 +527,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Вашы праўкі загружаюцца ў публічную базу дадзеных <a href="https://wiki.openstreetmap.org/wiki/About_OpenStreetMap">OpenStreetMap</a>. Калі ласка, не дадавайце асабістую інфармацыю або інфармацыю, абароненую аўтарскім правам.</string>
     <string name="editor_more_about_osm">Падрабязней пра OpenStreetMap</string>
+    <string name="editor_osm_history">Ваша гісторыя рэдагавання</string>
+    <string name="editor_osm_notes">Заўвагі да дадзеных карты</string>
     <string name="editor_operator">Aператар</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Aператар: %s</string>
@@ -549,6 +558,8 @@
     <string name="dialog_kayak_disclaimer">Рэферальны бонус, атрыманы за кожнае браніраванне па гэтай спасылцы, ідзе на распрацоўку Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Падрабязнасці на Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Адключыць Kayak</string>
     <string name="placepage_edit_bookmark_button">Рэдагаваць закладку</string>
     <string name="editor_comment_hint">Каментарый…</string>
     <string name="editor_reset_edits_message">Адмовіцца ад усіх лакальных змен?</string>
@@ -754,8 +765,8 @@
     <string name="isolines_location_error_dialog">Мапы рэльефа для гэтай мясцовасці пакуль што няма</string>
     <string name="elevation_profile_ascent">Пад\'ём</string>
     <string name="elevation_profile_descent">Спуск</string>
-    <string name="elevation_profile_minaltitude">Мін. вышыня</string>
-    <string name="elevation_profile_maxaltitude">Макс. вышыня</string>
+    <string name="elevation_profile_min_elevation">Мін. вышыня</string>
+    <string name="elevation_profile_max_elevation">Макс. вышыня</string>
     <string name="elevation_profile_difficulty">Складанасць</string>
     <string name="elevation_profile_distance">Адл.:</string>
     <string name="elevation_profile_time">Час:</string>
@@ -812,8 +823,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">На экран аўто</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Гэтаму прылажэнню патрабуецца доступ да вашага месцазнаходжання для навігацыі.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps патрабуе доступу да месцазнаходжання. Калі будзе бяспечна, праверце апавяшчэнне на тэлефоне.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Гэтай праграме патрабуецца ваш дазвол</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Для эфектыўнай працы Organic Maps у Android Auto патрабуецца дазвол на вызначэнне месцазнаходжання</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Дазволiць</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Падключаны да аўтамабіля</string>

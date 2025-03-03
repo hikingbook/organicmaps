@@ -251,6 +251,9 @@
     <string name="faq">Pertanyaan dan jawaban</string>
     <!-- Button in the main menu -->
     <string name="donate">Menyumbangkan</string>
+    <string name="already_donated">Sudah disumbang</string>
+    <string name="remind_me_later">Ingatkan nanti</string>
+    <string name="support_organic_maps">Mendukung Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Mendukung proyek</string>
     <!-- Button in the main Help dialog -->
@@ -292,6 +295,10 @@
     <string name="google_play_services">Layanan Lokasi Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Dengan cepat menentukan perkiraan lokasi Anda melalui Bluetooth, WiFi, atau jaringan seluler</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Tautan Hotel Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Foto, ulasan, tautan pemesanan ditampilkan untuk hotel yang memiliki daftar di Kayak.com. Bonus rujukan yang diterima untuk setiap pemesanan melalui tautan ini digunakan untuk pengembangan Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Unduh peta bersama rute</string>
     <!-- Text for routing error dialog -->
@@ -485,7 +492,7 @@
     <string name="editor_zip_code">Kode Pos</string>
     <string name="error_enter_correct_zip_code">Masukkan Kode Pos yang benar</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Tempat Tidak Dikenal</string>
+    <string name="core_placepage_unknown_place">Titik Peta</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Catatan untuk relawan OpenStreetMap (opsional)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -493,6 +500,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Hasil editan Anda akan diunggah ke database <a href="https://wiki.openstreetmap.org/wiki/About_OpenStreetMap">OpenStreetMap</a> publik. Mohon untuk tidak menambahkan informasi pribadi atau informasi yang memiliki hak cipta.</string>
     <string name="editor_more_about_osm">Selengkapnya tentang OpenStreetMap</string>
+    <string name="editor_osm_history">Riwayat pengeditan Anda</string>
+    <string name="editor_osm_notes">Catatan data peta Anda</string>
     <string name="editor_operator">Operator</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operator: %s</string>
@@ -522,6 +531,8 @@
     <string name="dialog_kayak_disclaimer">Bonus rujukan yang diterima untuk setiap pemesanan melalui tautan ini digunakan untuk pengembangan Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Perincian di Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Nonaktifkan Kayak</string>
     <string name="placepage_edit_bookmark_button">Edit Bookmark</string>
     <string name="editor_comment_hint">Komentar…</string>
     <string name="editor_reset_edits_message">Atur ulang perubahan lokal?</string>
@@ -724,8 +735,8 @@
     <string name="isolines_location_error_dialog">Lapisan topografi belum tersedia untuk wilayah ini</string>
     <string name="elevation_profile_ascent">Menanjak</string>
     <string name="elevation_profile_descent">Menurun</string>
-    <string name="elevation_profile_minaltitude">Ketinggian Min.</string>
-    <string name="elevation_profile_maxaltitude">Ketinggian Maks.</string>
+    <string name="elevation_profile_min_elevation">Min. tinggi</string>
+    <string name="elevation_profile_max_elevation">Maks. tinggi</string>
     <string name="elevation_profile_difficulty">Kesulitan</string>
     <string name="elevation_profile_distance">Jarak:</string>
     <string name="elevation_profile_time">Waktu:</string>
@@ -769,8 +780,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Ke layar mobil</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Aplikasi ini memerlukan akses ke lokasi Anda untuk tujuan navigasi.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps membutuhkan akses lokasi. Jika sudah aman, periksa notifikasi di ponsel Anda.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Aplikasi ini membutuhkan izin Anda</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps di Android Auto membutuhkan izin lokasi agar dapat bekerja secara efektif</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Memberikan Izin</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Terhubung ke mobil</string>
@@ -1516,6 +1531,7 @@
     <string name="type.railway.station">Rel kereta api</string>
     <string name="type.railway.station.funicular">Kereta gantung</string>
     <string name="type.railway.station.light_rail">Rel kereta api</string>
+    <string name="type.railway.station.light_rail.berlin">Rel kereta api</string>
     <string name="type.railway.station.light_rail.london">Rel kereta api</string>
     <string name="type.railway.station.light_rail.porto">Rel kereta api</string>
     <string name="type.railway.station.monorail">Rel kereta api</string>
@@ -1558,6 +1574,7 @@
     <string name="type.railway.station.subway.hamburg">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.helsinki">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.hiroshima">Stasiun bawah tanah</string>
+    <string name="type.railway.station.subway.hongkong">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.isfahan">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.istanbul">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.izmir">Stasiun bawah tanah</string>
@@ -1611,6 +1628,7 @@
     <string name="type.railway.station.subway.sendai">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.sf">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.shanghai">Stasiun bawah tanah</string>
+    <string name="type.railway.station.subway.shenzhen">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.shiraz">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.singapore">Stasiun bawah tanah</string>
     <string name="type.railway.station.subway.sofia">Stasiun bawah tanah</string>
@@ -1670,6 +1688,7 @@
     <string name="type.railway.subway_entrance.hamburg">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.helsinki">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.hiroshima">Pintu masuk kereta bawah tanah</string>
+    <string name="type.railway.subway_entrance.hongkong">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.isfahan">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.istanbul">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.izmir">Pintu masuk kereta bawah tanah</string>
@@ -1723,6 +1742,7 @@
     <string name="type.railway.subway_entrance.sendai">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.sf">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.shanghai">Pintu masuk kereta bawah tanah</string>
+    <string name="type.railway.subway_entrance.shenzhen">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.shiraz">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.singapore">Pintu masuk kereta bawah tanah</string>
     <string name="type.railway.subway_entrance.sofia">Pintu masuk kereta bawah tanah</string>

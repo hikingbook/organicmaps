@@ -250,6 +250,9 @@
     <string name="faq">Câu hỏi và trả lời</string>
     <!-- Button in the main menu -->
     <string name="donate">Quyên tặng</string>
+    <string name="already_donated">Đã quyên góp</string>
+    <string name="remind_me_later">Nhắc sau</string>
+    <string name="support_organic_maps">Hỗ trợ Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Hỗ trợ dự án</string>
     <!-- Button in the main Help dialog -->
@@ -291,6 +294,10 @@
     <string name="google_play_services">Dịch vụ vị trí của Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Nhanh chóng xác định vị trí gần đúng của bạn bằng Bluetooth, WiFi hoặc mạng di động</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Liên kết khách sạn Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Hình ảnh, đánh giá, liên kết đặt phòng được hiển thị cho các khách sạn có danh sách trên Kayak.com. Phần thưởng giới thiệu nhận được cho mỗi lần đặt phòng thông qua các liên kết này sẽ hướng tới sự phát triển của Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Tải xuống bản đồ theo tuyến đường</string>
     <!-- Text for routing error dialog -->
@@ -484,7 +491,7 @@
     <string name="editor_zip_code">Mã ZIP</string>
     <string name="error_enter_correct_zip_code">Nhập Mã ZIP chính xác</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Địa Điểm Chưa Biết</string>
+    <string name="core_placepage_unknown_place">Điểm bản đồ</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Lưu ý dành cho tình nguyện viên OpenStreetMap (tùy chọn)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -492,6 +499,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Các chỉnh sửa của bạn sẽ được tải lên cơ sở dữ liệu <a href="https://wiki.openstreetmap.org/wiki/About_OpenStreetMap">OpenStreetMap</a> công khai. Vui lòng không thêm thông tin cá nhân hoặc có bản quyền.</string>
     <string name="editor_more_about_osm">Thông tin bổ sung về OpenStreetMap</string>
+    <string name="editor_osm_history">Lịch sử chỉnh sửa của bạn</string>
+    <string name="editor_osm_notes">Ghi chú dữ liệu bản đồ của bạn</string>
     <string name="editor_operator">Toán tử</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Toán tử: %s</string>
@@ -521,6 +530,8 @@
     <string name="dialog_kayak_disclaimer">Phần thưởng giới thiệu nhận được cho mỗi lần đặt phòng thông qua liên kết này sẽ hướng tới việc phát triển bản đồ không phải trả tiền.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Chi tiết trên Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Vô hiệu hóa Kayak</string>
     <string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
     <string name="editor_comment_hint">Nhận xét…</string>
     <string name="editor_reset_edits_message">Cài đặt lại tất cả thay đổi cục bộ?</string>
@@ -723,8 +734,8 @@
     <string name="isolines_location_error_dialog">Đường hiển thị độ cao hiện chưa khả dụng tại khu vực này</string>
     <string name="elevation_profile_ascent">Đi lên</string>
     <string name="elevation_profile_descent">Đi xuống</string>
-    <string name="elevation_profile_minaltitude">Độ cao tối thiểu</string>
-    <string name="elevation_profile_maxaltitude">Độ cao tối đa</string>
+    <string name="elevation_profile_min_elevation">Min. độ cao</string>
+    <string name="elevation_profile_max_elevation">Max. độ cao</string>
     <string name="elevation_profile_difficulty">Độ khó</string>
     <string name="elevation_profile_distance">Khoảng cách</string>
     <string name="elevation_profile_time">Giờ:</string>
@@ -766,8 +777,12 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Đến màn hình ô tô</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Ứng dụng này yêu cầu quyền truy cập vào vị trí của bạn cho mục đích điều hướng.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Bản đồ không phải trả tiền cần quyền truy cập vị trí. Khi an toàn, hãy kiểm tra thông báo trên điện thoại của bạn.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Ứng dụng này cần sự cho phép của bạn</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Bản đồ không phải trả tiền trong Android Auto cần có quyền truy cập vị trí để hoạt động hiệu quả</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Cấp quyền</string>
     <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
     <string name="aa_connected_to_car_notification_title">Đã kết nối với ô tô</string>
@@ -1520,6 +1535,7 @@
     <string name="type.railway.station">Đường tàu hỏa</string>
     <string name="type.railway.station.funicular">Đường sắt leo núi</string>
     <string name="type.railway.station.light_rail">Đường tàu hỏa</string>
+    <string name="type.railway.station.light_rail.berlin">Đường tàu hỏa</string>
     <string name="type.railway.station.light_rail.london">Đường tàu hỏa</string>
     <string name="type.railway.station.light_rail.porto">Đường tàu hỏa</string>
     <string name="type.railway.station.monorail">Đường tàu hỏa</string>
@@ -1562,6 +1578,7 @@
     <string name="type.railway.station.subway.hamburg">Ngầm</string>
     <string name="type.railway.station.subway.helsinki">Ngầm</string>
     <string name="type.railway.station.subway.hiroshima">Ngầm</string>
+    <string name="type.railway.station.subway.hongkong">Ngầm</string>
     <string name="type.railway.station.subway.isfahan">Ngầm</string>
     <string name="type.railway.station.subway.istanbul">Ngầm</string>
     <string name="type.railway.station.subway.izmir">Ngầm</string>
@@ -1615,6 +1632,7 @@
     <string name="type.railway.station.subway.sendai">Ngầm</string>
     <string name="type.railway.station.subway.sf">Ngầm</string>
     <string name="type.railway.station.subway.shanghai">Ngầm</string>
+    <string name="type.railway.station.subway.shenzhen">Ngầm</string>
     <string name="type.railway.station.subway.shiraz">Ngầm</string>
     <string name="type.railway.station.subway.singapore">Ngầm</string>
     <string name="type.railway.station.subway.sofia">Ngầm</string>
@@ -1674,6 +1692,7 @@
     <string name="type.railway.subway_entrance.hamburg">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.helsinki">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.hiroshima">Lỗi vào Metro</string>
+    <string name="type.railway.subway_entrance.hongkong">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.isfahan">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.istanbul">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.izmir">Lỗi vào Metro</string>
@@ -1727,6 +1746,7 @@
     <string name="type.railway.subway_entrance.sendai">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.sf">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.shanghai">Lỗi vào Metro</string>
+    <string name="type.railway.subway_entrance.shenzhen">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.shiraz">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.singapore">Lỗi vào Metro</string>
     <string name="type.railway.subway_entrance.sofia">Lỗi vào Metro</string>

@@ -931,13 +931,15 @@ Java_app_organicmaps_Framework_nativePlacePageActivationListener(JNIEnv *env, jc
     jni::TScopedLocalRef placePageDataRef(env, nullptr);
     if (info.IsTrack())
     {
-      auto const elevationInfo = frm()->GetBookmarkManager().MakeElevationInfo(info.GetTrackId());
-      placePageDataRef.reset(usermark_helper::CreateElevationInfo(env, elevationInfo));
+      // todo: (KK) implement elevation info handling for the proper track selection
+      auto const & track = frm()->GetBookmarkManager().GetTrack(info.GetTrackId());
+      auto const & elevationInfo = track->GetElevationInfo();
+      if (elevationInfo.has_value())
+        placePageDataRef.reset(usermark_helper::CreateElevationInfo(env, elevationInfo.value()));
     }
-    else
-    {
+    if (!placePageDataRef)
       placePageDataRef.reset(usermark_helper::CreateMapObject(env, info));
-    }
+
     env->CallVoidMethod(g_placePageActivationListener, activatedId, placePageDataRef.get());
   };
   auto const closePlacePage = [deactivateId]()
@@ -1982,14 +1984,83 @@ Java_app_organicmaps_Framework_nativeMemoryWarning(JNIEnv *, jclass)
 
 JNIEXPORT jstring JNICALL
 Java_app_organicmaps_Framework_nativeGetKayakHotelLink(JNIEnv * env, jclass, jstring countryIsoCode, jstring uri,
-                                                        jlong firstDaySec, jlong lastDaySec, jboolean isReferral)
+                                                        jlong firstDaySec, jlong lastDaySec)
 {
   string const url = osm::GetKayakHotelURLFromURI(jni::ToNativeString(env, countryIsoCode),
                                                   jni::ToNativeString(env, uri),
                                                   static_cast<time_t>(firstDaySec),
-                                                  static_cast<time_t>(lastDaySec),
-                                                  isReferral);
+                                                  static_cast<time_t>(lastDaySec));
   return url.empty() ? nullptr : jni::ToJavaString(env, url);
+}
+
+JNIEXPORT jboolean JNICALL
+Java_app_organicmaps_Framework_nativeShouldShowProducts(JNIEnv * env, jclass)
+{
+  return frm()->ShouldShowProducts();
+}
+
+JNIEXPORT jobject JNICALL
+Java_app_organicmaps_Framework_nativeGetProductsConfiguration(JNIEnv * env, jclass)
+{
+  auto config = frm()->GetProductsConfiguration();
+  if (!config) return nullptr;
+
+  static jclass const productClass = jni::GetGlobalClassRef(
+    env,
+    "app/organicmaps/products/Product"
+  );
+  static jmethodID const productConstructor = jni::GetConstructorID(
+    env,
+    productClass,
+    "(Ljava/lang/String;Ljava/lang/String;)V"
+  );
+
+  jobjectArray products = jni::ToJavaArray(
+    env,
+    productClass,
+    config->GetProducts(),
+    [](JNIEnv * env, products::ProductsConfig::Product const & product)
+    {
+      jni::TScopedLocalRef const title(env, jni::ToJavaString(env, product.GetTitle()));
+      jni::TScopedLocalRef const link(env, jni::ToJavaString(env, product.GetLink()));
+
+      return env->NewObject(
+        productClass,
+        productConstructor,
+        title.get(),
+        link.get()
+      );
+    });
+
+  static jclass const productsConfigClass = jni::GetGlobalClassRef(
+    env,
+    "app/organicmaps/products/ProductsConfig"
+  );
+  static jmethodID const productsConfigConstructor = jni::GetConstructorID(
+    env,
+    productsConfigClass,
+    "(Ljava/lang/String;[Lapp/organicmaps/products/Product;)V"
+  );
+
+  jni::TScopedLocalRef const placePagePrompt(env, jni::ToJavaString(env, config->GetPlacePagePrompt()));
+  return env->NewObject(productsConfigClass, productsConfigConstructor, placePagePrompt.get(), products);
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_Framework_nativeDidCloseProductsPopup(JNIEnv * env, jclass, jstring reason)
+{
+  frm()->DidCloseProductsPopup(frm()->FromString(jni::ToNativeString(env, reason)));
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_Framework_nativeDidSelectProduct(JNIEnv * env, jclass, jstring title, jstring link)
+{
+  products::ProductsConfig::Product product(
+    jni::ToNativeString(env, title),
+    jni::ToNativeString(env, link)
+  );
+
+  frm()->DidSelectProduct(product);
 }
 
 }  // extern "C"

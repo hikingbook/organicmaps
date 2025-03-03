@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Voer een geldige postcode in";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Onbekende locatie";
+"core_placepage_unknown_place" = "Kaartpunt";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Opmerking voor OpenStreetMap vrijwilligers (optioneel)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Exploitant: %@";
+
+"editor_category_unsuitable_title" = "Kun je geen geschikte categorie vinden?";
+
+"editor_category_unsuitable_text" = "Met Organic Maps kun je alleen eenvoudige puntcategorieën toevoegen, dus geen steden, wegen, meren, contouren van gebouwen, enzovoort. Voeg zulke categorieën direct toe aan <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Bekijk onze <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">gids</a> voor gedetailleerde stap voor stap instructies.";
 
 "downloader_no_downloaded_maps_title" = "U hebt geen kaarten gedownload";
 
@@ -815,6 +819,9 @@
 
 /* A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. */
 "dialog_kayak_button" = "Details op Kayak";
+
+/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
+"dialog_kayak_disable_button" = "Kayak uitschakelen";
 
 "placepage_call_button" = "Bel";
 
@@ -1221,9 +1228,9 @@
 
 "elevation_profile_descent" = "Daling";
 
-"elevation_profile_minaltitude" = "Min. hoogte";
+"elevation_profile_min_elevation" = "Min. hoogte";
 
-"elevation_profile_maxaltitude" = "Max. hoogte";
+"elevation_profile_max_elevation" = "Max. hoogte";
 
 "elevation_profile_difficulty" = "Moeilijkheid";
 
@@ -1249,6 +1256,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Verwijder traject";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Weet u zeker dat u deze track wilt verwijderen?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Trajectnaam";
@@ -1401,6 +1411,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Route is leeg - niets om op te slaan";
+
+"edit_track" = "Route bewerken";
 
 
 /********** Types **********/
@@ -3066,6 +3078,8 @@
 
 "type.railway.station.light_rail" = "Station";
 
+"type.railway.station.light_rail.berlin" = "Station";
+
 "type.railway.station.light_rail.london" = "Station";
 
 "type.railway.station.light_rail.porto" = "Station";
@@ -3149,6 +3163,8 @@
 "type.railway.station.subway.helsinki" = "Metrostation";
 
 "type.railway.station.subway.hiroshima" = "Metrostation";
+
+"type.railway.station.subway.hongkong" = "Metrostation";
 
 "type.railway.station.subway.isfahan" = "Metrostation";
 
@@ -3255,6 +3271,8 @@
 "type.railway.station.subway.sf" = "Metrostation";
 
 "type.railway.station.subway.shanghai" = "Metrostation";
+
+"type.railway.station.subway.shenzhen" = "Metrostation";
 
 "type.railway.station.subway.shiraz" = "Metrostation";
 
@@ -3380,6 +3398,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Metro ingang";
 
+"type.railway.subway_entrance.hongkong" = "Metro ingang";
+
 "type.railway.subway_entrance.isfahan" = "Metro ingang";
 
 "type.railway.subway_entrance.istanbul" = "Metro ingang";
@@ -3485,6 +3505,8 @@
 "type.railway.subway_entrance.sf" = "Metro ingang";
 
 "type.railway.subway_entrance.shanghai" = "Metro ingang";
+
+"type.railway.subway_entrance.shenzhen" = "Metro ingang";
 
 "type.railway.subway_entrance.shiraz" = "Metro ingang";
 
