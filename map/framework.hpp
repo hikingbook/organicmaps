@@ -17,6 +17,7 @@
 #include "map/track.hpp"
 #include "map/traffic_manager.hpp"
 #include "map/transit/transit_reader.hpp"
+#include "map/gps_track_collection.hpp"
 
 #include "drape_frontend/gui/skin.hpp"
 #include "drape_frontend/drape_api.hpp"
@@ -402,6 +403,7 @@ public:
 
     bool m_isChoosePositionMode = false;
     df::Hints m_hints;
+    dp::RenderInjectionHandler m_renderInjectionHandler;
   };
 
   void CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFactory, DrapeCreationParams && params);
@@ -435,7 +437,9 @@ public:
   void ConnectToGpsTracker();
   void DisconnectFromGpsTracker();
 
+  using TrackRecordingUpdateHandler = platform::SafeCallback<void(GpsTrackInfo const & trackInfo)>;
   void StartTrackRecording();
+  void SetTrackRecordingUpdateHandler(TrackRecordingUpdateHandler && trackRecordingDidUpdate);
   void StopTrackRecording();
   void SaveTrackRecordingWithName(std::string const & name);
   bool IsTrackRecordingEmpty() const;
@@ -463,7 +467,10 @@ private:
   TCurrentCountryChanged m_currentCountryChanged;
 
   void OnUpdateGpsTrackPointsCallback(std::vector<std::pair<size_t, location::GpsInfo>> && toAdd,
-                                      std::pair<size_t, size_t> const & toRemove);
+                                      std::pair<size_t, size_t> const & toRemove,
+                                      GpsTrackInfo const & trackInfo);
+
+  TrackRecordingUpdateHandler m_trackRecordingUpdateHandler;
 
   CachingRankTableLoader m_popularityLoader;
 
@@ -553,6 +560,8 @@ public:
   void Rotate(double azimuth, bool isAnim);
 
   void TouchEvent(df::TouchEvent const & touch);
+
+  void MakeFrameActive();
 
   int GetDrawScale() const;
 
@@ -758,6 +767,7 @@ public:
   void OnPowerSchemeChanged(power_management::Scheme const actualScheme) override;
 
 public:
+  bool ShouldShowProducts() const;
   std::optional<products::ProductsConfig> GetProductsConfiguration() const;
 
   enum class ProductsPopupCloseReason
@@ -768,12 +778,12 @@ public:
     RemindLater
   };
 
+  ProductsPopupCloseReason FromString(std::string const & str) const;
+
   void DidCloseProductsPopup(ProductsPopupCloseReason reason) const;
   void DidSelectProduct(products::ProductsConfig::Product const & product) const;
 
 private:
-  bool ShouldShowProducts() const;
   uint32_t GetTimeoutForReason(ProductsPopupCloseReason reason) const;
   std::string_view ToString(ProductsPopupCloseReason reason) const;
-  ProductsPopupCloseReason FromString(std::string const & str) const;
 };

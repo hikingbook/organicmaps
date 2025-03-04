@@ -239,6 +239,9 @@
     <string name="faq">پرسش‌های زیاد پرسیده شده</string>
     <!-- Button in the main menu -->
     <string name="donate">حمایت مالی</string>
+    <string name="already_donated">قبلاً اهدا شده</string>
+    <string name="remind_me_later">بعداً یادآوری کن</string>
+    <string name="support_organic_maps">پشتیبانی از Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">ﺪﯿﻨﮐ ﺖﯾﺎﻤﺣ ﻩﮊﻭﺮﭘ ﺯﺍ</string>
     <!-- Button in the main Help dialog -->
@@ -280,6 +283,10 @@
     <string name="google_play_services">خدمات مکان Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">به سرعت مکان تقریبی خود را با استفاده از بلوتوث، WiFi یا شبکه تلفن همراه تعیین کنید</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">لینک های هتل Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">عکسu200cها، نظرات، لینکu200cهای رزرو برای هتلu200cهایی که فهرستی در Kayak.com دارند نمایش داده میu200cشوند. پاداش ارجاعی دریافت شده برای هر رزرو از طریق این پیوندها به سمت توسعه Organic Maps می رود.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">دانلود تمامی نقشه‌ها در طول مسیر‌تان</string>
     <!-- Text for routing error dialog -->
@@ -477,7 +484,7 @@
     <string name="editor_zip_code">کدپستی</string>
     <string name="error_enter_correct_zip_code">یک کد‌ پستی معتبر وارد کنید</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">مکان ناشناس</string>
+    <string name="core_placepage_unknown_place">نقطه نقشه</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">توجه به داوطلبان OpenStreetMap (اختیاری)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -485,6 +492,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">ویرایش های شما در پایگاه داده عمومی <a href="https://wiki.openstreetmap.org/wiki/Fa:About_OpenStreetMap">OpenStreetMap</a> آپلود می شود. لطفا اطلاعات شخصی یا دارای حق چاپ را اضافه نکنید.</string>
     <string name="editor_more_about_osm">در مورد OpenStreetMap بیشتر بدانید</string>
+    <string name="editor_osm_history">سابقه ویرایش شما</string>
+    <string name="editor_osm_notes">یادداشت های داده های نقشه شما</string>
     <string name="editor_operator">اپراتور</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">اپراتور: %s</string>
@@ -514,6 +523,8 @@
     <string name="dialog_kayak_disclaimer">پاداش ارجاعی دریافت شده برای هر رزرو از طریق این پیوند به سمت توسعه نقشه های ارگانیک می رود.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">جزئیات در Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Kayak را غیرفعال کنید</string>
     <string name="placepage_edit_bookmark_button">ویرایش نشانه‌ها</string>
     <string name="editor_comment_hint">اظهار نظر</string>
     <string name="editor_reset_edits_message">آیا تغییرات محلی را نادیده می گیرید؟</string>
@@ -718,8 +729,8 @@
     <string name="isolines_location_error_dialog">لایه توپوگرافی هنوز برای این منطقه در دسترس نیست</string>
     <string name="elevation_profile_ascent">بالا رفتن</string>
     <string name="elevation_profile_descent">پایین آمدن</string>
-    <string name="elevation_profile_minaltitude">کمینه ارتفاع</string>
-    <string name="elevation_profile_maxaltitude">بیشینه ارتفاع</string>
+    <string name="elevation_profile_min_elevation">کم ارتفاع</string>
+    <string name="elevation_profile_max_elevation">بیش ارتفاع</string>
     <string name="elevation_profile_difficulty">دشواری</string>
     <string name="elevation_profile_distance">مسافت</string>
     <string name="elevation_profile_time">زمان:</string>
@@ -765,11 +776,13 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">به صفحه ماشین</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">این برنامه برای اهداف ناوبری نیاز به دسترسی به موقعیت مکانی شما دارد.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps به دسترسی به مکان نیاز دارد. وقتی ایمن است، اعلان گوشی خود را بررسی کنید.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">این برنامه به اجازه شما نیاز دارد</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">نقشهu200cهای ارگانیک در Android Auto برای کارکرد مؤثر به مجوز مکان نیاز دارد</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">اعطای مجوزها</string>
-    <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
-    <string name="aa_connected_to_car_notification_title">متصل به ماشین</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
     <string name="button_layer_outdoor">پیاده روی</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
@@ -1432,6 +1445,7 @@
     <string name="type.railway.station">ایستگاه قطار</string>
     <string name="type.railway.station.funicular">فونیکولور</string>
     <string name="type.railway.station.light_rail">ایستگاه قطار</string>
+    <string name="type.railway.station.light_rail.berlin">ایستگاه قطار</string>
     <string name="type.railway.station.light_rail.london">ایستگاه قطار</string>
     <string name="type.railway.station.light_rail.porto">ایستگاه قطار</string>
     <string name="type.railway.station.monorail">ایستگاه قطار</string>
@@ -1474,6 +1488,7 @@
     <string name="type.railway.station.subway.hamburg">حمل و نقل</string>
     <string name="type.railway.station.subway.helsinki">حمل و نقل</string>
     <string name="type.railway.station.subway.hiroshima">حمل و نقل</string>
+    <string name="type.railway.station.subway.hongkong">حمل و نقل</string>
     <string name="type.railway.station.subway.isfahan">حمل و نقل</string>
     <string name="type.railway.station.subway.istanbul">حمل و نقل</string>
     <string name="type.railway.station.subway.izmir">حمل و نقل</string>
@@ -1527,6 +1542,7 @@
     <string name="type.railway.station.subway.sendai">حمل و نقل</string>
     <string name="type.railway.station.subway.sf">حمل و نقل</string>
     <string name="type.railway.station.subway.shanghai">حمل و نقل</string>
+    <string name="type.railway.station.subway.shenzhen">حمل و نقل</string>
     <string name="type.railway.station.subway.shiraz">حمل و نقل</string>
     <string name="type.railway.station.subway.singapore">حمل و نقل</string>
     <string name="type.railway.station.subway.sofia">حمل و نقل</string>
@@ -1586,6 +1602,7 @@
     <string name="type.railway.subway_entrance.hamburg">ورودی مترو</string>
     <string name="type.railway.subway_entrance.helsinki">ورودی مترو</string>
     <string name="type.railway.subway_entrance.hiroshima">ورودی مترو</string>
+    <string name="type.railway.subway_entrance.hongkong">ورودی مترو</string>
     <string name="type.railway.subway_entrance.isfahan">ورودی مترو</string>
     <string name="type.railway.subway_entrance.istanbul">ورودی مترو</string>
     <string name="type.railway.subway_entrance.izmir">ورودی مترو</string>
@@ -1639,6 +1656,7 @@
     <string name="type.railway.subway_entrance.sendai">ورودی مترو</string>
     <string name="type.railway.subway_entrance.sf">ورودی مترو</string>
     <string name="type.railway.subway_entrance.shanghai">ورودی مترو</string>
+    <string name="type.railway.subway_entrance.shenzhen">ورودی مترو</string>
     <string name="type.railway.subway_entrance.shiraz">ورودی مترو</string>
     <string name="type.railway.subway_entrance.singapore">ورودی مترو</string>
     <string name="type.railway.subway_entrance.sofia">ورودی مترو</string>
