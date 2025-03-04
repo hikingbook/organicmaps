@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "輸入正確的郵遞區號";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "未知地點";
+"core_placepage_unknown_place" = "地圖點";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "OpenStreetMap 志工注意事項（可選）";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "操作員: %@";
+
+"editor_category_unsuitable_title" = "找不到合適的類別？";
+
+"editor_category_unsuitable_text" = "Organic Maps 只允許添加簡單的點類別，即無法添加城鎮、道路、湖泊、建築輪廓等類別。請直接向 <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a> 新增此類類別。請查看我們的<a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">指南</a>，以了解詳細的步驟說明。";
 
 "downloader_no_downloaded_maps_title" = "您尚未下載任何地圖";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "下坡";
 
-"elevation_profile_minaltitude" = "最小高度";
+"elevation_profile_min_elevation" = "最低高度";
 
-"elevation_profile_maxaltitude" = "最大高度";
+"elevation_profile_max_elevation" = "最高高度";
 
 "elevation_profile_difficulty" = "難度";
-
-"elevation_profile_time" = "時間：";
 
 "isolines_toast_zooms_1_10" = "放大地圖以查看等高線";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "刪除軌跡";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "您確定要刪除該曲目嗎？";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "軌跡名稱";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "軌跡為空 - 沒有可保存的內容";
+
+"edit_track" = "編輯軌跡";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "輕軌車站";
 
+"type.railway.station.light_rail.berlin" = "輕軌車站";
+
 "type.railway.station.light_rail.london" = "輕軌車站";
 
 "type.railway.station.light_rail.porto" = "輕軌車站";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "捷運站";
 
 "type.railway.station.subway.hiroshima" = "捷運站";
+
+"type.railway.station.subway.hongkong" = "捷運站";
 
 "type.railway.station.subway.isfahan" = "捷運站";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "捷運站";
 
 "type.railway.station.subway.shanghai" = "捷運站";
+
+"type.railway.station.subway.shenzhen" = "捷運站";
 
 "type.railway.station.subway.shiraz" = "捷運站";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "地鐵入口";
 
+"type.railway.subway_entrance.hongkong" = "地鐵入口";
+
 "type.railway.subway_entrance.isfahan" = "地鐵入口";
 
 "type.railway.subway_entrance.istanbul" = "地鐵入口";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "地鐵入口";
 
 "type.railway.subway_entrance.shanghai" = "地鐵入口";
+
+"type.railway.subway_entrance.shenzhen" = "地鐵入口";
 
 "type.railway.subway_entrance.shiraz" = "地鐵入口";
 

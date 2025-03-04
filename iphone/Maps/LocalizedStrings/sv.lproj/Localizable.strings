@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Ange korrekt postnr";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Okänd plats";
+"core_placepage_unknown_place" = "Kartpunkt";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Meddelande till OpenStreetMap-volontärer (valfritt)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Operatör: %@";
+
+"editor_category_unsuitable_title" = "Hittar du ingen lämplig kategori?";
+
+"editor_category_unsuitable_text" = "Organic Maps tillåter endast att lägga till enkla punktkategorier, det betyder inga städer, vägar, sjöar, byggnadskonturer etc. Lägg till sådana kategorier direkt till <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Kontrollera vår <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">guide</a> för detaljerade steg-för-steg-instruktioner.";
 
 "downloader_no_downloaded_maps_title" = "Du har inte laddat ner några kartor";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Backe";
 
-"elevation_profile_minaltitude" = "Min. höjd";
+"elevation_profile_min_elevation" = "Min. höjd";
 
-"elevation_profile_maxaltitude" = "Max. höjd";
+"elevation_profile_max_elevation" = "Max. höjd";
 
 "elevation_profile_difficulty" = "Svårighet";
-
-"elevation_profile_time" = "Tid:";
 
 "isolines_toast_zooms_1_10" = "Förstora kartan för att se höjdlinjer";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Är du säker på att du vill radera det här spåret?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Routen är tom - inget att spara";
+
+"edit_track" = "Redigera rutt";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Tågstation";
 
+"type.railway.station.light_rail.berlin" = "Tågstation";
+
 "type.railway.station.light_rail.london" = "Tågstation";
 
 "type.railway.station.light_rail.porto" = "Tågstation";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Tunnelbana";
 
 "type.railway.station.subway.hiroshima" = "Tunnelbana";
+
+"type.railway.station.subway.hongkong" = "Tunnelbana";
 
 "type.railway.station.subway.isfahan" = "Tunnelbana";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Tunnelbana";
 
 "type.railway.station.subway.shanghai" = "Tunnelbana";
+
+"type.railway.station.subway.shenzhen" = "Tunnelbana";
 
 "type.railway.station.subway.shiraz" = "Tunnelbana";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Tunnelbana entré";
 
+"type.railway.subway_entrance.hongkong" = "Tunnelbana entré";
+
 "type.railway.subway_entrance.isfahan" = "Tunnelbana entré";
 
 "type.railway.subway_entrance.istanbul" = "Tunnelbana entré";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Tunnelbana entré";
 
 "type.railway.subway_entrance.shanghai" = "Tunnelbana entré";
+
+"type.railway.subway_entrance.shenzhen" = "Tunnelbana entré";
 
 "type.railway.subway_entrance.shiraz" = "Tunnelbana entré";
 

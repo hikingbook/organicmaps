@@ -313,7 +313,7 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   // It's better to use strings from strings.txt instead of hardcoding them here.
   m_stringsBundle.SetDefaultString("core_entrance", "Entrance");
   m_stringsBundle.SetDefaultString("core_exit", "Exit");
-  m_stringsBundle.SetDefaultString("core_placepage_unknown_place", "Unknown Place");
+  m_stringsBundle.SetDefaultString("core_placepage_unknown_place", "Map Point");
   m_stringsBundle.SetDefaultString("core_my_places", "My Places");
   m_stringsBundle.SetDefaultString("core_my_position", "My Position");
   m_stringsBundle.SetDefaultString("postal_code", "Postal Code");
@@ -657,7 +657,9 @@ void Framework::FillTrackInfo(Track const & track, m2::PointD const & trackPoint
 {
   info.SetTrackId(track.GetId());
   info.SetBookmarkCategoryId(track.GetGroupId());
+  info.SetBookmarkCategoryName(GetBookmarkManager().GetCategoryName(track.GetGroupId()));
   info.SetMercator(trackPoint);
+  info.SetTitlesForTrack(track);
 }
 
 search::ReverseGeocoder::Address Framework::GetAddressAtPoint(m2::PointD const & pt) const
@@ -885,20 +887,25 @@ void Framework::ShowTrack(kml::TrackId trackId)
 {
   auto & bm = GetBookmarkManager();
   auto const track = bm.GetTrack(trackId);
-  if (track == nullptr)
-    return;
+
+  StopLocationFollow();
 
   auto rect = track->GetLimitRect();
   ExpandRectForPreview(rect);
 
-  StopLocationFollow();
-  ShowRect(rect);
+  place_page::BuildInfo info;
+  info.m_trackId = trackId;
+  info.m_mercator = rect.Center();
 
-  auto es = GetBookmarkManager().GetEditSession();
+  m_currentPlacePageInfo = BuildPlacePageInfo(info);
+
+  auto es = bm.GetEditSession();
   es.SetIsVisible(track->GetGroupId(), true /* visible */);
 
-  if (track->IsInteractive())
-    bm.SetDefaultTrackSelection(trackId, true /* showInfoSign */);
+  if (m_drapeEngine)
+    m_drapeEngine->SetModelViewCenter(rect.Center(), scales::GetScaleLevel(rect), true /* isAnim */, true /* trackVisibleViewport */);
+
+  ActivateMapSelection();
 }
 
 void Framework::ShowBookmarkCategory(kml::MarkGroupId categoryId, bool animation)
@@ -915,15 +922,6 @@ void Framework::ShowBookmarkCategory(kml::MarkGroupId categoryId, bool animation
 
   auto es = bm.GetEditSession();
   es.SetIsVisible(categoryId, true /* visible */);
-
-  auto const & trackIds = bm.GetTrackIds(categoryId);
-  for (auto trackId : trackIds)
-  {
-    if (!bm.GetTrack(trackId)->IsInteractive())
-      continue;
-    bm.SetDefaultTrackSelection(trackId, true /* showInfoSign */);
-    break;
-  }
 }
 
 void Framework::ShowFeature(FeatureID const & featureId)
@@ -1135,6 +1133,12 @@ void Framework::TouchEvent(df::TouchEvent const & touch)
 {
   if (m_drapeEngine != nullptr)
     m_drapeEngine->AddTouchEvent(touch);
+}
+
+void Framework::MakeFrameActive()
+{
+  if (m_drapeEngine != nullptr)
+    m_drapeEngine->MakeFrameActive();
 }
 
 int Framework::GetDrawScale() const
@@ -1558,7 +1562,8 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
       params.m_isChoosePositionMode, params.m_isChoosePositionMode, GetSelectedFeatureTriangles(),
       m_routingManager.IsRoutingActive() && m_routingManager.IsRoutingFollowing(),
       isAutozoomEnabled, simplifiedTrafficColors, std::nullopt /* arrow3dCustomDecl */,
-      std::move(overlaysShowStatsFn), std::move(onGraphicsContextInitialized));
+      std::move(overlaysShowStatsFn), std::move(onGraphicsContextInitialized), 
+      std::move(params.m_renderInjectionHandler));
 
   m_drapeEngine = make_unique_dp<df::DrapeEngine>(std::move(p));
   m_drapeEngine->SetModelViewListener([this](ScreenBase const & screen)
@@ -1589,7 +1594,7 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
   LoadViewport();
 
   if (m_connectToGpsTrack)
-    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2));
+    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
 
   GetBookmarkManager().SetDrapeEngine(make_ref(m_drapeEngine));
   m_drapeApi.SetDrapeEngine(make_ref(m_drapeEngine));
@@ -1701,7 +1706,7 @@ void Framework::ConnectToGpsTracker()
   if (m_drapeEngine)
   {
     m_drapeEngine->ClearGpsTrackPoints();
-    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2));
+    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
   }
 }
 
@@ -1722,8 +1727,15 @@ void Framework::StartTrackRecording()
   if (m_drapeEngine)
   {
     m_drapeEngine->ClearGpsTrackPoints();
-    tracker.Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2));
+    tracker.Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
   }
+}
+
+void Framework::SetTrackRecordingUpdateHandler(TrackRecordingUpdateHandler && trackRecordingDidUpdate)
+{
+  m_trackRecordingUpdateHandler = std::move(trackRecordingDidUpdate);
+  if (m_trackRecordingUpdateHandler)
+    m_trackRecordingUpdateHandler(GpsTracker::Instance().GetTrackInfo());
 }
 
 void Framework::StopTrackRecording()
@@ -1754,7 +1766,8 @@ bool Framework::IsTrackRecordingEnabled() const
 }
 
 void Framework::OnUpdateGpsTrackPointsCallback(vector<pair<size_t, location::GpsInfo>> && toAdd,
-                                               pair<size_t, size_t> const & toRemove)
+                                               pair<size_t, size_t> const & toRemove,
+                                               GpsTrackInfo const & trackInfo)
 {
   ASSERT(m_drapeEngine.get() != nullptr, ());
 
@@ -1781,6 +1794,9 @@ void Framework::OnUpdateGpsTrackPointsCallback(vector<pair<size_t, location::Gps
   }
 
   m_drapeEngine->UpdateGpsTrackPoints(std::move(pointsAdd), std::move(indicesRemove));
+
+  if (m_trackRecordingUpdateHandler)
+    m_trackRecordingUpdateHandler(trackInfo);
 }
 
 void Framework::MarkMapStyle(MapStyle mapStyle)
@@ -2229,11 +2245,26 @@ place_page::Info Framework::BuildPlacePageInfo(place_page::BuildInfo const & bui
   FeatureID selectedFeature = buildInfo.m_featureId;
   auto const isFeatureMatchingEnabled = buildInfo.IsFeatureMatchingEnabled();
 
+  // @TODO: (KK) Enable track selection.
+  // The isTrackSelectionEnabled should be removed to enable the track selection when the UI will be implemented.
+  #if defined(TARGET_OS_IPHONE)
+    bool constexpr isTrackSelectionEnabled = true;
+  #else
+    bool constexpr isTrackSelectionEnabled = false;
+  #endif
+
   // Using VisualParams inside FindTrackInTapPosition/GetDefaultTapRect requires drapeEngine.
-  if (m_drapeEngine != nullptr && buildInfo.IsTrackMatchingEnabled() &&
+  if (isTrackSelectionEnabled && m_drapeEngine != nullptr && buildInfo.IsTrackMatchingEnabled() &&
       !(isFeatureMatchingEnabled && selectedFeature.IsValid()))
   {
-    auto const trackSelectionInfo = FindTrackInTapPosition(buildInfo);
+    Track::TrackSelectionInfo trackSelectionInfo;
+    if (buildInfo.m_trackId != kml::kInvalidTrackId)
+    {
+      auto const & track = *GetBookmarkManager().GetTrack(buildInfo.m_trackId);
+      track.UpdateSelectionInfo(track.GetLimitRect(), trackSelectionInfo);
+    }
+    else
+      trackSelectionInfo = FindTrackInTapPosition(buildInfo);
     if (trackSelectionInfo.m_trackId != kml::kInvalidTrackId)
     {
       BuildTrackPlacePage(trackSelectionInfo, outInfo);
@@ -2449,6 +2480,9 @@ void Framework::SetMapLanguageCode(std::string const & langCode)
   settings::Set(settings::kMapLanguageCode, langCode);
   if (m_drapeEngine)
     ApplyMapLanguageCode(langCode);
+
+  if (m_searchAPI)
+    m_searchAPI->SetLocale(langCode);
 }
 
 void Framework::ApplyMapLanguageCode(std::string const & langCode)

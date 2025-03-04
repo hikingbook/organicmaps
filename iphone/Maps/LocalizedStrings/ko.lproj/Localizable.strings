@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "올바른 우편번호를 입력하세요";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "장소 알 수 없음";
+"core_placepage_unknown_place" = "지도 지점";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "오픈스트리트맵 자원 봉사자 참고 사항(선택 사항)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "연산자: %@";
+
+"editor_category_unsuitable_title" = "적합한 카테고리를 찾을 수 없나요?";
+
+"editor_category_unsuitable_text" = "오가닉 지도에서는 단순한 포인트 카테고리만 추가할 수 있으므로 도시, 도로, 호수, 건물 윤곽선 등은 추가할 수 없습니다. 이러한 카테고리는 <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a> 에 직접 추가하세요. 자세한 단계별 지침은 <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">가이드</a>를 참조하세요.";
 
 "downloader_no_downloaded_maps_title" = "지도를 다운로드하지 않았습니다";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "내려가기";
 
-"elevation_profile_minaltitude" = "산 최소 높이";
+"elevation_profile_min_elevation" = "최소 높이";
 
-"elevation_profile_maxaltitude" = "산 최대 높이";
+"elevation_profile_max_elevation" = "최대 높이";
 
 "elevation_profile_difficulty" = "난이도";
-
-"elevation_profile_time" = "소비 시간:";
 
 "isolines_toast_zooms_1_10" = "등치선 탐색을 위한 확대";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "이 트랙을 삭제하시겠습니까?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "경로가 비어 있음 - 저장할 항목이 없음";
+
+"edit_track" = "경로 편집";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "기차역";
 
+"type.railway.station.light_rail.berlin" = "기차역";
+
 "type.railway.station.light_rail.london" = "기차역";
 
 "type.railway.station.light_rail.porto" = "기차역";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "지하철";
 
 "type.railway.station.subway.hiroshima" = "지하철";
+
+"type.railway.station.subway.hongkong" = "지하철";
 
 "type.railway.station.subway.isfahan" = "지하철";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "지하철";
 
 "type.railway.station.subway.shanghai" = "지하철";
+
+"type.railway.station.subway.shenzhen" = "지하철";
 
 "type.railway.station.subway.shiraz" = "지하철";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "지하철 입구";
 
+"type.railway.subway_entrance.hongkong" = "지하철 입구";
+
 "type.railway.subway_entrance.isfahan" = "지하철 입구";
 
 "type.railway.subway_entrance.istanbul" = "지하철 입구";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "지하철 입구";
 
 "type.railway.subway_entrance.shanghai" = "지하철 입구";
+
+"type.railway.subway_entrance.shenzhen" = "지하철 입구";
 
 "type.railway.subway_entrance.shiraz" = "지하철 입구";
 
