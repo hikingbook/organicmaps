@@ -52,6 +52,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -744,13 +745,18 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private void initMap(boolean isLaunchByDeepLink)
   {
     try {
-      final FragmentManager manager = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getSupportFragmentManager();
+      final FragmentActivity activity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
+      View container = activity.findViewById(R.id.map_fragment_container);
+      if (container == null) {
+        throw new NullPointerException();
+      }
+      final FragmentManager manager = activity.getSupportFragmentManager();
       mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
       if (mMapFragment == null) {
         Bundle args = new Bundle();
         args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
         final FragmentFactory factory = manager.getFragmentFactory();
-        mMapFragment = (MapFragment) factory.instantiate(OrganicmapsFrameworkAdapter.INSTANCE.getActivity().getClassLoader(), MapFragment.class.getName());
+        mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
         mMapFragment.setArguments(args);
         manager
                 .beginTransaction()
@@ -759,10 +765,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       }
 
 //    View container = findViewById(R.id.map_fragment_container);
-      View container = OrganicmapsFrameworkAdapter.INSTANCE.getActivity().findViewById(R.id.map_fragment_container);
-      if (container != null) {
-        container.setOnTouchListener(this);
-      }
+      container.setOnTouchListener(this);
     } catch (Throwable e) {
       (new Handler(Looper.getMainLooper())).postDelayed(() -> initMap(isLaunchByDeepLink), 500);
     }
