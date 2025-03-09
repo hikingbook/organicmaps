@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Anna kelvollinen postinumero";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Tuntematon paikka";
+"core_placepage_unknown_place" = "Karttapiste";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Huomautus OpenStreetMapin vapaaehtoisille (valinnainen)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Operaattori: %@";
+
+"editor_category_unsuitable_title" = "Etkö löydä sopivaa luokkaa?";
+
+"editor_category_unsuitable_text" = "Organic Maps mahdollistaa vain yksinkertaisten pisteluokkien lisäämisen, eli ei kaupunkeja, teitä, järviä, rakennusten ääriviivoja jne. Lisää tällaiset luokat suoraan <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Tarkista <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">oppaastamme</a> yksityiskohtaiset ohjeet vaihe vaiheelta.";
 
 "downloader_no_downloaded_maps_title" = "Et ole ladannut yhtään karttaa";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Laskua";
 
-"elevation_profile_minaltitude" = "Min. korkeus";
+"elevation_profile_min_elevation" = "Min. korkeus";
 
-"elevation_profile_maxaltitude" = "Maks. korkeus";
+"elevation_profile_max_elevation" = "Max. korkeus";
 
 "elevation_profile_difficulty" = "Vaikeus";
-
-"elevation_profile_time" = "Aika:";
 
 "isolines_toast_zooms_1_10" = "Suurenna kartta nähdäksesi korkeuskäyrät";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Poista reitti";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Haluatko varmasti poistaa tämän kappaleen?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Reitin nimi";
@@ -1402,6 +1407,8 @@
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Reitti on tyhjä - ei mitään tallennettavaa";
 
+"edit_track" = "Muokkaa reittiä";
+
 
 /********** Types **********/
 
@@ -1435,7 +1442,7 @@
 
 "type.aeroway.gate" = "Portti";
 
-"type.aeroway.helipad" = "Helikopterialusta";
+"type.aeroway.helipad" = "Helikopterikenttä";
 
 "type.aeroway.runway" = "Kiitorata";
 
@@ -1533,11 +1540,11 @@
 
 "type.amenity.fast_food" = "Pikaruokala";
 
-"type.amenity.ferry_terminal" = "Lautta";
+"type.amenity.ferry_terminal" = "Lauttaterminaali";
 
 "type.amenity.fire_station" = "Paloasema";
 
-"type.amenity.food_court" = "Food Court";
+"type.amenity.food_court" = "Ravintola-alue";
 
 "type.amenity.fountain" = "Suihkulähde";
 
@@ -1551,7 +1558,7 @@
 
 "type.amenity.hospital" = "Sairaala";
 
-"type.amenity.hunting_stand" = "Metsästyspaikka";
+"type.amenity.hunting_stand" = "Jahtitorni";
 
 "type.amenity.ice_cream" = "Jäätelökioski";
 
@@ -1575,9 +1582,9 @@
 
 "type.amenity.parking.fee" = "Parkkipaikka";
 
-"type.amenity.parking.multi.storey" = "Monikerroksinen pysäköinti";
+"type.amenity.parking.multi.storey" = "Parkkitalo";
 
-"type.amenity.parking.multi.storey.fee" = "Monikerroksinen pysäköinti";
+"type.amenity.parking.multi.storey.fee" = "Parkkitalo";
 
 "type.amenity.parking.no.access" = "Yksityinen pysäköinti";
 
@@ -1593,31 +1600,31 @@
 
 "type.amenity.parking.underground.private" = "Yksityinen maanalainen pysäköintialue";
 
-"type.amenity.parking.street_side" = "Kadun puolella pysäköinti";
+"type.amenity.parking.street_side" = "Kadunvarsipysäköinti";
 
-"type.amenity.parking.street_side.fee" = "Kadun puolella pysäköinti";
+"type.amenity.parking.street_side.fee" = "Kadunvarsipysäköinti";
 
-"type.amenity.parking.street_side.private" = "Yksityinen katu puolella pysäköinti";
+"type.amenity.parking.street_side.private" = "Yksityinen kadunvarsipysäköinti";
 
-"type.amenity.parking.lane" = "Kaistapysäköinti";
+"type.amenity.parking.lane" = "Pysäköintikaista";
 
-"type.amenity.parking.lane.fee" = "Kaistapysäköinti";
+"type.amenity.parking.lane.fee" = "Pysäköintikaista";
 
-"type.amenity.parking.lane.private" = "Yksityinen kaista pysäköinti";
+"type.amenity.parking.lane.private" = "Yksityinen pysäköintikaista";
 
 "type.amenity.parking_entrance" = "Pysäköinnin sisäänkäynti";
 
-"type.amenity.parking_entrance.private" = "Yksityinen pysäköintialue sisäänkäynti";
+"type.amenity.parking_entrance.private" = "Yksityisen pysäköintialueen sisäänkäynti";
 
 "type.amenity.parking_entrance.permissive" = "Pysäköinnin sisäänkäynti";
 
-"type.amenity.parking_space" = "Parkkipaikka";
+"type.amenity.parking_space" = "Pysäköintiruutu";
 
-"type.amenity.parking_space.permissive" = "Parkkipaikka";
+"type.amenity.parking_space.permissive" = "Pysäköintiruutu";
 
-"type.amenity.parking_space.private" = "Parkkipaikka";
+"type.amenity.parking_space.private" = "Pysäköintiruutu";
 
-"type.amenity.parking_space.underground" = "Parkkipaikka";
+"type.amenity.parking_space.underground" = "Pysäköintiruutu";
 
 "type.amenity.parking_space.disabled" = "Vammaispysäköinti";
 
@@ -1708,13 +1715,13 @@
 "type.amenity.shelter.basic_hut" = "Kota";
 
 /* A traditional 3-walled shelter (one side open), suitable for overnight camping. */
-"type.amenity.shelter.lean_to" = "Lean-to Shelter";
+"type.amenity.shelter.lean_to" = "Laavu";
 
 "type.amenity.public_bath" = "Julkinen kylpylä";
 
 "type.amenity.shower" = "Suihku";
 
-"type.amenity.stripclub" = "Stripclub";
+"type.amenity.stripclub" = "Strippiklubi";
 
 "type.amenity.taxi" = "Taksi";
 
@@ -2628,7 +2635,7 @@
 
 "type.leisure.hackerspace" = "Hacklab";
 
-"type.leisure.ice_rink" = "Ice Rink";
+"type.leisure.ice_rink" = "Luistinrata";
 
 "type.leisure.marina" = "Venesatama";
 
@@ -2654,7 +2661,7 @@
 
 "type.leisure.sauna" = "Sauna";
 
-"type.leisure.slipway" = "Slipway";
+"type.leisure.slipway" = "Veneluiska";
 
 "type.leisure.sports_centre" = "Urheilukeskus";
 
@@ -2692,15 +2699,15 @@
 
 "type.man_made.lighthouse" = "Majakka";
 
-"type.man_made.mast" = "Mast";
+"type.man_made.mast" = "Masto";
 
-"type.man_made.pier" = "Pier";
+"type.man_made.pier" = "Laituri";
 
 "type.man_made.pipeline" = "Pipeline";
 
 "type.man_made.pipeline.overground" = "Overground Pipeline";
 
-"type.man_made.silo" = "Silo";
+"type.man_made.silo" = "Siilo";
 
 "type.man_made.storage_tank" = "Storage Tank";
 
@@ -2817,7 +2824,7 @@
 
 "type.natural.volcano" = "Tulivuori";
 
-"type.natural.water" = "Vesimuodostuma";
+"type.natural.water" = "Vettä";
 
 "type.natural.wetland" = "Soistuva maa";
 
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Rautatieasema";
 
+"type.railway.station.light_rail.berlin" = "Rautatieasema";
+
 "type.railway.station.light_rail.london" = "Rautatieasema";
 
 "type.railway.station.light_rail.porto" = "Rautatieasema";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Metro";
 
 "type.railway.station.subway.hiroshima" = "Metro";
+
+"type.railway.station.subway.hongkong" = "Metro";
 
 "type.railway.station.subway.isfahan" = "Metro";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Metro";
 
 "type.railway.station.subway.shanghai" = "Metro";
+
+"type.railway.station.subway.shenzhen" = "Metro";
 
 "type.railway.station.subway.shiraz" = "Metro";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Metron sisäänkäynti";
 
+"type.railway.subway_entrance.hongkong" = "Metron sisäänkäynti";
+
 "type.railway.subway_entrance.isfahan" = "Metron sisäänkäynti";
 
 "type.railway.subway_entrance.istanbul" = "Metron sisäänkäynti";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Metron sisäänkäynti";
 
 "type.railway.subway_entrance.shanghai" = "Metron sisäänkäynti";
+
+"type.railway.subway_entrance.shenzhen" = "Metron sisäänkäynti";
 
 "type.railway.subway_entrance.shiraz" = "Metron sisäänkäynti";
 
@@ -3612,7 +3629,7 @@
 
 "type.shop.fashion_accessories" = "Muoti tarvikkeet";
 
-"type.shop.florist" = "Floristi";
+"type.shop.florist" = "Kukkakauppa";
 
 "type.shop.funeral_directors" = "Hautaustoimisto";
 
@@ -3863,7 +3880,7 @@
 
 "type.tourism.attraction" = "Nähtävyys";
 
-"type.attraction.amusement_ride" = "Huvipuisto Ride";
+"type.attraction.amusement_ride" = "Huvipuistolaite";
 
 "type.attraction.animal" = "Eläinsuoja";
 
@@ -3922,7 +3939,7 @@
 
 "type.tourism.theme_park" = "Huvipuisto";
 
-"type.tourism.viewpoint" = "Näköalatasanne";
+"type.tourism.viewpoint" = "Näköalapaikka";
 
 /* Typically more basic, not staffed and free (compared to alpine_hut). */
 "type.tourism.wilderness_hut" = "Autiotupa";
@@ -4037,7 +4054,7 @@
 
 "type.piste_type.skitour" = "Skitour Trail";
 
-"type.amenity.events_venue" = "Tapahtumapaikka";
+"type.amenity.events_venue" = "Tapahtumakeskus";
 
 "type.shop.auction" = "Huutokauppa";
 

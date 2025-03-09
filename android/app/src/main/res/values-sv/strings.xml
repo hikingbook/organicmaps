@@ -248,6 +248,9 @@
     <string name="faq">Frågor och svar</string>
     <!-- Button in the main menu -->
     <string name="donate">Donera</string>
+    <string name="already_donated">Redan donerat</string>
+    <string name="remind_me_later">Påminn senare</string>
+    <string name="support_organic_maps">Stödja Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Stöd projektet</string>
     <!-- Button in the main Help dialog -->
@@ -289,6 +292,10 @@
     <string name="google_play_services">Google Play platstjänster</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Fastställ snabbt din ungefärliga position via Bluetooth, WiFi eller mobilnät</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Hotellänkar</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Foton, recensioner, bokningslänkar visas för hotell som har en lista på Kayak.com. Den värvningsbonus som erhålls för varje bokning via dessa länkar går till utveckling av Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Ladda ned kartor längs vägen</string>
     <!-- Text for routing error dialog -->
@@ -482,7 +489,7 @@
     <string name="editor_zip_code">Postnr</string>
     <string name="error_enter_correct_zip_code">Ange korrekt postnr</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Okänd plats</string>
+    <string name="core_placepage_unknown_place">Kartpunkt</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Meddelande till OpenStreetMap-volontärer (valfritt)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -490,6 +497,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Dina redigeringar laddas upp till den offentliga <a href="https://wiki.openstreetmap.org/wiki/Sv:Om_OpenStreetMap">OpenStreetMap</a>-databasen. Lägg inte till personlig eller upphovsrättsskyddad information.</string>
     <string name="editor_more_about_osm">Mer om OpenStreetMap</string>
+    <string name="editor_osm_history">Din redigeringshistorik</string>
+    <string name="editor_osm_notes">Anteckningar om dina kartdata</string>
     <string name="editor_operator">Operatör</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operatör: %s</string>
@@ -519,6 +528,8 @@
     <string name="dialog_kayak_disclaimer">Hänvisningsbonusen för varje bokning via denna länk går till utvecklingen av Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Information på Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Inaktivera Kayak</string>
     <string name="placepage_edit_bookmark_button">Redigera bokmärke</string>
     <string name="editor_comment_hint">kommentar…</string>
     <string name="editor_reset_edits_message">Återställ alla lokala ändringar?</string>
@@ -722,8 +733,8 @@
     <string name="isolines_location_error_dialog">Höjningslinjer är ännu inte tillgängligt i den här regionen</string>
     <string name="elevation_profile_ascent">Stigning</string>
     <string name="elevation_profile_descent">Backe</string>
-    <string name="elevation_profile_minaltitude">Min. höjd</string>
-    <string name="elevation_profile_maxaltitude">Max. höjd</string>
+    <string name="elevation_profile_min_elevation">Min. höjd</string>
+    <string name="elevation_profile_max_elevation">Max. höjd</string>
     <string name="elevation_profile_difficulty">Svårighet</string>
     <string name="elevation_profile_distance">Avst.:</string>
     <string name="elevation_profile_time">Tid:</string>
@@ -767,11 +778,13 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Till bilens skärm</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Denna applikation kräver åtkomst till din plats för navigeringssyften.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Organic Maps behöver platsåtkomst. När det är säkert kan du kontrollera aviseringen på din telefon.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Denna app behöver ditt tillstånd</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps i Android Auto behöver ett platstillstånd för att fungera effektivt</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Tilldela behörigheter</string>
-    <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
-    <string name="aa_connected_to_car_notification_title">Ansluten till bilen</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
     <string name="button_layer_outdoor">Vandring</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
@@ -1516,6 +1529,7 @@
     <string name="type.railway.station">Tågstation</string>
     <string name="type.railway.station.funicular">Linbana</string>
     <string name="type.railway.station.light_rail">Tågstation</string>
+    <string name="type.railway.station.light_rail.berlin">Tågstation</string>
     <string name="type.railway.station.light_rail.london">Tågstation</string>
     <string name="type.railway.station.light_rail.porto">Tågstation</string>
     <string name="type.railway.station.monorail">Tågstation</string>
@@ -1558,6 +1572,7 @@
     <string name="type.railway.station.subway.hamburg">Tunnelbana</string>
     <string name="type.railway.station.subway.helsinki">Tunnelbana</string>
     <string name="type.railway.station.subway.hiroshima">Tunnelbana</string>
+    <string name="type.railway.station.subway.hongkong">Tunnelbana</string>
     <string name="type.railway.station.subway.isfahan">Tunnelbana</string>
     <string name="type.railway.station.subway.istanbul">Tunnelbana</string>
     <string name="type.railway.station.subway.izmir">Tunnelbana</string>
@@ -1611,6 +1626,7 @@
     <string name="type.railway.station.subway.sendai">Tunnelbana</string>
     <string name="type.railway.station.subway.sf">Tunnelbana</string>
     <string name="type.railway.station.subway.shanghai">Tunnelbana</string>
+    <string name="type.railway.station.subway.shenzhen">Tunnelbana</string>
     <string name="type.railway.station.subway.shiraz">Tunnelbana</string>
     <string name="type.railway.station.subway.singapore">Tunnelbana</string>
     <string name="type.railway.station.subway.sofia">Tunnelbana</string>
@@ -1670,6 +1686,7 @@
     <string name="type.railway.subway_entrance.hamburg">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.helsinki">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.hiroshima">Tunnelbana entré</string>
+    <string name="type.railway.subway_entrance.hongkong">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.isfahan">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.istanbul">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.izmir">Tunnelbana entré</string>
@@ -1723,6 +1740,7 @@
     <string name="type.railway.subway_entrance.sendai">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.sf">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.shanghai">Tunnelbana entré</string>
+    <string name="type.railway.subway_entrance.shenzhen">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.shiraz">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.singapore">Tunnelbana entré</string>
     <string name="type.railway.subway_entrance.sofia">Tunnelbana entré</string>

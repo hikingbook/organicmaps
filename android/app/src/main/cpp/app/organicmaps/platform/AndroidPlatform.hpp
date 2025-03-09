@@ -18,9 +18,11 @@ namespace android
 class Platform : public ::Platform
 {
 public:
-  void Initialize(JNIEnv * env, jobject context, jobject functorProcessObject, jstring apkPath, jstring writablePath,
-                  jstring privatePath, jstring tmpPath, jstring flavorName,
-                  jstring buildType, bool isTablet);
+  ~Platform() override;
+
+  void Initialize(JNIEnv * env, jobject functorProcessObject, jstring apkPath, jstring writablePath,
+                    jstring privatePath, jstring tmpPath, jstring flavorName,
+                    jstring buildType, bool isTablet);
 
   void OnExternalStorageStatusChanged(bool isAvailable);
 

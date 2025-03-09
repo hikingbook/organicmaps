@@ -273,6 +273,9 @@
     <string name="faq">Pytania i odpowiedzi</string>
     <!-- Button in the main menu -->
     <string name="donate">Wspomóż</string>
+    <string name="already_donated">Już przekazano</string>
+    <string name="remind_me_later">Przypomnij później</string>
+    <string name="support_organic_maps">Wspierać Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Wesprzyj projekt</string>
     <!-- Button in the main Help dialog -->
@@ -314,6 +317,10 @@
     <string name="google_play_services">Usługi lokalizacyjne Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Szybko określ swoją przybliżoną lokalizację przez Bluetooth, WiFi lub sieć komórkową</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Linki do hoteli Kayak.com</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Zdjęcia, recenzje, linki do rezerwacji są wyświetlane dla hoteli, które mają wpis na Kayak.com. Premia za polecenie otrzymana za każdą rezerwację za pośrednictwem tych linków jest przeznaczona na rozwój Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Pobierz mapy wzdłuż trasy</string>
     <!-- Text for routing error dialog -->
@@ -514,7 +521,7 @@
     <string name="editor_zip_code">Kod pocztowy</string>
     <string name="error_enter_correct_zip_code">Podaj prawidłowy kod pocztowy</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Nieznane miejsce</string>
+    <string name="core_placepage_unknown_place">Punkt mapy</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Uwaga dla wolontariuszy OpenStreetMap (opcjonalnie)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -522,6 +529,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Państwa zmiany są przesyłane do publicznej bazy danych <a href="https://wiki.openstreetmap.org/wiki/Pl:Wstęp">OpenStreetMap</a>. Prosimy nie dodawać informacji osobistych lub chronionych prawem autorskim.</string>
     <string name="editor_more_about_osm">Więcej o OpenStreetMap</string>
+    <string name="editor_osm_history">Twoja historia edycji</string>
+    <string name="editor_osm_notes">Twoje uwagi dotyczące danych mapy</string>
     <string name="editor_operator">Operator</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operator: %s</string>
@@ -551,6 +560,8 @@
     <string name="dialog_kayak_disclaimer">Premia za polecenie otrzymywana za każdą rezerwację za pośrednictwem tego linku jest przeznaczana na rozwój Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Szczegóły na Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Proszę wyłączyć Kayak</string>
     <string name="placepage_edit_bookmark_button">Edytuj zakładkę</string>
     <string name="editor_comment_hint">Komentarz…</string>
     <string name="editor_reset_edits_message">Usunąć wszystkie lokalne zmiany?</string>
@@ -763,8 +774,8 @@
     <string name="isolines_location_error_dialog">Poziomice nie są jeszcze dostępne w tym regionie</string>
     <string name="elevation_profile_ascent">Wejście</string>
     <string name="elevation_profile_descent">Zejście</string>
-    <string name="elevation_profile_minaltitude">Min. wysokość</string>
-    <string name="elevation_profile_maxaltitude">Maks. wysokość</string>
+    <string name="elevation_profile_min_elevation">Min. wysokość</string>
+    <string name="elevation_profile_max_elevation">Maks. wysokość</string>
     <string name="elevation_profile_difficulty">Trudność</string>
     <string name="elevation_profile_distance">Odległ.:</string>
     <string name="elevation_profile_time">Trasa:</string>
@@ -825,11 +836,13 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Do ekranu samochodu</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Ta aplikacja wymaga dostępu do Twojej lokalizacji do celów nawigacji.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Aplikacja Organic Maps wymaga dostępu do lokalizacji. Gdy będzie to bezpieczne, sprawdź powiadomienie w telefonie.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Ta aplikacja wymaga Twojej zgody</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps w Android Auto wymagają uprawnień do lokalizacji, aby działać efektywnie</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Przyznaj uprawnienia</string>
-    <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
-    <string name="aa_connected_to_car_notification_title">Podłączono do samochodu</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
     <string name="button_layer_outdoor">Turystyka piesza</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
@@ -1693,6 +1706,7 @@
     <string name="type.railway.station">Dworzec kolejowy</string>
     <string name="type.railway.station.funicular">Kolej linowo-terenowa</string>
     <string name="type.railway.station.light_rail">Dworzec kolejowy</string>
+    <string name="type.railway.station.light_rail.berlin">Dworzec kolejowy</string>
     <string name="type.railway.station.light_rail.london">Dworzec kolejowy</string>
     <string name="type.railway.station.light_rail.porto">Dworzec kolejowy</string>
     <string name="type.railway.station.monorail">Dworzec kolejowy</string>
@@ -1735,6 +1749,7 @@
     <string name="type.railway.station.subway.hamburg">Metro</string>
     <string name="type.railway.station.subway.helsinki">Metro</string>
     <string name="type.railway.station.subway.hiroshima">Metro</string>
+    <string name="type.railway.station.subway.hongkong">Metro</string>
     <string name="type.railway.station.subway.isfahan">Metro</string>
     <string name="type.railway.station.subway.istanbul">Metro</string>
     <string name="type.railway.station.subway.izmir">Metro</string>
@@ -1788,6 +1803,7 @@
     <string name="type.railway.station.subway.sendai">Metro</string>
     <string name="type.railway.station.subway.sf">Metro</string>
     <string name="type.railway.station.subway.shanghai">Metro</string>
+    <string name="type.railway.station.subway.shenzhen">Metro</string>
     <string name="type.railway.station.subway.shiraz">Metro</string>
     <string name="type.railway.station.subway.singapore">Metro</string>
     <string name="type.railway.station.subway.sofia">Metro</string>
@@ -1847,6 +1863,7 @@
     <string name="type.railway.subway_entrance.hamburg">Wejście do metra</string>
     <string name="type.railway.subway_entrance.helsinki">Wejście do metra</string>
     <string name="type.railway.subway_entrance.hiroshima">Wejście do metra</string>
+    <string name="type.railway.subway_entrance.hongkong">Wejście do metra</string>
     <string name="type.railway.subway_entrance.isfahan">Wejście do metra</string>
     <string name="type.railway.subway_entrance.istanbul">Wejście do metra</string>
     <string name="type.railway.subway_entrance.izmir">Wejście do metra</string>
@@ -1900,6 +1917,7 @@
     <string name="type.railway.subway_entrance.sendai">Wejście do metra</string>
     <string name="type.railway.subway_entrance.sf">Wejście do metra</string>
     <string name="type.railway.subway_entrance.shanghai">Wejście do metra</string>
+    <string name="type.railway.subway_entrance.shenzhen">Wejście do metra</string>
     <string name="type.railway.subway_entrance.shiraz">Wejście do metra</string>
     <string name="type.railway.subway_entrance.singapore">Wejście do metra</string>
     <string name="type.railway.subway_entrance.sofia">Wejście do metra</string>

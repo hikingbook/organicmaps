@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import app.organicmaps.display.DisplayManager;
+import app.organicmaps.downloader.DownloaderActivity;
 import app.organicmaps.intent.Factory;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.util.Config;
@@ -175,7 +176,13 @@ public class SplashActivity extends AppCompatActivity
 //    // Re-use original intent with the known safe subset of flags to retain security permissions.
 //    // https://github.com/organicmaps/organicmaps/issues/6944
 //    final Intent intent = Objects.requireNonNull(getIntent());
-//    intent.setComponent(new ComponentName(this, DownloadResourcesLegacyActivity.class));
+//
+//    if (isManageSpaceActivity(intent)) {
+//      intent.setComponent(new ComponentName(this, DownloaderActivity.class));
+//    } else {
+//      intent.setComponent(new ComponentName(this, DownloadResourcesLegacyActivity.class));
+//    }
+//
 //    // FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_RESET_TASK_IF_NEEDED break the cold start.
 //    // https://github.com/organicmaps/organicmaps/pull/7287
 //    // FORWARD_RESULT_FLAG conflicts with the ActivityResultLauncher.
@@ -192,5 +199,16 @@ public class SplashActivity extends AppCompatActivity
 //    Config.setFirstStartDialogSeen(this);
 //    startActivity(intent);
 //    finish();
+//  }
+
+//  private boolean isManageSpaceActivity(Intent intent) {
+//    var component = intent.getComponent();
+//
+//   if (!Intent.ACTION_VIEW.equals(intent.getAction())) return false;
+//    if (component == null) return false;
+//
+//    var manageSpaceActivityName = BuildConfig.APPLICATION_ID + ".ManageSpaceActivity";
+//
+//    return manageSpaceActivityName.equals(component.getClassName());
 //  }
 }

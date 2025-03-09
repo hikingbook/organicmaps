@@ -254,6 +254,9 @@
     <string name="faq">Otázky a odpovědi</string>
     <!-- Button in the main menu -->
     <string name="donate">Darovat</string>
+    <string name="already_donated">Již darováno</string>
+    <string name="remind_me_later">Připomeň později</string>
+    <string name="support_organic_maps">Podpořit Organic Maps</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Podpořte projekt</string>
     <!-- Button in the main Help dialog -->
@@ -295,6 +298,10 @@
     <string name="google_play_services">Služby určování polohy Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Rychlé určení přibližné polohy pomocí Bluetooth, WiFi nebo mobilní sítě</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com Hotel Odkazy</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Fotografie, recenze a rezervační odkazy se zobrazují u hotelů, které jsou uvedeny na Kayak.com. Bonus získaný za každou rezervaci prostřednictvím těchto odkazů jde na rozvoj Organic Maps.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Stahovat mapy podél cesty</string>
     <!-- Text for routing error dialog -->
@@ -490,7 +497,7 @@
     <string name="editor_zip_code">PSČ</string>
     <string name="error_enter_correct_zip_code">Zadejte správné PSČ</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Neznámé místo</string>
+    <string name="core_placepage_unknown_place">Bod na mapě</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">Poznámka pro dobrovolníky OpenStreetMap (nepovinné)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -498,6 +505,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Vaše úpravy se nahrají do veřejné databáze <a href="https://wiki.openstreetmap.org/wiki/Cs:Co_je_OpenStreetMap">OpenStreetMap</a>. Nepřidávejte prosím osobní informace nebo informace chráněné autorskými právy.</string>
     <string name="editor_more_about_osm">Více o projektu OpenStreetMap</string>
+    <string name="editor_osm_history">Vaše historie úprav</string>
+    <string name="editor_osm_notes">Vaše poznámky k mapovým podkladům</string>
     <string name="editor_operator">Operátor</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">Operátor: %s</string>
@@ -527,6 +536,8 @@
     <string name="dialog_kayak_disclaimer">Bonus za každou rezervaci provedenou prostřednictvím tohoto odkazu je určen na rozvoj služby Organic Maps.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Podrobnosti na Kayak</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Zakázat Kayak</string>
     <string name="placepage_edit_bookmark_button">Upravit záložku</string>
     <string name="editor_comment_hint">Poznámka…</string>
     <string name="editor_reset_edits_message">Vymazat všechny místní změny?</string>
@@ -730,8 +741,8 @@
     <string name="isolines_location_error_dialog">Topografická vrstva není v této oblasti ještě dostupná</string>
     <string name="elevation_profile_ascent">Stoupání</string>
     <string name="elevation_profile_descent">Klesání</string>
-    <string name="elevation_profile_minaltitude">Min. nadmořská výška</string>
-    <string name="elevation_profile_maxaltitude">Max. nadmořská výška</string>
+    <string name="elevation_profile_min_elevation">Min. výška</string>
+    <string name="elevation_profile_max_elevation">Max. výška</string>
     <string name="elevation_profile_difficulty">Obtížnost</string>
     <string name="elevation_profile_distance">Vzdál.:</string>
     <string name="elevation_profile_time">Čas:</string>
@@ -784,11 +795,13 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">Na obrazovku auta</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">Tato aplikace vyžaduje přístup k vaší poloze pro účely navigace.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">Služba Organic Maps potřebuje přístup k poloze. Když je to bezpečné, zkontrolujte oznámení v telefonu.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">Tato aplikace potřebuje vaše povolení</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">Organic Maps v systému Android Auto potřebují k efektivní práci povolení k poloze</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Udělení oprávnění</string>
-    <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
-    <string name="aa_connected_to_car_notification_title">Připojení k automobilu</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
     <string name="button_layer_outdoor">Pěší turistika</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
@@ -1537,6 +1550,7 @@
     <string name="type.railway.station">Železniční stanice</string>
     <string name="type.railway.station.funicular">Lanovka</string>
     <string name="type.railway.station.light_rail">Železniční stanice</string>
+    <string name="type.railway.station.light_rail.berlin">Železniční stanice</string>
     <string name="type.railway.station.light_rail.london">Železniční stanice</string>
     <string name="type.railway.station.light_rail.porto">Železniční stanice</string>
     <string name="type.railway.station.monorail">Železniční stanice</string>
@@ -1579,6 +1593,7 @@
     <string name="type.railway.station.subway.hamburg">Metro</string>
     <string name="type.railway.station.subway.helsinki">Metro</string>
     <string name="type.railway.station.subway.hiroshima">Metro</string>
+    <string name="type.railway.station.subway.hongkong">Metro</string>
     <string name="type.railway.station.subway.isfahan">Metro</string>
     <string name="type.railway.station.subway.istanbul">Metro</string>
     <string name="type.railway.station.subway.izmir">Metro</string>
@@ -1632,6 +1647,7 @@
     <string name="type.railway.station.subway.sendai">Metro</string>
     <string name="type.railway.station.subway.sf">Metro</string>
     <string name="type.railway.station.subway.shanghai">Metro</string>
+    <string name="type.railway.station.subway.shenzhen">Metro</string>
     <string name="type.railway.station.subway.shiraz">Metro</string>
     <string name="type.railway.station.subway.singapore">Metro</string>
     <string name="type.railway.station.subway.sofia">Metro</string>
@@ -1691,6 +1707,7 @@
     <string name="type.railway.subway_entrance.hamburg">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.helsinki">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.hiroshima">Vchod do podchodu</string>
+    <string name="type.railway.subway_entrance.hongkong">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.isfahan">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.istanbul">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.izmir">Vchod do podchodu</string>
@@ -1744,6 +1761,7 @@
     <string name="type.railway.subway_entrance.sendai">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.sf">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.shanghai">Vchod do podchodu</string>
+    <string name="type.railway.subway_entrance.shenzhen">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.shiraz">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.singapore">Vchod do podchodu</string>
     <string name="type.railway.subway_entrance.sofia">Vchod do podchodu</string>

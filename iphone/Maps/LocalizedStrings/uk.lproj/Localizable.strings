@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Введіть коректний поштовий індекс";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Невідоме місце";
+"core_placepage_unknown_place" = "Точка на карті";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Примітка для волонтерів OpenStreetMap (необов'язково)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Оператор: %@";
+
+"editor_category_unsuitable_title" = "Не можете знайти відповідну категорію?";
+
+"editor_category_unsuitable_text" = "Organic Maps дозволяють додавати до мапи лише прості типи об'єктів, тобто без міст, доріг, озер та контурів будівель. Будь ласка, додайте такі категорії на сайті <a href=\"https://www.openstreetmap.org/\">OpenStreetMap.org</a>. Ми також рекомендуємо ознайомитися із <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing/\">детальними інструкціями та іншими додатками для редагування карти</a>.";
 
 "downloader_no_downloaded_maps_title" = "Ви не маєте завантажених мап";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Спуск";
 
-"elevation_profile_minaltitude" = "Мін. висота";
+"elevation_profile_min_elevation" = "Мін. висота";
 
-"elevation_profile_maxaltitude" = "Макс. висота";
+"elevation_profile_max_elevation" = "Макс. висота";
 
 "elevation_profile_difficulty" = "Складність";
-
-"elevation_profile_time" = "Шлях:";
 
 "isolines_toast_zooms_1_10" = "Збільште мапу, щоб побачити ізолінії";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Видалити трек";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Ви дійсно бажаєте видалити цей маршрут?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Назва треку";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Маршрут порожній - нічого зберігати";
+
+"edit_track" = "Редагувати маршрут";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Залізничний вокзал";
 
+"type.railway.station.light_rail.berlin" = "Залізничний вокзал";
+
 "type.railway.station.light_rail.london" = "Залізничний вокзал";
 
 "type.railway.station.light_rail.porto" = "Залізничний вокзал";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Метро";
 
 "type.railway.station.subway.hiroshima" = "Метро";
+
+"type.railway.station.subway.hongkong" = "Метро";
 
 "type.railway.station.subway.isfahan" = "Метро";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Метро";
 
 "type.railway.station.subway.shanghai" = "Метро";
+
+"type.railway.station.subway.shenzhen" = "Метро";
 
 "type.railway.station.subway.shiraz" = "Метро";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Вхід до метро";
 
+"type.railway.subway_entrance.hongkong" = "Вхід до метро";
+
 "type.railway.subway_entrance.isfahan" = "Вхід до метро";
 
 "type.railway.subway_entrance.istanbul" = "Вхід до метро";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Вхід до метро";
 
 "type.railway.subway_entrance.shanghai" = "Вхід до метро";
+
+"type.railway.subway_entrance.shenzhen" = "Вхід до метро";
 
 "type.railway.subway_entrance.shiraz" = "Вхід до метро";
 

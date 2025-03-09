@@ -155,7 +155,8 @@ void UserEventStream::AddEvent(drape_ptr<UserEvent> && event)
   m_events.emplace_back(std::move(event));
 }
 
-ScreenBase const & UserEventStream::ProcessEvents(bool & modelViewChanged, bool & viewportChanged)
+ScreenBase const & UserEventStream::ProcessEvents(bool & modelViewChanged, bool & viewportChanged, 
+                                                  bool & activeFrame)
 {
   TEventsList events;
   {
@@ -165,6 +166,7 @@ ScreenBase const & UserEventStream::ProcessEvents(bool & modelViewChanged, bool 
 
   m2::RectD const prevPixelRect = GetCurrentScreen().PixelRect();
 
+  activeFrame = false;
   viewportChanged = false;
   m_modelViewChanged = !events.empty() || m_state == STATE_SCALE || m_state == STATE_DRAG;
 
@@ -269,7 +271,11 @@ ScreenBase const & UserEventStream::ProcessEvents(bool & modelViewChanged, bool 
         TouchCancel(m_touches);
       }
       break;
-
+    case UserEvent::EventType::ActiveFrame:
+      {
+        activeFrame = true;
+      }
+      break;
     default:
       ASSERT(false, ());
       break;

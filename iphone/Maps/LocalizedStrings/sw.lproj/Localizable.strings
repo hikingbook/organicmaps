@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Enter a valid ZIP code";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Unknown Place";
+"core_placepage_unknown_place" = "Map Point";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Kumbuka kwa wanaojitolea wa OpenStreetMap (si lazima)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Mwendeshaji: %@";
+
+"editor_category_unsuitable_title" = "Je, huwezi kupata aina inayofaa?";
+
+"editor_category_unsuitable_text" = "Ramani za Kikaboni huruhusu kuongeza kategoria rahisi pekee, hiyo inamaanisha hakuna miji, barabara, maziwa, muhtasari wa majengo, n.k. Tafadhali ongeza kategoria kama hizo moja kwa moja kwenye <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Angalia <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">mwongozo wetu</a> kwa maagizo ya kina ya hatua kwa hatua.";
 
 "downloader_no_downloaded_maps_title" = "You haven't downloaded any maps";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Ushukaji";
 
-"elevation_profile_minaltitude" = "Mwinuko wa chini kabisa";
+"elevation_profile_min_elevation" = "Min. mwinuko";
 
-"elevation_profile_maxaltitude" = "Mwinuko wa juu kabisa";
+"elevation_profile_max_elevation" = "Max. mwinuko";
 
 "elevation_profile_difficulty" = "Ugumu";
-
-"elevation_profile_time" = "Muda:";
 
 "isolines_toast_zooms_1_10" = "Vuta karibu kutalii mistari ya kontua";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Je, una uhakika unataka kufuta wimbo huu?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Njia ni tupu - hakuna cha kuhifadhi";
+
+"edit_track" = "Hariri Njia";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Train Station";
 
+"type.railway.station.light_rail.berlin" = "Train Station";
+
 "type.railway.station.light_rail.london" = "Train Station";
 
 "type.railway.station.light_rail.porto" = "Train Station";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Subway Station";
 
 "type.railway.station.subway.hiroshima" = "Subway Station";
+
+"type.railway.station.subway.hongkong" = "Subway Station";
 
 "type.railway.station.subway.isfahan" = "Subway Station";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Subway Station";
 
 "type.railway.station.subway.shanghai" = "Subway Station";
+
+"type.railway.station.subway.shenzhen" = "Subway Station";
 
 "type.railway.station.subway.shiraz" = "Subway Station";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Lango la kuingilia stesheni ya reli";
 
+"type.railway.subway_entrance.hongkong" = "Lango la kuingilia stesheni ya reli";
+
 "type.railway.subway_entrance.isfahan" = "Lango la kuingilia stesheni ya reli";
 
 "type.railway.subway_entrance.istanbul" = "Lango la kuingilia stesheni ya reli";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Lango la kuingilia stesheni ya reli";
 
 "type.railway.subway_entrance.shanghai" = "Lango la kuingilia stesheni ya reli";
+
+"type.railway.subway_entrance.shenzhen" = "Lango la kuingilia stesheni ya reli";
 
 "type.railway.subway_entrance.shiraz" = "Lango la kuingilia stesheni ya reli";
 
