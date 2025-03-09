@@ -29,7 +29,6 @@ import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.bookmarks.data.BookmarkCategory;
 import app.organicmaps.bookmarks.data.BookmarkManager;
-import app.organicmaps.car.util.ThemeUtils;
 import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
@@ -113,6 +112,9 @@ public enum OrganicmapsFrameworkAdapter {
             if (!arePlatformAndCoreInitialized()) {
                 mwmApplication.onCreate();
                 mwmApplication.init(onComplete);
+            }
+            else {
+                onComplete.run();
             }
         } catch (IOException e) {
             Log.e(TAG, e.toString());
