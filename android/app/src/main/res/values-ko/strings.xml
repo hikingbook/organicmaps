@@ -249,6 +249,9 @@
     <string name="faq">질문과 답변</string>
     <!-- Button in the main menu -->
     <string name="donate">기부</string>
+    <string name="already_donated">기부완료</string>
+    <string name="remind_me_later">나중에 알림</string>
+    <string name="support_organic_maps">Organic Maps 지원하기</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">프로젝트 지원</string>
     <!-- Button in the main Help dialog -->
@@ -290,6 +293,10 @@
     <string name="google_play_services">Google Play 위치 서비스</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">블루투스, WiFi 또는 모바일 네트워크를 통해 대략적인 위치를 빠르게 파악할 수 있습니다</string>
+    <!-- Preference title -->
+    <string name="pref_display_kayak_title">Kayak.com 호텔 링크</string>
+    <!-- Preference description -->
+    <string name="pref_display_kayak_text">Kayak.com에 숙소가 등록된 호텔의 사진, 후기, 예약 링크가 표시됩니다. 이러한 링크를 통해 예약할 때마다 받는 추천 보너스는 Organic Maps의 개발에 사용됩니다.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">경로를 따라 지도 다운로드</string>
     <!-- Text for routing error dialog -->
@@ -483,7 +490,7 @@
     <string name="editor_zip_code">우편번호</string>
     <string name="error_enter_correct_zip_code">올바른 우편번호를 입력하세요</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">장소 알 수 없음</string>
+    <string name="core_placepage_unknown_place">지도 지점</string>
     <!-- Title for OSM note section in the editor -->
     <string name="editor_other_info">오픈스트리트맵 자원 봉사자 참고 사항(선택 사항)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
@@ -491,6 +498,8 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">수정한 내용은 공개 <a href="https://wiki.openstreetmap.org/wiki/Ko:OpenStreetMap_소개">OpenStreetMap</a> 데이터베이스에 업로드됩니다. 개인 정보나 저작권이 있는 정보는 추가하지 마세요.</string>
     <string name="editor_more_about_osm">OpenStreetMap 정보</string>
+    <string name="editor_osm_history">편집 기록</string>
+    <string name="editor_osm_notes">지도 데이터 노트</string>
     <string name="editor_operator">연산자</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="operator">연산자: %s</string>
@@ -520,6 +529,8 @@
     <string name="dialog_kayak_disclaimer">이 링크를 통해 예약할 때마다 받는 추천 보너스는 오가닉맵 개발에 사용됩니다.</string>
     <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="dialog_kayak_button">Kayak의 세부 정보</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <string name="dialog_kayak_disable_button">Kayak 비활성화</string>
     <string name="placepage_edit_bookmark_button">즐겨찾기 편집</string>
     <string name="editor_comment_hint">설명…</string>
     <string name="editor_reset_edits_message">지역 변경 사항을 재설정하시겠습니까?</string>
@@ -722,8 +733,8 @@
     <string name="isolines_location_error_dialog">이 지역의 지형 레이어는 아직 사용할 수 없습니다</string>
     <string name="elevation_profile_ascent">올라가기</string>
     <string name="elevation_profile_descent">내려가기</string>
-    <string name="elevation_profile_minaltitude">산 최소 높이</string>
-    <string name="elevation_profile_maxaltitude">산 최대 높이</string>
+    <string name="elevation_profile_min_elevation">최소 높이</string>
+    <string name="elevation_profile_max_elevation">최대 높이</string>
     <string name="elevation_profile_difficulty">난이도</string>
     <string name="elevation_profile_distance">거리:</string>
     <string name="elevation_profile_time">소비 시간:</string>
@@ -767,11 +778,13 @@
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">차량 화면으로 이동</string>
     <!-- Ask user to grant location permissions -->
-    <string name="aa_location_permissions_request">이 애플리케이션을 사용하려면 내비게이션 목적으로 사용자 위치에 액세스해야 합니다.</string>
-    <!-- Displayed on the Android Auto screen. Grant Permissions button. Must be no more than 18 symbols! -->
+    <string name="aa_location_permissions_request">오가닉 지도에는 위치 액세스 권한이 필요합니다. 안전해지면 휴대폰에서 알림을 확인합니다.</string>
+    <!-- Notification title for permission request from AA. -->
+    <string name="aa_request_permission_notification">이 앱은 사용자의 승인이 필요합니다.</string>
+    <!-- The text in the activity for location permission request. -->
+    <string name="aa_request_permission_activity_text">안드로이드 오토의 오가닉 맵이 효과적으로 작동하려면 위치 권한이 필요합니다.</string>
+    <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">권한 부여</string>
-    <!-- Text that will be displayed in the notification title when the app is connected to Android Auto. -->
-    <string name="aa_connected_to_car_notification_title">차량에 연결</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
     <string name="button_layer_outdoor">하이킹</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
@@ -1525,6 +1538,7 @@
     <string name="type.railway.station">기차역</string>
     <string name="type.railway.station.funicular">케이블카</string>
     <string name="type.railway.station.light_rail">기차역</string>
+    <string name="type.railway.station.light_rail.berlin">기차역</string>
     <string name="type.railway.station.light_rail.london">기차역</string>
     <string name="type.railway.station.light_rail.porto">기차역</string>
     <string name="type.railway.station.monorail">기차역</string>
@@ -1567,6 +1581,7 @@
     <string name="type.railway.station.subway.hamburg">지하철</string>
     <string name="type.railway.station.subway.helsinki">지하철</string>
     <string name="type.railway.station.subway.hiroshima">지하철</string>
+    <string name="type.railway.station.subway.hongkong">지하철</string>
     <string name="type.railway.station.subway.isfahan">지하철</string>
     <string name="type.railway.station.subway.istanbul">지하철</string>
     <string name="type.railway.station.subway.izmir">지하철</string>
@@ -1620,6 +1635,7 @@
     <string name="type.railway.station.subway.sendai">지하철</string>
     <string name="type.railway.station.subway.sf">지하철</string>
     <string name="type.railway.station.subway.shanghai">지하철</string>
+    <string name="type.railway.station.subway.shenzhen">지하철</string>
     <string name="type.railway.station.subway.shiraz">지하철</string>
     <string name="type.railway.station.subway.singapore">지하철</string>
     <string name="type.railway.station.subway.sofia">지하철</string>
@@ -1679,6 +1695,7 @@
     <string name="type.railway.subway_entrance.hamburg">지하철 입구</string>
     <string name="type.railway.subway_entrance.helsinki">지하철 입구</string>
     <string name="type.railway.subway_entrance.hiroshima">지하철 입구</string>
+    <string name="type.railway.subway_entrance.hongkong">지하철 입구</string>
     <string name="type.railway.subway_entrance.isfahan">지하철 입구</string>
     <string name="type.railway.subway_entrance.istanbul">지하철 입구</string>
     <string name="type.railway.subway_entrance.izmir">지하철 입구</string>
@@ -1732,6 +1749,7 @@
     <string name="type.railway.subway_entrance.sendai">지하철 입구</string>
     <string name="type.railway.subway_entrance.sf">지하철 입구</string>
     <string name="type.railway.subway_entrance.shanghai">지하철 입구</string>
+    <string name="type.railway.subway_entrance.shenzhen">지하철 입구</string>
     <string name="type.railway.subway_entrance.shiraz">지하철 입구</string>
     <string name="type.railway.subway_entrance.singapore">지하철 입구</string>
     <string name="type.railway.subway_entrance.sofia">지하철 입구</string>

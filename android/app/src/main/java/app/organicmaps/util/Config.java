@@ -21,6 +21,7 @@ public final class Config
   private static final String KEY_PREF_USE_GS = "UseGoogleServices";
 
   private static final String KEY_MISC_DISCLAIMER_ACCEPTED = "IsDisclaimerApproved";
+  private static final String KEY_PREF_KAYAK_DISPLAY = "DisplayKayak";
   private static final String KEY_MISC_KAYAK_ACCEPTED = "IsKayakApproved";
   private static final String KEY_MISC_LOCATION_REQUESTED = "LocationRequested";
   private static final String KEY_MISC_UI_THEME = "UiTheme";
@@ -34,7 +35,6 @@ public final class Config
   private static final String KEY_MISC_AGPS_TIMESTAMP = "AGPSTimestamp";
   private static final String KEY_DONATE_URL = "DonateUrl";
   private static final String KEY_PREF_SEARCH_HISTORY = "SearchHistoryEnabled";
-  private static final String KEY_PREF_LONG_TAP_TOAST_SHOWN = "LongTapToastShown";
 
   /**
    * The total number of app launches.
@@ -219,6 +219,18 @@ public final class Config
     setBool(KEY_MISC_DISCLAIMER_ACCEPTED);
   }
 
+  public static boolean isKayakDisplayEnabled()
+  {
+    // Kayak is disabled by default in F-Droid build,
+    // unless a user has already accepted its disclaimer before.
+    return getBool(KEY_PREF_KAYAK_DISPLAY, !isFdroid() || isKayakDisclaimerAccepted());
+  }
+
+  public static void setKayakDisplay(boolean enabled)
+  {
+    setBool(KEY_PREF_KAYAK_DISPLAY, enabled);
+  }
+
   public static boolean isKayakDisclaimerAccepted()
   {
     return getBool(KEY_MISC_KAYAK_ACCEPTED);
@@ -227,11 +239,6 @@ public final class Config
   public static void acceptKayakDisclaimer()
   {
     setBool(KEY_MISC_KAYAK_ACCEPTED);
-  }
-
-  public static boolean isKayakReferralAllowed()
-  {
-    return !isFdroid();
   }
 
   public static boolean isLocationRequested()
@@ -413,18 +420,6 @@ public final class Config
         .edit()
         .putBoolean(KEY_MISC_FIRST_START_DIALOG_SEEN, true)
         .apply();
-  }
-
-  public static boolean wasLongTapToastShown(@NonNull Context context)
-  {
-    return MwmApplication.prefs(context).getBoolean(KEY_PREF_LONG_TAP_TOAST_SHOWN, false);
-  }
-
-  public static void setLongTapToastShown(@NonNull Context context, Boolean newValue)
-  {
-    MwmApplication.prefs(context).edit()
-         .putBoolean(KEY_PREF_LONG_TAP_TOAST_SHOWN, newValue)
-         .apply();
   }
 
   public static boolean isSearchHistoryEnabled()

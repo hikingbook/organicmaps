@@ -4,6 +4,7 @@
 #import "MWMTypes.h"
 
 @class MWMMapSearchResult;
+@class TrackInfo;
 
 typedef NS_ENUM(NSUInteger, MWMZoomMode) { MWMZoomModeIn = 0, MWMZoomModeOut };
 
@@ -17,10 +18,12 @@ typedef NS_ENUM(NSInteger, ProductsPopupCloseReason) {
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^SearchInDownloaderCompletions)(NSArray<MWMMapSearchResult *> *results, BOOL finished);
+typedef void (^TrackRecordingUpdatedHandler)(TrackInfo * _Nonnull trackInfo);
 
 @protocol TrackRecorder <NSObject>
 
 + (void)startTrackRecording;
++ (void)setTrackRecordingUpdateHandler:(TrackRecordingUpdatedHandler _Nullable)trackRecordingDidUpdate;
 + (void)stopTrackRecording;
 + (void)saveTrackRecordingWithName:(nullable NSString *)name;
 + (BOOL)isTrackRecordingEnabled;

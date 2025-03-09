@@ -8,10 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.nio.charset.StandardCharsets;
+import org.chromium.base.ObserverList;
 
 import app.organicmaps.Framework;
 import app.organicmaps.util.Language;
-import app.organicmaps.util.Listeners;
 import app.organicmaps.util.concurrency.UiThread;
 
 public enum SearchEngine implements NativeSearchListener,
@@ -32,7 +32,6 @@ public enum SearchEngine implements NativeSearchListener,
         {
           for (NativeSearchListener listener : mListeners)
             listener.onResultsUpdate(results, timestamp);
-          mListeners.finishIterate();
         });
   }
 
@@ -44,7 +43,6 @@ public enum SearchEngine implements NativeSearchListener,
         {
           for (NativeSearchListener listener : mListeners)
             listener.onResultsEnd(timestamp);
-          mListeners.finishIterate();
         });
   }
 
@@ -56,7 +54,6 @@ public enum SearchEngine implements NativeSearchListener,
         {
           for (NativeMapSearchListener listener : mMapListeners)
             listener.onMapSearchResults(results, timestamp, isLast);
-          mMapListeners.finishIterate();
         });
   }
 
@@ -65,7 +62,6 @@ public enum SearchEngine implements NativeSearchListener,
   {
     for (NativeBookmarkSearchListener listener : mBookmarkListeners)
       listener.onBookmarkSearchResultsUpdate(bookmarkIds, timestamp);
-    mBookmarkListeners.finishIterate();
   }
 
   @Override
@@ -73,44 +69,42 @@ public enum SearchEngine implements NativeSearchListener,
   {
     for (NativeBookmarkSearchListener listener : mBookmarkListeners)
       listener.onBookmarkSearchResultsEnd(bookmarkIds, timestamp);
-    mBookmarkListeners.finishIterate();
   }
 
-  @NonNull
-  private final Listeners<NativeSearchListener> mListeners = new Listeners<>();
-  @NonNull
-  private final Listeners<NativeMapSearchListener> mMapListeners = new Listeners<>();
-  @NonNull
-  private final Listeners<NativeBookmarkSearchListener> mBookmarkListeners = new Listeners<>();
+  private final ObserverList<NativeSearchListener> mListeners = new ObserverList<>();
+
+  private final ObserverList<NativeMapSearchListener> mMapListeners = new ObserverList<>();
+
+  private final ObserverList<NativeBookmarkSearchListener> mBookmarkListeners = new ObserverList<>();
 
   public void addListener(NativeSearchListener listener)
   {
-    mListeners.register(listener);
+    mListeners.addObserver(listener);
   }
 
   public void removeListener(NativeSearchListener listener)
   {
-    mListeners.unregister(listener);
+    mListeners.removeObserver(listener);
   }
 
   public void addMapListener(NativeMapSearchListener listener)
   {
-    mMapListeners.register(listener);
+    mMapListeners.addObserver(listener);
   }
 
   public void removeMapListener(NativeMapSearchListener listener)
   {
-    mMapListeners.unregister(listener);
+    mMapListeners.removeObserver(listener);
   }
 
   public void addBookmarkListener(NativeBookmarkSearchListener listener)
   {
-    mBookmarkListeners.register(listener);
+    mBookmarkListeners.addObserver(listener);
   }
 
   public void removeBookmarkListener(NativeBookmarkSearchListener listener)
   {
-    mBookmarkListeners.unregister(listener);
+    mBookmarkListeners.removeObserver(listener);
   }
 
   private native void nativeInit();

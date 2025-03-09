@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Въведете валиден пощенски код";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Неизвестно място";
+"core_placepage_unknown_place" = "Точка на картата";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Забележка към доброволците на OpenStreetMap (по избор)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Оператор: %@";
+
+"editor_category_unsuitable_title" = "Не можете да намерите подходяща категория?";
+
+"editor_category_unsuitable_text" = "Organic Maps позволява да се добавят само прости категории точки, т.е. без градове, пътища, езера, очертания на сгради и т.н. Моля, добавяйте такива категории директно в <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Вижте нашето <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">ръководство</a> за подробни инструкции стъпка по стъпка.";
 
 "downloader_no_downloaded_maps_title" = "Не сте изтеглили никакви карти";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Спускане";
 
-"elevation_profile_minaltitude" = "Мин. надморска височина";
+"elevation_profile_min_elevation" = "Мин. височина";
 
-"elevation_profile_maxaltitude" = "Макс. надморска височина";
+"elevation_profile_max_elevation" = "Макс. височина";
 
 "elevation_profile_difficulty" = "Трудност";
-
-"elevation_profile_time" = "Време:";
 
 "isolines_toast_zooms_1_10" = "Увеличете мащаба, за да разгледате изолиниите";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Сигурни ли сте, че искате да изтриете този трак?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Маршрутът е празен - няма какво да запазвате";
+
+"edit_track" = "Редактиране на маршрут";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Train Station";
 
+"type.railway.station.light_rail.berlin" = "Train Station";
+
 "type.railway.station.light_rail.london" = "Train Station";
 
 "type.railway.station.light_rail.porto" = "Train Station";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Subway Station";
 
 "type.railway.station.subway.hiroshima" = "Subway Station";
+
+"type.railway.station.subway.hongkong" = "Subway Station";
 
 "type.railway.station.subway.isfahan" = "Subway Station";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Subway Station";
 
 "type.railway.station.subway.shanghai" = "Subway Station";
+
+"type.railway.station.subway.shenzhen" = "Subway Station";
 
 "type.railway.station.subway.shiraz" = "Subway Station";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Subway Entrance";
 
+"type.railway.subway_entrance.hongkong" = "Subway Entrance";
+
 "type.railway.subway_entrance.isfahan" = "Subway Entrance";
 
 "type.railway.subway_entrance.istanbul" = "Subway Entrance";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Subway Entrance";
 
 "type.railway.subway_entrance.shanghai" = "Subway Entrance";
+
+"type.railway.subway_entrance.shenzhen" = "Subway Entrance";
 
 "type.railway.subway_entrance.shiraz" = "Subway Entrance";
 

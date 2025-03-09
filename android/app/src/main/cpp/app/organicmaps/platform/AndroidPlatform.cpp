@@ -131,12 +131,18 @@ platform::NetworkPolicy GetCurrentNetworkPolicy()
 
 namespace android
 {
-void Platform::Initialize(JNIEnv * env, jobject context, jobject functorProcessObject, jstring apkPath,
+Platform::~Platform()
+{
+  JNIEnv *env = jni::GetEnv();
+  env->DeleteGlobalRef(m_context);
+}
+
+void Platform::Initialize(JNIEnv * env, jobject context, jstring apkPath,
                           jstring writablePath, jstring privatePath, jstring tmpPath,
                           jstring flavorName, jstring buildType, bool isTablet)
 {
   m_context = env->NewGlobalRef(context);
-  m_guiThread = std::make_unique<GuiThread>(functorProcessObject);
+  m_guiThread = std::make_unique<GuiThread>();
 
   std::string const flavor = jni::ToNativeString(env, flavorName);
   std::string const build = jni::ToNativeString(env, buildType);
@@ -184,8 +190,7 @@ Platform & Platform::Instance()
 
 jobject Platform::GetContext() const
 {
-//  return static_cast<GuiThread const *>(m_guiThread.get())->GetObject();
-    return m_context;
+  return m_context;
 }
 
 void Platform::AndroidSecureStorage::Init(JNIEnv * env)

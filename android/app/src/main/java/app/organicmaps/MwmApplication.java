@@ -12,10 +12,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 
-import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -84,8 +81,6 @@ public class MwmApplication extends Application implements Application.ActivityL
   private volatile boolean mFrameworkInitialized;
   private volatile boolean mPlatformInitialized;
 
-  private Handler mMainLoopHandler;
-  private final Object mMainQueueToken = new Object();
   @NonNull
   private final MapManager.StorageCallback mStorageCallbacks = new StorageCallbackImpl();
 
@@ -171,7 +166,6 @@ public class MwmApplication extends Application implements Application.ActivityL
 
     Config.init(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
-    mMainLoopHandler = new Handler(OrganicmapsFrameworkAdapter.INSTANCE.getApplication().getMainLooper());
     ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
 
     DownloaderNotifier.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
@@ -290,22 +284,11 @@ public class MwmApplication extends Application implements Application.ActivityL
     System.loadLibrary("organicmaps");
   }
 
-  // Called from JNI.
-  @Keep
-  @SuppressWarnings("unused")
-  private void forwardToMainThread(final long taskPointer)
-  {
-    Message m = Message.obtain(mMainLoopHandler, () -> nativeProcessTask(taskPointer));
-    m.obj = mMainQueueToken;
-    mMainLoopHandler.sendMessage(m);
-  }
-
   private static native void nativeSetSettingsDir(String settingsPath);
-  private native void nativeInitPlatform(Context context, String apkPath, String writablePath, String privatePath,
-                                         String tmpPath, String flavorName, String buildType,
-                                         boolean isTablet);
+  private static native void nativeInitPlatform(Context context, String apkPath, String writablePath,
+                                                String privatePath, String tmpPath, String flavorName,
+                                                String buildType, boolean isTablet);
   private static native void nativeInitFramework(@NonNull Runnable onComplete);
-  private static native void nativeProcessTask(long taskPointer);
   private static native void nativeAddLocalization(String name, String value);
   private static native void nativeOnTransit(boolean foreground);
 

@@ -416,6 +416,8 @@ node|z17-[aerialway=station],
 node|z17-[railway=level_crossing]
 {icon-image: railway-crossing-m.svg;}
 
+node|z12-14[railway=station][station=funicular],
+{icon-image: funicular-s.svg;}
 node|z15-[railway=station][station=funicular],
 {icon-image: funicular-m.svg;text-offset: 1;font-size: 10;}
 node|z17-[aerialway=station],
@@ -1069,6 +1071,7 @@ area|z18-[man_made=silo],
 node|z18-[man_made=storage_tank],
 area|z18-[man_made=storage_tank],
 node|z18-[man_made=water_tower],
+node|z18-[man_made=tower],
 node|z18-[amenity=bbq],
 area|z18-[amenity=bbq],
 node|z18-[amenity=brothel],
@@ -1549,8 +1552,11 @@ node|z16-[highway=ford],
 node|z19-[power=tower],
 node|z15-[man_made=flagpole],
 node|z16-[man_made=mast],
-node|z17-[man_made=tower][tower:type=communication],
 {icon-image: dot-m.svg;}
+
+node|z16-[man_made=tower],
+node|z16-[man_made=tower][tower:type=communication],
+{icon-image: mast-m.svg;}
 
 node|z16-[amenity=taxi],
 area|z16-[amenity=taxi]
@@ -1865,7 +1871,6 @@ area|z16-[shop=bakery],
 node|z16-[shop=pastry],
 area|z16-[shop=pastry],
 node|z16-[shop=pasta],
-area|z16-[shop=pasta],
 node|z16-[shop=beauty],
 area|z16-[shop=beauty],
 node|z16-[shop=cosmetics],
@@ -2029,6 +2034,8 @@ area|z17-[shop=supermarket],
 node|z16[shop=cheese],
 area|z16[shop=cheese]
 {icon-image: cheese-m.svg;}
+node|z16-[shop=pasta],
+{icon-image: shop-m.svg;}
 node|z16[shop=alcohol],
 area|z16[shop=alcohol]
 {icon-image: alcohol-m.svg;}

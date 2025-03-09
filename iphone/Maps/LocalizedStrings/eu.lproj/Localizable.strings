@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Sartu baliozko posta-kodea";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Toki ezezaguna";
+"core_placepage_unknown_place" = "Maparen puntua";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "OpenStreetMap-eko boluntarioentzako oharra (aukerakoa)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Operadorea: %@";
+
+"editor_category_unsuitable_title" = "Ezin duzu kategoria egokirik aurkitu?";
+
+"editor_category_unsuitable_text" = "Organic Maps-ek puntu kategoria soilak gehitzeko aukera ematen du, hau da, ez da herririk, errepiderik, lakurik, eraikinen eskemarik, etab. Gehitu kategoria horiek zuzenean <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Begiratu gure <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">gida</a> urratsez urrats argibide zehatzak lortzeko.";
 
 "downloader_no_downloaded_maps_title" = "Ez duzu maparik deskargatu";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Maldan behera";
 
-"elevation_profile_minaltitude" = "Gutxieneko altuera";
+"elevation_profile_min_elevation" = "Goragune min.";
 
-"elevation_profile_maxaltitude" = "Gehieneko altuera";
+"elevation_profile_max_elevation" = "Goragune max.";
 
 "elevation_profile_difficulty" = "Zailtasuna";
-
-"elevation_profile_time" = "Denbora:";
 
 "isolines_toast_zooms_1_10" = "Handitu mapa sestra kurbak ikusteko";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Ezabatu arrastoa";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Ziur pista hau ezabatu nahi duzula?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Arrastoaren izena";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Ibilbidea hutsik dago; ez dago ezer gordetzeko";
+
+"edit_track" = "Editatu arrastoa";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Tren geltokian";
 
+"type.railway.station.light_rail.berlin" = "Tren geltokian";
+
 "type.railway.station.light_rail.london" = "Tren geltokian";
 
 "type.railway.station.light_rail.porto" = "Tren geltokian";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Metroa";
 
 "type.railway.station.subway.hiroshima" = "Metroa";
+
+"type.railway.station.subway.hongkong" = "Metroa";
 
 "type.railway.station.subway.isfahan" = "Metroa";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Metroa";
 
 "type.railway.station.subway.shanghai" = "Metroa";
+
+"type.railway.station.subway.shenzhen" = "Metroa";
 
 "type.railway.station.subway.shiraz" = "Metroa";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Metroko sarrera";
 
+"type.railway.subway_entrance.hongkong" = "Metroko sarrera";
+
 "type.railway.subway_entrance.isfahan" = "Metroko sarrera";
 
 "type.railway.subway_entrance.istanbul" = "Metroko sarrera";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Metroko sarrera";
 
 "type.railway.subway_entrance.shanghai" = "Metroko sarrera";
+
+"type.railway.subway_entrance.shenzhen" = "Metroko sarrera";
 
 "type.railway.subway_entrance.shiraz" = "Metroko sarrera";
 

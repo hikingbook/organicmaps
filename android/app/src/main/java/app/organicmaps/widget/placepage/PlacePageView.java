@@ -66,6 +66,7 @@ import app.organicmaps.widget.placepage.sections.PlacePageBookmarkFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageLinksFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageOpeningHoursFragment;
 import app.organicmaps.widget.placepage.sections.PlacePagePhoneFragment;
+import app.organicmaps.widget.placepage.sections.PlacePageProductsFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageWikipediaFragment;
 
 public class PlacePageView extends Fragment implements View.OnClickListener,
@@ -77,6 +78,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
 {
   private static final String PREF_COORDINATES_FORMAT = "coordinates_format";
   private static final String BOOKMARK_FRAGMENT_TAG = "BOOKMARK_FRAGMENT_TAG";
+  private static final String PRODUCTS_FRAGMENT_TAG = "PRODUCTS_FRAGMENT_TAG";
   private static final String WIKIPEDIA_FRAGMENT_TAG = "WIKIPEDIA_FRAGMENT_TAG";
   private static final String PHONE_FRAGMENT_TAG = "PHONE_FRAGMENT_TAG";
   private static final String OPENING_HOURS_FRAGMENT_TAG = "OPENING_HOURS_FRAGMENT_TAG";
@@ -210,9 +212,11 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     mFrame.setOnClickListener((v) -> mPlacePageViewListener.onPlacePageRequestToggleState());
 
     mPreview = mFrame.findViewById(R.id.pp__preview);
+
     mFrame.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       final int oldHeight = oldBottom - oldTop;
       final int newHeight = bottom - top;
+
       if (oldHeight != newHeight)
         mPlacePageViewListener.onPlacePageContentChanged(mPreview.getHeight(), newHeight);
     });
@@ -395,6 +399,18 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     updateViewFragment(PlacePageWikipediaFragment.class, WIKIPEDIA_FRAGMENT_TAG, R.id.place_page_wikipedia_fragment, hasWikipediaEntry());
   }
 
+  private boolean hasProductsEntry()
+  {
+    return Framework.nativeShouldShowProducts();
+  }
+
+  private void updateProductsView()
+  {
+    var hasProductsEntry = hasProductsEntry();
+
+    updateViewFragment(PlacePageProductsFragment.class, PRODUCTS_FRAGMENT_TAG, R.id.place_page_products_fragment, hasProductsEntry);
+  }
+
   private void setTextAndColorizeSubtitle()
   {
     String text = mMapObject.getSubtitle();
@@ -488,6 +504,7 @@ public class PlacePageView extends Fragment implements View.OnClickListener,
     }
     updateLinksView();
     updateOpeningHoursView();
+    updateProductsView();
     updateWikipediaView();
     updateBookmarkView();
     updatePhoneView();

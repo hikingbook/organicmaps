@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Nhập Mã ZIP chính xác";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Địa Điểm Chưa Biết";
+"core_placepage_unknown_place" = "Điểm bản đồ";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Lưu ý dành cho tình nguyện viên OpenStreetMap (tùy chọn)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Toán tử: %@";
+
+"editor_category_unsuitable_title" = "Không thể tìm thấy một danh mục phù hợp?";
+
+"editor_category_unsuitable_text" = "Bản đồ không phải trả tiền chỉ cho phép thêm các danh mục điểm đơn giản, nghĩa là không có thị trấn, đường, hồ, đường viền tòa nhà, v.v. Vui lòng thêm các danh mục đó trực tiếp vào <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Hãy xem <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">hướng dẫn</a> của chúng tôi để biết hướng dẫn chi tiết từng bước.";
 
 "downloader_no_downloaded_maps_title" = "Bạn chưa tải về bất kỳ bản đồ nào";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Đi xuống";
 
-"elevation_profile_minaltitude" = "Độ cao tối thiểu";
+"elevation_profile_min_elevation" = "Min. độ cao";
 
-"elevation_profile_maxaltitude" = "Độ cao tối đa";
+"elevation_profile_max_elevation" = "Max. độ cao";
 
 "elevation_profile_difficulty" = "Độ khó";
-
-"elevation_profile_time" = "Giờ:";
 
 "isolines_toast_zooms_1_10" = "Phóng bản đồ để nhìn rõ đường đồng mức";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Bạn có chắc chắn muốn xóa bản nhạc này không?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Tuyến đường trống - không có gì để lưu";
+
+"edit_track" = "Chỉnh sửa tuyến đường";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Đường tàu hỏa";
 
+"type.railway.station.light_rail.berlin" = "Đường tàu hỏa";
+
 "type.railway.station.light_rail.london" = "Đường tàu hỏa";
 
 "type.railway.station.light_rail.porto" = "Đường tàu hỏa";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Ngầm";
 
 "type.railway.station.subway.hiroshima" = "Ngầm";
+
+"type.railway.station.subway.hongkong" = "Ngầm";
 
 "type.railway.station.subway.isfahan" = "Ngầm";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Ngầm";
 
 "type.railway.station.subway.shanghai" = "Ngầm";
+
+"type.railway.station.subway.shenzhen" = "Ngầm";
 
 "type.railway.station.subway.shiraz" = "Ngầm";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Lỗi vào Metro";
 
+"type.railway.subway_entrance.hongkong" = "Lỗi vào Metro";
+
 "type.railway.subway_entrance.isfahan" = "Lỗi vào Metro";
 
 "type.railway.subway_entrance.istanbul" = "Lỗi vào Metro";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Lỗi vào Metro";
 
 "type.railway.subway_entrance.shanghai" = "Lỗi vào Metro";
+
+"type.railway.subway_entrance.shenzhen" = "Lỗi vào Metro";
 
 "type.railway.subway_entrance.shiraz" = "Lỗi vào Metro";
 

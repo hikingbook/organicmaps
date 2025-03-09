@@ -737,7 +737,7 @@
 "error_enter_correct_zip_code" = "Zadejte správné PSČ";
 
 /* Place Page title for long tap */
-"core_placepage_unknown_place" = "Neznámé místo";
+"core_placepage_unknown_place" = "Bod na mapě";
 
 /* Title for OSM note section in the editor */
 "editor_other_info" = "Poznámka pro dobrovolníky OpenStreetMap (nepovinné)";
@@ -752,6 +752,10 @@
 
 /* To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... */
 "operator" = "Operátor: %@";
+
+"editor_category_unsuitable_title" = "Nemůžete najít vhodnou kategorii?";
+
+"editor_category_unsuitable_text" = "Organické mapy umožňují přidávat pouze jednoduché kategorie bodů, tedy žádná města, silnice, jezera, obrysy budov atd. Takové kategorie prosím přidávejte přímo na <a href=\"https://www.openstreetmap.org\">OpenStreetMap.org</a>. Podrobné pokyny krok za krokem najdete v našem <a href=\"https://organicmaps.app/faq/editing/advanced-map-editing\">průvodci</a>.";
 
 "downloader_no_downloaded_maps_title" = "Nemáte stažené žádné mapy";
 
@@ -1221,13 +1225,11 @@
 
 "elevation_profile_descent" = "Klesání";
 
-"elevation_profile_minaltitude" = "Min. nadmořská výška";
+"elevation_profile_min_elevation" = "Min. výška";
 
-"elevation_profile_maxaltitude" = "Max. nadmořská výška";
+"elevation_profile_max_elevation" = "Max. výška";
 
 "elevation_profile_difficulty" = "Obtížnost";
-
-"elevation_profile_time" = "Čas:";
 
 "isolines_toast_zooms_1_10" = "Přiblížit pro prozkoumání izolinií";
 
@@ -1249,6 +1251,9 @@
 
 /* Delete track button on track edit screen */
 "placepage_delete_track_button" = "Delete Track";
+
+/* The track deletion confirmaion alert message. */
+"placepage_delete_track_confirmation_alert_message" = "Opravdu chcete tuto stopu odstranit?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Track Name";
@@ -1401,6 +1406,8 @@
 
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Trasa je prázdná - není co ukládat";
+
+"edit_track" = "Upravit trasu";
 
 
 /********** Types **********/
@@ -3066,6 +3073,8 @@
 
 "type.railway.station.light_rail" = "Železniční stanice";
 
+"type.railway.station.light_rail.berlin" = "Železniční stanice";
+
 "type.railway.station.light_rail.london" = "Železniční stanice";
 
 "type.railway.station.light_rail.porto" = "Železniční stanice";
@@ -3149,6 +3158,8 @@
 "type.railway.station.subway.helsinki" = "Metro";
 
 "type.railway.station.subway.hiroshima" = "Metro";
+
+"type.railway.station.subway.hongkong" = "Metro";
 
 "type.railway.station.subway.isfahan" = "Metro";
 
@@ -3255,6 +3266,8 @@
 "type.railway.station.subway.sf" = "Metro";
 
 "type.railway.station.subway.shanghai" = "Metro";
+
+"type.railway.station.subway.shenzhen" = "Metro";
 
 "type.railway.station.subway.shiraz" = "Metro";
 
@@ -3380,6 +3393,8 @@
 
 "type.railway.subway_entrance.hiroshima" = "Vchod do podchodu";
 
+"type.railway.subway_entrance.hongkong" = "Vchod do podchodu";
+
 "type.railway.subway_entrance.isfahan" = "Vchod do podchodu";
 
 "type.railway.subway_entrance.istanbul" = "Vchod do podchodu";
@@ -3485,6 +3500,8 @@
 "type.railway.subway_entrance.sf" = "Vchod do podchodu";
 
 "type.railway.subway_entrance.shanghai" = "Vchod do podchodu";
+
+"type.railway.subway_entrance.shenzhen" = "Vchod do podchodu";
 
 "type.railway.subway_entrance.shiraz" = "Vchod do podchodu";
 
