@@ -746,25 +746,25 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     try {
       final FragmentActivity activity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
-      View container = activity.findViewById(R.id.map_fragment_container);
-      if (container == null) {
-        throw new NullPointerException();
-      }
       final FragmentManager manager = activity.getSupportFragmentManager();
       mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
       if (mMapFragment == null) {
-        Bundle args = new Bundle();
-        args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
-        final FragmentFactory factory = manager.getFragmentFactory();
-        mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
-        mMapFragment.setArguments(args);
-        manager
-                .beginTransaction()
-                .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-                .commit();
+        mMapFragment = (MapFragment) manager.findFragmentById(R.id.map_fragment_container);
+        if (mMapFragment == null) {
+          Bundle args = new Bundle();
+          args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
+          final FragmentFactory factory = manager.getFragmentFactory();
+          mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
+          mMapFragment.setArguments(args);
+          manager
+                  .beginTransaction()
+                  .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+                  .commit();
+        }
       }
 
 //    View container = findViewById(R.id.map_fragment_container);
+      View container = activity.findViewById(R.id.map_fragment_container);
       container.setOnTouchListener(this);
     } catch (Throwable e) {
       (new Handler(Looper.getMainLooper())).postDelayed(() -> initMap(isLaunchByDeepLink), 500);

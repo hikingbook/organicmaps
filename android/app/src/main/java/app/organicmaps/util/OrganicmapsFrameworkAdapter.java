@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -183,7 +184,7 @@ public enum OrganicmapsFrameworkAdapter {
         setFragment(fragment);
     }
 
-    public void onCreateMwmActivity() {
+    public void onCreateMwmActivity(Bundle savedInstanceState) {
         mwmActivity.mIsTabletLayout = getApplication().getResources().getBoolean(R.bool.tabletLayout);
         if (!mwmActivity.mIsTabletLayout)
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
