@@ -728,6 +728,10 @@
 					"$(OMIM_ROOT)/3party/Vulkan-Headers/include",
 					"$(OMIM_ROOT)/3party/vulkan_wrapper",
 				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-missing-template-arg-list-after-template-kw",
+				);
 			};
 			name = Debug;
 		};
@@ -751,6 +755,10 @@
 					"$(OMIM_ROOT)/3party/icu/icu/icu4c/source/i18n",
 					"$(OMIM_ROOT)/3party/Vulkan-Headers/include",
 					"$(OMIM_ROOT)/3party/vulkan_wrapper",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-missing-template-arg-list-after-template-kw",
 				);
 			};
 			name = Release;
