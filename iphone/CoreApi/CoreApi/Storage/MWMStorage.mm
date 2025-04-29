@@ -324,4 +324,24 @@ using namespace storage;
   return [[MWMMapUpdateInfo alloc] initWithUpdateInfo:updateInfo];
 }
 
+- (NSDictionary<NSString *, id> *)downloadNodeWithSwiftCompatibility:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
+    NSError *error = nil;
+    BOOL success = [self downloadNode:countryId mapSource:mapSource error:&error];
+    
+    return @{
+        @"success": @(success),
+        @"error": error ?: [NSNull null]
+    };
+}
+
+- (NSDictionary<NSString *, id> *)downloadNodesWithSwiftCompatibility:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources {
+    NSError *error = nil;
+    BOOL success = [self downloadNodes:countryIds mapSources:mapSources error:&error];
+    
+    return @{
+        @"success": @(success),
+        @"error": error ?: [NSNull null]
+    };
+}
+
 @end
