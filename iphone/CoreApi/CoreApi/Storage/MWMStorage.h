@@ -68,13 +68,6 @@ ignoreUnsavedEdits:(BOOL)force
 - (NSString *)nameForCountry:(NSString *)countryId;
 - (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location;
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId;
-- (NSDictionary<NSString *, id> *)downloadNodeWithSwiftCompatibility:(NSString *)countryId
-                                                           mapSource:(MWMMapSource)mapSource
-                                                           NS_SWIFT_NAME(downloadNodeForSwift(countryId:mapSource:));
-- (NSDictionary<NSString *, id> *)downloadNodesWithSwiftCompatibility:(NSArray<NSString *> *)countryIds
-                                                           mapSources:(NSArray<NSNumber *> *)mapSources
-                                                           NS_SWIFT_NAME(downloadNodesForSwift(countryIds:mapSources:));
-
 @end
 
 NS_ASSUME_NONNULL_END
