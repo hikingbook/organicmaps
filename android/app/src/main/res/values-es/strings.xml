@@ -9,7 +9,7 @@
     <string name="delete">Eliminar</string>
     <string name="download_maps">Descargar mapas</string>
     <!-- Settings/Downloader - info for country when download fails -->
-    <string name="download_has_failed">Error durante la descarga. Pulse para intentarlo de nuevo.</string>
+    <string name="download_has_failed">Error durante la descarga. Toque para intentarlo de nuevo.</string>
     <!-- Settings/Downloader - info for country which started downloading -->
     <string name="downloading">Descargando…</string>
     <!-- Choose measurement on first launch alert - choose metric system button -->
@@ -26,6 +26,10 @@
     <string name="search_map">Buscar en el mapa</string>
     <!-- Location services are disabled by user alert - message -->
     <string name="location_is_disabled_long_text">No se puede acceder a los servicios de localización en este dispositivo o aplicación. Actívelos en la configuración.</string>
+    <!-- A dialog title, that warns a user that Precise Location is disabled and suggests to turn it on -->
+    <string name="limited_accuracy">Precisión limitada</string>
+    <!-- A dialog text, that warns a user that Precise Location is disabled and suggests to turn it on -->
+    <string name="precise_location_is_disabled_long_text">Para garantizar una navegación más exacta, active la Precisión de la ubicación en los ajustes.</string>
     <!-- View and button titles for accessibility -->
     <string name="zoom_to_country">Mostrar en el mapa</string>
     <!-- Message to display at the center of the screen when the country download has failed -->
@@ -51,12 +55,11 @@
     <!-- Used in DownloadResources startup screen -->
     <string name="disconnect_usb_cable">Desconecte el cable USB o inserte una tarjeta de memoria SD para usar Organic Maps</string>
     <!-- Used in DownloadResources startup screen -->
-    <string name="not_enough_free_space_on_sdcard">Libere primero espacio en la memoria SD o almacenamiento USB para usar la aplicación</string>
+    <string name="not_enough_free_space_on_sdcard">Libere espacio en la memoria SD o almacenamiento USB para usar la aplicación</string>
     <string name="download_resources">Antes de comenzar, permita que descarguemos en su dispositivo un mapamundi general.
 \nSe requieren %s de almacenamiento.</string>
     <string name="download_resources_continue">Ir al mapa</string>
-    <string name="downloading_country_can_proceed">Descargando %s. Puede ahora
-\nproceder al mapa</string>
+    <string name="downloading_country_can_proceed">Descargando %s. Puede ahora \nproceder al mapa.</string>
     <string name="download_country_ask">¿Descargar %s?</string>
     <string name="update_country_ask">¿Actualizar %s?</string>
     <!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -72,7 +75,7 @@
     <!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
     <string name="bookmarks">Marcadores</string>
     <!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
-    <string name="bookmarks_and_tracks">Marcadores y rutas</string>
+    <string name="bookmarks_and_tracks">Marcadores y trayectos</string>
     <!-- Default bookmark list name -->
     <string name="core_my_places">Mis lugares</string>
     <!-- Add bookmark dialog - bookmark name -->
@@ -82,11 +85,11 @@
     <!-- Add Bookmark dialog/Bookmark list; Bookmarks dialog/Bookmark list cell. -->
     <string name="list">Lista</string>
     <!-- Settings button in system menu -->
-    <string name="settings">Ajustes</string>
+    <string name="settings">Configuración</string>
     <!-- Header of settings activity where user defines storage path -->
     <string name="maps_storage">Guardar mapas en</string>
     <!-- Detailed description of Maps Storage settings button -->
-    <string name="maps_storage_summary">Seleccione el lugar donde deben descargarse los mapas</string>
+    <string name="maps_storage_summary">Seleccione la carpeta donde deben descargarse los mapas.</string>
     <!-- E.g. "Downloaded maps: 500Mb" in Maps Storage settings -->
     <string name="maps_storage_downloaded">Mapas descargados</string>
     <!-- Internal storage type in Maps Storage settings (not accessible by the user) -->
@@ -104,13 +107,11 @@
     <!-- Error moving map files from one storage to another -->
     <string name="move_maps_error">Error al mover los archivos de mapas</string>
     <!-- Ask user to wait several minutes (some long process in modal dialog). -->
-    <string name="wait_several_minutes">Esto podría tardar varios minutos.
-\nPor favor, espere…</string>
+    <string name="wait_several_minutes">Esto podría tardar varios minutos. \nAguarde un momento…</string>
     <!-- Measurement units title in settings activity -->
     <string name="measurement_units">Unidades de medida</string>
     <!-- Detailed description of Measurement Units settings button -->
     <string name="measurement_units_summary">Elija entre millas y kilómetros</string>
-
     <!-- SECTION: Search categories -->
     <!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
     <string name="category_eat">Dónde comer</string>
@@ -129,7 +130,7 @@
     <!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
     <string name="category_hotel">Hotel</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
-    <string name="category_tourism">Turismo</string>
+    <string name="category_tourism">Atracciones turísticas</string>
     <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
     <string name="category_entertainment">Entretenimiento</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
@@ -151,28 +152,25 @@
     <!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
     <string name="category_police">Policía</string>
     <!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
-    <string name="category_wifi">WiFi</string>
+    <string name="category_wifi">Wifi</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Reciclaje</string>
     <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
     <string name="category_water">Agua</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
-    <string name="category_rv">Caravanas</string>
-
+    <string name="category_rv">Instalaciones para autocaravanas</string>
     <!-- SECTION: Other translations -->
     <!-- Notes field in Bookmarks view -->
     <string name="description">Notas</string>
     <!-- Email Subject when sharing bookmark list -->
     <string name="share_bookmarks_email_subject">Marcadores de Organic Maps compartidos con usted</string>
-    <string name="share_bookmarks_email_body">Hola!
-\n\Adjunto mis marcadores de la aplicación Organic Maps. Por favor, ábralos si tiene instalado Organic Maps. O, si no lo tiene, descargue la aplicación para su dispositivo iOS o Android siguiendo este enlace: https://omaps.app/get?kmz
-\n¡Disfrute viajando con Organic Maps!</string>
+    <string name="share_bookmarks_email_body">¡Hola! \n\nAdjunto mis marcadores de la aplicación Organic Maps. Por favor, ábralos si tiene instalado Organic Maps. O, si no lo tiene, descargue la aplicación para su dispositivo iOS o Android siguiendo este enlace: https://omaps.app/get?kmz \n\n¡Disfrute viajando con Organic Maps!</string>
     <!-- message title of loading file -->
     <string name="load_kmz_title">Cargando marcadores</string>
     <!-- Kmz file successful loading -->
     <string name="load_kmz_successful">¡Los marcadores se han cargado con éxito! Puede encontrarlos en el mapa o en la pantalla de Gestión de marcadores.</string>
     <!-- Kml file loading failed -->
-    <string name="load_kmz_failed">La carga de marcadores ha fallado. El archivo puede estar corrupto o ser defectuoso.</string>
+    <string name="load_kmz_failed">No se pudieron cargar los marcadores. El archivo podría tener daños o defectos.</string>
     <!-- Failed to recognize the format of a bookmarks or tracks file. -->
     <string name="unknown_file_type">La aplicación no reconoce el tipo de archivo:
 \n%1$s</string>
@@ -183,13 +181,13 @@
     <!-- resource for context menu -->
     <string name="edit">Editar</string>
     <!-- Warning message when doing search around current position -->
-    <string name="unknown_current_position">Su ubicación aún no ha sido determinada</string>
+    <string name="unknown_current_position">Aún no se ha determinado su ubicación</string>
     <!-- Alert message that we can't run Map Storage settings due to some reasons. -->
     <string name="cant_change_this_setting">Lo sentimos, la configuración del almacenamiento de mapas está desactivada.</string>
     <!-- Alert message that downloading is in progress. -->
-    <string name="downloading_is_active">La descarga del mapa está en curso ahora.</string>
+    <string name="downloading_is_active">La descarga del mapa está en curso.</string>
     <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">¡Mira mi ubicación actual en Organic Maps!. %1$s o %2$s ¿No tienes mapas offline? Descarga aquí: https://omaps.app/get</string>
+    <string name="my_position_share_sms">¡Mire mi ubicación actual en Organic Maps! %1$s o %2$s ¿No tiene mapas offline? Descárguelos aquí: https://omaps.app/get</string>
     <!-- Subject for emailed bookmark -->
     <string name="bookmark_share_email_subject">¡Mira mi marcador en el mapa de Organic Maps!</string>
     <!-- Subject for emailed position -->
@@ -203,9 +201,9 @@
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Compartir</string>
     <!-- Share by email button text, also used in editor and About. -->
-    <string name="email">Email</string>
+    <string name="email">Correo</string>
     <!-- Text for message when used successfully copied something -->
-    <string name="copied_to_clipboard">Copiado al portapapeles: %s</string>
+    <string name="copied_to_clipboard">Copiado en el portapapeles: %s</string>
     <!-- Used for bookmark editing -->
     <string name="done">Hecho</string>
     <!-- Data version in «About» screen, %@ is replaced by a local, human readable date. -->
@@ -213,7 +211,7 @@
     <!-- Confirmation for OpenStreetMap log out. -->
     <string name="osm_log_out_confirmation">¿Quiere salir de su cuenta de OpenStreetMap?</string>
     <!-- Title for tracks category in bookmarks manager -->
-    <string name="tracks_title">Rutas</string>
+    <string name="tracks_title">Trayectos</string>
     <!-- Length of track in cell that describes route -->
     <string name="length">Longitud</string>
     <string name="share_my_location">Compartir mi ubicación</string>
@@ -222,7 +220,7 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Información</string>
     <string name="prefs_group_route">Navegación</string>
-    <string name="pref_zoom_title">Botones de zoom</string>
+    <string name="pref_zoom_title">Botones de zum</string>
     <string name="pref_zoom_summary">Visualización en la pantalla</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">Modo nocturno</string>
@@ -237,7 +235,7 @@
     <!-- Settings «Map» category: «3D buildings» title -->
     <string name="pref_map_3d_buildings_title">Edificios en 3D</string>
     <!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
-    <string name="pref_map_3d_buildings_disabled_summary">Los edificios 3D se apagan en el modo de ahorro de energía</string>
+    <string name="pref_map_3d_buildings_disabled_summary">Los edificios 3D se desactivan en el modo de ahorro de energía</string>
     <!-- Settings «Route» category: «Tts enabled» title -->
     <string name="pref_tts_enable_title">Instrucciones de voz</string>
     <!-- Settings «Route» category: «Tts announce street names» title -->
@@ -252,7 +250,7 @@
     <string name="pref_tts_playing_test_voice">Compruebe el volumen o la configuración de texto a voz del sistema si ahora no oye la voz.</string>
     <!-- Settings «Route» category: «Tts unavailable» subtitle -->
     <string name="pref_tts_unavailable">No disponible</string>
-    <string name="pref_map_auto_zoom">Zoom automático</string>
+    <string name="pref_map_auto_zoom">Zum automático</string>
     <string name="placepage_distance">Distancia</string>
     <string name="search_show_on_map">Ver en el mapa</string>
     <!-- Menu button -->
@@ -271,7 +269,7 @@
     <string name="faq">Preguntas frecuentes</string>
     <!-- Button in the main menu -->
     <string name="donate">Donar</string>
-    <string name="already_donated">Ya donado</string>
+    <string name="already_donated">Ya he donado</string>
     <string name="remind_me_later">Recordar más tarde</string>
     <string name="support_organic_maps">Apoyar Organic Maps</string>
     <!-- Button in the main Help dialog -->
@@ -285,7 +283,7 @@
     <!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
     <string name="compass_calibration_required">Mueva el teléfono en forma de ocho para calibrar la brújula y fijar la dirección de la flecha en el mapa.</string>
     <!-- Toast text when user hides UI with a long tap anywhere on the map -->
-    <string name="long_tap_toast">Vuelve a pulsar prolongadamente sobre el mapa para ver la interfaz</string>
+    <string name="long_tap_toast">Vuelva a pulsar prolongadamente sobre el mapa para ver la interfaz</string>
     <!-- Update all button text -->
     <string name="downloader_update_all_button">Actualizar todos</string>
     <!-- Cancel all button text -->
@@ -300,11 +298,11 @@
     <string name="downloader_download_all_button">Descargar todos</string>
     <string name="downloader_downloading">Descargando:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
-    <string name="downloader_delete_map_while_routing_dialog">Para eliminar el mapa, por favor, detenga la navegación.</string>
+    <string name="downloader_delete_map_while_routing_dialog">Para eliminar el mapa, detenga la navegación.</string>
     <!-- PointsInDifferentMWM -->
     <string name="routing_failed_cross_mwm_building">Sólo se pueden crear rutas que estén totalmente contenidas en un mapa de una sola región.</string>
     <!-- Context menu item for downloader. -->
-    <string name="downloader_download_map">Descargar el mapa</string>
+    <string name="downloader_download_map">Descargar mapa</string>
     <!-- Item status in downloader. -->
     <string name="downloader_retry">Reintentar</string>
     <!-- Item in context menu. -->
@@ -314,11 +312,7 @@
     <!-- Preference title -->
     <string name="google_play_services">Servicios de localización de Google Play</string>
     <!-- Preference text -->
-    <string name="pref_use_google_play">Determina rápidamente tu ubicación aproximada mediante Bluetooth, WiFi o red móvil</string>
-    <!-- Preference title -->
-    <string name="pref_display_kayak_title">Enlaces de hoteles de Kayak.com</string>
-    <!-- Preference description -->
-    <string name="pref_display_kayak_text">Se muestran fotos, reseñas y enlaces de reserva para los hoteles que tienen un listado en Kayak.com. La bonificación por referencia recibida por cada reserva a través de estos enlaces se destina al desarrollo de Organic Maps.</string>
+    <string name="pref_use_google_play">Determina rápidamente su ubicación aproximada mediante Bluetooth, WiFi o red móvil</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">Descargue todos los mapas de su ruta</string>
     <!-- Text for routing error dialog -->
@@ -328,7 +322,6 @@
     <!-- location service disabled -->
     <string name="enable_location_services">Por favor, active los servicios de localización</string>
     <string name="save">Guardar</string>
-    <string name="edit_description_hint">Sus descripciones (texto o html)</string>
     <string name="create">crear</string>
     <!-- red color -->
     <string name="red">Rojo</string>
@@ -362,14 +355,13 @@
     <string name="gray">Gris</string>
     <!-- blue gray color -->
     <string name="blue_gray">Gris azulado</string>
-
     <!-- SECTION: Routing dialogs strings -->
     <string name="dialog_routing_disclaimer_title">Al seguir la ruta, tenga en cuenta:</string>
-    <string name="dialog_routing_disclaimer_priority">— Las condiciones de la ruta, las reglas de tráfico y las señales de carretera siempre tienen prioridad sobre las sugerencias de navegación;</string>
+    <string name="dialog_routing_disclaimer_priority">— Las condiciones del camino, las reglas de tránsito y los señalamientos siempre tienen prioridad sobre las sugerencias de navegación;</string>
     <string name="dialog_routing_disclaimer_precision">— El mapa puede ser impreciso y sugerir una ruta que no siempre puede ser el mejor camino para llegar al destino;</string>
     <string name="dialog_routing_disclaimer_recommendations">— Las rutas sugeridas deben entenderse solo como recomendaciones;</string>
-    <string name="dialog_routing_disclaimer_borders">— Actúe con cautela en las rutas con zonas fronterizas: las rutas creadas por nuestra aplicación en ocasiones pueden atravesar las fronteras de países en lugares no autorizados;</string>
-    <string name="dialog_routing_disclaimer_beware">¡Manténgase alerta y seguro en las rutas!</string>
+    <string name="dialog_routing_disclaimer_borders">— Actúe con cautela en las rutas con zonas fronterizas: las rutas creadas por nuestra aplicación en ocasiones pueden atravesar las fronteras de países en lugares no autorizados.</string>
+    <string name="dialog_routing_disclaimer_beware">¡Manténgase alerta y a salvo durante el viaje!</string>
     <string name="dialog_routing_check_gps">Verificar la señal del GPS</string>
     <string name="dialog_routing_error_location_not_found">No se puede crear la ruta. No se pudieron identificar las coordenadas actuales del GPS.</string>
     <string name="dialog_routing_location_turn_wifi">Verifique la señal del GPS. Activar la Wi-Fi mejorará la precisión de su ubicación.</string>
@@ -392,7 +384,6 @@
     <string name="not_now">No ahora</string>
     <string name="dialog_routing_download_and_build_cross_route">¿Desea descargar el mapa y crear una ruta mejor que abarque más de un mapa?</string>
     <string name="dialog_routing_download_cross_route">Descargue mapas adicionales para crear una ruta mejor que cruce los límites de este mapa.</string>
-
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">Para empezar a buscar y crear rutas, descargue el mapa. Después de eso, ya no necesitará una conexión a Internet.</string>
     <string name="search_select_map">Seleccionar mapa</string>
@@ -402,12 +393,12 @@
     <string name="hide">Ocultar</string>
     <string name="categories">Categorías</string>
     <string name="history">Historial</string>
-    <string name="search_not_found">Lo siento, no se han encontrado resultados.</string>
+    <string name="search_not_found">No se encontró ningún resultado.</string>
     <!-- The message when user did not find anything in the search. -->
     <string name="search_not_found_query">Descargue la región en la que está buscando o pruebe a añadir el nombre de una ciudad/pueblo cercano.</string>
     <string name="search_history_title">Historial de búsquedas</string>
     <string name="search_history_text">Ver búsquedas recientes.</string>
-    <string name="clear_search">Eliminar el historial de búsqueda</string>
+    <string name="clear_search">Vaciar historial de búsquedas</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
     <string name="read_in_wikipedia">Wikipedia</string>
     <string name="p2p_your_location">Su ubicación</string>
@@ -415,7 +406,7 @@
     <string name="p2p_from_here">Ruta desde</string>
     <string name="p2p_to_here">Ruta hacia</string>
     <string name="p2p_only_from_current">La navegación solo está disponible desde su ubicación actual.</string>
-    <string name="p2p_reroute_from_current">¿Quiere que planeemos una ruta desde su ubicación actual?</string>
+    <string name="p2p_reroute_from_current">¿Quiere planificar un itinerario desde su ubicación actual?</string>
     <!-- Edit open hours/set time and minutes dialog -->
     <string name="next_button">Siguiente</string>
     <!-- Tab title in the Edit Opening Hours time picker -->
@@ -435,7 +426,7 @@
     <string name="editor_hours_closed">Horas de cierre</string>
     <string name="editor_example_values">Valores de ejemplo</string>
     <string name="editor_correct_mistake">Corregir error</string>
-    <string name="editor_add_select_location">Ubicación</string>
+    <string name="editor_add_select_location">Seleccione la ubicación</string>
     <string name="editor_report_problem_desription_1">Por favor, describa el problema en detalle para que la comunidad de OpenStreetMap pueda corregir el error.</string>
     <string name="editor_report_problem_desription_2">O hágalo usted mismo en https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Enviar</string>
@@ -456,10 +447,10 @@
     <string name="edit_opening_hours">Editar los horarios de apertura</string>
     <string name="no_osm_account">¿No tiene cuenta en OpenStreetMap?</string>
     <string name="register_at_openstreetmap">Registrarse en OpenStreetMap</string>
-    <string name="login">Iniciar sesión</string>
+    <string name="login">Acceder</string>
     <!-- Status message indicating that user did not login to OSM profile yet. -->
     <string name="not_signed_in">No se ha iniciado sesión</string>
-    <string name="login_osm">Iniciar sesión en OpenStreetMap</string>
+    <string name="login_osm">Acceder a OpenStreetMap</string>
     <string name="password">Contraseña</string>
     <string name="forgot_password">¿Ha olvidado su contraseña?</string>
     <string name="logout">Cerrar sesión</string>
@@ -469,6 +460,8 @@
     <!-- Editable House Number text field (in address block). -->
     <string name="house_number">Número de casa</string>
     <string name="details">Detalles</string>
+    <string name="social_media">Redes sociales</string>
+    <string name="building">Edificio</string>
     <!-- Text field to enter non-existing street name, below list of known streets around -->
     <string name="add_street">Añadir una calle</string>
     <!-- Error to display when a new street name is not entered in the New street dialog -->
@@ -491,7 +484,7 @@
     <string name="downloader_no_space_message">Elimine los datos innecesarios</string>
     <string name="editor_login_error_dialog">Error de inicio de sesión.</string>
     <string name="editor_profile_changes">Cambios verificados</string>
-    <string name="editor_focus_map_on_location">Arrastre el mapa para seleccionar la ubicación correcta del objeto.</string>
+    <string name="editor_focus_map_on_location">Arrastre el mapa para colocar la cruz en la ubicación del lugar o negocio.</string>
     <string name="editor_edit_place_title">Editar</string>
     <string name="editor_add_place_title">Añadir</string>
     <string name="editor_edit_place_name_hint">Nombre del lugar</string>
@@ -505,7 +498,7 @@
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
     <string name="osm_presentation">Datos de OpenStreetMap creados por la comunidad a partir de %s. Más información sobre cómo editar y actualizar el mapa en OpenStreetMap.org</string>
     <!-- OSM explanation on Android login screen -->
-    <string name="login_osm_presentation">OpenStreetMap.org (OSM) es un proyecto comunitario para construir un mapa libre y abierto. Es la principal fuente de datos cartográficos de Organic Maps y funciona de forma similar a Wikipedia. Usted puede añadir o editar lugares y éstos pasan a estar disponibles para millones de usuarios de todo el mundo.\N¡Únase a la comunidad y ayude a crear un mapa mejor para todos!</string>
+    <string name="login_osm_presentation">OpenStreetMap.org (OSM) es un proyecto comunitario para construir un mapa libre y abierto. Es la principal fuente de datos cartográficos de Organic Maps y funciona de forma similar a Wikipedia. Usted puede añadir o editar lugares y estos pasan a estar disponibles para millones de usuarios de todo el mundo.\n¡Únase a la comunidad y ayude a crear un mapa mejor para todos!</string>
     <string name="login_to_make_edits_visible">Cree una cuenta OpenStreetMap o inicie sesión para publicar sus ediciones de mapas en todo el mundo.</string>
     <!-- Downloaded 10 **of** 20 <- it is that "of" -->
     <string name="downloader_of">%1$d de %2$d</string>
@@ -516,7 +509,7 @@
     <!-- Error message in Editor when a user tries to set the number of floors for a building higher than %d floors -->
     <string name="error_enter_correct_storey_number">El número de plantas no debe superar %d</string>
     <string name="editor_zip_code">Código postal</string>
-    <string name="error_enter_correct_zip_code">Introduzca el código postal correcto</string>
+    <string name="error_enter_correct_zip_code">Introduzca un código postal válido</string>
     <!-- Place Page title for long tap -->
     <string name="core_placepage_unknown_place">Punto del mapa</string>
     <!-- Title for OSM note section in the editor -->
@@ -526,7 +519,7 @@
     <!-- Information about OSM at the top of the editing page -->
     <string name="editor_about_osm">Sus ediciones se cargan en la base de datos pública <a href="https://wiki.openstreetmap.org/wiki/ES:Acerca_de_OpenStreetMap">OpenStreetMap</a>. Por favor, no añada información personal o protegida por derechos de autor.</string>
     <string name="editor_more_about_osm">Más acerca de OpenStreetMap</string>
-    <string name="editor_osm_history">Mi historial de edición</string>
+    <string name="editor_osm_history">Su historial de ediciones</string>
     <string name="editor_osm_notes">Mis notas de datos cartográficos</string>
     <string name="editor_operator">Operador</string>
     <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
@@ -535,7 +528,7 @@
     <string name="editor_category_unsuitable_text">Organic Maps permite añadir únicamente categorías de puntos sencillos, es decir, no ciudades, carreteras, lagos, contornos de edificios, etc. Por favor, añada dichas categorías directamente a <a href="https://www.openstreetmap.org">OpenStreetMap.org</a>. Consulte nuestra <a href="https://organicmaps.app/faq/editing/advanced-map-editing">guía</a> para obtener instrucciones detalladas paso a paso.</string>
     <string name="downloader_no_downloaded_maps_title">No ha descargado ningún mapa</string>
     <string name="downloader_no_downloaded_maps_message">Descargue mapas para encontrar la ubicación y navegar sin conexión.</string>
-    <string name="current_location_unknown_error_title">La ubicación actual es desconocida.</string>
+    <string name="current_location_unknown_error_title">Se desconoce la ubicación actual.</string>
     <!-- abbreviation for meters -->
     <string name="m">m</string>
     <!-- abbreviation for kilometers -->
@@ -551,15 +544,8 @@
     <string name="minute">min</string>
     <string name="day">d</string>
     <string name="placepage_more_button">Más</string>
-    <!-- A referral link on the place page for some hotels -->
-    <string name="more_on_kayak">Fotos, opiniones, reservas</string>
-    <!-- An explanation dialog shown when clicking on more_on_kayak link. -->
-    <string name="dialog_kayak_disclaimer">La bonificación por recomendación recibida por cada reserva a través de este enlace se destina al desarrollo de Organic Maps.</string>
-    <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
-    <string name="dialog_kayak_button">Detalles en Kayak</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
-    <string name="dialog_kayak_disable_button">Desactivar Kayak</string>
     <string name="placepage_edit_bookmark_button">Editar marcador</string>
+    <string name="placepage_personal_notes_hint">Notas personales (texto o html)</string>
     <string name="editor_comment_hint">Comentario…</string>
     <string name="editor_reset_edits_message">¿Restablecer todos los cambios locales?</string>
     <string name="editor_reset_edits_button">Restablecer</string>
@@ -567,11 +553,11 @@
     <string name="editor_remove_place_button">Eliminar</string>
     <string name="editor_place_doesnt_exist">El lugar no existe</string>
     <!-- Error message for "Place doesn't exist" dialog when comment is empty -->
-    <string name="delete_place_empty_comment_error">Indique por favor la razón para eliminar el lugar</string>
+    <string name="delete_place_empty_comment_error">Indique la razón para eliminar el lugar</string>
     <!-- Phone number error message -->
-    <string name="error_enter_correct_phone">Introduzca un número de teléfono correcto</string>
+    <string name="error_enter_correct_phone">Introduzca un número de teléfono válido</string>
     <string name="error_enter_correct_web">Introduzca una dirección web válida</string>
-    <string name="error_enter_correct_email">Introduzca un email válido</string>
+    <string name="error_enter_correct_email">Introduzca un correo válido</string>
     <string name="error_enter_correct_facebook_page">Introduzca una dirección web, una cuenta o un nombre de página de Facebook válidos</string>
     <string name="error_enter_correct_instagram_page">Introduzca una dirección web o un nombre de cuenta de Instagram válidos</string>
     <string name="error_enter_correct_twitter_page">Introduzca una dirección web o un nombre de usuario válido de Twitter</string>
@@ -581,11 +567,11 @@
     <!-- Displayed when saving some edits to the map to warn against publishing personal data -->
     <string name="editor_share_to_all_dialog_title">¿Quiere enviarlo a todos los usuarios?</string>
     <!-- Dialog before publishing the modifications to the public map. -->
-    <string name="editor_share_to_all_dialog_message_1">Asegúrate de que no has introducido ningún dato personal.</string>
+    <string name="editor_share_to_all_dialog_message_1">Cerciórese de que no ha introducido ningún dato privado o personal.</string>
     <string name="editor_share_to_all_dialog_message_2">Los editores de OpenStreetMap comprobarán los cambios y se pondrán en contacto con usted si tienen alguna pregunta.</string>
     <string name="navigation_stop_button">Detener</string>
     <!-- Shown as toast when starting the recent track recording -->
-    <string name="track_recording">Registro de la pista</string>
+    <string name="track_recording">Grabando el trayecto</string>
     <!-- For the first routing -->
     <string name="accept">Aceptar</string>
     <!-- For the first routing -->
@@ -600,30 +586,32 @@
     <string name="mobile_data_option_never">No usar nunca</string>
     <string name="mobile_data_option_ask">Preguntar siempre</string>
     <string name="traffic_update_maps_text">Para mostrar los datos de tráfico, deben actualizarse los mapas.</string>
-    <string name="big_font">Aumentar el tamaño de fuente en el mapa</string>
-    <string name="traffic_update_app">Por favor, actualice Organic Maps</string>
+    <string name="big_font">Aumentar tamaño del texto en el mapa</string>
+    <string name="traffic_update_app">Actualice Organic Maps</string>
     <!-- "traffic" as in "road congestion" -->
     <string name="traffic_data_unavailable">Los datos de tráfico no están disponibles</string>
-    <string name="enable_logging">Habilitar historial</string>
+    <string name="enable_logging">Activar registros</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Opinión general</string>
     <string name="prefs_languages_information">Utilizamos el sistema TTS para las instrucciones de voz. Muchos dispositivos de Android usan Google TTS. Puede descargar o actualizarlo desde Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-    <string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Galaxy Store, App Gallery, FDroid). Abra los Ajustes de su dispositivo → Idioma e introducción → Voz → Opciones texto a voz. Aquí puede administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
+    <string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Galaxy Store, App Gallery, FDroid).\nAbra los Ajustes de su dispositivo → Idioma y entrada de texto → Voz → Opciones texto a voz.\nAquí puede administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
     <string name="prefs_languages_information_off_link">Para obtener más información, consulte esta guía.</string>
-    <string name="transliteration_title">Transliteración al latín</string>
-    <string name="learn_more">Leer más</string>
+    <string name="transliteration_title">Transliteración al alfabeto latino</string>
+    <string name="learn_more">Conocer más</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">Salida</string>
     <!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
     <string name="routing_add_start_point">Busca o toca en el mapa para añadir el origen de la ruta</string>
     <!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
     <string name="routing_add_finish_point">Busca o toca en el mapa para añadir el destino</string>
+    <string name="planning_route_manage_route">Administrar ruta</string>
+    <string name="button_plan">Planificar</string>
     <string name="placepage_remove_stop">Eliminar parada</string>
     <string name="placepage_add_stop">Añadir parada</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Inicia sesión en OpenStreetMap para cargar automáticamente todas tus ediciones de mapas. Más información <a href="https://github.com/organicmaps/organicmaps/issues/6144">aquí</a>.</string>
     <string name="dialog_error_storage_title">Problema de acceso al almacenamiento</string>
-    <string name="dialog_error_storage_message">El almacenamiento externo no está disponible; puede que se haya quitado o dañado la tarjeta SD, o el sistema de archivos solo permite lectura. Por favor, compruébelo ó escríbanos a support\@organicmaps.app</string>
+    <string name="dialog_error_storage_message">El almacenamiento externo no está disponible; puede que se haya quitado o dañado la tarjeta SD, o el sistema de archivos solo permite lectura. Por favor, compruébelo ó escríbanos a support@organicmaps.app</string>
     <string name="setting_emulate_bad_storage">Emular almacenamiento dañado</string>
     <string name="core_entrance">Entrada</string>
     <string name="error_enter_correct_name">Por favor, introduzca el nombre correcto</string>
@@ -632,34 +620,38 @@
     <string name="bookmark_lists_hide_all">Ocultar todo</string>
     <string name="bookmark_lists_show_all">Mostrar todo</string>
     <plurals name="bookmarks_places">
+        <item quantity="one">%d marcador</item>
+        <item quantity="many">%d marcadores</item>
         <item quantity="other">%d marcadores</item>
     </plurals>
     <string name="bookmarks_create_new_group">Crear nueva lista</string>
     <!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
-    <string name="bookmarks_import">Importar marcadores y trazas</string>
+    <string name="bookmarks_import">Importar marcadores y trayectos</string>
     <string name="bookmarks_error_message_share_general">No se puede compartir debido a un error de la aplicación</string>
     <string name="bookmarks_error_title_share_empty">Error al compartir</string>
     <string name="bookmarks_error_message_share_empty">No se puede compartir una lista vacía</string>
-    <string name="bookmarks_error_title_empty_list_name">El nombre no puede estar vacío</string>
-    <string name="bookmarks_error_message_empty_list_name">Por favor ingrese el nombre de la lista</string>
+    <string name="bookmarks_error_title_empty_list_name">El nombre no puede quedar vacío</string>
+    <string name="bookmarks_error_message_empty_list_name">Proporcione el nombre de la lista</string>
     <string name="bookmarks_new_list_hint">Lista nueva</string>
-    <string name="bookmarks_error_title_list_name_already_taken">Este nombre ya ha sido tomado</string>
-    <string name="bookmarks_error_message_list_name_already_taken">Por favor elija otro nombre</string>
-    <string name="please_wait">Por favor, espere…</string>
+    <string name="bookmarks_error_title_list_name_already_taken">Este nombre ya existe</string>
+    <string name="bookmarks_error_message_list_name_already_taken">Elija otro nombre</string>
+    <string name="please_wait">Espere…</string>
     <string name="phone_number">Número de teléfono</string>
     <string name="profile">Perfil de OpenStreetMap</string>
     <plurals name="bookmarks_detect_message">
         <item quantity="one">Se encontró %d archivo. Lo verá después de la conversión.</item>
+        <item quantity="many">Se han encontrado %d archivos. Los verá después de la conversión.</item>
         <item quantity="other">Se han encontrado %d archivos. Los verá después de la conversión.</item>
     </plurals>
     <string name="restore">Restaurar</string>
     <plurals name="tracks">
-        <item quantity="one">%d ruta</item>
-        <item quantity="other">%d rutas</item>
+        <item quantity="one">%d trayecto</item>
+        <item quantity="many">%d trayectos</item>
+        <item quantity="other">%d trayectos</item>
     </plurals>
     <!-- Settings privacy group in settings screen -->
     <string name="privacy">Privacidad</string>
-    <string name="privacy_policy">Política de privacidad</string>
+    <string name="privacy_policy">Normativa de privacidad</string>
     <string name="terms_of_use">Condiciones de uso</string>
     <string name="button_layer_traffic">Tráfico</string>
     <string name="button_layer_subway">Metro</string>
@@ -673,7 +665,6 @@
     <string name="delete_list">Eliminar lista</string>
     <string name="public_access">Acceso público</string>
     <string name="limited_access">Acceso limitado</string>
-    <string name="bookmark_list_description_hint">Agregue una descripción (texto o html)</string>
     <string name="not_shared">Privado</string>
     <string name="speedcams_alert_title">Cámaras de velocidad</string>
     <string name="place_description_title">Descripción del lugar</string>
@@ -686,26 +677,26 @@
     <!-- Speed camera settings menu option - Never warn (about speedcams) -->
     <string name="pref_tts_speedcams_never">No alertar nunca</string>
     <string name="power_managment_title">Modo de ahorro de energía</string>
-    <string name="power_managment_description">Si el modo de ahorro de energía está activado, la aplicación desactivará las funciones que consumen energía, según la carga actual del teléfono</string>
+    <string name="power_managment_description">Se tratará de reducir el consumo de energía a expensas de ciertas funcionalidades.</string>
     <string name="power_managment_setting_never">Nunca</string>
-    <string name="power_managment_setting_auto">Automático</string>
-    <string name="power_managment_setting_manual_max">Ahorro de energía máximo</string>
-    <string name="enable_logging_warning_message">Esta opción está habilitada para las acciones de registro con fines de diagnóstico. Esto ayuda a nuestro equipo a identificar problemas con la aplicación. Habilite la opción solo a petición del apoyo de Organic Maps.</string>
+    <string name="power_managment_setting_auto">Cuando queda poca energía</string>
+    <string name="power_managment_setting_manual_max">Siempre</string>
+    <string name="enable_logging_warning_message">Active esta opción temporalmente para grabar y enviar de forma manual registros para diagnosticar defectos enviados mediante la opción «Informar de un fallo» en el diálogo Ayuda. Los registros pueden incluir ubicaciones.</string>
     <string name="access_rules_author_only">Edición en línea</string>
     <string name="driving_options_title">Opciones de enrutamiento</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Evitar peajes</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
-    <string name="avoid_unpaved">Evitar vías sin pavimentar</string>
+    <string name="avoid_unpaved">Evitar caminos sin pavimentar</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_ferry">Evitar ferris</string>
     <string name="avoid_motorways">Evitar autopistas</string>
     <string name="unable_to_calc_alert_title">No se puede calcular la ruta</string>
-    <string name="unable_to_calc_alert_subtitle">Desafortunadamente, no pudimos encontrar una ruta con las opciones seleccionadas. Cambie la configuración y vuelva a intentarlo</string>
-    <string name="define_to_avoid_btn">Defina las carreteras a evitar</string>
-    <string name="change_driving_options_btn">Opciones de enrutamiento habilitadas</string>
-    <string name="toll_road">Carretera con pago de peaje</string>
-    <string name="unpaved_road">Camino sin pavimento</string>
+    <string name="unable_to_calc_alert_subtitle">No se pudo encontrar una ruta. Quizá se deba a las opciones de enrutamiento o a datos faltantes en OpenStreetMap. Revise sus opciones de enrutamiento y vuelva a intentarlo.</string>
+    <string name="define_to_avoid_btn">Defina los caminos para evitar</string>
+    <string name="change_driving_options_btn">Opciones de enrutamiento activadas</string>
+    <string name="toll_road">Carretera de peaje</string>
+    <string name="unpaved_road">Camino sin pavimentar</string>
     <string name="ferry_crossing">Cruce de ferri</string>
     <!-- A generic "Yes" button in dialogs -->
     <string name="yes">Sí</string>
@@ -719,8 +710,8 @@
     <string name="capacity">Capacidad: %s</string>
     <!-- To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations... -->
     <string name="network">Red: %s</string>
-    <string name="trip_finished">¡Ya ha llegado!</string>
-    <string name="ok">Ok</string>
+    <string name="trip_finished">¡Ha llegado!</string>
+    <string name="ok">Aceptar</string>
     <!-- max. 10 symbols, both iOS and Android -->
     <string name="sort">Ordenar…</string>
     <!-- Android, title, max 20-22 symbols -->
@@ -741,7 +732,6 @@
     <string name="moreyear_ago_sorttype">Hace más de un año</string>
     <string name="near_me_sorttype">Cerca de mí</string>
     <string name="others_sorttype">Otros</string>
-
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Comida</string>
     <string name="tourist_places">Sitios de interés</string>
@@ -761,10 +751,10 @@
     <string name="religious_places">Lugares sagrados</string>
     <string name="select_list">Seleccionar lista</string>
     <string name="transit_not_found">Navegación en Metro aún no disponible en esta región</string>
-    <string name="dialog_pedestrian_route_is_long_header">Ruta de metro no encontrada</string>
-    <string name="dialog_pedestrian_route_is_long_message">Elija por favor el punto de inicio o fin de ruta más cercano a una estación de metro</string>
+    <string name="dialog_pedestrian_route_is_long_header">No se encontró ninguna ruta de metro</string>
+    <string name="dialog_pedestrian_route_is_long_message">Elija un punto de inicio o fin de ruta más cercano a una estación de metro</string>
     <string name="button_layer_isolines">Alturas</string>
-    <string name="isolines_activation_error_dialog">Para usar la altitud de relieve, actualice o descargue el mapa del área deseada</string>
+    <string name="isolines_activation_error_dialog">Para usar las curvas de nivel, actualice o descargue el mapa del área deseada</string>
     <string name="isolines_location_error_dialog">La altitud de relieve aún no está disponible en esta región</string>
     <string name="elevation_profile_ascent">Ascenso</string>
     <string name="elevation_profile_descent">Descenso</string>
@@ -775,7 +765,7 @@
     <string name="elevation_profile_time">Tiempo:</string>
     <string name="isolines_toast_zooms_1_10">Amplíe el mapa para ver las isolíneas</string>
     <string name="downloader_loading_ios">Descargando</string>
-    <string name="download_map_title">Descarga el mapa mundial</string>
+    <string name="download_map_title">Descarga el mapa mundial de previsualización</string>
     <!-- Used in DownloadResources startup screen -->
     <string name="disk_error">No se ha podido crear la carpeta y mover los ficheros en la memoria interna del dispositivo o en la tarjeta SD</string>
     <!-- Used in DownloadResources startup screen -->
@@ -790,11 +780,11 @@
     <!-- A preference title; keep short! -->
     <string name="enable_show_on_lock_screen">Mostrar en la pantalla de bloqueo</string>
     <!-- Description in preferences -->
-    <string name="enable_show_on_lock_screen_description">Cuando está habilitado, no tiene que desbloquear su dispositivo mientras la aplicación se está ejecutando.</string>
+    <string name="enable_show_on_lock_screen_description">Cuando se activa, no tiene que desbloquear el dispositivo para ejecutar la aplicación.</string>
     <!-- Current language of the map! -->
     <string name="change_map_locale">Idioma del mapa</string>
     <!-- OpenStreetMap text on splash screen -->
-    <string name="splash_subtitle">Datos de mapas de OpenStreetMap</string>
+    <string name="splash_subtitle">Datos cartográficos de OpenStreetMap</string>
     <!-- A link to the TTS FAQ -->
     <string name="tts_info_link">https://organicmaps.app/es/faq/instrucciones-de-voz-tts-en-android/</string>
     <!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
@@ -828,15 +818,15 @@
     <!-- Displayed on the phone screen. Android Auto connected -->
     <string name="aa_connected_title">Se ha conectado a Android Auto</string>
     <!-- Displayed on the phone screen. Button to display maps on the phone screen instead of a car -->
-    <string name="car_continue_on_the_phone">Continuar en el teléfono</string>
+    <string name="car_continue_on_the_phone">Pasar al teléfono</string>
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
     <string name="car_continue_in_the_car">A la pantalla del coche</string>
     <!-- Ask user to grant location permissions -->
     <string name="aa_location_permissions_request">Organic Maps necesita acceder a la ubicación. Cuando sea seguro, compruebe la notificación en el teléfono.</string>
     <!-- Notification title for permission request from AA. -->
-    <string name="aa_request_permission_notification">Esta aplicación necesita tu permiso</string>
+    <string name="aa_request_permission_notification">Esta aplicación necesita su permiso</string>
     <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps en Android Auto necesita un permiso de localización para funcionar eficazmente</string>
+    <string name="aa_request_permission_activity_text">Organic Maps en Android Auto necesita permisos de ubicación para funcionar eficazmente</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Conceder permisos</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -845,12 +835,12 @@
     <string name="browser_not_available">El navegador web no está disponible</string>
     <string name="volume">Volumen</string>
     <!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
-    <string name="bookmarks_export">Exportar todos los marcadores y pistas</string>
+    <string name="bookmarks_export">Exportar todos los marcadores y trayectos</string>
     <!-- button in (app) TTS settings, to open the system TTS settings. -->
     <string name="pref_tts_open_system_settings">Configuración de síntesis de voz del sistema</string>
     <!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
-    <string name="pref_tts_no_system_tts">No se encontraron las configuraciones de síntesis de voz. ¿Está seguro de que su dispositivo la admite?</string>
-    <string name="drive_through">Servicio al coche</string>
+    <string name="pref_tts_no_system_tts">No se encontraron las configuraciones de síntesis de voz. ¿Sabe si su dispositivo la admite?</string>
+    <string name="drive_through">Servicio desde el coche</string>
     <string name="clear_the_search">Borrar búsqueda</string>
     <string name="zoom_in">Acercar</string>
     <!-- Accessibility text for the zoom-out button on the map -->
@@ -859,7 +849,7 @@
     <string name="website_menu">Enlace al menú</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Ver menú</string>
-    <!-- Title for the "Open In Another App" button on the PlacePage. -->
+    <!-- Title for the "Open in Another App" button on the PlacePage. -->
     <string name="open_in_app">Abrir en otra aplicación</string>
     <!-- To indicate if the place proposed self service... -->
     <string name="self_service">Autoservicio</string>
@@ -867,1363 +857,41 @@
     <!-- To indicate if restaurant or other place has outdoor seating -->
     <string name="outdoor_seating">Asientos al aire libre</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
-    <string name="power_save_dialog_summary">Para una navegación más precisa, te recomendamos que desactives el modo de ahorro de energía en los ajustes de la batería del teléfono.</string>
+    <string name="power_save_dialog_summary">Para una navegación más precisa, recomendamos que desactive el modo de ahorro de energía en la configuración de la batería del teléfono.</string>
     <!-- Prompt to start recording a track. -->
-    <string name="start_track_recording">Grabar ruta</string>
+    <string name="start_track_recording">Grabar trayecto</string>
     <!-- Prompt for stopping a track recording. -->
-    <string name="stop_track_recording">Detener grabación de ruta</string>
+    <string name="stop_track_recording">Detener grabación de trayecto</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="stop_without_saving">Parar sin guardar</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="continue_recording">Continuar grabación</string>
     <!-- Title for the alert when saving a track recording. -->
-    <string name="track_recording_alert_title">¿Guardar en Marcadores y Rutas?</string>
+    <string name="track_recording_alert_title">¿Guardar en Marcadores y trayectos?</string>
     <!-- Message for the toast when saving the track recording is finished but nothing to save. -->
-    <string name="track_recording_toast_nothing_to_save">La ruta está vacía - no hay nada que guardar</string>
+    <string name="track_recording_toast_nothing_to_save">El trayecto está vacío; no hay nada que guardar</string>
     <!-- Error message when there are no File Manager apps installed to select a folder when importing Bookmarks and Tracks -->
-    <string name="error_no_file_manager_app">No se puede mostrar el diálogo de selección de carpetas porque no hay ninguna app adecuada instalada en su dispositivo. Instale una aplicación de gestión de archivos e inténtelo de nuevo</string>
+    <string name="error_no_file_manager_app">No se puede mostrar el diálogo de selección de carpetas porque no hay ninguna aplicación adecuada instalada en el dispositivo. Instale un gestor de archivos e inténtelo de nuevo.</string>
     <string name="choose_color">Elegir color</string>
-    <string name="edit_track">Editar traza</string>
+    <string name="edit_track">Editar trayecto</string>
     <string name="uri_open_location_failed">No hay ninguna aplicación instalada que pueda abrir la ubicación</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Auto en navegación</string>
-
-    <!-- SECTION: Types -->
-    <string name="type.addr_interpolation">Dirección/Bloque</string>
-    <string name="type.addr_interpolation.even">Dirección/Bloque</string>
-    <string name="type.addr_interpolation.odd">Dirección/Bloque</string>
-    <string name="type.aerialway">Transporte aéreo</string>
-    <string name="type.aerialway.cable_car">Teleférico</string>
-    <string name="type.aerialway.chair_lift">Telesilla</string>
-    <string name="type.aerialway.drag_lift">Telesquí</string>
-    <string name="type.aerialway.gondola">Telecabina</string>
-    <string name="type.aerialway.mixed_lift">Telecabina/telesilla</string>
-    <string name="type.aerialway.station">Estación de teleférico</string>
-    <string name="type.aeroway">Infraestructura aérea</string>
-    <string name="type.aeroway.aerodrome">Aeropuerto</string>
-    <string name="type.aeroway.aerodrome.international">Aeropuerto internacional</string>
-    <string name="type.aeroway.apron">Plataforma</string>
-    <string name="type.aeroway.gate">Puerta de embarque</string>
-    <string name="type.aeroway.helipad">Helipuerto</string>
-    <string name="type.aeroway.runway">Pista de despegue</string>
-    <string name="type.aeroway.taxiway">Pista de rodaje</string>
-    <string name="type.aeroway.terminal">Terminal</string>
-    <string name="type.amenity">Infraestructura</string>
-    <string name="type.amenity.arts_centre">Centro de arte</string>
-    <string name="type.amenity.atm">Cajero automático</string>
-    <string name="type.amenity.bank">Banco</string>
-    <string name="type.amenity.bar">Bar</string>
-    <string name="type.amenity.bbq">Barbacoa</string>
-    <string name="type.amenity.bench">Asiento</string>
-    <string name="type.amenity.bicycle_parking">Aparcamiento de bicicletas</string>
-    <string name="type.amenity.bicycle_rental">Alquiler de bicicletas</string>
-    <string name="type.amenity.bicycle_repair_station">Estación de reparación de bicicletas</string>
-    <string name="type.amenity.biergarten">Biergarten</string>
-    <string name="type.amenity.brothel">Burdel</string>
-    <string name="type.amenity.bureau_de_change">Casa de cambio</string>
-    <string name="type.amenity.bus_station">Estación de autobuses</string>
-    <string name="type.amenity.cafe">Café</string>
-    <string name="type.amenity.car_rental">Alquiler de coches</string>
-    <string name="type.amenity.car_sharing">Compartir coche</string>
-    <string name="type.amenity.car_wash">Lavado de coches</string>
-    <string name="type.amenity.casino">Casino</string>
-    <string name="type.amenity.gambling">Juegos de apuestas</string>
-    <string name="type.leisure.adult_gaming_centre">Centro de juegos para adultos</string>
-    <string name="type.leisure.amusement_arcade">Arcade</string>
-    <string name="type.amenity.charging_station">Estación de carga</string>
-    <string name="type.amenity.charging_station.bicycle">Estación de carga de bicicletas</string>
-    <string name="type.amenity.charging_station.motorcar">Estación de carga de automóviles</string>
-    <string name="type.amenity.childcare">Guardería</string>
-    <string name="type.amenity.cinema">Cine</string>
-    <string name="type.leisure.bowling_alley">Bolera</string>
-    <string name="type.amenity.clinic">Clínica</string>
-    <string name="type.amenity.college">Colegio</string>
-    <string name="type.amenity.community_centre">Centro comunitario</string>
-    <string name="type.amenity.compressed_air">Aire comprimido</string>
-    <string name="type.amenity.conference_centre">Centro de conferencias</string>
-    <string name="type.amenity.courthouse">Juzgado</string>
-    <string name="type.amenity.dentist">Dentista</string>
-    <string name="type.amenity.doctors">Consultorio médico</string>
-    <string name="type.amenity.drinking_water">Agua potable</string>
-    <string name="type.drinking_water.yes">Agua potable</string>
-    <string name="type.amenity.driving_school">Autoescuela</string>
-    <string name="type.amenity.exhibition_centre">Centro de exposiciones</string>
-    <string name="type.amenity.money_transfer">Transferencia de dinero</string>
-    <string name="type.amenity.music_school">Escuela de música</string>
-    <string name="type.amenity.language_school">Escuela de idiomas</string>
-    <string name="type.office.diplomatic">Embajada</string>
-    <string name="type.amenity.fast_food">Comida rápida</string>
-    <string name="type.amenity.ferry_terminal">Transbordador</string>
-    <string name="type.amenity.fire_station">Parque de bomberos</string>
-    <string name="type.amenity.food_court">Zona de comidas</string>
-    <string name="type.amenity.fountain">Fuente</string>
-    <string name="type.amenity.fuel">Gasolinera</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.amenity.grave_yard">Cementerio</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.amenity.grave_yard.christian">Cementerio cristiano</string>
-    <string name="type.amenity.hospital">Hospital</string>
-    <string name="type.amenity.hunting_stand">Puesto de caza</string>
-    <string name="type.amenity.ice_cream">Heladería</string>
-    <string name="type.amenity.internet_cafe">Cibercafé</string>
-    <string name="type.amenity.kindergarten">Escuela infantil</string>
-    <string name="type.amenity.library">Biblioteca</string>
-    <string name="type.amenity.loading_dock">Muelle de carga</string>
-    <string name="type.amenity.marketplace">Mercado</string>
-    <string name="type.amenity.motorcycle_parking">Aparcamiento de motocicletas</string>
-    <string name="type.amenity.nightclub">Discoteca</string>
-    <string name="type.amenity.nursing_home">Residencia de ancianos</string>
-    <string name="type.amenity.parking">Aparcamiento</string>
-    <string name="type.amenity.parking.fee">Aparcamiento</string>
-    <string name="type.amenity.parking.multi.storey">Edificio de aparcamiento</string>
-    <string name="type.amenity.parking.multi.storey.fee">Edificio de aparcamiento</string>
-    <string name="type.amenity.parking.no.access">Aparcamiento privado</string>
-    <string name="type.amenity.parking.permissive">Aparcamiento privado</string>
-    <string name="type.amenity.parking.private">Aparcamiento privado</string>
-    <string name="type.amenity.parking.park_and_ride">Aparcamiento disuasorio</string>
-    <string name="type.amenity.parking.underground">Aparcamiento subterráneo</string>
-    <string name="type.amenity.parking.underground.fee">Aparcamiento subterráneo</string>
-    <string name="type.amenity.parking.underground.private">Aparcamiento subterráneo privado</string>
-    <string name="type.amenity.parking.street_side">Aparcamiento en la calle</string>
-    <string name="type.amenity.parking.street_side.fee">Aparcamiento en la calle</string>
-    <string name="type.amenity.parking.street_side.private">Aparcamiento en la calle privado</string>
-    <string name="type.amenity.parking.lane">Aparcamiento en carril</string>
-    <string name="type.amenity.parking.lane.fee">Aparcamiento en carril</string>
-    <string name="type.amenity.parking.lane.private">Aparcamiento en carril privado</string>
-    <string name="type.amenity.parking_entrance">Entrada al aparcamiento</string>
-    <string name="type.amenity.parking_entrance.private">Entrada al aparcamiento privado</string>
-    <string name="type.amenity.parking_entrance.permissive">Entrada al aparcamiento</string>
-    <string name="type.amenity.parking_space">Plaza de aparcamiento</string>
-    <string name="type.amenity.parking_space.permissive">Plaza de aparcamiento</string>
-    <string name="type.amenity.parking_space.private">Plaza de aparcamiento</string>
-    <string name="type.amenity.parking_space.underground">Plaza de aparcamiento</string>
-    <string name="type.amenity.parking_space.disabled">Plaza de aparcamiento para discapacitados</string>
-    <string name="type.amenity.payment_terminal">Terminal de pago</string>
-    <string name="type.amenity.pharmacy">Farmacia</string>
-    <string name="type.amenity.place_of_worship">Lugar de culto</string>
-    <string name="type.amenity.place_of_worship.buddhist">Templo budista</string>
-    <string name="type.amenity.place_of_worship.christian">Iglesia</string>
-    <string name="type.amenity.place_of_worship.christian.mormon">Iglesia de Jesucristo de los Santos de los Últimos Días</string>
-    <string name="type.amenity.place_of_worship.christian.jehovahs_witness">Salón del Reino de los Testigos de Jehová</string>
-    <string name="type.amenity.place_of_worship.hindu">Templo hinduista</string>
-    <string name="type.amenity.place_of_worship.jewish">Sinagoga</string>
-    <string name="type.amenity.place_of_worship.muslim">Mezquita</string>
-    <string name="type.amenity.place_of_worship.shinto">Santuario sintoísta</string>
-    <string name="type.amenity.place_of_worship.taoist">Templo taoísta</string>
-    <string name="type.amenity.police">Policía</string>
-    <string name="type.amenity.post_box">Buzón de correos</string>
-    <string name="type.amenity.post_office">Oficina de correos</string>
-    <string name="type.amenity.prison">Prisión</string>
-    <string name="type.amenity.pub">Pub</string>
-    <string name="type.amenity.public_bookcase">Intercambio de libros</string>
-
-    <!-- SECTION: Types: Recycling -->
-    <string name="type.amenity.recycling.centre">Centro de reciclaje</string>
-    <string name="type.amenity.recycling">Contenedor de reciclaje</string>
-    <string name="type.amenity.recycling.container">Contenedor de reciclaje</string>
-    <string name="type.recycling.batteries">Baterías</string>
-    <string name="type.recycling.clothes">Ropa</string>
-    <string name="type.recycling.glass_bottles">Envases de vidrio</string>
-    <string name="type.recycling.paper">Papel</string>
-    <string name="type.recycling.plastic">Plástico</string>
-    <string name="type.recycling.plastic_bottles">Botellas de plástico</string>
-    <string name="type.recycling.scrap_metal">Residuos de metal</string>
-    <string name="type.recycling.small_appliances">Residuos electrónicos</string>
-    <string name="type.recycling.cardboard">Cartón</string>
-    <string name="type.recycling.cans">Latas</string>
-    <string name="type.recycling.shoes">Calzado</string>
-    <string name="type.recycling.green_waste">Orgánico</string>
-    <string name="type.recycling.cartons">Envases de cartón</string>
-    <string name="type.amenity.restaurant">Restaurante</string>
-    <string name="type.amenity.sanitary_dump_station">Estación de vaciado para caravanas</string>
-    <string name="type.amenity.school">Escuela</string>
-    <!-- Weather shelter (including sun shelters and natural rock shelters). -->
-    <string name="type.amenity.shelter">Refugio</string>
-    <!-- A weather shelter by the public transport stop. -->
-    <string name="type.amenity.shelter.public_transport">Refugio</string>
-    <!-- Compared to wilderness_hut its smaller and simpler, without a fireplace. -->
-    <string name="type.amenity.shelter.basic_hut">Cabaña de vivac</string>
-    <!-- A traditional 3-walled shelter (one side open), suitable for overnight camping. -->
-    <string name="type.amenity.shelter.lean_to">Alpende</string>
-    <string name="type.amenity.public_bath">Baños públicos</string>
-    <string name="type.amenity.shower">Ducha</string>
-    <string name="type.amenity.stripclub">Club de estriptis</string>
-    <string name="type.amenity.taxi">Sitio de taxis</string>
-    <string name="type.amenity.telephone">Teléfono</string>
-    <string name="type.amenity.theatre">Teatro</string>
-    <string name="type.amenity.toilets">WC</string>
-    <string name="type.toilets.yes">WC</string>
-    <string name="type.amenity.townhall">Ayuntamiento</string>
-    <string name="type.amenity.university">Universidad</string>
-    <string name="type.amenity.vending_machine">Máquina expendedora</string>
-    <string name="type.amenity.vending_machine.cigarettes">Máquina expendedora de tabaco</string>
-    <string name="type.amenity.vending_machine.coffee">Máquina expendedora de café</string>
-    <string name="type.amenity.vending_machine.condoms">Máquina expendedora de condones</string>
-    <string name="type.amenity.vending_machine.drinks">Máquina expendedora de bebidas</string>
-    <string name="type.amenity.vending_machine.food">Máquina expendedora de comida</string>
-    <string name="type.amenity.vending_machine.newspapers">Máquina expendedora de periódicos</string>
-    <string name="type.amenity.vending_machine.parking_tickets">Parquímetro</string>
-    <string name="type.amenity.vending_machine.public_transport_tickets">Máquina expendedora de billetes de transporte público</string>
-    <string name="type.amenity.vending_machine.sweets">Máquina expendedora de dulces</string>
-    <string name="type.amenity.vending_machine.excrement_bags">Maquina expendedora de bolsas para excrementos</string>
-    <string name="type.amenity.parcel_locker">Taquilla de paquetes</string>
-    <string name="type.amenity.vehicle_inspection">Inspección de vehículos</string>
-    <string name="type.amenity.vending_machine.fuel">Maquina expendedora de combustible</string>
-    <string name="type.amenity.veterinary">Clínica veterinaria</string>
-    <string name="type.amenity.waste_basket">Papelera</string>
-    <string name="type.amenity.waste_disposal">Contenedor de basura</string>
-    <string name="type.amenity.waste_transfer_station">Estación de transferencia de residuos</string>
-    <string name="type.amenity.water_point">Fuente de agua para caravanas</string>
-    <string name="type.amenity.water_point.drinking_water_no">Fuente de agua para caravanas</string>
-    <string name="type.barrier">Barrera</string>
-    <string name="type.barrier.block">Bloque</string>
-    <string name="type.barrier.bollard">Bolardo</string>
-    <string name="type.barrier.border_control">Control fronterizo</string>
-    <string name="type.barrier.chain">Cadena</string>
-    <string name="type.barrier.city_wall">Muralla</string>
-    <string name="type.barrier.cycle_barrier">Barrera para bicicletas</string>
-    <string name="type.waterway.ditch">Zanja de drenaje</string>
-    <string name="type.natural.water.moat">Foso</string>
-    <string name="type.natural.water.wastewater">Aguas residuales</string>
-    <string name="type.barrier.entrance">Entrada</string>
-    <string name="type.barrier.fence">Valla</string>
-    <string name="type.barrier.gate">Verja</string>
-    <string name="type.barrier.hedge">Seto</string>
-    <string name="type.barrier.kissing_gate">Puerta peatonal</string>
-    <string name="type.barrier.lift_gate">Barrera levadiza</string>
-    <string name="type.barrier.retaining_wall">Muro de contención</string>
-    <string name="type.barrier.stile">Escalón</string>
-    <string name="type.barrier.turnstile">Torniquete</string>
-    <string name="type.barrier.swing_gate">Barrera batiente</string>
-    <string name="type.barrier.toll_booth">Cabina de peaje</string>
-    <string name="type.barrier.wall">Muro</string>
-    <string name="type.boundary">Frontera</string>
-    <string name="type.boundary.administrative">Frontera administrativa</string>
-    <!-- Borders between countries. -->
-    <string name="type.boundary.administrative.2">Frontera de país</string>
-    <!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
-    <string name="type.boundary.administrative.3">Frontera de región</string>
-    <!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
-    <string name="type.boundary.administrative.4">Frontera de región</string>
-    <string name="type.boundary.national_park">Parque nacional</string>
-    <string name="type.boundary.aboriginal_lands">Tierras indígenas</string>
-    <string name="type.boundary.protected_area">Área protegida</string>
-    <string name="type.boundary.protected_area.1">Área protegida</string>
-    <string name="type.boundary.protected_area.2">Área protegida</string>
-    <string name="type.boundary.protected_area.3">Área protegida</string>
-    <string name="type.boundary.protected_area.4">Área protegida</string>
-    <string name="type.boundary.protected_area.5">Área protegida</string>
-    <string name="type.boundary.protected_area.6">Área protegida</string>
-    <string name="type.building">Edificio</string>
-    <!-- Duplicates [address] in strings.txt -->
-    <string name="type.building.address">Dirección</string>
-    <string name="type.building.has_parts">Edificio</string>
-    <string name="type.building_part">Edificio</string>
-    <string name="type.building.garage">Garaje</string>
-    <string name="type.building.train_station">Edificio de la estación</string>
-    <string name="type.building.warehouse">Almacén</string>
-    <string name="type.cemetery.grave">Tumba</string>
-    <string name="type.craft">Gremios</string>
-    <string name="type.craft.beekeeper">Apicultor</string>
-    <string name="type.craft.blacksmith">Herrero</string>
-    <string name="type.craft.brewery">Fábrica de cerveza</string>
-    <string name="type.craft.caterer">Catering</string>
-    <string name="type.craft.carpenter">Carpintero</string>
-    <string name="type.craft.confectionery">Confitería</string>
-    <string name="type.craft.electrician">Electricista</string>
-    <string name="type.craft.electronics_repair">Reparación de aparatos electrónicos</string>
-    <string name="type.craft.gardener">Paisajista</string>
-    <string name="type.craft.grinding_mill">Molino de molienda</string>
-    <string name="type.craft.handicraft">Artesanía</string>
-    <!-- Heating, Ventilation, and Air Conditioning -->
-    <string name="type.craft.hvac">Calefacción, ventilación y aire acondicionado</string>
-    <string name="type.craft.key_cutter">Copista de llaves</string>
-    <string name="type.craft.locksmith">Cerrajero</string>
-    <string name="type.craft.metal_construction">Trabajador del metal</string>
-    <string name="type.craft.painter">Pintor</string>
-    <string name="type.craft.photographer">Fotógrafo</string>
-    <string name="type.shop.camera">Tienda de cámaras</string>
-    <string name="type.craft.plumber">Fontanero</string>
-    <string name="type.craft.sawmill">Serrería</string>
-    <string name="type.craft.shoemaker">Zapatero</string>
-    <string name="type.craft.winery">Bodega</string>
-    <string name="type.craft.tailor">Sastre</string>
-    <string name="type.cuisine.african">Cocina africana</string>
-    <string name="type.cuisine.american">Cocina americana</string>
-    <string name="type.cuisine.arab">Cocina árabe</string>
-    <string name="type.cuisine.argentinian">Cocina argentina</string>
-    <string name="type.cuisine.asian">Cocina asiática</string>
-    <string name="type.cuisine.austrian">Cocina austriaca</string>
-    <string name="type.cuisine.bagel">Bágel</string>
-    <string name="type.cuisine.balkan">Cocina balcánica</string>
-    <string name="type.cuisine.barbecue">Barbacoa</string>
-    <string name="type.cuisine.bavarian">Cocina bávara</string>
-    <string name="type.cuisine.beef_bowl">Gyūdon</string>
-    <string name="type.cuisine.brazilian">Cocina brasileña</string>
-    <string name="type.cuisine.breakfast">Desayunos</string>
-    <string name="type.cuisine.bubble_tea">Té de burbujas</string>
-    <string name="type.cuisine.burger">Hamburguesas</string>
-    <string name="type.cuisine.buschenschank">Buschenschank</string>
-    <string name="type.cuisine.cake">Tartas</string>
-    <string name="type.cuisine.caribbean">Cocina caribeña</string>
-    <string name="type.cuisine.chicken">Pollos</string>
-    <string name="type.cuisine.chinese">Cocina china</string>
-    <string name="type.cuisine.coffee_shop">Café</string>
-    <string name="type.cuisine.crepe">Crepes</string>
-    <string name="type.cuisine.croatian">Cocina croata</string>
-    <string name="type.cuisine.curry">Curri</string>
-    <string name="type.cuisine.deli">Delicatesen</string>
-    <string name="type.cuisine.diner">Cena</string>
-    <string name="type.cuisine.donut">Rosquillas</string>
-    <string name="type.cuisine.ethiopian">Cocina etíope</string>
-    <string name="type.cuisine.filipino">Cocina filipina</string>
-    <string name="type.cuisine.fine_dining">Restaurante elegante</string>
-    <string name="type.cuisine.fish">Pescados</string>
-    <string name="type.cuisine.fish_and_chips">Pescado rebozado con patatas</string>
-    <string name="type.cuisine.french">Cocina francesa</string>
-    <string name="type.cuisine.friture">Frituras</string>
-    <string name="type.cuisine.georgian">Cocina georgiana</string>
-    <string name="type.cuisine.german">Cocina alemana</string>
-    <string name="type.cuisine.greek">Cocina griega</string>
-    <string name="type.cuisine.grill">Parrilla</string>
-    <string name="type.cuisine.heuriger">Heuriger</string>
-    <string name="type.cuisine.hotdog">Perritos calientes</string>
-    <string name="type.cuisine.hungarian">Cocina húngara</string>
-    <string name="type.cuisine.ice_cream">Helados</string>
-    <string name="type.cuisine.indian">Cocina hindú</string>
-    <string name="type.cuisine.indonesian">Cocina indonesia</string>
-    <string name="type.cuisine.international">Cocina internacional</string>
-    <string name="type.cuisine.irish">Cocina irlandesa</string>
-    <string name="type.cuisine.italian">Cocina italiana</string>
-    <string name="type.cuisine.italian_pizza">Cocina italiana, pizzas</string>
-    <string name="type.cuisine.japanese">Cocina japonesa</string>
-    <string name="type.cuisine.kebab">Kebabs</string>
-    <string name="type.cuisine.korean">Cocina coreana</string>
-    <string name="type.cuisine.lao">Cocina laosiana</string>
-    <string name="type.cuisine.lebanese">Cocina libanesa</string>
-    <string name="type.cuisine.local">Cocina local</string>
-    <string name="type.cuisine.malagasy">Cocina malgache</string>
-    <string name="type.cuisine.malaysian">Cocina malaya</string>
-    <string name="type.cuisine.mediterranean">Cocina mediterránea</string>
-    <string name="type.cuisine.mexican">Cocina mexicana</string>
-    <string name="type.cuisine.moroccan">Cocina marroquí</string>
-    <string name="type.cuisine.noodles">Tallarines</string>
-    <string name="type.cuisine.oriental">Cocina oriental</string>
-    <string name="type.cuisine.pancake">Tortitas</string>
-    <string name="type.cuisine.pasta">Pastas</string>
-    <string name="type.cuisine.persian">Cocina persa</string>
-    <string name="type.cuisine.peruvian">Cocina peruana</string>
-    <string name="type.cuisine.pizza">Pizzas</string>
-    <string name="type.cuisine.polish">Cocina polaca</string>
-    <string name="type.cuisine.portuguese">Cocina portuguesa</string>
-    <string name="type.cuisine.ramen">Ramen</string>
-    <string name="type.cuisine.regional">Cocina regional</string>
-    <string name="type.cuisine.russian">Cocina rusa</string>
-    <string name="type.cuisine.sandwich">Sándwiches</string>
-    <string name="type.cuisine.sausage">Salchichas</string>
-    <string name="type.cuisine.savory_pancakes">Tortitas saladas</string>
-    <string name="type.cuisine.seafood">Mariscos</string>
-    <string name="type.cuisine.soba">Soba</string>
-    <string name="type.cuisine.spanish">Cocina española</string>
-    <string name="type.cuisine.steak_house">Asador</string>
-    <string name="type.cuisine.sushi">Sushi</string>
-    <string name="type.cuisine.tapas">Tapas</string>
-    <string name="type.cuisine.tea">Té</string>
-    <string name="type.cuisine.thai">Cocina tailandesa</string>
-    <string name="type.cuisine.turkish">Cocina turca</string>
-    <string name="type.cuisine.vegan">Cocina vegana</string>
-    <string name="type.cuisine.vegetarian">Cocina vegetariana</string>
-    <string name="type.cuisine.vietnamese">Cocina vietnamita</string>
-    <string name="type.emergency">Emergencia</string>
-    <string name="type.emergency.assembly_point">Punto de reunión de emergencia</string>
-    <string name="type.emergency.defibrillator">Desfibrilador</string>
-    <string name="type.emergency.fire_hydrant">Boca de incendio</string>
-    <string name="type.emergency.phone">Teléfono de emergencias</string>
-    <!-- This is for secondary entrances, for main entrances see type.entrance.main -->
-    <string name="type.entrance">Entrada</string>
-    <!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
-    <string name="type.entrance.main">Entrada principal</string>
-    <string name="type.entrance.exit">Salida</string>
-    <string name="type.fee.no">Gratis</string>
-    <string name="type.healthcare.laboratory">Laboratorio médico</string>
-    <string name="type.healthcare.physiotherapist">Fisioterapeuta</string>
-    <string name="type.healthcare.alternative">Medicina alternativa</string>
-    <string name="type.healthcare.audiologist">Audiología</string>
-    <string name="type.healthcare.blood_donation">Centro de donación de sangre</string>
-    <string name="type.healthcare.optometrist">Optometría</string>
-    <string name="type.healthcare.podiatrist">Podología</string>
-    <string name="type.healthcare.psychotherapist">Psicoterapia</string>
-    <string name="type.healthcare.sample_collection">Muestreo</string>
-    <string name="type.healthcare.speech_therapist">Logopedia</string>
-
-    <!-- SECTION: Types: Roads -->
-    <string name="type.highway">Carretera</string>
-    <string name="type.highway.bridleway">Camino de caballos</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.bridleway.bridge">Puente</string>
-    <string name="type.highway.bridleway.permissive">Camino de caballos</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.bridleway.tunnel">Túnel</string>
-    <string name="type.highway.busway">Carretera exclusiva para autobuses</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.busway.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.busway.tunnel">Túnel</string>
-    <string name="type.highway.bus_stop">Parada de autobús</string>
-    <string name="type.highway.construction">Carretera en construcción</string>
-    <string name="type.highway.cycleway">Ciclovía</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.cycleway.bridge">Puente</string>
-    <string name="type.highway.cycleway.permissive">Ciclovía</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.cycleway.tunnel">Túnel</string>
-    <string name="type.highway.elevator">Ascensor</string>
-    <string name="type.highway.footway">Camino</string>
-    <string name="type.highway.footway.sidewalk">Acera</string>
-    <string name="type.highway.footway.crossing">Paso de peatones</string>
-    <string name="type.highway.footway.area">Zona peatonal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.footway.bridge">Puente peatonal</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.footway.tunnel">Túnel peatonal</string>
-    <string name="type.highway.ford">Vado</string>
-    <string name="type.highway.living_street">Calle de prioridad peatonal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.living_street.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.living_street.tunnel">Túnel</string>
-    <string name="type.highway.motorway">Autopista</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.motorway.bridge">Puente de autopista</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.motorway.tunnel">Túnel de autopista</string>
-    <string name="type.highway.motorway_junction">Salida</string>
-    <string name="type.highway.motorway_link">Enlace de autopista</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.motorway_link.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.motorway_link.tunnel">Túnel</string>
-    <string name="type.highway.path">Camino</string>
-    <!-- Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. -->
-    <string name="type.highway.path.difficult">Sendero difícil o poco visible</string>
-    <!-- Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. -->
-    <string name="type.highway.path.expert">Sendero muy difícil o indistinguible</string>
-    <string name="type.highway.path.bicycle">Camino para bicicletas</string>
-    <string name="type.highway.footway.bicycle">Camino para bicicletas</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.path.bridge">Puente</string>
-    <string name="type.highway.path.horse">Sendero de herradura</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.path.tunnel">Túnel</string>
-    <string name="type.highway.pedestrian">Calle peatonal</string>
-    <string name="type.highway.pedestrian.area">Zona peatonal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.pedestrian.bridge">Puente peatonal</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.pedestrian.tunnel">Túnel peatonal</string>
-    <string name="type.highway.primary">Carretera principal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.primary.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.primary.tunnel">Túnel de carretera principal</string>
-    <string name="type.highway.primary_link">Enlace de carretera principal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.primary_link.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.primary_link.tunnel">Túnel</string>
-    <string name="type.highway.raceway">Circuito</string>
-    <string name="type.highway.residential">Calle residencial</string>
-    <string name="type.highway.residential.area">Calle residencial</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.residential.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.residential.tunnel">Túnel de calle residencial</string>
-    <string name="type.highway.rest_area">Área de descanso</string>
-    <string name="type.highway.road">Carretera</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.road.bridge">Puente</string>
-    <!-- A bridge structure outline. -->
-    <string name="type.man_made.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.road.tunnel">Túnel</string>
-    <string name="type.highway.secondary">Carretera secundaria</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.secondary.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.secondary.tunnel">Túnel de carretera secundaria</string>
-    <string name="type.highway.secondary_link">Enlace de carretera secundaria</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.secondary_link.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.secondary_link.tunnel">Túnel</string>
-    <string name="type.highway.service">Vía de servicio</string>
-    <string name="type.highway.service.area">Vía de servicio</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.service.bridge">Puente de carretera de servicio</string>
-    <string name="type.highway.service.driveway">Vía de servicio</string>
-    <string name="type.highway.service.parking_aisle">Pasillo de estacionamiento</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.service.tunnel">Túnel de vía de servicio</string>
-    <string name="type.highway.services">Área de servicio</string>
-    <string name="type.highway.speed_camera">Radar de velocidad</string>
-    <string name="type.highway.steps">Escaleras</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.steps.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.steps.tunnel">Túnel</string>
-    <string name="type.highway.tertiary">Carretera terciaria</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.tertiary.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.tertiary.tunnel">Túnel</string>
-    <string name="type.highway.tertiary_link">Enlace de carretera terciaria</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.tertiary_link.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.tertiary_link.tunnel">Túnel</string>
-    <string name="type.highway.track">Pista</string>
-    <string name="type.highway.track.area">Pista</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.track.bridge">Puente</string>
-    <string name="type.highway.track.grade1">Pista</string>
-    <string name="type.highway.track.no.access">Pista</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.track.tunnel">Túnel</string>
-    <string name="type.highway.traffic_signals">Semáforos</string>
-    <string name="type.highway.trunk">Vía troncal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.trunk.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.trunk.tunnel">Túnel</string>
-    <string name="type.highway.trunk_link">Enlace de vía troncal</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.trunk_link.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.trunk_link.tunnel">Túnel</string>
-    <string name="type.highway.unclassified">Carretera sin clasificar</string>
-    <string name="type.highway.unclassified.area">Carretera sin clasificar</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.unclassified.bridge">Puente</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.unclassified.tunnel">Túnel de carretera sin clasificar</string>
-    <string name="type.area_highway.cycleway">Ciclovía</string>
-    <string name="type.area_highway.footway">Camino</string>
-    <string name="type.area_highway.living_street">Calle de prioridad peatonal</string>
-    <string name="type.area_highway.motorway">Autopista</string>
-    <string name="type.area_highway.path">Camino</string>
-    <string name="type.area_highway.pedestrian">Calle peatonal</string>
-    <string name="type.area_highway.primary">Carretera principal</string>
-    <string name="type.area_highway.residential">Calle residencial</string>
-    <string name="type.area_highway.secondary">Carretera secundaria</string>
-    <string name="type.area_highway.service">Vía de servicio</string>
-    <string name="type.area_highway.tertiary">Carretera terciaria</string>
-    <string name="type.area_highway.steps">Escaleras</string>
-    <string name="type.area_highway.track">Pista</string>
-    <string name="type.area_highway.trunk">Vía troncal</string>
-    <string name="type.area_highway.unclassified">Carretera sin clasificar</string>
-
-    <!-- SECTION: Types: Historic -->
-    <string name="type.historic">Objeto histórico</string>
-    <string name="type.historic.aircraft">Avión histórico</string>
-    <string name="type.historic.anchor">Ancla histórica</string>
-    <string name="type.historic.archaeological_site">Yacimiento arqueológico</string>
-    <string name="type.historic.battlefield">Campo de batalla</string>
-    <string name="type.historic.boundary_stone">Hito fronterizo</string>
-    <string name="type.historic.cannon">Cañón</string>
-    <string name="type.historic.castle">Castillo</string>
-    <string name="type.historic.castle.castrum">Castrum</string>
-    <string name="type.historic.castle.defensive">Castillo defensivo</string>
-    <string name="type.historic.castle.fortified_church">Iglesia fortificada</string>
-    <string name="type.historic.castle.fortress">Fortaleza</string>
-    <string name="type.historic.castle.hillfort">Castro</string>
-    <string name="type.historic.castle.kremlin">Kremlin</string>
-    <string name="type.historic.castle.manor">Casa solariega</string>
-    <string name="type.historic.castle.palace">Palacio</string>
-    <string name="type.historic.castle.shiro">Castillo japonés</string>
-    <string name="type.historic.castle.stately">Castillo</string>
-    <string name="type.historic.city_gate">Puerta de la ciudad</string>
-    <string name="type.historic.citywalls">Muralla</string>
-    <string name="type.historic.fort">Fuerte</string>
-    <string name="type.historic.gallows">Horca</string>
-    <string name="type.historic.locomotive">Locomotora histórica</string>
-    <string name="type.historic.memorial">Monumento conmemorativo</string>
-    <string name="type.historic.memorial.cross">Cruz conmemorativa</string>
-    <string name="type.historic.memorial.plaque">Placa conmemorativa</string>
-    <string name="type.historic.memorial.sculpture">Escultura</string>
-    <string name="type.historic.memorial.statue">Estatua</string>
-    <string name="type.historic.memorial.stolperstein">Stolperstein</string>
-    <string name="type.historic.stone">Piedra histórica</string>
-    <string name="type.historic.memorial.war_memorial">Memorial de guerra</string>
-    <string name="type.historic.mine">Mina histórica</string>
-    <string name="type.historic.monument">Monumento</string>
-    <string name="type.historic.pillory">Picota</string>
-    <string name="type.historic.ruins">Ruinas</string>
-    <string name="type.historic.ship">Barco</string>
-    <string name="type.historic.tank">Tanque histórico</string>
-    <string name="type.historic.tomb">Tumba</string>
-    <string name="type.historic.wayside_cross">Cruz de término</string>
-    <string name="type.historic.wayside_shrine">Peto de ánimas</string>
-    <string name="type.historic.wreck">Naufragio</string>
-    <string name="type.internet_access">Internet</string>
-    <string name="type.internet_access.wlan">Internet</string>
-    <string name="type.junction">Cruce</string>
-    <string name="type.junction.circular">Rotonda</string>
-    <string name="type.junction.roundabout">Rotonda</string>
-    <string name="type.landuse">Uso del suelo</string>
-    <string name="type.landuse.allotments">Huerto urbano</string>
-    <string name="type.landuse.basin">Cuenca</string>
-    <string name="type.landuse.brownfield">Solar abandonado</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.landuse.cemetery">Cementerio</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.landuse.cemetery.christian">Cementerio cristiano</string>
-    <string name="type.landuse.churchyard">Camposanto</string>
-    <string name="type.landuse.commercial">Zona comercial</string>
-    <string name="type.landuse.construction">Construcción</string>
-    <string name="type.landuse.education">Instalaciones educativas</string>
-    <string name="type.landuse.farmland">Tierras agrícolas</string>
-    <string name="type.landuse.farmyard">Granja</string>
-    <string name="type.landuse.field">Campo</string>
-    <string name="type.landuse.flowerbed">Cama de flores</string>
-    <string name="type.landuse.forest">Bosque</string>
-    <string name="type.landuse.forest.coniferous">Bosque de coníferas</string>
-    <string name="type.landuse.forest.deciduous">Bosque caducifolio</string>
-    <string name="type.landuse.forest.mixed">Bosque mixto</string>
-    <string name="type.landuse.garages">Garajes</string>
-    <string name="type.landuse.grass">Césped</string>
-    <string name="type.landuse.greenfield">Invernadero</string>
-    <string name="type.landuse.greenhouse_horticulture">Invernadero</string>
-    <string name="type.landuse.industrial">Zona industrial</string>
-    <string name="type.landuse.landfill">Vertedero</string>
-    <string name="type.landuse.meadow">Pradera</string>
-    <string name="type.landuse.military">Área militar</string>
-    <string name="type.landuse.orchard">Huerto</string>
-    <string name="type.landuse.quarry">Cantera</string>
-    <string name="type.landuse.railway">Instalaciones ferroviarias</string>
-    <string name="type.landuse.recreation_ground">Área recreativa</string>
-    <string name="type.landuse.reservoir">Embalse</string>
-    <string name="type.landuse.residential">Zona residencial</string>
-    <string name="type.landuse.retail">Zona comercial</string>
-    <string name="type.landuse.salt_pond">Salina</string>
-    <string name="type.landuse.village_green">Espacio verde</string>
-    <string name="type.landuse.vineyard">Viñedo</string>
-    <string name="type.leisure">Ocio</string>
-    <string name="type.leisure.common">Zona pública</string>
-    <string name="type.leisure.dog_park">Parque para perros</string>
-    <string name="type.leisure.fitness_centre">Centro de fitness</string>
-    <string name="type.leisure.fitness_station">Parque de fitness</string>
-    <string name="type.leisure.dance">Salón de baile</string>
-    <string name="type.leisure.garden">Jardín</string>
-    <string name="type.leisure.garden.residential">Jardín residencial</string>
-    <string name="type.leisure.golf_course">Campo de golf</string>
-    <string name="type.leisure.miniature_golf">Minigolf</string>
-    <string name="type.leisure.hackerspace">Espacio para hackers</string>
-    <string name="type.leisure.ice_rink">Pisa de patinaje</string>
-    <string name="type.leisure.marina">Marina</string>
-    <string name="type.leisure.nature_reserve">Reserva natural</string>
-    <string name="type.leisure.outdoor_seating">Asientos al aire libre</string>
-    <string name="type.leisure.park">Parque</string>
-    <string name="type.leisure.park.no.access">Parque</string>
-    <string name="type.leisure.park.permissive">Parque</string>
-    <string name="type.leisure.park.private">Parque</string>
-    <string name="type.leisure.picnic_table">Mesa de picnic</string>
-    <string name="type.leisure.pitch">Cancha</string>
-    <string name="type.leisure.playground">Patio de recreo</string>
-    <string name="type.leisure.recreation_ground">Zona recreativa</string>
-    <string name="type.leisure.sauna">Sauna</string>
-    <string name="type.leisure.slipway">Rampa de barcos</string>
-    <string name="type.leisure.sports_centre">Complejo deportivo</string>
-    <string name="type.sport.climbing">Centro de escalada</string>
-    <string name="type.sport.yoga">Centro de yoga</string>
-    <string name="type.leisure.stadium">Estadio</string>
-    <string name="type.leisure.swimming_pool">Piscina</string>
-    <string name="type.leisure.swimming_pool.private">Piscina privada</string>
-    <string name="type.leisure.track">Pista deportiva</string>
-    <string name="type.leisure.track.area">Pista deportiva</string>
-    <string name="type.leisure.water_park">Parque acuático</string>
-    <string name="type.leisure.beach_resort">Resort de playa</string>
-    <string name="type.man_made">Construcción</string>
-    <string name="type.man_made.breakwater">Rompeolas</string>
-    <string name="type.man_made.cairn">Mojón</string>
-    <string name="type.man_made.chimney">Chimenea de fábrica</string>
-    <string name="type.man_made.cutline">Línea de corte forestal</string>
-    <string name="type.man_made.survey_point">Punto geodésico</string>
-    <string name="type.man_made.flagpole">Mástil de bandera</string>
-    <string name="type.man_made.lighthouse">Faro</string>
-    <string name="type.man_made.mast">Mástil</string>
-    <string name="type.man_made.pier">Muelle</string>
-    <string name="type.man_made.pipeline">Tubería</string>
-    <string name="type.man_made.pipeline.overground">Tubería aérea</string>
-    <string name="type.man_made.silo">Silo</string>
-    <string name="type.man_made.storage_tank">Cisterna</string>
-    <string name="type.man_made.surveillance">Cámara de vigilancia</string>
-    <string name="type.man_made.tower">Torre</string>
-    <string name="type.man_made.tower.communication">Torre de comunicaciones</string>
-    <string name="type.man_made.wastewater_plant">Planta de tratamiento de aguas residuales</string>
-    <string name="type.man_made.water_tap">Toma de agua</string>
-    <string name="type.man_made.water_tap.drinking_water_no">Toma de agua</string>
-    <string name="type.man_made.water_tower">Depósito de agua</string>
-    <string name="type.man_made.water_well">Pozo</string>
-    <string name="type.man_made.water_well.drinking_water_no">Pozo</string>
-    <string name="type.man_made.windmill">Molino</string>
-    <string name="type.man_made.works">Fábrica</string>
-    <string name="type.military">Militar</string>
-    <string name="type.military.bunker">Búnker</string>
-    <string name="type.mountain_pass">Puerto de montaña</string>
-    <string name="type.natural">Naturaleza</string>
-    <!-- A rocky land cover. -->
-    <string name="type.natural.bare_rock">Roca desnuda</string>
-    <!-- A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. -->
-    <string name="type.natural.shingle">Guijarros</string>
-    <!-- A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. -->
-    <string name="type.natural.scree">Pedregal</string>
-    <string name="type.natural.bay">Bahía</string>
-    <string name="type.natural.beach">Playa</string>
-    <string name="type.natural.beach.sand">Playa de arena</string>
-    <string name="type.natural.beach.gravel">Playa de grava</string>
-    <string name="type.natural.cape">Cabo</string>
-    <string name="type.natural.cave_entrance">Cueva</string>
-    <string name="type.natural.cliff">Acantilado</string>
-    <string name="type.natural.earth_bank">Acantilado</string>
-    <string name="type.man_made.embankment">Terraplén</string>
-    <string name="type.natural.coastline">Costa</string>
-    <string name="type.natural.desert">Desierto</string>
-    <string name="type.natural.geyser">Géiser</string>
-    <string name="type.natural.glacier">Glaciar</string>
-    <string name="type.natural.grassland">Herbazal</string>
-    <string name="type.natural.heath">Brezal</string>
-    <string name="type.natural.hot_spring">Aguas termales</string>
-    <string name="type.natural.water.lake">Lago</string>
-    <string name="type.natural.water.lock">Cámara de bloqueo</string>
-    <string name="type.natural.water.pond">Estanque</string>
-    <string name="type.natural.water.reservoir">Embalse</string>
-    <string name="type.natural.water.basin">Cuenca</string>
-    <string name="type.natural.water.river">Río</string>
-    <string name="type.natural.land">Tierra</string>
-    <string name="type.natural.meadow">Prado</string>
-    <string name="type.natural.orchard">Huerto frutal</string>
-    <string name="type.natural.peak">Cima</string>
-    <string name="type.natural.saddle">Collado</string>
-    <string name="type.natural.rock">Roca</string>
-    <string name="type.natural.scrub">Matorrales</string>
-    <string name="type.natural.spring">Manantial</string>
-    <string name="type.natural.spring.drinking_water_no">Manantial</string>
-    <string name="type.natural.strait">Estrecho</string>
-    <string name="type.natural.tree_row">Fila de árboles</string>
-    <string name="type.natural.vineyard">Viña</string>
-    <string name="type.natural.volcano">Volcán</string>
-    <string name="type.natural.water">Cuerpo de agua</string>
-    <string name="type.natural.wetland">Terreno pantanoso</string>
-    <string name="type.natural.wetland.bog">Turbera</string>
-    <string name="type.natural.wetland.marsh">Ciénaga</string>
-    <string name="type.noexit">Sin salida</string>
-    <string name="type.office">Oficina</string>
-    <string name="type.office.company">Oficina</string>
-    <string name="type.office.estate_agent">Agente inmobiliario</string>
-    <string name="type.office.government">Oficina gubernamental</string>
-    <string name="type.office.insurance">Oficina de seguros</string>
-    <string name="type.office.lawyer">Despacho de abogados</string>
-    <string name="type.office.ngo">Sede de ONG</string>
-    <string name="type.office.telecommunication">Operadora de telefonía</string>
-    <string name="type.organic.only">Orgánico</string>
-    <string name="type.organic.yes">Orgánico</string>
-    <string name="type.place.city">Ciudad</string>
-    <string name="type.place.city.capital">Capital</string>
-    <string name="type.place.city.capital.10">Ciudad</string>
-    <string name="type.place.city.capital.11">Ciudad</string>
-    <string name="type.place.city.capital.2">Capital</string>
-    <string name="type.place.city.capital.3">Ciudad</string>
-    <string name="type.place.city.capital.4">Ciudad</string>
-    <string name="type.place.city.capital.5">Ciudad</string>
-    <string name="type.place.city.capital.6">Ciudad</string>
-    <string name="type.place.city.capital.7">Ciudad</string>
-    <string name="type.place.city.capital.8">Ciudad</string>
-    <string name="type.place.city.capital.9">Ciudad</string>
-    <string name="type.place.continent">Continente</string>
-    <string name="type.place.country">País</string>
-    <string name="type.place.county">Condado</string>
-    <string name="type.place.farm">Granja</string>
-    <string name="type.place.hamlet">Aldea</string>
-    <string name="type.place.island">Isla</string>
-    <string name="type.place.islet">Isla</string>
-    <string name="type.place.isolated_dwelling">Vivienda aislada</string>
-    <string name="type.place.locality">Localidad</string>
-    <string name="type.place.neighbourhood">Vecindario</string>
-    <string name="type.place.ocean">Océano</string>
-    <string name="type.place.region">Región</string>
-    <string name="type.place.sea">Mar</string>
-    <string name="type.place.square">Plaza</string>
-    <string name="type.place.state">Estado</string>
-    <string name="type.place.state.USA">Estado</string>
-    <string name="type.place.suburb">Barrio</string>
-    <string name="type.place.town">Pueblo</string>
-    <string name="type.place.village">Pueblo</string>
-    <string name="type.power">Energía</string>
-    <string name="type.power.generator">Generador</string>
-    <string name="type.power.generator.solar">Generador solar</string>
-    <string name="type.power.generator.wind">Generador de viento</string>
-    <string name="type.power.generator.gas">Planta de energía de turbina de gas</string>
-    <string name="type.power.generator.hydro">Planta de energía hidroeléctrica</string>
-    <string name="type.power.line">Línea eléctrica</string>
-    <string name="type.power.line.underground">Línea eléctrica subterránea</string>
-    <string name="type.power.minor_line">Línea eléctrica de baja tensión</string>
-    <string name="type.power.plant">Planta de energía</string>
-    <string name="type.power.plant.coal">Central eléctrica de carbón</string>
-    <string name="type.power.plant.gas">Planta de energía de turbina de gas</string>
-    <string name="type.power.plant.hydro">Planta de energía hidroeléctrica</string>
-    <string name="type.power.plant.solar">Planta de energía solar</string>
-    <string name="type.power.plant.wind">Planta eólica</string>
-    <string name="type.power.station">Estación eléctrica</string>
-    <string name="type.power.substation">Subestación eléctrica</string>
-    <string name="type.power.tower">Poste eléctrico</string>
-    <string name="type.public_transport">Transporte público</string>
-    <string name="type.public_transport.platform">Plataforma</string>
-    <string name="type.railway">Vía férrea</string>
-    <string name="type.railway.abandoned">Vía férrea abandonada</string>
-    <string name="type.railway.construction">Vía férrea en construcción</string>
-    <string name="type.railway.crossing">Paso a nivel</string>
-    <string name="type.railway.disused">Vía férrea en desuso</string>
-    <string name="type.railway.funicular">Funicular</string>
-    <string name="type.railway.halt">Punto de parada</string>
-    <string name="type.railway.level_crossing">Cruce de ferrocarril</string>
-    <string name="type.railway.light_rail">Tren ligero</string>
-    <string name="type.railway.monorail">Tren de monorraíl</string>
-    <string name="type.railway.narrow_gauge">Vía férrea de ancho estrecho</string>
-    <string name="type.railway.platform">Plataforma de vía férrea</string>
-    <string name="type.railway.rail">Ferrocarril</string>
-    <string name="type.railway.rail.highspeed">Ferrocarril de alta velocidad</string>
-    <string name="type.railway.rail.tourism">Ferrocarril turístico</string>
-    <string name="type.railway.rail.main">Ferrocarril</string>
-    <!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
-    <string name="type.railway.rail.branch">Ramal ferroviario</string>
-    <!-- Non-passenger utility tracks: industrial, military, test. -->
-    <string name="type.railway.rail.utility">Ferrocarril utilitario</string>
-    <string name="type.railway.rail.spur">Espolón ferroviario</string>
-    <!-- Short service tracks: siding, yard, crossover. -->
-    <string name="type.railway.rail.service">Vía férrea de maniobras</string>
-    <string name="type.railway.rail.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.highspeed.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.tourism.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.main.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.branch.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.utility.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.spur.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.service.bridge">Puente ferroviario</string>
-    <string name="type.railway.rail.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.highspeed.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.tourism.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.main.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.branch.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.utility.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.spur.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.rail.service.tunnel">Túnel ferroviario</string>
-    <string name="type.railway.station">Estación de tren</string>
-    <string name="type.railway.station.funicular">Funicular</string>
-    <string name="type.railway.station.light_rail">Estación de tren</string>
-    <string name="type.railway.station.light_rail.berlin">Estación de tren</string>
-    <string name="type.railway.station.light_rail.london">Estación de tren</string>
-    <string name="type.railway.station.light_rail.porto">Estación de tren</string>
-    <string name="type.railway.station.monorail">Estación de tren</string>
-    <string name="type.railway.station.subway">Metro</string>
-    <string name="type.railway.station.subway.adana">Metro</string>
-    <string name="type.railway.station.subway.algiers">Metro</string>
-    <string name="type.railway.station.subway.almaty">Metro</string>
-    <string name="type.railway.station.subway.amsterdam">Metro</string>
-    <string name="type.railway.station.subway.ankara">Metro</string>
-    <string name="type.railway.station.subway.athens">Metro</string>
-    <string name="type.railway.station.subway.baku">Metro</string>
-    <string name="type.railway.station.subway.bangkok">Metro</string>
-    <string name="type.railway.station.subway.barcelona">Metro</string>
-    <string name="type.railway.station.subway.beijing">Metro</string>
-    <string name="type.railway.station.subway.bengalore">Metro</string>
-    <string name="type.railway.station.subway.berlin">Metro</string>
-    <string name="type.railway.station.subway.bilbao">Metro</string>
-    <string name="type.railway.station.subway.brasilia">Metro</string>
-    <string name="type.railway.station.subway.brescia">Metro</string>
-    <string name="type.railway.station.subway.brussels">Metro</string>
-    <string name="type.railway.station.subway.bucharest">Metro</string>
-    <string name="type.railway.station.subway.budapest">Metro</string>
-    <string name="type.railway.station.subway.buenos_aires">Metro</string>
-    <string name="type.railway.station.subway.bursa">Metro</string>
-    <string name="type.railway.station.subway.cairo">Metro</string>
-    <string name="type.railway.station.subway.caracas">Metro</string>
-    <string name="type.railway.station.subway.catania">Metro</string>
-    <string name="type.railway.station.subway.changchun">Metro</string>
-    <string name="type.railway.station.subway.chengdu">Metro</string>
-    <string name="type.railway.station.subway.chicago">Metro</string>
-    <string name="type.railway.station.subway.chongqing">Metro</string>
-    <string name="type.railway.station.subway.dalian">Metro</string>
-    <string name="type.railway.station.subway.delhi">Metro</string>
-    <string name="type.railway.station.subway.dnepro">Metro</string>
-    <string name="type.railway.station.subway.dubai">Metro</string>
-    <string name="type.railway.station.subway.ekb">Metro</string>
-    <string name="type.railway.station.subway.fukuoka">Metro</string>
-    <string name="type.railway.station.subway.glasgow">Metro</string>
-    <string name="type.railway.station.subway.guangzhou">Metro</string>
-    <string name="type.railway.station.subway.hamburg">Metro</string>
-    <string name="type.railway.station.subway.helsinki">Metro</string>
-    <string name="type.railway.station.subway.hiroshima">Metro</string>
-    <string name="type.railway.station.subway.hongkong">Metro</string>
-    <string name="type.railway.station.subway.isfahan">Metro</string>
-    <string name="type.railway.station.subway.istanbul">Metro</string>
-    <string name="type.railway.station.subway.izmir">Metro</string>
-    <string name="type.railway.station.subway.kazan">Metro</string>
-    <string name="type.railway.station.subway.kharkiv">Metro</string>
-    <string name="type.railway.station.subway.kiev">Metro</string>
-    <string name="type.railway.station.subway.kobe">Metro</string>
-    <string name="type.railway.station.subway.kolkata">Metro</string>
-    <string name="type.railway.station.subway.kunming">Metro</string>
-    <string name="type.railway.station.subway.kyoto">Metro</string>
-    <string name="type.railway.station.subway.la">Metro</string>
-    <string name="type.railway.station.subway.lausanne">Metro</string>
-    <string name="type.railway.station.subway.lille">Metro</string>
-    <string name="type.railway.station.subway.lima">Metro</string>
-    <string name="type.railway.station.subway.lisboa">Metro</string>
-    <string name="type.railway.station.subway.london">Metro</string>
-    <string name="type.railway.station.subway.lyon">Metro</string>
-    <string name="type.railway.station.subway.madrid">Metro</string>
-    <string name="type.railway.station.subway.malaga">Metro</string>
-    <string name="type.railway.station.subway.manila">Metro</string>
-    <string name="type.railway.station.subway.maracaibo">Metro</string>
-    <string name="type.railway.station.subway.mashhad">Metro</string>
-    <string name="type.railway.station.subway.mecca">Metro</string>
-    <string name="type.railway.station.subway.medellin">Metro</string>
-    <string name="type.railway.station.subway.mexico">Metro</string>
-    <string name="type.railway.station.subway.milan">Metro</string>
-    <string name="type.railway.station.subway.minsk">Metro</string>
-    <string name="type.railway.station.subway.montreal">Metro</string>
-    <string name="type.railway.station.subway.moscow">Metro</string>
-    <string name="type.railway.station.subway.munchen">Metro</string>
-    <string name="type.railway.station.subway.nagoya">Metro</string>
-    <string name="type.railway.station.subway.newyork">Metro</string>
-    <string name="type.railway.station.subway.nnov">Metro</string>
-    <string name="type.railway.station.subway.novosibirsk">Metro</string>
-    <string name="type.railway.station.subway.osaka">Metro</string>
-    <string name="type.railway.station.subway.oslo">Metro</string>
-    <string name="type.railway.station.subway.palma">Metro</string>
-    <string name="type.railway.station.subway.panama">Metro</string>
-    <string name="type.railway.station.subway.paris">Metro</string>
-    <string name="type.railway.station.subway.philadelphia">Metro</string>
-    <string name="type.railway.station.subway.pyongyang">Metro</string>
-    <string name="type.railway.station.subway.rennes">Metro</string>
-    <string name="type.railway.station.subway.rio">Metro</string>
-    <string name="type.railway.station.subway.roma">Metro</string>
-    <string name="type.railway.station.subway.rotterdam">Metro</string>
-    <string name="type.railway.station.subway.samara">Metro</string>
-    <string name="type.railway.station.subway.santiago">Metro</string>
-    <string name="type.railway.station.subway.santo_domingo">Metro</string>
-    <string name="type.railway.station.subway.saopaulo">Metro</string>
-    <string name="type.railway.station.subway.sapporo">Metro</string>
-    <string name="type.railway.station.subway.sendai">Metro</string>
-    <string name="type.railway.station.subway.sf">Metro</string>
-    <string name="type.railway.station.subway.shanghai">Metro</string>
-    <string name="type.railway.station.subway.shenzhen">Metro</string>
-    <string name="type.railway.station.subway.shiraz">Metro</string>
-    <string name="type.railway.station.subway.singapore">Metro</string>
-    <string name="type.railway.station.subway.sofia">Metro</string>
-    <string name="type.railway.station.subway.spb">Metro</string>
-    <string name="type.railway.station.subway.stockholm">Metro</string>
-    <string name="type.railway.station.subway.tabriz">Metro</string>
-    <string name="type.railway.station.subway.taipei">Metro</string>
-    <string name="type.railway.station.subway.taoyuan">Metro</string>
-    <string name="type.railway.station.subway.tashkent">Metro</string>
-    <string name="type.railway.station.subway.tbilisi">Metro</string>
-    <string name="type.railway.station.subway.tehran">Metro</string>
-    <string name="type.railway.station.subway.tianjin">Metro</string>
-    <string name="type.railway.station.subway.tokyo">Metro</string>
-    <string name="type.railway.station.subway.valencia">Metro</string>
-    <string name="type.railway.station.subway.vienna">Metro</string>
-    <string name="type.railway.station.subway.warszawa">Metro</string>
-    <string name="type.railway.station.subway.washington">Metro</string>
-    <string name="type.railway.station.subway.wuhan">Metro</string>
-    <string name="type.railway.station.subway.yerevan">Metro</string>
-    <string name="type.railway.station.subway.yokohama">Metro</string>
-    <string name="type.railway.subway">Línea de metro</string>
-    <string name="type.railway.subway.bridge">Puente de metro</string>
-    <string name="type.railway.subway.tunnel">Túnel de metro</string>
-    <string name="type.railway.subway_entrance">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.adana">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.algiers">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.almaty">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.amsterdam">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.ankara">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.athens">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.baku">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.bangkok">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.barcelona">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.beijing">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.bengalore">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.berlin">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.bilbao">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.brasilia">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.brescia">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.brussels">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.bucharest">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.budapest">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.buenos_aires">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.bursa">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.cairo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.caracas">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.catania">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.changchun">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.chengdu">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.chicago">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.chongqing">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.dalian">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.delhi">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.dnepro">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.dubai">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.ekb">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.fukuoka">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.glasgow">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.guangzhou">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.hamburg">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.helsinki">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.hiroshima">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.hongkong">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.isfahan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.istanbul">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.izmir">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kazan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kharkiv">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kiev">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kobe">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kolkata">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kunming">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.kyoto">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.la">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.lausanne">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.lille">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.lima">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.lisboa">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.london">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.lyon">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.madrid">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.malaga">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.manila">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.maracaibo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.mashhad">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.mecca">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.medellin">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.mexico">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.milan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.minsk">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.montreal">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.moscow">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.munchen">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.nagoya">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.newyork">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.nnov">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.novosibirsk">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.osaka">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.oslo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.palma">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.panama">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.paris">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.philadelphia">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.pyongyang">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.rennes">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.rio">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.roma">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.rotterdam">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.samara">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.santiago">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.santo_domingo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.saopaulo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.sapporo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.sendai">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.sf">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.shanghai">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.shenzhen">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.shiraz">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.singapore">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.sofia">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.spb">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.stockholm">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tabriz">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.taipei">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.taoyuan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tashkent">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tbilisi">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tehran">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tianjin">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.tokyo">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.valencia">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.vienna">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.warszawa">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.washington">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.wuhan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.yerevan">Entrada al metro</string>
-    <string name="type.railway.subway_entrance.yokohama">Entrada al metro</string>
-    <string name="type.railway.tram">Línea de tranvía</string>
-    <string name="type.railway.tram.bridge">Puente de tranvía</string>
-    <string name="type.railway.tram.tunnel">Túnel de tranvía</string>
-    <string name="type.railway.tram_stop">Parada de tranvía</string>
-    <string name="type.route">Ruta</string>
-    <string name="type.route.ferry">Ruta de ferry</string>
-    <string name="type.shop">Tienda</string>
-    <string name="type.shop.alcohol">Licorería</string>
-    <string name="type.shop.bakery">Panadería</string>
-    <string name="type.shop.bathroom_furnishing">Equipamiento de baño</string>
-    <string name="type.shop.beauty">Salón de belleza</string>
-    <string name="type.shop.beverages">Bebidas</string>
-    <string name="type.shop.bicycle">Tienda de bicicletas</string>
-    <string name="type.shop.bookmaker">Casa de apuestas</string>
-    <string name="type.shop.books">Librería</string>
-    <string name="type.shop.butcher">Carnicería</string>
-    <string name="type.shop.cannabis">Tienda de cánnabis</string>
-    <string name="type.shop.car">Concesionario de coches</string>
-    <string name="type.shop.car_parts">Piezas de automóvil</string>
-    <string name="type.shop.car_repair">Taller</string>
-    <string name="type.shop.car_repair.tyres">Reparación de neumáticos</string>
-    <string name="type.shop.caravan">Concesionario de caravanas</string>
-    <string name="type.shop.carpet">Alfombras</string>
-    <string name="type.shop.chemist">Droguería</string>
-    <string name="type.shop.chocolate">Chocolatería</string>
-    <string name="type.shop.clothes">Tienda de ropa</string>
-    <string name="type.shop.coffee">Tienda de café</string>
-    <string name="type.shop.computer">Tienda de informática</string>
-    <string name="type.shop.confectionery">Confitería</string>
-    <string name="type.shop.convenience">Tienda de barrio</string>
-    <string name="type.shop.copyshop">Centro de copiado</string>
-    <string name="type.shop.cosmetics">Tienda de cosméticos</string>
-    <string name="type.shop.curtain">Cortinas</string>
-    <string name="type.shop.deli">Tienda de delicatessen</string>
-    <string name="type.shop.department_store">Grandes almacenes</string>
-    <string name="type.shop.doityourself">Tienda de bricolaje</string>
-    <string name="type.shop.dry_cleaning">Tintorería</string>
-    <string name="type.shop.electronics">Electrónica</string>
-    <string name="type.shop.erotic">Sex Shop</string>
-    <string name="type.shop.fabric">Tienda de telas</string>
-    <string name="type.shop.farm">Tienda de alimentos de granja</string>
-    <string name="type.shop.fashion_accessories">Accesorios de moda</string>
-    <string name="type.shop.florist">Floristería</string>
-    <string name="type.shop.funeral_directors">Funeraria</string>
-    <string name="type.shop.furniture">Tienda de muebles</string>
-    <string name="type.shop.garden_centre">Vivero</string>
-    <string name="type.shop.gas">Tienda de gasolina</string>
-    <string name="type.shop.gift">Tienda de regalos</string>
-    <string name="type.shop.greengrocer">Frutería</string>
-    <string name="type.shop.grocery">Tienda de comestibles</string>
-    <string name="type.shop.hairdresser">Peluquería</string>
-    <string name="type.shop.hardware">Ferretería</string>
-    <string name="type.shop.health_food">Tienda de comida saludable</string>
-    <string name="type.shop.herbalist">Herbolario</string>
-    <string name="type.shop.hifi">Audio de alta fidelidad</string>
-    <string name="type.shop.houseware">Tienda de artículos para el hogar</string>
-    <string name="type.shop.jewelry">Joyería</string>
-    <string name="type.shop.kiosk">Quiosco</string>
-    <string name="type.shop.kitchen">Tienda de cocina</string>
-    <string name="type.shop.laundry">Lavandería</string>
-    <string name="type.shop.mall">Centro comercial</string>
-    <string name="type.shop.massage">Salón de masajes</string>
-    <string name="type.shop.mobile_phone">Móviles</string>
-    <string name="type.shop.money_lender">Prestamista</string>
-    <string name="type.shop.motorcycle">Tienda de motos</string>
-    <string name="type.shop.motorcycle_repair">Reparación de motos</string>
-    <string name="type.shop.music">Tienda de discos</string>
-    <string name="type.shop.musical_instrument">Instrumentos musicales</string>
-    <string name="type.shop.newsagent">Puesto de venta de periódicos</string>
-    <string name="type.shop.optician">Óptica</string>
-    <string name="type.shop.outdoor">Equipamiento de ocio al aire libre</string>
-    <string name="type.shop.outpost">Punto de recogida</string>
-    <string name="type.shop.pasta">Tienda de pasta</string>
-    <string name="type.shop.pastry">Pastelería</string>
-    <string name="type.shop.pawnbroker">Casa de empeños</string>
-    <string name="type.shop.pet">Tienda de mascotas</string>
-    <string name="type.shop.pet_grooming">Aseo de mascotas</string>
-    <string name="type.shop.photo">Artículos de fotografía</string>
-    <string name="type.shop.rental">Tienda de alquiler</string>
-    <string name="type.shop.rental.bicycle">Tienda de alquiler de bicicletas</string>
-    <string name="type.shop.seafood">Pescadería</string>
-    <string name="type.shop.second_hand">Tienda de segunda mano</string>
-    <string name="type.shop.shoes">Zapatería</string>
-    <string name="type.shop.sports">Artículos de deporte</string>
-    <string name="type.shop.stationery">Papelería</string>
-    <string name="type.shop.supermarket">Supermercado</string>
-    <string name="type.shop.tattoo">Tatuajes</string>
-    <string name="type.shop.tea">Tienda de té</string>
-    <string name="type.shop.ticket">Venta de entradas</string>
-    <string name="type.shop.toys">Tienda de juguetes</string>
-    <string name="type.shop.travel_agency">Agencia de viajes</string>
-    <string name="type.shop.tyres">Tienda de neumáticos</string>
-    <string name="type.shop.variety_store">Tienda de variedades</string>
-    <string name="type.shop.video">Tienda de vídeo</string>
-    <string name="type.shop.video_games">Tienda de videojuegos</string>
-    <string name="type.shop.wine">Tienda de vinos</string>
-    <string name="type.shop.agrarian">Tienda agrícola</string>
-    <string name="type.shop.antiques">Antigüedades</string>
-    <string name="type.shop.appliance">Tienda de electrodomésticos</string>
-    <!-- maybe change to Art Gallery for en-US when supported -->
-    <string name="type.shop.art">Tienda de arte</string>
-    <string name="type.shop.baby_goods">Tienda de niños</string>
-    <string name="type.shop.bag">Tienda de bolsos</string>
-    <string name="type.shop.bed">Tienda de camas</string>
-    <string name="type.shop.boutique">Boutique</string>
-    <string name="type.shop.charity">Tienda de caridad</string>
-    <string name="type.shop.cheese">Tienda de quesos</string>
-    <string name="type.shop.craft">Artes y manualidades</string>
-    <string name="type.shop.dairy">Productos lácteos</string>
-    <string name="type.shop.electrical">Tienda de electricidad</string>
-    <string name="type.shop.fishing">Tienda de pesca</string>
-    <string name="type.shop.interior_decoration">Decoración de interiores</string>
-    <string name="type.shop.lottery">Boletos de lotería</string>
-    <string name="type.shop.medical_supply">Suministros médicos</string>
-    <string name="type.shop.nutrition_supplements">Suplementos nutricionales</string>
-    <string name="type.shop.paint">Pinturas</string>
-    <string name="type.shop.perfumery">Perfumería</string>
-    <string name="type.shop.sewing">Materiales de costura</string>
-    <string name="type.shop.storage_rental">Alquiler de almacenamiento</string>
-    <string name="type.shop.tobacco">Tabaco</string>
-    <string name="type.shop.trade">Suministros comerciales</string>
-    <string name="type.shop.watches">Relojes</string>
-    <string name="type.shop.wholesale">Almacén al por mayor</string>
-    <string name="type.sport">Deporte</string>
-    <string name="type.sport.american_football">Fútbol americano</string>
-    <string name="type.sport.archery">Tiro al arco</string>
-    <string name="type.sport.athletics">Atletismo</string>
-    <string name="type.sport.australian_football">Fútbol australiano</string>
-    <string name="type.sport.baseball">Béisbol</string>
-    <string name="type.sport.basketball">Baloncesto</string>
-    <string name="type.sport.beachvolleyball">Voleibol de playa</string>
-    <string name="type.sport.bowls">Bolos sobre hierba</string>
-    <string name="type.sport.chess">Ajedrez</string>
-    <string name="type.sport.cricket">Críquet</string>
-    <string name="type.sport.curling">Curling</string>
-    <string name="type.sport.equestrian">Equitación</string>
-    <string name="type.sport.golf">Golf</string>
-    <string name="type.sport.gymnastics">Gimnasia</string>
-    <string name="type.sport.handball">Balonmano</string>
-    <string name="type.sport.multi">Varios deportes</string>
-    <!-- Used to tag a scuba diving site. -->
-    <string name="type.sport.scuba_diving">Submarinismo</string>
-    <string name="type.sport.shooting">Tiro deportivo</string>
-    <string name="type.sport.skateboard">Monopatinaje</string>
-    <string name="type.sport.skiing">Esquí</string>
-    <string name="type.sport.soccer">Fútbol</string>
-    <string name="type.sport.swimming">Natación</string>
-    <string name="type.sport.table_tennis">Tenis de mesa</string>
-    <string name="type.sport.tennis">Cancha de tenis</string>
-    <string name="type.sport.volleyball">Voleibol</string>
-    <string name="type.sport.10pin">Bowling</string>
-    <string name="type.sport.9pin">Bowling</string>
-    <string name="type.sport.padel">Pádel</string>
-    <string name="type.sport.futsal">Fútbol sala</string>
-    <string name="type.sport.ice_hockey">Hockey sobre hielo</string>
-    <string name="type.sport.field_hockey">Hockey sobre césped</string>
-    <string name="type.sport.badminton">Bádminton</string>
-    <string name="type.sport.pelota">Pelota vasca</string>
-    <string name="type.tourism">Turismo</string>
-    <string name="type.tourism.aquarium">Acuario</string>
-    <!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
-    <string name="type.tourism.alpine_hut">Albergue de montaña</string>
-    <string name="type.tourism.apartment">Apartamento de vacaciones</string>
-    <string name="type.tourism.artwork">Obra de arte</string>
-    <string name="type.tourism.artwork.architecture">Arte arquitectónico</string>
-    <string name="type.tourism.artwork.painting">Pintura</string>
-    <string name="type.tourism.artwork.sculpture">Escultura</string>
-    <string name="type.tourism.artwork.statue">Estatua</string>
-    <string name="type.tourism.attraction">Atracción turística</string>
-    <string name="type.attraction.amusement_ride">Atracción</string>
-    <string name="type.attraction.animal">Recinto de animales</string>
-    <string name="type.attraction.bumper_car">Coches de choque</string>
-    <string name="type.attraction.big_wheel">Noria</string>
-    <string name="type.attraction.carousel">Carrusel</string>
-    <string name="type.attraction.historic">Atracción de historia</string>
-    <string name="type.attraction.maze">Laberinto</string>
-    <string name="type.attraction.roller_coaster">Montaña rusa</string>
-    <string name="type.attraction.water_slide">Tobogán acuático</string>
-    <string name="type.tourism.attraction.specified">Atracción turística</string>
-    <string name="type.tourism.camp_site">Paraje de campamento</string>
-    <string name="type.tourism.caravan_site">Zona de caravanas</string>
-    <!-- A rentable countryside vacation house. -->
-    <string name="type.tourism.chalet">Casa de vacaciones</string>
-    <string name="type.tourism.gallery">Galería</string>
-    <string name="type.tourism.guest_house">Casa de huéspedes</string>
-    <string name="type.tourism.hostel">Albergue juvenil</string>
-    <string name="type.tourism.hotel">Hotel</string>
-    <string name="type.tourism.information">Información turística</string>
-    <string name="type.tourism.information.board">Tablón de información</string>
-    <string name="type.tourism.information.guidepost">Poste indicador</string>
-    <string name="type.tourism.information.map">Mapa turístico</string>
-    <string name="type.tourism.information.office">Oficina de turismo</string>
-    <string name="type.tourism.information.visitor_centre">Centro de visitantes</string>
-    <string name="type.tourism.motel">Motel</string>
-    <string name="type.tourism.museum">Museo</string>
-    <string name="type.tourism.picnic_site">Zona de picnic</string>
-    <string name="type.leisure.resort">Resort</string>
-    <string name="type.tourism.theme_park">Parque temático</string>
-    <string name="type.tourism.viewpoint">Mirador</string>
-    <!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
-    <string name="type.tourism.wilderness_hut">Cabaña</string>
-    <string name="type.tourism.zoo">Zoológico</string>
-    <string name="type.tourism.zoo.petting">Zoológico interactivo</string>
-    <string name="type.traffic_calming">Pacificación del tráfico</string>
-    <string name="type.traffic_calming.bump">Banda reductora</string>
-    <string name="type.traffic_calming.hump">Resalte</string>
-    <string name="type.waterway">Curso de agua</string>
-    <string name="type.waterway.canal">Canal</string>
-    <string name="type.waterway.canal.tunnel">Túnel de canal</string>
-    <string name="type.waterway.fish_pass">Escalera de peces</string>
-    <string name="type.waterway.dam">Presa</string>
-    <string name="type.barrier.ditch">Zanja</string>
-    <string name="type.natural.water.ditch">Zanja de drenaje</string>
-    <string name="type.waterway.ditch.tunnel">Obra de drenaje</string>
-    <string name="type.waterway.dock">Muelle</string>
-    <string name="type.waterway.drain">Desagüe</string>
-    <string name="type.natural.water.drain">Desagüe</string>
-    <string name="type.waterway.drain.tunnel">Obra de drenaje</string>
-    <string name="type.waterway.lock_gate">Compuerta</string>
-    <string name="type.waterway.river">Río</string>
-    <string name="type.waterway.river.tunnel">Río</string>
-    <string name="type.waterway.stream">Arroyo</string>
-    <string name="type.waterway.stream.ephemeral">Arroyo efímero</string>
-    <string name="type.waterway.stream.intermittent">Arroyo intermitente</string>
-    <string name="type.waterway.stream.tunnel">Arroyo</string>
-    <string name="type.waterway.waterfall">Cascada</string>
-    <string name="type.waterway.weir">Aliviadero</string>
-    <string name="type.wheelchair">Silla de ruedas</string>
-    <string name="type.wheelchair.limited">Parcialmente accesible en silla de ruedas</string>
-    <string name="type.wheelchair.no">No accesible en silla de ruedas</string>
-    <string name="type.wheelchair.yes">Accesible en silla de ruedas</string>
-    <string name="type.aerialway.j.bar">Telesilla barra en J</string>
-    <string name="type.aerialway.magic_carpet">Alfombra mágica</string>
-    <string name="type.aerialway.platter">Telesilla de disco</string>
-    <string name="type.aerialway.rope_tow">Telesilla de cuerda</string>
-    <string name="type.aerialway.t.bar">Telesilla barra en T</string>
-    <string name="type.piste_type.downhill">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.advanced">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.advanced.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.easy">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.easy.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.expert">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.expert.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.freeride">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.intermediate">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.intermediate.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.novice">Pista de esquí alpino</string>
-    <string name="type.piste_type.downhill.novice.area">Pista de esquí alpino</string>
-    <string name="type.piste_type.nordic">Pista de esquí nórdico</string>
-    <string name="type.piste_type.sled">Pista para trineos</string>
-    <string name="type.piste_type.sled.area">Pista para trineos</string>
-    <string name="type.piste_type.snow_park">Parque de nieve</string>
-    <string name="type.piste_type.hike">Ruta de senderismo en la nieve</string>
-    <string name="type.piste_type.connection">Conexión de pistas</string>
-    <string name="type.piste_type.skitour">Sendero Skitour</string>
-    <string name="type.amenity.events_venue">Lugar para eventos</string>
-    <string name="type.shop.auction">Subasta</string>
-    <string name="type.shop.collector">Coleccionables</string>
-    <string name="type.self_service.yes">Autoservicio disponible</string>
-    <string name="type.self_service.only">Sólo autoservicio</string>
-    <string name="type.self_service.partially">Autoservicio parcial</string>
-    <string name="type.self_service.no">Sin autoservicio</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
-    <string name="type.amenity.social_facility">Servicio social</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
-    <string name="type.emergency.emergency_ward_entrance">Entrada a urgencias</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->
-    <string name="type.amenity.dojo">Dojo</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall -->
-    <string name="type.leisure.sports_hall">Pabellón deportivo</string>
+    <string name="instagram">Instagram</string>
+    <string name="matrix">[Matrix]</string>
+    <string name="openstreetmap">OpenStreetMap</string>
+    <string name="mastodon">Mastodon</string>
+    <string name="telegram">Telegram</string>
+    <string name="github">GitHub</string>
+    <string name="twitter">X (Twitter)</string>
+    <string name="facebook">Facebook</string>
+    <string name="mb">MB</string>
+    <string name="gb">GB</string>
+    <string name="vk">VK</string>
+    <string name="wikimedia_commons">Wikimedia Commons</string>
+    <string name="telegram_url">https://t.me/OrganicMapsApp</string>
+    <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
+    <string name="comma_separated_pair">%1$s, %2$s</string>
+    <string name="level_value_generic">Nivel: %s</string>
+    <string name="editor_line_social_network">LINE</string>
 </resources>

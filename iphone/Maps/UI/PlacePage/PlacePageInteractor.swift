@@ -65,8 +65,8 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
     !OpenInApplication.availableApps.isEmpty
   }
 
-  func didPressCall() {
-    MWMPlacePageManagerHelper.call(placePageData)
+  func didPressCall(to phone: PlacePagePhone) {
+    MWMPlacePageManagerHelper.call(phone)
   }
 
   func didPressWebsite() {
@@ -75,22 +75,6 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
 
   func didPressWebsiteMenu() {
     MWMPlacePageManagerHelper.openWebsiteMenu(placePageData)
-  }
-
-  func didPressKayak() {
-    let kUDDidShowKayakInformationDialog = "kUDDidShowKayakInformationDialog"
-    
-    if UserDefaults.standard.bool(forKey: kUDDidShowKayakInformationDialog) {
-      MWMPlacePageManagerHelper.openKayak(placePageData)
-    } else { 
-      let alert = UIAlertController(title: nil, message: L("dialog_kayak_disclaimer"), preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: L("cancel"), style: .cancel))
-      alert.addAction(UIAlertAction(title: L("dialog_kayak_button"), style: .default, handler: { _ in
-        UserDefaults.standard.set(true, forKey: kUDDidShowKayakInformationDialog)
-        MWMPlacePageManagerHelper.openKayak(self.placePageData)
-      }))
-      presenter?.showAlert(alert)
-    }
   }
 
   func didPressWikipedia() {
@@ -129,7 +113,7 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
     UIPasteboard.general.string = content
     let message = String(format: L("copied_to_clipboard"), content)
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-    Toast.toast(withText: message).show(withAlignment: .bottom)
+    Toast.show(withText: message, alignment: .bottom)
   }
 
   func didPressOpenInApp(from sourceView: UIView) {
@@ -204,7 +188,15 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
         MWMPlacePageManagerHelper.addBookmark(placePageData)
       }
     case .call:
-      MWMPlacePageManagerHelper.call(placePageData)
+      // since `.call` is a case in an obj-c enum, it can't have associated data, so there is no easy way to
+      // pass the exact phone, and we have to ask the user here which one to use, if there are multiple ones
+      let phones = placePageData.infoData?.phones ?? []
+      let hasOnePhoneNumber = phones.count == 1
+      if hasOnePhoneNumber {
+        MWMPlacePageManagerHelper.call(phones[0])
+      } else if (phones.count > 1) {
+        showPhoneNumberPicker(phones, handler: MWMPlacePageManagerHelper.call)
+      }
     case .download:
       guard let mapNodeAttributes = placePageData.mapNodeAttributes else {
         fatalError("Download button can't be displayed if mapNodeAttributes is empty")
@@ -267,6 +259,20 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
     }
     viewController.present(alert, animated: true)
   }
+
+  private func showPhoneNumberPicker(_ phones: [PlacePagePhone], handler: @escaping (PlacePagePhone) -> Void) {
+    guard let viewController else { return }
+
+    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    phones.forEach({phone in
+      alert.addAction(UIAlertAction(title: phone.phone, style: .default, handler: { _ in
+        handler(phone)
+      }))
+    })
+    alert.addAction(UIAlertAction(title: L("cancel"), style: .cancel))
+
+    viewController.present(alert, animated: true)
+  }
 }
 
 #if OMaps
@@ -297,8 +303,42 @@ extension PlacePageInteractor: PlacePageHeaderViewControllerDelegate {
 
   func previewDidPressShare(from sourceView: UIView) {
     guard let mapViewController else { return }
-    let shareViewController = ActivityViewController.share(forPlacePage: placePageData)
-    shareViewController.present(inParentViewController: mapViewController, anchorView: sourceView)
+    switch placePageData.objectType {
+    case .POI, .bookmark:
+      let shareViewController = ActivityViewController.share(forPlacePage: placePageData)
+      shareViewController.present(inParentViewController: mapViewController, anchorView: sourceView)
+    case .track:
+      presenter?.showShareTrackMenu()
+    default:
+      fatalError()
+    }
+  }
+
+  func previewDidPressExportTrack(_ type: KmlFileType, from sourceView: UIView) {
+    guard let trackId = placePageData.trackData?.trackId else {
+      fatalError("Track data should not be nil during the track export")
+    }
+    bookmarksManager.shareTrack(trackId, fileType: type) { [weak self] status, url in
+      guard let self, let mapViewController else { return }
+      switch status {
+      case .success:
+        guard let url else { fatalError("Invalid sharing url") }
+        let shareViewController = ActivityViewController.share(for: url, message: self.placePageData.previewData.title!) { _,_,_,_ in
+          self.bookmarksManager.finishSharing()
+        }
+        shareViewController.present(inParentViewController: mapViewController, anchorView: sourceView)
+      case .emptyCategory:
+        self.showAlert(withTitle: L("bookmarks_error_title_share_empty"),
+                        message: L("bookmarks_error_message_share_empty"))
+      case .archiveError, .fileError:
+        self.showAlert(withTitle: L("dialog_routing_system_error"),
+                        message: L("bookmarks_error_message_share_general"))
+      }
+    }
+  }
+
+  private func showAlert(withTitle title: String, message: String) {
+    MWMAlertViewController.activeAlert().presentInfoAlert(title, text: message)
   }
 }
 
