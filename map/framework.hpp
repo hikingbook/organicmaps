@@ -15,9 +15,9 @@
 #include "map/search_api.hpp"
 #include "map/search_mark.hpp"
 #include "map/track.hpp"
+#include "map/track_statistics.hpp"
 #include "map/traffic_manager.hpp"
 #include "map/transit/transit_reader.hpp"
-#include "map/gps_track_collection.hpp"
 
 #include "drape_frontend/gui/skin.hpp"
 #include "drape_frontend/drape_api.hpp"
@@ -437,13 +437,16 @@ public:
   void ConnectToGpsTracker();
   void DisconnectFromGpsTracker();
 
-  using TrackRecordingUpdateHandler = platform::SafeCallback<void(GpsTrackInfo const & trackInfo)>;
+  using TrackRecordingUpdateHandler = platform::SafeCallback<void(TrackStatistics const & trackStatistics)>;
   void StartTrackRecording();
   void SetTrackRecordingUpdateHandler(TrackRecordingUpdateHandler && trackRecordingDidUpdate);
   void StopTrackRecording();
   void SaveTrackRecordingWithName(std::string const & name);
   bool IsTrackRecordingEmpty() const;
   bool IsTrackRecordingEnabled() const;
+  /// Returns the elevation profile data of the currently recorded track.
+  /// To get the data on the every track recording state update, this function should be called after receiving the callback from the `SetTrackRecordingUpdateHandler`.
+  static const ElevationInfo & GetTrackRecordingElevationInfo();
 
   void SetMapStyle(MapStyle mapStyle);
   void MarkMapStyle(MapStyle mapStyle);
@@ -468,7 +471,7 @@ private:
 
   void OnUpdateGpsTrackPointsCallback(std::vector<std::pair<size_t, location::GpsInfo>> && toAdd,
                                       std::pair<size_t, size_t> const & toRemove,
-                                      GpsTrackInfo const & trackInfo);
+                                      TrackStatistics const & trackStatistics);
 
   TrackRecordingUpdateHandler m_trackRecordingUpdateHandler;
 
@@ -607,6 +610,8 @@ private:
 
   /// This function can be used for enabling some experimental features for routing.
   bool ParseRoutingDebugCommand(search::SearchParams const & params);
+    
+  bool ParseAllTypesDebugCommand(search::SearchParams const & params);
 
   void FillFeatureInfo(FeatureID const & fid, place_page::Info & info) const;
   /// @param customTitle, if not empty, overrides any other calculated name.

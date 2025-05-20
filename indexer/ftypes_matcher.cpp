@@ -261,6 +261,7 @@ IsSuburbChecker::IsSuburbChecker()
   Classificator const & c = classif();
   base::StringIL const types[] = {{"landuse", "residential"},
                                   {"place", "neighbourhood"},
+                                  {"place", "quarter"},
                                   {"place", "suburb"}};
   for (auto const & e : types)
     m_types.push_back(c.GetTypeByPath(e));
@@ -268,7 +269,8 @@ IsSuburbChecker::IsSuburbChecker()
   // `types` order should match next indices.
   static_assert(static_cast<size_t>(SuburbType::Residential) == 0, "");
   static_assert(static_cast<size_t>(SuburbType::Neighbourhood) == 1, "");
-  static_assert(static_cast<size_t>(SuburbType::Suburb) == 2, "");
+  static_assert(static_cast<size_t>(SuburbType::Quarter) == 2, "");
+  static_assert(static_cast<size_t>(SuburbType::Suburb) == 3, "");
 }
 
 SuburbType IsSuburbChecker::GetType(uint32_t t) const
@@ -441,8 +443,8 @@ OneLevelPOIChecker::OneLevelPOIChecker() : ftypes::BaseChecker(1 /* level */)
 {
   Classificator const & c = classif();
 
-  for (auto const * path : {"amenity",  "craft", "healthcare", "historic", "leisure", "office", "railway",
-                            "shop", "sport", "tourism", "mountain_pass"})
+  for (auto const * path : {"amenity", "craft", "emergency", "healthcare", "historic", "leisure",
+                            "mountain_pass", "office", "railway", "shop", "sport", "tourism"})
     m_types.push_back(c.GetTypeByPath({path}));
 }
 
@@ -464,6 +466,8 @@ TwoLevelPOIChecker::TwoLevelPOIChecker() : ftypes::BaseChecker(2 /* level */)
       {"highway", "rest_area"},
       {"highway", "services"},
       {"highway", "speed_camera"},
+      {"man_made", "communications_tower"},
+      {"man_made", "cross"},
       {"man_made", "lighthouse"},
       {"man_made", "water_tap"},
       {"man_made", "water_well"},

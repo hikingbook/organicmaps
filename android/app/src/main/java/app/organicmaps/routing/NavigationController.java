@@ -12,15 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import app.organicmaps.Framework;
 import app.organicmaps.R;
 import app.organicmaps.location.LocationHelper;
+import app.organicmaps.maplayer.MapButtonsViewModel;
 import app.organicmaps.maplayer.traffic.TrafficManager;
+import app.organicmaps.sdk.Router;
+import app.organicmaps.sdk.routing.CarDirection;
+import app.organicmaps.sdk.routing.RoutingInfo;
+import app.organicmaps.util.StringUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
+import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.widget.LanesView;
 import app.organicmaps.widget.SpeedLimitView;
-import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.widget.menu.NavMenu;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -44,6 +50,8 @@ public class NavigationController implements TrafficManager.TrafficCallback,
   @NonNull
   private final SpeedLimitView mSpeedLimit;
 
+  private final MapButtonsViewModel mMapButtonsViewModel;
+
   private final NavMenu mNavMenu;
   View.OnClickListener mOnSettingsClickListener;
 
@@ -59,6 +67,8 @@ public class NavigationController implements TrafficManager.TrafficCallback,
   public NavigationController(AppCompatActivity activity, View.OnClickListener onSettingsClickListener,
                               NavMenu.OnMenuSizeChangedListener onMenuSizeChangedListener)
   {
+    mMapButtonsViewModel = new ViewModelProvider(activity).get(MapButtonsViewModel.class);
+
     mFrame = activity.findViewById(R.id.navigation_frame);
     mNavMenu = new NavMenu(activity, this, onMenuSizeChangedListener);
     mOnSettingsClickListener = onSettingsClickListener;
@@ -105,7 +115,7 @@ public class NavigationController implements TrafficManager.TrafficCallback,
     mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
     info.carDirection.setTurnDrawable(mNextTurnImage);
 
-    if (RoutingInfo.CarDirection.isRoundAbout(info.carDirection))
+    if (CarDirection.isRoundAbout(info.carDirection))
       UiUtils.setTextAndShow(mCircleExit, String.valueOf(info.exitNum));
     else
       UiUtils.hide(mCircleExit);
@@ -139,7 +149,7 @@ public class NavigationController implements TrafficManager.TrafficCallback,
     if (info == null)
       return;
 
-    if (Framework.nativeGetRouter() == Framework.ROUTER_TYPE_PEDESTRIAN)
+    if (Router.get() == Router.Pedestrian)
       updatePedestrian(info);
     else
       updateVehicle(info);
@@ -156,6 +166,10 @@ public class NavigationController implements TrafficManager.TrafficCallback,
     UiUtils.visibleIf(hasStreet, mStreetFrame);
     if (!TextUtils.isEmpty(info.nextStreet))
       mNextStreet.setText(info.nextStreet);
+    int margin = UiUtils.dimen(mFrame.getContext(), R.dimen.nav_frame_padding);
+    if (hasStreet)
+      margin += mStreetFrame.getHeight();
+    mMapButtonsViewModel.setTopButtonsMarginTop(margin);
   }
 
   public void show(boolean show)
@@ -249,10 +263,10 @@ public class NavigationController implements TrafficManager.TrafficCallback,
   {
     final Location location = LocationHelper.from(mFrame.getContext()).getSavedLocation();
     if (location == null) {
-      mSpeedLimit.setSpeedLimitMps(0);
+      mSpeedLimit.setSpeedLimit(0, false);
       return;
     }
-    mSpeedLimit.setCurrentSpeed(location.getSpeed());
-    mSpeedLimit.setSpeedLimitMps(info.speedLimitMps);
+    final boolean speedLimitExceeded = info.speedLimitMps < location.getSpeed();
+    mSpeedLimit.setSpeedLimit(StringUtils.nativeFormatSpeed(info.speedLimitMps), speedLimitExceeded);
   }
 }

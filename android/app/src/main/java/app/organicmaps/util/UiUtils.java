@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.AnyRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -32,7 +35,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -207,6 +209,15 @@ public final class UiUtils
     return context.getResources().getDimensionPixelSize(id);
   }
 
+  // this method returns the total height of the display (in pixels) including notch and other touchable areas
+  public static int getDisplayTotalHeight(Context context)
+  {
+    DisplayMetrics metrics = new DisplayMetrics();
+    WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    windowManager.getDefaultDisplay().getRealMetrics(metrics);
+    return metrics.heightPixels;
+  }
+
   public static void updateRedButton(Button button)
   {
     button.setTextColor(ThemeUtils.getColor(button.getContext(), button.isEnabled() ? R.attr.redButtonTextColor
@@ -362,10 +373,9 @@ public final class UiUtils
     }
   }
 
-  @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3630
-  public static void startActivityForResult(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode)
+  public static void startActivityForResult(ActivityResultLauncher<Intent> startForResult, @NonNull Intent intent)
   {
-    fragment.startActivityForResult(intent, requestCode);
+    startForResult.launch(intent);
   }
 
   // utility class
