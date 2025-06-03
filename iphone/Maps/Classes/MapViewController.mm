@@ -504,9 +504,7 @@ NSString *const kSettingsSegue = @"Map2Settings";
 
   self.userTouchesAction = UserTouchesActionNone;
   [[MWMBookmarksManager sharedManager] addObserver:self];
-    if (![MWMBookmarksManager sharedManager].areBookmarksLoaded) {
-        [[MWMBookmarksManager sharedManager] loadBookmarks];
-    }
+  [[MWMBookmarksManager sharedManager] loadBookmarks];
   [MWMFrameworkListener addObserver:self];
 }
 
