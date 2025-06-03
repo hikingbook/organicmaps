@@ -62,11 +62,11 @@ void loopWrappers(Observers * observers, TLoopBlock block)
 
 + (void)removeObserver:(Observer)observer
 {
-//  dispatch_async(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     MWMFrameworkListener * listener = [MWMFrameworkListener listener];
     [listener.routeBuildingObservers removeObject:observer];
     [listener.drapeObservers removeObject:observer];
-//  });
+  });
 }
 
 - (instancetype)initListener
