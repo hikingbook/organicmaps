@@ -37,6 +37,7 @@
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
   <!--
     Android 13 (API level 33) and higher supports a runtime permission for sending non-exempt (including Foreground
@@ -86,6 +87,7 @@
     <activity
       android:name="app.organicmaps.SplashActivity"
       android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
+      android:screenOrientation="fullUser"
       android:exported="true">
 
       <intent-filter>
@@ -120,7 +122,7 @@
         <data android:scheme="https"/>
         <data android:host="omaps.app"/>
       </intent-filter>
-        
+
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
@@ -344,7 +346,8 @@
 
     <activity
         android:name="app.organicmaps.DownloadResourcesLegacyActivity"
-        android:configChanges="orientation|screenLayout|screenSize"/>
+        android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"/>
 
     <activity-alias
       android:name="app.organicmaps.DownloadResourcesActivity"
@@ -361,6 +364,7 @@
         android:name="app.organicmaps.MwmActivity"
         android:launchMode="singleTask"
         android:configChanges="uiMode"
+        android:screenOrientation="fullUser"
         android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
 
     <activity-alias
@@ -371,6 +375,7 @@
     <activity
         android:name="app.organicmaps.downloader.DownloaderActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/download_maps"
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
@@ -378,6 +383,7 @@
     <activity
         android:name="app.organicmaps.search.SearchActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/search_map"
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="stateVisible|adjustResize" />
@@ -385,6 +391,7 @@
     <activity
         android:name="app.organicmaps.settings.SettingsActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/settings"
         android:parentActivityName="app.organicmaps.MwmActivity" />
 
@@ -402,6 +409,7 @@
     <activity
         android:name="app.organicmaps.bookmarks.BookmarkCategoriesActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/bookmarks_and_tracks"
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
@@ -409,6 +417,7 @@
     <activity
         android:name="app.organicmaps.bookmarks.BookmarkListActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/bookmarks"
         android:parentActivityName="app.organicmaps.bookmarks.BookmarkCategoriesActivity"
         android:windowSoftInputMode="adjustResize" />
@@ -416,6 +425,7 @@
     <activity
         android:name="app.organicmaps.editor.EditorActivity"
         android:configChanges="orientation|screenLayout|screenSize"
+        android:screenOrientation="fullUser"
         android:label="@string/edit_place"
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
@@ -480,6 +490,13 @@
       android:stopWithTask="false"
       />
 
+    <service
+        android:name=".downloader.DownloaderService"
+        android:foregroundServiceType="dataSync"
+        android:exported="false"
+        android:enabled="true"
+        android:stopWithTask="false"/>
+
     <provider
       android:name="androidx.core.content.FileProvider"
       android:authorities="${FILE_PROVIDER_PLACEHOLDER}"
@@ -495,8 +512,8 @@
     <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
     <!-- Disable Google's anonymous stats collection -->
     <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
-    
-    <!-- Version >= 3.0. Dex Dual Mode support for compatible Samsung devices. 
+
+    <!-- Version >= 3.0. Dex Dual Mode support for compatible Samsung devices.
          See the documentation: https://developer.samsung.com/samsung-dex/modify-optimizing.html //-->
     <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true" />
 

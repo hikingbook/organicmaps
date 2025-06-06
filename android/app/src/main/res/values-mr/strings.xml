@@ -25,7 +25,11 @@
     <!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
     <string name="search_map">नकाश्यात शोधा</string>
     <!-- Location services are disabled by user alert - message -->
-    <string name="location_is_disabled_long_text">आपल्या उपकरणात किंवा ऍप मध्ये स्थानसेवा सध्या बंद आहेत. कृपया सेटिंग मधून त्यांना चालू  करा.</string>
+    <string name="location_is_disabled_long_text">आपल्या उपकरणात किंवा ऍप मध्ये स्थानसेवा सध्या बंद आहेत. कृपया सेटिंग मधून त्यांना चालू करा.</string>
+    <!-- A dialog title, that warns a user that Precise Location is disabled and suggests to turn it on -->
+    <string name="limited_accuracy">मर्यादित अचूकता</string>
+    <!-- A dialog text, that warns a user that Precise Location is disabled and suggests to turn it on -->
+    <string name="precise_location_is_disabled_long_text">अचूक नेव्हिगेशन सुनिश्चित करण्यासाठी सेटिंग्जमध्ये अचूक स्थान सक्षम करा.</string>
     <!-- View and button titles for accessibility -->
     <string name="zoom_to_country">नकाशावर दाखवा</string>
     <!-- Message to display at the center of the screen when the country download has failed -->
@@ -90,7 +94,6 @@
     <string name="measurement_units">मापन एकके</string>
     <!-- Detailed description of Measurement Units settings button -->
     <string name="measurement_units_summary">मैल की किलोमीटर ह्यामध्ये निवडा</string>
-
     <!-- SECTION: Search categories -->
     <!-- Search category for cafes, bars, restaurants; any changes should be duplicated in categories.txt @category_eat! -->
     <string name="category_eat">जेवायचे ठिकाण</string>
@@ -99,7 +102,7 @@
     <!-- Search category for public transport; any changes should be duplicated in categories.txt @category_transport! -->
     <string name="category_transport">वाहतूक</string>
     <!-- Search category for fuel stations; any changes should be duplicated in categories.txt @category_fuel! -->
-    <string name="category_fuel">पेट्रोल</string>
+    <string name="category_fuel">इंधन</string>
     <!-- Search category for parking lots; any changes should be duplicated in categories.txt @category_parking! -->
     <string name="category_parking">वाहनतळ</string>
     <!-- Search category for malls/clothes/shoes/gifts/jewellery/sport shops; any changes should be duplicated in categories.txt @category_shopping! -->
@@ -115,7 +118,7 @@
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">ATM</string>
     <!-- Search category for nightclubs/bars; any changes should be duplicated in categories.txt @category_nightlife! -->
-    <string name="category_nightlife">नाईटलाईफ</string>
+    <string name="category_nightlife">रात्रीजीवन</string>
     <!-- Search category for water park/disneyland/playground/toys store; any changes should be duplicated in categories.txt @category_children! -->
     <string name="category_children">कौटुंबिक सुट्टी</string>
     <!-- Search category for banks; any changes should be duplicated in categories.txt @category_bank! -->
@@ -131,12 +134,11 @@
     <!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
     <string name="category_police">पोलीस</string>
     <!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
-    <string name="category_wifi">WiFi</string>
+    <string name="category_wifi">वायफाय इंटरनेट</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">भंगारवाला</string>
     <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
     <string name="category_water">पाणी</string>
-
     <!-- SECTION: Other translations -->
     <!-- Notes field in Bookmarks view -->
     <string name="description">चिठ्ठया</string>
@@ -272,7 +274,7 @@
     <string name="downloader_download_all_button">सर्व डाउनलोड</string>
     <string name="downloader_downloading">डाउनलोड करत आहे:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
-    <string name="downloader_delete_map_while_routing_dialog">नकाशा मिटवण्यासाठी, मार्गनिर्देशन थांबवा</string>
+    <string name="downloader_delete_map_while_routing_dialog">नकाशा पुसून टाकण्यासाठी, मार्गनिर्देशन थांबवा.</string>
     <!-- PointsInDifferentMWM -->
     <string name="routing_failed_cross_mwm_building">केवळ एका प्रदेशाच्या नकाशामध्ये पूर्णपणे समाविष्ट असलेले मार्ग तयार केले जाऊ शकतात.</string>
     <!-- Context menu item for downloader. -->
@@ -287,20 +289,15 @@
     <string name="google_play_services">Google Play स्थान सेवा</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">ब्लूटूथ, वायफाय किंवा मोबाइल नेटवर्क वापरून तुमचे अंदाजे स्थान द्रुतपणे निर्धारित करा</string>
-    <!-- Preference title -->
-    <string name="pref_display_kayak_title">Kayak.com हटल लकस</string>
-    <!-- Preference description -->
-    <string name="pref_display_kayak_text">Kayak.com वर सच असललय हटलसठ फट, पनरवलकन, बकग लकस परदरशत कल जतत. य लकसदवर परतयक बकगसठ मळलल रफरल बनस Organic Maps चय वकससठ जत.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_download_maps_along">तुमच्या मार्गावरील सर्व नकाशे डाउनलोड करा</string>
     <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">मार्ग तयार करण्यासाठी आम्हाला तुमच्या स्थानापासून तुमच्या इष्टस्थानापर्यंताचे सर्व नकाशे डाउनलोड करून अद्ययावत करावे लागतील.</string>
+    <string name="routing_requires_all_map">मार्ग तयार करण्यासाठी आम्हाला तुमच्या स्थानापासून तुमच्या गंतव्यस्थानापर्यंताचे सर्व नकाशे डाउनलोड करून अद्ययावत करावे लागतील.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">पुरेशी जागा नाही</string>
     <!-- location service disabled -->
     <string name="enable_location_services">कृपया स्थान सेवा सक्रिय करा</string>
     <string name="save">साठवा</string>
-    <string name="edit_description_hint">तुमचे वर्णन (मजकूर किंवा html)</string>
     <string name="create">तयार करा</string>
     <!-- red color -->
     <string name="red">लाल</string>
@@ -334,11 +331,10 @@
     <string name="gray">राखाडी</string>
     <!-- blue gray color -->
     <string name="blue_gray">निळा राखाडी</string>
-
     <!-- SECTION: Routing dialogs strings -->
     <string name="dialog_routing_disclaimer_title">प्रवास करताना, कृपात लक्षात ठेवा:</string>
     <string name="dialog_routing_disclaimer_priority">— मार्गनिर्देशक संकेतांपेक्षा रस्त्याची परिस्थिती, वाहतुकीचे नियम व वाहतुकीचे चिन्ह ह्यांना जास्त प्राधान्य द्या;</string>
-    <string name="dialog_routing_disclaimer_precision">— नकाशा चुकीचा असू शकतो, आणि सुचवलेला मार्ग हा इष्टस्थानापर्यंत पोहोचण्यासाठी नेहमी सर्वोत्तम मार्ग असेलच असे नाही;</string>
+    <string name="dialog_routing_disclaimer_precision">— नकाशा चुकीचा असू शकतो, आणि सुचवलेला मार्ग हा गंतव्यस्थानापर्यंत पोहोचण्यासाठी नेहमी सर्वोत्तम मार्ग असेलच असे नाही;</string>
     <string name="dialog_routing_disclaimer_recommendations">— सुचवलेले मार्ग ह्यांना केवळ शिफारसी म्हणून समजावे;</string>
     <string name="dialog_routing_disclaimer_borders">— सीमेजवळच्या मार्गांबाबतीत सावधानी बाळगा: इथे प्रकाशित मार्ग कधीकधी अनधिकृतरित्या देशाची सीमा ओलांडू शकतात.</string>
     <string name="dialog_routing_disclaimer_beware">कृपया वाटेवर सतर्क आणि सुरक्षित रहा!</string>
@@ -349,13 +345,13 @@
     <string name="dialog_routing_location_unknown_turn_on">वर्तमान GPS सहनिर्देशक शोधण्यात अक्षम. मार्गाची गणना करण्यासाठी स्थान सेवा चालू करा.</string>
     <string name="dialog_routing_unable_locate_route">मार्ग शोधण्यात अक्षम</string>
     <string name="dialog_routing_cant_build_route">मार्ग तयार करण्यात अक्षम.</string>
-    <string name="dialog_routing_change_start_or_end">कृपया तुमचा प्रारंभ किंवा इष्टस्थानाचा बिंदू समायोजित करा.</string>
+    <string name="dialog_routing_change_start_or_end">कृपया तुमचा प्रारंभस्थान किंवा गंतव्यस्थानाचा बिंदू समायोजित करा.</string>
     <string name="dialog_routing_change_start">प्रारंभ बिंदू समायोजित करा</string>
     <string name="dialog_routing_start_not_determined">मार्ग तयार केला नाही. प्रारंभ बिंदू शोधण्यात अक्षम.</string>
     <string name="dialog_routing_select_closer_start">कृपया रस्त्याच्या जवळचा प्रारंभ बिंदू निवडा.</string>
-    <string name="dialog_routing_change_end">इष्टस्थान समायोजित करा</string>
-    <string name="dialog_routing_end_not_determined">मार्ग तयार केला नाही. इष्टस्थान शोधण्यात अक्षम.</string>
-    <string name="dialog_routing_select_closer_end">कृपया रस्त्याच्या जवळ असलेले इष्टस्थान निवडा.</string>
+    <string name="dialog_routing_change_end">गंतव्यस्थान समायोजित करा</string>
+    <string name="dialog_routing_end_not_determined">मार्ग तयार केला नाही. गंतव्यस्थान शोधण्यात अक्षम.</string>
+    <string name="dialog_routing_select_closer_end">कृपया रस्त्याच्या जवळ असलेले गंतव्यस्थान निवडा.</string>
     <string name="dialog_routing_change_intermediate">मध्यबिंदू शोधण्यात अक्षम.</string>
     <string name="dialog_routing_intermediate_not_determined">कृपया तुमचा मध्यबिंदू समायोजित करा.</string>
     <string name="dialog_routing_system_error">सिस्टम त्रुटी</string>
@@ -364,7 +360,6 @@
     <string name="not_now">आता नाही</string>
     <string name="dialog_routing_download_and_build_cross_route">एकापेक्षा जास्त नकाशात पसरलेला अधिक चांगला मार्ग तयार करण्यासाठी, नकाशा डाउनलोड केलेला चालेल का?</string>
     <string name="dialog_routing_download_cross_route">या नकाशाच्या सीमा ओलांडणारा एक चांगला मार्ग तयार करण्यासाठी अधिक नकाशे डाउनलोड करा.</string>
-
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">ठिकाण व मार्ग शोध सुरु करण्यासाठी, कृपया नकाशा डाउनलोड करा. त्यानंतर तुम्हाला इंटरनेटची आवश्यकता भासणार नाही.</string>
     <string name="search_select_map">नकाशा निवडा</string>
@@ -407,7 +402,7 @@
     <string name="editor_hours_closed">गैर-व्यवसाय वेळ</string>
     <string name="editor_example_values">उदाहरण मूल्ये</string>
     <string name="editor_correct_mistake">चूक सुधारा</string>
-    <string name="editor_add_select_location">स्थान</string>
+    <string name="editor_add_select_location">स्थान निवडा</string>
     <string name="editor_report_problem_desription_1">OpenStreetMap समुदायाने ही त्रुटी सुधारण्यासाठी कृपया समस्येचे तपशिलात वर्णन करा.</string>
     <string name="editor_report_problem_desription_2">किंवा https://www.openstreetmap.org/ वर ते स्वतः करा</string>
     <string name="editor_report_problem_send_button">पाठवा</string>
@@ -438,6 +433,8 @@
     <!-- Editable House Number text field (in address block). -->
     <string name="house_number">बिल्डिंग क्रमांक</string>
     <string name="details">तपशील</string>
+    <string name="social_media">सोशल मीडिया</string>
+    <string name="building">इमारत</string>
     <!-- Text field to enter non-existing street name, below list of known streets around -->
     <string name="add_street">रस्ता जोडा</string>
     <!-- Error to display when a new street name is not entered in the New street dialog -->
@@ -460,7 +457,7 @@
     <string name="downloader_no_space_message">कृपया अनावश्यक डेटा पुसून टाका</string>
     <string name="editor_login_error_dialog">लॉग इन त्रुटी.</string>
     <string name="editor_profile_changes">सत्यापित बदल</string>
-    <string name="editor_focus_map_on_location">वस्तूचे योग्य स्थान निवडण्यासाठी नकाशा सरकवा.</string>
+    <string name="editor_focus_map_on_location">ठिकाण किंवा व्यवसायाच्या ठिकाणी क्रॉस ठेवण्यासाठी नकाशा ड्रॅग करा.</string>
     <string name="editor_edit_place_title">संपादन</string>
     <string name="editor_add_place_title">जोडणे</string>
     <string name="editor_edit_place_name_hint">ठिकाणाचे नाव</string>
@@ -521,16 +518,9 @@
     <string name="minute">मिनिट</string>
     <string name="day">दि</string>
     <string name="placepage_more_button">अधिक</string>
-    <!-- A referral link on the place page for some hotels -->
-    <string name="more_on_kayak">फोटोपुनरावलोकनेबुकिंगबुकिंग</string>
-    <!-- An explanation dialog shown when clicking on more_on_kayak link. -->
-    <string name="dialog_kayak_disclaimer">या लिंकद्वारे प्रत्येक बुकिंगसाठी मिळणारा रेफरल बोनस ऑरगॅनिक नकाशांच्या विकासासाठी जातो.</string>
-    <!-- A confirmation button text in the explanation dialog that opens hotel details page on Kayak website. -->
-    <string name="dialog_kayak_button">कायाक वर तपशील</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
-    <string name="dialog_kayak_disable_button">Kayak अकषम कर</string>
     <string name="placepage_edit_bookmark_button">खूणपत्र संपादित करा</string>
-    <string name="editor_comment_hint">टिप्पणी</string>
+    <string name="placepage_personal_notes_hint">वैयक्तिक चिठ्ठ्या (मजकूर किंवा html)</string>
+    <string name="editor_comment_hint">टिप्पणी…</string>
     <string name="editor_reset_edits_message">सर्व स्थानिक बदल टाकून द्यायचे?</string>
     <string name="editor_reset_edits_button">टाकून द्या</string>
     <string name="editor_remove_place_message">जोडलेले ठिकाण पुसून टाकायचे?</string>
@@ -567,7 +557,7 @@
     <string name="mobile_data_option_never">कधीही वापरू नका</string>
     <string name="mobile_data_option_ask">नेहमी विचारा</string>
     <string name="traffic_update_maps_text">वाहतूक माहिती दाखवण्यासाठी नकाशे अद्ययावत करणे आवश्यक आहे.</string>
-    <string name="big_font">नकाशावर टंकाचा (फॉन्टचा) आकार वाढवा</string>
+    <string name="big_font">नकाशावर अक्षरांचा आकार वाढवा</string>
     <string name="traffic_update_app">कृपया Organic Maps अद्ययावत करा</string>
     <!-- "traffic" as in "road congestion" -->
     <string name="traffic_data_unavailable">वाहतूक माहिती उपलब्ध नाही</string>
@@ -579,7 +569,7 @@
 \nतुमच्या उपकरणाची सेटिंग → भाषा आणि इनपुट → स्पीच → \"टेक्स्ट टू स्पीच आउटपुट\" उघडा.
 \nयेथे तुम्ही स्पीच मिश्रणासाठी सेटिंग व्यवस्थापित करू शकता (उदाहरणार्थ, ऑफलाइन वापरासाठी भाषा संच डाउनलोड करा) आणि दुसरे टेक्स्ट-टू-स्पीच इंजिन निवडा.</string>
     <string name="prefs_languages_information_off_link">अधिक माहितीसाठी कृपया ही मार्गदर्शिका पहा.</string>
-    <string name="transliteration_title">लॅटिनमध्ये (इंग्रजीची अक्षरे) लिप्यंतरण</string>
+    <string name="transliteration_title">रोमन लिपीत लिप्यंतरण</string>
     <string name="learn_more">अधिक जाणून घ्या</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">बाहेर पडा</string>
@@ -587,6 +577,8 @@
     <string name="routing_add_start_point">मार्ग प्रारंभ बिंदू जोडण्यासाठी नकाशावर शोध वापरा किंवा टॅप करा</string>
     <!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
     <string name="routing_add_finish_point">गंतव्य बिंदू जोडण्यासाठी नकाशावर शोधा किंवा टॅप करा</string>
+    <string name="planning_route_manage_route">मार्ग व्यवस्थापन</string>
+    <string name="button_plan">नियोजन</string>
     <string name="placepage_remove_stop">थांबा काढा</string>
     <string name="placepage_add_stop">स्टॉप जोडा</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -624,6 +616,7 @@
     </plurals>
     <string name="restore">पूर्ववत् करा</string>
     <plurals name="tracks">
+        <item quantity="one">%d ट्रॅक</item>
         <item quantity="other">%d ट्रॅक</item>
     </plurals>
     <!-- Settings privacy group in settings screen -->
@@ -631,9 +624,9 @@
     <string name="privacy_policy">गोपनीयता धोरण</string>
     <string name="terms_of_use">वापरण्याच्या अटी</string>
     <string name="button_layer_traffic">ट्रॅफिक</string>
-    <string name="button_layer_subway">भुयारी मार्ग</string>
+    <string name="button_layer_subway">मेट्रो/भुयारी मार्ग</string>
     <string name="layers_title">नकाशा शैली आणि स्तर</string>
-    <string name="subway_data_unavailable">भुयारी नकाशा अनुपलब्ध आहे</string>
+    <string name="subway_data_unavailable">मेट्रो नकाशा अनुपलब्ध आहे</string>
     <string name="bookmarks_empty_list_title">ही यादी रिकामी आहे</string>
     <string name="bookmarks_empty_list_message">खूणपत्र जोडण्यासाठी, नकाशातील ठिकाणाला स्पर्श करा आणि नंतर तारा चिन्हाला स्पर्श करा</string>
     <string name="category_desc_more">…अधिक</string>
@@ -642,7 +635,6 @@
     <string name="delete_list">यादी मिटवा</string>
     <string name="public_access">सार्वजनिक प्रवेश</string>
     <string name="limited_access">मर्यादित प्रवेश</string>
-    <string name="bookmark_list_description_hint">वर्णन लिहा (मजकूर किंवा html)</string>
     <string name="not_shared">खाजगी</string>
     <string name="speedcams_alert_title">वेग कॅमेरे</string>
     <string name="place_description_title">ठिकाणाचे वर्णन</string>
@@ -655,7 +647,7 @@
     <!-- Speed camera settings menu option - Never warn (about speedcams) -->
     <string name="pref_tts_speedcams_never">कधीही चेतावणी देऊ नका</string>
     <string name="power_managment_title">ऊर्जा बचत मोड</string>
-    <string name="power_managment_description">जेव्हा स्वयंचलित मोड निवडला जातो तेव्हा ऍप, बॅटरीच्या स्तरावर अवलंबून असलेले, बॅटरी गाळणारे काही कार्य बंद करायला लागतो</string>
+    <string name="power_managment_description">काही कार्यप्रणालींचा त्याग करून बॅटरीतील ऊर्जा वाचवण्याचा प्रयत्न करा.</string>
     <string name="power_managment_setting_never">कधीच नाही</string>
     <string name="power_managment_setting_auto">स्वयंचलित</string>
     <string name="power_managment_setting_manual_max">कमाल वीज बचत</string>
@@ -710,7 +702,6 @@
     <string name="moreyear_ago_sorttype">एक वर्षांपूर्वी</string>
     <string name="near_me_sorttype">माझ्या जवळ</string>
     <string name="others_sorttype">इतर</string>
-
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">अन्न</string>
     <string name="tourist_places">पर्यटन स्थळ</string>
@@ -803,7 +794,7 @@
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">परवानग्या द्या</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
-    <string name="button_layer_outdoor">गिर्यारोहण</string>
+    <string name="button_layer_outdoor">भटकंती</string>
     <!-- Text displayed when a webview or a browser are disabled, and external links can't be opened. -->
     <string name="browser_not_available">वेब ब्राउझर उपलब्ध नाही</string>
     <string name="volume">व्हॉल्यूम</string>
@@ -822,13 +813,13 @@
     <string name="website_menu">मेनू लिंक</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">मेनू पहा</string>
-    <!-- Title for the "Open In Another App" button on the PlacePage. -->
+    <!-- Title for the "Open in Another App" button on the PlacePage. -->
     <string name="open_in_app">दुसऱ्या ॲपमध्ये उघडा</string>
     <!-- To indicate if the place proposed self service... -->
-    <string name="self_service">स्व: सेवा    nb = Selvbetjening</string>
-    <string name="select_option">पर्याय निवडा    nb = Velg alternativ</string>
+    <string name="self_service">स्व: सेवा</string>
+    <string name="select_option">पर्याय निवडा</string>
     <!-- To indicate if restaurant or other place has outdoor seating -->
-    <string name="outdoor_seating">बाहेरची आसनव्यवस्था    nb = Uteservering</string>
+    <string name="outdoor_seating">बाहेरची आसनव्यवस्था</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
     <string name="power_save_dialog_summary">सर्वात अचूक नेव्हिगेशनसाठी, आम्ही फोनच्या बॅटरी सेटिंग्जमध्ये पॉवर सेव्हिंग मोड अक्षम करण्याची शिफारस करतो.</string>
     <!-- Prompt to start recording a track. -->
@@ -840,9 +831,9 @@
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="continue_recording">रेकॉर्डिंग चालू ठेवा</string>
     <!-- Title for the alert when saving a track recording. -->
-    <string name="track_recording_alert_title">मार्ग रेकॉर्डिंग खूणपत्रे आणि ट्रॅकमध्ये सेव्ह करायचे?</string>
+    <string name="track_recording_alert_title">मार्ग रेकॉर्डिंग खूणपत्रे आणि ट्रॅकमध्ये साठवायचे?</string>
     <!-- Message for the toast when saving the track recording is finished but nothing to save. -->
-    <string name="track_recording_toast_nothing_to_save">मार्ग रिकामा आहे - जतन करण्यासाठी काहीही नाही</string>
+    <string name="track_recording_toast_nothing_to_save">मार्ग रिकामा आहे - साठवण्यासाठी काहीही नाही</string>
     <!-- Error message when there are no File Manager apps installed to select a folder when importing Bookmarks and Tracks -->
     <string name="error_no_file_manager_app">फोल्डर निवड संवाद प्रदर्शित करण्यात अक्षम कारण आपल्या डिव्हाइसवर कोणतेही योग्य ॲप स्थापित केलेले नाही. कृपया फाइल व्यवस्थापक ॲप स्थापित करा आणि पुन्हा प्रयत्न करा</string>
     <string name="choose_color">रंग निवडा</string>
@@ -850,1167 +841,12 @@
     <string name="uri_open_location_failed">स्थान उघडू शकणारे कोणतेही ॲप स्थापित केलेले नाही</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">नेव्हिगेशनमध्ये ऑटो</string>
-
-    <!-- SECTION: Types -->
-    <string name="type.addr_interpolation">पत्ता/ब्लॉक</string>
-    <string name="type.addr_interpolation.even">पत्ता/ब्लॉक</string>
-    <string name="type.addr_interpolation.odd">पत्ता/ब्लॉक</string>
-    <string name="type.aerialway">हवाई मार्ग</string>
-    <string name="type.aerialway.cable_car">हवाई मार्ग</string>
-    <string name="type.aerialway.chair_lift">हवाई मार्ग</string>
-    <string name="type.aerialway.drag_lift">हवाई मार्ग</string>
-    <string name="type.aerialway.gondola">हवाई मार्ग</string>
-    <string name="type.aerialway.mixed_lift">हवाई मार्ग</string>
-    <string name="type.aerialway.station">हवाई स्थानक</string>
-    <string name="type.aeroway">हवाई आधार संरचना</string>
-    <string name="type.aeroway.aerodrome">विमानतळ</string>
-    <string name="type.aeroway.aerodrome.international">आंतरराष्ट्रीय विमानतळ</string>
-    <string name="type.aeroway.gate">दार</string>
-    <string name="type.aeroway.helipad">हेलिपॅड</string>
-    <string name="type.aeroway.runway">धावपट्टी</string>
-    <string name="type.aeroway.terminal">टर्मिनल</string>
-    <string name="type.amenity">सुविधा</string>
-    <string name="type.amenity.arts_centre">कला केंद्र</string>
-    <string name="type.amenity.bank">बँक</string>
-    <string name="type.amenity.bar">बार</string>
-    <string name="type.amenity.bbq">बार्बेक्यू ग्रिल</string>
-    <string name="type.amenity.bench">बाक</string>
-    <string name="type.amenity.bicycle_parking">सायकल वाहनतळ</string>
-    <string name="type.amenity.bicycle_rental">भाड्याची सायकल</string>
-    <string name="type.amenity.brothel">वेश्यालय</string>
-    <string name="type.amenity.bureau_de_change">चलन विनिमय</string>
-    <string name="type.amenity.bus_station">बस स्थानक</string>
-    <string name="type.amenity.cafe">अमृततुल्य</string>
-    <string name="type.amenity.car_rental">भाड्याची गाडी</string>
-    <string name="type.amenity.car_sharing">कार शेअरिंग</string>
-    <string name="type.amenity.car_wash">कार धुणे</string>
-    <string name="type.amenity.casino">जुगारगृह</string>
-    <string name="type.amenity.gambling">जुगार</string>
-    <string name="type.leisure.adult_gaming_centre">प्रौढ गेमिंग केंद्र</string>
-    <string name="type.leisure.amusement_arcade">आर्केड</string>
-    <string name="type.amenity.charging_station">चार्जिंग केंद्र</string>
-    <string name="type.amenity.charging_station.bicycle">सायकल चार्जिंग स्टेशन</string>
-    <string name="type.amenity.charging_station.motorcar">मोटार कार चार्जिंग स्टेशन</string>
-    <string name="type.amenity.childcare">बालवाडी</string>
-    <string name="type.amenity.cinema">चित्रपटगृह</string>
-    <string name="type.leisure.bowling_alley">गोलंदाजी गल्ली</string>
-    <string name="type.amenity.clinic">चिकित्सालय</string>
-    <string name="type.amenity.college">महाविद्यालय</string>
-    <string name="type.amenity.community_centre">समुदाय केंद्र</string>
-    <string name="type.amenity.compressed_air">संकुचित हवा</string>
-    <string name="type.amenity.conference_centre">परिषद केंद्र</string>
-    <string name="type.amenity.courthouse">न्यायालय</string>
-    <string name="type.amenity.dentist">दंतवैद्य</string>
-    <string name="type.amenity.doctors">डॉक्टर</string>
-    <string name="type.amenity.drinking_water">पिण्याचे पाणी</string>
-    <string name="type.drinking_water.yes">पिण्याचे पाणी</string>
-    <string name="type.amenity.driving_school">वाहनचालक शाळा</string>
-    <string name="type.amenity.exhibition_centre">प्रदर्शन केंद्र</string>
-    <string name="type.amenity.money_transfer">पैसे हस्तांतरण</string>
-    <string name="type.office.diplomatic">दूतावास</string>
-    <string name="type.amenity.fast_food">फास्ट फूड</string>
-    <string name="type.amenity.ferry_terminal">होडी</string>
-    <string name="type.amenity.fire_station">अग्निशमन केंद्र</string>
-    <string name="type.amenity.food_court">जेवायचे ठिकाण</string>
-    <string name="type.amenity.fountain">कारंजे</string>
-    <string name="type.amenity.fuel">पेट्रोल पंप</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.amenity.grave_yard">स्मशानभूमी</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.amenity.grave_yard.christian">ख्रिश्चन स्मशानभूमी</string>
-    <string name="type.amenity.hospital">रुग्णालय</string>
-    <string name="type.amenity.ice_cream">आईसक्रीम</string>
-    <string name="type.amenity.internet_cafe">इंटरनेट कॅफे</string>
-    <string name="type.amenity.kindergarten">बालवाडी</string>
-    <string name="type.amenity.library">ग्रंथालय</string>
-    <string name="type.amenity.loading_dock">डक लड करत आह</string>
-    <string name="type.amenity.marketplace">बाजारपेठ</string>
-    <string name="type.amenity.motorcycle_parking">दुचाकी वाहनतळ</string>
-    <string name="type.amenity.nightclub">नाईट क्लब</string>
-    <string name="type.amenity.nursing_home">वृद्धाश्रम</string>
-    <string name="type.amenity.parking">वाहनतळ</string>
-    <string name="type.amenity.parking.fee">वाहनतळ</string>
-    <string name="type.amenity.parking.park_and_ride">वाहनतळ</string>
-    <string name="type.amenity.parking.underground.private">खाजगी भूमिगत पार्किंग</string>
-    <string name="type.amenity.parking.street_side">स्ट्रीट साइड पार्किंग</string>
-    <string name="type.amenity.parking.street_side.fee">स्ट्रीट साइड पार्किंग</string>
-    <string name="type.amenity.parking.street_side.private">खाजगी रस्त्यावरील बाजूचे पार्किंग</string>
-    <string name="type.amenity.parking.lane">लेन पार्किंग</string>
-    <string name="type.amenity.parking.lane.fee">लेन पार्किंग</string>
-    <string name="type.amenity.parking.lane.private">खाजगी लेन पार्किंग</string>
-    <string name="type.amenity.parking_entrance.private">खाजगी पार्किंग प्रवेशद्वार</string>
-    <string name="type.amenity.parking_space">पार्किंगची जागा</string>
-    <string name="type.amenity.parking_space.permissive">पार्किंगची जागा</string>
-    <string name="type.amenity.parking_space.private">पार्किंगची जागा</string>
-    <string name="type.amenity.parking_space.underground">पार्किंगची जागा</string>
-    <string name="type.amenity.payment_terminal">पेमेंट टर्मिनल</string>
-    <string name="type.amenity.pharmacy">औषधालय</string>
-    <string name="type.amenity.place_of_worship">धार्मिक ठिकाण</string>
-    <string name="type.amenity.place_of_worship.buddhist">मंदिर</string>
-    <string name="type.amenity.place_of_worship.christian">चर्च</string>
-    <string name="type.amenity.place_of_worship.christian.mormon">चर्च ऑफ जिझस क्राइस्ट ऑफ लेटर डे सेंट्स</string>
-    <string name="type.amenity.place_of_worship.christian.jehovahs_witness">यहोवा साक्षींचे राज्य सभा</string>
-    <string name="type.amenity.place_of_worship.hindu">मंदिर</string>
-    <string name="type.amenity.place_of_worship.jewish">सिनेगॉग</string>
-    <string name="type.amenity.place_of_worship.muslim">मशीद</string>
-    <string name="type.amenity.place_of_worship.shinto">देवस्थान</string>
-    <string name="type.amenity.place_of_worship.taoist">मंदिर</string>
-    <string name="type.amenity.police">पोलीस</string>
-    <string name="type.amenity.post_box">टपालपेटी</string>
-    <string name="type.amenity.post_office">टपालघर</string>
-    <string name="type.amenity.prison">तुरुंग</string>
-    <string name="type.amenity.pub">पब</string>
-
-    <!-- SECTION: Types: Recycling -->
-    <string name="type.amenity.recycling.centre">भंगार केंद्र</string>
-    <string name="type.amenity.recycling">रीसायकलिंग कंटेनर</string>
-    <string name="type.amenity.recycling.container">रीसायकलिंग कंटेनर</string>
-    <string name="type.recycling.batteries">घरगुती बॅटरी</string>
-    <string name="type.recycling.clothes">कपडे</string>
-    <string name="type.recycling.glass_bottles">काचेच्या बाटल्या</string>
-    <string name="type.recycling.paper">कागद</string>
-    <string name="type.recycling.plastic">प्लास्टिक</string>
-    <string name="type.recycling.plastic_bottles">प्लास्टिकच्या बाटल्या</string>
-    <string name="type.recycling.scrap_metal">भंगार धातू</string>
-    <string name="type.recycling.small_appliances">इलेक्ट्रॉनिक कचरा</string>
-    <string name="type.recycling.cardboard">पुठ्ठा</string>
-    <string name="type.recycling.cans">कॅन</string>
-    <string name="type.recycling.shoes">पादत्राणे</string>
-    <string name="type.recycling.cartons">पेय कार्टन</string>
-    <string name="type.amenity.restaurant">उपहारगृह</string>
-    <string name="type.amenity.school">शाळा</string>
-    <!-- Weather shelter (including sun shelters and natural rock shelters). -->
-    <string name="type.amenity.shelter">निवारा</string>
-    <!-- A weather shelter by the public transport stop. -->
-    <string name="type.amenity.shelter.public_transport">निवारा</string>
-    <!-- Compared to wilderness_hut its smaller and simpler, without a fireplace. -->
-    <string name="type.amenity.shelter.basic_hut">बिव्होक झोपडी</string>
-    <string name="type.amenity.public_bath">सार्वजनिक स्नान</string>
-    <string name="type.amenity.shower">अंघोळ</string>
-    <string name="type.amenity.stripclub">स्ट्रिपक्लब</string>
-    <string name="type.amenity.taxi">टॅक्सी</string>
-    <string name="type.amenity.telephone">फोन</string>
-    <string name="type.amenity.theatre">नाट्यगृह</string>
-    <string name="type.amenity.toilets">शौचालय</string>
-    <string name="type.toilets.yes">शौचालय</string>
-    <string name="type.amenity.townhall">नगर भवन</string>
-    <string name="type.amenity.university">विद्यापीठ</string>
-    <string name="type.amenity.vending_machine">विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.cigarettes">सिगारेट विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.coffee">कॉफी विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.condoms">कंडोम विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.drinks">पेय विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.food">अन्न विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.newspapers">वृत्तपत्र विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.parking_tickets">पार्किंग तिकिटे</string>
-    <string name="type.amenity.vending_machine.public_transport_tickets">तिकीट यंत्र</string>
-    <string name="type.amenity.vending_machine.sweets">मिठाई विक्रीयंत्र</string>
-    <string name="type.amenity.vending_machine.excrement_bags">मलमूत्र पिशव्या विक्रीयंत्र</string>
-    <string name="type.amenity.parcel_locker">पार्सल लॉकर</string>
-    <string name="type.amenity.vehicle_inspection">वाहन तपासणी</string>
-    <string name="type.amenity.vending_machine.fuel">इंधन विक्रीयंत्र</string>
-    <string name="type.amenity.veterinary">पशुवैद्यकीय डॉक्टर</string>
-    <string name="type.amenity.waste_basket">कचरा पेटी</string>
-    <string name="type.amenity.waste_disposal">कचऱ्याची मोठी पेटी</string>
-    <string name="type.amenity.waste_transfer_station">कचरा हस्तांतरण केंद्र</string>
-    <string name="type.barrier">अडथळा</string>
-    <string name="type.barrier.block">अडथळा</string>
-    <string name="type.barrier.bollard">खांब</string>
-    <string name="type.barrier.border_control">सीमा नियंत्रण</string>
-    <string name="type.barrier.chain">साखळी</string>
-    <string name="type.barrier.city_wall">शहराची भिंत</string>
-    <string name="type.barrier.cycle_barrier">सायकल अडथळा</string>
-    <string name="type.waterway.ditch">ड्रेनेज खंदक</string>
-    <string name="type.natural.water.wastewater">सांडपाणी</string>
-    <string name="type.barrier.entrance">प्रवेशद्वार</string>
-    <string name="type.barrier.fence">कुंपण</string>
-    <string name="type.barrier.gate">दार</string>
-    <string name="type.barrier.hedge">झुडुपांचे कुंपण</string>
-    <string name="type.barrier.kissing_gate">दार</string>
-    <string name="type.barrier.lift_gate">लिफ्ट दार</string>
-    <string name="type.barrier.retaining_wall">संधारक भिंत</string>
-    <string name="type.barrier.turnstile">टर्नस्टाइल</string>
-    <string name="type.barrier.swing_gate">झुलते दार</string>
-    <string name="type.barrier.toll_booth">टोल बूथ</string>
-    <string name="type.barrier.wall">भिंत</string>
-    <string name="type.boundary">सीमा</string>
-    <string name="type.boundary.administrative">प्रशासकीय सीमा</string>
-    <!-- Borders between countries. -->
-    <string name="type.boundary.administrative.2">राष्ट्रीय सीमा</string>
-    <!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
-    <string name="type.boundary.administrative.3">प्रादेशिक सीमा</string>
-    <!-- Country's primary subdivision borders, e.g. between regions, provinces, states.. -->
-    <string name="type.boundary.administrative.4">प्रादेशिक सीमा</string>
-    <string name="type.boundary.national_park">राष्ट्रीय उद्यान</string>
-    <string name="type.boundary.aboriginal_lands">स्वदेशी जमिनी</string>
-    <string name="type.boundary.protected_area">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.1">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.2">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.3">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.4">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.5">संरक्षित क्षेत्र</string>
-    <string name="type.boundary.protected_area.6">संरक्षित क्षेत्र</string>
-    <string name="type.building">इमारत</string>
-    <!-- Duplicates [address] in strings.txt -->
-    <string name="type.building.address">पत्ता</string>
-    <string name="type.building.has_parts">इमारत</string>
-    <string name="type.building_part">इमारत</string>
-    <string name="type.building.garage">गराज</string>
-    <string name="type.building.train_station">स्टेशन बिल्डिंग</string>
-    <string name="type.building.warehouse">वखार</string>
-    <string name="type.craft">हस्तकला</string>
-    <string name="type.craft.beekeeper">मधमाश्या पाळणारा</string>
-    <string name="type.craft.blacksmith">लोहार</string>
-    <string name="type.craft.brewery">दारूभट्टी</string>
-    <string name="type.craft.caterer">केटरर</string>
-    <string name="type.craft.carpenter">सुतार</string>
-    <string name="type.craft.confectionery">हलवाई</string>
-    <string name="type.craft.electrician">इलेक्ट्रिशियन</string>
-    <string name="type.craft.electronics_repair">इलेक्ट्रॉनिक्स दुरुस्ती</string>
-    <string name="type.craft.gardener">माळी</string>
-    <string name="type.craft.grinding_mill">ग्राइंडिंग मिल</string>
-    <string name="type.craft.handicraft">हस्तकला</string>
-    <string name="type.craft.key_cutter">की कटिंग</string>
-    <string name="type.craft.locksmith">लॉकस्मिथ</string>
-    <string name="type.craft.metal_construction">धातू कामगार</string>
-    <string name="type.craft.painter">चित्रकार</string>
-    <string name="type.craft.photographer">छायाचित्रकार</string>
-    <string name="type.shop.camera">कॅमेरा शॉप</string>
-    <string name="type.craft.plumber">नळकामगार</string>
-    <string name="type.craft.sawmill">सुमेल</string>
-    <string name="type.craft.shoemaker">चांभार</string>
-    <string name="type.craft.winery">वाइनरी</string>
-    <string name="type.craft.tailor">शिंपी</string>
-    <string name="type.cuisine.barbecue">चुलीवरचे जेवण</string>
-    <string name="type.cuisine.breakfast">नाश्ता</string>
-    <string name="type.cuisine.burger">बर्गर</string>
-    <string name="type.cuisine.cake">केक</string>
-    <string name="type.cuisine.chicken">चिकन</string>
-    <string name="type.cuisine.chinese">चिनी</string>
-    <string name="type.cuisine.coffee_shop">कॉफी</string>
-    <string name="type.cuisine.curry">रस्सा</string>
-    <string name="type.cuisine.fish">मासे</string>
-    <string name="type.cuisine.ice_cream">आईसक्रीम</string>
-    <string name="type.cuisine.indian">भारतीय</string>
-    <string name="type.cuisine.international">आंतरराष्ट्रीय</string>
-    <string name="type.cuisine.italian">इटालियन</string>
-    <string name="type.cuisine.italian_pizza">इटालियन, पिझ्झा</string>
-    <string name="type.cuisine.japanese">जपानी</string>
-    <string name="type.cuisine.local">स्थानिक</string>
-    <string name="type.cuisine.noodles">नूडल्स</string>
-    <string name="type.cuisine.pasta">पास्ता</string>
-    <string name="type.cuisine.pizza">पिझ्झा</string>
-    <string name="type.cuisine.regional">प्रादेशिक</string>
-    <string name="type.cuisine.sandwich">सँडविच</string>
-    <string name="type.cuisine.seafood">मासळी जेवण</string>
-    <string name="type.cuisine.tea">चहा</string>
-    <string name="type.cuisine.vegetarian">शाकाहारी</string>
-    <string name="type.emergency">आणीबाणी</string>
-    <string name="type.emergency.assembly_point">आपत्कालीन विधानसभा पॉइंट</string>
-    <string name="type.emergency.defibrillator">कंपनरोधक</string>
-    <string name="type.emergency.fire_hydrant">अग्निशामक नळ</string>
-    <string name="type.emergency.phone">संकटकालीन फोन</string>
-    <!-- This is for secondary entrances, for main entrances see type.entrance.main -->
-    <string name="type.entrance">प्रवेशद्वार</string>
-    <!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
-    <string name="type.entrance.main">मुख्य प्रवेशद्वार</string>
-    <string name="type.entrance.exit">बाहेर पडा</string>
-    <string name="type.fee.no">विनामूल्य</string>
-    <string name="type.healthcare.laboratory">वैद्यकीय प्रयोगशाळा</string>
-    <string name="type.healthcare.physiotherapist">फिजिओथेरपिस्ट</string>
-    <string name="type.healthcare.alternative">पर्यायी औषध</string>
-    <string name="type.healthcare.audiologist">ऑडिओलॉजी</string>
-    <string name="type.healthcare.blood_donation">रक्तदान केंद्र</string>
-    <string name="type.healthcare.optometrist">ऑप्टोमेट्री</string>
-    <string name="type.healthcare.podiatrist">पोडियाट्री</string>
-    <string name="type.healthcare.psychotherapist">मानसोपचार</string>
-    <string name="type.healthcare.sample_collection">नमुना</string>
-    <string name="type.healthcare.speech_therapist">स्पीच थेरपी</string>
-
-    <!-- SECTION: Types: Roads -->
-    <string name="type.highway">महामार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.bridleway.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.bridleway.tunnel">बोगदा</string>
-    <string name="type.highway.busway">समर्पित बस रस्ता</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.busway.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.busway.tunnel">बोगदा</string>
-    <string name="type.highway.bus_stop">बस थांबा</string>
-    <string name="type.highway.construction">बांधकामाधीन रस्ता</string>
-    <string name="type.highway.cycleway">सायकल वाट</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.cycleway.bridge">पूल</string>
-    <string name="type.highway.cycleway.permissive">सायकल वाट</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.cycleway.tunnel">बोगदा</string>
-    <string name="type.highway.elevator">उद्वाहक(लिफ्ट)</string>
-    <string name="type.highway.footway">पादचारी मार्ग</string>
-    <string name="type.highway.footway.sidewalk">फुटपाथ</string>
-    <string name="type.highway.footway.crossing">पादचारी ओलांडणे</string>
-    <string name="type.highway.footway.area">पादचारी झोन</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.footway.bridge">पादचारी पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.footway.tunnel">पादचारी बोगदा</string>
-    <string name="type.highway.living_street">वस्ती मार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.living_street.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.living_street.tunnel">बोगदा</string>
-    <string name="type.highway.motorway">महामार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.motorway.bridge">महामार्ग पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.motorway.tunnel">महामार्ग बोगदा</string>
-    <string name="type.highway.motorway_junction">रस्ता निर्गमन</string>
-    <string name="type.highway.motorway_link">महामार्ग उतार</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.motorway_link.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.motorway_link.tunnel">बोगदा</string>
-    <string name="type.highway.path">पथ</string>
-    <!-- Hiking trail tagged as sac_scale=demanding_mountain_hiking (3 of 6) or trail_visibility=bad. -->
-    <string name="type.highway.path.difficult">अवघड किंवा खराब दृश्यमान पायवाट</string>
-    <!-- Hiking trail tagged as sac_scale=alpine_hiking (4+ of 6) or trail_visibility=horrible or more extreme. -->
-    <string name="type.highway.path.expert">अतिशय अवघड किंवा वेगळे न करता येणारी पायवाट</string>
-    <string name="type.highway.path.bicycle">सायकल आणि पाऊलवाट</string>
-    <string name="type.highway.footway.bicycle">सायकल आणि पाऊलवाट</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.path.bridge">पूल</string>
-    <string name="type.highway.path.horse">पथ</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.path.tunnel">बोगदा</string>
-    <string name="type.highway.pedestrian">पादचारी मार्ग</string>
-    <string name="type.highway.pedestrian.area">पादचारी झोन</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.pedestrian.bridge">पादचारी पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.pedestrian.tunnel">पादचारी बोगदा</string>
-    <string name="type.highway.primary">प्राथमिक मार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.primary.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.primary.tunnel">बोगदा</string>
-    <string name="type.highway.primary_link">प्राथमिक मार्ग उतार</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.primary_link.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.primary_link.tunnel">बोगदा</string>
-    <string name="type.highway.raceway">शर्यतीचा मार्ग</string>
-    <string name="type.highway.residential">रस्ता</string>
-    <string name="type.highway.residential.area">रस्ता</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.residential.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.residential.tunnel">बोगदा</string>
-    <string name="type.highway.rest_area">विश्रांती क्षेत्र</string>
-    <string name="type.highway.road">रस्ता</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.road.bridge">पूल</string>
-    <!-- A bridge structure outline. -->
-    <string name="type.man_made.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.road.tunnel">बोगदा</string>
-    <string name="type.highway.secondary">दुय्यम मार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.secondary.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.secondary.tunnel">बोगदा</string>
-    <string name="type.highway.secondary_link">दुय्यम मार्ग उतार</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.secondary_link.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.secondary_link.tunnel">बोगदा</string>
-    <string name="type.highway.service">सेवा मार्ग</string>
-    <string name="type.highway.service.area">सेवा मार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.service.bridge">पूल</string>
-    <string name="type.highway.service.driveway">चालकमार्ग</string>
-    <string name="type.highway.service.parking_aisle">पार्किंग गल्ली</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.service.tunnel">बोगदा</string>
-    <string name="type.highway.services">सेवा क्षेत्र</string>
-    <string name="type.highway.speed_camera">वेग कॅमेरा</string>
-    <string name="type.highway.steps">पायऱ्या</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.steps.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.steps.tunnel">बोगदा</string>
-    <string name="type.highway.tertiary">तृतीयक मार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.tertiary.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.tertiary.tunnel">बोगदा</string>
-    <string name="type.highway.tertiary_link">तृतीयक मार्ग उतार</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.tertiary_link.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.tertiary_link.tunnel">बोगदा</string>
-    <string name="type.highway.track">ट्रॅक</string>
-    <string name="type.highway.track.area">ट्रॅक</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.track.bridge">पूल</string>
-    <string name="type.highway.track.grade1">ट्रॅक</string>
-    <string name="type.highway.track.no.access">ट्रॅक</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.track.tunnel">बोगदा</string>
-    <string name="type.highway.traffic_signals">वाहतूक दिवे</string>
-    <string name="type.highway.trunk">राष्ट्रीय महामार्ग</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.trunk.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.trunk.tunnel">बोगदा</string>
-    <string name="type.highway.trunk_link">राष्ट्रीय महामार्ग उतार</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.trunk_link.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.trunk_link.tunnel">बोगदा</string>
-    <string name="type.highway.unclassified">किरकोळ रस्ता</string>
-    <string name="type.highway.unclassified.area">किरकोळ रस्ता</string>
-    <!-- These translations are used for all type.highway.*.bridge. -->
-    <string name="type.highway.unclassified.bridge">पूल</string>
-    <!-- These translations are used for all type.highway.*.tunnel. -->
-    <string name="type.highway.unclassified.tunnel">बोगदा</string>
-    <string name="type.area_highway.cycleway">सायकल वाट</string>
-    <string name="type.area_highway.footway">पादचारी मार्ग</string>
-    <string name="type.area_highway.living_street">वस्ती मार्ग</string>
-    <string name="type.area_highway.motorway">महामार्ग</string>
-    <string name="type.area_highway.path">पथ</string>
-    <string name="type.area_highway.pedestrian">पादचारी मार्ग</string>
-    <string name="type.area_highway.primary">प्राथमिक मार्ग</string>
-    <string name="type.area_highway.residential">रस्ता</string>
-    <string name="type.area_highway.secondary">दुय्यम मार्ग</string>
-    <string name="type.area_highway.service">सेवा मार्ग</string>
-    <string name="type.area_highway.tertiary">तृतीयक मार्ग</string>
-    <string name="type.area_highway.steps">पायऱ्या</string>
-    <string name="type.area_highway.track">ट्रॅक</string>
-    <string name="type.area_highway.trunk">राष्ट्रीय महामार्ग</string>
-    <string name="type.area_highway.unclassified">किरकोळ रस्ता</string>
-
-    <!-- SECTION: Types: Historic -->
-    <string name="type.historic">ऐतिहासिक</string>
-    <string name="type.historic.aircraft">ऐतिहासिक विमान</string>
-    <string name="type.historic.anchor">ऐतिहासिक अँकर</string>
-    <string name="type.historic.archaeological_site">पुरातत्व स्थळ</string>
-    <string name="type.historic.battlefield">रणांगण</string>
-    <string name="type.historic.boundary_stone">सीमेचा दगड</string>
-    <string name="type.historic.cannon">तोफ</string>
-    <string name="type.historic.castle">गढी</string>
-    <string name="type.historic.castle.castrum">रोमन किल्ला</string>
-    <string name="type.historic.castle.defensive">गढी</string>
-    <string name="type.historic.castle.fortified_church">तटबंदी असलेले चर्च</string>
-    <string name="type.historic.castle.fortress">किल्ला</string>
-    <string name="type.historic.castle.hillfort">हिलफोर्ट</string>
-    <string name="type.historic.castle.kremlin">क्रेमलिन</string>
-    <string name="type.historic.castle.manor">मनोर घर</string>
-    <string name="type.historic.castle.palace">राजवाडा</string>
-    <string name="type.historic.castle.shiro">जपानी किल्ला</string>
-    <string name="type.historic.castle.stately">किल्ला</string>
-    <string name="type.historic.city_gate">शहराचा दरवाजा</string>
-    <string name="type.historic.citywalls">शहराची भिंत</string>
-    <string name="type.historic.fort">दुर्ग</string>
-    <string name="type.historic.gallows">फाशी</string>
-    <string name="type.historic.locomotive">ऐतिहासिक लोकोमोटिव्ह</string>
-    <string name="type.historic.memorial">स्मारक</string>
-    <string name="type.historic.memorial.cross">मेमोरियल क्रॉस</string>
-    <string name="type.historic.memorial.plaque">फलक</string>
-    <string name="type.historic.memorial.sculpture">शिल्प</string>
-    <string name="type.historic.memorial.statue">पुतळा</string>
-    <string name="type.historic.memorial.stolperstein">अडथळा</string>
-    <string name="type.historic.stone">ऐतिहासिक दगड</string>
-    <string name="type.historic.memorial.war_memorial">युद्ध स्मारक</string>
-    <string name="type.historic.mine">ऐतिहासिक खाण</string>
-    <string name="type.historic.monument">स्मारक</string>
-    <string name="type.historic.pillory">पिलोरी</string>
-    <string name="type.historic.ruins">अवशेष</string>
-    <string name="type.historic.ship">जहाज</string>
-    <string name="type.historic.tank">ऐतिहासिक टाकी</string>
-    <string name="type.historic.tomb">थडगे</string>
-    <string name="type.historic.wayside_cross">ख्रिश्चन क्रॉस</string>
-    <string name="type.historic.wayside_shrine">देवस्थान</string>
-    <string name="type.historic.wreck">जहाजाचा नाश</string>
-    <string name="type.internet_access">इंटरनेट</string>
-    <string name="type.internet_access.wlan">इंटरनेट</string>
-    <string name="type.junction">जंक्शन</string>
-    <string name="type.junction.circular">गोलमार्ग</string>
-    <string name="type.junction.roundabout">गोलमार्ग</string>
-    <string name="type.landuse">भूमी उपयोग</string>
-    <string name="type.landuse.allotments">वाटप</string>
-    <string name="type.landuse.basin">कुंड</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.landuse.cemetery">स्मशानभूमी</string>
-    <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
-    <string name="type.landuse.cemetery.christian">ख्रिश्चन स्मशानभूमी</string>
-    <string name="type.landuse.commercial">व्यावसायिक क्षेत्र</string>
-    <string name="type.landuse.construction">बांधकाम</string>
-    <string name="type.landuse.education">शैक्षणिक सुविधा</string>
-    <string name="type.landuse.farmland">शेतजमीन</string>
-    <string name="type.landuse.field">क्षेत्र</string>
-    <string name="type.landuse.flowerbed">फ्लॉवरबेड</string>
-    <string name="type.landuse.forest">वन</string>
-    <string name="type.landuse.forest.coniferous">शंकुमंत जंगल</string>
-    <string name="type.landuse.forest.deciduous">पानझडी जंगल</string>
-    <string name="type.landuse.forest.mixed">मिश्र वन</string>
-    <string name="type.landuse.garages">गराज</string>
-    <string name="type.landuse.grass">हिरवळ</string>
-    <string name="type.landuse.greenfield">हरितक्षेत्र</string>
-    <string name="type.landuse.greenhouse_horticulture">हरितगृह</string>
-    <string name="type.landuse.industrial">औद्योगिक जमीन</string>
-    <string name="type.landuse.landfill">कचराक्षेत्र</string>
-    <string name="type.landuse.meadow">कुरण</string>
-    <string name="type.landuse.military">लष्करी क्षेत्र</string>
-    <string name="type.landuse.orchard">फळबागा</string>
-    <string name="type.landuse.quarry">खाण</string>
-    <string name="type.landuse.railway">रेल्वे परिसर</string>
-    <string name="type.landuse.recreation_ground">मनोरंजन मैदान</string>
-    <string name="type.landuse.reservoir">पाणी</string>
-    <string name="type.landuse.residential">निवासी जमीन</string>
-    <string name="type.landuse.retail">किरकोळ जमीन</string>
-    <string name="type.landuse.salt_pond">तलाव</string>
-    <string name="type.landuse.village_green">जमीन</string>
-    <string name="type.landuse.vineyard">द्राक्षमळा</string>
-    <string name="type.leisure">अवकाश</string>
-    <string name="type.leisure.common">सार्वजनिक जमीन</string>
-    <string name="type.leisure.dog_park">कुत्र्याचे क्षेत्र</string>
-    <string name="type.leisure.fitness_centre">व्यायामशाळा</string>
-    <string name="type.leisure.garden">बाग</string>
-    <string name="type.leisure.garden.residential">बाग</string>
-    <string name="type.leisure.golf_course">गोल्फचे मैदान</string>
-    <string name="type.leisure.miniature_golf">मिनीगोल्फ</string>
-    <string name="type.leisure.hackerspace">हॅकरस्पेस</string>
-    <string name="type.leisure.ice_rink">हिम क्रीडा क्षेत्र</string>
-    <string name="type.leisure.nature_reserve">संरक्षित निसर्गक्षेत्र</string>
-    <string name="type.leisure.outdoor_seating">बाहेरची आसनव्यवस्था</string>
-    <string name="type.leisure.park">उद्यान</string>
-    <string name="type.leisure.park.no.access">उद्यान</string>
-    <string name="type.leisure.park.permissive">उद्यान</string>
-    <string name="type.leisure.park.private">उद्यान</string>
-    <string name="type.leisure.picnic_table">जेवायचे टेबल</string>
-    <string name="type.leisure.pitch">क्रीडांगण</string>
-    <string name="type.leisure.playground">खेळाचे मैदान</string>
-    <string name="type.leisure.recreation_ground">मनोरंजन मैदान</string>
-    <string name="type.leisure.sports_centre">क्रीडासंकुल</string>
-    <string name="type.sport.climbing">चढण केंद्र</string>
-    <string name="type.sport.yoga">योगासन केंद्र</string>
-    <string name="type.leisure.stadium">क्रीडागार(स्टेडियम)</string>
-    <string name="type.leisure.swimming_pool">जलतरण तलाव</string>
-    <string name="type.leisure.swimming_pool.private">जलतरण तलाव</string>
-    <string name="type.leisure.track">ट्रॅक</string>
-    <string name="type.leisure.track.area">ट्रॅक</string>
-    <string name="type.leisure.water_park">जल उद्यान</string>
-    <string name="type.leisure.beach_resort">समुद्री रिसॉर्ट</string>
-    <string name="type.man_made">मानवनिर्मित</string>
-    <string name="type.man_made.chimney">कारखाना चिमणी</string>
-    <string name="type.man_made.survey_point">सर्वेक्षण बिंदू</string>
-    <string name="type.man_made.flagpole">ध्वजस्तंभ</string>
-    <string name="type.man_made.lighthouse">दीपगृह</string>
-    <string name="type.man_made.mast">डोलकाठी</string>
-    <string name="type.man_made.pier">धक्का</string>
-    <string name="type.man_made.pipeline">नळमार्ग</string>
-    <string name="type.man_made.pipeline.overground">जमिनीवरील नळमार्ग</string>
-    <string name="type.man_made.silo">पेव(धान्यसाठा)</string>
-    <string name="type.man_made.storage_tank">साठवण टाकी</string>
-    <string name="type.man_made.surveillance">संनिरीक्षण कॅमेरा</string>
-    <string name="type.man_made.tower">मनोरा</string>
-    <string name="type.man_made.tower.communication">कम्युनिकेशन टॉवर</string>
-    <string name="type.man_made.wastewater_plant">सांडपाणी संयंत्र(प्लांट)</string>
-    <string name="type.man_made.water_tap">पाण्याचा नळ</string>
-    <string name="type.man_made.water_tap.drinking_water_no">पाण्याचा नळ</string>
-    <string name="type.man_made.water_tower">पाण्याचा मनोरा(टाकी)</string>
-    <string name="type.man_made.water_well">पाण्याची विहीर</string>
-    <string name="type.man_made.water_well.drinking_water_no">पाण्याची विहीर</string>
-    <string name="type.man_made.windmill">पवनचक्की</string>
-    <string name="type.man_made.works">औद्योगिक कामे</string>
-    <string name="type.military">लष्करी</string>
-    <string name="type.military.bunker">बंकर</string>
-    <string name="type.mountain_pass">डोंगरवाट</string>
-    <string name="type.natural">नैसर्गिक</string>
-    <!-- A rocky land cover. -->
-    <string name="type.natural.bare_rock">खडक</string>
-    <!-- A land cover consisting of rounded rock fragments (pebbles) on a beach or riverbed. -->
-    <string name="type.natural.shingle">खडे</string>
-    <!-- A loose surface consisting of angular, sharp stones. Usually on a mountain slope and prone to landslides. -->
-    <string name="type.natural.scree">स्क्री</string>
-    <string name="type.natural.bay">खाडी</string>
-    <string name="type.natural.beach">समुद्रकिनारा</string>
-    <string name="type.natural.beach.sand">वालुकामय समुद्रकिनारा</string>
-    <string name="type.natural.beach.gravel">रेव बीच</string>
-    <string name="type.natural.cape">केप</string>
-    <string name="type.natural.cave_entrance">गुहा</string>
-    <string name="type.natural.cliff">कडा</string>
-    <string name="type.natural.earth_bank">उंच कडा</string>
-    <string name="type.man_made.embankment">तटबंदी</string>
-    <string name="type.natural.coastline">किनारपट्टी</string>
-    <string name="type.natural.geyser">गिझर</string>
-    <string name="type.natural.glacier">हिमनदी</string>
-    <string name="type.natural.grassland">गवताळ प्रदेश</string>
-    <string name="type.natural.heath">हिथ</string>
-    <string name="type.natural.hot_spring">गरम पाण्याचे झरे</string>
-    <string name="type.natural.water.lake">सरोवर</string>
-    <string name="type.natural.water.lock">लॉक</string>
-    <string name="type.natural.water.pond">तलाव</string>
-    <string name="type.natural.water.reservoir">जलाशय</string>
-    <string name="type.natural.water.basin">कुंड</string>
-    <string name="type.natural.water.river">नदी</string>
-    <string name="type.natural.land">जमीन</string>
-    <string name="type.natural.meadow">कुरण</string>
-    <string name="type.natural.orchard">फळबागा</string>
-    <string name="type.natural.peak">शिखर</string>
-    <string name="type.natural.saddle">माउंटन सॅडल</string>
-    <string name="type.natural.rock">खडक</string>
-    <string name="type.natural.scrub">खुरटी झाडे</string>
-    <string name="type.natural.spring">झरे</string>
-    <string name="type.natural.spring.drinking_water_no">झरे</string>
-    <string name="type.natural.strait">सामुद्रधुनी</string>
-    <string name="type.natural.tree_row">झाडाची रांग</string>
-    <string name="type.natural.vineyard">द्राक्षमळा</string>
-    <string name="type.natural.volcano">ज्वालामुखी</string>
-    <string name="type.natural.water">पाणवठा</string>
-    <string name="type.natural.wetland">ओलिताची जमीन</string>
-    <string name="type.natural.wetland.bog">ओलिताची जमीन</string>
-    <string name="type.natural.wetland.marsh">ओलिताची जमीन</string>
-    <string name="type.noexit">रस्ता बंद</string>
-    <string name="type.office">कार्यालय</string>
-    <string name="type.office.company">कंपनी कार्यालय</string>
-    <string name="type.office.estate_agent">इस्टेट एजंट</string>
-    <string name="type.office.government">सरकारी कार्यालय</string>
-    <string name="type.office.insurance">विमा कार्यालय</string>
-    <string name="type.office.lawyer">वकील</string>
-    <string name="type.office.ngo">अशासकीय संस्था</string>
-    <string name="type.office.telecommunication">दूरसंचार कंपनी</string>
-    <string name="type.organic.only">सेंद्रिय</string>
-    <string name="type.organic.yes">सेंद्रिय</string>
-    <string name="type.place.city">शहर</string>
-    <string name="type.place.city.capital">राजधानी</string>
-    <string name="type.place.city.capital.10">शहर</string>
-    <string name="type.place.city.capital.11">शहर</string>
-    <string name="type.place.city.capital.2">राजधानी</string>
-    <string name="type.place.city.capital.3">शहर</string>
-    <string name="type.place.city.capital.4">शहर</string>
-    <string name="type.place.city.capital.5">शहर</string>
-    <string name="type.place.city.capital.6">शहर</string>
-    <string name="type.place.city.capital.7">शहर</string>
-    <string name="type.place.city.capital.8">शहर</string>
-    <string name="type.place.city.capital.9">शहर</string>
-    <string name="type.place.continent">खंड</string>
-    <string name="type.place.country">देश</string>
-    <string name="type.place.county">परगणा</string>
-    <string name="type.place.farm">शेत</string>
-    <string name="type.place.hamlet">पाडा</string>
-    <string name="type.place.island">बेट</string>
-    <string name="type.place.islet">बेट</string>
-    <string name="type.place.isolated_dwelling">निवासस्थान</string>
-    <string name="type.place.locality">परिसर</string>
-    <string name="type.place.neighbourhood">शेजार</string>
-    <string name="type.place.ocean">महासागर</string>
-    <string name="type.place.region">प्रदेश</string>
-    <string name="type.place.sea">समुद्र</string>
-    <string name="type.place.square">चौरस</string>
-    <string name="type.place.state">राज्य</string>
-    <string name="type.place.state.USA">राज्य</string>
-    <string name="type.place.suburb">उपनगर</string>
-    <string name="type.place.town">नगर</string>
-    <string name="type.place.village">गाव</string>
-    <string name="type.power">शक्ती</string>
-    <string name="type.power.generator">जनित्र(जनरेटर)</string>
-    <string name="type.power.generator.solar">सौर जनरेटर</string>
-    <string name="type.power.generator.wind">वारा जनरेटर</string>
-    <string name="type.power.generator.gas">गॅस टर्बाइन पॉवर प्लांट</string>
-    <string name="type.power.generator.hydro">जलविद्युत प्रकल्प</string>
-    <string name="type.power.line">विद्युत तार</string>
-    <string name="type.power.line.underground">भूमिगत विद्युत तार</string>
-    <string name="type.power.minor_line">किरकोळ विद्युत तार</string>
-    <string name="type.power.plant">वीज प्रकल्प</string>
-    <string name="type.power.plant.coal">कोळसा ऊर्जा प्रकल्प</string>
-    <string name="type.power.plant.gas">गॅस टर्बाइन पॉवर प्लांट</string>
-    <string name="type.power.plant.hydro">जलविद्युत प्रकल्प</string>
-    <string name="type.power.plant.solar">सौर ऊर्जा संयंत्र</string>
-    <string name="type.power.plant.wind">पवन ऊर्जा संयंत्र</string>
-    <string name="type.power.station">विद्युत घर</string>
-    <string name="type.power.substation">विद्युत सबस्टेशन</string>
-    <string name="type.power.tower">विद्युत मनोरा</string>
-    <string name="type.public_transport">सार्वजनिक वाहतूक</string>
-    <string name="type.public_transport.platform">फलाट</string>
-    <string name="type.railway">रेल्वे</string>
-    <string name="type.railway.construction">रेल्वेचे बांधकाम</string>
-    <string name="type.railway.crossing">रेल्वे ओलांडणी</string>
-    <string name="type.railway.funicular">फ्युनिक्युलर</string>
-    <string name="type.railway.funicular.bridge">हवाई रज्जुमार्ग</string>
-    <string name="type.railway.funicular.tunnel">हवाई रज्जुमार्ग</string>
-    <string name="type.railway.halt">रेल्वे स्थानक</string>
-    <string name="type.railway.level_crossing">समतल पारक</string>
-    <string name="type.railway.monorail">एकरूळी</string>
-    <string name="type.railway.monorail.bridge">एकरूळी</string>
-    <string name="type.railway.monorail.tunnel">एकरूळी</string>
-    <string name="type.railway.narrow_gauge">अरुंदमापी रेल्वे</string>
-    <string name="type.railway.narrow_gauge.bridge">अरुंदमापी रेल्वे</string>
-    <string name="type.railway.narrow_gauge.tunnel">अरुंदमापी रेल्वे</string>
-    <string name="type.railway.platform">रेल्वे फलाट</string>
-    <string name="type.railway.rail">रेल्वे</string>
-    <string name="type.railway.rail.highspeed">हाय-स्पीड रेल्वे</string>
-    <string name="type.railway.rail.tourism">पर्यटन रेल्वे</string>
-    <string name="type.railway.rail.main">रेल्वे</string>
-    <!-- Includes ordinary railway=rail w/o more specific usage= and service= tags. -->
-    <string name="type.railway.rail.branch">दुय्यम रेल्वे</string>
-    <!-- Non-passenger utility tracks: industrial, military, test. -->
-    <string name="type.railway.rail.utility">उपयुक्तता रेल्वे</string>
-    <string name="type.railway.rail.spur">रेल्वे स्पर</string>
-    <!-- Short service tracks: siding, yard, crossover. -->
-    <string name="type.railway.rail.service">सहायक रेल्वे ट्रॅक</string>
-    <string name="type.railway.rail.bridge">रेल्वे</string>
-    <string name="type.railway.rail.highspeed.bridge">रेल्वे</string>
-    <string name="type.railway.rail.tourism.bridge">रेल्वे</string>
-    <string name="type.railway.rail.main.bridge">रेल्वे</string>
-    <string name="type.railway.rail.branch.bridge">रेल्वे</string>
-    <string name="type.railway.rail.utility.bridge">रेल्वे</string>
-    <string name="type.railway.rail.spur.bridge">रेल्वे</string>
-    <string name="type.railway.rail.service.bridge">रेल्वे</string>
-    <string name="type.railway.rail.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.highspeed.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.tourism.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.main.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.branch.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.utility.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.spur.tunnel">रेल्वे</string>
-    <string name="type.railway.rail.service.tunnel">रेल्वे</string>
-    <string name="type.railway.station">रेल्वे स्थानक</string>
-    <string name="type.railway.station.funicular">फ्युनिक्युलर</string>
-    <string name="type.railway.station.light_rail">रेल्वे स्थानक</string>
-    <string name="type.railway.station.light_rail.berlin">रेल्वे स्थानक</string>
-    <string name="type.railway.station.light_rail.london">रेल्वे स्थानक</string>
-    <string name="type.railway.station.light_rail.porto">रेल्वे स्थानक</string>
-    <string name="type.railway.station.monorail">रेल्वे स्थानक</string>
-    <string name="type.railway.station.subway">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.adana">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.algiers">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.almaty">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.amsterdam">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.ankara">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.athens">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.baku">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.bangkok">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.barcelona">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.beijing">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.bengalore">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.berlin">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.bilbao">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.brasilia">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.brescia">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.brussels">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.bucharest">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.budapest">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.buenos_aires">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.bursa">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.cairo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.caracas">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.catania">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.changchun">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.chengdu">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.chicago">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.chongqing">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.dalian">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.delhi">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.dnepro">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.dubai">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.ekb">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.fukuoka">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.glasgow">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.guangzhou">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.hamburg">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.helsinki">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.hiroshima">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.hongkong">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.isfahan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.istanbul">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.izmir">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kazan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kharkiv">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kiev">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kobe">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kolkata">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kunming">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.kyoto">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.la">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.lausanne">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.lille">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.lima">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.lisboa">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.london">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.lyon">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.madrid">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.malaga">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.manila">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.maracaibo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.mashhad">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.mecca">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.medellin">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.mexico">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.milan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.minsk">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.montreal">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.moscow">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.munchen">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.nagoya">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.newyork">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.nnov">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.novosibirsk">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.osaka">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.oslo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.palma">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.panama">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.paris">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.philadelphia">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.pyongyang">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.rennes">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.rio">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.roma">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.rotterdam">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.samara">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.santiago">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.santo_domingo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.saopaulo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.sapporo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.sendai">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.sf">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.shanghai">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.shenzhen">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.shiraz">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.singapore">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.sofia">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.spb">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.stockholm">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tabriz">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.taipei">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.taoyuan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tashkent">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tbilisi">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tehran">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tianjin">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.tokyo">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.valencia">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.vienna">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.warszawa">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.washington">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.wuhan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.yerevan">भुयारी मार्ग</string>
-    <string name="type.railway.station.subway.yokohama">भुयारी मार्ग</string>
-    <string name="type.railway.subway">भुयारी मार्गिका</string>
-    <string name="type.railway.subway.bridge">भुयारी मार्गिका</string>
-    <string name="type.railway.subway.tunnel">भुयारी मार्गिका</string>
-    <string name="type.railway.subway_entrance">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.adana">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.algiers">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.almaty">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.amsterdam">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.ankara">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.athens">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.baku">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.bangkok">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.barcelona">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.beijing">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.bengalore">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.berlin">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.bilbao">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.brasilia">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.brescia">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.brussels">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.bucharest">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.budapest">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.buenos_aires">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.bursa">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.cairo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.caracas">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.catania">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.changchun">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.chengdu">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.chicago">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.chongqing">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.dalian">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.delhi">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.dnepro">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.dubai">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.ekb">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.fukuoka">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.glasgow">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.guangzhou">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.hamburg">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.helsinki">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.hiroshima">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.hongkong">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.isfahan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.istanbul">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.izmir">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kazan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kharkiv">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kiev">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kobe">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kolkata">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kunming">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.kyoto">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.la">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.lausanne">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.lille">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.lima">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.lisboa">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.london">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.lyon">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.madrid">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.malaga">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.manila">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.maracaibo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.mashhad">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.mecca">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.medellin">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.mexico">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.milan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.minsk">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.montreal">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.moscow">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.munchen">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.nagoya">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.newyork">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.nnov">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.novosibirsk">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.osaka">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.oslo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.palma">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.panama">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.paris">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.philadelphia">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.pyongyang">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.rennes">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.rio">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.roma">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.rotterdam">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.samara">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.santiago">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.santo_domingo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.saopaulo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.sapporo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.sendai">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.sf">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.shanghai">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.shenzhen">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.shiraz">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.singapore">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.sofia">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.spb">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.stockholm">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tabriz">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.taipei">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.taoyuan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tashkent">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tbilisi">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tehran">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tianjin">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.tokyo">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.valencia">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.vienna">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.warszawa">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.washington">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.wuhan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.yerevan">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.subway_entrance.yokohama">भुयारी प्रवेशद्वार</string>
-    <string name="type.railway.tram">ट्राम मार्गिका</string>
-    <string name="type.railway.tram.bridge">ट्राम मार्गिका</string>
-    <string name="type.railway.tram.tunnel">ट्राम मार्गिका</string>
-    <string name="type.railway.tram_stop">ट्राम थांबा</string>
-    <string name="type.route">मार्ग</string>
-    <string name="type.route.ferry">होडी</string>
-    <string name="type.shop">दुकान</string>
-    <string name="type.shop.alcohol">दारूचे दुकान</string>
-    <string name="type.shop.bakery">बेकरी</string>
-    <string name="type.shop.bathroom_furnishing">स्नानगृह सामान</string>
-    <string name="type.shop.beauty">सौंदर्य प्रसाधनगृह</string>
-    <string name="type.shop.beverages">शीतपेय</string>
-    <string name="type.shop.bicycle">सायकलचे दुकान</string>
-    <string name="type.shop.books">पुस्तकांचे दुकान</string>
-    <string name="type.shop.butcher">खाटीक</string>
-    <string name="type.shop.cannabis">गांजाचे दुकान</string>
-    <string name="type.shop.car">कार विक्रेता</string>
-    <string name="type.shop.car_parts">कारचे सुट्टे भाग</string>
-    <string name="type.shop.car_repair">कार दुरुस्तीचे दुकान</string>
-    <string name="type.shop.car_repair.tyres">टायर दुरुस्ती</string>
-    <string name="type.shop.carpet">कार्पेट्स</string>
-    <string name="type.shop.chemist">औषधालय</string>
-    <string name="type.shop.chocolate">चॉकलेट शॉप</string>
-    <string name="type.shop.clothes">कपड्याचे दुकान</string>
-    <string name="type.shop.coffee">कॉफीचे दुकान</string>
-    <string name="type.shop.computer">संगणकाचे दुकान</string>
-    <string name="type.shop.confectionery">मिठाई</string>
-    <string name="type.shop.convenience">सुविधा दुकान</string>
-    <string name="type.shop.cosmetics">सौंदर्य(कॉस्मेटिक)</string>
-    <string name="type.shop.curtain">पडदे</string>
-    <string name="type.shop.department_store">विभागीय भांडार</string>
-    <string name="type.shop.doityourself">हार्डवेअर दुकान</string>
-    <string name="type.shop.dry_cleaning">कोरडे धुलाईघर</string>
-    <string name="type.shop.electronics">इलेक्ट्रॉनिक्स</string>
-    <string name="type.shop.fabric">फॅब्रिकचे दुकान</string>
-    <string name="type.shop.fashion_accessories">फॅशन अॅक्सेसरीज</string>
-    <string name="type.shop.florist">फुलवाला</string>
-    <string name="type.shop.funeral_directors">अंत्यसंस्कार संचालक</string>
-    <string name="type.shop.furniture">फर्निचरचे दुकान</string>
-    <string name="type.shop.garden_centre">बागकामाचे दुकान</string>
-    <string name="type.shop.gas">गॅसचे दुकान</string>
-    <string name="type.shop.gift">भेटवस्तूंचे दुकान</string>
-    <string name="type.shop.greengrocer">भाजीवाला</string>
-    <string name="type.shop.hairdresser">न्हावी</string>
-    <string name="type.shop.herbalist">औषधी वनस्पतींचे दुकान</string>
-    <string name="type.shop.hifi">हायफाय ऑडिओ</string>
-    <string name="type.shop.jewelry">दागिने</string>
-    <string name="type.shop.kiosk">टपरी</string>
-    <string name="type.shop.laundry">धुलाईघर</string>
-    <string name="type.shop.mall">मॉल</string>
-    <string name="type.shop.massage">मालिश गृह</string>
-    <string name="type.shop.mobile_phone">मोबाईल</string>
-    <string name="type.shop.money_lender">सावकार</string>
-    <string name="type.shop.motorcycle">दुचाकी विक्रेता</string>
-    <string name="type.shop.motorcycle_repair">मोटरसायकल दुरुस्ती</string>
-    <string name="type.shop.music">संगीताच दुकान</string>
-    <string name="type.shop.musical_instrument">वाद्याचे दुकान</string>
-    <string name="type.shop.newsagent">वृत्तपत्र विक्री</string>
-    <string name="type.shop.optician">चष्मेविक्रेता</string>
-    <string name="type.shop.outdoor">भटकंतीचे साहित्य</string>
-    <string name="type.shop.outpost">पिकअप पॉइंट</string>
-    <string name="type.shop.pasta">पास्ता दुकान</string>
-    <string name="type.shop.pastry">बेकरी</string>
-    <string name="type.shop.pet">पाळीव प्राण्यांचे दुकान</string>
-    <string name="type.shop.pet_grooming">पाळीव प्राणी ग्रूमिंग</string>
-    <string name="type.shop.photo">फोटोचे दुकान</string>
-    <string name="type.shop.rental">भाड्याचे दुकान</string>
-    <string name="type.shop.rental.bicycle">सायकल भाड्याचे दुकान</string>
-    <string name="type.shop.seafood">मासळी उपहारगृह</string>
-    <string name="type.shop.shoes">चपलाचे दूकान</string>
-    <string name="type.shop.sports">क्रीडा साहित्य</string>
-    <string name="type.shop.stationery">लेखनसामग्री दुकान</string>
-    <string name="type.shop.supermarket">महाबाजार</string>
-    <string name="type.shop.tattoo">गोंदणाचे(टॅटू) दुकान</string>
-    <string name="type.shop.tea">चहा दुकान</string>
-    <string name="type.shop.ticket">तिकीटघर</string>
-    <string name="type.shop.toys">खेळण्यांचे दुकान</string>
-    <string name="type.shop.travel_agency">प्रवास एजन्सी</string>
-    <string name="type.shop.tyres">टायरचे दुकान</string>
-    <string name="type.shop.variety_store">विविध वस्तु भांडार</string>
-    <string name="type.shop.video">व्हिडिओ दुकान</string>
-    <string name="type.shop.video_games">व्हिडिओ गेम्स दुकान</string>
-    <string name="type.shop.wine">वाईन विक्रेता</string>
-    <string name="type.shop.agrarian">शेतीचे दुकान</string>
-    <string name="type.shop.appliance">उपकरणांचे दुकान</string>
-    <string name="type.shop.bed">पलंगाचे दुकान</string>
-    <string name="type.sport">क्रीडा</string>
-    <string name="type.sport.american_football">अमेरिकन फुटबॉल</string>
-    <string name="type.sport.archery">धनुर्विद्या</string>
-    <string name="type.sport.athletics">मैदानी खेळ</string>
-    <string name="type.sport.australian_football">रग्बी</string>
-    <string name="type.sport.baseball">बेसबॉल</string>
-    <string name="type.sport.basketball">बास्केटबॉल</string>
-    <string name="type.sport.beachvolleyball">बीच व्हॉलीबॉल</string>
-    <string name="type.sport.bowls">लॉन बोलिंग</string>
-    <string name="type.sport.chess">बुद्धिबळ</string>
-    <string name="type.sport.cricket">क्रिकेट</string>
-    <string name="type.sport.curling">कर्लिंग</string>
-    <string name="type.sport.equestrian">घोडेस्वार खेळ</string>
-    <string name="type.sport.golf">गोल्फ</string>
-    <string name="type.sport.gymnastics">जिम्नॅस्टिक्स</string>
-    <string name="type.sport.handball">हँडबॉल</string>
-    <string name="type.sport.multi">विविध खेळ</string>
-    <!-- Used to tag a scuba diving site. -->
-    <string name="type.sport.scuba_diving">स्कूबा डायव्हिंग</string>
-    <string name="type.sport.shooting">शूटिंग</string>
-    <string name="type.sport.skateboard">स्केट बोर्डिंग</string>
-    <string name="type.sport.skiing">स्कीइंग</string>
-    <string name="type.sport.soccer">सॉकर</string>
-    <string name="type.sport.swimming">जलतरण</string>
-    <string name="type.sport.table_tennis">टेबल टेनिस</string>
-    <string name="type.sport.tennis">टेनिस प्रांगण</string>
-    <string name="type.sport.volleyball">व्हॉलीबॉल</string>
-    <string name="type.sport.10pin">गोलंदाजी</string>
-    <string name="type.sport.9pin">गोलंदाजी</string>
-    <string name="type.tourism">पर्यटन</string>
-    <string name="type.tourism.aquarium">मत्स्यालय</string>
-    <!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
-    <string name="type.tourism.alpine_hut">माउंटन लॉज</string>
-    <string name="type.tourism.apartment">हॉलिडे अपार्टमेंट</string>
-    <string name="type.tourism.artwork">कलाकृती</string>
-    <string name="type.tourism.artwork.architecture">कलाकृती</string>
-    <string name="type.tourism.artwork.painting">कलाकृती</string>
-    <string name="type.tourism.artwork.sculpture">कलाकृती</string>
-    <string name="type.tourism.artwork.statue">कलाकृती</string>
-    <string name="type.tourism.attraction">आकर्षण</string>
-    <string name="type.attraction.amusement_ride">मनोरंजन राइड</string>
-    <string name="type.attraction.animal">प्राणी संलग्न</string>
-    <string name="type.attraction.carousel">कॅरोसेल</string>
-    <string name="type.attraction.historic">ऐतिहासिक आकर्षण</string>
-    <string name="type.attraction.maze">चक्रव्यूह</string>
-    <string name="type.attraction.roller_coaster">रोलर कोस्टर</string>
-    <string name="type.attraction.water_slide">वॉटर स्लाइड</string>
-    <string name="type.tourism.attraction.specified">आकर्षण</string>
-    <string name="type.tourism.camp_site">शिबिरवास(कॅम्पिंग)</string>
-    <!-- A rentable countryside vacation house. -->
-    <string name="type.tourism.chalet">हॉलिडे कॉटेज</string>
-    <string name="type.tourism.gallery">वीथि</string>
-    <string name="type.tourism.guest_house">अतिथीगृह</string>
-    <string name="type.tourism.hostel">छात्रालय</string>
-    <string name="type.tourism.hotel">मुक्कामगृह</string>
-    <string name="type.tourism.information">पर्यटन माहिती</string>
-    <string name="type.tourism.information.board">माहिती फलक</string>
-    <string name="type.tourism.information.guidepost">गाईडपोस्ट</string>
-    <string name="type.tourism.information.map">पर्यटन नकाशा</string>
-    <string name="type.tourism.information.office">पर्यटन कार्यालय</string>
-    <string name="type.tourism.information.visitor_centre">अभ्यागत केंद्र</string>
-    <string name="type.tourism.museum">संग्रहालय</string>
-    <string name="type.tourism.picnic_site">सहलीचे ठिकाण</string>
-    <string name="type.leisure.resort">रिसॉर्ट</string>
-    <string name="type.tourism.theme_park">थीम पार्क</string>
-    <string name="type.tourism.viewpoint">दृष्टिस्थान</string>
-    <string name="type.tourism.zoo">प्राणीसंग्रहालय</string>
-    <string name="type.tourism.zoo.petting">पेटिंग प्राणीसंग्रहालय</string>
-    <string name="type.traffic_calming.bump">वाहतूक गतिरोधक</string>
-    <string name="type.waterway">जलमार्ग</string>
-    <string name="type.waterway.canal">कालवा</string>
-    <string name="type.waterway.canal.tunnel">कालवा</string>
-    <string name="type.waterway.fish_pass">मासे शिडी</string>
-    <string name="type.waterway.dam">धरण</string>
-    <string name="type.barrier.ditch">खंदक</string>
-    <string name="type.natural.water.ditch">ड्रेनेज खंदक</string>
-    <string name="type.waterway.ditch.tunnel">कल्व्हर्ट</string>
-    <string name="type.waterway.dock">जलमार्ग गोद</string>
-    <string name="type.waterway.drain">नाला</string>
-    <string name="type.natural.water.drain">नाला</string>
-    <string name="type.waterway.drain.tunnel">कल्व्हर्ट</string>
-    <string name="type.waterway.lock_gate">जलद्वार</string>
-    <string name="type.waterway.river">नदी</string>
-    <string name="type.waterway.river.tunnel">नदी</string>
-    <string name="type.waterway.stream">नदी</string>
-    <string name="type.waterway.stream.ephemeral">नदी</string>
-    <string name="type.waterway.stream.intermittent">नदी</string>
-    <string name="type.waterway.stream.tunnel">नदी</string>
-    <string name="type.waterway.waterfall">धबधबा</string>
-    <string name="type.waterway.weir">अल्प धरण</string>
-    <string name="type.wheelchair">चाकखुर्ची</string>
-    <string name="type.wheelchair.limited">चाकखुर्चीसाठी मर्यादित प्रवेश</string>
-    <string name="type.wheelchair.no">चाकखुर्चीसाठी प्रवेश नाही</string>
-    <string name="type.wheelchair.yes">चाकखुर्चीसाठी प्रवेश</string>
-    <string name="type.piste_type.snow_park">स्नो पार्क</string>
-    <string name="type.piste_type.hike">स्नो हायकिंग ट्रेल</string>
-    <string name="type.piste_type.connection">Piste कनेक्शन</string>
-    <string name="type.piste_type.skitour">Skitour ट्रेल</string>
-    <string name="type.amenity.events_venue">कार्यक्रमाचे ठिकाण</string>
-    <string name="type.shop.auction">लिलाव</string>
-    <string name="type.shop.collector">संग्रहणीय वस्तू</string>
-    <string name="type.self_service.yes">स्वयं-सेवा उपलब्ध</string>
-    <string name="type.self_service.only">फक्त स्व-सेवा</string>
-    <string name="type.self_service.partially">आंशिक स्व-सेवा</string>
-    <string name="type.self_service.no">स्व-सेवा नाही</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
-    <string name="type.amenity.social_facility">सामाजिक सुविधा</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
-    <string name="type.emergency.emergency_ward_entrance">आपत्कालीन प्रभाग प्रवेशद्वार</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->
-    <string name="type.amenity.dojo">डोजो</string>
-    <!-- https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall -->
-    <string name="type.leisure.sports_hall">क्रीडा हॉल</string>
+    <string name="pref_tts_street_names_title">मार्गांची नावे घोषित करा</string>
+    <string name="about_proposition_1">• जाहिराती नाही, माहितीचा मागोवा नाही, डेटा संग्रहण नाही</string>
+    <string name="donate">दान करा</string>
+    <string name="login_osm">OpenStreetMap मध्ये लॉगिन करा</string>
+    <string name="about_headline">सर्वांसाठी विनामूल्य, आवडीने तयार केलेले</string>
+    <string name="pref_tts_street_names_description">चालू केल्यास, वळण घेण्यापूर्वी रस्त्याचे किंवा वळणाचे नाव बोलून सांगितले जाईल.</string>
+    <string name="editor_share_to_all_dialog_message_2">OpenStreetMap संपादक बदल तपासतील व काही प्रश्न असल्यास तुमच्याशी संपर्क साधतील.</string>
+    <string name="category_rv">कँपिंग वाहन सोयी</string>
 </resources>

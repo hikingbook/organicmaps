@@ -30,7 +30,7 @@ class BottomPanel
     public void onClick(View v)
     {
       final String country = mFragment.getCurrentRoot();
-      MapManager.warnOn3gUpdate(mFragment.requireActivity(), country, () -> MapManager.nativeUpdate(country));
+      MapManager.warnOn3gUpdate(mFragment.requireActivity(), country, () -> MapManager.startUpdate(country));
     }
   };
 
@@ -39,7 +39,7 @@ class BottomPanel
     @Override
     public void onClick(View v)
     {
-        MapManager.nativeCancel(mFragment.getCurrentRoot());
+        mFragment.getAdapter().refreshData();
     }
   };
 

@@ -66,7 +66,8 @@ final class ActionBarViewController: UIViewController {
     if isRoutePlanning {
       buttons.append(.routeFrom)
     }
-    if placePageData.infoData?.phone != nil, AppInfo.shared().canMakeCalls {
+    let hasAnyPhones = !(placePageData.infoData?.phones ?? []).isEmpty
+    if hasAnyPhones, AppInfo.shared().canMakeCalls {
       buttons.append(.call)
     }
     if !isRoutePlanning {
@@ -82,11 +83,11 @@ final class ActionBarViewController: UIViewController {
 
   private func configButton2() {
     var buttons: [ActionBarButtonType] = []
+    if canAddStop {
+      buttons.append(.routeAddStop)
+    }
     switch placePageData.objectType {
     case .POI, .bookmark:
-      if canAddStop {
-        buttons.append(.routeAddStop)
-      }
       buttons.append(.bookmark)
     case .track:
       buttons.append(.track)
