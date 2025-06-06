@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
@@ -15,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmRecyclerFragment;
 import app.organicmaps.base.OnBackPressListener;
-import app.organicmaps.search.NativeMapSearchListener;
-import app.organicmaps.search.SearchEngine;
+import app.organicmaps.sdk.search.MapSearchListener;
+import app.organicmaps.sdk.search.SearchEngine;
 import app.organicmaps.widget.PlaceholderView;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
@@ -39,6 +41,8 @@ public class DownloaderFragment extends BaseMwmRecyclerFragment<DownloaderAdapte
 
   private int mSubscriberSlot;
 
+  final ActivityResultLauncher<Intent> startVoiceRecognitionForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> mToolbarController.onVoiceRecognitionResult(activityResult));
+
   private final RecyclerView.OnScrollListener mScrollListener = new RecyclerView.OnScrollListener() {
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState)
@@ -48,13 +52,13 @@ public class DownloaderFragment extends BaseMwmRecyclerFragment<DownloaderAdapte
     }
   };
 
-  private final NativeMapSearchListener mSearchListener = new NativeMapSearchListener()
+  private final MapSearchListener mSearchListener = new MapSearchListener()
   {
     // Called from JNI.
     @Keep
     @SuppressWarnings("unused")
     @Override
-    public void onMapSearchResults(Result[] results, long timestamp, boolean isLast)
+    public void onMapSearchResults(@NonNull Result[] results, long timestamp, boolean isLast)
     {
       if (!mSearchRunning || timestamp != mCurrentSearch)
         return;
@@ -62,8 +66,8 @@ public class DownloaderFragment extends BaseMwmRecyclerFragment<DownloaderAdapte
       List<CountryItem> rs = new ArrayList<>();
       for (Result result : results)
       {
-        CountryItem item = CountryItem.fill(result.countryId);
-        item.searchResultName = result.matchedString;
+        CountryItem item = CountryItem.fill(result.countryId());
+        item.searchResultName = result.matchedString();
         rs.add(item);
       }
 
@@ -210,13 +214,6 @@ public class DownloaderFragment extends BaseMwmRecyclerFragment<DownloaderAdapte
     return mAdapter;
   }
 
-  @Override
-  @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3630
-  public void onActivityResult(int requestCode, int resultCode, Intent data)
-  {
-    super.onActivityResult(requestCode, resultCode, data);
-    mToolbarController.onActivityResult(requestCode, resultCode, data);
-  }
 
   @NonNull
   @Override

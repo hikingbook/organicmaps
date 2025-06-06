@@ -413,7 +413,7 @@ ro:5Obiective turistice|4Turism
 es:4Turismo
 et:Vaatamisväärsused
 eu:4Turismoa
-sr:5Атракција|5Атракције|6Знаменитости|5Туризам|5Atrakcija|5Atrakcije|6Znamenitosti|5Turizam
+sr:5Туристичка атракција|5Атракција|5Атракције|6Знаменитости|5Туризам|5Turistička atrakcija|5Atrakcija|5Atrakcije|6Znamenitosti|5Turizam
 sv:4Sevärdheter|4Attraktion|4Turism
 th:สถานที่ท่องเที่ยว
 tr:4Görülecek yerler|3Turizm
@@ -545,7 +545,7 @@ ro:Divertisment cu copiii|Divertisment cu familia|Vacanță cu copiii
 es:Ocio en familia|Diversión en familia
 et:Perepuhkus
 eu:Umeekin atseden hartu
-sr:Породични одмор|Porodični odmor
+sr:Све за децу|Sve za decu
 sv:Semester med barn
 th:วันหยุดสำหรับครอบครัว
 tr:Aile tatili
@@ -1086,7 +1086,7 @@ pl:3Stacja paliw
 pt:3Posto de combustível|3Bomba de combustível|3gasolina|3gasóleo
 pt-BR:3Posto de combustível|3gasolina
 ro:3Benzinărie
-sr:Бензинска пумпа|Бензинска станица|Benzinska pumpa|Benzinska stanica
+sr:4Бензинска пумпа|4Бензинска станица|4Benzinska pumpa|4Benzinska stanica
 sv:3Bensinstation|3bränsle|2gas
 th:3ปั๊มน้ำมัน|เชื้อเพลิง
 tr:3Yakıt|3Benzin istasyonu|2gaz|Benzinlik
@@ -1390,6 +1390,47 @@ ru:Здоровая еда
 sr:6Здрава храна|6Zdrava hrana
 tr:Sağlıklı Gıda
 es:Alimentos saludables
+
+shop-hearing_aids|@shop
+en:Hearing Aids
+ar:المعينات السمعية
+be:Слыхавыя апараты
+bg:Слухови апарати
+ca:Audiòfons
+cs:Sluchadla
+da:Høreapparater
+de:Hörgeräte
+el:Βοηθήματα ακοής
+es:Audífonos
+et:Kuuldeaparaadid
+eu:Entzungailuak
+fa:چادرهای
+fi:Kuulolaitteet
+fr:Aides auditives
+he:מכשירי שמיעה
+hi:कान की मशीन
+hu:Hallókészülékek
+id:Alat bantu dengar
+it:Apparecchi acustici
+ja:補聴器
+ko:보청기
+lv:Dzirdes aparāti
+mr:श्रवणयंत्र
+nb:Høreapparater
+nl:Hoortoestellen
+pl:Aparaty słuchowe
+pt:Aparelhos auditivos
+ro:Aparate auditive
+ru:Слуховые аппараты
+sk:Sluchové pomôcky
+sv:Hörselhjälpmedel
+sw:Misaada ya kusikia
+th:เครื่องช่วยฟัง
+tr:İşitme Cihazları
+uk:Слухові апарати
+vi:Máy trợ thính
+zh-Hans:助听器
+zh-Hant:助聽器
 
 shop-mobile_phone|@shop
 en:4Cell Phones|4Mobile Phones|6smartphones|electronics store|U+1F4F1|U+1F4F2
@@ -4732,6 +4773,9 @@ vi:Diểm tham quan
 zh-Hans:陵墓
 zh-Hant:陵墓
 
+man_made-cross
+en:Cross
+
 historic-wayside_cross
 en:Wayside cross
 ar:صليب مسيحي
@@ -5056,6 +5100,48 @@ el:Ενοικίαση αυτοκινήτου|αυτοκίνητο|ενοικιά
 sk:3Autopožičovňa|požičovňa áut
 sw:Kodi ya gari|gari|kodi
 fa:مکان اجاره ماشین
+
+amenity-motorcycle_rental
+en:4Motorcycle Rental|bike|hire|4scooter
+ar:تأجير الدراجات النارية
+be:Пракат матацыклаў
+bg:Мотоциклети под наем
+ca:Lloguer de motos
+cs:Půjčovna motocyklů
+da:Udlejning af motorcykler
+de:Motorradvermietung
+el:Ενοικίαση μοτοσικλέτας
+es:Alquiler de motos
+et:Mootorratta rentimine
+eu:Motorren alokairua
+fa:اجاره موتور سیکلت
+fi:Moottoripyörän vuokraus
+fr:Location de motos
+he:השכרת אופנועים
+hi:मटरसइकल करय
+hu:Motorkerékpár bérlés
+id:Penyewaan Sepeda Motor
+it:Noleggio moto
+ja:レンタルバイク
+ko:오토바이 대여
+lv:Motociklu noma
+mr:मटरसयकल भडयन
+nb:Utleie av motorsykkel
+nl:Motorverhuur
+pl:Wynajem motocykli
+pt:Aluguer de motociclos
+pt-BR:Aluguel de motocicletas
+ro:Închiriere motociclete
+ru:5Прокат мотоциклов|аренда|скутеров
+sk:Požičovňa motocyklov
+sv:Motorcykeluthyrning
+sw:Kukodisha pikipiki
+th:รถมอเตอรไซค
+tr:Motosiklet Kiralama
+uk:Оренда мотоциклів
+vi:Cho thuê xe máy
+zh-Hans:摩托车租赁
+zh-Hant:摩托車租賃
 
 amenity-cinema|@category_entertainment
 en:3Cinema|U+1F3A6|U+1F3AC
@@ -7804,9 +7890,9 @@ sw:Kisiwa
 fa:جزیره
 mr:बेट
 
-place-suburb|landuse-residential|place-neighbourhood
-en:Suburb|district
-ru:Район|микрорайон|округ|квартал
+place-suburb|place-quarter|place-neighbourhood|landuse-residential
+en:Suburb|district|quarter|neighbourhood|neighborhood
+ru:Район|микрорайон|квартал
 bg:Район|микрорайон|окръг|квартал
 ar:حي سكني|ضاحية
 cs:Předměstí|městská část|městská zóna
@@ -7814,7 +7900,7 @@ da:Forstad|distrikt
 nl:Buitenwijken|voorstad|wijk
 fi:Esikaupunki
 fr:Banlieue|arrondissement|quartier
-de:Stadtteil|Kreis|Wohnbezirk|Wohnviertel
+de:Stadtteil|Stadtviertel|Wohnviertel|Wohnbezirk|Siedlung
 hi:मुहल्ला|उपनगर
 hu:Kerület
 id:Pinggiran kota
@@ -10789,7 +10875,7 @@ de:3Autowerkstatt|Kfz|Reparaturwerkstatt|Auto|4Werkstatt
 hi:3वाहन मरम्मत की दुकान
 hu:3Autószerelő|Autószerviz|Gépkocsiszerviz|Autójavító|4javítóműhely|kocsi
 id:Bengkel mobil
-it:3Riparazione auto|auto|macchina|3automobile|vettura
+it:Meccanico|3Riparazione auto|auto|macchina|3automobile|vettura
 ja:1自動車修理|車|自動車|カー|リペア|修理|カーリペア
 ko:자동차 수리|정비|자동차 수리소|차 수리소
 lv:Autoserviss|serviss|remonts|mehāniķis|U+1F527
@@ -12335,8 +12421,8 @@ sk:Stožiar
 tr:Direk
 uk:Щогла|вишка
 
-man_made-tower-communication
-en:Communications Tower|cell tower|cellular tower
+man_made-communications_tower|man_made-tower-communication
+en:Communications Tower|cell tower|cellular tower|mast
 ar:برج الاتصالات
 be:Вежа сувязі|вышка сувязі|сотавая вышка
 bg:Комуникационна кула
@@ -12365,7 +12451,7 @@ pl:Wieża komunikacyjna
 pt:Torre de Comunicações
 pt-BR:Torre de Comunicações
 ro:Turnul de comunicații
-ru:Вышка связи|cотовая вышка|башня связи
+ru:Вышка связи|cотовая вышка|телекоммуникационная башня
 sk:Komunikačná veža
 sr:Комуникациони торањ|Komunikacioni toranj
 sv:Kommunikationstorn
@@ -12376,6 +12462,48 @@ uk:Вежа зв'язку|Стільникова вежа
 vi:Tháp truyền thông
 zh-Hans:通讯塔
 zh-Hant:通訊塔
+
+# Please avoid synonyms like Gas/Fuel so that Gas station search doesn't return Gas wells :)
+man_made-petroleum_well
+en:Petroleum Well|Oil Well|Boring
+ar:بئر النفط
+be:4Нафтавая свідравіна|Свідравіна
+bg:4Нефтено находище|Сондаж
+cs:4Ropný vrt
+da:4Oliebrønd
+de:4Erdölbohrung|Ölquelle
+el:Πετρελαιοπηγή
+es:Pozo de petróleo|Pozo petrolífero
+et:Naftakaev
+eu:Petrolio putzua
+fa:چاه نفت
+fi:5Öljylähde
+fr:Puits de pétrole
+hi:तेल का कुआँ
+hu:Olajkút
+id:Sumur Minyak
+it:4Pozzo petrolifero
+ja:油井
+ko:유정
+lv:4Naftas urbums
+mr:तेल विहीर
+nb:4Oljebrønn
+nl:4Oliebron
+pl:4Szyb naftowy
+pt:Poço de petróleo
+pt-BR:4Poço de petróleo
+ro:4Puț de petrol
+ru:4Нефтяная скважина|Скважина
+sk:4Ropná studňa
+sr:Нафтна бушотина|Нафтна бушотина
+sv:4Oljebrunn
+sw:Kisima cha Mafuta
+th:บ่อน้ำมัน
+tr:Petrol Kuyusu
+uk:4Нафтова свердловина|Свердловина
+vi:Giếng dầu
+zh-Hans:石油井
+zh-Hant:石油井
 
 organic-only|organic-yes
 en:4organic|bio|biological|eco|ecological|healthy
@@ -12821,9 +12949,44 @@ amenity-charging_station|@charging_station
 
 amenity-charging_station-bicycle|@charging_station
 en:4Bicycle Charging|4Bike Charging
-lv:4Velosipēdu uzlāde
-ru:4Велозарядка
-tr:4Bisiklet Şarj Etme
+ar:شحن الدراجات الهوائية
+be:Зарадка ровара
+bg:Зареждане на велосипеди
+ca:Càrrega de bicicletes
+cs:Nabíjení jízdních kol
+da:Opladning af cykler
+de:Fahrrad aufladen
+el:Φόρτιση ποδηλάτων
+es:Carga de bicicletas
+et:Jalgratta laadimine
+eu:Bizikleta kargatzea
+fa:شارژ دوچرخه
+fi:Polkupyörän lataus
+fr:Chargement des vélos
+he:טעינת אופניים
+hi:साइकिल चार्जिंग
+hu:Kerékpár töltés
+id:Pengisian Daya Sepeda
+it:Ricarica delle biciclette
+ja:自転車充電
+ko:자전거 충전
+lv:4Velosipēdu uzlāde|Riteņu uzlāde|Ričuku uzlāde|Divriteņu uzlāde
+mr:सायकल चार्जिंग
+nb:Lading av sykler
+nl:Fiets opladen
+pl:Ładowanie rowerów
+pt:Carregamento de bicicletas
+ro:Încărcarea bicicletelor
+ru:4Велозарядка|Зарядка для велосипедов
+sk:Nabíjanie bicyklov
+sv:Laddning av cyklar
+sw:Kuchaji Baiskeli
+th:การชาร์จจักรยาน
+tr:4Bisiklet Şarjı
+uk:Зарядка для велосипедів
+vi:Sạc xe đạp
+zh-Hans:自行车充电
+zh-Hant:自行車充電
 
 amenity-charging_station-motorcar|@charging_station
 en:4Motorcar Charging|3Car Charging|Charger
@@ -13798,6 +13961,7 @@ et:Tankimisautomaat
 hi:3ईंधन डिस्पेंसर
 lv:Degvielas sūknis
 ru:Топливная колонка|бензоколонка|топливораздаточная колонка
+sr:Самоуслужно точење горива|Samouslužno točenje goriva
 tr:Yakıt dağıtıcı
 uk:Паливна колонка|бензоколонка|пальнороздавальна колонка
 mr:इंधन विक्रीयंत्र
@@ -13940,7 +14104,7 @@ el:Καμινάδα εργοστασίου
 sk:Komín
 mr:कारखाना चिमणी
 
-man_made-tower
+man_made-tower|man_made-flare
 en:Tower
 ru:Башня
 bg:Кула
@@ -15679,6 +15843,88 @@ zh-Hans:消防栓
 zh-Hant:消防栓
 fa:شیر آتش‌نشانی
 mr:अग्निशामक नाळ|फायर हायड्रंट
+
+emergency-lifeguard
+en:Lifeguard|Lifesaver
+ar: منقذ الطوارئ
+be: Ратавальнік
+bg: Спасител при извънредни ситуации | Спасител
+cs: Záchranář pohotovosti
+da: Nødlivredder
+de: Notfall-Rettungsschwimmer
+el: Επείγον ναυαγοσώστης
+es: Socorrista de emergencia
+et: Kiirabipäästja
+eu: Larrialdietako soroslea
+fa: نجات‌غریق اضطراری
+fi: Hätäpelastaja
+fr: Sauveteur d’urgence
+hi: आपातकालीन जीवनरक्षक
+hu: Sürgősségi vízimentő
+id: Penjaga Pantai Darurat
+it: Bagnino d’emergenza
+ja: 緊急救助員
+ko: 긴급 구조 요원
+lv: Ārkārtas glābējs
+mr: आपत्कालीन जीवरक्षक
+nb: Nødredder
+nl: Noodstrandwacht
+pl: Ratownik awaryjny
+pt: Salva-vidas|Guarda-vidas|Nadador-salvador|Socorrista
+pt-BR: Salva-vidas|Guarda-vidas|Nadador-salvador|Socorrista
+ro: Salvamar de urgență
+ru: Спасатель-экстренщик | Спасатель
+sk: Záchranár v núdzi
+sr: Хитан спасиоц | Спасиоц
+sv: Nödlivräddare
+sw: Mwokozi wa Dharura
+th: ผู้ช่วยชีวิตฉุกเฉิน
+tr: Acil Can Kurtaran
+uk: Рятувальник екстреної допомоги | Рятувальник
+vi: Cứu hộ khẩn cấp
+zh-Hans: 紧急救生员
+zh-Hant: 緊急救生員
+
+emergency-mountain_rescue
+en:Mountain Rescue Station|Search and Rescue
+ar:الإنقاذ الجبلي الطارئ
+be:4Аварыйна-выратавальная служба ў гарах|Горная выратавальная служба
+bg:4Спасителна служба в планината|Планинско спасяване
+cs:4Horská záchranná služba
+da:4Nød-bjergredning
+de:4Bergrettung Notdienst
+el:Επείγουσα ορεινή διάσωση
+es:Puesto de rescate de montaña
+et:Hädaolukorra mäepääste
+eu:Mendiko erreskate postua|Mendiko salbamendu postua
+fa:نجات کوهستانی اضطراری
+fi:5Hätävuoristopelastus
+fr:Sauveteurs en montagne d’urgence
+hi:आपातकालीन पर्वतीय बचाव
+hu:Hegyi mentőszolgálat sürgősségi
+id:Penyelamatan Gunung Darurat
+it:4Soccorso alpino di emergenza
+ja:緊急山岳救助
+ko:긴급 산악 구조
+lv:4Ārkārtas kalnu glābšana
+mr:आपत्कालीन पर्वतीय बचाव
+nb:4Nød-fjellredning
+nl:4Nood-bergredding
+pl:4Ratownictwo górskie awaryjne
+pt:Resgate de montanha de emergência
+pt-BR:4Resgate de montanha de emergência
+ro:4Salvare montană de urgență
+ru:4Аварийно-спасательная служба в горах|Горная спасательная служба
+sk:4Horská záchranná služba v núdzi
+sr:Хитна планинска спасилачка служба|Планинска спасилачка служба
+sv:4Nöd-bergskärning
+sw:Uokoaji wa Dharura Milimani
+th:กู้ภัยภูเขาฉุกเฉิน
+tr:Acil Dağ Kurtarma
+uk:4Аварійно-рятувальна служба в горах|Гірська рятувальна служба
+vi:Cứu hộ khẩn cấp trên núi
+zh-Hans:紧急山地救援
+zh-Hant:緊急山地救援
 
 leisure-fitness_station
 en:3Fitness Station|street workout

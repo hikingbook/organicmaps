@@ -74,10 +74,9 @@ class InfoItemViewController: UIViewController {
 protocol PlacePageInfoViewControllerDelegate: AnyObject {
   var shouldShowOpenInApp: Bool { get }
 
-  func didPressCall()
+  func didPressCall(to phone: PlacePagePhone)
   func didPressWebsite()
   func didPressWebsiteMenu()
-  func didPressKayak()
   func didPressWikipedia()
   func didPressWikimediaCommons()
   func didPressFacebook()
@@ -104,10 +103,9 @@ class PlacePageInfoViewController: UIViewController {
   }()
 
   private var rawOpeningHoursView: InfoItemViewController?
-  private var phoneView: InfoItemViewController?
+  private var phoneViews: [InfoItemViewController] = []
   private var websiteView: InfoItemViewController?
   private var websiteMenuView: InfoItemViewController?
-  private var kayakView: InfoItemViewController?
   private var wikipediaView: InfoItemViewController?
   private var wikimediaCommonsView: InfoItemViewController?
   private var emailView: InfoItemViewController?
@@ -131,7 +129,7 @@ class PlacePageInfoViewController: UIViewController {
   private var driveThroughView: InfoItemViewController?
   private var networkView: InfoItemViewController?
 
-  var placePageInfoData: PlacePageInfoData!
+  weak var placePageInfoData: PlacePageInfoData!
   weak var delegate: PlacePageInfoViewControllerDelegate?
   var coordinatesFormatId: Int {
     get { UserDefaults.standard.integer(forKey: Constants.coordFormatIdKey) }
@@ -159,21 +157,21 @@ class PlacePageInfoViewController: UIViewController {
 
     /// @todo Entrance is missing compared with Android. It's shown in title, but anyway ..
 
-    if let phone = placePageInfoData.phone {
+    phoneViews = placePageInfoData.phones.map({ phone in
       var cellStyle: Style = .regular
-      if let phoneUrl = placePageInfoData.phoneUrl, UIApplication.shared.canOpenURL(phoneUrl) {
+      if let phoneUrl = phone.url, UIApplication.shared.canOpenURL(phoneUrl) {
         cellStyle = .link
       }
-      phoneView = createInfoItem(phone,
+      return createInfoItem(phone.phone,
                                  icon: UIImage(named: "ic_placepage_phone_number"),
                                  style: cellStyle,
                                  tapHandler: { [weak self] in
-        self?.delegate?.didPressCall()
+        self?.delegate?.didPressCall(to: phone)
       },
                                  longPressHandler: { [weak self] in
-        self?.delegate?.didCopy(phone)
+        self?.delegate?.didCopy(phone.phone)
       })
-    }
+    })
 
     if let ppOperator = placePageInfoData.ppOperator {
       operatorView = createInfoItem(ppOperator, icon: UIImage(named: "ic_placepage_operator"))
@@ -344,18 +342,6 @@ class PlacePageInfoViewController: UIViewController {
       })
     }
 
-    if let kayak = placePageInfoData.kayak {
-      kayakView = createInfoItem(L("more_on_kayak"),
-                                 icon: UIImage(named: "ic_placepage_kayak"),
-                                 style: .link,
-                                 tapHandler: { [weak self] in
-        self?.delegate?.didPressKayak()
-      },
-                                 longPressHandler: { [weak self] in
-        self?.delegate?.didCopy(kayak)
-      })
-    }
-
     setupCoordinatesView()
     setupOpenWithAppView()
   }
@@ -366,38 +352,40 @@ class PlacePageInfoViewController: UIViewController {
     if formatId >= coordFormats.count {
       formatId = 0
     }
-
-    func setCoordinatesSelected(formatId: Int) {
-      coordinatesFormatId = formatId
-      let coordinates: String = coordFormats[formatId]
-      coordinatesView?.infoLabel.text = coordinates
-    }
-
-    func copyCoordinatesToPasteboard() {
-      let coordinates: String = coordFormats[coordinatesFormatId]
-      self.delegate?.didCopy(coordinates)
-    }
-
     coordinatesView = createInfoItem(coordFormats[formatId],
                                      icon: UIImage(named: "ic_placepage_coordinate"),
                                      accessoryImage: UIImage(named: "ic_placepage_change"),
-                                     tapHandler: { [unowned self] in
+                                     tapHandler: { [weak self] in
+      guard let self else { return }
       let formatId = (self.coordinatesFormatId + 1) % coordFormats.count
-      setCoordinatesSelected(formatId: formatId)
+      self.setCoordinatesSelected(formatId: formatId)
     },
-                                     longPressHandler: {
-      copyCoordinatesToPasteboard()
+                                     longPressHandler: { [weak self] in
+      self?.copyCoordinatesToPasteboard()
     })
     if #available(iOS 14.0, *) {
       let menu = UIMenu(children: coordFormats.enumerated().map { (index, format) in
-        UIAction(title: format, handler: { _ in
-          setCoordinatesSelected(formatId: index)
-          copyCoordinatesToPasteboard()
+        UIAction(title: format, handler: { [weak self] _ in
+          self?.setCoordinatesSelected(formatId: index)
+          self?.copyCoordinatesToPasteboard()
         })
       })
       coordinatesView?.accessoryButton.menu = menu
       coordinatesView?.accessoryButton.showsMenuAsPrimaryAction = true
     }
+  }
+
+  private func setCoordinatesSelected(formatId: Int) {
+    guard let coordFormats = placePageInfoData.coordFormats as? Array<String> else { return }
+    coordinatesFormatId = formatId
+    let coordinates: String = coordFormats[formatId]
+    coordinatesView?.infoLabel.text = coordinates
+  }
+
+  private func copyCoordinatesToPasteboard() {
+    guard let coordFormats = placePageInfoData.coordFormats as? Array<String> else { return }
+    let coordinates: String = coordFormats[coordinatesFormatId]
+    delegate?.didCopy(coordinates)
   }
 
   private func setupOpenWithAppView() {
