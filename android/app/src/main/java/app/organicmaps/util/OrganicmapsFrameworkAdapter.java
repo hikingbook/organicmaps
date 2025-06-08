@@ -40,7 +40,7 @@ import app.organicmaps.location.LocationState;
 import app.organicmaps.location.SensorHelper;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.subway.SubwayManager;
-import app.organicmaps.util.log.LogsManager;
+import app.organicmaps.sdk.PlacePageActivationListener;
 
 public enum OrganicmapsFrameworkAdapter {
     INSTANCE;
@@ -64,12 +64,12 @@ public enum OrganicmapsFrameworkAdapter {
         this.applicationID = applicationID;
         this.application = application;
 
-        try {
-            LogsManager.INSTANCE.initFileLogging(application);
-        }
-        catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
+//        try {
+//            LogsManager.INSTANCE.initFileLogging(application);
+//        }
+//        catch (Exception e) {
+//            Log.e(TAG, e.toString());
+//        }
 
         if (application instanceof MwmApplication) {
             mwmApplication = (MwmApplication) application;
@@ -112,7 +112,7 @@ public enum OrganicmapsFrameworkAdapter {
         try {
             if (!arePlatformAndCoreInitialized()) {
                 mwmApplication.onCreate();
-                mwmApplication.init(onComplete);
+                mwmApplication.initOrganicMaps(onComplete);
             }
             else {
                 onComplete.run();
@@ -123,7 +123,7 @@ public enum OrganicmapsFrameworkAdapter {
     }
 
     public boolean arePlatformAndCoreInitialized() {
-        return mwmApplication.arePlatformAndCoreInitialized();
+        return mwmApplication.getOrganicMaps() != null && mwmApplication.getOrganicMaps().arePlatformAndCoreInitialized();
     }
 
     public boolean isMapEngineCreated() {
@@ -223,7 +223,7 @@ public enum OrganicmapsFrameworkAdapter {
             if (mwmActivity.mOnmapDownloader != null) {
                 mwmActivity.mOnmapDownloader.onPause();
             }
-            if (isMapFragmentAttached()) {
+            if (isMapFragmentAttached() && mwmActivity.mMapFragment != null) {
                 mwmActivity.mMapFragment.onPause();
             }
         }
@@ -231,7 +231,7 @@ public enum OrganicmapsFrameworkAdapter {
         SensorHelper.from(activity).removeListener(mwmActivity);
     }
 
-    public void onStartMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
+    public void onStartMwmActivity(PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
         if (!arePlatformAndCoreInitialized()) {
             return;
         }
@@ -240,7 +240,7 @@ public enum OrganicmapsFrameworkAdapter {
         getLocationHelper().addListener(locationListener);
     }
 
-    public void onStopMwmActivity(Framework.PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
+    public void onStopMwmActivity(PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
         if (!arePlatformAndCoreInitialized()) {
             return;
         }

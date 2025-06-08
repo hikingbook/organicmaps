@@ -512,6 +512,10 @@
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/pugixml/pugixml/src",
 				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-missing-template-arg-list-after-template-kw",
+				);
 			};
 			name = Debug;
 		};
@@ -522,6 +526,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/pugixml/pugixml/src",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-missing-template-arg-list-after-template-kw",
 				);
 			};
 			name = Release;
@@ -546,12 +554,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.editor_tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/pugixml/pugixml/src",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.editor_tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
@@ -559,12 +567,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.editor_tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(OMIM_ROOT)/3party/pugixml/pugixml/src",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.organicmaps.editor_tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};

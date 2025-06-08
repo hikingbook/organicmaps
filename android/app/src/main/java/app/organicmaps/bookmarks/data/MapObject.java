@@ -10,24 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.ParcelCompat;
 
-import app.organicmaps.Framework;
-import app.organicmaps.routing.RoutePointInfo;
-import app.organicmaps.search.Popularity;
-import app.organicmaps.util.Utils;
+import app.organicmaps.sdk.routing.RoutePointInfo;
+import app.organicmaps.sdk.search.Popularity;
 import app.organicmaps.widget.placepage.PlacePageData;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import app.organicmaps.routing.RoutePointInfo;
-import app.organicmaps.search.Popularity;
-import app.organicmaps.widget.placepage.PlacePageData;
 
 // TODO(yunikkk): Refactor. Displayed information is different from edited information, and it's better to
 // separate them. Simple getters from jni place_page::Info and osm::EditableFeature should be enough.
@@ -284,19 +276,6 @@ public class MapObject implements PlacePageData
       return website.substring(start, end);
     }
     return website;
-  }
-
-  @NonNull
-  public String getKayakUrl()
-  {
-    final String uri = getMetadata(Metadata.MetadataType.FMD_EXTERNAL_URI);
-    if (TextUtils.isEmpty(uri))
-      return "";
-    final Instant firstDay = Instant.now();
-    final long firstDaySec = firstDay.getEpochSecond();
-    final long lastDaySec = firstDay.plus(1, ChronoUnit.DAYS).getEpochSecond();
-    final String res = Framework.nativeGetKayakHotelLink(Utils.getCountryCode(), uri, firstDaySec, lastDaySec);
-    return res == null ? "" : res;
   }
 
   public String getApiId()

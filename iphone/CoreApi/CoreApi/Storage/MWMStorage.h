@@ -68,7 +68,6 @@ ignoreUnsavedEdits:(BOOL)force
 - (NSString *)nameForCountry:(NSString *)countryId;
 - (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location;
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId;
-
 @end
 
 NS_ASSUME_NONNULL_END

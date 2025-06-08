@@ -163,8 +163,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         {
           mProgress.setPending(false);
           mProgress.setProgress(Math.round(mCurrentCountry.progress));
-          sizeText = StringUtils.formatUsingSystemLocale("%1$s %2$.2f%%",
-              mActivity.getString(R.string.downloader_downloading), mCurrentCountry.progress);
+          sizeText = mActivity.getString(R.string.downloader_downloading) + " " + StringUtils.formatPercent(mCurrentCountry.progress / 100);
         }
         else
         {
@@ -191,7 +190,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
                 if (TextUtils.equals(mCurrentCountry.id, country) &&
                     MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
-                  MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
+                  MapManager.startDownload(mCurrentCountry.id, getMapSource());
                 }
               }
             }
@@ -260,18 +259,15 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       boolean retry = (countryItemStatus() == CountryItem.STATUS_FAILED);
       if (retry)
       {
-        DownloaderNotifier.cancelNotification(mActivity.getApplicationContext());
-        MapManager.nativeRetry(mCurrentCountry.id, getMapSource().getValue());
+        MapManager.retryDownload(mCurrentCountry.id, getMapSource());
+      }
+      else if (downloaderDelegate != null) {
+        downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
       }
       else
       {
-        if (downloaderDelegate != null) {
-          downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
-        }
-        else {
-          MapManager.nativeDownload(mCurrentCountry.id, getMapSource().getValue());
+        MapManager.startDownload(mCurrentCountry.id, getMapSource());
 //        mActivity.requestPostNotificationsPermission();
-        }
       }
     }));
 

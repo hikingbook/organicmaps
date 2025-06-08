@@ -25,7 +25,7 @@ class BottomMenuViewController: MWMViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.layer.setCorner(radius: 8, corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+    tableView.layer.setCornerRadius(.buttonDefault, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
     tableView.sectionFooterHeight = 0
     
     tableView.dataSource = presenter
@@ -43,6 +43,7 @@ class BottomMenuViewController: MWMViewController {
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    tableView.setNeedsLayout()
     tableView.layoutIfNeeded()
     heightConstraint.constant = min(tableView.contentSize.height, view.height)
     tableView.isScrollEnabled = tableView.contentSize.height > heightConstraint.constant;

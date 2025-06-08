@@ -107,7 +107,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     item.update();
     if (item.status != CountryItem.STATUS_UPDATABLE)
       return;
-    MapManager.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManager.nativeUpdate(item.id, MapSource.ORGANIC_MAPS.getValue()));
+    MapManager.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManager.startUpdate(item.id, MapSource.ORGANIC_MAPS));
   }
 
   private void onExploreActionSelected(CountryItem item, DownloaderAdapter adapter)
@@ -166,6 +166,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
 //      ((MwmActivity) adapter.mActivity).closePlacePage();
 //    }
     deleteNode(item);
+    refreshData();
   }
 
   private record PathEntry(CountryItem item, boolean myMapsMode, int topPosition, int topOffset)
@@ -220,14 +221,9 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
         }
       }
 
-      if (mSearchResultsMode)
+      for (MapManager.StorageCallbackData item : data)
       {
-        for (MapManager.StorageCallbackData item : data)
-          updateItem(item.countryId);
-      }
-      else
-      {
-        refreshData();
+        updateItem(item.countryId);
       }
     }
 
@@ -402,12 +398,10 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
         }
         case CountryItem.STATUS_FAILED ->
         {
-          RetryFailedDownloadConfirmationListener listener =
-              new RetryFailedDownloadConfirmationListener(mActivity.getApplication());
-          MapManager.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, listener);
+          MapManager.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, null);
         }
         case CountryItem.STATUS_UPDATABLE ->
-            MapManager.warnOn3gUpdate(mActivity, mItem.id, () -> MapManager.nativeUpdate(mItem.id, MapSource.ORGANIC_MAPS.getValue()));
+            MapManager.warnOn3gUpdate(mActivity, mItem.id, () -> MapManager.startUpdate(mItem.id, MapSource.ORGANIC_MAPS));
         default -> throw new IllegalArgumentException("Inappropriate item status: " + mItem.status);
       }
     }
@@ -440,7 +434,10 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
           super.updateIcon(country);
           mIcon.setFocusable(country.isExpandable() && country.status != CountryItem.STATUS_DONE);
         }
-      }.setOnIconClickListener(v -> processClick(true)).setOnCancelClickListener(v -> MapManager.nativeCancel(mItem.id));
+      }.setOnIconClickListener(v -> processClick(true)).setOnCancelClickListener(v -> {
+        MapManager.nativeCancel(mItem.id);
+        refreshData();
+      });
 
       mName = frame.findViewById(R.id.name);
       mSubtitle = frame.findViewById(R.id.subtitle);
