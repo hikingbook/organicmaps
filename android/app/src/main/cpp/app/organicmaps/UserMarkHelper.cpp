@@ -1,5 +1,7 @@
 #include "UserMarkHelper.hpp"
 
+#include "app/organicmaps/sdk/routing/RoutePointInfo.hpp"
+
 #include "map/elevation_info.hpp"
 #include "map/place_page_info.hpp"
 
@@ -28,7 +30,7 @@ void InjectMetadata(JNIEnv * env, jclass const clazz, jobject const mapObject, o
 //jobject CreatePopularity(JNIEnv * env, place_page::Info const & info)
 //{
 //  static jclass const popularityClass =
-//    jni::GetGlobalClassRef(env, "app/organicmaps/search/Popularity");
+//    jni::GetGlobalClassRef(env, "app/organicmaps/sdk/search/Popularity");
 //  static jmethodID const popularityConstructor =
 //    jni::GetConstructorID(env, popularityClass, "(I)V");
 //  auto const popularityValue = info.GetPopularity();
@@ -47,7 +49,7 @@ jobject CreateMapObject(JNIEnv * env, place_page::Info const & info, int mapObje
   static jmethodID const ctorId = jni::GetConstructorID(
       env, g_mapObjectClazz,
       "("
-      "Lapp/organicmaps/bookmarks/data/FeatureId;" // featureId
+      "Lapp/organicmaps/bookmarks/data/FeatureId;"      // featureId
       "I"                                               // mapObjectType
       "Ljava/lang/String;"                              // title
       "Ljava/lang/String;"                              // secondaryTitle
@@ -55,9 +57,9 @@ jobject CreateMapObject(JNIEnv * env, place_page::Info const & info, int mapObje
       "Ljava/lang/String;"                              // address
       "DD"                                              // lat, lon
       "Ljava/lang/String;"                              // appId
-      "Lapp/organicmaps/routing/RoutePointInfo;"   // routePointInfo
+      "Lapp/organicmaps/sdk/routing/RoutePointInfo;"    // routePointInfo
       "I"                                               // openingMode
-      "Lapp/organicmaps/search/Popularity;"        // popularity
+      "Lapp/organicmaps/sdk/search/Popularity;"         // popularity
       "Ljava/lang/String;"                              // description
       "I"                                               // roadWarnType
       "[Ljava/lang/String;"                             // rawTypes
@@ -104,8 +106,8 @@ jobject CreateBookmark(JNIEnv *env, const place_page::Info &info,
           jni::GetConstructorID(env, g_bookmarkClazz,
                                 "(Lapp/organicmaps/bookmarks/data/FeatureId;JJLjava/lang/String;"
                                 "Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;"
-                                "Lapp/organicmaps/routing/RoutePointInfo;"
-                                "ILapp/organicmaps/search/Popularity;Ljava/lang/String;"
+                                "Lapp/organicmaps/sdk/routing/RoutePointInfo;"
+                                "ILapp/organicmaps/sdk/search/Popularity;Ljava/lang/String;"
                                 "[Ljava/lang/String;)V");
   static jmethodID const featureCtorId =
           jni::GetConstructorID(env, g_featureIdClazz, "(Ljava/lang/String;JI)V");
@@ -165,12 +167,13 @@ jobject CreateElevationInfo(JNIEnv * env, ElevationInfo const & info)
                                                        "[Lapp/organicmaps/bookmarks/data/ElevationInfo$Point;"
                                                        "IIIIIJ)V");
   jni::TScopedLocalObjectArrayRef jPoints(env, ToElevationPointArray(env, info.GetPoints()));
+  // TODO (KK): elevation info should have only the elevation data - see the https://github.com/organicmaps/organicmaps/pull/10063
   return env->NewObject(g_elevationInfoClazz, ctorId,
                         jPoints.get(),
-                        static_cast<jint>(info.GetAscent()),
-                        static_cast<jint>(info.GetDescent()),
-                        static_cast<jint>(info.GetMinAltitude()),
-                        static_cast<jint>(info.GetMaxAltitude()),
+//                        static_cast<jint>(info.GetAscent()),
+//                        static_cast<jint>(info.GetDescent()),
+//                        static_cast<jint>(info.GetMinAltitude()),
+//                        static_cast<jint>(info.GetMaxAltitude()),
                         static_cast<jint>(info.GetDifficulty()));
 }
 
@@ -210,14 +213,6 @@ jobject CreateMapObject(JNIEnv * env, place_page::Info const & info)
   return CreateMapObject(env, info, kPoi, ll.m_lat, ll.m_lon,
                          true /* parseMeta */, false /* parseApi */,
                          routingPointInfo.get(), popularity, jrawTypes.get());
-}
-
-jobject CreateRoutePointInfo(JNIEnv * env, place_page::Info const & info)
-{
-  static jclass const clazz = jni::GetGlobalClassRef(env, "app/organicmaps/routing/RoutePointInfo");
-  static jmethodID const ctorId = jni::GetConstructorID(env, clazz, "(II)V");
-  int const markType = static_cast<int>(info.GetRouteMarkType());
-  return env->NewObject(clazz, ctorId, markType, info.GetIntermediateIndex());
 }
 
 jobject CreateFeatureId(JNIEnv * env, FeatureID const & fid)

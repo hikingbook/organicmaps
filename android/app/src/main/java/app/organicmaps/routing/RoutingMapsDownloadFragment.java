@@ -45,8 +45,7 @@ public class RoutingMapsDownloadFragment extends BaseRoutingErrorDialogFragment
       mMapsArray[i] = item.id;
     }
 
-    for (String map : mMaps)
-      MapManager.nativeDownload(map, MapSource.ORGANIC_MAPS.getValue());
+    MapManager.startDownload(MapSource.ORGANIC_MAPS, mMapsArray);
   }
 
   private View setupFrame(View frame)

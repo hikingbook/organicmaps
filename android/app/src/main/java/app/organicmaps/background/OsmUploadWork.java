@@ -47,11 +47,11 @@ public class OsmUploadWork extends Worker
   public Result doWork()
   {
 //    final MwmApplication app = MwmApplication.from(mContext);
-//    if (!app.arePlatformAndCoreInitialized())
+//    if (!app.getOrganicMaps().arePlatformAndCoreInitialized())
 //    {
 //      Logger.w(TAG, "Application is not initialized, ignoring " + mWorkerParameters);
 //      return Result.failure();
-//    }
+//   }
     Editor.uploadChanges(mContext);
     return Result.success();
   }

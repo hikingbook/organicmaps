@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,8 +44,8 @@ import app.organicmaps.bookmarks.data.KmlFileType;
 import app.organicmaps.bookmarks.data.SortedBlock;
 import app.organicmaps.bookmarks.data.Track;
 import app.organicmaps.location.LocationHelper;
-import app.organicmaps.search.NativeBookmarkSearchListener;
-import app.organicmaps.search.SearchEngine;
+import app.organicmaps.sdk.search.BookmarkSearchListener;
+import app.organicmaps.sdk.search.SearchEngine;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.UiUtils;
@@ -66,7 +67,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     implements BookmarkManager.BookmarksSharingListener,
                BookmarkManager.BookmarksSortingListener,
                BookmarkManager.BookmarksLoadingListener,
-               NativeBookmarkSearchListener,
+               BookmarkSearchListener,
                ChooseBookmarksSortingTypeFragment.ChooseSortingTypeListener,
                MenuBottomSheetFragment.MenuBottomSheetInterface
 {
@@ -79,6 +80,15 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   private static final String OPTIONS_MENU_ID = "OPTIONS_MENU_BOTTOM_SHEET";
 
   private ActivityResultLauncher<SharingUtils.SharingIntent> shareLauncher;
+  private final ActivityResultLauncher<Intent> startBookmarkListForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
+    System.out.println("resultCode: " + activityResult.getResultCode());
+    handleActivityResult();
+  });
+
+  private final ActivityResultLauncher<Intent> startBookmarkSettingsForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
+    System.out.println("resultCode: " + activityResult.getResultCode());
+    handleActivityResult();
+  });
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
@@ -145,7 +155,9 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
     BookmarkCollectionAdapter adapter = new BookmarkCollectionAdapter(getCategoryOrThrow(),
                                                                       mCategoryItems);
-    adapter.setOnClickListener((v, item) -> BookmarkListActivity.startForResult(this, item));
+    adapter.setOnClickListener((v, item) -> {
+      BookmarkListActivity.startForResult(this, startBookmarkListForResult, item);
+    });
 
     return adapter;
   }
@@ -765,7 +777,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   private void onSettingsOptionSelected()
   {
-    BookmarkCategorySettingsActivity.startForResult(this, mCategoryDataSource.getData());
+    BookmarkCategorySettingsActivity.startForResult(this, startBookmarkSettingsForResult, mCategoryDataSource.getData());
   }
 
   private void onDeleteOptionSelected()
@@ -804,8 +816,15 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   {
     ArrayList<MenuBottomSheetItem> items = new ArrayList<>();
     items.add(new MenuBottomSheetItem(R.string.edit, R.drawable.ic_edit, this::onTrackEditActionSelected));
+    items.add(new MenuBottomSheetItem(R.string.export_file, R.drawable.ic_file_kmz, () -> onShareTrackSelected(track.getTrackId(), KmlFileType.Text)));
+    items.add(new MenuBottomSheetItem(R.string.export_file_gpx, R.drawable.ic_file_gpx, () -> onShareTrackSelected(track.getTrackId(), KmlFileType.Gpx)));
     items.add(new MenuBottomSheetItem(R.string.delete, R.drawable.ic_delete, () -> onDeleteTrackSelected(track.getTrackId())));
     return items;
+  }
+
+  private void onShareTrackSelected(long trackId, KmlFileType kmlFileType)
+  {
+    BookmarksSharingHelper.INSTANCE.prepareTrackForSharing(requireActivity(), trackId, kmlFileType);
   }
 
   @Override
@@ -814,11 +833,8 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     BookmarksSharingHelper.INSTANCE.onPreparedFileForSharing(requireActivity(), shareLauncher, result);
   }
 
-  @Override
-  @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3630
-  public void onActivityResult(int requestCode, int resultCode, Intent data)
+  private void handleActivityResult()
   {
-    super.onActivityResult(requestCode, resultCode, data);
     getBookmarkListAdapter().notifyDataSetChanged();
     ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
     actionBar.setTitle(mCategoryDataSource.getData().getName());

@@ -66,7 +66,9 @@ public final class CountryItem implements Comparable<CountryItem>
   public boolean present;
   public int hikingbookProMapStatus;
 
-  // Progress
+  /**
+   * This value represents the percentage of download (values span from 0 to 100)
+   */
   public float progress;
   public long downloadedBytes;
   public long bytesToDownload;

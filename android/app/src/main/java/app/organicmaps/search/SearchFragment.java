@@ -3,6 +3,7 @@ package app.organicmaps.search;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import app.organicmaps.Framework;
 import app.organicmaps.MwmActivity;
+import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmFragment;
 import app.organicmaps.bookmarks.data.FeatureId;
@@ -31,6 +35,10 @@ import app.organicmaps.downloader.MapManager;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.routing.RoutingController;
+import app.organicmaps.sdk.search.SearchEngine;
+import app.organicmaps.sdk.search.SearchListener;
+import app.organicmaps.sdk.search.SearchRecents;
+import app.organicmaps.sdk.search.SearchResult;
 import app.organicmaps.util.Config;
 import app.organicmaps.util.SharedPropertiesUtils;
 import app.organicmaps.util.UiUtils;
@@ -47,7 +55,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SearchFragment extends BaseMwmFragment
-                         implements NativeSearchListener,
+                         implements SearchListener,
                                     CategoriesAdapter.CategoriesUiListener
 {
   private long mLastQueryTimestamp;
@@ -113,10 +121,9 @@ public class SearchFragment extends BaseMwmFragment
     }
 
     @Override
-    @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3630
-    protected void startVoiceRecognition(Intent intent, int code)
+    protected void startVoiceRecognition(Intent intent)
     {
-      startActivityForResult(intent, code);
+      startVoiceRecognitionForResult.launch(intent);
     }
 
     @Override
@@ -167,6 +174,11 @@ public class SearchFragment extends BaseMwmFragment
   @Nullable
   private String mInitialLocale;
   private boolean mInitialSearchOnMap = false;
+
+  private final ActivityResultLauncher<Intent> startVoiceRecognitionForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult ->
+  {
+    mToolbarController.onVoiceRecognitionResult(activityResult);
+  });
 
   private final LocationListener mLocationListener = new LocationListener()
   {
@@ -299,8 +311,10 @@ public class SearchFragment extends BaseMwmFragment
 
     SearchEngine.INSTANCE.addListener(this);
 
+    SharedPreferences preferences = MwmApplication.prefs(requireContext());
+    int lastSelectedTabPosition = preferences.getInt(Config.KEY_PREF_LAST_SEARCHED_TAB, 0);
     if (SearchRecents.getSize() == 0 && Config.isSearchHistoryEnabled())
-      pager.setCurrentItem(TabAdapter.Tab.CATEGORIES.ordinal());
+      pager.setCurrentItem(lastSelectedTabPosition);
 
     tabAdapter.setTabSelectedListener(tab -> mToolbarController.deactivate());
 
@@ -523,14 +537,6 @@ public class SearchFragment extends BaseMwmFragment
     updateFrames();
     mSearchAdapter.refreshData(results);
     mToolbarController.showProgress(true);
-  }
-
-  @Override
-  @SuppressWarnings("deprecation") // https://github.com/organicmaps/organicmaps/issues/3630
-  public void onActivityResult(int requestCode, int resultCode, Intent data)
-  {
-    super.onActivityResult(requestCode, resultCode, data);
-    mToolbarController.onActivityResult(requestCode, resultCode, data);
   }
 
   @Override

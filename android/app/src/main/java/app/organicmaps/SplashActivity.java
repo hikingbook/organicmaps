@@ -6,7 +6,6 @@ package app.organicmaps;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static app.organicmaps.api.Const.EXTRA_PICK_POINT;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -96,7 +95,7 @@ public class SplashActivity extends AppCompatActivity
     super.onResume();
     if (mCanceled)
       return;
-    if (!Config.isLocationRequested() && !LocationUtils.checkCoarseLocationPermission(this))
+    if (!Config.isLocationRequested() && !LocationUtils.checkLocationPermission(this))
     {
       Logger.d(TAG, "Requesting location permissions");
       mPermissionRequest.launch(new String[]{
@@ -151,15 +150,13 @@ public class SplashActivity extends AppCompatActivity
 //    boolean asyncContinue = false;
 //    try
 //    {
-//      asyncContinue = app.init(this::processNavigation);
+//      asyncContinue = app.initOrganicMaps(this::processNavigation);
 //    } catch (IOException error)
 //    {
 //      showFatalErrorDialog(R.string.dialog_error_storage_title, R.string.dialog_error_storage_message, error);
 //      return;
-//   }
+//    }
 
-//    if (!asyncContinue)
-//      processNavigation();
   }
 
   // Called from MwmApplication::nativeInitFramework like callback.

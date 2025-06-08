@@ -2,8 +2,6 @@
 
 #include "base/assert.hpp"
 
-#include "geometry/distance_on_sphere.hpp"
-
 #include <algorithm>
 
 namespace
@@ -35,7 +33,7 @@ size_t const GpsTrackCollection::kInvalidId = std::numeric_limits<size_t>::max()
 
 GpsTrackCollection::GpsTrackCollection()
   : m_lastId(0)
-  , m_trackInfo(GpsTrackInfo())
+  , m_elevationInfoDirty(true)
 {}
 
 std::pair<size_t, size_t> GpsTrackCollection::Add(std::vector<TItem> const & items)
@@ -51,30 +49,13 @@ std::pair<size_t, size_t> GpsTrackCollection::Add(std::vector<TItem> const & ite
     if (!m_items.empty() && m_items.back().m_timestamp > item.m_timestamp)
       continue;
 
-    if (m_items.empty())
-    {
-      m_trackInfo.m_maxElevation = item.m_altitude;
-      m_trackInfo.m_minElevation = item.m_altitude;
-    }
-    else
-    {
-      auto const & lastItem = m_items.back();
-      m_trackInfo.m_length += ms::DistanceOnEarth(lastItem.GetLatLon(), item.GetLatLon());
-      m_trackInfo.m_duration = item.m_timestamp - m_items.front().m_timestamp;
-
-      auto const deltaAltitude = item.m_altitude - lastItem.m_altitude;
-      if (item.m_altitude > lastItem.m_altitude)
-        m_trackInfo.m_ascent += deltaAltitude;
-      if (item.m_altitude < lastItem.m_altitude)
-        m_trackInfo.m_descent -= deltaAltitude;
-
-      m_trackInfo.m_maxElevation = std::max(static_cast<double>(m_trackInfo.m_maxElevation), item.m_altitude);
-      m_trackInfo.m_minElevation = std::min(static_cast<double>(m_trackInfo.m_minElevation), item.m_altitude);
-    }
+    m_statistics.AddGpsInfoPoint(item);
 
     m_items.emplace_back(item);
     ++added;
   }
+
+  m_elevationInfoDirty = true;
 
   rollbacker.Reset();
 
@@ -106,7 +87,8 @@ std::pair<size_t, size_t> GpsTrackCollection::Clear(bool resetIds)
 
   m_items.clear();
   m_items.shrink_to_fit();
-  m_trackInfo = {};
+  m_statistics = {};
+  m_elevationInfo = {};
 
   if (resetIds)
     m_lastId = 0;
@@ -117,6 +99,21 @@ std::pair<size_t, size_t> GpsTrackCollection::Clear(bool resetIds)
 size_t GpsTrackCollection::GetSize() const
 {
   return m_items.size();
+}
+
+const ElevationInfo & GpsTrackCollection::UpdateAndGetElevationInfo()
+{
+  if (!m_elevationInfoDirty)
+    return m_elevationInfo;
+
+  auto const elevationInfoSize = m_elevationInfo.GetSize();
+  if (elevationInfoSize < m_items.size())
+  {
+    std::vector<TItem> const missedPoints(m_items.begin() + elevationInfoSize, m_items.end());
+    m_elevationInfo.AddGpsPoints(missedPoints);
+  }
+  m_elevationInfoDirty = false;
+  return m_elevationInfo;
 }
 
 bool GpsTrackCollection::IsEmpty() const

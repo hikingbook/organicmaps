@@ -111,8 +111,8 @@ public final class MapManager
         })
         .setPositiveButton(R.string.downloader_retry, (dialog, which) -> {
           Application app = activity.getApplication();
-          RetryFailedDownloadConfirmationListener listener
-              = new ExpandRetryConfirmationListener(app, dialogClickListener);
+          ExpandRetryConfirmationListener listener
+              = new ExpandRetryConfirmationListener(dialogClickListener);
           warn3gAndRetry(activity, errorData.countryId, MapSource.ORGANIC_MAPS, listener);
         }).create();
     dlg.setCanceledOnTouchOutside(false);
@@ -213,7 +213,7 @@ public final class MapManager
     return warnOn3g(activity, countryId, () -> {
       if (onAcceptListener != null)
         onAcceptListener.run();
-      nativeDownload(countryId, mapSource.getValue());
+      startDownload(countryId, mapSource);
     });
   }
 
@@ -222,8 +222,43 @@ public final class MapManager
     return warnOn3g(activity, countryId, () -> {
       if (onAcceptListener != null)
         onAcceptListener.run();
-      nativeRetry(countryId, mapSource.getValue());
+      retryDownload(countryId, mapSource);
     });
+  }
+
+  /**
+   * Enqueues failed items under given {@code root} node in downloader.
+   */
+  public static void retryDownload(@NonNull String countryId, MapSource mapSource) {
+    DownloaderService.startForegroundService();
+    nativeRetry(countryId, mapSource.getValue());
+  }
+
+  /**
+   * Enqueues given {@code root} node with its children in downloader.
+   */
+  public static void startUpdate(@NonNull String root, MapSource mapSource) {
+    DownloaderService.startForegroundService();
+    nativeUpdate(root, mapSource.getValue());
+  }
+
+  /**
+   * Enqueues the given list of nodes and its children in downloader.
+   */
+  public static void startDownload(MapSource mapSource, String... countries) {
+    DownloaderService.startForegroundService();
+    for (var countryId : countries)
+    {
+      nativeDownload(countryId, mapSource.getValue());
+    }
+  }
+
+  /**
+   * Enqueues given {@code root} node and its children in downloader.
+   */
+  public static void startDownload(@NonNull String countryId, MapSource mapSource) {
+    DownloaderService.startForegroundService();
+    nativeDownload(countryId, mapSource.getValue());
   }
 
   /**

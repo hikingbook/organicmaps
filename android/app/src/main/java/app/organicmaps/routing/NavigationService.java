@@ -32,6 +32,8 @@ import androidx.core.content.ContextCompat;
 import app.organicmaps.Framework;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.R;
+import app.organicmaps.sdk.routing.RoutingInfo;
+import app.organicmaps.sound.MediaPlayerWrapper;
 import app.organicmaps.location.LocationHelper;
 import app.organicmaps.location.LocationListener;
 import app.organicmaps.sound.MediaPlayerWrapper;
@@ -201,6 +203,7 @@ public class NavigationService extends Service implements LocationListener
       return START_NOT_STICKY;
     }
 
+//    if (!MwmApplication.from(this).getOrganicMaps().arePlatformAndCoreInitialized())
     if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
       // The system restarts the service if the app's process has crashed or been stopped. It would be nice to

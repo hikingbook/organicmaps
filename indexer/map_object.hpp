@@ -58,6 +58,7 @@ public:
       case MetadataID::FMD_CUSTOM_IDS:
       case MetadataID::FMD_PRICE_RATES:
       case MetadataID::FMD_RATINGS:
+      case MetadataID::FMD_EXTERNAL_URI:
         break;
       default: fn(id, value); break;
       }
@@ -109,6 +110,9 @@ protected:
   /// @returns "the best" single type to display in UI.
   std::string GetLocalizedType() const;
 
+  /// @returns all readable internal types separated by kFieldsSeparator for debugging.
+  std::string GetAllReadableTypes() const;
+    
   FeatureID m_featureID;
   m2::PointD m_mercator;
 
