@@ -34,4 +34,21 @@ JNIEXPORT void JNICALL Java_app_organicmaps_sdk_search_SearchRecents_nativeClear
 {
   g_framework->NativeFramework()->GetSearchAPI().ClearSearchHistory();
 }
+
+JNIEXPORT void JNICALL Java_app_organicmaps_sdk_search_SearchRecents_nativeRemove(JNIEnv * env, jclass thiz, jstring query)
+{
+  auto & searchAPI = g_framework->NativeFramework()->GetSearchAPI();
+  auto const & items = searchAPI.GetLastSearchQueries();
+  if (items.empty())
+    return;
+
+  auto queryString = jni::ToNativeString(env, query);
+  auto nonConstItems = items;
+  nonConstItems.remove_if([&](search::QuerySaver::SearchRequest r) { return r.second == queryString; });
+  searchAPI.ClearSearchHistory();
+  nonConstItems.reverse();
+  for (auto item : nonConstItems) {
+    searchAPI.SaveSearchQuery(item);
+  }
+}
 }
