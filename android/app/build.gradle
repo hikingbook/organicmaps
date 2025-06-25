@@ -82,18 +82,6 @@ def osName = System.properties['os.name'].toLowerCase()
 project.ext.appId = 'net.hikingbook.hikingbook'
 project.ext.appName = 'Hikingbook'
 
-java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of(23))
-  }
-}
-
-java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of(23))
-  }
-}
-
 android {
   namespace 'app.organicmaps'
 
