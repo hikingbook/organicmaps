@@ -44,9 +44,6 @@ using namespace storage;
 @property(strong, nonatomic) IBOutlet UILabel *node;
 @property(strong, nonatomic) IBOutlet UILabel *nodeSize;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint *nodeTopOffset;
-@property(strong, nonatomic) IBOutlet UIButton *downloadButton;
-@property(strong, nonatomic) IBOutlet UIView *progressWrapper;
-@property(strong, nonatomic) IBOutlet UILabel *numDownloadedMapsLimitLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
 @property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
 
@@ -226,8 +223,8 @@ using namespace storage;
     
     // Added by Zheng-Xiang Ke
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
-      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:NO isInQueue:NO];
+    if ([delegate respondsToSelector:@selector(downloadDialog:viewDidAppearWithIsDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self viewDidAppearWithIsDownloading:NO isInQueue:NO];
     }
 }
 
@@ -243,8 +240,8 @@ using namespace storage;
     
     // Added by Zheng-Xiang Ke
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
-      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:YES isInQueue:NO];
+    if ([delegate respondsToSelector:@selector(downloadDialog:viewDidAppearWithIsDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self viewDidAppearWithIsDownloading:YES isInQueue:NO];
     }
 }
 
@@ -259,8 +256,8 @@ using namespace storage;
     
     // Added by Zheng-Xiang Ke
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:updateNumDownloadedMapsLimitLabel:isDownloading:isInQueue:)]) {
-      [delegate downloadDialog:self updateNumDownloadedMapsLimitLabel:self.numDownloadedMapsLimitLabel isDownloading:NO isInQueue:YES];
+    if ([delegate respondsToSelector:@selector(downloadDialog:viewDidAppearWithIsDownloading:isInQueue:)]) {
+      [delegate downloadDialog:self viewDidAppearWithIsDownloading:NO isInQueue:YES];
     }
 }
 
