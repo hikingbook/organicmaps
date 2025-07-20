@@ -45,7 +45,6 @@ repositories {
 }
 
 //apply plugin: 'com.android.application'
-apply from: 'secure.properties'
 apply plugin: 'com.android.library'
 if (googleFirebaseServicesEnabled) {
   apply plugin: 'com.google.gms.google-services'
@@ -74,6 +73,10 @@ def getVersion() {
   def versionCode = Integer.parseInt(run([bash, '../../tools/unix/version.sh', 'android_code']).trim())
   def versionName = run([bash, '../../tools/unix/version.sh', 'android_name']).trim()
   return new Tuple2(versionCode, versionName)
+}
+
+def getCommitMessage() {
+  return run(['git', '--no-pager', 'show', '-s', '--format=%s%n%n%b', 'HEAD']).trim()
 }
 
 def osName = System.properties['os.name'].toLowerCase()
