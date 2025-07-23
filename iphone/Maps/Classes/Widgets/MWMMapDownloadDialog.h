@@ -12,6 +12,7 @@
 
 - (void)processViewportCountryEvent:(storage::CountryId const &)countryId;
 - (void)processCountryEvent:(NSString *)countryId;
+- (NSString *)countryID;
 
 @property(weak, nonatomic, nullable) id<MWMMapDownloadDialogDelegate> delegate;
 

@@ -375,4 +375,8 @@ using namespace storage;
         make.height.mas_equalTo(height);
     }];
 }
+
+- (NSString *)countryID {
+    return @(m_countryId.c_str());
+}
 @end
