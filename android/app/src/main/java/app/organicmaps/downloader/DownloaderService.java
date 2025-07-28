@@ -120,7 +120,11 @@ public class DownloaderService extends Service implements MapManager.StorageCall
   {
     Logger.i(TAG);
     var context = MwmApplication.sInstance;
-    ContextCompat.startForegroundService(context, new Intent(context, DownloaderService.class));
+    try {
+      ContextCompat.startForegroundService(context, new Intent(context, DownloaderService.class));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private boolean hasDownloadFailed(List<MapManager.StorageCallbackData> data)
