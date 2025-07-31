@@ -104,14 +104,12 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     updateStateInternal(shouldAutoDownload);
   }
 
-  private static boolean isMapDownloading(@Nullable CountryItem country)
-  {
-    if (country == null) return false;
+  public Button getDownloadMapButton() {
+    return mButton;
+  }
 
-    boolean enqueued = country.status == CountryItem.STATUS_ENQUEUED || country.hikingbookProMapStatus == CountryItem.STATUS_ENQUEUED;
-    boolean progress = country.status == CountryItem.STATUS_PROGRESS || country.hikingbookProMapStatus == CountryItem.STATUS_PROGRESS;
-    boolean applying = country.status == CountryItem.STATUS_APPLYING || country.hikingbookProMapStatus == CountryItem.STATUS_APPLYING;
-    return enqueued || progress || applying;
+  public WheelProgressView getProgressView() {
+    return mProgress;
   }
 
   private void updateProgressState(boolean shouldAutoDownload)
@@ -144,10 +142,11 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
           mapSourceName = downloaderDelegate.l10nMapSource(getMapSource());
         }
 
-        UiUtils.showIf(!mapSourceName.isBlank() && (progress || enqueued), mMapSource);
-        UiUtils.showIf(progress || enqueued, mSize);
-        UiUtils.showIf(progress || enqueued, mProgress);
-        UiUtils.showIf(!progress && !enqueued, mButton);
+        boolean isDownloading = progress || enqueued;
+        UiUtils.showIf(!mapSourceName.isBlank() && isDownloading, mMapSource);
+        UiUtils.showIf(isDownloading, mSize);
+        UiUtils.showIf(isDownloading, mProgress);
+        UiUtils.showIf(!isDownloading, mButton);
         UiUtils.showIf(hasParent, mParent);
 
         if (hasParent)
@@ -205,6 +204,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     }
 
     UiUtils.showIf(showFrame, mFrame);
+    if (downloaderDelegate != null) {
+      downloaderDelegate.onCountryStateChanged(this, showFrame, mCurrentCountry);
+    }
   }
 
   private MapSource getMapSource() {
@@ -335,5 +337,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     String l10nMapSource(MapSource mapSource);
 
     void cancelDownloadButtonDidClick(CountryItem countryItem, MapSource mapSource);
+
+    void onCountryStateChanged(OnmapDownloader downloader, Boolean isDownloaderVisible, @Nullable CountryItem countryItem);
   }
 }
