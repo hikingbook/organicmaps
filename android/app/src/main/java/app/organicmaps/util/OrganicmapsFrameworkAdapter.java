@@ -26,6 +26,7 @@ import java.util.List;
 
 import app.organicmaps.Framework;
 import app.organicmaps.Map;
+import app.organicmaps.MapRenderingListener;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
@@ -42,6 +43,7 @@ import app.organicmaps.location.SensorHelper;
 import app.organicmaps.maplayer.isolines.IsolinesManager;
 import app.organicmaps.maplayer.subway.SubwayManager;
 import app.organicmaps.sdk.PlacePageActivationListener;
+import app.organicmaps.util.log.Logger;
 
 public enum OrganicmapsFrameworkAdapter {
     INSTANCE;
@@ -56,6 +58,7 @@ public enum OrganicmapsFrameworkAdapter {
     private AppCompatActivity activity;
     private Fragment fragment;
     private SharedPreferences sharedPreferences;
+    private MapRenderingListener mapRenderingListener;
 
     public void initApplicationIfNeed(Application application, String applicationID) {
         if (this.application != null) {
@@ -81,20 +84,12 @@ public enum OrganicmapsFrameworkAdapter {
         return this.application;
     }
 
-    public void setActivity(AppCompatActivity activity) {
-        this.activity = activity;
-    }
-
     public FragmentActivity getActivity() {
         return this.activity;
     }
 
     public String getApplicationID() {
         return this.applicationID;
-    }
-
-    public void setFragment(Fragment fragment) {
-        this.fragment = fragment;
     }
 
     public Fragment getFragment() {
@@ -180,9 +175,12 @@ public enum OrganicmapsFrameworkAdapter {
         getLocationHelper().restartWithNewMode();
     }
 
-    public void initActivity(AppCompatActivity activity, Fragment fragment) {
-        setActivity(activity);
-        setFragment(fragment);
+    public void initActivity(AppCompatActivity activity,
+                             MapRenderingListener mapRenderingListener,
+                             Fragment fragment) {
+        this.activity = activity;
+        this.mapRenderingListener = mapRenderingListener;
+        this.fragment = fragment;
     }
 
     public void onCreateMwmActivity(Bundle savedInstanceState) {
@@ -571,6 +569,10 @@ public enum OrganicmapsFrameworkAdapter {
             return "Countries";
         }
         return MapManager.nativeGetRoot();
+    }
+
+    public MapRenderingListener getMapRenderingListener() {
+        return mapRenderingListener;
     }
 
     private boolean isMapFragmentAttached() {

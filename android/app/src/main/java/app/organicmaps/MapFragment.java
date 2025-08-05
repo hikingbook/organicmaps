@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2025.
 package app.organicmaps;
 
 import android.content.Context;
@@ -19,6 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import app.organicmaps.base.BaseMwmFragment;
 import app.organicmaps.display.DisplayType;
+import app.organicmaps.util.OrganicmapsFrameworkAdapter;
 import app.organicmaps.util.log.Logger;
 
 public class MapFragment extends BaseMwmFragment implements View.OnTouchListener, SurfaceHolder.Callback
@@ -84,7 +86,8 @@ public class MapFragment extends BaseMwmFragment implements View.OnTouchListener
   {
     Logger.d(TAG);
     super.onAttach(context);
-    mMap.setMapRenderingListener((MapRenderingListener) context);
+//    mMap.setMapRenderingListener((MapRenderingListener) context);
+    mMap.setMapRenderingListener(OrganicmapsFrameworkAdapter.INSTANCE.getMapRenderingListener());
     mMap.setCallbackUnsupported(this::reportUnsupported);
   }
 
@@ -186,6 +189,10 @@ public class MapFragment extends BaseMwmFragment implements View.OnTouchListener
   {
     mMap.onSurfaceDestroyed(false, true);
     task.run();
+  }
+
+  public Map getMap() {
+    return mMap;
   }
 
   private void reportUnsupported()
