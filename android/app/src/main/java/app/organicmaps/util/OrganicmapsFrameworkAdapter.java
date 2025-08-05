@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -306,18 +307,8 @@ public enum OrganicmapsFrameworkAdapter {
         Framework.nativeZoomToPoint(lat, lon, SEARCH_IN_VIEWPORT_ZOOM, true);
     }
 
-    public void updateNumMapLimit(boolean isVisible, String text, int color, int backgroundColor) {
-        if (mwmActivity.mOnmapDownloader == null) {
-            return;
-        }
-        mwmActivity.mOnmapDownloader.updateNumMapLimit(isVisible, text, color, backgroundColor);
-    }
-
-    public void setDownloaderDelegate(OnmapDownloader.IDownloaderDelegate downloaderDelegate) {
-        if (mwmActivity.mOnmapDownloader == null) {
-            return;
-        }
-        mwmActivity.mOnmapDownloader.downloaderDelegate = downloaderDelegate;
+    public @Nullable OnmapDownloader getOnmapDownloader() {
+        return mwmActivity.mOnmapDownloader;
     }
 
     public void updateCompassOffset(int offsetY, int offsetX) {
