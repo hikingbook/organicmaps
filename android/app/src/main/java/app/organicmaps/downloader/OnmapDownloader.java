@@ -62,8 +62,14 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         if (!item.isLeafNode)
           continue;
 
-        if (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED)
-          MapManager.showError(mActivity, item, null);
+        if (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED) {
+          if (downloaderDelegate != null) {
+            downloaderDelegate.handleDownloadError(item, getMapSource());
+          }
+          else {
+            MapManager.showError(mActivity, item, null);
+          }
+        }
 
         if (mCurrentCountry.id.equals(item.countryId))
         {
@@ -339,5 +345,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     void cancelDownloadButtonDidClick(CountryItem countryItem, MapSource mapSource);
 
     void onCountryStateChanged(OnmapDownloader downloader, Boolean isDownloaderVisible, @Nullable CountryItem countryItem);
+
+    void handleDownloadError(MapManager.StorageCallbackData countryItem, MapSource mapSource);
   }
 }
