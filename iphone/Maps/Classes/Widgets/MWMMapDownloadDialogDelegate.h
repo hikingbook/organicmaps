@@ -14,7 +14,7 @@
 
 @optional
 -(BOOL)downloadDialog:(MWMMapDownloadDialog *)downloadDialog shouldDownloadMap:(NSString *)countryId;
--(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog updateNumDownloadedMapsLimitLabel:(UILabel *)numDownloadedMapsLimitLabel isDownloading:(BOOL)isDownloading isInQueue:(BOOL)isInQueue;
+-(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog viewDidAppearWithIsDownloading:(BOOL)isDownloading isInQueue:(BOOL)isInQueue;
 -(MWMMapSource)downloadDialog:(MWMMapDownloadDialog *)downloadDialog mapSourceForCountry:(NSString *)countryId;
 -(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog presentMapStyle:(NSString *)countryId;
 -(NSString *)downloadDialog:(MWMMapDownloadDialog *)downloadDialog l10nMapSource:(MWMMapSource)mapSorce;
