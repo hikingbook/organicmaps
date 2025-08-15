@@ -30,17 +30,17 @@
 
 /* 2.BOUNDARY */
 
-@border_country: #63635C;
-@border_region: #73726B;
+@border_country: #ff668c;   /* Hikingbook */
+@border_region: #EB90A3;    /* Hikingbook */
 @indigenous_lands: #734D26;
 
 /* 3.NATURAL */
 /* 3.1 Main natural */
 
 @glacier: #FFFFFF;
-@water: #8BD3E0;
+@water: #99DDFF;    /* Hikingbook */
 @water_bad: #9dc7c1;
-@river: #36B0BF;
+@river: #88BBE7;    /* Hikingbook */
 @wetland: #c9ddd6;
 @beach: #FCEC7E;
 @barerock: #D9D2BF;
@@ -49,16 +49,16 @@
 
 /*3.2 Vegetation*/
 
-@green0: #CFD5A8;
-@green1: #C6CF93;
-@green1b: #C1CC89;
-@green2: #BCC87E;
-@green3: #B3C471;
-@green4: #AEC26B;
-@green5: #B0C270;
-@forest: #AABF65;
+@green0: #C3DDA2;   /* Hikingbook */
+@green1: #C3DDA2;
+@green1b: #C3DDA2;
+@green2: #C3DDA2;
+@green3: #C3DDA2;
+@green4: #A2CE84;
+@green5: #A2CE84;
+@forest: #A2CE84;   /* Hikingbook */
 @green6: #888C38;
-@flowers: #B3C471;
+@flowers: #A2CE84;
 
 /* 4.LANDUSE */
 /*4.1 Main landuse*/
@@ -79,12 +79,12 @@
 
 /*4.2 Aerodrome*/
 
-@aerodrome0: #D4BFF2;
-@aerodrome1: #D4BFF2;
-@aerodrome2: #D1C0EB;
-@aerodrome3: #CFC1E8;
-@aerodrome4: #CDC0E3;
-@aerodrome5: #C8BCDE;
+@aerodrome0: #C0C5E0;   /* Hikingbook */
+@aerodrome1: #C0C5E0;   /* Hikingbook */
+@aerodrome2: #C0C5E0;   /* Hikingbook */
+@aerodrome3: #C0C5E0;   /* Hikingbook */
+@aerodrome4: #C0C5E0;   /* Hikingbook */
+@aerodrome5: #C0C5E0;   /* Hikingbook */
 
 /* 4.3 Barriers */
 @fence: #888888;
@@ -93,49 +93,48 @@
 
 /* 4.4 Buildings */
 
-@building0: #C9C8BB;
-@building1: #C2C0B3;
+@building0: #C8C6B8;    /* Hikingbook */
+@building1: #F0ECE2;    /* Hikingbook */
 @building_border0: #A1A096;
 @building_border1: #9B9A8F;
 
 /* 5.ROADS */
 /* 5.1 All roads */
 
-@trunk0: #FF7326;
-@trunk1: #FF7A26;
-@primary0:  #FF8726;
-@primary1: #FF9440;
-@primary2: #FFA14C;
-@secondary0: #FFB226;
-@secondary1: #FFBF52;
-@tertiary: #FFFFFF;
-@residential: #F8F8F8;
-@pedestrian: #F8F8F8;
-@footway: #F8F8F8;
+@trunk0: #F2A386;   /* Hikingbook */
+@trunk1: #F2A386;   /* Hikingbook */
+@primary0:  #F1CA90;    /* Hikingbook */
+@primary1: #F1CA90; /* Hikingbook */
+@primary2: #F1CA90; /* Hikingbook */
+@secondary0: #F2F2F2;   /* Hikingbook */
+@secondary1: #F2F2F2;   /* Hikingbook */
+@tertiary: #F2F2F2; /* Hikingbook */
+@residential: #F2F2F2;  /* Hikingbook */
+@pedestrian: #F2F2F2;   /* Hikingbook */
+@footway: #F2F2F2;  /* Hikingbook */
 @cycleway: #5654FF;
 @construction: #BBBBAA;
 @track: #635730;
 @path: #A05012;
 @path_expert: #3D2617;
 @bridleway: #3D361E;
-@difficult_alpine_hiking_path: #8944AB;
 
 /* 5.2 Bridges */
 
-@bridge_background: #EDEBDB;
+@bridge_background: #E0E0D2;    /* Hikingbook */
 @bridge_casing: #808080;
 
 /* 5.3 Tunnels */
 
-@trunk_tunnel: #FCA462;
+@trunk_tunnel: #F2A386; /* Hikingbook */
 @trunk_tunnel_casing: #808080;
-@primary_tunnel: #FCA462;
+@primary_tunnel: #F1CA90;   /* Hikingbook */
 @primary_tunnel_casing: #808080;
-@secondary_tunnel: #FFBF52;
+@secondary_tunnel: #F2F2F2; /* Hikingbook */
 @secondary_tunnel_casing:  #808080;
-@tertiary_tunnel: #FFFFFF;
+@tertiary_tunnel: #F2F2F2;  /* Hikingbook */
 @tertiary_tunnel_casing:  #808080;
-@residential_tunnel: #FFFFFF;
+@residential_tunnel: #F2F2F2;   /* Hikingbook */
 @residential_tunnel_casing: #808080;
 
 /* 5.4 Piste */
@@ -170,14 +169,14 @@
 
 /* 6.2 Natural labels */
 
-@water_label: #4499Bb;
-@park_label: #3A7921;
+@water_label: #4C9EDD;  /* Hikingbook */
+@park_label: #2F5218;   /* Hikingbook */
 @halo_park_label: #FFFFFF;
 
 /* 6.3 Place labels */
 
-@city_label: #666666;
-@country_label: #8C8C8C;
+@city_label: #333333;   /* Hikingbook */
+@country_label: #333333;   /* Hikingbook */
 @state_label: #8C8C8C;
 @district_label: #7F7F7F;
 @housenumber: #65655E;
