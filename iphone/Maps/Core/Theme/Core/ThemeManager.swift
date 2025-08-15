@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2025.
 @objc(MWMThemeManager)
 final class ThemeManager: NSObject {
   private static let autoUpdatesInterval: TimeInterval = 30 * 60 // 30 minutes in seconds
@@ -7,15 +8,7 @@ final class ThemeManager: NSObject {
 
   private override init() {
     super.init()
-//    if #available(iOS 13.0, *) {
-//      MapsAppDelegate.theApp().window.overrideUserInterfaceStyle = .light
-//    }
   }
-
-//  @objc static func setDarkModeEnabled(_ val: Bool) {
-//    instance.isDarkModeEnabled = val
-//    instance.update(theme: MWMSettings.theme())
-//  }
 
   private func update(theme: MWMTheme) {
 //    if #available(iOS 13.0, *) {

@@ -12,7 +12,12 @@
 
 - (void)processViewportCountryEvent:(storage::CountryId const &)countryId;
 - (void)processCountryEvent:(NSString *)countryId;
+- (NSString *)countryID;
 
 @property(weak, nonatomic, nullable) id<MWMMapDownloadDialogDelegate> delegate;
+
+@property(strong, nonatomic) IBOutlet UILabel *numDownloadedMapsLimitLabel;
+@property(strong, nonatomic) IBOutlet UIButton *downloadButton;
+@property(strong, nonatomic) IBOutlet UIView *progressWrapper;
 
 @end
