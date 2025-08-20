@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2025.
 #include "app/organicmaps/Framework.hpp"
 
 #include "app/organicmaps/core/jni_helper.hpp"
@@ -823,6 +824,13 @@ void CallSetRoutingLoadPointsListener(shared_ptr<jobject> listener, bool success
   JNIEnv * env = jni::GetEnv();
   jmethodID const methodId = jni::GetMethodID(env, *listener, "onRoutePointsLoaded", "(Z)V");
   env->CallVoidMethod(*listener, methodId, static_cast<jboolean>(success));
+}
+
+void CallViewportListener(shared_ptr<jobject> listener, ScreenBase const & screen)
+{
+    JNIEnv * env = jni::GetEnv();
+    jmethodID const methodId = jni::GetMethodID(env, *listener, "onViewportChanged", "()V");
+    env->CallVoidMethod(*listener, methodId);
 }
 
 RoutingManager::LoadRouteHandler g_loadRouteHandler;
@@ -1877,4 +1885,16 @@ Java_app_organicmaps_Framework_nativeDeactivateMapSelection(JNIEnv * env, jclass
 {
   return g_framework->DeactivateMapSelection();
 }
+
+// Zheng-Xiang: Expose SetViewportListener
+JNIEXPORT void JNICALL
+Java_app_organicmaps_Framework_nativeSetViewportListener(JNIEnv * env, jclass, jobject listener)
+{
+    CHECK(g_framework, ("Framework isn't created yet!"));
+    frm()->SetViewportListener(
+            [rf = jni::make_global_ref(listener)](ScreenBase const & screen) {
+                CallViewportListener(rf, screen);
+            });
+}
+
 }  // extern "C"
