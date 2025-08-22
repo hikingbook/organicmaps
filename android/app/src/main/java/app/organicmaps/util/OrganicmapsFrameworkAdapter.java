@@ -188,7 +188,7 @@ public enum OrganicmapsFrameworkAdapter {
         if (!mwmActivity.mIsTabletLayout)
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        mwmActivity.initViews(false);
+        mwmActivity.initViews(false, savedInstanceState);
     }
 
     public void onResumeMwmActivity() {
@@ -202,7 +202,7 @@ public enum OrganicmapsFrameworkAdapter {
                             mwmActivity.mMapFragment.destroySurface();
                         }
                         activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
-                        mwmActivity.initViews(false);
+                        mwmActivity.initViews(false, null);
                     }
                 }
 

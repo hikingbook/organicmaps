@@ -573,7 +573,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     final Intent intent = getIntent();
     final boolean isLaunchByDeepLink = intent != null && !intent.hasCategory(Intent.CATEGORY_LAUNCHER);
-    initViews(isLaunchByDeepLink);
+    initViews(isLaunchByDeepLink, savedInstanceState);
     updateViewsInsets();
 
     if (getIntent().getBooleanExtra(EXTRA_UPDATE_THEME, false))
@@ -625,11 +625,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
     return info == null ? 0 : info.filesCount;
   }
 
-  public void initViews(boolean isLaunchByDeeplink)
+  public void initViews(boolean isLaunchByDeeplink, @Nullable Bundle savedInstanceState)
   {
     // Added by Zhend-Xiang
     initDisplayManager();
-    initMap(isLaunchByDeeplink);
+    initMap(isLaunchByDeeplink, savedInstanceState);
 //    initNavigationButtons();
 
 //    if (!mIsTabletLayout)
@@ -761,32 +761,41 @@ public class MwmActivity extends BaseMwmFragmentActivity
       finish();
   }
 
-  private void initMap(boolean isLaunchByDeepLink)
+  private void initMap(boolean isLaunchByDeepLink, @Nullable Bundle savedInstanceState)
   {
-    try {
-      final FragmentActivity activity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
-      final FragmentManager manager = activity.getSupportFragmentManager();
-      mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
-      if (mMapFragment == null) {
-        mMapFragment = (MapFragment) manager.findFragmentById(R.id.map_fragment_container);
-        if (mMapFragment == null) {
-          Bundle args = new Bundle();
-          args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
-          final FragmentFactory factory = manager.getFragmentFactory();
-          mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
-          mMapFragment.setArguments(args);
-          manager
-                  .beginTransaction()
-                  .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-                  .commit();
-        }
-      }
+    final FragmentActivity activity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
+    final FragmentManager manager = activity.getSupportFragmentManager();
 
-//    View container = findViewById(R.id.map_fragment_container);
-      View container = activity.findViewById(R.id.map_fragment_container);
+    if (savedInstanceState == null)
+    {
+      // This is the first time the Activity is created.
+      // We create and add a new MapFragment.
+      Bundle args = new Bundle();
+      args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
+      final FragmentFactory factory = manager.getFragmentFactory();
+      mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
+      mMapFragment.setArguments(args);
+      manager.beginTransaction()
+              .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+              .commit();
+    }
+    else
+    {
+      // The Activity is being recreated (e.g., after screen rotation).
+      // The FragmentManager has automatically restored the fragment.
+      // We just need to find its reference.
+      mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
+      if (mMapFragment == null)
+      {
+        // As a fallback in case the tag lookup fails after recreation, find by ID.
+        mMapFragment = (MapFragment) manager.findFragmentById(R.id.map_fragment_container);
+      }
+    }
+
+    View container = activity.findViewById(R.id.map_fragment_container);
+    if (container != null)
+    {
       container.setOnTouchListener(this);
-    } catch (Throwable e) {
-      (new Handler(Looper.getMainLooper())).postDelayed(() -> initMap(isLaunchByDeepLink), 500);
     }
   }
 
