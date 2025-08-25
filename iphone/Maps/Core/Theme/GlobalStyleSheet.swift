@@ -4,6 +4,7 @@ enum GlobalStyleSheet: String, CaseIterable {
   case tableViewCell = "MWMTableViewCell"
   case defaultTableViewCell
   case tableViewHeaderFooterView = "TableViewHeaderFooterView"
+  case defaultSearchBar
   case searchBar = "SearchBar"
   case navigationBar = "NavigationBar"
   case navigationBarItem = "NavigationBarItem"
@@ -95,6 +96,14 @@ extension GlobalStyleSheet: IStyleSheet {
         s.font = fonts.medium14
         s.fontColor = colors.blackSecondaryText
       }
+    case .defaultSearchBar:
+      return .add { s in
+        s.backgroundColor = colors.pressBackground
+        s.barTintColor = colors.clear
+        s.fontColor = colors.blackPrimaryText
+        s.fontColorDetailed = UIColor.white
+        s.tintColor = colors.blackSecondaryText
+      }
     case .searchBar:
       return .add { s in
         s.backgroundColor = colors.white
@@ -181,6 +190,7 @@ extension GlobalStyleSheet: IStyleSheet {
         s.tintColor = colors.blackSecondaryText
         s.coloring = MWMButtonColoring.black
         s.cornerRadius = .buttonDefault
+        s.imageContainerInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         s.shadowColor = UIColor(0,0,0,alpha20)
         s.shadowOpacity = 1
         s.shadowOffset = CGSize(width: 0, height: 1)
@@ -189,6 +199,7 @@ extension GlobalStyleSheet: IStyleSheet {
     case .trackRecordingWidgetButton:
       return .addFrom(Self.bottomTabBarButton) { s in
         s.cornerRadius = .custom(23)
+        s.coloring = .red
       }
     case .blackOpaqueBackground:
       return .add { s in
@@ -224,10 +235,11 @@ extension GlobalStyleSheet: IStyleSheet {
       }
     case .tabView:
       return .add { s in
-        s.backgroundColor = colors.pressBackground
-        s.barTintColor = colors.primary
-        s.tintColor = colors.white
-        s.fontColor = colors.whitePrimaryText
+        s.backgroundColor = colors.white
+        s.barTintColor = colors.white
+        s.tintColor = colors.linkBlue
+        s.fontColor = colors.blackSecondaryText
+        s.fontColorHighlighted = colors.linkBlue
         s.font = fonts.medium14
       }
     case .dialogView:
@@ -442,7 +454,7 @@ extension GlobalStyleSheet: IStyleSheet {
         s.shadowRadius = 6
         s.cornerRadius = .modalSheet
         s.clip = false
-        s.maskedCorners = isIPad ? [] : [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        s.maskedCorners = isiPad ? [] : [.layerMinXMinYCorner, .layerMaxXMinYCorner]
       }
     case .modalSheetContent:
       return .addFrom(Self.modalSheetBackground) { s in

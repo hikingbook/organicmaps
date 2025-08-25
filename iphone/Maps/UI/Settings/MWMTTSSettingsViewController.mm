@@ -3,7 +3,6 @@
 #import "MWMTextToSpeech+CPP.h"
 #import "Hikingbook-Swift-Header.h"
 #import "TTSTester.h"
-#import "SwiftBridge.h"
 
 #include <CoreApi/Framework.h>
 #include "LocaleTranslator.h"
@@ -33,7 +32,8 @@ struct BaseCellStategy
                                       MWMTTSSettingsViewController * controller) = 0;
 
   virtual void SelectCell(UITableView * /* tableView */, NSIndexPath * /* indexPath */,
-                          MWMTTSSettingsViewController * /* controller */) {};
+                          MWMTTSSettingsViewController * /* controller */)
+  {}
 
   virtual NSString * TitleForFooter() const { return nil; }
 
@@ -44,8 +44,8 @@ struct BaseCellStategy
   virtual ~BaseCellStategy() {}
 };
 
-UITableViewCell* voiceInstructionsCell;
-UITableViewCell* streetNamesCell;
+UITableViewCell * voiceInstructionsCell;
+UITableViewCell * streetNamesCell;
 
 struct VoiceInstructionCellStrategy : BaseCellStategy
 {
@@ -53,8 +53,8 @@ struct VoiceInstructionCellStrategy : BaseCellStategy
                               MWMTTSSettingsViewController * controller) override
   {
     Class cls = [SettingsTableViewSwitchCell class];
-    auto cell = static_cast<SettingsTableViewSwitchCell *>(
-        [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+    auto cell = static_cast<SettingsTableViewSwitchCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                             indexPath:indexPath]);
     [cell configWithDelegate:static_cast<id<SettingsTableViewSwitchCellDelegate>>(controller)
                        title:L(@"pref_tts_enable_title")
                         isOn:[MWMTextToSpeech isTTSEnabled]];
@@ -66,7 +66,7 @@ struct VoiceInstructionCellStrategy : BaseCellStategy
 struct LanguageCellStrategy : BaseCellStategy
 {
   TTSTester * ttsTester = [[TTSTester alloc] init];
-  
+
   UITableViewCell * BuildCell(UITableView * tableView, NSIndexPath * indexPath,
                               MWMTTSSettingsViewController * controller) override
   {
@@ -75,26 +75,27 @@ struct LanguageCellStrategy : BaseCellStategy
     if (row == controller.languages.size())
     {
       Class cls = [SettingsTableViewLinkCell class];
-      auto cell = static_cast<SettingsTableViewLinkCell *>(
-          [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+      auto cell = static_cast<SettingsTableViewLinkCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                             indexPath:indexPath]);
       [cell configWithTitle:L(@"pref_tts_other_section_title") info:nil];
       return cell;
     }
-    
+
     // "Test TTS" cell
     if (row == controller.languages.size() + 1)
     {
       Class cls = [SettingsTableViewSelectableCell class];
-      auto cell = static_cast<SettingsTableViewSelectableCell *>(
-          [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+      auto cell =
+          static_cast<SettingsTableViewSelectableCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                           indexPath:indexPath]);
       [cell configWithTitle:L(@"pref_tts_test_voice_title")];
       cell.accessoryType = UITableViewCellAccessoryNone;
       return cell;
     }
 
     Class cls = [SettingsTableViewSelectableCell class];
-    auto cell = static_cast<SettingsTableViewSelectableCell *>(
-        [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+    auto cell = static_cast<SettingsTableViewSelectableCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                                 indexPath:indexPath]);
     pair<string, string> const p = controller.languages[row];
     [cell configWithTitle:@(p.second.c_str())];
     BOOL const isSelected = [@(p.first.c_str()) isEqualToString:[MWMTextToSpeech savedLanguage]];
@@ -118,8 +119,7 @@ struct LanguageCellStrategy : BaseCellStategy
 
   NSString * TitleForHeader() const override { return L(@"pref_tts_language_title"); }
 
-  void SelectCell(UITableView * tableView, NSIndexPath * indexPath,
-                  MWMTTSSettingsViewController * controller) override
+  void SelectCell(UITableView * tableView, NSIndexPath * indexPath, MWMTTSSettingsViewController * controller) override
   {
     NSInteger const row = indexPath.row;
     if (row == controller.languages.size())
@@ -133,7 +133,7 @@ struct LanguageCellStrategy : BaseCellStategy
       [ttsTester playRandomTestString];
       return;
     }
-    
+
     auto cell = [tableView cellForRowAtIndexPath:indexPath];
     if (m_selectedCell == cell)
       return;
@@ -154,8 +154,8 @@ struct CamerasCellStrategy : BaseCellStategy
   {
     auto const mode = GetFramework().GetRoutingManager().GetSpeedCamManager().GetMode();
     Class cls = [SettingsTableViewSelectableCell class];
-    auto cell = static_cast<SettingsTableViewSelectableCell *>(
-        [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+    auto cell = static_cast<SettingsTableViewSelectableCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                                 indexPath:indexPath]);
     NSString * title = nil;
     switch (static_cast<SpeedCameraManagerMode>(indexPath.row))
     {
@@ -215,20 +215,20 @@ struct StreetNamesCellStrategy : BaseCellStategy
                               MWMTTSSettingsViewController * controller) override
   {
     Class cls = [SettingsTableViewSwitchCell class];
-    auto cell = static_cast<SettingsTableViewSwitchCell *>(
-        [tableView dequeueReusableCellWithCellClass:cls indexPath:indexPath]);
+    auto cell = static_cast<SettingsTableViewSwitchCell *>([tableView dequeueReusableCellWithCellClass:cls
+                                                                                             indexPath:indexPath]);
     [cell configWithDelegate:static_cast<id<SettingsTableViewSwitchCellDelegate>>(controller)
                        title:L(@"pref_tts_street_names_title")
                         isOn:[MWMTextToSpeech isStreetNamesTTSEnabled]];
     streetNamesCell = cell;
     return cell;
   }
-  
+
   NSString * TitleForFooter() const override { return L(@"pref_tts_street_names_description"); }
 };
 }  // namespace
 
-@interface MWMTTSSettingsViewController ()<SettingsTableViewSwitchCellDelegate>
+@interface MWMTTSSettingsViewController () <SettingsTableViewSwitchCellDelegate>
 {
   pair<string, string> m_additionalTTSLanguage;
   vector<pair<string, string>> m_languages;
@@ -285,8 +285,7 @@ struct StreetNamesCellStrategy : BaseCellStategy
   if (nsSavedLanguage.length)
   {
     std::string const savedLanguage = nsSavedLanguage.UTF8String;
-    if (savedLanguage != currentBcp47Str && savedLanguage != standard.first &&
-        !savedLanguage.empty())
+    if (savedLanguage != currentBcp47Str && savedLanguage != standard.first && !savedLanguage.empty())
       m_languages.emplace_back(savedLanguage, translateLocale(savedLanguage));
   }
 }
@@ -353,8 +352,7 @@ struct StreetNamesCellStrategy : BaseCellStategy
   return strategy->NumberOfRows(self);
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   auto const & strategy = m_strategies[static_cast<SectionType>(indexPath.section)];
   CHECK(strategy, ());
@@ -376,7 +374,8 @@ struct StreetNamesCellStrategy : BaseCellStategy
   if (cell == voiceInstructionsCell)
   {
     [MWMTextToSpeech setTTSEnabled:value];
-    auto indexSet = [NSIndexSet indexSetWithIndexesInRange:{base::Underlying(Section::StreetNames), base::Underlying(Section::Count) - 1}];
+    auto indexSet = [NSIndexSet
+        indexSetWithIndexesInRange:{base::Underlying(Section::StreetNames), base::Underlying(Section::Count) - 1}];
     auto const animation = UITableViewRowAnimationFade;
     if (value)
       [self.tableView insertSections:indexSet withRowAnimation:animation];

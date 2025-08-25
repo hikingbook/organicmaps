@@ -111,7 +111,7 @@
 "category_hotel" = "Hotel";
 
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
-"category_tourism" = "Atraccions turístiques";
+"category_tourism" = "Turisme";
 
 /* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
 "category_entertainment" = "Entreteniment";
@@ -153,11 +153,11 @@
 "category_water" = "Aigua";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
-"category_rv" = "Instal·lacions per a autocaravanes";
-"share_bookmarks_email_body" = "Hola!\n\nAdjunto els meus marcadors de l'aplicació Organic Maps. Obriu-los si teniu l'Organic Maps instal·lat. O, si no teniu l'aplicació, baixeu-la per al vostre aparell iOS o Android seguint aquest enllaç: https://omaps.app/get?kmz\n\nGaudiu viatjant amb l'Organic Maps!";
+"category_rv" = "Caravanes";
+"share_bookmarks_email_body" = "Hola!\n\nAdjunto els meus marcadors de l’Organic Maps. Obriu-los si teniu l’Organic Maps instal·lat. O, si no teniu l’aplicació, baixeu-la per al vostre aparell iOS o Android seguint aquest enllaç: https://omaps.app/get?kmz\n\nGaudiu viatjant amb l’Organic Maps!";
 
 /* message title of loading file */
-"load_kmz_title" = "S'estan carregant els marcadors";
+"load_kmz_title" = "S’estan carregant els marcadors";
 
 /* Kmz file successful loading */
 "load_kmz_successful" = "Els marcadors s’han carregat correctament. Els trobareu al mapa i a la pantalla de gestió de marcadors.";
@@ -226,7 +226,7 @@
 "pref_map_3d_buildings_title" = "Edificis en 3D";
 
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
-"pref_map_3d_buildings_disabled_summary" = "Els edificis en 3D es desactiven en mode d'estalvi d'energia";
+"pref_map_3d_buildings_disabled_summary" = "Els edificis en 3D es desactiven en mode d’estalvi d’energia";
 
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instruccions de veu";
@@ -280,10 +280,10 @@
 "donate" = "Donatiu";
 
 /* Tex label above the Donate button */
-"donate_description" = "Fes una donació per construir els millors mapes junts!";
-"already_donated" = "Ja donat";
-"remind_me_later" = "Recorda més tard";
-"support_organic_maps" = "Donar suport a Organic Maps";
+"donate_description" = "Feu una donació per a construir els millors mapes junts!";
+"already_donated" = "Ja he donat";
+"remind_me_later" = "Recorda’m més tard";
+"support_organic_maps" = "Doneu suport a l’Organic Maps";
 
 /* Button in the main Help dialog */
 "copyright" = "Drets d’autor";
@@ -310,7 +310,7 @@
 "pref_calibration_title" = "Calibratge de la brúixola";
 
 /* Toast text when user hides UI with a long tap anywhere on the map */
-"long_tap_toast" = "Toqueu llargament el mapa de nou per veure la interfície";
+"long_tap_toast" = "Toqueu llargament el mapa de nou per a veure la interfície";
 
 /* Update all button text */
 "downloader_update_all_button" = "Actualitza-ho tot";
@@ -418,7 +418,7 @@
 "dialog_routing_disclaimer_beware" = "Estigueu alerta i segur a la carretera!";
 "dialog_routing_check_gps" = "Comprova el senyal GPS";
 "dialog_routing_error_location_not_found" = "No s'ha pogut crear la ruta. No s'ha pogut identificar les coordenades GPS atuals.";
-"dialog_routing_location_turn_wifi" = "Comproveu el senya GPS. L'activació del senya Wi-Fi millorarà la precisió de la ubicació.";
+"dialog_routing_location_turn_wifi" = "Comproveu el senyal GPS. L’activació del Wi-Fi millorarà la precisió de la ubicació.";
 "dialog_routing_location_turn_on" = "Activa els serveis de geolocalització";
 "dialog_routing_location_unknown_turn_on" = "No s'han pogut trobar les coordenaes GPS actuals. Activeu els serveis de geolocalització per a calcular la ruta.";
 "dialog_routing_download_files" = "Baixa els fitxers necessaris";
@@ -482,11 +482,11 @@
 "editor_time_open" = "Obert";
 "editor_time_close" = "Tancat";
 "editor_time_add_closed" = "Afegeix les hores de tancament";
-"editor_time_title" = "Horari d'obertura";
+"editor_time_title" = "Horari d’obertura";
 "editor_time_advanced" = "Mode avançat";
 "editor_time_simple" = "Mode senzill";
 "editor_hours_closed" = "Horari de tancament";
-"editor_example_values" = "Valors d'exemple";
+"editor_example_values" = "Valors d’exemple";
 "editor_add_select_location" = "Seleccioneu Ubicació";
 "editor_done_dialog_1" = "Heu canviat el mapa mundial. No ho guardeu en secret! Expliqueu-ho als amics, i editeu-lo junts.";
 "share_with_friends" = "Comparteix amb amics";
@@ -663,7 +663,7 @@
 
 /* Dialog before publishing the modifications to the public map. */
 "editor_share_to_all_dialog_message_1" = "Assegureu-vos que no heu introduït cap dada personal.";
-"editor_share_to_all_dialog_message_2" = "Revisarem els canvis. Si tenim cap pregunta contactem amb vós via correu electrònic.";
+"editor_share_to_all_dialog_message_2" = "Els editors de l’OpenStreetMap comprovaran els canvis i us contactaran si tenen qualsevol dubte.";
 "navigation_stop_button" = "Atura";
 
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
@@ -690,7 +690,7 @@
 "mobile_data_description" = "Es necessita Internet mòbil per a les notifiacions d'actualitzacions del mapa i per a mostrar informació detallada dels llocs i marcadors.";
 "mobile_data_option_never" = "Mai";
 "mobile_data_option_ask" = "Demana-ho sempre";
-"traffic_update_maps_text" = "Per a mostrar les dades de trànsit, els maps han d'estar actualitzats.";
+"traffic_update_maps_text" = "Per a mostrar les dades de trànsit, s’han d’actualitzar els mapes.";
 "big_font" = "Augmenta la mida de lletra del mapa";
 
 /* "traffic" as in road congestion */
@@ -822,11 +822,11 @@
 /* To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations... */
 "network" = "Xarxa: %@";
 "trip_finished" = "Heu arribat!";
-"keyboard_availability_alert" = "El teclat no és disponible mentre conduïu";
+"keyboard_availability_alert" = "El teclat no està disponible quan conduïu";
 "dialog_routing_change_start_carplay" = "No es pot calcular cap ruta des de la vostra ubicació actual";
 "dialog_routing_change_end_carplay" = "No es pot calcular cap ruta a la vostra destinació. Trieu un altre punt";
 "dialog_routing_check_gps_carplay" = "No hi ha senyal GPS. Aneu a un àrea oberta";
-"dialog_routing_unable_locate_route_carplay" = "No es pot calcular cap ruta. Indiqueu uns punts de ruta diferents.";
+"dialog_routing_unable_locate_route_carplay" = "No es pot calcular cap ruta. Indiqueu uns punts de ruta diferents";
 "dialog_routing_download_files_carplay" = "Per a crear una ruta, baixeu les mapes que manquen en el vostre aparell";
 "dialog_routing_system_error_carplay" = "S’ha produït un error. Reinicieu l’aplicació";
 "dialog_routing_rebuild_from_current_location_carplay" = "Es tornarà a calcular la ruta des de la ubicació actual";
@@ -925,7 +925,7 @@
 "translated_om_site_url" = "https://organicmaps.app/ca/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
-"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ca:About";
+"osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Ca:About_OpenStreetMap";
 
 /* App Tip #00 */
 "app_tip_00" = "Gràcies per utilitzar els nostres mapes creats per la comunitat!";
@@ -1060,3 +1060,17 @@
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "El recorregut està buit; no hi ha res a desar";
 "edit_track" = "Edita el recorregut";
+"saved" = "Desat";
+"button_layer_hiking" = "Hiking";
+"button_layer_cycling" = "Cycling";
+
+/* Settings/Bookmark Text Placement */
+"bookmarks_text_placement_title" = "Bookmark names on the map";
+"bookmarks_text_placement_description" = "If there are too many bookmarks, displaying their names on the map may slow down the app.";
+"show_to_the_right" = "Show to the right";
+"right" = "Right";
+"show_at_the_bottom" = "Show at the bottom";
+"bottom" = "Bottom";
+
+/* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
+"routes_update_maps_text" = "To display routes, maps must be updated.";
