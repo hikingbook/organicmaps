@@ -20,17 +20,19 @@
 
 #include "base/assert.hpp"
 
-namespace {
+namespace
+{
 
-BOOL canAutoDownload(storage::CountryId const &countryId) {
+BOOL canAutoDownload(storage::CountryId const & countryId)
+{
   if (![MWMSettings autoDownloadEnabled])
     return NO;
   if (GetPlatform().ConnectionStatus() != Platform::EConnectionType::CONNECTION_WIFI)
     return NO;
-  CLLocation *lastLocation = [MWMLocationManager lastLocation];
+  CLLocation * lastLocation = [MWMLocationManager lastLocation];
   if (!lastLocation)
     return NO;
-  auto const &countryInfoGetter = GetFramework().GetCountryInfoGetter();
+  auto const & countryInfoGetter = GetFramework().GetCountryInfoGetter();
   if (countryId != countryInfoGetter.GetRegionCountryId(lastLocation.mercator))
     return NO;
   return YES;
@@ -40,46 +42,53 @@ BOOL canAutoDownload(storage::CountryId const &countryId) {
 using namespace storage;
 
 @interface MWMMapDownloadDialog () <MWMStorageObserver, MWMCircularProgressProtocol>
-@property(strong, nonatomic) IBOutlet UILabel *parentNode;
-@property(strong, nonatomic) IBOutlet UILabel *node;
-@property(strong, nonatomic) IBOutlet UILabel *nodeSize;
-@property(strong, nonatomic) IBOutlet NSLayoutConstraint *nodeTopOffset;
+@property(strong, nonatomic) IBOutlet UILabel * parentNode;
+@property(strong, nonatomic) IBOutlet UILabel * node;
+@property(strong, nonatomic) IBOutlet UILabel * nodeSize;
+@property(strong, nonatomic) IBOutlet NSLayoutConstraint * nodeTopOffset;
+//@property(strong, nonatomic) IBOutlet UIButton * downloadButton;
+//@property(strong, nonatomic) IBOutlet UIView * progressWrapper;
 @property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
 @property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
 
-@property(weak, nonatomic) MapViewController *controller;
-@property(nonatomic) MWMCircularProgress *progress;
-@property(nonatomic) NSMutableArray<NSDate *> *skipDownloadTimes;
+@property(weak, nonatomic) MapViewController * controller;
+@property(nonatomic) MWMCircularProgress * progress;
+@property(nonatomic) NSMutableArray<NSDate *> * skipDownloadTimes;
 @property(nonatomic) BOOL isAutoDownloadCancelled;
 
 @end
 
-@implementation MWMMapDownloadDialog {
+@implementation MWMMapDownloadDialog
+{
   CountryId m_countryId;
   CountryId m_autoDownloadCountryId;
 }
 
-+ (instancetype)dialogForController:(MapViewController *)controller {
-  MWMMapDownloadDialog *dialog = [NSBundle.mainBundle loadNibNamed:[self className] owner:nil options:nil].firstObject;
++ (instancetype)dialogForController:(MapViewController *)controller
+{
+  MWMMapDownloadDialog * dialog = [NSBundle.mainBundle loadNibNamed:[self className] owner:nil options:nil].firstObject;
   dialog.controller = controller;
   return dialog;
 }
 
-- (void)configDialog {
-  auto &f = GetFramework();
-  auto const &s = f.GetStorage();
-  auto const &p = f.GetDownloadingPolicy();
+- (void)configDialog
+{
+  auto & f = GetFramework();
+  auto const & s = f.GetStorage();
+  auto const & p = f.GetDownloadingPolicy();
 
   NodeAttrs nodeAttrs;
   s.GetNodeAttrs(m_countryId, nodeAttrs);
 
-  if (!nodeAttrs.m_present && ![MWMRouter isRoutingActive]) {
+  if (!nodeAttrs.m_present && ![MWMRouter isRoutingActive])
+  {
     BOOL const isMultiParent = nodeAttrs.m_parentInfo.size() > 1;
     BOOL const noParrent = (nodeAttrs.m_parentInfo[0].m_id == s.GetRootId());
     BOOL const hideParent = (noParrent || isMultiParent);
     self.parentNode.hidden = hideParent;
     self.nodeTopOffset.priority = hideParent ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow;
-    if (!hideParent) {
+    if (!hideParent)
+    {
       self.parentNode.text = @(nodeAttrs.m_topmostParentInfo[0].m_localName.c_str());
       self.parentNode.textColor = [UIColor blackSecondaryText];
     }
@@ -100,62 +109,57 @@ using namespace storage;
 //          break;
 //      }
 
-      // Modified by Zheng-Xiang Ke
-      NSString *countryID = @(m_countryId.c_str());
+    // Modified by Zheng-Xiang Ke
+    NSString *countryID = @(m_countryId.c_str());
     NodeStatus status = nodeAttrs.m_status;
     MWMMapSource mapSource = [self mapSourceForCountry:countryID];
-    if (mapSource == hikingbookProMaps) {
+	if (mapSource == hikingbookProMaps) {
         status = nodeAttrs.m_hikingbookProMapStatus;
     }
-    switch (status) {
-      case NodeStatus::NotDownloaded:
-            m_autoDownloadCountryId = kInvalidCountryId;
-            [self showDownloadRequest];
-            break;
-      case NodeStatus::Partly: {
-        MapViewController *controller = self.controller;
-        BOOL const isMapVisible = [controller.navigationController.topViewController isEqual:controller];
-          
-          BOOL shouldDownloadMap = YES;
-          if ([self.delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
-              shouldDownloadMap = [self.delegate downloadDialog:self shouldDownloadMap:countryID];
-          }
-        if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap) {
-          m_autoDownloadCountryId = m_countryId;
-          [[MWMStorage sharedStorage] downloadNode:countryID mapSource:mapSource
-                                         onSuccess:^{
-                                                      [self showInQueue];
-                                                    }];
-        } else {
-          m_autoDownloadCountryId = kInvalidCountryId;
-          [self showDownloadRequest];
-        }
-//        [[MWMCarPlayService shared] showNoMapAlert];
-        break;
+    switch (status)
+    {
+    case NodeStatus::NotDownloaded:
+    case NodeStatus::Partly:
+    {
+      MapViewController * controller = self.controller;
+      BOOL const isMapVisible = [controller.navigationController.topViewController isEqual:controller];
+	  BOOL shouldDownloadMap = YES;
+      if ([self.delegate respondsToSelector:@selector(downloadDialog:shouldDownloadMap:)]) {
+         shouldDownloadMap = [self.delegate downloadDialog:self shouldDownloadMap:countryID];
       }
-      case NodeStatus::Downloading:
-        if (nodeAttrs.m_downloadingProgress.m_bytesTotal != 0)
-          [self showDownloading:(CGFloat)nodeAttrs.m_downloadingProgress.m_bytesDownloaded /
-                                nodeAttrs.m_downloadingProgress.m_bytesTotal];
-        break;
-      case NodeStatus::Applying:
-      case NodeStatus::InQueue:
-        [self showInQueue];
-        break;
-      case NodeStatus::Undefined:
-      case NodeStatus::Error:
-        if (p.IsAutoRetryDownloadFailed()) {
-          [self showError:nodeAttrs.m_error];
-        } else {
-          [self showInQueue];
-        }
-        break;
-      case NodeStatus::OnDisk:
-      case NodeStatus::OnDiskOutOfDate:
-        [self removeFromSuperview];
-        break;
+      if (isMapVisible && !self.isAutoDownloadCancelled && canAutoDownload(m_countryId) && shouldDownloadMap)
+      {
+        m_autoDownloadCountryId = m_countryId;
+        [[MWMStorage sharedStorage] downloadNode:countryID mapSource:mapSource onSuccess:^{ [self showInQueue]; }];
+      }
+      else
+      {
+        m_autoDownloadCountryId = kInvalidCountryId;
+        [self showDownloadRequest];
+      }
+//      [[MWMCarPlayService shared] showNoMapAlert];
+      break;
     }
-  } else {
+    case NodeStatus::Downloading:
+      if (nodeAttrs.m_downloadingProgress.m_bytesTotal != 0)
+        [self showDownloading:(CGFloat)nodeAttrs.m_downloadingProgress.m_bytesDownloaded /
+                              nodeAttrs.m_downloadingProgress.m_bytesTotal];
+      break;
+    case NodeStatus::Applying:
+    case NodeStatus::InQueue: [self showInQueue]; break;
+    case NodeStatus::Undefined:
+    case NodeStatus::Error:
+      if (p.IsAutoRetryDownloadFailed())
+        [self showError:nodeAttrs.m_error];
+      else
+        [self showInQueue];
+      break;
+    case NodeStatus::OnDisk:
+    case NodeStatus::OnDiskOutOfDate: [self removeFromSuperview]; break;
+    }
+  }
+  else
+  {
     [self removeFromSuperview];
   }
 
@@ -163,10 +167,11 @@ using namespace storage;
     [self setNeedsLayout];
 }
 
-- (void)addToSuperview {
+- (void)addToSuperview
+{
   if (self.superview)
     return;
-  MapViewController *controller = self.controller;
+  MapViewController * controller = self.controller;
   [controller.view insertSubview:self aboveSubview:controller.controlsView];
   [[MWMStorage sharedStorage] addObserver:self];
 
@@ -175,15 +180,16 @@ using namespace storage;
   [self.centerYAnchor constraintEqualToAnchor:controller.view.centerYAnchor].active = YES;
 }
 
-
-- (void)removeFromSuperview {
+- (void)removeFromSuperview
+{
 //  [[MWMCarPlayService shared] hideNoMapAlert];
   self.progress.state = MWMCircularProgressStateNormal;
   [[MWMStorage sharedStorage] removeObserver:self];
   [super removeFromSuperview];
 }
 
-- (void)showError:(NodeErrorCode)errorCode {
+- (void)showError:(NodeErrorCode)errorCode
+{
   if (errorCode == NodeErrorCode::NoError)
     return;
   [self hideMapInfoStackView:NO];
@@ -192,31 +198,28 @@ using namespace storage;
   self.downloadButton.hidden = YES;
   self.progressWrapper.hidden = NO;
   self.progress.state = MWMCircularProgressStateFailed;
-  MWMAlertViewController *avc = self.controller.alertController;
+  MWMAlertViewController * avc = self.controller.alertController;
   [self addToSuperview];
   auto const retryBlock = ^{
     [self showInQueue];
     [[MWMStorage sharedStorage] retryDownloadNode:@(self->m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(self->m_countryId.c_str())]];
   };
-  auto const cancelBlock = ^{
-    [[MWMStorage sharedStorage] cancelDownloadNode:@(self->m_countryId.c_str())];
-  };
-  switch (errorCode) {
-    case NodeErrorCode::NoError:
-      break;
-    case NodeErrorCode::UnknownError:
-      [avc presentDownloaderInternalErrorAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
-      break;
-    case NodeErrorCode::OutOfMemFailed:
-      [avc presentDownloaderNotEnoughSpaceAlert];
-      break;
-    case NodeErrorCode::NoInetConnection:
-      [avc presentDownloaderNoConnectionAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
-      break;
+  auto const cancelBlock = ^{ [[MWMStorage sharedStorage] cancelDownloadNode:@(self->m_countryId.c_str())]; };
+  switch (errorCode)
+  {
+  case NodeErrorCode::NoError: break;
+  case NodeErrorCode::UnknownError:
+    [avc presentDownloaderInternalErrorAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
+    break;
+  case NodeErrorCode::OutOfMemFailed: [avc presentDownloaderNotEnoughSpaceAlert]; break;
+  case NodeErrorCode::NoInetConnection:
+    [avc presentDownloaderNoConnectionAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
+    break;
   }
 }
 
-- (void)showDownloadRequest {
+- (void)showDownloadRequest
+{
   self.downloadButton.hidden = NO;
   self.progressWrapper.hidden = YES;
   [self addToSuperview];
@@ -228,11 +231,11 @@ using namespace storage;
     }
 }
 
-- (void)showDownloading:(CGFloat)progress {
+- (void)showDownloading:(CGFloat)progress
+{
   [self hideMapInfoStackView:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
-  self.nodeSize.text =
-    [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
+  self.nodeSize.text = [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
   self.downloadButton.hidden = YES;
   self.progressWrapper.hidden = NO;
   self.progress.progress = progress;
@@ -245,7 +248,8 @@ using namespace storage;
     }
 }
 
-- (void)showInQueue {
+- (void)showInQueue
+{
   [self hideMapInfoStackView:NO];
   self.nodeSize.textColor = [UIColor blackSecondaryText];
   self.nodeSize.text = L(@"downloader_queued");
@@ -261,7 +265,8 @@ using namespace storage;
     }
 }
 
-- (void)processViewportCountryEvent:(CountryId const &)countryId {
+- (void)processViewportCountryEvent:(CountryId const &)countryId
+{
   m_countryId = countryId;
   if (countryId == kInvalidCountryId)
     [self removeFromSuperview];
@@ -291,7 +296,8 @@ using namespace storage;
 
 #pragma mark - MWMStorageObserver
 
-- (void)processCountryEvent:(NSString *)countryId {
+- (void)processCountryEvent:(NSString *)countryId
+{
   if (m_countryId != countryId.UTF8String)
     return;
   [self configDialog];
@@ -301,23 +307,26 @@ using namespace storage;
 //    [self removeFromSuperview];
 }
 
-- (void)processCountry:(NSString *)countryId
-       downloadedBytes:(uint64_t)downloadedBytes
-            totalBytes:(uint64_t)totalBytes {
+- (void)processCountry:(NSString *)countryId downloadedBytes:(uint64_t)downloadedBytes totalBytes:(uint64_t)totalBytes
+{
   if (self.superview && m_countryId == countryId.UTF8String)
     [self showDownloading:(CGFloat)downloadedBytes / totalBytes];
 }
 
 #pragma mark - MWMCircularProgressDelegate
 
-- (void)progressButtonPressed:(nonnull MWMCircularProgress *)progress {
-    // Modified by Zheng-Xiang Ke
-    NSString *countryID = @(m_countryId.c_str());
-    MWMMapSource mapSource = [self mapSourceForCountry:countryID];
-  if (progress.state == MWMCircularProgressStateFailed) {
+- (void)progressButtonPressed:(nonnull MWMCircularProgress *)progress
+{
+  // Modified by Zheng-Xiang Ke
+  NSString *countryID = @(m_countryId.c_str());
+  MWMMapSource mapSource = [self mapSourceForCountry:countryID];
+  if (progress.state == MWMCircularProgressStateFailed)
+  {
     [self showInQueue];
     [[MWMStorage sharedStorage] retryDownloadNode:countryID mapSource:mapSource];
-  } else {
+  }
+  else
+  {
     if (m_autoDownloadCountryId == m_countryId)
       self.isAutoDownloadCancelled = YES;
       id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
@@ -332,7 +341,8 @@ using namespace storage;
 
 #pragma mark - Actions
 
-- (IBAction)downloadAction {
+- (IBAction)downloadAction
+{
     // Added by Zheng-Xiang Ke
     NSString *countryID = @(m_countryId.c_str());
     id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
@@ -347,15 +357,18 @@ using namespace storage;
 
 #pragma mark - Properties
 
-- (MWMCircularProgress *)progress {
-  if (!_progress) {
+- (MWMCircularProgress *)progress
+{
+  if (!_progress)
+  {
     _progress = [MWMCircularProgress downloaderProgressForParentView:self.progressWrapper];
     _progress.delegate = self;
   }
   return _progress;
 }
 
-- (NSMutableArray<NSDate *> *)skipDownloadTimes {
+- (NSMutableArray<NSDate *> *)skipDownloadTimes
+{
   if (!_skipDownloadTimes)
     _skipDownloadTimes = [@[] mutableCopy];
   return _skipDownloadTimes;

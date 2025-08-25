@@ -18,6 +18,16 @@ class BottomMenuLayersCell: UITableViewCell {
       updateOutdoorButton()
     }
   }
+  @IBOutlet private var hikingButton: BottomMenuLayerButton! {
+    didSet {
+      updateHikingButton()
+    }
+  }
+  @IBOutlet private var cyclingButton: BottomMenuLayerButton! {
+    didSet {
+      updateCyclingButton()
+    }
+  }
 
   var onClose: (()->())?
   
@@ -31,6 +41,8 @@ class BottomMenuLayersCell: UITableViewCell {
   private func setupButtons() {
     outdoorButton.setupWith(image: UIImage(resource: .btnMenuOutdoors), text: L("button_layer_outdoor"))
     isoLinesButton.setupWith(image: UIImage(resource: .btnMenuIsomaps), text: L("button_layer_isolines"))
+    hikingButton.setupWith(image: UIImage(resource: .btnMenuHiking), text: L("button_layer_hiking"))
+    cyclingButton.setupWith(image: UIImage(resource: .btnMenuCycling), text: L("button_layer_cycling"))
     subwayButton.setupWith(image: UIImage(resource: .btnMenuSubway), text: L("button_layer_subway"))
   }
 
@@ -44,17 +56,27 @@ class BottomMenuLayersCell: UITableViewCell {
   
   private func updateSubwayButton() {
     let enabled = MapOverlayManager.transitEnabled()
-    subwayButton.setStyleAndApply(styleFor(enabled))
+    subwayButton.setLayerEnabled(enabled)
   }
   
   private func updateIsoLinesButton() {
     let enabled = MapOverlayManager.isoLinesEnabled()
-    isoLinesButton.setStyleAndApply(styleFor(enabled))
+    isoLinesButton.setLayerEnabled(enabled)
   }
     
   private func updateOutdoorButton() {
     let enabled = MapOverlayManager.outdoorEnabled()
-    outdoorButton.setStyleAndApply(styleFor(enabled))
+    outdoorButton.setLayerEnabled(enabled)
+  }
+
+  private func updateHikingButton() {
+    let enabled = MapOverlayManager.hikingEnabled()
+    hikingButton.setLayerEnabled(enabled)
+  }
+
+  private func updateCyclingButton() {
+    let enabled = MapOverlayManager.cyclingEnabled()
+    cyclingButton.setLayerEnabled(enabled)
   }
   
   @IBAction func onCloseButtonPressed(_ sender: Any) {
@@ -75,25 +97,37 @@ class BottomMenuLayersCell: UITableViewCell {
     let enable = !MapOverlayManager.outdoorEnabled()
     MapOverlayManager.setOutdoorEnabled(enable)
   }
+
+  @IBAction func onHikingButton(_ sender: Any) {
+    let enable = !MapOverlayManager.hikingEnabled()
+    MapOverlayManager.setHikingEnabled(enable)
+    if enable {
+      showUpdateToastIfNeeded()
+    }
+  }
+
+  @IBAction func onCyclingButton(_ sender: Any) {
+    let enable = !MapOverlayManager.cyclingEnabled()
+    MapOverlayManager.setCyclingEnabled(enable)
+    if enable {
+      showUpdateToastIfNeeded()
+    }
+  }
+
+  private func showUpdateToastIfNeeded() {
+    if FrameworkHelper.needUpdateForRoutes() {
+      Toast.show(withText: L("routes_update_maps_text"), alignment: .top)
+    }
+  }
 }
 
 extension BottomMenuLayersCell: MapOverlayManagerObserver {
-  func onTransitStateUpdated() {
+  func onMapOverlayUpdated() {
     updateSubwayButton()
-  }
-  
-  func onIsoLinesStateUpdated() {
     updateIsoLinesButton()
-  }
-    
-  func onOutdoorStateUpdated() {
     updateOutdoorButton()
-  }
-}
-
-private extension BottomMenuLayersCell {
-  func styleFor(_ enabled: Bool) -> MapStyleSheet {
-    enabled ? .mapMenuButtonEnabled : .mapMenuButtonDisabled
+    updateHikingButton()
+    updateCyclingButton()
   }
 }
 

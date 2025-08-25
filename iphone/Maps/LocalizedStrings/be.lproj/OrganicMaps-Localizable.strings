@@ -154,7 +154,7 @@
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
 "category_rv" = "Для аўтадамоў";
-"share_bookmarks_email_body" = "Вітаю!\n\nУ далучаным файле мае закладкі з праграмы Organic Maps. Калі ласка, адкрыйце іх, калі ў вас усталяваны Organic Maps. Калі не, спампуйце праграму для вашай прылады iOS альбо Andriod па спасылцы: https://omaps.app/get?kmz\n\nПрыемных падарожжаў з Organic Maps!";
+"share_bookmarks_email_body" = "Вітаю!\n\nУ далучаным файле мае закладкі, яны адкрываюцца праграмай Organic Maps. Калі такая праграма ў вас не ўсталявана, яе можна спампаваць тут: https://omaps.app/get?kmz\n\nПрыемных падарожжаў з Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Загрузка закладак";
@@ -208,7 +208,7 @@
 "pref_appearance_light" = "Светлы";
 
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
-"pref_appearance_dark" = "Цемны";
+"pref_appearance_dark" = "Цёмны";
 
 /* Generic «Off» string */
 "off" = "Выключаны";
@@ -301,7 +301,7 @@
 "follow_us" = "Падпісвайцеся і пішыце нам:";
 
 /* Alert text */
-"email_error_body" = "Паштовы кліент не наладжаны. Наладзьце яго альбо звяжыцеся з намі па адрасе %@ іншым чынам.";
+"email_error_body" = "Паштовы кліент не наладжаны. Наладзьце яго альбо звяжыцеся з намі па адрасе %@";
 
 /* Alert title */
 "email_error_title" = "Памылка пры адпраўцы пошты";
@@ -606,7 +606,7 @@
 "current_location_unknown_error_title" = "Месцазнаходжанне невядома.";
 "current_location_unknown_error_message" = "Адбылася памылка пры пошуку месцазнаходжання. Праверце, што ваша прылада працуе як трэба, і паспрабуйце зноў.";
 "location_services_disabled_header" = "Геалакацыя адключана";
-"location_services_disabled_message" = "Уключыце доступ да геалакацыі у наладах прылады.";
+"location_services_disabled_message" = "Уключыце доступ да геалакацыі у наладах прылады";
 "location_services_disabled_1" = "1. Адкрыйце Налады";
 "location_services_disabled_2" = "2. Націсніце Геалакацыя";
 
@@ -824,9 +824,9 @@
 "trip_finished" = "Вы прыбылі!";
 "keyboard_availability_alert" = "Клавіятура недасягальная падчас язды";
 "dialog_routing_change_start_carplay" = "Не атрымалася пракласці маршрут ад вашага цяперашняга месцазнаходжання";
-"dialog_routing_change_end_carplay" = "Не атрымалася пракласці маршрут да вашага пункту прызначэння. Выберыце іншы пункт прызначэння.";
+"dialog_routing_change_end_carplay" = "Не атрымалася пракласці маршрут да вашага пункту прызначэння. Выберыце іншы пункт прызначэння";
 "dialog_routing_check_gps_carplay" = "Няма сігналу GPS. Перамясціцеся на адкрытую прастору";
-"dialog_routing_unable_locate_route_carplay" = "Не атрымалася пракласці маршрут. Выберыце іншыя кропкі маршрута.";
+"dialog_routing_unable_locate_route_carplay" = "Не атрымалася пракласці маршрут. Выберыце іншыя кропкі маршрута";
 "dialog_routing_download_files_carplay" = "Каб пракласці маршрут, спампуйце карты, якіх не хапае на вашай прыладзе";
 "dialog_routing_system_error_carplay" = "Адбылася памылка. Калі ласка, перазапусціце праграму";
 "dialog_routing_rebuild_from_current_location_carplay" = "Маршрут будзе перапракладзены ад вашага цяперашняга месцазнаходжання";
@@ -972,6 +972,12 @@
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
 "button_layer_outdoor" = "Актыўны адпачынак";
 
+/* Hiking routes layer name in the Styles and Layers dialog */
+"button_layer_hiking" = "Пешыя маршруты";
+
+/* Cycling routes layer name in the Styles and Layers dialog */
+"button_layer_cycling" = "Пакатушкі";
+
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "Экспартаваць усе закладкі і маршруты";
 
@@ -1060,3 +1066,15 @@
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Маршрут пусты - няма чаго захоўваць";
 "edit_track" = "Рэдагаваць маршрут";
+"saved" = "Захавана";
+
+/* Settings/Bookmark Text Placement */
+"bookmarks_text_placement_title" = "Bookmark names on the map";
+"bookmarks_text_placement_description" = "If there are too many bookmarks, displaying their names on the map may slow down the app.";
+"show_to_the_right" = "Show to the right";
+"right" = "Right";
+"show_at_the_bottom" = "Show at the bottom";
+"bottom" = "Bottom";
+
+/* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
+"routes_update_maps_text" = "Aднaвіце карты, каб убачыць маршруты";

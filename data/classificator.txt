@@ -34,7 +34,9 @@ world  +
         bar  -
         bbq  -
         bench  -
-        bicycle_parking  -
+        bicycle_parking  +
+            covered  -
+            {}
         bicycle_rental  -
         bicycle_repair_station  -
         biergarten  -
@@ -83,6 +85,8 @@ world  +
         language_school  -
         library  -
         loading_dock  -
+        love_hotel  -
+        luggage_locker  -
         marketplace  -
         money_transfer  -
         motorcycle_parking  -
@@ -144,6 +148,7 @@ world  +
         pub  -
         public_bath  -
         public_bookcase  -
+        ranger_station  -
         recycling  +
             centre  -
             container  -
@@ -159,6 +164,7 @@ world  +
         shower  -
         social_facility  -
         stripclub  -
+        studio  -
         taxi  -
         telephone  -
         theatre  -
@@ -227,6 +233,7 @@ world  +
         entrance  -
         fence  -
         gate  -
+        guard_rail  -
         hedge  -
         kissing_gate  -
         lift_gate  -
@@ -438,6 +445,7 @@ world  +
             tunnel  -
             {}
         ford  -
+        ladder  -
         living_street  +
             bridge  -
             tunnel  -
@@ -617,7 +625,6 @@ world  +
         cemetery  +
             christian  -
             {}
-        churchyard  -
         commercial  -
         construction  -
         education  -
@@ -643,9 +650,11 @@ world  +
             danger_area  -
             {}
         orchard  -
+        plant_nursery  -
         quarry  -
         railway  -
         recreation_ground  -
+        religious  -
         reservoir  -
         residential  -
         retail  -
@@ -661,6 +670,8 @@ world  +
         common  -
         dance  -
         dog_park  -
+        escape_game  -
+        firepit  -
         fitness_centre  -
         fitness_station  -
         garden  +
@@ -702,6 +713,7 @@ world  +
         cairn  -
         chimney  -
         communications_tower  -
+        crane  -
         cross  -
         cutline  -
         embankment  -
@@ -867,6 +879,9 @@ world  +
         suburb  -
         town  -
         village  -
+        {}
+    post_office  +
+        post_partner  -
         {}
     power  +
         generator  +
@@ -1051,6 +1066,7 @@ world  +
                 paris  -
                 philadelphia  -
                 pyongyang  -
+                qingdao  -
                 rennes  -
                 rio  -
                 roma  -
@@ -1172,6 +1188,7 @@ world  +
             paris  -
             philadelphia  -
             pyongyang  -
+            qingdao  -
             rennes  -
             rio  -
             roma  -

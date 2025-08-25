@@ -18,7 +18,7 @@
     <!-- Generic «Auto» string -->
     <string name="auto">Automático</string>
     <!-- Settings «Route» category: «Test Voice Directions» title -->
-    <string name="pref_tts_test_voice_title">Pruebe las instrucciones de voz (TTS, Text-To-Speech)</string>
+    <string name="pref_tts_test_voice_title">Probar indicaciones de voz (TTS, Text-To-Speech)</string>
     <!-- Settings «Route» category: Pop-up message when clicking «Test Voice Directions» -->
     <string name="pref_tts_playing_test_voice">Verifique el volumen o la configuración de texto a voz del sistema si no escucha la voz ahora.</string>
     <!-- Preference title -->
@@ -94,14 +94,17 @@
     </plurals>
     <string name="restore">Restaurar</string>
     <plurals name="tracks">
-        <item quantity="one">%d rastreo</item>
-        <item quantity="other">%d rastreos</item>
+        <item quantity="one">%d trayecto</item>
+        <item quantity="many">%d trayectos</item>
+        <item quantity="other">%d trayectos</item>
     </plurals>
     <string name="privacy_policy">Política de Privacidad</string>
     <string name="terms_of_use">Términos de uso</string>
     <string name="button_layer_traffic">Tráfico</string>
+    <string name="button_layer_hiking">Senderismo</string>
+    <string name="button_layer_cycling">Ciclismo</string>
     <string name="button_layer_subway">Metro</string>
-    <string name="layers_title">Estilos y capas de mapas</string>
+    <string name="layers_title">Estilos y capas del mapa</string>
     <string name="subway_data_unavailable">El mapa del metro no está disponible</string>
     <string name="bookmarks_empty_list_title">Esta lista está vacía</string>
     <string name="bookmarks_empty_list_message">Para añadir un marcador, toque un lugar en el mapa y después toque el ícono de estrella</string>
@@ -124,16 +127,16 @@
     <string name="power_managment_description">Si el modo de ahorro de energía está activado, la aplicación desactivará las funciones de ahorro de energía, en función de la carga actual del teléfono</string>
     <string name="power_managment_setting_never">Nunca</string>
     <string name="power_managment_setting_auto">Automático</string>
-    <string name="power_managment_setting_manual_max">Máximo ahorro de energía</string>
-    <string name="enable_logging_warning_message">Esta opción está habilitada para las acciones de registro con fines de diagnóstico. Esto ayuda a nuestro equipo a identificar problemas con la aplicación. Habilite la opción solo a petición del apoyo de Organic Maps.</string>
+    <string name="power_managment_setting_manual_max">Siempre</string>
+    <string name="enable_logging_warning_message">Active esta opción temporalmente para grabar y enviar de forma manual registros para diagnosticar defectos enviados mediante la opción «Informar de un fallo» en el diálogo Ayuda. Los registros pueden incluir ubicaciones.</string>
     <string name="access_rules_author_only">Se edita en línea</string>
-    <string name="driving_options_title">Ajustes de desvío</string>
+    <string name="driving_options_title">Opciones de enrutamiento</string>
     <string name="unable_to_calc_alert_title">No se puede construir una ruta</string>
-    <string name="unable_to_calc_alert_subtitle">Desafortunadamente, no pudimos construir una ruta con las opciones seleccionadas. Cambie la configuración y vuelva a intentarlo</string>
-    <string name="define_to_avoid_btn">Configurar rutas de desvío</string>
-    <string name="change_driving_options_btn">Ajustes de desvío habilitados</string>
+    <string name="unable_to_calc_alert_subtitle">No se pudo encontrar una ruta. Quizá se deba a las opciones de enrutamiento o a datos faltantes en OpenStreetMap. Revise sus opciones de enrutamiento y vuelva a intentarlo.</string>
+    <string name="define_to_avoid_btn">Defina los caminos para evitar</string>
+    <string name="change_driving_options_btn">Opciones de enrutamiento activadas</string>
     <string name="toll_road">Carretera de peaje</string>
-    <string name="unpaved_road">Camino de tierra</string>
+    <string name="unpaved_road">Camino sin pavimentar</string>
     <string name="ferry_crossing">Cruce de ferri</string>
     <!-- A generic "Yes" button in dialogs -->
     <string name="yes">Sí</string>
@@ -184,8 +187,8 @@
     <string name="religious_places">Sitios religiosos</string>
     <string name="select_list">Seleccionar lista</string>
     <string name="transit_not_found">Navegación por metro aún no disponible en esta región</string>
-    <string name="dialog_pedestrian_route_is_long_header">Ruta de metro no encontrada</string>
-    <string name="dialog_pedestrian_route_is_long_message">Elija el punto de inicio o fin de ruta más cercano al metro</string>
+    <string name="dialog_pedestrian_route_is_long_header">No se encontró ninguna ruta de metro</string>
+    <string name="dialog_pedestrian_route_is_long_message">Elija un punto de inicio o fin de ruta más cercano a una estación de metro</string>
     <string name="button_layer_isolines">Alturas</string>
     <string name="isolines_activation_error_dialog">Para usar la altitud de relieve, actualice o descargue el mapa del área deseada</string>
     <string name="isolines_location_error_dialog">La altitud de relieve no está aún disponible en esta región</string>
@@ -200,7 +203,7 @@
     <string name="downloader_loading_ios">Cargando</string>
     <string name="enable_keep_screen_on">Mantener la pantalla encendida</string>
     <!-- Description in preferences -->
-    <string name="enable_keep_screen_on_description">Cuando está habilitado, la pantalla siempre estará encendida cuando se muestre el mapa.</string>
+    <string name="enable_keep_screen_on_description">Si se activa, la pantalla permanecerá encendida al mostrar el mapa.</string>
     <!-- Text on the phone placeholder screen that maps are displayed on the car screen -->
     <string name="car_used_on_the_car_screen">Ahora usa Organic Maps en la pantalla del automóvil</string>
     <!-- Displayed on the Android Auto or CarPlay screen. Button to display maps on the car screen instead of a phone. Must be no more than 18 symbols! -->
@@ -212,4 +215,19 @@
     <string name="drive_through">Servicio al auto</string>
     <string name="back">Atrás</string>
     <string name="cancel">Cancelar</string>
+    <string name="enable_logging">Activar registros</string>
+    <string name="saved">Guardado</string>
+    <string name="start_track_recording">Grabar trayecto</string>
+    <string name="track_recording_alert_title">¿Guardar en Marcadores y trayectos?</string>
+    <string name="track_recording_toast_nothing_to_save">El trayecto está vacío; no hay nada que guardar</string>
+    <string name="settings">Configuración</string>
+    <string name="pref_zoom_title">Botones de zum</string>
+    <string name="bookmarks_import">Importar marcadores y trayectos</string>
+    <string name="edit_track">Editar trayecto</string>
+    <string name="pref_map_auto_zoom">Zum automático</string>
+    <string name="dialog_routing_intermediate_not_determined">Ajuste la parada intermedia.</string>
+    <string name="stop_track_recording">Detener grabación de trayecto</string>
+    <string name="big_font">Aumentar tamaño del texto en el mapa</string>
+    <string name="bookmarks_export">Exportar todos los marcadores y trayectos</string>
+    <string name="bookmarks_and_tracks">Marcadores y trayectos</string>
 </resources>

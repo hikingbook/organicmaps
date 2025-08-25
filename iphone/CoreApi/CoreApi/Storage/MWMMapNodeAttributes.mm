@@ -1,51 +1,48 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
-#import "MWMMapNodeAttributes+Core.h"
 #include <CoreApi/Framework.h>
+#import "MWMMapNodeAttributes+Core.h"
 
-static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
-  switch (status) {
-    case storage::NodeStatus::Undefined:
-      return MWMMapNodeStatusUndefined;
-    case storage::NodeStatus::Downloading:
-      return MWMMapNodeStatusDownloading;
-    case storage::NodeStatus::Applying:
-      return MWMMapNodeStatusApplying;
-    case storage::NodeStatus::InQueue:
-      return MWMMapNodeStatusInQueue;
-    case storage::NodeStatus::Error:
-      return MWMMapNodeStatusError;
-    case storage::NodeStatus::OnDiskOutOfDate:
-      return MWMMapNodeStatusOnDiskOutOfDate;
-    case storage::NodeStatus::OnDisk:
-      return MWMMapNodeStatusOnDisk;
-    case storage::NodeStatus::NotDownloaded:
-      return MWMMapNodeStatusNotDownloaded;
-    case storage::NodeStatus::Partly:
-      return MWMMapNodeStatusPartly;
+static MWMMapNodeStatus convertStatus(storage::NodeStatus status)
+{
+  switch (status)
+  {
+  case storage::NodeStatus::Undefined: return MWMMapNodeStatusUndefined;
+  case storage::NodeStatus::Downloading: return MWMMapNodeStatusDownloading;
+  case storage::NodeStatus::Applying: return MWMMapNodeStatusApplying;
+  case storage::NodeStatus::InQueue: return MWMMapNodeStatusInQueue;
+  case storage::NodeStatus::Error: return MWMMapNodeStatusError;
+  case storage::NodeStatus::OnDiskOutOfDate: return MWMMapNodeStatusOnDiskOutOfDate;
+  case storage::NodeStatus::OnDisk: return MWMMapNodeStatusOnDisk;
+  case storage::NodeStatus::NotDownloaded: return MWMMapNodeStatusNotDownloaded;
+  case storage::NodeStatus::Partly: return MWMMapNodeStatusPartly;
   }
 }
 
 @interface MWMCountryIdAndName ()
 
-@property(nonatomic, copy) NSString *countryId;
-@property(nonatomic, copy) NSString *countryName;
+@property(nonatomic, copy) NSString * countryId;
+@property(nonatomic, copy) NSString * countryName;
 
 @end
 
 @implementation MWMCountryIdAndName
 
-- (instancetype)initWithCountryId:(NSString *)countryId name:(NSString *)countryName {
+- (instancetype)initWithCountryId:(NSString *)countryId name:(NSString *)countryName
+{
   self = [super init];
-  if (self) {
+  if (self)
+  {
     _countryId = countryId;
     _countryName = countryName;
   }
   return self;
 }
 
-- (instancetype)initWithCountryAndName:(storage::CountryIdAndName const &)countryAndName {
+- (instancetype)initWithCountryAndName:(storage::CountryIdAndName const &)countryAndName
+{
   self = [super init];
-  if (self) {
+  if (self)
+  {
     _countryId = @(countryAndName.m_id.c_str());
     _countryName = @(countryAndName.m_localName.c_str());
   }
@@ -63,9 +60,11 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
 - (instancetype)initWithCoreAttributes:(storage::NodeAttrs const &)attributes
                              countryId:(NSString *)countryId
                              hasParent:(BOOL)hasParent
-                           hasChildren:(BOOL)hasChildren {
+                           hasChildren:(BOOL)hasChildren
+{
   self = [super init];
-  if (self) {
+  if (self)
+  {
     _countryId = [countryId copy];
     _totalMwmCount = attributes.m_mwmCounter;
     _downloadedMwmCount = attributes.m_localMwmCounter;
@@ -84,22 +83,23 @@ static MWMMapNodeStatus convertStatus(storage::NodeStatus status) {
       _hikingbookProMapNodeStatus = convertStatus(attributes.m_hikingbookProMapStatus);
 
     storage::Storage::UpdateInfo updateInfo;
-    if (GetFramework().GetStorage().GetUpdateInfo([countryId UTF8String], updateInfo)) {
+    if (GetFramework().GetStorage().GetUpdateInfo([countryId UTF8String], updateInfo))
       _totalUpdateSizeBytes = updateInfo.m_totalDownloadSizeInBytes;
-    } else {
+    else
       _totalUpdateSizeBytes = 0;
-    }
 
-    NSMutableArray *parentInfoArray = [NSMutableArray arrayWithCapacity:attributes.m_parentInfo.size()];
-    for (auto const &pi : attributes.m_parentInfo) {
-      MWMCountryIdAndName *cn = [[MWMCountryIdAndName alloc] initWithCountryAndName:pi];
+    NSMutableArray * parentInfoArray = [NSMutableArray arrayWithCapacity:attributes.m_parentInfo.size()];
+    for (auto const & pi : attributes.m_parentInfo)
+    {
+      MWMCountryIdAndName * cn = [[MWMCountryIdAndName alloc] initWithCountryAndName:pi];
       [parentInfoArray addObject:cn];
     }
     _parentInfo = [parentInfoArray copy];
 
-    NSMutableArray *topmostInfoArray = [NSMutableArray arrayWithCapacity:attributes.m_topmostParentInfo.size()];
-    for (auto const &pi : attributes.m_topmostParentInfo) {
-      MWMCountryIdAndName *cn = [[MWMCountryIdAndName alloc] initWithCountryAndName:pi];
+    NSMutableArray * topmostInfoArray = [NSMutableArray arrayWithCapacity:attributes.m_topmostParentInfo.size()];
+    for (auto const & pi : attributes.m_topmostParentInfo)
+    {
+      MWMCountryIdAndName * cn = [[MWMCountryIdAndName alloc] initWithCountryAndName:pi];
       [topmostInfoArray addObject:cn];
     }
     _topmostParentInfo = topmostInfoArray.count > 0 ? [topmostInfoArray copy] : nil;

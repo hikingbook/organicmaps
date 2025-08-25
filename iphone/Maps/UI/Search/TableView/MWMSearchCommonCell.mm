@@ -1,17 +1,8 @@
 #import "MWMSearchCommonCell.h"
 #import "CLLocation+Mercator.h"
 #import "MWMLocationManager.h"
-#import "Hikingbook-Swift-Header.h"
-
-#include "map/place_page_info.hpp"
-
-#include "geometry/mercator.hpp"
-
-#include "platform/localization.hpp"
-#include "platform/distance.hpp"
-
-#import "SwiftBridge.h"
 #import "SearchResult.h"
+#import "Hikingbook-Swift-Header.h"
 
 @interface MWMSearchCommonCell ()
 
@@ -26,7 +17,8 @@
 
 @implementation MWMSearchCommonCell
 
-- (void)configureWith:(SearchResult * _Nonnull)result isPartialMatching:(BOOL)isPartialMatching {
+- (void)configureWith:(SearchResult * _Nonnull)result isPartialMatching:(BOOL)isPartialMatching
+{
   [super configureWith:result isPartialMatching:isPartialMatching];
   self.locationLabel.text = result.addressText;
   [self.locationLabel sizeToFit];
@@ -42,23 +34,20 @@
   self.separatorInset = UIEdgeInsetsMake(0, kSearchCellSeparatorInset, 0, 0);
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
   [super layoutSubviews];
   [self.iconImageView.layer setCornerRadius:self.iconImageView.height / 2];
 }
 
-- (NSDictionary *)selectedTitleAttributes {
-  return @{
-    NSForegroundColorAttributeName : [UIColor blackPrimaryText],
-    NSFontAttributeName : [UIFont bold17]
-  };
+- (NSDictionary *)selectedTitleAttributes
+{
+  return @{NSForegroundColorAttributeName: [UIColor blackPrimaryText], NSFontAttributeName: [UIFont bold17]};
 }
 
-- (NSDictionary *)unselectedTitleAttributes {
-  return @{
-    NSForegroundColorAttributeName : [UIColor blackPrimaryText],
-    NSFontAttributeName : [UIFont regular17]
-  };
+- (NSDictionary *)unselectedTitleAttributes
+{
+  return @{NSForegroundColorAttributeName: [UIColor blackPrimaryText], NSFontAttributeName: [UIFont regular17]};
 }
 
 @end

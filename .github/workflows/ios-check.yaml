@@ -37,11 +37,12 @@ jobs:
     name: Build iOS
     runs-on: macos-15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
       LANG: en_US.UTF-8  # Fastlane complains that the terminal is using ASCII.
       LANGUAGE: en_US.UTF-8
       LC_ALL: en_US.UTF-8
       TEST_RESULTS_BUNDLE_NAME: OMaps-Test-Results
+      SIMULATOR_DEVICE: 'iPhone 16 Pro Max'
     strategy:
       fail-fast: false
       matrix:
@@ -54,6 +55,14 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+
+      - name: Restore Boost submodule from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            3party/boost
+            .git/modules/3party/boost
+          key: boost-submodule
 
       - name: Parallel submodules checkout
         shell: bash
@@ -68,17 +77,21 @@ jobs:
         with:
           key: xcode-cache-deriveddata-${{ github.workflow }}-${{ matrix.buildType }}-${{ github.sha }}
           restore-keys: xcode-cache-deriveddata-${{ github.workflow }}-${{ matrix.buildType }}
+          delete-used-deriveddata-cache: true
 
       - name: Build and Run Tests (Debug)
         if: matrix.buildType == 'Debug'
         shell: bash
         run: |
+          # Start sim before the build to make sure it's booted when tests start.
+          xcrun simctl boot "${{ env.SIMULATOR_DEVICE }}" || true
+          xcrun simctl bootstatus "${{ env.SIMULATOR_DEVICE }}" -b
           xcodebuild test \
             -workspace xcode/omim.xcworkspace \
             -scheme OMaps \
             -configuration Debug \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest' \
+            -destination "platform=iOS Simulator,name=${{ env.SIMULATOR_DEVICE }},OS=latest" \
             -quiet \
             -resultBundlePath ${{ env.TEST_RESULTS_BUNDLE_NAME }}.xcresult \
             CODE_SIGNING_REQUIRED=NO \

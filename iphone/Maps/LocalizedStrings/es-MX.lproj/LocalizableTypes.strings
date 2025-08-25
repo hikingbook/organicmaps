@@ -482,8 +482,8 @@
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.primary_link.tunnel" = "Túnel";
 "type.highway.raceway" = "Circuito";
-"type.highway.residential" = "Calle residencial";
-"type.highway.residential.area" = "Calle residencial";
+"type.highway.residential" = "Calle urbana";
+"type.highway.residential.area" = "Calle urbana";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.residential.bridge" = "Puente";
@@ -520,13 +520,13 @@
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.service.bridge" = "Puente";
-"type.highway.service.driveway" = "Vía de servicio";
+"type.highway.service.driveway" = "Entrada vehicular";
 "type.highway.service.parking_aisle" = "Pasillo de estacionamiento";
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.service.tunnel" = "Túnel";
 "type.highway.services" = "Área de servicio";
-"type.highway.speed_camera" = "Radar de velocidad";
+"type.highway.speed_camera" = "Fotorradar";
 "type.highway.steps" = "Escaleras";
 
 /* These translations are used for all type.highway.*.bridge. */
@@ -588,7 +588,7 @@
 "type.area_highway.path" = "Sendero";
 "type.area_highway.pedestrian" = "Calle peatonal";
 "type.area_highway.primary" = "Carretera principal";
-"type.area_highway.residential" = "Calle residencial";
+"type.area_highway.residential" = "Calle urbana";
 "type.area_highway.secondary" = "Carretera secundaria";
 "type.area_highway.service" = "Vía de servicio";
 "type.area_highway.tertiary" = "Carretera terciaria";
@@ -606,7 +606,7 @@
 "type.historic.boundary_stone" = "Hito fronterizo";
 "type.historic.cannon" = "Cañón";
 "type.historic.castle" = "Castillo";
-"type.historic.castle.castrum" = "Castrum";
+"type.historic.castle.castrum" = "Fortificación romana";
 "type.historic.castle.defensive" = "Castillo defensivo";
 "type.historic.castle.fortified_church" = "Iglesia fortificada";
 "type.historic.castle.fortress" = "Fortaleza";
@@ -672,7 +672,7 @@
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.landuse.cemetery.christian" = "Cementerio cristiano";
-"type.landuse.churchyard" = "Camposanto";
+"type.landuse.religious" = "Camposanto";
 "type.landuse.commercial" = "Zona comercial";
 "type.landuse.construction" = "Construcción";
 "type.landuse.education" = "Instalaciones educativas";
@@ -930,7 +930,7 @@
 "type.railway.narrow_gauge" = "Vía férrea estrecha";
 "type.railway.narrow_gauge.bridge" = "Puente de vía férrea estrecha";
 "type.railway.narrow_gauge.tunnel" = "Túnel de vía férrea estrecha";
-"type.railway.platform" = "Plataforma de vía férrea";
+"type.railway.platform" = "Andén ferroviario";
 "type.railway.preserved" = "Riel conservado";
 "type.railway.preserved.bridge" = "Puente ferroviario conservado";
 "type.railway.preserved.tunnel" = "Túnel ferroviario conservado";
@@ -970,7 +970,7 @@
 "type.railway.station.light_rail.berlin" = "Estación de tren";
 "type.railway.station.light_rail.london" = "Estación de tren";
 "type.railway.station.light_rail.porto" = "Estación de tren";
-"type.railway.station.monorail" = "Estación de tren";
+"type.railway.station.monorail" = "Estación de monorriel";
 "type.railway.station.subway" = "Estación de metro";
 "type.railway.station.subway.adana" = "Estación de metro";
 "type.railway.station.subway.algiers" = "Estación de metro";
@@ -1233,15 +1233,15 @@
 "type.shop.computer" = "Tienda de informática";
 "type.shop.confectionery" = "Confitería";
 "type.shop.convenience" = "Tienda de barrio";
-"type.shop.copyshop" = "Centro de copiado";
+"type.shop.copyshop" = "Copistería";
 "type.shop.cosmetics" = "Tienda de cosméticos";
 "type.shop.curtain" = "Cortinas";
 "type.shop.deli" = "Tienda de delicatessen";
-"type.shop.department_store" = "Grandes almacenes";
+"type.shop.department_store" = "Tienda departamental";
 "type.shop.doityourself" = "Tienda de bricolaje";
 "type.shop.dry_cleaning" = "Tintorería";
 "type.shop.electronics" = "Electrónica";
-"type.shop.erotic" = "Sex Shop";
+"type.shop.erotic" = "Tienda erótica";
 "type.shop.fabric" = "Tienda de telas";
 "type.shop.farm" = "Tienda de alimentos de granja";
 "type.shop.fashion_accessories" = "Accesorios de moda";
@@ -1252,7 +1252,7 @@
 "type.shop.gas" = "Tienda de gasolina";
 "type.shop.gift" = "Tienda de regalos";
 "type.shop.greengrocer" = "Frutería";
-"type.shop.grocery" = "Tienda de comestibles";
+"type.shop.grocery" = "Tienda de abarrotes";
 "type.shop.hairdresser" = "Peluquería";
 "type.shop.hardware" = "Ferretería";
 "type.shop.health_food" = "Tienda de comida saludable";
@@ -1376,7 +1376,7 @@
 "type.tourism.artwork.sculpture" = "Escultura";
 "type.tourism.artwork.statue" = "Estatua";
 "type.tourism.attraction" = "Atracción turística";
-"type.attraction.amusement_ride" = "Atracción";
+"type.attraction.amusement_ride" = "Juego mecánico";
 "type.attraction.animal" = "Recinto de animales";
 "type.attraction.bumper_car" = "Coches de choque";
 "type.attraction.big_wheel" = "Noria";
@@ -1413,8 +1413,8 @@
 "type.tourism.zoo" = "Zoológico";
 "type.tourism.zoo.petting" = "Zoológico interactivo";
 "type.traffic_calming" = "Pacificación del tráfico";
-"type.traffic_calming.bump" = "Banda reductora";
-"type.traffic_calming.hump" = "Resalte";
+"type.traffic_calming.bump" = "Topes";
+"type.traffic_calming.hump" = "Lomo";
 "type.waterway" = "Curso de agua";
 "type.waterway.canal" = "Canal";
 "type.waterway.canal.tunnel" = "Túnel de canal";
@@ -1484,3 +1484,17 @@
 
 /* https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall */
 "type.leisure.sports_hall" = "Pabellón deportivo";
+"type.amenity.bicycle_parking.covered" = "Estacionamiento de bicicletas techado";
+"type.amenity.love_hotel" = "Love Hotel";
+"type.amenity.studio" = "Studio";
+"type.amenity.luggage_locker" = "Luggage Locker";
+"type.post_office.post_partner" = "Post Partner";
+"type.barrier.guard_rail" = "Guard Rail";
+"type.highway.ladder" = "Ladder";
+"type.landuse.plant_nursery" = "Plant Nursery";
+"type.leisure.escape_game" = "Escape Room";
+"type.leisure.firepit" = "Firepit";
+"type.railway.station.subway.qingdao" = "Subway Station";
+"type.amenity.ranger_station" = "Ranger Station";
+"type.sport.diving" = "Diving";
+"type.man_made.crane" = "Crane";

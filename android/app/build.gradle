@@ -22,7 +22,7 @@ buildscript {
       googleFirebaseServicesDefault
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:8.7.3'
+    classpath 'com.android.tools.build:gradle:8.11.0'
 
     if (googleFirebaseServicesEnabled) {
       println('Building with Google Firebase Services')
@@ -33,15 +33,9 @@ buildscript {
       println('Building without Google Firebase Services')
     }
 
-    classpath('com.github.triplet.gradle:play-publisher:3.10.1')
+    classpath('com.github.triplet.gradle:play-publisher:3.12.1')
     classpath('ru.cian:huawei-publish-gradle-plugin:1.4.2')
   }
-}
-
-repositories {
-  google()
-  mavenCentral()
-  maven { url 'https://www.jitpack.io' } // MPAndroidChart
 }
 
 apply plugin: 'com.android.application'
@@ -53,125 +47,53 @@ if (googleFirebaseServicesEnabled) {
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'ru.cian.huawei-publish-gradle-plugin'
 
-def run(cmd) {
-  def stdout = new ByteArrayOutputStream()
-  exec {
-    commandLine = cmd
-    standardOutput = stdout
-  }
-  return stdout.toString()
-}
-
 
 import com.github.triplet.gradle.androidpublisher.ReleaseStatus
-import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
-
-def getVersion() {
-  def isWindows = DefaultNativePlatform.getCurrentOperatingSystem().isWindows()
-  def bash = isWindows ? 'C:\\Program Files\\Git\\bin\\bash.exe' : 'bash'
-  def versionCode = Integer.parseInt(run([bash, '../../tools/unix/version.sh', 'android_code']).trim())
-  def versionName = run([bash, '../../tools/unix/version.sh', 'android_name']).trim()
-  return new Tuple2(versionCode, versionName)
-}
 
 def getCommitMessage() {
   return run(['git', '--no-pager', 'show', '-s', '--format=%s%n%n%b', 'HEAD']).trim()
 }
 
-def osName = System.properties['os.name'].toLowerCase()
-
 project.ext.appId = 'app.organicmaps'
 project.ext.appName = 'Organic Maps'
 
-// I have Java 21 installed, but this doesn't work on MacOS.
-//java {
-//  toolchain {
-//    languageVersion.set(JavaLanguageVersion.of(17))
-//  }
-//}
-
 android {
-  namespace 'app.organicmaps'
+  namespace = 'app.organicmaps'
+
+  // TODO: it should not be here, but in sdk/build.gradle. But for some reason it should be specified here as well.
+  ndkVersion = '28.2.13676358'
 
   buildFeatures {
     dataBinding = true
     buildConfig = true
   }
-  // All properties are read from gradle.properties file
-  compileSdk propCompileSdkVersion.toInteger()
 
-  ndkVersion '27.2.12479018'
+  // Users are complaining that the app should be re-downloaded from the Play Store after changing the language.
+  bundle {
+    language {
+      enableSplit = false
+    }
+  }
+
+  // All properties are read from gradle.properties file
+  compileSdk = propCompileSdkVersion.toInteger()
 
   defaultConfig {
-    // Default package name is taken from the manifest and should be app.organicmaps
-    def ver = getVersion()
-    versionCode = ver.V1
-    versionName = ver.V2
+    versionCode = rootProject.ext.versionCode
+    versionName = rootProject.ext.versionName
     println('Version: ' + versionName)
     println('VersionCode: ' + versionCode)
-    minSdk propMinSdkVersion.toInteger()
-    targetSdk propTargetSdkVersion.toInteger()
+    minSdk = propMinSdkVersion.toInteger()
+    targetSdk = propTargetSdkVersion.toInteger()
     applicationId project.ext.appId
     buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
     // Should be customized in flavors.
     buildConfigField 'String', 'REVIEW_URL', '""'
     resourceConfigurations += [project.ext.supportedLocalizations]
 
-    externalNativeBuild {
-      def pchFlag = 'OFF'
-      if (project.hasProperty('pch')) pchFlag = 'ON'
+    base.archivesName = appName.replaceAll('\\s','') + '-' + defaultConfig.versionCode
 
-      def njobs = ''
-      if (project.hasProperty('njobs')) njobs = project.getProperty('njobs')
-
-      def enableVulkanDiagnostics = 'OFF'
-      if (project.hasProperty('enableVulkanDiagnostics')) {
-        enableVulkanDiagnostics = project.getProperty('enableVulkanDiagnostics')
-      }
-
-      def enableTrace = 'OFF'
-      if (project.hasProperty('enableTrace')) {
-        enableTrace = project.getProperty('enableTrace')
-      }
-
-      cmake {
-        cppFlags '-fexceptions', '-frtti'
-        // There is no sense to enable sections without gcc's --gc-sections flag.
-        cFlags '-fno-function-sections', '-fno-data-sections',
-               '-Wno-extern-c-compat'
-        arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_static',
-                  "-DOS=$osName", '-DSKIP_TESTS=ON', '-DSKIP_TOOLS=ON', "-DUSE_PCH=$pchFlag",
-                  "-DNJOBS=$njobs", "-DENABLE_VULKAN_DIAGNOSTICS=$enableVulkanDiagnostics",
-                  "-DENABLE_TRACE=$enableTrace"
-        targets 'organicmaps'
-      }
-    }
-
-    // Use, for example, -Parm32 gradle parameter to build only for armeabi-v7a.
-    ndk {
-      abiFilters = new HashSet<>()
-      if (project.hasProperty('arm32') || project.hasProperty('armeabi-v7a')) {
-        abiFilters.add('armeabi-v7a')
-      }
-      if (project.hasProperty('arm64') || project.hasProperty('arm64-v8a')) {
-        abiFilters.add('arm64-v8a')
-      }
-      if (project.hasProperty('x86')) {
-        abiFilters.add('x86')
-      }
-      if (project.hasProperty('x86_64') || project.hasProperty('x64')) {
-        abiFilters.add('x86_64')
-      }
-      if (abiFilters.isEmpty()) {
-        abiFilters.add('armeabi-v7a')
-        abiFilters.add('arm64-v8a')
-        // For the emulator, chromebooks and some Intel Atom devices.
-        abiFilters.add('x86_64')
-      }
-      println('Building for ' + abiFilters + ' archs.')
-    }
-
-    setProperty('archivesBaseName', appName.replaceAll('\\s','') + '-' + defaultConfig.versionCode)
+    ndk.debugSymbolLevel = 'full'
   }
 
   flavorDimensions += 'default'
@@ -218,10 +140,10 @@ android {
   splits.abi {
     boolean enabled = project.hasProperty('splitApk')
     println ('Create separate apks: ' + enabled)
-    enable enabled
+    enable = enabled
     reset()
     include 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64'
-    universalApk true
+    universalApk = true
   }
 
   lint {
@@ -234,7 +156,7 @@ android {
     disable 'CustomSplashScreen'
     // https://github.com/organicmaps/organicmaps/issues/3610
     disable 'InsecureBaseConfiguration'
-    abortOnError true
+    abortOnError = true
   }
 
   gradle.projectsEvaluated {
@@ -276,16 +198,11 @@ android {
     debug {
       applicationIdSuffix '.debug'   // Allows to install debug and release builds together
       versionNameSuffix '-debug'
-      jniDebuggable true           // Enable jni debug build
       zipAlignEnabled true
-      signingConfig signingConfigs.debug
+      signingConfig = signingConfigs.debug
       resValue 'string', 'app_name', 'Debug Organic Maps'
-      // Do not generate separate debug symbols for debug apps, because we don't distribute them.
-      ndk.debugSymbolLevel = 'none'
 
       if (googleFirebaseServicesEnabled) {
-        // Keep debug symbols for test lab.
-        ndk.debugSymbolLevel = 'symbol_table'
         firebaseCrashlytics {
           nativeSymbolUploadEnabled true
         }
@@ -293,15 +210,13 @@ android {
     }
 
     release {
-      signingConfig signingConfigs.release
+      signingConfig = signingConfigs.release
       minifyEnabled true
-      shrinkResources true
+      shrinkResources = true
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       resValue 'string', 'app_name', project.ext.appName
-      // Full size symbols are too big for Google, 217mb aab vs 95mb.
-      ndk.debugSymbolLevel = 'symbol_table'
 
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -313,16 +228,14 @@ android {
     beta {
       applicationIdSuffix '.beta'
       versionNameSuffix '-beta'
-      signingConfig signingConfigs.release
+      signingConfig = signingConfigs.release
       minifyEnabled true
-      shrinkResources true
+      shrinkResources = true
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       matchingFallbacks = ['debug', 'release']
       resValue 'string', 'app_name', 'Beta Organic Maps'
-      // Full size symbols are too big for Google, 217mb aab vs 95mb.
-      ndk.debugSymbolLevel = 'symbol_table'
 
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -339,23 +252,15 @@ android {
     }
   }
 
-  externalNativeBuild {
-    cmake {
-      version '3.22.1+'
-      buildStagingDirectory './nativeOutputs'
-      path '../../CMakeLists.txt'
-    }
-  }
-
   // We don't compress these extensions in assets/ because our random FileReader can't read zip-compressed files from apk.
   // TODO: Load all minor files via separate call to ReadAsString which can correctly handle compressed files in zip containers.
   androidResources {
-    ignoreAssetsPattern '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
+    ignoreAssetsPattern = '!.svn:!.git:!.DS_Store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
     noCompress = ['txt', 'bin', 'html', 'png', 'json', 'mwm', 'ttf', 'sdf', 'ui', 'config', 'csv', 'spv', 'obj']
   }
 
   compileOptions {
-    coreLibraryDesugaringEnabled true
+    coreLibraryDesugaringEnabled = true
 
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
@@ -363,7 +268,9 @@ android {
 }
 
 dependencies {
-  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+  implementation project(':sdk')
+
+  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 
   // Google Play Location Services
   //
@@ -384,7 +291,7 @@ dependencies {
   // Google Firebase Services
   if (googleFirebaseServicesEnabled) {
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:33.5.1')
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
     // Add the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
@@ -395,34 +302,30 @@ dependencies {
   // > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckDuplicatesRunnable
   // We don't use Kotlin, but some dependencies are actively using it.
   // See https://stackoverflow.com/a/75719642
-  implementation 'androidx.core:core:1.15.0'
-  implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.1.10'))
+  implementation 'androidx.core:core:1.16.0'
+  implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.2.0'))
   implementation 'androidx.annotation:annotation:1.9.1'
-  implementation 'androidx.appcompat:appcompat:1.7.0'
-  implementation 'androidx.car.app:app:1.7.0-rc01'
-  implementation 'androidx.car.app:app-projected:1.7.0-rc01'
-  implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
-  implementation 'androidx.fragment:fragment:1.8.5'
+  implementation 'androidx.appcompat:appcompat:1.7.1'
+  implementation 'androidx.car.app:app:1.8.0-alpha02'
+  implementation 'androidx.car.app:app-projected:1.8.0-alpha02'
+  implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+  implementation 'androidx.fragment:fragment:1.8.8'
   implementation 'androidx.preference:preference:1.2.1'
-  implementation 'androidx.recyclerview:recyclerview:1.3.2'
-  implementation 'androidx.work:work-runtime:2.10.0'
-  implementation 'androidx.lifecycle:lifecycle-process:2.8.7'
+  implementation 'androidx.recyclerview:recyclerview:1.4.0'
+  implementation 'androidx.work:work-runtime:2.10.2'
+  implementation 'androidx.lifecycle:lifecycle-process:2.9.1'
   implementation 'com.google.android.material:material:1.12.0'
   // Fix for app/organicmaps/util/FileUploadWorker.java:14: error: cannot access ListenableFuture
   // https://github.com/organicmaps/organicmaps/issues/6106
-  implementation 'com.google.guava:guava:33.3.0-android'
+  implementation 'com.google.guava:guava:33.4.8-android'
   implementation 'com.github.devnullorthrow:MPAndroidChart:3.2.0-alpha'
   implementation 'net.jcip:jcip-annotations:1.0'
 
   // Test Dependencies
   androidTestImplementation 'androidx.test.ext:junit:1.2.1'
   testImplementation 'junit:junit:4.13.2'
-  testImplementation 'org.mockito:mockito-core:5.15.2'
+  testImplementation 'org.mockito:mockito-core:5.18.0'
   testImplementation 'org.mockito:mockito-inline:5.2.0'
-}
-
-tasks.withType(JavaCompile) {
-  options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
 }
 
 android.applicationVariants.all { variant ->
@@ -497,4 +400,8 @@ huaweiPublish {
       releaseNotes = new ru.cian.huawei.publish.ReleaseNotesExtension(releaseDescriptions, true)
     }
   }
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
 }

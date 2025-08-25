@@ -1,11 +1,18 @@
 // This file is modified by Zheng-Xiang Ke on 2019.
-#import "MWMMyPositionMode.h"
 #import "MWMLocationObserver.h"
+#import "MWMMyPositionMode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LocationService
+
++ (BOOL)isLocationProhibited;
++ (void)checkLocationStatus;
+
+@end
+
 //NS_SWIFT_NAME(LocationManager)
-@interface MWMLocationManager : NSObject
+@interface MWMLocationManager : NSObject <LocationService>
 
 + (MWMLocationManager *)manager;
 
@@ -17,10 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeObserver:(id<MWMLocationObserver>)observer NS_SWIFT_NAME(remove(observer:));
 
 + (void)setMyPositionMode:(MWMMyPositionMode)mode;
-+ (void)checkLocationStatus;
 
 + (nullable CLLocation *)lastLocation;
-+ (BOOL)isLocationProhibited;
 + (nullable CLHeading *)lastHeading;
 
 + (void)applicationDidBecomeActive;
@@ -31,9 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init __attribute__((unavailable("call +manager instead")));
 - (instancetype)copy __attribute__((unavailable("call +manager instead")));
 - (instancetype)copyWithZone:(NSZone *)zone __attribute__((unavailable("call +manager instead")));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone
-    __attribute__((unavailable("call +manager instead")));
-+ (instancetype) new __attribute__((unavailable("call +manager instead")));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable("call +manager instead")));
++ (instancetype)new __attribute__((unavailable("call +manager instead")));
 
 @end
 

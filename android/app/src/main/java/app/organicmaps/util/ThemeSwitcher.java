@@ -5,18 +5,17 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.location.Location;
 import android.os.Build;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
-import app.organicmaps.Framework;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.display.DisplayManager;
 import app.organicmaps.downloader.DownloaderStatusIcon;
-import app.organicmaps.location.LocationHelper;
-import app.organicmaps.routing.RoutingController;
+import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.MapStyle;
-import app.organicmaps.util.concurrency.UiThread;
+import app.organicmaps.sdk.routing.RoutingController;
+import app.organicmaps.sdk.util.Config;
+import app.organicmaps.sdk.util.concurrency.UiThread;
+import java.util.Calendar;
 
 public enum ThemeSwitcher
 {
@@ -25,35 +24,27 @@ public enum ThemeSwitcher
   private static final long CHECK_INTERVAL_MS = 30 * 60 * 1000;
   private static boolean mRendererActive = false;
 
-  private final Runnable mAutoThemeChecker = new Runnable()
-  {
+  private final Runnable mAutoThemeChecker = new Runnable() {
     @Override
     public void run()
     {
-      String nightTheme = MwmApplication.from(mContext).getString(R.string.theme_night);
-      String defaultTheme = MwmApplication.from(mContext).getString(R.string.theme_default);
-      String theme = defaultTheme;
-      Location last = LocationHelper.from(mContext).getSavedLocation();
-
       boolean navAuto = RoutingController.get().isNavigating() && ThemeUtils.isNavAutoTheme(mContext);
+      // Cancel old checker
+      UiThread.cancelDelayedTasks(mAutoThemeChecker);
 
+      String theme;
       if (navAuto || ThemeUtils.isAutoTheme(mContext))
       {
-        if (last == null)
-          theme = Config.getCurrentUiTheme(mContext);
-        else
-        {
-          long currentTime = System.currentTimeMillis() / 1000;
-          boolean day = Framework.nativeIsDayTime(currentTime, last.getLatitude(), last.getLongitude());
-          theme = (day ? defaultTheme : nightTheme);
-        }
+        UiThread.runLater(mAutoThemeChecker, CHECK_INTERVAL_MS);
+        theme = calcAutoTheme();
+      }
+      else
+      {
+        // Happens when exiting the Navigation mode. Should restore the light.
+        theme = mContext.getResources().getString(R.string.theme_default);
       }
 
       setThemeAndMapStyle(theme);
-      UiThread.cancelDelayedTasks(mAutoThemeChecker);
-
-      if (navAuto || ThemeUtils.isAutoTheme(mContext))
-        UiThread.runLater(mAutoThemeChecker, CHECK_INTERVAL_MS);
     }
   };
 
@@ -148,7 +139,7 @@ public enum ThemeSwitcher
   {
     // Because of the distinct behavior in auto theme, Android Auto employs its own mechanism for theme switching.
     // For the Android Auto theme switcher, please consult the app.organicmaps.car.util.ThemeUtils module.
-    if (DisplayManager.from(mContext).isCarDisplayUsed())
+    if (MwmApplication.from(mContext).getDisplayManager().isCarDisplayUsed())
       return;
     // If rendering is not active we can mark map style, because all graphics
     // will be recreated after rendering activation.
@@ -156,5 +147,33 @@ public enum ThemeSwitcher
       MapStyle.set(style);
     else
       MapStyle.mark(style);
+  }
+
+  /**
+   * Determine light/dark theme based on time and location,
+   * or fall back to time-based (06:00-18:00) when there's no location fix
+   *
+   * @return theme_light/dark string
+   */
+  @NonNull
+  private String calcAutoTheme()
+  {
+    String defaultTheme = mContext.getResources().getString(R.string.theme_default);
+    String nightTheme = mContext.getResources().getString(R.string.theme_night);
+    Location last = MwmApplication.from(mContext).getLocationHelper().getSavedLocation();
+    boolean day;
+
+    if (last != null)
+    {
+      long currentTime = System.currentTimeMillis() / 1000;
+      day = Framework.nativeIsDayTime(currentTime, last.getLatitude(), last.getLongitude());
+    }
+    else
+    {
+      int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+      day = (currentHour < 18 && currentHour > 6);
+    }
+
+    return (day ? defaultTheme : nightTheme);
   }
 }

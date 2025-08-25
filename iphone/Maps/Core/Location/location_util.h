@@ -1,6 +1,7 @@
 #pragma once
 
-namespace location_util {
+namespace location_util
+{
 
 static location::GpsInfo gpsInfoFromLocation(CLLocation * l, location::TLocationSource source)
 {
@@ -32,10 +33,10 @@ static location::CompassInfo compassInfoFromHeading(CLHeading * h)
 {
   location::CompassInfo info;
   if (h.trueHeading >= 0.0)
-    info.m_bearing = base::DegToRad(h.trueHeading);
+    info.m_bearing = math::DegToRad(h.trueHeading);
   else if (h.headingAccuracy >= 0.0)
-    info.m_bearing = base::DegToRad(h.magneticHeading);
+    info.m_bearing = math::DegToRad(h.magneticHeading);
   return info;
 }
 
-} // namespace location_util
+}  // namespace location_util

@@ -3,13 +3,13 @@
 
 struct FeatureID;
 
-@protocol MWMFeatureHolder<NSObject>
+@protocol MWMFeatureHolder <NSObject>
 
 - (FeatureID const &)featureId;
 
 @end
 
-@protocol MWMPlacePageProtocol<MWMFeatureHolder>
+@protocol MWMPlacePageProtocol <MWMFeatureHolder>
 
 - (BOOL)isPPShown;
 

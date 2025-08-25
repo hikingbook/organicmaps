@@ -1,5 +1,6 @@
 protocol PlacePageInteractorProtocol: AnyObject {
   func viewWillAppear()
+  func viewWillDisappear()
   func updateTopBound(_ bound: CGFloat, duration: TimeInterval)
 }
 
@@ -7,6 +8,8 @@ class PlacePageInteractor: NSObject {
   var presenter: PlacePagePresenterProtocol?
   weak var viewController: UIViewController?
   weak var mapViewController: MapViewController?
+  weak var trackActivePointPresenter: TrackActivePointPresenter?
+
   private let bookmarksManager = BookmarksManager.shared()
   private var placePageData: PlacePageData
   private var viewWillAppearIsCalledForTheFirstTime = false
@@ -17,6 +20,7 @@ class PlacePageInteractor: NSObject {
     self.mapViewController = mapViewController
     super.init()
     addToBookmarksManagerObserverList()
+    subscribeOnTrackActivePointUpdatesIfNeeded()
   }
 
   deinit {
@@ -24,14 +28,46 @@ class PlacePageInteractor: NSObject {
   }
 
   private func updatePlacePageIfNeeded() {
-    let isBookmark = placePageData.bookmarkData != nil && bookmarksManager.hasBookmark(placePageData.bookmarkData!.bookmarkId)
-    let isTrack = placePageData.trackData != nil && bookmarksManager.hasTrack(placePageData.trackData!.trackId)
-    guard isBookmark || isTrack else {
-      presenter?.closeAnimated()
-      return
+    func updatePlacePage() {
+      FrameworkHelper.updatePlacePageData()
+      placePageData.updateBookmarkStatus()
     }
-    FrameworkHelper.updatePlacePageData()
-    placePageData.updateBookmarkStatus()
+
+    switch placePageData.objectType {
+    case .POI, .trackRecording:
+      break
+    case .bookmark:
+      guard let bookmarkData = placePageData.bookmarkData, bookmarksManager.hasBookmark(bookmarkData.bookmarkId) else {
+        presenter?.closeAnimated()
+        return
+      }
+      updatePlacePage()
+    case .track:
+      guard let trackData = placePageData.trackData, bookmarksManager.hasTrack(trackData.trackId) else {
+        presenter?.closeAnimated()
+        return
+      }
+      updatePlacePage()
+    @unknown default:
+      fatalError("Unknown object type")
+    }
+  }
+
+  private func subscribeOnTrackActivePointUpdatesIfNeeded() {
+    unsubscribeFromTrackActivePointUpdates()
+    guard placePageData.objectType == .track, let trackData = placePageData.trackData else { return }
+    bookmarksManager.setElevationActivePointChanged(trackData.trackId) { [weak self] distance in
+      self?.trackActivePointPresenter?.updateActivePointDistance(distance)
+      trackData.updateActivePointDistance(distance)
+    }
+    bookmarksManager.setElevationMyPositionChanged(trackData.trackId) { [weak self] distance in
+      self?.trackActivePointPresenter?.updateMyPositionDistance(distance)
+    }
+  }
+
+  private func unsubscribeFromTrackActivePointUpdates() {
+    bookmarksManager.resetElevationActivePointChanged()
+    bookmarksManager.resetElevationMyPositionChanged()
   }
 
   private func addToBookmarksManagerObserverList() {
@@ -51,6 +87,10 @@ extension PlacePageInteractor: PlacePageInteractorProtocol {
       return
     }
     updatePlacePageIfNeeded()
+  }
+
+  func viewWillDisappear() {
+    unsubscribeFromTrackActivePointUpdates()
   }
 
   func updateTopBound(_ bound: CGFloat, duration: TimeInterval) {
@@ -162,6 +202,16 @@ extension PlacePageInteractor: PlacePageButtonsViewControllerDelegate {
 // MARK: - PlacePageEditBookmarkOrTrackViewControllerDelegate
 
 extension PlacePageInteractor: PlacePageEditBookmarkOrTrackViewControllerDelegate {
+  func didUpdate(color: UIColor, category: MWMMarkGroupID, for data: PlacePageEditData) {
+    switch data {
+    case .bookmark(let bookmarkData):
+      let bookmarkColor = BookmarkColor.bookmarkColor(from: color) ?? bookmarkData.color
+      MWMPlacePageManagerHelper.updateBookmark(placePageData, color: bookmarkColor, category: category)
+    case .track(let trackData):
+      MWMPlacePageManagerHelper.updateTrack(placePageData, color: color, category: category)
+    }
+  }
+  
   func didPressEdit(_ data: PlacePageEditData) {
     switch data {
     case .bookmark:
@@ -231,9 +281,19 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
       fatalError("More button should've been handled in ActionBarViewContoller")
     case .track:
       guard placePageData.trackData != nil else { return }
-      // TODO: This is temporary solution. Remove the dialog and use the MWMPlacePageManagerHelper.removeTrack
+      // TODO: (KK) This is temporary solution. Remove the dialog and use the MWMPlacePageManagerHelper.removeTrack
       // directly here when the track recovery mechanism will be implemented.
       showTrackDeletionConfirmationDialog()
+    case .saveTrackRecording:
+      // TODO: (KK) pass name typed by user
+      TrackRecordingManager.shared.stopAndSave() { [weak self] result in
+        switch result {
+        case .success:
+          break
+        case .trackIsEmpty:
+          self?.presenter?.closeAnimated()
+        }
+      }
     @unknown default:
       fatalError()
     }
@@ -284,8 +344,9 @@ extension PlacePageInteractor: ElevationProfileViewControllerDelegate {
   }
 
   func updateMapPoint(_ point: CLLocationCoordinate2D, distance: Double) {
-    guard let trackId = placePageData.trackData?.trackId else { return }
-    BookmarksManager.shared().setElevationActivePoint(point, distance: distance, trackId: trackId)
+    guard let trackData = placePageData.trackData, trackData.elevationProfileData?.isTrackRecording == false else { return }
+    bookmarksManager.setElevationActivePoint(point, distance: distance, trackId: trackData.trackId)
+    placePageData.trackData?.updateActivePointDistance(distance)
   }
 }
 #endif
@@ -310,7 +371,12 @@ extension PlacePageInteractor: PlacePageHeaderViewControllerDelegate {
     case .track:
       presenter?.showShareTrackMenu()
     default:
-      fatalError()
+      guard let coordinates = LocationManager.lastLocation()?.coordinate else {
+        viewController?.present(UIAlertController.unknownCurrentPosition(), animated: true, completion: nil)
+        return
+      }
+      let activity = ActivityViewController.share(forMyPosition: coordinates)
+      activity.present(inParentViewController: mapViewController, anchorView: sourceView)
     }
   }
 

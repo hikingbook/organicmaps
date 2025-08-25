@@ -583,7 +583,7 @@
     <string name="editor_share_to_all_dialog_message_2">Редакторы OpenStreetMap проверят изменения и свяжутся с вами, если у них возникнут вопросы.</string>
     <string name="navigation_stop_button">Cтоп</string>
     <!-- Shown as toast when starting the recent track recording -->
-    <string name="track_recording">Запись трека</string>
+    <string name="track_recording">Запущена запись трека</string>
     <!-- For the first routing -->
     <string name="accept">Принять</string>
     <!-- For the first routing -->
@@ -598,6 +598,7 @@
     <string name="mobile_data_option_never">Никогда не использовать</string>
     <string name="mobile_data_option_ask">Всегда спрашивать</string>
     <string name="traffic_update_maps_text">Для отображения пробок необходимо обновить карты.</string>
+    <string name="routes_update_maps_text">Обновите карты, чтобы увидеть маршруты.</string>
     <string name="big_font">Увеличить шрифт на карте</string>
     <string name="traffic_update_app">Обновите Organic Maps</string>
     <!-- "traffic" as in "road congestion" -->
@@ -671,6 +672,8 @@
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="terms_of_use">Условия использования</string>
     <string name="button_layer_traffic">Пробки</string>
+    <string name="button_layer_hiking">Пешие маршруты</string>
+    <string name="button_layer_cycling">Веломаршруты</string>
     <string name="button_layer_subway">Метро</string>
     <string name="layers_title">Стили и слои карты</string>
     <string name="subway_data_unavailable">Карта метро недоступна</string>
@@ -698,6 +701,10 @@
     <string name="power_managment_setting_never">Никогда</string>
     <string name="power_managment_setting_auto">Авто</string>
     <string name="power_managment_setting_manual_max">Максимальное энергосбережение</string>
+    <string name="bookmarks_text_placement_title">Названия меток на карте</string>
+    <string name="bookmarks_text_placement_description">Если меток слишком много, отображение их названий на карте может замедлить работу приложения.</string>
+    <string name="show_to_the_right">Справа от метки</string>
+    <string name="show_at_the_bottom">Под меткой</string>
     <string name="enable_logging_warning_message">Данная настройка включается для записи действий в целях диагностики, чтобы помочь нашей команде выявить проблемы с приложением. Временно включайте эту настройку только для отправки детальной информации о найденной вами проблеме в приложении через кнопку \"Сообщить о проблеме\".</string>
     <string name="access_rules_author_only">Редактируется онлайн</string>
     <string name="driving_options_title">Настройки объезда</string>
@@ -909,4 +916,9 @@
     <string name="vk">VK</string>
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <string name="comma_separated_pair">%1$s, %2$s</string>
+    <string name="saved">Сохранено</string>
+    <string name="osm_note_hint">Или, в качестве альтернативы, оставьте заметку для сообщества OpenStreetMap, чтобы кто-то другой мог добавить или исправить место здесь.</string>
+    <string name="osm_note_toast">Ваша заметка будет отправлена в OpenStreetMap</string>
+    <string name="share_track">Поделиться треком</string>
+    <string name="delete_track_dialog_title">Удалить %s?</string>
 </resources>

@@ -6,21 +6,24 @@
 #include "storage/storage_defines.hpp"
 
 #include "platform/location.hpp"
-#include "platform/location_service.hpp"
+#include "platform/location_service/location_service.hpp"
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 
 #include <array>
-#include <string>
 #include <memory>
+#include <string>
 
 class Framework;
 class QDockWidget;
 class QLabel;
 class QPushButton;
 
-namespace search { class Result; }
+namespace search
+{
+class Result;
+}
 
 namespace qt
 {
@@ -28,7 +31,9 @@ class DrawWidget;
 class PopupMenuHolder;
 struct ScreenshotParams;
 
-class MainWindow : public QMainWindow, location::LocationObserver
+class MainWindow
+  : public QMainWindow
+  , location::LocationObserver
 {
   DrawWidget * m_pDrawWidget = nullptr;
   // TODO(mgsergio): Make indexing more informative.
@@ -52,9 +57,11 @@ class MainWindow : public QMainWindow, location::LocationObserver
   {
     /// @todo Uncomment when we will integrate a traffic provider.
     // TRAFFIC = 0,
-    TRANSIT = 0,      // Metro scheme
+    TRANSIT = 0,  // Metro scheme
     ISOLINES,
     OUTDOORS,
+    HIKING,
+    CYCLING,
   };
   PopupMenuHolder * m_layers = nullptr;
   PopupMenuHolder * m_routing = nullptr;
@@ -68,17 +75,17 @@ class MainWindow : public QMainWindow, location::LocationObserver
   QAction * m_pGetStatisticsAction = nullptr;
   QAction * m_pRunTestsAction = nullptr;
   QAction * m_pBuildPhonePackAction = nullptr;
-#endif // BUILD_DESIGNER
+#endif  // BUILD_DESIGNER
 
   Q_OBJECT
 
 public:
-  MainWindow(Framework & framework, std::unique_ptr<ScreenshotParams> && screenshotParams,
-             QRect const & screenGeometry
+  MainWindow(Framework & framework, std::unique_ptr<ScreenshotParams> && screenshotParams, QRect const & screenGeometry
 #ifdef BUILD_DESIGNER
-             , QString const & mapcssFilePath = QString()
+             ,
+             QString const & mapcssFilePath = QString()
 #endif
-            );
+  );
 
 protected:
   Framework & GetFramework() const;
@@ -87,8 +94,8 @@ protected:
   void OnLocationUpdated(location::GpsInfo const & info) override;
   void LocationStateModeChanged(location::EMyPositionMode mode);
 
-  void CreatePanelImpl(size_t i, Qt::DockWidgetArea area, QString const & name,
-                       QKeySequence const & hotkey, char const * slot);
+  void CreatePanelImpl(size_t i, Qt::DockWidgetArea area, QString const & name, QKeySequence const & hotkey,
+                       char const * slot);
   void CreateNavigationBar();
   void CreateSearchBarAndPanel();
   void CreateCountryStatusControls();
@@ -105,7 +112,7 @@ protected:
 protected Q_SLOTS:
 #ifndef NO_DOWNLOADER
   void ShowUpdateDialog();
-#endif // NO_DOWNLOADER
+#endif  // NO_DOWNLOADER
 
   void OnPreferences();
   void OnAbout();
@@ -142,6 +149,6 @@ protected Q_SLOTS:
   void OnGetStatistics();
   void OnRunTests();
   void OnBuildPhonePackage();
-#endif // BUILD_DESIGNER
+#endif  // BUILD_DESIGNER
 };
 }  // namespace qt

@@ -62,27 +62,23 @@ void QtRenderOGLContext::Resize(int w, int h)
   // This function can't be called inside BeginRendering - EndRendering.
   std::lock_guard<std::mutex> lock(m_frameMutex);
 
-  auto const nw = static_cast<int>(base::NextPowOf2(static_cast<uint32_t>(w)));
-  auto const nh = static_cast<int>(base::NextPowOf2(static_cast<uint32_t>(h)));
+  auto const nw = static_cast<int>(math::NextPowOf2(static_cast<uint32_t>(w)));
+  auto const nh = static_cast<int>(math::NextPowOf2(static_cast<uint32_t>(h)));
 
   if (nw <= m_width && nh <= m_height && m_backFrame != nullptr)
   {
-    m_frameRect =
-      QRectF(0.0, 0.0, w / static_cast<float>(m_width), h / static_cast<float>(m_height));
+    m_frameRect = QRectF(0.0, 0.0, w / static_cast<float>(m_width), h / static_cast<float>(m_height));
     return;
   }
 
   m_width = nw;
   m_height = nh;
-  m_frameRect =
-    QRectF(0.0, 0.0, w / static_cast<float>(m_width), h / static_cast<float>(m_height));
+  m_frameRect = QRectF(0.0, 0.0, w / static_cast<float>(m_width), h / static_cast<float>(m_height));
 
-  m_backFrame = std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height),
-                                                           QOpenGLFramebufferObject::Depth);
-  m_frontFrame = std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height),
-                                                            QOpenGLFramebufferObject::Depth);
-  m_acquiredFrame = std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height),
-                                                               QOpenGLFramebufferObject::Depth);
+  m_backFrame = std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height), QOpenGLFramebufferObject::Depth);
+  m_frontFrame = std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height), QOpenGLFramebufferObject::Depth);
+  m_acquiredFrame =
+      std::make_unique<QOpenGLFramebufferObject>(QSize(m_width, m_height), QOpenGLFramebufferObject::Depth);
 }
 
 bool QtRenderOGLContext::AcquireFrame()
@@ -118,7 +114,8 @@ GLuint QtRenderOGLContext::GetTextureHandle() const
 }
 
 QtUploadOGLContext::QtUploadOGLContext(QOpenGLContext * rootContext, QOffscreenSurface * surface)
-  : m_surface(surface), m_ctx(std::make_unique<QOpenGLContext>())
+  : m_surface(surface)
+  , m_ctx(std::make_unique<QOpenGLContext>())
 {
   m_ctx->setFormat(rootContext->format());
   m_ctx->setShareContext(rootContext);

@@ -127,7 +127,7 @@
 "type.amenity.post_office" = "Posthus";
 "type.amenity.prison" = "Fængsel";
 "type.amenity.pub" = "Værtshus";
-"type.amenity.public_bookcase" = "Bogudveksling";
+"type.amenity.public_bookcase" = "Bogbytteskab";
 "type.amenity.recycling.centre" = "Genbrugsplads";
 "type.amenity.recycling" = "Genbrugscontainer";
 "type.amenity.recycling.container" = "Genbrugscontainer";
@@ -670,7 +670,7 @@
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.landuse.cemetery.christian" = "Kirkegård";
-"type.landuse.churchyard" = "Kirkegård";
+"type.landuse.religious" = "Kirkegård";
 "type.landuse.commercial" = "Erhvervsområde";
 "type.landuse.construction" = "Byggeplads";
 "type.landuse.education" = "Uddannelsesområde";
@@ -874,32 +874,32 @@
 "type.place.suburb" = "Forstad";
 "type.place.town" = "By";
 "type.place.village" = "Landsby";
-"type.power" = "Power";
-"type.power.generator" = "Power Generator";
+"type.power" = "Energi";
+"type.power.generator" = "Elektrisk generator";
 "type.power.generator.solar" = "Solar generator";
 "type.power.generator.wind" = "Vindgenerator";
 "type.power.generator.gas" = "Gasturbine kraftværk";
 "type.power.generator.hydro" = "Vandkraftværk";
-"type.power.line" = "Power Line";
-"type.power.line.underground" = "Underground Power Line";
-"type.power.minor_line" = "Minor Power Line";
+"type.power.line" = "Højspændingsledning";
+"type.power.line.underground" = "Jordledning";
+"type.power.minor_line" = "Luftledning";
 "type.power.plant" = "Kraftværk";
 "type.power.plant.coal" = "Kulkraftværk";
 "type.power.plant.gas" = "Gasturbine kraftværk";
 "type.power.plant.hydro" = "Vandkraftværk";
 "type.power.plant.solar" = "Solcelleanlæg";
 "type.power.plant.wind" = "Vindkraftværk";
-"type.power.station" = "Power Station";
+"type.power.station" = "Transformatorstation";
 "type.power.substation" = "Transformerstation";
 
 /* A tower or pylon carrying high voltage electricity cables. */
 "type.power.tower" = "El-pol";
 
 /* A single pole supporting minor power lines. */
-"type.power.pole" = "Power Pole";
+"type.power.pole" = "Elmast";
 
 /* A single pole supporting various public utilities, such as lighting or telephony. */
-"type.man_made.utility_pole" = "Utility Pole";
+"type.man_made.utility_pole" = "Stolpe";
 "type.psurface" = "psurface";
 "type.psurface.paved_bad" = "psurface-paved_bad";
 "type.psurface.paved_good" = "psurface-paved_good";
@@ -1246,7 +1246,7 @@
 "type.shop.florist" = "Blomsterbutik";
 "type.shop.funeral_directors" = "Bedemand";
 "type.shop.furniture" = "Møbelbutik";
-"type.shop.garden_centre" = "Planteskole";
+"type.shop.garden_centre" = "Havecenter";
 "type.shop.gas" = "Gas butik";
 "type.shop.gift" = "Gavebutik";
 "type.shop.greengrocer" = "Grønthandler";
@@ -1482,3 +1482,19 @@
 
 /* https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall */
 "type.leisure.sports_hall" = "Sportshal";
+"type.sport.diving" = "Dykning";
+"type.man_made.crane" = "Kran";
+"type.barrier.guard_rail" = "Autoværn";
+"type.amenity.love_hotel" = "Elskovshotel";
+"type.amenity.studio" = "Studie";
+"type.highway.ladder" = "Stige";
+"type.landuse.plant_nursery" = "Planteskole";
+"type.leisure.firepit" = "Bålsted";
+"type.amenity.bicycle_parking.covered" = "Covered Bicycle Parking";
+"type.amenity.luggage_locker" = "Luggage Locker";
+"type.post_office.post_partner" = "Post Partner";
+"type.hwtag.bidir_bicycle" = "hwtag-bidir_bicycle";
+"type.hwtag.onedir_bicycle" = "hwtag-onedir_bicycle";
+"type.leisure.escape_game" = "Escape Room";
+"type.railway.station.subway.qingdao" = "Subway Station";
+"type.amenity.ranger_station" = "Ranger Station";

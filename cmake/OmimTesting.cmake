@@ -1,5 +1,3 @@
-include(OmimConfig)
-
 # Tests read files from a data directory.
 if (NOT SKIP_TESTS)
   if (NOT IS_DIRECTORY ${CMAKE_BINARY_DIR}/data AND NOT IS_SYMLINK ${CMAKE_BINARY_DIR}/data)
@@ -53,7 +51,7 @@ endfunction()
 function(omim_add_test_target name src no_platform_init require_qt boost_test)
   omim_add_executable(${name}
     ${src}
-    $<$<NOT:$<BOOL:${boost_test}>>:${OMIM_ROOT}/testing/testingmain.cpp>
+    $<$<NOT:$<BOOL:${boost_test}>>:${OMIM_ROOT}/libs/testing/testingmain.cpp>
   )
   target_compile_options(${name} PRIVATE ${OMIM_WARNING_FLAGS})
   target_include_directories(${name} PRIVATE ${OMIM_INCLUDE_DIRS})
