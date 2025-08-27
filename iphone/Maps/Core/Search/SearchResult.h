@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) SearchItemType itemType;
 
 // Add by Hikingbook
-@property (nonatomic, readonly) NSString * featureTypeName;
 @property (nonatomic, readonly) BOOL isCoordinateResult;
 
 /// This initializer is intended only for testing purposes.
