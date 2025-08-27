@@ -14,8 +14,7 @@ stxxl.errlog
 stxxl.log
 screenlog.0
 
-data/styles/*/*/out/*
-data/resources-*_design/*
+data/symbols/*/design/
 data/drules_proto_default_design.bin
 data/colors_design.txt
 data/patterns_design.txt
@@ -39,10 +38,9 @@ omim.sdf
 *.suo
 *.aps
 *.rc
-!qt/res/windows.rc
+!qt/res/windows/windows.rc
 *.pdb
-out/*
-qt/mapswithme.log
+out/
 
 # XCode
 xcode/keys/*
@@ -184,11 +182,12 @@ tools/unix/maps/settings.sh
 # VS Code
 .vscode
 
+# clangd
+.cache
+
 # AppStore metadata
 screenshots/
 android/src/google/play/listings/
 keywords/
 iphone/metadata/**/keywords.txt
-data/coastlines
-data/srtms*/
 .envrc

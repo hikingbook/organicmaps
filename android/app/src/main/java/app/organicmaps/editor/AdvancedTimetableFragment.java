@@ -1,8 +1,3 @@
-/**
- * Author by robin, Date on 11/30/21.
- * Comment: Remove unused code
- */
-
 package app.organicmaps.editor;
 
 import android.os.Bundle;
@@ -14,27 +9,25 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import app.organicmaps.R;
 import app.organicmaps.base.BaseMwmFragment;
-import app.organicmaps.util.Constants;
+import app.organicmaps.sdk.editor.OpeningHours;
+import app.organicmaps.sdk.util.Constants;
+import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.InputUtils;
-import app.organicmaps.util.UiUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class AdvancedTimetableFragment extends BaseMwmFragment
-                                       implements TimetableProvider
+public class AdvancedTimetableFragment extends BaseMwmFragment implements View.OnClickListener, TimetableProvider
 {
   private boolean mIsExampleShown;
   private TextInputEditText mInput;
   private WebView mExample;
   private TextView mExamplesTitle;
-  private static ImageView mSaveButton;
+  private static TextView mSaveButton;
   @Nullable
   private String mInitTimetables;
   @Nullable
@@ -51,58 +44,59 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
   {
     super.onViewCreated(view, savedInstanceState);
-//    initViews(view);
-//    refreshTimetables();
-//    showExample(false);
+    initViews(view);
+    refreshTimetables();
+    showExample(false);
   }
 
   @Override
   public void onResume()
   {
     super.onResume();
-//    refreshTimetables();
+    refreshTimetables();
   }
 
-// private void initViews(View view)
-//  {
-//    view.findViewById(R.id.examples).setOnClickListener(this);
-//    mInput = view.findViewById(R.id.et__timetable);
-//    mExample = view.findViewById(R.id.wv__examples);
-//    mExample.getSettings().setJavaScriptEnabled(true);
-//    mExample.loadUrl(Constants.Url.OPENING_HOURS_MANUAL);
-//    mExamplesTitle = view.findViewById(R.id.tv__examples_title);
-//    setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
-//    setTextChangedListener(mInput, mListener);
-//    mSaveButton = getParentFragment().getParentFragment().getView().findViewById(R.id.save);
-//  }
+  private void initViews(View view)
+  {
+    view.findViewById(R.id.examples).setOnClickListener(this);
+    mInput = view.findViewById(R.id.et__timetable);
+    mExample = view.findViewById(R.id.wv__examples);
+    mExample.getSettings().setJavaScriptEnabled(true);
+    mExample.loadUrl(Constants.Url.OPENING_HOURS_MANUAL);
+    mExamplesTitle = view.findViewById(R.id.tv__examples_title);
+    setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
+    setTextChangedListener(mInput, mListener);
+    mSaveButton = getParentFragment().getParentFragment().getView().findViewById(R.id.save);
+  }
 
-//  private void showExample(boolean show)
-//  {
-//    mIsExampleShown = show;
-//    if (mIsExampleShown)
-//    {
-//      UiUtils.show(mExample);
-//      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_less);
-//    }
-//    else
-//    {
-//      UiUtils.hide(mExample);
-//      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
-//    }
-//  }
+  private void showExample(boolean show)
+  {
+    mIsExampleShown = show;
+    if (mIsExampleShown)
+    {
+      UiUtils.show(mExample);
+      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_less);
+    }
+    else
+    {
+      UiUtils.hide(mExample);
+      setExampleDrawables(R.drawable.ic_type_text, R.drawable.ic_expand_more);
+    }
+  }
 
-//  private void setExampleDrawables(@DrawableRes int left, @DrawableRes int right)
-//  {
-//    mExamplesTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(Graphics.tint(requireActivity(), left, androidx.appcompat.R.attr.colorAccent), null,
-//                                                           Graphics.tint(requireActivity(), right, androidx.appcompat.R.attr.colorAccent), null);
-//  }
+  private void setExampleDrawables(@DrawableRes int left, @DrawableRes int right)
+  {
+    mExamplesTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            Graphics.tint(requireActivity(), left, androidx.appcompat.R.attr.colorAccent), null,
+            Graphics.tint(requireActivity(), right, androidx.appcompat.R.attr.colorAccent), null);
+  }
 
-//  @Override
-//  public void onClick(View v)
-//  {
-//    if (v.getId() == R.id.examples)
-//      showExample(!mIsExampleShown);
-//  }
+  @Override
+  public void onClick(View v)
+  {
+    if (v.getId() == R.id.examples)
+      showExample(!mIsExampleShown);
+  }
 
   @Nullable
   @Override
@@ -115,18 +109,18 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
   public void setTimetables(@Nullable String timetables)
   {
     mInitTimetables = timetables;
-//    refreshTimetables();
+    refreshTimetables();
   }
 
-//  private void refreshTimetables()
-//  {
-//    if (mInput == null || mInitTimetables == null)
-//      return;
-//
-//    mInput.setText(mInitTimetables);
-//    mInput.requestFocus();
-//    InputUtils.showKeyboard(mInput);
-//  }
+  private void refreshTimetables()
+  {
+    if (mInput == null || mInitTimetables == null)
+      return;
+
+    mInput.setText(mInitTimetables);
+    mInput.requestFocus();
+    InputUtils.showKeyboard(mInput);
+  }
 
   void setTimetableChangedListener(@NonNull TimetableChangedListener listener)
   {
@@ -140,10 +134,10 @@ public class AdvancedTimetableFragment extends BaseMwmFragment
     if (input == null || listener == null)
       return;
 
-    input.addTextChangedListener(new TextWatcher()
-    {
+    input.addTextChangedListener(new TextWatcher() {
       @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+      public void beforeTextChanged(CharSequence s, int start, int count, int after)
+      {}
 
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count)

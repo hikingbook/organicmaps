@@ -1,6 +1,8 @@
 #include "qt/about.hpp"
+#include "qt/html_processor.hpp"
 
 #include "platform/platform.hpp"
+#include "platform/preferred_languages.hpp"
 
 #include "base/logging.hpp"
 
@@ -15,7 +17,8 @@
 #include <QtWidgets/QVBoxLayout>
 
 AboutDialog::AboutDialog(QWidget * parent)
-  : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint)
+  : QDialog(parent,
+            Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint)
 {
   QIcon icon(":/ui/logo.png");
   setWindowIcon(icon);
@@ -32,7 +35,7 @@ AboutDialog::AboutDialog(QWidget * parent)
   versionLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
   versionBox->addWidget(versionLabel);
   // TODO: insert maps data version.
-  //versionBox->addWidget(new QLabel(QString("Data: ") + DESIGNER_DATA_VERSION));
+  // versionBox->addWidget(new QLabel(QString("Data: ") + DESIGNER_DATA_VERSION));
 
   QHBoxLayout * hBox = new QHBoxLayout();
   hBox->addWidget(labelIcon);
@@ -55,6 +58,7 @@ AboutDialog::AboutDialog(QWidget * parent)
     aboutTextBrowser->setReadOnly(true);
     aboutTextBrowser->setOpenLinks(true);
     aboutTextBrowser->setOpenExternalLinks(true);
+    RemovePTagsWithNonMatchedLanguages(languages::GetCurrentTwine(), aboutText);
     aboutTextBrowser->setText(aboutText.c_str());
 
     QVBoxLayout * vBox = new QVBoxLayout();
@@ -64,4 +68,6 @@ AboutDialog::AboutDialog(QWidget * parent)
   }
   else
     setLayout(hBox);
+
+  adjustSize();
 }

@@ -17,7 +17,7 @@
     <!-- Choose measurement on first launch alert - choose imperial system button -->
     <string name="miles">Mérföld</string>
     <!-- A text for current gps location point/arrow selected on the map -->
-    <string name="core_my_position">Saját helyzet</string>
+    <string name="core_my_position">Saját tartózkodási helyszín</string>
     <!-- Update maps later button text -->
     <string name="later">Később</string>
     <!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
@@ -29,7 +29,7 @@
     <!-- A dialog title, that warns a user that Precise Location is disabled and suggests to turn it on -->
     <string name="limited_accuracy">Korlátozott pontosság</string>
     <!-- A dialog text, that warns a user that Precise Location is disabled and suggests to turn it on -->
-    <string name="precise_location_is_disabled_long_text">A pontos navigáció érdekében engedélyezze a beállításokban a Pontos helymeghatározás opciót.</string>
+    <string name="precise_location_is_disabled_long_text">A pontos navigáció érdekében engedélyezze a beállításokban a pontos helymeghatározást.</string>
     <!-- View and button titles for accessibility -->
     <string name="zoom_to_country">Megjelenítés a térképen</string>
     <!-- Message to display at the center of the screen when the country download has failed -->
@@ -49,7 +49,7 @@
     <string name="about_developed_by_enthusiasts">A rajongók és az önkéntesek által létrehozott nyílt forráskódú alkalmazás.</string>
     <!-- The button that opens system location settings -->
     <string name="location_settings">Helymeghatározási beállítások</string>
-    <string name="close">Bezár</string>
+    <string name="close">Bezárás</string>
     <string name="unsupported_phone">Hardveres gyorsítású OpenGL szükséges. Sajnos az Ön eszköze nem támogatott.</string>
     <string name="download">Letöltés</string>
     <!-- Used in DownloadResources startup screen -->
@@ -182,13 +182,13 @@
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">A térkép letöltése folyamatban van.</string>
     <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Tekintse meg a helyzetemet az Organic Maps alkalmazásban! %1$s vagy %2$s. Nincs offline térképe? Töltse le innen: https://omaps.app/get</string>
+    <string name="my_position_share_sms">Tekintse meg a tartózkodási helyszínemet az Organic Maps alkalmazásban! %1$s vagy %2$s. Nincs offline térképe? Töltse le innen: https://omaps.app/get</string>
     <!-- Subject for emailed bookmark -->
     <string name="bookmark_share_email_subject">Tekintse meg a térképjelzőmet az Organic Maps alkalmazásban!</string>
     <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Tekintse meg a helyzetemet az Organic Maps alkalmazásban!</string>
+    <string name="my_position_share_email_subject">Tekintse meg a tartózkodási helyszínemet az Organic Maps alkalmazásban!</string>
     <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Üdvözlöm!\n\nJelenleg itt tartózkodom: %1$s. Kattintson a következő hivatkozásra: %2$s, vagy ide: %3$s, hogy megtekintse a helyzetemet a térképen.\n\nKöszönöm!</string>
+    <string name="my_position_share_email">Üdvözlöm!\n\nJelenleg itt tartózkodom: %1$s. Kattintson a következő hivatkozásra: %2$s, vagy ide: %3$s, hogy megtekintse a tartózkodási helyszínemet a térképen.\n\nKöszönöm!</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Megosztás</string>
     <!-- Share by email button text, also used in editor and About. -->
@@ -205,7 +205,7 @@
     <string name="tracks_title">Nyomvonalak</string>
     <!-- Length of track in cell that describes route -->
     <string name="length">Hossz</string>
-    <string name="share_my_location">Saját helyzet megosztása</string>
+    <string name="share_my_location">Saját tartózkodási helyszín megosztása</string>
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Információk</string>
     <string name="prefs_group_route">Navigáció</string>
@@ -307,7 +307,7 @@
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">Nincs elegendő tárhely</string>
     <!-- location service disabled -->
-    <string name="enable_location_services">Kapcsolja be a helyzetmeghatározási szolgáltatást</string>
+    <string name="enable_location_services">Kapcsolja be a helymeghatározási szolgáltatást</string>
     <string name="save">Mentés</string>
     <string name="create">létrehozás</string>
     <!-- red color -->
@@ -395,20 +395,20 @@
     <!-- Edit open hours/set time and minutes dialog -->
     <string name="next_button">Következő</string>
     <!-- Tab title in the Edit Opening Hours time picker -->
-    <string name="editor_time_from">Ettől:</string>
+    <string name="editor_time_from">Ettől</string>
     <!-- Tab title in the Edit Opening Hours time picker -->
-    <string name="editor_time_to">Eddig:</string>
+    <string name="editor_time_to">Eddig</string>
     <string name="editor_time_add">Ütemterv hozzáadása</string>
     <string name="editor_time_delete">Ütemterv törlése</string>
     <!-- Text for allday switch. -->
     <string name="editor_time_allday">Egész nap (24 óra)</string>
     <string name="editor_time_open">Nyitva</string>
     <string name="editor_time_close">Zárva</string>
-    <string name="editor_time_add_closed">Zárva tartás hozzáadása</string>
-    <string name="editor_time_title">Nyitva tartás</string>
+    <string name="editor_time_add_closed">Zárvatartás hozzáadása</string>
+    <string name="editor_time_title">Nyitvatartás</string>
     <string name="editor_time_advanced">Speciális mód</string>
     <string name="editor_time_simple">Egyszerű mód</string>
-    <string name="editor_hours_closed">Zárva tartás</string>
+    <string name="editor_hours_closed">Zárvatartás</string>
     <string name="editor_example_values">Példaértékek</string>
     <string name="editor_correct_mistake">Hiba javítása</string>
     <string name="editor_add_select_location">Hely kiválasztása</string>
@@ -469,7 +469,7 @@
     <string name="editor_add_place_title">Hozzáadás</string>
     <string name="editor_edit_place_name_hint">Hely neve</string>
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
-    <string name="editor_default_language_hint">Ahogyan a helyi nyelven írva van</string>
+    <string name="editor_default_language_hint">Ahogyan az, a helyi nyelven írva van</string>
     <string name="editor_edit_place_category_title">Kategória</string>
     <string name="detailed_problem_description">A probléma részletes leírása</string>
     <string name="editor_report_problem_other_title">Más jellegű probléma</string>
@@ -507,18 +507,18 @@
     <string name="editor_category_unsuitable_title">Nem találja a megfelelő kategóriát?</string>
     <string name="editor_category_unsuitable_text">Az Organic Maps csak egyszerű pontkategóriák hozzáadását teszi lehetővé, azaz nem tartalmaz városokat, utakat, tavakat, épületek körvonalait stb., az ilyen kategóriákat közvetlenül az <a href="https://www.openstreetmap.org">OpenStreetMap.org</a> oldalon adhatja hozzá. A részletes, lépésről lépésre történő útmutatásért tekintse meg az <a href="https://organicmaps.app/faq/editing/advanced-map-editing">útmutatónkat</a>.</string>
     <string name="downloader_no_downloaded_maps_title">Még nem töltött le térképet</string>
-    <string name="downloader_no_downloaded_maps_message">Térkép letöltése offline kereséshez és navigáláshoz.</string>
+    <string name="downloader_no_downloaded_maps_message">Térképek letöltése az offline kereséshez és navigáláshoz.</string>
     <!-- abbreviation for meters -->
     <string name="m">m</string>
     <!-- abbreviation for kilometers -->
     <string name="km">km</string>
     <!-- abbreviation for kilometers per hour -->
-    <string name="kilometers_per_hour">km/h</string>
+    <string name="kilometers_per_hour">km/ó</string>
     <!-- abbreviation for mile(s) -->
     <string name="mi">mf</string>
     <!-- A unit of measure -->
     <string name="ft">láb</string>
-    <string name="miles_per_hour">mf/h</string>
+    <string name="miles_per_hour">mf/ó</string>
     <string name="hour">ó</string>
     <string name="minute">p</string>
     <string name="day">nap</string>
@@ -593,7 +593,7 @@
     <string name="bookmark_lists_show_all">Összes megjelenítése</string>
     <plurals name="bookmarks_places">
         <item quantity="one">%d könyvjelző</item>
-        <item quantity="other">%d könyvjelzők</item>
+        <item quantity="other">%d könyvjelző</item>
     </plurals>
     <string name="bookmarks_create_new_group">Új lista létrehozása</string>
     <!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
@@ -629,8 +629,8 @@
     <string name="bookmarks_empty_list_title">Ez a lista üres</string>
     <string name="bookmarks_empty_list_message">Egy könyvjelző hozzáadásához érintsen meg a térképen egy helyet, majd érintse meg a csillag ikont</string>
     <string name="category_desc_more">…több</string>
-    <string name="export_file">Exportálás KMZ fájlba</string>
-    <string name="export_file_gpx">Exportálás GPX fájlba</string>
+    <string name="export_file">Exportálás KMZ-fájlba</string>
+    <string name="export_file_gpx">Exportálás GPX-fájlba</string>
     <string name="delete_list">Lista törlése</string>
     <string name="public_access">Nyilvános hozzáférés</string>
     <string name="limited_access">Korlátozott hozzáférés</string>
@@ -650,7 +650,7 @@
     <string name="power_managment_setting_never">Soha</string>
     <string name="power_managment_setting_auto">Amikor az akkumulátor lemerül</string>
     <string name="power_managment_setting_manual_max">Mindig</string>
-    <string name="enable_logging_warning_message">Ha ideiglenesen engedélyezi ezt az opciót, akkor a „Súgó” párbeszédpanel „Hibajelentés” menüpontjának használatával rögzítheti és kézzel küldheti el nekünk a problémával kapcsolatos részletes diagnosztikai naplókat. A naplók tartalmazhatnak helyadatokat.</string>
+    <string name="enable_logging_warning_message">Ha ideiglenesen engedélyezi ezt a beállítást, akkor a „Súgó” párbeszédpanel „Hibajelentés” menüpontjának használatával rögzítheti és kézzel küldheti el nekünk a problémával kapcsolatos részletes diagnosztikai naplókat. A naplók tartalmazhatnak helyadatokat.</string>
     <string name="access_rules_author_only">Szerkesztés online</string>
     <string name="driving_options_title">Útvonaltervezési beállítások</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -734,7 +734,7 @@
     <string name="elevation_profile_time">Idő:</string>
     <string name="isolines_toast_zooms_1_10">Nagyítás az izovonalak felfedezéséhez</string>
     <string name="downloader_loading_ios">Letöltés</string>
-    <string name="enable_keep_screen_on">Tartsa a képernyőt bekapcsolva</string>
+    <string name="enable_keep_screen_on">Képernyő bekapcsolva tartása</string>
     <!-- Description in preferences -->
     <string name="enable_keep_screen_on_description">Ha engedélyezve van, a képernyő mindig be lesz kapcsolva a térkép megjelenítésekor.</string>
     <!-- A preference title; keep short! -->
@@ -764,7 +764,7 @@
     <!-- App tip #06 -->
     <string name="app_tip_06">Segítsen lefordítani az alkalmazást az Ön nyelvére.</string>
     <!-- App tip #07 -->
-    <string name="app_tip_07">Ezt az alkalmazást néhány lelkes közreműködő és a közösség fejleszteti.</string>
+    <string name="app_tip_07">Ezt az alkalmazást néhány lelkes közreműködő és a közösség fejleszti.</string>
     <!-- App tip #08 -->
     <string name="app_tip_08">Könnyedén javíthatja a térképadatokat.</string>
     <!-- App tip #09 -->
@@ -825,7 +825,7 @@
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="continue_recording">Rögzítés folytatása</string>
     <!-- Title for the alert when saving a track recording. -->
-    <string name="track_recording_alert_title">Elmenti a könyvjelzők és nyomvonalakba?</string>
+    <string name="track_recording_alert_title">Menti a könyvjelzők és nyomvonalakba?</string>
     <!-- Message for the toast when saving the track recording is finished but nothing to save. -->
     <string name="track_recording_toast_nothing_to_save">A nyomvonal üres – nincs mit menteni</string>
     <!-- Error message when there are no File Manager apps installed to select a folder when importing Bookmarks and Tracks -->
@@ -852,7 +852,7 @@
     <string name="opens_in">Kinyit %s múlva</string>
     <string name="mb">MB</string>
     <string name="gb">GB</string>
-    <string name="current_location_unknown_error_title">A jelenlegi helyzet ismeretlen.</string>
+    <string name="current_location_unknown_error_title">A jelenlegi tartózkodási helyszín ismeretlen.</string>
     <string name="disk_error">Nem lehet mappát létrehozni és fájlokat áthelyezni az eszköz belső memóriájában vagy az SD-kártyán</string>
     <string name="disk_error_title">Lemezhiba</string>
     <string name="twitter">X (Twitter)</string>
@@ -873,4 +873,16 @@
     <string name="error_enter_correct_facebook_page">Adjon meg egy érvényes Facebook-webcímet, fiók- vagy oldalnevet</string>
     <string name="error_enter_correct_twitter_page">Adjon meg egy érvényes X (Twitter) felhasználónevet vagy webcímet</string>
     <string name="error_enter_correct_instagram_page">Adjon meg egy érvényes Instagram felhasználónevet vagy webcímet</string>
+    <string name="saved">Mentve</string>
+    <string name="osm_note_hint">Vagy írjon egy jegyzetet az OpenStreetMap közösségnek, hogy valaki más hozzáadhassa vagy kijavíthassa ezt a helyet.</string>
+    <string name="osm_note_toast">A jegyzet fel lesz töltve az OpenStreetMapre</string>
+    <string name="button_layer_hiking">Túrázás</string>
+    <string name="button_layer_cycling">Kerékpározás</string>
+    <string name="bookmarks_text_placement_title">Nevek könyvjelzőzése a térképen</string>
+    <string name="bookmarks_text_placement_description">Ha túl sok könyvjelző van, azok neveinek megjelenítése a térképen lelassíthatja az alkalmazást.</string>
+    <string name="show_to_the_right">Megjelenítés jobb oldalon</string>
+    <string name="show_at_the_bottom">Megjelenítés alul</string>
+    <string name="share_track">Nyomvonal megosztása</string>
+    <string name="delete_track_dialog_title">Törli a következőt: %s?</string>
+    <string name="routes_update_maps_text">Az útvonalak megjelenítéséhez frissíteni kell a térképeket.</string>
 </resources>

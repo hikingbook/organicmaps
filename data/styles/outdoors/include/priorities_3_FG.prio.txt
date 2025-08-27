@@ -60,6 +60,7 @@ waterway-weir                                       # line z14- (also has pathte
 
 barrier-city_wall                                   # line z14- (also has pathtext z16-)
 barrier-fence                                       # line z15-
+barrier-guard_rail                                  # line z15-
 barrier-hedge                                       # line z16-
 barrier-wall                                        # line z15-
 railway-funicular                                   # line z12-
@@ -415,7 +416,7 @@ piste:type-sled                                     # line z12- (also has pathte
 === 120
 
 building:part                                       # area z16-
-landuse-garages                                     # area z15-
+landuse-garages                                     # area z13-
 === 110
 
 barrier-retaining_wall                              # line z16-
@@ -445,6 +446,11 @@ isoline-step_50                                     # line z13- (also has pathte
 isoline-step_500                                    # line z10- (also has pathtext z12-)
 isoline-zero                                        # line z15- (also has pathtext z15-)
 === 60
+
+natural-wetland                                     # area z11- (also has caption z16-)
+natural-wetland-bog                                 # area z11- (also has caption z16-)
+natural-wetland-marsh                               # area z11- (also has caption z16-)
+=== 40
 
 man_made-breakwater                                 # line z14- and area z12- (also has caption z17-)
 man_made-pier                                       # line z14- and area z12- (also has caption z17-)

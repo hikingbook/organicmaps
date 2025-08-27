@@ -5,8 +5,7 @@
 package app.organicmaps.widget.menu;
 
 import android.view.View;
-
-import app.organicmaps.util.UiUtils;
+import app.organicmaps.sdk.util.UiUtils;
 
 public class MainMenu
 {
@@ -56,8 +55,8 @@ public class MainMenu
   private class FrameLayoutChangeListener implements View.OnLayoutChangeListener
   {
     @Override
-    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft,
-                               int oldTop, int oldRight, int oldBottom)
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight,
+                               int oldBottom)
     {
       mMenuHeight = bottom - top;
       mOnMenuSizeChangedListener.OnMenuSizeChange(UiUtils.isVisible(mFrame));

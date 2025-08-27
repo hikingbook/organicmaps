@@ -9,10 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-
 import app.organicmaps.base.BaseMwmFragment;
 
 abstract class BaseSettingsFragment extends BaseMwmFragment
@@ -25,16 +23,17 @@ abstract class BaseSettingsFragment extends BaseMwmFragment
 
   private void savePaddings()
   {
-    View parent = (View)mFrame.getParent();
+    View parent = (View) mFrame.getParent();
     if (parent != null)
     {
-      mSavedPaddings.set(parent.getPaddingStart(), parent.getPaddingTop(), parent.getPaddingEnd(), parent.getPaddingBottom());
+      mSavedPaddings.set(parent.getPaddingStart(), parent.getPaddingTop(), parent.getPaddingEnd(),
+                         parent.getPaddingBottom());
     }
   }
 
   protected void restorePaddings()
   {
-    View parent = (View)mFrame.getParent();
+    View parent = (View) mFrame.getParent();
     if (parent != null)
     {
       parent.setPaddingRelative(mSavedPaddings.left, mSavedPaddings.top, mSavedPaddings.right, mSavedPaddings.bottom);
@@ -63,5 +62,4 @@ abstract class BaseSettingsFragment extends BaseMwmFragment
 
     restorePaddings();
   }
-
 }

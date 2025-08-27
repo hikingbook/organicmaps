@@ -1,13 +1,12 @@
 // This file is modified by Zheng-Xiang Ke on 2021.
-#import "MapsAppDelegate.h"
-#import "MapViewController.h"
-#import "MWMAlertViewController.h"
 #import "MWMViewController.h"
-
+#import "MWMAlertViewController.h"
+#import "MapViewController.h"
+#import "MapsAppDelegate.h"
 
 @interface MWMViewController ()
 
-@property (nonatomic, readwrite) MWMAlertViewController * alertController;
+@property(nonatomic, readwrite) MWMAlertViewController * alertController;
 
 @end
 

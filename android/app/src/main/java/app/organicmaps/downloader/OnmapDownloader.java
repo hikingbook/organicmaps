@@ -8,26 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
-import app.organicmaps.MapSource;
+import app.organicmaps.sdk.MapSource;
 import app.organicmaps.MwmActivity;
+import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.location.LocationHelper;
-import app.organicmaps.routing.RoutingController;
-import app.organicmaps.util.Config;
-import app.organicmaps.util.ConnectionState;
-import app.organicmaps.util.StringUtils;
-import app.organicmaps.util.UiUtils;
+import app.organicmaps.sdk.downloader.CountryItem;
+import app.organicmaps.sdk.downloader.MapManager;
+import app.organicmaps.sdk.routing.RoutingController;
+import app.organicmaps.sdk.util.Config;
+import app.organicmaps.sdk.util.ConnectionState;
+import app.organicmaps.sdk.util.StringUtils;
+import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import app.organicmaps.widget.WheelProgressView;
-
-import java.util.List;
 
 public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 {
@@ -49,8 +48,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   @Nullable
   private CountryItem mCurrentCountry;
 
-  private final MapManager.StorageCallback mStorageCallback = new MapManager.StorageCallback()
-  {
+  private final MapManager.StorageCallback mStorageCallback = new MapManager.StorageCallback() {
     @Override
     public void onStatusChanged(List<MapManager.StorageCallbackData> data)
     {
@@ -92,18 +90,18 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     }
   };
 
-  private final MapManager.CurrentCountryChangedListener mCountryChangedListener = new MapManager.CurrentCountryChangedListener()
-  {
-    @Override
-    public void onCurrentCountryChanged(String countryId)
-    {
-      mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
-      updateState(false);
-      if (downloaderDelegate != null) {
-        downloaderDelegate.onCurrentCountryChanged(mCurrentCountry);
-      }
-    }
-  };
+  private final MapManager.CurrentCountryChangedListener mCountryChangedListener =
+      new MapManager.CurrentCountryChangedListener() {
+        @Override
+        public void onCurrentCountryChanged(String countryId)
+        {
+          mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
+          updateState(true);
+		  if (downloaderDelegate != null) {
+        	downloaderDelegate.onCurrentCountryChanged(mCurrentCountry);
+      	  }
+        }
+      };
 
   public void updateState(boolean shouldAutoDownload)
   {
@@ -112,6 +110,17 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
   public Button getDownloadMapButton() {
     return mButton;
+  }
+
+  private static boolean isMapDownloading(@Nullable CountryItem country)
+  {
+    if (country == null)
+      return false;
+
+    boolean enqueued = country.status == CountryItem.STATUS_ENQUEUED;
+    boolean progress = country.status == CountryItem.STATUS_PROGRESS;
+    boolean applying = country.status == CountryItem.STATUS_APPLYING;
+    return enqueued || progress || applying;
   }
 
   public WheelProgressView getProgressView() {
@@ -125,19 +134,17 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
   private void updateStateInternal(boolean shouldAutoDownload)
   {
-    boolean showFrame = (mCurrentCountry != null &&
-                         !mCurrentCountry.present &&
-                         !RoutingController.get().isNavigating());
+    boolean showFrame =
+        (mCurrentCountry != null && !mCurrentCountry.present && !RoutingController.get().isNavigating());
     if (showFrame)
     {
       int status = countryItemStatus();
-      boolean enqueued = (status == CountryItem.STATUS_ENQUEUED);
-      boolean progress = (status == CountryItem.STATUS_PROGRESS ||
-                          status == CountryItem.STATUS_APPLYING);
-      boolean failed = (status == CountryItem.STATUS_FAILED);
+      boolean enqueued = (mCurrentCountry.status == CountryItem.STATUS_ENQUEUED);
+      boolean progress = (mCurrentCountry.status == CountryItem.STATUS_PROGRESS
+                          || mCurrentCountry.status == CountryItem.STATUS_APPLYING);
+      boolean failed = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
 
-      showFrame = (enqueued || progress || failed ||
-                  status == CountryItem.STATUS_DOWNLOADABLE);
+      showFrame = (enqueued || progress || failed || mCurrentCountry.status == CountryItem.STATUS_DOWNLOADABLE);
 
       if (showFrame)
       {
@@ -168,7 +175,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         {
           mProgress.setPending(false);
           mProgress.setProgress(Math.round(mCurrentCountry.progress));
-          sizeText = mActivity.getString(R.string.downloader_downloading) + " " + StringUtils.formatPercent(mCurrentCountry.progress / 100);
+          sizeText = mActivity.getString(R.string.downloader_downloading) + " "
+                   + StringUtils.formatPercent(mCurrentCountry.progress / 100, true);
         }
         else
         {
@@ -182,26 +190,22 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             sizeText = "";
 //            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), mCurrentCountry.totalSize);
 
-            if (shouldAutoDownload &&
-                Config.isAutodownloadEnabled() &&
-                !sAutodownloadLocked &&
-                !failed &&
-                ConnectionState.INSTANCE.isWifiConnected())
+            if (shouldAutoDownload && Config.isAutodownloadEnabled() && !sAutodownloadLocked && !failed
+                && ConnectionState.INSTANCE.isWifiConnected())
             {
-              Location loc = LocationHelper.from(mActivity).getSavedLocation();
+              Location loc = MwmApplication.from(mActivity).getLocationHelper().getSavedLocation();
               if (loc != null)
               {
                 String country = MapManager.nativeFindCountry(loc.getLatitude(), loc.getLongitude());
-                if (TextUtils.equals(mCurrentCountry.id, country) &&
-                    MapManager.nativeHasSpaceToDownloadCountry(country))
+                if (TextUtils.equals(mCurrentCountry.id, country)
+                    && MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
                   MapManager.startDownload(mCurrentCountry.id, getMapSource());
                 }
               }
             }
 
-            mButton.setText(failed ? R.string.downloader_retry
-                                   : R.string.download);
+            mButton.setText(failed ? R.string.downloader_retry : R.string.download);
           }
         }
 
@@ -259,40 +263,39 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       }
       setAutodownloadLocked(true);
     });
-      mButton.setOnClickListener(v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null :
-      mCurrentCountry.id, () -> {
-      if (mCurrentCountry == null)
-        return;
+    mButton.setOnClickListener(
+        v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
+          if (mCurrentCountry == null)
+            return;
 
-      boolean retry = (countryItemStatus() == CountryItem.STATUS_FAILED);
-      if (retry)
-      {
-        MapManager.retryDownload(mCurrentCountry.id, getMapSource());
-      }
-      else if (downloaderDelegate != null) {
-        downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
-      }
-      else
-      {
-        MapManager.startDownload(mCurrentCountry.id, getMapSource());
-//        mActivity.requestPostNotificationsPermission();
-      }
-    }));
+          boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
+          if (retry)
+          {
+            MapManager.retryDownload(mCurrentCountry.id, getMapSource());
+          }
+          else
+          {
+            MapManager.startDownload(mCurrentCountry.id, getMapSource());
+//            mActivity.requestPostNotificationsPermission();
+          }
+        }));
 
     ViewCompat.setOnApplyWindowInsetsListener(mFrame, PaddingInsetsListener.allSides());
   }
 
   @Override
-  public void onTrackStarted(boolean collapsed) {}
+  public void onTrackStarted(boolean collapsed)
+  {}
 
   @Override
-  public void onTrackFinished(boolean collapsed) {}
+  public void onTrackFinished(boolean collapsed)
+  {}
 
   @Override
   public void onTrackLeftAnimation(float offset)
   {
-    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams)mFrame.getLayoutParams();
-    lp.leftMargin = (int)offset;
+    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) mFrame.getLayoutParams();
+    lp.leftMargin = (int) offset;
     mFrame.setLayoutParams(lp);
   }
 

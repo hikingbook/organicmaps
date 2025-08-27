@@ -4,7 +4,7 @@
  */
 package app.organicmaps;
 
-import static app.organicmaps.location.LocationState.LOCATION_TAG;
+import static app.organicmaps.sdk.location.LocationState.LOCATION_TAG;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,7 +12,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -20,29 +19,29 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
-
+import app.organicmaps.background.OsmUploadWork;
+import app.organicmaps.downloader.DownloaderNotifier;
+import app.organicmaps.location.TrackRecordingService;
+import app.organicmaps.routing.NavigationService;
+import app.organicmaps.sdk.Map;
+import app.organicmaps.sdk.OrganicMaps;
+import app.organicmaps.sdk.display.DisplayManager;
+import app.organicmaps.sdk.location.LocationHelper;
+import app.organicmaps.sdk.location.LocationState;
+import app.organicmaps.sdk.location.SensorHelper;
+import app.organicmaps.sdk.location.TrackRecorder;
+import app.organicmaps.sdk.maplayer.isolines.IsolinesManager;
+import app.organicmaps.sdk.maplayer.subway.SubwayManager;
+import app.organicmaps.sdk.routing.RoutingController;
+import app.organicmaps.sdk.util.Config;
+import app.organicmaps.sdk.util.ConnectionState;
+import app.organicmaps.sdk.util.log.Logger;
+import app.organicmaps.util.ThemeSwitcher;
+import app.organicmaps.util.Utils;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
-import app.organicmaps.background.OsmUploadWork;
-import app.organicmaps.display.DisplayManager;
-import app.organicmaps.downloader.Android7RootCertificateWorkaround;
-import app.organicmaps.downloader.DownloaderNotifier;
-import app.organicmaps.location.LocationHelper;
-import app.organicmaps.location.LocationState;
-import app.organicmaps.location.SensorHelper;
-import app.organicmaps.location.TrackRecorder;
-import app.organicmaps.maplayer.isolines.IsolinesManager;
-import app.organicmaps.maplayer.subway.SubwayManager;
-import app.organicmaps.routing.RoutingController;
-import app.organicmaps.sdk.OrganicMaps;
-import app.organicmaps.util.Config;
-import app.organicmaps.util.ConnectionState;
-import app.organicmaps.util.OrganicmapsFrameworkAdapter;
-import app.organicmaps.util.Utils;
-import app.organicmaps.util.log.Logger;
-import app.organicmaps.util.log.LogsManager;
-
+import app.organicmaps.sdk.FrameworkAdapter;
 public class MwmApplication extends Application implements Application.ActivityLifecycleCallbacks
 {
   @NonNull
@@ -54,26 +53,14 @@ public class MwmApplication extends Application implements Application.ActivityL
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
-  private SubwayManager mSubwayManager;
-
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private IsolinesManager mIsolinesManager;
-
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private LocationHelper mLocationHelper;
-
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
-  private SensorHelper mSensorHelper;
-
-  @SuppressWarnings("NotNullFieldNotInitialized")
-  @NonNull
   private DisplayManager mDisplayManager;
 
   @Nullable
   private WeakReference<Activity> mTopActivity;
+
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
+  public static Application sInstance;
 
   @UiThread
   @Nullable
@@ -85,24 +72,24 @@ public class MwmApplication extends Application implements Application.ActivityL
   @NonNull
   public SubwayManager getSubwayManager()
   {
-    return mSubwayManager;
+    return getOrganicMaps().getSubwayManager();
   }
 
   public IsolinesManager getIsolinesManager()
   {
-    return mIsolinesManager;
+    return getOrganicMaps().getIsolinesManager();
   }
 
   @NonNull
   public LocationHelper getLocationHelper()
   {
-    return mLocationHelper;
+    return getOrganicMaps().getLocationHelper();
   }
 
   @NonNull
   public SensorHelper getSensorHelper()
   {
-    return mSensorHelper;
+    return getOrganicMaps().getSensorHelper();
   }
 
   @NonNull
@@ -118,28 +105,16 @@ public class MwmApplication extends Application implements Application.ActivityL
   }
 
   @NonNull
-  public static Application from(@NonNull Context context)
+  public static MwmApplication from(@NonNull Context context)
   {
-      return OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
+      return FrameworkAdapter.INSTANCE.getMwmApplication();
 //    return (MwmApplication) context.getApplicationContext();
   }
 
   @NonNull
-  public static Application sInstance;
-
-  @NonNull
   public static SharedPreferences prefs(@NonNull Context context)
   {
-    SharedPreferences mPrefs;
-    if (OrganicmapsFrameworkAdapter.INSTANCE.getSharedPreferences() == null) {
-      mPrefs = context.getSharedPreferences(context.getString(R.string.pref_file_name), MODE_PRIVATE);
-      OrganicmapsFrameworkAdapter.INSTANCE.setSharedPreferences(mPrefs);
-    } else {
-      mPrefs = OrganicmapsFrameworkAdapter.INSTANCE.getSharedPreferences();
-    }
-
-    return mPrefs;
-//    return context.getSharedPreferences(context.getString(R.string.pref_file_name), MODE_PRIVATE);
+    return from(context).getOrganicMaps().getPreferences();
   }
 
   @SuppressLint("MissingSuperCall")
@@ -148,39 +123,32 @@ public class MwmApplication extends Application implements Application.ActivityL
   {
 //    super.onCreate();
     Logger.i(TAG, "Initializing application");
-    OrganicmapsFrameworkAdapter.INSTANCE.initApplicationIfNeed(this, "app.organicmaps");
-    sInstance = OrganicmapsFrameworkAdapter.INSTANCE.getApplication();
+    FrameworkAdapter.INSTANCE.initApplicationIfNeed(this, "app.organicmaps");
+    sInstance = FrameworkAdapter.INSTANCE.getApplication();
 
-    mOrganicMaps = new OrganicMaps(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+    mOrganicMaps = new OrganicMaps(sInstance);
 
-    LogsManager.INSTANCE.initFileLogging(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+    ConnectionState.INSTANCE.initialize(sInstance);
 
-    Android7RootCertificateWorkaround.initializeIfNeeded(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+    DownloaderNotifier.createNotificationChannel(sInstance);
+    NavigationService.createNotificationChannel(sInstance);
+    TrackRecordingService.createNotificationChannel(sInstance);
 
-    ConnectionState.INSTANCE.initialize(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-
-    DownloaderNotifier.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-//    NavigationService.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-//    TrackRecordingService.createNotificationChannel(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-
-    registerActivityLifecycleCallbacks(this);
-    mSubwayManager = new SubwayManager(this);
-    mIsolinesManager = new IsolinesManager(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-    mLocationHelper = new LocationHelper(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
-    mSensorHelper = new SensorHelper(OrganicmapsFrameworkAdapter.INSTANCE.getApplication());
+//    registerActivityLifecycleCallbacks(this);
     mDisplayManager = new DisplayManager();
   }
 
   public boolean initOrganicMaps(@NonNull Runnable onComplete) throws IOException
   {
     return mOrganicMaps.init(() -> {
+      ThemeSwitcher.INSTANCE.initialize(FrameworkAdapter.INSTANCE.getApplication());
+      ThemeSwitcher.INSTANCE.restart(false);
       ProcessLifecycleOwner.get().getLifecycle().addObserver(mProcessLifecycleObserver);
       onComplete.run();
     });
   }
 
-  private final LifecycleObserver mProcessLifecycleObserver = new DefaultLifecycleObserver()
-  {
+  private final LifecycleObserver mProcessLifecycleObserver = new DefaultLifecycleObserver() {
     @Override
     public void onStart(@NonNull LifecycleOwner owner)
     {
@@ -207,7 +175,7 @@ public class MwmApplication extends Application implements Application.ActivityL
   {
     Logger.d(TAG, "activity = " + activity);
     Utils.showOnLockScreen(Config.isShowOnLockScreenEnabled(), activity);
-    mSensorHelper.setRotation(activity.getWindowManager().getDefaultDisplay().getRotation());
+    getSensorHelper().setRotation(activity.getWindowManager().getDefaultDisplay().getRotation());
     mTopActivity = new WeakReference<>(activity);
   }
 
@@ -238,14 +206,14 @@ public class MwmApplication extends Application implements Application.ActivityL
   {
     Logger.d(TAG);
 
-    mLocationHelper.resumeLocationInForeground();
+    getLocationHelper().resumeLocationInForeground();
   }
 
   private void onBackground()
   {
     Logger.d(TAG);
 
-    OsmUploadWork.startActionUploadOsmChanges(this);
+    OsmUploadWork.startActionUploadOsmChanges(FrameworkAdapter.INSTANCE.getApplication());
 
     if (!mDisplayManager.isDeviceDisplayUsed())
       Logger.i(LOCATION_TAG, "Android Auto is active, keeping location in the background");
@@ -258,7 +226,7 @@ public class MwmApplication extends Application implements Application.ActivityL
     else
     {
       Logger.i(LOCATION_TAG, "Stopping location in the background");
-      mLocationHelper.stop();
+      getLocationHelper().stop();
     }
   }
 }

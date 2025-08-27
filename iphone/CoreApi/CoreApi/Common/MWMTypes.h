@@ -12,6 +12,12 @@ typedef NS_ENUM(NSUInteger, MWMDayTime) { MWMDayTimeDay, MWMDayTimeNight } NS_SW
 
 typedef NS_ENUM(NSUInteger, MWMUnits) { MWMUnitsMetric, MWMUnitsImperial } NS_SWIFT_NAME(Units);
 
+typedef NS_ENUM(NSUInteger, MWMPlacement) {
+  MWMPlacementNone,
+  MWMPlacementRight,
+  MWMPlacementBottom
+} NS_SWIFT_NAME(Placement);
+
 typedef NS_ENUM(NSUInteger, MWMTheme) {
   MWMThemeDay,
   MWMThemeNight,
@@ -29,9 +35,9 @@ typedef NS_ENUM(NSUInteger, MWMKmlFileType) {
 typedef uint64_t MWMMarkID;
 typedef uint64_t MWMTrackID;
 typedef uint64_t MWMMarkGroupID;
-typedef NSArray<NSNumber *> *MWMMarkIDCollection;
-typedef NSArray<NSNumber *> *MWMTrackIDCollection;
-typedef NSArray<NSNumber *> *MWMGroupIDCollection;
+typedef NSArray<NSNumber *> * MWMMarkIDCollection;
+typedef NSArray<NSNumber *> * MWMTrackIDCollection;
+typedef NSArray<NSNumber *> * MWMGroupIDCollection;
 
 typedef NS_CLOSED_ENUM(NSUInteger, MWMBookmarksShareStatus) {
   MWMBookmarksShareStatusSuccess,
