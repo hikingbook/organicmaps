@@ -1,16 +1,25 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package app.organicmaps.downloader;
 
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_APPLYING;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_DONE;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_DOWNLOADABLE;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_ENQUEUED;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_FAILED;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_PARTLY;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_PROGRESS;
+import static app.organicmaps.sdk.downloader.CountryItem.STATUS_UPDATABLE;
+
 import android.view.View;
 import android.widget.Button;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import app.organicmaps.MapSource;
-
+import app.organicmaps.sdk.MapSource;
 import app.organicmaps.R;
-import app.organicmaps.util.StringUtils;
-import app.organicmaps.util.UiUtils;
-import static app.organicmaps.downloader.CountryItem.*;
+import app.organicmaps.sdk.downloader.CountryItem;
+import app.organicmaps.sdk.downloader.MapManager;
+import app.organicmaps.sdk.downloader.UpdateInfo;
+import app.organicmaps.sdk.util.StringUtils;
+import app.organicmaps.sdk.util.UiUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 class BottomPanel
 {
@@ -18,8 +27,7 @@ class BottomPanel
   private final FloatingActionButton mFab;
   private final Button mButton;
 
-  private final View.OnClickListener mDownloadListener = new View.OnClickListener()
-  {
+  private final View.OnClickListener mDownloadListener = new View.OnClickListener() {
     @Override
     public void onClick(View v)
     {
@@ -27,8 +35,7 @@ class BottomPanel
     }
   };
 
-  private final View.OnClickListener mUpdateListener = new View.OnClickListener()
-  {
+  private final View.OnClickListener mUpdateListener = new View.OnClickListener() {
     @Override
     public void onClick(View v)
     {
@@ -37,12 +44,20 @@ class BottomPanel
     }
   };
 
-  private final View.OnClickListener mCancelListener = new View.OnClickListener()
-  {
+  private final View.OnClickListener mCancelListener = new View.OnClickListener() {
     @Override
     public void onClick(View v)
     {
-        mFragment.getAdapter().refreshData();
+      MapManager.nativeCancel(mFragment.getCurrentRoot());
+      mFragment.getAdapter().refreshData();
+    }
+  };
+
+  private final View.OnClickListener mRetryListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v)
+    {
+      MapManager.warn3gAndRetry(mFragment.requireActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
     }
   };
 
@@ -52,7 +67,7 @@ class BottomPanel
 
     mFab = frame.findViewById(R.id.fab);
     mFab.setOnClickListener(v -> {
-      if (mFragment.getAdapter() != null )
+      if (mFragment.getAdapter() != null)
         mFragment.getAdapter().setAvailableMapsMode();
       update();
     });
@@ -62,8 +77,9 @@ class BottomPanel
 
   private void setUpdateAllState(UpdateInfo info)
   {
-    mButton.setText(StringUtils.formatUsingUsLocale("%s (%s)", mFragment.getString(R.string.downloader_update_all_button),
-                                  StringUtils.getFileSizeString(mFragment.requireContext(), info.totalSize)));
+    mButton.setText(
+        StringUtils.formatUsingUsLocale("%s (%s)", mFragment.getString(R.string.downloader_update_all_button),
+                                        StringUtils.getFileSizeString(mFragment.requireContext(), info.totalSize)));
     mButton.setOnClickListener(mUpdateListener);
   }
 
@@ -71,6 +87,12 @@ class BottomPanel
   {
     mButton.setText(R.string.downloader_download_all_button);
     mButton.setOnClickListener(mDownloadListener);
+  }
+
+  private void setRetryFailedStates()
+  {
+    mButton.setText(R.string.downloader_retry);
+    mButton.setOnClickListener(mRetryListener);
   }
 
   private void setCancelState()
@@ -95,15 +117,15 @@ class BottomPanel
       {
         switch (status)
         {
-          case STATUS_UPDATABLE ->
-          {
-            UpdateInfo info = MapManager.nativeGetUpdateInfo(root);
-            setUpdateAllState(info);
-          }  // Special case for "Countries" node when no maps currently downloaded.
-          case STATUS_DOWNLOADABLE, STATUS_DONE, STATUS_PARTLY -> show = false;
-          case STATUS_PROGRESS, STATUS_APPLYING, STATUS_ENQUEUED -> setCancelState();
-          case STATUS_FAILED -> setDownloadAllState();
-          default -> throw new IllegalArgumentException("Inappropriate status for \"" + root + "\": " + status);
+        case STATUS_UPDATABLE ->
+        {
+          UpdateInfo info = MapManager.nativeGetUpdateInfo(root);
+          setUpdateAllState(info);
+        } // Special case for "Countries" node when no maps currently downloaded.
+        case STATUS_DOWNLOADABLE, STATUS_DONE, STATUS_PARTLY -> show = false;
+        case STATUS_PROGRESS, STATUS_APPLYING, STATUS_ENQUEUED -> setCancelState();
+        case STATUS_FAILED -> setRetryFailedStates();
+        default -> throw new IllegalArgumentException("Inappropriate status for \"" + root + "\": " + status);
         }
       }
       else
@@ -113,14 +135,15 @@ class BottomPanel
         {
           switch (status)
           {
-            case STATUS_UPDATABLE ->
-            {
-              UpdateInfo info = MapManager.nativeGetUpdateInfo(root);
-              setUpdateAllState(info);
-            }
-            case STATUS_DONE -> show = false;
-            case STATUS_PROGRESS, STATUS_APPLYING, STATUS_ENQUEUED -> setCancelState();
-            default -> setDownloadAllState();
+          case STATUS_UPDATABLE ->
+          {
+            UpdateInfo info = MapManager.nativeGetUpdateInfo(root);
+            setUpdateAllState(info);
+          }
+          case STATUS_DONE -> show = false;
+          case STATUS_PROGRESS, STATUS_APPLYING, STATUS_ENQUEUED -> setCancelState();
+          case STATUS_FAILED -> setRetryFailedStates();
+          default -> setDownloadAllState();
           }
         }
       }

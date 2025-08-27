@@ -146,7 +146,7 @@
     <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
     <string name="category_water">Vand</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
-    <string name="category_rv">Autocamper-faciliteter</string>
+    <string name="category_rv" translatable="false">Til RV</string>
     <!-- SECTION: Other translations -->
     <!-- Notes field in Bookmarks view -->
     <string name="description">Noter</string>
@@ -616,6 +616,8 @@
     <string name="privacy_policy">Privatlivspolitik</string>
     <string name="terms_of_use">Vilkår for bruger</string>
     <string name="button_layer_traffic">Trafik</string>
+    <string name="button_layer_hiking">Vandring</string>
+    <string name="button_layer_cycling">Cykling</string>
     <string name="button_layer_subway">Undergrundsbane</string>
     <string name="layers_title">Kortstile og -lag</string>
     <string name="subway_data_unavailable">Kort over undergrundsbaner er ikke tilgængeligt</string>
@@ -868,4 +870,5 @@
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <string name="change_map_locale">Sprog på kort</string>
     <string name="prefs_group_information">Information</string>
+    <string name="saved">Gemt</string>
 </resources>

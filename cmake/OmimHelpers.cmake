@@ -1,5 +1,3 @@
-include(OmimConfig)
-
 # Functions for using in subdirectories
 function(omim_add_executable executable)
   add_executable(${executable} ${ARGN})
@@ -82,25 +80,9 @@ function(omim_add_pybindings_subdirectory subdir)
   endif()
 endfunction()
 
-function(omim_link_platform_deps target)
-  if ("${ARGN}" MATCHES "platform")
-    if (PLATFORM_MAC)
-      target_link_libraries(
-        ${target}
-        "-framework CFNetwork"
-        "-framework Foundation"
-        "-framework IOKit"
-        "-framework SystemConfiguration"
-        "-framework Security"
-      )
-    endif()
-  endif()
-endfunction()
-
 function(omim_link_libraries target)
   if (TARGET ${target})
     target_link_libraries(${target} ${ARGN} ${CMAKE_THREAD_LIBS_INIT})
-    omim_link_platform_deps(${target} ${ARGN})
   else()
     message("~> Skipping linking the libraries to the target ${target} as it"
             " does not exist")
@@ -177,8 +159,8 @@ function(add_precompiled_headers header pch_target_name)
   export_directory_flags("${pch_flags_file}")
   set(compiler_flags "@${pch_flags_file}")
 
-  # CMAKE_CXX_STANDARD 20 flags:
-  set(c_standard_flags "-std=c++20")
+  # CMAKE_CXX_STANDARD 23 flags:
+  set(c_standard_flags "-std=c++23")
   get_filename_component(pch_file_name ${header} NAME)
 
   add_pic_pch_target(${header} ${pch_target_name} ${pch_file_name} lib "-fPIC")

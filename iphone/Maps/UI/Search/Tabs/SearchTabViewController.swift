@@ -1,6 +1,6 @@
 @objc(MWMSearchTabViewControllerDelegate)
 protocol SearchTabViewControllerDelegate: SearchOnMapScrollViewDelegate {
-  func searchTabController(_ viewController: SearchTabViewController, didSearch: String, withCategory: Bool)
+  func searchTabController(_ viewController: SearchTabViewController, didSearch: SearchQuery)
 }
 
 @objc(MWMSearchTabViewController)
@@ -9,24 +9,22 @@ final class SearchTabViewController: TabViewController {
     case history = 0
     case categories
   }
-  
+
   private static let selectedIndexKey = "SearchTabViewController_selectedIndexKey"
   @objc weak var delegate: SearchTabViewControllerDelegate?
   
-  private lazy var frameworkHelper: MWMSearchFrameworkHelper = {
-    return MWMSearchFrameworkHelper()
-  }()
-  
+  private var frameworkHelper = MWMSearchFrameworkHelper.self
+
   private var activeTab: SearchActiveTab = SearchActiveTab.init(rawValue:
     UserDefaults.standard.integer(forKey: SearchTabViewController.selectedIndexKey)) ?? .categories {
     didSet {
       UserDefaults.standard.set(activeTab.rawValue, forKey: SearchTabViewController.selectedIndexKey)
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     let history = SearchHistoryViewController(frameworkHelper: frameworkHelper,
                                               delegate: self)
     history.title = L("history")
@@ -72,14 +70,18 @@ extension SearchTabViewController: SearchOnMapScrollViewDelegate {
 extension SearchTabViewController: SearchCategoriesViewControllerDelegate {
   func categoriesViewController(_ viewController: SearchCategoriesViewController,
                                 didSelect category: String) {
-    let query = L(category) + " "
-    delegate?.searchTabController(self, didSearch: query, withCategory: true)
+    let preferredLang = AppInfo.shared().languageId
+    let supportedBySearchLang = MWMSearchFrameworkHelper.isLanguageSupported(preferredLang) ? preferredLang : "en"
+    let searchText = L(category, languageCode: supportedBySearchLang) + " "
+    let query = SearchQuery(searchText, locale: supportedBySearchLang, source: .category)
+    delegate?.searchTabController(self, didSearch: query)
   }
 }
 
 extension SearchTabViewController: SearchHistoryViewControllerDelegate {
   func searchHistoryViewController(_ viewController: SearchHistoryViewController,
-                             didSelect query: String) {
-    delegate?.searchTabController(self, didSearch: query, withCategory: false)
+                                   didSelect query: String) {
+    let query = SearchQuery(query.trimmingCharacters(in: .whitespacesAndNewlines) + " ", source: .history)
+    delegate?.searchTabController(self, didSearch: query)
   }
 }

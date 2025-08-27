@@ -5,6 +5,7 @@
 
 @class MWMMapSearchResult;
 @class TrackInfo;
+@class ElevationProfileData;
 
 typedef NS_ENUM(NSUInteger, MWMZoomMode) { MWMZoomModeIn = 0, MWMZoomModeOut };
 
@@ -17,17 +18,20 @@ typedef NS_ENUM(NSInteger, ProductsPopupCloseReason) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^SearchInDownloaderCompletions)(NSArray<MWMMapSearchResult *> *results, BOOL finished);
+typedef void (^SearchInDownloaderCompletions)(NSArray<MWMMapSearchResult *> * results, BOOL finished);
 typedef void (^TrackRecordingUpdatedHandler)(TrackInfo * _Nonnull trackInfo);
 
-@protocol TrackRecorder <NSObject>
+@protocol TrackRecorder
 
 + (void)startTrackRecording;
 + (void)setTrackRecordingUpdateHandler:(TrackRecordingUpdatedHandler _Nullable)trackRecordingDidUpdate;
 + (void)stopTrackRecording;
-+ (void)saveTrackRecordingWithName:(nullable NSString *)name;
++ (void)saveTrackRecordingWithName:(nonnull NSString *)name;
 + (BOOL)isTrackRecordingEnabled;
 + (BOOL)isTrackRecordingEmpty;
+/// Returns current track recording elevation info.
+/// If the track recording is not in progress, returns empty ElevationProfileData.
++ (ElevationProfileData * _Nonnull)trackRecordingElevationInfo;
 
 @end
 
@@ -43,7 +47,7 @@ typedef void (^TrackRecordingUpdatedHandler)(TrackInfo * _Nonnull trackInfo);
 @end
 
 NS_SWIFT_NAME(FrameworkHelper)
-@interface MWMFrameworkHelper : NSObject<TrackRecorder, ProductsManager>
+@interface MWMFrameworkHelper : NSObject <TrackRecorder, ProductsManager>
 
 + (void)processFirstLaunch:(BOOL)hasLocation;
 + (void)setVisibleViewport:(CGRect)rect scaleFactor:(CGFloat)scale;
@@ -54,7 +58,7 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (MWMMarkGroupID)invalidCategoryId;
 + (void)zoomMap:(MWMZoomMode)mode;
 + (void)moveMap:(UIOffset)offset;
-+ (void)scrollMap:(double)distanceX :(double) distanceY;
++ (void)scrollMap:(double)distanceX:(double)distanceY;
 + (void)deactivateMapSelection;
 + (void)switchMyPositionMode;
 + (void)stopLocationFollow;
@@ -69,9 +73,11 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (void)showOnMap:(MWMMarkGroupID)categoryId;
 + (void)showBookmark:(MWMMarkID)bookmarkId;
 + (void)showTrack:(MWMTrackID)trackId;
++ (void)saveRouteAsTrack;
 + (void)updatePlacePageData;
 + (void)updateAfterDeleteBookmark;
 + (int)currentZoomLevel;
++ (BOOL)needUpdateForRoutes;
 
 @end
 

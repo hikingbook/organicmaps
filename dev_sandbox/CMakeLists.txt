@@ -13,7 +13,7 @@ if (${PLATFORM_MAC})
     ../iphone/Maps/Classes/MetalContextFactory.mm
   )
 
-  file(GLOB_RECURSE SHADER_SOURCES_FILES ${OMIM_ROOT}/shaders/Metal/*.metal)
+  file(GLOB_RECURSE SHADER_SOURCES_FILES ${OMIM_ROOT}/libs/shaders/Metal/*.metal)
   add_metal_shader_library(shaders_metal
     ${SHADER_SOURCES_FILES}
   )
@@ -83,14 +83,9 @@ function(copy_resources)
 endfunction()
 
 copy_resources(
+  fonts
+  symbols
   countries-strings
-  resources-default
-  resources-mdpi_light
-  resources-hdpi_light
-  resources-xhdpi_light
-  resources-xxhdpi_light
-  resources-xxxhdpi_light
-  resources-6plus_light
   vulkan_shaders
 
   categories.txt
@@ -107,23 +102,8 @@ copy_resources(
   patterns.txt
   transit_colors.txt
   types.txt
-  fonts/unicode_blocks.txt
   World.mwm
   WorldCoasts.mwm
-
-  fonts/00_NotoNaskhArabic-Regular.ttf
-  fonts/00_NotoSansBengali-Regular.ttf
-  fonts/00_NotoSansHebrew-Regular.ttf
-  fonts/00_NotoSansMalayalam-Regular.ttf
-  fonts/00_NotoSansThai-Regular.ttf
-  fonts/00_NotoSerifDevanagari-Regular.ttf
-  fonts/01_dejavusans.ttf
-  fonts/02_droidsans-fallback.ttf
-  fonts/03_jomolhari-id-a3d.ttf
-  fonts/04_padauk.ttf
-  fonts/05_khmeros.ttf
-  fonts/06_code2000.ttf
-  fonts/07_roboto_medium.ttf
 )
 
 if (NOT PLATFORM_LINUX)

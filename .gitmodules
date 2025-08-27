@@ -17,7 +17,7 @@
 [submodule "3party/boost"]
   path = 3party/boost
   url = https://github.com/boostorg/boost.git
-  branch = boost-1.85.0
+  branch = boost-1.88.0
   ignore = dirty
 [submodule "3party/just_gtfs"]
   path = 3party/just_gtfs
@@ -83,3 +83,7 @@
   path = 3party/imgui/imgui
   url = https://github.com/ocornut/imgui
   branch = master
+[submodule "3party/glaze"]
+  path = 3party/glaze
+  url = https://github.com/stephenberry/glaze
+  branch = main

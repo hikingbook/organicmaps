@@ -1,28 +1,44 @@
+// This file is modified by Zheng-Xiang Ke on 2025.
 #import "MWMSearchObserver.h"
 #import "SearchItemType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, SearchTextSource) {
+  SearchTextSourceTypedText,
+  SearchTextSourceCategory,
+  SearchTextSourceHistory,
+  SearchTextSourceSuggestion,
+  SearchTextSourceDeeplink
+};
+
+typedef NS_ENUM(NSUInteger, SearchMode) { SearchModeEverywhere, SearchModeViewport, SearchModeEverywhereAndViewport };
+
 @class SearchResult;
+@class SearchQuery;
 
 @protocol SearchManager
+
 + (void)addObserver:(id<MWMSearchObserver>)observer;
 + (void)removeObserver:(id<MWMSearchObserver>)observer;
 
-+ (void)saveQuery:(NSString *)query forInputLocale:(NSString *)inputLocale;
-+ (void)searchQuery:(NSString *)query forInputLocale:(NSString *)inputLocale withCategory:(BOOL)isCategory;
++ (void)saveQuery:(SearchQuery *)query;
++ (void)searchQuery:(SearchQuery *)query;
 
 + (void)showResultAtIndex:(NSUInteger)index;
-+ (void)showEverywhereSearchResultsOnMap;
-+ (void)showViewportSearchResultsOnMap;
++ (SearchMode)searchMode;
++ (void)setSearchMode:(SearchMode)mode;
 
 + (NSArray<SearchResult *> *)getResults;
 
 + (void)clear;
+
+// Added by Zheng-Xiang
++ (void)showResults;
 @end
 
 NS_SWIFT_NAME(Search)
-@interface MWMSearch : NSObject<SearchManager>
+@interface MWMSearch : NSObject <SearchManager>
 
 + (SearchItemType)resultTypeWithRow:(NSUInteger)row;
 + (NSUInteger)containerIndexWithRow:(NSUInteger)row;

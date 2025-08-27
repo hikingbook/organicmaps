@@ -4,21 +4,20 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.organicmaps.util.Constants.Vendor.XIAOMI;
+import static app.organicmaps.sdk.util.Constants.Vendor.XIAOMI;
 
 import android.annotation.SuppressLint;
-import android.app.ForegroundServiceStartNotAllowedException;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.IBinder;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
@@ -27,22 +26,22 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
-
-import app.organicmaps.Framework;
 import app.organicmaps.MwmActivity;
+import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
+import app.organicmaps.sdk.Framework;
+import app.organicmaps.sdk.location.LocationHelper;
+import app.organicmaps.sdk.location.LocationListener;
+import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.routing.RoutingInfo;
-import app.organicmaps.sound.MediaPlayerWrapper;
-import app.organicmaps.location.LocationHelper;
-import app.organicmaps.location.LocationListener;
-import app.organicmaps.sound.MediaPlayerWrapper;
-import app.organicmaps.sound.TtsPlayer;
-import app.organicmaps.util.Config;
+import app.organicmaps.sdk.sound.MediaPlayerWrapper;
+import app.organicmaps.sdk.sound.TtsPlayer;
+import app.organicmaps.sdk.util.LocationUtils;
+import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.util.Graphics;
-import app.organicmaps.util.LocationUtils;
-import app.organicmaps.util.OrganicmapsFrameworkAdapter;
-import app.organicmaps.util.log.Logger;
+import app.organicmaps.sdk.FrameworkAdapter;
 
 public class NavigationService extends Service implements LocationListener
 {
@@ -83,7 +82,8 @@ public class NavigationService extends Service implements LocationListener
    * @param carNotificationExtender Extender used for displaying notifications in the Android Auto
    */
   @RequiresPermission(value = ACCESS_FINE_LOCATION)
-  public static void startForegroundService(@NonNull Context context, @NonNull NotificationCompat.Extender carNotificationExtender)
+  public static void startForegroundService(@NonNull Context context,
+                                            @NonNull NotificationCompat.Extender carNotificationExtender)
   {
     Logger.i(TAG);
     mCarNotificationExtender = carNotificationExtender;
@@ -111,12 +111,13 @@ public class NavigationService extends Service implements LocationListener
     Logger.i(TAG);
 
     final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-    final NotificationChannelCompat channel = new NotificationChannelCompat.Builder(CHANNEL_ID,
-        NotificationManagerCompat.IMPORTANCE_LOW)
-        .setName(context.getString(R.string.pref_navigation))
-        .setLightsEnabled(false)    // less annoying
-        .setVibrationEnabled(false) // less annoying
-        .build();
+    final NotificationChannelCompat channel =
+        new NotificationChannelCompat.Builder(CHANNEL_ID,
+                                              NotificationManagerCompat.IMPORTANCE_LOW)
+            .setName(context.getString(R.string.pref_navigation))
+            .setLightsEnabled(false) // less annoying
+            .setVibrationEnabled(false) // less annoying
+            .build();
     notificationManager.createNotificationChannel(channel);
   }
 
@@ -127,8 +128,7 @@ public class NavigationService extends Service implements LocationListener
   {
     // Nice colorized notifications should be supported on API=26 and later.
     // Nonetheless, even on API=32, Xiaomi uses their own legacy implementation that displays white-on-white instead.
-    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-        !XIAOMI.equalsIgnoreCase(Build.MANUFACTURER);
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !XIAOMI.equalsIgnoreCase(Build.MANUFACTURER);
   }
 
   @NonNull
@@ -139,26 +139,26 @@ public class NavigationService extends Service implements LocationListener
 
     final int FLAG_IMMUTABLE = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? 0 : PendingIntent.FLAG_IMMUTABLE;
     final Intent contentIntent = new Intent(context, MwmActivity.class);
-    final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
+    final PendingIntent pendingIntent =
+        PendingIntent.getActivity(context, 0, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
 
     final Intent exitIntent = new Intent(context, NavigationService.class);
     exitIntent.setAction(STOP_NAVIGATION);
-    final PendingIntent exitPendingIntent = PendingIntent.getService(context, 0, exitIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
+    final PendingIntent exitPendingIntent =
+        PendingIntent.getService(context, 0, exitIntent, PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
 
     mNotificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-        .setCategory(NotificationCompat.CATEGORY_NAVIGATION)
-        .setPriority(NotificationManager.IMPORTANCE_LOW)
-        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-        .setOngoing(true)
-        .setShowWhen(false)
-        .setOnlyAlertOnce(true)
-        .setSmallIcon(R.drawable.ic_splash)
-        .setContentIntent(pendingIntent)
-        .addAction(0, context.getString(R.string.navigation_stop_button), exitPendingIntent)
-        .setColorized(isColorizedSupported())
-        .setColor(ContextCompat.getColor(context, R.color.notification));
+                               .setCategory(NotificationCompat.CATEGORY_NAVIGATION)
+                               .setPriority(NotificationManager.IMPORTANCE_LOW)
+                               .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                               .setOngoing(true)
+                               .setShowWhen(false)
+                               .setOnlyAlertOnce(true)
+                               .setSmallIcon(R.drawable.ic_splash)
+                               .setContentIntent(pendingIntent)
+                               .addAction(0, context.getString(R.string.navigation_stop_button), exitPendingIntent)
+                               .setColorized(isColorizedSupported())
+                               .setColor(ContextCompat.getColor(context, R.color.notification));
 
     return mNotificationBuilder;
   }
@@ -178,7 +178,7 @@ public class NavigationService extends Service implements LocationListener
 
     mNotificationBuilder = null;
     mCarNotificationExtender = null;
-    LocationHelper.from(this).removeListener(this);
+    MwmApplication.from(this).getLocationHelper().removeListener(this);
     TtsPlayer.INSTANCE.stop();
 
     // The notification is cancelled automatically by the system.
@@ -204,7 +204,7 @@ public class NavigationService extends Service implements LocationListener
     }
 
 //    if (!MwmApplication.from(this).getOrganicMaps().arePlatformAndCoreInitialized())
-    if (!OrganicmapsFrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
+    if (!FrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
     {
       // The system restarts the service if the app's process has crashed or been stopped. It would be nice to
       // automatically restore the last route and resume navigation. Unfortunately, the current implementation of
@@ -226,23 +226,14 @@ public class NavigationService extends Service implements LocationListener
       return START_NOT_STICKY; // The service will be stopped by stopSelf().
     }
 
-    Logger.i(TAG, "Starting foreground");
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-    {
-      try
-      {
-        startForeground(NavigationService.NOTIFICATION_ID, getNotificationBuilder(this).build());
-      } catch (ForegroundServiceStartNotAllowedException e)
-      {
-        Logger.e(TAG, "Oops! ForegroundService is not allowed", e);
-      }
-    }
+    Logger.i(TAG, "Starting Navigation Foreground service");
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+      ServiceCompat.startForeground(this, NavigationService.NOTIFICATION_ID, getNotificationBuilder(this).build(),
+                                    ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
     else
-    {
-      startForeground(NavigationService.NOTIFICATION_ID, getNotificationBuilder(this).build());
-    }
+      ServiceCompat.startForeground(this, NavigationService.NOTIFICATION_ID, getNotificationBuilder(this).build(), 0);
 
-    final LocationHelper locationHelper = LocationHelper.from(this);
+    final LocationHelper locationHelper = MwmApplication.from(this).getLocationHelper();
 
     // Subscribe to location updates. This call is idempotent.
     locationHelper.addListener(this);
@@ -283,7 +274,7 @@ public class NavigationService extends Service implements LocationListener
     if (Framework.nativeIsRouteFinished())
     {
       routingController.cancel();
-      LocationHelper.from(this).restartWithNewMode();
+      MwmApplication.from(this).getLocationHelper().restartWithNewMode();
       stopSelf();
       return;
     }
@@ -296,20 +287,20 @@ public class NavigationService extends Service implements LocationListener
       mPlayer.playback(R.raw.speed_cams_beep);
 
     // Don't spend time on updating RemoteView if notifications are not allowed.
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-        ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) != PERMISSION_GRANTED)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+        && ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) != PERMISSION_GRANTED)
       return;
 
     final NotificationCompat.Builder notificationBuilder = getNotificationBuilder(this)
-        .setContentTitle(routingInfo.distToTurn.toString(this))
-        .setContentText(routingInfo.nextStreet);
+                                                               .setContentTitle(routingInfo.distToTurn.toString(this))
+                                                               .setContentText(routingInfo.nextStreet);
 
     final Drawable drawable = AppCompatResources.getDrawable(this, routingInfo.carDirection.getTurnRes());
     if (drawable != null)
     {
-      final Bitmap bitmap = isColorizedSupported() ?
-          Graphics.drawableToBitmap(drawable) :
-          Graphics.drawableToBitmapWithTint(drawable, ContextCompat.getColor(this, R.color.base_accent));
+      final Bitmap bitmap = isColorizedSupported() ? Graphics.drawableToBitmap(drawable)
+                                                   : Graphics.drawableToBitmapWithTint(
+                                                         drawable, ContextCompat.getColor(this, R.color.base_accent));
       notificationBuilder.setLargeIcon(bitmap);
     }
 

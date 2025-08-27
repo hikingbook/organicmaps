@@ -602,6 +602,8 @@
     <string name="error_enter_correct_vk_page">Enter a valid VK username or web address</string>
     <string name="error_enter_correct_line_page">Enter a valid LINE ID or web address</string>
     <string name="placepage_add_place_button">Add Place to OpenStreetMap</string>
+    <string name="osm_note_hint">Or, alternatively, leave a note to OpenStreetMap community so that someone else can add or fix a place here.</string>
+    <string name="osm_note_toast">Note will be sent to OpenStreetMap</string>
     <!-- Displayed when saving some edits to the map to warn against publishing personal data -->
     <string name="editor_share_to_all_dialog_title">Do you want to send it to all users?</string>
     <!-- Dialog before publishing the modifications to the public map. -->
@@ -624,6 +626,7 @@
     <string name="mobile_data_option_never">Never Use</string>
     <string name="mobile_data_option_ask">Always Ask</string>
     <string name="traffic_update_maps_text">To display traffic data, maps must be updated.</string>
+    <string name="routes_update_maps_text">To display routes, maps must be updated.</string>
     <string name="big_font">Increase size for map labels</string>
     <string name="traffic_update_app">Please update Organic Maps</string>
     <!-- "traffic" as in "road congestion" -->
@@ -648,6 +651,7 @@
     <string name="button_plan">Plan</string>
     <string name="placepage_remove_stop">Remove Stop</string>
     <string name="placepage_add_stop">Add Stop</string>
+    <string name="saved">Saved</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Please login to OpenStreetMap to automatically upload all your map edits. Learn more <a href="https://github.com/organicmaps/organicmaps/issues/6144">here</a>.</string>
     <string name="dialog_error_storage_title">Storage access problem</string>
@@ -691,6 +695,8 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="terms_of_use">Terms of use</string>
     <string name="button_layer_traffic">Traffic</string>
+    <string name="button_layer_hiking">Hiking</string>
+    <string name="button_layer_cycling">Cycling</string>
     <string name="button_layer_subway">Subway</string>
     <string name="layers_title">Map Styles and Layers</string>
     <string name="subway_data_unavailable">Subway map is unavailable</string>
@@ -718,6 +724,10 @@
     <string name="power_managment_setting_never">Never</string>
     <string name="power_managment_setting_auto">When battery is low</string>
     <string name="power_managment_setting_manual_max">Always</string>
+    <string name="bookmarks_text_placement_title">Bookmark names on the map</string>
+    <string name="bookmarks_text_placement_description">If there are too many bookmarks, displaying their names on the map may slow down the app.</string>
+    <string name="show_to_the_right">Show to the right</string>
+    <string name="show_at_the_bottom">Show at the bottom</string>
     <string name="enable_logging_warning_message">Enable this option temporarily to record and manually send detailed diagnostic logs about your issue to us using \"Report a bug\" in the Help dialog. Logs may include location info.</string>
     <string name="access_rules_author_only">Online editing</string>
     <string name="driving_options_title">Routing options</string>
@@ -921,4 +931,7 @@
     <string name="uri_open_location_failed">No app installed that can open the location</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Auto in navigation</string>
+    <!-- Title of the bottom sheet when sharing the track -->
+    <string name="share_track">Share Track</string>
+    <string name="delete_track_dialog_title">Delete %s?</string>
 </resources>

@@ -9,10 +9,10 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static app.organicmaps.location.LocationState.FOLLOW;
-import static app.organicmaps.location.LocationState.FOLLOW_AND_ROTATE;
-import static app.organicmaps.location.LocationState.LOCATION_TAG;
-import static app.organicmaps.util.PowerManagment.POWER_MANAGEMENT_TAG;
+import static app.organicmaps.sdk.location.LocationState.FOLLOW;
+import static app.organicmaps.sdk.location.LocationState.FOLLOW_AND_ROTATE;
+import static app.organicmaps.sdk.location.LocationState.LOCATION_TAG;
+import static app.organicmaps.sdk.util.PowerManagment.POWER_MANAGEMENT_TAG;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,21 +22,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -67,87 +66,81 @@ import app.organicmaps.api.Const;
 import app.organicmaps.base.BaseMwmFragmentActivity;
 import app.organicmaps.base.OnBackPressListener;
 import app.organicmaps.bookmarks.BookmarkCategoriesActivity;
-import app.organicmaps.bookmarks.data.BookmarkManager;
-import app.organicmaps.bookmarks.data.MapObject;
-import app.organicmaps.display.DisplayChangedListener;
-import app.organicmaps.display.DisplayManager;
-import app.organicmaps.display.DisplayType;
 import app.organicmaps.downloader.DownloaderActivity;
 import app.organicmaps.downloader.DownloaderFragment;
-import app.organicmaps.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
-import app.organicmaps.downloader.UpdateInfo;
-import app.organicmaps.editor.Editor;
 import app.organicmaps.editor.EditorActivity;
 import app.organicmaps.editor.EditorHostFragment;
 import app.organicmaps.editor.FeatureCategoryActivity;
 import app.organicmaps.editor.OsmLoginActivity;
-import app.organicmaps.editor.OsmOAuth;
 import app.organicmaps.editor.ReportFragment;
 import app.organicmaps.help.HelpActivity;
 import app.organicmaps.intent.Factory;
 import app.organicmaps.intent.IntentProcessor;
-import app.organicmaps.location.LocationHelper;
-import app.organicmaps.location.LocationListener;
-import app.organicmaps.location.LocationState;
-import app.organicmaps.location.SensorHelper;
-import app.organicmaps.location.SensorListener;
-import app.organicmaps.location.TrackRecorder;
 import app.organicmaps.location.TrackRecordingService;
 import app.organicmaps.maplayer.MapButtonsController;
 import app.organicmaps.maplayer.ToggleMapLayerFragment;
-import app.organicmaps.maplayer.isolines.IsolinesState;
 import app.organicmaps.routing.ManageRouteBottomSheet;
 import app.organicmaps.routing.NavigationController;
 import app.organicmaps.routing.RoutingBottomMenuListener;
-import app.organicmaps.routing.RoutingController;
 import app.organicmaps.routing.RoutingPlanFragment;
 import app.organicmaps.routing.RoutingPlanInplaceController;
 import app.organicmaps.sdk.ChoosePositionMode;
+import app.organicmaps.sdk.Framework;
+import app.organicmaps.sdk.Map;
+import app.organicmaps.sdk.MapRenderingListener;
 import app.organicmaps.sdk.PlacePageActivationListener;
+import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
+import app.organicmaps.sdk.bookmarks.data.MapObject;
+import app.organicmaps.sdk.display.DisplayChangedListener;
+import app.organicmaps.sdk.display.DisplayManager;
+import app.organicmaps.sdk.display.DisplayType;
+import app.organicmaps.sdk.downloader.MapManager;
+import app.organicmaps.sdk.downloader.UpdateInfo;
+import app.organicmaps.sdk.editor.Editor;
+import app.organicmaps.sdk.editor.OsmOAuth;
+import app.organicmaps.sdk.location.LocationHelper;
+import app.organicmaps.sdk.location.LocationListener;
+import app.organicmaps.sdk.location.LocationState;
+import app.organicmaps.sdk.location.SensorListener;
+import app.organicmaps.sdk.location.TrackRecorder;
+import app.organicmaps.sdk.maplayer.isolines.IsolinesState;
 import app.organicmaps.sdk.routing.RouteMarkType;
+import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.routing.RoutingOptions;
 import app.organicmaps.sdk.search.SearchEngine;
+import app.organicmaps.sdk.settings.RoadType;
+import app.organicmaps.sdk.settings.UnitLocale;
+import app.organicmaps.sdk.util.Config;
+import app.organicmaps.sdk.util.LocationUtils;
+import app.organicmaps.sdk.util.PowerManagment;
+import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.sdk.util.log.Logger;
+import app.organicmaps.sdk.widget.placepage.PlacePageData;
 import app.organicmaps.search.FloatingSearchToolbarController;
 import app.organicmaps.search.SearchActivity;
 import app.organicmaps.search.SearchFragment;
-import app.organicmaps.settings.RoadType;
 import app.organicmaps.settings.SettingsActivity;
-import app.organicmaps.settings.UnitLocale;
-import app.organicmaps.util.Config;
-import app.organicmaps.util.LocationUtils;
-import app.organicmaps.util.OrganicmapsFrameworkAdapter;
-import app.organicmaps.util.PowerManagment;
+import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.ThemeUtils;
-import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
-import app.organicmaps.util.log.Logger;
 import app.organicmaps.widget.StackedButtonsDialog;
 import app.organicmaps.widget.menu.MainMenu;
 import app.organicmaps.widget.placepage.PlacePageController;
-import app.organicmaps.widget.placepage.PlacePageData;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
 
 public class MwmActivity extends BaseMwmFragmentActivity
-        implements PlacePageActivationListener,
-        View.OnTouchListener,
-        MapRenderingListener,
-//        RoutingController.Container,
-        LocationListener,
-        SensorListener,
-        LocationState.ModeChangeListener,
-//        RoutingPlanInplaceController.RoutingPlanListener,
-        RoutingBottomMenuListener,
-        BookmarkManager.BookmarksLoadingListener,
-        FloatingSearchToolbarController.SearchToolbarListener,
-        MenuBottomSheetFragment.MenuBottomSheetInterfaceWithHeader,
-        PlacePageController.PlacePageRouteSettingsListener,
-        MapButtonsController.MapButtonClickListener,
-        DisplayChangedListener
+    implements PlacePageActivationListener, View.OnTouchListener, MapRenderingListener, /* RoutingController.Container, */
+               LocationListener, SensorListener, LocationState.ModeChangeListener,
+               /* RoutingPlanInplaceController.RoutingPlanListener ,*/ RoutingBottomMenuListener,
+               BookmarkManager.BookmarksLoadingListener, FloatingSearchToolbarController.SearchToolbarListener,
+               MenuBottomSheetFragment.MenuBottomSheetInterfaceWithHeader,
+               PlacePageController.PlacePageRouteSettingsListener, MapButtonsController.MapButtonClickListener,
+               DisplayChangedListener
 {
   private static final String TAG = MwmActivity.class.getSimpleName();
 
@@ -159,17 +152,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private static final String EXTRA_CONSUMED = "mwm.extra.intent.processed";
   private boolean mPreciseLocationDialogShown = false;
 
-  private static final String[] DOCKED_FRAGMENTS = { SearchFragment.class.getName(),
-          DownloaderFragment.class.getName(),
-          RoutingPlanFragment.class.getName(),
-          EditorHostFragment.class.getName(),
-          ReportFragment.class.getName() };
+  private static final String[] DOCKED_FRAGMENTS = {SearchFragment.class.getName(), DownloaderFragment.class.getName(),
+                                                    RoutingPlanFragment.class.getName(),
+                                                    EditorHostFragment.class.getName(), ReportFragment.class.getName()};
 
-//  public final ActivityResultLauncher<Intent> startDrivingOptionsForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult ->
-//  {
-//     if( activityResult.getResultCode() == Activity.RESULT_OK)
-//      rebuildLastRoute();
-//  });
+//  public final ActivityResultLauncher<Intent> startDrivingOptionsForResult =
+//      registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
+//        if (activityResult.getResultCode() == Activity.RESULT_OK)
+//          rebuildLastRoute();
+//      });
 
   private static final String MAIN_MENU_ID = "MAIN_MENU_BOTTOM_SHEET";
   private static final String LAYERS_MENU_ID = "LAYERS_MENU_BOTTOM_SHEET";
@@ -260,8 +251,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public static Intent createShowMapIntent(@NonNull Context context, @Nullable String countryId)
   {
-    return new Intent(context, DownloadResourcesLegacyActivity.class)
-        .putExtra(EXTRA_COUNTRY_ID, countryId);
+    return new Intent(context, DownloadResourcesLegacyActivity.class).putExtra(EXTRA_COUNTRY_ID, countryId);
   }
 
   @Override
@@ -270,10 +260,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
     checkMeasurementSystem();
   }
 
-  // Called from JNI.
   @Override
   @Keep
-  @SuppressWarnings("unused")
   public void onRenderingInitializationFinished()
   {
     ThemeSwitcher.INSTANCE.restart(true);
@@ -350,14 +338,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void migrateOAuthCredentials()
   {
-    if (OsmOAuth.containsOAuth1Credentials(this))
+    if (OsmOAuth.containsOAuth1Credentials())
     {
       // Remove old OAuth v1 secrets
-      OsmOAuth.clearOAuth1Credentials(this);
+      OsmOAuth.clearOAuth1Credentials();
 
       // Notify user to re-login
       dismissAlertDialog();
-      final DialogInterface.OnClickListener navigateToLoginHandler = (dialog, which) -> startActivity(new Intent(MwmActivity.this, OsmLoginActivity.class));
+      final DialogInterface.OnClickListener navigateToLoginHandler =
+          (dialog, which) -> startActivity(new Intent(MwmActivity.this, OsmLoginActivity.class));
 
       final int marginBase = getResources().getDimensionPixelSize(R.dimen.margin_base);
       final float textSize = getResources().getDimension(R.dimen.line_spacing_extra_1);
@@ -368,12 +357,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
       text.setMovementMethod(LinkMovementMethod.getInstance());
 
       mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-              .setTitle(R.string.login_osm)
-              .setView(text)
-              .setPositiveButton(R.string.login, navigateToLoginHandler)
-              .setNegativeButton(R.string.cancel, null)
-              .setOnDismissListener(dialog -> mAlertDialog = null)
-              .show();
+                         .setTitle(R.string.login_osm)
+                         .setView(text)
+                         .setPositiveButton(R.string.login, navigateToLoginHandler)
+                         .setNegativeButton(R.string.cancel, null)
+                         .setOnDismissListener(dialog -> mAlertDialog = null)
+                         .show();
     }
   }
 
@@ -385,8 +374,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   protected int getFragmentContentResId()
   {
-    return (mIsTabletLayout ? R.id.fragment_container
-            : super.getFragmentContentResId());
+    return (mIsTabletLayout ? R.id.fragment_container : super.getFragmentContentResId());
   }
 
   @Nullable
@@ -404,7 +392,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
   @Override
-  public void replaceFragment(@NonNull Class<? extends Fragment> fragmentClass, @Nullable Bundle args, @Nullable Runnable completionListener)
+  public void replaceFragment(@NonNull Class<? extends Fragment> fragmentClass, @Nullable Bundle args,
+                              @Nullable Runnable completionListener)
   {
     if (mPanelAnimator.isVisible() && getFragment(fragmentClass) != null)
     {
@@ -454,7 +443,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void shareMyLocation()
   {
-    final Location loc = LocationHelper.from(this).getSavedLocation();
+    final Location loc = MwmApplication.from(this).getLocationHelper().getSavedLocation();
     if (loc != null)
     {
       SharingUtils.shareLocation(this, loc);
@@ -463,11 +452,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     dismissLocationErrorDialog();
     mLocationErrorDialog = new MaterialAlertDialogBuilder(MwmActivity.this, R.style.MwmTheme_AlertDialog)
-            .setMessage(R.string.unknown_current_position)
-            .setCancelable(true)
-            .setPositiveButton(R.string.ok, null)
-            .setOnDismissListener(dialog -> mLocationErrorDialog = null)
-            .show();
+                               .setMessage(R.string.unknown_current_position)
+                               .setCancelable(true)
+                               .setPositiveButton(R.string.ok, null)
+                               .setOnDismissListener(dialog -> mLocationErrorDialog = null)
+                               .show();
   }
 
   private void showDownloader(boolean openDownloaded)
@@ -516,11 +505,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     final int newUiMode = newConfig.uiMode & Configuration.UI_MODE_TYPE_MASK;
     final boolean newUiModeIsCarConnected = newUiMode == Configuration.UI_MODE_TYPE_CAR;
-    final boolean newUiModeIsCarDisconnected = mLastUiMode == Configuration.UI_MODE_TYPE_CAR && newUiMode == Configuration.UI_MODE_TYPE_NORMAL;
+    final boolean newUiModeIsCarDisconnected =
+        mLastUiMode == Configuration.UI_MODE_TYPE_CAR && newUiMode == Configuration.UI_MODE_TYPE_NORMAL;
     mLastUiMode = newUiMode;
 
     if (newUiModeIsCarConnected || newUiModeIsCarDisconnected)
       return;
+
+    makeNavigationBarTransparentInLightMode();
     recreate();
   }
 
@@ -537,8 +529,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
       getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
     setContentView(R.layout.activity_map);
+    makeNavigationBarTransparentInLightMode();
 
-    OrganicmapsFrameworkAdapter.INSTANCE.initActivity(this, this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()));
+    FrameworkAdapter.INSTANCE.initActivity(this, this, getSupportFragmentManager().findFragmentById(getFragmentContentResId()));
     mPlacePageViewModel = new ViewModelProvider(this).get(PlacePageViewModel.class);
 //    mMapButtonsViewModel = new ViewModelProvider(this).get(MapButtonsViewModel.class);
     // We don't need to manually handle removing the observers it follows the activity lifecycle
@@ -546,22 +539,21 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    mMapButtonsViewModel.getLayoutMode().observe(this, this::initNavigationButtons);
 
     mSearchController = new FloatingSearchToolbarController(this, this);
-    mSearchController.getToolbar()
-            .getViewTreeObserver();
+    mSearchController.getToolbar().getViewTreeObserver();
 
     // Note: You must call registerForActivityResult() before the fragment or activity is created.
     mLocationPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
-            this::onLocationPermissionsResult);
+                                                           this::onLocationPermissionsResult);
     mLocationResolutionRequest = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(),
-            this::onLocationResolutionResult);
+                                                           this::onLocationResolutionResult);
     mPostNotificationPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
-        this::onPostNotificationPermissionResult);
-    mPowerSaveSettings = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-        this::onPowerSaveResult);
+                                                                   this::onPostNotificationPermissionResult);
+    mPowerSaveSettings =
+        registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onPowerSaveResult);
 
     mShareLauncher = SharingUtils.RegisterLauncher(this);
 
-    mDisplayManager = DisplayManager.from(this);
+    mDisplayManager = MwmApplication.from(this).getDisplayManager();
     if (mDisplayManager.isCarDisplayUsed())
     {
       mRemoveDisplayListener = false;
@@ -592,11 +584,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void refreshLightStatusBar()
   {
-    UiUtils.setLightStatusBar(this, !(
-        ThemeUtils.isNightTheme(this)
-        || RoutingController.get().isPlanning()
-        || ChoosePositionMode.get() != ChoosePositionMode.None
-    ));
+    UiUtils.setLightStatusBar(this, !(ThemeUtils.isNightTheme(this) || RoutingController.get().isPlanning()
+                                      || ChoosePositionMode.get() != ChoosePositionMode.None));
   }
 
   private void updateViewsInsets()
@@ -604,13 +593,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
     ViewCompat.setOnApplyWindowInsetsListener(mPointChooser, (view, windowInsets) -> {
       UiUtils.setViewInsetsPaddingBottom(mPointChooser, windowInsets);
       UiUtils.setViewInsetsPaddingNoBottom(mPointChooserToolbar, windowInsets);
-      final int trackRecorderOffset = TrackRecorder.nativeIsTrackRecordingEnabled() ? UiUtils.dimen(this, R.dimen.map_button_size) : 0;
+      final int trackRecorderOffset =
+          TrackRecorder.nativeIsTrackRecordingEnabled() ? UiUtils.dimen(this, R.dimen.map_button_size) : 0;
       mNavBarHeight = isFullscreen() ? 0 : windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
       // For the first loading, set compass top margin to status bar size
       // The top inset will be then be updated by the routing controller
       if (mCurrentWindowInsets == null)
       {
-        updateCompassOffset(trackRecorderOffset + windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top, windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right);
+        updateCompassOffset(trackRecorderOffset + windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                            windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right);
       }
       refreshLightStatusBar();
       updateBottomWidgetsOffset(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).left, 0);
@@ -638,8 +629,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //      removeCurrentFragment(false);
 //   }
 
-//    mNavigationController = new NavigationController(this, v -> onSettingsOptionSelected(), this::updateBottomWidgetsOffset);
-    //TrafficManager.INSTANCE.attach(mNavigationController);
+//    mNavigationController =
+//        new NavigationController(this, v -> onSettingsOptionSelected(), this::updateBottomWidgetsOffset);
+    // TrafficManager.INSTANCE.attach(mNavigationController);
 
 //    initMainMenu();
     initOnmapDownloader();
@@ -655,38 +647,35 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mPointChooserToolbar = mPointChooser.findViewById(R.id.toolbar_point_chooser);
 //    UiUtils.showHomeUpButton(mPointChooserToolbar);
     mPointChooserToolbar.setNavigationOnClickListener(v -> closePositionChooser());
-    mPointChooser.findViewById(R.id.done).setOnClickListener(
-        v ->
+    mPointChooser.findViewById(R.id.done).setOnClickListener(v -> {
+      switch (ChoosePositionMode.get())
+      {
+      case Api:
+        final Intent apiResult = new Intent();
+        final double[] center = Framework.nativeGetScreenRectCenter();
+        apiResult.putExtra(Const.EXTRA_POINT_LAT, center[0]);
+        apiResult.putExtra(Const.EXTRA_POINT_LON, center[1]);
+        apiResult.putExtra(Const.EXTRA_ZOOM_LEVEL, Framework.nativeGetDrawScale());
+        setResult(Activity.RESULT_OK, apiResult);
+        finish();
+        break;
+      case Editor:
+        if (Framework.nativeIsDownloadedMapAtScreenCenter())
+          startActivity(new Intent(MwmActivity.this, FeatureCategoryActivity.class));
+        else
         {
-          switch (ChoosePositionMode.get())
-          {
-          case Api:
-            final Intent apiResult = new Intent();
-            final double[] center = Framework.nativeGetScreenRectCenter();
-            apiResult.putExtra(Const.EXTRA_POINT_LAT, center[0]);
-            apiResult.putExtra(Const.EXTRA_POINT_LON, center[1]);
-            apiResult.putExtra(Const.EXTRA_ZOOM_LEVEL, Framework.nativeGetDrawScale());
-            setResult(Activity.RESULT_OK, apiResult);
-            finish();
-            break;
-          case Editor:
-            if (Framework.nativeIsDownloadedMapAtScreenCenter())
-              startActivity(new Intent(MwmActivity.this, FeatureCategoryActivity.class));
-            else
-            {
-                dismissAlertDialog();
-                mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-                    .setTitle(R.string.message_invalid_feature_position)
-                    .setPositiveButton(R.string.ok, null)
-                    .setOnDismissListener(dialog -> mAlertDialog = null)
-                    .show();
-            }
-            break;
-          case None:
-            throw new IllegalStateException("Unexpected Framework.nativeGetChoosePositionMode()");
-          }
-          closePositionChooser();
-        });
+          dismissAlertDialog();
+          mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+                             .setTitle(R.string.message_invalid_feature_position)
+                             .setPositiveButton(R.string.ok, null)
+                             .setOnDismissListener(dialog -> mAlertDialog = null)
+                             .show();
+        }
+        break;
+      case None: throw new IllegalStateException("Unexpected Framework.nativeGetChoosePositionMode()");
+      }
+      closePositionChooser();
+    });
     UiUtils.hide(mPointChooser);
   }
 
@@ -711,9 +700,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
   }
 
-  /** Hides/shows UI while keeping state
+  /**
+   *Hides/shows UI while keeping state
    * @param isUiHidden True to hide the UI
-  **/
+   **/
   public void hideOrShowUIWithoutClosingPlacePage(boolean isUiHidden)
   {
     // Used instead of closeBottomSheet to preserve state and hide instantly
@@ -744,6 +734,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private void showPositionChooser(ChoosePositionMode mode, boolean isBusiness, boolean applyPosition)
   {
     closeFloatingToolbarsAndPanels(false);
+    if (mMapFragment != null)
+    {
+      final View mapView = mMapFragment.getView();
+      if (mapView != null)
+      {
+        int width = mapView.getWidth();
+        int height = mapView.getHeight();
+        Framework.nativeSetVisibleRect(0, 0, width, height);
+      }
+    }
     UiUtils.show(mPointChooser);
 //    mMapButtonsViewModel.setButtonsHidden(true);
     ChoosePositionMode.set(mode, isBusiness, applyPosition);
@@ -756,6 +756,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     ChoosePositionMode mode = ChoosePositionMode.get();
     ChoosePositionMode.set(ChoosePositionMode.None, false, false);
 //    mMapButtonsViewModel.setButtonsHidden(false);
+    Framework.nativeDeactivatePopup();
     refreshLightStatusBar();
     if (mode == ChoosePositionMode.Api)
       finish();
@@ -763,7 +764,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initMap(boolean isLaunchByDeepLink, @Nullable Bundle savedInstanceState)
   {
-    final FragmentActivity activity = OrganicmapsFrameworkAdapter.INSTANCE.getActivity();
+    final FragmentActivity activity = FrameworkAdapter.INSTANCE.getActivity();
     final FragmentManager manager = activity.getSupportFragmentManager();
 
     if (savedInstanceState == null)
@@ -776,8 +777,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
       mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
       mMapFragment.setArguments(args);
       manager.beginTransaction()
-              .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-              .commit();
+          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
+          .commit();
     }
     else
     {
@@ -809,8 +810,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
     // Recreate the navigation buttons with the correct layout when it changes
     if (mPreviousMapLayoutMode != layoutMode)
     {
-      FragmentTransaction transaction = getSupportFragmentManager()
-              .beginTransaction().replace(R.id.map_buttons, new MapButtonsController());
+      FragmentTransaction transaction =
+          getSupportFragmentManager().beginTransaction().replace(R.id.map_buttons, new MapButtonsController());
       transaction.commit();
       mPreviousMapLayoutMode = layoutMode;
     }
@@ -827,32 +828,30 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     switch (button)
     {
-      case zoomIn -> Map.zoomIn();
-      case zoomOut -> Map.zoomOut();
-      case myPosition ->
-      {
-        Logger.i(LOCATION_TAG, "The location button pressed");
-        // Calls onMyPositionModeChanged(mode + 1).
-        LocationState.nativeSwitchToNextMode();
-      }
-      case toggleMapLayer -> toggleMapLayerBottomSheet();
-      case bookmarks -> showBookmarks();
-      case search -> showSearch("");
-      case menu ->
-      {
-        closeFloatingPanels();
-        showBottomSheet(MAIN_MENU_ID);
-      }
-      case help -> showHelp();
-      case trackRecordingStatus -> showTrackSaveDialog();
+    case zoomIn -> Map.zoomIn();
+    case zoomOut -> Map.zoomOut();
+    case myPosition ->
+    {
+      Logger.i(LOCATION_TAG, "The location button pressed");
+      // Calls onMyPositionModeChanged(mode + 1).
+      LocationState.nativeSwitchToNextMode();
+    }
+    case toggleMapLayer -> toggleMapLayerBottomSheet();
+    case bookmarks -> showBookmarks();
+    case search -> showSearch("");
+    case menu ->
+    {
+      closeFloatingPanels();
+      showBottomSheet(MAIN_MENU_ID);
+    }
+    case help -> showHelp();
+    case trackRecordingStatus -> showTrackSaveDialog();
     }
   }
 
-
   private boolean closeBottomSheet(String id)
   {
-    MenuBottomSheetFragment bottomSheet =
-            (MenuBottomSheetFragment) getSupportFragmentManager().findFragmentByTag(id);
+    MenuBottomSheetFragment bottomSheet = (MenuBottomSheetFragment) getSupportFragmentManager().findFragmentByTag(id);
     if (bottomSheet == null || !bottomSheet.isAdded())
       return false;
     bottomSheet.dismiss();
@@ -984,7 +983,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       LocationState.nativeSwitchToNextMode();
     }
 
-    MapObject startPoint = LocationHelper.from(this).getMyPosition();
+    MapObject startPoint = MwmApplication.from(this).getLocationHelper().getMyPosition();
     RoutingController.get().prepare(startPoint, endPoint);
 
     // TODO: check for tablet.
@@ -1010,7 +1009,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     if (mOnmapDownloader == null) {
 //    mOnmapDownloader = new OnmapDownloader(this);
-      mOnmapDownloader = new OnmapDownloader(OrganicmapsFrameworkAdapter.INSTANCE.getFragment());
+      mOnmapDownloader = new OnmapDownloader(FrameworkAdapter.INSTANCE.getFragment());
       if (mIsTabletLayout)
         mPanelAnimator.registerListener(mOnmapDownloader);
     }
@@ -1019,7 +1018,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private void initDisplayManager()
   {
     if (mDisplayManager == null) {
-      mDisplayManager = DisplayManager.from(this);
+      mDisplayManager = MwmApplication.from(this).getDisplayManager();
     }
   }
 
@@ -1090,20 +1089,22 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void onIsolinesStateChanged(@NonNull IsolinesState type)
   {
-    if (type != IsolinesState.EXPIREDDATA)
+    if (type == IsolinesState.NODATA)
     {
-      type.activate(this, findViewById(R.id.coordinator), findViewById(R.id.menu_frame));
-      return;
+      Toast.makeText(this, R.string.isolines_location_error_dialog, Toast.LENGTH_SHORT).show();
     }
 
-    dismissAlertDialog();
-    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.downloader_update_maps)
-            .setMessage(R.string.isolines_activation_error_dialog)
-            .setPositiveButton(R.string.ok, (dialog, which) -> startActivity(new Intent(this, DownloaderActivity.class)))
-            .setNegativeButton(R.string.cancel, null)
-            .setOnDismissListener(dialog -> mAlertDialog = null)
-            .show();
+    if (type == IsolinesState.EXPIREDDATA)
+    {
+      mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+                         .setTitle(R.string.downloader_update_maps)
+                         .setMessage(R.string.isolines_activation_error_dialog)
+                         .setPositiveButton(
+                             R.string.ok, (dialog, which) -> startActivity(new Intent(this, DownloaderActivity.class)))
+                         .setNegativeButton(R.string.cancel, null)
+                         .setOnDismissListener(dialog -> mAlertDialog = null)
+                         .show();
+    }
   }
 
   @Override
@@ -1113,20 +1114,17 @@ public class MwmActivity extends BaseMwmFragmentActivity
     super.onNewIntent(intent);
     if (isMapRendererActive())
       processIntent();
-    if (intent.getAction() != null && intent.getAction()
-                                            .equals(TrackRecordingService.STOP_TRACK_RECORDING))
+    if (intent.getAction() != null && intent.getAction().equals(TrackRecordingService.STOP_TRACK_RECORDING))
     {
-      //closes the bottom sheet in case it is opened to deal with updation of track recording status in bottom sheet.
+      // closes the bottom sheet in case it is opened to deal with updation of track recording status in bottom sheet.
       closeBottomSheet(MAIN_MENU_ID);
       showTrackSaveDialog();
     }
   }
 
-
   public boolean isMapRendererActive()
   {
-    return mMapFragment != null && Map.isEngineCreated()
-            && mMapFragment.isContextCreated();
+    return mMapFragment != null && Map.isEngineCreated() && mMapFragment.isContextCreated();
   }
 
   @CallSuper
@@ -1137,6 +1135,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
     refreshSearchToolbar();
     setFullscreen(isFullscreen());
+    makeNavigationBarTransparentInLightMode();
     if (ChoosePositionMode.get() != ChoosePositionMode.None)
     {
       UiUtils.show(mPointChooser);
@@ -1148,7 +1147,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mNavigationController.refresh();
     refreshLightStatusBar();
 
-    SensorHelper.from(this).addListener(this);
+    MwmApplication.from(this).getSensorHelper().addListener(this);
   }
 
   @Override
@@ -1156,7 +1155,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     // Explicitly destroy surface before activity recreation.
     if (mMapFragment != null)
-      mMapFragment.destroySurface();
+      mMapFragment.destroySurface(true);
     super.recreate();
   }
 
@@ -1172,7 +1171,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     if (mOnmapDownloader != null)
       mOnmapDownloader.onPause();
-    SensorHelper.from(this).removeListener(this);
+    MwmApplication.from(this).getSensorHelper().removeListener(this);
     dismissLocationErrorDialog();
     dismissAlertDialog();
     super.onPause();
@@ -1185,9 +1184,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
     Framework.nativePlacePageActivationListener(this);
     BookmarkManager.INSTANCE.addLoadingListener(this);
 //    RoutingController.get().attach(this);
-//    IsolinesManager.from(getApplicationContext()).attach(this::onIsolinesStateChanged);
+//    MwmApplication.from(getApplicationContext()).getIsolinesManager().attach(this::onIsolinesStateChanged);
 //    LocationState.nativeSetListener(this);
-//    LocationHelper.from(this).addListener(this);
+//    MwmApplication.from(this).getLocationHelper().addListener(this);
     mSearchController.attach(this);
     Utils.keepScreenOn(Config.isKeepScreenOnEnabled() || RoutingController.get().isNavigating(), getWindow());
   }
@@ -1198,13 +1197,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
     super.onStop();
     Framework.nativeRemovePlacePageActivationListener(this);
     BookmarkManager.INSTANCE.removeLoadingListener(this);
-//    LocationHelper.from(this).removeListener(this);
+//    MwmApplication.from(this).getLocationHelper().removeListener(this);
 //    if (mDisplayManager.isDeviceDisplayUsed() && !RoutingController.get().isNavigating())
 //    {
 //      LocationState.nativeRemoveListener();
 //      RoutingController.get().detach();
 //    }
-//    IsolinesManager.from(getApplicationContext()).detach();
+//    MwmApplication.from(getApplicationContext()).getIsolinesManager().detach();
     mSearchController.detach();
     Utils.keepScreenOn(false, getWindow());
 
@@ -1234,10 +1233,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onBackPressed()
   {
     final RoutingController routingController = RoutingController.get();
-    if (!closeBottomSheet(MAIN_MENU_ID) && !closeBottomSheet(LAYERS_MENU_ID) &&
-            !collapseNavMenu() && !closePlacePage() && !closeSearchToolbar(true, true) &&
-            !closeSidePanel() && !closePositionChooser() &&
-            !routingController.resetToPlanningStateIfNavigating() && !routingController.cancel())
+    if (!closeBottomSheet(MAIN_MENU_ID) && !closeBottomSheet(LAYERS_MENU_ID) && !collapseNavMenu() && !closePlacePage()
+        && !closeSearchToolbar(true, true) && !closeSidePanel() && !closePositionChooser()
+        && !routingController.resetToPlanningStateIfNavigating() && !routingController.cancel())
     {
       try
       {
@@ -1269,9 +1267,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (fm.isDestroyed())
       return;
 
-    fm.beginTransaction()
-            .remove(fragment)
-            .commitAllowingStateLoss();
+    fm.beginTransaction().remove(fragment).commitAllowingStateLoss();
     fm.executePendingTransactions();
   }
 
@@ -1301,26 +1297,20 @@ public class MwmActivity extends BaseMwmFragmentActivity
     return true;
   }
 
-  // Called from JNI.
   @Override
-  @SuppressWarnings("unused")
   public void onPlacePageActivated(@NonNull PlacePageData data)
   {
     // This will open the place page
     mPlacePageViewModel.setMapObject((MapObject) data);
   }
 
-  // Called from JNI.
   @Override
-  @SuppressWarnings("unused")
   public void onPlacePageDeactivated()
   {
     closePlacePage();
   }
 
-  // Called from JNI.
   @Override
-  @SuppressWarnings("unused")
   public void onSwitchFullScreenMode()
   {
     if ((mPanelAnimator != null && mPanelAnimator.isVisible()) || UiUtils.isVisible(mSearchController.getToolbar()))
@@ -1338,9 +1328,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void setFullscreen(boolean isFullscreen)
   {
-    if (RoutingController.get().isNavigating()
-            || RoutingController.get().isBuilding()
-            || RoutingController.get().isPlanning())
+    if (RoutingController.get().isNavigating() || RoutingController.get().isBuilding()
+        || RoutingController.get().isPlanning())
       return;
 
 //    mMapButtonsViewModel.setButtonsHidden(isFullscreen);
@@ -1350,14 +1339,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private boolean isFullscreen()
   {
     // Buttons are hidden in position chooser mode but we are not in fullscreen
-//    return Boolean.TRUE.equals(mMapButtonsViewModel.getButtonsHidden().getValue()) &&
-//        ChoosePositionMode.get() == ChoosePositionMode.None;
+//    return Boolean.TRUE.equals(mMapButtonsViewModel.getButtonsHidden().getValue())
+// && ChoosePositionMode.get() == ChoosePositionMode.None;
     return ChoosePositionMode.get() == ChoosePositionMode.None;
   }
 
   @Override
-  public boolean dispatchGenericMotionEvent(MotionEvent event) {
-    if (event.getActionMasked() == MotionEvent.ACTION_SCROLL) {
+  public boolean dispatchGenericMotionEvent(MotionEvent event)
+  {
+    if (event.getActionMasked() == MotionEvent.ACTION_SCROLL)
+    {
       int exponent = event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0 ? -1 : 1;
       Map.onScale(Math.pow(1.7f, exponent), event.getX(), event.getY(), true);
       return true;
@@ -1391,12 +1382,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     mMapFragment.updateCompassOffset(offsetX, offsetY);
 
-    final double north = SensorHelper.from(this).getSavedNorth();
+    final double north = MwmApplication.from(this).getSensorHelper().getSavedNorth();
     if (!Double.isNaN(north))
       Map.onCompassUpdated(north, true);
   }
 
-  public void onMapBottomButtonsHeightChange(float height) {
+  public void onMapBottomButtonsHeightChange(float height)
+  {
     updateBottomWidgetsOffset();
   }
 
@@ -1464,8 +1456,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    mMainMenu.setState(MainMenu.State.MENU, isFullscreen());
 //  }
 
-  private boolean showAddStartOrFinishFrame(@NonNull RoutingController controller,
-                                            boolean showFrame)
+  private boolean showAddStartOrFinishFrame(@NonNull RoutingController controller, boolean showFrame)
   {
     // S - start, F - finish, L - my position
     // -S-F-L -> Start
@@ -1477,7 +1468,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     // +S+F-L -> Hide
     // +S+F+L -> Hide
 
-    MapObject myPosition = LocationHelper.from(this).getMyPosition();
+    MapObject myPosition = MwmApplication.from(this).getLocationHelper().getMyPosition();
 
     if (myPosition != null && controller.getEndPoint() == null)
     {
@@ -1540,7 +1531,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  {
 //    // TODO This code section may be called when insets are not yet initialized
 //    // This is only a workaround to prevent crashes but a proper fix should be implemented
-//    if (mCurrentWindowInsets == null) {
+//    if (mCurrentWindowInsets == null)
+//    {
 //      return;
 //    }
 //    int offsetY = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
@@ -1558,7 +1550,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    if (orientation == Configuration.ORIENTATION_LANDSCAPE)
 //    {
 //      if (show)
-//      {
+//     {
 //        final boolean isSmallScreen = UiUtils.getDisplayTotalHeight(this) < UiUtils.dimen(this, R.dimen.dp_400);
 //        if (!isSmallScreen || TrackRecorder.nativeIsTrackRecordingEnabled())
 //          offsetX += UiUtils.dimen(this, R.dimen.map_button_size);
@@ -1784,17 +1776,30 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    fragment.show(getSupportFragmentManager(), RoutingErrorDialogFragment.class.getSimpleName());
 //  }
 
+//    mRoutingPlanInplaceController.showDrivingOptionView();
+//  }
+
+//  @Override
+//  public void onCommonBuildError(int lastResultCode, @NonNull String[] lastMissingMaps)
+//  {
+//    RoutingErrorDialogFragment fragment = RoutingErrorDialogFragment.create(
+//        getSupportFragmentManager().getFragmentFactory(), getApplicationContext(), lastResultCode, lastMissingMaps);
+//    fragment.show(getSupportFragmentManager(), RoutingErrorDialogFragment.class.getSimpleName());
+//  }
+
 //  @Override
 //  public void onDrivingOptionsBuildError()
 //  {
 //    dismissAlertDialog();
-//    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-//        .setTitle(R.string.unable_to_calc_alert_title)
-//        .setMessage(R.string.unable_to_calc_alert_subtitle)
-//        .setPositiveButton(R.string.settings, (dialog, which) -> DrivingOptionsActivity.start(this, startDrivingOptionsForResult))
-//        .setNegativeButton(R.string.cancel, null)
-//        .setOnDismissListener(dialog -> mAlertDialog = null)
-//        .show();
+//    mAlertDialog =
+//        new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+//            .setTitle(R.string.unable_to_calc_alert_title)
+//            .setMessage(R.string.unable_to_calc_alert_subtitle)
+//            .setPositiveButton(R.string.settings,
+//                               (dialog, which) -> DrivingOptionsActivity.start(this, startDrivingOptionsForResult))
+//            .setNegativeButton(R.string.cancel, null)
+//            .setOnDismissListener(dialog -> mAlertDialog = null)
+//            .show();
 //  }
 
   private boolean showRoutingDisclaimer()
@@ -1803,23 +1808,25 @@ public class MwmActivity extends BaseMwmFragmentActivity
       return true;
 
     final StringBuilder builder = new StringBuilder();
-    for (int resId : new int[]{R.string.dialog_routing_disclaimer_priority, R.string.dialog_routing_disclaimer_precision,
-            R.string.dialog_routing_disclaimer_recommendations, R.string.dialog_routing_disclaimer_borders,
-            R.string.dialog_routing_disclaimer_beware})
+    for (int resId :
+         new int[] {R.string.dialog_routing_disclaimer_priority, R.string.dialog_routing_disclaimer_precision,
+                    R.string.dialog_routing_disclaimer_recommendations, R.string.dialog_routing_disclaimer_borders,
+                    R.string.dialog_routing_disclaimer_beware})
       builder.append(getString(resId)).append("\n\n");
 
     dismissAlertDialog();
     mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.dialog_routing_disclaimer_title)
-            .setMessage(builder.toString())
-            .setCancelable(false)
-            .setNegativeButton(R.string.decline, null)
-            .setPositiveButton(R.string.accept, (dlg, which) -> {
-              Config.acceptRoutingDisclaimer();
-              onRoutingStart();
-            })
-            .setOnDismissListener(dialog -> mAlertDialog = null)
-            .show();
+                       .setTitle(R.string.dialog_routing_disclaimer_title)
+                       .setMessage(builder.toString())
+                       .setCancelable(false)
+                       .setNegativeButton(R.string.decline, null)
+                       .setPositiveButton(R.string.accept,
+                                          (dlg, which) -> {
+                                            Config.acceptRoutingDisclaimer();
+                                            onRoutingStart();
+                                          })
+                       .setOnDismissListener(dialog -> mAlertDialog = null)
+                       .show();
 
     return false;
   }
@@ -1838,19 +1845,19 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     final MapObject endPoint = Objects.requireNonNull(controller.getEndPoint());
     final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.p2p_only_from_current)
-            .setMessage(R.string.p2p_reroute_from_current)
-            .setCancelable(false)
-            .setNegativeButton(R.string.cancel, null)
-            .setPositiveButton(R.string.ok, endPoint.isMyPosition() ?
-                    (dialog, which) -> controller.swapPoints() :
-                    (dialog, which) -> {
-                      // The current location may change while this dialog is still shown on the screen.
-                      final MapObject myPosition = LocationHelper.from(this).getMyPosition();
-                      controller.setStartPoint(myPosition);
-                    }
-            )
-            .setOnDismissListener(dialog -> mAlertDialog = null);
+        .setTitle(R.string.p2p_only_from_current)
+        .setMessage(R.string.p2p_reroute_from_current)
+        .setCancelable(false)
+        .setNegativeButton(R.string.cancel, null)
+        .setPositiveButton(R.string.ok, endPoint.isMyPosition() ?
+            (dialog, which) -> controller.swapPoints() :
+            (dialog, which) -> {
+              // The current location may change while this dialog is still shown on the screen.
+              final MapObject myPosition = MwmApplication.from(this).getLocationHelper().getMyPosition();
+              controller.setStartPoint(myPosition);
+            }
+        )
+        .setOnDismissListener(dialog -> mAlertDialog = null);
     dismissAlertDialog();
     mAlertDialog = builder.show();
     return false;
@@ -1865,7 +1872,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (controller.isPlanning() || controller.isBuilding() || controller.isErrorEncountered())
       showAddStartOrFinishFrame(controller, true);
 
-    final LocationHelper locationHelper = LocationHelper.from(this);
+    final LocationHelper locationHelper = MwmApplication.from(this).getLocationHelper();
 
     // Check if location was disabled by the user.
     if (LocationState.getMode() == LocationState.NOT_FOLLOW_NO_POSITION)
@@ -1885,10 +1892,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
       Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION + ACCESS_FINE_LOCATION permissions");
       dismissLocationErrorDialog();
-      mLocationPermissionRequest.launch(new String[]{
-          ACCESS_COARSE_LOCATION,
-          ACCESS_FINE_LOCATION
-      });
+      mLocationPermissionRequest.launch(new String[] {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION});
       return;
     }
 
@@ -1899,10 +1903,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       // Try to optimistically request FINE permission for FOLLOW and FOLLOW_AND_ROTATE modes.
       Logger.i(LOCATION_TAG, "Requesting ACCESS_FINE_LOCATION permission for " + LocationState.nameOf(newMode));
       dismissLocationErrorDialog();
-      mLocationPermissionRequest.launch(new String[]{
-          ACCESS_COARSE_LOCATION,
-          ACCESS_FINE_LOCATION
-      });
+      mLocationPermissionRequest.launch(new String[] {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION});
     }
   }
 
@@ -1966,16 +1967,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @UiThread
   public void onCompassCalibrationRecommended()
   {
-    Toast.makeText(this, getString(R.string.compass_calibration_recommended),
-            Toast.LENGTH_LONG).show();
+    Toast.makeText(this, getString(R.string.compass_calibration_recommended), Toast.LENGTH_LONG).show();
   }
 
   @Override
   @UiThread
   public void onCompassCalibrationRequired()
   {
-    Toast.makeText(this, getString(R.string.compass_calibration_required),
-            Toast.LENGTH_LONG).show();
+    Toast.makeText(this, getString(R.string.compass_calibration_required), Toast.LENGTH_LONG).show();
   }
 
   /**
@@ -1983,8 +1982,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
    */
   public void requestPostNotificationsPermission()
   {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
-            ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PERMISSION_GRANTED)
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+        || ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PERMISSION_GRANTED)
     {
       Logger.i(TAG, "Permissions POST_NOTIFICATIONS is granted");
       return;
@@ -2038,12 +2037,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
         if (!mPreciseLocationDialogShown)
         {
           mPreciseLocationDialogShown = true;
-          final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-              .setTitle("⚠ " + getString(R.string.limited_accuracy))
-              .setMessage(R.string.precise_location_is_disabled_long_text)
-              .setNegativeButton(R.string.close, (dialog, which) -> dialog.dismiss())
-              .setCancelable(true)
-              .setOnDismissListener(dialog -> mLocationErrorDialog = null);
+          final MaterialAlertDialogBuilder builder =
+              new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+                  .setTitle("⚠ " + getString(R.string.limited_accuracy))
+                  .setMessage(R.string.precise_location_is_disabled_long_text)
+                  .setNegativeButton(R.string.close, (dialog, which) -> dialog.dismiss())
+                  .setCancelable(true)
+                  .setOnDismissListener(dialog -> mLocationErrorDialog = null);
           final Intent intent = Utils.makeSystemLocationSettingIntent(this);
           if (intent != null)
           {
@@ -2073,11 +2073,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     mLocationErrorDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.enable_location_services)
-            .setMessage(R.string.location_is_disabled_long_text)
-            .setOnDismissListener(dialog -> mLocationErrorDialog = null)
-            .setNegativeButton(R.string.close, null)
-            .show();
+                               .setTitle(R.string.enable_location_services)
+                               .setMessage(R.string.location_is_disabled_long_text)
+                               .setOnDismissListener(dialog -> mLocationErrorDialog = null)
+                               .setNegativeButton(R.string.close, null)
+                               .show();
   }
 
   /**
@@ -2166,10 +2166,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-            .setTitle(R.string.enable_location_services)
-            .setMessage(R.string.location_is_disabled_long_text)
-            .setOnDismissListener(dialog -> mLocationErrorDialog = null)
-            .setNegativeButton(R.string.close, null);
+                                                   .setTitle(R.string.enable_location_services)
+                                                   .setMessage(R.string.location_is_disabled_long_text)
+                                                   .setOnDismissListener(dialog -> mLocationErrorDialog = null)
+                                                   .setNegativeButton(R.string.close, null);
     final Intent intent = Utils.makeSystemLocationSettingIntent(this);
     if (intent != null)
     {
@@ -2184,7 +2184,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onUseMyPositionAsStart()
   {
-    RoutingController.get().setStartPoint(LocationHelper.from(this).getMyPosition());
+    RoutingController.get().setStartPoint(MwmApplication.from(this).getLocationHelper().getMyPosition());
   }
 
   @Override
@@ -2199,7 +2199,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onRoutingStart()
   {
     if (!showStartPointNotice())
+    {
+      UiUtils.setFullscreen(this, false);
       return;
+    }
 
     if (!showRoutingDisclaimer())
       return;
@@ -2245,20 +2248,22 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     dismissAlertDialog();
-    final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.current_location_unknown_error_title)
-        .setCancelable(true)
-        .setMessage(R.string.power_save_dialog_summary)
-        .setNegativeButton(R.string.not_now, (dialog, which) -> {
-          Logger.d(POWER_MANAGEMENT_TAG, "The Power Save disclaimer was ignored");
-          mPowerSaveDisclaimerShown = true;
-        })
-        .setOnDismissListener(dialog -> mAlertDialog = null)
-        .setPositiveButton(R.string.settings, (dlg, which) -> {
-          Logger.d(POWER_MANAGEMENT_TAG, "Launching the system Power Save settings");
-          mPowerSaveDisclaimerShown = true;
-          mPowerSaveSettings.launch(intent);
-        });
+    final MaterialAlertDialogBuilder builder =
+        new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+            .setTitle(R.string.current_location_unknown_error_title)
+            .setCancelable(true)
+            .setMessage(R.string.power_save_dialog_summary)
+            .setNegativeButton(R.string.not_now,
+                               (dialog, which) -> {
+                                 Logger.d(POWER_MANAGEMENT_TAG, "The Power Save disclaimer was ignored");
+                                 mPowerSaveDisclaimerShown = true;
+                               })
+            .setOnDismissListener(dialog -> mAlertDialog = null)
+            .setPositiveButton(R.string.settings, (dlg, which) -> {
+              Logger.d(POWER_MANAGEMENT_TAG, "Launching the system Power Save settings");
+              mPowerSaveDisclaimerShown = true;
+              mPowerSaveSettings.launch(intent);
+            });
     Logger.d(POWER_MANAGEMENT_TAG, "Displaying the Power Save disclaimer");
     mAlertDialog = builder.show();
     return false;
@@ -2268,28 +2273,34 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onBookmarksFileUnsupported(@NonNull Uri uri)
   {
     dismissAlertDialog();
-    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.load_kmz_title)
-        .setMessage(getString(R.string.unknown_file_type, uri))
-        .setPositiveButton(R.string.ok, null)
-        .setNegativeButton(R.string.report_a_bug, (dialog, which) -> Utils.sendBugReport(mShareLauncher, this,
-            getString(R.string.load_kmz_title), getString(R.string.unknown_file_type, uri)))
-        .setOnDismissListener(dialog -> mAlertDialog = null)
-        .show();
+    mAlertDialog =
+        new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+            .setTitle(R.string.load_kmz_title)
+            .setMessage(getString(R.string.unknown_file_type, uri))
+            .setPositiveButton(R.string.ok, null)
+            .setNegativeButton(R.string.report_a_bug,
+                               (dialog, which)
+                                   -> Utils.sendBugReport(mShareLauncher, this, getString(R.string.load_kmz_title),
+                                                          getString(R.string.unknown_file_type, uri)))
+            .setOnDismissListener(dialog -> mAlertDialog = null)
+            .show();
   }
 
   @Override
   public void onBookmarksFileDownloadFailed(@NonNull Uri uri, @NonNull String error)
   {
     dismissAlertDialog();
-    mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.load_kmz_title)
-        .setMessage(getString(R.string.failed_to_open_file, uri, error))
-        .setPositiveButton(R.string.ok, null)
-        .setNegativeButton(R.string.report_a_bug, (dialog, which) -> Utils.sendBugReport(mShareLauncher, this,
-            getString(R.string.load_kmz_title), getString(R.string.failed_to_open_file, uri, error)))
-        .setOnDismissListener(dialog -> mAlertDialog = null)
-        .show();
+    mAlertDialog =
+        new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+            .setTitle(R.string.load_kmz_title)
+            .setMessage(getString(R.string.failed_to_open_file, uri, error))
+            .setPositiveButton(R.string.ok, null)
+            .setNegativeButton(R.string.report_a_bug,
+                               (dialog, which)
+                                   -> Utils.sendBugReport(mShareLauncher, this, getString(R.string.load_kmz_title),
+                                                          getString(R.string.failed_to_open_file, uri, error)))
+            .setOnDismissListener(dialog -> mAlertDialog = null)
+            .show();
   }
 
   @Override
@@ -2303,11 +2314,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     dismissAlertDialog();
     mAlertDialog = new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
-        .setTitle(R.string.load_kmz_title)
-        .setMessage(R.string.load_kmz_failed)
-        .setPositiveButton(R.string.ok, null)
-        .setOnDismissListener(dialog -> mAlertDialog = null)
-        .show();
+                       .setTitle(R.string.load_kmz_title)
+                       .setMessage(R.string.load_kmz_failed)
+                       .setPositiveButton(R.string.ok, null)
+                       .setOnDismissListener(dialog -> mAlertDialog = null)
+                       .show();
   }
 
   @Override
@@ -2335,23 +2346,18 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     switch (keyCode)
     {
-      case KeyEvent.KEYCODE_DPAD_DOWN:
-        Map.zoomOut();
+    case KeyEvent.KEYCODE_DPAD_DOWN: Map.zoomOut(); return true;
+    case KeyEvent.KEYCODE_DPAD_UP: Map.zoomIn(); return true;
+    case KeyEvent.KEYCODE_ESCAPE:
+      final Intent currIntent = getIntent();
+      final String backUrl = Framework.nativeGetParsedBackUrl();
+      if (TextUtils.isEmpty(backUrl) || (currIntent != null && Factory.isStartedForApiResult(currIntent)))
+      {
+        finish();
         return true;
-      case KeyEvent.KEYCODE_DPAD_UP:
-        Map.zoomIn();
-        return true;
-      case KeyEvent.KEYCODE_ESCAPE:
-        final Intent currIntent = getIntent();
-        final String backUrl = Framework.nativeGetParsedBackUrl();
-        if (TextUtils.isEmpty(backUrl) || (currIntent != null && Factory.isStartedForApiResult(currIntent)))
-        {
-          finish();
-          return true;
-        }
-        return super.onKeyUp(keyCode, event);
-      default:
-        return super.onKeyUp(keyCode, event);
+      }
+      return super.onKeyUp(keyCode, event);
+    default: return super.onKeyUp(keyCode, event);
     }
   }
 
@@ -2389,7 +2395,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       // according to action of user. Calling it hack because we are avoiding
       // creation of new methods by using this variable.
       mLocationPermissionRequestedForRecording = true;
-      mLocationPermissionRequest.launch(new String[] { ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION });
+      mLocationPermissionRequest.launch(new String[] {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION});
       return false;
     }
 
@@ -2444,29 +2450,28 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     if (TrackRecorder.nativeIsTrackRecordingEmpty())
     {
-      Toast.makeText(this, R.string.track_recording_toast_nothing_to_save, Toast.LENGTH_SHORT)
-           .show();
+      Toast.makeText(this, R.string.track_recording_toast_nothing_to_save, Toast.LENGTH_SHORT).show();
       stopTrackRecording();
       return;
     }
 
     dismissAlertDialog();
     mAlertDialog = new StackedButtonsDialog.Builder(this)
-        .setTitle(R.string.track_recording_alert_title)
-        .setCancelable(false)
-        // Negative/Positive/Neutral do not have their usual meaning here.
-        .setNegativeButton(R.string.continue_recording, (dialog, which) -> {
-          mAlertDialog = null;
-        })
-        .setNeutralButton(R.string.stop_without_saving, (dialog, which) -> {
-          stopTrackRecording();
-          mAlertDialog = null;
-        })
-        .setPositiveButton(R.string.save, (dialog, which) -> {
-          saveAndStopTrackRecording();
-          mAlertDialog = null;
-        })
-        .build();
+                       .setTitle(R.string.track_recording_alert_title)
+                       .setCancelable(false)
+                       // Negative/Positive/Neutral do not have their usual meaning here.
+                       .setNegativeButton(R.string.continue_recording, (dialog, which) -> { mAlertDialog = null; })
+                       .setNeutralButton(R.string.stop_without_saving,
+                                         (dialog, which) -> {
+                                           stopTrackRecording();
+                                           mAlertDialog = null;
+                                         })
+                       .setPositiveButton(R.string.save,
+                                          (dialog, which) -> {
+                                            saveAndStopTrackRecording();
+                                            mAlertDialog = null;
+                                          })
+                       .build();
     mAlertDialog.show();
   }
 
@@ -2483,19 +2488,18 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (id.equals(MAIN_MENU_ID))
     {
       ArrayList<MenuBottomSheetItem> items = new ArrayList<>();
-      items.add(new MenuBottomSheetItem(R.string.placepage_add_place_button, R.drawable.ic_plus, this::onAddPlaceOptionSelected));
-      items.add(new MenuBottomSheetItem(
-              R.string.download_maps,
-              R.drawable.ic_download,
-              getDownloadMapsCounter(),
-              this::onDownloadMapsOptionSelected
-      ));
+      items.add(new MenuBottomSheetItem(R.string.placepage_add_place_button, R.drawable.ic_plus,
+                                        this::onAddPlaceOptionSelected));
+      items.add(new MenuBottomSheetItem(R.string.download_maps, R.drawable.ic_download, getDownloadMapsCounter(),
+                                        this::onDownloadMapsOptionSelected));
       mDonatesUrl = Config.getDonateUrl(getApplicationContext());
       if (!TextUtils.isEmpty(mDonatesUrl))
         items.add(new MenuBottomSheetItem(R.string.donate, R.drawable.ic_donate, this::onDonateOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.settings, R.drawable.ic_settings, this::onSettingsOptionSelected));
-      items.add(new MenuBottomSheetItem(R.string.start_track_recording, R.drawable.ic_track_recording_off, -1, this::onTrackRecordingOptionSelected));
-      items.add(new MenuBottomSheetItem(R.string.share_my_location, R.drawable.ic_share, this::onShareLocationOptionSelected));
+      items.add(new MenuBottomSheetItem(R.string.start_track_recording, R.drawable.ic_track_recording_off, -1,
+                                        this::onTrackRecordingOptionSelected));
+      items.add(new MenuBottomSheetItem(R.string.share_my_location, R.drawable.ic_share,
+                                        this::onShareLocationOptionSelected));
       return items;
     }
     return null;
@@ -2525,5 +2529,27 @@ public class MwmActivity extends BaseMwmFragmentActivity
     Logger.d(TAG, "trim memory, level = " + level);
     if (level >= TRIM_MEMORY_RUNNING_LOW)
       Framework.nativeMemoryWarning();
+  }
+
+  private void makeNavigationBarTransparentInLightMode()
+  {
+    int nightMask = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+    if (nightMask == Configuration.UI_MODE_NIGHT_NO) // if light mode
+    {
+      Window window = getWindow();
+      window.setNavigationBarColor(Color.TRANSPARENT);
+      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+      int flags = window.getDecorView().getSystemUiVisibility();
+      flags |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
+        flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
+      window.getDecorView().setSystemUiVisibility(flags);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+        window.setNavigationBarContrastEnforced(false);
+    }
   }
 }

@@ -131,7 +131,7 @@
     <!-- Search category for places to stay; any changes should be duplicated in categories.txt @category_hotel! -->
     <string name="category_hotel">Hotel</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
-    <string name="category_tourism">Atraccions turístiques</string>
+    <string name="category_tourism" translatable="false">Turisme</string>
     <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
     <string name="category_entertainment">Entreteniment</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
@@ -159,7 +159,7 @@
     <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
     <string name="category_water">Aigua</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
-    <string name="category_rv">Instal·lacions per a autocaravanes</string>
+    <string name="category_rv" translatable="false">Caravanes</string>
     <!-- SECTION: Other translations -->
     <!-- Notes field in Bookmarks view -->
     <string name="description">Notes</string>
@@ -171,7 +171,7 @@
 \n
 \nGaudiu viatjant amb l\'Organic Maps!</string>
     <!-- message title of loading file -->
-    <string name="load_kmz_title">S\'estan carregant els marcadors</string>
+    <string name="load_kmz_title">S’estan carregant els marcadors</string>
     <!-- Kmz file successful loading -->
     <string name="load_kmz_successful">Els marcadors s’han carregat correctament. Els trobareu al mapa i a la pantalla de gestió de marcadors.</string>
     <!-- Kml file loading failed -->
@@ -240,7 +240,7 @@
     <!-- Settings «Map» category: «3D buildings» title -->
     <string name="pref_map_3d_buildings_title">Edificis en 3D</string>
     <!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
-    <string name="pref_map_3d_buildings_disabled_summary">Els edificis en 3D es desactiven en mode d\'estalvi d\'energia</string>
+    <string name="pref_map_3d_buildings_disabled_summary">Els edificis en 3D es desactiven en mode d’estalvi d’energia</string>
     <!-- Settings «Route» category: «Tts enabled» title -->
     <string name="pref_tts_enable_title">Instruccions de veu</string>
     <!-- Settings «Route» category: «Tts announce street names» title -->
@@ -274,21 +274,21 @@
     <string name="faq">Preguntes més freqüents</string>
     <!-- Button in the main menu -->
     <string name="donate">Donatiu</string>
-    <string name="already_donated">Ja donat</string>
-    <string name="remind_me_later">Recorda més tard</string>
-    <string name="support_organic_maps">Donar suport a Organic Maps</string>
+    <string name="already_donated">Ja he donat</string>
+    <string name="remind_me_later">Recorda’m més tard</string>
+    <string name="support_organic_maps">Doneu suport a l’Organic Maps</string>
     <!-- Button in the main Help dialog -->
-    <string name="how_to_support_us">Donar suport al projecte</string>
+    <string name="how_to_support_us">Doneu suport al projecte</string>
     <!-- Button in the main Help dialog -->
     <string name="copyright">Drets d’autor</string>
     <!-- Text in menu + Button in the main Help dialog -->
     <string name="report_a_bug">Informa d’un error</string>
     <!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
-    <string name="compass_calibration_recommended">Milloreu la direcció de la fletxa movent el telèfon amb un moviment de vuit per calibrar la brúixola.</string>
+    <string name="compass_calibration_recommended">Milloreu la direcció de la fletxa movent el telèfon amb un moviment de vuit per a calibrar la brúixola.</string>
     <!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
-    <string name="compass_calibration_required">Moveu el telèfon amb un moviment de vuit per calibrar la brúixola i fixar la direcció de la fletxa al mapa.</string>
+    <string name="compass_calibration_required">Moveu el telèfon amb un moviment de vuit per a calibrar la brúixola i corregir la direcció de la fletxa al mapa.</string>
     <!-- Toast text when user hides UI with a long tap anywhere on the map -->
-    <string name="long_tap_toast">Toqueu llargament el mapa de nou per veure la interfície</string>
+    <string name="long_tap_toast">Toqueu llargament el mapa de nou per a veure la interfície</string>
     <!-- Update all button text -->
     <string name="downloader_update_all_button">Actualitza-ho tot</string>
     <!-- Cancel all button text -->
@@ -315,7 +315,7 @@
     <!-- Item in context menu. -->
     <string name="downloader_update_map">Actualitza el mapa</string>
     <!-- Preference title -->
-    <string name="google_play_services">Serveis d\'ubicació de Google Play</string>
+    <string name="google_play_services">Serveis d’ubicació de Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Determineu ràpidament la vostra ubicació aproximada mitjançant Bluetooth, WiFi o xarxa mòbil</string>
     <!-- Text for routing error dialog -->
@@ -369,7 +369,7 @@
     <string name="dialog_routing_disclaimer_beware">Estigueu alerta i segur a la carretera!</string>
     <string name="dialog_routing_check_gps">Comprova el senyal GPS</string>
     <string name="dialog_routing_error_location_not_found">No s\'ha pogut crear la ruta. No s\'ha pogut identificar les coordenades GPS atuals.</string>
-    <string name="dialog_routing_location_turn_wifi">Comproveu el senya GPS. L\'activació del senya Wi-Fi millorarà la precisió de la ubicació.</string>
+    <string name="dialog_routing_location_turn_wifi">Comproveu el senyal GPS. L’activació del Wi-Fi millorarà la precisió de la ubicació.</string>
     <string name="dialog_routing_location_turn_on">Activa els serveis de geolocalització</string>
     <string name="dialog_routing_location_unknown_turn_on">No s\'han pogut trobar les coordenaes GPS actuals. Activeu els serveis de geolocalització per a calcular la ruta.</string>
     <string name="dialog_routing_unable_locate_route">No s\'ha pogut trobar cap ruta</string>
@@ -425,11 +425,11 @@
     <string name="editor_time_open">Obert</string>
     <string name="editor_time_close">Tancat</string>
     <string name="editor_time_add_closed">Afegeix les hores de tancament</string>
-    <string name="editor_time_title">Horari d\'obertura</string>
+    <string name="editor_time_title">Horari d’obertura</string>
     <string name="editor_time_advanced">Mode avançat</string>
     <string name="editor_time_simple">Mode senzill</string>
     <string name="editor_hours_closed">Horari de tancament</string>
-    <string name="editor_example_values">Valors d\'exemple</string>
+    <string name="editor_example_values">Valors d’exemple</string>
     <string name="editor_correct_mistake">Corregeix un error</string>
     <string name="editor_add_select_location">Seleccioneu Ubicació</string>
     <string name="editor_report_problem_desription_1">Descriviu el problema detalladament perquè la comunitat d\'OpenStreetMap pugui corregir l\'error.</string>
@@ -449,7 +449,7 @@
     <string name="opens_in">Obre en %s</string>
     <string name="closes_in">Tanca en %s</string>
     <string name="closed">Tancat</string>
-    <string name="edit_opening_hours">Edita l\'horari d\'obertura</string>
+    <string name="edit_opening_hours">Edita l’horari d’obertura</string>
     <string name="no_osm_account">No teniu compte de l’OpenStreetMap?</string>
     <string name="register_at_openstreetmap">Registre a OpenStreetMap</string>
     <string name="login">Inicia sessió</string>
@@ -573,7 +573,7 @@
     <string name="editor_share_to_all_dialog_title">Voleu enviar-ho a tots els usuaris?</string>
     <!-- Dialog before publishing the modifications to the public map. -->
     <string name="editor_share_to_all_dialog_message_1">Assegureu-vos que no heu introduït cap dada personal.</string>
-    <string name="editor_share_to_all_dialog_message_2">Revisarem els canvis. Si tenim cap pregunta contactem amb vós via correu electrònic.</string>
+    <string name="editor_share_to_all_dialog_message_2">Els editors de l’OpenStreetMap comprovaran els canvis i us contactaran si tenen qualsevol dubte.</string>
     <string name="navigation_stop_button">Atura</string>
     <!-- Shown as toast when starting the recent track recording -->
     <string name="track_recording">S’està enregistrant el recorregut</string>
@@ -590,7 +590,7 @@
     <string name="mobile_data_description">Es necessita Internet mòbil per a les notifiacions d\'actualitzacions del mapa i per a mostrar informació detallada dels llocs i marcadors.</string>
     <string name="mobile_data_option_never">Mai</string>
     <string name="mobile_data_option_ask">Demana-ho sempre</string>
-    <string name="traffic_update_maps_text">Per a mostrar les dades de trànsit, els maps han d\'estar actualitzats.</string>
+    <string name="traffic_update_maps_text">Per a mostrar les dades de trànsit, s’han d’actualitzar els mapes.</string>
     <string name="big_font">Augmenta la mida de lletra del mapa</string>
     <string name="traffic_update_app">Actualitzeu l’Organic Maps</string>
     <!-- "traffic" as in "road congestion" -->
@@ -616,8 +616,8 @@
     <string name="placepage_remove_stop">Elimina parada</string>
     <string name="placepage_add_stop">Afegeix una parada</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
-    <string name="alert_reauth_message">Si us plau, inicieu sessió a OpenStreetMap per carregar automàticament totes les edicions de mapes. Més informació <a href="https://github.com/organicmaps/organicmaps/issues/6144">aquí</a>.</string>
-    <string name="dialog_error_storage_title">S\'ha produït un problema en l\'accés a l\'emmagatzematge</string>
+    <string name="alert_reauth_message">Inicieu sessió a l’OpenStreetMap per a pujar automàticament totes les edicions al mapa. Llegiu <a href="https://github.com/organicmaps/organicmaps/issues/6144">aquí</a> més informació.</string>
+    <string name="dialog_error_storage_title">Hi ha un problema d’accés a l’emmagatzematge</string>
     <string name="dialog_error_storage_message">L\'emmagatzematge extern no és accessible. La targeta SD pot haver estat eliminada, danyada o sigui només de lectura. Si us plau, reviseu la targeta SD o contacta amb nosaltres a support@organicmaps.app</string>
     <string name="setting_emulate_bad_storage">Emula un emmagatzematge malmès</string>
     <string name="core_entrance">Entrada</string>
@@ -628,7 +628,7 @@
     <string name="bookmark_lists_show_all">Mostra-ho tot</string>
     <plurals name="bookmarks_places">
         <item quantity="one">%d marcador</item>
-        <item quantity="many">%d marcadors</item>
+        <item quantity="many">%d de marcadors</item>
         <item quantity="other">%d marcadors</item>
     </plurals>
     <string name="bookmarks_create_new_group">Crea una llista</string>
@@ -646,21 +646,23 @@
     <string name="phone_number">Número de telèfon</string>
     <string name="profile">Perfil de l’OpenStreetMap</string>
     <plurals name="bookmarks_detect_message">
-        <item quantity="one">S\'ha trobat %d fitxer. Podeu veure\'l després de la conversió.</item>
-        <item quantity="many">S\'han trobat %d fitxers. Podeu veure\'ls després de la conversió.</item>
-        <item quantity="other">S\'han trobat %d fitxers. Podeu veure\'ls després de la conversió.</item>
+        <item quantity="one">S’ha trobat %d fitxer. Podeu veure’l després de la conversió.</item>
+        <item quantity="many">S’han trobat %d de fitxers. Podeu veure’ls després de la conversió.</item>
+        <item quantity="other">S’han trobat %d fitxers. Podeu veure’ls després de la conversió.</item>
     </plurals>
     <string name="restore">Restaura</string>
     <plurals name="tracks">
-        <item quantity="one">%d traça</item>
-        <item quantity="many">%d traces</item>
-        <item quantity="other">%d traces</item>
+        <item quantity="one">%d recorregut</item>
+        <item quantity="many">%d de recorreguts</item>
+        <item quantity="other">%d recorreguts</item>
     </plurals>
     <!-- Settings privacy group in settings screen -->
     <string name="privacy">Privadesa</string>
     <string name="privacy_policy">Política de privadesa</string>
     <string name="terms_of_use">Condicions del servei</string>
     <string name="button_layer_traffic">Trànsit</string>
+    <string name="button_layer_hiking">Pujada</string>
+    <string name="button_layer_cycling">Ciclisme</string>
     <string name="button_layer_subway">Metro</string>
     <string name="layers_title">Estils i capes del mapa</string>
     <string name="subway_data_unavailable">El mapa del metro no està disponible</string>
@@ -795,7 +797,7 @@
     <!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/ca/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
-    <string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ca:About</string>
+    <string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Ca:About_OpenStreetMap</string>
     <!-- App Tip #00 -->
     <string name="app_tip_00">Gràcies per utilitzar els nostres mapes creats per la comunitat!</string>
     <!-- App tip #01 -->
@@ -901,4 +903,7 @@
     <string name="tts_info_link">https://organicmaps.app/faq/text-to-speech-android-tts/</string>
     <string name="telegram_url">https://t.me/OrganicMapsApp</string>
     <string name="comma_separated_pair">%1$s, %2$s</string>
+    <string name="saved">Desat</string>
+    <string name="osm_note_toast">La nota s’enviarà a l’OpenStreetMap</string>
+    <string name="osm_note_hint">O bé, deixeu una nota a la comunitat de l’OpenStreetMap perquè algú altre pugui afegir o arreglar un lloc.</string>
 </resources>

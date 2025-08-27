@@ -14,27 +14,20 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import app.organicmaps.R;
-import app.organicmaps.bookmarks.data.Bookmark;
-import app.organicmaps.bookmarks.data.BookmarkManager;
-import app.organicmaps.bookmarks.data.MapObject;
-import app.organicmaps.util.StringUtils;
-import app.organicmaps.util.UiUtils;
+import app.organicmaps.sdk.bookmarks.data.Bookmark;
+import app.organicmaps.sdk.bookmarks.data.MapObject;
+import app.organicmaps.sdk.util.StringUtils;
+import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.Utils;
-import app.organicmaps.widget.placepage.EditBookmarkFragment;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
 
-public class PlacePageBookmarkFragment extends Fragment implements View.OnClickListener,
-                                                                   View.OnLongClickListener,
-                                                                   Observer<MapObject>,
-                                                                   EditBookmarkFragment.EditBookmarkListener
+public class PlacePageBookmarkFragment extends Fragment implements View.OnLongClickListener, Observer<MapObject>
 {
   private View mFrame;
   private TextView mTvBookmarkNote;
@@ -47,7 +40,8 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
 
   @Nullable
   @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                           @Nullable Bundle savedInstanceState)
   {
     mViewModel = new ViewModelProvider(requireActivity()).get(PlacePageViewModel.class);
     return inflater.inflate(R.layout.place_page_bookmark_fragment, container, false);
@@ -61,8 +55,6 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
     mFrame = view;
     mTvBookmarkNote = mFrame.findViewById(R.id.tv__bookmark_notes);
     mTvBookmarkNote.setOnLongClickListener(this);
-    final View editBookmarkBtn = mFrame.findViewById(R.id.tv__bookmark_edit);
-    editBookmarkBtn.setOnClickListener(this);
   }
 
   private void initWebView()
@@ -121,17 +113,6 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
   }
 
   @Override
-  public void onClick(View v)
-  {
-    final FragmentActivity activity = requireActivity();
-    EditBookmarkFragment.editBookmark(currentBookmark.getCategoryId(),
-                                      currentBookmark.getBookmarkId(),
-                                      activity,
-                                      activity.getSupportFragmentManager(),
-                                      PlacePageBookmarkFragment.this);
-  }
-
-  @Override
   public boolean onLongClick(View v)
   {
     final String notes = mTvBookmarkNote.getText().toString();
@@ -159,14 +140,5 @@ public class PlacePageBookmarkFragment extends Fragment implements View.OnClickL
       currentBookmark = (Bookmark) mapObject;
       updateBookmarkDetails();
     }
-  }
-
-  @Override
-  public void onBookmarkSaved(long bookmarkId, boolean movedFromCategory)
-  {
-    Bookmark updatedBookmark = BookmarkManager.INSTANCE.updateBookmarkPlacePage(bookmarkId);
-    if (updatedBookmark == null)
-      return;
-    mViewModel.setMapObject(updatedBookmark);
   }
 }

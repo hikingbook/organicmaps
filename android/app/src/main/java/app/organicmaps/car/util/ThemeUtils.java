@@ -3,16 +3,13 @@ package app.organicmaps.car.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.car.app.CarContext;
-
-import app.organicmaps.Framework;
 import app.organicmaps.R;
-import app.organicmaps.routing.RoutingController;
 import app.organicmaps.sdk.MapStyle;
+import app.organicmaps.sdk.routing.RoutingController;
 
 public final class ThemeUtils
 {
@@ -59,7 +56,8 @@ public final class ThemeUtils
   @UiThread
   public static void update(@NonNull CarContext context, @NonNull ThemeMode oldThemeMode)
   {
-    final ThemeMode newThemeMode = oldThemeMode == ThemeMode.AUTO ? (context.isDarkMode() ? ThemeMode.NIGHT : ThemeMode.LIGHT) : oldThemeMode;
+    final ThemeMode newThemeMode =
+        oldThemeMode == ThemeMode.AUTO ? (context.isDarkMode() ? ThemeMode.NIGHT : ThemeMode.LIGHT) : oldThemeMode;
 
     MapStyle newMapStyle;
     if (newThemeMode == ThemeMode.NIGHT)
