@@ -12,13 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteNode:(NSString *)countryId;
 - (void)downloadNodes:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources onSuccess:(nullable MWMVoidBlock)success;
 
-- (NSDictionary<NSString *, id> *)downloadNodeWithResult:(NSString *)countryId
-                                                           mapSource:(MWMMapSource)mapSource
-                                                           NS_SWIFT_NAME(downloadNodeWithResult(countryId:mapSource:));
-- (NSDictionary<NSString *, id> *)downloadNodesWithResult:(NSArray<NSString *> *)countryIds
-                                                           mapSources:(NSArray<NSNumber *> *)mapSources
-                                                           NS_SWIFT_NAME(downloadNodesWithResult(countryIds:mapSources:));
-
+- (NSDictionary<NSString *, id> *)downloadNodeWithCountrID:(NSString *)countryId mapSource:(MWMMapSource)mapSource;
+- (NSDictionary<NSString *, id> *)downloadNodesWithCountryIDs:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources;
+- (NSDictionary<NSString *, id> *)updateNodeWithCountryID:(NSString *)countryId mapSource:(MWMMapSource)mapSource;
+- (NSDictionary<NSString *, id> *)updateNodesWithCountryIDs:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources;
 
 @end
 
