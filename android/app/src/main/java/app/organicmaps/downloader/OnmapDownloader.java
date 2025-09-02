@@ -264,21 +264,27 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       setAutodownloadLocked(true);
     });
     mButton.setOnClickListener(
-        v -> MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
-          if (mCurrentCountry == null)
+        v -> {
+          if (downloaderDelegate != null) {
+            downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
             return;
+          }
+          MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
+            if (mCurrentCountry == null)
+              return;
 
-          boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
-          if (retry)
-          {
-            MapManager.retryDownload(mCurrentCountry.id, getMapSource());
-          }
-          else
-          {
-            MapManager.startDownload(mCurrentCountry.id, getMapSource());
+            boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
+            if (retry)
+            {
+              MapManager.retryDownload(mCurrentCountry.id, getMapSource());
+            }
+            else
+            {
+              MapManager.startDownload(mCurrentCountry.id, getMapSource());
 //            mActivity.requestPostNotificationsPermission();
-          }
-        }));
+            }
+          });
+        });
 
     ViewCompat.setOnApplyWindowInsetsListener(mFrame, PaddingInsetsListener.allSides());
   }
