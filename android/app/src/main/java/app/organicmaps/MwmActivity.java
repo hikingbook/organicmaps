@@ -778,7 +778,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       mMapFragment.setArguments(args);
       manager.beginTransaction()
           .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-          .commit();
+          .commitAllowingStateLoss();
     }
     else
     {
