@@ -136,7 +136,7 @@
     success();
 }
 
-- (NSDictionary<NSString *, id> *)downloadNodeWithResult:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
+- (NSDictionary<NSString *, id> *)downloadNodeWithCountrID:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
     NSError *error = nil;
     BOOL success = [self downloadNode:countryId mapSource:mapSource error:&error];
     
@@ -146,13 +146,47 @@
     };
 }
 
-- (NSDictionary<NSString *, id> *)downloadNodesWithResult:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources {
+- (NSDictionary<NSString *, id> *)downloadNodesWithCountryIDs:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources {
     NSError *error = nil;
     BOOL success = [self downloadNodes:countryIds mapSources:mapSources error:&error];
     
     return @{
         @"success": @(success),
         @"error": error ?: [NSNull null]
+    };
+}
+
+- (NSDictionary<NSString *, id> *)updateNodeWithCountryID:(NSString *)countryId mapSource:(MWMMapSource)mapSource {
+    NSError *error = nil;
+    BOOL success = [self updateNode:countryId mapSource:mapSource error:&error];
+    
+    return @{
+        @"success": @(success),
+        @"error": error ?: [NSNull null]
+    };
+}
+
+- (NSDictionary<NSString *, id> *)updateNodesWithCountryIDs:(NSArray<NSString *> *)countryIds mapSources:(NSArray<NSNumber *> *)mapSources {
+    NSUInteger index = 0;
+    for (NSString * countryId in countryIds) {
+        MWMMapSource mapSource = organicmaps;
+        if (index < [mapSources count]) {
+            mapSource = (MWMMapSource)mapSources[index].integerValue;
+        }
+        NSError *error = nil;
+        BOOL success = [self updateNode:countryId mapSource:mapSource error:&error];
+        if (!success || error != nil) {
+            return @{
+                @"success": @(success),
+                @"error": error ?: [NSNull null]
+            };
+        }
+        ++index;
+    }
+    
+    return @{
+        @"success": @(true),
+        @"error": [NSNull null]
     };
 }
 
