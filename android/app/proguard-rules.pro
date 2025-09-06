@@ -33,4 +33,4 @@
 # This is generated automatically by the Android Gradle plugin.
 -dontwarn com.google.android.material.R$id
 
--keep class app.organicmaps.sdk.** { *; }
+-keep class app.organicmaps.** { *; }
