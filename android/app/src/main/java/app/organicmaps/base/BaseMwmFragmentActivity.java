@@ -67,10 +67,10 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   protected final void onCreate(@Nullable Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
-    mThemeName = Config.getCurrentUiTheme(getApplicationContext());
-    setTheme(getThemeResourceId(mThemeName));
-    EdgeToEdge.enable(this, SystemBarStyle.dark(Color.TRANSPARENT));
-    RtlUtils.manageRtl(this);
+//    mThemeName = Config.getCurrentUiTheme(getApplicationContext());
+//    setTheme(getThemeResourceId(mThemeName));
+//    EdgeToEdge.enable(this, SystemBarStyle.dark(Color.TRANSPARENT));
+//    RtlUtils.manageRtl(this);
 //    if (!MwmApplication.from(this).getOrganicMaps().arePlatformAndCoreInitialized())
 //    {
 //      final Intent intent = Objects.requireNonNull(getIntent());
