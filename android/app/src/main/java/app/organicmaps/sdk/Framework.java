@@ -364,5 +364,5 @@ public class Framework
   public static native void nativeSaveRoute();
 
   // Zheng-Xiang: Expose SetViewportListener
-  public static native void nativeSetViewportListener(@NonNull ViewportListener listener);
+  public static native void nativeSetViewportListener(ViewportListener listener);
 }

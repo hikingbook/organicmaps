@@ -1810,10 +1810,15 @@ JNIEXPORT void JNICALL
 Java_app_organicmaps_sdk_Framework_nativeSetViewportListener(JNIEnv * env, jclass, jobject listener)
 {
     CHECK(g_framework, ("Framework isn't created yet!"));
-    frm()->SetViewportListener(
-            [rf = jni::make_global_ref(listener)](ScreenBase const & screen) {
-                CallViewportListener(rf, screen);
-            });
+    if (listener == nullptr) {
+        frm()->SetViewportListener(nullptr);
+    }
+    else {
+        frm()->SetViewportListener(
+                [rf = jni::make_global_ref(listener)](ScreenBase const &screen) {
+                    CallViewportListener(rf, screen);
+                });
+    }
 }
 
 }  // extern "C"

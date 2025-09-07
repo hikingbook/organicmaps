@@ -147,75 +147,85 @@ public enum FrameworkAdapter {
         mwmActivity.initViews(false, savedInstanceState);
     }
 
-    public void onResumeMwmActivity() {
-        try {
-            if (arePlatformAndCoreInitialized()) {
-                if (mwmActivity.mMapFragment != null) {
-                    if (mwmActivity.isMapRendererActive()) {
-                        mwmActivity.mMapFragment.onResume();
-                    } else {
-                        if (isMapFragmentAttached()) {
-                            mwmActivity.mMapFragment.destroySurface(true);
-                        }
-                        activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
-                        mwmActivity.initViews(false, null);
-                    }
-                }
-
-                if (mwmActivity.mOnmapDownloader != null) {
-                    mwmActivity.mOnmapDownloader.onResume();
-                }
-            }
-
-            SensorHelper sensorHelper = getSensorHelper();
-            if (sensorHelper != null) {
-                sensorHelper.addListener(mwmActivity);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
-    }
-
-    public void onPauseMwmActivity() {
-        if (arePlatformAndCoreInitialized()) {
-            if (mwmActivity.mOnmapDownloader != null) {
-                mwmActivity.mOnmapDownloader.onPause();
-            }
-            if (isMapFragmentAttached() && mwmActivity.mMapFragment != null) {
-                mwmActivity.mMapFragment.onPause();
-            }
-        }
-
-        SensorHelper sensorHelper = getSensorHelper();
-        if (sensorHelper != null) {
-            sensorHelper.removeListener(mwmActivity);
-        }
-    }
-
-    public void onStartMwmActivity(PlacePageActivationListener placePageActivationListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
+    public boolean onStartMwmActivity(PlacePageActivationListener placePageActivationListener, ViewportListener viewportListener, LocationState.ModeChangeListener modeChangeListener, LocationListener locationListener) {
         if (!arePlatformAndCoreInitialized()) {
-            return;
+            return false;
         }
         Framework.nativePlacePageActivationListener(placePageActivationListener);
+        Framework.nativeSetViewportListener(viewportListener);
         LocationState.nativeSetListener(modeChangeListener);
 
         LocationHelper locationHelper = getLocationHelper();
         if (locationHelper != null) {
             locationHelper.addListener(locationListener);
         }
+        return true;
     }
 
-    public void onStopMwmActivity(PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
+    public boolean onResumeMwmActivity() {
         if (!arePlatformAndCoreInitialized()) {
-            return;
+            return false;
+        }
+        try {
+            if (mwmActivity.mMapFragment != null) {
+                if (mwmActivity.isMapRendererActive()) {
+                    mwmActivity.mMapFragment.onResume();
+                } else {
+                    if (isMapFragmentAttached()) {
+                        mwmActivity.mMapFragment.destroySurface(true);
+                    }
+                    activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
+                    mwmActivity.initViews(false, null);
+                }
+            }
+
+            if (mwmActivity.mOnmapDownloader != null) {
+                mwmActivity.mOnmapDownloader.onResume();
+            }
+
+            SensorHelper sensorHelper = getSensorHelper();
+            if (sensorHelper != null) {
+                sensorHelper.addListener(mwmActivity);
+            }
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+            return false;
+        }
+    }
+
+    public boolean onPauseMwmActivity() {
+        if (!arePlatformAndCoreInitialized()) {
+            return false;
+        }
+
+        if (mwmActivity.mOnmapDownloader != null) {
+            mwmActivity.mOnmapDownloader.onPause();
+        }
+        if (isMapFragmentAttached() && mwmActivity.mMapFragment != null) {
+            mwmActivity.mMapFragment.onPause();
+        }
+
+        SensorHelper sensorHelper = getSensorHelper();
+        if (sensorHelper != null) {
+            sensorHelper.removeListener(mwmActivity);
+        }
+        return true;
+    }
+
+    public boolean onStopMwmActivity(PlacePageActivationListener placePageActivationListener, LocationListener locationListener) {
+        if (!arePlatformAndCoreInitialized()) {
+            return false;
         }
         Framework.nativeRemovePlacePageActivationListener(placePageActivationListener);
+        Framework.nativeSetViewportListener(null);
         LocationState.nativeRemoveListener();
 
         LocationHelper locationHelper = getLocationHelper();
         if (locationHelper != null) {
             locationHelper.removeListener(locationListener);
         }
+        return true;
     }
 
     public void onLocationUpdated(Location location) {
