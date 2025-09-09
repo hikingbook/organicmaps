@@ -17,6 +17,7 @@ import androidx.core.content.res.ConfigurationHelper;
 import app.organicmaps.base.BaseMwmFragment;
 import app.organicmaps.sdk.Map;
 import app.organicmaps.sdk.display.DisplayType;
+import app.organicmaps.sdk.location.LocationHelper;
 import app.organicmaps.sdk.util.log.Logger;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import app.organicmaps.sdk.FrameworkAdapter;
@@ -88,7 +89,10 @@ public class MapFragment extends BaseMwmFragment implements View.OnTouchListener
     Logger.d(TAG);
     super.onAttach(context);
 
-    mMap.setLocationHelper(MwmApplication.from(requireContext()).getLocationHelper());
+    LocationHelper locationHelper = FrameworkAdapter.INSTANCE.getLocationHelper();
+    if (locationHelper != null) {
+      mMap.setLocationHelper(locationHelper);
+    }
 //    mMap.setMapRenderingListener((MapRenderingListener) context);
     mMap.setMapRenderingListener(FrameworkAdapter.INSTANCE.getMapRenderingListener());
     mMap.setCallbackUnsupported(this::reportUnsupported);
