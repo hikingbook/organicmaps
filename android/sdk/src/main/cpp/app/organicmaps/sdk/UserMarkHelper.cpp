@@ -102,8 +102,8 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
 
   auto const trackId = info.GetTrackId();
   auto const track = frm()->GetBookmarkManager().GetTrack(trackId);
-  jint androidColor = track->GetColor(0).GetARGB();
-  auto const categoryId = track->GetGroupId();
+  jint androidColor = track != nullptr ? track->GetColor(0).GetARGB() : kml::ColorFromPredefinedColor(kml::PredefinedColor::Red).GetARGB();
+  auto const categoryId = track != nullptr ? track->GetGroupId() : info.GetBookmarkCategoryId();
   ms::LatLon const ll = info.GetLatLon();
   jni::TScopedLocalRef jMwmName(env, jni::ToJavaString(env, info.GetID().GetMwmName()));
   jni::TScopedLocalRef jFeatureId(env, env->NewObject(g_featureIdClazz, featureCtorId, jMwmName.get(),
@@ -117,7 +117,7 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
       env->NewObject(g_trackClazz, ctorId, jFeatureId.get(), static_cast<jlong>(categoryId),
                      static_cast<jlong>(trackId), jTitle.get(), jSecondaryTitle.get(), jSubtitle.get(), jAddress.get(),
                      routingPointInfo.get(), info.GetOpeningMode(), popularity, jWikiDescription.get(), jrawTypes.get(),
-                     androidColor, ToJavaDistance(env, platform::Distance::CreateFormatted(track->GetLengthMeters())),
+                     androidColor, ToJavaDistance(env, platform::Distance::CreateFormatted(track != nullptr ? track->GetLengthMeters() : 0.0)),
                      static_cast<jdouble>(ll.m_lat), static_cast<jdouble>(ll.m_lon));
 
   if (info.HasMetadata())
