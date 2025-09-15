@@ -1,3 +1,4 @@
+// This file is modified by Ke Zheng-Xiang on 2025.
 package app.organicmaps.downloader;
 
 import static android.Manifest.permission.POST_NOTIFICATIONS;
@@ -104,6 +105,12 @@ public class DownloaderService extends Service implements MapManager.StorageCall
     Logger.i(TAG, "onDestroy");
 
     MapManager.nativeUnsubscribe(mSubscriptionSlot);
+  }
+
+  @Override
+  public void onTimeout(int startId, int fgsType) {
+    stopSelf(startId);
+    super.onTimeout(startId, fgsType);
   }
 
   /**
