@@ -335,26 +335,50 @@ using namespace storage;
   return @(GetFramework().GetStorage().GetNodeLocalName(countryId.UTF8String).c_str());
 }
 
+- (NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location mapSource:(MWMMapSource) mapSource
+{
+  auto & f = GetFramework();
+  storage::CountriesVec closestCoutryIds;
+  f.GetCountryInfoGetter().GetRegionsCountryId(mercator::FromLatLon(location.latitude, location.longitude),
+                                               closestCoutryIds);
+  NSMutableArray * nearbyAvailableCountries = [NSMutableArray array];
+  for (auto const & countryId : closestCoutryIds)
+  {
+      MapSource source = MapSource::Organicmaps;
+      if (mapSource == hikingbookProMaps) {
+          source = MapSource::HikingbookProMaps;
+      }
+      storage::NodeStatuses nodeStatuses;
+      f.GetStorage().GetNodeStatuses(countryId, source, nodeStatuses);
+      if (nodeStatuses.m_status != storage::NodeStatus::OnDisk) {
+          [nearbyAvailableCountries addObject:@(countryId.c_str())];
+      }
+  }
+
+  return nearbyAvailableCountries.count > 0 ? [nearbyAvailableCountries copy] : nil;
+}
+
 - (NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location
 {
   auto & f = GetFramework();
   storage::CountriesVec closestCoutryIds;
   f.GetCountryInfoGetter().GetRegionsCountryId(mercator::FromLatLon(location.latitude, location.longitude),
                                                closestCoutryIds);
-  NSMutableArray * nearmeCountries = [NSMutableArray array];
+  NSMutableArray * nearbyAvailableCountries = [NSMutableArray array];
   for (auto const & countryId : closestCoutryIds)
   {
-    storage::NodeStatuses nodeStatuses;
-    f.GetStorage().GetNodeStatuses(countryId, MapSource::Organicmaps, nodeStatuses);
-      
+      storage::NodeStatuses nodeStatuses;
+      f.GetStorage().GetNodeStatuses(countryId, MapSource::Organicmaps, nodeStatuses);
+          
       storage::NodeStatuses hikingbookProMapNodeStatuses;
       f.GetStorage().GetNodeStatuses(countryId, MapSource::HikingbookProMaps, hikingbookProMapNodeStatuses);
+      
       if (nodeStatuses.m_status != storage::NodeStatus::OnDisk && hikingbookProMapNodeStatuses.m_status != storage::NodeStatus::OnDisk) {
-          [nearmeCountries addObject:@(countryId.c_str())];
+          [nearbyAvailableCountries addObject:@(countryId.c_str())];
       }
   }
 
-  return nearmeCountries.count > 0 ? [nearmeCountries copy] : nil;
+  return nearbyAvailableCountries.count > 0 ? [nearbyAvailableCountries copy] : nil;
 }
 
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId
