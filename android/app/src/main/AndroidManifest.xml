@@ -445,9 +445,9 @@
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
 
-    <activity
-        android:name="app.organicmaps.editor.ReportActivity"
-        android:parentActivityName="app.organicmaps.MwmActivity" />
+<!--    <activity-->
+<!--        android:name="app.organicmaps.editor.ReportActivity"-->
+<!--        android:parentActivityName="app.organicmaps.MwmActivity" />-->
 
     <activity
         android:name="app.organicmaps.editor.OsmLoginActivity"
@@ -463,8 +463,8 @@
     <activity
       android:name="app.organicmaps.settings.DrivingOptionsActivity"
       android:label="@string/driving_options_title"/>
-    <activity
-        android:name="app.organicmaps.MapPlaceholderActivity"/>
+<!--    <activity-->
+<!--        android:name="app.organicmaps.MapPlaceholderActivity"/>-->
 <!--    <activity-->
 <!--        android:name="app.organicmaps.car.screens.permissions.RequestPermissionsActivity"/>-->
 <!--    <service-->
