@@ -64,6 +64,7 @@ NS_SWIFT_NAME(Storage)
 - (MWMMapNodeAttributes *)attributesForRoot;
 - (NSString *)getRootId;
 - (NSString *)nameForCountry:(NSString *)countryId;
+- (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location mapSource:(MWMMapSource) mapSource;
 - (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location;
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId;
 @end
