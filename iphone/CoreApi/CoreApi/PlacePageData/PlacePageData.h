@@ -3,7 +3,7 @@
 
 #import "MWMTypes.h"
 
-@class PlacePageButtonsData;
+@class PlacePageOSMContributionData;
 @class PlacePageTrackData;
 @class PlacePagePreviewData;
 @class PlacePageInfoData;
@@ -34,12 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(class, nonatomic, readonly) BOOL hasData;
 
-@property(nonatomic, readonly, nullable) PlacePageButtonsData * buttonsData;
+@property(nonatomic, readonly, nullable) PlacePageOSMContributionData * osmContributionData;
 @property(nonatomic, readonly) PlacePagePreviewData * previewData;
 @property(nonatomic, readonly, nullable) PlacePageInfoData * infoData;
 @property(nonatomic, readonly, nullable) PlacePageBookmarkData * bookmarkData;
 @property(nonatomic, readonly) PlacePageRoadType roadType;
 @property(nonatomic, readonly, nullable) NSString * wikiDescriptionHtml;
+@property(nonatomic, readonly, nullable) NSString * osmDescription;
 @property(nonatomic, readonly, nullable) PlacePageTrackData * trackData;
 @property(nonatomic, readonly, nullable) MWMMapNodeAttributes * mapNodeAttributes;
 @property(nonatomic, readonly, nullable) NSString * bookingSearchUrl;
@@ -48,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) BOOL isRoutePoint;
 @property(nonatomic, readonly) PlacePageObjectType objectType;
 @property(nonatomic, readonly) CLLocationCoordinate2D locationCoordinate;
-@property(nonatomic, copy, nullable) MWMVoidBlock onBookmarkStatusUpdate;
 @property(nonatomic, copy, nullable) MWMVoidBlock onMapNodeStatusUpdate;
 @property(nonatomic, copy, nullable) MWMVoidBlock onTrackRecordingProgressUpdate;
 @property(nonatomic, copy, nullable) void (^onMapNodeProgressUpdate)(uint64_t downloadedBytes, uint64_t totalBytes);
@@ -58,7 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
                     elevationInfo:(ElevationProfileData * _Nullable)elevationInfo;
 - (instancetype)init NS_UNAVAILABLE;
 
-- (void)updateBookmarkStatus;
 - (void)updateWithTrackInfo:(TrackInfo * _Nonnull)trackInfo
               elevationInfo:(ElevationProfileData * _Nullable)elevationInfo;
 

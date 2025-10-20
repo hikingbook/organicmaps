@@ -29,9 +29,9 @@ import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
 import app.organicmaps.sdk.bookmarks.data.Icon;
 import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
 import app.organicmaps.sdk.bookmarks.data.Track;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.InputUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -183,7 +183,8 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
     super.onStart();
 
     // Focus name and show keyboard for "Unknown Place" bookmarks
-    if (mBookmark != null && mBookmark.getName().equals(getString(R.string.core_placepage_unknown_place)))
+    if (mBookmark != null
+        && mBookmark.getName().equals(getString(app.organicmaps.sdk.R.string.core_placepage_unknown_place)))
     {
       mEtName.requestFocus();
       mEtName.selectAll();

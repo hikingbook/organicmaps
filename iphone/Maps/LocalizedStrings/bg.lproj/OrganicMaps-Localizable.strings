@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Изход";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "Използвайте търсене или докоснете картата, за да добавите начална точка на маршрута";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "Използвайте търсене или докоснете картата, за да добавите точка на дестинация";
 "planning_route_manage_route" = "Управление на маршрут";
 "button_plan" = "Планиране";
 "placepage_remove_stop" = "Премахване на спирка";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "Спри запис на маршрут";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "Спрете без запазване";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "Продължи записа";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "Запазване в отметки и пътеки?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Маршрутът е празен - няма какво да запазвате";
 "edit_track" = "Редактиране на маршрут";
@@ -1074,3 +1060,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "To display routes, maps must be updated.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "Допринесете към OpenStreetMap";
+"contribute_to_osm_add_place" = "Добави място";
+"contribute_to_osm_update_map" = "Актуализирайте картата, за да допринесете";
+"contribute_to_osm_update_map_description" = "Трябва да актуализирате картата %@ до последната версия, преди да можете да допринесете с данни към OpenStreetMap";
+"placepage_replace_stop" = "Replace Stop";

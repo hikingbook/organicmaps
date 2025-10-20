@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Излаз";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "Користите претрагу или кратко додирните мапу да бисте додали почетну тачку руте";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "Користите претрагу или кратко додирните мапу да бисте додали одредишну тачку";
 "planning_route_manage_route" = "Измени руту";
 "button_plan" = "План";
 "placepage_remove_stop" = "Уклони међуодредиште";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "Заустави снимање путање";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "Заустави без снимања";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "Настави снимање";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "Сачувати у маркерима и путањама?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Путања је празна, нема шта да се сачува";
 "edit_track" = "Измените путању";
@@ -1074,3 +1060,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "To display routes, maps must be updated.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "Допринос OpenStreetMap-у";
+"contribute_to_osm_add_place" = "Додај место";
+"contribute_to_osm_update_map" = "Ажурирајте мапу да бисте допринели";
+"contribute_to_osm_update_map_description" = "Морате ажурирати %@ мапу на најновију верзију пре него што можете да допринесете OpenStreetMap подацима";
+"placepage_replace_stop" = "Replace Stop";

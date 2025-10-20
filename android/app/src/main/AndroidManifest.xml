@@ -40,6 +40,7 @@
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
   <!--
@@ -90,6 +91,7 @@
     <!-- Allows for config and orientation change without killing/restarting main activity -->
     <activity
       android:name="app.organicmaps.SplashActivity"
+      android:theme="@style/MwmTheme.Splash"
       android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
       android:screenOrientation="fullUser"
       android:exported="true">
@@ -184,6 +186,28 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="http"/>
+        <data android:scheme="https"/>
+        <data android:scheme="content"/>
+        <data android:scheme="file"/>
+        <data android:scheme="data"/>
+        <data android:host="*"/>
+        <data android:mimeType="application/geo+json"/>
+        <data android:mimeType="application/vnd.geo+json"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <action android:name="android.intent.action.SEND_MULTIPLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="application/geo+json"/>
+        <data android:mimeType="application/vnd.geo+json"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="content"/>
         <data android:scheme="file"/>
         <data android:scheme="data"/>
@@ -255,6 +279,15 @@
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kmb" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.KMB" />
+        <!-- GeoJson format -->
+        <data android:pathPattern="/.*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
       </intent-filter>
 
       <!-- Duplicates the intent-filter above except it doesn't have mimeType, see
@@ -350,6 +383,7 @@
 
     <activity
         android:name="app.organicmaps.DownloadResourcesLegacyActivity"
+        android:theme="@style/MwmTheme.DownloadResourcesLegacy"
         android:configChanges="orientation|screenLayout|screenSize"
         android:screenOrientation="fullUser"/>
 
@@ -366,6 +400,7 @@
 
     <activity
         android:name="app.organicmaps.MwmActivity"
+        android:theme="@style/MwmTheme.MainActivity"
         android:launchMode="singleTask"
         android:configChanges="uiMode"
         android:screenOrientation="fullUser"
@@ -387,6 +422,7 @@
 
     <activity
         android:name="app.organicmaps.search.SearchActivity"
+        android:theme="@style/MwmTheme.CardBg"
         android:configChanges="orientation|screenLayout|screenSize"
         android:screenOrientation="fullUser"
         android:label="@string/search_map"
@@ -413,6 +449,7 @@
 
     <activity
         android:name="app.organicmaps.bookmarks.BookmarkCategoriesActivity"
+        android:theme="@style/MwmTheme.WindowBg"
         android:configChanges="orientation|screenLayout|screenSize"
         android:screenOrientation="fullUser"
         android:label="@string/bookmarks_and_tracks"
@@ -421,6 +458,7 @@
 
     <activity
         android:name="app.organicmaps.bookmarks.BookmarkListActivity"
+        android:theme="@style/MwmTheme.CardBg"
         android:configChanges="orientation|screenLayout|screenSize"
         android:screenOrientation="fullUser"
         android:label="@string/bookmarks"
@@ -457,7 +495,7 @@
       android:label="@string/edit"
       android:windowSoftInputMode="stateVisible"/>
     <activity
-      android:name="app.organicmaps.widget.placepage.PlaceDescriptionActivity"
+      android:name="app.organicmaps.widget.placepage.WikiArticleActivity"
       android:label="@string/place_description_title"/>
     <activity
       android:name="app.organicmaps.settings.DrivingOptionsActivity"
@@ -482,8 +520,13 @@
     </service>
 
     <service
-        android:name=".routing.NavigationService"
+        android:name="app.organicmaps.car.CarLocationService"
         android:foregroundServiceType="location"
+        android:exported="false" />
+
+    <service
+        android:name=".routing.NavigationService"
+        android:foregroundServiceType="location|mediaPlayback"
         android:exported="false"
         android:enabled="true"
         android:stopWithTask="false"/>

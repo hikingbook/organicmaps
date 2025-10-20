@@ -1,4 +1,5 @@
 #include "kml/serdes_gpx.hpp"
+#include "kml/color_parser.hpp"
 #include "kml/serdes_common.hpp"
 
 #include "coding/hex.hpp"
@@ -79,11 +80,10 @@ bool GpxParser::MakeValid()
       // Set default name.
       if (m_name.empty())
         m_name = kml::PointToLineString(m_org);
-
-      // Set default pin.
-      if (m_predefinedColor == PredefinedColor::None)
+      if (m_color != kInvalidColor)
+        m_predefinedColor = MapPredefinedColor(m_color);
+      else
         m_predefinedColor = PredefinedColor::Red;
-
       return true;
     }
     return false;
@@ -134,31 +134,16 @@ std::string const & GpxParser::GetTagFromEnd(size_t n) const
 
 std::optional<uint32_t> GpxParser::ParseColorFromHexString(std::string_view colorStr)
 {
-  if (colorStr.empty())
-  {
+  auto const res = ParseHexColor(colorStr);
+  if (!res)
     LOG(LWARNING, ("Invalid color value", colorStr));
-    return {};
-  }
-  if (colorStr.front() == '#')
-    colorStr.remove_prefix(1);
-  if (colorStr.size() != 6 && colorStr.size() != 8)
-  {
-    LOG(LWARNING, ("Invalid color value", colorStr));
-    return {};
-  }
-  auto const colorBytes = FromHex(colorStr);
-  switch (colorBytes.size())
-  {
-  case 3: return kml::ToRGBA(colorBytes[0], colorBytes[1], colorBytes[2], (char)255);
-  case 4: return kml::ToRGBA(colorBytes[1], colorBytes[2], colorBytes[3], colorBytes[0]);
-  default: LOG(LWARNING, ("Invalid color value", colorStr)); return {};
-  }
+  return res;
 }
 
 void GpxParser::ParseColor(std::string_view colorStr)
 {
-  if (auto const parsed = ParseColorFromHexString(colorStr); parsed)
-    m_color = parsed.value();
+  if (auto const parsed = ParseColorFromHexString(colorStr))
+    m_color = *parsed;
 }
 
 // https://osmand.net/docs/technical/osmand-file-formats/osmand-gpx/. Supported colors:
@@ -168,6 +153,7 @@ void GpxParser::ParseOsmandColor(std::string const & value)
   auto const color = ParseColorFromHexString(value);
   if (!color)
     return;
+
   if (m_tags.size() > 2 && GetTagFromEnd(2) == gpx::kGpx)
   {
     m_globalColor = *color;
@@ -176,31 +162,19 @@ void GpxParser::ParseOsmandColor(std::string const & value)
         layer.m_color.m_rgba = m_globalColor;
   }
   else
-  {
     m_color = *color;
-  }
 }
 
-// Garmin extensions spec: https://www8.garmin.com/xmlschemas/GpxExtensionsv3.xsd
-// Color mapping: https://help.locusmap.eu/topic/extend-garmin-gpx-compatibilty
 void GpxParser::ParseGarminColor(std::string const & v)
 {
-  static std::unordered_map<std::string, std::string> const kGarminToHex = {
-      {"Black", "000000"},      {"DarkRed", "8b0000"},     {"DarkGreen", "006400"}, {"DarkYellow", "b5b820"},
-      {"DarkBlue", "00008b"},   {"DarkMagenta", "8b008b"}, {"DarkCyan", "008b8b"},  {"LightGray", "cccccc"},
-      {"DarkGray", "444444"},   {"Red", "ff0000"},         {"Green", "00ff00"},     {"Yellow", "ffff00"},
-      {"Blue", "0000ff"},       {"Magenta", "ff00ff"},     {"Cyan", "00ffff"},      {"White", "ffffff"},
-      {"Transparent", "ff0000"}};
-  auto const it = kGarminToHex.find(v);
-  if (it != kGarminToHex.end())
-  {
-    return ParseColor(it->second);
-  }
-  else
+  auto const res = kml::ParseGarminColor(v);
+  if (!res)
   {
     LOG(LWARNING, ("Unsupported color value", v));
-    return ParseColor("ff0000");  // default to red
+    m_color = ToRGBA(255, 0, 0);  // default to red
   }
+  else
+    m_color = *res;
 }
 
 void GpxParser::CheckAndCorrectTimestamps()
@@ -453,61 +427,6 @@ std::string GpxParser::BuildDescription() const
   return m_description + "\n\n" + m_comment;
 }
 
-std::tuple<int, int, int> ExtractRGB(uint32_t color)
-{
-  return {(color >> 24) & 0xFF, (color >> 16) & 0xFF, (color >> 8) & 0xFF};
-}
-
-int ColorDistance(uint32_t color1, uint32_t color2)
-{
-  auto const [r1, g1, b1] = ExtractRGB(color1);
-  auto const [r2, g2, b2] = ExtractRGB(color2);
-  return (r1 - r2) * (r1 - r2) + (g1 - g2) * (g1 - g2) + (b1 - b2) * (b1 - b2);
-}
-
-struct RGBAToGarmin
-{
-  uint32_t rgba;
-  std::string_view color;
-};
-
-auto constexpr kRGBAToGarmin = std::to_array<RGBAToGarmin>({{0x000000ff, "Black"},
-                                                            {0x8b0000ff, "DarkRed"},
-                                                            {0x006400ff, "DarkGreen"},
-                                                            {0xb5b820ff, "DarkYellow"},
-                                                            {0x00008bff, "DarkBlue"},
-                                                            {0x8b008bff, "DarkMagenta"},
-                                                            {0x008b8bff, "DarkCyan"},
-                                                            {0xccccccff, "LightGray"},
-                                                            {0x444444ff, "DarkGray"},
-                                                            {0xff0000ff, "Red"},
-                                                            {0x00ff00ff, "Green"},
-                                                            {0xffff00ff, "Yellow"},
-                                                            {0x0000ffff, "Blue"},
-                                                            {0xff00ffff, "Magenta"},
-                                                            {0x00ffffff, "Cyan"},
-                                                            {0xffffffff, "White"}});
-
-std::string_view MapGarminColor(uint32_t rgba)
-{
-  std::string_view closestColor = kRGBAToGarmin[0].color;
-  auto minDistance = std::numeric_limits<int>::max();
-  for (auto const & [rgbaGarmin, color] : kRGBAToGarmin)
-  {
-    auto const distance = ColorDistance(rgba, rgbaGarmin);
-
-    if (distance == 0)
-      return color;  // Exact match.
-
-    if (distance < minDistance)
-    {
-      minDistance = distance;
-      closestColor = color;
-    }
-  }
-  return closestColor;
-}
-
 namespace
 {
 
@@ -549,6 +468,16 @@ void SaveCategoryData(Writer & writer, CategoryData const & categoryData)
   writer << "</metadata>\n";
 }
 
+uint32_t BookmarkColor(BookmarkData const & bookmarkData)
+{
+  auto const & [predefinedColor, rgba] = bookmarkData.m_color;
+  if (rgba != kInvalidColor)
+    return rgba;
+  if (predefinedColor != PredefinedColor::None && predefinedColor != PredefinedColor::Red)
+    return ColorFromPredefinedColor(predefinedColor).GetRGBA();
+  return kInvalidColor;
+}
+
 void SaveBookmarkData(Writer & writer, BookmarkData const & bookmarkData)
 {
   auto const [lat, lon] = mercator::ToLatLon(bookmarkData.m_point);
@@ -568,6 +497,14 @@ void SaveBookmarkData(Writer & writer, BookmarkData const & bookmarkData)
     writer << kIndent2 << "<desc>";
     SaveStringWithCDATA(writer, *description);
     writer << "</desc>\n";
+  }
+  if (auto const color = BookmarkColor(bookmarkData); color != kInvalidColor)
+  {
+    writer << kIndent2 << "<extensions>\n";
+    writer << kIndent4 << "<xsi:gpx><color>#";
+    SaveColorToARGB(writer, color);
+    writer << "</color></xsi:gpx>\n";
+    writer << kIndent2 << "</extensions>\n";
   }
   writer << "</wpt>\n";
 }
@@ -608,7 +545,7 @@ void SaveTrackData(Writer & writer, TrackData const & trackData)
   {
     writer << kIndent2 << "<extensions>\n";
     writer << kIndent4 << "<gpxx:TrackExtension><gpxx:DisplayColor>";
-    writer << MapGarminColor(color);
+    writer << kml::MapGarminColor(color);
     writer << "</gpxx:DisplayColor></gpxx:TrackExtension>\n";
     writer << kIndent4 << "<gpx_style:line><gpx_style:color>";
     SaveColorToRGB(writer, color);

@@ -23,7 +23,7 @@ import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.routing.RouteMarkData;
 import app.organicmaps.sdk.routing.RoutingController;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -204,21 +204,12 @@ public class ManageRouteBottomSheet
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target)
     {
-      mManageRouteAdapter.moveRoutePoint(viewHolder.getAbsoluteAdapterPosition(), target.getAbsoluteAdapterPosition());
+      mManageRouteAdapter.moveRoutePoint(viewHolder, target);
       return true;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction)
     {}
-
-    @Override
-    public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder)
-    {
-      super.clearView(recyclerView, viewHolder);
-
-      // Called when dragging action has finished.
-      mManageRouteAdapter.notifyDataSetChanged();
-    }
   }
 }

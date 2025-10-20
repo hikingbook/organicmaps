@@ -303,7 +303,8 @@ waterway|dam;200;
 amenity|charging_station|motorcar;[amenity=charging_station][motorcar?];;name;int_name;201;
 leisure|golf_course;202;
 highway|service|bridge;[highway=service][bridge?];;name;int_name;203;
-deprecated:power|minor_line:01.2017;204;x
+# ~250K usages.
+power|portal;204;
 natural|wetland|marsh;[natural=wetland][wetland=marsh],[natural=marsh];;name;int_name;205;
 leisure|stadium;206;
 amenity|doctors;207;
@@ -869,11 +870,13 @@ barrier|kissing_gate;749;
 barrier|turnstile;750;
 landuse|industrial|mine;[landuse=industrial][industrial=mine];;name;int_name;751;
 landuse|flowerbed;752;
-deprecated|deprecated;753;x
-deprecated|deprecated;754;x
-deprecated|deprecated;755;x
-deprecated|deprecated;756;x
-deprecated|deprecated;757;x
+barrier|yes;753;
+barrier|wicket_gate;754;
+barrier|jersey_barrier;755;
+# Actually, log and debris have the same "meaning" in terms of restrictions (car->no, bicycle->mostly yes, foot->yes).
+# Can be added in replace_tags, but keep different types for the UI strings.
+barrier|log;756;
+barrier|debris;757;
 deprecated|deprecated;758;x
 deprecated|deprecated;759;x
 deprecated|deprecated;760;x
@@ -1028,7 +1031,7 @@ place|quarter;907;
 railway|subway|violet;[railway=subway][colour=violet];x;name;int_name;908;railway|subway|tunnel
 shop|rental;909;
 railway|subway|grey;[railway=subway][colour=grey];x;name;int_name;910;railway|subway|tunnel
-shop|rental|bike;[shop=rental][rental=bike];;name;int_name;911;
+amenity|bicycle_rental|shop;[amenity=bicycle_rental][bicycle_rental=shop];;;;911;
 historic|ship;912;
 shop|tobacco;913;
 shop|farm;914;
@@ -1748,6 +1751,9 @@ post_office|post_partner;1626;
 amenity|ranger_station;1627;
 leisure|escape_game;1628;
 amenity|luggage_locker;1629;
+building|guardhouse;1630;
+office|security;1631;
+shop|lighting;1632;
 deprecated:highway|path|trail_visibility_excellent:06.2024;[highway=path][trail_visibility=excellent];x;name;int_name;9987;
 deprecated:highway|path|trail_visibility_good:06.2024;[highway=path][trail_visibility=good];x;name;int_name;9988;
 deprecated:highway|path|trail_visibility_intermediate:06.2024;[highway=path][trail_visibility=intermediate];x;name;int_name;9989;

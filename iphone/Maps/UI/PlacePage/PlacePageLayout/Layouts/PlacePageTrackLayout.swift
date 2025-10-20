@@ -3,6 +3,8 @@ class PlacePageTrackLayout: IPlacePageLayout {
   private var trackData: PlacePageTrackData
   private var interactor: PlacePageInteractor
   private let storyboard: UIStoryboard
+  private weak var editTrackInteractor: PlacePageEditBookmarkAndTrackSectionInteractor?
+
   weak var presenter: PlacePagePresenterProtocol?
 
   lazy var bodyViewControllers: [UIViewController] = {
@@ -35,10 +37,10 @@ class PlacePageTrackLayout: IPlacePageLayout {
     return PlacePageHeaderBuilder.build(data: placePageData, delegate: interactor, headerType: .fixed)
   }()
 
-  private lazy var editTrackViewController: PlacePageEditBookmarkOrTrackViewController = {
-    let vc = storyboard.instantiateViewController(ofType: PlacePageEditBookmarkOrTrackViewController.self)
+  private lazy var editTrackViewController: PlacePageExpandableDetailsSectionViewController = {
+    let vc = PlacePageExpandableDetailsSectionBuilder.buildEditBookmarkAndTrackSection(data: nil, delegate: interactor)
     vc.view.isHidden = true
-    vc.delegate = interactor
+    editTrackInteractor = vc.interactor as? PlacePageEditBookmarkAndTrackSectionInteractor
     return vc
   }()
 
@@ -51,9 +53,12 @@ class PlacePageTrackLayout: IPlacePageLayout {
 
   private lazy var actionBarViewController: ActionBarViewController = {
     let vc = storyboard.instantiateViewController(ofType: ActionBarViewController.self)
+    let navigationManager = MWMNavigationDashboardManager.shared()
     vc.placePageData = placePageData
+    vc.isRoutePlanning = navigationManager.state != .closed
     vc.canAddStop = MWMRouter.canAddIntermediatePoint()
-    vc.isRoutePlanning = MWMNavigationDashboardManager.shared().state != .hidden
+    vc.canReplaceStop = navigationManager.selectedRoutePoint != nil
+    vc.canRouteToAndFrom = !navigationManager.shouldAppendNewPoints && navigationManager.selectedRoutePoint == nil
     vc.delegate = interactor
     return vc
   }()
@@ -74,13 +79,7 @@ class PlacePageTrackLayout: IPlacePageLayout {
     viewControllers.append(editTrackViewController)
     if let trackData = placePageData.trackData {
       editTrackViewController.view.isHidden = false
-      editTrackViewController.data = .track(trackData)
-    }
-
-    placePageData.onBookmarkStatusUpdate = { [weak self] in
-      guard let self = self else { return }
-      self.previewViewController.placePagePreviewData = self.placePageData.previewData
-      self.updateTrackRelatedSections()
+      editTrackInteractor?.data = .track(trackData)
     }
 
     if let elevationMapViewController {
@@ -94,27 +93,7 @@ class PlacePageTrackLayout: IPlacePageLayout {
     var steps: [PlacePageState] = []
     let scrollHeight = scrollView.height
     steps.append(.closed(-scrollHeight))
-    steps.append(.full(0))
+    steps.append(.full)
     return steps
-  }
-}
-
-private extension PlacePageTrackLayout {
-  func updateTrackRelatedSections() {
-    guard let trackData = placePageData.trackData else {
-      presenter?.closeAnimated()
-      return
-    }
-    editTrackViewController.data = .track(trackData)
-    let previewData = placePageData.previewData
-    if let headerViewController = headerViewControllers.compactMap({ $0 as? PlacePageHeaderViewController }).first {
-      headerViewController.setTitle(previewData.title, secondaryTitle: previewData.secondaryTitle)
-      placePageNavigationViewController.setTitle(previewData.title, secondaryTitle: previewData.secondaryTitle)
-    }
-    if let previewViewController = headerViewControllers.compactMap({ $0 as? PlacePagePreviewViewController }).first {
-      previewViewController.placePagePreviewData = previewData
-      previewViewController.updateViews()
-    }
-    presenter?.layoutIfNeeded()
   }
 }

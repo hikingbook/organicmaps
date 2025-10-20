@@ -93,15 +93,19 @@ NSString * const kSettingsSegue = @"Map2Settings";
 @property(nonatomic) CGPoint pointerLocation API_AVAILABLE(ios(14.0));
 @property(nonatomic) CGFloat currentScale;
 @property(nonatomic) CGFloat currentRotation;
+@property(nonatomic) NSMapTable<NSObject *, NSValue *> * availableAreaInsetsMap;
 
 @property(nonatomic, readwrite) MWMMapDownloadDialog * downloadDialog;
 
 @property(nonatomic) BOOL skipForceTouch;
 
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint * visibleAreaBottom;
+@property(strong, nonatomic) IBOutlet NSLayoutConstraint * visibleAreaLeading;
+@property(strong, nonatomic) IBOutlet NSLayoutConstraint * visibleAreaTrailing;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint * visibleAreaKeyboard;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint * placePageAreaKeyboard;
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint * sideButtonsAreaBottom;
+@property(weak, nonatomic) IBOutlet NSLayoutConstraint * sideButtonsAreaCompactBottom;  // Enabled only in landscape
 @property(strong, nonatomic) IBOutlet NSLayoutConstraint * sideButtonsAreaKeyboard;
 @property(strong, nonatomic) IBOutlet UIView * carplayPlaceholderView;
 //@property(strong, nonatomic) BookmarksCoordinator * bookmarksCoordinator;
@@ -111,7 +115,6 @@ NSString * const kSettingsSegue = @"Map2Settings";
 @property(nonatomic) BOOL needDeferFocusNotification;
 @property(nonatomic) BOOL deferredFocusValue;
 //@property(nonatomic) PlacePageViewController * placePageVC;
-@property(nonatomic) UIView * placePageContainer;
 
 @property(nonatomic) NSLayoutConstraint * placePageWidthConstraint;
 @property(nonatomic) NSLayoutConstraint * placePageLeadingConstraint;
@@ -163,6 +166,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  [self updatePlacePageContainerConstraints];
 //}
 
+
 //- (void)setupPlacePageContainer
 //{
 //  self.placePageContainer = [[TouchTransparentView alloc] initWithFrame:self.view.bounds];
@@ -184,25 +188,28 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  NSLayoutConstraint * topConstraint =
 //      [self.placePageContainer.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor];
 //
-//   NSLayoutConstraint * bottomConstraint;
-//   if (IPAD)
-//     bottomConstraint = [self.placePageContainer.bottomAnchor constraintLessThanOrEqualToAnchor:self.view.bottomAnchor];
-//   else
-//     bottomConstraint = [self.placePageContainer.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+//  NSLayoutConstraint * bottomConstraint;
+//  if (IPAD)
+//    bottomConstraint = [self.placePageContainer.bottomAnchor constraintLessThanOrEqualToAnchor:self.view.bottomAnchor];
+//  else
+//    bottomConstraint = [self.placePageContainer.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
 //
-//   [NSLayoutConstraint activateConstraints:@[
-//     self.placePageLeadingConstraint,
-//     topConstraint,
-//     bottomConstraint,
-//   ]];
+//  [NSLayoutConstraint activateConstraints:@[
+//    self.placePageLeadingConstraint,
+//    topConstraint,
+//    bottomConstraint,
+//  ]];
 //
-//   [self updatePlacePageContainerConstraints];
-// }
+//  [self updatePlacePageContainerConstraints];
+//}
 
 //- (void)setupSearchContainer
 //{
 //  if (self.searchContainer != nil)
+//  {
+//    [self.view bringSubviewToFront:self.searchContainer];
 //    return;
+//  }
 //  self.searchContainer = [[TouchTransparentView alloc] initWithFrame:self.view.bounds];
 //  [self.view addSubview:self.searchContainer];
 //  [self.view bringSubviewToFront:self.searchContainer];
@@ -213,19 +220,30 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //{
 //  const BOOL isLimitedWidth = IPAD || self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact;
 //
-//  if (IPAD && self.searchViewAvailableArea != nil)
+//  if (IPAD)
 //  {
-//    NSLayoutConstraint * leadingToSearchConstraint =
-//        [self.placePageContainer.leadingAnchor constraintEqualToAnchor:self.searchViewAvailableArea.trailingAnchor
-//                                                              constant:kPlacePageLeadingOffset];
-//    leadingToSearchConstraint.priority = UILayoutPriorityDefaultHigh;
-//    leadingToSearchConstraint.active = isLimitedWidth;
+//    if (self.searchViewAvailableArea)
+//    {
+//      NSLayoutConstraint * leadingToSearchConstraint = [self.placePageContainer.leadingAnchor
+//          constraintGreaterThanOrEqualToAnchor:self.searchViewAvailableArea.trailingAnchor
+//                                      constant:kPlacePageLeadingOffset];
+//      leadingToSearchConstraint.priority = UILayoutPriorityDefaultHigh;
+//      leadingToSearchConstraint.active = isLimitedWidth;
+//    }
+//    else if (self.navigationDashboardViewAvailableArea)
+//    {
+//      NSLayoutConstraint * leadingToNavigationDashboardConstraint = [self.placePageContainer.leadingAnchor
+//          constraintGreaterThanOrEqualToAnchor:self.navigationDashboardViewAvailableArea.trailingAnchor
+//                                      constant:kPlacePageLeadingOffset];
+//      leadingToNavigationDashboardConstraint.priority = UILayoutPriorityDefaultHigh;
+//      leadingToNavigationDashboardConstraint.active = isLimitedWidth;
+//    }
 //  }
 //
-//   [self.placePageWidthConstraint setActive:isLimitedWidth];
-//   [self.placePageTrailingConstraint setActive:!isLimitedWidth];
-//   [self.view layoutIfNeeded];
-// }
+//  [self.placePageWidthConstraint setActive:isLimitedWidth];
+//  [self.placePageTrailingConstraint setActive:!isLimitedWidth];
+//  [self.view layoutIfNeeded];
+//}
 
 - (void)dismissPlacePage
 {
@@ -235,13 +253,12 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //- (void)hideRegularPlacePage
 //{
 //  [self stopObservingTrackRecordingUpdates];
-//  [self.placePageVC closeAnimatedWithCompletion:^{
+//  [self.placePageVC closeWithCompletion:^{
 //    [self.placePageVC.view removeFromSuperview];
 //    [self.placePageVC willMoveToParentViewController:nil];
 //    [self.placePageVC removeFromParentViewController];
 //    self.placePageVC = nil;
 //    self.placePageContainer.hidden = YES;
-//    [self setPlacePageTopBound:0 duration:0];
 //  }];
 //}
 
@@ -255,12 +272,13 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //- (void)onMapObjectDeselected
 //{
 //  [self hidePlacePage];
-//
 //  BOOL const isSearching = self.searchManager.isSearching;
-//  BOOL const isNavigationDashboardHidden =
-//      [MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden;
+//  BOOL const isNavigationDashboardHidden = self.navigationDashboardManager.state == MWMNavigationDashboardStateHidden ||
+//                                           self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed;
 //  if (isSearching)
-//    [self.searchManager setPlaceOnMapSelected:!isNavigationDashboardHidden];
+//    [self.searchManager setPlaceOnMapSelected:!isNavigationDashboardHidden && PlacePageData.hasData];
+//  else if (isNavigationDashboardHidden)
+//    [self.navigationDashboardManager onSelectPlacePage:NO];
 //  // Always show the controls during the navigation or planning mode.
 //  if (!isNavigationDashboardHidden)
 //    self.controlsManager.hidden = NO;
@@ -268,8 +286,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 
 //- (void)onSwitchFullScreen
 //{
-//  BOOL const isNavigationDashboardHidden =
-//      MWMNavigationDashboardManager.sharedManager.state == MWMNavigationDashboardStateHidden;
+//  BOOL const isNavigationDashboardHidden = self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed;
 //  if (!self.searchManager.isSearching && isNavigationDashboardHidden)
 //  {
 //    if (!self.controlsManager.hidden)
@@ -282,6 +299,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //{
 //  if (!PlacePageData.hasData)
 //    return;
+//  [self.navigationDashboardManager onSelectPlacePage:YES];
 //  PlacePageData * data = [[PlacePageData alloc] initWithLocalizationProvider:[[OpeinigHoursLocalization alloc] init]];
 //  [self stopObservingTrackRecordingUpdates];
 //  [self showOrUpdatePlacePage:data];
@@ -289,7 +307,13 @@ NSString * const kSettingsSegue = @"Map2Settings";
 
 //- (void)onMapObjectUpdated
 //{
-//    [self.controlsManager updatePlacePage];
+//  if (!PlacePageData.hasData)
+//  {
+//    [self onMapObjectDeselected];
+//    return;
+//  }
+//  PlacePageData * data = [[PlacePageData alloc] initWithLocalizationProvider:[[OpeinigHoursLocalization alloc] init]];
+//  [self showOrUpdatePlacePage:data];
 //}
 
 - (void)checkMaskedPointer:(UITouch *)touch withEvent:(df::TouchEvent &)e
@@ -323,9 +347,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
   UITouch * touch = [allTouches objectAtIndex:0];
   CGPoint const pt = [touch locationInView:v];
 
-  // Check if the tap is inside searchView)
-//  if (self.searchManager.isSearching && type == df::TouchEvent::TOUCH_MOVE &&
-//      !CGRectContainsPoint(self.searchViewAvailableArea.frame, pt))
+//  if (self.searchManager.isSearching && type == df::TouchEvent::TOUCH_MOVE)
 //    [self.searchManager setMapIsDragging];
 
   e.SetTouchType(type);
@@ -425,8 +447,8 @@ NSString * const kSettingsSegue = @"Map2Settings";
 {
   [super viewWillAppear:animated];
 
-  // if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-  //   self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+//  if (self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed)
+//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
 
   [self updateStatusBarStyle];
   GetFramework().SetRenderingEnabled();
@@ -471,9 +493,9 @@ NSString * const kSettingsSegue = @"Map2Settings";
                                               : MWMMyPositionModePendingPosition];
   }
 
-  // if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-  //   self.controlsManager.menuState = self.controlsManager.menuRestoreState;
-  
+//  if (self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed)
+//    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
+
   // Added in https://github.com/organicmaps/organicmaps/pull/7333
   // After all users migrate to OAuth2 we can remove next code
   // [self migrateOAuthCredentials];
@@ -576,8 +598,8 @@ NSString * const kSettingsSegue = @"Map2Settings";
 {
   [super viewWillDisappear:animated];
 
-  // if ([MWMNavigationDashboardManager sharedManager].state == MWMNavigationDashboardStateHidden)
-  //   self.controlsManager.menuRestoreState = self.controlsManager.menuState;
+//  if (self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed)
+//    self.controlsManager.menuRestoreState = self.controlsManager.menuState;
   GetFramework().SetRenderingDisabled(false);
 }
 
@@ -621,6 +643,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 - (void)initialize
 {
   self.listeners = [NSHashTable<id<MWMLocationModeListener>> weakObjectsHashTable];
+  self.availableAreaInsetsMap = [NSMapTable weakToStrongObjectsMapTable];
 //  Framework & f = GetFramework();
 //  // TODO: Review and improve this code.
 //  f.SetPlacePageListeners([self]() { [self onMapObjectSelected]; }, [self]() { [self onMapObjectDeselected]; },
@@ -633,7 +656,6 @@ NSString * const kSettingsSegue = @"Map2Settings";
     // May be better solution would be multiobservers support in the C++ core.
 //    [self processMyPositionStateModeEvent:location_helpers::mwmMyPositionMode(mode)];
 //  });
-//  f.SetMyPositionPendingTimeoutListener([self] { [self processMyPositionPendingTimeout]; });
 
   self.userTouchesAction = UserTouchesActionNone;
   [[MWMBookmarksManager sharedManager] addObserver:self];
@@ -844,9 +866,19 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  return _trackRecordingManager;
 //}
 
+//- (MWMNavigationDashboardManager *)navigationDashboardManager
+//{
+//  return MWMNavigationDashboardManager.sharedManager;
+//}
+
 //- (UIView * _Nullable)searchViewAvailableArea
 //{
 //  return self.searchManager.viewController.availableAreaView;
+//}
+
+//- (UIView * _Nullable)navigationDashboardViewAvailableArea
+//{
+//  return [self navigationDashboardManager].availableAreaView;
 //}
 
 - (BOOL)hasNavigationBar
@@ -861,10 +893,52 @@ NSString * const kSettingsSegue = @"Map2Settings";
   return _downloadDialog;
 }
 
-- (void)setPlacePageTopBound:(CGFloat)bound duration:(double)duration
+- (void)updateVisibleAreaInsetsFor:(NSObject *)object insets:(UIEdgeInsets)insets
 {
-  self.visibleAreaBottom.constant = bound;
-  self.sideButtonsAreaBottom.constant = bound;
+  if (object == nil)
+    return;
+  [self.availableAreaInsetsMap setObject:[NSValue valueWithUIEdgeInsets:insets] forKey:object];
+  [self updateVisibleAreaBounds];
+}
+
+- (UIEdgeInsets)availableAreaInsets
+{
+  CGRect bounds = self.view.bounds;
+
+  CGFloat top = 0;
+  CGFloat left = 0;
+  CGFloat bottom = 0;
+  CGFloat right = 0;
+
+  for (id key in self.availableAreaInsetsMap)
+  {
+    NSValue * value = [self.availableAreaInsetsMap objectForKey:key];
+    if (!value)
+      continue;
+
+    UIEdgeInsets areaInsets = [value UIEdgeInsetsValue];
+
+    top = MAX(top, areaInsets.top);
+    left = MAX(left, areaInsets.left);
+    bottom = MAX(bottom, areaInsets.bottom);
+    right = MAX(right, areaInsets.right);
+  }
+
+  if (top + bottom >= CGRectGetHeight(bounds) || left + right >= CGRectGetWidth(bounds))
+    return UIEdgeInsetsZero;
+
+  return UIEdgeInsetsMake(top, left, bottom, right);
+}
+
+- (void)updateVisibleAreaBounds
+{
+  UIEdgeInsets availableAreaInsets = [self availableAreaInsets];
+
+  self.visibleAreaBottom.constant = availableAreaInsets.bottom;
+  self.visibleAreaLeading.constant = availableAreaInsets.left;
+  self.visibleAreaTrailing.constant = availableAreaInsets.right;
+  self.sideButtonsAreaBottom.constant = availableAreaInsets.bottom;
+  self.sideButtonsAreaCompactBottom.constant = availableAreaInsets.bottom;
 }
 
 + (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomLevel
@@ -880,10 +954,9 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //- (BookmarksCoordinator *)bookmarksCoordinator
 //{
 //  if (!_bookmarksCoordinator)
-//    _bookmarksCoordinator =
-//        [[BookmarksCoordinator alloc] initWithNavigationController:self.navigationController
-//                                                   controlsManager:self.controlsManager
-//                                                 navigationManager:[MWMNavigationDashboardManager sharedManager]];
+//    _bookmarksCoordinator = [[BookmarksCoordinator alloc] initWithNavigationController:self.navigationController
+//                                                                       controlsManager:self.controlsManager
+//                                                                     navigationManager:self.navigationDashboardManager];
 //  return _bookmarksCoordinator;
 //}
 

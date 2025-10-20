@@ -639,51 +639,11 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
     break;
   }
 
-  case Message::Type::RecoverContextDependentResources:
-  {
-    UpdateContextDependentResources();
-    break;
-  }
+  case Message::Type::RecoverContextDependentResources: UpdateContextDependentResources(); break;
 
-  case Message::Type::UpdateMapStyle:
-  {
-#ifdef BUILD_DESIGNER
-    classificator::Load();
-#endif  // BUILD_DESIGNER
+  case Message::Type::UpdateMapStyle: UpdateAll<SwitchMapStyleMessage>(); break;
 
-    // Clear all graphics.
-    for (RenderLayer & layer : m_layers)
-    {
-      layer.m_renderGroups.clear();
-      layer.m_isDirty = false;
-    }
-
-    // Must be recreated on map style changing.
-    CHECK(m_context != nullptr, ());
-    m_transitBackground = make_unique_dp<ScreenQuadRenderer>(m_context);
-
-    // Invalidate read manager.
-    {
-      BaseBlockingMessage::Blocker blocker;
-      m_commutator->PostMessage(ThreadsCommutator::ResourceUploadThread,
-                                make_unique_dp<InvalidateReadManagerRectMessage>(blocker), MessagePriority::Normal);
-      blocker.Wait();
-    }
-
-    // Delete all messages which can contain render states (and textures references inside).
-    auto f = [this]() { InstantMessageFilter([](ref_ptr<Message> msg) { return msg->ContainsRenderState(); }); };
-
-    // Notify backend renderer and wait for completion.
-    {
-      BaseBlockingMessage::Blocker blocker;
-      m_commutator->PostMessage(ThreadsCommutator::ResourceUploadThread,
-                                make_unique_dp<SwitchMapStyleMessage>(blocker, std::move(f)), MessagePriority::Normal);
-      blocker.Wait();
-    }
-
-    UpdateContextDependentResources();
-    break;
-  }
+  case Message::Type::VisualScaleChanged: UpdateAll<VisualScaleChangedMessage>(); break;
 
   case Message::Type::AllowAutoZoom:
   {
@@ -809,7 +769,7 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
           zoom = scales::GetAddNewPlaceScale();
         AddUserEvent(make_unique_dp<SetCenterEvent>(
             pt ? *pt : m_userEventStream.GetCurrentScreen().GlobalRect().Center(), zoom, true /* isAnim */,
-            false /* trackVisibleViewport */, nullptr /* parallelAnimCreator */));
+            true /* trackVisibleViewport */, nullptr /* parallelAnimCreator */));
       }
       else
       {
@@ -825,7 +785,7 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
     AddUserEvent(make_unique_dp<SetVisibleViewportEvent>(msg->GetRect()));
     m_myPositionController->SetVisibleViewport(msg->GetRect());
     m_myPositionController->UpdatePosition();
-    PullToBoundArea(false /* randomPlace */, false /* applyZoom */);
+    // PullToBoundArea(false /* randomPlace */, false /* applyZoom */);
     break;
   }
 
@@ -1020,6 +980,46 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
 
   default: ASSERT(false, ());
   }
+}
+
+template <class MessageT>
+void FrontendRenderer::UpdateAll()
+{
+#ifdef BUILD_DESIGNER
+  classificator::Load();
+#endif  // BUILD_DESIGNER
+
+  // Clear all graphics.
+  for (RenderLayer & layer : m_layers)
+  {
+    layer.m_renderGroups.clear();
+    layer.m_isDirty = false;
+  }
+
+  // Must be recreated on map style changing.
+  CHECK(m_context != nullptr, ());
+  m_transitBackground = make_unique_dp<ScreenQuadRenderer>(m_context);
+
+  // Invalidate read manager.
+  {
+    BaseBlockingMessage::Blocker blocker;
+    m_commutator->PostMessage(ThreadsCommutator::ResourceUploadThread,
+                              make_unique_dp<InvalidateReadManagerRectMessage>(blocker), MessagePriority::Normal);
+    blocker.Wait();
+  }
+
+  // Delete all messages which can contain render states (and textures references inside).
+  auto f = [this]() { InstantMessageFilter([](ref_ptr<Message> msg) { return msg->ContainsRenderState(); }); };
+
+  // Notify backend renderer and wait for completion.
+  {
+    BaseBlockingMessage::Blocker blocker;
+    m_commutator->PostMessage(ThreadsCommutator::ResourceUploadThread, make_unique_dp<MessageT>(blocker, std::move(f)),
+                              MessagePriority::Normal);
+    blocker.Wait();
+  }
+
+  UpdateContextDependentResources();
 }
 
 std::unique_ptr<threads::IRoutine> FrontendRenderer::CreateRoutine()
@@ -2055,7 +2055,7 @@ void FrontendRenderer::OnScaleEnded()
 void FrontendRenderer::OnAnimatedScaleEnded()
 {
   m_myPositionController->ResetBlockAutoZoomTimer();
-  PullToBoundArea(false /* randomPlace */, false /* applyZoom */);
+  // PullToBoundArea(false /* randomPlace */, false /* applyZoom */);
   m_firstLaunchAnimationInterrupted = true;
   m_selectionTrackInfo.reset();
 }

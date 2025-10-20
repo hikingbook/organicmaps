@@ -99,6 +99,31 @@ void Info::SetFromFeatureType(FeatureType & ft)
 
   // apply to all types after checks
   m_isHotel = ftypes::IsHotelChecker::Instance()(ft);
+
+  for (uint32_t id : ft.GetRelations())
+  {
+    auto const rel = ft.ReadRelation(id);
+    auto const type = rel.GetType();
+
+    using RR = feature::RouteRelationBase;
+    if (type == RR::Type::Bus || type == RR::Type::Tram || type == RR::Type::Trolleybus)
+      m_routes.push_back(RouteRef(rel.GetRef(), id));
+  }
+
+  base::SortUnique(m_routes, [](RouteRef const & l, RouteRef const & r)
+  {
+    if (l.m_iRef == r.m_iRef)
+      return l.m_ref < r.m_ref;
+    return l.m_iRef < r.m_iRef;
+  }, [](RouteRef const & l, RouteRef const & r) { return l.m_ref == r.m_ref; });
+}
+
+Info::RouteRef::RouteRef(std::string const & ref, uint32_t relID) : m_ref(ref), m_relID(relID)
+{
+  char * stop;
+  m_iRef = std::strtol(m_ref.c_str(), &stop, 10);
+  if (m_iRef == 0)
+    m_iRef = 1000000;
 }
 
 void Info::SetMercator(m2::PointD const & mercator)
@@ -116,13 +141,6 @@ std::string Info::FormatSubtitle(bool withTypes, bool withMainType) const
       result += feature::kFieldsSeparator;
     result += sv;
   };
-
-/// @todo(KK): Remove, when the category name will be displayed in the "Edit cell" on the Place Page on the specific
-/// platform.
-#if !defined(TARGET_OS_IPHONE)
-  if (IsBookmark())
-    append(m_bookmarkCategoryName);
-#endif
 
   if (!withTypes)
     return result;
@@ -239,11 +257,6 @@ void Info::SetTitlesForBookmark()
   m_uiTitle = GetBookmarkName();
 
   std::vector<std::string> subtitle;
-/// @todo(KK): Remove, when the category name will be displayed in the "edit" of the cell on the Place Page on the
-/// specific platform.
-#if !defined(TARGET_OS_IPHONE)
-  subtitle.push_back(m_bookmarkCategoryName);
-#endif
   if (!m_bookmarkData.m_featureTypes.empty())
     subtitle.push_back(GetLocalizedFeatureType(m_bookmarkData.m_featureTypes));
   m_uiSubtitle = strings::JoinStrings(subtitle, feature::kFieldsSeparator);
@@ -262,11 +275,6 @@ void Info::SetCustomName(std::string const & name)
 void Info::SetTitlesForTrack(Track const & track)
 {
   m_uiTitle = track.GetName();
-/// @todo(KK): Remove, when the category name will be displayed in the "Edit cell" on the Place Page on the specific
-/// platform.
-#if !defined(TARGET_OS_IPHONE)
-  m_uiSubtitle = m_bookmarkCategoryName;
-#endif
 
   std::vector<std::string> statistics;
   auto const length = track.GetLengthMeters();
@@ -450,6 +458,18 @@ void Info::SetRoadType(FeatureType & ft, RoadWarningMarkType type, std::string c
     if (!operatorName.empty())
       addSubtitle(operatorName);
   }
+}
+
+std::string Info::FormatRouteRefs() const
+{
+  std::string res;
+  for (auto const & r : m_routes)
+  {
+    if (!res.empty())
+      res += feature::kFieldsSeparator;
+    res += r.m_ref;
+  }
+  return res;
 }
 
 }  // namespace place_page
