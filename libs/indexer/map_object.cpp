@@ -7,11 +7,8 @@
 
 #include "geometry/mercator.hpp"
 
-#include "platform/distance.hpp"
 #include "platform/localization.hpp"
-#include "platform/measurement_utils.hpp"
 
-#include "base/logging.hpp"
 #include "base/string_utils.hpp"
 
 namespace osm
@@ -253,6 +250,11 @@ bool MapObject::IsBuilding() const
 bool MapObject::IsPublicTransportStop() const
 {
   return ftypes::IsPublicTransportStopChecker::Instance()(m_types);
+}
+
+std::string DebugPrint(MapObject const & mo)
+{
+  return DebugPrint(mo.m_featureID);
 }
 
 }  // namespace osm

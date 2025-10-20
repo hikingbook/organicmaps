@@ -3,10 +3,11 @@
 #import "ElevationProfileData+Core.h"
 #import "MWMMapNodeAttributes.h"
 #import "PlacePageBookmarkData+Core.h"
-#import "PlacePageButtonsData+Core.h"
 #import "PlacePageInfoData+Core.h"
+#import "PlacePageOSMContributionData+Core.h"
 #import "PlacePagePreviewData+Core.h"
 #import "PlacePageTrackData+Core.h"
+#import "StringUtils.h"
 
 #include <CoreApi/CoreApi.h>
 #include "platform/network_policy.hpp"
@@ -48,7 +49,6 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
   self = [super init];
   if (self)
   {
-    _buttonsData = [[PlacePageButtonsData alloc] initWithRawData:rawData()];
     _infoData = [[PlacePageInfoData alloc] initWithRawData:rawData() ohLocalization:localization];
 
     if (rawData().IsBookmark())
@@ -56,6 +56,9 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
 
     if (auto const & wikiDescription = rawData().GetWikiDescription(); !wikiDescription.empty())
       _wikiDescriptionHtml = @(("<html><body>" + wikiDescription + "</body></html>").c_str());
+
+    if (auto const & omsDescription = rawData().GetOSMDescription(); !omsDescription.empty())
+      _osmDescription = @(omsDescription.c_str());
 
     _roadType = convertRoadType(rawData().GetRoadType());
 
@@ -83,6 +86,10 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
     {
       _mapNodeAttributes = [[MWMStorage sharedStorage] attributesForCountry:@(rawData().GetCountryId().c_str())];
       [[MWMStorage sharedStorage] addObserver:self];
+      // Show the OSM contribution section only when the selected place has an associated country (hidden for oceans,
+      // etc.).
+      _osmContributionData = [[PlacePageOSMContributionData alloc] initWithRawData:rawData()
+                                                                     mapAttributes:_mapNodeAttributes];
     }
 
     _objectType = [self objectTypeFromRawData];
@@ -145,31 +152,6 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
 
 #pragma mark - Private
 
-- (void)updateBookmarkStatus
-{
-  if (!GetFramework().HasPlacePageInfo())
-    return;
-  if (rawData().IsBookmark())
-  {
-    _bookmarkData = [[PlacePageBookmarkData alloc] initWithRawData:rawData()];
-  }
-  else if (rawData().IsTrack())
-  {
-    __weak auto weakSelf = self;
-    _trackData =
-        [[PlacePageTrackData alloc] initWithRawData:rawData()
-                               onActivePointChanged:^(void) { [weakSelf handleActiveTrackSelectionPointChanged]; }];
-  }
-  else
-  {
-    _bookmarkData = nil;
-  }
-  _previewData = [[PlacePagePreviewData alloc] initWithRawData:rawData()];
-  _objectType = [self objectTypeFromRawData];
-  if (self.onBookmarkStatusUpdate != nil)
-    self.onBookmarkStatusUpdate();
-}
-
 - (PlacePageObjectType)objectTypeFromRawData
 {
   if (rawData().IsBookmark())
@@ -189,6 +171,8 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
   if ([countryId isEqualToString:self.mapNodeAttributes.countryId])
   {
     _mapNodeAttributes = [[MWMStorage sharedStorage] attributesForCountry:countryId];
+    _osmContributionData = [[PlacePageOSMContributionData alloc] initWithRawData:rawData()
+                                                                   mapAttributes:_mapNodeAttributes];
     if (self.onMapNodeStatusUpdate != nil)
       self.onMapNodeStatusUpdate();
   }

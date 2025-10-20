@@ -9,6 +9,7 @@ import androidx.car.app.navigation.model.Maneuver;
 import androidx.core.graphics.drawable.IconCompat;
 import app.organicmaps.sdk.routing.CarDirection;
 import app.organicmaps.sdk.routing.LaneWay;
+import app.organicmaps.sdk.util.RoundaboutExit;
 
 public final class RoutingHelpers
 {
@@ -31,20 +32,20 @@ public final class RoutingHelpers
   @NonNull
   public static LaneDirection createLaneDirection(@NonNull LaneWay laneWay, boolean isRecommended)
   {
-    int shape = LaneDirection.SHAPE_UNKNOWN;
-    switch (laneWay)
+    @LaneDirection.Shape
+    final int shape = switch (laneWay)
     {
-    case REVERSE: shape = LaneDirection.SHAPE_U_TURN_LEFT; break;
-    case SHARP_LEFT: shape = LaneDirection.SHAPE_SHARP_LEFT; break;
-    case LEFT: shape = LaneDirection.SHAPE_NORMAL_LEFT; break;
-    case SLIGHT_LEFT:
-    case MERGE_TO_LEFT: shape = LaneDirection.SHAPE_SLIGHT_LEFT; break;
-    case SLIGHT_RIGHT:
-    case MERGE_TO_RIGHT: shape = LaneDirection.SHAPE_SLIGHT_RIGHT; break;
-    case THROUGH: shape = LaneDirection.SHAPE_STRAIGHT; break;
-    case RIGHT: shape = LaneDirection.SHAPE_NORMAL_RIGHT; break;
-    case SHARP_RIGHT: shape = LaneDirection.SHAPE_SHARP_RIGHT; break;
-    }
+      case ReverseLeft -> LaneDirection.SHAPE_U_TURN_LEFT;
+      case SharpLeft -> LaneDirection.SHAPE_SHARP_LEFT;
+      case Left -> LaneDirection.SHAPE_NORMAL_LEFT;
+      case MergeToLeft, SlightLeft -> LaneDirection.SHAPE_SLIGHT_LEFT;
+      case Through -> LaneDirection.SHAPE_STRAIGHT;
+      case SlightRight, MergeToRight -> LaneDirection.SHAPE_SLIGHT_RIGHT;
+      case Right -> LaneDirection.SHAPE_NORMAL_RIGHT;
+      case SharpRight -> LaneDirection.SHAPE_SHARP_RIGHT;
+      case ReverseRight -> LaneDirection.SHAPE_U_TURN_RIGHT;
+      default -> LaneDirection.SHAPE_UNKNOWN;
+    };
 
     return LaneDirection.create(shape, isRecommended);
   }
@@ -73,8 +74,14 @@ public final class RoutingHelpers
     };
     final Maneuver.Builder builder = new Maneuver.Builder(maneuverType);
     if (maneuverType == Maneuver.TYPE_ROUNDABOUT_ENTER_AND_EXIT_CCW)
+    {
       builder.setRoundaboutExitNumber(roundaboutExitNum > 0 ? roundaboutExitNum : 1);
-    builder.setIcon(new CarIcon.Builder(IconCompat.createWithResource(context, carDirection.getTurnRes())).build());
+      builder.setIcon(
+          new CarIcon.Builder(IconCompat.createWithResource(context, RoundaboutExit.getRes(roundaboutExitNum)))
+              .build());
+    }
+    else
+      builder.setIcon(new CarIcon.Builder(IconCompat.createWithResource(context, carDirection.getTurnRes())).build());
     return builder.build();
   }
 }

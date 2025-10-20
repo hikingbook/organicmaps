@@ -1,5 +1,6 @@
 package app.organicmaps.car.screens;
 
+import android.location.Location;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,7 @@ import androidx.lifecycle.LifecycleOwner;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.car.CarAppService;
-import app.organicmaps.car.SurfaceRenderer;
+import app.organicmaps.car.renderer.Renderer;
 import app.organicmaps.car.screens.base.BaseMapScreen;
 import app.organicmaps.car.screens.settings.DrivingOptionsScreen;
 import app.organicmaps.car.util.Colors;
@@ -36,6 +37,7 @@ import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.routing.RoutingInfo;
 import app.organicmaps.sdk.sound.TtsPlayer;
 import app.organicmaps.sdk.util.LocationUtils;
+import app.organicmaps.sdk.util.StringUtils;
 import app.organicmaps.sdk.util.log.Logger;
 import java.util.List;
 import java.util.Objects;
@@ -51,7 +53,7 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
   @NonNull
   private final NavigationManager mNavigationManager;
   @NonNull
-  private final LocationListener mLocationListener = (unused) -> updateTrip();
+  private final LocationListener mLocationListener = this::updateTrip;
 
   @NonNull
   private Trip mTrip = new Trip.Builder().setLoading(true).build();
@@ -70,11 +72,10 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
 
   @NonNull
   @Override
-  public Template onGetTemplate()
+  protected Template onGetTemplateImpl()
   {
     final NavigationTemplate.Builder builder = new NavigationTemplate.Builder();
-    builder.setBackgroundColor(ThemeUtils.isNightMode(getCarContext()) ? Colors.NAVIGATION_TEMPLATE_BACKGROUND_NIGHT
-                                                                       : Colors.NAVIGATION_TEMPLATE_BACKGROUND_DAY);
+    builder.setBackgroundColor(Colors.NAVIGATION_TEMPLATE_BACKGROUND);
     builder.setActionStrip(createActionStrip());
     builder.setMapActionStrip(UiHelpers.createMapActionStrip(getCarContext(), getSurfaceRenderer()));
 
@@ -105,7 +106,11 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
   public void onAutoDriveEnabled()
   {
     Logger.i(TAG);
-    final JunctionInfo[] points = Framework.nativeGetRouteJunctionPoints();
+
+    /// @todo Pass maxDistM from RouteSimulationProvider?
+    /// Result speed between points will be in range (25, 50] km/h (for 1 second update interval).
+    final double kMaxDistM = 13.9; // 13.9 m/s == 50 km/h
+    final JunctionInfo[] points = Framework.nativeGetRouteJunctionPoints(kMaxDistM);
     if (points == null)
     {
       Logger.e(TAG, "Navigation has not started yet");
@@ -122,6 +127,8 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
     if (!mNavigationCancelled)
       CarToast.makeText(getCarContext(), getCarContext().getString(R.string.trip_finished), CarToast.LENGTH_LONG)
           .show();
+    NavigationService.stopService(getCarContext());
+    ThemeUtils.update(getCarContext());
     finish();
     getScreenManager().popToRoot();
   }
@@ -129,7 +136,7 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
   @Override
   public void onCreate(@NonNull LifecycleOwner owner)
   {
-    Logger.d(TAG);
+    super.onCreate(owner);
     mRoutingController.attach(this);
     ThemeUtils.update(getCarContext());
     mNavigationManager.setNavigationManagerCallback(this);
@@ -139,28 +146,28 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
     if (LocationUtils.checkFineLocationPermission(getCarContext()))
       NavigationService.startForegroundService(getCarContext(),
                                                CarAppService.getCarNotificationExtender(getCarContext()));
-    updateTrip();
+    updateTrip(/* location */ null);
   }
 
   @Override
   public void onResume(@NonNull LifecycleOwner owner)
   {
-    Logger.d(TAG);
+    super.onResume(owner);
     mRoutingController.attach(this);
   }
 
   @Override
   public void onDestroy(@NonNull LifecycleOwner owner)
   {
-    NavigationService.stopService(getCarContext());
+    super.onDestroy(owner);
     MwmApplication.from(getCarContext()).getLocationHelper().removeListener(mLocationListener);
 
     if (mRoutingController.isNavigating())
       mRoutingController.onSaveState();
     mRoutingController.detach();
-    ThemeUtils.update(getCarContext());
     mNavigationManager.navigationEnded();
     mNavigationManager.clearNavigationManagerCallback();
+    getSurfaceRenderer().hideSpeedLimit();
   }
 
   @NonNull
@@ -242,12 +249,20 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
     return ttsActionBuilder.build();
   }
 
-  private void updateTrip()
+  private void updateTrip(@Nullable Location location)
   {
     final RoutingInfo info = Framework.nativeGetRouteFollowingInfo();
     mTrip = RoutingUtils.createTrip(getCarContext(), info, RoutingController.get().getEndPoint());
     mNavigationManager.updateTrip(mTrip);
+    if (info != null)
+      updateSpeedLimit(info, location);
     invalidate();
+  }
+
+  private void updateSpeedLimit(@NonNull final RoutingInfo info, @Nullable Location location)
+  {
+    final boolean speedLimitExceeded = location != null && info.speedLimitMps < location.getSpeed();
+    getSurfaceRenderer().setSpeedLimit(StringUtils.nativeFormatSpeed(info.speedLimitMps), speedLimitExceeded);
   }
 
   /**
@@ -258,9 +273,9 @@ public class NavigationScreen extends BaseMapScreen implements RoutingController
     @NonNull
     private final CarContext mCarContext;
     @NonNull
-    private final SurfaceRenderer mSurfaceRenderer;
+    private final Renderer mSurfaceRenderer;
 
-    public Builder(@NonNull final CarContext carContext, @NonNull final SurfaceRenderer surfaceRenderer)
+    public Builder(@NonNull final CarContext carContext, @NonNull final Renderer surfaceRenderer)
     {
       mCarContext = carContext;
       mSurfaceRenderer = surfaceRenderer;

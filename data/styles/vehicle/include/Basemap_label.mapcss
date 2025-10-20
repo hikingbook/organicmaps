@@ -374,23 +374,26 @@ node|z17-[leisure=beach_resort],
 node|z17-[natural=beach]
 {text: name;font-size: 10;text-color: @poi_label;}
 
-/* 6.WATER */
+/* 6.WATER
+  Treat landuse=reservoir same as natural=water.
+  It is deprectated and will be replaced with natural=water=reservoir.
+*/
 
 node|z1-[place=ocean],
 node|z4-[place=sea],
-area|z10-[landuse=reservoir][bbox_area>=4000000],
-area|z10-[natural=water][!tunnel][bbox_area>=4000000],
+area|z10-13[landuse=reservoir][bbox_area>=4000000],
+area|z10-13[natural=water][!tunnel][bbox_area>=4000000],
+area|z14-[landuse=reservoir],
+area|z14-[natural=water][!tunnel],
 line|z11-[waterway=river],
 node|z14-[natural=bay],
 node|z16-[natural=wetland],
 area|z16-[natural=wetland],
-{text:name;text-color: @water_label;}
+{text: name; text-color: @water_label;}
 
-area|z10-[natural=water][!tunnel][bbox_area<4000000],
-{text:name;text-color: @water_label;}
-
-area|z12-[landuse=reservoir][bbox_area<4000000],
-{text:name;text-color: @water_label;}
+area|z10-13[landuse=reservoir][bbox_area<4000000],
+area|z10-13[natural=water][!tunnel][bbox_area<4000000],
+{text: none;}
 
 /*6.1 Area water(ocean,sea,lake,pond etc.)*/
 
@@ -406,30 +409,24 @@ node|z5-[place=ocean]
 node|z4-[place=sea]
 {font-size: 12;}
 
-area|z10-[landuse=reservoir][bbox_area>=4000000],
-area|z10-13[natural=water][!tunnel][bbox_area>=4000000],
+area|z10-[landuse=reservoir],
+area|z10-[natural=water][!tunnel],
 {font-size: 8.5;}
-area|z12-[landuse=reservoir][bbox_area<4000000],
-area|z10-13[natural=water][!tunnel][bbox_area<4000000],
-{text: none;}
 
 node|z14-15[natural=bay],
 node|z14-15[natural=strait],
-area|z14-15[natural=water][!tunnel][bbox_area>=4000000],
-{font-size: 9.5;}
-area|z14-15[natural=water][!tunnel][bbox_area<4000000],
+area|z14-15[natural=water][!tunnel],
+area|z14-15[landuse=reservoir],
 {font-size: 9.5;}
 
 node|z16-[natural=bay],
 node|z16-[natural=strait],
-node|z16-[natural=wetland],
-area|z16-[natural=water][!tunnel][bbox_area>=4000000],
 area|z16-[natural=wetland],
-{font-size: 10.5;}
-area|z16-[natural=water][!tunnel][bbox_area<4000000],
+area|z16-[natural=water][!tunnel],
+area|z16-[landuse=reservoir],
 {font-size: 10.5;}
 
-/*don't render caption in vehicle style*/
+/* don't render caption in vehicle style */
 area|z10-[natural=water][water=moat],
 area|z10-[natural=water][water=ditch],
 area|z10-[natural=water][water=drain],
@@ -451,28 +448,37 @@ line[waterway][tunnel]
 
 /* 7. LANDUSE */
 
-/*7.2 Hospital 7.3 University & Sport */
+/* 7.1 Industrial */
 
-/* 	7.1 Industrial */
+node|z16-[power=plant],
+node|z16-[power=station],
+node|z16-[power=substation],
+{icon-image: power-m.svg;}
+
+area|z17-[landuse=railway],
+area|z17-[landuse=quarry],
+node|z17-[landuse=landfill],
+node|z17-[landuse=railway],
+node|z17-[landuse=quarry],
+node|z17-[power=plant],
+node|z17-[power=station],
+node|z17-[power=substation],
+{text-offset: 1; text: name; font-size: 10; text-color: @poi_label;}
 
 
-
-area|z15-[landuse=railway],
-area|z15-[landuse=quarry],
-node|z15-[landuse=landfill],
-node|z15-[landuse=railway],
-node|z15-[landuse=quarry],
-{text: name;font-size: 10;text-color: @city_label;text-position: center;}
-
-/* 	7.4 Cemetery */
+/* 7.2 Hospital 7.3 University & Sport */
 
 
+/* 7.4 Cemetery */
 
-/* 	7.5 Pedestrian areas */
+
+/* 7.5 Pedestrian areas */
+
 area|z16-[place=square],
 {text: name;font-size: 10;text-color: @city_label;text-position: center;}
 
-/* 	7.6 Military */
+
+/* 7.6 Military */
 
 area|z16-[landuse=military],
 {icon-image: military-m.svg;}
@@ -481,8 +487,7 @@ area|z17-[landuse=military],
 {text-offset: 1; text: name; font-size: 10; text-color: @poi_label;}
 
 
-/* 	7.7 Commercial */
-
+/* 7.7 Commercial */
 
 
 /* 8.BUILDINGS */
@@ -536,6 +541,14 @@ node|z19-[building],
 area|z19-[building]::int_name,
 node|z19-[building]::int_name,
 {font-size: 13;}
+
+/* ToDo text: none; doesn't work here ..  */
+node|z18-[building=guardhouse],
+area|z18-[building=guardhouse],
+node|z18-[building=guardhouse]::int_name,
+area|z18-[building=guardhouse]::int_name,
+{text-offset: 1;}
+
 
 node|z18[addr:housenumber][addr:street],
 {font-size: 13;}

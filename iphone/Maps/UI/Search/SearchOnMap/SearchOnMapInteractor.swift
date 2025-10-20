@@ -2,17 +2,12 @@ final class SearchOnMapInteractor: NSObject {
 
   private let presenter: SearchOnMapPresenter
   private let searchManager: SearchManager.Type
-  private let routeManager: MWMRouter.Type
   private var isUpdatesDisabled = false
 
-  var routingTooltipSearch: SearchOnMapRoutingTooltipSearch = .none
-
   init(presenter: SearchOnMapPresenter,
-       searchManager: SearchManager.Type = Search.self,
-       routeManager: MWMRouter.Type = MWMRouter.self) {
+       searchManager: SearchManager.Type = Search.self) {
     self.presenter = presenter
     self.searchManager = searchManager
-    self.routeManager = routeManager
     super.init()
     searchManager.add(self)
   }
@@ -68,6 +63,9 @@ final class SearchOnMapInteractor: NSObject {
       searchManager.setSearchMode(searchModeForPresentationStep(step))
       return .updatePresentationStep(step)
 
+    case .updateVisibleAreaInsets(let insets):
+      MapViewController.shared()!.updateVisibleAreaInsets(for: self, insets: insets)
+      return .none
     case .closeSearch:
       return closeSearch()
     }
@@ -103,26 +101,7 @@ final class SearchOnMapInteractor: NSObject {
     switch result.itemType {
     case .regular:
       searchManager.save(query)
-      switch routingTooltipSearch {
-      case .none:
-        searchManager.showResult(at: result.index)
-      case .start:
-        let point = MWMRoutePoint(cgPoint: result.point,
-                                  title: result.titleText,
-                                  subtitle: result.addressText,
-                                  type: .start,
-                                  intermediateIndex: 0)
-        routeManager.build(from: point, bestRouter: false)
-      case .finish:
-        let point = MWMRoutePoint(cgPoint: result.point,
-                                  title: result.titleText,
-                                  subtitle: result.addressText,
-                                  type: .finish,
-                                  intermediateIndex: 0)
-        routeManager.build(to: point, bestRouter: false)
-      @unknown default:
-        fatalError("Unsupported routingTooltipSearch")
-      }
+      searchManager.showResult(at: result.index)
       return isiPad ? .none : .setSearchScreenHidden(true)
     case .suggestion:
       let suggestionQuery = SearchQuery(result.suggestion,
@@ -136,20 +115,18 @@ final class SearchOnMapInteractor: NSObject {
   }
 
   private func deselectPlaceOnMap() -> SearchOnMap.Response {
-    routingTooltipSearch = .none
     return .setSearchScreenHidden(false)
   }
 
   private func closeSearch() -> SearchOnMap.Response {
-    routingTooltipSearch = .none
     isUpdatesDisabled = true
     searchManager.clear()
     return .close
   }
 
-  private func searchModeForPresentationStep(_ step: ModalPresentationStep) -> SearchMode {
+  private func searchModeForPresentationStep(_ step: SearchOnMapModalPresentationStep) -> SearchMode {
     switch step {
-    case .fullScreen:
+    case .expanded:
       return isiPad ? .everywhereAndViewport : .everywhere
     case .halfScreen, .compact:
       return  .everywhereAndViewport

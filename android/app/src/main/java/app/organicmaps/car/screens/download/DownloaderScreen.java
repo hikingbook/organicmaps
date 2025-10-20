@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner;
 import app.organicmaps.R;
 import app.organicmaps.car.screens.ErrorScreen;
 import app.organicmaps.car.screens.base.BaseScreen;
+import app.organicmaps.downloader.MapManagerHelper;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.util.StringUtils;
@@ -101,6 +102,7 @@ class DownloaderScreen extends BaseScreen
   @Override
   public void onResume(@NonNull LifecycleOwner owner)
   {
+    super.onResume(owner);
     if (mSubscriptionSlot == 0)
       mSubscriptionSlot = MapManager.nativeSubscribe(mStorageCallback);
     for (final var item : mMissingMaps.entrySet())
@@ -113,6 +115,7 @@ class DownloaderScreen extends BaseScreen
   @Override
   public void onPause(@NonNull LifecycleOwner owner)
   {
+    super.onPause(owner);
     if (!mIsDownloadFailed)
       cancelMapsDownloading();
     if (mSubscriptionSlot != 0)
@@ -124,7 +127,7 @@ class DownloaderScreen extends BaseScreen
 
   @NonNull
   @Override
-  public Template onGetTemplate()
+  protected Template onGetTemplateImpl()
   {
     final MessageTemplate.Builder builder = new MessageTemplate.Builder(getText());
     builder.setLoading(true);
@@ -169,7 +172,7 @@ class DownloaderScreen extends BaseScreen
     mIsDownloadFailed = true;
     final ErrorScreen.Builder builder = new ErrorScreen.Builder(getCarContext())
                                             .setTitle(R.string.country_status_download_failed)
-                                            .setErrorMessage(MapManager.getErrorCodeStrRes(data.errorCode))
+                                            .setErrorMessage(MapManagerHelper.getErrorCodeStrRes(data.errorCode))
                                             .setPositiveButton(R.string.downloader_retry, null);
     if (!mIsCancelActionDisabled)
       builder.setNegativeButton(R.string.cancel, this::finish);

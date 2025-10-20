@@ -29,7 +29,6 @@
 
 #include "drape/pointers.hpp"
 #include "drape/support_manager.hpp"
-#include "drape/visual_scale.hpp"
 
 #include "coding/files_container.hpp"
 
@@ -239,7 +238,7 @@ bool Framework::CreateDrapeEngine(JNIEnv * env, jobject jSurface, int densityDpi
     m_oglContextFactory = make_unique_dp<dp::ThreadSafeFactory>(oglFactory.release());
   }
 
-  p.m_visualScale = static_cast<float>(dp::VisualScale(densityDpi));
+  p.m_visualScale = df::DPI2VS(densityDpi);
   // Drape doesn't care about Editor vs Api mode differences.
   p.m_isChoosePositionMode = m_isChoosePositionMode != ChoosePositionMode::None;
   p.m_hints.m_isFirstLaunch = firstLaunch;
@@ -265,8 +264,7 @@ bool Framework::IsDrapeEngineCreated() const
 
 void Framework::UpdateDpi(int dpi)
 {
-  ASSERT_GREATER(dpi, 0, ());
-  m_work.UpdateVisualScale(dp::VisualScale(dpi));
+  m_work.UpdateVisualScale(df::DPI2VS(dpi));
 }
 
 void Framework::Resize(JNIEnv * env, jobject jSurface, int w, int h)
@@ -1109,6 +1107,11 @@ JNIEXPORT jdoubleArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGetScree
   return jLatLon;
 }
 
+JNIEXPORT void JNICALL Java_app_organicmaps_sdk_Framework_nativeRestoreDownloadQueue(JNIEnv * env, jclass)
+{
+  frm()->GetStorage().RestoreDownloadQueue();
+}
+
 JNIEXPORT void JNICALL Java_app_organicmaps_sdk_Framework_nativeShowTrackRect(JNIEnv * env, jclass, jlong track)
 {
   frm()->ShowTrack(static_cast<kml::TrackId>(track));
@@ -1148,8 +1151,9 @@ JNIEXPORT jobjectArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGetMovab
 
 JNIEXPORT jobjectArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGetBookmarksFilesExts(JNIEnv * env, jclass)
 {
-  static std::array<std::string, 4> const kBookmarkExtensions = {
-      std::string{kKmzExtension}, std::string{kKmlExtension}, std::string{kKmbExtension}, std::string{kGpxExtension}};
+  static std::array<std::string, 5> const kBookmarkExtensions = {std::string{kKmzExtension}, std::string{kKmlExtension},
+                                                                 std::string{kKmbExtension}, std::string{kGpxExtension},
+                                                                 std::string{kGeoJsonExtension}};
 
   return jni::ToJavaStringArray(env, kBookmarkExtensions);
 }
@@ -1242,16 +1246,32 @@ JNIEXPORT jobject JNICALL Java_app_organicmaps_sdk_Framework_nativeGetRouteFollo
   return CreateRoutingInfo(env, info, rm);
 }
 
-JNIEXPORT jobjectArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGetRouteJunctionPoints(JNIEnv * env, jclass)
+JNIEXPORT jobjectArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGetRouteJunctionPoints(JNIEnv * env, jclass,
+                                                                                               jdouble maxDistM)
 {
-  vector<geometry::PointWithAltitude> junctionPoints;
-  if (!frm()->GetRoutingManager().RoutingSession().GetRouteJunctionPoints(junctionPoints))
+  vector<geometry::PointWithAltitude> points;
+  if (!frm()->GetRoutingManager().RoutingSession().GetRouteJunctionPoints(points))
   {
     LOG(LWARNING, ("Can't get the route junction points"));
     return nullptr;
   }
 
-  return CreateJunctionInfoArray(env, junctionPoints);
+  vector<geometry::PointWithAltitude> result;
+  result.reserve(points.size());
+  result.push_back(points[0]);
+  for (size_t i = 1; i < points.size(); ++i)
+  {
+    double const dist = ms::DistanceOnEarth(points[i - 1].ToLatLon(), points[i].ToLatLon());
+    if (dist > maxDistM)
+    {
+      int const steps = static_cast<int>(dist / maxDistM) + 1;
+      for (int s = 1; s < steps; ++s)
+        result.push_back(points[i - 1].Interpolate(points[i], static_cast<double>(s) / steps));
+    }
+    result.push_back(points[i]);
+  }
+
+  return CreateJunctionInfoArray(env, result);
 }
 
 JNIEXPORT jintArray JNICALL Java_app_organicmaps_sdk_Framework_nativeGenerateRouteAltitudeChartBits(
@@ -1618,6 +1638,16 @@ JNIEXPORT jstring JNICALL Java_app_organicmaps_sdk_Framework_nativeGetActiveObje
     return {};
 
   return jni::ToJavaString(env, g_framework->GetPlacePageInfo().FormatCuisines());
+}
+
+JNIEXPORT jstring JNICALL Java_app_organicmaps_sdk_Framework_nativeGetActiveObjectFormattedRouteRefs(JNIEnv * env,
+                                                                                                     jclass)
+{
+  ::Framework * frm = g_framework->NativeFramework();
+  if (!frm->HasPlacePageInfo())
+    return {};
+
+  return jni::ToJavaString(env, g_framework->GetPlacePageInfo().FormatRouteRefs());
 }
 
 JNIEXPORT void JNICALL Java_app_organicmaps_sdk_Framework_nativeSetVisibleRect(JNIEnv * env, jclass, jint left,

@@ -1,5 +1,6 @@
 package app.organicmaps.util;
 
+import static app.organicmaps.sdk.util.Utils.dimen;
 import static app.organicmaps.sdk.util.Utils.isIntentSupported;
 
 import android.app.Activity;
@@ -7,7 +8,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -39,10 +39,10 @@ import app.organicmaps.BuildConfig;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
+import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.Constants;
 import app.organicmaps.sdk.util.Distance;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.sdk.util.concurrency.UiThread;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.util.log.LogsManager;
@@ -293,9 +293,9 @@ public class Utils
                                                   String dimension, String unitText)
   {
     final SpannableStringBuilder res = new SpannableStringBuilder(dimension).append("\u00A0").append(unitText);
-    res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, size), false), 0, dimension.length(),
+    res.setSpan(new AbsoluteSizeSpan(dimen(context, size), false), 0, dimension.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, units), false), dimension.length(), res.length(),
+    res.setSpan(new AbsoluteSizeSpan(dimen(context, units), false), dimension.length(), res.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return res;
   }
@@ -304,9 +304,9 @@ public class Utils
   public static Spannable formatDistance(Context context, @NonNull Distance distance)
   {
     final SpannableStringBuilder res = new SpannableStringBuilder(distance.toString(context));
-    res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, R.dimen.text_size_nav_number), false), 0,
+    res.setSpan(new AbsoluteSizeSpan(dimen(context, R.dimen.text_size_nav_number), false), 0,
                 distance.mDistanceStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    res.setSpan(new AbsoluteSizeSpan(UiUtils.dimen(context, R.dimen.text_size_nav_dimension), false),
+    res.setSpan(new AbsoluteSizeSpan(dimen(context, R.dimen.text_size_nav_dimension), false),
                 distance.mDistanceStr.length(), res.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return res;
   }
@@ -495,5 +495,16 @@ public class Utils
   {
     final LocalTime time = LocalTime.now().plusSeconds(seconds);
     return StringUtils.formatUsingUsLocale("%d:%02d", time.getHour(), time.getMinute());
+  }
+
+  @NonNull
+  public static String getDonateUrl(@NonNull Context context)
+  {
+    final String url = Config.getDonateUrl();
+    // Enable donations by default if not Google or Huawei. Replace organicmaps.app/donate/ with localized page.
+    if ((url.isEmpty() && !BuildConfig.FLAVOR.equals("google") && !BuildConfig.FLAVOR.equals("huawei"))
+        || url.endsWith("organicmaps.app/donate/"))
+      return context.getString(R.string.translated_om_site_url) + "donate/";
+    return url;
   }
 }

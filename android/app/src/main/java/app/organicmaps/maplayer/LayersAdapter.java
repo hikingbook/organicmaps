@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import app.organicmaps.R;
 import app.organicmaps.sdk.util.SharedPropertiesUtils;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import java.util.List;
 
 public class LayersAdapter extends RecyclerView.Adapter<LayerHolder>
@@ -44,7 +44,8 @@ public class LayersAdapter extends RecyclerView.Adapter<LayerHolder>
     holder.mTitle.setText(item.getTitle());
     boolean isNewLayer = SharedPropertiesUtils.shouldShowNewMarkerForLayerMode(item.getMode());
     UiUtils.showIf(isNewLayer, holder.mNewMarker);
-    holder.mButton.setImageResource(isEnabled ? item.getEnabledStateDrawable() : item.getDisabledStateDrawable());
+    holder.mButton.setBackgroundResource(item.getDrawable());
+    holder.mButton.setActivated(isEnabled);
     holder.mListener = item::onClick;
   }
 
