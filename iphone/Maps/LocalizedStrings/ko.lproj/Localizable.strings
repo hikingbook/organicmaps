@@ -232,10 +232,10 @@
 "pref_tts_enable_title" = "음성 지침";
 
 /* Settings «Route» category: «Tts announce street names» title */
-"pref_tts_street_names_title" = "\"거리 이름 발표\"";
+"pref_tts_street_names_title" = "거리 이름 말하기";
 
 /* Settings «Route» category: «Tts announce street names» description */
-"pref_tts_street_names_description" = "\"사용하도록 설정하면 회전할 거리 또는 출구의 이름을 소리내어 말합니다.\"";
+"pref_tts_street_names_description" = "사용하도록 설정하면 회전할 거리 또는 출구의 이름을 소리 내어 말합니다.";
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "음성 언어";
@@ -516,7 +516,7 @@
 "invalid_username_or_password" = "잘못된 사용자 이름 또는 암호.";
 "login" = "로그인";
 "login_osm" = "OpenStreetMap에 로그인";
-"forgot_password" = "암호를 잊으 셨나요?";
+"forgot_password" = "암호를 잊으셨나요?";
 "osm_account" = "OSM 계정";
 "logout" = "로그 아웃";
 
@@ -624,7 +624,7 @@
 "km" = "km";
 
 /* abbreviation for kilometers per hour */
-"kilometers_per_hour" = "km/시";
+"kilometers_per_hour" = "km/h";
 
 /* abbreviation for mile(s) */
 "mi" = "mi";
@@ -632,7 +632,7 @@
 /* A unit of measure */
 "ft" = "풋";
 "miles_per_hour" = "mph";
-"hour" = "t";
+"hour" = "h";
 "minute" = "min";
 "day" = "일";
 "placepage_more_button" = "자세히";
@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "끝내기";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "검색을 사용하거나 지도를 탭하여 경로 시작점을 추가합니다";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "검색을 사용하거나 지도를 탭하여 목적지 지점을 추가합니다";
 "planning_route_manage_route" = "경로 관리";
 "button_plan" = "계획";
 "placepage_remove_stop" = "정류장 제거";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "트랙 기록 중지";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "저장하지 않고 중지";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "녹화 계속하기";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "북마크 및 트랙에 저장하시겠습니까?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "경로가 비어 있음 - 저장할 항목이 없음";
 "edit_track" = "경로 편집";
@@ -1065,12 +1051,19 @@
 "button_layer_cycling" = "Cycling";
 
 /* Settings/Bookmark Text Placement */
-"bookmarks_text_placement_title" = "Bookmark names on the map";
-"bookmarks_text_placement_description" = "If there are too many bookmarks, displaying their names on the map may slow down the app.";
-"show_to_the_right" = "Show to the right";
+"bookmarks_text_placement_title" = "지도에 북마크 이름 표시";
+"bookmarks_text_placement_description" = "북마크가 너무 많을 경우 지도에 북마크 이름을 표시하면 앱 속도가 느려질 수 있습니다.";
+"show_to_the_right" = "오른쪽에 표시";
 "right" = "Right";
-"show_at_the_bottom" = "Show at the bottom";
+"show_at_the_bottom" = "하단에 표시";
 "bottom" = "Bottom";
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "To display routes, maps must be updated.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "OpenStreetMap에 기여하기";
+"contribute_to_osm_add_place" = "장소 추가";
+"contribute_to_osm_update_map" = "기여하려면 지도를 업데이트하세요";
+"contribute_to_osm_update_map_description" = "OpenStreetMap 데이터에 기여하기 전에 %@ 지도를 최신 버전으로 업데이트해야 합니다";
+"placepage_replace_stop" = "Replace Stop";

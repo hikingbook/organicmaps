@@ -13,10 +13,11 @@ import androidx.fragment.app.FragmentFactory;
 import app.organicmaps.sdk.MapSource;
 
 import app.organicmaps.R;
+import app.organicmaps.downloader.MapManagerHelper;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.routing.RoutingController;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.widget.WheelProgressView;
 import java.util.HashSet;
 import java.util.List;
@@ -44,7 +45,7 @@ public class RoutingMapsDownloadFragment extends BaseRoutingErrorDialogFragment
       mMapsArray[i] = item.id;
     }
 
-    MapManager.startDownload(MapSource.ORGANIC_MAPS, mMapsArray);
+    MapManagerHelper.startDownload(MapSource.ORGANIC_MAPS, mMapsArray);
   }
 
   private View setupFrame(View frame)

@@ -41,10 +41,91 @@ area|z12-[natural=geyser],
 node|z14-[natural=beach],
 area|z14-[natural=beach],
 area|z13-[natural=bare_rock][name],
+
+/* z12- for castle and fort are inherited from the default style */
+node|z15-[historic=aircraft],
+node|z15-[historic=tank],
+node|z15-[historic=wreck],
+node|z15-[historic=locomotive],
+node|z15-[historic=ruins],
+node|z15-[historic=anchor],
+node|z15-[historic=cannon],
+node|z15-[historic=stone],
+/* z16- are inherited from the main style */
+node|z15[historic=boundary_stone],
+node|z15-16[historic=gallows],
+node|z15-16[historic=pillory],
+node|z15[historic=tomb],
+node|z15[historic=wayside_cross],
+node|z15-16[historic=wayside_shrine],
+node|z15[man_made=cross],
 {text: name;text-color: @natural_label;text-position: center;text-offset: 1;font-size: 13; text-halo-opacity: 0.8;text-halo-color: @label_halo_light;text-halo-radius:1;} /* Hikingbook */
-node|z10-[natural=peak][!name],
+
+/*
+  ToDo: Looks like a kothic bug, but we can't combine [name] and [!name] selectors with one value.
+        Next entry produce incorrect result
+node|z12-[historic=archaeological_site][name],
+node|z14-[historic=archaeological_site][!name],
+{icon-image: archaeological-site-m.svg;}
+or
+node|z12-[historic=archaeological_site][name],
+node|z14-[historic=archaeological_site],
+{icon-image: archaeological-site-m.svg;}
+*/
+
+node|z12-13[historic=archaeological_site][name],
+{icon-image: archaeological-site-m.svg; text: name; text-color: @poi_label; text-position: center; text-offset: 1; font-size: 10;}
+node|z14-[historic=archaeological_site],
+{icon-image: archaeological-site-m.svg; text: name; text-color: @poi_label; text-position: center; text-offset: 1; font-size: 10;}
+
+node|z11-[natural=peak][!name],
 area|z13-[natural=bare_rock][!name],
 {text: none;}
+
+node|z15-[historic=ruins][name],
+{icon-image: remains-m.svg;}
+node|z17-[historic=ruins][!name],
+{text: none; icon-image: remains-m.svg;}
+
+node|z15-[historic=aircraft],
+{icon-image: aircraft-m.svg;}
+
+node|z15-[historic=tank],
+{icon-image: tank-m.svg;}
+
+node|z15-[historic=wreck],
+{icon-image: wreck-m.svg;}
+
+node|z15-[historic=locomotive],
+{icon-image: locomotive-m.svg;}
+
+node|z15-[historic=cannon],
+{icon-image: cannon-m.svg;}
+
+node|z15-[historic=anchor],
+{icon-image: anchor-m.svg;}
+
+node|z15-[historic=stone],
+{icon-image: stone-m.svg;}
+
+/* z16- are inherited from the main style */
+node|z15[historic=boundary_stone],
+node|z15[historic=gallows],
+node|z15[historic=pillory],
+{icon-image: monument-m.svg;}
+
+node|z15[man_made=cross],
+{icon-image: cross-m.svg;}
+
+node|z15[historic=tomb],
+{icon-image: tomb-m.svg;}
+
+node|z15[historic=wayside_cross],
+{icon-image: wayside_cross-m.svg;}
+
+node|z15[historic=wayside_shrine],
+{icon-image: wayside_shrine-m.svg;}
+
 
 node|z11-17[boundary=national_park],
 area|z11-17[boundary=national_park],
@@ -114,18 +195,18 @@ area|z16-[natural=volcano],
 {font-size: 12;}
 
 node|z10-12[natural=peak][name],
-{icon-image: peakt-s.svg;icon-min-distance: 10;}
+{icon-image: peak-s.svg;icon-min-distance: 10;}
 node|z13-[natural=peak][name],
-{icon-image: peakt-m.svg;font-size: 13;}
+{icon-image: peak-m.svg;font-size: 13;}
 node|z16-[natural=peak][name],
 {font-size: 13;}    /* Hikingbook */
 node|z13-15[natural=peak][!name],
-{icon-image: peakt-s.svg;}
+{icon-image: peak-s.svg;}
 node|z16-[natural=peak][!name],
-{icon-image: peakt-m.svg;}
+{icon-image: peak-m.svg;}
 
 node|z14-[natural=rock],
-{icon-image: peakt-s.svg; font-size: 11;}
+{icon-image: peak-s.svg; font-size: 11;}
 node|z16-[natural=rock],
 {font-size: 12;}
 
@@ -329,11 +410,11 @@ node|z13-[tourism=information][information=office],
 node|z13-[tourism=information][information=visitor_centre],
 {icon-image: information-office-m.svg;}
 node|z15-[tourism=information][information=board],
-{icon-image: board.svg;}
+{icon-image: board-m.svg;}
 node|z15-[tourism=information][information=guidepost],
-{icon-image: guidepost.svg;}
+{icon-image: guidepost-m.svg;}
 node|z15-[tourism=information][information=map],
-{icon-image: map.svg;}
+{icon-image: map-m.svg;}
 
 node|z14-[amenity=ranger_station],
 {icon-image: ranger-station-m.svg; icon-min-distance: 10;}
@@ -385,13 +466,18 @@ area|z16-[highway=elevator],
 node|z16-[highway=ladder],
 {icon-image: ladder-s.svg;}
 
+node|z13-[power=portal],
 node|z13[power=tower],
-{icon-image: mast-m.svg;}
+{icon-image: mast-s.svg;}
+node|z14-[power=portal],
 node|z14-[power=tower],
+{icon-image: power-tower-s.svg;}
+node|z16-[power=portal],
+node|z16-[power=tower],
 {icon-image: power-tower-m.svg;}
 node|z15-[power=pole],
 node|z15-[man_made=utility_pole],
-{icon-image: mast-m.svg;}
+{icon-image: mast-s.svg;}
 
 node|z13-[power=generator][generator:source=wind],
 area|z13-[power=generator][generator:source=wind],
@@ -409,29 +495,31 @@ node|z13-[man_made=mast],
 {icon-image: dot-m.svg;}
 node|z14-[man_made=flagpole],
 node|z14-[man_made=mast],
+{icon-image: mast-s.svg;}
+node|z16-[man_made=flagpole],
+node|z16-[man_made=mast],
 {icon-image: mast-m.svg;}
 
-/* TODO: needs a better icon */
 node|z12-[man_made=communications_tower],
-{icon-image: mast-m.svg;}
+{icon-image: mast-s.svg;}
 node|z13-[man_made=communications_tower],
 {font-size: 11;}
 node|z14-[man_made=communications_tower],
-{icon-image: power-tower-m.svg;}
+{icon-image: tower-communication-m.svg;}
 node|z16-[man_made=communications_tower],
 {font-size: 12;}
 
-node|z14-[man_made=tower],
-node|z14-[man_made=tower][tower:type=communication],
-node|z13-[man_made=flare],
-{icon-image: mast-m.svg; font-size: 11;}
-
 node|z13-[man_made=tower],
-{icon-image: mast-m.svg; font-size: 11;}
+node|z13-[man_made=flare],
+{icon-image: mast-s.svg; font-size: 11;}
+
 node|z14-[man_made=tower],
-{icon-image: storage-tank.svg;}
+{icon-image: tower-m.svg;}
 node|z16-[man_made=tower],
 {font-size: 12;}
+
+node|z14-[man_made=tower][tower:type=communication],
+{icon-image: tower-communication-m.svg;}
 
 node|z14-[amenity=hunting_stand],
 {icon-image: hunting-tower-m.svg; font-size: 11;}
@@ -454,7 +542,7 @@ node|z13-[man_made=water_tower],
 node|z14-[man_made=silo],
 node|z14-[man_made=storage_tank],
 node|z14-[man_made=water_tower],
-{icon-image: storage-tank.svg; font-size: 11;}
+{icon-image: storage-tank-m.svg; font-size: 11;}
 node|z16-[man_made=silo],
 node|z16-[man_made=storage_tank],
 node|z16-[man_made=water_tower],

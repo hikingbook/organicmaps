@@ -4,6 +4,7 @@
 #import "MWMLocationHelpers.h"
 #import "MWMLocationObserver.h"
 #import "MWMMapViewControlsManager+AddPlace.h"
+#import "MWMNavigationDashboardManager.h"
 #import "MWMRoutePoint+CPP.h"
 #import "MWMStorage+UI.h"
 #import "Hikingbook-Swift-Header.h"
@@ -30,6 +31,11 @@ using namespace storage;
   return GetFramework().HasPlacePageInfo();
 }
 
+- (SearchOnMapManager *)searchManager
+{
+  return MapViewController.sharedController.searchManager;
+}
+
 - (void)closePlacePage
 {
   GetFramework().DeactivateMapSelection();
@@ -39,6 +45,7 @@ using namespace storage;
 {
   MWMRoutePoint * point = [self routePoint:data withType:MWMRoutePointTypeStart intermediateIndex:0];
   [MWMRouter buildFromPoint:point bestRouter:YES];
+  [self.searchManager close];
   [self closePlacePage];
 }
 
@@ -52,13 +59,36 @@ using namespace storage;
 
   MWMRoutePoint * point = [self routePoint:data withType:MWMRoutePointTypeFinish intermediateIndex:0];
   [MWMRouter buildToPoint:point bestRouter:YES];
+  [self.searchManager close];
   [self closePlacePage];
 }
 
 - (void)routeAddStop:(PlacePageData *)data
 {
-  MWMRoutePoint * point = [self routePoint:data withType:MWMRoutePointTypeIntermediate intermediateIndex:0];
-  [MWMRouter addPointAndRebuild:point];
+  MWMNavigationDashboardManager * navigationManager = [MWMNavigationDashboardManager sharedManager];
+  if (navigationManager.shouldAppendNewPoints)
+  {
+    MWMRoutePoint * newFinishPoint = [self routePoint:data withType:MWMRoutePointTypeFinish intermediateIndex:0];
+    [MWMRouter continueRouteToPointAndRebuild:newFinishPoint];
+  }
+  else if (navigationManager.selectedRoutePoint)
+  {
+    MWMRoutePoint * pointToReplace = navigationManager.selectedRoutePoint;
+    MWMRoutePoint * withPoint = [self routePoint:data
+                                        withType:pointToReplace.type
+                               intermediateIndex:pointToReplace.intermediateIndex];
+    [MWMRouter replacePointAndRebuild:pointToReplace withPoint:withPoint];
+    pointToReplace = nil;
+  }
+  else
+  {
+    MWMRoutePoint * pointBeforeFinish = [self routePoint:data
+                                                withType:MWMRoutePointTypeIntermediate
+                                       intermediateIndex:0];
+    [MWMRouter addPointAndRebuild:pointBeforeFinish];
+  }
+
+  [self.searchManager close];
   [self closePlacePage];
 }
 
@@ -167,7 +197,7 @@ using namespace storage;
   kml::BookmarkData bmData;
   bmData.m_name = info.FormatNewBookmarkName();
   bmData.m_color.m_predefinedColor = f.LastEditedBMColor();
-  bmData.m_point = info.GetMercator();
+  bmData.m_point = location_helpers::ToMercator(data.locationCoordinate);
   if (info.IsFeature())
     SaveFeatureTypes(info.GetTypes(), bmData);
   auto editSession = bmManager.GetEditSession();
@@ -177,7 +207,6 @@ using namespace storage;
   buildInfo.m_match = place_page::BuildInfo::Match::Everything;
   buildInfo.m_userMarkId = bookmark->GetId();
   f.UpdatePlacePageInfoForCurrentSelection(buildInfo);
-  [data updateBookmarkStatus];
 }
 
 - (void)updateBookmark:(PlacePageData *)data color:(MWMBookmarkColor)color category:(MWMMarkGroupID)category
@@ -189,7 +218,6 @@ using namespace storage;
                              color:color
                        description:data.bookmarkData.bookmarkDescription];
   [MWMFrameworkHelper updatePlacePageData];
-  [data updateBookmarkStatus];
 }
 
 - (void)removeBookmark:(PlacePageData *)data
@@ -197,7 +225,6 @@ using namespace storage;
   auto & f = GetFramework();
   f.GetBookmarkManager().GetEditSession().DeleteBookmark(data.bookmarkData.bookmarkId);
   [MWMFrameworkHelper updateAfterDeleteBookmark];
-  [data updateBookmarkStatus];
 }
 
 - (void)updateTrack:(PlacePageData *)data color:(UIColor *)color category:(MWMMarkGroupID)category
@@ -205,7 +232,6 @@ using namespace storage;
   MWMBookmarksManager * bookmarksManager = [MWMBookmarksManager sharedManager];
   [bookmarksManager updateTrack:data.trackData.trackId setGroupId:category color:color title:data.previewData.title];
   [MWMFrameworkHelper updatePlacePageData];
-  [data updateBookmarkStatus];
 }
 
 - (void)removeTrack:(PlacePageData *)data
@@ -242,7 +268,6 @@ using namespace storage;
                                           if (!edited)
                                             return;
                                           [MWMFrameworkHelper updatePlacePageData];
-                                          [data updateBookmarkStatus];
                                         }];
   [[MapViewController sharedController].navigationController pushViewController:editTrackController animated:YES];
 }

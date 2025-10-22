@@ -184,8 +184,17 @@ area|z10-17[boundary=national_park],
 area|z10-17[boundary=protected_area][protect_class=1],
 {fill-opacity: 0.2; fill-color: @green6;}
 
+line|z10-[boundary=national_park],
+line|z10-[boundary=protected_area][protect_class=1],
+{width: 2; color: @green6;}
+
 area|z10-16[boundary=aboriginal_lands],
-{fill-opacity: 0.07; fill-color: @indigenous_lands;}
+{fill-opacity: 0.1; fill-color: @indigenous_lands;}
+
+line|z10-[boundary=aboriginal_lands],
+{width: 2; color: @indigenous_lands;}
+
+/* ToDo: Assume that military areas already have fences? */
 
 area|z10-[landuse=military][military=danger_area],
 {fill-opacity: 1.0; fill-color: @military;}
@@ -358,6 +367,9 @@ area|z14-[landuse=landfill],
 area|z14-[landuse=railway],
 area|z14-[landuse=quarry],
 area|z14-[landuse=garages],
+area|z15-[power=plant],
+area|z15-[power=station],
+area|z15-[power=substation],
 {fill-color: @industrial; fill-opacity: 1;}
 
 /* 7.2 Hospital */
@@ -578,10 +590,13 @@ line|z18-[barrier=wall],
 {width: 1.5; opacity: 0.8;}
 
 line|z16-[barrier=guard_rail],
+line|z16-[barrier=jersey_barrier],
 {color: @fence; width: 1; opacity: 0.3;}
 line|z17[barrier=guard_rail],
+line|z17[barrier=jersey_barrier],
 {width: 1.3; opacity: 0.4;}
 line|z18-[barrier=guard_rail],
+line|z18-[barrier=jersey_barrier],
 {width: 1.5; opacity: 0.6;}
 
 

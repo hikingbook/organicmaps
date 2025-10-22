@@ -7,6 +7,7 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
   private var interactor: PlacePageInteractor
   private let storyboard: UIStoryboard
   private var lastLocation: CLLocation?
+  private weak var editBookmarkInteractor: PlacePageEditBookmarkAndTrackSectionInteractor?
 
   weak var presenter: PlacePagePresenterProtocol?
 
@@ -36,17 +37,23 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
     return vc
   }()
 
-  private lazy var wikiDescriptionViewController: WikiDescriptionViewController = {
-    let vc = storyboard.instantiateViewController(ofType: WikiDescriptionViewController.self)
-    vc.view.isHidden = true
-    vc.delegate = interactor
-    return vc
+  private lazy var osmDescriptionViewController: UIViewController? = {
+    guard let osmDescription = placePageData.osmDescription else { return nil }
+    return PlacePageExpandableDetailsSectionBuilder.buildOSMDescriptionSection(osmDescription)
   }()
 
-  private lazy var editBookmarkViewController: PlacePageEditBookmarkOrTrackViewController = {
-    let vc = storyboard.instantiateViewController(ofType: PlacePageEditBookmarkOrTrackViewController.self)
+  private lazy var wikiDescriptionViewController: UIViewController? = {
+    guard let wikiDescriptionHtml = placePageData.wikiDescriptionHtml else { return nil }
+    let showLinkButton = placePageData.infoData?.wikipedia != nil
+    return PlacePageExpandableDetailsSectionBuilder.buildWikipediaSection(wikiDescriptionHtml,
+                                                                          showLinkButton: showLinkButton,
+                                                                          delegate: interactor)
+  }()
+
+  private lazy var editBookmarkViewController: PlacePageExpandableDetailsSectionViewController = {
+    let vc = PlacePageExpandableDetailsSectionBuilder.buildEditBookmarkAndTrackSection(data: nil, delegate: interactor)
     vc.view.isHidden = true
-    vc.delegate = interactor
+    editBookmarkInteractor = vc.interactor as? PlacePageEditBookmarkAndTrackSectionInteractor
     return vc
   }()
 
@@ -64,18 +71,18 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
     return ProductsViewController(viewModel: viewModel)
   }
 
-  private lazy var buttonsViewController: PlacePageButtonsViewController = {
-    let vc = storyboard.instantiateViewController(ofType: PlacePageButtonsViewController.self)
-    vc.buttonsData = placePageData.buttonsData!
-    vc.delegate = interactor
-    return vc
+  private lazy var buttonsViewController: PlacePageOSMContributionViewController = {
+    PlacePageOSMContributionViewController(data: placePageData.osmContributionData!, delegate: interactor)
   }()
 
   private lazy var actionBarViewController: ActionBarViewController = {
     let vc = storyboard.instantiateViewController(ofType: ActionBarViewController.self)
+    let navigationManager = MWMNavigationDashboardManager.shared()
     vc.placePageData = placePageData
+    vc.isRoutePlanning = navigationManager.state != .closed
     vc.canAddStop = MWMRouter.canAddIntermediatePoint()
-    vc.isRoutePlanning = MWMNavigationDashboardManager.shared().state != .hidden
+    vc.canReplaceStop = navigationManager.selectedRoutePoint != nil
+    vc.canRouteToAndFrom = !navigationManager.shouldAppendNewPoints && navigationManager.selectedRoutePoint == nil
     vc.delegate = interactor
     return vc
   }()
@@ -95,14 +102,16 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
 
     viewControllers.append(editBookmarkViewController)
     if let bookmarkData = placePageData.bookmarkData {
-      editBookmarkViewController.data = .bookmark(bookmarkData)
       editBookmarkViewController.view.isHidden = false
+      editBookmarkInteractor?.data = .bookmark(bookmarkData)
     }
 
-    viewControllers.append(wikiDescriptionViewController)
-    if let wikiDescriptionHtml = placePageData.wikiDescriptionHtml {
-      wikiDescriptionViewController.descriptionHtml = wikiDescriptionHtml
-      wikiDescriptionViewController.view.isHidden = false
+    if let osmDescriptionViewController {
+      viewControllers.append(osmDescriptionViewController)
+    }
+
+    if let wikiDescriptionViewController {
+      viewControllers.append(wikiDescriptionViewController)
     }
 
     if placePageData.infoData != nil {
@@ -113,15 +122,8 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
       viewControllers.append(productsViewController)
     }
 
-    if placePageData.buttonsData != nil {
+    if placePageData.osmContributionData != nil {
       viewControllers.append(buttonsViewController)
-    }
-
-    placePageData.onBookmarkStatusUpdate = { [weak self] in
-      guard let self = self else { return }
-      self.actionBarViewController.updateBookmarkButtonState(isSelected: self.placePageData.bookmarkData != nil)
-      self.previewViewController.placePagePreviewData = self.placePageData.previewData
-      self.updateBookmarkRelatedSections()
     }
 
     LocationManager.add(observer: self)
@@ -136,12 +138,12 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
     placePageData.onMapNodeStatusUpdate = { [weak self] in
       guard let self = self else { return }
       self.actionBarViewController.updateDownloadButtonState(self.placePageData.mapNodeAttributes!.nodeStatus)
+      if let buttonsData = self.placePageData.osmContributionData {
+        self.buttonsViewController.buttonsData = buttonsData
+      }
       switch self.placePageData.mapNodeAttributes!.nodeStatus {
-      case .onDisk, .onDiskOutOfDate, .undefined:
+      case .onDisk, .onDiskOutOfDate, .undefined, .inQueue:
         self.actionBarViewController.resetButtons()
-        if self.placePageData.buttonsData != nil {
-          self.buttonsViewController.buttonsEnabled = true
-        }
       default:
         break
       }
@@ -161,37 +163,14 @@ class PlacePageCommonLayout: NSObject, IPlacePageLayout {
     guard let preview = previewViewController.view else {
       return steps
     }
+    preview.layoutIfNeeded()
     let previewFrame = scrollView.convert(preview.bounds, from: preview)
     steps.append(.preview(previewFrame.maxY - scrollHeight))
-    if !compact {
-      if placePageData.isPreviewPlus {
-        steps.append(.previewPlus(-scrollHeight * 0.55))
-      }
-      steps.append(.expanded(-scrollHeight * 0.3))
+    if !compact, placePageData.isPreviewPlus {
+      steps.append(.previewPlus(-scrollHeight * 0.55))
     }
-    steps.append(.full(0))
+    steps.append(.full)
     return steps
-  }
-}
-
-// MARK: - PlacePageData async callbacks for loaders
-
-extension PlacePageCommonLayout {
-  func updateBookmarkRelatedSections() {
-    var isBookmark = false
-    if let bookmarkData = placePageData.bookmarkData {
-      editBookmarkViewController.data = .bookmark(bookmarkData)
-      isBookmark = true
-    }
-    if let title = placePageData.previewData.title, let headerViewController = headerViewControllers.compactMap({ $0 as? PlacePageHeaderViewController }).first {
-      let secondaryTitle = placePageData.previewData.secondaryTitle
-      headerViewController.setTitle(title, secondaryTitle: secondaryTitle)
-      placePageNavigationViewController.setTitle(title, secondaryTitle: secondaryTitle)
-    }
-    presenter?.layoutIfNeeded()
-    UIView.animate(withDuration: kDefaultAnimationDuration) { [unowned self] in
-      self.editBookmarkViewController.view.isHidden = !isBookmark
-    }
   }
 }
 

@@ -32,7 +32,6 @@
 #include "editor/new_feature_categories.hpp"
 #include "editor/osm_editor.hpp"
 
-#include "indexer/caching_rank_table_loader.hpp"
 #include "indexer/data_source.hpp"
 #include "indexer/data_source_helpers.hpp"
 #include "indexer/map_object.hpp"
@@ -411,7 +410,7 @@ public:
   struct DrapeCreationParams
   {
     dp::ApiVersion m_apiVersion = dp::ApiVersion::OpenGLES3;
-    float m_visualScale = 1.0f;
+    double m_visualScale = 1.0;
     int m_surfaceWidth = 0;
     int m_surfaceHeight = 0;
     gui::TWidgetsInitInfo m_widgetsInitInfo;
@@ -492,8 +491,6 @@ private:
                                       TrackStatistics const & trackStatistics);
 
   TrackRecordingUpdateHandler m_trackRecordingUpdateHandler;
-
-  CachingRankTableLoader m_popularityLoader;
 
   std::unique_ptr<descriptions::Loader> m_descriptionsLoader;
 
@@ -648,7 +645,7 @@ private:
   void FillBookmarkInfo(Bookmark const & bmk, place_page::Info & info) const;
   void FillTrackInfo(Track const & track, m2::PointD const & trackPoint, place_page::Info & info) const;
   void SetPlacePageLocation(place_page::Info & info);
-  void FillDescription(FeatureType & ft, place_page::Info & info) const;
+  void FillDescriptions(FeatureType & ft, place_page::Info & info) const;
 
 public:
   search::ReverseGeocoder::Address GetAddressAtPoint(m2::PointD const & pt) const;

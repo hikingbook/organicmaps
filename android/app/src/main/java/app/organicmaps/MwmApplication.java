@@ -19,8 +19,10 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.preference.PreferenceManager;
 import app.organicmaps.background.OsmUploadWork;
 import app.organicmaps.downloader.DownloaderNotifier;
+import app.organicmaps.location.LocationProviderFactoryImpl;
 import app.organicmaps.location.TrackRecordingService;
 import app.organicmaps.routing.NavigationService;
 import app.organicmaps.sdk.Map;
@@ -46,6 +48,9 @@ public class MwmApplication extends Application implements Application.ActivityL
 {
   @NonNull
   private static final String TAG = MwmApplication.class.getSimpleName();
+
+  @NonNull
+  private final LocationProviderFactoryImpl mLocationProviderFactory = new LocationProviderFactoryImpl();
 
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
@@ -105,6 +110,12 @@ public class MwmApplication extends Application implements Application.ActivityL
   }
 
   @NonNull
+  public LocationProviderFactoryImpl getLocationProviderFactory()
+  {
+    return mLocationProviderFactory;
+  }
+
+  @NonNull
   public static MwmApplication from(@NonNull Context context)
   {
       return FrameworkAdapter.INSTANCE.getMwmApplication();
@@ -126,8 +137,12 @@ public class MwmApplication extends Application implements Application.ActivityL
     FrameworkAdapter.INSTANCE.initApplicationIfNeed(this, "app.organicmaps");
     sInstance = FrameworkAdapter.INSTANCE.getApplication();
 
-    mOrganicMaps = new OrganicMaps(sInstance);
 
+//    PreferenceManager.setDefaultValues(this, R.xml.prefs_main, false);
+    mOrganicMaps = new OrganicMaps(sInstance, BuildConfig.FLAVOR, FrameworkAdapter.INSTANCE.getApplicationID(),
+                                   BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME,
+                                   BuildConfig.FILE_PROVIDER_AUTHORITY, mLocationProviderFactory);
+    
     ConnectionState.INSTANCE.initialize(sInstance);
 
     DownloaderNotifier.createNotificationChannel(sInstance);
@@ -140,8 +155,8 @@ public class MwmApplication extends Application implements Application.ActivityL
 
   public boolean initOrganicMaps(@NonNull Runnable onComplete) throws IOException
   {
+    ThemeSwitcher.INSTANCE.initialize(FrameworkAdapter.INSTANCE.getApplication());
     return mOrganicMaps.init(() -> {
-      ThemeSwitcher.INSTANCE.initialize(FrameworkAdapter.INSTANCE.getApplication());
       ThemeSwitcher.INSTANCE.restart(false);
       ProcessLifecycleOwner.get().getLifecycle().addObserver(mProcessLifecycleObserver);
       onComplete.run();

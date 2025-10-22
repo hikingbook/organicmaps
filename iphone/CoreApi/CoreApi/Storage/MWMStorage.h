@@ -66,6 +66,7 @@ NS_SWIFT_NAME(Storage)
 - (NSString *)nameForCountry:(NSString *)countryId;
 - (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location mapSource:(MWMMapSource) mapSource;
 - (nullable NSArray<NSString *> *)nearbyAvailableCountries:(CLLocationCoordinate2D)location;
+- (nullable NSString *)countryForViewportCenter;
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId;
 @end
 

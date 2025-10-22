@@ -21,8 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import app.organicmaps.R;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.InputUtils;
+import app.organicmaps.util.UiUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class SearchToolbarController extends ToolbarController implements View.OnClickListener
@@ -38,8 +38,6 @@ public class SearchToolbarController extends ToolbarController implements View.O
   private boolean mFromCategory = false;
   @NonNull
   private final View mProgress;
-  @NonNull
-  private final View mClear;
   @NonNull
   private final View mVoiceInput;
   private final boolean mVoiceInputSupported = InputUtils.isVoiceInputSupported(requireActivity());
@@ -84,8 +82,6 @@ public class SearchToolbarController extends ToolbarController implements View.O
     mProgress = mSearchContainer.findViewById(R.id.progress);
     mVoiceInput = mSearchContainer.findViewById(R.id.voice_input);
     mVoiceInput.setOnClickListener(this);
-    mClear = mSearchContainer.findViewById(R.id.clear);
-    mClear.setOnClickListener(this);
 
     showProgress(false);
     updateViewsVisibility(true);
@@ -95,7 +91,6 @@ public class SearchToolbarController extends ToolbarController implements View.O
   {
     UiUtils.showIf(showBackButton(), mBack);
     UiUtils.showIf(supportsVoiceSearch() && queryEmpty && mVoiceInputSupported, mVoiceInput);
-    UiUtils.showIf(alwaysShowClearButton() || !queryEmpty, mClear);
   }
 
   protected boolean showBackButton()
@@ -112,11 +107,6 @@ public class SearchToolbarController extends ToolbarController implements View.O
     return true;
   }
 
-  protected void onClearClick()
-  {
-    clear();
-  }
-
   protected void startVoiceRecognition(Intent intent)
   {
     throw new RuntimeException("To be used startVoiceRecognition() must be implemented by descendant class");
@@ -126,11 +116,6 @@ public class SearchToolbarController extends ToolbarController implements View.O
    * Return true to display & activate voice search. Turned OFF by default.
    */
   protected boolean supportsVoiceSearch()
-  {
-    return false;
-  }
-
-  protected boolean alwaysShowClearButton()
   {
     return false;
   }
@@ -210,9 +195,7 @@ public class SearchToolbarController extends ToolbarController implements View.O
   public void onClick(View v)
   {
     final int id = v.getId();
-    if (id == R.id.clear)
-      onClearClick();
-    else if (id == R.id.query)
+    if (id == R.id.query)
       onQueryClick(getQuery());
     else if (id == R.id.voice_input)
       onVoiceInputClick();

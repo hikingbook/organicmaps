@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Exit";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "मार्ग का प्रारंभिक बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "गंतव्य बिंदु जोड़ने के लिए खोज का उपयोग करें या मानचित्र पर टैप करें";
 "planning_route_manage_route" = "मार्ग प्रबंधित करें";
 "button_plan" = "Plan";
 "placepage_remove_stop" = "Remove Stop";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "ट्रैक रिकॉर्डिंग रोकें";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "बिना सहेजे रुकें";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "रिकॉर्डिंग जारी रखें";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "मार्ग रिकॉर्डिंग बुकमार्क और ट्रैक में सहेजें?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "मार्ग खाली है - बचाने के लिए कुछ नहीं";
 "edit_track" = "मार्ग संपादित करें";
@@ -1074,3 +1060,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "To display routes, maps must be updated.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "OpenStreetMap में योगदान करें";
+"contribute_to_osm_add_place" = "स्थान जोड़ें";
+"contribute_to_osm_update_map" = "योगदान करने के लिए मानचित्र अपडेट करें";
+"contribute_to_osm_update_map_description" = "आपको OpenStreetMap डेटा में योगदान करने से पहले %@ मानचित्र को नवीनतम संस्करण में अपडेट करना होगा";
+"placepage_replace_stop" = "Replace Stop";

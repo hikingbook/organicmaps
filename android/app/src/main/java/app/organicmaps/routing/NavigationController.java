@@ -4,6 +4,8 @@
  */
 package app.organicmaps.routing;
 
+import static app.organicmaps.sdk.util.Utils.dimen;
+
 import android.location.Location;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,8 +27,9 @@ import app.organicmaps.sdk.maplayer.traffic.TrafficManager;
 import app.organicmaps.sdk.routing.CarDirection;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.routing.RoutingInfo;
+import app.organicmaps.sdk.util.RoundaboutExit;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.widget.LanesView;
@@ -40,7 +43,6 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
 
   private final ImageView mNextTurnImage;
   private final TextView mNextTurnDistance;
-  private final TextView mCircleExit;
 
   private final View mNextNextTurnFrame;
   private final ImageView mNextNextTurnImage;
@@ -82,7 +84,6 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
     View turnFrame = topFrame.findViewById(R.id.nav_next_turn_frame);
     mNextTurnImage = turnFrame.findViewById(R.id.turn);
     mNextTurnDistance = turnFrame.findViewById(R.id.distance);
-    mCircleExit = turnFrame.findViewById(R.id.circle_exit);
 
     addWindowsInsets(topFrame);
 
@@ -116,14 +117,13 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
   private void updateVehicle(@NonNull RoutingInfo info)
   {
     mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
-    info.carDirection.setTurnDrawable(mNextTurnImage);
 
     if (CarDirection.isRoundAbout(info.carDirection))
-      UiUtils.setTextAndShow(mCircleExit, String.valueOf(info.exitNum));
+      mNextTurnImage.setImageResource(RoundaboutExit.getRes(info.exitNum));
     else
-      UiUtils.hide(mCircleExit);
+      info.carDirection.setTurnDrawable(mNextTurnImage);
 
-    UiUtils.visibleIf(info.nextCarDirection.containsNextTurn(), mNextNextTurnFrame);
+    UiUtils.showIf(info.nextCarDirection.containsNextTurn(), mNextNextTurnFrame);
     if (info.nextCarDirection.containsNextTurn())
       info.nextCarDirection.setNextTurnDrawable(mNextNextTurnImage);
 
@@ -169,7 +169,7 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
     UiUtils.visibleIf(hasStreet, mStreetFrame);
     if (!TextUtils.isEmpty(info.nextStreet))
       mNextStreet.setText(info.nextStreet);
-    int margin = UiUtils.dimen(mFrame.getContext(), R.dimen.nav_frame_padding);
+    int margin = dimen(mFrame.getContext(), R.dimen.nav_frame_padding);
     if (hasStreet)
       margin += mStreetFrame.getHeight();
     mMapButtonsViewModel.setTopButtonsMarginTop(margin);
@@ -265,12 +265,7 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
   private void updateSpeedLimit(@NonNull final RoutingInfo info)
   {
     final Location location = MwmApplication.from(mFrame.getContext()).getLocationHelper().getSavedLocation();
-    if (location == null)
-    {
-      mSpeedLimit.setSpeedLimit(0, false);
-      return;
-    }
-    final boolean speedLimitExceeded = info.speedLimitMps < location.getSpeed();
+    final boolean speedLimitExceeded = location != null && info.speedLimitMps < location.getSpeed();
     mSpeedLimit.setSpeedLimit(StringUtils.nativeFormatSpeed(info.speedLimitMps), speedLimitExceeded);
   }
 }

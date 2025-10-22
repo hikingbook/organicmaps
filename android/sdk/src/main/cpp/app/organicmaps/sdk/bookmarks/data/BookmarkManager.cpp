@@ -363,7 +363,7 @@ JNIEXPORT jlong JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_
 JNIEXPORT jint JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeGetLastEditedColor(JNIEnv *,
                                                                                                         jobject)
 {
-  return static_cast<jint>(frm()->LastEditedBMColor());
+  return static_cast<jint>(kml::kColorIndexMap[E2I(frm()->LastEditedBMColor())]);
 }
 
 JNIEXPORT void JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeLoadBookmarksFile(
@@ -715,7 +715,7 @@ JNIEXPORT jint JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_n
                                                                                                       jlong bmk)
 {
   auto const * mark = getBookmark(bmk);
-  return static_cast<jint>(mark != nullptr ? mark->GetColor() : frm()->LastEditedBMColor());
+  return static_cast<jint>(kml::kColorIndexMap[E2I(mark != nullptr ? mark->GetColor() : frm()->LastEditedBMColor())]);
 }
 
 JNIEXPORT jint JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeGetBookmarkIcon(JNIEnv *, jclass,
@@ -740,7 +740,7 @@ JNIEXPORT void JNICALL Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_n
     kml::SetDefaultStr(bmData.m_customName, bmName);
   if (descr)
     kml::SetDefaultStr(bmData.m_description, jni::ToNativeString(env, descr));
-  bmData.m_color.m_predefinedColor = static_cast<kml::PredefinedColor>(color);
+  bmData.m_color.m_predefinedColor = kml::kOrderedPredefinedColors[color];
 
   g_framework->ReplaceBookmark(static_cast<kml::MarkId>(bmk), bmData);
 }

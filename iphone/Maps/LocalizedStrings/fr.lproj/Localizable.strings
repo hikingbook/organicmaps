@@ -75,7 +75,7 @@
 "bookmarks_and_tracks" = "Signets et parcours";
 
 /* Default bookmark list name */
-"core_my_places" = "Mes endroits";
+"core_my_places" = "Mes lieux";
 
 /* Editor title above street and house number, duplicates [type.building.address] in types_strings.txt */
 "address" = "Adresse";
@@ -310,7 +310,7 @@
 "pref_calibration_title" = "Étalonnage de la boussole";
 
 /* Toast text when user hides UI with a long tap anywhere on the map */
-"long_tap_toast" = "Appuie à nouveau longuement sur la carte pour voir l'interface.";
+"long_tap_toast" = "Appuyer à nouveau longuement sur la carte pour voir l'interface.";
 
 /* Update all button text */
 "downloader_update_all_button" = "Tout mettre à jour";
@@ -414,7 +414,7 @@
 "dialog_routing_disclaimer_priority" = "— Les conditions de circulation, le code de la route et les panneaux de signalisation ont la priorité sur l'appareil de navigation ;";
 "dialog_routing_disclaimer_precision" = "— La carte peut être imprécise et l'itinéraire proposé n'est pas forcément le plus direct pour arriver à destination ;";
 "dialog_routing_disclaimer_recommendations" = "— L'itinéraire proposé doit être considéré comme une simple recommandation ;";
-"dialog_routing_disclaimer_borders" = "— Faites attention aux itinéraires traversant des zones frontalières : les itinéraires générés par l'application peuvent parfois franchir des frontières étatiques dans des zones interdites ;";
+"dialog_routing_disclaimer_borders" = "— Faites attention aux itinéraires traversant des zones frontalières : les itinéraires générés par l'application peuvent parfois franchir des frontières étatiques dans des zones interdites.";
 "dialog_routing_disclaimer_beware" = "Restez vigilant et soyez prudent sur la route !";
 "dialog_routing_check_gps" = "Vérifiez le signal GPS";
 "dialog_routing_error_location_not_found" = "Impossible de créer l'itinéraire. Les coordonnées GPS actuelles n'ont pas pu être identifiées.";
@@ -432,7 +432,7 @@
 "dialog_routing_end_not_determined" = "Impossible de localiser la destination. L'itinéraire n'a pas pu être créé.";
 "dialog_routing_select_closer_end" = "Choisissez un lieu de destination à proximité d'une route.";
 "dialog_routing_change_intermediate" = "Impossible de localiser le point intermédiaire.";
-"dialog_routing_intermediate_not_determined" = "Veuillez modifier votre point intermédiaire";
+"dialog_routing_intermediate_not_determined" = "Veuillez modifier votre point intermédiaire.";
 "dialog_routing_system_error" = "Erreur système";
 "dialog_routing_application_error" = "Impossible de créer l'itinéraire à cause d'une erreur dans l'application.";
 "dialog_routing_try_again" = "Veuillez réessayer";
@@ -700,16 +700,11 @@
 "traffic_data_unavailable" = "Les données de circulation ne sont pas disponibles";
 "enable_logging" = "Activer le journal";
 "log_file_size" = "Taille du fichier journal : %@";
-"transliteration_title" = "Translittératisé en alphabet latin";
+"transliteration_title" = "Translittéré en alphabet latin";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Sortie";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "Utilise la recherche ou tape sur la carte pour ajouter un point de départ d'itinéraire";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "Utilise la recherche ou tape sur la carte pour ajouter un point de destination";
 "planning_route_manage_route" = "Gérer l’itinéraire";
 "button_plan" = "Planifier";
 "placepage_remove_stop" = "Supprimer l'arrêt";
@@ -753,7 +748,7 @@
 "terms_of_use" = "Conditions d'utilisation";
 "button_layer_subway" = "Métro";
 "layers_title" = "Styles et couches de cartes";
-"subway_data_unavailable" = "La carte du métro n'est pas disponible";
+"subway_data_unavailable" = "Le plan du métro n'est pas disponible";
 "title_error_downloading_bookmarks" = "Une erreur est survenue";
 "popular_place" = "Populaire";
 "export_file" = "Exporter KMZ";
@@ -970,7 +965,7 @@
 "car_continue_in_the_car" = "Afficher dans la voiture";
 
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "Randonnée";
+"button_layer_outdoor" = "Plein air";
 
 /* Hiking routes layer name in the Styles and Layers dialog */
 "button_layer_hiking" = "Itinéraires de randonnée";
@@ -1054,15 +1049,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "Arrêter l'enregistrement de la trace";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "Arrêter sans enregistrer";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "Continuer l'enregistrement";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "Sauvegarder dans les signets et parcours ?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "L'itinéraire est vide - il n'y a rien à sauvegarder";
 "edit_track" = "Modifier le trace";
@@ -1078,3 +1064,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "Pour afficher les itinéraires, les cartes doivent être mises à jour.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "Contribuer à OpenStreetMap";
+"contribute_to_osm_add_place" = "Ajouter un lieu";
+"contribute_to_osm_update_map" = "Mettre à jour la carte pour contribuer";
+"contribute_to_osm_update_map_description" = "Vous devez mettre à jour la carte %@ vers la dernière version avant de pouvoir contribuer aux données OpenStreetMap";
+"placepage_replace_stop" = "Remplacer l'arrêt";

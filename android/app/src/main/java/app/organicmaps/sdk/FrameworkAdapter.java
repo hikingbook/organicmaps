@@ -86,6 +86,10 @@ public enum FrameworkAdapter {
         return this.fragment;
     }
 
+    public MapView getMapView() {
+        return fragment.getView().findViewById(R.id.map);
+    }
+
     public void setSharedPreferences(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
     }
@@ -144,6 +148,7 @@ public enum FrameworkAdapter {
         if (!mwmActivity.mIsTabletLayout)
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
+        mwmActivity.initDisplayManager();
         mwmActivity.initViews(false, savedInstanceState);
     }
 
@@ -167,18 +172,6 @@ public enum FrameworkAdapter {
             return false;
         }
         try {
-            if (mwmActivity.mMapFragment != null) {
-                if (mwmActivity.isMapRendererActive()) {
-                    mwmActivity.mMapFragment.onResume();
-                } else {
-                    if (isMapFragmentAttached()) {
-                        mwmActivity.mMapFragment.destroySurface(true);
-                    }
-                    activity.getSupportFragmentManager().beginTransaction().remove(mwmActivity.mMapFragment).commitNowAllowingStateLoss();
-                    mwmActivity.initViews(false, null);
-                }
-            }
-
             if (mwmActivity.mOnmapDownloader != null) {
                 mwmActivity.mOnmapDownloader.onResume();
             }
@@ -201,9 +194,6 @@ public enum FrameworkAdapter {
 
         if (mwmActivity.mOnmapDownloader != null) {
             mwmActivity.mOnmapDownloader.onPause();
-        }
-        if (isMapFragmentAttached() && mwmActivity.mMapFragment != null) {
-            mwmActivity.mMapFragment.onPause();
         }
 
         SensorHelper sensorHelper = getSensorHelper();
@@ -476,9 +466,5 @@ public enum FrameworkAdapter {
             return null;
         }
         return mwmApplication.getSensorHelper();
-    }
-
-    private boolean isMapFragmentAttached() {
-        return mwmActivity.mMapFragment != null && mwmActivity.mMapFragment.isAdded() && mwmActivity.mMapFragment.getContext() != null;
     }
 }

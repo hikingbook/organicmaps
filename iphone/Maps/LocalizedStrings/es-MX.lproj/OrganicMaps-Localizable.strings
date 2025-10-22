@@ -199,7 +199,7 @@
 "length" = "Longitud";
 "share_my_location" = "Compartir mi ubicación";
 "prefs_group_route" = "Navegación";
-"pref_zoom_title" = "Botones de zum";
+"pref_zoom_title" = "Botones de zoom";
 
 /* Settings «Map» category: «Appearance» title */
 "pref_appearance_title" = "Aspecto";
@@ -245,7 +245,7 @@
 
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Otros";
-"pref_map_auto_zoom" = "Zum automático";
+"pref_map_auto_zoom" = "Zoom automático";
 "placepage_distance" = "Distancia";
 "search_show_on_map" = "Ver en el mapa";
 
@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Salida";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "Busca o toca en el mapa para añadir el origen de la ruta";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "Busca o toca en el mapa para añadir el destino";
 "planning_route_manage_route" = "Administrar ruta";
 "button_plan" = "Planificar";
 "placepage_remove_stop" = "Eliminar parada";
@@ -904,7 +899,7 @@
 "placepage_delete_track_button" = "Borrar ruta";
 
 /* The track deletion confirmaion alert message. */
-"placepage_delete_track_confirmation_alert_message" = "¿Está seguro de que desea borrar esta pista?";
+"placepage_delete_track_confirmation_alert_message" = "¿Confirma que quiere eliminar este trayecto?";
 
 /* Placeholder for track name input on track edit screen */
 "placepage_track_name_hint" = "Nombre de la ruta";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "Detener grabación de trayecto";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "Parar sin guardar";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "Continuar grabación";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "¿Guardar en Marcadores y trayectos?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "El trayecto está vacío; no hay nada que guardar";
 "edit_track" = "Editar trayecto";
@@ -1074,3 +1060,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "To display routes, maps must be updated.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "Contribuir a OpenStreetMap";
+"contribute_to_osm_add_place" = "Agregar lugar";
+"contribute_to_osm_update_map" = "Actualiza el mapa para contribuir";
+"contribute_to_osm_update_map_description" = "Debes actualizar el mapa %@ a la versión más reciente antes de poder contribuir a los datos de OpenStreetMap";
+"placepage_replace_stop" = "Replace Stop";
