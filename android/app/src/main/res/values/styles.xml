@@ -94,7 +94,7 @@
     <item name="android:background">?primaryButtonBackground</item>
     <item name="android:minWidth">@dimen/primary_button_min_width</item>
     <item name="android:minHeight">@dimen/primary_button_min_height</item>
-    <item name="android:textColor">?accentButtonTextColor</item>
+    <item name="android:textColor">@color/text_body</item>
     <item name="android:textSize">@dimen/text_size_body_3</item>
     <item name="android:paddingStart">@dimen/margin_base</item>
     <item name="android:paddingEnd">@dimen/margin_base</item>
@@ -153,7 +153,7 @@
 
   <style name="MwmWidget.ToolbarTheme.Light" parent="MwmWidget.ToolbarTheme">
     <item name="android:gravity">center_vertical</item>
-    <item name="colorAccent">@color/bg_window_night</item>
+    <item name="colorAccent">@color/bg_window</item>
   </style>
 
   <style name="MwmWidget.ToolbarTheme.Transparent" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">

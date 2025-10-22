@@ -61,6 +61,7 @@ public:
     m_map[c.GetTypeByPath({"highway", "pedestrian"})] = HighwayClass::Pedestrian;
     m_map[c.GetTypeByPath({"highway", "footway"})] = HighwayClass::Pedestrian;
     m_map[c.GetTypeByPath({"highway", "bridleway"})] = HighwayClass::Pedestrian;
+    m_map[c.GetTypeByPath({"highway", "ladder"})] = HighwayClass::Pedestrian;
     m_map[c.GetTypeByPath({"highway", "steps"})] = HighwayClass::Pedestrian;
     m_map[c.GetTypeByPath({"highway", "cycleway"})] = HighwayClass::Pedestrian;
     m_map[c.GetTypeByPath({"highway", "path"})] = HighwayClass::Pedestrian;
@@ -327,6 +328,7 @@ IsWayChecker::IsWayChecker()
       {"secondary", Regular},
       {"secondary_link", Regular},
       {"service", Minors},
+      {"ladder", Pedestrian},
       {"steps", Pedestrian},
       {"tertiary", Regular},
       {"tertiary_link", Regular},
@@ -457,19 +459,33 @@ OneLevelPOIChecker::OneLevelPOIChecker() : ftypes::BaseChecker(1 /* level */)
 TwoLevelPOIChecker::TwoLevelPOIChecker() : ftypes::BaseChecker(2 /* level */)
 {
   Classificator const & c = classif();
-  base::StringIL arr[] = {{"aeroway", "terminal"},       {"aeroway", "gate"},
-                          {"building", "train_station"}, {"emergency", "defibrillator"},
-                          {"emergency", "fire_hydrant"}, {"emergency", "phone"},
-                          {"highway", "bus_stop"},       {"highway", "elevator"},
-                          {"highway", "ford"},           {"highway", "raceway"},
-                          {"highway", "rest_area"},      {"highway", "services"},
-                          {"highway", "speed_camera"},   {"man_made", "cross"},
-                          {"man_made", "lighthouse"},    {"man_made", "water_tap"},
-                          {"man_made", "water_well"},    {"natural", "beach"},
-                          {"natural", "cave_entrance"},  {"natural", "geyser"},
-                          {"natural", "hot_spring"},     {"natural", "peak"},
-                          {"natural", "saddle"},         {"natural", "spring"},
-                          {"natural", "volcano"},        {"waterway", "waterfall"}};
+  base::StringIL arr[] = {{"aeroway", "terminal"},
+                          {"aeroway", "gate"},
+                          {"building", "guardhouse"},
+                          {"building", "train_station"},
+                          {"emergency", "defibrillator"},
+                          {"emergency", "fire_hydrant"},
+                          {"emergency", "phone"},
+                          {"highway", "bus_stop"},
+                          {"highway", "elevator"},
+                          {"highway", "ford"},
+                          {"highway", "raceway"},
+                          {"highway", "rest_area"},
+                          {"highway", "services"},
+                          {"highway", "speed_camera"},
+                          {"man_made", "cross"},
+                          {"man_made", "lighthouse"},
+                          {"man_made", "water_tap"},
+                          {"man_made", "water_well"},
+                          {"natural", "beach"},
+                          {"natural", "cave_entrance"},
+                          {"natural", "geyser"},
+                          {"natural", "hot_spring"},
+                          {"natural", "peak"},
+                          {"natural", "saddle"},
+                          {"natural", "spring"},
+                          {"natural", "volcano"},
+                          {"waterway", "waterfall"}};
 
   for (auto const & path : arr)
     m_types.push_back(c.GetTypeByPath(path));

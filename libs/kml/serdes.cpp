@@ -1,5 +1,6 @@
 // This file is modified by Zheng-Xiang Ke on 2023.
 #include "kml/serdes.hpp"
+#include "kml/color_parser.hpp"
 
 #include "indexer/classificator.hpp"
 

@@ -16,8 +16,6 @@
     <string name="kilometres">Kilométer</string>
     <!-- Choose measurement on first launch alert - choose imperial system button -->
     <string name="miles">Mérföld</string>
-    <!-- A text for current gps location point/arrow selected on the map -->
-    <string name="core_my_position">Saját tartózkodási helyszín</string>
     <!-- Update maps later button text -->
     <string name="later">Később</string>
     <!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
@@ -75,8 +73,6 @@
     <string name="bookmarks">Könyvjelzők</string>
     <!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
     <string name="bookmarks_and_tracks">Könyvjelzők és nyomvonalak</string>
-    <!-- Default bookmark list name -->
-    <string name="core_my_places">Saját helyek</string>
     <!-- Add bookmark dialog - bookmark name -->
     <string name="name">Név</string>
     <!-- Editor title above street and house number, duplicates [type.building.address] in types_strings.txt -->
@@ -91,14 +87,6 @@
     <string name="maps_storage_summary">Válassza ki a mappát a térképek letöltéséhez.</string>
     <!-- E.g. "Downloaded maps: 500Mb" in Maps Storage settings -->
     <string name="maps_storage_downloaded">Letöltött térképek</string>
-    <!-- Internal storage type in Maps Storage settings (not accessible by the user) -->
-    <string name="maps_storage_internal">Belső privát tárhely</string>
-    <!-- Shared storage type in Maps Storage settings (a primary storage usually) -->
-    <string name="maps_storage_shared">Belső közös tárhely</string>
-    <!-- Removable external storage type in Maps Storage settings, e.g. an SD card -->
-    <string name="maps_storage_removable">SD-kártya</string>
-    <!-- Generic external storage type in Maps Storage settings -->
-    <string name="maps_storage_external">Külső közös tárhely</string>
     <!-- Free space out of total storage size in Maps Storage settings, e.g. "300 MB free of 2 GB" -->
     <string name="maps_storage_free_size">%1$s szabad terület ennyiből: %2$s</string>
     <!-- Question dialog for transferring maps from one storage to another -->
@@ -150,8 +138,6 @@
     <string name="category_post">Posta</string>
     <!-- Search category for police; any changes should be duplicated in categories.txt @category_police! -->
     <string name="category_police">Rendőrség</string>
-    <!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
-    <string name="category_wifi">Wi-Fi</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Újrahasznosítás</string>
     <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
@@ -182,13 +168,13 @@
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">A térkép letöltése folyamatban van.</string>
     <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Tekintse meg a tartózkodási helyszínemet az Organic Maps alkalmazásban! %1$s vagy %2$s. Nincs offline térképe? Töltse le innen: https://omaps.app/get</string>
+    <string name="my_position_share_sms">Tekintse meg a tartózkodási helyemet az Organic Maps alkalmazásban! %1$s vagy %2$s. Nincs offline térképe? Töltse le innen: https://omaps.app/get</string>
     <!-- Subject for emailed bookmark -->
     <string name="bookmark_share_email_subject">Tekintse meg a térképjelzőmet az Organic Maps alkalmazásban!</string>
     <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Tekintse meg a tartózkodási helyszínemet az Organic Maps alkalmazásban!</string>
+    <string name="my_position_share_email_subject">Tekintse meg a tartózkodási helyemet az Organic Maps alkalmazásban!</string>
     <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Üdvözlöm!\n\nJelenleg itt tartózkodom: %1$s. Kattintson a következő hivatkozásra: %2$s, vagy ide: %3$s, hogy megtekintse a tartózkodási helyszínemet a térképen.\n\nKöszönöm!</string>
+    <string name="my_position_share_email">Üdvözlöm!\n\nJelenleg itt tartózkodom: %1$s. Kattintson a következő hivatkozásra: %2$s, vagy ide: %3$s, hogy megtekintse a tartózkodási helyemet a térképen.\n\nKöszönöm!</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Megosztás</string>
     <!-- Share by email button text, also used in editor and About. -->
@@ -205,7 +191,7 @@
     <string name="tracks_title">Nyomvonalak</string>
     <!-- Length of track in cell that describes route -->
     <string name="length">Hossz</string>
-    <string name="share_my_location">Saját tartózkodási helyszín megosztása</string>
+    <string name="share_my_location">Saját tartózkodási hely megosztása</string>
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Információk</string>
     <string name="prefs_group_route">Navigáció</string>
@@ -278,7 +264,7 @@
     <!-- Downloaded maps list header -->
     <string name="downloader_downloaded_subtitle">Letöltve</string>
     <!-- Country queued for download -->
-    <string name="downloader_queued">Sorbaállítva</string>
+    <string name="downloader_queued">Várólistához adva</string>
     <string name="downloader_near_me_subtitle">A közelben</string>
     <!-- In maps downloader and country place page shows how many maps are downloaded / to download, e.g. "Maps: 3 of 10" -->
     <string name="downloader_status_maps">Térképek</string>
@@ -301,7 +287,7 @@
     <!-- Preference text -->
     <string name="pref_use_google_play">Bluetooth, Wi-Fi vagy mobilhálózat segítségével gyorsan meghatározhatja hozzávetőleges tartózkodási helyét</string>
     <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">Az összes térkép letöltése az útvonal mentén</string>
+    <string name="routing_download_maps_along">Összes térkép letöltése az útvonal mentén</string>
     <!-- Text for routing error dialog -->
     <string name="routing_requires_all_map">Az útvonal létrehozásához le kell töltenie és frissítenie kell az összes térképet az Ön tartózkodási helyétől a célig.</string>
     <!-- Text for routing error dialog -->
@@ -364,7 +350,7 @@
     <string name="dialog_routing_end_not_determined">Az útvonal nem lett létrehozva. Nem sikerült meghatározni a célállomást.</string>
     <string name="dialog_routing_select_closer_end">Válasszon egy, az úthoz közelebb eső célállomást.</string>
     <string name="dialog_routing_change_intermediate">Nem sikerült meghatározni a köztes helyet.</string>
-    <string name="dialog_routing_intermediate_not_determined">Módosítsa a köztes helyet.</string>
+    <string name="dialog_routing_intermediate_not_determined">Pontosítsa a köztes helyet.</string>
     <string name="dialog_routing_system_error">Rendszerhiba</string>
     <string name="dialog_routing_application_error">Nem lehet létrehozni az útvonalat egy alkalmazáshiba miatt.</string>
     <string name="dialog_routing_try_again">Próbálja meg újra</string>
@@ -449,7 +435,6 @@
     <string name="add_street">Utca hozzáadása</string>
     <string name="choose_language">Válasszon nyelvet</string>
     <string name="choose_street">Válasszon utcát</string>
-    <string name="postal_code">Irányítószám</string>
     <string name="cuisine">Konyha</string>
     <string name="select_cuisine">Konyha kiválasztása</string>
     <!-- login text field -->
@@ -490,10 +475,8 @@
     <string name="error_enter_correct_storey_number">Ez az épület legfeljebb %d emeletes lehet</string>
     <string name="editor_zip_code">Irányítószám</string>
     <string name="error_enter_correct_zip_code">Adjon meg egy érvényes irányítószámot</string>
-    <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Térképpont</string>
     <!-- Title for OSM note section in the editor -->
-    <string name="editor_other_info">Megjegyzés az OpenStreetMap önkénteseinek (nem kötelező)</string>
+    <string name="editor_other_info">Megjegyzés az OpenStreetMap közreműködőinek (nem kötelező)</string>
     <!-- Hint of the input field in the OSM note section of the editor -->
     <string name="editor_note_hint">Írja le a térképen található hibákat vagy olyan dolgokat, amelyeket nem lehet az Organic Maps segítségével szerkeszteni</string>
     <!-- Information about OSM at the top of the editing page -->
@@ -508,16 +491,8 @@
     <string name="editor_category_unsuitable_text">Az Organic Maps csak egyszerű pontkategóriák hozzáadását teszi lehetővé, azaz nem tartalmaz városokat, utakat, tavakat, épületek körvonalait stb., az ilyen kategóriákat közvetlenül az <a href="https://www.openstreetmap.org">OpenStreetMap.org</a> oldalon adhatja hozzá. A részletes, lépésről lépésre történő útmutatásért tekintse meg az <a href="https://organicmaps.app/faq/editing/advanced-map-editing">útmutatónkat</a>.</string>
     <string name="downloader_no_downloaded_maps_title">Még nem töltött le térképet</string>
     <string name="downloader_no_downloaded_maps_message">Térképek letöltése az offline kereséshez és navigáláshoz.</string>
-    <!-- abbreviation for meters -->
-    <string name="m">m</string>
-    <!-- abbreviation for kilometers -->
-    <string name="km">km</string>
     <!-- abbreviation for kilometers per hour -->
     <string name="kilometers_per_hour">km/ó</string>
-    <!-- abbreviation for mile(s) -->
-    <string name="mi">mf</string>
-    <!-- A unit of measure -->
-    <string name="ft">láb</string>
     <string name="miles_per_hour">mf/ó</string>
     <string name="hour">ó</string>
     <string name="minute">p</string>
@@ -554,7 +529,7 @@
     <string name="mobile_data_option_not_today">Ma ne használja</string>
     <string name="mobile_data">Mobilinternet</string>
     <!-- NOTE to translators: please synchronize your translation with the English one. -->
-    <string name="mobile_data_description">Mobilinternet szükséges a térképfrissítési értesítésekhez, valamint a helyszínekre és könyvjelzőkre vonatkozó részletes információk megjelenítéséhez.</string>
+    <string name="mobile_data_description">Mobilinternet szükséges a térképfrissítési értesítésekhez, valamint a helyekre és könyvjelzőkre vonatkozó részletes információk megjelenítéséhez.</string>
     <string name="mobile_data_option_never">Soha ne használja</string>
     <string name="mobile_data_option_ask">Mindig kérdezzen rá</string>
     <string name="traffic_update_maps_text">Forgalmi adatok megjelenítéséhez frissíteni kell a térképeket.</string>
@@ -570,8 +545,6 @@
     <string name="prefs_languages_information_off_link">További tájékoztatást találhat még ebben az útmutatóban.</string>
     <string name="transliteration_title">Átírás latin betűkre</string>
     <string name="learn_more">Tudjon meg többet</string>
-    <!-- Subway exits for public transport marks on the map -->
-    <string name="core_exit">Kijárat</string>
     <!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
     <string name="routing_add_start_point">Használja a keresést vagy koppintson a térképre az útvonal kiindulópontjának hozzáadásához</string>
     <!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
@@ -585,7 +558,6 @@
     <string name="dialog_error_storage_title">Tárhelyhozzáférési probléma</string>
     <string name="dialog_error_storage_message">Külső tárhely nem áll rendelkezésre, valószínűleg az SD-kártyát eltávolították vagy sérült, vagy rendszerfájl csak olvasható. Ellenőrizze, és lépjen kapcsolatba velünk a support@organicmaps.app címen</string>
     <string name="setting_emulate_bad_storage">Sérült tároló emulálása</string>
-    <string name="core_entrance">Bejárat</string>
     <string name="error_enter_correct_name">Adjon meg egy érvényes nevet</string>
     <string name="bookmark_lists">Listák</string>
     <!-- Do not display all bookmark lists on the map -->
@@ -625,16 +597,12 @@
     <string name="button_layer_traffic">Forgalom</string>
     <string name="button_layer_subway">Metró</string>
     <string name="layers_title">Térképstílusok és rétegek</string>
-    <string name="subway_data_unavailable">A metrótérkép nem érhető el</string>
     <string name="bookmarks_empty_list_title">Ez a lista üres</string>
     <string name="bookmarks_empty_list_message">Egy könyvjelző hozzáadásához érintsen meg a térképen egy helyet, majd érintse meg a csillag ikont</string>
     <string name="category_desc_more">…több</string>
     <string name="export_file">Exportálás KMZ-fájlba</string>
     <string name="export_file_gpx">Exportálás GPX-fájlba</string>
     <string name="delete_list">Lista törlése</string>
-    <string name="public_access">Nyilvános hozzáférés</string>
-    <string name="limited_access">Korlátozott hozzáférés</string>
-    <string name="not_shared">Privát</string>
     <string name="speedcams_alert_title">Sebességmérő kamerák</string>
     <string name="place_description_title">A hely ismertetése</string>
     <!-- this text will be shown in application notification preferences opposite checkbox which enable/disable downloader notifications. Devices on Android 8+ are affected. -->
@@ -651,7 +619,6 @@
     <string name="power_managment_setting_auto">Amikor az akkumulátor lemerül</string>
     <string name="power_managment_setting_manual_max">Mindig</string>
     <string name="enable_logging_warning_message">Ha ideiglenesen engedélyezi ezt a beállítást, akkor a „Súgó” párbeszédpanel „Hibajelentés” menüpontjának használatával rögzítheti és kézzel küldheti el nekünk a problémával kapcsolatos részletes diagnosztikai naplókat. A naplók tartalmazhatnak helyadatokat.</string>
-    <string name="access_rules_author_only">Szerkesztés online</string>
     <string name="driving_options_title">Útvonaltervezési beállítások</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Díjköteles utak elkerülése</string>
@@ -663,7 +630,7 @@
     <string name="unable_to_calc_alert_title">Nem lehet kiszámítani az útvonalat</string>
     <string name="unable_to_calc_alert_subtitle">Nem sikerült útvonalat találni. Ennek oka lehet az útvonaltervezési beállítások vagy a hiányos OpenStreetMap-adatok. Módosítsa az útvonaltervezési beállításokat, és próbálja meg újra.</string>
     <string name="define_to_avoid_btn">Elkerülendő utak meghatározása</string>
-    <string name="change_driving_options_btn">Útvonaltervezési lehetőségek engedélyezve</string>
+    <string name="change_driving_options_btn">Útvonaltervezési beállítások engedélyezve</string>
     <string name="toll_road">Díjköteles utak</string>
     <string name="unpaved_road">Burkolatlan utak</string>
     <string name="ferry_crossing">Kompátkelők</string>
@@ -793,7 +760,7 @@
     <string name="browser_not_available">A webböngésző nem érhető el</string>
     <string name="volume">Hangerő</string>
     <!-- Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks -->
-    <string name="bookmarks_export">Az összes könyvjelző és nyomvonal exportálása</string>
+    <string name="bookmarks_export">Összes könyvjelző és nyomvonal exportálása</string>
     <!-- button in (app) TTS settings, to open the system TTS settings. -->
     <string name="pref_tts_open_system_settings">Beszédszintézis-beállítások</string>
     <!-- toast displayed when pressing the "Speech synthesis system settings" button, and the system settings aren't found. -->
@@ -811,7 +778,7 @@
     <string name="open_in_app">Megnyitás másik alkalmazásban</string>
     <!-- To indicate if the place proposed self service... -->
     <string name="self_service">Önkiszolgáló</string>
-    <string name="select_option">Válasszon ki egy lehetőséget</string>
+    <string name="select_option">Válasszon ki egy beállítást</string>
     <!-- To indicate if restaurant or other place has outdoor seating -->
     <string name="outdoor_seating">Kiülős helyek</string>
     <!-- Disclaimer summary shown when Power Saving Mode is enabled -->
@@ -850,9 +817,7 @@
     <string name="facebook">Facebook</string>
     <string name="closes_in">Bezár %s múlva</string>
     <string name="opens_in">Kinyit %s múlva</string>
-    <string name="mb">MB</string>
-    <string name="gb">GB</string>
-    <string name="current_location_unknown_error_title">A jelenlegi tartózkodási helyszín ismeretlen.</string>
+    <string name="current_location_unknown_error_title">A jelenlegi tartózkodási hely ismeretlen.</string>
     <string name="disk_error">Nem lehet mappát létrehozni és fájlokat áthelyezni az eszköz belső memóriájában vagy az SD-kártyán</string>
     <string name="disk_error_title">Lemezhiba</string>
     <string name="twitter">X (Twitter)</string>

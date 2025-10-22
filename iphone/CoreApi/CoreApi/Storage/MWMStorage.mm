@@ -381,6 +381,15 @@ using namespace storage;
   return nearbyAvailableCountries.count > 0 ? [nearbyAvailableCountries copy] : nil;
 }
 
+- (nullable NSString *)countryForViewportCenter
+{
+  auto & f = GetFramework();
+  auto const country = f.GetCountryInfoGetter().GetRegionCountryId(f.GetViewportCenter());
+  if (!IsCountryIdValid(country))
+    return nil;
+  return [NSString stringWithCString:country.c_str() encoding:NSUTF8StringEncoding];
+}
+
 - (MWMMapUpdateInfo *)updateInfoWithParent:(nullable NSString *)countryId
 {
   auto const & s = GetFramework().GetStorage();

@@ -30,7 +30,7 @@ import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -100,7 +100,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
 
   private void onDownloadActionSelected(final CountryItem item, DownloaderAdapter adapter)
   {
-    MapManager.warn3gAndDownload(adapter.mActivity, item.id, MapSource.ORGANIC_MAPS, null);
+    MapManagerHelper.warn3gAndDownload(adapter.mActivity, item.id, MapSource.ORGANIC_MAPS, null);
   }
 
   private void onUpdateActionSelected(final CountryItem item, DownloaderAdapter adapter)
@@ -108,7 +108,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     item.update();
     if (item.status != CountryItem.STATUS_UPDATABLE)
       return;
-    MapManager.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManager.startUpdate(item.id, MapSource.ORGANIC_MAPS));
+    MapManagerHelper.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManagerHelper.startUpdate(item.id, MapSource.ORGANIC_MAPS));
   }
 
   private void onExploreActionSelected(CountryItem item, DownloaderAdapter adapter)
@@ -213,7 +213,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
       {
         if (item.isLeafNode && (item.newOrganicMapStatus == CountryItem.STATUS_FAILED || item.newHikingbookProMapStatus == CountryItem.STATUS_FAILED))
         {
-          MapManager.showError(mActivity, item, null);
+          MapManagerHelper.showError(mActivity, item, null);
           break;
         }
       }
@@ -391,10 +391,10 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
       }
       case CountryItem.STATUS_FAILED ->
       {
-        MapManager.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, null);
+        MapManagerHelper.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, null);
       }
       case CountryItem.STATUS_UPDATABLE ->
-        MapManager.warnOn3gUpdate(mActivity, mItem.id, () -> MapManager.startUpdate(mItem.id, MapSource.ORGANIC_MAPS));
+        MapManagerHelper.warnOn3gUpdate(mActivity, mItem.id, () -> MapManagerHelper.startUpdate(mItem.id, MapSource.ORGANIC_MAPS));
       default -> throw new IllegalArgumentException("Inappropriate item status: " + mItem.status);
       }
     }

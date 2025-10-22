@@ -45,6 +45,7 @@ import app.organicmaps.R;
 import app.organicmaps.bookmarks.BookmarksSharingHelper;
 import app.organicmaps.bookmarks.ChooseBookmarkCategoryFragment;
 import app.organicmaps.downloader.DownloaderStatusIcon;
+import app.organicmaps.downloader.MapManagerHelper;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.bookmarks.data.Bookmark;
 import app.organicmaps.sdk.bookmarks.data.BookmarkCategory;
@@ -57,6 +58,7 @@ import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.bookmarks.data.Metadata;
 import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
 import app.organicmaps.sdk.bookmarks.data.Track;
+import app.organicmaps.sdk.bookmarks.data.TrackRecording;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.editor.Editor;
@@ -64,11 +66,11 @@ import app.organicmaps.sdk.location.LocationListener;
 import app.organicmaps.sdk.location.SensorListener;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.sdk.util.concurrency.UiThread;
 import app.organicmaps.sdk.widget.placepage.CoordinatesFormat;
 import app.organicmaps.util.Graphics;
 import app.organicmaps.util.SharingUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
@@ -79,6 +81,7 @@ import app.organicmaps.widget.placepage.sections.PlacePageOpeningHoursFragment;
 import app.organicmaps.widget.placepage.sections.PlacePagePhoneFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageProductsFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageTrackFragment;
+import app.organicmaps.widget.placepage.sections.PlacePageTrackRecordingFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageWikipediaFragment;
 import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
@@ -94,6 +97,7 @@ public class PlacePageView extends Fragment
   private static final String PREF_COORDINATES_FORMAT = "coordinates_format";
   private static final String BOOKMARK_FRAGMENT_TAG = "BOOKMARK_FRAGMENT_TAG";
   private static final String TRACK_FRAGMENT_TAG = "TRACK_FRAGMENT_TAG";
+  private static final String TRACK_RECORDING_FRAGMENT_TAG = "TRACK_RECORDING_FRAGMENT_TAG";
   private static final String PRODUCTS_FRAGMENT_TAG = "PRODUCTS_FRAGMENT_TAG";
   private static final String WIKIPEDIA_FRAGMENT_TAG = "WIKIPEDIA_FRAGMENT_TAG";
   private static final String PHONE_FRAGMENT_TAG = "PHONE_FRAGMENT_TAG";
@@ -113,7 +117,6 @@ public class PlacePageView extends Fragment
   private TextView mTvSubtitle;
   private ArrowView mAvDirection;
   private TextView mTvDistance;
-  private TextView mTvAzimuth;
   private TextView mTvAddress;
   // Details.
   private TextView mTvLatlon;
@@ -141,6 +144,8 @@ public class PlacePageView extends Fragment
   private TextView mTvOutdoorSeating;
   private View mEntrance;
   private TextView mTvEntrance;
+  private View mRouteRef;
+  private TextView mTvRouteRef;
   private View mEditPlace;
   private View mAddOrganisation;
   private View mAddPlace;
@@ -148,6 +153,9 @@ public class PlacePageView extends Fragment
   private ImageView mColorIcon;
   private TextView mTvCategory;
   private ImageView mEditBookmark;
+  private View mOsmDescriptionContainer;
+  private TextView mTvOsmDescription;
+  private MaterialButton mShareButton;
 
   // Data
   private CoordinatesFormat mCoordsFormat = CoordinatesFormat.LatLonDecimal;
@@ -249,11 +257,9 @@ public class PlacePageView extends Fragment
 
     View directionFrame = mPreview.findViewById(R.id.direction_frame);
     mTvDistance = mPreview.findViewById(R.id.tv__straight_distance);
-    mTvAzimuth = mPreview.findViewById(R.id.tv__azimuth);
     mAvDirection = mPreview.findViewById(R.id.av__direction);
     UiUtils.hide(mTvDistance);
     UiUtils.hide(mAvDirection);
-    UiUtils.hide(mTvAzimuth);
     directionFrame.setOnClickListener(this);
 
     mTvAddress = mPreview.findViewById(R.id.tv__address);
@@ -267,8 +273,12 @@ public class PlacePageView extends Fragment
     mTvCategory.setOnClickListener(this);
     mEditBookmark.setOnClickListener(this);
 
-    MaterialButton shareButton = mPreview.findViewById(R.id.share_button);
-    shareButton.setOnClickListener(this::shareClickListener);
+    mOsmDescriptionContainer = mFrame.findViewById(R.id.osm_description_container);
+    mTvOsmDescription = mFrame.findViewById(R.id.tv__osm_description);
+    mTvOsmDescription.setOnLongClickListener(this);
+
+    mShareButton = mPreview.findViewById(R.id.share_button);
+    mShareButton.setOnClickListener(this::shareClickListener);
 
     final MaterialButton closeButton = mPreview.findViewById(R.id.close_button);
     closeButton.setOnClickListener((v) -> mPlacePageViewListener.onPlacePageRequestClose());
@@ -307,6 +317,9 @@ public class PlacePageView extends Fragment
     mTvCuisine = mFrame.findViewById(R.id.tv__place_cuisine);
     mEntrance = mFrame.findViewById(R.id.ll__place_entrance);
     mTvEntrance = mEntrance.findViewById(R.id.tv__place_entrance);
+    mRouteRef = mFrame.findViewById(R.id.ll__place_route_ref);
+    mRouteRef.setOnClickListener(this);
+    mTvRouteRef = mFrame.findViewById(R.id.tv__place_route_ref);
     mEditPlace = mFrame.findViewById(R.id.ll__place_editor);
     mEditPlace.setOnClickListener(this);
     mAddOrganisation = mFrame.findViewById(R.id.ll__add_organisation);
@@ -372,10 +385,19 @@ public class PlacePageView extends Fragment
       refreshDistanceToObject(loc);
     UiUtils.hideIf(mMapObject.isTrack(), mFrame.findViewById(R.id.ll__place_latlon),
                    mFrame.findViewById(R.id.ll__place_open_in));
-    if (mMapObject.isTrack() || mMapObject.isBookmark())
+    if (mMapObject.isTrack())
     {
       UiUtils.hide(mTvSubtitle);
-      UiUtils.hide(mTvAzimuth, mAvDirection, mTvDistance);
+      UiUtils.hide(mAvDirection, mTvDistance);
+    }
+    UiUtils.hideIf(mMapObject.isTrackRecording(), mShareButton, mFrame.findViewById(R.id.ll__place_latlon),
+                   mFrame.findViewById(R.id.ll__place_open_in));
+    if (mMapObject.isTrackRecording())
+    {
+      TrackRecording trackRecording = (TrackRecording) mMapObject;
+      trackRecording.getTrackRecordingPPDescription().observe(requireActivity(), s -> {
+        UiUtils.setTextAndHideIfEmpty(mTvSubtitle, trackRecording.getTrackRecordingPPDescription().getValue());
+      });
     }
   }
 
@@ -424,11 +446,17 @@ public class PlacePageView extends Fragment
                        mMapObject.isTrack());
   }
 
+  private void updateTrackRecordingView()
+  {
+    updateViewFragment(PlacePageTrackRecordingFragment.class, TRACK_RECORDING_FRAGMENT_TAG,
+                       R.id.place_page_track_fragment, mMapObject.isTrackRecording());
+  }
+
   private boolean hasWikipediaEntry()
   {
     final String wikipediaLink = mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA);
-    final String description = mMapObject.getDescription();
-    return !TextUtils.isEmpty(wikipediaLink) || !TextUtils.isEmpty(description);
+    final String wikiArticle = mMapObject.getWikiArticle();
+    return !TextUtils.isEmpty(wikipediaLink) || !TextUtils.isEmpty(wikiArticle);
   }
 
   private void updateWikipediaView()
@@ -476,7 +504,17 @@ public class PlacePageView extends Fragment
       mToolbar.setTitle(mMapObject.getTitle());
     setTextAndColorizeSubtitle();
     UiUtils.setTextAndHideIfEmpty(mTvAddress, mMapObject.getAddress());
+
     refreshCategoryPreview();
+
+    final String osmDescription = mMapObject.getOsmDescription();
+    if (osmDescription.isEmpty())
+      mOsmDescriptionContainer.setVisibility(GONE);
+    else
+    {
+      mTvOsmDescription.setText(osmDescription);
+      mOsmDescriptionContainer.setVisibility(VISIBLE);
+    }
   }
 
   void refreshCategoryPreview()
@@ -652,7 +690,8 @@ public class PlacePageView extends Fragment
     final String cap = mMapObject.getMetadata(Metadata.MetadataType.FMD_CAPACITY);
     refreshMetadataOrHide(!TextUtils.isEmpty(cap) ? getString(R.string.capacity, cap) : "", mCapacity, mTvCapacity);
 
-    refreshMetadataOrHide(mMapObject.hasAtm() ? getString(R.string.type_amenity_atm) : "", mAtm, mTvAtm);
+    refreshMetadataOrHide(mMapObject.hasAtm() ? getString(app.organicmaps.sdk.R.string.type_amenity_atm) : "", mAtm,
+                          mTvAtm);
 
     final String wheelchair =
         getLocalizedFeatureType(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WHEELCHAIR));
@@ -670,7 +709,8 @@ public class PlacePageView extends Fragment
     refreshMetadataOrHide(outdoorSeating.equals("yes") ? getString(R.string.outdoor_seating) : "", mOutdoorSeating,
                           mTvOutdoorSeating);
 
-    //    showTaxiOffer(mapObject);
+    // showTaxiOffer(mapObject);
+    refreshMetadataOrHide(Framework.nativeGetActiveObjectFormattedRouteRefs(), mRouteRef, mTvRouteRef);
 
     if (RoutingController.get().isNavigating() || RoutingController.get().isPlanning())
     {
@@ -681,14 +721,14 @@ public class PlacePageView extends Fragment
       UiUtils.showIf(Editor.nativeShouldShowEditPlace(), mEditPlace);
       UiUtils.showIf(Editor.nativeShouldShowAddBusiness(), mAddOrganisation);
       UiUtils.showIf(Editor.nativeShouldShowAddPlace(), mAddPlace);
-      mEditPlace.setEnabled(Editor.nativeShouldEnableEditPlace());
-      mAddOrganisation.setEnabled(Editor.nativeShouldEnableAddPlace());
-      mAddPlace.setEnabled(Editor.nativeShouldEnableAddPlace());
+      mEditPlace.setEnabled(Editor.nativeCanEditPlace());
+      mAddOrganisation.setEnabled(Editor.nativeCanEditPlace());
+      mAddPlace.setEnabled(Editor.nativeCanEditPlace());
       TextView mTvEditPlace = mEditPlace.findViewById(R.id.tv__editor);
       TextView mTvAddBusiness = mAddPlace.findViewById(R.id.tv__editor);
       TextView mTvAddPlace = mAddPlace.findViewById(R.id.tv__editor);
       final int editPlaceButtonColor =
-          Editor.nativeShouldEnableEditPlace()
+          Editor.nativeCanEditPlace()
               ? ContextCompat.getColor(getContext(),
                                        UiUtils.getStyledResourceId(getContext(), androidx.appcompat.R.attr.colorAccent))
               : getResources().getColor(R.color.button_accent_text_disabled);
@@ -706,6 +746,7 @@ public class PlacePageView extends Fragment
     updateBookmarkView();
     updatePhoneView();
     updateTrackView();
+    updateTrackRecordingView();
   }
 
   private void refreshWiFi()
@@ -725,7 +766,6 @@ public class PlacePageView extends Fragment
   {
     UiUtils.hide(mTvDistance);
     UiUtils.hide(mAvDirection);
-    UiUtils.hide(mTvAzimuth);
 
     if (l == null)
       return;
@@ -745,10 +785,9 @@ public class PlacePageView extends Fragment
 
   private void refreshDistanceToObject(Location l)
   {
-    if (mMapObject.isTrack())
+    if (mMapObject.isTrack() || mMapObject.isTrackRecording())
       return;
     UiUtils.showIf(l != null, mTvDistance);
-    UiUtils.showIf(l != null, mTvAzimuth);
     if (l == null)
       return;
 
@@ -757,7 +796,6 @@ public class PlacePageView extends Fragment
     DistanceAndAzimut distanceAndAzimuth =
         Framework.nativeGetDistanceAndAzimuthFromLatLon(lat, lon, l.getLatitude(), l.getLongitude(), 0.0);
     mTvDistance.setText(distanceAndAzimuth.getDistance().toString(requireContext()));
-    mTvAzimuth.setText(StringUtils.formatUsingUsLocale("%.0f°", Math.toDegrees(distanceAndAzimuth.getAzimuth())));
   }
 
   private void refreshLatLon()
@@ -846,6 +884,8 @@ public class PlacePageView extends Fragment
       items.add(mTvSecondaryTitle.getText().toString());
     else if (id == R.id.tv__address)
       items.add(mTvAddress.getText().toString());
+    else if (id == R.id.tv__osm_description)
+      items.add(mTvOsmDescription.getText().toString());
     else if (id == R.id.ll__place_latlon)
     {
       final double lat = mMapObject.getLat();
@@ -928,7 +968,7 @@ public class PlacePageView extends Fragment
       mStorageCallbackSlot = MapManager.nativeSubscribe(mStorageCallback);
 
     mDownloaderIcon
-        .setOnIconClickListener((v) -> MapManager.warn3gAndDownload(requireActivity(), mCurrentCountry.id, MapSource.ORGANIC_MAPS, null))
+        .setOnIconClickListener((v) -> MapManagerHelper.warn3gAndDownload(requireActivity(), mCurrentCountry.id, MapSource.ORGANIC_MAPS, null))
         .setOnCancelClickListener((v) -> MapManager.nativeCancel(mCurrentCountry.id));
     mDownloaderIcon.show(true);
     UiUtils.show(mDownloaderInfo);
@@ -965,7 +1005,7 @@ public class PlacePageView extends Fragment
     // In case the place page has already some data, make sure to call the onPlacePageContentChanged callback
     // to catch cases where the new data has the exact same height as the previous one (eg 2 address nodes)
     if (mFrame.getHeight() > 0)
-      mPlacePageViewListener.onPlacePageContentChanged(mPreview.getHeight(), mFrame.getHeight());
+      mPlacePageViewListener.onPlacePageContentChanged(mPreview.getMeasuredHeight(), mFrame.getHeight());
   }
 
   @Override
@@ -982,7 +1022,7 @@ public class PlacePageView extends Fragment
   @Override
   public void onCompassUpdated(double north)
   {
-    if (mMapObject == null || mMapObject.isMyPosition() || mMapObject.isTrack())
+    if (mMapObject == null || mMapObject.isMyPosition() || mMapObject.isTrack() || mMapObject.isTrackRecording())
       return;
 
     final Location location = MwmApplication.from(requireContext()).getLocationHelper().getSavedLocation();
@@ -1006,6 +1046,8 @@ public class PlacePageView extends Fragment
 
   void shareClickListener(View v)
   {
+    if (mMapObject.isTrackRecording())
+      return;
     if (mMapObject.isTrack())
     {
       MenuBottomSheetFragment.newInstance(TRACK_SHARE_MENU_ID, getString(R.string.share_track))

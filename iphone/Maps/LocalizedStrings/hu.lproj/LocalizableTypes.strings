@@ -1,14 +1,14 @@
-"type.addr_interpolation" = "Cím/blokk";
-"type.addr_interpolation.even" = "Cím/blokk";
-"type.addr_interpolation.odd" = "Cím/blokk";
+"type.addr_interpolation" = "Cím/háztömb";
+"type.addr_interpolation.even" = "Cím/háztömb";
+"type.addr_interpolation.odd" = "Cím/háztömb";
 "type.aerialway" = "Drótkötélpályás felvonó";
 "type.aerialway.cable_car" = "Nagykabinos felvonó";
 "type.aerialway.chair_lift" = "Ülőlift";
 "type.aerialway.gondola" = "Gondolakabinos felvonó";
 "type.aerialway.station" = "Felvonóállomás";
 "type.aeroway" = "Légi közlekedési infrastruktúra";
-"type.aeroway.aerodrome" = "Kis repülőtér";
-"type.aeroway.aerodrome.international" = "Repülőtér";
+"type.aeroway.aerodrome" = "Repülőtér";
+"type.aeroway.aerodrome.international" = "Nemzetközi repülőtér";
 "type.aeroway.apron" = "Forgalmi előtér";
 "type.aeroway.gate" = "Beszállókapu";
 "type.aeroway.helipad" = "Helikopterleszálló";
@@ -300,7 +300,7 @@
 "type.cuisine.heuriger" = "Heuriger";
 "type.cuisine.hotdog" = "Hotdog";
 "type.cuisine.hungarian" = "Magyar";
-"type.cuisine.ice_cream" = "Jégkrém";
+"type.cuisine.ice_cream" = "Fagylalt";
 "type.cuisine.indian" = "Indiai";
 "type.cuisine.indonesian" = "Indonéz";
 "type.cuisine.international" = "Nemzetközi";
@@ -622,7 +622,7 @@
 "type.historic.mine" = "Történelmi bánya";
 "type.historic.monument" = "Monumentális, épületszerű műemlék";
 "type.historic.pillory" = "Pellengér";
-"type.historic.ruins" = "Történelmi rom";
+"type.historic.ruins" = "Történelmi romok";
 "type.historic.ship" = "Hajó";
 "type.historic.tank" = "Történelmi tank";
 "type.historic.tomb" = "Történelmi sír";
@@ -1186,7 +1186,7 @@
 "type.route.ferry" = "Komp";
 "type.route.shuttle_train" = "útvonal-ingajáratú_vonat";
 "type.shop" = "Bolt";
-"type.shop.alcohol" = "Szeszesitalbolt";
+"type.shop.alcohol" = "Szeszesital-bolt";
 "type.shop.bakery" = "Pékség";
 "type.shop.bathroom_furnishing" = "Fürdőszoba-berendezés";
 "type.shop.beauty" = "Szépségszalon";
@@ -1259,7 +1259,7 @@
 "type.shop.pet_grooming" = "Kisállatápolás";
 "type.shop.photo" = "Fotóüzlet";
 "type.shop.rental" = "Kölcsönző";
-"type.shop.rental.bicycle" = "Kerékpárkölcsönző";
+"type.amenity.bicycle_rental.shop" = "Kerékpárkölcsönző";
 "type.shop.seafood" = "Halkereskedés";
 "type.shop.second_hand" = "Használtcikk-bolt";
 "type.shop.shoes" = "Cipőbolt";
@@ -1274,7 +1274,7 @@
 "type.shop.tyres" = "Autógumi-szaküzlet";
 "type.shop.variety_store" = "100 forintos bolt";
 "type.shop.video" = "Videófilmbolt vagy -kölcsönző";
-"type.shop.video_games" = "Videojáték-bolt";
+"type.shop.video_games" = "Videojáték-szaküzlet";
 "type.shop.wine" = "Borszaküzlet";
 "type.shop.agrarian" = "Gazdabolt";
 "type.shop.antiques" = "Régiségkereskedés";
@@ -1494,3 +1494,12 @@
 "type.post_office.post_partner" = "Postapartnerpont";
 "type.amenity.luggage_locker" = "Csomagmegőrző";
 "type.leisure.escape_game" = "Szabadulószoba";
+"type.barrier.wicket_gate" = "Személybejáró";
+"type.barrier.yes" = "Akadály";
+"type.building.guardhouse" = "Őrség";
+"type.office.security" = "Biztonsági őr irodája";
+"type.power.portal" = "Villanytorony (Portál)";
+"type.shop.lighting" = "Világítástechnikai szaküzlet";
+"type.barrier.jersey_barrier" = "Tömb";
+"type.barrier.debris" = "Törmelék";
+"type.barrier.log" = "Rönkkorlát";

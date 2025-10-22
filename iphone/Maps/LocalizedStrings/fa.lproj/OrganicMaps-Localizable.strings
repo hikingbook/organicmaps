@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "خروج";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "برای افزودن نقطه شروع مسیر، از جستجو استفاده کنید یا روی نقشه ضربه بزنید";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "برای افزودن نقطه مقصد، از جستجو استفاده کنید یا روی نقشه ضربه بزنید";
 "planning_route_manage_route" = "مدیریت مسیر";
 "button_plan" = "برنامه";
 "placepage_remove_stop" = "توقف را حذف کنید";
@@ -1048,15 +1043,6 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "توقف ضبط مسیر";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "توقف بدون ذخیره";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "ادامه ضبط";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "ذخیره‌سازی در نشانک‌ها و مسیرها؟";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "مسیر خالی است - چیزی برای ذخیره کردن وجود ندارد";
 "edit_track" = "ویرایش مسیر";
@@ -1074,3 +1060,10 @@
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
 "routes_update_maps_text" = "برای نمایش مسیرها، نقشه‌ها باید به‌روزرسانی شوند.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "مشارکت در OpenStreetMap";
+"contribute_to_osm_add_place" = "افزودن مکان";
+"contribute_to_osm_update_map" = "برای مشارکت نقشه را به‌روزرسانی کنید";
+"contribute_to_osm_update_map_description" = "برای مشارکت در داده‌های OpenStreetMap باید نقشه %@ را به آخرین نسخه به‌روزرسانی کنید";
+"placepage_replace_stop" = "Replace Stop";

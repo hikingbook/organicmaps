@@ -705,11 +705,6 @@
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Išėjimas";
 
-/* User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". */
-"routing_add_start_point" = "Pasinaudokite paieška arba bakstelėkite žemėlapyje, kad pridėtumėte maršruto pradžios tašką";
-
-/* User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". */
-"routing_add_finish_point" = "Pasinaudokite paieška arba bakstelėkite žemėlapyje, kad pridėtumėte paskirties tašką";
 "planning_route_manage_route" = "Tvarkyti maršrutą";
 "button_plan" = "Planas";
 "placepage_remove_stop" = "Šalinti stotelę";
@@ -970,7 +965,7 @@
 "car_continue_in_the_car" = "Į automobilio ekraną";
 
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "Žygiai pėsčiomis";
+"button_layer_outdoor" = "Laukas";
 
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "Eksportuoti visas žymes ir trasas";
@@ -1048,29 +1043,27 @@
 /* Prompt for stopping a track recording. */
 "stop_track_recording" = "Stabdyti trasos įrašymą";
 
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"stop_without_saving" = "Stabdyti neįrašant";
-
-/* Title for the "Stop Without Saving" action for the alert when saving a track recording. */
-"continue_recording" = "Tęsti įrašymą";
-
-/* Title for the alert when saving a track recording. */
-"track_recording_alert_title" = "Įrašyti į žymių ir trasų sąrašą?";
-
 /* Message for the toast when saving the track recording is finished but nothing to save. */
 "track_recording_toast_nothing_to_save" = "Trasa tuščia – nėra ką įrašyti";
 "edit_track" = "Redaguoti trasą";
 "saved" = "Įrašyta";
-"button_layer_hiking" = "Hiking";
-"button_layer_cycling" = "Cycling";
+"button_layer_hiking" = "Žygiavimas";
+"button_layer_cycling" = "Kelionės dviračiu";
 
 /* Settings/Bookmark Text Placement */
-"bookmarks_text_placement_title" = "Bookmark names on the map";
-"bookmarks_text_placement_description" = "If there are too many bookmarks, displaying their names on the map may slow down the app.";
-"show_to_the_right" = "Show to the right";
-"right" = "Right";
-"show_at_the_bottom" = "Show at the bottom";
-"bottom" = "Bottom";
+"bookmarks_text_placement_title" = "Žymių pavadinimai žemėlapyje";
+"bookmarks_text_placement_description" = "Jei turite per daug žymių, jų vaizdavimas žemėlapyje gali lėtinti programėlės veikimą.";
+"show_to_the_right" = "Rodyti dešinėje";
+"right" = "Dešinėje";
+"show_at_the_bottom" = "Rodyti apačioje";
+"bottom" = "Apačioje";
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
-"routes_update_maps_text" = "To display routes, maps must be updated.";
+"routes_update_maps_text" = "Prieš parodant kelius, reikia atnaujinti žemėlapius.";
+
+/* OpenStreetMap contribution section on the PlacePage. */
+"contribute_to_osm" = "Prisidėti prie OpenStreetMap";
+"contribute_to_osm_add_place" = "Pridėti vietą";
+"contribute_to_osm_update_map" = "Atnaujinti žemėlapį, kad prisidėtumėte";
+"contribute_to_osm_update_map_description" = "Prieš prisidėdami prie OpenStreetMap duomenų, turite atnaujinti %@ žemėlapį į naujausią versiją";
+"placepage_replace_stop" = "Replace Stop";

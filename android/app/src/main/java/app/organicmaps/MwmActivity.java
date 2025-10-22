@@ -13,6 +13,7 @@ import static app.organicmaps.sdk.location.LocationState.FOLLOW;
 import static app.organicmaps.sdk.location.LocationState.FOLLOW_AND_ROTATE;
 import static app.organicmaps.sdk.location.LocationState.LOCATION_TAG;
 import static app.organicmaps.sdk.util.PowerManagment.POWER_MANAGEMENT_TAG;
+import static app.organicmaps.sdk.util.Utils.dimen;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -44,15 +45,12 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -88,10 +86,12 @@ import app.organicmaps.routing.RoutingPlanInplaceController;
 import app.organicmaps.sdk.ChoosePositionMode;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.Map;
+import app.organicmaps.sdk.MapController;
 import app.organicmaps.sdk.MapRenderingListener;
 import app.organicmaps.sdk.PlacePageActivationListener;
 import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
+import app.organicmaps.sdk.bookmarks.data.TrackRecording;
 import app.organicmaps.sdk.display.DisplayChangedListener;
 import app.organicmaps.sdk.display.DisplayManager;
 import app.organicmaps.sdk.display.DisplayType;
@@ -114,7 +114,6 @@ import app.organicmaps.sdk.settings.UnitLocale;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.LocationUtils;
 import app.organicmaps.sdk.util.PowerManagment;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.widget.placepage.PlacePageData;
 import app.organicmaps.search.FloatingSearchToolbarController;
@@ -125,22 +124,21 @@ import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.ThemeUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
-import app.organicmaps.widget.StackedButtonsDialog;
 import app.organicmaps.widget.menu.MainMenu;
 import app.organicmaps.widget.placepage.PlacePageController;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
 
 public class MwmActivity extends BaseMwmFragmentActivity
-    implements PlacePageActivationListener, View.OnTouchListener, MapRenderingListener, /* RoutingController.Container, */
-               LocationListener, SensorListener, LocationState.ModeChangeListener,
-               /* RoutingPlanInplaceController.RoutingPlanListener ,*/ RoutingBottomMenuListener,
-               BookmarkManager.BookmarksLoadingListener, FloatingSearchToolbarController.SearchToolbarListener,
-               MenuBottomSheetFragment.MenuBottomSheetInterfaceWithHeader,
-               PlacePageController.PlacePageRouteSettingsListener, MapButtonsController.MapButtonClickListener,
-               DisplayChangedListener
+    implements PlacePageActivationListener, MapRenderingListener, /* RoutingController.Container, */ LocationListener,
+               SensorListener, LocationState.ModeChangeListener, /* RoutingPlanInplaceController.RoutingPlanListener, */
+               RoutingBottomMenuListener, BookmarkManager.BookmarksLoadingListener,
+               FloatingSearchToolbarController.SearchToolbarListener,
+               MenuBottomSheetFragment.MenuBottomSheetInterfaceWithHeader, PlacePageController.PlacePageListener,
+               MapButtonsController.MapButtonClickListener, DisplayChangedListener
 {
   private static final String TAG = MwmActivity.class.getSimpleName();
 
@@ -167,9 +165,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private static final String POWER_SAVE_DISCLAIMER_SHOWN = "POWER_SAVE_DISCLAIMER_SHOWN";
 
-  @Nullable
-//  private MapFragment mMapFragment;
-  public MapFragment mMapFragment;
+  @SuppressWarnings("NotNullFieldNotInitialized")
+  @NonNull
+//  private MapController mMapController;
+  public MapController mMapController;
 
   private View mPointChooser;
   private Toolbar mPointChooserToolbar;
@@ -238,7 +237,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   ManageRouteBottomSheet mManageRouteBottomSheet;
 
   private boolean mRemoveDisplayListener = true;
-  private int mLastUiMode = Configuration.UI_MODE_TYPE_UNDEFINED;
+  private static int mLastUiMode = Configuration.UI_MODE_TYPE_UNDEFINED;
 
   public interface LeftAnimationTrackListener
   {
@@ -265,6 +264,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onRenderingInitializationFinished()
   {
     ThemeSwitcher.INSTANCE.restart(true);
+
+    Framework.nativeRestoreDownloadQueue();
 
 //    if (RoutingController.get().isPlanning())
 //      onPlanningStarted();
@@ -475,26 +476,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
   @Override
-  @StyleRes
-  protected int getThemeResourceId(@NonNull String theme)
-  {
-    Context context = getApplicationContext();
-
-    if (ThemeUtils.isDefaultTheme(context, theme))
-      return R.style.MwmTheme_MainActivity;
-
-    if (ThemeUtils.isNightTheme(context, theme))
-      return R.style.MwmTheme_Night_MainActivity;
-
-    return super.getThemeResourceId(theme);
-  }
-
-  @Override
   public void onDisplayChangedToCar(@NonNull Runnable onTaskFinishedCallback)
   {
     mRemoveDisplayListener = false;
     startActivity(new Intent(this, MapPlaceholderActivity.class));
-    Objects.requireNonNull(mMapFragment).notifyOnSurfaceDestroyed(onTaskFinishedCallback);
+    mMapController.setOnDestroyListener(onTaskFinishedCallback);
     finish();
   }
 
@@ -503,13 +489,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     super.onConfigurationChanged(newConfig);
 
-    final int newUiMode = newConfig.uiMode & Configuration.UI_MODE_TYPE_MASK;
-    final boolean newUiModeIsCarConnected = newUiMode == Configuration.UI_MODE_TYPE_CAR;
-    final boolean newUiModeIsCarDisconnected =
-        mLastUiMode == Configuration.UI_MODE_TYPE_CAR && newUiMode == Configuration.UI_MODE_TYPE_NORMAL;
-    mLastUiMode = newUiMode;
+    final int newType = newConfig.uiMode & Configuration.UI_MODE_TYPE_MASK;
+    final int oldType = mLastUiMode & Configuration.UI_MODE_TYPE_MASK;
 
-    if (newUiModeIsCarConnected || newUiModeIsCarDisconnected)
+    mLastUiMode = newConfig.uiMode;
+
+    final boolean carModeChanged =
+        newType != oldType && (newType == Configuration.UI_MODE_TYPE_CAR || oldType == Configuration.UI_MODE_TYPE_CAR);
+
+    if (carModeChanged)
       return;
 
     makeNavigationBarTransparentInLightMode();
@@ -569,7 +557,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     updateViewsInsets();
 
     if (getIntent().getBooleanExtra(EXTRA_UPDATE_THEME, false))
-      ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
+      ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
 
     /*
      * onRenderingInitializationFinished() hook is not called when MwmActivity is recreated with the already
@@ -584,7 +572,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void refreshLightStatusBar()
   {
-    UiUtils.setLightStatusBar(this, !(ThemeUtils.isNightTheme(this) || RoutingController.get().isPlanning()
+    UiUtils.setLightStatusBar(this, !(ThemeUtils.isNightTheme() || RoutingController.get().isPlanning()
                                       || ChoosePositionMode.get() != ChoosePositionMode.None));
   }
 
@@ -594,7 +582,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       UiUtils.setViewInsetsPaddingBottom(mPointChooser, windowInsets);
       UiUtils.setViewInsetsPaddingNoBottom(mPointChooserToolbar, windowInsets);
       final int trackRecorderOffset =
-          TrackRecorder.nativeIsTrackRecordingEnabled() ? UiUtils.dimen(this, R.dimen.map_button_size) : 0;
+          TrackRecorder.nativeIsTrackRecordingEnabled() ? dimen(this, R.dimen.map_button_size) : 0;
       mNavBarHeight = isFullscreen() ? 0 : windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
       // For the first loading, set compass top margin to status bar size
       // The top inset will be then be updated by the routing controller
@@ -618,9 +606,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void initViews(boolean isLaunchByDeeplink, @Nullable Bundle savedInstanceState)
   {
-    // Added by Zhend-Xiang
-    initDisplayManager();
-    initMap(isLaunchByDeeplink, savedInstanceState);
+    mMapController = new MapController(FrameworkAdapter.INSTANCE.getMapView(), MwmApplication.from(this).getLocationHelper(), this,
+                                       this::reportUnsupported, isLaunchByDeeplink);
+//    getLifecycle().addObserver(mMapController);
+    FrameworkAdapter.INSTANCE.getActivity().getLifecycle().addObserver(mMapController);
+
 //    initNavigationButtons();
 
 //    if (!mIsTabletLayout)
@@ -734,16 +724,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private void showPositionChooser(ChoosePositionMode mode, boolean isBusiness, boolean applyPosition)
   {
     closeFloatingToolbarsAndPanels(false);
-    if (mMapFragment != null)
-    {
-      final View mapView = mMapFragment.getView();
-      if (mapView != null)
-      {
-        int width = mapView.getWidth();
-        int height = mapView.getHeight();
-        Framework.nativeSetVisibleRect(0, 0, width, height);
-      }
-    }
     UiUtils.show(mPointChooser);
 //    mMapButtonsViewModel.setButtonsHidden(true);
     ChoosePositionMode.set(mode, isBusiness, applyPosition);
@@ -760,44 +740,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     refreshLightStatusBar();
     if (mode == ChoosePositionMode.Api)
       finish();
-  }
-
-  private void initMap(boolean isLaunchByDeepLink, @Nullable Bundle savedInstanceState)
-  {
-    final FragmentActivity activity = FrameworkAdapter.INSTANCE.getActivity();
-    final FragmentManager manager = activity.getSupportFragmentManager();
-
-    if (savedInstanceState == null)
-    {
-      // This is the first time the Activity is created.
-      // We create and add a new MapFragment.
-      Bundle args = new Bundle();
-      args.putBoolean(Map.ARG_LAUNCH_BY_DEEP_LINK, isLaunchByDeepLink);
-      final FragmentFactory factory = manager.getFragmentFactory();
-      mMapFragment = (MapFragment) factory.instantiate(activity.getClassLoader(), MapFragment.class.getName());
-      mMapFragment.setArguments(args);
-      manager.beginTransaction()
-          .replace(R.id.map_fragment_container, mMapFragment, MapFragment.class.getName())
-          .commitAllowingStateLoss();
-    }
-    else
-    {
-      // The Activity is being recreated (e.g., after screen rotation).
-      // The FragmentManager has automatically restored the fragment.
-      // We just need to find its reference.
-      mMapFragment = (MapFragment) manager.findFragmentByTag(MapFragment.class.getName());
-      if (mMapFragment == null)
-      {
-        // As a fallback in case the tag lookup fails after recreation, find by ID.
-        mMapFragment = (MapFragment) manager.findFragmentById(R.id.map_fragment_container);
-      }
-    }
-
-    View container = activity.findViewById(R.id.map_fragment_container);
-    if (container != null)
-    {
-      container.setOnTouchListener(this);
-    }
   }
 
   private void initNavigationButtons()
@@ -845,7 +787,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       showBottomSheet(MAIN_MENU_ID);
     }
     case help -> showHelp();
-    case trackRecordingStatus -> showTrackSaveDialog();
+    case trackRecordingStatus -> toggleTrackRecordingPP();
     }
   }
 
@@ -1015,7 +957,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
   }
 
-  private void initDisplayManager()
+  public void initDisplayManager()
   {
     if (mDisplayManager == null) {
       mDisplayManager = MwmApplication.from(this).getDisplayManager();
@@ -1112,19 +1054,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
   {
     setIntent(intent);
     super.onNewIntent(intent);
-    if (isMapRendererActive())
+    if (mMapController.isRenderingActive())
       processIntent();
     if (intent.getAction() != null && intent.getAction().equals(TrackRecordingService.STOP_TRACK_RECORDING))
     {
       // closes the bottom sheet in case it is opened to deal with updation of track recording status in bottom sheet.
       closeBottomSheet(MAIN_MENU_ID);
-      showTrackSaveDialog();
+      toggleTrackRecordingPP();
     }
-  }
-
-  public boolean isMapRendererActive()
-  {
-    return mMapFragment != null && Map.isEngineCreated() && mMapFragment.isContextCreated();
   }
 
   @CallSuper
@@ -1132,7 +1069,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   protected void onResume()
   {
     super.onResume();
-    ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
+    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
     refreshSearchToolbar();
     setFullscreen(isFullscreen());
     makeNavigationBarTransparentInLightMode();
@@ -1148,15 +1085,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     refreshLightStatusBar();
 
     MwmApplication.from(this).getSensorHelper().addListener(this);
-  }
-
-  @Override
-  public void recreate()
-  {
-    // Explicitly destroy surface before activity recreation.
-    if (mMapFragment != null)
-      mMapFragment.destroySurface(true);
-    super.recreate();
   }
 
   @Override
@@ -1307,6 +1235,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onPlacePageDeactivated()
   {
+    if (mPlacePageViewModel.getMapObject().getValue() == null
+        || mPlacePageViewModel.getMapObject().getValue().isTrackRecording())
+      return;
     closePlacePage();
   }
 
@@ -1356,12 +1287,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     return super.onGenericMotionEvent(event);
   }
 
-  @Override
-  public boolean onTouch(View view, MotionEvent event)
-  {
-    return mMapFragment != null && mMapFragment.onTouch(view, event);
-  }
-
   public void customOnNavigateUp()
   {
     if (removeCurrentFragment(true))
@@ -1377,10 +1302,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void updateCompassOffset(int offsetY, int offsetX)
   {
-    if (mMapFragment == null || !mMapFragment.isAdded())
+    if (mMapController == null) {
       return;
+    }
 
-    mMapFragment.updateCompassOffset(offsetX, offsetY);
+    mMapController.updateCompassOffset(offsetX, offsetY);
 
     final double north = MwmApplication.from(this).getSensorHelper().getSavedNorth();
     if (!Double.isNaN(north))
@@ -1399,9 +1325,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   public void updateBottomWidgetsOffset(int offsetX, int offsetY1)
   {
-    if (mMapFragment == null || !mMapFragment.isAdded())
+    if (mMapController == null) {
       return;
-
+    }
+    
     int offsetY = mNavBarHeight;
 //    final Float bottomButtonHeight = mMapButtonsViewModel.getBottomButtonsHeight().getValue();
 //    if (bottomButtonHeight != null)
@@ -1416,9 +1343,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     if (mDisplayManager.isDeviceDisplayUsed())
     {
-//      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY);
-      mMapFragment.updateBottomWidgetsOffset(offsetX, offsetY + offsetY1);
-      mMapFragment.updateMyPositionRoutingOffset(offsetY);
+      mMapController.updateBottomWidgetsOffset(offsetX, offsetY + offsetY1);
+      mMapController.updateMyPositionRoutingOffset(offsetY);
     }
   }
 
@@ -1546,17 +1472,17 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    final int orientation = getResources().getConfiguration().orientation;
 //    final boolean isTrackRecordingEnabled = TrackRecorder.nativeIsTrackRecordingEnabled();
 //    if (isTrackRecordingEnabled && (orientation != Configuration.ORIENTATION_LANDSCAPE))
-//      offsetY += UiUtils.dimen(this, R.dimen.map_button_size);
+//      offsetY += dimen(this, R.dimen.map_button_size);
 //    if (orientation == Configuration.ORIENTATION_LANDSCAPE)
 //    {
 //      if (show)
-//     {
-//        final boolean isSmallScreen = UiUtils.getDisplayTotalHeight(this) < UiUtils.dimen(this, R.dimen.dp_400);
+//      {
+//        final boolean isSmallScreen = UiUtils.getDisplayTotalHeight(this) < dimen(this, R.dimen.dp_400);
 //        if (!isSmallScreen || TrackRecorder.nativeIsTrackRecordingEnabled())
-//          offsetX += UiUtils.dimen(this, R.dimen.map_button_size);
+//          offsetX += dimen(this, R.dimen.map_button_size);
 //      }
 //      else if (isTrackRecordingEnabled)
-//        offsetY += UiUtils.dimen(this, R.dimen.map_button_size);
+//        offsetY += dimen(this, R.dimen.map_button_size);
 //    }
 //    updateCompassOffset(offsetY, offsetX);
 //  }
@@ -1676,12 +1602,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  }
 
 //  @Override
-//  public void onPlanningStarted()
+//  public void onNavigationCancelled()
 //  {
 //    closeFloatingToolbarsAndPanels(true);
-//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
-//    refreshLightStatusBar();
-//  }
+//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+//    if (mRoutingPlanInplaceController == null)
+//      return;
 
 //  @Override
 //  public void onResetToPlanningState()
@@ -1695,10 +1621,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  }
 
 //  @Override
-//  public void onAddedStop()
+//  public void onNavigationStarted()
 //  {
-//    closePlacePage();
-//  }
+//    closeFloatingToolbarsAndPanels(true);
+//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.navigation);
+//    refreshLightStatusBar();
 
 //  @Override
 //  public void onRemovedStop()
@@ -1731,11 +1659,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //  }
 
 //  @Override
-//  public void onCommonBuildError(int lastResultCode, @NonNull String[] lastMissingMaps)
+//  public void onResetToPlanningState()
 //  {
-//    RoutingErrorDialogFragment fragment = RoutingErrorDialogFragment.create(getSupportFragmentManager().getFragmentFactory(),
-//            getApplicationContext(), lastResultCode, lastMissingMaps);
-//    fragment.show(getSupportFragmentManager(), RoutingErrorDialogFragment.class.getSimpleName());
+//    closeFloatingToolbarsAndPanels(true);
+//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+//    NavigationService.stopService(this);
+//    mMapButtonsViewModel.setSearchOption(null);
+//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
+//    refreshLightStatusBar();
 //  }
 
 //  @Override
@@ -2404,7 +2335,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (mCurrentWindowInsets != null)
     {
       final int offset = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-      updateCompassOffset(offset + UiUtils.dimen(this, R.dimen.map_button_size));
+      updateCompassOffset(offset + dimen(this, R.dimen.map_button_size));
     }
     Toast.makeText(this, R.string.track_recording, Toast.LENGTH_SHORT).show();
     TrackRecordingService.startForegroundService(getApplicationContext());
@@ -2428,51 +2359,36 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
     TrackRecordingService.stopService(getApplicationContext());
 //    mMapButtonsViewModel.setTrackRecorderState(false);
+//    if (mPlacePageViewModel.getMapObject().getValue() != null
+//        && mPlacePageViewModel.getMapObject().getValue().isTrackRecording())
+//      closePlacePage();
   }
 
   private void saveAndStopTrackRecording()
   {
+    // we are detaching the listener before saving the track to stop getting updates and fetching data from wrong
+    // mapObject
+    TrackRecorder.nativeSetTrackRecordingStatsListener(null);
     if (!TrackRecorder.nativeIsTrackRecordingEmpty())
       TrackRecorder.nativeSaveTrackRecordingWithName("");
-    TrackRecorder.nativeStopTrackRecording();
     stopTrackRecording();
   }
 
   private void onTrackRecordingOptionSelected()
   {
     if (TrackRecorder.nativeIsTrackRecordingEnabled())
-      showTrackSaveDialog();
+      toggleTrackRecordingPP();
     else
       startTrackRecording();
   }
 
-  private void showTrackSaveDialog()
+  private void toggleTrackRecordingPP()
   {
-    if (TrackRecorder.nativeIsTrackRecordingEmpty())
-    {
-      Toast.makeText(this, R.string.track_recording_toast_nothing_to_save, Toast.LENGTH_SHORT).show();
-      stopTrackRecording();
-      return;
-    }
-
-    dismissAlertDialog();
-    mAlertDialog = new StackedButtonsDialog.Builder(this)
-                       .setTitle(R.string.track_recording_alert_title)
-                       .setCancelable(false)
-                       // Negative/Positive/Neutral do not have their usual meaning here.
-                       .setNegativeButton(R.string.continue_recording, (dialog, which) -> { mAlertDialog = null; })
-                       .setNeutralButton(R.string.stop_without_saving,
-                                         (dialog, which) -> {
-                                           stopTrackRecording();
-                                           mAlertDialog = null;
-                                         })
-                       .setPositiveButton(R.string.save,
-                                          (dialog, which) -> {
-                                            saveAndStopTrackRecording();
-                                            mAlertDialog = null;
-                                          })
-                       .build();
-    mAlertDialog.show();
+    if (mPlacePageViewModel.getMapObject().getValue() != null
+        && mPlacePageViewModel.getMapObject().getValue().isTrackRecording())
+      mPlacePageViewModel.setMapObject(null);
+    else
+      mPlacePageViewModel.setMapObject(new TrackRecording());
   }
 
   public void onShareLocationOptionSelected()
@@ -2492,7 +2408,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
                                         this::onAddPlaceOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.download_maps, R.drawable.ic_download, getDownloadMapsCounter(),
                                         this::onDownloadMapsOptionSelected));
-      mDonatesUrl = Config.getDonateUrl(getApplicationContext());
+      mDonatesUrl = Utils.getDonateUrl(getApplicationContext());
       if (!TextUtils.isEmpty(mDonatesUrl))
         items.add(new MenuBottomSheetItem(R.string.donate, R.drawable.ic_donate, this::onDonateOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.settings, R.drawable.ic_settings, this::onSettingsOptionSelected));
@@ -2520,6 +2436,17 @@ public class MwmActivity extends BaseMwmFragmentActivity
     closePlacePage();
     RoutingOptions.addOption(roadType);
     rebuildLastRouteInternal();
+  }
+
+  @Override
+  public void onTrackRecordingSaved()
+  {
+    saveAndStopTrackRecording();
+  }
+
+  public void onTrackRecordingCancelled()
+  {
+    stopTrackRecording();
   }
 
   @Override
@@ -2551,5 +2478,14 @@ public class MwmActivity extends BaseMwmFragmentActivity
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
         window.setNavigationBarContrastEnforced(false);
     }
+  }
+
+  private void reportUnsupported()
+  {
+    new MaterialAlertDialogBuilder(this, R.style.MwmTheme_AlertDialog)
+        .setMessage(R.string.unsupported_phone)
+        .setCancelable(false)
+        .setPositiveButton(R.string.close, (dlg, which) -> this.moveTaskToBack(true))
+        .show();
   }
 }

@@ -24,7 +24,7 @@ import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.ConnectionState;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import app.organicmaps.widget.WheelProgressView;
 
@@ -65,7 +65,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             downloaderDelegate.handleDownloadError(item, getMapSource());
           }
           else {
-            MapManager.showError(mActivity, item, null);
+            MapManagerHelper.showError(mActivity, item, null);
           }
         }
 
@@ -200,7 +200,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
                 if (TextUtils.equals(mCurrentCountry.id, country)
                     && MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
-                  MapManager.startDownload(mCurrentCountry.id, getMapSource());
+                  MapManagerHelper.startDownload(mCurrentCountry.id, getMapSource());
                 }
               }
             }
@@ -269,18 +269,18 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
             return;
           }
-          MapManager.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
+          MapManagerHelper.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
             if (mCurrentCountry == null)
               return;
 
             boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
             if (retry)
             {
-              MapManager.retryDownload(mCurrentCountry.id, getMapSource());
+              MapManagerHelper.retryDownload(mCurrentCountry.id, getMapSource());
             }
             else
             {
-              MapManager.startDownload(mCurrentCountry.id, getMapSource());
+              MapManagerHelper.startDownload(mCurrentCountry.id, getMapSource());
 //            mActivity.requestPostNotificationsPermission();
             }
           });

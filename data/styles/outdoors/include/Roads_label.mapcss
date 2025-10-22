@@ -33,6 +33,9 @@ line|z16-[highway=bridleway],
 line|z16-[highway=cycleway],
 {font-size: 13; text-color: @label_medium; text-halo-color: @label_halo_light;}
 
+/* Do not draw texts for highway-footway-area */
+line|z11-[highway=footway][area?],
+{text: none;}
 
 line|z12-[piste:type=nordic],
 line|z12-[piste:type=hike],

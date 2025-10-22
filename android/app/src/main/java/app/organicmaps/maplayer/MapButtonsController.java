@@ -31,8 +31,9 @@ import app.organicmaps.sdk.maplayer.subway.SubwayManager;
 import app.organicmaps.sdk.maplayer.traffic.TrafficManager;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.Config;
-import app.organicmaps.sdk.util.UiUtils;
 import app.organicmaps.util.ThemeUtils;
+import app.organicmaps.util.UiUtils;
+import app.organicmaps.util.Utils;
 import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.widget.menu.MyPositionButton;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
@@ -102,12 +103,12 @@ public class MapButtonsController extends Fragment
     final FloatingActionButton helpButton = mFrame.findViewById(R.id.help_button);
     if (helpButton != null)
     {
-      if (Config.isNY() && !TextUtils.isEmpty(Config.getDonateUrl(requireContext())))
+      if (Config.isNY() && !TextUtils.isEmpty(Utils.getDonateUrl(requireContext())))
         helpButton.setImageResource(R.drawable.ic_christmas_tree);
       else
         helpButton.setImageResource(R.drawable.logo);
       // Keep this button colorful in normal theme.
-      if (!ThemeUtils.isNightTheme(requireContext()))
+      if (!ThemeUtils.isNightTheme())
         helpButton.getDrawable().setTintList(null);
     }
 

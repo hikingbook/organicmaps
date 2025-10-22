@@ -47,7 +47,6 @@
     <attr name="android:drawable"/>
   </declare-styleable>
 
-  <bool name="isTablet">false</bool>
   <bool name="tabletLayout">false</bool>
 
   <declare-styleable name="PlaceholderView">
@@ -56,18 +55,6 @@
     <attr name="subTitleDefault" format="reference"/>
   </declare-styleable>
 
-  <attr name="trafficMenuDisabled" format="reference"/>
-  <attr name="subwayMenuDisabled" format="reference"/>
-  <attr name="isoLinesMenuDisabled" format="reference"/>
-  <attr name="outdoorsMenuDisabled" format="reference"/>
-  <attr name="hikingMenuDisabled" format="reference" />
-  <attr name="cyclingMenuDisabled" format="reference" />
-  <attr name="trafficMenuEnabled" format="reference"/>
-  <attr name="subwayMenuEnabled" format="reference"/>
-  <attr name="isoLinesMenuEnabled" format="reference"/>
-  <attr name="outdoorsMenuEnabled" format="reference"/>
-  <attr name="hikingMenuEnabled" format="reference" />
-  <attr name="cyclingMenuEnabled" format="reference" />
   <attr name="accentColorSelector" format="color"/>
   <attr name="bookingFilterTitleColor" format="color"/>
   <attr name="adsRemovalOptionsBg" format="reference"/>

@@ -37,7 +37,9 @@ world  +
         bicycle_parking  +
             covered  -
             {}
-        bicycle_rental  -
+        bicycle_rental  +
+            shop  -
+            {}
         bicycle_repair_station  -
         biergarten  -
         brothel  -
@@ -229,20 +231,25 @@ world  +
         chain  -
         city_wall  -
         cycle_barrier  -
+        debris  -
         ditch  -
         entrance  -
         fence  -
         gate  -
         guard_rail  -
         hedge  -
+        jersey_barrier  -
         kissing_gate  -
         lift_gate  -
+        log  -
         retaining_wall  -
         stile  -
         swing_gate  -
         toll_booth  -
         turnstile  -
         wall  -
+        wicket_gate  -
+        yes  -
         {}
     boundary  +
         aboriginal_lands  -
@@ -264,6 +271,7 @@ world  +
     building  +
         address  -
         garage  -
+        guardhouse  -
         has_parts  -
         train_station  -
         {}
@@ -808,6 +816,7 @@ world  +
         insurance  -
         lawyer  -
         ngo  -
+        security  -
         telecommunication  -
         {}
     organic  +
@@ -900,6 +909,7 @@ world  +
             wind  -
             {}
         pole  -
+        portal  -
         station  -
         substation  -
         tower  -
@@ -1322,6 +1332,7 @@ world  +
         kiosk  -
         kitchen  -
         laundry  -
+        lighting  -
         lottery  -
         mall  -
         massage  -
@@ -1345,9 +1356,7 @@ world  +
         pet  -
         pet_grooming  -
         photo  -
-        rental  +
-            bike  -
-            {}
+        rental  -
         seafood  -
         second_hand  -
         sewing  -

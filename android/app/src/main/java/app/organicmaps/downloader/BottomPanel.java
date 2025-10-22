@@ -18,7 +18,7 @@ import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.downloader.UpdateInfo;
 import app.organicmaps.sdk.util.StringUtils;
-import app.organicmaps.sdk.util.UiUtils;
+import app.organicmaps.util.UiUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 class BottomPanel
@@ -31,7 +31,7 @@ class BottomPanel
     @Override
     public void onClick(View v)
     {
-      MapManager.warn3gAndDownload(mFragment.requireActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
+      MapManagerHelper.warn3gAndDownload(mFragment.requireActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
     }
   };
 
@@ -40,7 +40,10 @@ class BottomPanel
     public void onClick(View v)
     {
       final String country = mFragment.getCurrentRoot();
-      MapManager.warnOn3gUpdate(mFragment.requireActivity(), country, () -> MapManager.startUpdate(country, MapSource.ORGANIC_MAPS));
+      MapManagerHelper.warnOn3gUpdate(mFragment.requireActivity(), country, () -> {
+        DownloaderService.startForegroundService();
+        MapManagerHelper.startUpdate(country, MapSource.ORGANIC_MAPS);
+      });
     }
   };
 
@@ -57,7 +60,7 @@ class BottomPanel
     @Override
     public void onClick(View v)
     {
-      MapManager.warn3gAndRetry(mFragment.requireActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
+      MapManagerHelper.warn3gAndRetry(mFragment.requireActivity(), mFragment.getCurrentRoot(), MapSource.ORGANIC_MAPS, null);
     }
   };
 
