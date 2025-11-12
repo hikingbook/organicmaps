@@ -1,3 +1,4 @@
+// This file is modified by Ke Zheng-Xiang on 2025.
 package app.organicmaps.bookmarks;
 
 import android.content.Intent;
@@ -34,8 +35,8 @@ public class BookmarkCategorySettingsActivity extends BaseMwmFragmentActivity
                                     ActivityResultLauncher<Intent> startBookmarkSettingsForResult,
                                     @NonNull BookmarkCategory category)
   {
-    android.content.Intent intent = new Intent(fragment.requireActivity(), BookmarkCategorySettingsActivity.class)
-                                        .putExtra(EXTRA_BOOKMARK_CATEGORY, category);
-    startBookmarkSettingsForResult.launch(intent);
+//    android.content.Intent intent = new Intent(fragment.requireActivity(), BookmarkCategorySettingsActivity.class)
+//                                        .putExtra(EXTRA_BOOKMARK_CATEGORY, category);
+//    startBookmarkSettingsForResult.launch(intent);
   }
 }
