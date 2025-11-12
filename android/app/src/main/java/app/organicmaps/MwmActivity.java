@@ -650,8 +650,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
         finish();
         break;
       case Editor:
-        if (Framework.nativeIsDownloadedMapAtScreenCenter())
-          startActivity(new Intent(MwmActivity.this, FeatureCategoryActivity.class));
+        if (Framework.nativeIsDownloadedMapAtScreenCenter()) {
+//            startActivity(new Intent(MwmActivity.this, FeatureCategoryActivity.class));
+        }
         else
         {
           dismissAlertDialog();
