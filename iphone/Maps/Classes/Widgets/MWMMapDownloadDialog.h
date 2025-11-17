@@ -16,7 +16,7 @@
 
 @property(weak, nonatomic, nullable) id<MWMMapDownloadDialogDelegate> delegate;
 
-@property(strong, nonatomic) IBOutlet UILabel *numDownloadedMapsLimitLabel;
+@property(strong, nonatomic) IBOutlet UILabel *noteLabel;
 @property(strong, nonatomic) IBOutlet UIButton *downloadButton;
 @property(strong, nonatomic) IBOutlet UIView *progressWrapper;
 

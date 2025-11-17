@@ -50,11 +50,14 @@ using namespace storage;
 //@property(strong, nonatomic) IBOutlet UIView * progressWrapper;
 @property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
 @property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *proIcon;
+@property (weak, nonatomic) IBOutlet UIButton *minimizeButton;
 
 @property(weak, nonatomic) MapViewController * controller;
 @property(nonatomic) MWMCircularProgress * progress;
 @property(nonatomic) NSMutableArray<NSDate *> * skipDownloadTimes;
 @property(nonatomic) BOOL isAutoDownloadCancelled;
+@property(nonatomic) BOOL isMinimized;
 
 @end
 
@@ -73,6 +76,15 @@ using namespace storage;
 
 - (void)configDialog
 {
+    UITraitCollection *currentTraitCollection = self.traitCollection;
+            if (currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                NSLog(@"Dark Mode is active.");
+                // Apply dark mode specific styles
+            } else {
+                NSLog(@"Light Mode is active.");
+                // Apply light mode specific styles
+            }
+    
   auto & f = GetFramework();
   auto const & s = f.GetStorage();
   auto const & p = f.GetDownloadingPolicy();
@@ -90,10 +102,10 @@ using namespace storage;
     if (!hideParent)
     {
       self.parentNode.text = @(nodeAttrs.m_topmostParentInfo[0].m_localName.c_str());
-      self.parentNode.textColor = [UIColor blackSecondaryText];
+      self.parentNode.textColor = [UIColor textBodyTertiary];
     }
     self.node.text = @(nodeAttrs.m_nodeLocalName.c_str());
-    self.node.textColor = [UIColor blackPrimaryText];
+    self.node.textColor = [UIColor textBody];
       
     // nodeSize label should be hidden when presenting map size
     [self hideMapInfoStackView:YES];
@@ -110,6 +122,10 @@ using namespace storage;
 //      }
 
     // Modified by Zheng-Xiang Ke
+    self.minimizeButton.hidden = (nodeAttrs.m_status != NodeStatus::OnDisk || nodeAttrs.m_status != NodeStatus::OnDiskOutOfDate) && (nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDisk || nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDiskOutOfDate);
+    if (self.minimizeButton.hidden) {
+        self.isMinimized = NO;
+    }
     NSString *countryID = @(m_countryId.c_str());
     NodeStatus status = nodeAttrs.m_status;
     MWMMapSource mapSource = [self mapSourceForCountry:countryID];
@@ -169,7 +185,7 @@ using namespace storage;
 
 - (void)addToSuperview
 {
-  if (self.superview)
+  if (self.superview || self.isMinimized)
     return;
   MapViewController * controller = self.controller;
   [controller.view insertSubview:self aboveSubview:controller.controlsView];
@@ -234,7 +250,7 @@ using namespace storage;
 - (void)showDownloading:(CGFloat)progress
 {
   [self hideMapInfoStackView:NO];
-  self.nodeSize.textColor = [UIColor blackSecondaryText];
+  self.nodeSize.textColor = [UIColor textBodyTertiary];
   self.nodeSize.text = [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
   self.downloadButton.hidden = YES;
   self.progressWrapper.hidden = NO;
@@ -251,7 +267,7 @@ using namespace storage;
 - (void)showInQueue
 {
   [self hideMapInfoStackView:NO];
-  self.nodeSize.textColor = [UIColor blackSecondaryText];
+  self.nodeSize.textColor = [UIColor textBodyTertiary];
   self.nodeSize.text = L(@"downloader_queued");
   self.downloadButton.hidden = YES;
   self.progressWrapper.hidden = NO;
@@ -355,6 +371,12 @@ using namespace storage;
     }
 }
 
+- (IBAction)minimize
+{
+    self.isMinimized = YES;
+    [self removeFromSuperview];
+}
+
 #pragma mark - Properties
 
 - (MWMCircularProgress *)progress
@@ -377,9 +399,10 @@ using namespace storage;
 #pragma mark - Update UI
 - (void)hideMapInfoStackView:(BOOL)isHidden {
     if (!isHidden) {
-
-        self.mapStyleLabel.text = [self mapStyleString:[self mapSourceForCountry:@(m_countryId.c_str())]];
-        self.mapStyleLabel.textColor = [UIColor blackPrimaryText];
+        MWMMapSource mapSource = [self mapSourceForCountry:@(m_countryId.c_str())];
+        self.mapStyleLabel.text = [self mapStyleString:mapSource];
+        self.mapStyleLabel.textColor = mapSource == organicmaps ? [UIColor textBody] : [UIColor proBlue];
+        self.proIcon.hidden = mapSource == organicmaps;
     };
     
     CGFloat height = isHidden ? 0 : 50;

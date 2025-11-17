@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,10 +13,23 @@
         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6H-BQ-1TG" customClass="MWMMapDownloadDialog">
             <rect key="frame" x="0.0" y="0.0" width="200" height="246"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWN-HP-PcX">
+                    <rect key="frame" x="160" y="16" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="uWN-HP-PcX" secondAttribute="height" multiplier="1:1" id="0R6-mn-Ufl"/>
+                        <constraint firstAttribute="width" constant="24" id="LN7-wf-SYU"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="ArrowsAngleContract"/>
+                    <connections>
+                        <action selector="minimize" destination="I6H-BQ-1TG" eventType="touchUpInside" id="66j-vc-zVK"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Россия" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQf-xO-gh1">
                     <rect key="frame" x="14" y="20" width="172" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" name="gray06"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="medium16:blackSecondaryText"/>
@@ -26,7 +38,6 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="751" text="Доминиканская республика" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMH-GY-Vm2">
                     <rect key="frame" x="14" y="38" width="172" height="48"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="medium20:blackPrimaryText"/>
@@ -35,16 +46,28 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PMB-eU-Zb3">
                     <rect key="frame" x="0.0" y="90" width="200" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxM-Zm-QI8">
-                            <rect key="frame" x="81.5" y="0.0" width="37" height="29"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vkH-hK-R2u">
+                            <rect key="frame" x="70.5" y="0.0" width="59" height="20"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxM-Zm-QI8">
+                                    <rect key="frame" x="0.0" y="0.0" width="37" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProIcon" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-yS-9ed">
+                                    <rect key="frame" x="39" y="0.0" width="20" height="20"/>
+                                    <color key="tintColor" name="proBlue08"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="SNS-xi-2bC"/>
+                                        <constraint firstAttribute="width" secondItem="i0V-yS-9ed" secondAttribute="height" multiplier="1:1" id="TaY-eH-UUp"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="16 МБ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU4-G9-kcd">
-                            <rect key="frame" x="79.5" y="33" width="41" height="17"/>
+                            <rect key="frame" x="79.5" y="24" width="41" height="26"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" name="gray06"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="medium14:blackSecondaryText"/>
@@ -87,20 +110,22 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H5-Lv-wGM">
                     <rect key="frame" x="20" y="208" width="160" height="30"/>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="F1k-UM-cKJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" systemColor="systemGrayColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" name="gray06"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="uWN-HP-PcX" secondAttribute="trailing" constant="16" id="1aA-hP-ncp"/>
                 <constraint firstItem="GQf-xO-gh1" firstAttribute="top" secondItem="I6H-BQ-1TG" secondAttribute="top" priority="500" constant="20" id="1zT-cE-XI3"/>
                 <constraint firstItem="GQf-xO-gh1" firstAttribute="leading" secondItem="iyV-Rb-bea" secondAttribute="leading" constant="-6" id="4vl-GS-oaZ"/>
                 <constraint firstItem="usc-Cm-gmg" firstAttribute="centerX" secondItem="iyV-Rb-bea" secondAttribute="centerX" id="7DI-KV-B8S"/>
+                <constraint firstItem="uWN-HP-PcX" firstAttribute="top" secondItem="I6H-BQ-1TG" secondAttribute="top" constant="16" id="9r4-Zx-dcc"/>
                 <constraint firstItem="3H5-Lv-wGM" firstAttribute="leading" secondItem="iyV-Rb-bea" secondAttribute="leading" id="BmW-2U-baj"/>
                 <constraint firstAttribute="trailing" secondItem="iyV-Rb-bea" secondAttribute="trailing" constant="20" id="C8t-0i-lpV"/>
                 <constraint firstAttribute="trailing" secondItem="PMB-eU-Zb3" secondAttribute="trailing" id="CHc-yU-PO6"/>
@@ -147,24 +172,34 @@
                 <outlet property="downloadButton" destination="iyV-Rb-bea" id="6fy-CY-zos"/>
                 <outlet property="mapInfoStackView" destination="PMB-eU-Zb3" id="dCx-nn-obk"/>
                 <outlet property="mapStyleLabel" destination="xxM-Zm-QI8" id="cbN-Ci-9Hl"/>
+                <outlet property="minimizeButton" destination="uWN-HP-PcX" id="MGj-aa-ca4"/>
                 <outlet property="node" destination="vMH-GY-Vm2" id="LJq-UU-a3U"/>
                 <outlet property="nodeSize" destination="vU4-G9-kcd" id="DMJ-NW-mxf"/>
-                <outlet property="numDownloadedMapsLimitLabel" destination="3H5-Lv-wGM" id="NhP-HY-YBt"/>
+                <outlet property="noteLabel" destination="3H5-Lv-wGM" id="vHv-ab-EgP"/>
                 <outlet property="parentNode" destination="GQf-xO-gh1" id="gWT-r0-LTv"/>
+                <outlet property="proIcon" destination="i0V-yS-9ed" id="B68-yo-CMA"/>
                 <outlet property="progressWrapper" destination="usc-Cm-gmg" id="NTd-bU-rDE"/>
             </connections>
             <point key="canvasLocation" x="417.39130434782612" y="529.01785714285711"/>
         </view>
     </objects>
     <resources>
+        <image name="ArrowsAngleContract" width="24" height="24"/>
+        <image name="ProIcon" width="24" height="24"/>
         <namedColor name="PrimaryColor">
             <color red="0.87450980392156863" green="0.26666666666666666" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="gray06">
+            <color red="0.64313725490196083" green="0.64313725490196083" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="proBlue08">
+            <color red="0.066666666666666666" green="0.47450980392156861" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

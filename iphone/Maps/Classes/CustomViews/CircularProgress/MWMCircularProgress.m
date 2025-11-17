@@ -29,7 +29,7 @@
   [progress setImageName:@"ic_download_error" forStates:@[@(MWMCircularProgressStateFailed)]];
   [progress setImageName:@"ic_check" forStates:@[@(MWMCircularProgressStateCompleted)]];
 
-  [progress setColoring:MWMButtonColoringBlack
+  [progress setColoring:MWMButtonColoringBodySecondary  // Modified by Kf
               forStates:@[
                 @(MWMCircularProgressStateNormal), @(MWMCircularProgressStateSelected),
                 @(MWMCircularProgressStateProgress), @(MWMCircularProgressStateSpinner)
