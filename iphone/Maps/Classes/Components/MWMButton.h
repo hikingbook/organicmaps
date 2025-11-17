@@ -6,7 +6,8 @@ typedef NS_ENUM(NSUInteger, MWMButtonColoring) {
   MWMButtonColoringWhiteText,
   MWMButtonColoringGray,
   MWMButtonColoringRed,
-  MWMButtonColoringPrimary // Added by Lei
+  MWMButtonColoringPrimary, // Added by Lei
+  MWMButtonColoringBodySecondary // Added by Kf
 };
 
 @interface MWMButton : UIButton

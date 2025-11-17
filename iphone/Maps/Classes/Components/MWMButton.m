@@ -68,6 +68,7 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
     case MWMButtonColoringWhiteText: self.tintColor = [UIColor whitePrimaryTextHighlighted]; break;
     case MWMButtonColoringRed: self.tintColor = [UIColor buttonRed]; break;
     case MWMButtonColoringPrimary: self.tintColor = [UIColor primary]; break; // Added by Lei
+    case MWMButtonColoringBodySecondary: self.tintColor = [UIColor textBodySecondary]; break; // Added by Kf
     case MWMButtonColoringWhite:
     case MWMButtonColoringOther: break;
     }
@@ -95,7 +96,8 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
     case MWMButtonColoringOther:
     case MWMButtonColoringGray:
     case MWMButtonColoringRed:
-    case MWMButtonColoringPrimary: break; // Added by Lei
+    case MWMButtonColoringPrimary:
+    case MWMButtonColoringBodySecondary: break; // Added by Lei
     }
   }
   else
@@ -125,6 +127,7 @@ static NSString * const kSelectedPattern = @"%@_selected_%@";
   case MWMButtonColoringRed: self.tintColor = [UIColor red]; break;
   case MWMButtonColoringOther: self.imageView.image = [self imageForState:UIControlStateNormal]; break;
   case MWMButtonColoringPrimary: self.tintColor = [UIColor primary]; break; // Added by Lei
+  case MWMButtonColoringBodySecondary: self.tintColor = [UIColor textBodySecondary]; break; // Added by Kf
   }
 }
 
