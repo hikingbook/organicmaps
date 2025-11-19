@@ -122,9 +122,9 @@ using namespace storage;
 //      }
 
     // Modified by Zheng-Xiang Ke
-    self.minimizeButton.hidden = (nodeAttrs.m_status != NodeStatus::OnDisk || nodeAttrs.m_status != NodeStatus::OnDiskOutOfDate) && (nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDisk || nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDiskOutOfDate);
+    self.minimizeButton.hidden = nodeAttrs.m_status != NodeStatus::OnDisk && nodeAttrs.m_status != NodeStatus::OnDiskOutOfDate && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDisk && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDiskOutOfDate;
     if (self.minimizeButton.hidden) {
-        self.isMinimized = NO;
+        [self updateMinimized:NO];
     }
     NSString *countryID = @(m_countryId.c_str());
     NodeStatus status = nodeAttrs.m_status;
@@ -283,6 +283,7 @@ using namespace storage;
 
 - (void)processViewportCountryEvent:(CountryId const &)countryId
 {
+  [self updateMinimized:NO];
   m_countryId = countryId;
   if (countryId == kInvalidCountryId)
     [self removeFromSuperview];
@@ -373,7 +374,7 @@ using namespace storage;
 
 - (IBAction)minimize
 {
-    self.isMinimized = YES;
+    [self updateMinimized:YES];
     [self removeFromSuperview];
 }
 
@@ -414,5 +415,14 @@ using namespace storage;
 
 - (NSString *)countryID {
     return @(m_countryId.c_str());
+}
+
+- (void) updateMinimized:(BOOL)isMinimized {
+    self.isMinimized = isMinimized;
+    
+    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(downloadDialog:isMinimized:)]) {
+        [delegate downloadDialog:self isMinimized:isMinimized];
+    }
 }
 @end
