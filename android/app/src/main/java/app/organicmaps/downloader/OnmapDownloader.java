@@ -4,20 +4,23 @@ package app.organicmaps.downloader;
 import android.app.Activity;
 import android.location.Location;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
-import app.organicmaps.sdk.MapSource;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
+import app.organicmaps.sdk.MapSource;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.routing.RoutingController;
@@ -46,7 +49,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private int mStorageSubscriptionSlot;
 
   @Nullable
-  private CountryItem mCurrentCountry;
+  public CountryItem mCurrentCountry;
 
   private final MapManager.StorageCallback mStorageCallback = new MapManager.StorageCallback() {
     @Override
@@ -139,20 +142,21 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     if (showFrame)
     {
       int status = countryItemStatus();
-      boolean enqueued = (mCurrentCountry.status == CountryItem.STATUS_ENQUEUED);
-      boolean progress = (mCurrentCountry.status == CountryItem.STATUS_PROGRESS
-                          || mCurrentCountry.status == CountryItem.STATUS_APPLYING);
-      boolean failed = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
+      boolean enqueued = (status == CountryItem.STATUS_ENQUEUED);
+      boolean progress = (status == CountryItem.STATUS_PROGRESS
+                          || status == CountryItem.STATUS_APPLYING);
+      boolean failed = (status == CountryItem.STATUS_FAILED);
 
-      showFrame = (enqueued || progress || failed || mCurrentCountry.status == CountryItem.STATUS_DOWNLOADABLE);
+      showFrame = (enqueued || progress || failed || status == CountryItem.STATUS_DOWNLOADABLE);
 
       if (showFrame)
       {
         boolean hasParent = !CountryItem.isRoot(mCurrentCountry.topmostParentId);
+        MapSource mapSource = getMapSource();
 
         String mapSourceName = "";
         if (downloaderDelegate != null) {
-          mapSourceName = downloaderDelegate.l10nMapSource(getMapSource());
+          mapSourceName = downloaderDelegate.l10nMapSource(mapSource);
         }
 
         boolean isDownloading = progress || enqueued;
@@ -168,6 +172,12 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         mTitle.setText(mCurrentCountry.name);
 
         mMapSource.setText(mapSourceName);
+        if (mapSource == MapSource.HIKINGBOOK_PRO_MAPS) {
+            mMapSource.setTextColor(ContextCompat.getColor(mActivity, R.color.pro_blue));
+        }
+        else {
+            mMapSource.setTextColor(ContextCompat.getColor(mActivity, R.color.text_body));
+        }
 
         String sizeText;
 
@@ -200,7 +210,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
                 if (TextUtils.equals(mCurrentCountry.id, country)
                     && MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
-                  MapManagerHelper.startDownload(mCurrentCountry.id, getMapSource());
+                  MapManagerHelper.startDownload(mCurrentCountry.id, mapSource);
                 }
               }
             }
@@ -273,7 +283,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             if (mCurrentCountry == null)
               return;
 
-            boolean retry = (mCurrentCountry.status == CountryItem.STATUS_FAILED);
+            boolean retry = (countryItemStatus() == CountryItem.STATUS_FAILED);
             if (retry)
             {
               MapManagerHelper.retryDownload(mCurrentCountry.id, getMapSource());
@@ -331,10 +341,9 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     sAutodownloadLocked = locked;
   }
 
-  public void updateNumMapLimit(boolean isVisible, String text, int color, int backgroundColor) {
+  public void updateNumMapLimit(boolean isVisible, String text, int color) {
     mNumMapLimit.setText(text);
     mNumMapLimit.setTextColor(color);
-    mNumMapLimit.setBackgroundColor(backgroundColor);
     if (isVisible) {
       mNumMapLimit.setVisibility(View.VISIBLE);
     }
