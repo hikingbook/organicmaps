@@ -44,7 +44,7 @@ public enum FrameworkAdapter {
 
     private static final String TAG = FrameworkAdapter.class.getName();
     private MwmApplication mwmApplication = new MwmApplication();
-    private final MwmActivity mwmActivity = new MwmActivity();
+    private MwmActivity mwmActivity = new MwmActivity();
 
     private Application application;
     private String applicationID;
@@ -138,6 +138,7 @@ public enum FrameworkAdapter {
     public void initActivity(AppCompatActivity activity,
                              MapRenderingListener mapRenderingListener,
                              Fragment fragment) {
+        this.mwmActivity = new MwmActivity();
         this.activity = activity;
         this.mapRenderingListener = mapRenderingListener;
         this.fragment = fragment;
