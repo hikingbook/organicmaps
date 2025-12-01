@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -43,9 +44,11 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private final WheelProgressView mProgress;
   private final Button mButton;
   private final TextView mNumMapLimit;
+  private final ImageView mMinimizeImage;
   public IDownloaderDelegate downloaderDelegate;
 
   private int mStorageSubscriptionSlot;
+  private boolean isMinimized;
 
   @Nullable
   public CountryItem mCurrentCountry;
@@ -98,6 +101,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         public void onCurrentCountryChanged(String countryId)
         {
           mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
+          updateMinimized(false);
           updateState(true);
 		  if (downloaderDelegate != null) {
         	downloaderDelegate.onCurrentCountryChanged(mCurrentCountry);
@@ -137,7 +141,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private void updateStateInternal(boolean shouldAutoDownload)
   {
     boolean showFrame =
-        (mCurrentCountry != null && !mCurrentCountry.present && !RoutingController.get().isNavigating());
+        (mCurrentCountry != null && !mCurrentCountry.present && !RoutingController.get().isNavigating()) && !isMinimized;
     if (showFrame)
     {
       int status = countryItemStatus();
@@ -164,6 +168,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         UiUtils.showIf(isDownloading, mProgress);
         UiUtils.showIf(!isDownloading, mButton);
         UiUtils.showIf(hasParent, mParent);
+        UiUtils.showIf(isDownloaded(mCurrentCountry.status) || isDownloaded(mCurrentCountry.hikingbookProMapStatus), mMinimizeImage);
+        if (!mMinimizeImage.isShown()) {
+            updateMinimized(false);
+        }
 
         if (hasParent)
           mParent.setText(mCurrentCountry.topmostParentName);
@@ -254,7 +262,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mTitle = mFrame.findViewById(R.id.downloader_title);
     mMapSource = mFrame.findViewById(R.id.downloader_map_source);
     mSize = mFrame.findViewById(R.id.downloader_size);
-    mNumMapLimit = (TextView)mFrame.findViewById(R.id.text_view_num_maps_limit);
+    mNumMapLimit = mFrame.findViewById(R.id.text_view_num_maps_limit);
+    mMinimizeImage = mFrame.findViewById(R.id.minimize_image);
 
     View controls = mFrame.findViewById(R.id.downloader_controls_frame);
     mProgress = controls.findViewById(R.id.wheel_downloader_progress);
@@ -294,6 +303,12 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             }
           });
         });
+    mMinimizeImage.setOnClickListener(
+            v -> {
+                updateMinimized(true);
+                UiUtils.showIf(false, mFrame);
+            }
+    );
 
     ViewCompat.setOnApplyWindowInsetsListener(mFrame, PaddingInsetsListener.allSides());
   }
@@ -351,6 +366,17 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     }
   }
 
+  private boolean isDownloaded(int status) {
+      return status == CountryItem.STATUS_DONE || status == CountryItem.STATUS_UPDATABLE || status == CountryItem.STATUS_PARTLY;
+  }
+
+  private void updateMinimized(boolean isMinimized) {
+    this.isMinimized = isMinimized;
+      if (downloaderDelegate != null) {
+          downloaderDelegate.onMinimized(isMinimized);
+      }
+  }
+
   public interface IDownloaderDelegate {
     MapSource getMainDownloadMapSource(CountryItem countryItem);
 
@@ -364,5 +390,6 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     void onCountryStateChanged(OnmapDownloader downloader, Boolean isDownloaderVisible, @Nullable CountryItem countryItem);
 
     void handleDownloadError(MapManager.StorageCallbackData countryItem, MapSource mapSource);
+    void onMinimized(boolean isMinimized);
   }
 }
