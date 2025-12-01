@@ -21,6 +21,14 @@
     android:background="@drawable/onmap_downloader_background"
     tools:ignore="UselessParent">
 
+      <ImageView
+          android:id="@+id/minimize_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end"
+          app:tint="@color/text_body"
+          android:src="@drawable/ic_arrows_angle_contract"/>
+
     <TextView
       android:id="@+id/downloader_parent"
       android:layout_width="@dimen/square_block_size"
@@ -105,4 +113,5 @@
 <!--      android:layout_width="match_parent"-->
 <!--      android:layout_height="wrap_content" />-->
   </LinearLayout>
+
 </ScrollView>
