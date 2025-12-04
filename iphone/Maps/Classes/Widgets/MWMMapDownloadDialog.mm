@@ -50,7 +50,6 @@ using namespace storage;
 //@property(strong, nonatomic) IBOutlet UIView * progressWrapper;
 @property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
 @property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *proIcon;
 @property (weak, nonatomic) IBOutlet UIButton *minimizeButton;
 
 @property(weak, nonatomic) MapViewController * controller;
@@ -403,7 +402,6 @@ using namespace storage;
         MWMMapSource mapSource = [self mapSourceForCountry:@(m_countryId.c_str())];
         self.mapStyleLabel.text = [self mapStyleString:mapSource];
         self.mapStyleLabel.textColor = mapSource == organicmaps ? [UIColor textBody] : [UIColor proBlue];
-        self.proIcon.hidden = mapSource == organicmaps;
     };
     
     CGFloat height = isHidden ? 0 : 50;
