@@ -43,7 +43,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
   private final TextView mSize;
   private final WheelProgressView mProgress;
   private final Button mButton;
-  private final TextView mNumMapLimit;
+  private final TextView mNote;
   private final ImageView mMinimizeImage;
   public IDownloaderDelegate downloaderDelegate;
 
@@ -262,7 +262,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mTitle = mFrame.findViewById(R.id.downloader_title);
     mMapSource = mFrame.findViewById(R.id.downloader_map_source);
     mSize = mFrame.findViewById(R.id.downloader_size);
-    mNumMapLimit = mFrame.findViewById(R.id.text_view_num_maps_limit);
+    mNote = mFrame.findViewById(R.id.text_view_note);
     mMinimizeImage = mFrame.findViewById(R.id.minimize_image);
 
     View controls = mFrame.findViewById(R.id.downloader_controls_frame);
@@ -355,14 +355,14 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     sAutodownloadLocked = locked;
   }
 
-  public void updateNumMapLimit(boolean isVisible, String text, int color) {
-    mNumMapLimit.setText(text);
-    mNumMapLimit.setTextColor(color);
+  public void updateNote(boolean isVisible, String text, int color) {
+    mNote.setText(text);
+    mNote.setTextColor(color);
     if (isVisible) {
-      mNumMapLimit.setVisibility(View.VISIBLE);
+      mNote.setVisibility(View.VISIBLE);
     }
     else {
-      mNumMapLimit.setVisibility(View.GONE);
+      mNote.setVisibility(View.GONE);
     }
   }
 
