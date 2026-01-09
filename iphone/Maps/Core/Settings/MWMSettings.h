@@ -1,6 +1,14 @@
 // This file is modified by Zheng-Xiang Ke on 2021.
+@protocol PromoManager <NSObject>
+
++ (BOOL)canShowCrowdfundingPromo;
++ (void)didShowDonationPage;
++ (void)resetDonations;
+
+@end
+
 //NS_SWIFT_NAME(Settings)
-@interface MWMSettings : NSObject
+@interface MWMSettings : NSObject <PromoManager>
 
 + (BOOL)autoDownloadEnabled;
 + (void)setAutoDownloadEnabled:(BOOL)autoDownloadEnabled;
@@ -37,6 +45,9 @@
 
 + (NSString *)donateUrl;
 + (BOOL)isNY;
+
++ (BOOL)isShowDownloadedRegions;
++ (void)setShowDownloadedRegions:(BOOL)isEnabled;
 
 + (BOOL)iCLoudSynchronizationEnabled;
 + (void)setICLoudSynchronizationEnabled:(BOOL)iCLoudSyncEnabled;

@@ -71,6 +71,8 @@ set(shader_files
     GL/texturing_gui.fsh.glsl
     GL/texturing_gui.vsh.glsl
     GL/texturing_position.fsh.glsl
+    GL/tile_background.fsh.glsl
+    GL/tile_background.vsh.glsl
     GL/traffic.fsh.glsl
     GL/traffic.vsh.glsl
     GL/traffic_circle.fsh.glsl
@@ -150,7 +152,7 @@ endif()
 # Do not include glm's CMakeLists.txt, because it's outdated and not necessary.
 target_include_directories(${PROJECT_NAME} PUBLIC "${OMIM_ROOT}/3party/glm")
 
-target_link_libraries(${PROJECT_NAME} drape)
+target_link_libraries(${PROJECT_NAME} PUBLIC drape)
 
 if (PLATFORM_MAC)
   set_target_properties(${PROJECT_NAME} PROPERTIES XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES)

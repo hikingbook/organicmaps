@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Strings -->
     <!-- Button text (should be short) -->
     <string name="back">Quay lại</string>
@@ -18,7 +19,7 @@
     <string name="miles">Dặm</string>
     <!-- Update maps later button text -->
     <string name="later">Để sau</string>
-    <!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
+    <!-- View and button titles for accessibility. Also used in iPhone home screen quick actions. -->
     <string name="search">Tìm kiếm</string>
     <!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
     <string name="search_map">Tìm kiếm Bản đồ</string>
@@ -54,11 +55,9 @@
     <string name="disconnect_usb_cable">Bạn vui lòng tháo cáp USB hoặc lắp thẻ nhớ vào để sử dụng Organic Maps</string>
     <!-- Used in DownloadResources startup screen -->
     <string name="not_enough_free_space_on_sdcard">Bạn vui lòng giải phóng dung lượng trên ổ lưu trữ thẻ SD/USB để có thể sử dụng ứng dụng</string>
-    <string name="download_resources">Trước khi bạn bắt đầu, hãy để chúng tôi tải bản đồ thế giới vào thiết bị của bạn.
-\nBản đồ này cần %s dữ liệu.</string>
+    <string name="download_resources">Trước khi bạn bắt đầu, hãy để chúng tôi tải bản đồ thế giới vào thiết bị của bạn.\nBản đồ này cần %s dữ liệu.</string>
     <string name="download_resources_continue">Đến Bản đồ</string>
-    <string name="downloading_country_can_proceed">Đang tải xuống %s. Bây giờ bạn đã có thể
-\nvào bản đồ.</string>
+    <string name="downloading_country_can_proceed">Đang tải xuống %s. Bây giờ bạn đã có thể\nvào bản đồ.</string>
     <string name="download_country_ask">Tải xuống %s?</string>
     <string name="update_country_ask">Cập nhật %s?</string>
     <!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -73,7 +72,7 @@
     <string name="bookmark_set_name">Đánh dấu Tên Bộ</string>
     <!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
     <string name="bookmarks">Đánh dấu</string>
-    <!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+    <!-- "Bookmarks and Tracks" dialog title. Also used in iPhone home screen quick actions. -->
     <string name="bookmarks_and_tracks">Đánh dấu và dấu vết</string>
     <!-- Add bookmark dialog - bookmark name -->
     <string name="name">Tên</string>
@@ -92,8 +91,7 @@
     <!-- Question dialog for transferring maps from one storage to another -->
     <string name="move_maps">Di chuyển bản đồ?</string>
     <!-- Ask user to wait several minutes (some long process in modal dialog). -->
-    <string name="wait_several_minutes">Việc này có thể mất vài phút.
-\nVui lòng đợi…</string>
+    <string name="wait_several_minutes">Việc này có thể mất vài phút.\nVui lòng đợi…</string>
     <!-- Measurement units title in settings activity -->
     <string name="measurement_units">Đơn vị đo</string>
     <!-- Detailed description of Measurement Units settings button -->
@@ -157,12 +155,9 @@
     <!-- Kml file loading failed -->
     <string name="load_kmz_failed">Không tải lên được điểm đánh dấu. Tập tin có thể bị hỏng hoặc lỗi.</string>
     <!-- Failed to recognize the format of a bookmarks or tracks file. -->
-    <string name="unknown_file_type">Loại tệp không được ứng dụng nhận dạng:
-\n%1$s</string>
+    <string name="unknown_file_type">Loại tệp không được ứng dụng nhận dạng:\n%1$s</string>
     <!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
-    <string name="failed_to_open_file">Không thể mở tập tin %1$s
-\n
-\n%2$s</string>
+    <string name="failed_to_open_file">Không thể mở tập tin %1$s\n\n%2$s</string>
     <!-- resource for context menu -->
     <string name="edit">Sửa</string>
     <!-- Warning message when doing search around current position -->
@@ -178,11 +173,7 @@
     <!-- Subject for emailed position -->
     <string name="my_position_share_email_subject">Này, hãy xem vị trí hiện tại của tôi tại Organic Maps map!</string>
     <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Chào,
-\n
-\nTôi hiện đang ở đây: %1$s. Hãy nhấn vào liên kết này %2$s hoặc liên kết này %3$s để xem địa điểm trên bản đồ.
-\n
-\nCám ơn.</string>
+    <string name="my_position_share_email">Chào,\n\nTôi hiện đang ở đây: %1$s. Hãy nhấn vào liên kết này %2$s hoặc liên kết này %3$s để xem địa điểm trên bản đồ.\n\nCám ơn.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Chia sẻ</string>
     <!-- Share by email button text, also used in editor and About. -->
@@ -255,7 +246,7 @@
     <string name="how_to_support_us">Hỗ trợ dự án</string>
     <!-- Button in the main Help dialog -->
     <string name="copyright">Bản quyền</string>
-    <!-- Text in menu + Button in the main Help dialog -->
+    <!-- Text in menu + Button in the main Help dialog. Used in home screen quick actions. -->
     <string name="report_a_bug">Báo cáo lỗi</string>
     <!-- Toast text when compass calibration may improve the correctness of the current position arrow -->
     <string name="compass_calibration_recommended">Cải thiện hướng mũi tên bằng cách di chuyển điện thoại theo chuyển động hình số tám để hiệu chỉnh la bàn.</string>
@@ -334,6 +325,8 @@
     <string name="gray">Xám</string>
     <!-- blue gray color -->
     <string name="blue_gray">Xám xanh da trời</string>
+    <!-- Tex label above the Donate button -->
+    <string name="donate_description">Tặng bản đồ miễn phí không có quảng cáo cho hàng triệu người dùng!</string>
 
     <!-- SECTION: Routing dialogs strings -->
     <string name="dialog_routing_disclaimer_title">Khi đi theo tuyến đường, hãy lưu ý:</string>
@@ -454,6 +447,7 @@
     <string name="downloader_search_field_hint">Tìm bản đồ</string>
     <string name="common_check_internet_connection_dialog">Xin kiểm tra các thiết lập và đảm bảo thiết bị của bạn có kết nối Internet.</string>
     <string name="downloader_no_space_title">Không đủ dung lượng</string>
+    <!-- Message shown when there is not enough space to download maps -->
     <string name="downloader_no_space_message">Xin xóa dữ liệu không cần thiết</string>
     <string name="editor_login_error_dialog">Lỗi đăng nhập.</string>
     <string name="editor_profile_changes">Các thay đổi đã được xác thực</string>
@@ -471,8 +465,7 @@
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
     <string name="osm_presentation">Dữ liệu OpenStreetMap do cộng đồng tạo ra kể từ %s. Tìm hiểu thêm về cách chỉnh sửa và cập nhật bản đồ tại OpenStreetMap.org</string>
     <!-- OSM explanation on Android login screen -->
-    <string name="login_osm_presentation">OpenStreetMap.org (OSM) là một dự án cộng đồng nhằm xây dựng bản đồ mở và miễn phí. Đây là nguồn dữ liệu bản đồ chính trong Bản đồ không phải trả tiền và hoạt động tương tự như Wikipedia. Bạn có thể thêm hoặc chỉnh sửa địa điểm và chúng sẽ có sẵn cho hàng triệu người dùng trên toàn thế giới.
-\nTham gia cộng đồng và giúp tạo bản đồ tốt hơn cho mọi người!</string>
+    <string name="login_osm_presentation">OpenStreetMap.org (OSM) là một dự án cộng đồng nhằm xây dựng bản đồ mở và miễn phí. Đây là nguồn dữ liệu bản đồ chính trong Bản đồ không phải trả tiền và hoạt động tương tự như Wikipedia. Bạn có thể thêm hoặc chỉnh sửa địa điểm và chúng sẽ có sẵn cho hàng triệu người dùng trên toàn thế giới.\nTham gia cộng đồng và giúp tạo bản đồ tốt hơn cho mọi người!</string>
     <string name="login_to_make_edits_visible">Tạo tài khoản OpenStreetMap hoặc đăng nhập để xuất bản các chỉnh sửa bản đồ của bạn với thế giới.</string>
     <!-- Downloaded 10 **of** 20 <- it is that "of" -->
     <string name="downloader_of">%1$d trên %2$d</string>
@@ -494,7 +487,7 @@
     <string name="editor_osm_history">Lịch sử chỉnh sửa của bạn</string>
     <string name="editor_osm_notes">Ghi chú dữ liệu bản đồ của bạn</string>
     <string name="editor_operator">Toán tử</string>
-    <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
+    <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations… -->
     <string name="operator">Toán tử: %s</string>
     <string name="editor_category_unsuitable_title">Không thể tìm thấy một danh mục phù hợp?</string>
     <string name="editor_category_unsuitable_text">Bản đồ không phải trả tiền chỉ cho phép thêm các danh mục điểm đơn giản, nghĩa là không có thị trấn, đường, hồ, đường viền tòa nhà, v.v. Vui lòng thêm các danh mục đó trực tiếp vào <a href="https://www.openstreetmap.org">OpenStreetMap.org</a>. Hãy xem <a href="https://organicmaps.app/faq/editing/advanced-map-editing">hướng dẫn</a> của chúng tôi để biết hướng dẫn chi tiết từng bước.</string>
@@ -507,7 +500,9 @@
     <string name="hour">giờ</string>
     <string name="minute">phút</string>
     <string name="day">ngày</string>
+    <string name="second">giây</string>
     <string name="placepage_more_button">Bổ sung</string>
+    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
     <string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
     <string name="placepage_personal_notes_hint">Ghi chú cá nhân (văn bản hoặc html)</string>
     <string name="editor_comment_hint">Nhận xét…</string>
@@ -550,10 +545,8 @@
     <string name="enable_logging">Bật nhật ký</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Phản hồi chung</string>
-    <string name="prefs_languages_information">Chúng tôi sử dụng TTS hệ thống để hướng dẫn bằng giọng nói. Rất nhiều thiết bị Android sử dụng Google TTS, bạn có thể tải về hoặc cập nhật nó từ Google Play (https://play.google.com/store/apps/details?id=com.google.android.tts)</string>
-    <string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play, Galaxy Store, App Gallery, FDroid).
-\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.
-\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
+    <string name="prefs_languages_information">Chúng tôi sử dụng TTS hệ thống để hướng dẫn bằng giọng nói. Rất nhiều thiết bị Android sử dụng Google TTS, bạn có thể tải về hoặc cập nhật nó từ Google Play</string>
+    <string name="prefs_languages_information_off">Đối với một số ngôn ngữ, bạn sẽ cần cài đặt một trình tổng hợp lời nói khác hoặc một gói ngôn ngữ bổ sung từ cửa hàng ứng dụng (Google Play, Galaxy Store, App Gallery, FDroid).\nMở cài đặt của thiết bị → Ngôn ngữ và nhập liệu → Lời nói → Đầu ra văn bản sang lời nói.\nTại đây bạn có thể quản lý các cài đặt tổng hợp lời nói (ví dụ, tải về các gói ngôn ngữ để sử dụng ngoại tuyến) và chọn một công cụ chuyển đổi văn bản sang lời nói khác.</string>
     <string name="prefs_languages_information_off_link">Để biết thêm thông tin, vui lòng kiểm tra bài hướng dẫn này.</string>
     <string name="transliteration_title">Chuyển ngữ sang chữ Latinh</string>
     <string name="learn_more">Tìm hiểu thêm</string>
@@ -592,6 +585,9 @@
     <string name="please_wait">Vui lòng chờ…</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="profile">Hồ sơ OpenStreetMap</string>
+    <plurals name="bookmarks_detect_message">
+        <item quantity="other">%d files were found. You can see them after conversion.</item>
+    </plurals>
     <string name="restore">Khôi phục</string>
     <plurals name="tracks">
         <item quantity="one">%d chặng đường</item>
@@ -649,9 +645,9 @@
     <string name="yes_available">Có</string>
     <!-- E.g. "WiFi:No" -->
     <string name="no_available">Không</string>
-    <!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+    <!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations… -->
     <string name="capacity">Công suất: %s</string>
-    <!-- To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations... -->
+    <!-- To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations… -->
     <string name="network">Mạng: %s</string>
     <string name="trip_finished">Bạn đã tới nơi!</string>
     <string name="ok">Ok</string>
@@ -774,7 +770,7 @@
     <string name="view_menu">Xem thực đơn</string>
     <!-- Title for the "Open in Another App" button on the PlacePage. -->
     <string name="open_in_app">Mở trong ứng dụng khác</string>
-    <!-- To indicate if the place proposed self service... -->
+    <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Tự phục vụ</string>
     <string name="select_option">Chọn tùy chọn</string>
     <!-- To indicate if restaurant or other place has outdoor seating -->
@@ -785,6 +781,8 @@
     <string name="start_track_recording">Ghi âm đường đi</string>
     <!-- Prompt for stopping a track recording. -->
     <string name="stop_track_recording">Dừng ghi âm đường đi</string>
+    <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
+    <string name="track_recording_title">Ghi âm hành trình</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="stop_without_saving">Dừng mà không lưu</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->

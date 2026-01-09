@@ -43,7 +43,8 @@ vector<m2::PointD> MakePoly(m2::RectD const & rect)
 StringUtf8Multilang MakeName(string const & name, string const & lang)
 {
   StringUtf8Multilang res;
-  res.AddString(lang, name);
+  if (!name.empty())
+    res.AddString(lang, name);
 
   // Names used for search depend on locale. Fill default name because we need to run tests with
   // different locales. If you do not need default name to be filled use
@@ -307,9 +308,7 @@ std::pair<TestPOI, FeatureID> TestPOI::AddWithEditor(osm::Editor & editor, MwmSe
   osm::EditableMapObject emo;
   editor.CreatePoint(classif().GetTypeByPath({"shop", "bakery"}), pt, mwmId, emo);
 
-  StringUtf8Multilang names;
-  names.AddString(StringUtf8Multilang::GetLangIndex("en"), enName);
-  emo.SetName(names);
+  emo.SetName(enName, StringUtf8Multilang::GetLangIndex("en"));
   emo.SetTestId(poi.GetId());
 
   editor.SaveEditedFeature(emo);

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SECTION: Uncategorized -->
     <!-- Settings/Downloader - size string, only strings different from English should be translated -->
     <string name="mb">МБ</string>
     <string name="gb">ГБ</string>
@@ -16,10 +18,10 @@
     <!-- Generic external storage type in Maps Storage settings -->
     <string name="maps_storage_external">Зовнiшне спільне сховище</string>
     <!-- Search category for WiFi access; any changes should be duplicated in categories.txt @category_wifi! -->
-    <string name="category_wifi">WiFi</string>
+    <string name="category_wifi">Wi-Fi</string>
     <string name="postal_code">Поштовий індекс</string>
     <!-- Place Page title for long tap -->
-    <string name="core_placepage_unknown_place">Точка на карті</string>
+    <string name="core_placepage_unknown_place">Точка на мапі</string>
     <!-- abbreviation for meters -->
     <string name="m">м</string>
     <!-- abbreviation for kilometers -->
@@ -28,13 +30,12 @@
     <string name="mi">ми</string>
     <!-- A unit of measure -->
     <string name="ft">фут</string>
+    <!-- Toast text when the maps version should be updated to display the OSM hiking and cycling routes -->
+    <string name="routes_update_maps_text">Для відображення маршрутів карти необхідно оновити.</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">Вихід</string>
     <string name="core_entrance">Вхід</string>
     <string name="subway_data_unavailable">Мапа метрополітену недоступна</string>
-    <string name="public_access">Публічний доступ</string>
-    <string name="limited_access">Приватний доступ</string>
-    <string name="not_shared">Особистий</string>
-    <string name="access_rules_author_only">Редагується онлайн</string>
-    <string name="routes_update_maps_text">Для відображення маршрутів карти необхідно оновити.</string>
+    <!-- Settings/Highlight downloaded regions on the map -->
+    <string name="show_downloaded_regions">Фіолетові завантажені регіони</string>
 </resources>

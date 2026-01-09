@@ -20,11 +20,10 @@ import app.organicmaps.maplayer.MapButtonsViewModel;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.Router;
 import app.organicmaps.sdk.maplayer.traffic.TrafficManager;
-import app.organicmaps.sdk.routing.CarDirection;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.routing.RoutingInfo;
-import app.organicmaps.sdk.util.RoundaboutExit;
 import app.organicmaps.sdk.util.StringUtils;
+import app.organicmaps.sdk.widget.roadshield.RoadShieldUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.WindowInsetUtils;
@@ -113,15 +112,12 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
   private void updateVehicle(@NonNull RoutingInfo info)
   {
     mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
+    mNextTurnImage.setImageResource(info.carDirection.getTurnRes(info.exitNum));
 
-    if (CarDirection.isRoundAbout(info.carDirection))
-      mNextTurnImage.setImageResource(RoundaboutExit.getRes(info.exitNum));
-    else
-      info.carDirection.setTurnDrawable(mNextTurnImage);
-
-    UiUtils.showIf(info.nextCarDirection.containsNextTurn(), mNextNextTurnFrame);
-    if (info.nextCarDirection.containsNextTurn())
-      info.nextCarDirection.setNextTurnDrawable(mNextNextTurnImage);
+    final boolean showNextNextTurn = info.hasNextNextTurn();
+    UiUtils.showIf(showNextNextTurn, mNextNextTurnFrame);
+    if (showNextNextTurn)
+      mNextNextTurnImage.setImageResource(info.nextCarDirection.getTurnRes());
 
     mLanesView.setLanes(info.lanes);
 
@@ -131,8 +127,7 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
   private void updatePedestrian(@NonNull RoutingInfo info)
   {
     mNextTurnDistance.setText(Utils.formatDistance(mFrame.getContext(), info.distToTurn));
-
-    info.pedestrianTurnDirection.setTurnDrawable(mNextTurnImage);
+    mNextTurnImage.setImageResource(info.pedestrianDirection.getTurnRes());
   }
 
   public void updateNorth()
@@ -164,7 +159,8 @@ public class NavigationController implements TrafficManager.TrafficCallback, Nav
     // https://github.com/organicmaps/organicmaps/issues/3732
     UiUtils.visibleIf(hasStreet, mStreetFrame);
     if (!TextUtils.isEmpty(info.nextStreet))
-      mNextStreet.setText(info.nextStreet);
+      mNextStreet.setText(RoadShieldUtils.createStreetTextWithShields(info.nextStreet, info.nextStreetRoadShields,
+                                                                      mNextStreet.getTextSize()));
     int margin = dimen(mFrame.getContext(), R.dimen.nav_frame_padding);
     if (hasStreet)
       margin += mStreetFrame.getHeight();

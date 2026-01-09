@@ -118,19 +118,19 @@ extension PlacePageStyleSheet: IStyleSheet {
         s.backgroundColor = colors.white
         s.shadowColor = UIColor.black
         s.shadowOffset = CGSize(width: 0, height: 1)
-        s.shadowOpacity = 0.4
-        s.shadowRadius = 1
+        s.shadowOpacity = 0.3
+        s.shadowRadius = 6
         s.clip = false
       }
     case .ppBackgroundView:
       return .addFrom(GlobalStyleSheet.modalSheetBackground) { s in
         s.backgroundColor = colors.pressBackground
-        s.maskedCorners = isiPad ? CACornerMask.all : [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        s.clip = false
+        s.maskedCorners = .all
       }
     case .ppView:
       return .add { s in
-        s.backgroundColor = colors.clear
+        s.backgroundColor = .clear
+        s.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         s.cornerRadius = .modalSheet
         s.clip = true
       }

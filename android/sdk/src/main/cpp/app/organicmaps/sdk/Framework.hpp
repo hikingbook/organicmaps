@@ -21,15 +21,12 @@
 
 #include "geometry/avg_vector.hpp"
 
+#include "base/checked_ptr.hpp"
 #include "base/timer.hpp"
 
-#include <cstdint>
 #include <map>
-#include <memory>
-#include <mutex>
 
 class DataSource;
-struct FeatureID;
 
 namespace search
 {
@@ -204,10 +201,13 @@ public:
   // PowerManager::Subscriber overrides:
   void OnPowerFacilityChanged(power_management::Facility const facility, bool enabled) override;
   void OnPowerSchemeChanged(power_management::Scheme const actualScheme) override;
-
-  FeatureID BuildFeatureId(JNIEnv * env, jobject featureId);
 };
+
+namespace framework
+{
+jint registerNativeMethods(JNIEnv * env);
+}  // namespace framework
 }  // namespace android
 
-extern std::unique_ptr<android::Framework> g_framework;
+extern CheckedPtr<android::Framework> g_framework;
 ::Framework * frm();

@@ -296,6 +296,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsPisteChecker);
 };
 
+class IsMwmBorderChecker : public ftypes::BaseChecker
+{
+  IsMwmBorderChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsMwmBorderChecker);
+};
+
 class OneLevelPOIChecker : public ftypes::BaseChecker
 {
 public:
@@ -408,6 +416,14 @@ public:
   DECLARE_CHECKER_INSTANCE(IsHotelChecker);
 };
 
+class IsCampPitchChecker : public BaseChecker
+{
+  IsCampPitchChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsCampPitchChecker);
+};
+
 // WiFi is a type in classificator.txt,
 // it should be checked for filling metadata in MapObject.
 class IsWifiChecker : public BaseChecker
@@ -483,6 +499,22 @@ class IsCapitalChecker : public BaseChecker
 
 public:
   DECLARE_CHECKER_INSTANCE(IsCapitalChecker);
+};
+
+class IsParkingChecker : public BaseChecker
+{
+  IsParkingChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsParkingChecker);
+};
+
+class IsBicycleParkingChecker : public BaseChecker
+{
+  IsBicycleParkingChecker();
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsBicycleParkingChecker);
 };
 
 class IsPublicTransportStopChecker : public BaseChecker
@@ -603,12 +635,12 @@ public:
   DECLARE_CHECKER_INSTANCE(IsAerowayGateChecker);
 };
 
-class IsRailwaySubwayEntranceChecker : public BaseChecker
+class IsSubwayEntranceChecker : public BaseChecker
 {
-  IsRailwaySubwayEntranceChecker();
+  IsSubwayEntranceChecker();
 
 public:
-  DECLARE_CHECKER_INSTANCE(IsRailwaySubwayEntranceChecker);
+  DECLARE_CHECKER_INSTANCE(IsSubwayEntranceChecker);
 };
 
 class IsPlatformChecker : public BaseChecker

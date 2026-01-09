@@ -5,22 +5,17 @@
 #include "platform/platform.hpp"
 #include "platform/settings.hpp"
 
-#include "coding/reader.hpp"
-
 #include "base/logging.hpp"
-#include "base/macros.hpp"
 #include "base/math.hpp"
 
 #include "std/target_os.hpp"
 
 #include <chrono>
 #include <functional>
-#include <mutex>
 #include <optional>
 #include <sstream>
 #include <string>
 #include <string_view>
-#include <vector>
 
 #include <gflags/gflags.h>
 
@@ -45,7 +40,7 @@ DEFINE_string(log_abort_level, base::ToString(base::GetDefaultLogAbortLevel()),
 DEFINE_string(resources_path, "", "Path to resources directory.");
 DEFINE_string(lang, "", "Device language.");
 
-#if defined(OMIM_OS_MAC) || defined(OMIM_OS_LINUX)
+#if defined(OMIM_OS_MAC) || defined(OMIM_OS_LINUX) || defined(OMIM_OS_WINDOWS)
 drape_ptr<dp::GraphicsContextFactory> CreateContextFactory(GLFWwindow * window, dp::ApiVersion api, m2::PointU size);
 void PrepareDestroyContextFactory(ref_ptr<dp::GraphicsContextFactory> contextFactory);
 void OnCreateDrapeEngine(GLFWwindow * window, dp::ApiVersion api, ref_ptr<dp::GraphicsContextFactory> contextFactory);
@@ -208,7 +203,7 @@ int main(int argc, char * argv[])
   // TODO: Refactor our doubles parsing code to use locale-independent delimiters.
   // For example, https://github.com/google/double-conversion can be used.
   // See http://dbaron.org/log/20121222-locale for more details.
-  (void)::setenv("LC_NUMERIC", "C", 1);
+  std::setlocale(LC_NUMERIC, "C");
 
   Platform & platform = GetPlatform();
 
@@ -373,16 +368,12 @@ int main(int argc, char * argv[])
   {
     if (lastLatLon)
     {
-      framework.OnLocationUpdate(
-          location::GpsInfo{.m_source = location::EUser,
-                            .m_timestamp = static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(
-                                                                   std::chrono::system_clock::now().time_since_epoch())
-                                                                   .count()) /
-                                           1000,
-                            .m_latitude = lastLatLon->m_lat,
-                            .m_longitude = lastLatLon->m_lon,
-                            .m_horizontalAccuracy = 10,
-                            .m_bearing = bearingEnabled ? bearing : -1.0f});
+      framework.OnLocationUpdate(location::GpsInfo{.m_source = location::EUser,
+                                                   .m_timestamp = base::Timer::LocalTime(),
+                                                   .m_latitude = lastLatLon->m_lat,
+                                                   .m_longitude = lastLatLon->m_lon,
+                                                   .m_horizontalAccuracy = 10,
+                                                   .m_bearing = bearingEnabled ? bearing : -1.0f});
       if (bearingEnabled)
         framework.OnCompassUpdate(location::CompassInfo{.m_bearing = math::DegToRad(bearing)});
     }
@@ -398,9 +389,9 @@ int main(int argc, char * argv[])
     downloadButtonLabel.clear();
     retryButtonLabel.clear();
     downloadStatusLabel.clear();
+
     lastCountry = countryId;
-    // Called by Framework in World zoom level.
-    if (countryId.empty())
+    if (!storage::IsCountryIdValid(countryId))
       return;
 
     auto const & storage = framework.GetStorage();
@@ -545,8 +536,9 @@ int main(int argc, char * argv[])
   { handlers.onKeyboardButton(key, scancode, action, mods); });
 
   // imGui UI
-  bool enableDebugRectRendering = false;
-  bool enableAA = false;
+  static bool enableDebugRectRendering = false;
+  static bool enableAA = false;
+  static int currentTileBackground = 0;
   auto imGuiUI = [&]()
   {
     ImGui::SetNextWindowPos(ImVec2(5, 20), ImGuiCond_Appearing);
@@ -558,6 +550,8 @@ int main(int argc, char * argv[])
         "Metal", "Vulkan", "OpenGL"
 #elif defined(OMIM_OS_LINUX)
         "Vulkan", "OpenGL"
+#elif defined(OMIM_OS_WINDOWS)
+        "Vulkan"
 #endif
     };
     static int currentAPI = 0;
@@ -568,6 +562,9 @@ int main(int argc, char * argv[])
       {
         DestroyDrapeEngine();
         CreateDrapeEngine(apiVersion);
+        framework.EnableDebugRectRendering(enableDebugRectRendering);
+        framework.GetDrapeEngine()->SetPosteffectEnabled(df::PostprocessRenderer::Antialiasing, enableAA);
+        framework.GetDrapeEngine()->SetTileBackgroundMode(static_cast<dp::BackgroundMode>(currentTileBackground));
       }
     }
     if (ImGui::Checkbox("Debug rect rendering", &enableDebugRectRendering))
@@ -622,6 +619,16 @@ int main(int argc, char * argv[])
       ImGui::NewLine();
     }
 #endif
+
+    char const * tileBackgroundLabels[] = {"Default", "Satellite"};
+    if (ImGui::Combo("Tile Background", &currentTileBackground, tileBackgroundLabels,
+                     IM_ARRAYSIZE(tileBackgroundLabels)))
+    {
+      framework.GetDrapeEngine()->SetTileBackgroundMode(static_cast<dp::BackgroundMode>(currentTileBackground));
+    }
+    ImGui::NewLine();
+    ImGui::Separator();
+    ImGui::NewLine();
 
     ImGui::End();
   };

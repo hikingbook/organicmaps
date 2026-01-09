@@ -18,16 +18,25 @@ set(SRC
   app/organicmaps/sdk/platform/GuiThread.hpp
   app/organicmaps/sdk/platform/AndroidPlatform.hpp
   app/organicmaps/sdk/util/Distance.hpp
-  app/organicmaps/sdk/util/FeatureIdBuilder.hpp
   app/organicmaps/sdk/vulkan/android_vulkan_context_factory.hpp
 
   # JNI sources
   app/organicmaps/sdk/search/DisplayedCategories.cpp
   app/organicmaps/sdk/search/SearchEngine.cpp
   app/organicmaps/sdk/search/SearchRecents.cpp
+  app/organicmaps/sdk/routing/roadshield/RoadShield.cpp
+  app/organicmaps/sdk/routing/roadshield/RoadShield.hpp
+  app/organicmaps/sdk/routing/roadshield/RoadShieldInfo.cpp
+  app/organicmaps/sdk/routing/roadshield/RoadShieldInfo.hpp
+  app/organicmaps/sdk/routing/roadshield/RoadShieldType.cpp
+  app/organicmaps/sdk/routing/roadshield/RoadShieldType.hpp
+  app/organicmaps/sdk/routing/CarDirection.cpp
+  app/organicmaps/sdk/routing/CarDirection.hpp
   app/organicmaps/sdk/routing/JunctionInfo.hpp
   app/organicmaps/sdk/routing/LaneInfo.cpp
   app/organicmaps/sdk/routing/LaneInfo.hpp
+  app/organicmaps/sdk/routing/PedestrianDirection.cpp
+  app/organicmaps/sdk/routing/PedestrianDirection.hpp
   app/organicmaps/sdk/routing/RouteMarkData.hpp
   app/organicmaps/sdk/routing/RouteMarkType.hpp
   app/organicmaps/sdk/routing/RoutePointInfo.hpp
@@ -43,11 +52,25 @@ set(SRC
   app/organicmaps/sdk/core/jni_helper.cpp
   app/organicmaps/sdk/core/jni_java_methods.cpp
   app/organicmaps/sdk/core/logging.cpp
+  app/organicmaps/sdk/bookmarks/data/Bookmark.cpp
+  app/organicmaps/sdk/bookmarks/data/Bookmark.hpp
+  app/organicmaps/sdk/bookmarks/data/BookmarkCategory.cpp
+  app/organicmaps/sdk/bookmarks/data/BookmarkCategory.hpp
   app/organicmaps/sdk/bookmarks/data/BookmarkManager.cpp
+  app/organicmaps/sdk/bookmarks/data/ElevationInfo.cpp
+  app/organicmaps/sdk/bookmarks/data/ElevationInfo.hpp
   app/organicmaps/sdk/bookmarks/data/Icon.cpp
   app/organicmaps/sdk/bookmarks/data/Icon.hpp
+  app/organicmaps/sdk/bookmarks/data/MapObject.cpp
+  app/organicmaps/sdk/bookmarks/data/MapObject.hpp
+  app/organicmaps/sdk/bookmarks/data/Metadata.cpp
+  app/organicmaps/sdk/bookmarks/data/Metadata.hpp
   app/organicmaps/sdk/bookmarks/data/PredefinedColors.cpp
   app/organicmaps/sdk/bookmarks/data/PredefinedColors.hpp
+  app/organicmaps/sdk/bookmarks/data/Track.cpp
+  app/organicmaps/sdk/bookmarks/data/Track.hpp
+  app/organicmaps/sdk/bookmarks/data/TrackStatistics.cpp
+  app/organicmaps/sdk/bookmarks/data/TrackStatistics.hpp
   app/organicmaps/sdk/DownloadResourcesLegacyActivity.cpp
   app/organicmaps/sdk/editor/Editor.cpp
   app/organicmaps/sdk/editor/OpeningHours.cpp
@@ -63,7 +86,6 @@ set(SRC
   app/organicmaps/sdk/subway/SubwayManager.cpp
   app/organicmaps/sdk/TrackRecorder.cpp
   app/organicmaps/sdk/TrafficState.cpp
-  app/organicmaps/sdk/UserMarkHelper.cpp
   app/organicmaps/sdk/opengl/android_gl_utils.cpp
   app/organicmaps/sdk/opengl/androidoglcontext.cpp
   app/organicmaps/sdk/opengl/androidoglcontextfactory.cpp
@@ -91,7 +113,7 @@ omim_add_library(${PROJECT_NAME} SHARED ${SRC})
 
 target_include_directories(${PROJECT_NAME} PRIVATE .)
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME} PRIVATE
   # Organic Maps libs
   map
   # ge0

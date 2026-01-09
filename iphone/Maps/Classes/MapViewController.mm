@@ -120,6 +120,8 @@ NSString * const kSettingsSegue = @"Map2Settings";
 @property(nonatomic) NSLayoutConstraint * placePageLeadingConstraint;
 @property(nonatomic) NSLayoutConstraint * placePageTrailingConstraint;
 
+@property(nonatomic, readwrite) BOOL isMapVisible;
+
 @end
 
 @implementation MapViewController
@@ -215,6 +217,48 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  [self.view bringSubviewToFront:self.searchContainer];
 //  self.searchContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //}
+//
+//  self.placePageLeadingConstraint =
+//      [self.placePageContainer.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor
+//                                                            constant:kPlacePageLeadingOffset];
+//  if (IPAD)
+//    self.placePageLeadingConstraint.priority = UILayoutPriorityDefaultLow;
+//
+//  self.placePageWidthConstraint =
+//      [self.placePageContainer.widthAnchor constraintEqualToConstant:kPlacePageCompactWidth];
+//  self.placePageTrailingConstraint =
+//      [self.placePageContainer.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor];
+//
+//  NSLayoutConstraint * topConstraint =
+//      [self.placePageContainer.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor];
+//
+//  NSLayoutConstraint * bottomConstraint;
+//  if (IPAD)
+//    bottomConstraint = [self.placePageContainer.bottomAnchor constraintLessThanOrEqualToAnchor:self.view.bottomAnchor];
+//  else
+//    bottomConstraint = [self.placePageContainer.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+//
+//  [NSLayoutConstraint activateConstraints:@[
+//    self.placePageLeadingConstraint,
+//    topConstraint,
+//    bottomConstraint,
+//  ]];
+//
+//  [self updatePlacePageContainerConstraints];
+//}
+
+//- (void)setupSearchContainer
+//{
+//  if (self.searchContainer != nil)
+//  {
+//    [self.view bringSubviewToFront:self.searchContainer];
+//    return;
+//  }
+//  self.searchContainer = [[TouchTransparentView alloc] initWithFrame:self.view.bounds];
+//  [self.view addSubview:self.searchContainer];
+//  [self.view bringSubviewToFront:self.searchContainer];
+//  self.searchContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//}
 
 //- (void)updatePlacePageContainerConstraints
 //{
@@ -230,14 +274,6 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //      leadingToSearchConstraint.priority = UILayoutPriorityDefaultHigh;
 //      leadingToSearchConstraint.active = isLimitedWidth;
 //    }
-//    else if (self.navigationDashboardViewAvailableArea)
-//    {
-//      NSLayoutConstraint * leadingToNavigationDashboardConstraint = [self.placePageContainer.leadingAnchor
-//          constraintGreaterThanOrEqualToAnchor:self.navigationDashboardViewAvailableArea.trailingAnchor
-//                                      constant:kPlacePageLeadingOffset];
-//      leadingToNavigationDashboardConstraint.priority = UILayoutPriorityDefaultHigh;
-//      leadingToNavigationDashboardConstraint.active = isLimitedWidth;
-//    }
 //  }
 //
 //  [self.placePageWidthConstraint setActive:isLimitedWidth];
@@ -249,6 +285,18 @@ NSString * const kSettingsSegue = @"Map2Settings";
 {
   GetFramework().DeactivateMapSelection();
 }
+
+//- (BOOL)isMapFullyVisible
+//{
+//  BOOL const isMapVisible = self.isMapVisible && self.navigationController.visibleViewController == self;
+//  BOOL const isPlacePageClosed = self.placePageVC == nil;
+//  BOOL const isNavigationDashboardClosed = self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed;
+//  BOOL const isSearchingClosed = !self.searchManager.isSearching;
+//  BOOL const isMapDownloadDialogClosed = self.downloadDialog.superview == nil;
+//  BOOL const isAlertControllerClosed = !self.alertController.isAlertDisplayed;
+//  return isMapVisible && isPlacePageClosed && isNavigationDashboardClosed && isSearchingClosed &&
+//         isMapDownloadDialogClosed && isAlertControllerClosed;
+//}
 
 //- (void)hideRegularPlacePage
 //{
@@ -290,7 +338,10 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  if (!self.searchManager.isSearching && isNavigationDashboardHidden)
 //  {
 //    if (!self.controlsManager.hidden)
+//    {
 //      [self dismissPlacePage];
+//      [Toast showWithText:L(@"long_tap_toast")];
+//    }
 //    self.controlsManager.hidden = !self.controlsManager.hidden;
 //  }
 //}
@@ -456,6 +507,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
   [self showViralAlertIfNeeded];
 //  [self checkAuthorization];
   [MWMRouter updateRoute];
+  self.isMapVisible = YES;
 }
 
 - (void)viewDidLoad
@@ -601,6 +653,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  if (self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed)
 //    self.controlsManager.menuRestoreState = self.controlsManager.menuState;
   GetFramework().SetRenderingDisabled(false);
+  self.isMapVisible = NO;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -609,7 +662,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 }
 //- (UIStatusBarStyle)preferredStatusBarStyle
 //{
-//  MWMMapViewControlsManager * manager = self.controlsManager;
+//  MWMMapViewControlsManager * manager = _controlsManager;
 //  if (manager)
 //    return manager.preferredStatusBarStyle;
 //  return UIStatusBarStyleDefault;
@@ -781,11 +834,11 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //      [self.searchManager startSearchingWithIsRouting:NO];
 //    else if ([action isEqualToString:@"app.organicmaps.3daction.route"])
 //      [self.controlsManager onRoutePrepare];
+//    else if ([action isEqualToString:@"app.organicmaps.3daction.report_bug"])
+//      [MailComposer sendBugReportWithTitle:@"Bug Report / Organic Maps"];
   }
   else
-  {
     dispatch_async(dispatch_get_main_queue(), ^{ [self performAction:action]; });
-  }
 }
 
 #pragma mark - ShowDialog callback
@@ -876,11 +929,6 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  return self.searchManager.viewController.availableAreaView;
 //}
 
-//- (UIView * _Nullable)navigationDashboardViewAvailableArea
-//{
-//  return [self navigationDashboardManager].availableAreaView;
-//}
-
 - (BOOL)hasNavigationBar
 {
   return NO;
@@ -893,12 +941,24 @@ NSString * const kSettingsSegue = @"Map2Settings";
   return _downloadDialog;
 }
 
-- (void)updateVisibleAreaInsetsFor:(NSObject *)object insets:(UIEdgeInsets)insets
+- (void)updateVisibleAreaInsetsFor:(NSObject * _Nonnull)object
+                            insets:(UIEdgeInsets)insets
+                  updatingViewport:(BOOL)updateViewport
 {
   if (object == nil)
     return;
   [self.availableAreaInsetsMap setObject:[NSValue valueWithUIEdgeInsets:insets] forKey:object];
-  [self updateVisibleAreaBounds];
+
+  UIEdgeInsets availableAreaInsets = [self availableAreaInsets];
+
+  if (updateViewport)
+  {
+    self.visibleAreaBottom.constant = availableAreaInsets.bottom;
+    self.visibleAreaLeading.constant = availableAreaInsets.left;
+    self.visibleAreaTrailing.constant = availableAreaInsets.right;
+  }
+  self.sideButtonsAreaBottom.constant = availableAreaInsets.bottom;
+  self.sideButtonsAreaCompactBottom.constant = availableAreaInsets.bottom;
 }
 
 - (UIEdgeInsets)availableAreaInsets
@@ -928,17 +988,6 @@ NSString * const kSettingsSegue = @"Map2Settings";
     return UIEdgeInsetsZero;
 
   return UIEdgeInsetsMake(top, left, bottom, right);
-}
-
-- (void)updateVisibleAreaBounds
-{
-  UIEdgeInsets availableAreaInsets = [self availableAreaInsets];
-
-  self.visibleAreaBottom.constant = availableAreaInsets.bottom;
-  self.visibleAreaLeading.constant = availableAreaInsets.left;
-  self.visibleAreaTrailing.constant = availableAreaInsets.right;
-  self.sideButtonsAreaBottom.constant = availableAreaInsets.bottom;
-  self.sideButtonsAreaCompactBottom.constant = availableAreaInsets.bottom;
 }
 
 + (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomLevel

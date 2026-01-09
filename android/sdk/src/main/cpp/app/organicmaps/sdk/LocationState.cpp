@@ -15,15 +15,13 @@ static void LocationStateModeChanged(location::EMyPositionMode mode, std::shared
 }
 
 //  public static void nativeSwitchToNextMode();
-JNIEXPORT void JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeSwitchToNextMode(JNIEnv * env,
-                                                                                              jclass clazz)
+JNIEXPORT void Java_app_organicmaps_sdk_location_LocationState_nativeSwitchToNextMode(JNIEnv * env, jclass clazz)
 {
-  ASSERT(g_framework, ());
   g_framework->SwitchMyPositionNextMode();
 }
 
 // private static int nativeGetMode();
-JNIEXPORT jint JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeGetMode(JNIEnv * env, jclass clazz)
+JNIEXPORT jint Java_app_organicmaps_sdk_location_LocationState_nativeGetMode(JNIEnv * env, jclass clazz)
 {
   // GetMyPositionMode() is initialized only after drape creation.
   // https://github.com/organicmaps/organicmaps/issues/1128#issuecomment-1784435190
@@ -32,33 +30,31 @@ JNIEXPORT jint JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeGet
 }
 
 //  public static void nativeSetListener(ModeChangeListener listener);
-JNIEXPORT void JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeSetListener(JNIEnv * env, jclass clazz,
-                                                                                         jobject listener)
+JNIEXPORT void Java_app_organicmaps_sdk_location_LocationState_nativeSetListener(JNIEnv * env, jclass clazz,
+                                                                                 jobject listener)
 {
-  ASSERT(g_framework, ());
   g_framework->SetMyPositionModeListener(
       std::bind(&LocationStateModeChanged, std::placeholders::_1, jni::make_global_ref(listener)));
 }
 
 //  public static void nativeRemoveListener();
-JNIEXPORT void JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeRemoveListener(JNIEnv * env, jclass clazz)
+JNIEXPORT void Java_app_organicmaps_sdk_location_LocationState_nativeRemoveListener(JNIEnv * env, jclass clazz)
 {
-  ASSERT(g_framework, ());
   g_framework->SetMyPositionModeListener(location::TMyPositionModeChanged());
 }
 
-JNIEXPORT void JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeOnLocationError(JNIEnv * env, jclass clazz,
-                                                                                             int errorCode)
+JNIEXPORT void Java_app_organicmaps_sdk_location_LocationState_nativeOnLocationError(JNIEnv * env, jclass clazz,
+                                                                                     int errorCode)
 {
-  ASSERT(g_framework, ());
   g_framework->OnLocationError(errorCode);
 }
 
-JNIEXPORT void JNICALL Java_app_organicmaps_sdk_location_LocationState_nativeLocationUpdated(
-    JNIEnv * env, jclass clazz, jlong time, jdouble lat, jdouble lon, jfloat accuracy, jdouble altitude, jfloat speed,
-    jfloat bearing)
+JNIEXPORT void Java_app_organicmaps_sdk_location_LocationState_nativeLocationUpdated(JNIEnv * env, jclass clazz,
+                                                                                     jlong time, jdouble lat,
+                                                                                     jdouble lon, jfloat accuracy,
+                                                                                     jdouble altitude, jfloat speed,
+                                                                                     jfloat bearing)
 {
-  ASSERT(g_framework, ());
   location::GpsInfo info;
   info.m_source = location::EAndroidNative;
 

@@ -10,6 +10,7 @@
 #include "platform/platform.hpp"
 #include "platform/preferred_languages.hpp"
 #include "platform/settings.hpp"
+#include "platform/style_utils.hpp"
 
 #include "coding/reader.hpp"
 
@@ -18,12 +19,12 @@
 
 #include "build_style/build_style.h"
 
+#include <QObject>
 #include <QtGlobal>
+#include <QtGui/QStyleHints>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
-
-#include <sstream>
 
 #include <gflags/gflags.h>
 
@@ -111,7 +112,7 @@ int main(int argc, char * argv[])
   // TODO: Refactor our doubles parsing code to use locale-independent delimiters.
   // For example, https://github.com/google/double-conversion can be used.
   // See http://dbaron.org/log/20121222-locale for more details.
-  (void)::setenv("LC_NUMERIC", "C", 1);
+  std::setlocale(LC_NUMERIC, "C");
 
   Platform & platform = GetPlatform();
 
@@ -139,7 +140,6 @@ int main(int argc, char * argv[])
 
   QApplication app(argc, argv);
   app.setDesktopFileName("app.organicmaps.desktop");
-  platform.SetupMeasurementSystem();
 
 #ifdef BUILD_DESIGNER
   QApplication::setApplicationName("Organic Maps Designer");
@@ -239,12 +239,27 @@ int main(int argc, char * argv[])
 #endif  // BUILD_DESIGNER
 
     Framework framework(frameworkParams);
+    framework.SetupMeasurementSystem();
+
+    auto const syncNightMode = [&framework]()
+    {
+      if (style_utils::GetNightModeSetting() == style_utils::NightMode::System)
+        qt::common::ApplySystemNightMode(framework);
+    };
+    syncNightMode();
     qt::MainWindow w(framework, std::move(screenshotParams), QApplication::primaryScreen()->geometry()
 #ifdef BUILD_DESIGNER
                                                                  ,
                      mapcssFilePath
 #endif  // BUILD_DESIGNER
     );
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    if (auto * styleHints = QGuiApplication::styleHints(); styleHints != nullptr)
+    {
+      QObject::connect(styleHints, &QStyleHints::colorSchemeChanged, &w,
+                       [syncNightMode](Qt::ColorScheme) mutable { syncNightMode(); });
+    }
+#endif
     w.show();
     returnCode = QApplication::exec();
   }

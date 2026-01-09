@@ -53,8 +53,9 @@ bool GetTransliteratedName(RegionData const & regionData, StrUtf8 const & src, s
       return true;
 
   // If default name is available, interpret it as a name for the first mwm language.
-  if (!mwmLangCodes.empty() && src.GetString(StrUtf8::kDefaultCode, srcName))
-    return translator.Transliterate(srcName, mwmLangCodes[0], out);
+  if (!mwmLangCodes.empty())
+    if (srcName = src.GetDefaultString(); !srcName.empty())
+      return translator.Transliterate(srcName, mwmLangCodes[0], out);
 
   return false;
 }
@@ -308,9 +309,14 @@ bool NameParamsIn::IsNativeOrSimilarLang() const
   return IsNativeLang(regionData, deviceLang);
 }
 
-int GetFeatureViewportScale(TypesHolder const & types)
+int GetFeatureViewportScale(FeatureID const & fid, TypesHolder const & types)
 {
-  return GetFeatureEstimator().GetViewportScale(types);
+  int scale = GetFeatureEstimator().GetViewportScale(types);
+
+  if (fid.IsValid() && fid.IsWorld() && scale > scales::GetUpperWorldScale())
+    scale = scales::GetUpperWorldScale();
+
+  return scale;
 }
 
 vector<int8_t> GetSimilar(int8_t lang)
@@ -495,6 +501,18 @@ string FormatElevation(string_view elevation)
       return std::string{kMountainSymbol} + platform::Distance::FormatAltitude(value);
     else
       LOG(LWARNING, ("Invalid elevation metadata:", elevation));
+  }
+  return {};
+}
+
+string FormatCapacity(std::string_view capacity, TypesHolder const & types)
+{
+  if (!capacity.empty())
+  {
+    if (ftypes::IsParkingChecker::Instance()(types))
+      return std::string{capacity} + " " + std::string{feature::kCarSymbol};
+    else if (ftypes::IsBicycleParkingChecker::Instance()(types))
+      return std::string{capacity} + " " + std::string{feature::kBicycleSymbol};
   }
   return {};
 }

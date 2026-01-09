@@ -67,15 +67,15 @@ public:
 
   VulkanObject CreateBuffer(VulkanMemoryManager::ResourceType resourceType, uint32_t sizeInBytes, uint64_t batcherHash);
   VulkanObject CreateImage(VkImageUsageFlags usageFlags, VkFormat format, VkImageTiling tiling,
-                           VkImageAspectFlags aspectFlags, uint32_t width, uint32_t height);
+                           VkImageAspectFlags aspectFlags, uint32_t width, uint32_t height, uint32_t layerCount);
   DescriptorSetGroup CreateDescriptorSetGroup(ref_ptr<VulkanGpuProgram> program);
 
-  // Use unsafe function ONLY if an object exists on the only thread, otherwise
-  // use safe Fill function.
+  // Use unsafe function ONLY if an object exists on one thread, otherwise
+  // use safe Fill() function.
   uint8_t * MapUnsafe(VulkanObject object);
   void FlushUnsafe(VulkanObject object, uint32_t offset = 0, uint32_t size = 0);
   void UnmapUnsafe(VulkanObject object);
-  void Fill(VulkanObject object, void const * data, uint32_t sizeInBytes);
+  void Fill(VulkanObject object, void const * data, uint32_t sizeInBytes, uint32_t offset = 0);
 
   void DestroyObject(VulkanObject object);
   void DestroyDescriptorSetGroup(DescriptorSetGroup group);
@@ -90,6 +90,7 @@ public:
   VkSampler GetSampler(SamplerKey const & key);
 
   void SetMaxUniformBuffers(uint32_t maxUniformBuffers);
+  void SetMaxStorageBuffers(uint32_t maxStorageBuffers);
   void SetMaxImageSamplers(uint32_t maxImageSamplers);
 
 private:
@@ -123,6 +124,7 @@ private:
   uint32_t m_currentInflightFrameIndex = 0;
 
   uint32_t m_maxUniformBuffers = 0;
+  uint32_t m_maxStorageBuffers = 0;
   uint32_t m_maxImageSamplers = 0;
 
   std::mutex m_mutex;

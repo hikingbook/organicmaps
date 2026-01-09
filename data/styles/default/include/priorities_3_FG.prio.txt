@@ -292,10 +292,13 @@ highway-path-bicycle::cycleline                     # line::cycleline z14- (also
 highway-construction                                # line z13- (also has pathtext z15-)
 leisure-track                                       # line z15- (also has caption z16-)
 railway-abandoned                                   # line z16-
-railway-abandoned-bridge                            # line z16- (also has line::bridgeblack z16-, line::bridgewhite z16-)
-railway-abandoned-tunnel                            # line z16-
 railway-construction                                # line z15-
 railway-disused                                     # line z16-
+railway-disused-bridge                              # line z16- (also has line::bridgeblack z16-, line::bridgewhite z16-)
+railway-disused-tunnel                              # line z16-
+railway-miniature                                   # line z15-
+railway-miniature-bridge                            # line z15- (also has line::bridgeblack z16-, line::bridgewhite z15-)
+railway-miniature-tunnel                            # line z15-
 railway-preserved                                   # line z15-
 railway-preserved-bridge                            # line z15- (also has line::bridgeblack z16-, line::bridgewhite z15-)
 railway-preserved-tunnel                            # line z15-
@@ -346,8 +349,9 @@ highway-track-bridge::bridgewhite                   # line::bridgewhite z15- (al
 highway-trunk-bridge::bridgewhite                   # line::bridgewhite z13- (also has line z6-, line::bridgeblack z13-, pathtext z10-, shield::shield z10-)
 highway-trunk_link-bridge::bridgewhite              # line::bridgewhite z14- (also has line z10-, line::bridgeblack z14-, pathtext z10-, shield::shield z10-)
 highway-unclassified-bridge::bridgewhite            # line::bridgewhite z14- (also has line z11-, line::bridgeblack z14-, pathtext z13-)
-railway-abandoned-bridge::bridgewhite               # line::bridgewhite z16- (also has line z16-, line::bridgeblack z16-)
+railway-disused-bridge::bridgewhite                 # line::bridgewhite z16- (also has line z16-, line::bridgeblack z16-)
 railway-light_rail-bridge::bridgewhite              # line::bridgewhite z13- (also has line z13-, line::bridgeblack z16-, line::dash z16-)
+railway-miniature-bridge::bridgewhite               # line::bridgewhite z15- (also has line z15-, line::bridgeblack z16-)
 railway-preserved-bridge::bridgewhite               # line::bridgewhite z15- (also has line z15-, line::bridgeblack z16-)
 railway-rail-branch-bridge::bridgewhite             # line::bridgewhite z13- (also has line z11-, line::bridgeblack z16-, line::dash z16-)
 railway-rail-bridge::bridgewhite                    # line::bridgewhite z13- (also has line z11-, line::bridgeblack z16-, line::dash z16-)
@@ -381,8 +385,9 @@ highway-track-bridge::bridgeblack                   # line::bridgeblack z17- (al
 highway-trunk-bridge::bridgeblack                   # line::bridgeblack z13- (also has line z6-, line::bridgewhite z13-, pathtext z10-, shield::shield z10-)
 highway-trunk_link-bridge::bridgeblack              # line::bridgeblack z14- (also has line z10-, line::bridgewhite z14-, pathtext z10-, shield::shield z10-)
 highway-unclassified-bridge::bridgeblack            # line::bridgeblack z14- (also has line z11-, line::bridgewhite z14-, pathtext z13-)
-railway-abandoned-bridge::bridgeblack               # line::bridgeblack z16- (also has line z16-, line::bridgewhite z16-)
+railway-disused-bridge::bridgeblack                 # line::bridgeblack z16- (also has line z16-, line::bridgewhite z16-)
 railway-light_rail-bridge::bridgeblack              # line::bridgeblack z16- (also has line z13-, line::bridgewhite z13-, line::dash z16-)
+railway-miniature-bridge::bridgeblack               # line::bridgeblack z16- (also has line z15-, line::bridgewhite z15-)
 railway-preserved-bridge::bridgeblack               # line::bridgeblack z16- (also has line z15-, line::bridgewhite z15-)
 railway-rail-branch-bridge::bridgeblack             # line::bridgeblack z16- (also has line z11-, line::bridgewhite z13-, line::dash z16-)
 railway-rail-bridge::bridgeblack                    # line::bridgeblack z16- (also has line z11-, line::bridgewhite z13-, line::dash z16-)
@@ -459,14 +464,14 @@ waterway-dam                                        # line z14- and area z14- (a
 === 30
 
 landuse-military                                    # area z12- (also has icon z16-, caption(optional) z17-)
-landuse-military-danger_area                        # area z10- (also has icon z16-, caption(optional) z17-)
+landuse-military-danger_area                        # area z8- (also has icon z16-, caption(optional) z17-)
 === 25
 
 amenity-prison                                      # area z12- (also has icon z17-, caption(optional) z17-)
-boundary-aboriginal_lands                           # line z10- and area z10-16 (also has caption z10-16)
-boundary-national_park                              # line z10- and area z10-17 (also has icon z11-17, caption(optional) z12-17)
-boundary-protected_area-1                           # line z10- and area z10-17 (also has icon z11-17, caption(optional) z12-17)
-leisure-nature_reserve                              # area z10-17 (also has icon z11-17, caption(optional) z12-17, caption z18-)
+boundary-aboriginal_lands                           # line z8- and area z8-16 (also has caption z8-16)
+boundary-national_park                              # line z8- and area z8-17 (also has icon z11-17, caption z8-9, caption(optional) z12-17)
+boundary-protected_area-1                           # line z8- and area z8-17 (also has icon z11-17, caption z8-9, caption(optional) z12-17)
+leisure-nature_reserve                              # area z8-17 (also has icon z11-17, caption z9, caption(optional) z12-17)
 === 20
 
 piste:type-snow_park                                # area z14- (also has caption z15-)

@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.Router;
-import app.organicmaps.sdk.bookmarks.data.FeatureId;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.location.LocationHelper;
 import app.organicmaps.sdk.util.concurrency.UiThread;
@@ -233,6 +232,7 @@ public class RoutingController
   public void initialize(@NonNull LocationHelper locationHelper)
   {
     mLastRouterType = Router.getLastUsed();
+    Router.set(mLastRouterType);
     mInvalidRoutePointsTransactionId = Framework.nativeInvalidRoutePointsTransactionId();
     mRemovingIntermediatePointsTransactionId = mInvalidRoutePointsTransactionId;
 
@@ -414,7 +414,7 @@ public class RoutingController
   @NonNull
   private MapObject toMapObject(@NonNull RouteMarkData point)
   {
-    return MapObject.createMapObject(FeatureId.EMPTY, point.mIsMyPosition ? MapObject.MY_POSITION : MapObject.POI,
+    return MapObject.createMapObject(point.mIsMyPosition ? MapObject.MY_POSITION : MapObject.POI,
                                      point.mTitle == null ? "" : point.mTitle,
                                      point.mSubtitle == null ? "" : point.mSubtitle, point.mLat, point.mLon);
   }
@@ -434,7 +434,7 @@ public class RoutingController
     updateProgress();
   }
 
-  private void cancelInternal()
+  private void cancelInternal(boolean deleteSavedRoute)
   {
     Logger.d(TAG, "cancelInternal");
 
@@ -444,17 +444,23 @@ public class RoutingController
     setState(State.NONE);
 
     applyRemovingIntermediatePointsTransaction();
-    Framework.nativeDeleteSavedRoutePoints();
+    if (deleteSavedRoute)
+      Framework.nativeDeleteSavedRoutePoints();
     Framework.nativeCloseRouting();
   }
 
   public boolean cancel()
   {
+    return cancel(true);
+  }
+
+  public boolean cancel(boolean deleteSavedRoute)
+  {
     if (isPlanning())
     {
       Logger.d(TAG, "cancel: planning");
 
-      cancelInternal();
+      cancelInternal(deleteSavedRoute);
       cancelPlanning(true);
       return true;
     }
@@ -463,7 +469,7 @@ public class RoutingController
     {
       Logger.d(TAG, "cancel: navigating");
 
-      cancelInternal();
+      cancelInternal(deleteSavedRoute);
       cancelNavigation(true);
       if (mContainer != null)
       {

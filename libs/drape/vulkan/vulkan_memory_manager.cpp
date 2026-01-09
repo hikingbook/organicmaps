@@ -16,6 +16,7 @@ namespace
 std::array<uint32_t, VulkanMemoryManager::kResourcesCount> const kMinBlockSizeInBytes = {{
     1024 * 1024,  // Geometry
     128 * 1024,   // Uniform
+    128 * 1024,   // Storage
     0,            // Staging (no minimal size)
     0,            // Image (no minimal size)
 }};
@@ -23,6 +24,7 @@ std::array<uint32_t, VulkanMemoryManager::kResourcesCount> const kMinBlockSizeIn
 std::array<uint32_t, VulkanMemoryManager::kResourcesCount> const kDesiredSizeInBytes = {{
     80 * 1024 * 1024,                      // Geometry
     std::numeric_limits<uint32_t>::max(),  // Uniform (unlimited)
+    std::numeric_limits<uint32_t>::max(),  // Storage (unlimited)
     20 * 1024 * 1024,                      // Staging
     100 * 1024 * 1024,                     // Image
 }};
@@ -41,6 +43,10 @@ VkMemoryPropertyFlags GetMemoryPropertyFlags(VulkanMemoryManager::ResourceType r
     return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
 
   case VulkanMemoryManager::ResourceType::Uniform:
+    // No fallback.
+    return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
+
+  case VulkanMemoryManager::ResourceType::Storage:
     // No fallback.
     return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
 
@@ -68,6 +74,12 @@ VulkanMemoryManager::VulkanMemoryManager(VkDevice device, VkPhysicalDeviceLimits
   : m_device(device)
   , m_deviceLimits(deviceLimits)
   , m_memoryProperties(memoryProperties)
+  , m_uniformAlignment(math::LCM(static_cast<uint32_t>(m_deviceLimits.minUniformBufferOffsetAlignment),
+                                 static_cast<uint32_t>(m_deviceLimits.nonCoherentAtomSize)))
+  , m_storageAlignment(math::LCM(static_cast<uint32_t>(m_deviceLimits.minStorageBufferOffsetAlignment),
+                                 static_cast<uint32_t>(m_deviceLimits.nonCoherentAtomSize)))
+  , m_baseAlignment(math::LCM(static_cast<uint32_t>(m_deviceLimits.minMemoryMapAlignment),
+                              static_cast<uint32_t>(m_deviceLimits.nonCoherentAtomSize)))
 {}
 
 VulkanMemoryManager::~VulkanMemoryManager()
@@ -110,16 +122,12 @@ std::optional<uint32_t> VulkanMemoryManager::GetMemoryTypeIndex(uint32_t typeBit
 uint32_t VulkanMemoryManager::GetOffsetAlignment(ResourceType resourceType) const
 {
   if (resourceType == ResourceType::Uniform)
-  {
-    static uint32_t const kUniformAlignment =
-        math::LCM(static_cast<uint32_t>(m_deviceLimits.minUniformBufferOffsetAlignment),
-                  static_cast<uint32_t>(m_deviceLimits.nonCoherentAtomSize));
-    return kUniformAlignment;
-  }
+    return m_uniformAlignment;
 
-  static uint32_t const kAlignment = math::LCM(static_cast<uint32_t>(m_deviceLimits.minMemoryMapAlignment),
-                                               static_cast<uint32_t>(m_deviceLimits.nonCoherentAtomSize));
-  return kAlignment;
+  if (resourceType == ResourceType::Storage)
+    return m_storageAlignment;
+
+  return m_baseAlignment;
 }
 
 uint32_t VulkanMemoryManager::GetSizeAlignment(VkMemoryRequirements const & memReqs) const
