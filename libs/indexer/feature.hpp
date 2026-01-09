@@ -37,6 +37,9 @@ public:
   using GeometryOffsets = buffer_vector<uint32_t, feature::DataHeader::kMaxScalesCount>;
 
   FeatureType(feature::SharedLoadInfo const * loadInfo, std::vector<uint8_t> && buffer);
+  FeatureType(FeatureID fid, uint32_t type);
+
+  void SetTriangles(std::vector<m2::PointD> const & pts);
 
   static std::unique_ptr<FeatureType> CreateFromMapObject(osm::MapObject const & emo);
 
@@ -50,13 +53,13 @@ public:
   m2::PointD GetCenter();
 
   template <class T>
-  bool ForEachName(T && fn)
+  bool ForEachName(T && fn, bool emptyLikeDefault = true)
   {
     if (!HasName())
       return false;
 
     ParseCommon();
-    m_params.name.ForEach(std::forward<T>(fn));
+    m_params.name.ForEach(std::forward<T>(fn), emptyLikeDefault);
     return true;
   }
 
@@ -166,6 +169,7 @@ public:
   void GetReadableName(bool allowTranslit, int8_t deviceLang, feature::NameParamsOut & out);
 
   std::string_view GetName(int8_t lang);
+  std::string_view GetDefaultName() { return GetName(StringUtf8Multilang::kDefaultCode); }
   //@}
 
   uint8_t GetRank();

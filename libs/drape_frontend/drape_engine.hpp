@@ -17,6 +17,7 @@
 #include "drape/drape_global.hpp"
 #include "drape/pointers.hpp"
 #include "drape/texture_manager.hpp"
+#include "drape/texture_types.hpp"
 #include "drape/viewport.hpp"
 
 #include "transit/transit_display_info.hpp"
@@ -54,8 +55,8 @@ public:
            gui::TWidgetsInitInfo && info, location::TMyPositionModeChanged && myPositionModeChanged,
            bool allow3dBuildings, bool trafficEnabled, bool isolinesEnabled, bool blockTapEvents,
            bool showChoosePositionMark, std::vector<m2::TriangleD> && boundAreaTriangles, bool isRoutingActive,
-           bool isAutozoomEnabled, bool simplifiedTrafficColors, std::optional<Arrow3dCustomDecl> arrow3dCustomDecl,
-           OverlaysShowStatsCallback && overlaysShowStatsCallback,
+           bool isAutozoomEnabled, bool simplifiedTrafficColors, dp::BackgroundMode backgroundMode,
+           std::optional<Arrow3dCustomDecl> arrow3dCustomDecl, OverlaysShowStatsCallback && overlaysShowStatsCallback,
            OnGraphicsContextInitialized && onGraphicsContextInitialized,
            dp::RenderInjectionHandler && renderInjectionHandler)
       : m_apiVersion(apiVersion)
@@ -76,6 +77,7 @@ public:
       , m_isRoutingActive(isRoutingActive)
       , m_isAutozoomEnabled(isAutozoomEnabled)
       , m_simplifiedTrafficColors(simplifiedTrafficColors)
+      , m_backgroundMode(backgroundMode)
       , m_arrow3dCustomDecl(std::move(arrow3dCustomDecl))
       , m_overlaysShowStatsCallback(std::move(overlaysShowStatsCallback))
       , m_onGraphicsContextInitialized(std::move(onGraphicsContextInitialized))
@@ -101,6 +103,7 @@ public:
     bool m_isRoutingActive;
     bool m_isAutozoomEnabled;
     bool m_simplifiedTrafficColors;
+    dp::BackgroundMode m_backgroundMode;
     std::optional<Arrow3dCustomDecl> m_arrow3dCustomDecl;
     OverlaysShowStatsCallback m_overlaysShowStatsCallback;
     OnGraphicsContextInitialized m_onGraphicsContextInitialized;
@@ -240,6 +243,10 @@ public:
   location::EMyPositionMode GetMyPositionMode() const;
 
   void SetCustomArrow3d(std::optional<Arrow3dCustomDecl> arrow3dCustomDecl);
+
+  void SetTileBackgroundData(df::TileKey const & tileKey, uint32_t width, uint32_t height, dp::TextureFormat format,
+                             dp::BackgroundMode mode, std::vector<uint8_t> && bytes);
+  void SetTileBackgroundMode(dp::BackgroundMode mode);
 
   dp::ApiVersion GetApiVersion() const { return m_frontend->GetApiVersion(); }
 

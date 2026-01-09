@@ -2,11 +2,11 @@
 
 #include "platform/distance.hpp"
 
+#include "indexer/road_shields_parser.hpp"
+
 #include "routing/lanes/lane_info.hpp"
 #include "routing/turns.hpp"
 
-#include <algorithm>
-#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -15,6 +15,18 @@ namespace routing
 class FollowingInfo
 {
 public:
+  struct RoadShieldInfo
+  {
+    /// An array of road shields for the target street
+    ftypes::RoadShieldsSetT m_targetRoadShields;
+    /// Position of the road shields in the street name string. [Inclusive, Exclusive)
+    std::pair<uint16_t, uint16_t> m_targetRoadShieldsPosition;
+    /// An array of junction info shields for the target street
+    ftypes::RoadShieldsSetT m_junctionInfo;
+    /// Position of the junction info in the street name string. [Inclusive, Exclusive)
+    std::pair<uint16_t, uint16_t> m_junctionInfoPosition;
+  };
+
   FollowingInfo()
     : m_turn(turns::CarDirection::None)
     , m_nextTurn(turns::CarDirection::None)
@@ -47,10 +59,16 @@ public:
   std::vector<std::string> m_turnNotifications;
   // Current street name. May be empty.
   std::string m_currentStreetName;
+  // Road shields for the current street.
+  RoadShieldInfo m_currentStreetShields;
   // The next street name. May be empty.
   std::string m_nextStreetName;
+  // Road shields for the next street.
+  RoadShieldInfo m_nextStreetShields;
   // The next next street name. May be empty.
   std::string m_nextNextStreetName;
+  // Road shields for the next next street.
+  RoadShieldInfo m_nextNextStreetShields;
 
   // Percentage of the route completion.
   double m_completionPercent;

@@ -35,6 +35,8 @@ set(SRC
   animation_utils.hpp
   apply_feature_functors.cpp
   apply_feature_functors.hpp
+  apply_feature_params.cpp
+  apply_feature_params.hpp
   area_shape.cpp
   area_shape.hpp
   arrow3d.cpp
@@ -184,6 +186,8 @@ set(SRC
   text_shape.hpp
   threads_commutator.cpp
   threads_commutator.hpp
+  tile_background_renderer.cpp
+  tile_background_renderer.hpp
   tile_info.cpp
   tile_info.hpp
   tile_key.cpp
@@ -213,12 +217,13 @@ set(SRC
 omim_add_library(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME}
-  editor
-  drape
-  indexer
-  traffic
-  transit
-  shaders
+  PUBLIC
+    editor
+    drape
+    indexer
+    traffic
+    transit
+    shaders
 )
 
 omim_add_test_subdirectory(drape_frontend_tests)

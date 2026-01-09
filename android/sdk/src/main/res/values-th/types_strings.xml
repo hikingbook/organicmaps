@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Types -->
     <string name="type.addr_interpolation">ที่อยู่/บล็อค</string>
     <string name="type.addr_interpolation.even">ที่อยู่/บล็อค</string>
@@ -116,6 +117,7 @@
     <string name="type.amenity.prison">คุก</string>
     <string name="type.amenity.pub">ผับ</string>
     <string name="type.amenity.public_bookcase">ตู้หนังสือ สถานที่แลกเปลี่ยนหนังสือ</string>
+
     <!-- SECTION: Types: Recycling -->
     <string name="type.amenity.recycling.centre">ศูนย์รีไซเคิล</string>
     <string name="type.amenity.recycling">บรรจุภัณฑ์รีไซเคิล</string>
@@ -322,6 +324,7 @@
     <string name="type.healthcare.psychotherapist">จิตบำบัด</string>
     <string name="type.healthcare.sample_collection">การสุ่มตัวอย่าง</string>
     <string name="type.healthcare.speech_therapist">การบำบัดด้วยการพูด</string>
+
     <!-- SECTION: Types: Roads -->
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.bridleway.bridge">สะพาน</string>
@@ -479,6 +482,7 @@
     <string name="type.area_highway.track">ถนน</string>
     <string name="type.area_highway.trunk">ถนน</string>
     <string name="type.area_highway.unclassified">ถนน</string>
+
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">วัตถุประวัติศาสตร์</string>
     <string name="type.historic.aircraft">เครื่องบินประวัติศาสตร์</string>
@@ -531,6 +535,7 @@
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery.christian">สุสาน</string>
     <string name="type.landuse.religious">บริเวณโบสถ์</string>
+    <string name="type.landuse.churchyard">บริเวณโบสถ์</string>
     <string name="type.landuse.farmland">พื้นที่ทำการเกษตร</string>
     <string name="type.landuse.flowerbed">แปลงดอกไม้</string>
     <string name="type.landuse.forest">ป่า</string>
@@ -669,7 +674,7 @@
     <string name="type.place.sea">เห็น</string>
     <string name="type.place.square">ช่องว่าง</string>
     <string name="type.place.state">รัฐ</string>
-    <string name="type.place.state.USA">รัฐ</string>
+    <string name="type.place.state.major">รัฐ</string>
     <!-- Named part of a city or town, bigger than place=quarter (Wiki: https://wiki.openstreetmap.org/wiki/Tag:place%3Dsuburb) -->
     <string name="type.place.suburb">ชานเมือง</string>
     <string name="type.place.town">เมือง</string>
@@ -1027,6 +1032,7 @@
     <string name="type.shop.pet_grooming">กรูมมิ่งสัตว์เลี้ยง</string>
     <string name="type.shop.photo">ร้านถ่ายภาพ</string>
     <string name="type.shop.rental">ร้านเช่า</string>
+    <string name="type.shop.rental.bicycle">ร้านเช่าจักรยาน</string>
     <string name="type.amenity.bicycle_rental.shop">ร้านเช่าจักรยาน</string>
     <string name="type.shop.seafood">ร้านขายปลา</string>
     <string name="type.shop.second_hand">ร้านขายของมือสอง</string>
@@ -1184,4 +1190,18 @@
     <string name="type.barrier.jersey_barrier">บล็อก</string>
     <string name="type.barrier.debris">เศษซาก</string>
     <string name="type.barrier.log">สิ่งกีดขวางท่อนไม้</string>
+    <string name="type.amenity.boat_rental">ให้เช่าเรือ</string>
+    <string name="type.shop.telecommunication">ร้านค้าโทรคมนาคม</string>
+    <string name="type.leisure.indoor_play">ศูนย์เล่น</string>
+    <string name="type.tourism.camp_pitch">จุดตั้งแคมป์</string>
+    <string name="type.railway.miniature">รถไฟจิ๋ว</string>
+    <string name="type.amenity.kneipp_water_cure">Kneipp วอเตอร์เคียว</string>
+    <string name="type.area_highway.traffic_island">เกาะจราจร</string>
+    <string name="type.man_made.monitoring_station">สถานีตรวจติดตาม</string>
+    <string name="type.man_made.monitoring_station.water_level">สถานีตรวจวัดระดับน้ำ</string>
+    <string name="type.man_made.monitoring_station.weather">สถานีตรวจวัดสภาพอากาศ</string>
+    <string name="type.amenity.student_accommodation">ที่พักนักศึกษา</string>
+    <string name="type.craft.watchmaker">ช่างซ่อมนาฬิกา</string>
+    <string name="type.xmas_feature.market">ตลาดคริสต์มาส</string>
+    <string name="type.xmas_feature.tree">ต้นคริสต์มาส</string>
 </resources>

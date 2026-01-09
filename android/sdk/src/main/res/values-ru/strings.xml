@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SECTION: Uncategorized -->
     <!-- Settings/Downloader - size string, only strings different from English should be translated -->
     <string name="mb">МБ</string>
     <string name="gb">ГБ</string>
@@ -28,13 +30,12 @@
     <string name="mi">ми</string>
     <!-- A unit of measure -->
     <string name="ft">фут</string>
+    <!-- Toast text when the maps version should be updated to display the OSM hiking and cycling routes -->
     <string name="routes_update_maps_text">Обновите карты, чтобы увидеть маршруты.</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">Выход</string>
     <string name="core_entrance">Вход</string>
     <string name="subway_data_unavailable">Карта метро недоступна</string>
-    <string name="public_access">Публичный доступ</string>
-    <string name="limited_access">Ограниченный доступ</string>
-    <string name="not_shared">Личный</string>
-    <string name="access_rules_author_only">Редактируется онлайн</string>
+    <!-- Settings/Highlight downloaded regions on the map -->
+    <string name="show_downloaded_regions">Фиолетовые загруженные регионы</string>
 </resources>

@@ -22,10 +22,16 @@ using namespace strings;
 namespace
 {
 std::vector<UniString> const kAllowedMisprints = {
-    MakeUniString("ckq"), MakeUniString("eyjiu"), MakeUniString("gh"), MakeUniString("pf"), MakeUniString("vw"),
+    MakeUniString("ckq"),
+    MakeUniString("eyjiu"),
+    MakeUniString("gh"),
+    MakeUniString("pf"),
+    MakeUniString("vw"),
 
     // Russian
-    MakeUniString("ао"), MakeUniString("еиэ"), MakeUniString("шщ"),
+    MakeUniString("ао"),
+    MakeUniString("еиэ"),
+    MakeUniString("шщ"),
 
     // Spanish
     MakeUniString("jh"),  // "Jose" <-> "Hose"
@@ -124,6 +130,11 @@ UniString NormalizeAndSimplifyString(std::string_view s)
       break;
     case 0x2116:  // №
       c = '#';
+      break;
+    // Remove emoji variation selectors, as categories.txt stores emoji without them.
+    case 0xfe0e:  // VARIATION SELECTOR-15
+    case 0xfe0f:  // VARIATION SELECTOR-16
+      c = ' ';
       break;
     }
   }
@@ -380,6 +391,10 @@ private:
         "gatvė",
         "g.",
         ///@}
+
+        // Polish
+        "ul",
+        "ulica",
 
         // Portuguese - Português
         "rua",

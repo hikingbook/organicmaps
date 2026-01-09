@@ -62,6 +62,8 @@ enum class Program
   Traffic,
   TrafficLine,
   TrafficCircle,
+  TileBackground,
+  TileBackgroundArray,
   SmaaEdges,
   SmaaBlendingWeight,
   SmaaFinal,
@@ -126,6 +128,8 @@ inline std::string DebugPrint(Program p)
   case Program::Traffic: return "Traffic";
   case Program::TrafficLine: return "TrafficLine";
   case Program::TrafficCircle: return "TrafficCircle";
+  case Program::TileBackground: return "TileBackground";
+  case Program::TileBackgroundArray: return "TileBackgroundArray";
   case Program::SmaaEdges: return "SmaaEdges";
   case Program::SmaaBlendingWeight: return "SmaaBlendingWeight";
   case Program::SmaaFinal: return "SmaaFinal";

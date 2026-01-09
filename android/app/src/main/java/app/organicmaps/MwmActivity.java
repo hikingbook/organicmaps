@@ -107,6 +107,7 @@ import app.organicmaps.sdk.settings.UnitLocale;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.LocationUtils;
 import app.organicmaps.sdk.util.PowerManagment;
+import app.organicmaps.sdk.util.StringUtils;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.widget.placepage.PlacePageData;
 import app.organicmaps.search.FloatingSearchToolbarController;
@@ -220,7 +221,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
   private ActivityResultLauncher<Intent> mPowerSaveSettings;
-  @NonNull
   private boolean mPowerSaveDisclaimerShown = false;
 
   @SuppressWarnings("NotNullFieldNotInitialized")
@@ -940,7 +940,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initOnmapDownloader()
   {
-    mOnmapDownloader = new OnmapDownloader(this);
+    mOnmapDownloader = new OnmapDownloader(this, this.findViewById(R.id.onmap_downloader));
     if (mIsTabletLayout)
       mPanelAnimator.registerListener(mOnmapDownloader);
   }
@@ -2301,7 +2301,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
         && mPlacePageViewModel.getMapObject().getValue().isTrackRecording())
       mPlacePageViewModel.setMapObject(null);
     else
-      mPlacePageViewModel.setMapObject(new TrackRecording());
+    {
+      String title = StringUtils.nativeFormatDistance(0).toString(this) + " • "
+                   + Utils.formatRoutingTime(this, 0, R.dimen.text_size_body_3);
+      mPlacePageViewModel.setMapObject(new TrackRecording(title, getString(R.string.track_recording_title)));
+    }
   }
 
   public void onShareLocationOptionSelected()
@@ -2366,8 +2370,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onTrimMemory(int level)
   {
     super.onTrimMemory(level);
-    Logger.d(TAG, "trim memory, level = " + level);
-    if (level >= TRIM_MEMORY_RUNNING_LOW)
+
+    Logger.d(TAG, "Trim memory, level = " + level);
+    if (level >= TRIM_MEMORY_RUNNING_LOW && level != TRIM_MEMORY_UI_HIDDEN)
       Framework.nativeMemoryWarning();
   }
 

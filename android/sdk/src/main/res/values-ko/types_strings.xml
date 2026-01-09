@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Types -->
     <string name="type.addr_interpolation">주소/블록</string>
     <string name="type.addr_interpolation.even">주소/블록</string>
@@ -115,6 +116,7 @@
     <string name="type.amenity.prison">감옥</string>
     <string name="type.amenity.pub">술집</string>
     <string name="type.amenity.public_bookcase">도서 교환</string>
+
     <!-- SECTION: Types: Recycling -->
     <string name="type.amenity.recycling.centre">재활용센터</string>
     <string name="type.amenity.recycling">재활용 쓰레기통</string>
@@ -321,6 +323,7 @@
     <string name="type.healthcare.psychotherapist">심리치료</string>
     <string name="type.healthcare.sample_collection">견본 추출</string>
     <string name="type.healthcare.speech_therapist">대화 요법</string>
+
     <!-- SECTION: Types: Roads -->
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.bridleway.bridge">다리</string>
@@ -477,6 +480,7 @@
     <string name="type.area_highway.track">거리</string>
     <string name="type.area_highway.trunk">거리</string>
     <string name="type.area_highway.unclassified">거리</string>
+
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">역사적 물건</string>
     <string name="type.historic.aircraft">\"역사적인 항공기\"</string>
@@ -530,6 +534,7 @@
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery.christian">묘소</string>
     <string name="type.landuse.religious">교회 마당</string>
+    <string name="type.landuse.churchyard">교회 마당</string>
     <string name="type.landuse.farmland">농지</string>
     <string name="type.landuse.flowerbed">\"화단\"</string>
     <string name="type.landuse.forest">숲</string>
@@ -669,7 +674,7 @@
     <string name="type.place.sea">바다</string>
     <string name="type.place.square">광장</string>
     <string name="type.place.state">주</string>
-    <string name="type.place.state.USA">주</string>
+    <string name="type.place.state.major">주</string>
     <!-- Named part of a city or town, bigger than place=quarter (Wiki: https://wiki.openstreetmap.org/wiki/Tag:place%3Dsuburb) -->
     <string name="type.place.suburb">교외</string>
     <string name="type.place.town">타운</string>
@@ -1026,6 +1031,7 @@
     <string name="type.shop.pet_grooming">애완동물 미용</string>
     <string name="type.shop.photo">사진 가게</string>
     <string name="type.shop.rental">렌탈샵</string>
+    <string name="type.shop.rental.bicycle">자전거 대여점</string>
     <string name="type.amenity.bicycle_rental.shop">자전거 대여점</string>
     <string name="type.shop.seafood">생선가게</string>
     <string name="type.shop.second_hand">중고 판매점</string>
@@ -1186,4 +1192,18 @@
     <string name="type.barrier.jersey_barrier">블록</string>
     <string name="type.barrier.debris">잔해</string>
     <string name="type.barrier.log">통나무 장벽</string>
+    <string name="type.amenity.boat_rental">보트 대여</string>
+    <string name="type.shop.telecommunication">통신 상점</string>
+    <string name="type.leisure.indoor_play">플레이 센터</string>
+    <string name="type.tourism.camp_pitch">캠핑 장소</string>
+    <string name="type.railway.miniature">미니어처 철도</string>
+    <string name="type.amenity.kneipp_water_cure">크나이프 워터 큐어</string>
+    <string name="type.area_highway.traffic_island">교통섬</string>
+    <string name="type.man_made.monitoring_station">모니터링 스테이션</string>
+    <string name="type.man_made.monitoring_station.water_level">수위 모니터링 스테이션</string>
+    <string name="type.man_made.monitoring_station.weather">날씨 모니터링 스테이션</string>
+    <string name="type.amenity.student_accommodation">학생 숙소</string>
+    <string name="type.craft.watchmaker">워치메이커</string>
+    <string name="type.xmas_feature.market">크리스마스 마켓</string>
+    <string name="type.xmas_feature.tree">크리스마스 트리</string>
 </resources>

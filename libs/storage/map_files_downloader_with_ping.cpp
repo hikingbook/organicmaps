@@ -3,27 +3,23 @@
 
 #include "storage/pinger.hpp"
 
-#include "platform/platform.hpp"
-
 #include "base/assert.hpp"
 
 namespace storage
 {
-void MapFilesDownloaderWithPing::GetMetaConfig(MetaConfigCallback const & callback)
+std::map<MapSource, downloader::MetaConfig> MapFilesDownloaderWithPing::GetMetaConfig()
 {
-  ASSERT(callback, ());
+  std::map<MapSource, downloader::MetaConfig> metaConfigMap = LoadMetaConfigMap();
+  for (auto & [_, metaConfig] : metaConfigMap) {
+    CHECK(!metaConfig.servers.empty(), ());
 
-  std::map<MapSource, MetaConfig> metaConfigMap = LoadMetaConfigMap();
-    for (auto & [_, metaConfig] : metaConfigMap) {
-        CHECK(!metaConfig.m_serversList.empty(), ());
-
-        // Sort the list of servers by latency.
-        auto const sorted = Pinger::ExcludeUnavailableAndSortEndpoints(metaConfig.m_serversList);
-        // Keep the original list if all servers are unavailable.
-        if (!sorted.empty())
-          metaConfig.m_serversList = sorted;
-    }
+    // Sort the list of servers by latency.
+    auto const sorted = Pinger::ExcludeUnavailableAndSortEndpoints(metaConfig.servers);
+    // Keep the original list if all servers are unavailable.
+    if (!sorted.empty())
+      metaConfig.servers = sorted;
+  }
   
-  callback(metaConfigMap);
+  return metaConfigMap;
 }
 }  // namespace storage

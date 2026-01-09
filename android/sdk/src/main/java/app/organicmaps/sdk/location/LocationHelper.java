@@ -18,7 +18,6 @@ import androidx.core.location.GnssStatusCompat;
 import androidx.core.location.LocationManagerCompat;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.Map;
-import app.organicmaps.sdk.bookmarks.data.FeatureId;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.routing.JunctionInfo;
 import app.organicmaps.sdk.routing.RoutingController;
@@ -57,6 +56,8 @@ public class LocationHelper implements BaseLocationProvider.Listener
   private MapObject mMyPosition;
   @NonNull
   private BaseLocationProvider mLocationProvider;
+  @Nullable
+  private BaseLocationProvider mOldLocationProvider;
   private long mInterval;
   private boolean mInFirstRun;
   private boolean mActive;
@@ -125,8 +126,8 @@ public class LocationHelper implements BaseLocationProvider.Listener
       return null;
 
     if (mMyPosition == null)
-      mMyPosition = MapObject.createMapObject(FeatureId.EMPTY, MapObject.MY_POSITION, "", "",
-                                              mSavedLocation.getLatitude(), mSavedLocation.getLongitude());
+      mMyPosition = MapObject.createMapObject(MapObject.MY_POSITION, "", "", mSavedLocation.getLatitude(),
+                                              mSavedLocation.getLongitude());
 
     return mMyPosition;
   }
@@ -266,8 +267,21 @@ public class LocationHelper implements BaseLocationProvider.Listener
   public void startNavigationSimulation(JunctionInfo[] points)
   {
     Logger.i(TAG);
+    mOldLocationProvider = mLocationProvider;
     mLocationProvider.stop();
     mLocationProvider = new RouteSimulationProvider(mContext, this, points);
+    mActive = true;
+    mLocationProvider.start(mInterval);
+  }
+
+  @SuppressLint("MissingPermission")
+  public void stopNavigationSimulation()
+  {
+    Logger.i(TAG);
+    mLocationProvider.stop();
+    if (mOldLocationProvider == null)
+      throw new IllegalStateException("Should be called only after startNavigationSimulation()");
+    mLocationProvider = mOldLocationProvider;
     mActive = true;
     mLocationProvider.start(mInterval);
   }

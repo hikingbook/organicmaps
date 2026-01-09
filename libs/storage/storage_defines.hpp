@@ -4,14 +4,12 @@
 
 #include "base/geo_object_id.hpp"
 
-#include <cstdint>
 #include <functional>
 #include <map>
 #include <memory>
 #include <set>
 #include <string>
 #include <unordered_map>
-#include <utility>
 #include <vector>
 
 namespace storage
@@ -29,10 +27,13 @@ using CountryNameSynonyms = std::unordered_map<std::string, CountryId>;
 using MwmTopCityGeoIds = std::unordered_map<CountryId, base::GeoObjectId>;
 using MwmTopCountryGeoIds = std::unordered_map<CountryId, std::vector<base::GeoObjectId>>;
 
-extern storage::CountryId const kInvalidCountryId;
+/// @note Android code relies that kInvalidCountryId is an empty string!
+storage::CountryId constexpr kInvalidCountryId;
 
-// @TODO(bykoianko) Check in country tree if the countryId is valid.
-bool IsCountryIdValid(CountryId const & countryId);
+inline bool IsCountryIdValid(CountryId const & countryId)
+{
+  return countryId != kInvalidCountryId;
+}
 
 /// Inner status which is used inside Storage class
 enum class Status : uint8_t

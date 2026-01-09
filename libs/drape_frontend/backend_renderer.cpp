@@ -14,6 +14,8 @@
 #include "drape_frontend/user_mark_shapes.hpp"
 #include "drape_frontend/visual_params.hpp"
 
+#include "shaders/program_params.hpp"
+
 #include "drape/support_manager.hpp"
 #include "drape/texture_manager.hpp"
 
@@ -33,7 +35,8 @@ BackendRenderer::BackendRenderer(Params && params)
   : BaseRenderer(ThreadsCommutator::ResourceUploadThread, params)
   , m_model(params.m_model)
   , m_readManager(make_unique_dp<ReadManager>(params.m_commutator, m_model, params.m_allow3dBuildings,
-                                              params.m_trafficEnabled, params.m_isolinesEnabled))
+                                              params.m_trafficEnabled, params.m_isolinesEnabled,
+                                              params.m_backgroundMode))
   , m_transitBuilder(
         make_unique_dp<TransitSchemeBuilder>(std::bind(&BackendRenderer::FlushTransitRenderData, this, _1)))
   , m_trafficGenerator(make_unique_dp<TrafficGenerator>(std::bind(&BackendRenderer::FlushTrafficRenderData, this, _1)))
@@ -643,6 +646,50 @@ void BackendRenderer::AcceptMessage(ref_ptr<Message> message)
     break;
   }
 #endif
+
+  case Message::Type::SetTileBackgroundMode:
+  {
+    ref_ptr<SetTileBackgroundModeMessage> msg = message;
+    m_readManager->SetBackgroundMode(msg->GetMode());
+    m_commutator->PostMessage(ThreadsCommutator::RenderThread,
+                              make_unique_dp<SetTileBackgroundModeMessage>(msg->GetMode()), MessagePriority::Normal);
+    break;
+  }
+
+  case Message::Type::SetTileBackgroundData:
+  {
+    ref_ptr<SetTileBackgroundDataMessage> msg = message;
+
+    dp::TexturePoolDesc const desc{.m_maxTextureCount = gpu::kTileBackgroundMaxCount,
+                                   .m_textureWidth = msg->GetWidth(),
+                                   .m_textureHeight = msg->GetHeight(),
+                                   .m_format = msg->GetFormat(),
+                                   .m_needMipMaps = (msg->GetMode() == dp::BackgroundMode::Satellite)};
+
+    auto texturePool = m_texMng->GetTexturePool(m_context, msg->GetMode(), desc);
+    ASSERT(texturePool != nullptr, ());
+
+    auto textureId = texturePool->AcquireTexture(m_context);
+
+    // In OpenGL we need to update texture data in frontend renderer thread because we can't access the same texture
+    // from multiple threads simultaneously in OpenGL.
+    if (m_context->GetApiVersion() != dp::ApiVersion::OpenGLES3)
+    {
+      void * data = msg->GetBytes().data();
+      texturePool->UpdateTextureData(m_context, textureId, 0, 0, msg->GetWidth(), msg->GetHeight(), make_ref(data));
+    }
+
+    m_commutator->PostMessage(ThreadsCommutator::RenderThread,
+                              m_context->GetApiVersion() == dp::ApiVersion::OpenGLES3
+                                  ? make_unique_dp<AssignTileBackgroundTextureMessage>(
+                                        m_context, msg->GetTileKey(), texturePool, textureId, msg->GetMode(),
+                                        std::move(msg->GetBytes()), msg->GetWidth(), msg->GetHeight())
+                                  : make_unique_dp<AssignTileBackgroundTextureMessage>(
+                                        m_context, msg->GetTileKey(), texturePool, textureId, msg->GetMode()),
+                              MessagePriority::Normal);
+
+    break;
+  }
 
   default: ASSERT(false, ()); break;
   }

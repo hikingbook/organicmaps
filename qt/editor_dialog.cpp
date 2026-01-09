@@ -160,21 +160,17 @@ void EditorDialog::OnSave()
   // Store names.
   if (m_feature.IsNameEditable())
   {
-    StringUtf8Multilang names;
+    osm::FeatureNames names;
     for (int8_t langCode = StringUtf8Multilang::kDefaultCode; langCode < StringUtf8Multilang::kMaxSupportedLanguages;
          ++langCode)
     {
       std::string_view const lang = StringUtf8Multilang::GetLangByCode(langCode);
-      QLineEdit * le = findChild<QLineEdit *>(QString::fromUtf8(lang.data(), lang.size()));
-      if (!le)
-        continue;
-
-      std::string const name = le->text().toStdString();
-      if (!name.empty())
-        names.AddString(langCode, name);
+      QLineEdit const * le = findChild<QLineEdit const *>(QString::fromUtf8(lang.data(), lang.size()));
+      if (le)
+        names.Add(langCode, le->text().toStdString());
     }
 
-    m_feature.SetName(names);
+    m_feature.SetName(std::move(names));
   }
 
   using PropID = osm::MapObject::MetadataID;
@@ -185,9 +181,9 @@ void EditorDialog::OnSave()
     m_feature.SetHouseNumber(findChild<QLineEdit *>(kHouseNumberObjectName)->text().toStdString());
     QString const editedStreet = findChild<QComboBox *>(kStreetObjectName)->currentText();
     QStringList const names = editedStreet.split(" / ", Qt::SkipEmptyParts);
-    QString const localized = names.size() > 1 ? names.at(1) : QString();
+    QString const localized = names.size() > 1 ? names[1] : QString();
     if (!names.empty())
-      m_feature.SetStreet({names.at(0).toStdString(), localized.toStdString()});
+      m_feature.SetStreet({names[0].toStdString(), localized.toStdString()});
     else
       m_feature.SetStreet({});
 

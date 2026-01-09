@@ -9,8 +9,6 @@
 
 #include "routing_common/num_mwm_id.hpp"
 
-#include "platform/platform.hpp"
-
 #include "coding/bit_streams.hpp"
 #include "coding/reader.hpp"
 #include "coding/varint.hpp"
@@ -64,13 +62,7 @@ public:
     case Header::WithoutAccessConditional: DeserializeAccess(src, vehicleType, roadAccess); break;
     case Header::WithAccessConditional:
       DeserializeAccess(src, vehicleType, roadAccess);
-
-      /// @todo By VNG: WTF?
-      // access:conditional should be switch off for release 10.0 and probably for the next one.
-      // It means that they should be switch off for cross_mwm section generation and for runtime.
-      // To switch on access:conditional the line below should be uncommented.
-      // Also tests in routing/routing_tests/road_access_test.cpp should be uncommented.
-      // DeserializeAccessConditional(src, vehicleType, roadAccess);
+      DeserializeAccessConditional(src, vehicleType, roadAccess);
       break;
     }
   }
@@ -430,7 +422,7 @@ private:
     auto const sizePos = sink.Pos();
     auto openingHoursSerializer = GetOpeningHoursSerDesForRouting();
 
-    size_t successWritten = 0;
+    uint64_t successWritten = 0;
     WriteToSink(sink, successWritten);
 
     {
@@ -466,7 +458,7 @@ private:
     positionsAccessConditional.clear();
 
     auto openingHoursDeserializer = GetOpeningHoursSerDesForRouting();
-    auto const size = ReadPrimitiveFromSource<size_t>(src);
+    auto const size = ReadPrimitiveFromSource<uint64_t>(src);
 
     positionsAccessConditional.reserve(size);
     uint32_t prevFeatureId = 0;

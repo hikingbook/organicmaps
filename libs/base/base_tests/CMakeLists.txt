@@ -8,7 +8,6 @@ set(SRC
   buffer_vector_test.cpp
   cache_test.cpp
   cancellable_tests.cpp
-  checked_cast_tests.cpp
   clustering_map_tests.cpp
   collection_cast_test.cpp
   containers_test.cpp
@@ -56,4 +55,4 @@ endif()
 
 omim_add_test(${PROJECT_NAME} ${SRC} NO_PLATFORM_INIT)
 
-target_link_libraries(${PROJECT_NAME} base)
+target_link_libraries(${PROJECT_NAME} PRIVATE base)

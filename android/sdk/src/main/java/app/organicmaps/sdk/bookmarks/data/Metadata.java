@@ -65,7 +65,9 @@ public class Metadata implements Parcelable
     FMD_WEBSITE_MENU(46),
     FMD_SELF_SERVICE(47),
     FMD_OUTDOOR_SEATING(48),
-    FMD_NETWORK(49);
+    FMD_NETWORK(49),
+    FMD_SCHEDULE_ID(50);
+
     private final int mMetaType;
 
     MetadataType(int metadataType)
@@ -74,7 +76,7 @@ public class Metadata implements Parcelable
     }
 
     @NonNull
-    public static MetadataType fromInt(@IntRange(from = 1, to = 49) int metaType)
+    public static MetadataType fromInt(@IntRange(from = 1, to = 50) int metaType)
     {
       for (MetadataType type : values())
         if (type.mMetaType == metaType)
@@ -110,7 +112,7 @@ public class Metadata implements Parcelable
   }
 
   @Override
-  public void writeToParcel(Parcel dest, int flags)
+  public void writeToParcel(@NonNull Parcel dest, int flags)
   {
     dest.writeInt(mMetadataMap.size());
     for (Map.Entry<MetadataType, String> metaEntry : mMetadataMap.entrySet())
@@ -120,7 +122,8 @@ public class Metadata implements Parcelable
     }
   }
 
-  public static Metadata readFromParcel(Parcel source)
+  @NonNull
+  private static Metadata readFromParcel(@NonNull Parcel source)
   {
     final Metadata metadata = new Metadata();
     final int size = source.readInt();
@@ -131,12 +134,14 @@ public class Metadata implements Parcelable
 
   public static final Creator<Metadata> CREATOR = new Creator<>() {
     @Override
+    @NonNull
     public Metadata createFromParcel(Parcel source)
     {
       return readFromParcel(source);
     }
 
     @Override
+    @NonNull
     public Metadata[] newArray(int size)
     {
       return new Metadata[size];

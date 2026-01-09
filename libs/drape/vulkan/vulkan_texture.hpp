@@ -7,6 +7,8 @@
 #include "drape/vulkan/vulkan_utils.hpp"
 
 #include <cstdint>
+#include <mutex>
+#include <vector>
 
 namespace dp
 {
@@ -30,6 +32,8 @@ public:
   void Create(ref_ptr<dp::GraphicsContext> context, Params const & params, ref_ptr<void> data) override;
   void UploadData(ref_ptr<dp::GraphicsContext> context, uint32_t x, uint32_t y, uint32_t width, uint32_t height,
                   ref_ptr<void> data) override;
+  void UploadData(ref_ptr<dp::GraphicsContext> context, uint32_t x, uint32_t y, uint32_t width, uint32_t height,
+                  uint32_t layer, ref_ptr<void> data) override;
   void Bind(ref_ptr<dp::GraphicsContext> context) const override;
   void SetFilter(TextureFilter filter) override;
   bool Validate() const override;
@@ -47,7 +51,10 @@ private:
   VulkanObject m_textureObject;
   mutable VkImageLayout m_currentLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   VkImageAspectFlags m_aspectFlags = VK_IMAGE_ASPECT_COLOR_BIT;
-  mutable drape_ptr<VulkanStagingBuffer> m_creationStagingBuffer;
+  mutable VulkanObject m_dedicatedStagingBuffer;
+  mutable std::mutex m_dedicatedStagingBufferMutex;
+  bool m_usePersistentStagingBuffer = false;
+  mutable std::vector<VkBufferImageCopy> m_copyRegions;
   uint32_t m_reservationId = 0;
   bool m_isMutable = false;
 };

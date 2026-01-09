@@ -60,6 +60,14 @@ enum LineJoin
   RoundJoin = 1,
 };
 
+enum BackgroundMode
+{
+  Default = 0,
+  Satellite,
+
+  Count
+};
+
 using DrapeID = uint64_t;
 
 struct FontDecl

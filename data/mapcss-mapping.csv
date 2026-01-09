@@ -400,8 +400,7 @@ place|farm;294;
 deprecated:boundary|administrative|11:04.2024;[boundary=administrative][admin_level=11];x;name;int_name;295;
 waterway|weir;296;
 highway|secondary|tunnel;[highway=secondary][tunnel?];;name;int_name;297;
-# TODO: its a mismapping likely, if there is a bridge structure still, then it should be railway=disused.
-railway|abandoned|bridge;[railway=abandoned][bridge?];;name;int_name;298;
+railway|disused|bridge;[railway=disused][bridge?],[railway=abandoned][bridge?];;name;int_name;298;
 man_made|lighthouse;299;
 deprecated:highway|path|demanding_mountain_hiking:04.2024;[highway=path][sac_scale=demanding_mountain_hiking];x;name;int_name;300;highway|path|difficult
 man_made|storage_tank;301;
@@ -507,8 +506,7 @@ railway|rail|spur|tunnel;[railway=rail][service=spur][!usage][tunnel?];;name;int
 highway|secondary_link|bridge;[highway=secondary_link][bridge?];;name;int_name;397;
 railway|tram|tunnel;[railway=tram][tunnel?];;name;int_name;398;
 railway|rail|tourism;[railway=rail][usage=tourism][!service];;name;int_name;399;
-# TODO: its a mismapping likely, if there is a tunnel structure still, then it should be railway=disused.
-railway|abandoned|tunnel;[railway=abandoned][tunnel?];;name;int_name;400;
+railway|disused|tunnel;[railway=disused][tunnel?],[railway=abandoned][tunnel?];;name;int_name;400;
 area:highway|living_street;401;
 piste:type|sled;402;
 leisure|beach_resort;403;
@@ -606,7 +604,7 @@ boundary|protected_area|6;[boundary=protected_area][protect_class=6];;name;int_n
 leisure|park|permissive;[leisure=park][access=permissive];;name;int_name;487;
 highway|bridleway|tunnel;[highway=bridleway][tunnel?];;name;int_name;488;
 highway|motorway_link|tunnel;[highway=motorway_link][tunnel?];;name;int_name;489;
-deprecated|deprecated;490;x
+area:highway|traffic_island;490;
 deprecated|deprecated;491;x
 deprecated|deprecated;492;x
 highway|tertiary_link|bridge;[highway=tertiary_link][bridge?];;name;int_name;493;
@@ -745,9 +743,9 @@ deprecated|deprecated;624;x
 deprecated|deprecated;625;x
 deprecated:railway|siding|bridge:06.2023;626;x
 deprecated:highway|footway|difficult_alpine_hiking:04.2024;[highway=footway][sac_scale=difficult_alpine_hiking];x;name;int_name;627;highway|path|expert
-deprecated|deprecated;628;x
-deprecated|deprecated;629;x
-deprecated|deprecated;630;x
+railway|miniature;628;
+railway|miniature|bridge;[railway=miniature][bridge?];;name;int_name;629;
+railway|miniature|tunnel;[railway=miniature][tunnel?];;name;int_name;630;
 highway|track|grade5|permissive;[highway=track][tracktype=grade5][access=permissive];x;name;int_name;631;highway|track
 deprecated|deprecated;632;x
 deprecated|deprecated;633;x
@@ -854,7 +852,7 @@ tourism|museum;733;
 tourism|guest_house;734;
 tourism|motel;735;
 deprecated:boundary|administrative|4|state:01.2022;[boundary=administrative][admin_level=4][border_type=state];x;name;int_name;736;boundary|administrative|4
-place|state|USA;[place=state][addr:country=US],[place=state][is_in=USA],[place=state][is_in:country=USA],[place=state][is_in:country_code=us];;name;int_name;737;
+place|state|major;[place=state][is_in=US],[place=state][is_in=Canada];;name;int_name;737;
 building|address;[addr:housenumber][addr:street];;addr:housenumber;name;738;
 amenity|parking|no-access;[amenity=parking][access=no];;name;int_name;739;
 barrier|swing_gate;740;
@@ -960,9 +958,9 @@ deprecated|deprecated;837;x
 deprecated|deprecated;838;x
 landuse|military|danger_area;[landuse=military][military=danger_area][wikipedia?],[landuse=military][military=cordon][wikipedia?];;name;int_name;839;
 boundary|protected_area;840;
-deprecated|deprecated;841;x
-deprecated|deprecated;842;x
-deprecated|deprecated;843;x
+man_made|monitoring_station;841;
+man_made|monitoring_station|water_level;[man_made=monitoring_station][monitoring:water_level=yes];;name;int_name;842;
+man_made|monitoring_station|weather;[man_made=monitoring_station][monitoring:weather=yes];;name;int_name;843;
 deprecated|deprecated;844;x
 deprecated|deprecated;845;x
 deprecated|deprecated;846;x
@@ -1754,6 +1752,16 @@ amenity|luggage_locker;1629;
 building|guardhouse;1630;
 office|security;1631;
 shop|lighting;1632;
+amenity|boat_rental;1633;
+shop|telecommunication;1634;
+leisure|indoor_play;1635;
+tourism|camp_pitch;1636;
+amenity|kneipp_water_cure;1637;
+amenity|student_accommodation;1638;
+craft|watchmaker;1639;
+organicapp|mwm_border;1640;
+xmas:feature|market;1641;
+xmas:feature|tree;1642;
 deprecated:highway|path|trail_visibility_excellent:06.2024;[highway=path][trail_visibility=excellent];x;name;int_name;9987;
 deprecated:highway|path|trail_visibility_good:06.2024;[highway=path][trail_visibility=good];x;name;int_name;9988;
 deprecated:highway|path|trail_visibility_intermediate:06.2024;[highway=path][trail_visibility=intermediate];x;name;int_name;9989;

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SECTION: Uncategorized -->
     <!-- Settings/Downloader - size string, only strings different from English should be translated -->
     <string name="mb">ميغابايت</string>
     <string name="gb">غيغابايت</string>
@@ -28,12 +30,12 @@
     <string name="mi">ميل</string>
     <!-- A unit of measure -->
     <string name="ft">قدم</string>
+    <!-- Toast text when the maps version should be updated to display the OSM hiking and cycling routes -->
+    <string name="routes_update_maps_text">لعرض المسارات، يجب تحديث الخرائط.</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">خروج</string>
     <string name="core_entrance">المدخل</string>
     <string name="subway_data_unavailable">خريطة مترو الانفاق غير متوفرة</string>
-    <string name="public_access">مسموح الوصول لعامة الشعب</string>
-    <string name="limited_access">مسموح الوصول بشكل محدود</string>
-    <string name="not_shared">خاص</string>
-    <string name="access_rules_author_only">التعديل باستخدام الإنترنت</string>
+    <!-- Settings/Highlight downloaded regions on the map -->
+    <string name="show_downloaded_regions">المناطق المُنزّلة باللون الأرجواني</string>
 </resources>

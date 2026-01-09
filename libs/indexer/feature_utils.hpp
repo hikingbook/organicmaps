@@ -15,8 +15,10 @@ static constexpr uint8_t kMaxStarsCount = 7;
 static constexpr std::string_view kFieldsSeparator = " • ";
 static constexpr std::string_view kToiletsSymbol = "🚻";
 static constexpr std::string_view kAtmSymbol = "💳";
-static constexpr std::string_view kWheelchairSymbol = "♿️";
+static constexpr std::string_view kWheelchairSymbol = "♿";
 static constexpr std::string_view kWifiSymbol = "🛜";
+static constexpr std::string_view kCarSymbol = "🚘";
+static constexpr std::string_view kBicycleSymbol = "🚲";
 
 /// OSM internet_access tag values.
 enum class Internet
@@ -47,7 +49,7 @@ class TypesHolder;
 class RegionData;
 
 /// Get viewport scale to show given feature. Used in search.
-int GetFeatureViewportScale(TypesHolder const & types);
+int GetFeatureViewportScale(FeatureID const & fid, TypesHolder const & types);
 
 // Returns following languages given |lang|:
 // - |lang|;
@@ -180,5 +182,8 @@ std::string FormatStars(uint8_t starsCount);
 
 /// @returns formatted elevation with ▲ symbol and units.
 std::string FormatElevation(std::string_view elevation);
+
+/// @returns formatted capacity with car/bicycle emoji.
+std::string FormatCapacity(std::string_view capacity, TypesHolder const & types);
 
 }  // namespace feature

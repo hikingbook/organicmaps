@@ -42,7 +42,6 @@
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
   <!--
     Android 13 (API level 33) and higher supports a runtime permission for sending non-exempt (including Foreground
     Services (FGS)) notifications from an app.
@@ -194,6 +193,7 @@
         <data android:host="*"/>
         <data android:mimeType="application/geo+json"/>
         <data android:mimeType="application/vnd.geo+json"/>
+        <data android:mimeType="application/json"/>
       </intent-filter>
 
       <intent-filter>
@@ -202,6 +202,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <data android:mimeType="application/geo+json"/>
         <data android:mimeType="application/vnd.geo+json"/>
+        <data android:mimeType="application/json"/>
       </intent-filter>
 
       <intent-filter>
@@ -288,6 +289,14 @@
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
         <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />
+        <data android:pathPattern="/.*\\.json" />
+        <data android:pathPattern="/.*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.json" />
+        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.json" />
       </intent-filter>
 
       <!-- Duplicates the intent-filter above except it doesn't have mimeType, see
@@ -518,11 +527,6 @@
         <data android:scheme="geo" />
       </intent-filter>
     </service>
-
-    <service
-        android:name="app.organicmaps.car.CarLocationService"
-        android:foregroundServiceType="location"
-        android:exported="false" />
 
     <service
         android:name=".routing.NavigationService"

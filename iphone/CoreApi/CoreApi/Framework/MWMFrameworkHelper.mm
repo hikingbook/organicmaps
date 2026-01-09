@@ -277,8 +277,9 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
 
 + (nullable ProductsConfiguration *)getProductsConfiguration
 {
-  auto const & config = GetFramework().GetProductsConfiguration();
-  return config.has_value() ? [[ProductsConfiguration alloc] init:config.value()] : nil;
+  if (auto const config = GetFramework().GetProductsConfiguration(); config)
+    return [[ProductsConfiguration alloc] init:*config];
+  return nil;
 }
 
 + (void)didCloseProductsPopupWithReason:(ProductsPopupCloseReason)reason
@@ -294,6 +295,16 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
 + (BOOL)needUpdateForRoutes
 {
   return GetFramework().NeedUpdateForRoutes();
+}
+
++ (BOOL)canShowRateUsRequest
+{
+  return GetFramework().CanShowRateUsRequest();
+}
+
++ (void)didShowRateUsRequest
+{
+  GetFramework().DidShowRateUsRequest();
 }
 
 @end
