@@ -19,6 +19,11 @@ namespace storage
 class CountryInfoGetter;
 }  // namespace storage
 
+namespace osm
+{
+class Editor;
+}  // namespace osm
+
 namespace search
 {
 class MwmContext;
@@ -28,11 +33,13 @@ class RegionInfoGetter;
 class ReverseGeocoder
 {
   DataSource const & m_dataSource;
+  osm::Editor const & m_editor;
 
   struct Object
   {
     FeatureID m_id;
     double m_distanceMeters;
+    /// Readable (localized) name.
     std::string m_name;
 
     Object() : m_distanceMeters(-1.0) {}
@@ -52,6 +59,12 @@ public:
   struct Street : public Object
   {
     StringUtf8Multilang m_multilangName;
+
+    std::string_view GetDefaultName() const
+    {
+      auto const res = m_multilangName.GetDefaultString();
+      return res.empty() ? m_name : res;
+    }
 
     Street() = default;
     Street(FeatureID const & id, double dist, std::string_view name, StringUtf8Multilang const & multilangName)
@@ -98,7 +111,8 @@ public:
     Street m_street;
 
     std::string const & GetHouseNumber() const { return m_building.m_name; }
-    std::string const & GetStreetName() const { return m_street.m_name; }
+    /// @return Default (NOT localized) street name.
+    std::string_view GetStreetName() const { return m_street.GetDefaultName(); }
     double GetDistance() const { return m_building.m_distanceMeters; }
     bool IsValid() const { return m_building.IsValid() && m_street.IsValid(); }
     bool IsAddressLikeUS() const;
@@ -137,11 +151,14 @@ public:
 
   static std::vector<Place> GetNearbyPlaces(search::MwmContext & context, m2::PointD const & center, double radiusM);
 
-  /// @return feature street name.
-  /// Returns empty string when there is no street the feature belongs to.
+  /// @return Default (NOT localized) Feature's street name.
+  /// @{
+  /// Empty string when there is no street the Feature belongs to.
   std::string GetFeatureStreetName(FeatureType & ft) const;
   /// Same with GetFeatureStreetName but gets street from mwm only (not editor).
   std::string GetOriginalFeatureStreetName(FeatureID const & fid) const;
+  /// @}
+
   /// For |houseId| with street information sets |streetId| to FeatureID of street corresponding to
   /// |houseId| and returns true. Returs false otherwise.
   bool GetOriginalStreetByHouse(FeatureType & house, FeatureID & streetId) const;
@@ -186,7 +203,7 @@ private:
   };
 
   /// Ignores changes from editor if |ignoreEdits| is true.
-  bool GetNearbyAddress(HouseTable & table, Building const & bld, bool ignoreEdits, Address & addr) const;
+  bool GetSavedAddress(HouseTable & table, Building const & bld, bool ignoreEdits, Address & addr) const;
 
   /// @return Sorted by distance houses vector with valid house number.
   void GetNearbyBuildings(m2::PointD const & center, double maxDistanceM, std::vector<Building> & buildings) const;

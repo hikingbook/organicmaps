@@ -1,7 +1,7 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 package app.organicmaps.downloader;
 
-import android.app.Activity;
+import android.content.Context;
 import android.location.Location;
 import android.text.TextUtils;
 import android.view.View;
@@ -35,7 +35,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 {
   private static boolean sAutodownloadLocked;
 
-  private final Activity mActivity;
+  private final Context mContext;
   private final View mFrame;
   private final TextView mParent;
   private final TextView mTitle;
@@ -70,7 +70,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             downloaderDelegate.handleDownloadError(item, getMapSource());
           }
           else {
-            MapManagerHelper.showError(mActivity, item, null);
+            MapManagerHelper.showError(mContext, item, null);
           }
         }
 
@@ -180,10 +180,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
 
         mMapSource.setText(mapSourceName);
         if (mapSource == MapSource.HIKINGBOOK_PRO_MAPS) {
-            mMapSource.setTextColor(ContextCompat.getColor(mActivity, R.color.pro_blue));
+            mMapSource.setTextColor(ContextCompat.getColor(mContext, R.color.pro_blue));
         }
         else {
-            mMapSource.setTextColor(ContextCompat.getColor(mActivity, R.color.text_body));
+            mMapSource.setTextColor(ContextCompat.getColor(mContext, R.color.text_body));
         }
 
         String sizeText;
@@ -192,32 +192,31 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
         {
           mProgress.setPending(false);
           mProgress.setProgress(Math.round(mCurrentCountry.progress));
-          sizeText = mActivity.getString(R.string.downloader_downloading) + " "
+          sizeText = mContext.getString(R.string.downloader_downloading) + " "
                    + StringUtils.formatPercent(mCurrentCountry.progress / 100, true);
         }
         else
         {
           if (enqueued)
           {
-            sizeText = mActivity.getString(R.string.downloader_queued);
+            sizeText = mContext.getString(R.string.downloader_queued);
             mProgress.setPending(true);
           }
           else
           {
-            sizeText = "";
-//            sizeText = StringUtils.getFileSizeString(mActivity.getApplicationContext(), mCurrentCountry.totalSize);
+            sizeText = StringUtils.getFileSizeString(mContext, mCurrentCountry.totalSize);
 
             if (shouldAutoDownload && Config.isAutodownloadEnabled() && !sAutodownloadLocked && !failed
                 && ConnectionState.INSTANCE.isWifiConnected())
             {
-              Location loc = MwmApplication.from(mActivity).getLocationHelper().getSavedLocation();
+              Location loc = MwmApplication.from(mContext).getLocationHelper().getSavedLocation();
               if (loc != null)
               {
                 String country = MapManager.nativeFindCountry(loc.getLatitude(), loc.getLongitude());
                 if (TextUtils.equals(mCurrentCountry.id, country)
                     && MapManager.nativeHasSpaceToDownloadCountry(country))
                 {
-                  MapManagerHelper.startDownload(mCurrentCountry.id, mapSource);
+                  MapManagerHelper.startDownload(mContext, mCurrentCountry.id, mapSource);
                 }
               }
             }
@@ -254,10 +253,10 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     return mCurrentCountry.status;
   }
 
-  public OnmapDownloader(Fragment fragment)
+  public OnmapDownloader(Context context, View onMapDownloader)
   {
-    mActivity = fragment.getActivity();
-    mFrame = fragment.getView().findViewById(R.id.onmap_downloader);
+    mContext = context;
+    mFrame = onMapDownloader;
     mParent = mFrame.findViewById(R.id.downloader_parent);
     mTitle = mFrame.findViewById(R.id.downloader_title);
     mMapSource = mFrame.findViewById(R.id.downloader_map_source);
@@ -287,19 +286,19 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
             downloaderDelegate.downloadButtonDidClick(mCurrentCountry);
             return;
           }
-          MapManagerHelper.warnOn3g(mActivity, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
+          MapManagerHelper.warnOn3g(mContext, mCurrentCountry == null ? null : mCurrentCountry.id, () -> {
             if (mCurrentCountry == null)
               return;
 
             boolean retry = (countryItemStatus() == CountryItem.STATUS_FAILED);
             if (retry)
             {
-              MapManagerHelper.retryDownload(mCurrentCountry.id, getMapSource());
+              MapManagerHelper.retryDownload(mContext, mCurrentCountry.id, getMapSource());
             }
             else
             {
-              MapManagerHelper.startDownload(mCurrentCountry.id, getMapSource());
-//            mActivity.requestPostNotificationsPermission();
+              MapManagerHelper.startDownload(mContext, mCurrentCountry.id, getMapSource());
+//            activity.requestPostNotificationsPermission();
             }
           });
         });

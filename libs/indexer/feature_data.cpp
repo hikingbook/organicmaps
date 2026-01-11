@@ -229,8 +229,7 @@ void FeatureParamsBase::MakeZero()
 
 bool FeatureParamsBase::SetDefaultNameIfEmpty(std::string const & s)
 {
-  std::string_view existing;
-  if (name.GetString(StringUtf8Multilang::kDefaultCode, existing))
+  if (auto const existing = name.GetDefaultString(); !existing.empty())
     return existing == s;
 
   name.AddString(StringUtf8Multilang::kDefaultCode, s);
@@ -298,7 +297,7 @@ bool FeatureParams::LooksLikeHouseNumber(std::string const & hn)
   ASSERT(!hn.empty(), ());
   size_t const sz = hn.size();
   return strings::IsASCIIDigit(hn[0]) || (sz == 1 && strings::IsASCIILatin(hn[0])) ||
-         std::count_if(hn.begin(), hn.end(), &strings::IsASCIIDigit) > 0.2 * sz;
+         std::count_if(hn.begin(), hn.end(), &strings::IsASCIIDigit<char>) > 0.2 * sz;
 }
 
 char const * FeatureParams::kHNLogTag = "HNLog";

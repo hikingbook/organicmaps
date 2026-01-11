@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Strings -->
     <!-- Button text (should be short) -->
     <string name="back">पीछे</string>
@@ -18,7 +19,7 @@
     <string name="miles">मील</string>
     <!-- Update maps later button text -->
     <string name="later">बाद में</string>
-    <!-- View and button titles for accessibility, please also edit it in iphone/plist.txt -->
+    <!-- View and button titles for accessibility. Also used in iPhone home screen quick actions. -->
     <string name="search">खोज</string>
     <!-- Search box placeholder text; Used when searching on the map itself, not when searching for a map -->
     <string name="search_map">मानचित्र पर खोजें</string>
@@ -54,11 +55,9 @@
     <string name="disconnect_usb_cable">ऑर्गेनिक मैप्स का उपयोग करने के लिए कृपया यूएसबी केबल को डिस्कनेक्ट करें या मेमोरी कार्ड डालें</string>
     <!-- Used in DownloadResources startup screen -->
     <string name="not_enough_free_space_on_sdcard">ऐप का उपयोग करने के लिए कृपया पहले एसडी कार्ड/यूएसबी स्टोरेज पर कुछ जगह खाली कर लें</string>
-    <string name="download_resources">ऐप का उपयोग शुरू करने से पहले, कृपया अपने डिवाइस पर सामान्य विश्व मानचित्र डाउनलोड करें।
-\nयह %s स्टोरेज का उपयोग करेगा।</string>
+    <string name="download_resources">ऐप का उपयोग शुरू करने से पहले, कृपया अपने डिवाइस पर सामान्य विश्व मानचित्र डाउनलोड करें।\nयह %s स्टोरेज का उपयोग करेगा।</string>
     <string name="download_resources_continue">मानचित्र पर जाएं</string>
-    <string name="downloading_country_can_proceed">डाउनलोड हो रहा है %s. अब तुम यह कर सकते हो
-\nमानचित्र पर आगे बढ़ें.</string>
+    <string name="downloading_country_can_proceed">डाउनलोड हो रहा है %s. अब तुम यह कर सकते हो\nमानचित्र पर आगे बढ़ें.</string>
     <string name="download_country_ask">डाउनलोड करना %s?</string>
     <string name="update_country_ask">अद्यतन %s?</string>
     <!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -73,7 +72,7 @@
     <string name="bookmark_set_name">बुकमार्क सूची का नाम</string>
     <!-- Should be used in the bookmarks-only context, see bookmarks_and_tracks if tracks are also implied. -->
     <string name="bookmarks">बुकमार्क</string>
-    <!-- "Bookmarks and Tracks" dialog title, also sync it with iphone/plist.txt -->
+    <!-- "Bookmarks and Tracks" dialog title. Also used in iPhone home screen quick actions. -->
     <string name="bookmarks_and_tracks">बुकमार्क और ट्रैक</string>
     <!-- Add bookmark dialog - bookmark name -->
     <string name="name">नाम</string>
@@ -96,8 +95,7 @@
     <!-- Error moving map files from one storage to another -->
     <string name="move_maps_error">मानचित्र फ़ाइलें ले जाने में त्रुटि</string>
     <!-- Ask user to wait several minutes (some long process in modal dialog). -->
-    <string name="wait_several_minutes">इसमें कई मिनट लग सकते हैं.
-\nकृपया प्रतीक्षा करें…</string>
+    <string name="wait_several_minutes">इसमें कई मिनट लग सकते हैं.\nकृपया प्रतीक्षा करें…</string>
     <!-- Measurement units title in settings activity -->
     <string name="measurement_units">नाप की इकाइयां</string>
     <!-- Detailed description of Measurement Units settings button -->
@@ -152,11 +150,7 @@
     <!-- SECTION: Other translations -->
     <!-- Notes field in Bookmarks view -->
     <string name="description">टिप्पणियाँ</string>
-    <string name="share_bookmarks_email_body">नमस्ते!
-\n
-\nमेरे बुकमार्क संलग्न हैं; कृपया उन्हें ऑर्गेनिक मानचित्र में खोलें। यदि आपने इसे इंस्टॉल नहीं किया है तो आप इसे यहां से डाउनलोड कर सकते हैं: https://omaps.app/get?kmz
-\n
-\nऑर्गेनिक मैप्स के साथ यात्रा का आनंद लें!</string>
+    <string name="share_bookmarks_email_body">नमस्ते!\n\nमेरे बुकमार्क संलग्न हैं; कृपया उन्हें ऑर्गेनिक मानचित्र में खोलें। यदि आपने इसे इंस्टॉल नहीं किया है तो आप इसे यहां से डाउनलोड कर सकते हैं: https://omaps.app/get?kmz\n\nऑर्गेनिक मैप्स के साथ यात्रा का आनंद लें!</string>
     <!-- message title of loading file -->
     <string name="load_kmz_title">बुकमार्क लोड हो रहे हैं</string>
     <!-- Kmz file successful loading -->
@@ -164,12 +158,9 @@
     <!-- Kml file loading failed -->
     <string name="load_kmz_failed">बुकमार्क लोड करने में विफल. फ़ाइल दूषित या दोषपूर्ण हो सकती है.</string>
     <!-- Failed to recognize the format of a bookmarks or tracks file. -->
-    <string name="unknown_file_type">फ़ाइल प्रकार ऐप द्वारा पहचाना नहीं गया है:
-\n%1$s</string>
+    <string name="unknown_file_type">फ़ाइल प्रकार ऐप द्वारा पहचाना नहीं गया है:\n%1$s</string>
     <!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
-    <string name="failed_to_open_file">फ़ाइल खोलने में असफल %1$s
-\n
-\n%2$s</string>
+    <string name="failed_to_open_file">फ़ाइल खोलने में असफल %1$s\n\n%2$s</string>
     <!-- resource for context menu -->
     <string name="edit">संपादन करना</string>
     <!-- Warning message when doing search around current position -->
@@ -185,11 +176,7 @@
     <!-- Subject for emailed position -->
     <string name="my_position_share_email_subject">अरे, ऑर्गेनिक मैप मानचित्र पर मेरा वर्तमान स्थान देखें!</string>
     <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">नमस्ते,
-\n
-\nमैं अब यहाँ हूँ: %1$s. इस लिंक पर क्लिक करें %2$s या यह लिंक %3$s मानचित्र पर स्थान देखने के लिए
-\n
-\nधन्यवाद.</string>
+    <string name="my_position_share_email">नमस्ते,\n\nमैं अब यहाँ हूँ: %1$s. इस लिंक पर क्लिक करें %2$s या यह लिंक %3$s मानचित्र पर स्थान देखने के लिए\n\nधन्यवाद.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">साझा करें</string>
     <!-- Share by email button text, also used in editor and About. -->
@@ -251,16 +238,6 @@
     <string name="website">वेबसाइट</string>
     <!-- Text in About menu, opens Organic Maps news website -->
     <string name="news">समाचार</string>
-    <!-- Text in menu -->
-    <string name="github">गिटहब</string>
-    <!-- Text in menu -->
-    <string name="telegram">टेलीग्राम</string>
-    <!-- Text in menu -->
-    <string name="facebook">फेसबुक</string>
-    <!-- Text in menu -->
-    <string name="twitter">ट्विटर</string>
-    <!-- Text in menu -->
-    <string name="instagram">इंस्टाग्राम</string>
     <!-- Settings: Send feedback button and dialog title -->
     <string name="feedback">प्रतिक्रिया</string>
     <!-- Text in menu -->
@@ -278,7 +255,7 @@
     <string name="how_to_support_us">परियोजना का समर्थन करें</string>
     <!-- Button in the main Help dialog -->
     <string name="copyright">कॉपीराइट</string>
-    <!-- Text in menu + Button in the main Help dialog -->
+    <!-- Text in menu + Button in the main Help dialog. Used in home screen quick actions. -->
     <string name="report_a_bug">एक बग रिपोर्ट करो</string>
     <!-- Toast text when user hides UI with a long tap anywhere on the map -->
     <string name="long_tap_toast">इंटरफ़ेस देखने के लिए मानचित्र पर फिर से देर तक टैप करें</string>
@@ -300,6 +277,8 @@
     <string name="enable_location_services">कृपया स्थान सेवाएँ सक्षम करें</string>
     <string name="save">सहेजें</string>
     <string name="create">बनाएं</string>
+    <!-- Tex label above the Donate button -->
+    <string name="donate_description">लाखों उपयोगकर्ताओं को बिना विज्ञापनों वाले मुफ़्त नक्शे उपहार में दें!</string>
 
     <!-- SECTION: Routing dialogs strings -->
     <string name="dialog_routing_disclaimer_title">मार्ग का अनुसरण करते समय कृपया ध्यान रखें:</string>
@@ -374,8 +353,7 @@
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
     <string name="osm_presentation">समुदाय-निर्मित OpenStreetMap डेटा %s तक। OpenStreetMap.org पर मानचित्र को संपादित और अपडेट करने के तरीके के बारे में और जानें</string>
     <!-- OSM explanation on Android login screen -->
-    <string name="login_osm_presentation">OpenStreetMap.org (OSM) एक निःशुल्क और खुला मानचित्र बनाने के लिए एक सामुदायिक परियोजना है। यह ऑर्गेनिक मैप्स में मानचित्र डेटा का मुख्य स्रोत है और विकिपीडिया के समान काम करता है। आप स्थानों को जोड़ या संपादित कर सकते हैं और वे दुनिया भर में लाखों उपयोगकर्ताओं के लिए उपलब्ध हो जाते हैं।
-\nसमुदाय में शामिल हों और सभी के लिए एक बेहतर मानचित्र बनाने में सहायता करें!</string>
+    <string name="login_osm_presentation">OpenStreetMap.org (OSM) एक निःशुल्क और खुला मानचित्र बनाने के लिए एक सामुदायिक परियोजना है। यह ऑर्गेनिक मैप्स में मानचित्र डेटा का मुख्य स्रोत है और विकिपीडिया के समान काम करता है। आप स्थानों को जोड़ या संपादित कर सकते हैं और वे दुनिया भर में लाखों उपयोगकर्ताओं के लिए उपलब्ध हो जाते हैं।\nसमुदाय में शामिल हों और सभी के लिए एक बेहतर मानचित्र बनाने में सहायता करें!</string>
     <string name="login_to_make_edits_visible">अपने मानचित्र संपादनों को दुनिया भर में प्रकाशित करने के लिए एक OpenStreetMap खाता बनाएं या लॉग इन करें।</string>
     <!-- Downloaded 10 **of** 20 <- it is that "of" -->
     <string name="downloader_of">%2$d में से %1$d</string>
@@ -389,13 +367,14 @@
     <string name="editor_osm_history">आपका संपादन इतिहास</string>
     <string name="editor_osm_notes">आपका मानचित्र डेटा नोट्स</string>
     <string name="editor_operator">ऑपरेटर</string>
-    <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations... -->
+    <!-- To indicate the operator of ATMs, bicycle rentals, electric vehicle charging stations… -->
     <string name="operator">ऑपरेटर: %s</string>
     <string name="editor_category_unsuitable_title">कोई उपयुक्त श्रेणी नहीं मिल रही?</string>
     <string name="editor_category_unsuitable_text">ऑर्गेनिक मैप्स केवल सरल बिंदु श्रेणियां जोड़ने की अनुमति देता है, जिसका अर्थ है कि शहर, सड़कें, झीलें, भवन की रूपरेखा आदि नहीं। कृपया ऐसी श्रेणियां सीधे <a href="https://www.openstreetmap.org">OpenStreetMap.org</a> पर जोड़ें।. विस्तृत चरण-दर-चरण निर्देशों के लिए हमारी <a href="https://organicmaps.app/faq/editing/advanced-map-editing">मार्गदर्शिका</a> देखें।</string>
     <string name="hour">घंटे</string>
     <string name="minute">मिनट</string>
     <string name="day">दिन</string>
+    <string name="second">सेकंड</string>
     <string name="editor_remove_place_button">मिटाना</string>
     <string name="editor_place_doesnt_exist">जगह मौजूद नहीं है</string>
     <string name="placepage_add_place_button">OpenStreetMap में स्थान जोड़ें</string>
@@ -413,9 +392,7 @@
     <string name="mobile_data_option_ask">हमेशा पूछिये</string>
     <string name="big_font">मानचित्र लेबल के लिए आकार बढ़ाएँ</string>
     <string name="enable_logging">लॉगिंग करने देना</string>
-    <string name="prefs_languages_information_off">कुछ भाषाओं के लिए, आपको ऐप स्टोर (Google Play, Galaxy Store, App Gallery, FDroid) से एक स्पीच सिंथेसाइज़र या एक अतिरिक्त भाषा पैक इंस्टॉल करना होगा।
-\nअपने डिवाइस की सेटिंग्स खोलें → भाषा और इनपुट → स्पीच → टेक्स्ट टू स्पीच आउटपुट.
-\nयहां आप वाक् संश्लेषण के लिए सेटिंग्स प्रबंधित कर सकते हैं (उदाहरण के लिए, ऑफ़लाइन उपयोग के लिए भाषा पैक डाउनलोड करें) और एक अन्य टेक्स्ट-टू-स्पीच इंजन का चयन कर सकते हैं।</string>
+    <string name="prefs_languages_information_off">कुछ भाषाओं के लिए, आपको ऐप स्टोर (Google Play, Galaxy Store, App Gallery, FDroid) से एक स्पीच सिंथेसाइज़र या एक अतिरिक्त भाषा पैक इंस्टॉल करना होगा।\nअपने डिवाइस की सेटिंग्स खोलें → भाषा और इनपुट → स्पीच → टेक्स्ट टू स्पीच आउटपुट.\nयहां आप वाक् संश्लेषण के लिए सेटिंग्स प्रबंधित कर सकते हैं (उदाहरण के लिए, ऑफ़लाइन उपयोग के लिए भाषा पैक डाउनलोड करें) और एक अन्य टेक्स्ट-टू-स्पीच इंजन का चयन कर सकते हैं।</string>
     <string name="prefs_languages_information_off_link">अधिक जानकारी के लिए कृपया इस गाइड को देखें।</string>
     <string name="transliteration_title">लैटिन में लिप्यंतरण</string>
     <!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
@@ -430,6 +407,9 @@
     <!-- Do not display all bookmark lists on the map -->
     <string name="bookmark_lists_hide_all">सभी को छिपाएं</string>
     <string name="bookmark_lists_show_all">सब दिखाएं</string>
+    <plurals name="bookmarks_places">
+        <item quantity="other">%d bookmarks</item>
+    </plurals>
     <string name="bookmarks_create_new_group">एक नई सूची बनाएं</string>
     <!-- Bookmark categories screen, button that opens folder selection dialog to import KML/KMZ/GPX/KMB files -->
     <string name="bookmarks_import">बुकमार्क और सेटिंग्स आयात करें</string>
@@ -443,6 +423,12 @@
     <string name="please_wait">कृपया प्रतीक्षा करें…</string>
     <string name="phone_number">फ़ोन नंबर</string>
     <string name="profile">OpenStreetMap प्रोफ़ाइल</string>
+    <plurals name="bookmarks_detect_message">
+        <item quantity="other">%d files were found. You can see them after conversion.</item>
+    </plurals>
+    <plurals name="tracks">
+        <item quantity="other">%d tracks?</item>
+    </plurals>
     <!-- Settings privacy group in settings screen -->
     <string name="privacy">निजता</string>
     <string name="privacy_policy">गोपनीयता नीति</string>
@@ -479,9 +465,9 @@
     <string name="yes_available">हॉं</string>
     <!-- E.g. "WiFi:No" -->
     <string name="no_available">नहीं</string>
-    <!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations... -->
+    <!-- To indicate the capacity of car parkings, bicycle parkings, electric vehicle charging stations… -->
     <string name="capacity">क्षमता: %s</string>
-    <!-- To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations... -->
+    <!-- To indicate the network of ATMs, bicycle rentals, electric vehicle charging stations… -->
     <string name="network">नेटवर्क: %s</string>
     <string name="ok">ठीक है</string>
     <!-- Android -->
@@ -504,7 +490,7 @@
     <string name="enable_show_on_lock_screen_description">सक्षम होने पर, डिवाइस लॉक होने पर भी ऐप लॉकस्क्रीन पर काम करेगा।</string>
     <!-- Current language of the map! -->
     <string name="change_map_locale">मानचित्र भाषा</string>
-    <!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
+    <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/hi/</string>
     <!-- App Tip #00 -->
     <string name="app_tip_00">हमारे समुदाय-निर्मित मानचित्रों का उपयोग करने के लिए धन्यवाद!</string>
@@ -566,7 +552,7 @@
     <string name="view_menu">मेनू देखें</string>
     <!-- Title for the "Open in Another App" button on the PlacePage. -->
     <string name="open_in_app">किसी अन्य ऐप में खोलें</string>
-    <!-- To indicate if the place proposed self service... -->
+    <!-- To indicate if the place proposed self service… -->
     <string name="self_service">स्वयं सेवा</string>
     <string name="select_option">विकल्प चुनें</string>
     <!-- To indicate if restaurant or other place has outdoor seating -->
@@ -577,6 +563,8 @@
     <string name="start_track_recording">ट्रैक रिकॉर्ड करें</string>
     <!-- Prompt for stopping a track recording. -->
     <string name="stop_track_recording">ट्रैक रिकॉर्डिंग रोकें</string>
+    <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
+    <string name="track_recording_title">ट्रैक रिकॉर्डिंग</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="stop_without_saving">बिना सहेजे रुकें</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->

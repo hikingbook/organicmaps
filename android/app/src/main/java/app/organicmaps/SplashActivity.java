@@ -9,9 +9,10 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.window.SplashScreenView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -19,7 +20,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import app.organicmaps.downloader.DownloaderActivity;
@@ -61,17 +61,10 @@ public class SplashActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
 //    setContentView(R.layout.activity_splash);
+    adjustBrandingInfoPadding();
 
-    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_view), new OnApplyWindowInsetsListener() {
-      @NonNull
-      @Override
-      public WindowInsetsCompat onApplyWindowInsets(@NonNull View v, @NonNull WindowInsetsCompat insets)
-      {
-        Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-        v.setPadding(0, 0, 0, systemBars.bottom);
-        return insets;
-      }
-    });
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+//      getSplashScreen().setOnExitAnimationListener(SplashScreenView::remove);
 //    mPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
 //                                                   result -> Config.setLocationRequested());
     mApiRequest = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -219,7 +212,34 @@ public class SplashActivity extends AppCompatActivity
 //    finish();
 //  }
 
-//  private boolean isManageSpaceActivity(Intent intent)
+//    if (isManageSpaceActivity(intent))
+//    {
+//      intent.setComponent(new ComponentName(this, DownloaderActivity.class));
+//    }
+//    else
+//    {
+//      intent.setComponent(new ComponentName(this, DownloadResourcesLegacyActivity.class));
+//    }
+//
+//    // FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_RESET_TASK_IF_NEEDED break the cold start.
+//    // https://github.com/organicmaps/organicmaps/pull/7287
+//    // FORWARD_RESULT_FLAG conflicts with the ActivityResultLauncher.
+//    // https://github.com/organicmaps/organicmaps/issues/8984
+//    intent.setFlags(intent.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//    if (Factory.isStartedForApiResult(intent))
+//    {
+//      // Wait for the result from MwmActivity for API callers.
+//      mApiRequest.launch(intent);
+//      return;
+//    }
+//
+//    Config.setFirstStartDialogSeen(this);
+//    startActivity(intent);
+//    finish();
+//  }
+
+//  private boolean isManageSpaceActivity(@NonNull Intent intent)
 //  {
 //    var component = intent.getComponent();
 //
@@ -232,4 +252,14 @@ public class SplashActivity extends AppCompatActivity
 //
 //    return manageSpaceActivityName.equals(component.getClassName());
 //  }
+
+  private void adjustBrandingInfoPadding()
+  {
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ll__branding_info), (view, insets) -> {
+      final Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+      view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(),
+                      view.getPaddingBottom() + systemBars.bottom);
+      return insets;
+    });
+  }
 }

@@ -17,13 +17,12 @@ namespace osm
 {
 using namespace std;
 
+string_view constexpr kTagCuisine = "cuisine";
+
 namespace
 {
-bool ExtractName(StringUtf8Multilang const & names, int8_t const langCode, vector<osm::LocalizedName> & result)
+bool ExtractName(FeatureNames const & names, int8_t langCode, vector<osm::LocalizedName> & result)
 {
-  if (StringUtf8Multilang::kUnsupportedLanguageCode == langCode)
-    return false;
-
   // Exclude languages that are already present.
   auto const it = base::FindIf(
       result, [langCode](osm::LocalizedName const & localizedName) { return localizedName.m_code == langCode; });
@@ -31,10 +30,7 @@ bool ExtractName(StringUtf8Multilang const & names, int8_t const langCode, vecto
   if (result.end() != it)
     return false;
 
-  string_view name;
-  names.GetString(langCode, name);
-  result.emplace_back(langCode, name);
-
+  result.emplace_back(langCode, names.Get(langCode));
   return true;
 }
 }  // namespace
@@ -98,8 +94,8 @@ NamesDataSource EditableMapObject::GetNamesDataSource()
 }
 
 // static
-NamesDataSource EditableMapObject::GetNamesDataSource(StringUtf8Multilang const & source,
-                                                      vector<int8_t> const & mwmLanguages, int8_t const userLangCode)
+NamesDataSource EditableMapObject::GetNamesDataSource(FeatureNames const & source, vector<int8_t> const & mwmLanguages,
+                                                      int8_t const userLangCode)
 {
   NamesDataSource result;
   auto & names = result.names;
@@ -171,15 +167,9 @@ void EditableMapObject::SetEditableProperties(osm::EditableProperties const & pr
   m_editableProperties = props;
 }
 
-void EditableMapObject::SetName(StringUtf8Multilang const & name)
-{
-  m_name = name;
-}
-
 void EditableMapObject::SetName(string_view name, int8_t langCode)
 {
-  strings::Trim(name);
-  m_name.AddString(langCode, name);
+  m_name.Add(langCode, name);
 }
 
 // static
@@ -349,7 +339,7 @@ void EditableMapObject::SetCuisinesImpl(vector<T> const & cuisines)
 
   Classificator const & cl = classif();
   for (auto const & cuisine : cuisines)
-    params.m_types.push_back(cl.GetTypeByPath({string_view("cuisine"), cuisine}));
+    params.m_types.push_back(cl.GetTypeByPath({kTagCuisine, cuisine}));
 
   // Move useless types to the end and resize to fit TypesHolder.
   params.FinishAddingTypes();
@@ -370,19 +360,6 @@ void EditableMapObject::SetCuisines(std::vector<std::string> const & cuisines)
 void EditableMapObject::SetPointType()
 {
   m_geomType = feature::GeomType::Point;
-}
-
-void EditableMapObject::RemoveBlankNames()
-{
-  StringUtf8Multilang editedName;
-
-  m_name.ForEach([&editedName](int8_t langCode, string_view name)
-  {
-    if (!name.empty())
-      editedName.AddString(langCode, name);
-  });
-
-  m_name = editedName;
 }
 
 // static
@@ -651,10 +628,10 @@ void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
     }
 
     // Names
-    int8_t langCode = StringUtf8Multilang::GetCodeByOSMTag(tagModData.key);
+    int8_t const langCode = StringUtf8Multilang::GetCodeByOSMTag(tagModData.key);
     if (langCode != StringUtf8Multilang::kUnsupportedLanguageCode)
     {
-      m_name.AddString(langCode, tagModData.new_value);
+      m_name.Add(langCode, tagModData.new_value);
       break;
     }
 
@@ -664,22 +641,22 @@ void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
     else if (tagModData.key == "addr:housenumber")
       m_houseNumber = tagModData.new_value;
 
-    else if (tagModData.key == "cuisine")
+    else if (tagModData.key == kTagCuisine)
     {
       Classificator const & cl = classif();
       // Remove old cuisine values
       vector<std::string_view> oldCuisines = strings::Tokenize(tagModData.old_value, ";");
       for (std::string_view const & cuisine : oldCuisines)
-        m_types.Remove(cl.GetTypeByPath({string_view("cuisine"), cuisine}));
+        m_types.Remove(cl.GetTypeByPath({kTagCuisine, cuisine}));
       // Add new cuisine values
       vector<std::string_view> newCuisines = strings::Tokenize(tagModData.new_value, ";");
       for (std::string_view const & cuisine : newCuisines)
-        m_types.SafeAdd(cl.GetTypeByPath({string_view("cuisine"), cuisine}));
+        m_types.SafeAdd(cl.GetTypeByPath({kTagCuisine, cuisine}));
     }
     else if (tagModData.key == "diet:vegetarian")
     {
       Classificator const & cl = classif();
-      uint32_t const vegetarianType = cl.GetTypeByPath({string_view("cuisine"), "vegetarian"});
+      uint32_t const vegetarianType = cl.GetTypeByPath({kTagCuisine, "vegetarian"});
       if (tagModData.new_value == "yes")
         m_types.SafeAdd(vegetarianType);
       else
@@ -688,7 +665,7 @@ void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
     else if (tagModData.key == "diet:vegan")
     {
       Classificator const & cl = classif();
-      uint32_t const veganType = cl.GetTypeByPath({string_view("cuisine"), "vegan"});
+      uint32_t const veganType = cl.GetTypeByPath({kTagCuisine, "vegan"});
       if (tagModData.new_value == "yes")
         m_types.SafeAdd(veganType);
       else
@@ -722,18 +699,15 @@ void EditableMapObject::LogDiffInJournal(EditableMapObject const & unedited_emo)
   LOG(LDEBUG, ("Executing LogDiffInJournal"));
 
   // Name
-  for (StringUtf8Multilang::Lang language : StringUtf8Multilang::GetSupportedLanguages())
+  for (auto const & language : StringUtf8Multilang::GetSupportedLanguages())
   {
-    int8_t langCode = StringUtf8Multilang::GetLangIndex(language.m_code);
-    std::string_view new_name;
-    std::string_view old_name;
-    m_name.GetString(langCode, new_name);
-    unedited_emo.GetNameMultilang().GetString(langCode, old_name);
-
+    int8_t const langCode = StringUtf8Multilang::GetLangIndex(language.m_code);
+    auto new_name = m_name.Get(langCode);
+    auto old_name = unedited_emo.m_name.Get(langCode);
     if (new_name != old_name)
     {
-      std::string osmLangName = StringUtf8Multilang::GetOSMTagByCode(langCode);
-      m_journal.AddTagChange(std::move(osmLangName), std::string(old_name), std::string(new_name));
+      m_journal.AddTagChange(StringUtf8Multilang::GetOSMTagByCode(langCode), std::string(old_name),
+                             std::string(new_name));
     }
   }
 
@@ -797,7 +771,8 @@ void EditableMapObject::LogDiffInJournal(EditableMapObject const & unedited_emo)
   }
 
   if (cuisinesModified)
-    m_journal.AddTagChange("cuisine", strings::JoinStrings(old_cuisines, ";"), strings::JoinStrings(new_cuisines, ";"));
+    m_journal.AddTagChange(string(kTagCuisine), strings::JoinStrings(old_cuisines, ";"),
+                           strings::JoinStrings(new_cuisines, ";"));
 }
 
 bool AreObjectsEqualIgnoringStreet(EditableMapObject const & lhs, EditableMapObject const & rhs)
@@ -817,6 +792,8 @@ bool AreObjectsEqualIgnoringStreet(EditableMapObject const & lhs, EditableMapObj
   if (!lhs.m_metadata.Equals(rhs.m_metadata))
     return false;
 
+  /// @todo String may be different only because of the langs order inside a buffer.
+  /// Does it matter or not here?
   if (lhs.GetNameMultilang() != rhs.GetNameMultilang())
     return false;
 

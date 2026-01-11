@@ -2,30 +2,41 @@ package app.organicmaps.sdk.bookmarks.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import app.organicmaps.sdk.R;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
-// Used by JNI.
-@Keep
-@SuppressWarnings("unused")
-public class BookmarkCategory implements Parcelable
+public final class BookmarkCategory implements Parcelable
 {
+  @Retention(RetentionPolicy.SOURCE)
+  @IntDef({SortingType.BY_TYPE, SortingType.BY_DISTANCE, SortingType.BY_TIME, SortingType.BY_NAME})
+  public @interface SortingType
+  {
+    int BY_TYPE = 0;
+    int BY_DISTANCE = 1;
+    int BY_TIME = 2;
+    int BY_NAME = 3;
+  }
+
   private final long mId;
   @NonNull
-  private final String mName;
+  private String mName;
   @NonNull
   private final String mAnnotation;
   @NonNull
-  private final String mDescription;
+  private String mDescription;
   private final int mTracksCount;
   private final int mBookmarksCount;
   private boolean mIsVisible;
 
-  public BookmarkCategory(long id, @NonNull String name, @NonNull String annotation, @NonNull String description,
-                          int tracksCount, int bookmarksCount, boolean isVisible)
+  // Used by JNI.
+  @Keep
+  @SuppressWarnings("unused")
+  private BookmarkCategory(long id, @NonNull String name, @NonNull String annotation, @NonNull String description,
+                           int tracksCount, int bookmarksCount, boolean isVisible)
   {
     mId = id;
     mName = name;
@@ -50,7 +61,7 @@ public class BookmarkCategory implements Parcelable
   @Override
   public int hashCode()
   {
-    return (int) (mId ^ (mId >>> 32));
+    return Long.hashCode(mId);
   }
 
   public long getId()
@@ -62,6 +73,12 @@ public class BookmarkCategory implements Parcelable
   public String getName()
   {
     return mName;
+  }
+
+  public void setName(@NonNull String name)
+  {
+    mName = name;
+    nativeSetName(mId, mName);
   }
 
   public int getTracksCount()
@@ -76,12 +93,19 @@ public class BookmarkCategory implements Parcelable
 
   public boolean isVisible()
   {
+    mIsVisible = nativeIsVisible(mId);
     return mIsVisible;
   }
 
-  public void setVisible(boolean isVisible)
+  public void setVisibility(boolean isVisible)
   {
     mIsVisible = isVisible;
+    nativeSetVisibility(mId, mIsVisible);
+  }
+
+  public void toggleVisibility()
+  {
+    setVisibility(!isVisible());
   }
 
   public int size()
@@ -101,7 +125,52 @@ public class BookmarkCategory implements Parcelable
     return mDescription;
   }
 
+  public void setDescription(@NonNull String description)
+  {
+    mDescription = description;
+    nativeSetDescription(mId, mDescription);
+  }
+
+  public long getBookmarkIdByPosition(int positionInCategory)
+  {
+    return nativeGetBookmarkIdByPosition(mId, positionInCategory);
+  }
+
+  public long getTrackIdByPosition(int positionInCategory)
+  {
+    return nativeGetTrackIdByPosition(mId, positionInCategory);
+  }
+
+  public boolean hasLastSortingType()
+  {
+    return nativeHasLastSortingType(mId);
+  }
+
+  @SortingType
+  public int getLastSortingType()
+  {
+    return nativeGetLastSortingType(mId);
+  }
+
+  public void setLastSortingType(@SortingType int sortingType)
+  {
+    nativeSetLastSortingType(mId, sortingType);
+  }
+
+  public void resetLastSortingType()
+  {
+    nativeResetLastSortingType(mId);
+  }
+
+  @NonNull
+  @SortingType
+  public int[] getAvailableSortingTypes(boolean hasMyPosition)
+  {
+    return nativeGetAvailableSortingTypes(mId, hasMyPosition);
+  }
+
   @Override
+  @NonNull
   public String toString()
   {
     final StringBuilder sb = new StringBuilder("BookmarkCategory{");
@@ -124,7 +193,7 @@ public class BookmarkCategory implements Parcelable
   }
 
   @Override
-  public void writeToParcel(Parcel dest, int flags)
+  public void writeToParcel(@NonNull Parcel dest, int flags)
   {
     dest.writeLong(this.mId);
     dest.writeString(this.mName);
@@ -135,20 +204,21 @@ public class BookmarkCategory implements Parcelable
     dest.writeByte(this.mIsVisible ? (byte) 1 : (byte) 0);
   }
 
-  protected BookmarkCategory(Parcel in)
+  private BookmarkCategory(@NonNull Parcel in)
   {
     this.mId = in.readLong();
-    this.mName = in.readString();
-    this.mAnnotation = in.readString();
-    this.mDescription = in.readString();
+    this.mName = Objects.requireNonNull(in.readString());
+    this.mAnnotation = Objects.requireNonNull(in.readString());
+    this.mDescription = Objects.requireNonNull(in.readString());
     this.mTracksCount = in.readInt();
     this.mBookmarksCount = in.readInt();
     this.mIsVisible = in.readByte() != 0;
   }
 
   public static final Creator<BookmarkCategory> CREATOR = new Creator<>() {
+    @NonNull
     @Override
-    public BookmarkCategory createFromParcel(Parcel source)
+    public BookmarkCategory createFromParcel(@NonNull Parcel source)
     {
       return new BookmarkCategory(source);
     }
@@ -160,32 +230,24 @@ public class BookmarkCategory implements Parcelable
     }
   };
 
-  public enum AccessRules
-  {
-    ACCESS_RULES_LOCAL(R.string.not_shared, R.drawable.ic_lock),
-    ACCESS_RULES_PUBLIC(R.string.public_access, R.drawable.ic_public_inline),
-    ACCESS_RULES_DIRECT_LINK(R.string.limited_access, R.drawable.ic_link_inline),
-    ACCESS_RULES_AUTHOR_ONLY(R.string.access_rules_author_only, R.drawable.ic_lock);
+  private static native void nativeSetName(long catId, @NonNull String name);
+  private static native void nativeSetDescription(long catId, @NonNull String desc);
+  private static native boolean nativeIsVisible(long catId);
+  private static native void nativeSetVisibility(long catId, boolean visible);
+  private static native void nativeSetTags(long catId, @NonNull String[] tagsIds);
+  private static native void nativeSetAccessRules(long catId, int accessRules);
+  private static native void nativeSetCustomProperty(long catId, String key, String value);
+  private static native boolean nativeIsEmpty(long catId);
 
-    private final int mResId;
-    private final int mDrawableResId;
+  private static native long nativeGetBookmarkIdByPosition(long catId, int position);
+  private static native long nativeGetTrackIdByPosition(long catId, int position);
 
-    AccessRules(int resId, int drawableResId)
-    {
-      mResId = resId;
-      mDrawableResId = drawableResId;
-    }
-
-    @DrawableRes
-    public int getDrawableResId()
-    {
-      return mDrawableResId;
-    }
-
-    @StringRes
-    public int getNameResId()
-    {
-      return mResId;
-    }
-  }
+  private static native boolean nativeHasLastSortingType(long catId);
+  @SortingType
+  private static native int nativeGetLastSortingType(long catId);
+  private static native void nativeSetLastSortingType(long catId, @SortingType int sortingType);
+  private static native void nativeResetLastSortingType(long catId);
+  @NonNull
+  @SortingType
+  private static native int[] nativeGetAvailableSortingTypes(long catId, boolean hasMyPosition);
 }

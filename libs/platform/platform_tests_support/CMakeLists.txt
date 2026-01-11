@@ -2,6 +2,7 @@ project(platform_tests_support)
 
 set(SRC
   async_gui_thread.hpp
+  helpers.cpp
   helpers.hpp
   scoped_dir.cpp
   scoped_dir.hpp
@@ -18,6 +19,7 @@ set(SRC
 omim_add_library(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME}
-  platform
-  indexer  # feature::DataHeader::Save
+  PUBLIC
+    platform
+    indexer  # feature::DataHeader::Save
 )

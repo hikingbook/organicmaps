@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SECTION: Uncategorized -->
     <!-- Settings/Downloader - size string, only strings different from English should be translated -->
     <string name="mb">MB</string>
     <string name="gb">GB</string>
@@ -28,13 +30,12 @@
     <string name="mi">英哩</string>
     <!-- A unit of measure -->
     <string name="ft">英尺</string>
+    <!-- Toast text when the maps version should be updated to display the OSM hiking and cycling routes -->
+    <string name="routes_update_maps_text">要顯示路線，必須先更新地圖。</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">退出</string>
     <string name="core_entrance">入口</string>
     <string name="subway_data_unavailable">捷運圖層不可用</string>
-    <string name="public_access">允許大眾進入</string>
-    <string name="limited_access">不允許進入的私人空間</string>
-    <string name="not_shared">私人</string>
-    <string name="access_rules_author_only">線上編輯</string>
-    <string name="routes_update_maps_text">要顯示路線，必須先更新地圖。</string>
+    <!-- Settings/Highlight downloaded regions on the map -->
+    <string name="show_downloaded_regions">紫色已下載區域</string>
 </resources>

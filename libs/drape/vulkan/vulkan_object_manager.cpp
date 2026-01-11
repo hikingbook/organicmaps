@@ -102,6 +102,10 @@ VulkanObject VulkanObjectManager::CreateBuffer(VulkanMemoryManager::ResourceType
   {
     info.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
   }
+  else if (resourceType == VulkanMemoryManager::ResourceType::Storage)
+  {
+    info.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
+  }
   else if (resourceType == VulkanMemoryManager::ResourceType::Staging)
   {
     info.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
@@ -120,7 +124,9 @@ VulkanObject VulkanObjectManager::CreateBuffer(VulkanMemoryManager::ResourceType
       VK_OBJECT_TYPE_BUFFER, result.m_buffer,
       ((resourceType == VulkanMemoryManager::ResourceType::Geometry
             ? "B: Geometry ("
-            : (resourceType == VulkanMemoryManager::ResourceType::Uniform ? "B: Uniform (" : "B: Staging (")) +
+            : (resourceType == VulkanMemoryManager::ResourceType::Uniform
+                   ? "B: Uniform ("
+                   : (resourceType == VulkanMemoryManager::ResourceType::Storage ? "B: Storage (" : "B: Staging ("))) +
        std::to_string(sizeInBytes) + " bytes)")
           .c_str());
 
@@ -142,7 +148,8 @@ VulkanObject VulkanObjectManager::CreateBuffer(VulkanMemoryManager::ResourceType
 }
 
 VulkanObject VulkanObjectManager::CreateImage(VkImageUsageFlags usageFlags, VkFormat format, VkImageTiling tiling,
-                                              VkImageAspectFlags aspectFlags, uint32_t width, uint32_t height)
+                                              VkImageAspectFlags aspectFlags, uint32_t width, uint32_t height,
+                                              uint32_t layerCount)
 {
   VulkanObject result;
   VkImageCreateInfo imageCreateInfo = {};
@@ -151,7 +158,7 @@ VulkanObject VulkanObjectManager::CreateImage(VkImageUsageFlags usageFlags, VkFo
   imageCreateInfo.imageType = VK_IMAGE_TYPE_2D;
   imageCreateInfo.format = format;
   imageCreateInfo.mipLevels = 1;
-  imageCreateInfo.arrayLayers = 1;
+  imageCreateInfo.arrayLayers = layerCount;
   imageCreateInfo.samples = VK_SAMPLE_COUNT_1_BIT;
   imageCreateInfo.tiling = tiling;
   imageCreateInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
@@ -173,7 +180,7 @@ VulkanObject VulkanObjectManager::CreateImage(VkImageUsageFlags usageFlags, VkFo
   VkImageViewCreateInfo viewCreateInfo = {};
   viewCreateInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
   viewCreateInfo.pNext = nullptr;
-  viewCreateInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+  viewCreateInfo.viewType = layerCount > 1 ? VK_IMAGE_VIEW_TYPE_2D_ARRAY : VK_IMAGE_VIEW_TYPE_2D;
   viewCreateInfo.format = format;
   if (usageFlags & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT)
   {
@@ -189,7 +196,7 @@ VulkanObject VulkanObjectManager::CreateImage(VkImageUsageFlags usageFlags, VkFo
   viewCreateInfo.subresourceRange.baseMipLevel = 0;
   viewCreateInfo.subresourceRange.levelCount = 1;
   viewCreateInfo.subresourceRange.baseArrayLayer = 0;
-  viewCreateInfo.subresourceRange.layerCount = 1;
+  viewCreateInfo.subresourceRange.layerCount = layerCount;
   viewCreateInfo.image = result.m_image;
   CHECK_VK_CALL(vkCreateImageView(m_device, &viewCreateInfo, nullptr, &result.m_imageView));
 
@@ -371,6 +378,11 @@ void VulkanObjectManager::SetMaxUniformBuffers(uint32_t maxUniformBuffers)
   m_maxUniformBuffers = maxUniformBuffers;
 }
 
+void VulkanObjectManager::SetMaxStorageBuffers(uint32_t maxStorageBuffers)
+{
+  m_maxStorageBuffers = maxStorageBuffers;
+}
+
 void VulkanObjectManager::SetMaxImageSamplers(uint32_t maxImageSamplers)
 {
   m_maxImageSamplers = maxImageSamplers;
@@ -413,24 +425,26 @@ void VulkanObjectManager::UnmapUnsafe(VulkanObject object)
   object.m_allocation->m_memoryBlock->m_isBlocked = false;
 }
 
-void VulkanObjectManager::Fill(VulkanObject object, void const * data, uint32_t sizeInBytes)
+void VulkanObjectManager::Fill(VulkanObject object, void const * data, uint32_t sizeInBytes, uint32_t offset)
 {
   std::lock_guard<std::mutex> lock(m_mutex);
-  void * gpuPtr = MapUnsafe(object);
+  void * gpuPtr = static_cast<uint8_t *>(MapUnsafe(object)) + offset;
   if (data != nullptr)
     memcpy(gpuPtr, data, sizeInBytes);
   else
     memset(gpuPtr, 0, sizeInBytes);
-  FlushUnsafe(object);
+  FlushUnsafe(object, offset, sizeInBytes);
   UnmapUnsafe(object);
 }
 
 void VulkanObjectManager::CreateDescriptorPool()
 {
   CHECK_GREATER(m_maxUniformBuffers, 0, ());
+  CHECK_GREATER(m_maxStorageBuffers, 0, ());
   CHECK_GREATER(m_maxImageSamplers, 0, ());
   std::vector<VkDescriptorPoolSize> poolSizes = {
       {VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, m_maxUniformBuffers * kMaxDescriptorsSetCount},
+      {VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, m_maxStorageBuffers * kMaxDescriptorsSetCount},
       {VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, m_maxImageSamplers * kMaxDescriptorsSetCount},
   };
 

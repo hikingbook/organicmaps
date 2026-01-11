@@ -84,13 +84,14 @@ void DirectionsEngine::LoadPathAttributes(FeatureID const & featureId, LoadedPat
   pathSegment.m_onRoundabout = m_roundAboutChecker(types);
   pathSegment.m_isOneWay = m_onewayChecker(types);
 
+  pathSegment.m_roadNameInfo.m_mwmId = ft->GetID();
   pathSegment.m_roadNameInfo.m_isLink = pathSegment.m_isLink;
   pathSegment.m_roadNameInfo.m_junction_ref = ft->GetMetadata(feature::Metadata::FMD_JUNCTION_REF);
   pathSegment.m_roadNameInfo.m_destination_ref = ft->GetMetadata(feature::Metadata::FMD_DESTINATION_REF);
   pathSegment.m_roadNameInfo.m_destination = ft->GetMetadata(feature::Metadata::FMD_DESTINATION);
   /// @todo Should make some better parsing here (@see further use in GetFullRoadName).
   pathSegment.m_roadNameInfo.m_ref = ft->GetRef();
-  pathSegment.m_roadNameInfo.m_name = ft->GetName(StringUtf8Multilang::kDefaultCode);
+  pathSegment.m_roadNameInfo.m_name = ft->GetDefaultName();
 }
 
 void DirectionsEngine::GetSegmentRangeAndAdjacentEdges(IRoadGraph::EdgeListT const & outgoingEdges, Edge const & inEdge,

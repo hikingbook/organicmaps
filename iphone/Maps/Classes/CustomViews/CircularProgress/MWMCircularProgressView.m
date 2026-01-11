@@ -1,3 +1,4 @@
+// This file is modified by Ke Zheng-Xiang on 2025.
 #import "MWMCircularProgressView.h"
 #import "Hikingbook-Swift-Header.h"
 #import "UIImageView+Coloring.h"
@@ -176,8 +177,9 @@ static CGFloat angleWithProgress(CGFloat progress)
     self.spinner.hidden = NO;
     self.backgroundLayer.hidden = self.progressLayer.hidden = YES;
   }
+  UITraitCollection *currentTraitCollection = self.traitCollection;
   NSString * postfix = ([UIColor isNightMode] && !self.isInvertColor) ||
-                               (![UIColor isNightMode] && self.isInvertColor) || _spinnerBackgroundColor
+                               (![UIColor isNightMode] && self.isInvertColor) || _spinnerBackgroundColor || currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark
                          ? @"dark"
                          : @"light";
   UIImage * image = [UIImage imageNamed:[NSString stringWithFormat:@"Spinner_%@", postfix]];

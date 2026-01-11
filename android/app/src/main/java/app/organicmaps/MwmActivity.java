@@ -37,6 +37,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -69,7 +70,6 @@ import app.organicmaps.downloader.DownloaderFragment;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.editor.EditorActivity;
 import app.organicmaps.editor.EditorHostFragment;
-import app.organicmaps.editor.FeatureCategoryActivity;
 import app.organicmaps.editor.OsmLoginActivity;
 import app.organicmaps.editor.ReportFragment;
 import app.organicmaps.help.HelpActivity;
@@ -85,6 +85,7 @@ import app.organicmaps.routing.RoutingPlanFragment;
 import app.organicmaps.routing.RoutingPlanInplaceController;
 import app.organicmaps.sdk.ChoosePositionMode;
 import app.organicmaps.sdk.Framework;
+import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.sdk.Map;
 import app.organicmaps.sdk.MapController;
 import app.organicmaps.sdk.MapRenderingListener;
@@ -114,13 +115,13 @@ import app.organicmaps.sdk.settings.UnitLocale;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.LocationUtils;
 import app.organicmaps.sdk.util.PowerManagment;
+import app.organicmaps.sdk.util.StringUtils;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.widget.placepage.PlacePageData;
 import app.organicmaps.search.FloatingSearchToolbarController;
 import app.organicmaps.search.SearchActivity;
 import app.organicmaps.search.SearchFragment;
 import app.organicmaps.settings.SettingsActivity;
-import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.ThemeUtils;
@@ -227,7 +228,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
   private ActivityResultLauncher<Intent> mPowerSaveSettings;
-  @NonNull
   private boolean mPowerSaveDisclaimerShown = false;
 
   @SuppressWarnings("NotNullFieldNotInitialized")
@@ -628,6 +628,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    initPositionChooser();
   }
 
+  // Implementated by Zheng-Xiang
+  public void initDisplayManager() {
+      if (mDisplayManager == null) {
+          mDisplayManager = MwmApplication.from(this).getDisplayManager();
+      }
+  }
+
   private void initPositionChooser()
   {
     mPointChooser = findViewById(R.id.position_chooser);
@@ -950,19 +957,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initOnmapDownloader()
   {
-    if (mOnmapDownloader == null) {
-//    mOnmapDownloader = new OnmapDownloader(this);
-      mOnmapDownloader = new OnmapDownloader(FrameworkAdapter.INSTANCE.getFragment());
-      if (mIsTabletLayout)
-        mPanelAnimator.registerListener(mOnmapDownloader);
-    }
-  }
-
-  public void initDisplayManager()
-  {
-    if (mDisplayManager == null) {
-      mDisplayManager = MwmApplication.from(this).getDisplayManager();
-    }
+//    mOnmapDownloader = new OnmapDownloader(this, this.findViewById(R.id.onmap_downloader));
+	mOnmapDownloader = new OnmapDownloader(FrameworkAdapter.INSTANCE.getActivity(), FrameworkAdapter.INSTANCE.getFragment().getView().findViewById(R.id.onmap_downloader));
+    if (mIsTabletLayout)
+      mPanelAnimator.registerListener(mOnmapDownloader);
   }
 
   @Override
@@ -2389,7 +2387,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
         && mPlacePageViewModel.getMapObject().getValue().isTrackRecording())
       mPlacePageViewModel.setMapObject(null);
     else
-      mPlacePageViewModel.setMapObject(new TrackRecording());
+    {
+      String title = StringUtils.nativeFormatDistance(0).toString(this) + " • "
+                   + Utils.formatRoutingTime(this, 0, R.dimen.text_size_body_3);
+      mPlacePageViewModel.setMapObject(new TrackRecording(title, getString(R.string.track_recording_title)));
+    }
   }
 
   public void onShareLocationOptionSelected()
@@ -2454,8 +2456,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onTrimMemory(int level)
   {
     super.onTrimMemory(level);
-    Logger.d(TAG, "trim memory, level = " + level);
-    if (level >= TRIM_MEMORY_RUNNING_LOW)
+
+    Logger.d(TAG, "Trim memory, level = " + level);
+    if (level >= TRIM_MEMORY_RUNNING_LOW && level != TRIM_MEMORY_UI_HIDDEN)
       Framework.nativeMemoryWarning();
   }
 

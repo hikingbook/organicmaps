@@ -10,7 +10,6 @@ import app.organicmaps.sdk.api.ParsedRoutingData;
 import app.organicmaps.sdk.api.ParsedSearchRequest;
 import app.organicmaps.sdk.api.RequestType;
 import app.organicmaps.sdk.bookmarks.data.DistanceAndAzimut;
-import app.organicmaps.sdk.bookmarks.data.FeatureId;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.products.ProductsConfig;
 import app.organicmaps.sdk.routing.JunctionInfo;
@@ -24,6 +23,7 @@ import app.organicmaps.sdk.routing.RoutingRecommendationListener;
 import app.organicmaps.sdk.routing.TransitRouteInfo;
 import app.organicmaps.sdk.settings.SpeedCameraMode;
 import app.organicmaps.sdk.util.Constants;
+import dalvik.annotation.optimization.FastNative;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -200,6 +200,7 @@ public class Framework
 
   public static native void nativeDisableFollowing();
 
+  @FastNative
   @Nullable
   public static native RoutingInfo nativeGetRouteFollowingInfo();
 
@@ -329,9 +330,6 @@ public class Framework
   public static native void nativeLoadRoutePoints();
   public static native void nativeSaveRoutePoints();
   public static native void nativeDeleteSavedRoutePoints();
-
-  public static native void nativeShowFeature(@NonNull FeatureId featureId);
-
   public static native void nativeMakeCrash();
 
   public static native void nativeSetPowerManagerFacility(int facilityType, boolean state);
@@ -340,6 +338,9 @@ public class Framework
 
   public static native int nativeGetBookmarksTextPlacement();
   public static native void nativeSetBookmarksTextPlacement(int enumIndex);
+
+  public static native boolean nativeIsShowDownloadedRegions();
+  public static native void nativeSetShowDownloadedRegions(boolean show);
 
   public static native void nativeSetViewportCenter(double lat, double lon, int zoom);
   public static native void nativeStopLocationFollow();
@@ -367,6 +368,12 @@ public class Framework
   public static native void nativeDidSelectProduct(String title, String link);
 
   public static native void nativeSaveRoute();
+
+  public static native boolean nativeCanShowCrowdfundingPromo();
+
+  public static native void nativeDidShowDonationPage();
+
+  public static native void nativeResetDonations();
 
   // Zheng-Xiang: Expose SetViewportListener
   public static native void nativeSetViewportListener(ViewportListener listener);

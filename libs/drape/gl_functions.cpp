@@ -114,6 +114,7 @@ typedef void(DP_APIENTRY * TglUniform2fFn)(GLint location, GLfloat v1, GLfloat v
 typedef void(DP_APIENTRY * TglUniform3fFn)(GLint location, GLfloat v1, GLfloat v2, GLfloat v3);
 typedef void(DP_APIENTRY * TglUniform4fFn)(GLint location, GLfloat v1, GLfloat v2, GLfloat v3, GLfloat v4);
 typedef void(DP_APIENTRY * TglUniform1fvFn)(GLint location, GLsizei count, GLfloat const * value);
+typedef void(DP_APIENTRY * TglUniform4fvFn)(GLint location, GLsizei count, GLfloat const * value);
 typedef void(DP_APIENTRY * TglUniformMatrix4fvFn)(GLint location, GLsizei count, GLboolean transpose,
                                                   GLfloat const * value);
 
@@ -125,6 +126,14 @@ typedef void(DP_APIENTRY * TglFramebufferTexture2DFn)(GLenum target, GLenum atta
 typedef GLenum(DP_APIENTRY * TglCheckFramebufferStatusFn)(GLenum target);
 
 typedef GLubyte const *(DP_APIENTRY * TglGetStringiFn)(GLenum name, GLuint index);
+
+typedef void(DP_APIENTRY * TglTexImage3DFn)(GLenum target, GLint level, GLint internalformat, GLsizei width,
+                                            GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type,
+                                            void const * pixels);
+typedef void(DP_APIENTRY * TglTexSubImage3DFn)(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset,
+                                               GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type,
+                                               void const * pixels);
+typedef void(DP_APIENTRY * TglDrawArraysInstancedFn)(GLenum mode, GLint first, GLsizei count, GLsizei instancecount);
 
 TglClearColorFn glClearColorFn = nullptr;
 TglClearFn glClearFn = nullptr;
@@ -192,6 +201,7 @@ TglUniform2fFn glUniform2fFn = nullptr;
 TglUniform3fFn glUniform3fFn = nullptr;
 TglUniform4fFn glUniform4fFn = nullptr;
 TglUniform1fvFn glUniform1fvFn = nullptr;
+TglUniform1fvFn glUniform4fvFn = nullptr;
 TglUniformMatrix4fvFn glUniformMatrix4fvFn = nullptr;
 
 /// FBO
@@ -203,12 +213,48 @@ TglCheckFramebufferStatusFn glCheckFramebufferStatusFn = nullptr;
 
 TglGetStringiFn glGetStringiFn = nullptr;
 
+TglTexImage3DFn glTexImage3DFn = nullptr;
+TglTexSubImage3DFn glTexSubImage3DFn = nullptr;
+TglDrawArraysInstancedFn glDrawArraysInstancedFn = nullptr;
+
 #if !defined(GL_NUM_EXTENSIONS)
 #define GL_NUM_EXTENSIONS 0x821D
 #endif
 
 std::mutex s_mutex;
 bool s_inited = false;
+
+glConst TextureInternalFormatByLayout(glConst layout, glConst pixelType)
+{
+  // In OpenGL ES3:
+  // - we can't create unsized GL_RED texture, so we use GL_R8;
+  // - we can't create unsized GL_RG texture, so we use GL_RG8;
+  // - we can't create unsized GL_DEPTH_COMPONENT texture, so we use GL_DEPTH_COMPONENT16
+  //   or GL_DEPTH_COMPONENT24 or GL_DEPTH_COMPONENT32F;
+  // - we can't create unsized GL_DEPTH_STENCIL texture, so we use GL_DEPTH24_STENCIL8.
+  glConst internalFormat = layout;
+  if (layout == gl_const::GLRed)
+  {
+    internalFormat = GL_R8;
+  }
+  else if (layout == gl_const::GLRedGreen)
+  {
+    internalFormat = GL_RG8;
+  }
+  else if (layout == gl_const::GLDepthComponent)
+  {
+    internalFormat = GL_DEPTH_COMPONENT16;
+    if (pixelType == gl_const::GLUnsignedIntType)
+      internalFormat = GL_DEPTH_COMPONENT24;
+    else if (pixelType == gl_const::GLFloatType)
+      internalFormat = GL_DEPTH_COMPONENT32F;
+  }
+  else if (layout == gl_const::GLDepthStencil)
+  {
+    internalFormat = GL_DEPTH24_STENCIL8;
+  }
+  return internalFormat;
+}
 }  // namespace
 
 #ifdef OMIM_OS_WINDOWS
@@ -248,6 +294,9 @@ void GLFunctions::Init(dp::ApiVersion apiVersion)
   glMapBufferRangeFn = ::glMapBufferRange;
   glFlushMappedBufferRangeFn = ::glFlushMappedBufferRange;
   glGetStringiFn = ::glGetStringi;
+  glTexImage3DFn = ::glTexImage3D;
+  glTexSubImage3DFn = ::glTexSubImage3D;
+  glDrawArraysInstancedFn = ::glDrawArraysInstanced;
 
   glClearColorFn = LOAD_GL_FUNC(TglClearColorFn, glClearColor);
   glClearFn = LOAD_GL_FUNC(TglClearFn, glClear);
@@ -262,6 +311,9 @@ void GLFunctions::Init(dp::ApiVersion apiVersion)
   glMapBufferRangeFn = LOAD_GL_FUNC(TglMapBufferRangeFn, glMapBufferRange);
   glFlushMappedBufferRangeFn = LOAD_GL_FUNC(TglFlushMappedBufferRangeFn, glFlushMappedBufferRange);
   glGetStringiFn = LOAD_GL_FUNC(TglGetStringiFn, glGetStringi);
+  glTexImage3DFn = LOAD_GL_FUNC(TglTexImage3DFn, glTexImage3D);
+  glTexSubImage3DFn = LOAD_GL_FUNC(TglTexSubImage3DFn, glTexSubImage3D);
+  glDrawArraysInstancedFn = LOAD_GL_FUNC(TglDrawArraysInstancedFn, glDrawArraysInstanced);
 
   glClearColorFn = ::glClearColor;
   glClearFn = ::glClear;
@@ -325,6 +377,7 @@ void GLFunctions::Init(dp::ApiVersion apiVersion)
   glUniform3fFn = LOAD_GL_FUNC(TglUniform3fFn, glUniform3f);
   glUniform4fFn = LOAD_GL_FUNC(TglUniform4fFn, glUniform4f);
   glUniform1fvFn = LOAD_GL_FUNC(TglUniform1fvFn, glUniform1fv);
+  glUniform4fvFn = LOAD_GL_FUNC(TglUniform4fvFn, glUniform4fv);
 
   glUniformMatrix4fvFn = LOAD_GL_FUNC(TglUniformMatrix4fvFn, glUniformMatrix4fv);
 
@@ -444,6 +497,15 @@ std::string GLFunctions::glGetString(glConst pname)
 int32_t GLFunctions::glGetMaxLineWidth()
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
+
+// In desktop GL, the only supported value in core profile is 1
+#if defined(GL_CONTEXT_PROFILE_MASK)
+  GLint profile = 0;
+  GLCHECK(::glGetIntegerv(GL_CONTEXT_PROFILE_MASK, &profile));
+  if (profile & GL_CONTEXT_CORE_PROFILE_BIT)
+    return 1;
+#endif
+
   GLint range[2];
   GLCHECK(::glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, range));
   return std::max(range[0], range[1]);
@@ -794,17 +856,17 @@ void GLFunctions::glGetActiveUniform(uint32_t programID, uint32_t uniformIndex, 
   name = buff;
 }
 
-int8_t GLFunctions::glGetUniformLocation(uint32_t programID, std::string const & name)
+int GLFunctions::glGetUniformLocation(uint32_t programID, std::string const & name)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glGetUniformLocationFn != nullptr, ());
   int result = glGetUniformLocationFn(programID, name.c_str());
   GLCHECKCALL();
   ASSERT(result != -1, (name));
-  return static_cast<int8_t>(result);
+  return result;
 }
 
-void GLFunctions::glUniformValuei(int8_t location, int32_t v)
+void GLFunctions::glUniformValuei(int location, int32_t v)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform1iFn != nullptr, ());
@@ -812,7 +874,7 @@ void GLFunctions::glUniformValuei(int8_t location, int32_t v)
   GLCHECK(glUniform1iFn(location, v));
 }
 
-void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2)
+void GLFunctions::glUniformValuei(int location, int32_t v1, int32_t v2)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform2iFn != nullptr, ());
@@ -820,7 +882,7 @@ void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2)
   GLCHECK(glUniform2iFn(location, v1, v2));
 }
 
-void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2, int32_t v3)
+void GLFunctions::glUniformValuei(int location, int32_t v1, int32_t v2, int32_t v3)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform3iFn != nullptr, ());
@@ -828,7 +890,7 @@ void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2, int32
   GLCHECK(glUniform3iFn(location, v1, v2, v3));
 }
 
-void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2, int32_t v3, int32_t v4)
+void GLFunctions::glUniformValuei(int location, int32_t v1, int32_t v2, int32_t v3, int32_t v4)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform4iFn != nullptr, ());
@@ -836,7 +898,7 @@ void GLFunctions::glUniformValuei(int8_t location, int32_t v1, int32_t v2, int32
   GLCHECK(glUniform4iFn(location, v1, v2, v3, v4));
 }
 
-void GLFunctions::glUniformValueiv(int8_t location, int32_t * v, uint32_t size)
+void GLFunctions::glUniformValueiv(int location, int32_t const * v, uint32_t size)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform1ivFn != nullptr, ());
@@ -844,7 +906,7 @@ void GLFunctions::glUniformValueiv(int8_t location, int32_t * v, uint32_t size)
   GLCHECK(glUniform1ivFn(location, size, v));
 }
 
-void GLFunctions::glUniformValuef(int8_t location, float v)
+void GLFunctions::glUniformValuef(int location, float v)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform1fFn != nullptr, ());
@@ -852,7 +914,7 @@ void GLFunctions::glUniformValuef(int8_t location, float v)
   GLCHECK(glUniform1fFn(location, v));
 }
 
-void GLFunctions::glUniformValuef(int8_t location, float v1, float v2)
+void GLFunctions::glUniformValuef(int location, float v1, float v2)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform2fFn != nullptr, ());
@@ -860,7 +922,7 @@ void GLFunctions::glUniformValuef(int8_t location, float v1, float v2)
   GLCHECK(glUniform2fFn(location, v1, v2));
 }
 
-void GLFunctions::glUniformValuef(int8_t location, float v1, float v2, float v3)
+void GLFunctions::glUniformValuef(int location, float v1, float v2, float v3)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform3fFn != nullptr, ());
@@ -868,7 +930,7 @@ void GLFunctions::glUniformValuef(int8_t location, float v1, float v2, float v3)
   GLCHECK(glUniform3fFn(location, v1, v2, v3));
 }
 
-void GLFunctions::glUniformValuef(int8_t location, float v1, float v2, float v3, float v4)
+void GLFunctions::glUniformValuef(int location, float v1, float v2, float v3, float v4)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform4fFn != nullptr, ());
@@ -876,7 +938,7 @@ void GLFunctions::glUniformValuef(int8_t location, float v1, float v2, float v3,
   GLCHECK(glUniform4fFn(location, v1, v2, v3, v4));
 }
 
-void GLFunctions::glUniformValuefv(int8_t location, float * v, uint32_t size)
+void GLFunctions::glUniformValuefv(int location, float const * v, uint32_t size)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniform1fvFn != nullptr, ());
@@ -884,7 +946,15 @@ void GLFunctions::glUniformValuefv(int8_t location, float * v, uint32_t size)
   GLCHECK(glUniform1fvFn(location, size, v));
 }
 
-void GLFunctions::glUniformMatrix4x4Value(int8_t location, float const * values)
+void GLFunctions::glUniformValue4fv(int location, float const * v, uint32_t size)
+{
+  ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
+  ASSERT(glUniform4fvFn != nullptr, ());
+  ASSERT(location != -1, ());
+  GLCHECK(glUniform4fvFn(location, size, v));
+}
+
+void GLFunctions::glUniformMatrix4x4Value(int location, float const * values)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   ASSERT(glUniformMatrix4fvFn != nullptr, ());
@@ -931,47 +1001,26 @@ void GLFunctions::glDeleteTexture(uint32_t id)
   GLCHECK(::glDeleteTextures(1, &id));
 }
 
-void GLFunctions::glBindTexture(uint32_t textureID)
+void GLFunctions::glBindTexture(uint32_t textureID, glConst target)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
-  GLCHECK(::glBindTexture(GL_TEXTURE_2D, textureID));
+  GLCHECK(::glBindTexture(target, textureID));
 }
 
 void GLFunctions::glTexImage2D(int width, int height, glConst layout, glConst pixelType, void const * data)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
-  // In OpenGL ES3:
-  // - we can't create unsized GL_RED texture, so we use GL_R8;
-  // - we can't create unsized GL_RG texture, so we use GL_RG8;
-  // - we can't create unsized GL_DEPTH_COMPONENT texture, so we use GL_DEPTH_COMPONENT16
-  //   or GL_DEPTH_COMPONENT24 or GL_DEPTH_COMPONENT32F;
-  // - we can't create unsized GL_DEPTH_STENCIL texture, so we use GL_DEPTH24_STENCIL8.
-  glConst internalFormat = layout;
-  if (CurrentApiVersion == dp::ApiVersion::OpenGLES3)
-  {
-    if (layout == gl_const::GLRed)
-    {
-      internalFormat = GL_R8;
-    }
-    else if (layout == gl_const::GLRedGreen)
-    {
-      internalFormat = GL_RG8;
-    }
-    else if (layout == gl_const::GLDepthComponent)
-    {
-      internalFormat = GL_DEPTH_COMPONENT16;
-      if (pixelType == gl_const::GLUnsignedIntType)
-        internalFormat = GL_DEPTH_COMPONENT24;
-      else if (pixelType == gl_const::GLFloatType)
-        internalFormat = GL_DEPTH_COMPONENT32F;
-    }
-    else if (layout == gl_const::GLDepthStencil)
-    {
-      internalFormat = GL_DEPTH24_STENCIL8;
-    }
-  }
-
+  int const internalFormat = TextureInternalFormatByLayout(layout, pixelType);
   GLCHECK(::glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, layout, pixelType, data));
+}
+
+void GLFunctions::glTexImage2DArray(int width, int height, int layers, glConst layout, glConst pixelType,
+                                    void const * data)
+{
+  ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
+  ASSERT(glTexImage3DFn != nullptr, ());
+  int const internalFormat = TextureInternalFormatByLayout(layout, pixelType);
+  GLCHECK(glTexImage3DFn(GL_TEXTURE_2D_ARRAY, 0, internalFormat, width, height, layers, 0, layout, pixelType, data));
 }
 
 void GLFunctions::glTexSubImage2D(int x, int y, int width, int height, glConst layout, glConst pixelType,
@@ -981,10 +1030,18 @@ void GLFunctions::glTexSubImage2D(int x, int y, int width, int height, glConst l
   GLCHECK(::glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, layout, pixelType, data));
 }
 
-void GLFunctions::glTexParameter(glConst param, glConst value)
+void GLFunctions::glTexSubImage2DArray(int x, int y, int layer, int width, int height, glConst layout,
+                                       glConst pixelType, void const * data)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
-  GLCHECK(::glTexParameteri(GL_TEXTURE_2D, param, value));
+  ASSERT(glTexSubImage3DFn != nullptr, ());
+  GLCHECK(glTexSubImage3DFn(GL_TEXTURE_2D_ARRAY, 0, x, y, layer, width, height, 1, layout, pixelType, data));
+}
+
+void GLFunctions::glTexParameter(glConst param, glConst value, glConst target)
+{
+  ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
+  GLCHECK(::glTexParameteri(target, param, value));
 }
 
 void GLFunctions::glDrawElements(glConst primitive, uint32_t sizeOfIndex, uint32_t indexCount, uint32_t startIndex)
@@ -998,6 +1055,13 @@ void GLFunctions::glDrawArrays(glConst mode, int32_t first, uint32_t count)
 {
   ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
   GLCHECK(::glDrawArrays(mode, first, count));
+}
+
+void GLFunctions::glDrawArraysInstanced(glConst mode, int32_t first, uint32_t count, uint32_t instanceCount)
+{
+  ASSERT_EQUAL(CurrentApiVersion, dp::ApiVersion::OpenGLES3, ());
+  ASSERT(glDrawArraysInstancedFn != nullptr, ());
+  GLCHECK(glDrawArraysInstancedFn(mode, first, count, instanceCount));
 }
 
 void GLFunctions::glGenFramebuffer(uint32_t * fbo)

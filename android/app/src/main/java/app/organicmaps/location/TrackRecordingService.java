@@ -95,10 +95,10 @@ public class TrackRecordingService extends Service implements LocationListener
       return mExitPendingIntent;
 
     final int FLAG_IMMUTABLE = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? 0 : PendingIntent.FLAG_IMMUTABLE;
-    final Intent exitIntent = new Intent(context, MwmActivity.class);
+    final Intent exitIntent = new Intent(context, TrackRecordingService.class);
     exitIntent.setAction(STOP_TRACK_RECORDING);
     mExitPendingIntent =
-        PendingIntent.getActivity(context, 1, exitIntent, PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
+        PendingIntent.getService(context, 1, exitIntent, PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
     return mExitPendingIntent;
   }
 
@@ -134,6 +134,7 @@ public class TrackRecordingService extends Service implements LocationListener
   @Override
   public void onDestroy()
   {
+    Logger.d(TAG);
     mNotificationBuilder = null;
     mWarningBuilder = null;
     if (TrackRecorder.nativeIsTrackRecordingEnabled())
@@ -141,6 +142,17 @@ public class TrackRecordingService extends Service implements LocationListener
     MwmApplication.from(this).getLocationHelper().removeListener(this);
     // The notification is cancelled automatically by the system.
   }
+
+  // Uncommenting this code leads stopping track recording after closing the app,
+  // and more importantly, not resuming it when the app is reopened.
+  // See https://github.com/organicmaps/organicmaps/issues/11840
+  // @Override
+  // public void onTaskRemoved(@NonNull Intent rootIntent)
+  // {
+  //   Logger.d(TAG, "Task removed, stopping service");
+  //   stopSelf();
+  //   super.onTaskRemoved(rootIntent);
+  // }
 
   @Override
   public int onStartCommand(@NonNull Intent intent, int flags, int startId)
@@ -165,6 +177,15 @@ public class TrackRecordingService extends Service implements LocationListener
     if (!TrackRecorder.nativeIsTrackRecordingEnabled())
     {
       Logger.i(TAG, "Service can't be started because Track Recorder is turned off in settings");
+      stopSelf();
+      return START_NOT_STICKY;
+    }
+
+    final String action = intent.getAction();
+    if (action != null && STOP_TRACK_RECORDING.equals(action))
+    {
+      Logger.d(TAG, "Stop action received");
+      TrackRecorder.nativeStopTrackRecording();
       stopSelf();
       return START_NOT_STICKY;
     }

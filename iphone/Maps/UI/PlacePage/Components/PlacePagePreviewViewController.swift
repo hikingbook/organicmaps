@@ -6,12 +6,7 @@ final class PlacePageDirectionView: UIView {
 final class PlacePagePreviewViewController: UIViewController {
   @IBOutlet var stackView: UIStackView!
   @IBOutlet var popularView: UIView!
-  @IBOutlet var subtitleLabel: UILabel! {
-    didSet {
-      subtitleLabel.textColor = UIColor.blackSecondaryText()
-      subtitleLabel.font = UIFont.regular14()
-    }
-  }
+  @IBOutlet var subtitleLabel: UILabel!
   @IBOutlet var subtitleContainerView: UIStackView!
   @IBOutlet var scheduleLabel: UILabel!
   @IBOutlet var reviewsLabel: UILabel!
@@ -39,7 +34,9 @@ final class PlacePagePreviewViewController: UIViewController {
       }
     }
   }
-  
+
+  weak var delegate: PlacePageHeaderViewControllerDelegate?
+
   private var distance: String? = nil
   private var speedAndAltitude: String? = nil
   private var heading: CGFloat? = nil
@@ -83,7 +80,8 @@ final class PlacePagePreviewViewController: UIViewController {
       if let subtitle = placePagePreviewData.subtitle ?? placePagePreviewData.coordinates {
         subtitleString.append(NSAttributedString(string: !subtitleString.string.isEmpty ? " • " + subtitle : subtitle,
                                                  attributes: [.foregroundColor : UIColor.blackSecondaryText(),
-                                                              .font : UIFont.regular14()]))
+                                                              .font : UIFont.emojiRegular14()]))
+        
         subtitleLabel.attributedText = subtitleString
         subtitleContainerView.isHidden = false
       } else {
@@ -127,6 +125,11 @@ final class PlacePagePreviewViewController: UIViewController {
   func updateSpeedAndAltitude(_ speedAndAltitude: String) {
     self.speedAndAltitude = speedAndAltitude
     subtitleLabel?.text = speedAndAltitude
+  }
+
+  @IBAction func onLongPressAdress(_ sender: UILongPressGestureRecognizer) {
+    guard let address = addressLabel.text, sender.state == .began else { return }
+    delegate?.previewDidCopy(address)
   }
 
   @IBAction func onDirectionPressed(_ sender: Any) {

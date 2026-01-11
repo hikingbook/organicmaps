@@ -4,7 +4,9 @@ package app.organicmaps.downloader;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
@@ -12,7 +14,6 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
-import app.organicmaps.MwmApplication;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.util.log.Logger;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DownloaderService extends Service implements MapManager.StorageCallback
 {
   private static final String TAG = DownloaderService.class.getSimpleName();
+  private static final String ACTION_CANCEL_DOWNLOAD = "ACTION_CANCEL_DOWNLOAD";
 
   private final DownloaderNotifier mNotifier = new DownloaderNotifier(this);
   private int mSubscriptionSlot;
@@ -35,9 +37,26 @@ public class DownloaderService extends Service implements MapManager.StorageCall
     mSubscriptionSlot = MapManager.nativeSubscribe(this);
   }
 
+  static PendingIntent buildCancelPendingIntent(Context context)
+  {
+    final int FLAG_IMMUTABLE = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? 0 : PendingIntent.FLAG_IMMUTABLE;
+    Intent cancelIntent = new Intent(context, DownloaderService.class);
+    cancelIntent.setAction(ACTION_CANCEL_DOWNLOAD);
+    return PendingIntent.getService(context, 2, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT | FLAG_IMMUTABLE);
+  }
+
   @Override
   public int onStartCommand(Intent intent, int flags, int startId)
   {
+    final String action = intent != null ? intent.getAction() : null;
+    if (ACTION_CANCEL_DOWNLOAD.equals(action))
+    {
+      Logger.d(TAG, "Cancel action received, aborting all downloads");
+      MapManager.nativeCancel(MapManager.nativeGetRoot());
+      stopSelf();
+      return START_NOT_STICKY;
+    }
+
     Logger.i(TAG, "Downloading: " + MapManager.nativeIsDownloading());
 
     var notification = mNotifier.buildProgressNotification();
@@ -116,15 +135,10 @@ public class DownloaderService extends Service implements MapManager.StorageCall
   /**
    * Start the foreground service to keep the user informed about the status of region downloads.
    */
-  public static void startForegroundService()
+  public static void startForegroundService(Context context)
   {
     Logger.i(TAG);
-    var context = MwmApplication.sInstance;
-    try {
-      ContextCompat.startForegroundService(context, new Intent(context, DownloaderService.class));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    ContextCompat.startForegroundService(context, new Intent(context, DownloaderService.class));
   }
 
   private boolean hasDownloadFailed(List<MapManager.StorageCallbackData> data)

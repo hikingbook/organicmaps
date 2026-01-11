@@ -23,7 +23,10 @@
 #include "drape_frontend/color_constants.hpp"
 #include "drape_frontend/engine_context.hpp"
 #include "drape_frontend/gps_track_point.hpp"
+#include "drape_frontend/tile_key.hpp"
 #include "drape_frontend/visual_params.hpp"
+
+#include "drape/drape_global.hpp"
 
 #include "descriptions/loader.hpp"
 
@@ -43,6 +46,7 @@
 #include "platform/localization.hpp"
 #include "platform/measurement_utils.hpp"
 #include "platform/mwm_version.hpp"
+#include "platform/network_policy.hpp"
 #include "platform/platform.hpp"
 #include "platform/preferred_languages.hpp"
 #include "platform/settings.hpp"
@@ -87,6 +91,10 @@ Framework::FixedPosition::FixedPosition()
 }
 #endif
 
+#ifdef DEBUG
+#define DEBUG_BACKGROUND_TILE 1
+#endif
+
 namespace
 {
 std::string_view constexpr kMapStyleKey = "MapStyleKeyV1";
@@ -102,6 +110,7 @@ std::string_view constexpr kLargeFontsSize = "LargeFontsSize";
 std::string_view constexpr kTranslitMode = "TransliterationMode";
 std::string_view constexpr kPreferredGraphicsAPI = "PreferredGraphicsAPI";
 std::string_view constexpr kShowDebugInfo = "DebugInfo";
+std::string_view constexpr kShowDownloadedRegions = "DownloadedRegions";
 std::string_view constexpr kScreenViewport = "ScreenClipRect";
 std::string_view constexpr kPlacePageProductsPopupCloseTime = "PlacePageProductsPopupCloseTime";
 std::string_view constexpr kPlacePageProductsPopupCloseReason = "PlacePageProductsPopupCloseReason";
@@ -111,6 +120,15 @@ std::string_view constexpr kProductsPopupCloseReasonCloseStr = "close";
 std::string_view constexpr kProductsPopupCloseReasonRemindLaterStr = "remind_later";
 std::string_view constexpr kProductsPopupCloseReasonAlreadyDonatedStr = "already_donated";
 std::string_view constexpr kProductsPopupCloseReasonSelectProductStr = "select_product";
+std::string_view constexpr kFirstAskedForRateUsTimeKey = "FirstAskedForRateUsTime";
+std::string_view constexpr kLastAskedForRateUsTimeKey = "LastAskedForRateUsTime";
+
+std::string_view constexpr kDonationDefaultUrl = "https://organicmaps.app/donate/";
+std::string_view constexpr kDonationTapTimeKey = "DonationTapTime";
+std::string_view constexpr kDonationTapCountKey = "DonationTapCount";
+
+auto const kCrowdfundingStartTime = base::YYMMDDToSecondsSinceEpoch(251220);
+auto const kCrowdfundingEndTime = base::YYMMDDToSecondsSinceEpoch(260120);
 
 auto constexpr kLargeFontsScaleFactor = 1.6;
 size_t constexpr kMaxTrafficCacheSizeBytes = 64 /* Mb */ * 1024 * 1024;
@@ -372,6 +390,8 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
 
   if (loadMaps)
     LoadMapsSync();
+
+  UNUSED_VALUE(settings::Get(kShowDownloadedRegions, m_showDownloadedRegions));
 }
 
 Framework::~Framework()
@@ -418,6 +438,8 @@ void Framework::OnCountryFileDownloaded(storage::CountryId const &, storage::Loc
   m_isolinesManager.Invalidate();
 
   InvalidateRect(rect);
+
+  /// @todo A bit controversial, why clear when adding a new map :)
   GetSearchAPI().ClearCaches();
 }
 
@@ -440,6 +462,7 @@ bool Framework::OnCountryFileDelete(storage::CountryId const & countryId, storag
     m_featuresFetcher.DeregisterMap(platform::CountryFile(countryId));
     deferredDelete = true;
   }
+
   InvalidateRect(rect);
 
   GetSearchAPI().ClearCaches();
@@ -531,6 +554,13 @@ void Framework::RegisterAllMaps()
 
 void Framework::DeregisterAllMaps()
 {
+  m_transitManager.Clear();
+  m_isolinesManager.Clear();
+  m_trafficManager.Clear();
+  m_descriptionsLoader->Clear();
+
+  GetSearchAPI().ClearCaches();
+
   m_featuresFetcher.Clear();
   m_storage.Clear();
 }
@@ -1147,7 +1177,7 @@ void Framework::ClearAllCaches()
 
 void Framework::OnUpdateCurrentCountry(m2::PointD const & pt, int zoomLevel)
 {
-  storage::CountryId newCountryId;
+  storage::CountryId newCountryId = kInvalidCountryId;
   if (zoomLevel > scales::GetUpperWorldScale())
     newCountryId = m_infoGetter->GetRegionCountryId(pt);
 
@@ -1156,9 +1186,11 @@ void Framework::OnUpdateCurrentCountry(m2::PointD const & pt, int zoomLevel)
 
   m_lastReportedCountry = newCountryId;
 
+  /// @todo Looks logical to add if (m_currentCountryChanged) before RunTask,
+  /// but possible races with read/write of m_currentCountryChanged.
   GetPlatform().RunTask(Platform::Thread::Gui, [this, newCountryId]()
   {
-    if (m_currentCountryChanged != nullptr)
+    if (m_currentCountryChanged)
       m_currentCountryChanged(newCountryId);
   });
 }
@@ -1187,12 +1219,7 @@ void Framework::EnterBackground()
 
   m_trafficManager.OnEnterBackground();
 
-  // Do not clear caches for Android. This function is called when main activity is paused,
-  // but at the same time search activity (for example) is enabled.
-  // TODO(AlexZ): Use onStart/onStop on Android to correctly detect app background and remove #ifndef.
-#ifndef OMIM_OS_ANDROID
   ClearAllCaches();
-#endif
 }
 
 void Framework::EnterForeground()
@@ -1207,10 +1234,10 @@ void Framework::EnterForeground()
 
 void Framework::InitCountryInfoGetter()
 {
-  ASSERT(!m_infoGetter.get(), ("InitCountryInfoGetter() must be called only once."));
+  ASSERT(!m_infoGetter, ());
 
   auto const & platform = GetPlatform();
-  m_infoGetter = CountryInfoReader::CreateCountryInfoGetter(platform);
+  m_infoGetter = CountryInfoReader::CreateCountryInfoReader(platform);
 
   // Storage::GetAffiliations() pointer never changed.
   m_infoGetter->SetAffiliations(m_storage.GetAffiliations());
@@ -1218,8 +1245,8 @@ void Framework::InitCountryInfoGetter()
 
 void Framework::InitSearchAPI(size_t numThreads)
 {
-  ASSERT(!m_searchAPI.get(), ("InitSearchAPI() must be called only once."));
-  ASSERT(m_infoGetter.get(), ());
+  ASSERT(!m_searchAPI, ());
+  ASSERT(m_infoGetter, ());
   try
   {
     m_searchAPI = make_unique<SearchAPI>(m_featuresFetcher.GetDataSource(), m_storage, *m_infoGetter, numThreads,
@@ -1239,17 +1266,10 @@ void Framework::InitTransliteration()
     Transliteration::Instance().SetMode(Transliteration::Mode::Disabled);
 }
 
-string Framework::GetCountryName(m2::PointD const & pt) const
-{
-  storage::CountryInfo info;
-  m_infoGetter->GetRegionInfo(pt, info);
-  return info.m_name;
-}
-
 int64_t Framework::GetMwmVersion(m2::PointD const & pt) const
 {
   auto name = m_infoGetter->GetRegionCountryId(pt);
-  return (name != storage::kInvalidCountryId) ? m_featuresFetcher.GetMwmVersion(std::move(name)) : 0;
+  return IsCountryIdValid(name) ? m_featuresFetcher.GetMwmVersion(std::move(name)) : 0;
 }
 
 bool Framework::NeedUpdateForRoutes() const
@@ -1286,13 +1306,7 @@ Framework::DoAfterUpdate Framework::ToDoAfterUpdate() const
 
 SearchAPI & Framework::GetSearchAPI()
 {
-  ASSERT(m_searchAPI != nullptr, ("Search API is not initialized."));
-  return *m_searchAPI;
-}
-
-SearchAPI const & Framework::GetSearchAPI() const
-{
-  ASSERT(m_searchAPI != nullptr, ("Search API is not initialized."));
+  ASSERT(m_searchAPI, ());
   return *m_searchAPI;
 }
 
@@ -1342,7 +1356,7 @@ void Framework::SelectSearchResult(search::Result const & result, bool animation
   if (m_drapeEngine)
   {
     if (scale < 0)
-      scale = GetFeatureViewportScale(m_currentPlacePageInfo->GetTypes());
+      scale = GetFeatureViewportScale(m_currentPlacePageInfo->GetID(), m_currentPlacePageInfo->GetTypes());
     m2::PointD const center = m_currentPlacePageInfo->GetMercator();
     m_drapeEngine->SetModelViewCenter(center, scale, animation, true /* trackVisibleViewport */);
   }
@@ -1456,11 +1470,89 @@ bool Framework::GetDistanceAndAzimut(m2::PointD const & point, double lat, doubl
 
 void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFactory, DrapeCreationParams && params)
 {
-  auto idReadFn = [this](df::MapDataProvider::TReadCallback<FeatureID const> const & fn, m2::RectD const & r,
-                         int scale) -> void { m_featuresFetcher.ForEachFeatureID(r, fn, scale); };
+  auto idReadFn = [this](auto const & fn, m2::RectD const & r, int scale)
+  {
+    m_featuresFetcher.ForEachFeatureID(r, fn, scale);
 
-  auto featureReadFn = [this](df::MapDataProvider::TReadCallback<FeatureType> const & fn,
-                              vector<FeatureID> const & ids) -> void { m_featuresFetcher.ReadFeatures(fn, ids); };
+    if (m_showDownloadedRegions && scale <= 7)
+    {
+      auto names = m_featuresFetcher.GetDataSource().GetLoadedCountryNames(r);
+      ASSERT(base::IsSortedAndUnique(names), ());
+      m_infoGetter->ForEachRegionId(names, [&fn](size_t id) { fn(FeatureID({}, id)); });
+    }
+  };
+
+  uint32_t const borderType = classif().GetTypeByPath({"organicapp", "mwm_border"});
+  auto featureReadFn = [this, borderType](auto const & fn, vector<FeatureID> const & ids)
+  {
+    m_featuresFetcher.ReadFeatures(fn, ids);
+
+    for (auto const & id : ids)
+      if (id.m_mwmId.IsNull())
+      {
+        FeatureType ft(id, borderType);
+        m_infoGetter->GetTriangles(id.m_index, ft);
+        fn(ft);
+      }
+      else
+        break;
+  };
+
+  auto tileBackgroundReadFn = [this](df::TileKey const & tileKey, dp::BackgroundMode mode) -> void
+  {
+#if DEBUG_BACKGROUND_TILE
+    constexpr uint32_t kTileSize = 64;
+    constexpr uint32_t kBlockSize = 8;
+    constexpr uint32_t kBytesPerPixel = 4;
+    static std::vector<uint8_t> kPixels;
+    if (kPixels.empty())
+    {
+      kPixels.resize(kTileSize * kTileSize * kBytesPerPixel);
+      for (uint32_t y = 0; y < kTileSize; ++y)
+      {
+        for (uint32_t x = 0; x < kTileSize; ++x)
+        {
+          uint32_t const blockX = x / kBlockSize;
+          uint32_t const blockY = y / kBlockSize;
+          bool const isWhiteBlock = (blockX + blockY) % 2 == 0;
+          uint32_t const pixelIndex = (y * kTileSize + x) * kBytesPerPixel;
+
+          if (isWhiteBlock)
+          {
+            // White block
+            kPixels[pixelIndex] = 255;      // R
+            kPixels[pixelIndex + 1] = 255;  // G
+            kPixels[pixelIndex + 2] = 255;  // B
+            kPixels[pixelIndex + 3] = 255;  // A
+          }
+          else
+          {
+            // Dark gray block
+            kPixels[pixelIndex] = 64;       // R
+            kPixels[pixelIndex + 1] = 64;   // G
+            kPixels[pixelIndex + 2] = 64;   // B
+            kPixels[pixelIndex + 3] = 255;  // A
+          }
+        }
+      }
+    }
+
+    if (m_drapeEngine)
+    {
+      m_drapeEngine->SetTileBackgroundData(tileKey, kTileSize, kTileSize, dp::TextureFormat::RGBA8, mode,
+                                           std::vector<uint8_t>(kPixels));
+    }
+#else
+  // Handle cancellation of tile background reading for the specified tile and mode.
+  // This is a placeholder implementation; actual logic will depend on application requirements.
+#endif
+  };
+
+  auto cancelTileBackgroundReadingFn = [](df::TileKey const & tileKey, dp::BackgroundMode mode) -> void
+  {
+    // Handle cancellation of tile background reading for the specified tile and mode.
+    // This is a placeholder implementation; actual logic will depend on application requirements.
+  };
 
   auto myPositionModeChangedFn = [this](location::EMyPositionMode mode, bool routingActive)
   {
@@ -1501,15 +1593,18 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
   auto const simplifiedTrafficColors = m_trafficManager.HasSimplifiedColorScheme();
   auto const fontsScaleFactor = LoadLargeFontsSize() ? kLargeFontsScaleFactor : 1.0;
 
+  auto const tileBackgroundMode = dp::BackgroundMode::Default;  // Load from config here if needed.
+
   df::DrapeEngine::Params p(
       params.m_apiVersion, contextFactory, dp::Viewport(0, 0, params.m_surfaceWidth, params.m_surfaceHeight),
       df::MapDataProvider(std::move(idReadFn), std::move(featureReadFn), std::move(isCountryLoadedByNameFn),
-                          std::move(updateCurrentCountryFn)),
+                          std::move(updateCurrentCountryFn), std::move(tileBackgroundReadFn),
+                          std::move(cancelTileBackgroundReadingFn)),
       params.m_hints, params.m_visualScale, fontsScaleFactor, std::move(params.m_widgetsInitInfo),
       std::move(myPositionModeChangedFn), allow3dBuildings, trafficEnabled, isolinesEnabled,
       params.m_isChoosePositionMode, params.m_isChoosePositionMode, GetSelectedFeatureTriangles(),
       m_routingManager.IsRoutingActive() && m_routingManager.IsRoutingFollowing(), isAutozoomEnabled,
-      simplifiedTrafficColors, std::nullopt /* arrow3dCustomDecl */, std::move(overlaysShowStatsFn),
+      simplifiedTrafficColors, tileBackgroundMode, std::nullopt /* arrow3dCustomDecl */, std::move(overlaysShowStatsFn),
       std::move(onGraphicsContextInitialized), std::move(params.m_renderInjectionHandler));
 
   m_drapeEngine = make_unique_dp<df::DrapeEngine>(std::move(p));
@@ -1548,9 +1643,8 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
   m_transitManager.EnableTransitSchemeMode(transitSchemeEnabled);
 
   // Show debug info if it's enabled in the config.
-  bool showDebugInfo;
-  if (!settings::Get(kShowDebugInfo, showDebugInfo))
-    showDebugInfo = false;
+  bool showDebugInfo = false;
+  UNUSED_VALUE(settings::Get(kShowDebugInfo, showDebugInfo));
   if (showDebugInfo)
     m_drapeEngine->ShowDebugInfo(showDebugInfo);
 
@@ -1721,7 +1815,7 @@ void Framework::OnUpdateGpsTrackPointsCallback(vector<pair<size_t, location::Gps
                                                pair<size_t, size_t> const & toRemove,
                                                TrackStatistics const & trackStatistics)
 {
-  ASSERT(m_drapeEngine.get() != nullptr, ());
+  ASSERT(m_drapeEngine, ());
 
   vector<df::GpsTrackPoint> pointsAdd;
   pointsAdd.reserve(toAdd.size());
@@ -1790,7 +1884,7 @@ void Framework::SetupMeasurementSystem()
 
 void Framework::SetWidgetLayout(gui::TWidgetsLayoutInfo && layout)
 {
-  ASSERT(m_drapeEngine != nullptr, ());
+  ASSERT(m_drapeEngine, ());
   m_drapeEngine->SetWidgetLayout(std::move(layout));
 }
 
@@ -1833,9 +1927,12 @@ url_scheme::InAppFeatureHighlightRequest Framework::GetInAppFeatureHighlightRequ
 FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator, FeatureMatcher && matcher /* = nullptr */) const
 {
   FeatureID fullMatch, poi, line, area;
-  auto haveBuilding = false;
-  auto closestDistanceToCenter = numeric_limits<double>::max();
-  auto currentDistance = numeric_limits<double>::max();
+  bool haveBuilding = false;
+  double closestDistanceToCenter = numeric_limits<double>::max();
+
+  auto const & isIsoline = ftypes::IsIsolineChecker::Instance();
+  auto const & isCoastline = ftypes::IsCoastlineChecker::Instance();
+  auto const & isBuilding = ftypes::IsBuildingChecker::Instance();
 
   indexer::ForEachFeatureAtPoint(m_featuresFetcher.GetDataSource(), [&](FeatureType & ft)
   {
@@ -1853,7 +1950,7 @@ FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator, FeatureMatch
     case feature::GeomType::Point: poi = ft.GetID(); break;
     case feature::GeomType::Line:
       // Skip/ignore isolines.
-      if (ftypes::IsIsolineChecker::Instance()(ft))
+      if (isIsoline(ft))
         return;
       line = ft.GetID();
       break;
@@ -1865,11 +1962,11 @@ FeatureID Framework::GetFeatureAtPoint(m2::PointD const & mercator, FeatureMatch
 
       // Skip/ignore coastlines.
       feature::TypesHolder types(ft);
-      if (ftypes::IsCoastlineChecker::Instance()(types))
+      if (isCoastline(types))
         return;
 
-      haveBuilding = ftypes::IsBuildingChecker::Instance()(types);
-      currentDistance = mercator::DistanceOnEarth(mercator, feature::GetCenter(ft));
+      haveBuilding = isBuilding(types);
+      double const currentDistance = mercator::DistanceOnEarth(mercator, feature::GetCenter(ft));
       // Choose the first matching building or, if no buildings are matched,
       // the first among the closest matching non-buildings.
       if (!haveBuilding && currentDistance >= closestDistanceToCenter)
@@ -1899,14 +1996,14 @@ osm::MapObject Framework::GetMapObjectByID(FeatureID const & fid) const
 
 BookmarkManager & Framework::GetBookmarkManager()
 {
-  ASSERT(m_bmManager != nullptr, ("Bookmark manager is not initialized."));
-  return *m_bmManager.get();
+  ASSERT(m_bmManager, ());
+  return *m_bmManager;
 }
 
 BookmarkManager const & Framework::GetBookmarkManager() const
 {
-  ASSERT(m_bmManager != nullptr, ("Bookmark manager is not initialized."));
-  return *m_bmManager.get();
+  ASSERT(m_bmManager, ());
+  return *m_bmManager;
 }
 
 void Framework::SetPlacePageListeners(PlacePageEvent::OnOpen onOpen, PlacePageEvent::OnClose onClose,
@@ -2464,7 +2561,7 @@ void Framework::SetLargeFontsSize(bool isLargeSize)
 
   double const scaleFactor = isLargeSize ? kLargeFontsScaleFactor : 1.0;
 
-  ASSERT(m_drapeEngine.get() != nullptr, ());
+  ASSERT(m_drapeEngine, ());
   m_drapeEngine->SetFontScaleFactor(scaleFactor);
 
   Invalidate();
@@ -2528,6 +2625,21 @@ void Framework::SetBookmarksTextPlacement(settings::Placement setting)
 {
   settings::Set(settings::kBookmarksTextPlacement, setting);
   UpdateBookmarksTextPlacement();
+}
+
+bool Framework::IsShowDownloadedRegions()
+{
+  bool showDownloadedRegions;
+  if (!settings::Get(kShowDownloadedRegions, showDownloadedRegions))
+    showDownloadedRegions = true;
+  return showDownloadedRegions;
+}
+
+void Framework::SetShowDownloadedRegions(bool isEnabled)
+{
+  m_showDownloadedRegions = isEnabled;
+  settings::Set(kShowDownloadedRegions, isEnabled);
+  Invalidate();
 }
 
 bool Framework::LoadTransitSchemeEnabled()
@@ -2712,6 +2824,24 @@ bool Framework::ParseDrapeDebugCommand(string const & query)
     m_drapeEngine->EnableDebugRectRendering(false /* shown */);
     return true;
   }
+  if (query == "?show-downloaded")
+  {
+    SetShowDownloadedRegions(true);
+    return true;
+  }
+  if (query == "?no-show-downloaded")
+  {
+    SetShowDownloadedRegions(false);
+    return true;
+  }
+
+#if DEBUG_BACKGROUND_TILE
+  if (query == "?satellite")
+  {
+    m_drapeEngine->SetTileBackgroundMode(dp::BackgroundMode::Satellite);
+    return true;
+  }
+#endif
 #if defined(OMIM_METAL_AVAILABLE)
   if (query == "?metal")
   {
@@ -2815,8 +2945,7 @@ bool LocalizeStreet(DataSource const & dataSource, FeatureID const & fid, osm::L
   if (!ft)
     return false;
 
-  result.m_defaultName = ft->GetName(StringUtf8Multilang::kDefaultCode);
-
+  result.m_defaultName = ft->GetDefaultName();
   result.m_localizedName = ft->GetReadableName();
 
   if (result.m_localizedName == result.m_defaultName)
@@ -2913,8 +3042,7 @@ void SetHostingBuildingAddress(FeatureID const & hostingBuildingFid, DataSource 
     if (emo.GetHouseNumber().empty())
       emo.SetHouseNumber(address.GetHouseNumber());
     if (emo.GetStreet().m_defaultName.empty())
-      // TODO(mgsergio): Localize if localization is required by UI.
-      emo.SetStreet({address.GetStreetName(), ""});
+      emo.SetStreet({std::string(address.GetStreetName()), std::string(address.m_street.m_name)});
   }
 }
 }  // namespace
@@ -3106,8 +3234,6 @@ osm::Editor::SaveResult Framework::SaveEditedMapObject(osm::EditableMapObject em
                       " without a user's input. Feel free to close it if it's wrong).");
   }
 
-  emo.RemoveBlankNames();
-
   auto const result = osm::Editor::Instance().SaveEditedFeature(emo);
 
   place_page::BuildInfo info;
@@ -3215,11 +3341,6 @@ vector<MwmSet::MwmId> Framework::GetMwmsByRect(m2::RectD const & rect, bool roug
     result.push_back(dataSource.GetMwmIdByCountryFile(platform::CountryFile(std::move(id))));
 
   return result;
-}
-
-void Framework::ReadFeatures(function<void(FeatureType &)> const & reader, vector<FeatureID> const & features)
-{
-  m_featuresFetcher.ReadFeatures(reader, features);
 }
 
 // RoutingManager::Delegate
@@ -3371,7 +3492,7 @@ std::optional<products::ProductsConfig> Framework::GetProductsConfiguration() co
 {
   if (!ShouldShowProducts())
     return nullopt;
-  return products::GetProductsConfiguration();
+  return products::ProductsSettings::Instance().Get();
 }
 
 void Framework::DidCloseProductsPopup(ProductsPopupCloseReason reason) const
@@ -3382,7 +3503,7 @@ void Framework::DidCloseProductsPopup(ProductsPopupCloseReason reason) const
 
 void Framework::DidSelectProduct(products::ProductsConfig::Product const & product) const
 {
-  settings::Set(kPlacePageSelectedProduct, product.GetTitle());
+  settings::Set(kPlacePageSelectedProduct, product.title);
 }
 
 uint32_t Framework::GetTimeoutForReason(ProductsPopupCloseReason reason)
@@ -3432,4 +3553,86 @@ Framework::ProductsPopupCloseReason Framework::FromString(std::string_view str)
     return ProductsPopupCloseReason::SelectProduct;
   ASSERT(false, ("Incorrect reason string:", str));
   return ProductsPopupCloseReason::Close;
+}
+
+bool Framework::CanShowRateUsRequest() const
+{
+  if (m_routingManager.IsRoutingActive())
+    return false;
+
+  if (Platform::ConnectionStatus() == Platform::EConnectionType::CONNECTION_NONE)
+    return false;
+
+  if (!m_usageStats.IsLoyalUser())
+    return false;
+
+  uint8_t constexpr kMinBatteryLevelPercent = 15;
+  if (Platform::GetBatteryLevel() < kMinBatteryLevelPercent)
+    return false;
+
+  uint64_t lastAskedForRateUsTime;
+  if (!settings::Get(kLastAskedForRateUsTimeKey, lastAskedForRateUsTime))
+    return true;
+
+  uint32_t constexpr kLastAskedForRateUsTimeout = 60 * 60 * 24 * 90;  // 90 days
+
+  bool const timeoutExpired = lastAskedForRateUsTime + kLastAskedForRateUsTimeout < base::SecondsSinceEpoch();
+  if (!timeoutExpired)
+    return false;
+
+  return true;
+}
+
+void Framework::DidShowRateUsRequest() const
+{
+  auto const now = base::SecondsSinceEpoch();
+
+  uint64_t firstAskedForRateUsTime;
+  if (!settings::Get(kFirstAskedForRateUsTimeKey, firstAskedForRateUsTime))
+    settings::Set(kFirstAskedForRateUsTimeKey, now);
+
+  settings::Set(kLastAskedForRateUsTimeKey, now);
+}
+
+std::optional<std::string> Framework::GetDonateUrl() const
+{
+  std::string url;
+  UNUSED_VALUE(settings::Get(settings::kDonateUrl, url));
+  /// @todo(KK): Remove this crowdfunding hard-start in the next release.
+  if (url.empty() && base::SecondsSinceEpoch() > kCrowdfundingStartTime)
+    url = kDonationDefaultUrl;
+  if (url.empty())
+    return nullopt;
+  if (url == kDonationDefaultUrl)
+    return platform::GetLocalizedString("translated_om_site_url").append("donate/");
+  return url;
+}
+
+bool Framework::CanShowCrowdfundingPromo() const
+{
+  if (!GetDonateUrl())
+    return false;
+
+  uint64_t lastDonationTapTime = 0;
+  bool const donationWasTapped = settings::Get(kDonationTapTimeKey, lastDonationTapTime) && lastDonationTapTime > 0;
+  bool const crowdfundingHasEnded = base::SecondsSinceEpoch() > kCrowdfundingEndTime;
+  if (donationWasTapped && crowdfundingHasEnded)
+    return false;
+
+  return true;
+}
+
+void Framework::DidShowDonationPage() const
+{
+  settings::Set(kDonationTapTimeKey, base::SecondsSinceEpoch());
+  uint32_t tapCount = 0;
+  UNUSED_VALUE(settings::Get(kDonationTapCountKey, tapCount));
+  settings::Set(kDonationTapCountKey, tapCount + 1);
+}
+
+void Framework::ResetDonations()
+{
+  LOG(LDEBUG, ("Donations data was reset to initial state."));
+  settings::Set(kDonationTapTimeKey, 0);
+  settings::Set(kDonationTapCountKey, 0);
 }

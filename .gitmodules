@@ -17,7 +17,7 @@
 [submodule "3party/boost"]
   path = 3party/boost
   url = https://github.com/boostorg/boost.git
-  branch = boost-1.88.0
+  branch = boost-1.89.0
   ignore = dirty
 [submodule "3party/just_gtfs"]
   path = 3party/just_gtfs
@@ -43,10 +43,6 @@
   path = 3party/googletest
   url = https://github.com/google/googletest.git
   branch = main
-[submodule "3party/fast_double_parser"]
-  path = 3party/fast_double_parser
-  url = https://github.com/lemire/fast_double_parser.git
-  branch = master
 [submodule "3party/pugixml/pugixml"]
   path = 3party/pugixml/pugixml
   url = https://github.com/zeux/pugixml.git
@@ -87,3 +83,12 @@
   path = 3party/glaze
   url = https://github.com/organicmaps/glaze
   branch = organicmaps
+[submodule "3party/fast_float"]
+  path = 3party/fast_float
+  url = https://github.com/fastfloat/fast_float.git
+  branch = main
+[submodule "tools/python/twine"]
+  path = tools/python/twine
+  url = https://github.com/organicmaps/twine.git
+  branch = organicmaps
+

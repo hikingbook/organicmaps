@@ -61,7 +61,7 @@ bool CitiesBoundariesTable::Load()
 
   if (!cont.IsExist(CITIES_BOUNDARIES_FILE_TAG))
   {
-    LOG(LWARNING, ("No cities boundaries table in the world map."));
+    LOG(LERROR, ("No cities boundaries table in the world map."));
     return false;
   }
 

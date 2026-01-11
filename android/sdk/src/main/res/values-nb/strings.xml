@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SECTION: Uncategorized -->
     <!-- Settings/Downloader - size string, only strings different from English should be translated -->
     <string name="mb">MB</string>
     <!-- A text for current gps location point/arrow selected on the map -->
@@ -27,12 +29,12 @@
     <string name="mi">mi</string>
     <!-- A unit of measure -->
     <string name="ft">fot</string>
+    <!-- Toast text when the maps version should be updated to display the OSM hiking and cycling routes -->
+    <string name="routes_update_maps_text">For å vise ruter må kartene være oppdaterte.</string>
     <!-- Subway exits for public transport marks on the map -->
     <string name="core_exit">Avslutt</string>
     <string name="core_entrance">Inngang</string>
     <string name="subway_data_unavailable">T-banekart er utilgjengelig</string>
-    <string name="public_access">Offentlig tilgang</string>
-    <string name="limited_access">Begrenset adgang</string>
-    <string name="not_shared">Privat</string>
-    <string name="access_rules_author_only">Redigering på nett</string>
+    <!-- Settings/Highlight downloaded regions on the map -->
+    <string name="show_downloaded_regions">Lilla nedlastede regioner</string>
 </resources>

@@ -45,9 +45,9 @@ final class NavigationDashboardViewController: UIViewController {
   private let settingsBadge = BadgeWithNumber()
   private var routePointsView = RoutePointsView()
   private let bottomActionsMenu = RouteActionsBottomMenuView()
-  private let searchButton = UIButton()
-  private let bookmarksButton = UIButton()
-  private let saveRouteAsTrackButton = UIButton()
+  private var searchButton: UIButton!
+  private var bookmarksButton: UIButton!
+  private var saveRouteAsTrackButton: UIButton!
   private let startRouteButton = StartRouteButton()
   private var navigationInfoView: NavigationInfoView!
   private var navigationControlView: NavigationControlView!
@@ -108,9 +108,9 @@ final class NavigationDashboardViewController: UIViewController {
   override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     routePointsView.viewWillTransition(to: size, with: coordinator)
-    if #available(iOS 14.0, *), ProcessInfo.processInfo.isiOSAppOnMac {
-      updateFrameOfPresentedViewInContainerView()
-    }
+    coordinator.animate(alongsideTransition: { _ in
+      self.updateFrameOfPresentedViewInContainerView()
+    })
   }
 
   func add(to parentViewController: MapViewController) {
@@ -165,17 +165,14 @@ final class NavigationDashboardViewController: UIViewController {
 
   private func visibleAreaInsets(for frame: CGRect) -> UIEdgeInsets {
     let isCompact = traitCollection.verticalSizeClass == .compact
-    let bottom = (isCompact || isiPad) ? 0 : frame.height - frame.origin.y
-    let left = isiPad ? frame.origin.x + frame.width : 0
-    return UIEdgeInsets(top: 0, left: left, bottom: bottom, right: 0)
+    let bottom = isCompact ? 0 : frame.height - frame.origin.y
+    return UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
   }
 
   private func setupGestureRecognizers() {
-    iPhoneSpecific {
-      let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
-      panGestureRecognizer.delegate = self
-      availableAreaView.addGestureRecognizer(panGestureRecognizer)
-    }
+    let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+    panGestureRecognizer.delegate = self
+    availableAreaView.addGestureRecognizer(panGestureRecognizer)
   }
 
   @objc
@@ -188,12 +185,7 @@ final class NavigationDashboardViewController: UIViewController {
   }
 
   private func setupGrabberView() {
-    // TODO: remove when the grabber will be the same on all the modal screens
-    grabberView.layer.setCornerRadius(.grabber)
-    grabberView.backgroundColor = .blackDividers()
-    iPadSpecific { [weak self] in
-      self?.grabberView.isHidden = true
-    }
+    grabberView.setStyle(.grabber)
   }
 
   private func setupCloseButton() {
@@ -226,17 +218,19 @@ final class NavigationDashboardViewController: UIViewController {
   }
 
   private func setupBottomMenuActions() {
-    searchButton.setStyle(.flatNormalGrayButtonBig)
-    searchButton.setImage(UIImage(resource: .icMenuSearch), for: .normal)
-    searchButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
+    func createButton(image: UIImage, action: Selector) -> UIButton {
+      let button = UIButton()
+      button.setStyle(.flatNormalGrayButtonBig)
+      button.setImage(image, for: .normal)
+      button.addTarget(self, action: action, for: .touchUpInside)
+      button.translatesAutoresizingMaskIntoConstraints = false
+      button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
+      return button
+    }
 
-    bookmarksButton.setStyle(.flatNormalGrayButtonBig)
-    bookmarksButton.setImage(UIImage(resource: .icMenuBookmarkList), for: .normal)
-    bookmarksButton.addTarget(self, action: #selector(didTapBookmarksButton), for: .touchUpInside)
-
-    saveRouteAsTrackButton.setStyle(.flatNormalGrayButtonBig)
-    saveRouteAsTrackButton.setImage(UIImage(resource: .ic24PxImport), for: .normal)
-    saveRouteAsTrackButton.addTarget(self, action: #selector(didTapSaveRouteAsTrackButton), for: .touchUpInside)
+    searchButton = createButton(image: UIImage(resource: .icMenuSearch), action: #selector(didTapSearchButton))
+    bookmarksButton = createButton(image: UIImage(resource: .icMenuBookmarkList), action: #selector(didTapBookmarksButton))
+    saveRouteAsTrackButton = createButton(image: UIImage(resource: .ic24PxImport), action: #selector(didTapSaveRouteAsTrackButton))
 
     startRouteButton.addTarget(self, action: #selector(didTapStartRouteButton), for: .touchUpInside)
 
@@ -318,17 +312,10 @@ final class NavigationDashboardViewController: UIViewController {
     closeButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     settingsButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
-    let grabberTopConstraint: NSLayoutConstraint
-    if isiPad {
-      grabberTopConstraint = grabberView.topAnchor.constraint(equalTo: availableAreaView.safeAreaLayoutGuide.topAnchor)
-    } else {
-      grabberTopConstraint = grabberView.topAnchor.constraint(equalTo: availableAreaView.topAnchor, constant: Constants.grabberTopInset)
-    }
-
     NSLayoutConstraint.activate([
       grabberView.centerXAnchor.constraint(equalTo: availableAreaView.centerXAnchor),
       grabberView.widthAnchor.constraint(equalToConstant: Constants.grabberWidth),
-      grabberTopConstraint,
+      grabberView.topAnchor.constraint(equalTo: availableAreaView.topAnchor, constant: Constants.grabberTopInset),
       grabberView.heightAnchor.constraint(equalToConstant: Constants.grabberHeight),
 
       closeButton.trailingAnchor.constraint(equalTo: availableAreaView.safeAreaLayoutGuide.trailingAnchor, constant: Constants.closeButtonInsets.right),

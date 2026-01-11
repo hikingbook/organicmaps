@@ -7,20 +7,18 @@
 
 #include "platform/downloader_defines.hpp"
 #include "platform/http_request.hpp"
-#include "platform/safe_callback.hpp"
 
 #include <cstdint>
 #include <functional>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
+#include "platform/safe_callback.hpp"
 #include "platform/servers_list.hpp"
 
 namespace storage
 {
-using downloader::MetaConfig;
 
 // This interface encapsulates HTTP routines for receiving servers
 // URLs and downloading a single map file.
@@ -29,7 +27,7 @@ class MapFilesDownloader
 public:
   // Denotes bytes downloaded and total number of bytes.
   using ServersList = std::vector<std::string>;
-  using MetaConfigCallback = platform::SafeCallback<void(std::map<MapSource, MetaConfig> const & metaConfigMap)>;
+  using MetaConfigCallback = platform::SafeCallback<void(std::map<MapSource, downloader::MetaConfig> const & metaConfigMap)>;
 
   virtual ~MapFilesDownloader() = default;
 
@@ -74,15 +72,15 @@ protected:
   std::vector<std::string> MakeUrlList(MapSource mapSource, std::string const & relativeUrl) const;
 
   // Synchronously loads list of servers by http client.
-  std::map<MapSource, MetaConfig> LoadMetaConfigMap();
+  std::map<MapSource, downloader::MetaConfig> LoadMetaConfigMap();
 
 private:
   /**
    * @brief This method is blocking and should be called on network thread.
    * Default implementation receives a list of all servers that can be asked
-   * for a map file and invokes callback on the main thread (@see MetaConfigCallback as SafeCallback).
+   * for a map file and invokes callback on the main thread.
    */
-  virtual void GetMetaConfig(MetaConfigCallback const & callback);
+  virtual std::map<MapSource, downloader::MetaConfig> GetMetaConfig();
   /// Asynchronously downloads the file and saves result to provided directory.
   virtual void Download(QueuedCountry && queuedCountry) = 0;
 

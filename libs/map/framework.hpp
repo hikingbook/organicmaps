@@ -78,7 +78,7 @@ struct ViewportSearchParams;
 
 namespace storage
 {
-class CountryInfoGetter;
+class CountryInfoReader;
 struct DownloaderSearchParams;
 }  // namespace storage
 
@@ -170,7 +170,7 @@ protected:
   // The order matters here: storage::CountryInfoGetter and
   // m_FeaturesFetcher must be initialized before
   // search::Engine and, therefore, destroyed after search::Engine.
-  std::unique_ptr<storage::CountryInfoGetter> m_infoGetter;
+  std::unique_ptr<storage::CountryInfoReader> m_infoGetter;
 
   std::unique_ptr<SearchAPI> m_searchAPI;
 
@@ -255,8 +255,6 @@ public:
   void InvalidateRect(m2::RectD const & rect);
   void Invalidate() { InvalidateRect(GetCurrentViewport()); }
 
-  std::string GetCountryName(m2::PointD const & pt) const;
-
   /// @return 0 if there is no country under point or country is not loaded.
   int64_t GetMwmVersion(m2::PointD const & pt) const;
   bool NeedUpdateForRoutes() const;
@@ -273,13 +271,12 @@ public:
   storage::Storage & GetStorage() { return m_storage; }
   storage::Storage const & GetStorage() const { return m_storage; }
   search::DisplayedCategories const & GetDisplayedCategories();
-  storage::CountryInfoGetter const & GetCountryInfoGetter() { return *m_infoGetter; }
+  storage::CountryInfoReader const & GetCountryInfoGetter() { return *m_infoGetter; }
   StorageDownloadingPolicy & GetDownloadingPolicy() { return m_storageDownloadingPolicy; }
 
   DataSource const & GetDataSource() const { return m_featuresFetcher.GetDataSource(); }
 
   SearchAPI & GetSearchAPI();
-  SearchAPI const & GetSearchAPI() const;
 
   /// @name Bookmarks, Tracks and other UserMarks
   /// Scans and loads all kml files with bookmarks in WritableDir.
@@ -367,8 +364,6 @@ public:
 
   std::vector<std::string> GetRegionsCountryIdByRect(m2::RectD const & rect, bool rough) const;
   std::vector<MwmSet::MwmId> GetMwmsByRect(m2::RectD const & rect, bool rough) const;
-
-  void ReadFeatures(std::function<void(FeatureType &)> const & reader, std::vector<FeatureID> const & features);
 
 private:
   std::optional<place_page::Info> m_currentPlacePageInfo;
@@ -654,10 +649,12 @@ public:
   /// Ignores coastlines and prefers buildings over other area features.
   /// @returns invalid FeatureID if no feature was found at the given mercator point.
   FeatureID GetFeatureAtPoint(m2::PointD const & mercator, FeatureMatcher && matcher = nullptr) const;
+
+  /// @param[in] scale Pass GetUpperScale (for countries) or GetUpperWorldScale (for World map).
   template <typename TFn>
-  void ForEachFeatureAtPoint(TFn && fn, m2::PointD const & mercator) const
+  void ForEachFeatureAtPoint(TFn && fn, m2::PointD const & mercator, int scale) const
   {
-    indexer::ForEachFeatureAtPoint(m_featuresFetcher.GetDataSource(), fn, mercator, 0.0);
+    indexer::ForEachFeatureAtPoint(m_featuresFetcher.GetDataSource(), fn, mercator, scale);
   }
 
   osm::MapObject GetMapObjectByID(FeatureID const & fid) const;
@@ -719,6 +716,9 @@ public:
   static settings::Placement GetBookmarksTextPlacement();
   void SetBookmarksTextPlacement(settings::Placement setting);
 
+  bool IsShowDownloadedRegions();
+  void SetShowDownloadedRegions(bool isEnabled);
+
   TrafficManager & GetTrafficManager();
 
   TransitReadManager & GetTransitManager();
@@ -776,6 +776,8 @@ public:
 private:
   settings::UsageStats m_usageStats;
 
+  bool m_showDownloadedRegions = true;
+
 public:
   power_management::PowerManager & GetPowerManager() { return m_powerManager; }
 
@@ -799,6 +801,16 @@ public:
 
   bool ShouldShowProducts() const;
   static ProductsPopupCloseReason FromString(std::string_view str);
+
+  bool CanShowRateUsRequest() const;
+  void DidShowRateUsRequest() const;
+
+  std::optional<std::string> GetDonateUrl() const;
+  bool CanShowCrowdfundingPromo() const;
+  void DidShowDonationPage() const;
+  void DidPossiblyReturnFromDonationPage() const;
+  // Only for testing purposes.
+  void ResetDonations();
 
 private:
   static uint32_t GetTimeoutForReason(ProductsPopupCloseReason reason);

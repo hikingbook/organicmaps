@@ -10,7 +10,6 @@
 #include "base/scope_guard.hpp"
 #include "base/timer.hpp"
 
-#include <algorithm>
 #include <map>
 #include <vector>
 
@@ -97,8 +96,6 @@ Engine::Engine(DataSource & dataSource, CategoriesHolder const & categories,
   for (size_t i = 0; i < params.m_numThreads; ++i)
     m_threads.emplace_back(&Engine::MainLoop, this, ref(m_contexts[i]));
 
-  CacheWorldLocalities();
-  LoadCitiesBoundaries();
   LoadCountriesTree();
 }
 
@@ -137,14 +134,15 @@ void Engine::ClearCaches()
   PostMessage(Message::TYPE_BROADCAST, [](Processor & processor) { processor.ClearCaches(); });
 }
 
-void Engine::CacheWorldLocalities()
+void Engine::InitAfterWorldLoaded()
 {
-  PostMessage(Message::TYPE_BROADCAST, [](Processor & processor) { processor.CacheWorldLocalities(); });
-}
-
-void Engine::LoadCitiesBoundaries()
-{
-  PostMessage(Message::TYPE_BROADCAST, [](Processor & processor) { processor.LoadCitiesBoundaries(); });
+  PostMessage(Message::TYPE_BROADCAST, [](Processor & processor)
+  {
+    // Noteworthy that localities are made like a lazy cache, but city boundaries Load should be called manually.
+    /// @todo Make lazy cache for both, including m_citiesBoundaries?
+    processor.CacheWorldLocalities();
+    processor.LoadCitiesBoundaries();
+  });
 }
 
 void Engine::LoadCountriesTree()

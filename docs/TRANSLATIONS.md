@@ -1,6 +1,23 @@
 # Translations
 
+## Contribute via Weblate
+
 Translations are managed through [Weblate][weblate]. Please [contribute][contribute] translations via the [Weblate][weblate], and the system and maintainers will handle the rest.
+
+## Contribute translations directly
+
+Adding and updating translations is easy!
+1. Change the translation file you want, e.g. [strings.txt](../data/strings/strings.txt) ([raw text version](https://raw.githubusercontent.com/organicmaps/organicmaps/master/data/strings/strings.txt))
+2. Commit your string changes with the title `[strings] {description of changes}`
+3. (Optional) run the `tools/unix/generate_localizations.sh` script
+4. (Optional) Commit the updated files with the title `[strings] Regenerated`
+5. Send a pull request!
+
+Please make sure to add a [Developers Certificate of Origin](CONTRIBUTING.md#legal-requirements) to your commit descriptions.
+
+## Requirements
+
+To run the `tools/unix/generate_localizations.sh` script, it is necessary to have installed Python 3.10+.
 
 ## Components
 
@@ -55,6 +72,14 @@ Android developers can utilize the built-in features of Android Studio to add an
 ### Cross-Component Synchronization
 
 When adding new strings, first check the base file of the component for existing ones. If no relevant strings are found, look for them on the corresponding platform (e.g., iOS when adding Android strings or vice versa). To maintain consistency across platforms, always reuse the existing string key from the other platform with the same English base string.
+
+## Twine files support
+
+When Android or iPhone resources are updated manually (not with Twine) then changes could be imported back to `strings.txt` in semi-automatic way.
+
+Run `tools/unix/regenerate_twine.sh` and review changes to `strings.txt` file.
+
+After that regenerate all resources with the `tools/unix/generate_localizations.sh` script.
 
 ## Maintaining
 

@@ -43,8 +43,9 @@ void Info::SetFromFeatureType(FeatureType & ft)
   auto const mwmInfo = GetID().m_mwmId.GetInfo();
   if (mwmInfo)
   {
-    feature::GetPreferredNames(
-        {m_name, mwmInfo->GetRegionData(), languages::GetCurrentMapLanguage(), true /* allowTranslit */}, out);
+    feature::NameParamsIn in(m_name.ToBuffer(), mwmInfo->GetRegionData(), languages::GetCurrentMapLanguage(),
+                             true /* allowTranslit */);
+    feature::GetPreferredNames(in, out);
   }
 
   bool emptyTitle = false;
@@ -88,11 +89,13 @@ void Info::SetFromFeatureType(FeatureType & ft)
     m_uiTitle = GetLocalizedType();
 
   // Append local_ref tag into main title.
-  if (IsPublicTransportStop())
+  auto const lRef = GetMetadata(feature::Metadata::FMD_LOCAL_REF);
+  if (!lRef.empty())
   {
-    auto const lRef = GetMetadata(feature::Metadata::FMD_LOCAL_REF);
-    if (!lRef.empty())
+    if (IsPublicTransportStop())
       m_uiTitle.append(" (").append(lRef).append(")");
+    else if (ftypes::IsSubwayEntranceChecker::Instance()(ft))
+      m_uiTitle = std::string(lRef) + " (" + m_uiTitle + ")";
   }
 
   m_uiSubtitle = FormatSubtitle(IsFeature() /* withTypes */, !emptyTitle /* withMainType */);

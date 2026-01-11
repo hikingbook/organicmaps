@@ -11,7 +11,10 @@
 
 #include "indexer/classificator.hpp"
 #include "indexer/feature_algo.hpp"
+#include "indexer/feature_impl.hpp"
 #include "indexer/ftypes_matcher.hpp"
+
+#include "geometry/triangle2d.hpp"
 
 namespace raw_generator_tests
 {
@@ -92,7 +95,7 @@ UNIT_CLASS_TEST(TestRawGenerator, Towns)
   {
     auto ft = guard.GetFeatureByIndex(id);
 
-    std::string_view const name = ft->GetName(StringUtf8Multilang::kDefaultCode);
+    std::string_view const name = ft->GetDefaultName();
     if (!name.empty())
     {
       TEST_EQUAL(ft->GetGeomType(), feature::GeomType::Point, ());
@@ -304,7 +307,7 @@ UNIT_CLASS_TEST(TestRawGenerator, Place_Region)
       if (feature::TypesHolder(*ft).Has(regionType))
       {
         TEST_EQUAL(ft->GetGeomType(), feature::GeomType::Point, ());
-        TEST(!ft->GetName(StringUtf8Multilang::kDefaultCode).empty(), ());
+        TEST(!ft->GetDefaultName().empty(), ());
 
         if (name == worldMwmName)
           ++worldRegions;
@@ -400,7 +403,7 @@ UNIT_CLASS_TEST(TestRawGenerator, Postcode_Relations)
   size_t count = 0;
   ForEachFeature(mwmName, [&count](std::unique_ptr<FeatureType> ft)
   {
-    auto const name = ft->GetName(StringUtf8Multilang::kDefaultCode);
+    auto const name = ft->GetDefaultName();
     if (name == "Boulevard Malesherbes")
     {
       TEST_EQUAL(GetPostcode(*ft), "75017", ());
@@ -462,7 +465,7 @@ UNIT_CLASS_TEST(TestRawGenerator, Building_Address)
       TEST(res, ());
 
       auto street = guard.GetFeatureByIndex(res->m_streetId);
-      TEST_EQUAL(street->GetName(StringUtf8Multilang::kDefaultCode), "Airport Boulevard", ());
+      TEST_EQUAL(street->GetDefaultName(), "Airport Boulevard", ());
     }
   }
 
@@ -567,19 +570,24 @@ UNIT_TEST(Place_CityRelations)
       // 2 Relations + 1 Node
       "./data/test_data/osm/tver_city.osm",
       // 1 Relation + 1 Node with _different_ names.
-      "./data/test_data/osm/reykjavik_city.osm", "./data/test_data/osm/berlin_city.osm",
+      "./data/test_data/osm/reykjavik_city.osm",
+      "./data/test_data/osm/berlin_city.osm",
       // Relation boundary is place=suburb, but border_type=city
-      "./data/test_data/osm/riviera_beach_city.osm", "./data/test_data/osm/hotchkiss_town.osm",
-      "./data/test_data/osm/voronezh_city.osm", "./data/test_data/osm/minsk_city.osm",
+      "./data/test_data/osm/riviera_beach_city.osm",
+      "./data/test_data/osm/hotchkiss_town.osm",
+      "./data/test_data/osm/voronezh_city.osm",
+      "./data/test_data/osm/minsk_city.osm",
 
       // 1 boundary-only Relation + 1 Node
       "./data/test_data/osm/kadikoy_town.osm",
       // 2 Relations + 1 Node
       "./data/test_data/osm/stolbtcy_town.osm",
       // 1 Way + 1 Relation + 1 Node
-      "./data/test_data/osm/dmitrov_town.osm", "./data/test_data/osm/lesnoy_town.osm",
+      "./data/test_data/osm/dmitrov_town.osm",
+      "./data/test_data/osm/lesnoy_town.osm",
 
-      "./data/test_data/osm/pushkino_city.osm", "./data/test_data/osm/korday_town.osm",
+      "./data/test_data/osm/pushkino_city.osm",
+      "./data/test_data/osm/korday_town.osm",
       "./data/test_data/osm/bad_neustadt_town.osm",
 
       /// @todo We don't store villages in World now, but for the future!
@@ -1010,7 +1018,7 @@ UNIT_CLASS_TEST(TestRawGenerator, Addr_Interpolation)
       TEST(res, ());
 
       auto street = guard.GetFeatureByIndex(res->m_streetId);
-      TEST_EQUAL(street->GetName(StringUtf8Multilang::kDefaultCode), "Juncal", ());
+      TEST_EQUAL(street->GetDefaultName(), "Juncal", ());
     }
   }
 
@@ -1226,6 +1234,43 @@ UNIT_CLASS_TEST(TestRawGenerator, Railway_Station)
     ++count;
   });
   TEST_EQUAL(count, 1, ());
+}
+
+UNIT_CLASS_TEST(TestRawGenerator, Tesselator)
+{
+  std::string const mwmName = "Tesselator";
+
+  BuildFB("./data/test_data/osm/tess_1.osm", mwmName);
+  BuildFeatures(mwmName);
+
+  FrozenDataSource dataSource;
+  auto const res = dataSource.RegisterMap(platform::LocalCountryFile::MakeTemporary(GetMwmPath(mwmName)));
+  CHECK_EQUAL(res.second, MwmSet::RegResult::Success, ());
+
+  FeaturesLoaderGuard guard(dataSource, res.first);
+
+  size_t const numFeatures = guard.GetNumFeatures();
+  for (int scale : feature::g_arrCountryScales)
+  {
+    for (size_t id = 0; id < numFeatures; ++id)
+    {
+      auto ft = guard.GetFeatureByIndex(id);
+      if (ft->GetGeomType() == feature::GeomType::Area)
+      {
+        auto const & pts = ft->GetTrianglesAsPoints(scale);
+        if (pts.empty())
+          continue;
+
+        size_t const trgSize = pts.size() / 3;
+        LOG(LINFO, ("Triangles count =", trgSize));
+
+        auto const * arr = pts.data();
+        for (size_t i = 0; i < trgSize - 1; ++i)
+          for (size_t j = i + 1; j < trgSize; ++j)
+            TEST(!m2::IsIntersectTriangles(arr + 3 * i, arr + 3 * j), ());
+      }
+    }
+  }
 }
 
 }  // namespace raw_generator_tests

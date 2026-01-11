@@ -4,7 +4,7 @@ enum GlobalStyleSheet: String, CaseIterable {
   case tableViewCell = "MWMTableViewCell"
   case defaultTableViewCell
   case tableViewHeaderFooterView = "TableViewHeaderFooterView"
-  case defaultSearchBar
+  case searchOnMapSearchBar
   case searchBar = "SearchBar"
   case navigationBar = "NavigationBar"
   case navigationBarItem = "NavigationBarItem"
@@ -64,8 +64,11 @@ enum GlobalStyleSheet: String, CaseIterable {
   case grabber
   case modalSheetBackground
   case modalSheetContent
+  case sideMenuBackground
+  case sideMenuContent
   case toastBackground
   case toastLabel
+  case crowdfundingButton
 }
 
 extension GlobalStyleSheet: IStyleSheet {
@@ -98,13 +101,17 @@ extension GlobalStyleSheet: IStyleSheet {
         s.font = fonts.medium14
         s.fontColor = colors.blackSecondaryText
       }
-    case .defaultSearchBar:
+    case .searchOnMapSearchBar:
       return .add { s in
-        s.backgroundColor = colors.pressBackground
-        s.barTintColor = colors.clear
-        s.fontColor = colors.blackPrimaryText
-        s.fontColorDetailed = UIColor.white
-        s.tintColor = colors.blackSecondaryText
+        if #available(iOS 26.0, *) {
+          s.backgroundColor = .lightGray.withAlphaComponent(alpha20)
+        } else {
+          s.backgroundColor = colors.pressBackground
+          s.barTintColor = colors.clear
+          s.fontColor = colors.blackPrimaryText
+          s.fontColorDetailed = UIColor.white
+          s.tintColor = colors.blackSecondaryText
+        }
       }
     case .searchBar:
       return .add { s in
@@ -290,6 +297,8 @@ extension GlobalStyleSheet: IStyleSheet {
         s.cornerRadius = .buttonDefault
         s.clip = true
         s.fontColor = colors.whitePrimaryText
+        s.coloring = .whiteText
+        s.tintColor = colors.whitePrimaryText
         s.backgroundColor = colors.linkBlue
         s.fontColorHighlighted = colors.whitePrimaryTextHighlighted
         s.fontColorDisabled = colors.whitePrimaryTextHighlighted
@@ -301,6 +310,13 @@ extension GlobalStyleSheet: IStyleSheet {
         s.cornerRadius = .buttonDefaultBig
         s.backgroundColor = colors.linkBlue
         s.backgroundColorDisabled = colors.linkBlueHighlighted
+      }
+    case .crowdfundingButton:
+      return .addFrom(Self.flatNormalButtonBig) { s in
+        s.font = fonts.semibold16
+        s.fontColor = UIColor(fromHexString: "500000")
+        s.cornerRadius = .buttonDefaultBig
+        s.backgroundColor = colors.ratingYellow
       }
     case .flatNormalTransButton:
       return .add { s in
@@ -466,7 +482,7 @@ extension GlobalStyleSheet: IStyleSheet {
         s.coloring = MWMButtonColoring.blue
       }
     case .grabber:
-      return .addFrom(Self.background) { s in
+      return .addFrom(Self.divider) { s in
         s.cornerRadius = .grabber
       }
     case .modalSheetBackground:
@@ -478,16 +494,24 @@ extension GlobalStyleSheet: IStyleSheet {
         s.shadowRadius = 6
         s.cornerRadius = .modalSheet
         s.clip = false
-        s.maskedCorners = isiPad ? [] : [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        s.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
       }
     case .modalSheetContent:
       return .addFrom(Self.modalSheetBackground) { s in
         s.backgroundColor = colors.clear
         s.clip = true
       }
+    case .sideMenuBackground:
+      return .addFrom(Self.modalSheetBackground) { s in
+        s.maskedCorners = []
+      }
+    case .sideMenuContent:
+      return .addFrom(Self.modalSheetContent) { s in
+        s.maskedCorners = []
+      }
     case .toastBackground:
       return .add { s in
-        s.cornerRadius = .modalSheet
+        s.cornerRadius = .buttonDefaultBig
         s.clip = true
       }
     case .toastLabel:

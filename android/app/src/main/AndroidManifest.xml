@@ -43,7 +43,6 @@
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
 <!--  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>-->
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
-<!--  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>-->
   <!--
     Android 13 (API level 33) and higher supports a runtime permission for sending non-exempt (including Foreground
     Services (FGS)) notifications from an app.
@@ -183,27 +182,29 @@
 <!--        <data android:mimeType="application/vnd.google-earth.kmz+xml"/>-->
 <!--      </intent-filter>-->
 
-<!--      <intent-filter>-->
-<!--        <action android:name="android.intent.action.VIEW"/>-->
-<!--        <category android:name="android.intent.category.DEFAULT"/>-->
-<!--        <category android:name="android.intent.category.BROWSABLE"/>-->
-<!--        <data android:scheme="http"/>-->
-<!--        <data android:scheme="https"/>-->
-<!--        <data android:scheme="content"/>-->
-<!--        <data android:scheme="file"/>-->
-<!--        <data android:scheme="data"/>-->
-<!--        <data android:host="*"/>-->
-<!--        <data android:mimeType="application/geo+json"/>-->
-<!--        <data android:mimeType="application/vnd.geo+json"/>-->
-<!--      </intent-filter>-->
+<!--       <intent-filter>-->
+<!--         <action android:name="android.intent.action.VIEW"/>-->
+<!--         <category android:name="android.intent.category.DEFAULT"/>-->
+<!--         <category android:name="android.intent.category.BROWSABLE"/>-->
+<!--         <data android:scheme="http"/>-->
+<!--         <data android:scheme="https"/>-->
+<!--         <data android:scheme="content"/>-->
+<!--         <data android:scheme="file"/>-->
+<!--         <data android:scheme="data"/>-->
+<!--         <data android:host="*"/>-->
+<!--         <data android:mimeType="application/geo+json"/>-->
+<!--         <data android:mimeType="application/vnd.geo+json"/>-->
+<!--         <data android:mimeType="application/json"/>-->
+<!--       </intent-filter>-->
 
-<!--      <intent-filter>-->
-<!--        <action android:name="android.intent.action.SEND"/>-->
-<!--        <action android:name="android.intent.action.SEND_MULTIPLE"/>-->
-<!--        <category android:name="android.intent.category.DEFAULT"/>-->
-<!--        <data android:mimeType="application/geo+json"/>-->
-<!--        <data android:mimeType="application/vnd.geo+json"/>-->
-<!--      </intent-filter>-->
+<!--       <intent-filter>-->
+<!--         <action android:name="android.intent.action.SEND"/>-->
+<!--         <action android:name="android.intent.action.SEND_MULTIPLE"/>-->
+<!--         <category android:name="android.intent.category.DEFAULT"/>-->
+<!--         <data android:mimeType="application/geo+json"/>-->
+<!--         <data android:mimeType="application/vnd.geo+json"/>-->
+<!--         <data android:mimeType="application/json"/>-->
+<!--       </intent-filter>-->
 
 <!--      <intent-filter>-->
 <!--        <action android:name="android.intent.action.VIEW"/>-->
@@ -289,6 +290,14 @@
 <!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.geojson" />-->
 <!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />-->
 <!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.geojson" />-->
+<!--        <data android:pathPattern="/.*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\.json" />-->
+<!--        <data android:pathPattern="/.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.json" />-->
 <!--      </intent-filter>-->
 
       <!-- Duplicates the intent-filter above except it doesn't have mimeType, see
@@ -520,17 +529,12 @@
 <!--      </intent-filter>-->
 <!--    </service>-->
 
-    <service
-        android:name="app.organicmaps.car.CarLocationService"
-        android:foregroundServiceType="location"
-        android:exported="false" />
-
-<!--    <service-->
-<!--        android:name=".routing.NavigationService"-->
-<!--        android:foregroundServiceType="location|mediaPlayback"-->
-<!--        android:exported="false"-->
-<!--        android:enabled="true"-->
-<!--        android:stopWithTask="false"/>-->
+<!--     <service-->
+<!--         android:name=".routing.NavigationService"-->
+<!--         android:foregroundServiceType="location|mediaPlayback"-->
+<!--         android:exported="false"-->
+<!--         android:enabled="true"-->
+<!--         android:stopWithTask="false"/>-->
 
 <!--    <service android:name=".location.TrackRecordingService"-->
 <!--      android:foregroundServiceType="location"-->

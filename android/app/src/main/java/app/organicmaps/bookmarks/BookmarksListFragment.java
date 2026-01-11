@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuProvider;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
@@ -109,7 +110,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   @NonNull
   private final RecyclerView.OnScrollListener mRecyclerListener = new RecyclerView.OnScrollListener() {
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState)
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState)
     {
       if (newState == RecyclerView.SCROLL_STATE_DRAGGING)
         mToolbarController.deactivate();
@@ -117,6 +118,47 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   };
   @Nullable
   private Bundle mSavedInstanceState;
+
+  @NonNull
+  private final MenuProvider mMenuProvider = new MenuProvider() {
+    @Override
+    public void onPrepareMenu(@NonNull Menu menu)
+    {
+      final boolean visible = !mSearchMode && !isEmpty();
+      final MenuItem itemSearch = menu.findItem(R.id.bookmarks_search);
+      itemSearch.setVisible(visible);
+
+      final MenuItem itemMore = menu.findItem(R.id.bookmarks_more);
+      if (mLastSortTimestamp != 0)
+        itemMore.setActionView(R.layout.toolbar_menu_progressbar);
+    }
+
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater)
+    {
+      menuInflater.inflate(R.menu.option_menu_bookmarks, menu);
+
+      menu.findItem(R.id.bookmarks_search).setVisible(!isEmpty());
+    }
+
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem)
+    {
+      if (menuItem.getItemId() == R.id.bookmarks_search)
+      {
+        activateSearch();
+        return true;
+      }
+
+      if (menuItem.getItemId() == R.id.bookmarks_more)
+      {
+        MenuBottomSheetFragment.newInstance(OPTIONS_MENU_ID, mCategoryDataSource.getData().getName())
+            .show(getChildFragmentManager(), OPTIONS_MENU_ID);
+        return true;
+      }
+      return false;
+    }
+  };
 
   @CallSuper
   @Override
@@ -184,7 +226,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
 //    configureFab(view);
 
-    setHasOptionsMenu(true);
+    requireActivity().addMenuProvider(mMenuProvider, getViewLifecycleOwner());
 
     ActionBar bar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
     if (bar != null)
@@ -412,21 +454,22 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   }
 
   @Override
-  public void onSort(@BookmarkManager.SortingType int sortingType)
+  public void onSort(@BookmarkCategory.SortingType int sortingType)
   {
     mLastSortTimestamp = System.nanoTime();
 
     final Location loc = MwmApplication.from(requireContext()).getLocationHelper().getSavedLocation();
     final boolean hasMyPosition = loc != null;
-    if (!hasMyPosition && sortingType == BookmarkManager.SORT_BY_DISTANCE)
+    if (!hasMyPosition && sortingType == BookmarkCategory.SortingType.BY_DISTANCE)
       return;
 
-    final long catId = mCategoryDataSource.getData().getId();
+    final BookmarkCategory category = mCategoryDataSource.getData();
     final double lat = hasMyPosition ? loc.getLatitude() : 0;
     final double lon = hasMyPosition ? loc.getLongitude() : 0;
 
-    BookmarkManager.INSTANCE.setLastSortingType(catId, sortingType);
-    BookmarkManager.INSTANCE.getSortedCategory(catId, sortingType, hasMyPosition, lat, lon, mLastSortTimestamp);
+    category.setLastSortingType(sortingType);
+    BookmarkManager.INSTANCE.getSortedCategory(category.getId(), sortingType, hasMyPosition, lat, lon,
+                                               mLastSortTimestamp);
 
     updateSortingProgressBar();
   }
@@ -447,8 +490,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   public void onResetSorting()
   {
     mLastSortTimestamp = 0;
-    long catId = mCategoryDataSource.getData().getId();
-    BookmarkManager.INSTANCE.resetLastSortingType(catId);
+    mCategoryDataSource.getData().resetLastSortingType();
 
     BookmarkListAdapter adapter = getBookmarkListAdapter();
     adapter.setSortedResults(null);
@@ -465,8 +507,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     if (mLastSortTimestamp != 0)
       return;
 
-    long catId = mCategoryDataSource.getData().getId();
-    if (!BookmarkManager.INSTANCE.hasLastSortingType(catId))
+    if (!mCategoryDataSource.getData().hasLastSortingType())
       return;
 
     int currentType = getLastAvailableSortingType();
@@ -498,29 +539,28 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   }
 
   @NonNull
-  @BookmarkManager.SortingType
+  @BookmarkCategory.SortingType
   private int[] getAvailableSortingTypes()
   {
-    final long catId = mCategoryDataSource.getData().getId();
     final Location loc = MwmApplication.from(requireContext()).getLocationHelper().getSavedLocation();
     final boolean hasMyPosition = loc != null;
-    return BookmarkManager.INSTANCE.getAvailableSortingTypes(catId, hasMyPosition);
+    return mCategoryDataSource.getData().getAvailableSortingTypes(hasMyPosition);
   }
 
   private int getLastSortingType()
   {
-    final long catId = mCategoryDataSource.getData().getId();
-    if (BookmarkManager.INSTANCE.hasLastSortingType(catId))
-      return BookmarkManager.INSTANCE.getLastSortingType(catId);
+    final BookmarkCategory category = mCategoryDataSource.getData();
+    if (category.hasLastSortingType())
+      return category.getLastSortingType();
     return -1;
   }
 
   private int getLastAvailableSortingType()
   {
     int currentType = getLastSortingType();
-    @BookmarkManager.SortingType
+    @BookmarkCategory.SortingType
     int[] types = getAvailableSortingTypes();
-    for (@BookmarkManager.SortingType int type : types)
+    for (@BookmarkCategory.SortingType int type : types)
     {
       if (type == currentType)
         return currentType;
@@ -609,7 +649,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
       int to = PredefinedColors.getColor(colorPos);
       if (from == to)
         return;
-      BookmarkManager.INSTANCE.changeTrackColor(mTrack.getTrackId(), to);
+      mTrack.setColor(to);
       Drawable circle = Graphics.drawCircle(to, R.dimen.track_circle_size, requireContext().getResources());
       v.setImageDrawable(circle);
     });
@@ -650,48 +690,6 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     BookmarkManager.INSTANCE.deleteTrack(trackId);
     getBookmarkListAdapter().onDelete(mSelectedPosition);
     getBookmarkListAdapter().notifyDataSetChanged();
-  }
-
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater)
-  {
-    inflater.inflate(R.menu.option_menu_bookmarks, menu);
-
-    MenuItem itemSearch = menu.findItem(R.id.bookmarks_search);
-    itemSearch.setVisible(!isEmpty());
-  }
-
-  @Override
-  public void onPrepareOptionsMenu(@NonNull Menu menu)
-  {
-    super.onPrepareOptionsMenu(menu);
-
-    boolean visible = !mSearchMode && !isEmpty();
-    MenuItem itemSearch = menu.findItem(R.id.bookmarks_search);
-    itemSearch.setVisible(visible);
-
-    MenuItem itemMore = menu.findItem(R.id.bookmarks_more);
-    if (mLastSortTimestamp != 0)
-      itemMore.setActionView(R.layout.toolbar_menu_progressbar);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item)
-  {
-    if (item.getItemId() == R.id.bookmarks_search)
-    {
-      activateSearch();
-      return true;
-    }
-
-    if (item.getItemId() == R.id.bookmarks_more)
-    {
-      MenuBottomSheetFragment.newInstance(OPTIONS_MENU_ID, mCategoryDataSource.getData().getName())
-          .show(getChildFragmentManager(), OPTIONS_MENU_ID);
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
   }
 
   private void onShareActionSelected()
@@ -764,7 +762,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   private ArrayList<MenuBottomSheetItem> getOptionsMenuItems()
   {
-    @BookmarkManager.SortingType
+    @BookmarkCategory.SortingType
     int[] types = getAvailableSortingTypes();
     ArrayList<MenuBottomSheetItem> items = new ArrayList<>();
     if (!isEmpty())
@@ -844,7 +842,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   @Override
   @Nullable
-  public ArrayList<MenuBottomSheetItem> getMenuBottomSheetItems(String id)
+  public ArrayList<MenuBottomSheetItem> getMenuBottomSheetItems(@NonNull String id)
   {
     if (id.equals(BOOKMARKS_MENU_ID))
       return getBookmarkMenuItems();

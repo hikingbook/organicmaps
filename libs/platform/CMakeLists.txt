@@ -56,6 +56,8 @@ set(SRC
   servers_list.hpp
   products.cpp
   products.hpp
+  style_utils.cpp
+  style_utils.hpp
   settings.cpp
   settings.hpp
   socket.hpp
@@ -176,18 +178,21 @@ if (PLATFORM_LINUX OR PLATFORM_WIN)
 endif()
 
 target_link_libraries(${PROJECT_NAME}
-  geometry  # mercator::YToLat
-  coding
-  $<$<BOOL:${PLATFORM_DESKTOP}>:Qt6::Core>
-  $<$<BOOL:${PLATFORM_LINUX}>:Qt6::Network>
-  $<$<BOOL:${PLATFORM_WIN}>:Qt6::Network>
-  $<$<BOOL:${PLATFORM_WIN}>:shlwapi>  # PathIsDirectoryEmptyA
-  $<$<BOOL:${PLATFORM_MAC}>:
-    -framework\ Foundation
-    -framework\ SystemConfiguration
-    -framework\ CFNetwork
-    -framework\ Security  # SecPKCS12Import
-    >
+  PUBLIC
+    geometry  # mercator::YToLat
+    coding
+    cppjansson
+    glaze::glaze
+    $<$<BOOL:${PLATFORM_DESKTOP}>:Qt6::Core>
+    $<$<BOOL:${PLATFORM_LINUX}>:Qt6::Network>
+    $<$<BOOL:${PLATFORM_WIN}>:Qt6::Network>
+    $<$<BOOL:${PLATFORM_WIN}>:shlwapi>  # PathIsDirectoryEmptyA
+    $<$<BOOL:${PLATFORM_MAC}>:
+      -framework\ Foundation
+      -framework\ SystemConfiguration
+      -framework\ CFNetwork
+      -framework\ Security  # SecPKCS12Import
+      >
 )
 
 omim_add_test_subdirectory(platform_tests_support)
