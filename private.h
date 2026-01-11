@@ -7,14 +7,15 @@
 #define OSM_OAUTH2_REDIRECT_URI "om://oauth2/osm/callback"
 #define OSM_OAUTH2_SCOPE "read_prefs write_api write_notes"
 #define MWM_GEOLOCATION_SERVER ""
-#define METASERVER_URL "https://hikingbook.net/maps/cdns"
+#define METASERVER_URL "https://hikingbook.net/maps/cdns/v2"
 #define DIFF_LIST_URL ""
-#define DEFAULT_URLS_JSON R"(["https://cdn-nl1.organicmaps.app/","https://cdn-uk1.organicmaps.app/","https://cdn.organicmaps.app/"])"
+#define DEFAULT_URLS_JSON \
+  R"({"servers":["https://cdn-nl1.organicmaps.app/","https://cdn-uk1.organicmaps.app/","https://cdn.organicmaps.app/"]})"
 #define DEFAULT_CONNECTION_CHECK_IP "162.55.100.169"  // For now the IP of cdn.organicmaps.app
 #define TRAFFIC_DATA_BASE_URL ""
 #define USER_BINDING_PKCS12 ""
 #define USER_BINDING_PKCS12_PASSWORD ""
 #define KAYAK_AFFILIATE_ID "kan_267335"
 // Hikingbook Pro Maps
-#define HIKINGBOOK_PRO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-pro-maps/cdns"
-#define HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON "[\"https://assets.hikingbook.net/hikingbook-pro-maps/\"]"
+#define HIKINGBOOK_PRO_MAPS_METASERVER_URL "https://hikingbook.net/hikingbook-pro-maps/cdns/v2"
+#define HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON R"({"servers":["https://assets.hikingbook.net/hikingbook-pro-maps/"]})"

@@ -74,6 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_quarter"
         android:ellipsize="end"
+        android:fontFamily="@font/organic_maps_emoji"
         android:textAppearance="@style/MwmTextAppearance.Body3"
         tools:background="#300000F0"
         tools:text="Subtitle, very very very very very very very long" />
@@ -209,8 +210,8 @@
 
       <ImageView
         android:id="@+id/item_icon"
-        android:layout_width="@dimen/place_page_icon_size"
-        android:layout_height="@dimen/place_page_icon_size"
+        android:layout_width="@dimen/place_page_icon_background_size"
+        android:layout_height="@dimen/place_page_icon_background_size"
         android:layout_gravity="center"
         android:paddingHorizontal="@dimen/margin_half_plus"
         android:background="?clickableBackground"

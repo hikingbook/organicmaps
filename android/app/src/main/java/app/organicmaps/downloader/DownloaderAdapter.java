@@ -108,7 +108,8 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     item.update();
     if (item.status != CountryItem.STATUS_UPDATABLE)
       return;
-    MapManagerHelper.warnOn3gUpdate(adapter.mActivity, item.id, () -> MapManagerHelper.startUpdate(item.id, MapSource.ORGANIC_MAPS));
+    MapManagerHelper.warnOn3gUpdate(adapter.mActivity, item.id,
+                                    () -> MapManagerHelper.startUpdate(adapter.mActivity, item.id, MapSource.ORGANIC_MAPS));
   }
 
   private void onExploreActionSelected(CountryItem item, DownloaderAdapter adapter)
@@ -170,8 +171,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
     refreshData();
   }
 
-  private record PathEntry(CountryItem item, boolean myMapsMode, int topPosition, int topOffset)
-  {
+  private record PathEntry(CountryItem item, boolean myMapsMode, int topPosition, int topOffset) {
     @Override
     public String toString()
     {
@@ -394,7 +394,7 @@ class DownloaderAdapter extends RecyclerView.Adapter<DownloaderAdapter.ViewHolde
         MapManagerHelper.warn3gAndRetry(mActivity, mItem.id, MapSource.ORGANIC_MAPS, null);
       }
       case CountryItem.STATUS_UPDATABLE ->
-        MapManagerHelper.warnOn3gUpdate(mActivity, mItem.id, () -> MapManagerHelper.startUpdate(mItem.id, MapSource.ORGANIC_MAPS));
+        MapManagerHelper.warnOn3gUpdate(mActivity, mItem.id, () -> MapManagerHelper.startUpdate(mActivity, mItem.id, MapSource.ORGANIC_MAPS));
       default -> throw new IllegalArgumentException("Inappropriate item status: " + mItem.status);
       }
     }

@@ -48,19 +48,23 @@ void MapFilesDownloader::RunMetaConfigAsync(std::function<void()> && callback)
 
   GetPlatform().RunTask(Platform::Thread::Network, [this, callback = std::move(callback)]()
   {
-    GetMetaConfig([this, callback = std::move(callback)](std::map<MapSource, MetaConfig> const & metaConfigMap)
-    {
-        for (auto const & [mapSource, metaConfig] : metaConfigMap) {
-            m_serversList[mapSource] = metaConfig.m_serversList;
-            settings::Update(metaConfig.m_settings);
-            products::Update(metaConfig.m_productsConfig);
-        }
+    auto metaConfigMap = GetMetaConfig();
 
-      callback();
+    for (auto & [mapSource, metaConfig] : metaConfigMap) {
+      // Thread-safe.
+      settings::Update(metaConfig.settings);
+      products::ProductsSettings::Instance().Update(std::move(metaConfig.productsConfig));
 
-      // Reset flag to invoke servers list downloading next time if current request has failed.
-      m_isMetaConfigRequested = false;
-    });
+      GetPlatform().RunTask(Platform::Thread::Gui, [this, mapSource = mapSource, servers = metaConfig.servers, callback = std::move(callback)]()
+      {
+        m_serversList[mapSource] = std::move(servers);
+
+        callback();
+
+        // Reset flag to invoke servers list downloading next time if current request has failed.
+        m_isMetaConfigRequested = false;
+      });
+    }
   });
 }
 
@@ -167,14 +171,13 @@ std::string GetAcceptLanguage()
 }
 
 // static
-std::map<MapSource, MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
+std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
 {
     Platform & pl = GetPlatform();
     std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, pl.MetaServerUrl() }, { MapSource::HikingbookProMaps, pl.HikingbookProMapsMetaServerUrl() }};
-    std::map<MapSource, MetaConfig> metaConfigMap;
+    std::map<MapSource, downloader::MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;
-        
         if (!metaServerUrl.empty())
         {
             platform::HttpClient request(metaServerUrl);
@@ -191,22 +194,21 @@ std::map<MapSource, MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
             request.RunHttpRequest(httpResult);
         }
         
-        std::optional<MetaConfig> metaConfig = downloader::ParseMetaConfig(httpResult);
+        std::optional<downloader::MetaConfig> metaConfig = downloader::ParseMetaConfig(httpResult);
         if (!metaConfig)
         {
             metaConfig = downloader::ParseMetaConfig(pl.DefaultUrlsJSON(metaServerUrl));
             CHECK(metaConfig, ());
-            LOG(LWARNING, ("Can't get meta configuration from request, using default servers:", metaConfig->m_serversList));
+            LOG(LWARNING, ("Can't get meta configuration from request, using default servers:", metaConfig->servers));
         }
-        CHECK(!metaConfig->m_serversList.empty(), ());
         metaConfigMap[mapSource] = *metaConfig;
     }
   return metaConfigMap;
 }
 
-void MapFilesDownloader::GetMetaConfig(MetaConfigCallback const & callback)
+std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::GetMetaConfig()
 {
-  callback(LoadMetaConfigMap());
+  return LoadMetaConfigMap();
 }
 
 }  // namespace storage

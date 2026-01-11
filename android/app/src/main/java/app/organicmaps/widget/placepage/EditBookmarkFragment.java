@@ -239,9 +239,8 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
     }
     boolean movedFromCategory = mBookmark.getCategoryId() != mBookmarkCategory.getId();
     if (movedFromCategory)
-      BookmarkManager.INSTANCE.notifyCategoryChanging(mBookmark, mBookmarkCategory.getId());
-    BookmarkManager.INSTANCE.notifyParametersUpdating(mBookmark, mEtName.getText().toString(), mIcon,
-                                                      mEtDescription.getText().toString());
+      mBookmark.changeCategory(mBookmarkCategory.getId());
+    mBookmark.update(mEtName.getText().toString(), mIcon, mEtDescription.getText().toString());
 
     if (mListener != null)
       mListener.onBookmarkSaved(mBookmark.getBookmarkId(), movedFromCategory);
@@ -255,11 +254,10 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
       dismiss();
       return;
     }
-    boolean movedFromCategory = mTrack.getCategoryId() != mBookmarkCategory.getId();
+    final boolean movedFromCategory = mTrack.getCategoryId() != mBookmarkCategory.getId();
     if (movedFromCategory)
-      BookmarkManager.INSTANCE.notifyCategoryChanging(mTrack, mBookmarkCategory.getId());
-    BookmarkManager.INSTANCE.notifyParametersUpdating(mTrack, mEtName.getText().toString(), mColor,
-                                                      mEtDescription.getText().toString());
+      mTrack.setCategoryId(mBookmarkCategory.getId());
+    mTrack.update(mEtName.getText().toString(), mColor, mEtDescription.getText().toString());
     if (mListener != null)
       mListener.onBookmarkSaved(mTrack.getTrackId(), movedFromCategory);
     dismiss();
@@ -379,7 +377,7 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
 
     if (TextUtils.isEmpty(mEtDescription.getText()))
     {
-      mEtDescription.setText(BookmarkManager.INSTANCE.getBookmarkDescription(mBookmark.getBookmarkId()));
+      mEtDescription.setText(mBookmark.getDescription());
     }
     refreshCategory();
     refreshColorMarker();
@@ -394,15 +392,13 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
       mEtName.setText(mTrack.getName());
 
     if (TextUtils.isEmpty(mEtDescription.getText()))
-    {
-      mEtDescription.setText(BookmarkManager.INSTANCE.getTrackDescription(mTrack.getTrackId()));
-    }
+      mEtDescription.setText(mTrack.getDescription());
     refreshCategory();
     refreshTrackColor();
   }
 
   @Override
-  public void onCategoryChanged(BookmarkCategory newCategory)
+  public void onCategoryChanged(@NonNull BookmarkCategory newCategory)
   {
     mBookmarkCategory = newCategory;
     refreshCategory();

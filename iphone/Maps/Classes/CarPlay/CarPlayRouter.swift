@@ -204,6 +204,13 @@ final class CarPlayRouter: NSObject {
 // MARK: - Navigation session management
 extension CarPlayRouter {
   func startNavigationSession(forTrip trip: CPTrip, template: CPMapTemplate) {
+    guard routeSession == nil else {
+      let errorMessage = "Route session is already running."
+      LOG(.error, errorMessage)
+      Toast.show(withText: errorMessage, alignment: .top)
+      return
+    }
+    LOG(.info, "Starting a new navigation session")
     routeSession = template.startNavigationSession(for: trip)
     routeSession?.pauseTrip(for: .loading, description: nil)
     updateUpcomingManeuvers()
@@ -212,14 +219,21 @@ extension CarPlayRouter {
     }
   }
 
-  func cancelTrip() {
+  func cancelNavigationSession() {
+    LOG(.info, "Сancelling navigation session")
     routeSession?.cancelTrip()
     routeSession = nil
-    completeRouteAndRemovePoints()
     RoutingManager.routingManager.resetOnNewTurnCallback()
   }
 
+  func cancelTrip() {
+    LOG(.info, "Сancelling trip")
+    cancelNavigationSession()
+    completeRouteAndRemovePoints()
+  }
+
   func finishTrip() {
+    LOG(.info, "Finishing trip")
     routeSession?.finishTrip()
     routeSession = nil
     completeRouteAndRemovePoints()
@@ -264,7 +278,11 @@ extension CarPlayRouter {
     primaryManeuver.instructionVariants = [instructionVariant]
     if let imageName = routeInfo.turnImageName,
       let symbol = UIImage(named: imageName) {
-      primaryManeuver.symbolImage = symbol
+      if #available(iOS 13.0, *) {
+        primaryManeuver.symbolImage = symbol
+      } else {
+        primaryManeuver.symbolSet = CPImageSet(lightContentImage: symbol, darkContentImage: symbol)
+      }
     }
     if let estimates = createEstimates(routeInfo) {
       primaryManeuver.initialTravelEstimates = estimates
@@ -275,7 +293,11 @@ extension CarPlayRouter {
       let secondaryManeuver = CPManeuver()
       secondaryManeuver.userInfo = CPConstants.Maneuvers.secondary
       secondaryManeuver.instructionVariants = [L("then_turn")]
-      secondaryManeuver.symbolImage = symbol
+      if #available(iOS 13.0, *) {
+        secondaryManeuver.symbolImage = symbol
+      } else {
+        secondaryManeuver.symbolSet = CPImageSet(lightContentImage: symbol, darkContentImage: symbol)
+      }
       maneuvers.append(secondaryManeuver)
     }
     return maneuvers

@@ -445,6 +445,11 @@ IsPisteChecker::IsPisteChecker() : BaseChecker(1 /* level */)
   m_types.push_back(classif().GetTypeByPath({"piste:type"}));
 }
 
+IsMwmBorderChecker::IsMwmBorderChecker() : BaseChecker(2 /* level */)
+{
+  m_types.push_back(classif().GetTypeByPath({"organicapp", "mwm_border"}));
+}
+
 // Used in IsPoiChecker and in IsAddressObjectChecker.
 OneLevelPOIChecker::OneLevelPOIChecker() : ftypes::BaseChecker(1 /* level */)
 {
@@ -625,6 +630,12 @@ IsHotelChecker::IsHotelChecker()
     m_types.push_back(c.GetTypeByPath(e));
 }
 
+IsCampPitchChecker::IsCampPitchChecker()
+{
+  Classificator const & c = classif();
+  m_types.push_back(c.GetTypeByPath({"tourism", "camp_pitch"}));
+}
+
 IsIslandChecker::IsIslandChecker()
 {
   Classificator const & c = classif();
@@ -720,10 +731,23 @@ IsCapitalChecker::IsCapitalChecker() : BaseChecker(3 /* level */)
   m_types.push_back(classif().GetTypeByPath({"place", "city", "capital"}));
 }
 
+IsParkingChecker::IsParkingChecker()
+{
+  Classificator const & c = classif();
+  m_types.push_back(c.GetTypeByPath({"amenity", "parking"}));
+}
+
+IsBicycleParkingChecker::IsBicycleParkingChecker()
+{
+  Classificator const & c = classif();
+  m_types.push_back(c.GetTypeByPath({"amenity", "bicycle_parking"}));
+}
+
 IsPublicTransportStopChecker::IsPublicTransportStopChecker()
 {
   Classificator const & c = classif();
   /// @todo Add bus station into _major_ class (like IsRailwayStationChecker)?
+  m_types.push_back(c.GetTypeByPath({"aerialway", "station"}));
   m_types.push_back(c.GetTypeByPath({"amenity", "bus_station"}));
   m_types.push_back(c.GetTypeByPath({"amenity", "ferry_terminal"}));
   m_types.push_back(c.GetTypeByPath({"highway", "bus_stop"}));
@@ -832,7 +856,7 @@ IsAerowayGateChecker::IsAerowayGateChecker()
   m_types.push_back(c.GetTypeByPath({"aeroway", "gate"}));
 }
 
-IsRailwaySubwayEntranceChecker::IsRailwaySubwayEntranceChecker()
+IsSubwayEntranceChecker::IsSubwayEntranceChecker()
 {
   Classificator const & c = classif();
   m_types.push_back(c.GetTypeByPath({"railway", "subway_entrance"}));

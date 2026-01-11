@@ -22,11 +22,13 @@ NSString * const kToEditorSegue = @"CategorySelectorToEditorSegue";
 {}
 
 @property(weak, nonatomic) IBOutlet UITableView * tableView;
-@property(weak, nonatomic) IBOutlet UISearchBar * searchBar;
+@property(nonatomic) UISearchController * searchViewController;
+
 @property(nonatomic) NSString * selectedType;
 @property(nonatomic) BOOL isSearch;
 @property(nonatomic) MWMObjectsCategorySelectorDataSource * dataSource;
 @property(nonatomic, strong) UIStackView * searchResultsIsEmptyDisclaimer;
+@property(nonatomic, strong) NSLayoutConstraint * searchResultsIsEmptyDisclaimerCenterConstraint;
 
 @end
 
@@ -71,7 +73,23 @@ NSString * const kToEditorSegue = @"CategorySelectorToEditorSegue";
 }
 - (void)configSearchBar
 {
-  self.searchBar.placeholder = L(@"search");
+  self.searchViewController = [[UISearchController alloc] initWithSearchResultsController:nil];
+  self.searchViewController.obscuresBackgroundDuringPresentation = NO;
+  self.searchViewController.hidesNavigationBarDuringPresentation = NO;
+  self.searchViewController.searchBar.placeholder = L(@"search");
+  self.searchViewController.searchBar.delegate = self;
+  [self.searchViewController.searchBar applyTheme];
+  self.navigationItem.hidesSearchBarWhenScrolling = YES;
+  self.navigationItem.searchController = self.searchViewController;
+  if (@available(iOS 26.0, *))
+  {
+    // The search bar will appear at the bottom of the iPhone screen and cannot be hidden.
+    self.navigationItem.hidesSearchBarWhenScrolling = YES;
+  }
+  else
+  {
+    self.navigationItem.hidesSearchBarWhenScrolling = NO;
+  }
 }
 
 - (void)configEmptySearchResultsDisclaimer
@@ -137,9 +155,11 @@ NSString * const kToEditorSegue = @"CategorySelectorToEditorSegue";
   [stackView addArrangedSubview:titleLabel];
   [stackView addArrangedSubview:subtitleTextView];
 
+  self.searchResultsIsEmptyDisclaimerCenterConstraint =
+      [stackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor];
   [NSLayoutConstraint activateConstraints:@[
     [stackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
-    [stackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+    self.searchResultsIsEmptyDisclaimerCenterConstraint,
     [stackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:20],
     [stackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-20]
   ]];
@@ -169,9 +189,16 @@ NSString * const kToEditorSegue = @"CategorySelectorToEditorSegue";
 
 - (void)onKeyboardAnimation
 {
-  UIEdgeInsets const contentInsets = {.bottom = [MWMKeyboard keyboardHeight]};
+  CGFloat const keyboardHeight = [MWMKeyboard keyboardHeight];
+  UIEdgeInsets const contentInsets = {.bottom = keyboardHeight};
   self.tableView.contentInset = contentInsets;
   self.tableView.scrollIndicatorInsets = contentInsets;
+  CGFloat const searchResultsIsEmptyBottomSpacing = self.view.height - self.searchResultsIsEmptyDisclaimer.maxY;
+  LOG(LINFO, (keyboardHeight));
+  [self.view animateConstraintsWithAnimations:^{
+    CGFloat const offset = keyboardHeight > searchResultsIsEmptyBottomSpacing ? -keyboardHeight / 2 : 0;
+    self.searchResultsIsEmptyDisclaimerCenterConstraint.constant = offset;
+  }];
 }
 
 #pragma mark - Create object
@@ -286,8 +313,6 @@ NSString * const kToEditorSegue = @"CategorySelectorToEditorSegue";
 }
 - (void)searchBar:(UISearchBar *)searchBar setActiveState:(BOOL)isActiveState
 {
-  [searchBar setShowsCancelButton:isActiveState animated:YES];
-  [self.navigationController setNavigationBarHidden:isActiveState animated:YES];
   if (!isActiveState)
     [self.dataSource search:@""];
 }

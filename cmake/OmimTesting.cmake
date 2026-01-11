@@ -8,12 +8,12 @@ endif()
 # TestServer fixture configuration
 add_test(
   NAME OmimStartTestServer
-  COMMAND start_server.py
+  COMMAND Python3::Interpreter start_server.py
   WORKING_DIRECTORY ${OMIM_ROOT}/tools/python/test_server
 )
 add_test(
   NAME OmimStopTestServer
-  COMMAND stop_server.py
+  COMMAND Python3::Interpreter stop_server.py
   WORKING_DIRECTORY ${OMIM_ROOT}/tools/python/test_server
 )
 set_tests_properties(OmimStartTestServer PROPERTIES FIXTURES_SETUP TestServer)
@@ -59,17 +59,17 @@ function(omim_add_test_target name src no_platform_init require_qt boost_test)
   if(no_platform_init)
     target_compile_definitions(${name} PRIVATE OMIM_UNIT_TEST_DISABLE_PLATFORM_INIT)
   else()
-    target_link_libraries(${name} platform)
+    target_link_libraries(${name} PRIVATE platform)
   endif()
 
   if(require_qt)
     target_compile_definitions(${name} PRIVATE OMIM_UNIT_TEST_WITH_QT_EVENT_LOOP)
-    target_link_libraries(${name} Qt6::Widgets)
+    target_link_libraries(${name} PRIVATE Qt6::Widgets)
   endif()
 
   if (NOT boost_test)
     # testingmain.cpp uses base::HighResTimer::ElapsedNano
-    target_link_libraries(${name} base)
+    target_link_libraries(${name} PRIVATE base)
   endif()
 endfunction()
 

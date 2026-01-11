@@ -274,5 +274,5 @@ public final class MapManager
 
   public static native int nativeGetHikingbookProMapSize(String root);
 
-  public static native int nativeSetRenderingEnabled(boolean enabled);
+  public static native void nativeSetRenderingEnabled(boolean enabled);
 }

@@ -85,6 +85,13 @@
 
   private func handleDeepLink(url: URL) -> Bool {
     LOG(.info, "handleDeepLink: \(url)")
+
+    var url = url
+    if #available(iOS 18.4, *), let omURL = GeoNavigationToOMURLConverter.convert(url) {
+      LOG(.info, "Default navigation app link is converted from \(url) to \(omURL)")
+      url = omURL
+    }
+
     // TODO(AB): Rewrite API so iOS and Android will call only one C++ method to clear/set API state.
     // This call is also required for DeepLinkParser.showMap, and it also clears old API points...
     let urlType = DeepLinkParser.parseAndSetApiURL(url)
@@ -102,7 +109,7 @@
 //      MapsAppDelegate.theApp().showMap()
       return true
     case .search:
-      let sd = DeepLinkSearchData();
+      let sd = DeepLinkSearchData()
       let kSearchInViewportZoom: Int32 = 16;
       // Set viewport only when cll parameter was provided in url.
       // Equator and Prime Meridian are perfectly valid separately.

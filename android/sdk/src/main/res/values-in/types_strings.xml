@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Types -->
     <string name="type.addr_interpolation">Alamat/Blokir</string>
     <string name="type.addr_interpolation.even">Alamat/Blokir</string>
@@ -110,6 +111,7 @@
     <string name="type.amenity.post_office">Kantor pos</string>
     <string name="type.amenity.prison">Penjara</string>
     <string name="type.amenity.public_bookcase">Rak Buku</string>
+
     <!-- SECTION: Types: Recycling -->
     <string name="type.amenity.recycling.centre">TPA</string>
     <string name="type.amenity.recycling">Wadah daur ulang</string>
@@ -156,6 +158,7 @@
     <string name="type.natural.water.moat">Parit</string>
     <string name="type.natural.water.wastewater">Air limbah</string>
     <string name="type.barrier.entrance">Pintu masuk</string>
+    <string name="type.barrier.guard_rail">Захисна огорожа</string>
     <string name="type.barrier.gate">Gerbang</string>
     <string name="type.barrier.kissing_gate">Gerbang</string>
     <string name="type.barrier.lift_gate">Polisi tidur</string>
@@ -314,6 +317,7 @@
     <string name="type.healthcare.psychotherapist">Psikoterapi</string>
     <string name="type.healthcare.sample_collection">Pengambilan sampel</string>
     <string name="type.healthcare.speech_therapist">Logopedik</string>
+
     <!-- SECTION: Types: Roads -->
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.bridleway.bridge">Menjembatani</string>
@@ -471,6 +475,7 @@
     <string name="type.area_highway.track">Jalan</string>
     <string name="type.area_highway.trunk">Jalan</string>
     <string name="type.area_highway.unclassified">Jalan</string>
+
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">Objek bersejarah</string>
     <string name="type.historic.aircraft">Pesawat Bersejarah</string>
@@ -522,6 +527,7 @@
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery.christian">Pemakaman</string>
     <string name="type.landuse.religious">Halaman gereja</string>
+    <string name="type.landuse.churchyard">Halaman gereja</string>
     <string name="type.landuse.farmland">Lahan pertanian</string>
     <string name="type.landuse.flowerbed">Hamparan bunga</string>
     <string name="type.landuse.forest">Hutan</string>
@@ -658,7 +664,7 @@
     <string name="type.place.sea">Laut</string>
     <string name="type.place.square">Lapangan kota</string>
     <string name="type.place.state">Negara bagian</string>
-    <string name="type.place.state.USA">Negara bagian</string>
+    <string name="type.place.state.major">Negara bagian</string>
     <!-- Named part of a city or town, bigger than place=quarter (Wiki: https://wiki.openstreetmap.org/wiki/Tag:place%3Dsuburb) -->
     <string name="type.place.suburb">Pinggiran kota</string>
     <string name="type.place.town">Kota</string>
@@ -1014,6 +1020,7 @@
     <string name="type.shop.pet_grooming">Perawatan Hewan Peliharaan</string>
     <string name="type.shop.photo">Studio Foto</string>
     <string name="type.shop.rental">Toko Sewa</string>
+    <string name="type.shop.rental.bicycle">Toko Penyewaan Sepeda</string>
     <string name="type.amenity.bicycle_rental.shop">Toko Penyewaan Sepeda</string>
     <string name="type.shop.seafood">Penjual Ikan</string>
     <string name="type.shop.second_hand">Toko Barang bekas</string>
@@ -1166,8 +1173,21 @@
     <string name="type.amenity.dojo">Dojo</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall -->
     <string name="type.leisure.sports_hall">Ruang olahraga</string>
-    <string name="type.barrier.guard_rail">Захисна огорожа</string>
-    <string name="type.barrier.log">Rintangan Gelondongan</string>
-    <string name="type.barrier.debris">Puing</string>
     <string name="type.barrier.jersey_barrier">Blok</string>
+    <string name="type.barrier.debris">Puing</string>
+    <string name="type.barrier.log">Rintangan Gelondongan</string>
+    <string name="type.amenity.boat_rental">Penyewaan Perahu</string>
+    <string name="type.shop.telecommunication">Toko telekomunikasi</string>
+    <string name="type.leisure.indoor_play">Pusat Bermain</string>
+    <string name="type.tourism.camp_pitch">Tempat Berkemah</string>
+    <string name="type.railway.miniature">Miniatur Kereta Api</string>
+    <string name="type.amenity.kneipp_water_cure">Penyembuhan Air Kneipp</string>
+    <string name="type.area_highway.traffic_island">Pulau Lalu Lintas</string>
+    <string name="type.man_made.monitoring_station">Stasiun Pemantauan</string>
+    <string name="type.man_made.monitoring_station.water_level">Stasiun Pemantauan Ketinggian Air</string>
+    <string name="type.man_made.monitoring_station.weather">Stasiun Pemantauan Cuaca</string>
+    <string name="type.amenity.student_accommodation">Akomodasi Mahasiswa</string>
+    <string name="type.craft.watchmaker">Pembuat jam tangan</string>
+    <string name="type.xmas_feature.market">Pasar Natal</string>
+    <string name="type.xmas_feature.tree">Pohon Natal</string>
 </resources>

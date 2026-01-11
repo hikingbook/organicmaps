@@ -21,6 +21,7 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell * zoomButtonsCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell * is3dCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell * autoDownloadCell;
+@property(weak, nonatomic) IBOutlet SettingsTableViewSwitchCell * showDownloadedRegions;
 @property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell * mobileInternetCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell * powerManagementCell;
 @property(weak, nonatomic) IBOutlet SettingsTableViewLinkCell * bookmarksTextPlacementCell;
@@ -125,6 +126,10 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
   }
 
   [self.autoDownloadCell configWithDelegate:self title:L(@"autodownload") isOn:[MWMSettings autoDownloadEnabled]];
+
+  [self.showDownloadedRegions configWithDelegate:self
+                                           title:L(@"show_downloaded_regions")
+                                            isOn:[MWMSettings isShowDownloadedRegions]];
 
   NSString * mobileInternet = nil;
   switch ([MWMNetworkPolicy sharedPolicy].permission)
@@ -365,6 +370,10 @@ static NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidS
   {
     [MWMSettings setFileLoggingEnabled:value];
     [self updateLogFileSize];
+  }
+  else if (cell == self.showDownloadedRegions)
+  {
+    [MWMSettings setShowDownloadedRegions:value];
   }
 }
 

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- SECTION: Types -->
     <string name="type.addr_interpolation">Adresă/Bloc</string>
     <string name="type.addr_interpolation.even">Adresă/Bloc</string>
     <string name="type.addr_interpolation.odd">Adresă/Bloc</string>
+    <string name="type.aerialway">Cale aeriană</string>
+    <string name="type.aerialway.cable_car">Telecabină</string>
+    <string name="type.aerialway.chair_lift">Telescaun</string>
+    <string name="type.aerialway.drag_lift">Telescaun</string>
+    <string name="type.aerialway.gondola">Gondolă</string>
     <string name="type.aerialway.station">Stație de teleferic</string>
     <string name="type.aeroway.aerodrome">Aeroport</string>
     <string name="type.aeroway.aerodrome.international">Aeroport</string>
@@ -108,6 +114,7 @@
     <string name="type.amenity.post_office">Oficiu poștal</string>
     <string name="type.amenity.prison">Închisoare</string>
     <string name="type.amenity.public_bookcase">Bibliotecă</string>
+
     <!-- SECTION: Types: Recycling -->
     <string name="type.amenity.recycling.centre">Centru de reciclare</string>
     <string name="type.amenity.recycling">Containere pentru reciclare</string>
@@ -313,6 +320,7 @@
     <string name="type.healthcare.psychotherapist">Psihoterapie</string>
     <string name="type.healthcare.sample_collection">Eșantionare</string>
     <string name="type.healthcare.speech_therapist">Logopedie</string>
+
     <!-- SECTION: Types: Roads -->
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.bridleway.bridge">Pod</string>
@@ -470,6 +478,7 @@
     <string name="type.area_highway.track">Stradă</string>
     <string name="type.area_highway.trunk">Stradă</string>
     <string name="type.area_highway.unclassified">Stradă</string>
+
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">Obiect istoric</string>
     <string name="type.historic.aircraft">Avioane istorice</string>
@@ -521,6 +530,7 @@
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery.christian">Cimitir</string>
     <string name="type.landuse.religious">Curtea Bisericii</string>
+    <string name="type.landuse.churchyard">Curtea Bisericii</string>
     <string name="type.landuse.farmland">Teren arabil</string>
     <string name="type.landuse.flowerbed">Pat de flori</string>
     <string name="type.landuse.forest">Pădure</string>
@@ -658,7 +668,7 @@
     <string name="type.place.sea">Mare</string>
     <string name="type.place.square">Spațiu</string>
     <string name="type.place.state">Stat</string>
-    <string name="type.place.state.USA">Stat</string>
+    <string name="type.place.state.major">Stat</string>
     <!-- Named part of a city or town, bigger than place=quarter (Wiki: https://wiki.openstreetmap.org/wiki/Tag:place%3Dsuburb) -->
     <string name="type.place.suburb">Suburbie</string>
     <string name="type.place.town">Oraș</string>
@@ -1016,6 +1026,7 @@
     <string name="type.shop.pet_grooming">Îngrijirea animalelor de companie</string>
     <string name="type.shop.photo">Centru fotografii</string>
     <string name="type.shop.rental">Magazin de închiriere</string>
+    <string name="type.shop.rental.bicycle">Magazin de închiriere de biciclete</string>
     <string name="type.amenity.bicycle_rental.shop">Magazin de închiriere de biciclete</string>
     <string name="type.shop.seafood">Pescărie</string>
     <string name="type.shop.second_hand">Magazin second-hand</string>
@@ -1164,12 +1175,21 @@
     <string name="type.amenity.dojo">Dojo</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:leisure=sports_hall -->
     <string name="type.leisure.sports_hall">Sală de sport</string>
-    <string name="type.aerialway">Cale aeriană</string>
-    <string name="type.aerialway.cable_car">Telecabină</string>
-    <string name="type.aerialway.drag_lift">Telescaun</string>
-    <string name="type.aerialway.gondola">Gondolă</string>
-    <string name="type.aerialway.chair_lift">Telescaun</string>
     <string name="type.barrier.jersey_barrier">Bloc</string>
     <string name="type.barrier.debris">Moloz</string>
     <string name="type.barrier.log">Barieră de bușteni</string>
+    <string name="type.amenity.boat_rental">Închiriere bărci</string>
+    <string name="type.shop.telecommunication">Magazin de telecomunicații</string>
+    <string name="type.leisure.indoor_play">Centrul de joacă</string>
+    <string name="type.tourism.camp_pitch">Loc de camping</string>
+    <string name="type.railway.miniature">Cale ferată în miniatură</string>
+    <string name="type.amenity.kneipp_water_cure">Cura cu apă Kneipp</string>
+    <string name="type.area_highway.traffic_island">Insula de trafic</string>
+    <string name="type.man_made.monitoring_station">Stație de monitorizare</string>
+    <string name="type.man_made.monitoring_station.water_level">Stație de monitorizare a nivelului apei</string>
+    <string name="type.man_made.monitoring_station.weather">Stație de monitorizare meteorologică</string>
+    <string name="type.amenity.student_accommodation">Cazare pentru studenți</string>
+    <string name="type.craft.watchmaker">Ceasornicar</string>
+    <string name="type.xmas_feature.market">Piața de Crăciun</string>
+    <string name="type.xmas_feature.tree">Pomul de Crăciun</string>
 </resources>

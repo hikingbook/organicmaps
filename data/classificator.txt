@@ -42,6 +42,7 @@ world  +
             {}
         bicycle_repair_station  -
         biergarten  -
+        boat_rental  -
         brothel  -
         bureau_de_change  -
         bus_station  -
@@ -84,6 +85,7 @@ world  +
         ice_cream  -
         internet_cafe  -
         kindergarten  -
+        kneipp_water_cure  -
         language_school  -
         library  -
         loading_dock  -
@@ -166,6 +168,7 @@ world  +
         shower  -
         social_facility  -
         stripclub  -
+        student_accommodation  -
         studio  -
         taxi  -
         telephone  -
@@ -209,6 +212,7 @@ world  +
         steps  -
         tertiary  -
         track  -
+        traffic_island  -
         trunk  -
         unclassified  -
         {}
@@ -302,6 +306,7 @@ world  +
         sawmill  -
         shoemaker  -
         tailor  -
+        watchmaker  -
         winery  -
         {}
     cuisine  +
@@ -688,6 +693,7 @@ world  +
         golf_course  -
         hackerspace  -
         ice_rink  -
+        indoor_play  -
         marina  -
         miniature_golf  -
         nature_reserve  -
@@ -729,6 +735,10 @@ world  +
         flare  -
         lighthouse  -
         mast  -
+        monitoring_station  +
+            water_level  -
+            weather  -
+            {}
         petroleum_well  -
         pier  -
         pipeline  -
@@ -823,6 +833,9 @@ world  +
         only  -
         yes  -
         {}
+    organicapp  +
+        mwm_border  -
+        {}
     piste:type  +
         connection  -
         downhill  +
@@ -883,7 +896,7 @@ world  +
         sea  -
         square  -
         state  +
-            USA  -
+            major  -
             {}
         suburb  -
         town  -
@@ -924,13 +937,13 @@ world  +
         platform  -
         {}
     railway  +
-        abandoned  +
+        abandoned  -
+        construction  -
+        crossing  -
+        disused  +
             bridge  -
             tunnel  -
             {}
-        construction  -
-        crossing  -
-        disused  -
         funicular  +
             bridge  -
             tunnel  -
@@ -938,6 +951,10 @@ world  +
         halt  -
         level_crossing  -
         light_rail  +
+            bridge  -
+            tunnel  -
+            {}
+        miniature  +
             bridge  -
             tunnel  -
             {}
@@ -1367,6 +1384,7 @@ world  +
         supermarket  -
         tattoo  -
         tea  -
+        telecommunication  -
         ticket  -
         tobacco  -
         toys  -
@@ -1432,6 +1450,7 @@ world  +
             statue  -
             {}
         attraction  -
+        camp_pitch  -
         camp_site  -
         caravan_site  -
         chalet  -
@@ -1492,5 +1511,9 @@ world  +
         limited  -
         no  -
         yes  -
+        {}
+    xmas:feature  +
+        market  -
+        tree  -
         {}
     {}

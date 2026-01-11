@@ -11,7 +11,13 @@ enum CornerRadius {
 extension CornerRadius {
   var value: CGFloat {
     switch self {
-    case .modalSheet: return 12
+    case .modalSheet:
+      if #available(iOS 26.0, *) {
+        // The iOS 26 uses 38 radiuses for the modal screen.
+        return 28
+      } else {
+        return 12
+      }
     case .buttonDefault: return 8
     case .buttonDefaultSmall: return 6
     case .buttonDefaultBig: return 12

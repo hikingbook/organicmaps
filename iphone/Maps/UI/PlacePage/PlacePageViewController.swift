@@ -2,8 +2,6 @@ protocol PlacePageViewProtocol: AnyObject {
   var interactor: PlacePageInteractorProtocol? { get set }
   var view: UIView! { get }
 
-  func setLayout(_ layout: IPlacePageLayout)
-  func updatePreviewOffset()
   func showNextStop()
   func layoutIfNeeded()
   func updateWithLayout(_ layout: IPlacePageLayout)
@@ -13,6 +11,11 @@ protocol PlacePageViewProtocol: AnyObject {
 final class PlacePageScrollView: UIScrollView {
   override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
     return point.y > 0
+  }
+
+  override func scrollRectToVisible(_ rect: CGRect, animated: Bool) {
+    guard isScrollEnabled else { return }
+    super.scrollRectToVisible(rect, animated: animated)
   }
 }
 
@@ -25,7 +28,7 @@ final class PlacePageScrollView: UIScrollView {
     static let fastSwipeUpVelocity: CGFloat = 2.0
   }
   
-  @IBOutlet private var scrollView: UIScrollView!
+  @IBOutlet private var scrollView: PlacePageScrollView!
   @IBOutlet private var stackView: UIStackView!
   @IBOutlet private var actionBarContainerView: UIView!
   @IBOutlet private var actionBarHeightConstraint: NSLayoutConstraint!
@@ -35,14 +38,15 @@ final class PlacePageScrollView: UIScrollView {
   private let backgroundView = UIView()
   private var beginDragging = false
   private var previousTraitCollection: UITraitCollection?
-  private var layout: IPlacePageLayout!
   private var scrollSteps: [PlacePageState] = []
+  private var currentScrollContentOffset: CGPoint?
   private var previousScrollContentOffset: CGPoint?
   private var userDefinedStep: PlacePageState?
   private var isNavigationBarVisible = false
   private var isFirstOpening = true
   private var isVisible: Bool = false
 
+  var layout: IPlacePageLayout!
   var interactor: PlacePageInteractorProtocol?
   var isPreviewPlus: Bool = false
 
@@ -51,12 +55,15 @@ final class PlacePageScrollView: UIScrollView {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    MWMKeyboard.add(self)
+
     setupView()
     setupLayout(layout)
   }
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    guard !layout.headerViewController.isEditingTitle else { return }
     if #available(iOS 13.0, *) {
       // See https://github.com/organicmaps/organicmaps/issues/6917 for the details.
     } else if previousTraitCollection == nil {
@@ -66,6 +73,7 @@ final class PlacePageScrollView: UIScrollView {
     }
     panGesture.isEnabled = alternativeSizeClass(iPhone: false, iPad: true)
     previousTraitCollection = traitCollection
+    updateBackgroundViewFrame()
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +84,7 @@ final class PlacePageScrollView: UIScrollView {
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    previousScrollContentOffset = scrollView.contentOffset
+    currentScrollContentOffset = scrollView.contentOffset
     isVisible = false
     interactor?.viewWillDisappear()
   }
@@ -87,9 +95,13 @@ final class PlacePageScrollView: UIScrollView {
     if self.previousTraitCollection != nil, previousTraitCollection?.userInterfaceStyle == traitCollection.userInterfaceStyle, previousTraitCollection?.verticalSizeClass != traitCollection.verticalSizeClass {
       DispatchQueue.main.async {
         self.updateSteps()
-        self.showLastStop()
-        self.scrollView.contentInset = self.alternativeSizeClass(iPhone: UIEdgeInsets(top: self.scrollView.height, left: 0, bottom: 0, right: 0),
-                                                                 iPad: UIEdgeInsets.zero)
+        if self.layout.headerViewController.isEditingTitle {
+          self.updateContentOffsetForTitleEditing()
+        } else {
+          self.showLastStop()
+          self.scrollView.contentInset = self.alternativeSizeClass(iPhone: UIEdgeInsets(top: self.scrollView.height, left: 0, bottom: 0, right: 0),
+                                                                   iPad: UIEdgeInsets.zero)
+        }
       }
     }
   }
@@ -121,6 +133,7 @@ final class PlacePageScrollView: UIScrollView {
 
   private func updateSteps() {
     layoutIfNeeded()
+    updateBackgroundViewFrame()
     scrollSteps = layout.calculateSteps(inScrollView: scrollView,
                                         compact: traitCollection.verticalSizeClass == .compact)
   }
@@ -153,17 +166,15 @@ final class PlacePageScrollView: UIScrollView {
   }
 
   private func setupView() {
-    stackView.insertSubview(backgroundView, at: 0)
-    backgroundView.alignToSuperview()
+    view.insertSubview(backgroundView, at: 0)
+    backgroundView.setStyle(.ppBackgroundView)
+
+    scrollView.decelerationRate = .fast
+    scrollView.setStyle(.ppView)
 
     headerStackView.axis = .vertical
     headerStackView.distribution = .fill
 
-    scrollView.decelerationRate = .fast
-    scrollView.backgroundColor = .clear
-
-    let topCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    stackView.layer.setCornerRadius(.modalSheet, maskedCorners: topCorners)
     stackView.backgroundColor = .clear
 
     if isiPad {
@@ -181,13 +192,19 @@ final class PlacePageScrollView: UIScrollView {
   }
 
   private func setupLayout(_ layout: IPlacePageLayout) {
-    setLayout(layout)
-
     let showSeparator = layout.sectionSpacing > 0
     stackView.spacing = layout.sectionSpacing
     fillHeader(with: layout.headerViewControllers, showSeparator: showSeparator)
     fillBody(with: layout.bodyViewControllers, showSeparator: showSeparator)
 
+    layout.headerViewController.didStartEditingTitle = { [weak self] isEditing in
+      self?.scrollView.isScrollEnabled = !isEditing
+    }
+    layout.headerViewController.didChangeEditedTitle = { [weak self] in
+      self?.updateContentOffsetForTitleEditing()
+    }
+
+    scrollView.isScrollEnabled = true
     beginDragging = false
     if let actionBar = layout.actionBar {
       hideActionBar(false)
@@ -283,6 +300,7 @@ final class PlacePageScrollView: UIScrollView {
       }
       ModalPresentationAnimator.animate(animations: { [weak scrollView] in
         scrollView?.contentOffset = contentOffset
+        self.updateBackgroundViewFrame()
         self.layoutIfNeeded()
       }, completion: { complete in
         if complete {
@@ -291,6 +309,7 @@ final class PlacePageScrollView: UIScrollView {
       })
     } else {
       scrollView?.contentOffset = contentOffset
+      self.updateBackgroundViewFrame()
       completion?()
     }
   }
@@ -302,12 +321,19 @@ final class PlacePageScrollView: UIScrollView {
     }
   }
 
-  private func updateTopBound(_ bound: CGFloat) {
+  private func updateTopBound(_ bound: CGFloat, updatingViewport: Bool = true) {
     alternativeSizeClass(iPhone: {
       let isCompact = traitCollection.verticalSizeClass == .compact
       let insets = UIEdgeInsets(top: 0, left: 0, bottom: isCompact ? 0 : bound, right: 0)
-      self.interactor?.updateVisibleAreaInsets(insets)
+      self.interactor?.updateVisibleAreaInsets(insets, updatingViewport: updatingViewport)
     }, iPad: {})
+  }
+
+  private func updateBackgroundViewFrame() {
+    backgroundView.frame = CGRect(x: 0,
+                                  y: max(scrollView.origin.y, -scrollView.contentOffset.y),
+                                  width: scrollView.width,
+                                  height: stackView.height + actionBarContainerView.height)
   }
 }
 
@@ -320,17 +346,13 @@ extension PlacePageViewController: PlacePageViewProtocol {
   }
 
   func updateWithLayout(_ layout: IPlacePageLayout) {
-    previousScrollContentOffset = scrollView.contentOffset
+    currentScrollContentOffset = scrollView.contentOffset
+    cleanupLayout()
+    self.layout = layout
     setupLayout(layout)
+    updatePreviewOffset()
   }
   
-  func setLayout(_ layout: IPlacePageLayout) {
-    if self.layout != nil {
-      cleanupLayout()
-    }
-    self.layout = layout
-  }
-
   private func hideActionBar(_ value: Bool) {
     actionBarHeightConstraint.constant = !value ? Constants.actionBarHeight : .zero
   }
@@ -348,18 +370,19 @@ extension PlacePageViewController: PlacePageViewProtocol {
       case .previewPlus(let yOffset):
         offset.y = yOffset
       case .full:
-        offset.y = previousScrollContentOffset?.y ?? scrollSteps.last?.offset ?? 0
+        offset.y = currentScrollContentOffset?.y ?? scrollSteps.last?.offset ?? 0
       case .closed:
         break
       }
-    } else if let previousScrollContentOffset {
+    } else if let currentScrollContentOffset {
       // Keep previous offset during layout update if possible.
-      offset.y = max(estimatedYOffset, previousScrollContentOffset.y)
+      offset.y = max(estimatedYOffset, currentScrollContentOffset.y)
     }
     scrollTo(offset)
   }
 
   func showNextStop() {
+    guard scrollView.isScrollEnabled else { return }
     if let nextStop = scrollSteps.last(where: { $0.offset > scrollView.contentOffset.y }) {
       scrollTo(CGPoint(x: 0, y: nextStop.offset), forced: true)
     }
@@ -375,13 +398,12 @@ extension PlacePageViewController: PlacePageViewProtocol {
           let frame = self.view.frame.offsetBy(dx: 0, dy: self.view.height - self.stackView.convert(self.stackView.origin, to: self.view).y)
           self.view.frame = frame
         }, iPad: {
-          let frame = self.view.frame
-          self.view.minX = frame.minX - frame.width
           self.view.alpha = 0
         })
       },
       completion: { _ in
         completion()
+        MWMKeyboard.remove(self)
       })
   }
 
@@ -394,10 +416,15 @@ extension PlacePageViewController: PlacePageViewProtocol {
 
 extension PlacePageViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if scrollView.contentOffset.y < -scrollView.height + 1 && beginDragging {
+    currentScrollContentOffset = scrollView.contentOffset
+
+    if scrollView.contentOffset.y < -scrollView.height + 1 && beginDragging && !layout.headerViewController.isEditingTitle {
       interactor?.close()
     }
+    let bound = view.height + scrollView.contentOffset.y
+    updateTopBound(bound, updatingViewport: false) // Skip updating viewport on every drag.
     onOffsetChanged(scrollView.contentOffset.y)
+    updateBackgroundViewFrame()
   }
 
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -443,5 +470,35 @@ extension PlacePageViewController: UIScrollViewDelegate {
       navigationBar.removeFromParent()
       navigationBar.view.removeFromSuperview()
     }
+  }
+
+  private func updateContentOffsetForTitleEditing() {
+    guard !isiPad else { return }
+    let keyboardHeight = MWMKeyboard.keyboardHeight()
+    var yOffset: CGFloat?
+    if keyboardHeight > 0 {
+      let yOffsetFromKeyboard = layout.headerViewController.view.height
+      let visibleScrollHeight = scrollView.frame.height + actionBarContainerView.frame.height - keyboardHeight
+      yOffset = yOffsetFromKeyboard - visibleScrollHeight
+      if previousScrollContentOffset == nil {
+        previousScrollContentOffset = scrollView.contentOffset
+      }
+    } else if let previousScrollContentOffset {
+      yOffset = previousScrollContentOffset.y
+      self.previousScrollContentOffset = nil
+    }
+    guard let yOffset else { return }
+    scrollTo(CGPoint(x: 0, y: yOffset), forced: true)
+  }
+}
+
+// MARK: - MWMKeyboardObserver
+
+extension PlacePageViewController: MWMKeyboardObserver {
+  func onKeyboardWillAnimate() {}
+
+  func onKeyboardAnimation() {
+    guard isVisible else { return }
+    updateContentOffsetForTitleEditing()
   }
 }
