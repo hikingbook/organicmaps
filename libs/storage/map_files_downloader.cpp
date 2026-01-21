@@ -54,17 +54,19 @@ void MapFilesDownloader::RunMetaConfigAsync(std::function<void()> && callback)
       // Thread-safe.
       settings::Update(metaConfig.settings);
       products::ProductsSettings::Instance().Update(std::move(metaConfig.productsConfig));
-
-      GetPlatform().RunTask(Platform::Thread::Gui, [this, mapSource = mapSource, servers = metaConfig.servers, callback = std::move(callback)]()
-      {
-        m_serversList[mapSource] = std::move(servers);
+    }
+    
+    GetPlatform().RunTask(Platform::Thread::Gui, [this, metaConfigMap = metaConfigMap, callback = std::move(callback)]()
+    {
+        for (auto & [mapSource, metaConfig] : metaConfigMap) {
+            m_serversList[mapSource] = std::move(metaConfig.servers);
+        }
 
         callback();
 
         // Reset flag to invoke servers list downloading next time if current request has failed.
         m_isMetaConfigRequested = false;
-      });
-    }
+    });
   });
 }
 
