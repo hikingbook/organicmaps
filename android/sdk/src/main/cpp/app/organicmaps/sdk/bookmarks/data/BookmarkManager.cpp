@@ -572,7 +572,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
         bmData.m_icon = kml::BookmarkIcon::None;
     }
 
-    bmData.m_color.m_predefinedColor = static_cast<kml::PredefinedColor>(color);
+    bmData.m_color.m_predefinedColor = kml::kOrderedPredefinedColors[color];
     bmData.m_point = mercator::FromLatLon(lat, lon);
     auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                            static_cast<kml::MarkGroupId>(groupId));
@@ -601,7 +601,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeUpdateBookmark(
     kml::SetDefaultStr(bmDescription, ToNativeString(env, description));
     bmData.m_description = bmDescription;
 
-    bmData.m_color.m_predefinedColor = static_cast<kml::PredefinedColor>(color);
+    bmData.m_color.m_predefinedColor = kml::kOrderedPredefinedColors[color];
     bmData.m_point = mercator::FromLatLon(lat, lon);
 
     frm()->GetBookmarkManager().GetEditSession().UpdateBookmark(static_cast<kml::MarkId>(bookmarkID),
@@ -738,7 +738,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddTracks(
     trackData.m_description = trackDescription;
 
     kml::ColorData colorData;
-    colorData.m_predefinedColor = static_cast<kml::PredefinedColor>(color);
+    colorData.m_predefinedColor = kml::kOrderedPredefinedColors[color];
     uint32_t argb = kml::ColorFromPredefinedColor(colorData.m_predefinedColor).GetARGB();
     uint8_t alpha = ExtractByte(argb, 3);
     colorData.m_rgba = static_cast<uint32_t>(shift(argb, 8) + alpha);
