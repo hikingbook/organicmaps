@@ -1,16 +1,18 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 package app.organicmaps.sdk.bookmarks.data;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.ParcelCompat;
+
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.routing.RoutePointInfo;
-import app.organicmaps.sdk.search.Popularity;
 import app.organicmaps.sdk.util.Constants;
 
 // TODO consider refactoring to remove hack with MapObject unmarshalling itself and Bookmark at the same time.
@@ -39,8 +41,14 @@ public class Bookmark extends MapObject
     mIcon = getIconInternal();
 
     final ParcelablePointD ll = nativeGetXY(mBookmarkId);
-    mMerX = ll.x;
-    mMerY = ll.y;
+    if (ll != null) {
+        mMerX = ll.x;
+        mMerY = ll.y;
+    }
+    else {
+        mMerX = 0;
+        mMerY = 0;
+    }
 
     initXY();
   }
@@ -187,7 +195,7 @@ public class Bookmark extends MapObject
   static native double nativeGetScale(long bookmarkId);
   @NonNull
   static native String nativeGetAddress(long bookmarkId);
-  @NonNull
+
   static native ParcelablePointD nativeGetXY(long bookmarkId);
 
   @PredefinedColors.Color

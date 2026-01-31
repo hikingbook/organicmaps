@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 package app.organicmaps.sdk.bookmarks.data;
 
 import androidx.annotation.IntRange;
@@ -37,8 +38,14 @@ public class BookmarkInfo
     mFeatureType = Bookmark.nativeGetFeatureType(mBookmarkId);
     mIcon = new Icon(Bookmark.nativeGetColor(mBookmarkId), Bookmark.nativeGetIcon(mBookmarkId));
     final ParcelablePointD ll = Bookmark.nativeGetXY(mBookmarkId);
-    mMerX = ll.x;
-    mMerY = ll.y;
+    if (ll != null) {
+        mMerX = ll.x;
+        mMerY = ll.y;
+    }
+    else {
+        mMerX = 0;
+        mMerY = 0;
+    }
     mScale = Bookmark.nativeGetScale(mBookmarkId);
     mAddress = Bookmark.nativeGetAddress(mBookmarkId);
     mLatLonPoint = GeoUtils.toLatLon(mMerX, mMerY);
