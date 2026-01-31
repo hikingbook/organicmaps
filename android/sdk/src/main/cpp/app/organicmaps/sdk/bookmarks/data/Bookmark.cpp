@@ -79,7 +79,18 @@ JNIEXPORT jint Java_app_organicmaps_sdk_bookmarks_data_Bookmark_nativeGetIcon(JN
 
 JNIEXPORT jobject Java_app_organicmaps_sdk_bookmarks_data_Bookmark_nativeGetXY(JNIEnv * env, jclass, jlong bmk)
 {
-  return jni::GetNewParcelablePointD(env, getBookmark(bmk)->GetPivot());
+    try {
+        jobject result = jni::GetNewParcelablePointD(env, getBookmark(bmk)->GetPivot());
+        if (env->ExceptionCheck()) {
+            env->ExceptionClear(); // Swallow the Java exception
+            return NULL;
+        }
+        return result;
+    }
+    catch (...)
+    {
+        return NULL;
+    }
 }
 
 JNIEXPORT jstring Java_app_organicmaps_sdk_bookmarks_data_Bookmark_nativeGetFeatureType(JNIEnv * env, jclass, jlong bmk)
