@@ -201,8 +201,10 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Informatie</string>
     <string name="prefs_group_route">Navigatie</string>
-    <string name="pref_zoom_title">Zoomknoppen</string>
+    <!-- Setting name which enables or disables zoom buttons on the map screen. -->
+    <string name="pref_zoom_title">‘+’ en ‘-’ knoppen op de kaart</string>
     <string name="pref_zoom_summary">Toon op de kaart</string>
+    <string name="pref_auto_night_in_navigation_title">Nachtstijl bij navigeren in het donker</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">Nachtmodus</string>
     <!-- Generic «Off» string -->
@@ -280,8 +282,6 @@
     <string name="downloader_downloading">Aan het downloaden:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
     <string name="downloader_delete_map_while_routing_dialog">Stop de navigatie om de kaart te verwijderen.</string>
-    <!-- PointsInDifferentMWM -->
-    <string name="routing_failed_cross_mwm_building">Enkel routes die volledig in één kaart passen, kunnen gecreëerd worden.</string>
     <!-- Context menu item for downloader. -->
     <string name="downloader_download_map">Download de kaart</string>
     <!-- Item status in downloader. -->
@@ -294,10 +294,6 @@
     <string name="google_play_services">Google Play-locatieservices</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Bepaal snel je locatie bij benadering via Bluetooth, WiFi of een mobiel netwerk</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">Download kaarten op de route</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">Voor het creëren van een route is het nodig dat alle kaarten van uw locatie naar uw bestemming gedownload en bijgewerkt zijn.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">Niet genoeg ruimte</string>
     <!-- location service disabled -->
@@ -336,6 +332,12 @@
     <string name="gray">Grijs</string>
     <!-- blue gray color -->
     <string name="blue_gray">Grijsblauw</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">Weergave</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">Licht</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">Donker</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">Geef gratis kaarten zonder advertenties aan miljoenen gebruikers!</string>
 
@@ -346,28 +348,9 @@
     <string name="dialog_routing_disclaimer_recommendations">— Beschouw de voorgestelde routes enkel als aanbevelingen;</string>
     <string name="dialog_routing_disclaimer_borders">— Wees voorzichtig met de routes in de grenszones: de routes die door onze app gecreëerd zijn, gaan wellicht door landgrenzen in ongeautoriseerde plaatsen.</string>
     <string name="dialog_routing_disclaimer_beware">Blijf alert en rij veilig!</string>
-    <string name="dialog_routing_check_gps">Controleer gps-signaal</string>
-    <string name="dialog_routing_error_location_not_found">Route samenstellen mislukt. De huidige gps-coördinaten kunnen niet worden geïdentificeerd.</string>
     <string name="dialog_routing_location_turn_wifi">Controleer uw gps-signaal. Schakel wifi in voor een betere locatiebepaling.</string>
-    <string name="dialog_routing_location_turn_on">Schakel locatiediensten in</string>
-    <string name="dialog_routing_location_unknown_turn_on">De huidige gps-coördinaten kunnen niet worden gevonden. Schakel locatiediensten in om de route te berekenen.</string>
-    <string name="dialog_routing_unable_locate_route">Route vinden mislukt</string>
-    <string name="dialog_routing_cant_build_route">Route samenstellen mislukt.</string>
-    <string name="dialog_routing_change_start_or_end">Kies een ander startpunt of een andere bestemming.</string>
-    <string name="dialog_routing_change_start">Kies ander startpunt</string>
-    <string name="dialog_routing_start_not_determined">Route samenstellen mislukt. Startpunt kan niet worden gevonden.</string>
-    <string name="dialog_routing_select_closer_start">Kies een startpunt dat dichter bij een weg ligt.</string>
-    <string name="dialog_routing_change_end">Kies andere bestemming</string>
-    <string name="dialog_routing_end_not_determined">Route samenstellen mislukt. Bestemming kan niet worden gevonden.</string>
-    <string name="dialog_routing_select_closer_end">Kies een bestemming die dichter bij een weg ligt.</string>
-    <string name="dialog_routing_change_intermediate">Kan de tussenstop niet vinden.</string>
-    <string name="dialog_routing_intermediate_not_determined">Gelieve uw tussenstop aan te passen.</string>
     <string name="dialog_routing_system_error">Systeemfout</string>
-    <string name="dialog_routing_application_error">Route samenstellen mislukt door een applicatiefout.</string>
-    <string name="dialog_routing_try_again">Probeer het opnieuw</string>
     <string name="not_now">Niet nu</string>
-    <string name="dialog_routing_download_and_build_cross_route">Wilt u de kaart downloaden en een betere route samenstellen die meer dan één kaart beslaat?</string>
-    <string name="dialog_routing_download_cross_route">Download de kaart om een betere route samen te stellen die de grenzen van deze kaart overschrijdt.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">Om te beginnen met zoeken en om routebeschrijvingen te kunnen maken, moet u de kaart downloaden. U heeft vervolgens geen internetverbinding meer nodig.</string>
@@ -390,7 +373,7 @@
     <string name="wikimedia_commons">Wikimedia Commons</string>
     <string name="p2p_your_location">Uw locatie</string>
     <string name="p2p_start">Start</string>
-    <string name="p2p_from_here">Van</string>
+    <string name="p2p_from_here">Route van</string>
     <string name="p2p_to_here">Route naar</string>
     <string name="p2p_only_from_current">Navigatie is uitsluitend beschikbaar vanuit uw huidige locatie.</string>
     <string name="p2p_reroute_from_current">Wilt u een route plannen vanaf uw huidige locatie?</string>
@@ -399,14 +382,14 @@
     <!-- Tab title in the Edit Opening Hours time picker -->
     <string name="editor_time_from">Van</string>
     <!-- Tab title in the Edit Opening Hours time picker -->
-    <string name="editor_time_to">Tot</string>
+    <string name="editor_time_to">Naar</string>
     <string name="editor_time_add">Voeg schema toe</string>
     <string name="editor_time_delete">Verwijder schema</string>
     <!-- Text for allday switch. -->
     <string name="editor_time_allday">Elke dag (24 uur)</string>
     <string name="editor_time_open">Open</string>
     <string name="editor_time_close">Gesloten</string>
-    <string name="editor_time_add_closed">Sluitingstijden toevoegen</string>
+    <string name="editor_time_add_closed">Niet-kantooruren toevoegen</string>
     <string name="editor_time_title">Openingstijden</string>
     <string name="editor_time_advanced">Geavanceerde modus</string>
     <string name="editor_time_simple">Eenvoudige modus</string>
@@ -418,7 +401,7 @@
     <string name="editor_report_problem_desription_2">Of doe het zelf op https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Verzend</string>
     <string name="editor_report_problem_title">Probleem</string>
-    <string name="editor_report_problem_no_place_title">De plaats bestaat niet</string>
+    <string name="editor_report_problem_no_place_title">Deze plaats bestaat niet</string>
     <string name="editor_report_problem_under_construction_title">Gesloten voor onderhoud</string>
     <string name="editor_report_problem_duplicate_place_title">Dubbele plaats</string>
     <string name="autodownload">Download kaarten automatisch</string>
@@ -452,7 +435,7 @@
     <!-- Text field to enter non-existing street name, below list of known streets around -->
     <string name="add_street">Voeg een straat toe</string>
     <!-- Error to display when a new street name is not entered in the New street dialog -->
-    <string name="empty_street_name_error">Voer een straatnaam in a.u.b.</string>
+    <string name="empty_street_name_error">Voer een straatnaam in alstublieft</string>
     <string name="choose_language">Kies een taal</string>
     <string name="choose_street">Kies een straat</string>
     <string name="cuisine">Keuken</string>
@@ -465,9 +448,8 @@
     <string name="level_value_generic">Niveau: %s</string>
     <string name="downloader_delete_map_dialog">Alle wijzigingen aan de kaart zullen samen met de kaart worden verwijderd.</string>
     <string name="downloader_update_maps">Update kaarten</string>
-    <string name="downloader_mwm_migration_dialog">Om een route te creëren, moet je alle kaarten updaten en dan de route opnieuw plannen.</string>
     <string name="downloader_search_field_hint">Vind een kaart</string>
-    <string name="common_check_internet_connection_dialog">Controleer je instellingen en zorg ervoor dat het apparaat verbonden is met het internet.</string>
+    <string name="common_check_internet_connection_dialog">A.u.b zorg ervoor dat het apparaat verbonden is met het internet.</string>
     <string name="downloader_no_space_title">Niet genoeg ruimte</string>
     <!-- Message shown when there is not enough space to download maps -->
     <string name="downloader_no_space_message">Verwijder overbodige gegevens</string>
@@ -528,8 +510,8 @@
     <string name="placepage_edit_bookmark_button">Bewerk bladwijzer</string>
     <string name="placepage_personal_notes_hint">Persoonlijke aantekeningen (tekst of html)</string>
     <string name="editor_comment_hint">Reactie…</string>
-    <string name="editor_reset_edits_message">Alle lokale wijzigingen weggooien?</string>
-    <string name="editor_reset_edits_button">Gooi weg</string>
+    <string name="editor_reset_edits_message">Alle lokale wijzigingen negeren?</string>
+    <string name="editor_reset_edits_button">Negeer</string>
     <string name="editor_remove_place_message">Toegevoegde locatie verwijderen?</string>
     <string name="editor_remove_place_button">Verwijder</string>
     <string name="editor_place_doesnt_exist">Locatie bestaat niet</string>
@@ -541,8 +523,8 @@
     <string name="error_enter_correct_email">Voer een geldig emailadres in</string>
     <string name="error_enter_correct_facebook_page">Voer een geldig Facebook-webadres, een accountnaam of een paginanaam in</string>
     <string name="error_enter_correct_instagram_page">Voer een geldig Instagram-webadres of accountnaam in</string>
-    <string name="error_enter_correct_twitter_page">Voer een geldig Twitter-webadres of gebruikersnaam in</string>
-    <string name="error_enter_correct_vk_page">Voer een geldig VB-webadres of accountnaam in</string>
+    <string name="error_enter_correct_twitter_page">Voer een geldig Twitter-gebruikersnaam of web adres in</string>
+    <string name="error_enter_correct_vk_page">Voer een geldig VK-webadres of accountnaam in</string>
     <string name="error_enter_correct_line_page">Voer een geldig LINE-webadres of LINE ID in</string>
     <string name="placepage_add_place_button">Voeg een plaats toe aan OpenStreetMap</string>
     <string name="osm_note_hint">Of, als alternatief, laat een opmerking achter voor de OpenStreetMap gemeenschap zodat iemand anders een plaats kan toevoegen of verbeteren.</string>
@@ -584,7 +566,7 @@
     <!-- User selected the destination by pressing Route To, but the current position is unknown. User needs to select a starting point of a route using search or by tapping on the map and then pressing "Route From". -->
     <string name="routing_add_start_point">Gebruik zoeken of tik op de kaart om een startpunt voor de route toe te voegen</string>
     <!-- User selected the start of a route by pressing Route From. Now the destination of a route should be selected using search or by tapping on the map and then pressing "Route To". -->
-    <string name="routing_add_finish_point">Gebruik Zoeken of tik op de kaart om een bestemmingspunt toe te voegen</string>
+    <string name="routing_add_finish_point">Gebruik zoeken of tik op de kaart om een bestemmingspunt toe te voegen</string>
     <string name="planning_route_manage_route">Beheer route</string>
     <string name="button_plan">Plan</string>
     <string name="placepage_remove_stop">Verwijder tussenstop</string>
@@ -644,8 +626,12 @@
     <string name="bookmarks_empty_list_title">Deze lijst is leeg</string>
     <string name="bookmarks_empty_list_message">Om een bladwijzer toe te voegen, tikt u op een plaats op de kaart en vervolgens op het sterpictogram</string>
     <string name="category_desc_more">…meer</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Exporteer KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Exporteer GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Exporteer GeoJSON</string>
     <string name="delete_list">Verwijder lijst</string>
     <string name="speedcams_alert_title">Snelheidscamera\'s</string>
     <string name="place_description_title">Plaatsbeschrijving</string>
@@ -736,9 +722,6 @@
     <string name="search_in_the_list">Zoek in de lijst</string>
     <string name="religious_places">Religieuze plaatsen</string>
     <string name="select_list">Kies een lijst</string>
-    <string name="transit_not_found">Metro-navigatie is nog niet beschikbaar in deze regio</string>
-    <string name="dialog_pedestrian_route_is_long_header">Geen metroroute gevonden</string>
-    <string name="dialog_pedestrian_route_is_long_message">Kies een begin- of eindpunt dichter bij het metrostation</string>
     <string name="button_layer_isolines">Contourlijnen</string>
     <string name="isolines_activation_error_dialog">Als u gebruik wilt maken van hoogtelijnen, moet u de kaart van het gewenste gebied bijwerken of downloaden</string>
     <string name="isolines_location_error_dialog">Hoogtelijnen zijn nog niet beschikbaar in deze regio</string>
@@ -776,7 +759,7 @@
     <!-- Instagram account url for the "?" About page -->
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <!-- A link to the TTS FAQ -->
-    <string name="tts_info_link">https://organicmaps.app/faq/text-to-speech-android-tts/</string>
+    <string name="tts_info_link">https://organicmaps.app/nl/faq/voice/text-to-speech-android-tts/</string>
     <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/nl/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
@@ -817,8 +800,6 @@
     <string name="aa_location_permissions_request">Organic Maps heeft locatietoegang nodig. Als het veilig is, controleer je de melding op je telefoon.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">Deze app heeft je toestemming nodig</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps in Android Auto heeft locatietoestemming nodig om effectief te werken</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Geef toestemming</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -871,8 +852,16 @@
     <string name="uri_open_location_failed">Geen app geïnstalleerd die de locatie kan openen</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Auto in navigatie</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Systeem volgen</string>
     <!-- Title of the bottom sheet when sharing the track -->
     <string name="share_track">Titel van het onderste blad bij delen van het spoor</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Verwijder %s?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Inloggen met wachtwoord</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Inloggen met browser</string>
 </resources>

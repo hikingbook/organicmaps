@@ -9,6 +9,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
+import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
@@ -107,7 +108,7 @@ public class LocationHelper implements BaseLocationProvider.Listener
     mContext = context;
     mSensorHelper = sensorHelper;
     mLocationProvider = locationProviderFactory.getProvider(mContext, this);
-    mHandler = new Handler();
+    mHandler = new Handler(Looper.getMainLooper());
   }
 
   /**
@@ -171,10 +172,11 @@ public class LocationHelper implements BaseLocationProvider.Listener
       return;
     }
 
-    LocationState.nativeLocationUpdated(mSavedLocation.getTime(), mSavedLocation.getLatitude(),
-                                        mSavedLocation.getLongitude(), mSavedLocation.getAccuracy(),
-                                        mSavedLocation.getAltitude(), mSavedLocation.getSpeed(),
-                                        mSavedLocation.getBearing());
+    final LocationCompatExtractor.Altitude altitude = LocationCompatExtractor.getAltitude(mSavedLocation);
+    LocationState.nativeLocationUpdated(
+        mSavedLocation.getTime(), mSavedLocation.getLatitude(), mSavedLocation.getLongitude(),
+        mSavedLocation.getAccuracy(), altitude != null ? altitude.altitude() : 0,
+        altitude != null ? altitude.accuracy() : -1, mSavedLocation.getSpeed(), mSavedLocation.getBearing());
   }
 
   private void notifyLocationUpdateTimeout()

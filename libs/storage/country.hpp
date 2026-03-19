@@ -1,21 +1,11 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2023.
 #pragma once
 
-#include "storage/country_decl.hpp"
 #include "storage/storage_defines.hpp"
-
-#include "platform/local_country_file.hpp"
 
 #include "platform/country_defines.hpp"
 
-#include "geometry/rect2d.hpp"
-
-#include "defines.hpp"
-
-#include <cstdint>
-#include <map>
-#include <string>
-#include <vector>
+#include "base/assert.hpp"
 
 namespace storage
 {
@@ -39,7 +29,11 @@ public:
     , m_parent(parent)
   {}
 
-  void SetFile(platform::CountryFile && file) { m_file = std::move(file); }
+  void SetFile(platform::CountryFile && file)
+  {
+    m_file = std::move(file);
+    ASSERT_EQUAL(m_file.GetName(), m_name, ());
+  }
   void SetSubtreeAttrs(MwmCounter subtreeMwmNumber, MwmSize subtreeMwmSizeBytes, MwmSize subtreeHikingbookProMwmSizeBytes)
   {
     m_subtreeMwmNumber = subtreeMwmNumber;

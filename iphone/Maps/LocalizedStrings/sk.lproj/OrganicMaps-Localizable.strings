@@ -196,7 +196,9 @@
 "length" = "Dĺžka";
 "share_my_location" = "Zdieľať moje umiestnenie";
 "prefs_group_route" = "Navigácia";
-"pref_zoom_title" = "Tlačidlá priblíženia/oddialenia";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Tlačidlá „+“ a „-“ na mape";
 
 /* Generic «Off» string */
 "off" = "Vypnúť";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Cyklistika";
 "button_layer_subway" = "Metro";
 "layers_title" = "Štýly a vrstvy mapy";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Exportovať KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Export GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Exportovať GeoJSON";
 "delete_list" = "Vymazať zoznam";
 "speedcams_alert_title" = "Rýchlostné kamery";
 "place_description_title" = "Popis miesta";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Fialové stiahnuté regióny";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Prihlásenie pomocou hesla";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Prihlásenie pomocou prehliadača";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Nedávno použité";

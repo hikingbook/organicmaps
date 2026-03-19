@@ -196,7 +196,9 @@
 "length" = "लांबी";
 "share_my_location" = "माझे स्थान सामायिक करा";
 "prefs_group_route" = "मार्गनिर्देशन";
-"pref_zoom_title" = "झूम बटणे";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "नकाशावर + आणि - बटणे";
 
 /* Generic «Off» string */
 "off" = "बंद";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Cycling";
 "button_layer_subway" = "मेट्रो/भुयारी मार्ग";
 "layers_title" = "नकाशा शैली आणि स्तर";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "KMZ निर्यात करा";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "GPX निर्यात करा";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "GeoJSON निर्यात करा";
 "delete_list" = "यादी मिटवा";
 "speedcams_alert_title" = "वेग कॅमेरे";
 "place_description_title" = "ठिकाणाचे वर्णन";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "जांभळे डाउनलोड केलेले प्रदेश";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "पासवर्डने लॉगिन करा";
+
+/* Login to OSM button text */
+"login_osm_browser" = "ब्राउझर वापरून लॉगिन करा";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "अलीकडे वापरलेले";

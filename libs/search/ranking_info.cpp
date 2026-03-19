@@ -18,10 +18,11 @@ using namespace std;
 
 namespace
 {
-// See search/search_quality/scoring_model.py for details.  In short,
+// See search/search_quality/scoring_model.py for details. In short,
 // these coeffs correspond to coeffs in a linear model.
 double constexpr kCategoriesHasName = 0.25;
-double constexpr kCategoriesPopularity = 0.05;
+// Check Category_Rank test. Probably, should make even smaller.
+double constexpr kCategoriesPopularity = 0.01;
 double constexpr kCategoriesDistanceToPivot = -0.6874177;
 double constexpr kCategoriesRank = 1.0000000;
 double constexpr kCategoriesFalseCats = -1.0000000;
@@ -303,6 +304,8 @@ string DebugPrint(RankingInfo const & info)
 
   PrintParse(os, info.m_tokenRanges, info.m_numTokens);
 
+  os << ", " << DebugPrint(info.m_geoParts);
+
   os << ", m_rank: " << static_cast<int>(info.m_rank) << ", m_popularity: " << static_cast<int>(info.m_popularity)
      << ", m_nameScore: " << DebugPrint(info.m_nameScore) << ", m_errorsMade: " << DebugPrint(info.m_errorsMade)
      << ", m_isAltOrOldName: " << info.m_isAltOrOldName << ", m_numTokens: " << info.m_numTokens
@@ -362,17 +365,13 @@ double RankingInfo::GetLinearModelRank(bool viewportMode /* = false */) const
     if (Model::IsLocalityType(m_type))
       result += kPopularity * popularity;
 
-    ASSERT(m_type < Model::TYPE_COUNT, ());
     result += kType[GetTypeScore()];
 
     if (Model::IsPoi(m_type))
-    {
-      ASSERT_LESS(m_classifType.poi, PoiType::Count, ());
       result += kPoiType[base::Underlying(GetPoiTypeScore())];
-    }
     else if (m_type == Model::TYPE_STREET)
     {
-      ASSERT_LESS(m_classifType.street, StreetType::Count, ());
+      ASSERT(m_classifType.street < StreetType::Count, ());
       result += kStreetType[base::Underlying(m_classifType.street)];
     }
 
@@ -458,11 +457,13 @@ NameScore RankingInfo::GetNameScore() const
 
 Model::Type RankingInfo::GetTypeScore() const
 {
+  ASSERT(m_type < Model::TYPE_COUNT, ());
   return (m_pureCats && m_type == Model::TYPE_BUILDING ? Model::TYPE_UNCLASSIFIED : m_type);
 }
 
 PoiType RankingInfo::GetPoiTypeScore() const
 {
+  ASSERT(m_classifType.poi < PoiType::Count, ());
   // Equalize all *pure category* results to not distinguish different toilets (see ToiletAirport test).
   return (m_pureCats ? PoiType::PureCategory : m_classifType.poi);
 }

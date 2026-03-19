@@ -196,7 +196,9 @@
 "length" = "Garums";
 "share_my_location" = "Kopīgot manu atrašanās vietu";
 "prefs_group_route" = "Navigācija";
-"pref_zoom_title" = "Tālummaiņas pogas";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Pogas \"+\" un \"-\" kartē";
 
 /* Generic «Off» string */
 "off" = "Izslēgts";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Riteņbraukšana";
 "button_layer_subway" = "Metro";
 "layers_title" = "Kartes stili un slāņi";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Izgūt KMZ formātā";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Izgūt GPX formātā";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Izgūt GeoJSON formātā";
 "delete_list" = "Dzēst sarakstu";
 "speedcams_alert_title" = "Fotoradari";
 "place_description_title" = "Vietas apraksts";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Violeti lejupielādētie reģioni";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Pieteikšanās ar paroli";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Pieteikšanās, izmantojot pārlūkprogrammu";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Nesen izmantots";

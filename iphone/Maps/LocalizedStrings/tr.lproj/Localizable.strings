@@ -157,7 +157,7 @@
 
 /********** Other translations **********/
 
-"share_bookmarks_email_body" = "Merhaba! \n \nEktekiler yer imlerim, lütfen bunları Organic Maps'te açın. Eğer uygulama kurulu değilse, şu bağlantıyla iOS ve Android aygıtınıza kurabilirsiniz: https://omaps.app/get?kmz \n \nOrganic Maps ile gezmenin tadını çıkarın!";
+"share_bookmarks_email_body" = "Merhaba! \n \nEktekiler yer imlerim, lütfen bunları Organic Maps'te açın. Eğer uygulama kurulmamışsa, şu bağlantıyla iOS ve Android aygıtınıza kurabilirsiniz: https://omaps.app/get?kmz\n \nOrganic Maps ile gezintinin tadını çıkarın!";
 
 /* message title of loading file */
 "load_kmz_title" = "Yer İmleri Yükleniyor";
@@ -196,7 +196,9 @@
 "length" = "Uzunluk";
 "share_my_location" = "Konumumu Paylaş";
 "prefs_group_route" = "Navigasyon";
-"pref_zoom_title" = "Yakınlaştırma düğmeleri";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Haritadaki + ve - düğmeleri";
 
 /* Generic «Off» string */
 "off" = "Kapalı";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Bisiklet";
 "button_layer_subway" = "Metro";
 "layers_title" = "Harita Stilleri ve Katmanlar";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "KMZ Olarak Dışa Aktar";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "GPX Olarak Dışa Aktar";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "GeoJSON Olarak Dışa Aktar";
 "delete_list" = "Listeyi sil";
 "speedcams_alert_title" = "Hız kameraları";
 "place_description_title" = "Yer Açıklaması";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Mor indirilen bölgeler";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Şifre ile giriş yapın";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Tarayıcı kullanarak giriş yapın";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Son Kullanılanlar";

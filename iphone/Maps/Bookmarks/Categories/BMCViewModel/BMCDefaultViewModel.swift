@@ -148,7 +148,7 @@ extension BMCDefaultViewModel {
     manager.checkCategoryName(name)
   }
 
-  func shareCategoryFile(at index: Int, fileType: KmlFileType, handler: @escaping SharingResultCompletionHandler) {
+  func shareCategoryFile(at index: Int, fileType: FileType, handler: @escaping SharingResultCompletionHandler) {
     let category = categories[index]
     manager.shareCategory(category.categoryId, fileType: fileType, completion: handler)
   }
@@ -188,7 +188,7 @@ extension BMCDefaultViewModel: BookmarksObserver {
     reloadData()
   }
 
-  func onBookmarksCategoryDeleted(_ groupId: MWMMarkGroupID) {
+  func onBookmarksCategoryDeleted(_: MWMMarkGroupID) {
     reloadData()
   }
 

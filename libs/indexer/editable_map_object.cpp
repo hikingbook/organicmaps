@@ -85,7 +85,7 @@ NamesDataSource EditableMapObject::GetNamesDataSource()
   if (!mwmInfo)
     return NamesDataSource();
 
-  vector<int8_t> mwmLanguages;
+  LangsBufferT mwmLanguages;
   mwmInfo->GetRegionData().GetLanguages(mwmLanguages);
 
   auto const userLangCode = StringUtf8Multilang::GetLangIndex(languages::GetCurrentMapLanguage());
@@ -94,7 +94,7 @@ NamesDataSource EditableMapObject::GetNamesDataSource()
 }
 
 // static
-NamesDataSource EditableMapObject::GetNamesDataSource(FeatureNames const & source, vector<int8_t> const & mwmLanguages,
+NamesDataSource EditableMapObject::GetNamesDataSource(FeatureNames const & source, LangsBufferT const & mwmLanguages,
                                                       int8_t const userLangCode)
 {
   NamesDataSource result;
@@ -173,7 +173,7 @@ void EditableMapObject::SetName(string_view name, int8_t langCode)
 }
 
 // static
-bool EditableMapObject::CanUseAsDefaultName(int8_t const lang, vector<int8_t> const & mwmLanguages)
+bool EditableMapObject::CanUseAsDefaultName(int8_t const lang, LangsBufferT const & mwmLanguages)
 {
   for (auto const & mwmLang : mwmLanguages)
   {
@@ -189,6 +189,7 @@ bool EditableMapObject::CanUseAsDefaultName(int8_t const lang, vector<int8_t> co
 
 void EditableMapObject::SetMercator(m2::PointD const & center)
 {
+  m_geomType = feature::GeomType::Point;
   m_mercator = center;
 }
 
@@ -355,11 +356,6 @@ void EditableMapObject::SetCuisines(std::vector<std::string_view> const & cuisin
 void EditableMapObject::SetCuisines(std::vector<std::string> const & cuisines)
 {
   SetCuisinesImpl(cuisines);
-}
-
-void EditableMapObject::SetPointType()
-{
-  m_geomType = feature::GeomType::Point;
 }
 
 // static
@@ -603,8 +599,6 @@ void EditableMapObject::ApplyEditsFromJournal(EditJournal const & editJournal)
 
 void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
 {
-  LOG(LDEBUG, ("Applying Journal Entry: ", osm::EditJournal::ToString(entry)));
-  // Todo
   switch (entry.journalEntryType)
   {
   case JournalEntryType::TagModification:
@@ -646,11 +640,11 @@ void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
       Classificator const & cl = classif();
       // Remove old cuisine values
       vector<std::string_view> oldCuisines = strings::Tokenize(tagModData.old_value, ";");
-      for (std::string_view const & cuisine : oldCuisines)
+      for (std::string_view const cuisine : oldCuisines)
         m_types.Remove(cl.GetTypeByPath({kTagCuisine, cuisine}));
       // Add new cuisine values
       vector<std::string_view> newCuisines = strings::Tokenize(tagModData.new_value, ";");
-      for (std::string_view const & cuisine : newCuisines)
+      for (std::string_view const cuisine : newCuisines)
         m_types.SafeAdd(cl.GetTypeByPath({kTagCuisine, cuisine}));
     }
     else if (tagModData.key == "diet:vegetarian")
@@ -681,14 +675,13 @@ void EditableMapObject::ApplyJournalEntry(JournalEntry const & entry)
     ObjCreateData const & objCreatedData = std::get<ObjCreateData>(entry.data);
     ASSERT_EQUAL(feature::GeomType::Point, objCreatedData.geomType,
                  ("At the moment only new nodes (points) can be created."));
-    SetPointType();
     SetMercator(objCreatedData.mercator);
     m_types.Add(objCreatedData.type);
     break;
   }
   case JournalEntryType::LegacyObject:
   {
-    ASSERT_FAIL(("Legacy Objects can not be loaded from Journal"));
+    ASSERT_FAIL(("Legacy Objects are not editable"));
     break;
   }
   }
@@ -722,8 +715,8 @@ void EditableMapObject::LogDiffInJournal(EditableMapObject const & unedited_emo)
   for (uint8_t i = 0; i < static_cast<uint8_t>(feature::Metadata::FMD_COUNT); ++i)
   {
     auto const type = static_cast<feature::Metadata::EType>(i);
-    std::string_view const & value = GetMetadata(type);
-    std::string_view const & old_value = unedited_emo.GetMetadata(type);
+    std::string_view const value = GetMetadata(type);
+    std::string_view const old_value = unedited_emo.GetMetadata(type);
 
     if (value != old_value)
       m_journal.AddTagChange(ToString(type), std::string(old_value), std::string(value));

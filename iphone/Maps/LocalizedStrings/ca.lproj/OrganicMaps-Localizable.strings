@@ -196,7 +196,9 @@
 "length" = "Longitud";
 "share_my_location" = "Comparteix la meva ubicació";
 "prefs_group_route" = "Navegació";
-"pref_zoom_title" = "Botons de zoom";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Botons «+» i «-» al mapa";
 
 /* Generic «Off» string */
 "off" = "Desactivat";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ciclisme";
 "button_layer_subway" = "Metro";
 "layers_title" = "Estils i capes del mapa";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Exporta KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Exporta GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Exporta GeoJSON";
 "delete_list" = "Suprimeix la llista";
 "speedcams_alert_title" = "Radars";
 "place_description_title" = "Descripció del lloc";
@@ -1088,7 +1097,7 @@
 "ft" = "ft";
 
 /* Toast text when the maps version should be updated to display the OSM hiking and cycling routes */
-"routes_update_maps_text" = "To display routes, maps must be updated.";
+"routes_update_maps_text" = "Per mostrar els itineraris, cal actualitzar els mapes.";
 
 /* Subway exits for public transport marks on the map */
 "core_exit" = "Sortida";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regions descarregades liles";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Inicieu la sessió amb contrasenya";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Inicieu la sessió mitjançant el navegador";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Usats recentment";

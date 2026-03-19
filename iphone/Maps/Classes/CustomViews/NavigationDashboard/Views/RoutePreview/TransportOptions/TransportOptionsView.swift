@@ -1,39 +1,30 @@
-import SwiftUI
+import UIKit
 
 final class TransportOptionsView: UIView {
-
-  private enum Constants {
-    static let transportOptionsItemSize = CGSize(width: 40, height: 40)
-  }
-
-  private var stackView: UIStackView?
+  private var segmentedControl = UISegmentedControl()
   private var routerTypes: [MWMRouterType] = []
   private var selectedRouterType: MWMRouterType = .vehicle
-  private var optionButtons: [CircleImageButton] = []
-  private var hostingController: TransportOptionsViewController?
+  private let panelPanGestureRecognizer = UIPanGestureRecognizer()
 
   weak var interactor: NavigationDashboard.Interactor?
+  var onPanGesture: ((UIPanGestureRecognizer) -> Void)?
 
   init() {
     super.init(frame: .zero)
-    if #available(iOS 15, *) {
-      setupSUIView(routerTypes: routerTypes, selectedRouterType: selectedRouterType)
-    } else {
-      setupDefaultView()
-    }
+    setupSegmentedControlView()
   }
 
   @available(*, unavailable)
-  required init?(coder: NSCoder) {
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
   func set(transportOptions: [MWMRouterType], selectedRouterType: MWMRouterType) {
-    let optionsChanged = self.routerTypes != transportOptions
+    let optionsChanged = routerTypes != transportOptions
     let selectionChanged = self.selectedRouterType != selectedRouterType
     guard optionsChanged || selectionChanged else { return }
 
-    self.routerTypes = transportOptions
+    routerTypes = transportOptions
     self.selectedRouterType = selectedRouterType
 
     if optionsChanged {
@@ -43,84 +34,67 @@ final class TransportOptionsView: UIView {
     }
   }
 
-  private func setupDefaultView() {
-    guard stackView == nil else { return }
-    let stackView = UIStackView()
-    stackView.axis = .horizontal
-    stackView.alignment = .center
-    stackView.distribution = .equalSpacing
-    stackView.spacing = 0
-    addSubview(stackView)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      stackView.topAnchor.constraint(equalTo: topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-    ])
-    self.stackView = stackView
-  }
+  private func setupSegmentedControlView() {
+    segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+    segmentedControl.addTarget(self, action: #selector(didChangeSegment(_:)), for: .valueChanged)
 
-  @available(iOS 15, *)
-  private func setupSUIView(routerTypes: [MWMRouterType], selectedRouterType: MWMRouterType) {
-    guard hostingController == nil else { return }
-    let controller = TransportOptionsHostingController(options: routerTypes,
-                                                       selected: selectedRouterType,
-                                                       onSelect: { type in
-      if self.selectedRouterType != type {
-        self.selectedRouterType = type
-        self.interactor?.process(.selectRouterType(type))
-      }
-    })
-    controller.view.translatesAutoresizingMaskIntoConstraints = false
-    controller.view.backgroundColor = .clear
-    addSubview(controller.view)
+    panelPanGestureRecognizer.addTarget(self, action: #selector(handlePanGesture(_:)))
+    panelPanGestureRecognizer.delegate = self
+    panelPanGestureRecognizer.cancelsTouchesInView = false
+    panelPanGestureRecognizer.delaysTouchesBegan = true
+    addGestureRecognizer(panelPanGestureRecognizer)
+
+    addSubview(segmentedControl)
     NSLayoutConstraint.activate([
-      controller.view.leadingAnchor.constraint(equalTo: leadingAnchor),
-      controller.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-      controller.view.topAnchor.constraint(equalTo: topAnchor),
-      controller.view.bottomAnchor.constraint(equalTo: bottomAnchor)
+      segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor),
+      segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor),
+      segmentedControl.topAnchor.constraint(equalTo: topAnchor),
+      segmentedControl.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
-    hostingController = controller
   }
 
   func reload() {
-    if #available(iOS 15, *) {
-      hostingController?.update(transportOptions: routerTypes, selectedRouterType: selectedRouterType)
-    } else {
-      guard let stackView else { return }
-      stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-      optionButtons.removeAll()
-      for (index, routerType) in routerTypes.enumerated() {
-        let button = CircleImageButton(frame: CGRect(origin: .zero, size: Constants.transportOptionsItemSize))
-        let isSelected = routerType == selectedRouterType
-        button.setImage(routerType.image(for: isSelected), style: isSelected ? GlobalStyleSheet.blue : .black)
-        button.tag = index
-        button.addTarget(self, action: #selector(didSelectRouter(_:)), for: .touchUpInside)
-        stackView.addArrangedSubview(button)
-        optionButtons.append(button)
+    segmentedControl.removeAllSegments()
+    for (index, type) in routerTypes.enumerated() {
+      let isSelected = type == selectedRouterType
+      segmentedControl.insertSegment(with: type.image(for: isSelected), at: index, animated: false)
+      if isSelected {
+        segmentedControl.selectedSegmentIndex = index
       }
     }
   }
 
   private func updateSelection() {
-    if #available(iOS 15, *) {
-      hostingController?.update(transportOptions: routerTypes, selectedRouterType: selectedRouterType)
-    } else {
-      for (index, routerType) in routerTypes.enumerated() {
-        let isSelected = routerType == selectedRouterType
-        optionButtons[index].setImage(routerType.image(for: isSelected), style: isSelected ? GlobalStyleSheet.blue : .black)
+    for (index, type) in routerTypes.enumerated() {
+      let isSelected = type == selectedRouterType
+      segmentedControl.setImage(type.image(for: isSelected), forSegmentAt: index)
+      if isSelected {
+        segmentedControl.selectedSegmentIndex = index
       }
     }
   }
 
-  @objc private func didSelectRouter(_ sender: UIButton) {
-    let index = sender.tag
+  @objc private func didChangeSegment(_ sender: UISegmentedControl) {
+    let index = sender.selectedSegmentIndex
     guard index < routerTypes.count else { return }
     let routerType = routerTypes[index]
     guard selectedRouterType != routerType else { return }
     selectedRouterType = routerType
-    updateSelection()
     interactor?.process(.selectRouterType(routerType))
+  }
+
+  @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+    onPanGesture?(gesture)
+  }
+}
+
+extension TransportOptionsView: UIGestureRecognizerDelegate {
+  private enum Constants {
+    static let velocityThreshold: CGFloat = 5
+  }
+
+  override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    let velocity = panelPanGestureRecognizer.velocity(in: self)
+    return abs(velocity.y) > abs(velocity.x) + Constants.velocityThreshold
   }
 }

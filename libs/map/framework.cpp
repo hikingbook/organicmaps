@@ -1,4 +1,5 @@
 #include "map/framework.hpp"
+#include "base/assert.hpp"
 #include "map/benchmark_tools.hpp"
 #include "map/gps_tracker.hpp"
 #include "map/place_page_info.hpp"
@@ -17,6 +18,7 @@
 #include "search/locality_finder.hpp"
 
 #include "storage/country_info_getter.hpp"
+#include "storage/routing_helpers.hpp"
 #include "storage/storage.hpp"
 #include "storage/storage_helpers.hpp"
 
@@ -123,11 +125,9 @@ std::string_view constexpr kProductsPopupCloseReasonSelectProductStr = "select_p
 std::string_view constexpr kFirstAskedForRateUsTimeKey = "FirstAskedForRateUsTime";
 std::string_view constexpr kLastAskedForRateUsTimeKey = "LastAskedForRateUsTime";
 
-std::string_view constexpr kDonationDefaultUrl = "https://organicmaps.app/donate/";
 std::string_view constexpr kDonationTapTimeKey = "DonationTapTime";
 std::string_view constexpr kDonationTapCountKey = "DonationTapCount";
 
-auto const kCrowdfundingStartTime = base::YYMMDDToSecondsSinceEpoch(251220);
 auto const kCrowdfundingEndTime = base::YYMMDDToSecondsSinceEpoch(260120);
 
 auto constexpr kLargeFontsScaleFactor = 1.6;
@@ -318,8 +318,6 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   GetStyleReader().SetCurrentStyle(mapStyle);
   df::LoadTransitColors();
 
-  m_connectToGpsTrack = GpsTracker::Instance().IsEnabled();
-
   // Init strings bundle.
   // @TODO. There are hardcoded strings below which are defined in strings.txt as well.
   // It's better to use strings from strings.txt instead of hardcoding them here.
@@ -365,8 +363,6 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   m_storage.SetDownloadingPolicy(&m_storageDownloadingPolicy);
   m_storage.SetStartDownloadingCallback([this]() { UpdatePlacePageInfoForCurrentSelection(); });
 
-  m_routingManager.SetRouterImpl(RouterType::Vehicle);
-
   UpdateMinBuildingsTapZoom();
 
   LOG(LINFO, ("System languages:", languages::GetPreferred()));
@@ -391,7 +387,11 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   if (loadMaps)
     LoadMapsSync();
 
-  UNUSED_VALUE(settings::Get(kShowDownloadedRegions, m_showDownloadedRegions));
+  if (m_infoGetter->HasRegionTriangles())
+  {
+    m_showDownloadedRegions = true;
+    UNUSED_VALUE(settings::Get(kShowDownloadedRegions, m_showDownloadedRegions));
+  }
 }
 
 Framework::~Framework()
@@ -517,6 +517,8 @@ void Framework::LoadMapsSync()
   m_featuresFetcher.GetDataSource().AddObserver(editor);
   LOG(LDEBUG, ("Editor initialized"));
 
+  InitRouting();
+
   GetStorage().RestoreDownloadQueue();
 }
 
@@ -536,7 +538,13 @@ void Framework::LoadMapsAsync(std::function<void()> && callback)
     m_featuresFetcher.GetDataSource().AddObserver(editor);
     LOG(LDEBUG, ("Editor initialized"));
 
-    GetPlatform().RunTask(Platform::Thread::Gui, [callback = std::move(callback)]() { callback(); });
+    GetPlatform().RunTask(Platform::Thread::Gui, [this, callback = std::move(callback)]()
+    {
+      /// @todo Investigate if we can call it async after "Editor initialized".
+      InitRouting();
+
+      callback();
+    });
 
     LOG(LINFO, ("Finished async loading"));
   }).detach();
@@ -579,7 +587,7 @@ void Framework::FillPointInfoForBookmark(Bookmark const & bmk, place_page::Info 
 {
   // Convert indices to sorted classifier types.
   Classificator const & cl = classif();
-  buffer_vector<uint8_t, 8> types;
+  buffer_vector<uint32_t, 8> types;
   for (uint32_t i : bmk.GetData().m_featureTypes)
     types.push_back(cl.GetTypeForIndex(i));
   std::sort(types.begin(), types.end());
@@ -752,10 +760,10 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   bool const isState = ftypes::IsStateChecker::Instance()(types);
   if (isState || ftypes::IsCountryChecker::Instance()(types))
   {
-    size_t const level = isState ? 1 : 0;
-    CountriesVec countries;
+    // countryId may be empty after all
     CountryId countryId = m_infoGetter->GetRegionCountryId(info.GetMercator());
-    GetStorage().GetTopmostNodesFor(countryId, countries, level);
+    CountriesVec countries;
+    GetStorage().GetTopmostNodesFor(countryId, countries, isState ? 1 : 0 /* level */);
     if (countries.size() == 1)
       countryId = countries.front();
 
@@ -1086,8 +1094,15 @@ namespace
 
 double ScaleModeToFactor(Framework::EScaleMode mode)
 {
-  double factors[] = {2.0, 1.5, 0.5, 0.67};
-  return factors[mode];
+  switch (mode)
+  {
+    using enum Framework::EScaleMode;
+  case SCALE_MAG: return 2.0;
+  case SCALE_MAG_LIGHT: return 1.5;
+  case SCALE_MIN: return 0.5;
+  case SCALE_MIN_LIGHT: return 0.67;
+  }
+  UNREACHABLE();
 }
 
 }  // namespace
@@ -1205,7 +1220,7 @@ void Framework::MemoryWarning()
 {
   LOG(LINFO, ("MemoryWarning"));
   ClearAllCaches();
-  SharedBufferManager::instance().clearReserved();
+  SharedBufferManager::Instance().ClearReserved();
 }
 
 void Framework::EnterBackground()
@@ -1626,8 +1641,11 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
 
   LoadViewport();
 
-  if (m_connectToGpsTrack)
-    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
+  {
+    auto & tracker = GpsTracker::Instance();
+    if (tracker.IsEnabled())
+      tracker.Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
+  }
 
   GetBookmarkManager().SetDrapeEngine(make_ref(m_drapeEngine));
   m_drapeApi.SetDrapeEngine(make_ref(m_drapeEngine));
@@ -1732,30 +1750,10 @@ void Framework::EnableDebugRectRendering(bool enabled)
     m_drapeEngine->EnableDebugRectRendering(enabled);
 }
 
-void Framework::ConnectToGpsTracker()
-{
-  m_connectToGpsTrack = true;
-  if (m_drapeEngine)
-  {
-    m_drapeEngine->ClearGpsTrackPoints();
-    GpsTracker::Instance().Connect(bind(&Framework::OnUpdateGpsTrackPointsCallback, this, _1, _2, _3));
-  }
-}
-
-void Framework::DisconnectFromGpsTracker()
-{
-  m_connectToGpsTrack = false;
-  auto & tracker = GpsTracker::Instance();
-  tracker.Disconnect();
-  tracker.SetEnabled(false);
-}
-
 void Framework::StartTrackRecording()
 {
   auto & tracker = GpsTracker::Instance();
-  if (!tracker.IsEnabled())
-    tracker.SetEnabled(true);
-  m_connectToGpsTrack = true;
+  tracker.SetEnabled(true);
   if (m_drapeEngine)
   {
     m_drapeEngine->ClearGpsTrackPoints();
@@ -1777,7 +1775,6 @@ ElevationInfo const & Framework::GetTrackRecordingElevationInfo()
 
 void Framework::StopTrackRecording()
 {
-  m_connectToGpsTrack = false;
   auto & tracker = GpsTracker::Instance();
   tracker.Disconnect();
   tracker.SetEnabled(false);
@@ -2637,6 +2634,9 @@ bool Framework::IsShowDownloadedRegions()
 
 void Framework::SetShowDownloadedRegions(bool isEnabled)
 {
+  if (isEnabled && !m_infoGetter->HasRegionTriangles())
+    return;
+
   m_showDownloadedRegions = isEnabled;
   settings::Set(kShowDownloadedRegions, isEnabled);
   Invalidate();
@@ -3366,21 +3366,24 @@ void Framework::OnRouteFollow(routing::RouterType type)
 }
 
 // RoutingManager::Delegate
-void Framework::RegisterCountryFilesOnRoute(shared_ptr<routing::NumMwmIds> ptr) const
+void Framework::InitRouting()
 {
-  m_storage.ForEachCountry([&ptr](storage::Country const & country) { ptr->RegisterFile(country.GetFile()); });
+  m_routingManager.Init(routing::CreateNumMwmIds(m_storage));
+
+  LOG(LDEBUG, ("Routing initialized"));
 }
 
 void Framework::SetPlacePageLocation(place_page::Info & info)
 {
   ASSERT(m_infoGetter, ());
 
+  // countryId may be empty after all
   if (info.GetCountryId().empty())
     info.SetCountryId(m_infoGetter->GetRegionCountryId(info.GetMercator()));
 
-  CountriesVec countries;
   if (info.GetTopmostCountryIds().empty())
   {
+    CountriesVec countries;
     GetStorage().GetTopmostNodesFor(info.GetCountryId(), countries);
     info.SetTopmostCountryIds(std::move(countries));
   }
@@ -3407,7 +3410,7 @@ void Framework::FillDescriptions(FeatureType & ft, place_page::Info & info) cons
   if (osmDescriptionValue.empty())
     return;
 
-  buffer_vector<int8_t, 4> langCodes;
+  LangsBufferT langCodes;
   for (auto const & lang : languages::GetSystemPreferred())
   {
     auto const code = StringUtf8Multilang::GetLangIndex(languages::Normalize(lang));
@@ -3594,23 +3597,18 @@ void Framework::DidShowRateUsRequest() const
   settings::Set(kLastAskedForRateUsTimeKey, now);
 }
 
-std::optional<std::string> Framework::GetDonateUrl() const
+std::string Framework::GetDonateUrl() const
 {
   std::string url;
   UNUSED_VALUE(settings::Get(settings::kDonateUrl, url));
-  /// @todo(KK): Remove this crowdfunding hard-start in the next release.
-  if (url.empty() && base::SecondsSinceEpoch() > kCrowdfundingStartTime)
-    url = kDonationDefaultUrl;
-  if (url.empty())
-    return nullopt;
-  if (url == kDonationDefaultUrl)
-    return platform::GetLocalizedString("translated_om_site_url").append("donate/");
+  if (url.ends_with("organicmaps.app/donate/"))
+    return platform::GetLocalizedString("translated_om_site_url") + "donate/";
   return url;
 }
 
 bool Framework::CanShowCrowdfundingPromo() const
 {
-  if (!GetDonateUrl())
+  if (GetDonateUrl().empty())
     return false;
 
   uint64_t lastDonationTapTime = 0;
