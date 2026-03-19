@@ -51,13 +51,8 @@ void Transliteration::Init(std::string const & icuDataDir)
   if (m_inited)
     return;
 
-  // This function should be called before the first ICU operation that will require the loading of
-  // an ICU data file. On Linux, data file is loaded automatically from the shared library.
-#ifndef OMIM_OS_LINUX
+  // This function should be called before the first ICU operation that will require the loading of an ICU data file.
   u_setDataDirectory(icuDataDir.c_str());
-#else
-  UNUSED_VALUE(icuDataDir);
-#endif
 
   for (auto const & lang : StringUtf8Multilang::GetSupportedLanguages())
   {
@@ -137,7 +132,7 @@ bool Transliteration::Transliterate(std::string_view sv, int8_t langCode, std::s
     return false;
 
   auto const * transliteratorsIds = StringUtf8Multilang::GetTransliteratorsIdsByCode(langCode);
-  if (transliteratorsIds == nullptr || transliteratorsIds->empty())
+  if (transliteratorsIds == nullptr || transliteratorsIds->size() == 0)
     return false;
 
   icu::UnicodeString ustr(sv.data(), static_cast<int32_t>(sv.size()));

@@ -181,10 +181,9 @@ void Notes::Upload(osm::OsmOAuth const & auth)
 
         LOG(LINFO, ("A note uploaded with id", id));
       }
-      catch (osm::ServerApi06::ServerApi06Exception const & e)
+      catch (RootException const & e)
       {
-        LOG(LERROR, ("Can't upload note.", e.Msg()));
-        // We believe that next iterations will suffer from the same error.
+        LOG(LERROR, ("Error while uploading note:", e.Msg()));
         return;
       }
 

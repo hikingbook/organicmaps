@@ -45,6 +45,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -256,7 +257,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Keep
   public void onRenderingInitializationFinished()
   {
-    ThemeSwitcher.INSTANCE.restart(true);
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
 
     Framework.nativeRestoreDownloadQueue();
 
@@ -320,6 +321,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     final IntentProcessor[] mIntentProcessors = {
+        new Factory.GoggleAssistanceIntentProcessor(),
         new Factory.UrlProcessor(),
         new Factory.KmzKmlProcessor(),
     };
@@ -549,7 +551,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
     updateViewsInsets();
 
     if (getIntent().getBooleanExtra(EXTRA_UPDATE_THEME, false))
-      ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+      ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
 
     /*
      * onRenderingInitializationFinished() hook is not called when MwmActivity is recreated with the already
@@ -564,7 +568,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void refreshLightStatusBar()
   {
-    UiUtils.setLightStatusBar(this, !(ThemeUtils.isNightTheme() || RoutingController.get().isPlanning()
+    UiUtils.setLightStatusBar(this, !(ThemeUtils.isDarkTheme(this) || RoutingController.get().isPlanning()
                                       || ChoosePositionMode.get() != ChoosePositionMode.None));
   }
 
@@ -1050,7 +1054,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   protected void onResume()
   {
     super.onResume();
-    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
     refreshSearchToolbar();
     setFullscreen(isFullscreen());
     makeNavigationBarTransparentInLightMode();
@@ -1534,7 +1539,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onNavigationCancelled()
   {
     closeFloatingToolbarsAndPanels(true);
-    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
     if (mRoutingPlanInplaceController == null)
       return;
 
@@ -1550,7 +1556,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onNavigationStarted()
   {
     closeFloatingToolbarsAndPanels(true);
-    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
     mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.navigation);
     refreshLightStatusBar();
 
@@ -1586,7 +1593,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void onResetToPlanningState()
   {
     closeFloatingToolbarsAndPanels(true);
-    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
     NavigationService.stopService(this);
     mMapButtonsViewModel.setSearchOption(null);
     mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
@@ -2378,24 +2386,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void makeNavigationBarTransparentInLightMode()
   {
-    int nightMask = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-    if (nightMask == Configuration.UI_MODE_NIGHT_NO) // if light mode
-    {
-      Window window = getWindow();
-      window.setNavigationBarColor(Color.TRANSPARENT);
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-      int flags = window.getDecorView().getSystemUiVisibility();
-      flags |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
-        flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-
-      window.getDecorView().setSystemUiVisibility(flags);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-        window.setNavigationBarContrastEnforced(false);
-    }
+    final boolean isLightMode = !app.organicmaps.sdk.util.Utils.isDarkMode(this);
+    final Window window = getWindow();
+    window.setNavigationBarColor(Color.TRANSPARENT);
+    new WindowInsetsControllerCompat(window, window.getDecorView()).setAppearanceLightNavigationBars(isLightMode);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+      window.setNavigationBarContrastEnforced(false);
   }
 
   private void reportUnsupported()

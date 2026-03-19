@@ -201,8 +201,10 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">اطلاعات</string>
     <string name="prefs_group_route">مسیریابی</string>
-    <string name="pref_zoom_title">دکمه‌های بزرگنمایی</string>
+    <!-- Setting name which enables or disables zoom buttons on the map screen. -->
+    <string name="pref_zoom_title">دکمه‌های + و - روی نقشه</string>
     <string name="pref_zoom_summary">نمایش بر روی نقشه</string>
+    <string name="pref_auto_night_in_navigation_title">سبک شب هنگام ناوبری در تاریکی</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">حالت شب</string>
     <!-- Generic «Off» string -->
@@ -280,8 +282,6 @@
     <string name="downloader_downloading">درحال دانلود:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
     <string name="downloader_delete_map_while_routing_dialog">برای حذف نقشه، لطفا مسیریابی را متوقف کنید.</string>
-    <!-- PointsInDifferentMWM -->
-    <string name="routing_failed_cross_mwm_building">تنها مسیر‌هایی می توانند ایجاد شوند که به طور کامل در یک نقشه از یک منطقه واحد قرار داشته باشند.</string>
     <!-- Context menu item for downloader. -->
     <string name="downloader_download_map">دانلود نقشه</string>
     <!-- Item status in downloader. -->
@@ -294,10 +294,6 @@
     <string name="google_play_services">خدمات مکان Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">به سرعت مکان تقریبی خود را با استفاده از بلوتوث، WiFi یا شبکه تلفن همراه تعیین کنید</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">دانلود تمامی نقشه‌ها در طول مسیر‌تان</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">به منظور ایجاد مسیر ما نیاز داریم تا تمامی نقشه‌های شما از مبدا تا مقصد را به‌روزرسانی کنیم.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">فضای کافی موجود نیست</string>
     <!-- location service disabled -->
@@ -336,6 +332,12 @@
     <string name="gray">خاکستری</string>
     <!-- blue gray color -->
     <string name="blue_gray">خاکستری کبود</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">ظاهری</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">روشن</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">تیره</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">نقشه‌های رایگان و بدون تبلیغات را به میلیون‌ها کاربر هدیه دهید!</string>
 
@@ -346,28 +348,9 @@
     <string name="dialog_routing_disclaimer_recommendations">— مسیرهای پیشنهادی تنها به عنوان توصیه در نظر گرفته شوند؛</string>
     <string name="dialog_routing_disclaimer_borders">—در مسیرهایی که از مناطق مرزی میگذرد احتیاط کنید:مسیر‌هایی که بوسیله اپلیکیشن ما ایجاد می شود گاهی اوقات ممکن است مرز‌های کشور‌ها را رد کند که این در بعضی مناطق غیر مجاز است.</string>
     <string name="dialog_routing_disclaimer_beware">لطفا هوشیار و ایمن در جاده بمانید!</string>
-    <string name="dialog_routing_check_gps">سیگنال GPS را چک کنید</string>
-    <string name="dialog_routing_error_location_not_found">امکان ایجاد مسیر وجود ندارد. مختصات GPS فعلی قابل شناسایی نیست.</string>
     <string name="dialog_routing_location_turn_wifi">لطفا سیگنال GPS موبایتان راچک کنید.و WiFi موبایلتان را جهت دقت بیشتر در موقعیت‌یابی فعال کنید.</string>
-    <string name="dialog_routing_location_turn_on">فعال کردن سرویس موقعیت مکانی (GPS)</string>
-    <string name="dialog_routing_location_unknown_turn_on">ناتوان از مشخص کردن موقعیت مکانی شما.لطفا سرویس موقعیت مکانی خود را فعال کنید.</string>
-    <string name="dialog_routing_unable_locate_route">ناتوان در تعیین مسیر</string>
-    <string name="dialog_routing_cant_build_route">امکان ایجاد مسیر وجود ندارد.</string>
-    <string name="dialog_routing_change_start_or_end">لطفا مبدا یا مقصد خود را تنظیم کنید.</string>
-    <string name="dialog_routing_change_start">مبدا خود را تنظیم کنید</string>
-    <string name="dialog_routing_start_not_determined">مسیر ایجاد نشد. امکان پیدا کردن مبدا برای شروع وجود ندارد.</string>
-    <string name="dialog_routing_select_closer_start">لطفا نقطه شروع را نزدیک‌تر به جاده انتخاب کنید.</string>
-    <string name="dialog_routing_change_end">تنظیم مقصد</string>
-    <string name="dialog_routing_end_not_determined">مسیر ایجاد نشد.ناتوان در تعیین مقصد.</string>
-    <string name="dialog_routing_select_closer_end">لطفا مقصد تعیین شده را نزدیک‌تر به جاده انتخاب نمایید.</string>
-    <string name="dialog_routing_change_intermediate">ناتوان در تعیین نقطه میانی.</string>
-    <string name="dialog_routing_intermediate_not_determined">لطفا نقطه میانی را تنظیم کنید.</string>
     <string name="dialog_routing_system_error">خطای سیستم</string>
-    <string name="dialog_routing_application_error">ناتوان در ایجاد مسیر به علت خطای برنامه.</string>
-    <string name="dialog_routing_try_again">لطفا دوباره تلاش کنید</string>
     <string name="not_now">اکنون خیر</string>
-    <string name="dialog_routing_download_and_build_cross_route">ایا مایل به دانلود نقشه و ایجاد مسیر‌های بهینه بیشتری که نقشه‌های بیشتری را پوشش میدهد هستید؟</string>
-    <string name="dialog_routing_download_cross_route">دانلود نقشه‌های اضافی برای ایجاد مسیری بهتر که حاشیه‌های این نقشه را رد می کند.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">برای شروع جستجو و مسیر‌یابی لطفا نقشه رادانلود کنید بعد از آن دیگر نیازی به اتصال به اینترنت ندارید و برنامه کاملا آفلاین اجرا می شود.</string>
@@ -463,7 +446,6 @@
     <string name="level">طبقه</string>
     <string name="downloader_delete_map_dialog">تمام ویرایش‌های که بر روی نقشه انجام داده اید به همراه نقشه حذف شد.</string>
     <string name="downloader_update_maps">به‌روزرسانی نقشه‌ها</string>
-    <string name="downloader_mwm_migration_dialog">برای ایجاد مسیر، باید تمام نقشه‌ها را به‌روزرسانی کنید و سپس دوباره مسیر را برنامه‌ریزی کنید.</string>
     <string name="downloader_search_field_hint">یافتن نقشه</string>
     <string name="common_check_internet_connection_dialog">لطفا تنظیمات خود را بازبینی کنید و مطمئن شوید که ابزار شما به اینترنت متصل است.</string>
     <string name="downloader_no_space_title">فظای کافی موجود نیست</string>
@@ -639,8 +621,12 @@
     <string name="bookmarks_empty_list_title">این فهرست خالی است</string>
     <string name="bookmarks_empty_list_message">برای افزودن یک نشانک، روی یک مکان روی نقشه ضربه بزنید و سپس روی نماد ستاره ضربه بزنید</string>
     <string name="category_desc_more">…بیشتر</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">صادرات KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">صادرات GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">صادرات GeoJSON</string>
     <string name="delete_list">حذف فهرست</string>
     <string name="speedcams_alert_title">دوربین‌های سرعت</string>
     <string name="place_description_title">توضیحات محل</string>
@@ -728,9 +714,6 @@
     <string name="search_in_the_list">جستجو در فهرست</string>
     <string name="religious_places">اماکن مقدس</string>
     <string name="select_list">انتخاب فهرست</string>
-    <string name="transit_not_found">راهنمای مترو در این منطقه هنوز دردسترس نیست</string>
-    <string name="dialog_pedestrian_route_is_long_header">مسیر مترو یافت نشد</string>
-    <string name="dialog_pedestrian_route_is_long_message">لطفا نقطه آغاز و پایان نزدیک تری به ایستگاه مترو انتخاب کنید</string>
     <string name="button_layer_isolines">خط تراز</string>
     <string name="isolines_activation_error_dialog">برای فعال سازی و استفاده از لایه توپوگرافی نقشه منطقه را به روزرسانی یا دانلود کنید</string>
     <string name="isolines_location_error_dialog">لایه توپوگرافی هنوز برای این منطقه در دسترس نیست</string>
@@ -768,7 +751,9 @@
     <!-- Instagram account url for the "?" About page -->
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <!-- A link to the TTS FAQ -->
-    <string name="tts_info_link">https://organicmaps.app/faq/text-to-speech-android-tts/</string>
+    <string name="tts_info_link">https://organicmaps.app/fa-IR/faq/voice/text-to-speech-android-tts/</string>
+    <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
+    <string name="translated_om_site_url">https://organicmaps.app/fa-IR/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
     <string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/Fa:About_OpenStreetMap</string>
     <!-- A number of bookmarks and a number of tracks, separated by comma, like: 1 bookmark, 5 tracks -->
@@ -807,8 +792,6 @@
     <string name="aa_location_permissions_request">Organic Maps به دسترسی به مکان نیاز دارد. وقتی ایمن است، اعلان گوشی خود را بررسی کنید.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">این برنامه به اجازه شما نیاز دارد</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps در Android Auto برای عملکرد بهتر به مجوزهای مکان نیاز دارد</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">اعطای مجوزها</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -861,4 +844,12 @@
     <string name="uri_open_location_failed">هیچ برنامه‌ای نصب نشده است که بتواند مکان را باز کند</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">مسیریابی خودکار</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">تابع سیستم</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">ورود با رمز عبور</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">ورود با استفاده از مرورگر</string>
 </resources>

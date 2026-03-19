@@ -443,9 +443,6 @@ private:
   df::OnGraphicsContextInitialized m_onGraphicsContextInitialized;
 
 public:
-  void ConnectToGpsTracker();
-  void DisconnectFromGpsTracker();
-
   using TrackRecordingUpdateHandler = platform::SafeCallback<void(TrackStatistics const & trackStatistics)>;
   void StartTrackRecording();
   void SetTrackRecordingUpdateHandler(TrackRecordingUpdateHandler && trackRecordingDidUpdate);
@@ -473,8 +470,6 @@ public:
 private:
   void InitCountryInfoGetter();
   void InitSearchAPI(size_t numThreads);
-
-  bool m_connectToGpsTrack;  // need to connect to tracker when Drape is being constructed
 
   void OnUpdateCurrentCountry(m2::PointD const & pt, int zoomLevel);
 
@@ -758,7 +753,7 @@ public:
 protected:
   /// RoutingManager::Delegate
   void OnRouteFollow(routing::RouterType type) override;
-  void RegisterCountryFilesOnRoute(std::shared_ptr<routing::NumMwmIds> ptr) const override;
+  void InitRouting();
 
 public:
   /// @returns false in case when coordinate is in the ocean or mwm is not downloaded.
@@ -776,7 +771,7 @@ public:
 private:
   settings::UsageStats m_usageStats;
 
-  bool m_showDownloadedRegions = true;
+  bool m_showDownloadedRegions = false;
 
 public:
   power_management::PowerManager & GetPowerManager() { return m_powerManager; }
@@ -805,7 +800,7 @@ public:
   bool CanShowRateUsRequest() const;
   void DidShowRateUsRequest() const;
 
-  std::optional<std::string> GetDonateUrl() const;
+  std::string GetDonateUrl() const;
   bool CanShowCrowdfundingPromo() const;
   void DidShowDonationPage() const;
   void DidPossiblyReturnFromDonationPage() const;

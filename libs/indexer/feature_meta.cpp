@@ -1,7 +1,7 @@
 #include "indexer/feature_meta.hpp"
 #include "custom_keyvalue.hpp"
-
 #include "std/target_os.hpp"
+#include "timezone/serdes.hpp"
 
 namespace feature
 {
@@ -54,25 +54,11 @@ std::string_view MetadataBase::Set(uint8_t type, std::string value)
 
 string Metadata::ToWikiURL(std::string v)
 {
-  auto const colon = v.find(':');
+  size_t const colon = v.find(':');
   if (colon == string::npos)
     return v;
 
-  // Spaces, % and ? characters should be corrected to form a valid URL's path.
-  // Standard percent encoding also encodes other characters like (), which lead to an unnecessary HTTP redirection.
-  for (auto i = colon; i < v.size(); ++i)
-  {
-    auto & c = v[i];
-    if (c == ' ')
-      c = '_';
-    else if (c == '%')
-      v.insert(i + 1, "25");  // % => %25
-    else if (c == '?')
-    {
-      c = '%';
-      v.insert(i + 1, "3F");  // ? => %3F
-    }
-  }
+  EncodeWikiURL(colon, v);
 
   // Trying to avoid redirects by constructing the right link.
   // TODO: Wikipedia article could be opened in a user's language, but need
@@ -85,10 +71,12 @@ std::string Metadata::GetWikiURL() const
   return ToWikiURL(string(Get(FMD_WIKIPEDIA)));
 }
 
-string Metadata::ToWikimediaCommonsURL(std::string const & v)
+std::string Metadata::ToWikimediaCommonsURL(std::string v)
 {
   if (v.empty())
     return v;
+
+  EncodeWikiURL(0, v);
 
   // Use the media viewer for single files
   if (v.starts_with("File:"))
@@ -96,6 +84,26 @@ string Metadata::ToWikimediaCommonsURL(std::string const & v)
 
   // or standard if it's a category
   return kBaseCommonsUrl + v;
+}
+
+void Metadata::EncodeWikiURL(size_t startIndex, std::string & url)
+{
+  // Spaces and ? characters should be corrected to form a valid URL's path.
+  // Standard percent encoding also encodes other characters like (), which lead to an unnecessary HTTP redirection.
+  for (size_t i = startIndex; i < url.size(); ++i)
+  {
+    auto & c = url[i];
+    if (c == ' ')
+    {
+      c = '_';
+    }
+    else if (c == '?')
+    {
+      c = '%';
+      url.insert(++i, "3F");  // ? => %3F
+      ++i;
+    }
+  }
 }
 
 // static
@@ -204,6 +212,9 @@ void Metadata::ClearPOIAttribs()
 
 void RegionData::SetLanguages(vector<string> const & codes)
 {
+  if (!MetadataBase::Get(RegionData::Type::RD_LANGUAGES).empty())
+    return;
+
   string value;
   for (string const & code : codes)
   {
@@ -211,10 +222,11 @@ void RegionData::SetLanguages(vector<string> const & codes)
     if (lang != StringUtf8Multilang::kUnsupportedLanguageCode)
       value.push_back(lang);
   }
+
   MetadataBase::Set(RegionData::Type::RD_LANGUAGES, value);
 }
 
-void RegionData::GetLanguages(vector<int8_t> & langs) const
+void RegionData::GetLanguages(LangsBufferT & langs) const
 {
   for (auto const lang : Get(RegionData::Type::RD_LANGUAGES))
     langs.push_back(lang);
@@ -242,6 +254,25 @@ void RegionData::AddPublicHoliday(int8_t month, int8_t offset)
   value.push_back(month);
   value.push_back(offset);
   Set(RegionData::Type::RD_PUBLIC_HOLIDAYS, std::move(value));
+}
+
+void RegionData::LoadTimeZone()
+{
+  if (auto res = om::tz::Deserialize(Get(RD_TIMEZONE)))
+    m_timeZone = std::move(res.value());
+  else
+    LOG(LWARNING, ("Failed to read timezone info:", res.error()));
+}
+
+void RegionData::MergeFrom(RegionData const & rhs)
+{
+  for (int i = 0; i < RD_COUNT; ++i)
+  {
+    auto const k = static_cast<RegionData::Type>(i);
+    if (Get(k).empty())
+      if (auto v = rhs.Get(k); !v.empty())
+        MetadataBase::Set(k, std::string(v));
+  }
 }
 
 // Warning: exact osm tag keys should be returned for valid enum values.

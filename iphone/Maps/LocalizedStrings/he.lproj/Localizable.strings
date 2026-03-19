@@ -196,7 +196,9 @@
 "length" = "אורך";
 "share_my_location" = "שיתוף מיקום שלי";
 "prefs_group_route" = "ניווט";
-"pref_zoom_title" = "כפתורי זום";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "כפתורי + ו- על המפה";
 
 /* Generic «Off» string */
 "off" = "כבוי";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Cycling";
 "button_layer_subway" = "רכבת תחתית";
 "layers_title" = "סגנונות ושכבות מפה";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "ייצא KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "ייצוא GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "ייצא GeoJSON";
 "delete_list" = "מחק רשימה";
 "speedcams_alert_title" = "מצלמות מהירות";
 "place_description_title" = "תיאור מיקום";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "אזורים שהורדו בסגול";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "התחבר עם סיסמה";
+
+/* Login to OSM button text */
+"login_osm_browser" = "כניסה באמצעות דפדפן";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "בשימוש לאחרונה";

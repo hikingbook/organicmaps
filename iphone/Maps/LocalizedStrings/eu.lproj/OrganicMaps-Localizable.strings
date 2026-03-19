@@ -196,7 +196,9 @@
 "length" = "Luzera";
 "share_my_location" = "Partekatu nire kokapena";
 "prefs_group_route" = "Nabigazioa";
-"pref_zoom_title" = "Zoom botoiak";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Mapako “+” eta “-” botoiak";
 
 /* Generic «Off» string */
 "off" = "Desgaituta";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Txirrindularitza";
 "button_layer_subway" = "Metroa";
 "layers_title" = "Maparen estiloak eta geruzak";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Esportatu KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Esportatu GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Esportatu GeoJSON";
 "delete_list" = "Ezabatu zerrenda";
 "speedcams_alert_title" = "Abiadura kamerak";
 "place_description_title" = "Tokiaren deskribapena";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Deskargatutako eskualde moreak";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Sartu pasahitzarekin";
+
+/* Login to OSM button text */
+"login_osm_browser" = "arakatzailea erabiliz saioa hasi";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Orain dela gutxi erabilitakoa";

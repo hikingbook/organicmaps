@@ -201,8 +201,10 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Information</string>
     <string name="prefs_group_route">Navigation</string>
-    <string name="pref_zoom_title">Zoom buttons</string>
+    <!-- Setting name which enables or disables zoom buttons on the map screen. -->
+    <string name="pref_zoom_title">“+” and “-” buttons on the map</string>
     <string name="pref_zoom_summary">Display on the map</string>
+    <string name="pref_auto_night_in_navigation_title">Night style when navigating in the dark</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">Night Mode</string>
     <!-- Generic «Off» string -->
@@ -280,8 +282,6 @@
     <string name="downloader_downloading">Downloading:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
     <string name="downloader_delete_map_while_routing_dialog">To delete map, please stop navigation.</string>
-    <!-- PointsInDifferentMWM -->
-    <string name="routing_failed_cross_mwm_building">Routes can only be created that are fully contained within a map of a single region.</string>
     <!-- Context menu item for downloader. -->
     <string name="downloader_download_map">Download map</string>
     <!-- Item status in downloader. -->
@@ -294,10 +294,6 @@
     <string name="google_play_services">Google Play Location Services</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Quickly determine your approximate location using Bluetooth, WiFi, or mobile network</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">Download all of the maps along your route</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">In order to create a route, we need to download and update all the maps from your location to your destination.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">Not enough space</string>
     <!-- location service disabled -->
@@ -336,6 +332,12 @@
     <string name="gray">Gray</string>
     <!-- blue gray color -->
     <string name="blue_gray">Blue Gray</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">Appearance</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">Light</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">Dark</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">Gift free maps with no ads to millions of users!</string>
 
@@ -346,28 +348,9 @@
     <string name="dialog_routing_disclaimer_recommendations">— Suggested routes should only be understood as recommendations;</string>
     <string name="dialog_routing_disclaimer_borders">— Exercise caution with routes in border zones: the routes created by our app may sometimes cross country borders in unauthorized places.</string>
     <string name="dialog_routing_disclaimer_beware">Please stay alert and safe on the roads!</string>
-    <string name="dialog_routing_check_gps">Check GPS signal</string>
-    <string name="dialog_routing_error_location_not_found">Unable to create route. Current GPS coordinates could not be identified.</string>
     <string name="dialog_routing_location_turn_wifi">Please check your GPS signal. Enabling Wi-Fi will improve your location accuracy.</string>
-    <string name="dialog_routing_location_turn_on">Enable location services</string>
-    <string name="dialog_routing_location_unknown_turn_on">Unable to locate current GPS coordinates. Enable location services to calculate route.</string>
-    <string name="dialog_routing_unable_locate_route">Unable to locate route</string>
-    <string name="dialog_routing_cant_build_route">Unable to create route.</string>
-    <string name="dialog_routing_change_start_or_end">Please adjust your starting point or destination.</string>
-    <string name="dialog_routing_change_start">Adjust starting point</string>
-    <string name="dialog_routing_start_not_determined">Route was not created. Unable to locate starting point.</string>
-    <string name="dialog_routing_select_closer_start">Please select a starting point closer to a road.</string>
-    <string name="dialog_routing_change_end">Adjust destination</string>
-    <string name="dialog_routing_end_not_determined">Route was not created. Unable to locate the destination.</string>
-    <string name="dialog_routing_select_closer_end">Please select a destination point located closer to a road.</string>
-    <string name="dialog_routing_change_intermediate">Unable to locate the intermediate point.</string>
-    <string name="dialog_routing_intermediate_not_determined">Please adjust your intermediate point.</string>
     <string name="dialog_routing_system_error">System error</string>
-    <string name="dialog_routing_application_error">Unable to create route due to an application error.</string>
-    <string name="dialog_routing_try_again">Please try again</string>
     <string name="not_now">Not Now</string>
-    <string name="dialog_routing_download_and_build_cross_route">Would you like to download the map and create a more optimal route spanning more than one map?</string>
-    <string name="dialog_routing_download_cross_route">Download additional maps to create a better route that crosses the boundaries of this map.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">To start searching and creating routes, please download the map. After that you will no longer need an Internet connection.</string>
@@ -465,7 +448,6 @@
     <string name="level_value_generic">Level: %s</string>
     <string name="downloader_delete_map_dialog">All of your map edits will be deleted with the map.</string>
     <string name="downloader_update_maps">Update Maps</string>
-    <string name="downloader_mwm_migration_dialog">To create a route, you need to update all maps and then plan the route again.</string>
     <string name="downloader_search_field_hint">Find map</string>
     <string name="common_check_internet_connection_dialog">Please make sure your device is connected to the Internet.</string>
     <string name="downloader_no_space_title">Not enough space</string>
@@ -641,8 +623,12 @@
     <string name="bookmarks_empty_list_title">This list is empty</string>
     <string name="bookmarks_empty_list_message">To add a bookmark, tap a place on the map and then tap the star icon</string>
     <string name="category_desc_more">…more</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Export KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Export GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Export GeoJSON</string>
     <string name="delete_list">Delete list</string>
     <string name="speedcams_alert_title">Speed cameras</string>
     <string name="place_description_title">Place Description</string>
@@ -733,9 +719,6 @@
     <string name="search_in_the_list">Search in the list</string>
     <string name="religious_places">Religious places</string>
     <string name="select_list">Select list</string>
-    <string name="transit_not_found">Subway navigation in this region is not available yet</string>
-    <string name="dialog_pedestrian_route_is_long_header">No subway route found</string>
-    <string name="dialog_pedestrian_route_is_long_message">Please choose a start or end point closer to a subway station</string>
     <string name="button_layer_isolines">Contour Lines</string>
     <string name="isolines_activation_error_dialog">Activating contour lines requires downloading map data for this area</string>
     <string name="isolines_location_error_dialog">Contour lines are not yet available in this area</string>
@@ -814,8 +797,6 @@
     <string name="aa_location_permissions_request">Organic Maps needs location access. When it\'s safe, check the notification on your phone.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">This app needs your permission</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps in Android Auto needs location permissions to work effectively</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Grant Permissions</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -868,8 +849,16 @@
     <string name="uri_open_location_failed">No app installed that can open the location</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Auto in navigation</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Follow the system</string>
     <!-- Title of the bottom sheet when sharing the track -->
     <string name="share_track">Share Track</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Delete %s?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Login with password</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Login using Browser</string>
 </resources>

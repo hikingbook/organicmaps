@@ -196,7 +196,9 @@
 "length" = "Длина";
 "share_my_location" = "Поделиться местоположением";
 "prefs_group_route" = "Навигация";
-"pref_zoom_title" = "Кнопки масштаба";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Кнопки «+» и «-» на карте";
 
 /* Generic «Off» string */
 "off" = "Выключен";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Веломаршруты";
 "button_layer_subway" = "Метро";
 "layers_title" = "Стили и слои карты";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Экспорт KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Экспорт GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Экспорт GeoJSON";
 "delete_list" = "Удалить список";
 "speedcams_alert_title" = "Камеры скорости";
 "place_description_title" = "Описание места";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Фиолетовые загруженные регионы";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Вход с паролем";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Вход в систему с помощью браузера";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Недавно использованные";

@@ -10,17 +10,6 @@
 
 namespace dp
 {
-struct OverlayHandle::OffsetNodeFinder
-{
-public:
-  explicit OffsetNodeFinder(uint8_t bufferID) : m_bufferID(bufferID) {}
-
-  bool operator()(OverlayHandle::TOffsetNode const & node) const { return node.first.GetID() == m_bufferID; }
-
-private:
-  uint8_t m_bufferID;
-};
-
 OverlayHandle::OverlayHandle(OverlayID const & id, dp::Anchor anchor, uint64_t priority, uint8_t minVisibleScale,
                              bool isBillboard)
   : m_id(id)
@@ -228,8 +217,8 @@ std::string SquareHandle::GetOverlayDebugInfo()
 uint64_t CalculateOverlayPriority(uint8_t rank, float depth)
 {
   // Negative range is used for optional captions which are below all other overlays.
-  ASSERT(-drule::kOverlaysMaxPriority <= depth && depth < drule::kOverlaysMaxPriority, (depth));
   depth += drule::kOverlaysMaxPriority;
+  ASSERT(0 <= depth && depth < 2 * drule::kOverlaysMaxPriority, (depth));
 
   // Pack into uint64_t priority value (bigger is better).
   // [1 byte - 0xFF][4 bytes - priority][1 byte - rank][2 bytes - 0xFFFF].

@@ -1,6 +1,7 @@
 package app.organicmaps.sdk;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.organicmaps.sdk.display.DisplayType;
 import app.organicmaps.sdk.location.LocationHelper;
+import app.organicmaps.sdk.util.Assert;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.ROMUtils;
 import app.organicmaps.sdk.util.Utils;
@@ -52,6 +54,8 @@ public final class Map
 
   @NonNull
   private final DisplayType mDisplayType;
+  @NonNull
+  private final Context mContext;
 
   @Nullable
   private LocationHelper mLocationHelper;
@@ -67,8 +71,7 @@ public final class Map
   private boolean mSurfaceCreated;
   private boolean mSurfaceAttached;
   private boolean mLaunchByDeepLink;
-  @Nullable
-  private String mUiThemeOnPause;
+  private int mNightModeFlagOnPause = Configuration.UI_MODE_NIGHT_UNDEFINED;
   @Nullable
   private MapRenderingListener mMapRenderingListener;
   @Nullable
@@ -76,9 +79,10 @@ public final class Map
 
   private static int sCurrentDpi = 0;
 
-  public Map(@NonNull DisplayType mapType)
+  public Map(@NonNull DisplayType mapType, @NonNull Context context)
   {
     mDisplayType = mapType;
+    mContext = context;
     onCreate(false);
   }
 
@@ -143,7 +147,7 @@ public final class Map
 
   public void onSurfaceCreated(final Context context, final Surface surface, Rect surfaceFrame, int surfaceDpi)
   {
-    assert mLocationHelper != null : "LocationHelper must be initialized before calling onSurfaceCreated";
+    Assert.debug(mLocationHelper != null, "LocationHelper must be initialized before calling onSurfaceCreated");
 
     if (isThemeChangingProcess())
     {
@@ -261,7 +265,7 @@ public final class Map
 
   public void onPause()
   {
-    mUiThemeOnPause = Config.UiTheme.getCurrent();
+    mNightModeFlagOnPause = getNightModeFlag();
 
     // Pause/Resume can be called without surface creation/destroy.
     if (mSurfaceAttached)
@@ -373,7 +377,13 @@ public final class Map
 
   private boolean isThemeChangingProcess()
   {
-    return mUiThemeOnPause != null && !mUiThemeOnPause.equals(Config.UiTheme.getCurrent());
+    return mNightModeFlagOnPause != Configuration.UI_MODE_NIGHT_UNDEFINED
+ && mNightModeFlagOnPause != getNightModeFlag();
+  }
+
+  private int getNightModeFlag()
+  {
+    return mContext.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
   }
 
   // Engine
