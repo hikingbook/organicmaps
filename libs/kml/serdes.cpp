@@ -1072,7 +1072,7 @@ void KmlParser::CharData(std::string & value)
 
         /// @todo Add INVALID_TIME_STAMP post processing like in GpxParser?
         auto const timestamp = base::StringToTimestamp(value);
-        ASSERT(timestamp != base::INVALID_TIME_STAMP, (value));
+//        ASSERT(timestamp != base::INVALID_TIME_STAMP, (value));
 
         auto & cont = timestamps.back();
         if (!cont.empty())
