@@ -1,59 +1,37 @@
-import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+// Detect flavors from the task name.
+def taskName = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
+def isFdroid = taskName.contains('fdroid')
+def isBeta = taskName.contains('beta')
 
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()  // For ru.cian.huawei-plugin
-  }
-  //
-  // The magic below is needed to disable Google Firebase Services during the build time.
-  // Unfortunately, the only way to disable Gradle plugins is to add these hardcore switches to buildscript().
-  //
+// Firebase Crashlytics compile-time feature flag: -Pfirebase=true|false
+def googleFirebaseServicesFlag = findProperty('firebase')
+// Enable Firebase for all beta flavors except fdroid only if google-services.json exists.
+def googleFirebaseServicesDefault = isBeta && !isFdroid && file("$projectDir/google-services.json").exists()
+ext.googleFirebaseServicesEnabled = googleFirebaseServicesFlag != null ?
+    googleFirebaseServicesFlag == '' || googleFirebaseServicesFlag.toBoolean() :
+    googleFirebaseServicesDefault
 
-  // Detect flavors from the task name.
-  def taskName = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
-  def isFdroid = taskName.contains('fdroid')
-  def isBeta = taskName.contains('beta')
-
-  // Firebase Crashlytics compile-time feature flag: -Pfirebase=true|false
-  def googleFirebaseServicesFlag = findProperty('firebase')
-  // Enable Firebase for all beta flavors except fdroid only if google-services.json exists.
-  def googleFirebaseServicesDefault = isBeta && !isFdroid && file("$projectDir/google-services.json").exists()
-  ext.googleFirebaseServicesEnabled = googleFirebaseServicesFlag != null ?
-          googleFirebaseServicesFlag == '' || googleFirebaseServicesFlag.toBoolean() :
-          googleFirebaseServicesDefault
-
-  dependencies {
-    classpath 'com.android.tools.build:gradle:8.13.1'
-
-    if (googleFirebaseServicesEnabled) {
-      println('Building with Google Firebase Services')
-      classpath 'com.google.gms:google-services:4.4.3'
-      classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
-      classpath 'com.google.firebase:firebase-appdistribution-gradle:5.1.1'
-    } else {
-      println('Building without Google Firebase Services')
-    }
-
-//    classpath('com.github.triplet.gradle:play-publisher:3.12.1')
-//    classpath('ru.cian.huawei-plugin:plugin:1.5.0')
-  }
-}
-
-//apply plugin: 'com.android.application'
+// apply plugin: 'com.android.application'
 apply plugin: 'com.android.library'
-if (googleFirebaseServicesEnabled) {
-  apply plugin: 'com.google.gms.google-services'
-  apply plugin: 'com.google.firebase.crashlytics'
-  apply plugin: 'com.google.firebase.appdistribution'
-}
 //apply plugin: 'com.github.triplet.play'
 //apply plugin: 'ru.cian.huawei-publish-gradle-plugin'
 
+if (googleFirebaseServicesEnabled) {
+  println('Building with Google Firebase Services')
+  apply plugin: 'com.google.gms.google-services'
+  apply plugin: 'com.google.firebase.crashlytics'
+  apply plugin: 'com.google.firebase.appdistribution'
+} else {
+  println('Building without Google Firebase Services')
+}
+
+//apply from: "${rootProject.rootDir}/groovy/common-config.gradle"
+//apply from: "${rootProject.rootDir}/groovy/permission-checker.gradle"
 apply from: "${rootProject.rootDir}/organicmaps/android/groovy/common-config.gradle"
 apply from: "${rootProject.rootDir}/organicmaps/android/groovy/permission-checker.gradle"
 
+import com.android.build.api.variant.BuildConfigField
+import com.android.build.api.variant.ResValue
 //import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 //import ru.cian.huawei.publish.ReleaseNote
 //import ru.cian.huawei.publish.ReleaseNotesExtension
@@ -62,40 +40,19 @@ def getCommitMessage() {
   return run(['git', '--no-pager', 'show', '-s', '--format=%s%n%n%b', 'HEAD']).trim()
 }
 
-//project.ext.appId = 'app.organicmaps'
-//project.ext.appName = 'Organic Maps'
-project.ext.appId = 'net.hikingbook.hikingbook'
-project.ext.appName = 'Hikingbook'
-
-def run(cmd) {
-  def output = new ByteArrayOutputStream()
-  project.exec {
-    commandLine = cmd
-    standardOutput = output
-  }
-  return output.toString().trim()
-}
-
-def getVersion() {
-  def isWindows = DefaultNativePlatform.getCurrentOperatingSystem().isWindows()
-  def bash = isWindows ? 'C:\\Program Files\\Git\\bin\\bash.exe' : 'bash'
-  def versionCode = Integer.parseInt(run([bash, '../../tools/unix/version.sh', 'android_code']))
-  def versionName = run([bash, '../../tools/unix/version.sh', 'android_name'])
-  return new Tuple2(versionCode, versionName)
-}
-
-rootProject.ext {
-  def ver = getVersion()
-  versionCode = ver.V1
-  versionName = ver.V2
-}
-
 android {
   namespace = 'app.organicmaps'
+
+//  if (googleFirebaseServicesEnabled) {
+//    enableKotlin = true
+//  } else {
+//    enableKotlin = false
+//  }
 
   buildFeatures {
     dataBinding = true
     buildConfig = true
+    resValues = true
   }
 
   // Users are complaining that the app should be re-downloaded from the Play Store after changing the language.
@@ -110,9 +67,7 @@ android {
     versionName = rootProject.ext.versionName
     println('Version: ' + versionName)
     println('VersionCode: ' + versionCode)
-    minSdk = propMinSdkVersion.toInteger()
-    targetSdk = propTargetSdkVersion.toInteger()
-//    applicationId project.ext.appId
+//    applicationId rootProject.ext.appId
     buildConfigField 'String', 'SUPPORT_MAIL', '"android@organicmaps.app"'
     buildConfigField 'int', 'VERSION_CODE', "${versionCode}"
     buildConfigField 'String','VERSION_NAME',"\"${versionName}\""
@@ -120,7 +75,7 @@ android {
     buildConfigField 'String', 'REVIEW_URL', '""'
     resourceConfigurations += [project.ext.supportedLocalizations]
 
-//    base.archivesName = appName.replaceAll('\\s', '') + '-' + defaultConfig.versionCode
+    base.archivesName = rootProject.name.replaceAll('\\s', '') + '-' + defaultConfig.versionCode
 
     ndk.debugSymbolLevel = 'full'
   }
@@ -129,7 +84,7 @@ android {
 
   productFlavors {
     // 01 is a historical artefact, sorry.
-//    final int HUAWEI_VERSION_CODE_BASE = 01_00_00_00_00
+    final int HUAWEI_VERSION_CODE_BASE = 01_00_00_00_00
 
     google {
       dimension 'default'
@@ -138,26 +93,26 @@ android {
       buildConfigField 'String', 'REVIEW_URL', '"market://details?id=app.organicmaps"'
     }
 
-//    web {
-//      dimension 'default'
+    web {
+      dimension 'default'
 //      applicationIdSuffix '.web'
-//     versionName = android.defaultConfig.versionName + '-Web'
-//      buildConfigField 'String', 'SUPPORT_MAIL', '"apk@organicmaps.app"'
-//    }
+      versionName = android.defaultConfig.versionName + '-Web'
+      buildConfigField 'String', 'SUPPORT_MAIL', '"apk@organicmaps.app"'
+    }
 
-//    fdroid {
-//      dimension 'default'
-//      versionName = android.defaultConfig.versionName + '-FDroid'
-//      buildConfigField 'String', 'SUPPORT_MAIL', '"fdroid@organicmaps.app"'
-//    }
+    fdroid {
+      dimension 'default'
+      versionName = android.defaultConfig.versionName + '-FDroid'
+      buildConfigField 'String', 'SUPPORT_MAIL', '"fdroid@organicmaps.app"'
+    }
 
-//    huawei {
-//      dimension 'default'
-//      versionName = android.defaultConfig.versionName + '-Huawei'
-//      versionCode = HUAWEI_VERSION_CODE_BASE + android.defaultConfig.versionCode
-//      buildConfigField 'String', 'SUPPORT_MAIL', '"huawei@organicmaps.app"'
-//      buildConfigField 'String', 'REVIEW_URL', '"appmarket://details?id=app.organicmaps"'
-//    }
+    huawei {
+      dimension 'default'
+      versionName = android.defaultConfig.versionName + '-Huawei'
+      versionCode = HUAWEI_VERSION_CODE_BASE + android.defaultConfig.versionCode
+      buildConfigField 'String', 'SUPPORT_MAIL', '"huawei@organicmaps.app"'
+      buildConfigField 'String', 'REVIEW_URL', '"appmarket://details?id=app.organicmaps"'
+    }
   }
 
 //  playConfigs {
@@ -206,13 +161,15 @@ android {
 //      applicationIdSuffix '.debug'   // Allows to install debug and release builds together
       versionNameSuffix '-debug'
       signingConfig = signingConfigs.debug
-      resValue 'string', 'app_name', 'Debug Organic Maps'
 
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
           nativeSymbolUploadEnabled true
         }
       }
+
+      // Enable jni debug build
+      jniDebuggable true
     }
 
     release {
@@ -222,7 +179,6 @@ android {
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-      resValue 'string', 'app_name', project.ext.appName
 
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -240,8 +196,6 @@ android {
       // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin.
       // To learn more, go to the documentation section about R8 configuration files.
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-      matchingFallbacks = ['debug', 'release']
-      resValue 'string', 'app_name', 'Beta Organic Maps'
 
       if (googleFirebaseServicesEnabled) {
         firebaseCrashlytics {
@@ -271,59 +225,62 @@ android {
 }
 
 dependencies {
-  implementation project(path: ':organicmaps-sdk')
+  implementation project(':libs:api')
+  implementation project(':libs:branding')
+  implementation project(':libs:downloader')
+  implementation project(':libs:car')
+  implementation project(':libs:googleassistant')
+  implementation project(':libs:routing')
+  implementation project(':libs:utils')
 
-  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+  implementation project(':sdk')
+  implementation project(':sdk:car')
+  implementation project(':sdk:widgets:lanes')
+  implementation project(':sdk:widgets:speedlimit')
+  // World maps
+  googleImplementation project(':sdk:maps:world')
+  huaweiImplementation project(':sdk:maps:world')
+
+  coreLibraryDesugaring libs.android.tools.desugaring
 
   // Google Play Location Services
-//  webImplementation 'com.google.android.gms:play-services-location:21.3.0'
-  googleImplementation 'com.google.android.gms:play-services-location:21.3.0'
-//  huaweiImplementation 'com.google.android.gms:play-services-location:21.3.0'
+  webImplementation libs.google.gms.location
+  googleImplementation libs.google.gms.location
+  huaweiImplementation libs.google.gms.location
   // This is the microG project's re-implementation which is permissible on
   // F-droid because it's Apache-2.0.
-//  fdroidImplementation 'org.microg.gms:play-services-location:0.3.6.244735'
+  fdroidImplementation libs.microg.gms.location
 
   // Google Firebase Services
   if (googleFirebaseServicesEnabled) {
-    // Import the BoM for the Firebase platform.
-    // firebase-crashlytics-ndk requires minSdkVersion 23 since 34.0.0
-    // See https://firebase.google.com/support/release-notes/android#crashlytics-ndk_v20-0-0
-    // Use 33.11.0 instead of 33.16.0 because of the https://github.com/firebase/firebase-android-sdk/issues/6993
-    implementation platform('com.google.firebase:firebase-bom:33.11.0')
-    // Add the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-crashlytics'
-    implementation 'com.google.firebase:firebase-crashlytics-ndk'
+    implementation platform(libs.google.firebase.bom)
+    implementation libs.google.firebase.crashlytics
+    implementation libs.google.firebase.crashlytics.ndk
   }
 
   // This line is added as a workaround for duplicate classes error caused by some outdated dependency:
   // > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckDuplicatesRunnable
   // We don't use Kotlin, but some dependencies are actively using it.
   // See https://stackoverflow.com/a/75719642
-  implementation 'androidx.core:core:1.17.0'
-  implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.2.20'))
-  implementation 'androidx.annotation:annotation:1.9.1'
-  implementation 'androidx.appcompat:appcompat:1.7.1'
-  implementation 'androidx.car.app:app:1.8.0-alpha02'
-  implementation 'androidx.car.app:app-projected:1.8.0-alpha02'
-  implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-  implementation 'androidx.fragment:fragment:1.8.9'
-  implementation 'androidx.preference:preference:1.2.1'
-  implementation 'androidx.recyclerview:recyclerview:1.4.0'
-  implementation 'androidx.work:work-runtime:2.10.5'
-  implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
-  implementation 'com.google.android.material:material:1.13.0'
-  // Fix for app/organicmaps/util/FileUploadWorker.java:14: error: cannot access ListenableFuture
-  // https://github.com/organicmaps/organicmaps/issues/6106
-  implementation 'com.google.guava:guava:33.5.0-android'
-//  implementation 'com.github.devnullorthrow:MPAndroidChart:3.2.0-alpha'
+  implementation libs.androidx.core
+  implementation libs.androidx.annotation
+  implementation libs.androidx.appcompat
+  implementation libs.androidx.car.app
+  implementation libs.androidx.car.app.projected
+  implementation libs.androidx.constraintlayout
+  implementation libs.androidx.fragment
+  implementation libs.androidx.preference
+  implementation libs.androidx.recyclerview
+  implementation libs.androidx.work
+  implementation libs.androidx.lifecycle
+  implementation libs.google.material
+//  implementation libs.devnullorthrow.mpandroidchart
   implementation 'com.github.hikingbook:AndroidChart:master-SNAPSHOT'
-  implementation 'net.jcip:jcip-annotations:1.0'
 
   // Test Dependencies
-  testImplementation 'androidx.test.ext:junit:1.3.0'
-  testImplementation 'org.mockito:mockito-core:5.20.0'
-  testImplementation 'org.mockito:mockito-inline:5.2.0'
+  testImplementation libs.androidx.junit
+  testImplementation libs.mockito.core
+  testImplementation libs.mockito.inline
 }
 
 def allowedPermissions = [
@@ -361,31 +318,44 @@ def allowedPermissions = [
 ]
 registerCheckApkPermissionsTasks(project, allowedPermissions)
 
-//android.applicationVariants.all { variant ->
-android.libraryVariants.configureEach { variant ->
-  def authorityValue = variant.applicationId + ".provider"
-  def authority = "\"" + authorityValue + "\""
-  variant.buildConfigField 'String', 'FILE_PROVIDER_AUTHORITY', authority
-  def flavor = variant.getMergedFlavor()
-  flavor.manifestPlaceholders += [FILE_PROVIDER_PLACEHOLDER: authorityValue]
-//  variant.resValue 'string', 'app_id', variant.applicationId
-}
 
-//android.applicationVariants.all { variant ->
-android.libraryVariants.configureEach { variant ->
-  def variantCap = variant.name.capitalize()
-  def installTaskName = "install${variantCap}"
-  def runTaskName = "run${variantCap}"
+androidComponents {
+  def adb = sdkComponents.adb
 
-  tasks.register(runTaskName, Exec) {
-    group = "run"
-    description = "Installs and runs the ${variant.name} build on a device."
-    dependsOn installTaskName
+  // Keep debug symbols in local debug builds for native debugging.
+  if (!rootProject.ext.CI) {
+    onVariants(selector().withBuildType("debug")) { variant ->
+      variant.packaging.jniLibs.keepDebugSymbols.add("**/liborganicmaps.so")
+    }
+  }
 
-    commandLine android.getAdbExe(), 'shell', 'am', 'start',
-        '-n', "$variant.applicationId/app.organicmaps.DownloadResourcesActivity",
-        '-a', 'android.intent.action.MAIN',
-        '-c', 'android.intent.category.LAUNCHER'
+  onVariants(selector().all()) { variant ->
+    variant.buildConfigFields.put('FILE_PROVIDER_AUTHORITY',
+        variant.applicationId.map { appId ->
+          new BuildConfigField("String", "\"${appId}.provider\"", null)
+        })
+    variant.manifestPlaceholders.put("FILE_PROVIDER_PLACEHOLDER",
+        variant.applicationId.map { it + ".provider" })
+    variant.resValues.put(
+        variant.makeResValueKey("string", "app_id"),
+        variant.applicationId.map { new ResValue(it, null) })
+
+    def variantCap = variant.name.capitalize()
+    def installTaskName = "install${variantCap}"
+    def runTaskName = "run${variantCap}"
+
+    tasks.register(runTaskName, Exec) {
+      group = "run"
+      description = "Installs and runs the ${variant.name} build on a device."
+      dependsOn installTaskName
+
+      doFirst {
+        commandLine adb.get().asFile, 'shell', 'am', 'start',
+            '-n', "${variant.applicationId.get()}/app.organicmaps.DownloadResourcesActivity",
+            '-a', 'android.intent.action.MAIN',
+            '-c', 'android.intent.category.LAUNCHER'
+      }
+    }
   }
 }
 
@@ -430,7 +400,7 @@ tasks.register("prepareGoogleReleaseListing") {
 //    huaweiRelease {
 //      credentialsPath = "$projectDir/huawei-appgallery.json"
 //      buildFormat = 'aab'
-//      deployType = 'draft' // confirm manually
+//      deployType = 'draft' // Requires manual confirmation in Huawei AppGallery Connect.
 //      def releaseDescriptions = []
 //      def localeOverride = [
 //          'am'   : 'am-ET',
@@ -446,8 +416,11 @@ tasks.register("prepareGoogleReleaseListing") {
 //      def files = fileTree(dir: "$projectDir/src/fdroid/play/listings",
 //          include: '**/release-notes.txt')
 //      files.each { File file ->
-//        def path = file.getPath()
 //        def locale = file.parentFile.getName()
+//        if (locale == 'hy-AM') {
+//          return // Armenian locale is not supported by Huawei AppGallery, skip it.
+//        }
+//        def path = file.getPath()
 //        locale = localeOverride.get(locale, locale)
 //        releaseDescriptions.add(new ReleaseNote(locale, path))
 //      }

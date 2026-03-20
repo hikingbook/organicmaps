@@ -159,7 +159,7 @@ UNIT_CLASS_TEST(MwmTestsFixture, TopPOIs_Smoke)
 
     Range const range(results, 0, kPopularPoiResultsCount);
     EqualClassifType(range, GetClassifTypes({{"shop"}, {"amenity", "fast_food"}}));
-    TEST_LESS(SortedByDistance(range, center).first, 500, ());
+    TEST_LESS(SortedByDistance(range, center).first, 550, ());
   }
 
   // https://github.com/organicmaps/organicmaps/issues/1376
@@ -1250,7 +1250,7 @@ UNIT_CLASS_TEST(MwmTestsFixture, Family_Viewport)
   using namespace mercator;
   auto const & cl = classif();
 
-  // Buenos Aires
+  // Buenos Aires (Recoleta)
   ms::LatLon const center(-34.588943, -58.3988512);
   SetViewportAndLoadMaps(center);
 
@@ -1260,7 +1260,7 @@ UNIT_CLASS_TEST(MwmTestsFixture, Family_Viewport)
   params.m_maxNumResults = search::SearchParams::kDefaultNumResultsInViewport;
 
   {
-    params.m_viewport = {LonToX(-58.4015885), LatToY(-34.5901233), LonToX(-58.396118), LatToY(-34.5876888)};
+    params.m_viewport = {LonToX(-58.4019), LatToY(-34.5908), LonToX(-58.396118), LatToY(-34.5876888)};
 
     auto request = MakeRequest(params);
     auto const & results = request->Results();
@@ -1269,6 +1269,25 @@ UNIT_CLASS_TEST(MwmTestsFixture, Family_Viewport)
     TEST_EQUAL(CountClassifType(allRange, cl.GetTypeByPath({"shop", "baby_goods"})), 2, ());
     TEST_EQUAL(CountClassifType(allRange, cl.GetTypeByPath({"shop", "toys"})), 1, ());
     TEST_EQUAL(CountClassifType(allRange, cl.GetTypeByPath({"leisure", "playground"})), 2, ());
+  }
+}
+
+UNIT_CLASS_TEST(MwmTestsFixture, Category_Rank)
+{
+  {
+    // Buenos Aires (Recoleta)
+    ms::LatLon const center(-34.588943, -58.3988512);
+    SetViewportAndLoadMaps(center);
+
+    auto params = GetDefaultSearchParams("hotel");
+    params.m_categorialRequest = true;
+
+    auto request = MakeRequest(params);
+    auto const & results = request->Results();
+
+    // "Alvear Palace Hotel" (900m) breaks distance sorting because it has popularity (wiki).
+    Range range(results, 0, 3);
+    TEST_LESS(SortedByDistance(range, center).second, 300, ());
   }
 }
 

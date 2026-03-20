@@ -1,3 +1,28 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+// From organicmaps/android/build.gradle
+def run(cmd) {
+  def output = providers.exec {
+    commandLine = cmd
+    workingDir = rootProject.projectDir
+  }
+  return output.standardOutput.asText.get().trim()
+}
+
+def getVersion() {
+  def isWindows = DefaultNativePlatform.getCurrentOperatingSystem().isWindows()
+  def bash = isWindows ? 'C:\\Program Files\\Git\\bin\\bash.exe' : 'bash'
+  def versionCode = Integer.parseInt(run([bash, 'organicmaps/tools/unix/version.sh', 'android_code']))
+  def versionName = run([bash, 'organicmaps/tools/unix/version.sh', 'android_name'])
+  return new Tuple2(versionCode, versionName)
+}
+
+rootProject.ext {
+  def ver = getVersion()
+  versionCode = ver.V1
+  versionName = ver.V2
+  CI = System.getenv("CI") != null
+}
+
 // Use the following command to apply common configuration to your module:
 // apply from: "${rootProject.rootDir}/groovy/common-config.gradle"
 
@@ -5,17 +30,16 @@ android {
   compileSdk = propCompileSdkVersion.toInteger()
   ndkVersion = propNdkVersion
 
+//  enableKotlin = false
+
   defaultConfig {
     minSdk = propMinSdkVersion.toInteger()
     targetSdk = propTargetSdkVersion.toInteger()
 
     buildTypes {
-      debug {
-        // Enable jni debug build
-        jniDebuggable true
-      }
+      debug {}
       beta {
-        matchingFallbacks = ['debug', 'release']
+        matchingFallbacks = ['release', 'debug']
       }
       release {}
     }

@@ -122,8 +122,6 @@ set(SRC
   string_set.hpp
   string_slice.cpp
   string_slice.hpp
-  succinct_trie_builder.hpp
-  succinct_trie_reader.hpp
   transliteration_loader.cpp
   transliteration_loader.hpp
   tree_structure.hpp
@@ -156,6 +154,7 @@ target_link_libraries(${PROJECT_NAME}
     geometry
     protobuf
     coding
+    om::timezone
 )
 
 omim_add_test_subdirectory(indexer_tests)

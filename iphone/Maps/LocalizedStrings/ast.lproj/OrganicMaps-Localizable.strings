@@ -196,7 +196,9 @@
 "length" = "Llonxitú";
 "share_my_location" = "Compartir el mio allugamientu";
 "prefs_group_route" = "Navigation";
-"pref_zoom_title" = "Zoom buttons";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "“+” and “-” buttons on the map";
 
 /* Generic «Off» string */
 "off" = "Off";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ciclismu";
 "button_layer_subway" = "Metro";
 "layers_title" = "Estilos y capes del mapa";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Esportar KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Esportar GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Esportar GeoJSON";
 "delete_list" = "Desaniciar llista";
 "speedcams_alert_title" = "Radares de velocidá";
 "place_description_title" = "Descripción del llugar";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Rexones descargaes en moráu";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Login with password";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Login using Browser";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Recently Used";

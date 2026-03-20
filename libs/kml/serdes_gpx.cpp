@@ -119,6 +119,9 @@ void GpxParser::AddAttr(std::string_view attr, char const * value)
 {
   if (IsValidCoordinatesPosition())
   {
+    // Yes, https://touren.bodenmais.de/bodenmais/ , we're thinking of you.
+    if (*value == '+')
+      ++value;
     if (attr == "lat" && !strings::to_double(value, m_lat))
       LOG(LERROR, ("Bad gpx latitude:", value));
     else if (attr == "lon" && !strings::to_double(value, m_lon))
@@ -189,6 +192,8 @@ void GpxParser::CheckAndCorrectTimestamps()
   }
   else if (numInvalid > 0)
   {
+    LOG(LDEBUG, ("Invalid timestamps count =", numInvalid, "; Total timestamps count =", m_timestamps.size()));
+
     // Find INVALID_TIME_STAMP ranges and interpolate them.
     for (size_t i = 0; i < m_timestamps.size();)
     {
@@ -245,8 +250,12 @@ void GpxParser::Pop(std::string_view tag)
     if (m_line.empty() || !AlmostEqualAbs(m_line.back().GetPoint(), p, kMwmPointAccuracy))
     {
       m_line.emplace_back(p, m_altitude);
+
+      if (!m_timestamps.empty() && m_timestamp != base::INVALID_TIME_STAMP)
+        ASSERT_LESS_OR_EQUAL(m_timestamps.back(), m_timestamp, ());
       m_timestamps.emplace_back(m_timestamp);
     }
+
     m_altitude = geometry::kInvalidAltitude;
     m_timestamp = base::INVALID_TIME_STAMP;
   }
@@ -408,7 +417,7 @@ void GpxParser::ParseAltitude(std::string const & value)
 {
   double rawAltitude;
   if (strings::to_double(value, rawAltitude))
-    m_altitude = static_cast<geometry::Altitude>(round(rawAltitude));
+    m_altitude = static_cast<geometry::Altitude>(std::round(rawAltitude));
   else
     m_altitude = geometry::kInvalidAltitude;
 }

@@ -95,7 +95,7 @@
     <!-- Error moving map files from one storage to another -->
     <string name="move_maps_error">Hiba történt a térképfájlok áthelyezése közben</string>
     <!-- Ask user to wait several minutes (some long process in modal dialog). -->
-    <string name="wait_several_minutes">Ez több percig is eltarthat. \nKis türelmet…</string>
+    <string name="wait_several_minutes">Ez több percig is eltarthat.\nKis türelmet…</string>
     <!-- Measurement units title in settings activity -->
     <string name="measurement_units">Mértékegységek</string>
     <!-- Detailed description of Measurement Units settings button -->
@@ -201,8 +201,10 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Információk</string>
     <string name="prefs_group_route">Navigáció</string>
-    <string name="pref_zoom_title">Nagyítás/kicsinyítés gombok</string>
+    <!-- Setting name which enables or disables zoom buttons on the map screen. -->
+    <string name="pref_zoom_title">„+” és „-” gombok a térképen</string>
     <string name="pref_zoom_summary">Megjelenítés a térképen</string>
+    <string name="pref_auto_night_in_navigation_title">Éjszakai stílus a sötétben történő navigáláshoz</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">Éjszakai mód</string>
     <!-- Generic «Off» string -->
@@ -214,9 +216,9 @@
     <!-- Settings «Map» category: «Perspective view» title -->
     <string name="pref_map_3d_title">Perspektivikus nézet</string>
     <!-- Settings «Map» category: «3D buildings» title -->
-    <string name="pref_map_3d_buildings_title">3D-s épületek</string>
+    <string name="pref_map_3d_buildings_title">3D épületek</string>
     <!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
-    <string name="pref_map_3d_buildings_disabled_summary">A 3D-s épületek energiatakarékos módban ki vannak kapcsolva</string>
+    <string name="pref_map_3d_buildings_disabled_summary">A 3D épületek energiatakarékos módban ki vannak kapcsolva</string>
     <!-- Settings «Route» category: «Tts enabled» title -->
     <string name="pref_tts_enable_title">Hangutasítások</string>
     <!-- Settings «Route» category: «Tts announce street names» title -->
@@ -252,7 +254,7 @@
     <string name="donate">Adományozás</string>
     <string name="already_donated">Már adományozott</string>
     <string name="remind_me_later">Emlékeztessen később</string>
-    <string name="support_organic_maps">Támogasd az Organic Maps-et</string>
+    <string name="support_organic_maps">Támogassa az Organic Maps-et</string>
     <!-- Button in the main Help dialog -->
     <string name="how_to_support_us">Támogatás</string>
     <!-- Button in the main Help dialog -->
@@ -280,8 +282,6 @@
     <string name="downloader_downloading">Letöltés:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
     <string name="downloader_delete_map_while_routing_dialog">Állítsa le a navigációt a térkép törléséhez.</string>
-    <!-- PointsInDifferentMWM -->
-    <string name="routing_failed_cross_mwm_building">Útvonalakat csak akkor lehet készíteni, ha teljesen rajta vannak egy térképen.</string>
     <!-- Context menu item for downloader. -->
     <string name="downloader_download_map">Térkép letöltése</string>
     <!-- Item status in downloader. -->
@@ -294,10 +294,6 @@
     <string name="google_play_services">Google Play helymeghatározási szolgáltatások</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Bluetooth, Wi-Fi vagy mobil-adatforgalom segítségével gyorsan meghatározhatja hozzávetőleges tartózkodási helyét</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">Összes térkép letöltése az útvonal mentén</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">Az útvonal létrehozásához le kell töltenie és frissítenie kell az összes térképet az Ön tartózkodási helyétől az úti céljáig.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">Nincs elegendő tárhely</string>
     <!-- location service disabled -->
@@ -329,13 +325,19 @@
     <!-- teal color -->
     <string name="teal">Zöldeskék</string>
     <!-- lime color -->
-    <string name="lime">Mész</string>
+    <string name="lime">Lime</string>
     <!-- deep orange color -->
     <string name="deep_orange">Mély narancssárga</string>
     <!-- gray color -->
     <string name="gray">Szürke</string>
     <!-- blue gray color -->
     <string name="blue_gray">Kékes szürke</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">Megjelenés</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">Világos</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">Sötét</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">Ajándékozzon ingyenes, hirdetésmentes térképeket felhasználók millióinak!</string>
 
@@ -346,28 +348,9 @@
     <string name="dialog_routing_disclaimer_recommendations">– A javasolt útvonalakat csupán ajánlottként kell tekinteni;</string>
     <string name="dialog_routing_disclaimer_borders">– Legyen óvatos az útvonalakkal a határzónákban: az alkalmazásunk által létrehozott útvonalak néha nem engedélyezett helyeken léphetik át az országhatárokat.</string>
     <string name="dialog_routing_disclaimer_beware">Mindig maradjon éber és vezessen biztonságosan az utakon!</string>
-    <string name="dialog_routing_check_gps">Ellenőrizze a GPS-jelet</string>
-    <string name="dialog_routing_error_location_not_found">Nem sikerült létrehozni az útvonalat. A jelenlegi GPS-koordináták nem azonosíthatók.</string>
     <string name="dialog_routing_location_turn_wifi">Ellenőrizze a GPS-jelet. A Wi-Fi engedélyezése javítja a helymeghatározási pontosságot.</string>
-    <string name="dialog_routing_location_turn_on">Engedélyezze a helymeghatározási szolgáltatásokat</string>
-    <string name="dialog_routing_location_unknown_turn_on">A jelenlegi GPS-koordináták nem találhatók. Engedélyezze a helymeghatározási szolgáltatásokat az útvonal kiszámításához.</string>
-    <string name="dialog_routing_unable_locate_route">Nem sikerült meghatározni az útvonalat</string>
-    <string name="dialog_routing_cant_build_route">Nem lehet létrehozni az útvonalat.</string>
-    <string name="dialog_routing_change_start_or_end">Pontosítsa a kiindulási pontot vagy az úti célt.</string>
-    <string name="dialog_routing_change_start">Pontosítsa a kiindulási pontot</string>
-    <string name="dialog_routing_start_not_determined">Az útvonal nem lett létrehozva. Nem sikerült meghatározni a kiindulási pontot.</string>
-    <string name="dialog_routing_select_closer_start">Válasszon egy, az úthoz közelebb eső kiindulási pontot.</string>
-    <string name="dialog_routing_change_end">Pontosítsa az úti célt</string>
-    <string name="dialog_routing_end_not_determined">Az útvonal nem lett létrehozva. Nem sikerült meghatározni az úti célt.</string>
-    <string name="dialog_routing_select_closer_end">Válasszon egy, az úthoz közelebb eső úti célt.</string>
-    <string name="dialog_routing_change_intermediate">Nem sikerült meghatározni a köztes célpontot.</string>
-    <string name="dialog_routing_intermediate_not_determined">Pontosítsa a köztes célpontot.</string>
     <string name="dialog_routing_system_error">Rendszerhiba</string>
-    <string name="dialog_routing_application_error">Nem lehet létrehozni az útvonalat egy alkalmazáshiba miatt.</string>
-    <string name="dialog_routing_try_again">Próbálja meg újra</string>
     <string name="not_now">Most nem</string>
-    <string name="dialog_routing_download_and_build_cross_route">Szeretné letölteni a térképet, és egynél több térképen átívelő, optimálisabb útvonalat létrehozni?</string>
-    <string name="dialog_routing_download_cross_route">Töltsön le további térképeket, hogy egy jobb útvonalat hozzon létre, amely keresztezi ennek a térképnek a határait.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">Az útvonalak kereséséhez és létrehozásához, töltse le a térképet és többé nem lesz szüksége internetkapcsolatra.</string>
@@ -465,7 +448,6 @@
     <string name="level_value_generic">%s. szint</string>
     <string name="downloader_delete_map_dialog">Az összes térképszerkesztés törlődik a térképpel együtt.</string>
     <string name="downloader_update_maps">Térképek frissítése</string>
-    <string name="downloader_mwm_migration_dialog">Az útvonal létrehozásához frissítenie kell az összes térképet, majd újra meg kell terveznie az útvonalat.</string>
     <string name="downloader_search_field_hint">Térkép keresése</string>
     <string name="common_check_internet_connection_dialog">Győződjön meg arról, hogy az eszköz csatlakozik az internethez.</string>
     <string name="downloader_no_space_title">Nincs elegendő tárhely</string>
@@ -485,7 +467,7 @@
     <string name="placepage_add_business_button">Vállalkozás hozzáadása</string>
     <string name="message_invalid_feature_position">Itt nem található objektum</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
-    <string name="osm_presentation">Közösség által létrehozott OpenStreetMap adatok innen: %s. További információkat a térkép szerkesztéséről és frissítéséről az OpenStreetMap.org oldalon találhat</string>
+    <string name="osm_presentation">A közösségi OpenStreetMap adatok frissítésének időpontja: %s. Tudjon meg többet a térkép szerkesztéséről és frissítéséről az OpenStreetMap.org oldalon</string>
     <!-- OSM explanation on Android login screen -->
     <string name="login_osm_presentation">Az OpenStreetMap.org (OSM) egy közösségi projekt, amelynek célja egy ingyenes és nyílt térkép létrehozása. Ez az Organic Maps alkalmazás térképadatainak fő forrása, és a Wikipédiához hasonlóan működik. Helyeket adhat hozzá vagy szerkeszthet, és azok világszerte felhasználók milliói számára válnak elérhetővé. \nCsatlakozzon a közösséghez, és segítsen egy jobb térképet készíteni mindenki számára!</string>
     <string name="login_to_make_edits_visible">Hozzon létre egy fiókot az OpenStreetMapen, vagy jelentkezzen be, hogy közzétehesse térképszerkesztéseit a világ számára.</string>
@@ -644,8 +626,12 @@
     <string name="bookmarks_empty_list_title">Ez a lista üres</string>
     <string name="bookmarks_empty_list_message">Egy könyvjelző hozzáadásához érintsen meg a térképen egy helyet, majd érintse meg a csillag ikont</string>
     <string name="category_desc_more">…több</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Exportálás KMZ-fájlba</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Exportálás GPX-fájlba</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Exportálás GeoJSON-fájlba</string>
     <string name="delete_list">Lista törlése</string>
     <string name="speedcams_alert_title">Sebességmérő kamerák</string>
     <string name="place_description_title">A hely ismertetése</string>
@@ -736,9 +722,6 @@
     <string name="search_in_the_list">Keresés a listában</string>
     <string name="religious_places">Vallási helyek</string>
     <string name="select_list">Lista kiválasztása</string>
-    <string name="transit_not_found">Metrónavigáció ebben a régióban még nem érhető el</string>
-    <string name="dialog_pedestrian_route_is_long_header">Nem található metróútvonal</string>
-    <string name="dialog_pedestrian_route_is_long_message">Válasszon egy, a metróállomáshoz közelebb eső kiindulási pontot vagy úti célt</string>
     <string name="button_layer_isolines">Szintvonalak</string>
     <string name="isolines_activation_error_dialog">A szintvonalak aktiválásához a terület térképadatainak letöltése szükséges</string>
     <string name="isolines_location_error_dialog">A szintvonalak még nem állnak rendelkezésre ezen a területen</string>
@@ -776,7 +759,7 @@
     <!-- Instagram account url for the "?" About page -->
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <!-- A link to the TTS FAQ -->
-    <string name="tts_info_link">https://organicmaps.app/faq/text-to-speech-android-tts/</string>
+    <string name="tts_info_link">https://organicmaps.app/hu/faq/voice/text-to-speech-android-tts/</string>
     <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/hu/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
@@ -817,8 +800,6 @@
     <string name="aa_location_permissions_request">Az Organic Maps alkalmazásnak szüksége van a helymeghatározáshoz való hozzáférésre. Ha biztonságos, ellenőrizze az értesítést az eszközén.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">Ennek az alkalmazásnak szüksége van az Ön engedélyére</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Az Organic Maps az Android Autoban helymeghatározási engedélyeket igényel a hatékony működéshez</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Engedélyek megadása</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -871,8 +852,16 @@
     <string name="uri_open_location_failed">Nincs telepített alkalmazás, amely meg tudja nyitni a helyet</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Automatikus navigáció</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Rendszer követése</string>
     <!-- Title of the bottom sheet when sharing the track -->
     <string name="share_track">Nyomvonal megosztása</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Törli %s?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Bejelentkezés jelszóval</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Bejelentkezés böngésző használatával</string>
 </resources>

@@ -196,7 +196,9 @@
 "length" = "Pikkus";
 "share_my_location" = "Jaga minu asukohta";
 "prefs_group_route" = "Tee juhatamine";
-"pref_zoom_title" = "Suuminupud";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Nupud „+” ja „-” kaardil";
 
 /* Generic «Off» string */
 "off" = "Väljas";
@@ -229,7 +231,7 @@
 "pref_tts_language_title" = "Hääljuhiste keel";
 
 /* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "Testi hääljuhised (TTS, Text-To-Speech)";
+"pref_tts_test_voice_title" = "Testi hääljuhised (Kõnesüntees, TTS, Text-To-Speech)";
 "pref_map_auto_zoom" = "Automaatne suum";
 "placepage_distance" = "Kaugus";
 "search_show_on_map" = "Vaata kaardil";
@@ -567,7 +569,7 @@
 "hour" = "h";
 "minute" = "min";
 "day" = "p";
-"second" = "s";
+"second" = "sek";
 "placepage_more_button" = "Veel";
 
 /* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Jalgrattasõit";
 "button_layer_subway" = "Metroo";
 "layers_title" = "Kaardi stiilid ja kihid";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Ekspordi KMZ-failina";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Ekspordi GPX-failina";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Ekspordi GeoJSON-failina";
 "delete_list" = "Kustuta loend";
 "speedcams_alert_title" = "Kiiruskaamerad";
 "place_description_title" = "Koha kirjeldus";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Lillad allalaaditud piirkonnad";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Sisselogimine parooliga";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Sisselogimine brauseri abil";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Hiljuti kasutatud";

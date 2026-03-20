@@ -1,0 +1,15 @@
+plugins {
+  id 'com.android.library'
+}
+
+//apply from: "${rootProject.rootDir}/groovy/common-config.gradle"
+apply from: "${rootProject.rootDir}/organicmaps/android/groovy/common-config.gradle"
+
+android {
+  namespace 'app.organicmaps.utils'
+}
+
+dependencies {
+  implementation libs.androidx.annotation
+  implementation libs.androidx.appcompat
+}

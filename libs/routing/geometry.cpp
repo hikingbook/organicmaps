@@ -91,11 +91,7 @@ public:
     road.Load(*m_vehicleModel, *feature, altitudes.empty() ? nullptr : &altitudes, m_attrsGetter);
   }
 
-  SpeedInUnits GetSavedMaxspeed(uint32_t featureId, bool forward) override
-  {
-    auto const speed = m_attrsGetter.m_maxSpeeds.GetMaxspeed(featureId);
-    return {speed.GetSpeedInUnits(forward), speed.GetUnits()};
-  }
+  Maxspeed GetSavedMaxspeed(uint32_t featureId) override { return m_attrsGetter.m_maxSpeeds.GetMaxspeed(featureId); }
 
 private:
   VehicleModelPtrT m_vehicleModel;
@@ -135,16 +131,25 @@ private:
 }  // namespace
 
 // RoadGeometry ------------------------------------------------------------------------------------
-RoadGeometry::RoadGeometry(bool oneWay, double weightSpeedKMpH, double etaSpeedKMpH, Points const & points)
-  : m_forwardSpeed{weightSpeedKMpH, etaSpeedKMpH}
-  , m_backwardSpeed(m_forwardSpeed)
-  , m_isOneWay(oneWay)
+RoadGeometry::RoadGeometry(bool oneWay, Maxspeed const & maxspeed, Points const & points)
+  : m_isOneWay(oneWay)
   , m_valid(true)
   , m_isPassThroughAllowed(false)
   , m_inCity(false)
 {
-  ASSERT_GREATER(weightSpeedKMpH, 0.0, ());
-  ASSERT_GREATER(etaSpeedKMpH, 0.0, ());
+  {
+    ASSERT(maxspeed.IsValid(), ());
+
+    m_forwardS = maxspeed.GetForwardKmPH();
+    ASSERT(m_forwardS.IsValid(), ());
+
+    m_backwardS = maxspeed.GetBackwardKmPH();
+    if (m_backwardS == kInvalidSpeed)
+      m_backwardS = m_forwardS;
+
+    m_condS = maxspeed.GetConditionalKmPH();
+    m_condition = maxspeed.GetConditionalTime();
+  }
 
   size_t const count = points.size();
   ASSERT_GREATER(count, 1, ());
@@ -173,13 +178,28 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
   uint32_t const fID = feature.GetID().m_index;
   m_inCity = attrs.m_cityRoads.IsCityRoad(fID);
 
-  SpeedParams params(attrs.m_maxSpeeds.GetMaxspeed(fID),
-                     m_highwayType ? attrs.m_maxSpeeds.GetDefaultSpeed(m_inCity, *m_highwayType) : kInvalidSpeed,
-                     m_inCity);
-  params.m_forward = true;
-  m_forwardSpeed = vehicleModel.GetSpeed(types, params);
-  params.m_forward = false;
-  m_backwardSpeed = vehicleModel.GetSpeed(types, params);
+  {
+    Maxspeed maxspeed = attrs.m_maxSpeeds.GetMaxspeed(fID);
+    SpeedParams params(kInvalidSpeed,
+                       m_highwayType ? attrs.m_maxSpeeds.GetDefaultSpeed(m_inCity, *m_highwayType) : kInvalidSpeed,
+                       m_inCity);
+
+    params.m_maxSpeedKmPH = maxspeed.GetForwardKmPH();
+    m_forwardS = vehicleModel.GetSpeed(types, params);
+
+    params.m_maxSpeedKmPH = maxspeed.GetBackwardKmPH();
+    if (params.m_maxSpeedKmPH != kInvalidSpeed)
+      m_backwardS = vehicleModel.GetSpeed(types, params);
+    else
+      m_backwardS = m_forwardS;
+
+    params.m_maxSpeedKmPH = maxspeed.GetConditionalKmPH();
+    if (params.m_maxSpeedKmPH != kInvalidSpeed)
+    {
+      m_condS = vehicleModel.GetSpeed(types, params);
+      m_condition = maxspeed.GetConditionalTime();
+    }
+  }
 
   auto const & optionsClassfier = RoutingOptionsClassifier::Instance();
   for (uint32_t type : types)
@@ -211,9 +231,7 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
     }
 #endif
   }
-  if (count > 0) {
-    m_distances.resize(count - 1, -1);
-  }
+  m_distances.assign(count - 1, -1);
 
   bool const isFerry = m_routingOptions.Has(RoutingOptions::Road::Ferry);
   /// @todo Add RouteShuttleTrain into RoutingOptions?
@@ -234,13 +252,17 @@ void RoadGeometry::Load(VehicleModelInterface const & vehicleModel, FeatureType 
       {
         double const speed = roadLenKm / durationH;
         ASSERT_LESS_OR_EQUAL(speed, vehicleModel.GetMaxWeightSpeed(), (roadLenKm, durationH, fID));
-        m_forwardSpeed = m_backwardSpeed = SpeedKMpH(speed);
+
+        // rewrite speed
+        m_forwardS = m_backwardS = SpeedKMpH(speed);
+        m_condS = {};
+        m_condition = {};
       }
     }
   }
 
   if (m_valid)
-    ASSERT(m_forwardSpeed.IsValid() && m_backwardSpeed.IsValid(), (feature.DebugString()));
+    ASSERT(m_forwardS.IsValid() && m_backwardS.IsValid(), (feature.DebugString()));
 }
 
 double RoadGeometry::GetDistance(uint32_t idx) const
@@ -250,9 +272,12 @@ double RoadGeometry::GetDistance(uint32_t idx) const
   return m_distances[idx];
 }
 
-SpeedKMpH const & RoadGeometry::GetSpeed(bool forward) const
+SpeedKMpH RoadGeometry::GetSpeed(bool forward, time_t time) const
 {
-  return forward ? m_forwardSpeed : m_backwardSpeed;
+  if (time != 0 && m_condS.IsValid() && m_condition.IsOpen(time))
+    return m_condS;
+
+  return forward ? m_forwardS : m_backwardS;
 }
 
 double RoadGeometry::GetRoadLengthM() const
@@ -284,7 +309,7 @@ RoadGeometry const & Geometry::GetRoad(uint32_t featureId)
   return m_featureIdToRoad->GetValue(featureId);
 }
 
-SpeedInUnits GeometryLoader::GetSavedMaxspeed(uint32_t featureId, bool forward)
+Maxspeed GeometryLoader::GetSavedMaxspeed(uint32_t featureId)
 {
   UNREACHABLE();
 }

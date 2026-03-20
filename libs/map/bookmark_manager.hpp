@@ -139,6 +139,7 @@ public:
     void SetIsVisible(kml::MarkGroupId groupId, bool visible);
 
     void MoveBookmark(kml::MarkId bmID, kml::MarkGroupId curGroupID, kml::MarkGroupId newGroupID);
+    /// @todo Get data by value and make moves by call-chain.
     void UpdateBookmark(kml::MarkId bmId, kml::BookmarkData const & bm);
 
     void AttachBookmark(kml::MarkId bmId, kml::MarkGroupId groupId);
@@ -150,6 +151,7 @@ public:
     void AttachTrack(kml::TrackId trackId, kml::MarkGroupId groupId);
     void DetachTrack(kml::TrackId trackId, kml::MarkGroupId groupId);
     void ChangeTrackColor(kml::TrackId trackId, dp::Color color);
+    /// @todo Get data by value and make moves by call-chain.
     void UpdateTrack(kml::TrackId trackId, kml::TrackData const & trackData);
 
     void SetCategoryName(kml::MarkGroupId categoryId, std::string const & name);
@@ -263,7 +265,7 @@ public:
 
   kml::MarkGroupId CreateBookmarkCategory(kml::CategoryData && data, bool autoSave = true);
   kml::MarkGroupId CreateBookmarkCategory(std::string const & name, bool autoSave = true);
-  void UpdateBookmarkCategory(kml::MarkGroupId & groupId, kml::CategoryData && data, bool autoSave);
+  void UpdateBookmarkCategory(kml::MarkGroupId groupId, kml::CategoryData && data, bool autoSave);
 
   BookmarkCategory * CreateBookmarkCompilation(kml::CategoryData && data);
 
@@ -320,7 +322,7 @@ public:
       FileError
     };
 
-    SharingResult(kml::GroupIdCollection && categoriesIds, std::string && sharingPath, std::string const & mimeType)
+    SharingResult(kml::GroupIdCollection && categoriesIds, std::string && sharingPath, std::string_view mimeType)
       : m_categoriesIds(categoriesIds)
       , m_code(Code::Success)
       , m_sharingPath(std::move(sharingPath))
@@ -346,9 +348,8 @@ public:
   };
 
   using SharingHandler = platform::SafeCallback<void(SharingResult const & result)>;
-  void PrepareFileForSharing(kml::GroupIdCollection && categoriesIds, SharingHandler && handler,
-                             KmlFileType kmlFileType);
-  void PrepareTrackFileForSharing(kml::TrackId trackId, SharingHandler && handler, KmlFileType kmlFileType);
+  void PrepareFileForSharing(kml::GroupIdCollection && categoriesIds, SharingHandler && handler, FileType fileType);
+  void PrepareTrackFileForSharing(kml::TrackId trackId, SharingHandler && handler, FileType fileType);
   void PrepareAllFilesForSharing(SharingHandler && handler);
 
   bool AreAllCategoriesEmpty() const;
@@ -368,7 +369,7 @@ public:
 
   void EnableTestMode(bool enable);
   bool SaveBookmarkCategory(kml::MarkGroupId groupId);
-  bool SaveBookmarkCategory(kml::MarkGroupId groupId, Writer & writer, KmlFileType fileType) const;
+  bool SaveBookmarkCategory(kml::MarkGroupId groupId, Writer & writer, FileType fileType) const;
 
   bool HasRecentlyDeletedBookmark() const { return m_recentlyDeletedBookmark.operator bool(); }
   void ResetRecentlyDeletedBookmark();
@@ -627,7 +628,7 @@ private:
   void ReloadBookmarkRoutine(std::string const & filePath);
 
   using BookmarksChecker = std::function<bool(kml::FileData const &)>;
-  KMLDataCollectionPtr LoadBookmarks(std::string const & dir, std::string_view ext, KmlFileType fileType,
+  KMLDataCollectionPtr LoadBookmarks(std::string const & dir, std::string_view ext, FileType fileType,
                                      BookmarksChecker const & checker);
 
   void GetDirtyGroups(kml::GroupIdSet & dirtyGroups) const;

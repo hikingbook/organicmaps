@@ -196,7 +196,9 @@
 "length" = "Uzunluq";
 "share_my_location" = "Məkanımı Paylaşın";
 "prefs_group_route" = "Naviqasiya";
-"pref_zoom_title" = "Böyütmə düymələri";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "+ və - düymələri xəritədə";
 
 /* Generic «Off» string */
 "off" = "Bağlı";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Velosiped gəzintisi";
 "button_layer_subway" = "Metro";
 "layers_title" = "Xəritə Üslubları və Qatları";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "KMZ ixrac edin";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "GPX ixrac edin";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "GeoJSON ixrac edin";
 "delete_list" = "Siyahını silin";
 "speedcams_alert_title" = "Sürət kameraları";
 "place_description_title" = "Məkan Təsviri";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Bənövşəyi yüklənmiş regionlar";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Şifrə ilə giriş";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Brauzerdən istifadə edərək giriş";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Son istifadə olunan";

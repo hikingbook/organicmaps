@@ -196,7 +196,9 @@
 "length" = "Даўжыня";
 "share_my_location" = "Абагуліць маё месцазнаходжанне";
 "prefs_group_route" = "Навігацыя";
-"pref_zoom_title" = "Кнопкі маштабавання";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Кнопкі «+» і «-» на мапе";
 
 /* Generic «Off» string */
 "off" = "Выключаны";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Пакатушкі";
 "button_layer_subway" = "Метро";
 "layers_title" = "Стылі і слаі карты";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Экспарт KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Экспарт GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Экспарт GeoJSON";
 "delete_list" = "Выдаліць спіс";
 "speedcams_alert_title" = "Камеры хуткасці";
 "place_description_title" = "Апісанне месца";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Фіялетавыя спампаваныя рэгіёны";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Увайсці з паролем";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Уваход праз браўзер";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Нядаўна выкарыстоўваныя";

@@ -196,7 +196,9 @@
 "length" = "Lengde";
 "share_my_location" = "Del posisjonen min";
 "prefs_group_route" = "Navigasjon";
-"pref_zoom_title" = "Zoom-knapper";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Knappene + og - på kartet";
 
 /* Generic «Off» string */
 "off" = "Av";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Sykling";
 "button_layer_subway" = "T-bane";
 "layers_title" = "Kartstiler og -lag";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Eksporter KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Eksporter GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Eksporter GeoJSON";
 "delete_list" = "Slett liste";
 "speedcams_alert_title" = "Fartskamera";
 "place_description_title" = "Plasser beskrivelse";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Lilla nedlastede regioner";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Logg inn med passord";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Innlogging ved hjelp av nettleser";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Nylig brukt";

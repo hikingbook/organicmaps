@@ -7,7 +7,6 @@
 
 #include <string>
 #include <string_view>
-#include <vector>
 
 namespace rw
 {
@@ -28,6 +27,8 @@ void ReadNonEmpty(TSource & src, std::string & s)
   src.Read(&s[0], sz);
 }
 }  // namespace rw
+
+using LangsBufferT = buffer_vector<int8_t, 8>;
 
 // A class to store strings in multiple languages.
 // May be used e.g. to store several translations of a feature's name.
@@ -52,12 +53,14 @@ class StringUtf8Multilang
 public:
   struct Lang
   {
+    using TransliteratorsList = std::initializer_list<std::string_view>;
+
     /// OSM language code (e.g. for name:en it's "en" part).
     std::string_view m_code;
     /// Native language name.
     std::string_view m_name;
     /// Transliterators to latin ids.
-    std::vector<std::string_view> m_transliteratorsIds;
+    TransliteratorsList m_transliteratorsIds;
   };
 
   static int8_t constexpr kUnsupportedLanguageCode = -1;
@@ -91,7 +94,8 @@ public:
   /// @returns empty string if langCode is invalid.
   static std::string_view GetLangNameByCode(int8_t langCode);
   /// @returns nullptr if langCode is invalid.
-  static std::vector<std::string_view> const * GetTransliteratorsIdsByCode(int8_t langCode);
+  static Lang::TransliteratorsList const * GetTransliteratorsIdsByCode(int8_t langCode);
+  static std::array<int8_t, 2> const * GetSimilarLanguages(int8_t langCode);
 
   static std::string GetOSMTagByCode(uint8_t const langCode);
   static uint8_t GetCodeByOSMTag(std::string const & name);
@@ -204,7 +208,7 @@ public:
   }
 
   /// @return Best matching translation by language priority (in the given order) or empty if no match.
-  std::string_view GetBestString(buffer_vector<int8_t, 4> const & preferredLangs) const;
+  std::string_view GetBestString(LangsBufferT const & preferredLangs) const;
   /// @return First string.
   std::string_view GetFirstString() const;
 

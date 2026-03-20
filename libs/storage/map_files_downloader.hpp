@@ -5,17 +5,13 @@
 #include "storage/downloading_policy.hpp"
 #include "storage/queued_country.hpp"
 
-#include "platform/downloader_defines.hpp"
 #include "platform/http_request.hpp"
+#include "platform/servers_list.hpp"
 
-#include <cstdint>
 #include <functional>
 #include <memory>
 #include <string>
 #include <vector>
-
-#include "platform/safe_callback.hpp"
-#include "platform/servers_list.hpp"
 
 namespace storage
 {
@@ -27,7 +23,7 @@ class MapFilesDownloader
 public:
   // Denotes bytes downloaded and total number of bytes.
   using ServersList = std::vector<std::string>;
-  using MetaConfigCallback = platform::SafeCallback<void(std::map<MapSource, downloader::MetaConfig> const & metaConfigMap)>;
+  using MetaConfigCallback = std::function<void(std::map<MapSource, downloader::MetaConfig> const & metaConfigMap)>;
 
   virtual ~MapFilesDownloader() = default;
 

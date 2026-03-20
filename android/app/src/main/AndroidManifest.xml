@@ -49,9 +49,6 @@
   //-->
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-<!--  <uses-permission android:name="androidx.car.app.NAVIGATION_TEMPLATES"/>-->
-<!--  <uses-permission android:name="androidx.car.app.ACCESS_SURFACE"/>-->
-
   <queries>
     <intent>
       <action android:name="android.intent.action.TTS_SERVICE"/>
@@ -73,6 +70,7 @@
   <!-- "android:resizeableActivity" allows free-form and split-screen modes -->
     <!--  Modified by Ke Zheng-Xiang  -->
   <application
+      android:appCategory="maps"
       android:name=".MwmApplication"
       android:allowBackup="true"
       android:backupInForeground="true"
@@ -103,8 +101,35 @@
 <!--        <category android:name="android.intent.category.BROWSABLE"/>-->
 
 <!--        <data android:scheme="geo"/>-->
+<!--        <data android:scheme="geo.offline" />-->
 <!--        <data android:scheme="ge0"/>-->
 <!--        <data android:scheme="om"/>-->
+<!--      </intent-filter>-->
+<!--      <intent-filter>-->
+<!--        <action android:name="android.intent.action.NAVIGATE" />-->
+
+<!--        <category android:name="android.intent.category.DEFAULT" />-->
+
+<!--        <data android:scheme="geo" />-->
+<!--        <data android:scheme="geo.offline" />-->
+<!--      </intent-filter>-->
+<!--      <intent-filter>-->
+<!--        <action android:name="android.intent.action.NAVIGATE" />-->
+
+<!--        <category android:name="android.intent.category.DEFAULT" />-->
+<!--        <category android:name="android.intent.category.VOICE" />-->
+
+<!--        <data android:scheme="geo" />-->
+<!--        <data android:scheme="geo.offline" />-->
+<!--      </intent-filter>-->
+
+<!--      <intent-filter>-->
+<!--        <action android:name="android.intent.action.VIEW" />-->
+
+<!--        <category android:name="android.intent.category.DEFAULT" />-->
+
+<!--        <data android:scheme="geo.action" />-->
+<!--        <data android:scheme="geo.action.offline" />-->
 <!--      </intent-filter>-->
 
 <!--      <intent-filter>-->
@@ -515,7 +540,7 @@
 <!--    <activity-->
 <!--        android:name="app.organicmaps.car.screens.permissions.RequestPermissionsActivity"/>-->
 <!--    <service-->
-<!--        android:name="app.organicmaps.car.CarAppService"-->
+<!--        android:name="app.organicmaps.car.AndroidAutoService"-->
 <!--        android:exported="true"-->
 <!--        tools:ignore="ExportedService">-->
 <!--      <intent-filter>-->
@@ -526,6 +551,7 @@
 <!--        <action android:name="androidx.car.app.action.NAVIGATE" />-->
 <!--        <category android:name="android.intent.category.DEFAULT"/>-->
 <!--        <data android:scheme="geo" />-->
+<!--        <data android:scheme="geo.offline" />-->
 <!--      </intent-filter>-->
 <!--    </service>-->
 
@@ -572,11 +598,10 @@
 
 <!--    <meta-data-->
 <!--        android:name="com.google.android.gms.car.application"-->
-<!--        android:resource="@xml/automotive_app_desc"/>-->
+<!--        android:resource="@xml/automotive_app_desc" />-->
 
 <!--    <meta-data-->
 <!--        android:name="androidx.car.app.minCarApiLevel"-->
-<!--        android:value="5"/>-->
-
+<!--        android:value="5" />-->
   </application>
 </manifest>

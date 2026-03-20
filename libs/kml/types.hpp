@@ -18,7 +18,7 @@ namespace kml
 {
 enum class PredefinedColor : uint8_t
 {
-  None = 0,
+  None = 0,  // GetRandomPredefinedColor() relies on this enum.
   Red,
   Blue,
   Purple,
@@ -41,7 +41,7 @@ enum class PredefinedColor : uint8_t
   Count
 };
 
-std::array constexpr kOrderedPredefinedColors = {
+inline std::array constexpr kOrderedPredefinedColors = {
     // clang-format off
     PredefinedColor::None,
     PredefinedColor::Red,
@@ -73,7 +73,7 @@ static_assert(base::HasUniqueElements(kOrderedPredefinedColors), "All values mus
  * kOrderedPredefinedColors[kColorIndexMap[base::E2I(PredefinedColor::Red)]] == PredefinedColor::Red
  * @endcode
  */
-std::array constexpr kColorIndexMap = [] consteval
+inline std::array constexpr kColorIndexMap = [] consteval
 {
   std::array<int, static_cast<std::size_t>(PredefinedColor::Count)> map{};
   for (std::size_t i = 0; i < kOrderedPredefinedColors.size(); ++i)
@@ -394,7 +394,8 @@ struct TrackLayer
 struct MultiGeometry
 {
   using LineT = std::vector<geometry::PointWithAltitude>;
-  using TimeT = std::vector<double>;
+  using TimeInt = time_t;
+  using TimeT = std::vector<TimeInt>;
 
   std::vector<LineT> m_lines;
   std::vector<TimeT> m_timestamps;
@@ -420,7 +421,7 @@ struct MultiGeometry
   /// This method should be used for tests only.
   void AddLine(std::initializer_list<geometry::PointWithAltitude> lst);
   /// This method should be used for tests only.
-  void AddTimestamps(std::initializer_list<double> lst);
+  void AddTimestamps(std::initializer_list<TimeInt> lst);
 
   bool HasTimestamps() const;
   bool HasTimestampsFor(size_t lineIndex) const;

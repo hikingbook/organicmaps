@@ -51,6 +51,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -263,7 +264,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Keep
   public void onRenderingInitializationFinished()
   {
-    ThemeSwitcher.INSTANCE.restart(true);
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(FrameworkAdapter.INSTANCE.getActivity(), mMapController.isRenderingActive());
 
     Framework.nativeRestoreDownloadQueue();
 
@@ -327,6 +328,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     final IntentProcessor[] mIntentProcessors = {
+        new Factory.GoggleAssistanceIntentProcessor(),
         new Factory.UrlProcessor(),
         new Factory.KmzKmlProcessor(),
     };
@@ -557,7 +559,9 @@ public class MwmActivity extends BaseMwmFragmentActivity
     updateViewsInsets();
 
     if (getIntent().getBooleanExtra(EXTRA_UPDATE_THEME, false))
-      ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+      ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(FrameworkAdapter.INSTANCE.getActivity(), mMapController.isRenderingActive());
 
     /*
      * onRenderingInitializationFinished() hook is not called when MwmActivity is recreated with the already
@@ -572,7 +576,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void refreshLightStatusBar()
   {
-    UiUtils.setLightStatusBar(this, !(ThemeUtils.isNightTheme() || RoutingController.get().isPlanning()
+    UiUtils.setLightStatusBar(this, !(ThemeUtils.isDarkTheme(this) || RoutingController.get().isPlanning()
                                       || ChoosePositionMode.get() != ChoosePositionMode.None));
   }
 
@@ -1068,7 +1072,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
   protected void onResume()
   {
     super.onResume();
-    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
     refreshSearchToolbar();
     setFullscreen(isFullscreen());
     makeNavigationBarTransparentInLightMode();
@@ -1451,217 +1456,172 @@ public class MwmActivity extends BaseMwmFragmentActivity
     mMainMenu.show(show);
   }
 
-//  @Override
-//  public void onRoutingPlanStartAnimate(boolean show)
-//  {
-//    // TODO This code section may be called when insets are not yet initialized
-//    // This is only a workaround to prevent crashes but a proper fix should be implemented
-//    if (mCurrentWindowInsets == null)
-//    {
-//      return;
-//    }
-//    int offsetY = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-//    int offsetX = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right;
-//    if (show && mRoutingPlanInplaceController != null)
-//    {
-//      final int height = mRoutingPlanInplaceController.calcHeight();
-//      if (height != 0)
-//        offsetY = height;
-//    }
-//    final int orientation = getResources().getConfiguration().orientation;
-//    final boolean isTrackRecordingEnabled = TrackRecorder.nativeIsTrackRecordingEnabled();
-//    if (isTrackRecordingEnabled && (orientation != Configuration.ORIENTATION_LANDSCAPE))
-//      offsetY += dimen(this, R.dimen.map_button_size);
-//    if (orientation == Configuration.ORIENTATION_LANDSCAPE)
-//    {
-//      if (show)
-//      {
-//        final boolean isSmallScreen = UiUtils.getDisplayTotalHeight(this) < dimen(this, R.dimen.dp_400);
-//        if (!isSmallScreen || TrackRecorder.nativeIsTrackRecordingEnabled())
-//          offsetX += dimen(this, R.dimen.map_button_size);
-//      }
-//      else if (isTrackRecordingEnabled)
-//        offsetY += dimen(this, R.dimen.map_button_size);
-//    }
-//    updateCompassOffset(offsetY, offsetX);
-//  }
+// @Override
+// public void onRoutingPlanStartAnimate(boolean show)
+// {
+//   // TODO This code section may be called when insets are not yet initialized
+//   // This is only a workaround to prevent crashes but a proper fix should be implemented
+//   if (mCurrentWindowInsets == null)
+//   {
+//     return;
+//   }
+//   int offsetY = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+//   int offsetX = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).right;
+//   if (show && mRoutingPlanInplaceController != null)
+//   {
+//     final int height = mRoutingPlanInplaceController.calcHeight();
+//     if (height != 0)
+//       offsetY = height;
+//   }
+//   final int orientation = getResources().getConfiguration().orientation;
+//   final boolean isTrackRecordingEnabled = TrackRecorder.nativeIsTrackRecordingEnabled();
+//   if (isTrackRecordingEnabled && (orientation != Configuration.ORIENTATION_LANDSCAPE))
+//     offsetY += dimen(this, R.dimen.map_button_size);
+//   if (orientation == Configuration.ORIENTATION_LANDSCAPE)
+//   {
+//     if (show)
+//     {
+//       final boolean isSmallScreen = UiUtils.getDisplayTotalHeight(this) < dimen(this, R.dimen.dp_400);
+//       if (!isSmallScreen || TrackRecorder.nativeIsTrackRecordingEnabled())
+//         offsetX += dimen(this, R.dimen.map_button_size);
+//     }
+//     else if (isTrackRecordingEnabled)
+//       offsetY += dimen(this, R.dimen.map_button_size);
+//   }
+//   updateCompassOffset(offsetY, offsetX);
+// }
 
-//  @Override
-//  public void showRoutePlan(boolean show, @Nullable Runnable completionListener)
-//  {
-//    if (show)
-//    {
-//      if (mIsTabletLayout)
-//      {
-//        replaceFragment(RoutingPlanFragment.class, null, completionListener);
-//        if (mRestoreRoutingPlanFragmentNeeded && mSavedForTabletState != null)
-//        {
-//          RoutingPlanFragment fragment = (RoutingPlanFragment) getFragment(RoutingPlanFragment.class);
-//          if (fragment != null)
-//            fragment.restoreRoutingPanelState(mSavedForTabletState);
-//        }
-//        showAddStartOrFinishFrame(RoutingController.get(), false);
-//      }
-//      else
-//      {
-//        mRoutingPlanInplaceController.show(true);
-//        if (completionListener != null)
-//          completionListener.run();
-//      }
-//    }
-//    else
-//    {
-//      if (mIsTabletLayout && mCurrentWindowInsets != null)
-//        updateCompassOffset(mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
-//      else if (!mIsTabletLayout)
-//        mRoutingPlanInplaceController.show(false);
-//
-//      closeAllFloatingPanelsTablet();
-//
-//      if (completionListener != null)
-//        completionListener.run();
-//    }
-//  }
+// @Override
+// public void showRoutePlan(boolean show, @Nullable Runnable completionListener)
+// {
+//   if (show)
+//   {
+//     if (mIsTabletLayout)
+//     {
+//       replaceFragment(RoutingPlanFragment.class, null, completionListener);
+//       if (mRestoreRoutingPlanFragmentNeeded && mSavedForTabletState != null)
+//       {
+//         RoutingPlanFragment fragment = (RoutingPlanFragment) getFragment(RoutingPlanFragment.class);
+//         if (fragment != null)
+//           fragment.restoreRoutingPanelState(mSavedForTabletState);
+//       }
+//       showAddStartOrFinishFrame(RoutingController.get(), false);
+//     }
+//     else
+//     {
+//       mRoutingPlanInplaceController.show(true);
+//       if (completionListener != null)
+//         completionListener.run();
+//     }
+//   }
+//   else
+//   {
+//     if (mIsTabletLayout && mCurrentWindowInsets != null)
+//       updateCompassOffset(mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
+//     else if (!mIsTabletLayout)
+//       mRoutingPlanInplaceController.show(false);
 
-//  @Override
-//  public void showNavigation(boolean show)
-//  {
-//    // TODO:
-//    // mPlacePage.refreshViews();
-//    mNavigationController.show(show);
-//    if (mOnmapDownloader != null)
-//      mOnmapDownloader.updateState(false);
-//  }
+//     closeAllFloatingPanelsTablet();
 
-//  @Override
-//  public void updateBuildProgress(int progress, @Framework.RouterType int router)
-//  {
-//    if (mIsTabletLayout)
-//    {
-//      RoutingPlanFragment fragment = (RoutingPlanFragment) getFragment(RoutingPlanFragment.class);
-//      if (fragment != null)
-//        fragment.updateBuildProgress(progress, router);
-//    }
-//    else
-//    {
-//      mRoutingPlanInplaceController.updateBuildProgress(progress, router);
-//    }
-//  }
+//     if (completionListener != null)
+//       completionListener.run();
+//   }
+// }
 
-//  @Override
-//  public void onStartRouteBuilding()
-//  {
-//    if (mRoutingPlanInplaceController == null)
-//      return;
-//
-//    mRoutingPlanInplaceController.hideDrivingOptionsView();
-//  }
+// @Override
+// public void showNavigation(boolean show)
+// {
+//   // TODO:
+//   // mPlacePage.refreshViews();
+//   mNavigationController.show(show);
+//   if (mOnmapDownloader != null)
+//     mOnmapDownloader.updateState(false);
+// }
 
-//  @Override
-//  public void updateBuildProgress(int progress, Router router)
-//  {
-//    if (mIsTabletLayout)
-//    {
-//      RoutingPlanFragment fragment = (RoutingPlanFragment) getFragment(RoutingPlanFragment.class);
-//      if (fragment != null)
-//        fragment.updateBuildProgress(progress, router);
-//    }
-//    else
-//    {
-//      mRoutingPlanInplaceController.updateBuildProgress(progress, router);
-//    }
-//  }
+// @Override
+// public void updateBuildProgress(int progress, Router router)
+// {
+//   if (mIsTabletLayout)
+//   {
+//     RoutingPlanFragment fragment = (RoutingPlanFragment) getFragment(RoutingPlanFragment.class);
+//     if (fragment != null)
+//       fragment.updateBuildProgress(progress, router);
+//   }
+//   else
+//   {
+//     mRoutingPlanInplaceController.updateBuildProgress(progress, router);
+//   }
+// }
 
-//  @Override
-//  public void onNavigationStarted()
-//  {
-//    closeFloatingToolbarsAndPanels(true);
-//    ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
-//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.navigation);
-//    refreshLightStatusBar();
-//
-//    // Don't start the background navigation service without fine location.
-//    if (!LocationUtils.checkFineLocationPermission(this))
-//    {
-//      Logger.w(LOCATION_TAG, "Permission ACCESS_FINE_LOCATION is not granted, skipping NavigationService");
-//      return;
-//    }
-//
-//    requestPostNotificationsPermission();
-//    NavigationService.startForegroundService(this);
-//    Utils.keepScreenOn(true, getWindow());
-//  }
+// @Override
+// public void onStartRouteBuilding()
+// {
+//   if (mRoutingPlanInplaceController == null)
+//     return;
 
-//    mRoutingPlanInplaceController.hideDrivingOptionsView();
-//    NavigationService.stopService(this);
-//    mMapButtonsViewModel.setSearchOption(null);
-//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.regular);
-//    refreshLightStatusBar();
-//    Utils.keepScreenOn(Config.isKeepScreenOnEnabled(), getWindow());
-//  }
+//   mRoutingPlanInplaceController.hideDrivingOptionsView();
+// }
 
-//  @Override
-//  public void onNavigationCancelled()
-//  {
-//    closeFloatingToolbarsAndPanels(true);
-//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
-//    if (mRoutingPlanInplaceController == null)
-//      return;
+// @Override
+// public void onNavigationCancelled()
+// {
+//   closeFloatingToolbarsAndPanels(true);
+//   ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+//   ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
+//   if (mRoutingPlanInplaceController == null)
+//     return;
 
-//  @Override
-//  public void onResetToPlanningState()
-//  {
-//    closeFloatingToolbarsAndPanels(true);
-//    ThemeSwitcher.INSTANCE.restart(isMapRendererActive());
-//    NavigationService.stopService(this);
-//    mMapButtonsViewModel.setSearchOption(null);
-//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
-//    refreshLightStatusBar();
-//  }
+//   mRoutingPlanInplaceController.hideDrivingOptionsView();
+//   NavigationService.stopService(this);
+//   mMapButtonsViewModel.setSearchOption(null);
+//   mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.regular);
+//   refreshLightStatusBar();
+//   Utils.keepScreenOn(Config.isKeepScreenOnEnabled(), getWindow());
+// }
 
-//  @Override
-//  public void onNavigationStarted()
-//  {
-//    closeFloatingToolbarsAndPanels(true);
-//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
-//    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.navigation);
-//    refreshLightStatusBar();
+// @Override
+// public void onNavigationStarted()
+// {
+//   closeFloatingToolbarsAndPanels(true);
+//   ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+//   ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
+//   mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.navigation);
+//   refreshLightStatusBar();
 
-//  @Override
-//  public void onRemovedStop()
-//  {
-//    closePlacePage();
-//  }
+//   // Don't start the background navigation service without fine location.
+//   if (!LocationUtils.checkFineLocationPermission(this))
+//   {
+//     Logger.w(LOCATION_TAG, "Permission ACCESS_FINE_LOCATION is not granted, skipping NavigationService");
+//     return;
+//   }
 
-//  @Override
-//  public void onBuiltRoute()
-//  {
-//    if (!RoutingController.get().isPlanning())
-//      return;
-//
-//    closeSearchToolbar(true, true);
-//  }
+//   requestPostNotificationsPermission();
+//   NavigationService.startForegroundService(this);
+//   Utils.keepScreenOn(true, getWindow());
+// }
 
-//  @Override
-//  public void onDrivingOptionsWarning()
-//  {
-//    if (mRoutingPlanInplaceController == null)
-//      return;
-//
-//    mRoutingPlanInplaceController.showDrivingOptionView();
-//  }
+// @Override
+// public void onPlanningCancelled()
+// {
+//   closeFloatingToolbarsAndPanels(true);
+//   mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.regular);
+//   refreshLightStatusBar();
+// }
 
-//  @Override
-//  public boolean isSubwayEnabled()
-//  {
-//    return SubwayManager.from(this).isEnabled();
-//  }
+// @Override
+// public void onPlanningStarted()
+// {
+//   closeFloatingToolbarsAndPanels(true);
+//   mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
+//   refreshLightStatusBar();
+// }
 
 //  @Override
 //  public void onResetToPlanningState()
 //  {
 //    closeFloatingToolbarsAndPanels(true);
-//    ThemeSwitcher.INSTANCE.restart(mMapController.isRenderingActive());
+//    ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
+//    ThemeSwitcher.INSTANCE.synchronizeMapStyle(this, mMapController.isRenderingActive());
 //    NavigationService.stopService(this);
 //    mMapButtonsViewModel.setSearchOption(null);
 //    mMapButtonsViewModel.setLayoutMode(MapButtonsController.LayoutMode.planning);
@@ -2464,24 +2424,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void makeNavigationBarTransparentInLightMode()
   {
-    int nightMask = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-    if (nightMask == Configuration.UI_MODE_NIGHT_NO) // if light mode
-    {
-      Window window = getWindow();
-      window.setNavigationBarColor(Color.TRANSPARENT);
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-      int flags = window.getDecorView().getSystemUiVisibility();
-      flags |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
-        flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-
-      window.getDecorView().setSystemUiVisibility(flags);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-        window.setNavigationBarContrastEnforced(false);
-    }
+    final boolean isLightMode = !app.organicmaps.sdk.util.Utils.isDarkMode(this);
+    final Window window = getWindow();
+    window.setNavigationBarColor(Color.TRANSPARENT);
+    new WindowInsetsControllerCompat(window, window.getDecorView()).setAppearanceLightNavigationBars(isLightMode);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+      window.setNavigationBarContrastEnforced(false);
   }
 
   private void reportUnsupported()

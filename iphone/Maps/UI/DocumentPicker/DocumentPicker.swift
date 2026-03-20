@@ -5,7 +5,7 @@ final class DocumentPicker: NSObject {
   private var completionHandler: URLsCompletionHandler?
 
   func present(from rootViewController: UIViewController,
-               fileTypes: [FileType] = [.kml, .kmz, .gpx, .geojson, .json],
+               fileTypes: [FileType] = [.kml, .kmz, .gpx, .geoJson, .json],
                completionHandler: @escaping URLsCompletionHandler) {
     self.completionHandler = completionHandler
     let documentPickerViewController: UIDocumentPickerViewController
@@ -22,8 +22,9 @@ final class DocumentPicker: NSObject {
 }
 
 // MARK: - UIDocumentPickerDelegate
+
 extension DocumentPicker: UIDocumentPickerDelegate {
-  func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+  func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
     completionHandler?(urls)
   }
 }

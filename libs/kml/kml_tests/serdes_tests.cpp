@@ -4,6 +4,7 @@
 
 #include "kml/serdes.hpp"
 #include "kml/serdes_binary.hpp"
+#include "kml/serdes_common.hpp"
 
 #include "map/bookmark_helpers.hpp"
 
@@ -179,11 +180,11 @@ kml::FileData GenerateKmlFileDataForTrackWithTimestamps()
 
   // track 2
   trackData.m_geometry.AddLine({{{45.9242, 56.8679}, 1}, {{45.2244, 56.2786}, 2}, {{45.1964, 56.9832}, 3}});
-  trackData.m_geometry.AddTimestamps({0.0, 1.0, 2.0});
+  trackData.m_geometry.AddTimestamps({0, 1, 2});
 
   // track 3
   trackData.m_geometry.AddLine({{{45.9242, 56.8679}, 1}, {{45.2244, 56.2786}, 2}});
-  trackData.m_geometry.AddTimestamps({0.0, 1.0});
+  trackData.m_geometry.AddTimestamps({0, 1});
   return data;
 }
 }  // namespace
@@ -423,13 +424,13 @@ UNIT_TEST(Kml_Serialization_Text_File_Track_Without_Timestamps)
 
   std::string dataFromFileBuffer;
   {
-    MemWriter<decltype(dataFromFileBuffer)> sink(dataFromFileBuffer);
+    MemWriter sink(dataFromFileBuffer);
     kml::SerializerKml ser(dataFromFile);
     ser.Serialize(sink);
   }
   std::string dataFromGeneratedFileBuffer;
   {
-    MemWriter<decltype(dataFromGeneratedFileBuffer)> sink(dataFromGeneratedFileBuffer);
+    MemWriter sink(dataFromGeneratedFileBuffer);
     kml::SerializerKml ser(dataFromGeneratedFile);
     ser.Serialize(sink);
   }
@@ -835,11 +836,11 @@ UNIT_TEST(Kml_Import_OpenTracks)
 <kml xmlns="http://earth.google.com/kml/2.2">
     <Placemark>
       <Track>
-        <when>2010-05-28T02:00Z</when>
-        <when>2010-05-28T02:01Z</when>
-        <when>2010-05-28T02:02Z</when>
-        <when>2010-05-28T02:03Z</when>
-        <when>2010-05-28T02:04Z</when>
+        <when>2010-05-28T01:02:00Z</when>
+        <when>2010-05-28T01:02:01Z</when>
+        <when>2010-05-28T01:02:02Z</when>
+        <when>2010-05-28T01:02:03Z</when>
+        <when>2010-05-28T01:02:04Z</when>
         <coord/>
         <coord>-122.205712 37.373288 152.000000</coord>
         <coord>Abra-cadabra</coord>
@@ -859,8 +860,8 @@ UNIT_TEST(Kml_Import_OpenTracks)
     TEST_EQUAL(geom.m_lines.size(), geom.m_timestamps.size(), ());
     TEST_EQUAL(geom.m_lines[0].size(), 2, ());
     TEST_EQUAL(geom.m_lines[0].size(), geom.m_timestamps[0].size(), ());
-    TEST_EQUAL(geom.m_timestamps[0][0], base::StringToTimestamp("2010-05-28T02:01Z"), ());
-    TEST_EQUAL(geom.m_timestamps[0][1], base::StringToTimestamp("2010-05-28T02:03Z"), ());
+    TEST_EQUAL(geom.m_timestamps[0][0], base::StringToTimestamp("2010-05-28T01:02:01Z"), ());
+    TEST_EQUAL(geom.m_timestamps[0][1], base::StringToTimestamp("2010-05-28T01:02:03Z"), ());
   }
 
   fData = {};
@@ -887,7 +888,7 @@ UNIT_TEST(Kml_BadTracks)
 <kml xmlns="http://earth.google.com/kml/2.2">
     <Placemark>
       <Track>
-        <when>2010-05-28T02:00Z</when>
+        <when>2010-05-28T01:02:00Z</when>
         <coord>-122.205712 37.373288 152.000000</coord>
       </Track>
       <gx:Track>
@@ -914,4 +915,67 @@ UNIT_TEST(Kml_BadTracks)
     TEST_EQUAL(geom.m_lines[0].size(), 2, ());
     TEST_EQUAL(geom.m_lines[0].size(), geom.m_timestamps[0].size(), ());
   }
+}
+
+namespace
+{
+std::string WriteCDATA(std::string const & input)
+{
+  std::string buf;
+  MemWriter<std::string> writer(buf);
+  kml::SaveStringWithCDATA(writer, input);
+  return buf;
+}
+}  // namespace
+
+UNIT_TEST(SaveStringWithCDATA_EmptyString)
+{
+  TEST_EQUAL(WriteCDATA(""), "", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_PlainText)
+{
+  TEST_EQUAL(WriteCDATA("Hello World"), "Hello World", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_SpecialCharsWrappedInCDATA)
+{
+  TEST_EQUAL(WriteCDATA("a < b"), "<![CDATA[a < b]]>", ());
+  TEST_EQUAL(WriteCDATA("Tom & Jerry"), "<![CDATA[Tom & Jerry]]>", ());
+  TEST_EQUAL(WriteCDATA("<tag>"), "<![CDATA[<tag>]]>", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_InvalidXmlCharsStripped)
+{
+  // Control characters below 0x20 (except \t, \n, \r) should be removed.
+  TEST_EQUAL(WriteCDATA(std::string("ab\x01\x02"
+                                    "cd")),
+             "abcd", ());
+  TEST_EQUAL(WriteCDATA(std::string("\x03\x04\x05")), "", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_AllowedControlChars)
+{
+  // Tab (0x09), newline (0x0a), carriage return (0x0d) are valid XML 1.0 characters.
+  TEST_EQUAL(WriteCDATA("a\tb\nc\rd"), "a\tb\nc\rd", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_MixedInvalidAndSpecial)
+{
+  // Invalid XML chars stripped, then <& triggers CDATA wrapping.
+  TEST_EQUAL(WriteCDATA(std::string("\x01"
+                                    "a < b")),
+             "<![CDATA[a < b]]>", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_Utf8Preserved)
+{
+  TEST_EQUAL(WriteCDATA("Тестовая категория"), "Тестовая категория", ());
+  TEST_EQUAL(WriteCDATA("日本語テスト"), "日本語テスト", ());
+}
+
+UNIT_TEST(SaveStringWithCDATA_AllInvalidBecomesEmpty)
+{
+  // String of only invalid chars becomes empty after stripping.
+  TEST_EQUAL(WriteCDATA(std::string("\x01\x02\x03\x1F")), "", ());
 }

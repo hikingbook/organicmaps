@@ -25,9 +25,11 @@ std::string_view constexpr kStyleMap = "StyleMap";
 std::string_view constexpr kStyleUrl = "styleUrl";
 std::string_view constexpr kPair = "Pair";
 std::string_view constexpr kExtendedData = "ExtendedData";
-std::string const kCompilation = "mwm:compilation";
-
-std::string_view const kCoordinates = "coordinates";
+std::string_view constexpr kCompilation = "mwm:compilation";
+std::string_view constexpr kCompilationFooter = "</mwm:compilation>\n";
+std::string_view constexpr kExtendedDataHeader = "<ExtendedData xmlns:mwm=\"https://omaps.app\">\n";
+std::string_view constexpr kExtendedDataFooter = "</ExtendedData>\n";
+std::string_view constexpr kCoordinates = "coordinates";
 
 bool IsTrack(std::string const & s)
 {
@@ -52,12 +54,6 @@ std::string_view constexpr kKmlHeader =
 std::string_view constexpr kKmlFooter =
     "</Document>\n"
     "</kml>\n";
-
-std::string_view constexpr kExtendedDataHeader = "<ExtendedData xmlns:mwm=\"https://omaps.app\">\n";
-
-std::string_view constexpr kExtendedDataFooter = "</ExtendedData>\n";
-
-std::string const kCompilationFooter = "</" + kCompilation + ">\n";
 
 PredefinedColor ExtractPlacemarkPredefinedColor(std::string const & s)
 {
@@ -98,7 +94,7 @@ PredefinedColor ExtractPlacemarkPredefinedColor(std::string const & s)
   return PredefinedColor::Red;
 }
 
-std::string GetStyleForPredefinedColor(PredefinedColor color)
+constexpr std::string_view GetStyleForPredefinedColor(PredefinedColor color)
 {
   switch (color)
   {
@@ -135,7 +131,7 @@ BookmarkIcon GetIcon(std::string const & iconName)
   return BookmarkIcon::None;
 }
 
-void SaveStyle(Writer & writer, std::string const & style, std::string_view const & indent)
+void SaveStyle(Writer & writer, std::string_view style, std::string_view const indent)
 {
   if (style.empty())
     return;
@@ -165,7 +161,7 @@ std::string TimestampToString(Timestamp const & timestamp)
 }
 
 void SaveLocalizableString(Writer & writer, LocalizableString const & str, std::string const & tagName,
-                           std::string_view const & indent)
+                           std::string_view const indent)
 {
   writer << indent << "<mwm:" << tagName << ">\n";
   for (auto const & s : str)
@@ -179,7 +175,7 @@ void SaveLocalizableString(Writer & writer, LocalizableString const & str, std::
 
 template <class StringViewLike>
 void SaveStringsArray(Writer & writer, std::vector<StringViewLike> const & stringsArray, std::string const & tagName,
-                      std::string_view const & indent)
+                      std::string_view const indent)
 {
   if (stringsArray.empty())
     return;
@@ -202,7 +198,7 @@ void SaveStringsArray(Writer & writer, std::vector<StringViewLike> const & strin
 }
 
 void SaveStringsMap(Writer & writer, std::map<std::string, std::string> const & stringsMap, std::string const & tagName,
-                    std::string_view const & indent)
+                    std::string_view const indent)
 {
   if (stringsMap.empty())
     return;
@@ -425,7 +421,7 @@ void SaveBookmarkData(Writer & writer, BookmarkData const & bookmarkData)
   writer << kIndent2 << "</Placemark>\n";
 }
 
-void SaveTrackLayer(Writer & writer, TrackLayer const & layer, std::string_view const & indent)
+void SaveTrackLayer(Writer & writer, TrackLayer const & layer, std::string_view const indent)
 {
   writer << indent << "<color>";
   SaveColorToABGR(writer, layer.m_color.m_rgba);
@@ -799,7 +795,7 @@ void KmlParser::ParseColor(std::string const & value)
   m_color = ToRGBA(fromHex[3], fromHex[2], fromHex[1], fromHex[0]);
 }
 
-bool KmlParser::GetColorForStyle(std::string const & styleUrl, uint32_t & color) const
+bool KmlParser::GetColorForStyle(std::string_view styleUrl, uint32_t & color) const
 {
   if (styleUrl.empty())
     return false;
@@ -814,7 +810,7 @@ bool KmlParser::GetColorForStyle(std::string const & styleUrl, uint32_t & color)
   return false;
 }
 
-double KmlParser::GetTrackWidthForStyle(std::string const & styleUrl) const
+double KmlParser::GetTrackWidthForStyle(std::string_view styleUrl) const
 {
   if (styleUrl.empty())
     return kDefaultTrackWidth;
@@ -1073,7 +1069,15 @@ void KmlParser::CharData(std::string & value)
       {
         auto & timestamps = m_geometry.m_timestamps;
         ASSERT(!timestamps.empty(), ());
-        timestamps.back().emplace_back(base::StringToTimestamp(value));
+
+        /// @todo Add INVALID_TIME_STAMP post processing like in GpxParser?
+        auto const timestamp = base::StringToTimestamp(value);
+        ASSERT(timestamp != base::INVALID_TIME_STAMP, (value));
+
+        auto & cont = timestamps.back();
+        if (!cont.empty())
+          ASSERT_LESS_OR_EQUAL(cont.back(), timestamp, ());
+        cont.emplace_back(timestamp);
       }
       else if (IsCoord(currTag))
       {

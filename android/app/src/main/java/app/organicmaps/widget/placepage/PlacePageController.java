@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -55,7 +56,6 @@ public class PlacePageController
   private static final String PLACE_PAGE_BUTTONS_FRAGMENT_TAG = "PLACE_PAGE_BUTTONS";
   private static final String PLACE_PAGE_FRAGMENT_TAG = "PLACE_PAGE";
 
-  private static final float PREVIEW_PLUS_RATIO = 0.45f;
   private BottomSheetBehavior<View> mPlacePageBehavior;
   private NestedScrollView mPlacePage;
   private ViewGroup mPlacePageContainer;
@@ -114,16 +114,20 @@ public class PlacePageController
     private void onScreenFilled()
     {
       UiUtils.show(mPlacePageStatusBarBackground);
-      MaterialShapeDrawable bg = (MaterialShapeDrawable) mPlacePage.getBackground();
-      mPlacePageCornerRadius = bg.getTopLeftCornerResolvedSize();
-      bg.setCornerSize(0);
+      // LiveData observer fires before the layout pass that creates MaterialShapeDrawable.
+      if (mPlacePage.getBackground() instanceof MaterialShapeDrawable bg)
+      {
+        mPlacePageCornerRadius = bg.getTopLeftCornerResolvedSize();
+        bg.setCornerSize(0);
+      }
     }
 
     private void onScreenUnfilled()
     {
       UiUtils.hide(mPlacePageStatusBarBackground);
-      MaterialShapeDrawable bg = (MaterialShapeDrawable) mPlacePage.getBackground();
-      bg.setCornerSize(mPlacePageCornerRadius);
+      // LiveData observer fires before the layout pass that creates MaterialShapeDrawable.
+      if (mPlacePage.getBackground() instanceof MaterialShapeDrawable bg)
+        bg.setCornerSize(mPlacePageCornerRadius);
     }
   };
 
@@ -197,15 +201,43 @@ public class PlacePageController
           (ViewGroup.MarginLayoutParams) mPlacePageStatusBarBackground.getLayoutParams();
       // Layout calculations are heavy so we compute them once then move the view from behind the place page to the
       // status bar
-      layoutParams.height = insets.top;
-      layoutParams.width = mPlacePage.getWidth();
-      // Make sure the view is centered within the insets as is the place page
-      layoutParams.setMargins(insets.left, 0, insets.right, 0);
-      mPlacePageStatusBarBackground.setLayoutParams(layoutParams);
+      boolean needsUpdate = layoutParams.height != insets.top || layoutParams.width != mPlacePage.getWidth()
+                         || layoutParams.leftMargin != insets.left || layoutParams.rightMargin != insets.right;
+      if (needsUpdate)
+      {
+        layoutParams.height = insets.top;
+        layoutParams.width = mPlacePage.getWidth();
+        layoutParams.setMargins(insets.left, 0, insets.right, 0);
+        mPlacePageStatusBarBackground.setLayoutParams(layoutParams);
+      }
+
       return windowInsets;
     });
 
     ViewCompat.requestApplyInsets(mPlacePage);
+    // if landscape then layout contains pp_bottom_container
+    final View ppBottomContainer = activity.findViewById(R.id.pp_bottom_container);
+    if (ppBottomContainer != null)
+    {
+      ViewCompat.setOnApplyWindowInsetsListener(ppBottomContainer, (v, insets) -> {
+        Insets horizontalInsets =
+            insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+        v.setPadding(horizontalInsets.left, v.getPaddingTop(), horizontalInsets.right, 0);
+        return insets;
+      });
+    }
+    mPlacePage.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      final int topInset = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+      if (mPlacePage.getHeight() >= mCoordinator.getHeight() - topInset)
+      {
+        mPlacePageDistanceToTopObserver.onChanged(oldTop);
+      }
+      if (top != oldTop)
+      {
+        mDistanceToTop = oldTop;
+        mViewModel.setPlacePageDistanceToTop(mDistanceToTop);
+      }
+    });
   }
 
   @NonNull
@@ -300,13 +332,22 @@ public class PlacePageController
     // Prevent the place page from showing under the status bar
     // If we are in planning mode, prevent going above the header
     final int topInsets = insets.top + (RoutingController.get().isPlanning() ? mRoutingHeaderHeight : 0);
-    final int maxHeight = Math.min(minHeight + insets.bottom, mCoordinator.getHeight() - topInsets);
+    final int availableHeight = mCoordinator.getHeight() - topInsets;
+    final int maxHeight = Math.min(minHeight + insets.bottom, availableHeight);
     // Set the minimum height of the place page to prevent jumps when new data results in SMALLER content
     // This cannot be set on the place page itself as it has the fitToContent property set
     mPlacePageContainer.setMinimumHeight(minHeight);
     // Set the maximum height of the place page to prevent jumps when new data results in BIGGER content
     // It does not take into account the navigation bar height so we need to add it manually
     mPlacePageBehavior.setMaxHeight(maxHeight);
+
+    // Add bottom padding when content requires scrolling in landscape to prevent
+    // the last elements from being cut off by the navigation bar
+    final boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    final boolean needsBottomInset = isLandscape && (minHeight + insets.bottom > availableHeight);
+    final int bottomPadding = needsBottomInset ? insets.bottom : 0;
+    if (mPlacePageContainer.getPaddingBottom() != bottomPadding)
+      mPlacePageContainer.setPadding(0, 0, 0, bottomPadding);
   }
 
   /**
@@ -358,6 +399,11 @@ public class PlacePageController
     mCustomPeekHeightAnimator = ValueAnimator.ofInt(initialHeight, peekHeight);
     mCustomPeekHeightAnimator.setInterpolator(new FastOutSlowInInterpolator());
     mCustomPeekHeightAnimator.addUpdateListener(valueAnimator -> {
+      if (!isAdded())
+      {
+        valueAnimator.cancel();
+        return;
+      }
       int value = (Integer) valueAnimator.getAnimatedValue();
       // Make sure the place page can reach the animated peek height to prevent jumps
       // maxHeight does not take the navbar height into account so we manually add it
@@ -378,9 +424,19 @@ public class PlacePageController
 
   private int calculatePeekHeight()
   {
+    final int bottomInsets = (mCurrentWindowInsets != null)
+                               ? mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+                               : 0;
+    final boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    final int bottomMargins = getResources().getDimensionPixelSize(R.dimen.margin_double);
+    final View plusDetailsContainer = mPlacePage.findViewById(R.id.plus_details);
+    int peekHeight = mPreviewHeight + mButtonsHeight + bottomMargins;
     if (mMapObject != null && mMapObject.getOpeningMode() == MapObject.OPENING_MODE_PREVIEW_PLUS)
-      return (int) (mCoordinator.getHeight() * PREVIEW_PLUS_RATIO);
-    return mPreviewHeight + mButtonsHeight;
+    {
+      peekHeight += plusDetailsContainer.getHeight();
+    }
+    return Math.min(peekHeight + (isLandscape ? bottomInsets : 0),
+                    (mCoordinator.getHeight() - (mPlacePageStatusBarBackground.getHeight())));
   }
 
   @Override
@@ -391,7 +447,12 @@ public class PlacePageController
     mViewModel.setPlacePageWidth(mPlacePage.getWidth());
     mPlacePageStatusBarBackground.getLayoutParams().width = mPlacePage.getWidth();
     // Make sure to update the peek height on the UI thread to prevent weird animation jumps
+    // TODO(AB): Investigate if this post is still necessary.
     mPlacePage.post(() -> {
+      // Fragment may be detached when posting the runnable.
+      if (!isAdded())
+        return;
+
       setPeekHeight();
       if (mShouldCollapse && !PlacePageUtils.isCollapsedState(mPlacePageBehavior.getState()))
       {
@@ -703,6 +764,17 @@ public class PlacePageController
     super.onResume();
     if (mPlacePageBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN && !Framework.nativeHasPlacePageInfo())
       mViewModel.setMapObject(null);
+  }
+
+  @Override
+  public void onDestroyView()
+  {
+    if (mCustomPeekHeightAnimator != null)
+    {
+      mCustomPeekHeightAnimator.cancel();
+      mCustomPeekHeightAnimator = null;
+    }
+    super.onDestroyView();
   }
 
   @Override

@@ -62,7 +62,7 @@ public class DownloaderNotifier
       return;
     }
 
-    final String title = mContext.getString(R.string.app_name);
+    final String title = mContext.getString(app.organicmaps.branding.R.string.app_name);
     final String countryName = MapManager.nativeGetName(countryId);
     final String content = mContext.getString(R.string.download_country_failed, countryName);
 
@@ -70,7 +70,7 @@ public class DownloaderNotifier
                                           .setAutoCancel(true)
                                           .setCategory(NotificationCompat.CATEGORY_ERROR)
                                           .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                                          .setSmallIcon(R.drawable.ic_splash)
+                                          .setSmallIcon(app.organicmaps.branding.R.drawable.ic_splash)
                                           .setColor(ContextCompat.getColor(mContext, R.color.notification))
                                           .setContentTitle(title)
                                           .setContentText(content)
@@ -132,10 +132,10 @@ public class DownloaderNotifier
               .addAction(0, mContext.getString(R.string.cancel), DownloaderService.buildCancelPendingIntent(mContext))
               .setAutoCancel(true)
               .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-              .setSmallIcon(R.drawable.ic_splash)
+              .setSmallIcon(app.organicmaps.branding.R.drawable.ic_splash)
               .setColor(ContextCompat.getColor(mContext, R.color.notification))
               .setShowWhen(true)
-              .setContentTitle(mContext.getString(R.string.app_name))
+              .setContentTitle(mContext.getString(app.organicmaps.branding.R.string.app_name))
               .setContentIntent(getNotificationPendingIntent(countryId))
               .setContentText(mContext.getString(R.string.downloader_downloading) + " " + countryName)
               .setOnlyAlertOnce(true)

@@ -6,7 +6,6 @@
 #include "base/assert.hpp"
 
 #include <algorithm>
-#include <sstream>
 
 namespace routing
 {
@@ -53,7 +52,7 @@ VehicleModel::VehicleModel(Classificator const & classif, LimitsInitList const &
     ASSERT_GREATER(speedFactor.m_eta, 0.0, ());
     m_surfaceFactors.Insert(classif.GetTypeByPath(v.m_type), speedFactor);
 
-    if (v.m_type[1] == "paved_bad")
+    if (*(v.m_type.begin() + 1) == std::string_view("paved_bad"))
       m_minSurfaceFactorForMaxspeed = speedFactor;
   }
 }
@@ -71,7 +70,7 @@ void VehicleModel::AddAdditionalRoadTypes(Classificator const & classif, Additio
   }
 }
 
-std::optional<HighwayType> VehicleModel::GetHighwayType(FeatureTypes const & types) const
+optional<HighwayType> VehicleModel::GetHighwayType(FeatureTypes const & types) const
 {
   for (uint32_t t : types)
   {
@@ -143,11 +142,9 @@ SpeedKMpH VehicleModel::GetTypeSpeedImpl(FeatureTypes const & types, SpeedParams
   SpeedKMpH speed;
   if (hwType)
   {
-    if (isCar && params.m_maxspeed.IsValid())
+    if (isCar && params.m_maxSpeedKmPH != kInvalidSpeed)
     {
-      MaxspeedType const s = params.m_maxspeed.GetSpeedKmPH(params.m_forward);
-      ASSERT(s != kInvalidSpeed, (*hwType, params.m_forward, params.m_maxspeed));
-      speed = {static_cast<double>(s)};
+      speed = {static_cast<double>(params.m_maxSpeedKmPH)};
 
       // Looks like a crutch, limit surface factor if maxspeed is set.
       /// @see USA_UseDirt_WithMaxspeed test.
@@ -303,6 +300,7 @@ HighwayBasedFactors GetOneFactorsForBicycleAndPedestrianModel()
       {HighwayType::HighwayLadder, InOutCityFactor(1.0)},
       {HighwayType::HighwaySteps, InOutCityFactor(1.0)},
       {HighwayType::HighwayPedestrian, InOutCityFactor(1.0)},
+      {HighwayType::HighwayPlatform, InOutCityFactor(1.0)},
       {HighwayType::HighwayFootway, InOutCityFactor(1.0)},
       {HighwayType::ManMadePier, InOutCityFactor(1.0)},
       {HighwayType::RouteFerry, InOutCityFactor(1.0)},
@@ -311,38 +309,24 @@ HighwayBasedFactors GetOneFactorsForBicycleAndPedestrianModel()
 
 string DebugPrint(SpeedKMpH const & speed)
 {
-  ostringstream oss;
-  oss << "SpeedKMpH [ ";
-  oss << "weight:" << speed.m_weight << ", ";
-  oss << "eta:" << speed.m_eta << " ]";
-  return oss.str();
+  return "SpeedKMpH [ weight:" + to_string(speed.m_weight) + ", eta:" + to_string(speed.m_eta) + " ]";
 }
 
-std::string DebugPrint(SpeedFactor const & speedFactor)
+string DebugPrint(SpeedFactor const & speedFactor)
 {
-  ostringstream oss;
-  oss << "SpeedFactor [ ";
-  oss << "weight:" << speedFactor.m_weight << ", ";
-  oss << "eta:" << speedFactor.m_eta << " ]";
-  return oss.str();
+  return "SpeedFactor [ weight:" + to_string(speedFactor.m_weight) + ", eta:" + to_string(speedFactor.m_eta) + " ]";
 }
 
 string DebugPrint(InOutCitySpeedKMpH const & speed)
 {
-  ostringstream oss;
-  oss << "InOutCitySpeedKMpH [ ";
-  oss << "inCity:" << DebugPrint(speed.m_inCity) << ", ";
-  oss << "outCity:" << DebugPrint(speed.m_outCity) << " ]";
-  return oss.str();
+  return "InOutCitySpeedKMpH [ inCity:" + DebugPrint(speed.m_inCity) + ", outCity:" + DebugPrint(speed.m_outCity) +
+         " ]";
 }
 
 string DebugPrint(InOutCityFactor const & speedFactor)
 {
-  ostringstream oss;
-  oss << "InOutCityFactor [ ";
-  oss << "inCity:" << DebugPrint(speedFactor.m_inCity) << ", ";
-  oss << "outCity:" << DebugPrint(speedFactor.m_outCity) << " ]";
-  return oss.str();
+  return "InOutCityFactor [ inCity:" + DebugPrint(speedFactor.m_inCity) +
+         ", outCity:" + DebugPrint(speedFactor.m_outCity) + " ]";
 }
 
 string DebugPrint(HighwayType type)
@@ -367,6 +351,7 @@ string DebugPrint(HighwayType type)
   case HighwayType::HighwaySteps: return "highway-steps";
   case HighwayType::HighwayTrunk: return "highway-trunk";
   case HighwayType::HighwayPedestrian: return "highway-pedestrian";
+  case HighwayType::HighwayPlatform: return "highway-platform";
   case HighwayType::HighwayTrunkLink: return "highway-trunk_link";
   case HighwayType::HighwayPrimaryLink: return "highway-primary_link";
   case HighwayType::ManMadePier: return "man_made-pier";

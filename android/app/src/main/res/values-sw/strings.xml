@@ -56,6 +56,7 @@
     <string name="data_version">Data ya OpenStreetMap: %s</string>
     <!-- Confirmation for OpenStreetMap log out. -->
     <string name="osm_log_out_confirmation">Je, una uhakika unataka kuondoka kwenye akaunti yako ya OpenStreetMap?</string>
+    <string name="pref_auto_night_in_navigation_title">Mtindo wa usiku unapovinjari gizani</string>
     <!-- Generic «Auto» string -->
     <string name="auto">Auto</string>
     <!-- A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled -->
@@ -105,10 +106,6 @@
     <string name="blue_gray">Kijivu Buluu</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">Zawadia mamilioni ya watumiaji ramani za bure bila matangazo!</string>
-
-    <!-- SECTION: Routing dialogs strings -->
-    <string name="dialog_routing_change_intermediate">Imeshindwa kupata eneo la kati.</string>
-    <string name="dialog_routing_intermediate_not_determined">Tafadhali badilisha eneo lako la kati.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <!-- The message when user did not find anything in the search. -->
@@ -206,8 +203,12 @@
     <string name="bookmarks_empty_list_title">Orodha hii ni tupu</string>
     <string name="bookmarks_empty_list_message">Ili kuongeza ramani, gusa mahali kwenye ramani na kisha gusa ikoni ya nyota</string>
     <string name="category_desc_more">…zaidi</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Hamisha KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Hamisha GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Hamisha GeoJSON</string>
     <string name="delete_list">Futa Orodha</string>
     <string name="speedcams_alert_title">Kamera za mwendo-kasi</string>
     <string name="place_description_title">Maelezo ya Eneo</string>
@@ -293,9 +294,6 @@
     <string name="search_in_the_list">Tafuta kwenye orodha</string>
     <string name="religious_places">Sehemu za ibada</string>
     <string name="select_list">Chagua orodha</string>
-    <string name="transit_not_found">Uabiri wa njia ya chini kwa chini katika mkoa huu haupatikani bado</string>
-    <string name="dialog_pedestrian_route_is_long_header">Njia ya chini kwa chini haipatikani</string>
-    <string name="dialog_pedestrian_route_is_long_message">Chagua nyota au alama ya mwisho karibu ya kituo cha njia ya chini kwa chini</string>
     <string name="button_layer_isolines">Topografia</string>
     <string name="isolines_activation_error_dialog">Kuamilisha na kutumia tabaka la nchi tafadhali sasisha au pakua ramani ya eneo hilo</string>
     <string name="isolines_location_error_dialog">Tabaka la sura ya nchi bado haipatikani katika eneo hili</string>
@@ -347,8 +345,6 @@
     <string name="aa_location_permissions_request">Organic Maps zinahitaji ufikiaji wa eneo. Ikiwa salama, angalia arifa kwenye simu yako.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">Programu hii inahitaji idhini yako</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps katika Android Auto zinahitaji ruhusa ya eneo ili kufanya kazi kwa ufanisi</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Ruhusa za ruzuku</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -401,4 +397,12 @@
     <string name="uri_open_location_failed">Hakuna Programu iliyosakinishwa inayoweza kufungua eneo</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Urambazaji otomatiki</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Fuata mfumo</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Ingia kwa nenosiri</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Ingia kwa kutumia kivinjari</string>
 </resources>
