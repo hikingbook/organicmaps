@@ -6,19 +6,21 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.location.Location;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiContext;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import java.util.Calendar;
+
 import app.organicmaps.MwmApplication;
 import app.organicmaps.downloader.DownloaderStatusIcon;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.MapStyle;
-import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.concurrency.UiThread;
-import java.util.Calendar;
 
 public enum ThemeSwitcher
 {
@@ -112,8 +114,8 @@ public enum ThemeSwitcher
   @androidx.annotation.UiThread
   public void synchronizeMapStyle(@UiContext @NonNull Context context, boolean isRendererActive)
   {
-    var isDarkMode = ThemeUtils.isDarkTheme(context);
-    var mapStyle = calculateMapStyle(isDarkMode);
+//    var isDarkMode = ThemeUtils.isDarkTheme(context);
+    var mapStyle = calculateMapStyle(false);
 
     var oldStyle = MapStyle.get();
     if (oldStyle != mapStyle)
@@ -122,6 +124,7 @@ public enum ThemeSwitcher
 
   private void setTheme(@NonNull Config.UiTheme theme)
   {
+    theme = Config.UiTheme.SYSTEM;
     UiModeManager uiModeManager = (UiModeManager) mContext.getSystemService(Context.UI_MODE_SERVICE);
     switch (theme)
     {
