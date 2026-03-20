@@ -20,7 +20,7 @@
 "miles" = "Milhas";
 
 /* Update maps later button text */
-"later" = "Mais tarde";
+"later" = "Depois";
 
 /* View and button titles for accessibility. Also used in iPhone home screen quick actions. */
 "search" = "Buscar";
@@ -67,7 +67,7 @@
 "settings" = "Configurações";
 
 /* Measurement units title in settings activity */
-"measurement_units" = "Unidades de medida";
+"measurement_units" = "Unidades de medidas";
 
 /* Button which interrupts country download */
 "cancel_download" = "Cancelar download";
@@ -196,10 +196,12 @@
 "length" = "Comprimento";
 "share_my_location" = "Compartilhar a minha localização";
 "prefs_group_route" = "Navegação";
-"pref_zoom_title" = "Botões de zoom";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Botões \"+\" e \"-\" no mapa";
 
 /* Generic «Off» string */
-"off" = "Desligado";
+"off" = "Desligar";
 
 /* Generic «On» string */
 "on" = "Em";
@@ -253,7 +255,7 @@
 "donate" = "Doação";
 "already_donated" = "Já doou";
 "remind_me_later" = "Lembrar mais tarde";
-"support_organic_maps" = "Apoie o Organic Maps";
+"support_organic_maps" = "Apoiar o Organic Maps";
 
 /* Button in the main Help dialog */
 "copyright" = "Direitos autorais";
@@ -289,7 +291,7 @@
 "downloader_download_map" = "Baixar o mapa";
 
 /* Item status in downloader. */
-"downloader_retry" = "Repetir";
+"downloader_retry" = "Tentar novamente";
 
 /* Item in context menu. */
 "downloader_delete_map" = "Apagar mapa";
@@ -336,10 +338,10 @@
 "cyan" = "Ciano";
 
 /* teal color */
-"teal" = "Cerceta";
+"teal" = "Azul petróleo";
 
 /* lime color */
-"lime" = "Cal";
+"lime" = "Verde limão";
 
 /* deep orange color */
 "deep_orange" = "Laranja escuro";
@@ -444,7 +446,7 @@
 /* «Hide» context menu */
 "hide" = "Esconder";
 "categories" = "Categorias";
-"history" = "Histórico";
+"history" = "História";
 "search_not_found" = "Sinto muito, nenhum resultado foi encontrado.";
 
 /* The message when user did not find anything in the search. */
@@ -464,8 +466,8 @@
 "p2p_to_here" = "Para";
 "p2p_only_from_current" = "A navegação só está disponível a partir de sua localização atual.";
 "p2p_reroute_from_current" = "Deseja planejar uma rota a partir da sua localização atual?";
-"editor_time_add" = "Adicionar Agendamento";
-"editor_time_delete" = "Apagar Agendamento";
+"editor_time_add" = "Adicionar horário";
+"editor_time_delete" = "Eliminar horário";
 
 /* Text for allday switch. */
 "editor_time_allday" = "O dia todo (24 horas)";
@@ -483,7 +485,7 @@
 
 /* Place Page opening hours text */
 "daily" = "Diariamente";
-"twentyfour_seven" = "24 horas por dia";
+"twentyfour_seven" = "24/7";
 "day_off_today" = "Fechado hoje";
 "day_off" = "Fechado";
 "today" = "Hoje";
@@ -566,7 +568,7 @@
 "miles_per_hour" = "mph";
 "hour" = "h";
 "minute" = "min";
-"day" = "dia";
+"day" = "d";
 "second" = "s";
 "placepage_more_button" = "Mais informações";
 
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ciclismo";
 "button_layer_subway" = "Metrô";
 "layers_title" = "Estilos e camadas de mapas";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Exportar KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Exportar GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Exportar GeoJSON";
 "delete_list" = "Deletar lista";
 "speedcams_alert_title" = "Câmeras de trânsito";
 "place_description_title" = "Descrição do lugar";
@@ -715,10 +724,10 @@
 
 /* max. 10 symbols, both iOS and Android */
 "sort" = "Tipo…";
-"week_ago_sorttype" = "Uma semana atrás";
-"month_ago_sorttype" = "Um mês atrás";
+"week_ago_sorttype" = "Há uma semana";
+"month_ago_sorttype" = "Há um mês";
 "moremonth_ago_sorttype" = "Há mais de um mês";
-"moreyear_ago_sorttype" = "Mais de um ano atrás";
+"moreyear_ago_sorttype" = "Há mais de um ano";
 "near_me_sorttype" = "Próximo de mim";
 "others_sorttype" = "Outros";
 
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regiões descarregadas roxas";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Login com senha";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Fazer login usando o navegador";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Recentes";

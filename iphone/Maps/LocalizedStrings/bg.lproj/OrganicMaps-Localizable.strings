@@ -196,7 +196,9 @@
 "length" = "Дължина";
 "share_my_location" = "Споделяне на местоположение";
 "prefs_group_route" = "Навигация";
-"pref_zoom_title" = "Мащабни бутони";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Бутони „+“ и „-“ на картата";
 
 /* Generic «Off» string */
 "off" = "Изключен";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Велосипеден туризъм";
 "button_layer_subway" = "Метро";
 "layers_title" = "Стилове и слоеве на картата";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Експорт на KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Експортиране на GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Експорт на GeoJSON";
 "delete_list" = "Изтриване на списък";
 "speedcams_alert_title" = "Камери за скорост";
 "place_description_title" = "Описание на мястото";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Лилави изтеглени региони";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Влизане с парола";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Влизане чрез браузър";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Наскоро използван";

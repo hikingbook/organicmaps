@@ -351,6 +351,7 @@
     <string name="type.cuisine.tea">Arbata</string>
     <string name="type.cuisine.thai">Tajų virtuvė</string>
     <string name="type.cuisine.turkish">Turkų virtuvė</string>
+    <string name="type.cuisine.uzbek">Uzbekų</string>
     <string name="type.cuisine.vegan">Veganiška virtuvė</string>
     <string name="type.cuisine.vegetarian">Vegetariška virtuvė</string>
     <string name="type.cuisine.vietnamese">Vietnamiečių virtuvė</string>
@@ -446,6 +447,7 @@
     <string name="type.highway.pedestrian.bridge">Tiltas</string>
     <!-- These translations are used for all type.highway.*.tunnel. -->
     <string name="type.highway.pedestrian.tunnel">Tunelis</string>
+    <string name="type.highway.platform">Platforma</string>
     <string name="type.highway.primary">Pagrindinis kelias</string>
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.primary.bridge">Tiltas</string>
@@ -547,8 +549,6 @@
     <string name="type.area_highway.track">Lauko kelias</string>
     <string name="type.area_highway.trunk">Svarbus užmiesčio kelias</string>
     <string name="type.area_highway.unclassified">Kitas kelias</string>
-    <string name="type.highway.world_level">Pasaulinio lygio kelias</string>
-    <string name="type.highway.world_towns_level">Vietinės reikšmės kelias</string>
 
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">Istorinis objektas</string>
@@ -595,32 +595,6 @@
     <string name="type.historic.wayside_cross">Pakelės kryžius</string>
     <string name="type.historic.wayside_shrine">Koplytstulpis</string>
     <string name="type.historic.wreck">Laivo liekanos</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag">hwtag</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.bidir_bicycle">hwtag-bidir_bicycle</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.onedir_bicycle">hwtag-onedir_bicycle</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.lit">hwtag-lit</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.nobicycle">hwtag-nobicycle</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.nocar">hwtag-nocar</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.nofoot">hwtag-nofoot</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.oneway">hwtag-oneway</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.private">hwtag-private</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.toll">hwtag-toll</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.yesbicycle">hwtag-yesbicycle</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.yescar">hwtag-yescar</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.hwtag.yesfoot">hwtag-yesfoot</string>
     <string name="type.internet_access">Internetas</string>
     <string name="type.internet_access.wlan">Internetas</string>
     <string name="type.junction">Sankryža</string>
@@ -735,10 +709,6 @@
     <string name="type.man_made.water_well.drinking_water_no">Šulinys</string>
     <string name="type.man_made.windmill">Vėjo malūnas</string>
     <string name="type.man_made.works">Gamykla</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.mapswithme">mapswithme</string>
-    <!-- Do not translate. Here to avoid untranslated debug toast. -->
-    <string name="type.mapswithme.grid">mapswithme-grid</string>
     <string name="type.military">Karinis objektas</string>
     <string name="type.military.bunker">Bunkeris</string>
     <string name="type.mountain_pass">Kalnų perėja</string>
@@ -871,6 +841,8 @@
     <string name="type.railway.construction">Statomas geležinkelis</string>
     <string name="type.railway.crossing">Geležinkelio perėja</string>
     <string name="type.railway.disused">Nenaudojamas geležinkelis</string>
+    <string name="type.railway.disused.bridge">Nenaudojamo geležinkelio tiltas</string>
+    <string name="type.railway.disused.tunnel">Nenaudojamo geležinkelio tunelis</string>
     <string name="type.railway.funicular">Funikulierius</string>
     <string name="type.railway.funicular.bridge">Funikulieriaus tiltas</string>
     <string name="type.railway.funicular.tunnel">Funikulieriaus tunelis</string>
@@ -1218,6 +1190,7 @@
     <string name="type.shop.kiosk">Kioskas</string>
     <string name="type.shop.kitchen">Virtuvės reikmenys</string>
     <string name="type.shop.laundry">Skalbykla</string>
+    <string name="type.shop.leather">Odos gaminių parduotuvė</string>
     <string name="type.shop.mall">Prekybos centras</string>
     <string name="type.shop.massage">Masažo salonas</string>
     <string name="type.shop.mobile_phone">Mobiliųjų telefonų salonas</string>
@@ -1236,6 +1209,7 @@
     <string name="type.shop.pet">Gyvūnų prekės</string>
     <string name="type.shop.pet_grooming">Gyvūnų kirpykla</string>
     <string name="type.shop.photo">Foto prekės</string>
+    <string name="type.shop.religion">Religinių reikmenų parduotuvė</string>
     <string name="type.shop.rental">Nuomos parduotuvė</string>
     <string name="type.shop.rental.bicycle">Dviračių nuomos parduotuvė</string>
     <string name="type.amenity.bicycle_rental.shop">Dviračių nuomos parduotuvė</string>

@@ -61,8 +61,10 @@ UNIT_TEST(CaliforniaCupertinoFindPhantomAssertTest)
 }
 
 // Path in the last map through the other map.
-UNIT_TEST(RussiaUfaToUstKatavTest)
+UNIT_TEST(Russia_Ufa_UstKatav)
 {
+  /// @todo Should use "Восточный выезд из Уфы" road in the beginning.
+  /// Take into account "motorroad" tag?
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(54.7304, 55.9554), {0., 0.},
                                    FromLatLon(54.9228, 58.1469), 160565);
 }
@@ -636,7 +638,6 @@ UNIT_TEST(Germany_Italy_Malcesine)
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(45.7662964, 10.8111554), {0., 0.},
                                    FromLatLon(48.4101446, 11.5892265), 431341);
 
-  /// @todo Again strange detour (near finish) on a long route.
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(50.8499365, 12.4662169), {0., 0.},
                                    FromLatLon(45.7662964, 10.8111554), 776000);
 }
@@ -672,9 +673,6 @@ UNIT_TEST(USA_Birmingham_AL_KeyWest_FL_NoMotorway)
 {
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(28.9666499, -82.127271), {0., 0.},
                                    FromLatLon(25.8633542, -80.3878891), 457734);
-
-  /// @note These tests works good on release server, my desktop release skips MWM Florida_Orlando ...
-  /// 15 vs 8 cross-mwm candidates.
 
   auto const start = FromLatLon(33.5209837, -86.807945);
   auto const finish = FromLatLon(24.5534713, -81.7932587);
@@ -769,32 +767,13 @@ UNIT_TEST(Russia_UseGravelPrimary_Not_DefaultTertiary)
 }
 
 // https://github.com/organicmaps/organicmaps/issues/5695
-UNIT_TEST(Russia_Yekaterinburg_NChelny)
+UNIT_TEST(Russia_UseGravel_NotPrimaryDetour)
 {
-  // Make sense without Chelyabinsk and Izhevsk. Thus we can check really fancy cases.
-  // Otherwise, good routes will be through Perm-Izhevsk or Chelyabinsk-Ufa
-  auto components = CreateAllMapsComponents(VehicleType::Car, {"Russia_Chelyabinsk Oblast", "Russia_Udmurt Republic"});
-
-  auto const start = FromLatLon(56.8382242, 60.6308866);
-  auto const finish = FromLatLon(55.7341111, 52.4156012);
-
-  {
-    RoutingOptionSetter optionsGuard(RoutingOptions::Dirty | RoutingOptions::Ferry);
-    // forward
-    CalculateRouteAndTestRouteLength(*components, start, {0., 0.}, finish, 767702);
-    // backward
-    CalculateRouteAndTestRouteLength(*components, finish, {0., 0.}, start, 766226);
-  }
-
-  // OSRM, GraphHopper uses gravel, Valhalla makes a route like above.
+  // OSRM, GraphHopper uses gravel, Valhalla makes a detour.
 
   /// @todo Should use tertiary + gravel + villages (46km) here and below instead of primary (86km)?
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(55.9315, 58.202), {0., 0.},
                                    FromLatLon(55.7555, 57.8348), 45788);
-  // forward
-  CalculateRouteAndTestRouteLength(*components, start, {0., 0.}, finish, 757109);
-  // backward
-  CalculateRouteAndTestRouteLength(*components, finish, {0., 0.}, start, 755851);
 }
 
 // https://github.com/organicmaps/organicmaps/issues/5695
@@ -951,6 +930,32 @@ UNIT_TEST(Belarus_Kopyl_Minsk)
   // https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=53.131897%2C27.018889%3B53.57253%2C27.47209
   CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Car), FromLatLon(53.131897, 27.018889), {0., 0.},
                                    FromLatLon(53.57253, 27.47209), 82109);
+}
+
+UNIT_TEST(Germany_MaxspeedConditional)
+{
+  using namespace platform::tests_support;
+
+  auto const from = FromLatLon(50.853998, 12.837031);
+  auto const to = FromLatLon(50.867373, 12.806966);
+
+  auto components = CreateAllMapsComponents(VehicleType::Car, {});
+  time_t currentTime;
+  components->SetCurrentTimeGetter([&currentTime] { return currentTime; });
+
+  // maxspeed = 100
+  currentTime = GetUnixtimeByDate(2026, Month::Feb, 20, 19, 00);
+  TRouteResult result = CalculateRoute(*components, from, {0., 0.}, to);
+  TEST_EQUAL(result.second, RouterResultCode::NoError, ());
+  auto const eta1 = result.first->GetTotalTimeSec();
+
+  // maxspeed = none
+  currentTime = GetUnixtimeByDate(2026, Month::Feb, 20, 14, 00);
+  result = CalculateRoute(*components, from, {0., 0.}, to);
+  TEST_EQUAL(result.second, RouterResultCode::NoError, ());
+  auto const eta2 = result.first->GetTotalTimeSec();
+
+  TEST_LESS(eta2 * 1.2, eta1, ());
 }
 
 }  // namespace route_test

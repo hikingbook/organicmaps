@@ -57,7 +57,7 @@
     <string name="not_enough_free_space_on_sdcard">Libere espacio en la memoria SD o almacenamiento USB para usar la aplicación</string>
     <string name="download_resources">Antes de comenzar, permita que descarguemos en su dispositivo un mapamundi general.\nSe requieren %s de almacenamiento.</string>
     <string name="download_resources_continue">Ir al mapa</string>
-    <string name="downloading_country_can_proceed">Descargando %s. Puede ahora \nproceder al mapa.</string>
+    <string name="downloading_country_can_proceed">Descargando %s. Puedes ahora\nproceder al mapa.</string>
     <string name="download_country_ask">¿Descargar %s?</string>
     <string name="update_country_ask">¿Actualizar %s?</string>
     <!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -95,7 +95,7 @@
     <!-- Error moving map files from one storage to another -->
     <string name="move_maps_error">Error al mover los archivos de mapas</string>
     <!-- Ask user to wait several minutes (some long process in modal dialog). -->
-    <string name="wait_several_minutes">Esto podría tardar varios minutos. \nAguarde un momento…</string>
+    <string name="wait_several_minutes">Esto podría tardar varios minutos.\nPor favor espera…</string>
     <!-- Measurement units title in settings activity -->
     <string name="measurement_units">Unidades de medida</string>
     <!-- Detailed description of Measurement Units settings button -->
@@ -201,8 +201,10 @@
     <!-- Settings information group in settings screen -->
     <string name="prefs_group_information">Información</string>
     <string name="prefs_group_route">Navegación</string>
-    <string name="pref_zoom_title">Botones de zoom</string>
+    <!-- Setting name which enables or disables zoom buttons on the map screen. -->
+    <string name="pref_zoom_title">Botones «+» y «-» en el mapa</string>
     <string name="pref_zoom_summary">Visualización en la pantalla</string>
+    <string name="pref_auto_night_in_navigation_title">Estilo nocturno al navegar en la oscuridad</string>
     <!-- Settings «Map» category: «Night style» title -->
     <string name="pref_map_style_title">Modo nocturno</string>
     <!-- Generic «Off» string -->
@@ -280,8 +282,6 @@
     <string name="downloader_downloading">Descargando:</string>
     <!-- Displayed in a dialog that appears when a user tries to delete a map while the app is in the follow route mode -->
     <string name="downloader_delete_map_while_routing_dialog">Para eliminar el mapa, detenga la navegación.</string>
-    <!-- PointsInDifferentMWM -->
-    <string name="routing_failed_cross_mwm_building">Sólo se pueden crear rutas que estén totalmente contenidas en un mapa de una sola región.</string>
     <!-- Context menu item for downloader. -->
     <string name="downloader_download_map">Descargar mapa</string>
     <!-- Item status in downloader. -->
@@ -294,10 +294,6 @@
     <string name="google_play_services">Servicios de localización de Google Play</string>
     <!-- Preference text -->
     <string name="pref_use_google_play">Determina rápidamente su ubicación aproximada mediante Bluetooth, WiFi o red móvil</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_download_maps_along">Descargue todos los mapas de su ruta</string>
-    <!-- Text for routing error dialog -->
-    <string name="routing_requires_all_map">Para crear una ruta es necesario descargar y actualizar todos los mapas desde su ubicación a su destino.</string>
     <!-- Text for routing error dialog -->
     <string name="routing_not_enough_space">No hay suficiente espacio</string>
     <!-- location service disabled -->
@@ -336,6 +332,12 @@
     <string name="gray">Gris</string>
     <!-- blue gray color -->
     <string name="blue_gray">Gris azulado</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">Aspecto</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">Claro</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">Oscuro</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">¡Regala mapas gratis y sin anuncios a millones de usuarios!</string>
 
@@ -346,28 +348,9 @@
     <string name="dialog_routing_disclaimer_recommendations">— Las rutas sugeridas deben entenderse solo como recomendaciones;</string>
     <string name="dialog_routing_disclaimer_borders">— Actúe con cautela en las rutas con zonas fronterizas: las rutas creadas por nuestra aplicación en ocasiones pueden atravesar las fronteras de países en lugares no autorizados.</string>
     <string name="dialog_routing_disclaimer_beware">¡Manténgase alerta y a salvo durante el viaje!</string>
-    <string name="dialog_routing_check_gps">Verificar la señal del GPS</string>
-    <string name="dialog_routing_error_location_not_found">No se puede crear la ruta. No se pudieron identificar las coordenadas actuales del GPS.</string>
     <string name="dialog_routing_location_turn_wifi">Verifique la señal del GPS. Activar la wifi mejorará la precisión de su ubicación.</string>
-    <string name="dialog_routing_location_turn_on">Activar servicios de ubicación</string>
-    <string name="dialog_routing_location_unknown_turn_on">No se pueden encontrar las coordenadas del GPS. Active los servicios de ubicación para calcular la ruta.</string>
-    <string name="dialog_routing_unable_locate_route">Imposible de encontrar una ruta</string>
-    <string name="dialog_routing_cant_build_route">No se puede crear la ruta.</string>
-    <string name="dialog_routing_change_start_or_end">Ajuste su punto de inicio o su destino.</string>
-    <string name="dialog_routing_change_start">Ajustar el punto de inicio</string>
-    <string name="dialog_routing_start_not_determined">La ruta no se creó. No se pudo encontrar el punto de inicio.</string>
-    <string name="dialog_routing_select_closer_start">Seleccione un punto de inicio cercano a una carretera.</string>
-    <string name="dialog_routing_change_end">Ajustar destino</string>
-    <string name="dialog_routing_end_not_determined">La ruta no se creó. No se pudo encontrar el destino.</string>
-    <string name="dialog_routing_select_closer_end">Seleccione un punto de destino cercano a una carretera.</string>
-    <string name="dialog_routing_change_intermediate">No se ha podido ubicar la parada intermedia.</string>
-    <string name="dialog_routing_intermediate_not_determined">Ajuste la parada intermedia.</string>
     <string name="dialog_routing_system_error">Error del sistema</string>
-    <string name="dialog_routing_application_error">No se pudo crear la ruta debido a un error en la aplicación.</string>
-    <string name="dialog_routing_try_again">Intentar nuevamente</string>
     <string name="not_now">No ahora</string>
-    <string name="dialog_routing_download_and_build_cross_route">¿Desea descargar el mapa y crear una ruta mejor que abarque más de un mapa?</string>
-    <string name="dialog_routing_download_cross_route">Descargue mapas adicionales para crear una ruta mejor que cruce los límites de este mapa.</string>
 
     <!-- SECTION: Strings for downloading map from search -->
     <string name="search_without_internet_advertisement">Para empezar a buscar y crear rutas, descargue el mapa. Después de eso, ya no necesitará una conexión a Internet.</string>
@@ -465,7 +448,6 @@
     <string name="level_value_generic">Nivel: %s</string>
     <string name="downloader_delete_map_dialog">Todas las ediciones hechas al mapa se eliminarán junto con este.</string>
     <string name="downloader_update_maps">Actualizar mapas</string>
-    <string name="downloader_mwm_migration_dialog">Para crear una ruta, es necesario actualizar todos los mapas y volver a planificar la ruta.</string>
     <string name="downloader_search_field_hint">Buscar en el mapa</string>
     <string name="common_check_internet_connection_dialog">Revise la configuración y asegúrese de que su dispositivo esté conectado a Internet.</string>
     <string name="downloader_no_space_title">No hay suficiente espacio</string>
@@ -487,7 +469,7 @@
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
     <string name="osm_presentation">Datos de OpenStreetMap creados por la comunidad a partir de %s. Más información sobre cómo editar y actualizar el mapa en OpenStreetMap.org</string>
     <!-- OSM explanation on Android login screen -->
-    <string name="login_osm_presentation">OpenStreetMap.org (OSM) es un proyecto comunitario para construir un mapa libre y abierto. Es la principal fuente de datos cartográficos de Organic Maps y funciona de forma similar a Wikipedia. Usted puede añadir o editar lugares y estos pasan a estar disponibles para millones de usuarios de todo el mundo.\n¡Únase a la comunidad y ayude a crear un mapa mejor para todos!</string>
+    <string name="login_osm_presentation">OpenStreetMap.org (OSM) es un proyecto comunitario para construir un mapa gratis y abierto. Es la principal fuente de datos cartográficos de Organic Maps y funciona de forma similar a Wikipedia. Puedes añadir o editar lugares y estos pasan a estar disponibles para millones de usuarios de todo el mundo.\n¡Únete a la comunidad y ayuda a crear un mejor mapa para todos!</string>
     <string name="login_to_make_edits_visible">Cree una cuenta OpenStreetMap o inicie sesión para publicar sus ediciones de mapas en todo el mundo.</string>
     <!-- Downloaded 10 **of** 20 <- it is that "of" -->
     <string name="downloader_of">%1$d de %2$d</string>
@@ -577,7 +559,7 @@
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Opinión general</string>
     <string name="prefs_languages_information">Utilizamos el sistema TTS para las instrucciones de voz. Muchos dispositivos de Android usan Google TTS. Puede descargar o actualizarlo desde Google Play</string>
-    <string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Galaxy Store, App Gallery, FDroid).\nAbra los Ajustes de su dispositivo → Idioma y entrada de texto → Voz → Opciones texto a voz.\nAquí puede administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
+    <string name="prefs_languages_information_off">Para algunos idiomas, debe instalar otro sintetizador de voz o un paquete de idioma adicional desde la tienda de aplicaciones (Google Play, Galaxy Store, App Gallery, FDroid).\nAbre los Ajustes de tu dispositivo → Idioma y entrada → Voz → Salida de texto a voz.\nAquí puedes administrar la configuración de síntesis de voz (por ejemplo, descargar un paquete de idioma para poder usarlo sin conexión) o seleccionar otro motor de texto a voz.</string>
     <string name="prefs_languages_information_off_link">Para obtener más información, consulte esta guía.</string>
     <string name="transliteration_title">Transliteración al alfabeto latino</string>
     <string name="learn_more">Conocer más</string>
@@ -647,8 +629,12 @@
     <string name="bookmarks_empty_list_title">Esta lista está vacía</string>
     <string name="bookmarks_empty_list_message">Para agregar un marcador, toque un lugar en el mapa y después toque el icono de la estrella</string>
     <string name="category_desc_more">…más</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Exportar KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Exportar GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Exportar GeoJSON</string>
     <string name="delete_list">Eliminar lista</string>
     <string name="speedcams_alert_title">Cámaras de velocidad</string>
     <string name="place_description_title">Descripción del lugar</string>
@@ -739,9 +725,6 @@
     <string name="search_in_the_list">Buscar en la lista</string>
     <string name="religious_places">Lugares sagrados</string>
     <string name="select_list">Seleccionar lista</string>
-    <string name="transit_not_found">La navegación en metro aún no está disponible en esta región</string>
-    <string name="dialog_pedestrian_route_is_long_header">No se encontró ninguna ruta de metro</string>
-    <string name="dialog_pedestrian_route_is_long_message">Elija un punto de inicio o fin de ruta más cercano a una estación de metro</string>
     <string name="button_layer_isolines">Alturas</string>
     <string name="isolines_activation_error_dialog">Para usar las curvas de nivel, actualice o descargue el mapa del área deseada</string>
     <string name="isolines_location_error_dialog">La altitud de relieve aún no está disponible en esta región</string>
@@ -779,7 +762,7 @@
     <!-- Instagram account url for the "?" About page -->
     <string name="instagram_url">https://www.instagram.com/organicmaps.app</string>
     <!-- A link to the TTS FAQ -->
-    <string name="tts_info_link">https://organicmaps.app/es/faq/instrucciones-de-voz-tts-en-android/</string>
+    <string name="tts_info_link">https://organicmaps.app/es/faq/voice/text-to-speech-android-tts/</string>
     <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/es/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
@@ -820,8 +803,6 @@
     <string name="aa_location_permissions_request">Organic Maps necesita acceder a la ubicación. Cuando sea seguro, compruebe la notificación en el teléfono.</string>
     <!-- Notification title for permission request from AA. -->
     <string name="aa_request_permission_notification">Esta aplicación necesita su permiso</string>
-    <!-- The text in the activity for location permission request. -->
-    <string name="aa_request_permission_activity_text">Organic Maps en Android Auto necesita permisos de ubicación para funcionar eficazmente</string>
     <!-- Grant Permissions button. -->
     <string name="aa_grant_permissions">Conceder permisos</string>
     <!-- Outdoors/hiking map style (activity) name in the Styles and Layers dialog -->
@@ -874,8 +855,16 @@
     <string name="uri_open_location_failed">No hay ninguna aplicación instalada que pueda abrir la ubicación</string>
     <!-- preference string for using auto theme only in navigation mode -->
     <string name="nav_auto">Auto en navegación</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Seguir el sistema</string>
     <!-- Title of the bottom sheet when sharing the track -->
     <string name="share_track">Compartir recorrido</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">¿Borrar %s?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Inicio de sesión con contraseña</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Inicio de sesión mediante navegador</string>
 </resources>

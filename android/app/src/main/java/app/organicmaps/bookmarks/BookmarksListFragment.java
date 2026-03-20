@@ -40,19 +40,20 @@ import app.organicmaps.sdk.bookmarks.data.BookmarkInfo;
 import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
 import app.organicmaps.sdk.bookmarks.data.BookmarkSharingResult;
 import app.organicmaps.sdk.bookmarks.data.CategoryDataSource;
-import app.organicmaps.sdk.bookmarks.data.KmlFileType;
+import app.organicmaps.sdk.bookmarks.data.FileType;
+import app.organicmaps.sdk.bookmarks.data.Icon;
 import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
 import app.organicmaps.sdk.bookmarks.data.SortedBlock;
 import app.organicmaps.sdk.bookmarks.data.Track;
 import app.organicmaps.sdk.search.BookmarkSearchListener;
 import app.organicmaps.sdk.search.SearchEngine;
-import app.organicmaps.util.Graphics;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
+import app.organicmaps.utils.Graphics;
 import app.organicmaps.widget.SearchToolbarController;
 import app.organicmaps.widget.placepage.BookmarkColorDialogFragment;
 import app.organicmaps.widget.placepage.EditBookmarkFragment;
@@ -633,26 +634,53 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     BookmarkListAdapter adapter = getBookmarkListAdapter();
 
     mSelectedPosition = position;
-    final Track mTrack = (Track) adapter.getItem(mSelectedPosition);
-    if (mTrack == null)
+    final Object item = adapter.getItem(mSelectedPosition);
+    if (item == null)
       return;
     final Bundle args = new Bundle();
-    args.putInt(BookmarkColorDialogFragment.ICON_COLOR, PredefinedColors.getPredefinedColorIndex(mTrack.getColor()));
     final FragmentManager manager = getChildFragmentManager();
-    String className = BookmarkColorDialogFragment.class.getName();
+    final String className = BookmarkColorDialogFragment.class.getName();
     final FragmentFactory factory = manager.getFragmentFactory();
     final BookmarkColorDialogFragment dialogFragment =
         (BookmarkColorDialogFragment) factory.instantiate(getContext().getClassLoader(), className);
-    dialogFragment.setArguments(args);
-    dialogFragment.setOnColorSetListener((colorPos) -> {
-      int from = mTrack.getColor();
-      int to = PredefinedColors.getColor(colorPos);
-      if (from == to)
-        return;
-      mTrack.setColor(to);
-      Drawable circle = Graphics.drawCircle(to, R.dimen.track_circle_size, requireContext().getResources());
-      v.setImageDrawable(circle);
-    });
+    final int type = adapter.getItemViewType(position);
+
+    if (type == BookmarkListAdapter.TYPE_TRACK)
+    {
+      final Track mTrack = (Track) adapter.getItem(mSelectedPosition);
+      args.putInt(BookmarkColorDialogFragment.ICON_COLOR, PredefinedColors.getPredefinedColorIndex(mTrack.getColor()));
+      dialogFragment.setArguments(args);
+      dialogFragment.setOnColorSetListener((colorPos) -> {
+        final int from = mTrack.getColor();
+        final int to = PredefinedColors.getColor(colorPos);
+        if (from == to)
+          return;
+        mTrack.setColor(to);
+        final Drawable circle = Graphics.drawCircle(to, R.dimen.track_circle_size, requireContext().getResources());
+        v.setImageDrawable(circle);
+      });
+    }
+    else if (type == BookmarkListAdapter.TYPE_BOOKMARK)
+    {
+      final BookmarkInfo bookmark = (BookmarkInfo) item;
+      args.putInt(BookmarkColorDialogFragment.ICON_COLOR, bookmark.getIcon().getColor());
+      args.putInt(BookmarkColorDialogFragment.ICON_RES, bookmark.getIcon().getResId());
+      dialogFragment.setArguments(args);
+      dialogFragment.setOnColorSetListener((colorPos) -> {
+        final int from = bookmark.getIcon().getColor();
+        final int to = PredefinedColors.getColor(colorPos);
+        if (from == to)
+          return;
+        final int colorIndex = PredefinedColors.getPredefinedColorIndex(to);
+        if (colorIndex == -1)
+          return;
+        final Icon newIcon = new Icon(colorIndex, bookmark.getIcon().getType());
+        bookmark.update(bookmark.getName(), newIcon, bookmark.getDescription());
+        final Drawable icon = Graphics.drawCircleAndImage(to, R.dimen.track_circle_size, bookmark.getIcon().getResId(),
+                                                          R.dimen.bookmark_icon_size, requireContext());
+        v.setImageDrawable(icon);
+      });
+    }
 
     dialogFragment.show(requireActivity().getSupportFragmentManager(), null);
   }
@@ -742,10 +770,10 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
                                                          requireActivity(), getChildFragmentManager());
   }
 
-  private void onShareOptionSelected(KmlFileType kmlFileType)
+  private void onShareOptionSelected(FileType fileType)
   {
     long catId = mCategoryDataSource.getData().getId();
-    BookmarksSharingHelper.INSTANCE.prepareBookmarkCategoryForSharing(requireActivity(), catId, kmlFileType);
+    BookmarksSharingHelper.INSTANCE.prepareBookmarkCategoryForSharing(requireActivity(), catId, fileType);
   }
 
   private void onSettingsOptionSelected()
@@ -770,9 +798,11 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
       if (types.length > 0)
         items.add(new MenuBottomSheetItem(R.string.sort, R.drawable.ic_sort, this::onSortOptionSelected));
       items.add(new MenuBottomSheetItem(R.string.export_file, R.drawable.ic_file_kmz,
-                                        () -> onShareOptionSelected(KmlFileType.Text)));
+                                        () -> onShareOptionSelected(FileType.Kml)));
       items.add(new MenuBottomSheetItem(R.string.export_file_gpx, R.drawable.ic_file_gpx,
-                                        () -> onShareOptionSelected(KmlFileType.Gpx)));
+                                        () -> onShareOptionSelected(FileType.Gpx)));
+      items.add(new MenuBottomSheetItem(R.string.export_file_geojson, R.drawable.ic_file_geojson,
+                                        () -> onShareOptionSelected(FileType.GeoJson)));
     }
     items.add(new MenuBottomSheetItem(R.string.edit, R.drawable.ic_settings, this::onSettingsOptionSelected));
     if (!isLastOwnedCategory())
@@ -794,17 +824,19 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     ArrayList<MenuBottomSheetItem> items = new ArrayList<>();
     items.add(new MenuBottomSheetItem(R.string.edit, R.drawable.ic_edit, this::onTrackEditActionSelected));
     items.add(new MenuBottomSheetItem(R.string.export_file, R.drawable.ic_file_kmz,
-                                      () -> onShareTrackSelected(track.getTrackId(), KmlFileType.Text)));
+                                      () -> onShareTrackSelected(track.getTrackId(), FileType.Kml)));
     items.add(new MenuBottomSheetItem(R.string.export_file_gpx, R.drawable.ic_file_gpx,
-                                      () -> onShareTrackSelected(track.getTrackId(), KmlFileType.Gpx)));
+                                      () -> onShareTrackSelected(track.getTrackId(), FileType.Gpx)));
+    items.add(new MenuBottomSheetItem(R.string.export_file_geojson, R.drawable.ic_file_geojson,
+                                      () -> onShareTrackSelected(track.getTrackId(), FileType.GeoJson)));
     items.add(new MenuBottomSheetItem(R.string.delete, R.drawable.ic_delete,
                                       () -> onDeleteTrackSelected(track.getTrackId())));
     return items;
   }
 
-  private void onShareTrackSelected(long trackId, KmlFileType kmlFileType)
+  private void onShareTrackSelected(long trackId, FileType fileType)
   {
-    BookmarksSharingHelper.INSTANCE.prepareTrackForSharing(requireActivity(), trackId, kmlFileType);
+    BookmarksSharingHelper.INSTANCE.prepareTrackForSharing(requireActivity(), trackId, fileType);
   }
 
   @Override

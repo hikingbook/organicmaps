@@ -196,7 +196,9 @@
 "length" = "طول";
 "share_my_location" = "هم‌رسانی موقعیت مکانی من";
 "prefs_group_route" = "مسیریابی";
-"pref_zoom_title" = "دکمه‌های بزرگنمایی";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "دکمه‌های + و - روی نقشه";
 
 /* Generic «Off» string */
 "off" = "خاموش";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "دوچرخه‌سواری";
 "button_layer_subway" = "مترو";
 "layers_title" = "سبک ها و لایه های نقشه";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "صادرات KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "صادرات GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "صادرات GeoJSON";
 "delete_list" = "حذف فهرست";
 "speedcams_alert_title" = "دوربین‌های سرعت";
 "place_description_title" = "توضیحات محل";
@@ -890,7 +899,7 @@
 "instagram_url" = "https://www.instagram.com/organicmaps.app";
 
 /* Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content */
-"translated_om_site_url" = "https://organicmaps.app/";
+"translated_om_site_url" = "https://organicmaps.app/fa-IR/";
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Fa:About_OpenStreetMap";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "مناطق دانلود شده بنفش";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "ورود با رمز عبور";
+
+/* Login to OSM button text */
+"login_osm_browser" = "ورود با استفاده از مرورگر";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "به‌تازگی استفاده شده";

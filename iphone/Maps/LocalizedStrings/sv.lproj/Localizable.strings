@@ -196,7 +196,9 @@
 "length" = "Längd";
 "share_my_location" = "Dela min plats";
 "prefs_group_route" = "Navigering";
-"pref_zoom_title" = "Zoom-knappar";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Knapparna + och - på kartan";
 
 /* Generic «Off» string */
 "off" = "Av";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Cykling";
 "button_layer_subway" = "Tunnelbana";
 "layers_title" = "Kartstilar och lager";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Exportera KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Exportera GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Exportera GeoJSON";
 "delete_list" = "Radera listan";
 "speedcams_alert_title" = "Hastighetskameror";
 "place_description_title" = "Beskrivning av platsen";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Lila nedladdade regioner";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Logga in med lösenord";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Logga in med hjälp av webbläsare";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Senast använda";

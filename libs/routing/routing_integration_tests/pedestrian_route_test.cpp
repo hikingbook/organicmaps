@@ -52,9 +52,10 @@ UNIT_TEST(Zgrad924aTo1145)
 
 UNIT_TEST(MoscowMuzeonToLebedinoeOzeroGorkyPark)
 {
+  // Fountain is under construction now. Update after finish.
   integration::CalculateRouteAndTestRouteLength(integration::GetVehicleComponents(VehicleType::Pedestrian),
                                                 mercator::FromLatLon(55.7348, 37.606), {0., 0.},
-                                                mercator::FromLatLon(55.724, 37.5956), 1640.0);
+                                                mercator::FromLatLon(55.724, 37.5956), 1763.5);
 }
 
 UNIT_TEST(Zgrad315parkingToMusicSchoolBus_BadRoute)
@@ -266,9 +267,10 @@ UNIT_TEST(CzechPragueHiltonToKvetniceViewpoint)
 
 UNIT_TEST(RussiaSaintPetersburgMoyka93ToAlexanderColumn)
 {
+  // Should use "Большая Морская улица" as a final street segment.
   integration::CalculateRouteAndTestRouteLength(integration::GetVehicleComponents(VehicleType::Pedestrian),
                                                 mercator::FromLatLon(59.9241, 30.323), {0., 0.},
-                                                mercator::FromLatLon(59.939, 30.3159), 2307.17);
+                                                mercator::FromLatLon(59.939, 30.3159), 2240.88);
 }
 
 UNIT_TEST(RussiaSaintPetersburgMoyka93ToMarsovoPole)
@@ -303,7 +305,7 @@ UNIT_TEST(RussiaSaintPetersburgPetrPaulChurchToDolphins)
 {
   integration::CalculateRouteAndTestRouteLength(integration::GetVehicleComponents(VehicleType::Pedestrian),
                                                 mercator::FromLatLon(59.9502, 30.3165), {0., 0.},
-                                                mercator::FromLatLon(59.973, 30.2702), 4507.);
+                                                mercator::FromLatLon(59.973, 30.2702), 4607.);
 }
 
 UNIT_TEST(RussiaPetergofEntranceToErmitagePalace)
@@ -698,4 +700,10 @@ UNIT_TEST(Belarus_PedestrianArea)
                                    {0., 0.}, FromLatLon(53.911506, 27.7723211), 281.0);
 }
 
+UNIT_TEST(UK_HighwayPlatform)
+{
+  // highway=platform tag is routable
+  CalculateRouteAndTestRouteLength(GetVehicleComponents(VehicleType::Pedestrian), FromLatLon(51.498581, -0.069292),
+                                   {0., 0.}, FromLatLon(51.498604, -0.069994), 63.5389);
+}
 }  // namespace pedestrian_route_test

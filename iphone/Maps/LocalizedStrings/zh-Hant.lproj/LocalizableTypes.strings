@@ -51,7 +51,7 @@
 "type.amenity.charging_station.motorcar" = "汽車充電站";
 "type.amenity.childcare" = "保育";
 "type.amenity.cinema" = "電影院";
-"type.amenity.studio" = "Studio";
+"type.amenity.studio" = "錄音室";
 "type.leisure.bowling_alley" = "保齡球館";
 "type.amenity.clinic" = "診所";
 "type.amenity.college" = "學院";
@@ -85,7 +85,7 @@
 "type.amenity.hunting_stand" = "狩獵場";
 "type.amenity.ice_cream" = "冰淇淋攤";
 "type.amenity.internet_cafe" = "網路咖啡店";
-"type.amenity.kindergarten" = "幼兒園";
+"type.amenity.kindergarten" = "幼稚園";
 "type.amenity.library" = "圖書館";
 "type.amenity.loading_dock" = "裝卸碼頭";
 "type.amenity.luggage_locker" = "行李保管箱";
@@ -364,6 +364,7 @@
 "type.cuisine.tea" = "茶";
 "type.cuisine.thai" = "泰國料理";
 "type.cuisine.turkish" = "土耳其料理";
+"type.cuisine.uzbek" = "烏茲別克";
 "type.cuisine.vegan" = "全素料理";
 "type.cuisine.vegetarian" = "素食";
 "type.cuisine.vietnamese" = "越南料理";
@@ -485,6 +486,7 @@
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.pedestrian.tunnel" = "隧道";
+"type.highway.platform" = "月台";
 "type.highway.primary" = "主要道路";
 
 /* These translations are used for all type.highway.*.bridge. */
@@ -615,8 +617,8 @@
 "type.area_highway.track" = "土路";
 "type.area_highway.trunk" = "主幹道";
 "type.area_highway.unclassified" = "道路";
-"type.highway.world_level" = "公路 - 世界等級";
-"type.highway.world_towns_level" = "公路 - 世界城鎮等級";
+"type.highway.world_level" = "highway-world_level";
+"type.highway.world_towns_level" = "highway-world_towns_level";
 
 
 /********** Types: Historic **********/
@@ -706,7 +708,7 @@
 
 /* Do not translate. Here to avoid untranslated debug toast. */
 "type.hwtag.yesfoot" = "hwtag-yesfoot";
-"type.internet_access" = "互聯網";
+"type.internet_access" = "網際網路";
 "type.internet_access.wlan" = "無線網路";
 "type.junction" = "交叉口";
 "type.junction.circular" = "環形交叉口";
@@ -834,7 +836,7 @@
 "type.mapswithme.grid" = "mapswithme-grid";
 "type.military" = "軍事";
 "type.military.bunker" = "地堡";
-"type.mountain_pass" = "Mountain Pass";
+"type.mountain_pass" = "隘口";
 "type.natural" = "自然";
 
 /* A rocky land cover. */
@@ -964,8 +966,8 @@
 "type.psurface.paved_good" = "路面舖設 - 良好";
 "type.psurface.unpaved_bad" = "路面舖設 - 較差";
 "type.psurface.unpaved_good" = "路面舖設 - 良好";
-"type.public_transport" = "Public Transport";
-"type.public_transport.platform" = "Platform";
+"type.public_transport" = "大眾運輸";
+"type.public_transport.platform" = "月台";
 "type.railway" = "鐵路設施";
 "type.railway.abandoned" = "廢棄鐵路";
 "type.railway.abandoned.bridge" = "廢棄鐵路橋樑";
@@ -973,6 +975,8 @@
 "type.railway.construction" = "施工中鐵路";
 "type.railway.crossing" = "鐵路平交道";
 "type.railway.disused" = "不使用鐵路";
+"type.railway.disused.bridge" = "廢棄鐵路橋樑";
+"type.railway.disused.tunnel" = "廢棄鐵路隧道";
 "type.railway.funicular" = "纜車";
 "type.railway.funicular.bridge" = "纜車橋";
 "type.railway.funicular.tunnel" = "纜車隧道";
@@ -1324,6 +1328,7 @@
 "type.shop.kiosk" = "售貨亭";
 "type.shop.kitchen" = "廚房用品店";
 "type.shop.laundry" = "洗衣店";
+"type.shop.leather" = "皮具店";
 "type.shop.mall" = "商场";
 "type.shop.massage" = "按摩館";
 "type.shop.mobile_phone" = "手機專賣店";
@@ -1342,6 +1347,7 @@
 "type.shop.pet" = "寵物店";
 "type.shop.pet_grooming" = "寵物美容";
 "type.shop.photo" = "照片店";
+"type.shop.religion" = "宗教用品店";
 "type.shop.rental" = "租賃店";
 "type.shop.rental.bicycle" = "自行車租賃店";
 "type.amenity.bicycle_rental.shop" = "自行車租賃店";
@@ -1482,7 +1488,7 @@
 "type.waterway.canal" = "運河";
 "type.waterway.canal.tunnel" = "運河";
 "type.waterway.fish_pass" = "魚梯";
-"type.waterway.dam" = "Dam";
+"type.waterway.dam" = "水壩";
 "type.barrier.ditch" = "溝渠";
 "type.natural.water.ditch" = "排水溝";
 "type.waterway.ditch.tunnel" = "涵洞";
@@ -1554,7 +1560,7 @@
 "type.building.guardhouse" = "警衛";
 "type.office.security" = "保全辦公室";
 "type.power.portal" = "H架電塔";
-"type.shop.lighting" = "Lighting Shop";
+"type.shop.lighting" = "燈具店";
 "type.barrier.jersey_barrier" = "塊體";
 "type.barrier.debris" = "碎石";
 "type.barrier.log" = "原木屏障";

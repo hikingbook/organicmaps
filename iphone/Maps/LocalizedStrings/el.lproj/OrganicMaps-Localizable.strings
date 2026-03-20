@@ -196,7 +196,9 @@
 "length" = "Μήκος";
 "share_my_location" = "Κοινοποίηση της τοποθεσίας μου";
 "prefs_group_route" = "Πλοήγηση";
-"pref_zoom_title" = "Πλήκτρα μεγέθυνσης";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Πλήκτρα «+» και «-» στον χάρτη";
 
 /* Generic «Off» string */
 "off" = "Απενεργ.";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ποδηλασία";
 "button_layer_subway" = "Μετρό";
 "layers_title" = "Στυλ χάρτη και επίπεδα";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Εξαγωγή KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Εξαγωγή GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Εξαγωγή GeoJSON";
 "delete_list" = "Διαγραφή λίστας";
 "speedcams_alert_title" = "Κάμερες Ταχύτητας";
 "place_description_title" = "Περιγραφή μέρους";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Μωβ ληφθείσες περιοχές";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Σύνδεση με κωδικό πρόσβασης";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Σύνδεση μέσω προγράμματος περιήγησης";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Πρόσφατα χρησιμοποιημένα";

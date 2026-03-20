@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)enableStandby;
 - (void)disableStandby;
+- (void)completeOAuth2Authorization;
 
 + (void)customizeAppearance;
 + (void)customizeAppearanceForNavigationBar:(UINavigationBar *)navigationBar;

@@ -102,14 +102,14 @@ NS_SWIFT_NAME(BookmarksManager)
  Shares a specific category with the given group ID.
 
  @param groupId The identifier for the category to be shared.
- @param fileType Text/Binary/GPX
+ @param fileType KML/KMB/GPX/GeoJSON
  @param completion A block that handles the result of the share operation and takes two parameters:
                    - status: The status of the share operation, of type `MWMBookmarksShareStatus`.
                    - urlToALocalFile: The local file URL containing the shared data. This parameter is guaranteed to be
  non-nil only if `status` is `MWMBookmarksShareStatusSuccess`. In other cases, it will be nil.
 */
 - (void)shareCategory:(MWMMarkGroupID)groupId
-             fileType:(MWMKmlFileType)fileType
+             fileType:(MWMFileType)fileType
            completion:(SharingResultCompletionHandler)completion;
 /**
  Shares all categories.
@@ -128,7 +128,7 @@ NS_SWIFT_NAME(BookmarksManager)
  @param fileType Text/Binary/GPX
  */
 - (void)shareTrack:(MWMTrackID)trackId
-          fileType:(MWMKmlFileType)fileType
+          fileType:(MWMFileType)fileType
         completion:(SharingResultCompletionHandler)completion;
 - (void)finishSharing;
 

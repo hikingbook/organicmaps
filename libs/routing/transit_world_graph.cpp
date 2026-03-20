@@ -15,7 +15,7 @@ TransitWorldGraph::TransitWorldGraph(unique_ptr<CrossMwmGraph> crossMwmGraph, un
   : m_crossMwmGraph(std::move(crossMwmGraph))
   , m_indexLoader(std::move(indexLoader))
   , m_transitLoader(std::move(transitLoader))
-  , m_estimator(estimator)
+  , m_estimator(std::move(estimator))
 {
   CHECK(m_indexLoader, ());
   CHECK(m_transitLoader, ());
@@ -134,7 +134,7 @@ RouteWeight TransitWorldGraph::CalcOffroadWeight(ms::LatLon const & from, ms::La
   return RouteWeight(m_estimator->CalcOffroad(from, to, purpose));
 }
 
-double TransitWorldGraph::CalculateETA(Segment const & from, Segment const & to)
+double TransitWorldGraph::CalculateETA(Segment const & from, Segment const & to, time_t arrivalTime)
 {
   if (TransitGraph::IsTransitSegment(from))
     return CalcSegmentWeight(to, EdgeEstimator::Purpose::ETA).GetWeight();
@@ -149,7 +149,9 @@ double TransitWorldGraph::CalculateETA(Segment const & from, Segment const & to)
   }
 
   auto & indexGraph = m_indexLoader->GetIndexGraph(from.GetMwmId());
-  return indexGraph.CalculateEdgeWeight(EdgeEstimator::Purpose::ETA, true /* isOutgoing */, from, to).GetWeight();
+  return indexGraph
+      .CalculateEdgeWeight(EdgeEstimator::Purpose::ETA, true /* isOutgoing */, from, to, RouteWeight(arrivalTime))
+      .GetWeight();
 }
 
 double TransitWorldGraph::CalculateETAWithoutPenalty(Segment const & segment)
@@ -193,7 +195,7 @@ unique_ptr<TransitInfo> TransitWorldGraph::GetTransitInfo(Segment const & segmen
   return {};
 }
 
-void TransitWorldGraph::GetTwinsInner(Segment const & segment, bool isOutgoing, vector<Segment> & twins)
+void TransitWorldGraph::GetTwinsInner(Segment const & segment, bool isOutgoing, TwinSegmentsListT & twins)
 {
   if (m_mode == WorldGraphMode::SingleMwm || !m_crossMwmGraph || !m_crossMwmGraph->IsTransition(segment, isOutgoing))
     return;

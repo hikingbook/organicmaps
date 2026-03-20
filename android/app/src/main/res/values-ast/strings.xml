@@ -136,6 +136,12 @@
     <string name="blue">Azul</string>
     <!-- green color -->
     <string name="green">Verde</string>
+    <!-- Settings «Map» category: «Appearance» title -->
+    <string name="pref_appearance_title">Aspeutu</string>
+    <!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_light">Claru</string>
+    <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_dark">Escuru</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">¡Regala mapes gratis y ensin anuncios a millones d\'usuarios!</string>
 
@@ -266,8 +272,12 @@
     <string name="layers_title">Estilos y capes del mapa</string>
     <string name="bookmarks_empty_list_title">Esta llista ta balera</string>
     <string name="category_desc_more">… más</string>
+    <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Esportar KMZ</string>
+    <!-- Menu title for exporting a file in GPX format -->
     <string name="export_file_gpx">Esportar GPX</string>
+    <!-- Menu title for exporting a file in GeoJSON format -->
+    <string name="export_file_geojson">Esportar GeoJSON</string>
     <string name="delete_list">Desaniciar llista</string>
     <string name="speedcams_alert_title">Radares de velocidá</string>
     <string name="place_description_title">Descripción del llugar</string>
@@ -308,7 +318,6 @@
     <string name="fuel_places">Gasolineres</string>
     <string name="search_in_the_list">Guetar na llista</string>
     <string name="religious_places">Llugares relixosos</string>
-    <string name="transit_not_found">La navegación per metro nesta rexón tovía nun ta disponible</string>
     <string name="button_layer_isolines">Curves de nivel</string>
     <string name="isolines_location_error_dialog">Les curves de nivel entá nun tán disponibles nesta rexón</string>
     <string name="elevation_profile_ascent">Ascensu</string>
@@ -359,4 +368,6 @@
     <string name="track_recording_toast_nothing_to_save">El trayeutu ta baleru; nun hai nada pa guardar</string>
     <string name="choose_color">Escueyi un color</string>
     <string name="edit_track">Editar trayeutu</string>
+    <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
+    <string name="follow_system">Siguir el sistema</string>
 </resources>

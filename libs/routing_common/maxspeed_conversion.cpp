@@ -35,21 +35,36 @@ Maxspeed::Maxspeed(Units units, MaxspeedType forward, MaxspeedType backward)
 
 bool Maxspeed::operator==(Maxspeed const & rhs) const
 {
-  return m_units == rhs.m_units && m_forward == rhs.m_forward && m_backward == rhs.m_backward;
+  return (m_units == rhs.m_units && m_forward == rhs.m_forward && m_backward == rhs.m_backward &&
+          m_conditionalSpeed == rhs.m_conditionalSpeed && m_conditionalTime == rhs.m_conditionalTime);
 }
 
-MaxspeedType Maxspeed::GetSpeedInUnits(bool forward) const
+void Maxspeed::SetConditional(MaxspeedType speed, osmoh::OpeningHours condition)
 {
-  return (forward || !IsBidirectional()) ? m_forward : m_backward;
+  ASSERT(condition.IsValid(), ());
+  m_conditionalSpeed = speed;
+  m_conditionalTime = std::move(condition);
 }
 
-MaxspeedType Maxspeed::GetSpeedKmPH(bool forward) const
+SpeedInUnits Maxspeed::GetCurrentSpeed(time_t time, bool forward) const
 {
-  auto const speedInUnits = GetSpeedInUnits(forward);
+  MaxspeedType speed = kInvalidSpeed;
+
+  if (time != 0 && HasConditional() && GetConditionalTime().IsOpen(time))
+    speed = m_conditionalSpeed;
+  else if (!forward && m_backward != kInvalidSpeed)
+    speed = m_backward;
+  else
+    speed = m_forward;
+
+  return {speed, m_units};
+}
+
+MaxspeedType Maxspeed::ToKmPH(MaxspeedType speedInUnits) const
+{
   switch (speedInUnits)
   {
-  case kInvalidSpeed:
-    return kInvalidSpeed;  // That means IsValid() returns false.
+  case kInvalidSpeed: return kInvalidSpeed;
 
   // A feature is marked as a feature without any speed limits (maxspeed=="none").
   // Should be less than CarModel::kMaxCarSpeedKMpH.
@@ -336,7 +351,8 @@ string DebugPrint(Maxspeed maxspeed)
   ostringstream oss;
   oss << "Maxspeed { m_units: " << DebugPrint(maxspeed.GetUnits())
       << ", m_forward: " << PrintMaxspeedType(maxspeed.GetForward())
-      << ", m_backward: " << PrintMaxspeedType(maxspeed.GetBackward()) << " }";
+      << ", m_backward: " << PrintMaxspeedType(maxspeed.GetBackward())
+      << ", m_conditional: " << PrintMaxspeedType(maxspeed.GetConditional()) << " }";
   return oss.str();
 }
 

@@ -196,7 +196,9 @@
 "length" = "Długość";
 "share_my_location" = "Udostępnij aktualne położenie";
 "prefs_group_route" = "Nawigacja";
-"pref_zoom_title" = "Przyciski przybliżania";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Przyciski „+” i „-” na mapie";
 
 /* Generic «Off» string */
 "off" = "Wyłączony";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Jazda rowerem";
 "button_layer_subway" = "Metro";
 "layers_title" = "Style i warstwy mapy";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Eksportuj KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Eksport GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Eksportuj GeoJSON";
 "delete_list" = "Usuń listę";
 "speedcams_alert_title" = "Fotoradary";
 "place_description_title" = "Opis miejsca";
@@ -938,7 +947,7 @@
 "car_continue_in_the_car" = "Do ekranu samochodu";
 
 /* Outdoors/hiking map style (activity) name in the Styles and Layers dialog */
-"button_layer_outdoor" = "Turystyka piesza";
+"button_layer_outdoor" = "Aktywność outdoorowa";
 
 /* Bookmark categories screen, button that opens share dialog to export all bookmarks and tracks */
 "bookmarks_export" = "Eksportuj wszystkie zakładki i ścieżki";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Fioletowe pobrane regiony";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Proszę zalogować się przy użyciu hasła";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Logowanie za pomocą przeglądarki";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Ostatnio używane";

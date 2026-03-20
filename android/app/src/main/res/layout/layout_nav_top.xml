@@ -16,21 +16,17 @@
     app:layout_constraintTop_toTopOf="parent"
     android:clickable="true"
     android:background="?cardBackground">
-    <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/nav_street_height"
-      tools:ignore="UselessParent">
-      <TextView
+    <TextView
         android:id="@+id/street"
         style="@style/MwmWidget.TextView.NavStreet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/nav_street_height"
         android:layout_marginStart="@dimen/nav_street_left"
         android:maxLines="2"
         android:layout_gravity="center_vertical"
         android:gravity="center"
         tools:text="Sample street name.\nLong looooooooong!!!!"/>
-    </RelativeLayout>
   </FrameLayout>
 
   <RelativeLayout
@@ -95,7 +91,7 @@
     </FrameLayout>
   </RelativeLayout>
 
-  <app.organicmaps.widget.LanesView
+  <app.organicmaps.sdk.widgets.lanes.LanesView
       android:id="@+id/lanes"
       android:layout_width="0dp"
       android:layout_height="68dp"
@@ -113,7 +109,7 @@
       app:lanesEditModeLanesCount="5"
       tools:visibility="visible" />
 
-  <app.organicmaps.widget.SpeedLimitView
+  <app.organicmaps.sdk.widgets.speedlimit.SpeedLimitView
     android:id="@+id/nav_speed_limit"
     style="@style/MwmWidget.SpeedLimit"
     android:layout_width="60dp"

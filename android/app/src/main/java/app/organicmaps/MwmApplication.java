@@ -12,6 +12,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -19,12 +20,15 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.preference.PreferenceManager;
-import app.organicmaps.background.OsmUploadWork;
+
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+
 import app.organicmaps.downloader.DownloaderNotifier;
 import app.organicmaps.location.LocationProviderFactoryImpl;
 import app.organicmaps.location.TrackRecordingService;
 import app.organicmaps.routing.NavigationService;
+import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.sdk.Map;
 import app.organicmaps.sdk.OrganicMaps;
 import app.organicmaps.sdk.display.DisplayManager;
@@ -36,14 +40,9 @@ import app.organicmaps.sdk.maplayer.isolines.IsolinesManager;
 import app.organicmaps.sdk.maplayer.subway.SubwayManager;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.Config;
-import app.organicmaps.sdk.util.ConnectionState;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.util.ThemeSwitcher;
 import app.organicmaps.util.Utils;
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-
-import app.organicmaps.sdk.FrameworkAdapter;
 public class MwmApplication extends Application implements Application.ActivityLifecycleCallbacks
 {
   @NonNull
@@ -142,24 +141,23 @@ public class MwmApplication extends Application implements Application.ActivityL
     mOrganicMaps = new OrganicMaps(sInstance, BuildConfig.FLAVOR, FrameworkAdapter.INSTANCE.getApplicationID(),
                                    BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME,
                                    BuildConfig.FILE_PROVIDER_AUTHORITY, mLocationProviderFactory);
-    
-    ConnectionState.INSTANCE.initialize(sInstance);
 
     DownloaderNotifier.createNotificationChannel(sInstance);
     NavigationService.createNotificationChannel(sInstance);
     TrackRecordingService.createNotificationChannel(sInstance);
 
-//    registerActivityLifecycleCallbacks(this);
+    registerActivityLifecycleCallbacks(this);
     mDisplayManager = new DisplayManager();
   }
 
-  public boolean initOrganicMaps(@NonNull Runnable onComplete) throws IOException
+  public boolean initOrganicMaps(@Nullable Runnable onComplete) throws IOException
   {
     ThemeSwitcher.INSTANCE.initialize(FrameworkAdapter.INSTANCE.getApplication());
     return mOrganicMaps.init(() -> {
-      ThemeSwitcher.INSTANCE.restart(false);
+      ThemeSwitcher.INSTANCE.synchronizeApplicationTheme();
       ProcessLifecycleOwner.get().getLifecycle().addObserver(mProcessLifecycleObserver);
-      onComplete.run();
+      if (onComplete != null)
+        onComplete.run();
     });
   }
 
@@ -228,7 +226,7 @@ public class MwmApplication extends Application implements Application.ActivityL
   {
     Logger.d(TAG);
 
-    OsmUploadWork.startActionUploadOsmChanges(FrameworkAdapter.INSTANCE.getApplication());
+//    OsmUploadWork.startActionUploadOsmChanges(FrameworkAdapter.INSTANCE.getApplication());
 
     if (!mDisplayManager.isDeviceDisplayUsed())
       Logger.i(LOCATION_TAG, "Android Auto is active, keeping location in the background");

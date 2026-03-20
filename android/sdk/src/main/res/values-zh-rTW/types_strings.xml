@@ -51,6 +51,7 @@
     <string name="type.amenity.charging_station.motorcar">汽車充電站</string>
     <string name="type.amenity.childcare">保育</string>
     <string name="type.amenity.cinema">電影院</string>
+    <string name="type.amenity.studio">錄音室</string>
     <string name="type.leisure.bowling_alley">保齡球館</string>
     <string name="type.amenity.clinic">診所</string>
     <string name="type.amenity.college">學院</string>
@@ -82,7 +83,7 @@
     <string name="type.amenity.hunting_stand">狩獵場</string>
     <string name="type.amenity.ice_cream">冰淇淋攤</string>
     <string name="type.amenity.internet_cafe">網路咖啡店</string>
-    <string name="type.amenity.kindergarten">幼兒園</string>
+    <string name="type.amenity.kindergarten">幼稚園</string>
     <string name="type.amenity.library">圖書館</string>
     <string name="type.amenity.loading_dock">裝卸碼頭</string>
     <string name="type.amenity.luggage_locker">行李保管箱</string>
@@ -350,6 +351,7 @@
     <string name="type.cuisine.tea">茶</string>
     <string name="type.cuisine.thai">泰國料理</string>
     <string name="type.cuisine.turkish">土耳其料理</string>
+    <string name="type.cuisine.uzbek">烏茲別克</string>
     <string name="type.cuisine.vegan">全素料理</string>
     <string name="type.cuisine.vegetarian">素食</string>
     <string name="type.cuisine.vietnamese">越南料理</string>
@@ -367,6 +369,7 @@
     <!-- This is for main/primary entrances, for secondary entrances see type.entrance -->
     <string name="type.entrance.main">主要入口</string>
     <string name="type.entrance.exit">出口</string>
+    <string name="type.fee.yes">$</string>
     <string name="type.fee.no">免費</string>
     <string name="type.healthcare.laboratory">醫學實驗室</string>
     <string name="type.healthcare.physiotherapist">物理治療師</string>
@@ -444,6 +447,7 @@
     <string name="type.highway.pedestrian.bridge">橋</string>
     <!-- These translations are used for all type.highway.*.tunnel. -->
     <string name="type.highway.pedestrian.tunnel">隧道</string>
+    <string name="type.highway.platform">月台</string>
     <string name="type.highway.primary">主要道路</string>
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.primary.bridge">橋</string>
@@ -545,8 +549,6 @@
     <string name="type.area_highway.track">土路</string>
     <string name="type.area_highway.trunk">主幹道</string>
     <string name="type.area_highway.unclassified">道路</string>
-    <string name="type.highway.world_level">公路 - 世界等級</string>
-    <string name="type.highway.world_towns_level">公路 - 世界城鎮等級</string>
 
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">歷史地點</string>
@@ -593,7 +595,7 @@
     <string name="type.historic.wayside_cross">路旁十字架</string>
     <string name="type.historic.wayside_shrine">路旁神龕</string>
     <string name="type.historic.wreck">沉船</string>
-    <string name="type.internet_access">互聯網</string>
+    <string name="type.internet_access">網際網路</string>
     <string name="type.internet_access.wlan">無線網路</string>
     <string name="type.junction">交叉口</string>
     <string name="type.junction.circular">環形交叉口</string>
@@ -709,6 +711,7 @@
     <string name="type.man_made.works">工業設施</string>
     <string name="type.military">軍事</string>
     <string name="type.military.bunker">地堡</string>
+    <string name="type.mountain_pass">隘口</string>
     <string name="type.natural">自然</string>
     <!-- A rocky land cover. -->
     <string name="type.natural.bare_rock">岩石</string>
@@ -829,6 +832,8 @@
     <string name="type.psurface.paved_good">路面舖設 - 良好</string>
     <string name="type.psurface.unpaved_bad">路面舖設 - 較差</string>
     <string name="type.psurface.unpaved_good">路面舖設 - 良好</string>
+    <string name="type.public_transport">大眾運輸</string>
+    <string name="type.public_transport.platform">月台</string>
     <string name="type.railway">鐵路設施</string>
     <string name="type.railway.abandoned">廢棄鐵路</string>
     <string name="type.railway.abandoned.bridge">廢棄鐵路橋樑</string>
@@ -836,6 +841,8 @@
     <string name="type.railway.construction">施工中鐵路</string>
     <string name="type.railway.crossing">鐵路平交道</string>
     <string name="type.railway.disused">不使用鐵路</string>
+    <string name="type.railway.disused.bridge">廢棄鐵路橋樑</string>
+    <string name="type.railway.disused.tunnel">廢棄鐵路隧道</string>
     <string name="type.railway.funicular">纜車</string>
     <string name="type.railway.funicular.bridge">纜車橋</string>
     <string name="type.railway.funicular.tunnel">纜車隧道</string>
@@ -1183,6 +1190,7 @@
     <string name="type.shop.kiosk">售貨亭</string>
     <string name="type.shop.kitchen">廚房用品店</string>
     <string name="type.shop.laundry">洗衣店</string>
+    <string name="type.shop.leather">皮具店</string>
     <string name="type.shop.mall">商场</string>
     <string name="type.shop.massage">按摩館</string>
     <string name="type.shop.mobile_phone">手機專賣店</string>
@@ -1201,6 +1209,7 @@
     <string name="type.shop.pet">寵物店</string>
     <string name="type.shop.pet_grooming">寵物美容</string>
     <string name="type.shop.photo">照片店</string>
+    <string name="type.shop.religion">宗教用品店</string>
     <string name="type.shop.rental">租賃店</string>
     <string name="type.shop.rental.bicycle">自行車租賃店</string>
     <string name="type.amenity.bicycle_rental.shop">自行車租賃店</string>
@@ -1335,6 +1344,7 @@
     <string name="type.waterway.canal">運河</string>
     <string name="type.waterway.canal.tunnel">運河</string>
     <string name="type.waterway.fish_pass">魚梯</string>
+    <string name="type.waterway.dam">水壩</string>
     <string name="type.barrier.ditch">溝渠</string>
     <string name="type.natural.water.ditch">排水溝</string>
     <string name="type.waterway.ditch.tunnel">涵洞</string>
@@ -1402,6 +1412,7 @@
     <string name="type.building.guardhouse">警衛</string>
     <string name="type.office.security">保全辦公室</string>
     <string name="type.power.portal">H架電塔</string>
+    <string name="type.shop.lighting">燈具店</string>
     <string name="type.barrier.jersey_barrier">塊體</string>
     <string name="type.barrier.debris">碎石</string>
     <string name="type.barrier.log">原木屏障</string>

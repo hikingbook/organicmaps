@@ -196,7 +196,9 @@
 "length" = "Comprimento";
 "share_my_location" = "Partilhar a minha localização";
 "prefs_group_route" = "Navegação";
-"pref_zoom_title" = "Botões de ampliação";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Botões «+» e «-» no mapa";
 
 /* Generic «Off» string */
 "off" = "Desligado";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ciclismo";
 "button_layer_subway" = "Metropolitano";
 "layers_title" = "Estilos e camadas de mapas";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Exportar KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Exportar GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Exportar GeoJSON";
 "delete_list" = "Eliminar lista";
 "speedcams_alert_title" = "Radares de velocidade";
 "place_description_title" = "Descrição do local";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regiões descarregadas a roxo";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Iniciar sessão com palavra-passe";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Inicie sessão utilizando o browser";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Recentes";

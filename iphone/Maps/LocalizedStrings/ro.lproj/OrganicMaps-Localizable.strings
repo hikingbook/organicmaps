@@ -196,7 +196,9 @@
 "length" = "Lungime";
 "share_my_location" = "Trimite poziția mea";
 "prefs_group_route" = "Navigare";
-"pref_zoom_title" = "Butoane zoom";
+
+/* Setting name which enables or disables zoom buttons on the map screen. */
+"pref_zoom_title" = "Butoanele „+” și „-” pe hartă";
 
 /* Generic «Off» string */
 "off" = "Oprit";
@@ -648,8 +650,15 @@
 "button_layer_cycling" = "Ciclism";
 "button_layer_subway" = "Metrou";
 "layers_title" = "Stiluri și straturi de hartă";
+
+/* Menu title for exporting a file in the default KMZ format */
 "export_file" = "Export KMZ";
+
+/* Menu title for exporting a file in GPX format */
 "export_file_gpx" = "Exportați GPX";
+
+/* Menu title for exporting a file in GeoJSON format */
+"export_file_geojson" = "Export GeoJSON";
 "delete_list" = "Șterge lista";
 "speedcams_alert_title" = "Radare";
 "place_description_title" = "Descrierea locului";
@@ -1097,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regiuni descărcate violete";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Autentificare cu parolă";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Conectare folosind browserul";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Folosite recent";

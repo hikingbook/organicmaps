@@ -77,6 +77,11 @@ void InitLocalizedStrings()
   return (MapsAppDelegate *)UIApplication.sharedApplication.delegate;
 }
 
+- (void)completeOAuth2Authorization
+{
+//  AuthorizationStoreCredentialsWithOauth2Code(GetFramework().GetParsedOAuth2Code());
+}
+
 - (BOOL)isDrapeEngineCreated
 {
   return self.mapViewController.mapView.drapeEngineCreated;

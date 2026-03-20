@@ -1902,6 +1902,35 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ChargingStation)
   }
 }
 
+UNIT_CLASS_TEST(TestWithClassificator, OsmType_ShopCarRepair)
+{
+  {
+    Tags const tags = {
+        {"shop", "car"},
+        {"service:vehicle:car_repair", "yes"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"shop", "car"})), (params));
+    TEST(params.IsTypeExist(GetType({"shop", "car_repair"})), (params));
+  }
+
+  {
+    Tags const tags = {
+        {"amenity", "fuel"},
+        {"service:vehicle:tyres", "yes"},
+    };
+
+    auto const params = GetFeatureBuilderParams(tags);
+
+    TEST_EQUAL(params.m_types.size(), 2, (params));
+    TEST(params.IsTypeExist(GetType({"amenity", "fuel"})), (params));
+    TEST(params.IsTypeExist(GetType({"shop", "car_repair", "tyres"})), (params));
+  }
+}
+
 UNIT_CLASS_TEST(TestWithClassificator, OsmType_RailwayRail)
 {
   using Type = std::vector<std::string>;
@@ -2049,7 +2078,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       // {"natural", "meadow"},
       // {"natural", "orchard"},
       // {"natural", "tree"},
-      // {"natural", "tree_row"},
+      {"natural", "tree_row"},
       // {"natural", "vineyard"},
       // {"noexit"},
       // {"place", "county"},
@@ -2122,6 +2151,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"amenity", "motorcycle_rental"},
       {"amenity", "nightclub"},
       {"amenity", "nursing_home"},
+      {"amenity", "parcel_locker"},
       {"amenity", "parking"},
       {"amenity", "parking_space"},
       {"amenity", "payment_terminal"},
@@ -2133,6 +2163,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"amenity", "prison"},
       {"amenity", "pub"},
       {"amenity", "public_bookcase"},
+      {"amenity", "recycling"},
       {"amenity", "restaurant"},
       {"amenity", "school"},
       {"amenity", "shelter"},
@@ -2143,6 +2174,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"amenity", "toilets"},
       {"amenity", "townhall"},
       {"amenity", "university"},
+      {"amenity", "vehicle_inspection"},
       {"amenity", "veterinary"},
       {"amenity", "waste_basket"},
       {"amenity", "waste_disposal"},
@@ -2294,6 +2326,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"highway", "motorway_link"},
       {"highway", "path"},
       {"highway", "pedestrian"},
+      {"highway", "platform"},
       {"highway", "primary"},
       {"highway", "primary_link"},
       {"highway", "raceway"},
@@ -2536,6 +2569,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"shop", "kiosk"},
       {"shop", "kitchen"},
       {"shop", "laundry"},
+      {"shop", "leather"},
       {"shop", "mall"},
       {"shop", "massage"},
       {"shop", "mobile_phone"},
@@ -2550,6 +2584,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_SimpleTypesSmoke)
       {"shop", "pawnbroker"},
       {"shop", "pet"},
       {"shop", "photo"},
+      {"shop", "religion"},
       {"shop", "seafood"},
       {"shop", "second_hand"},
       {"shop", "sewing"},
@@ -2690,8 +2725,7 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
       {{"amenity", "place_of_worship", "taoist"}, {{"amenity", "place_of_worship"}, {"religion", "taoist"}}},
       {{"amenity", "recycling", "centre"}, {{"amenity", "recycling"}, {"recycling_type", "centre"}}},
       {{"amenity", "recycling", "container"}, {{"amenity", "recycling"}, {"recycling_type", "container"}}},
-      {{"amenity", "recycling"}, {{"amenity", "recycling"}}},
-      {{"amenity", "parcel_locker"}, {{"amenity", "parcel_locker"}}},
+      {{"amenity", "vehicle_inspection"}, {{"service:vehicle:inspection", "yes"}}},
       {{"amenity", "vending_machine", "cigarettes"}, {{"amenity", "vending_machine"}, {"vending", "cigarettes"}}},
       {{"amenity", "vending_machine", "coffee"}, {{"amenity", "vending_machine"}, {"vending", "coffee"}}},
       {{"amenity", "vending_machine", "condoms"}, {{"amenity", "vending_machine"}, {"vending", "condoms"}}},
@@ -2921,7 +2955,13 @@ UNIT_CLASS_TEST(TestWithClassificator, OsmType_ComplexTypesSmoke)
       {{"railway", "subway_entrance", "spb"}, {{"railway", "subway_entrance"}, {"city", "spb"}}},
       {{"railway", "tram", "bridge"}, {{"railway", "tram"}, {"bridge", "any_value"}}},
       {{"railway", "tram", "tunnel"}, {{"railway", "tram"}, {"tunnel", "any_value"}}},
+      {{"shop", "car"}, {{"service:vehicle:new_car_sales", "yes"}}},
+      {{"shop", "car"}, {{"service:vehicle:used_car_sales", "yes"}}},
+      {{"shop", "car_parts"}, {{"service:vehicle:car_parts", "yes"}}},
+      {{"shop", "car_repair"}, {{"service:vehicle:car_repair", "yes"}}},
+      {{"shop", "car_repair"}, {{"service:vehicle:truck_repair", "yes"}}},
       {{"shop", "car_repair", "tyres"}, {{"shop", "car_repair"}, {"service", "tyres"}}},
+      {{"shop", "car_repair", "tyres"}, {{"service:vehicle:tyres", "yes"}}},
       {{"shop", "clothes"}, {{"shop", "clothes"}}},
       {{"shop", "clothes"}, {{"shop", "fashion"}}},
       {{"shop"}, {{"shop", "any_value"}}},
