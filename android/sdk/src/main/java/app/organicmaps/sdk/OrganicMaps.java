@@ -2,12 +2,15 @@ package app.organicmaps.sdk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
+
+import java.io.IOException;
+
 import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
-import app.organicmaps.sdk.bookmarks.data.Icon;
 import app.organicmaps.sdk.downloader.Android7RootCertificateWorkaround;
 import app.organicmaps.sdk.editor.OsmOAuth;
 import app.organicmaps.sdk.location.LocationHelper;
@@ -19,14 +22,12 @@ import app.organicmaps.sdk.maplayer.traffic.TrafficManager;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.search.SearchEngine;
 import app.organicmaps.sdk.settings.StoragePathManager;
-import app.organicmaps.sdk.sound.TtsPlayer;
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.ConnectionState;
 import app.organicmaps.sdk.util.SharedPropertiesUtils;
 import app.organicmaps.sdk.util.StorageUtils;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.util.log.LogsManager;
-import java.io.IOException;
 
 public final class OrganicMaps implements DefaultLifecycleObserver
 {
@@ -200,7 +201,7 @@ public final class OrganicMaps implements DefaultLifecycleObserver
     initNativeStrings();
     SearchEngine.INSTANCE.initialize();
     BookmarkManager.loadBookmarks();
-    TtsPlayer.INSTANCE.initialize(mContext);
+//    TtsPlayer.INSTANCE.initialize(mContext);
     RoutingController.get().initialize(mLocationHelper);
     TrafficManager.INSTANCE.initialize();
     mSubwayManager.initialize();
