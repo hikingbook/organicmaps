@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.ParcelCompat;
 
-import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.routing.RoutePointInfo;
-import app.organicmaps.sdk.util.Constants;
 
 // TODO consider refactoring to remove hack with MapObject unmarshalling itself and Bookmark at the same time.
 @SuppressLint("ParcelCreator")
@@ -39,13 +37,19 @@ public class Bookmark extends MapObject
     mCategoryId = categoryId;
     mBookmarkId = bookmarkId;
     BookmarkInfo bookmarkInfo = loadBookmarkInfo();
-    mDescription = bookmarkInfo.getDescription();
-    mIcon = bookmarkInfo.getIcon();
-    mScale = bookmarkInfo.getScale();
+    if (bookmarkInfo != null) {
+      mDescription = bookmarkInfo.getDescription();
+      mIcon = bookmarkInfo.getIcon();
+      mScale = bookmarkInfo.getScale();
 
-    setLat(bookmarkInfo.getLat());
-    setLon(bookmarkInfo.getLon());
-    setTitle(bookmarkInfo.getName());
+      setLat(bookmarkInfo.getLat());
+      setLon(bookmarkInfo.getLon());
+      setTitle(bookmarkInfo.getName());
+    }
+    else {
+      mDescription = "";
+      mScale = 0;
+    }
   }
 
   @Override
@@ -121,14 +125,13 @@ public class Bookmark extends MapObject
     return mDescription;
   }
 
-  @NonNull
   private BookmarkInfo loadBookmarkInfo()
   {
-    BookmarkInfo info = BookmarkManager.INSTANCE.getBookmarkInfo(mBookmarkId);
-    if (info == null)
-      throw new IllegalStateException("BookmarkInfo for " + mBookmarkId + " not found.");
+//    BookmarkInfo info = BookmarkManager.INSTANCE.getBookmarkInfo(mBookmarkId);
+//    if (info == null)
+//      throw new IllegalStateException("BookmarkInfo for " + mBookmarkId + " not found.");
 
-    return info;
+    return BookmarkManager.INSTANCE.getBookmarkInfo(mBookmarkId);
   }
 
   static native int nativeSetColor(long bookmarkId, @PredefinedColors.Color int color);
