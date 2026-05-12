@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #include "coding/internal/file_data.hpp"
 
 #include "coding/constants.hpp"
@@ -233,9 +234,23 @@ bool MoveFileX(string const & fOld, string const & fNew)
 bool WriteToTempAndRenameToFile(string const & dest, function<bool(string const &)> const & write, string const & tmp)
 {
   string const tmpFileName = tmp.empty() ? dest + ".tmp" + strings::to_string(this_thread::get_id()) : tmp;
-  if (!write(tmpFileName))
+  try {
+    if (!write(tmpFileName))
+    {
+      LOG(LERROR, ("Can't write to", tmpFileName));
+      DeleteFileX(tmpFileName);
+      return false;
+    }
+  }
+  catch (std::exception const & e)
   {
-    LOG(LERROR, ("Can't write to", tmpFileName));
+    LOG(LERROR, ("Exception while writing to", tmpFileName, ":", e.what()));
+    DeleteFileX(tmpFileName);
+    return false;
+  }
+  catch (...)
+  {
+    LOG(LERROR, ("Unknown exception while writing to", tmpFileName));
     DeleteFileX(tmpFileName);
     return false;
   }
