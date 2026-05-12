@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #include "map/bookmark_manager.hpp"
 #include "base/assert.hpp"
 #include "map/bookmark_helpers.hpp"
@@ -1903,7 +1904,13 @@ Track * BookmarkManager::AddTrack(std::unique_ptr<Track> && track)
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   auto * t = track.get();
   auto const trackId = t->GetId();
-  CHECK_EQUAL(m_tracks.count(trackId), 0, ());
+//  CHECK_EQUAL(m_tracks.count(trackId), 0, ());
+  auto it = m_tracks.find(trackId);
+  if (it != m_tracks.end()) {
+    LOG(LWARNING, ("Track ID already exists. Skipping duplicate add:", trackId));
+    return it->second.get();
+  }
+    
   m_tracks.emplace(trackId, std::move(track));
   m_changesTracker.OnAddLine(trackId);
   return t;
