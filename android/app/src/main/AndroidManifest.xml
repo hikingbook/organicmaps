@@ -87,12 +87,12 @@
       tools:targetApi="33">
 
     <!-- Allows for config and orientation change without killing/restarting main activity -->
-    <activity
-      android:name="app.organicmaps.SplashActivity"
-      android:theme="@style/MwmTheme.Splash"
-      android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
-      android:screenOrientation="fullUser"
-      android:exported="true">
+<!--    <activity-->
+<!--      android:name="app.organicmaps.SplashActivity"-->
+<!--      android:theme="@style/MwmTheme.Splash"-->
+<!--      android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"-->
+<!--      android:screenOrientation="fullUser"-->
+<!--      android:exported="true">-->
 
 <!--      <intent-filter>-->
 <!--        <action android:name="android.intent.action.VIEW"/>-->
@@ -414,7 +414,7 @@
 <!--        <data android:mimeType="text/xml" />-->
 <!--      </intent-filter>-->
 
-    </activity>
+<!--    </activity>-->
 
 <!--     <activity-->
 <!--         android:name="app.organicmaps.DownloadResourcesLegacyActivity"-->
@@ -422,16 +422,16 @@
 <!--         android:configChanges="orientation|screenLayout|screenSize"-->
 <!--         android:screenOrientation="fullUser"/>-->
 
-    <activity-alias
-      android:name="app.organicmaps.DownloadResourcesActivity"
-      android:label="@string/app_name"
-      android:targetActivity="app.organicmaps.SplashActivity"
-      android:exported="true">
+<!--    <activity-alias-->
+<!--      android:name="app.organicmaps.DownloadResourcesActivity"-->
+<!--      android:label="@string/app_name"-->
+<!--      android:targetActivity="app.organicmaps.SplashActivity"-->
+<!--      android:exported="true">-->
 <!--      <intent-filter>-->
 <!--        <action android:name="android.intent.action.MAIN"/>-->
 <!--        <category android:name="android.intent.category.LAUNCHER"/>-->
 <!--      </intent-filter>-->
-    </activity-alias>
+<!--    </activity-alias>-->
 
     <activity
         android:name="app.organicmaps.MwmActivity"
