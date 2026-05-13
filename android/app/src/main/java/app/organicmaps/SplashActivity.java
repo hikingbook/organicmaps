@@ -7,12 +7,10 @@ package app.organicmaps;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.window.SplashScreenView;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -22,18 +20,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import app.organicmaps.downloader.DownloaderActivity;
-import app.organicmaps.intent.Factory;
-import app.organicmaps.sdk.location.LocationHelper;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import app.organicmaps.sdk.util.Config;
 import app.organicmaps.sdk.util.LocationUtils;
 import app.organicmaps.sdk.util.concurrency.UiThread;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.Utils;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import java.io.IOException;
-import java.util.Objects;
 
 public class SplashActivity extends AppCompatActivity
 {
@@ -61,7 +56,7 @@ public class SplashActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
 //    setContentView(R.layout.activity_splash);
-    adjustBrandingInfoPadding();
+//    adjustBrandingInfoPadding();
 
     // https://github.com/organicmaps/organicmaps/issues/11938
 //    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2)
