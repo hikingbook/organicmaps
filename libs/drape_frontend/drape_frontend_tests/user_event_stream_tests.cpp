@@ -4,6 +4,7 @@
 
 #include "base/thread.hpp"
 
+#include <cmath>
 #include <cstring>
 #include <functional>
 #include <list>
@@ -53,6 +54,21 @@ public:
                                                        false /* useVisibleViewport */,
                                                        nullptr /* parallelAnimCreator */));
   }
+
+  void AddResizeEvent(uint32_t w, uint32_t h) { m_stream.AddEvent(make_unique_dp<df::ResizeEvent>(w, h)); }
+
+  void AddSetVisibleViewport(m2::RectD const & rect)
+  {
+    m_stream.AddEvent(make_unique_dp<df::SetVisibleViewportEvent>(rect));
+  }
+
+  void AddSetCenter(m2::PointD const & center, int zoom, bool trackVisibleViewport)
+  {
+    m_stream.AddEvent(make_unique_dp<df::SetCenterEvent>(center, zoom, false /* isAnim */, trackVisibleViewport,
+                                                         nullptr /* parallelAnimCreator */));
+  }
+
+  ScreenBase const & GetScreen() const { return m_stream.GetCurrentScreen(); }
 
   void AddExpectation(char const * action) { m_expectation.push_back(action); }
 
@@ -193,6 +209,37 @@ UNIT_TEST(SimpleScale)
   }
   test.AddUserEvent(MakeTouchEvent(pointer1, pointer2, df::TouchEvent::TOUCH_UP));
   test.RunTest();
+}
+
+UNIT_TEST(SetCenter_AlignsToVisibleViewportCenter)
+{
+  // With an asymmetric visible viewport (e.g. host UI panel covering bottom 30%),
+  // SetCenter must place the geographic target at the visible-viewport center
+  // regardless of trackVisibleViewport. The flag only controls whether the engine
+  // continues to follow the viewport when it changes later.
+  uint32_t const kW = 1000, kH = 1000;
+  m2::RectD const kVisibleViewport(0.0, 0.0, static_cast<double>(kW), 700.0);
+  m2::PointD const kTarget(0.0, 0.0);
+  double const kEps = 1.0;
+  m2::PointD const viewportCenter = kVisibleViewport.Center();
+
+  for (bool trackVisibleViewport : {false, true})
+  {
+    UserEventStreamTest test(false);
+    test.AddResizeEvent(kW, kH);
+    test.AddSetVisibleViewport(kVisibleViewport);
+    test.SetRect(m2::RectD(-100.0, -100.0, 100.0, 100.0));
+    test.RunTest();
+
+    test.AddSetCenter(kTarget, df::kDoNotChangeZoom, trackVisibleViewport);
+    test.RunTest();
+
+    m2::PointD const pixelPos = test.GetScreen().GtoP(kTarget);
+    TEST(std::fabs(pixelPos.x - viewportCenter.x) < kEps,
+         (pixelPos.x, "expected", viewportCenter.x, "trackVisibleViewport", trackVisibleViewport));
+    TEST(std::fabs(pixelPos.y - viewportCenter.y) < kEps,
+         (pixelPos.y, "expected", viewportCenter.y, "trackVisibleViewport", trackVisibleViewport));
+  }
 }
 
 #endif

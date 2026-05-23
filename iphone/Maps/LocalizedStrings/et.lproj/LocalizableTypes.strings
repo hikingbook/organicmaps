@@ -87,7 +87,7 @@
 "type.amenity.internet_cafe" = "Internetikohvik";
 "type.amenity.kindergarten" = "Lasteaed";
 "type.amenity.library" = "Raamatukogu";
-"type.amenity.loading_dock" = "Laoestakaad";
+"type.amenity.loading_dock" = "Laadimisdokk";
 "type.amenity.luggage_locker" = "Pagasihoid";
 "type.amenity.marketplace" = "Turg";
 "type.amenity.motorcycle_parking" = "Mootorrataste parkla";
@@ -249,13 +249,14 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Aadress";
+"type.building.construction" = "Ehitatav hoone";
 "type.building.has_parts" = "Hoone";
 "type.building_part" = "Hooneosa";
 "type.building.garage" = "Garaaž";
 "type.building.train_station" = "Jaamahoone";
 "type.building.warehouse" = "Ladu";
 "type.cemetery.grave" = "Haud";
-"type.craft" = "Käsitöömeister";
+"type.craft" = "Käsitöö";
 "type.craft.beekeeper" = "Mesinik";
 "type.craft.blacksmith" = "Sepp";
 "type.craft.brewery" = "Väikepruulikoda";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Vahemere";
 "type.cuisine.mexican" = "Mehhiko";
 "type.cuisine.moroccan" = "Maroko";
-"type.cuisine.noodles" = "Nuudliroad";
+"type.cuisine.noodle" = "Nuudliroad";
 "type.cuisine.oriental" = "Kaug-Ida";
 "type.cuisine.pancake" = "Pannkoogid";
 "type.cuisine.pasta" = "Pasta";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Vorstid";
 "type.cuisine.savory_pancakes" = "Soolased pannkoogid";
 "type.cuisine.seafood" = "Mereannid";
+"type.cuisine.shawarma" = "Shawarma";
 "type.cuisine.soba" = "Jaapani soba-nuudlid";
 "type.cuisine.spanish" = "Hispaania";
 "type.cuisine.steak_house" = "Liharestoran";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Puude rida";
 "type.natural.vineyard" = "Viinamarjaistandus";
 "type.natural.volcano" = "Vulkaan";
+"type.natural.volcano.active" = "Aktiivne vulkaan";
 "type.natural.water" = "Veekogu";
 "type.natural.wetland" = "Märgala";
 "type.natural.wetland.bog" = "Raba";
 "type.natural.wetland.marsh" = "Soo";
 "type.noexit" = "Tupiktee";
 "type.office" = "Kontor";
+"type.office.architect" = "Arhitektibüroo";
 "type.office.company" = "Ettevõtte kontor";
+"type.office.educational_institution" = "Haridusasutus";
 "type.office.estate_agent" = "Kinnisvarabüroo";
 "type.office.government" = "Valitsusasutus";
 "type.office.insurance" = "Kindlustusbüroo";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Apteek ja ilupood";
 "type.shop.chocolate" = "Šokolaadipood";
 "type.shop.clothes" = "Rõivapood";
+"type.shop.clothes.children" = "Lasteriidepood";
+"type.shop.clothes.fashion" = "Moebutiik";
+"type.shop.clothes.hats" = "Mütsipood";
+"type.shop.clothes.men" = "Meesterõivaste pood";
+"type.shop.clothes.sports" = "Spordirõivaste pood";
+"type.shop.clothes.suits" = "Ülikondade pood";
+"type.shop.clothes.underwear" = "Aluspesu pood";
+"type.shop.clothes.wedding" = "Pulmariidepood";
+"type.shop.clothes.women" = "Naisterõivaste pood";
 "type.shop.coffee" = "Kohvipood";
 "type.shop.computer" = "Arvutipood";
 "type.shop.confectionery" = "Kommipood";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Matusekorraldaja";
 "type.shop.furniture" = "Mööblipood";
 "type.shop.garden_centre" = "Aianduskeskus";
+"type.shop.games" = "Mängupood";
 "type.shop.gas" = "Balloongaasi kauplus";
 "type.shop.gift" = "Kingipood";
 "type.shop.greengrocer" = "Puu- ja köögiviljapood";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Kiirusepiiraja";
 "type.traffic_calming.hump" = "Liikluskünnis";
 "type.waterway" = "Veetee";
+"type.waterway.access_point" = "Veetee juurdepääsupunkt";
 "type.waterway.canal" = "Kanal";
 "type.waterway.canal.tunnel" = "Kanal tunnelis";
 "type.waterway.fish_pass" = "Kalatrepp";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Kellassepp";
 "type.xmas_feature.market" = "Jõuluturg";
 "type.xmas_feature.tree" = "Jõulupuu";
+"type.amenity.hookah_lounge" = "Vesipiibu kohvik";

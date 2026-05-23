@@ -138,8 +138,8 @@
       // Not supported on iOS.
       return false
     case .oAuth2:
-        MapsAppDelegate.theApp().completeOAuth2Authorization()
-        MapsAppDelegate.theApp().mapViewController.closeCurrentView()
+      MapsAppDelegate.theApp().completeOAuth2Authorization()
+      MapsAppDelegate.theApp().mapViewController.closeCurrentView()
       return true
     case .incorrect:
       // Invalid URL or API parameters.

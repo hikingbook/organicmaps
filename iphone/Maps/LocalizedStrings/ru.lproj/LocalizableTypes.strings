@@ -7,12 +7,12 @@
 "type.addr_interpolation.odd" = "Адрес/Блок";
 "type.aerialway" = "Канатная дорога";
 "type.aerialway.cable_car" = "Канатная дорога";
-"type.aerialway.chair_lift" = "Кресельная канатная дорога";
-"type.aerialway.drag_lift" = "Бугельная канатная дорога";
+"type.aerialway.chair_lift" = "Кресельный подъёмник";
+"type.aerialway.drag_lift" = "Бугельный подъёмник";
 "type.aerialway.gondola" = "Канатная дорога";
 "type.aerialway.mixed_lift" = "Канатная дорога";
 "type.aerialway.station" = "Канатная дорога";
-"type.aeroway" = "Аэрокосмическая инфраструктура";
+"type.aeroway" = "Инфраструктура воздушного пространства";
 "type.aeroway.aerodrome" = "Аэропорт";
 "type.aeroway.aerodrome.international" = "Международный аэропорт";
 "type.aeroway.apron" = "Перрон";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Адрес";
+"type.building.construction" = "Строящееся здание";
 "type.building.has_parts" = "Здание";
 "type.building_part" = "Здание";
 "type.building.garage" = "Гараж";
@@ -287,7 +288,7 @@
 "type.cuisine.argentinian" = "Аргентинская кухня";
 "type.cuisine.asian" = "Азиатская кухня";
 "type.cuisine.austrian" = "Австрийская кухня";
-"type.cuisine.bagel" = "Бeйглы";
+"type.cuisine.bagel" = "Бейглы";
 "type.cuisine.balkan" = "Балканская кухня";
 "type.cuisine.barbecue" = "Барбекю";
 "type.cuisine.bavarian" = "Баварская кухня";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Средиземноморская кухня";
 "type.cuisine.mexican" = "Мексиканская кухня";
 "type.cuisine.moroccan" = "Марокканская кухня";
-"type.cuisine.noodles" = "Лапшичная";
+"type.cuisine.noodle" = "Лапшичная";
 "type.cuisine.oriental" = "Восточная кухня";
 "type.cuisine.pancake" = "Блинная";
 "type.cuisine.pasta" = "Паста";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Сосисочная";
 "type.cuisine.savory_pancakes" = "Несладкие блинчики";
 "type.cuisine.seafood" = "Морепродукты";
+"type.cuisine.shawarma" = "Шаурма";
 "type.cuisine.soba" = "Соба";
 "type.cuisine.spanish" = "Испанская кухня";
 "type.cuisine.steak_house" = "Стейк-хаус";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Ряд деревьев";
 "type.natural.vineyard" = "Виноградник";
 "type.natural.volcano" = "Вулкан";
+"type.natural.volcano.active" = "Действующий вулкан";
 "type.natural.water" = "Водоём";
 "type.natural.wetland" = "Болотистая местность";
 "type.natural.wetland.bog" = "Торфяное болото";
 "type.natural.wetland.marsh" = "Болото";
 "type.noexit" = "Тупик";
 "type.office" = "Офис";
+"type.office.architect" = "Архитектурное бюро";
 "type.office.company" = "Организация";
+"type.office.educational_institution" = "Образовательное учреждение";
 "type.office.estate_agent" = "Агентство недвижимости";
 "type.office.government" = "Госучреждение";
 "type.office.insurance" = "Страховая компания";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Бытовая химия";
 "type.shop.chocolate" = "Магазин шоколада";
 "type.shop.clothes" = "Магазин одежды";
+"type.shop.clothes.children" = "Детская одежда";
+"type.shop.clothes.fashion" = "Бутик";
+"type.shop.clothes.hats" = "Магазин головных уборов";
+"type.shop.clothes.men" = "Мужская одежда";
+"type.shop.clothes.sports" = "Спортивная одежда";
+"type.shop.clothes.suits" = "Магазин костюмов";
+"type.shop.clothes.underwear" = "Магазин нижнего белья";
+"type.shop.clothes.wedding" = "Свадебный салон";
+"type.shop.clothes.women" = "Женская одежда";
 "type.shop.coffee" = "Магазин кофе";
 "type.shop.computer" = "Компьютерный магазин";
 "type.shop.confectionery" = "Кондитерская";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Ритуальные услуги";
 "type.shop.furniture" = "Магазин мебели";
 "type.shop.garden_centre" = "Садовые товары";
+"type.shop.games" = "Магазин игр";
 "type.shop.gas" = "Газовый магазин";
 "type.shop.gift" = "Магазин сувениров";
 "type.shop.greengrocer" = "Овощи и фрукты";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Лежачий полицейский";
 "type.traffic_calming.hump" = "Лежачий полицейский";
 "type.waterway" = "Водный путь";
+"type.waterway.access_point" = "Точка доступа к водным путям";
 "type.waterway.canal" = "Канал";
 "type.waterway.canal.tunnel" = "Канал";
 "type.waterway.fish_pass" = "Рыбоход";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Часовщик";
 "type.xmas_feature.market" = "Рождественский рынок";
 "type.xmas_feature.tree" = "Новогодняя ёлка";
+"type.amenity.hookah_lounge" = "Кальянная";

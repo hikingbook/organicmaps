@@ -28,7 +28,6 @@ final class AboutController: MWMViewController {
   private var donationView: DonationView?
   private let osmView = OSMView()
   private let infoTableView = UITableView(frame: .zero, style: .plain)
-  private var infoTableViewHeightAnchor: NSLayoutConstraint?
   private let socialMediaHeaderLabel = UILabel()
   private let socialMediaCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
   private lazy var socialMediaCollectionViewHeighConstraint = socialMediaCollectionView.heightAnchor.constraint(equalToConstant: .zero)
@@ -253,14 +252,11 @@ private extension AboutController {
       termsOfUseAndPrivacyPolicyView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
     ])
     donationView?.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = donationView != nil
-
-    view.layoutIfNeeded()
-    updateCollection()
   }
 
   func updateCollection() {
     socialMediaCollectionView.collectionViewLayout.invalidateLayout()
-    // On devices with the iOS 12 the actual collectionView layout update not always occurs during the current layout update cycle.
+    // The actual collectionView layout update may not occur during the current layout update cycle.
     // So constraints update should be performed on the next layout update cycle.
     DispatchQueue.main.async {
       self.socialMediaCollectionViewHeighConstraint.constant = self.socialMediaCollectionView.collectionViewLayout.collectionViewContentSize.height
@@ -269,7 +265,7 @@ private extension AboutController {
 
   func buildInfoTableViewData() -> [AboutInfoTableViewCellModel] {
     let infoContent: [AboutInfo] = [.faq, .reportMapDataProblem, .reportABug, .news, .volunteer, .rateTheApp]
-    let data = infoContent.map { [weak self] aboutInfo in
+    return infoContent.map { [weak self] aboutInfo in
       return AboutInfoTableViewCellModel(title: aboutInfo.title, image: aboutInfo.image, didTapHandler: {
         switch aboutInfo {
         case .faq:
@@ -285,12 +281,11 @@ private extension AboutController {
         }
       })
     }
-    return data
   }
 
   func buildSocialMediaCollectionViewData() -> [SocialMediaCollectionViewCellModel] {
     let socialMediaContent = SocialMedia.allCases
-    let data = socialMediaContent.map { [weak self] socialMedia in
+    return socialMediaContent.map { [weak self] socialMedia in
       return SocialMediaCollectionViewCellModel(image: socialMedia.image, didTapHandler: {
         switch socialMedia {
         case .telegram: fallthrough
@@ -311,10 +306,9 @@ private extension AboutController {
         }
       })
     }
-    return data
   }
 
-  // Returns a human-readable maps data version.
+  /// Returns a human-readable maps data version.
   static func formattedMapsDataVersion() -> String {
     // First, convert version code like 220131 to a date.
     let df = DateFormatter()

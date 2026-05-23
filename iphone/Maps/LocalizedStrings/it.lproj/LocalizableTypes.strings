@@ -8,7 +8,7 @@
 "type.aerialway" = "Impianto a fune";
 "type.aerialway.cable_car" = "Teleferica";
 "type.aerialway.chair_lift" = "Seggiovia";
-"type.aerialway.drag_lift" = "Ski-lift";
+"type.aerialway.drag_lift" = "Sciovia";
 "type.aerialway.gondola" = "Cabinovia";
 "type.aerialway.mixed_lift" = "Impianto misto";
 "type.aerialway.station" = "Stazione";
@@ -82,7 +82,7 @@
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
 "type.amenity.grave_yard.christian" = "Cimitero cristiano";
 "type.amenity.hospital" = "Ospedale";
-"type.amenity.hunting_stand" = "Torre di caccio";
+"type.amenity.hunting_stand" = "Torre di caccia";
 "type.amenity.ice_cream" = "Gelateria";
 "type.amenity.internet_cafe" = "Cybercaffè";
 "type.amenity.kindergarten" = "Scuola materna";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Indirizzo";
+"type.building.construction" = "Edificio in costruzione";
 "type.building.has_parts" = "Edificio";
 "type.building_part" = "Edificio";
 "type.building.garage" = "Garage";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Cucina mediterranea";
 "type.cuisine.mexican" = "Cucina messicana";
 "type.cuisine.moroccan" = "Cucina marocchina";
-"type.cuisine.noodles" = "Noodles";
+"type.cuisine.noodle" = "Noodles";
 "type.cuisine.oriental" = "Cucina orientale";
 "type.cuisine.pancake" = "Pancake";
 "type.cuisine.pasta" = "Pasta";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Salsicce";
 "type.cuisine.savory_pancakes" = "Pancake salati";
 "type.cuisine.seafood" = "Frutti di mare";
+"type.cuisine.shawarma" = "Shawarma";
 "type.cuisine.soba" = "Soba";
 "type.cuisine.spanish" = "Cucina spagnola";
 "type.cuisine.steak_house" = "Bisteccheria";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Fila di alberi";
 "type.natural.vineyard" = "Vigneto";
 "type.natural.volcano" = "Vulcano";
+"type.natural.volcano.active" = "Vulcano attivo";
 "type.natural.water" = "Corpo d'acqua";
 "type.natural.wetland" = "Terreno paludoso";
 "type.natural.wetland.bog" = "Torbiera";
 "type.natural.wetland.marsh" = "Palude";
 "type.noexit" = "Strada senza uscita";
 "type.office" = "Ufficio";
+"type.office.architect" = "Studio di architettura";
 "type.office.company" = "Ufficio aziendale";
+"type.office.educational_institution" = "Istituzione educativa";
 "type.office.estate_agent" = "Agenzia immobiliare";
 "type.office.government" = "Ufficio governativo";
 "type.office.insurance" = "Ufficio assicurazioni";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Negozio di detersivi";
 "type.shop.chocolate" = "Choccolateria";
 "type.shop.clothes" = "Negozio di abbigliamento";
+"type.shop.clothes.children" = "Negozio di abbigliamento per bambini";
+"type.shop.clothes.fashion" = "Boutique di moda";
+"type.shop.clothes.hats" = "Cappelleria";
+"type.shop.clothes.men" = "Abbigliamento uomo";
+"type.shop.clothes.sports" = "Abbigliamento sportivo";
+"type.shop.clothes.suits" = "Sartoria";
+"type.shop.clothes.underwear" = "Lingerie";
+"type.shop.clothes.wedding" = "Negozio di abiti da sposa";
+"type.shop.clothes.women" = "Abbigliamento donna";
 "type.shop.coffee" = "Negozio di caffè";
 "type.shop.computer" = "Negozio di computer";
 "type.shop.confectionery" = "Pasticceria";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Pompe funebri";
 "type.shop.furniture" = "Negozio di mobili";
 "type.shop.garden_centre" = "Vivaio";
+"type.shop.games" = "Negozio di giochi";
 "type.shop.gas" = "Deposito di gas";
 "type.shop.gift" = "Negozio di regali";
 "type.shop.greengrocer" = "Fruttivendolo";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Dosso";
 "type.traffic_calming.hump" = "Dosso";
 "type.waterway" = "Via d'acqua";
+"type.waterway.access_point" = "Punto di accesso alle vie d'acqua";
 "type.waterway.canal" = "Canale";
 "type.waterway.canal.tunnel" = "Canale";
 "type.waterway.fish_pass" = "Passaggio per pesci";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Orologiaio";
 "type.xmas_feature.market" = "Mercatino di Natale";
 "type.xmas_feature.tree" = "Albero di Natale";
+"type.amenity.hookah_lounge" = "Shisha bar";

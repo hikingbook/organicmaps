@@ -231,6 +231,7 @@
     <string name="type.building">Eraikina</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Helbidea</string>
+    <string name="type.building.construction">Eraikitzen ari den eraikina</string>
     <string name="type.building.has_parts">Eraikina</string>
     <string name="type.building_part">Eraikina</string>
     <string name="type.building.garage">Garajea</string>
@@ -321,7 +322,7 @@
     <string name="type.cuisine.mediterranean">Sukaldaritza mediterraneoa</string>
     <string name="type.cuisine.mexican">Mexikoko sukaldea</string>
     <string name="type.cuisine.moroccan">Marokoko sukaldaritza</string>
-    <string name="type.cuisine.noodles">Fideoak</string>
+    <string name="type.cuisine.noodle">Fideoak</string>
     <string name="type.cuisine.oriental">Ekialdeko sukaldaritza</string>
     <string name="type.cuisine.pancake">Krepeak</string>
     <string name="type.cuisine.pasta">Pasta</string>
@@ -337,6 +338,7 @@
     <string name="type.cuisine.sausage">Saltxitxak</string>
     <string name="type.cuisine.savory_pancakes">Krepe gaziak</string>
     <string name="type.cuisine.seafood">Itsaskiak</string>
+    <string name="type.cuisine.shawarma">Xawarma</string>
     <string name="type.cuisine.soba">Soba</string>
     <string name="type.cuisine.spanish">Espainiar sukaldaritza</string>
     <string name="type.cuisine.steak_house">Txu</string>
@@ -677,7 +679,7 @@
     <!-- A deep hole drilled into the earth to extract oil or gas. -->
     <string name="type.man_made.petroleum_well">Petrolio edo gas putzua</string>
     <!-- A tower/mast constructed to burn off excess gas. -->
-    <string name="type.man_made.flare">Gas zuzia|Gas sugarra</string>
+    <string name="type.man_made.flare">Gas zuzia</string>
     <string name="type.man_made.water_tap">Ura hartzea</string>
     <string name="type.man_made.water_tap.drinking_water_no">Ura hartzea</string>
     <string name="type.man_made.water_tower">Ur depositua</string>
@@ -727,12 +729,15 @@
     <string name="type.natural.tree_row">Zuhaitz ilara</string>
     <string name="type.natural.vineyard">Mahasti</string>
     <string name="type.natural.volcano">Sumendi</string>
+    <string name="type.natural.volcano.active">Sumendi aktiboa</string>
     <string name="type.natural.water">Ur-masa</string>
     <string name="type.natural.wetland">Lur paduratsua</string>
     <string name="type.natural.wetland.bog">Zohikaztegi</string>
     <string name="type.natural.wetland.marsh">Padura</string>
     <string name="type.office">Bulegoa</string>
+    <string name="type.office.architect">Arkitekto bulegoa</string>
     <string name="type.office.company">Bulegoa</string>
+    <string name="type.office.educational_institution">Hezkuntza erakundea</string>
     <string name="type.office.estate_agent">Higiezinen agentea</string>
     <string name="type.office.government">Gobernu bulegoa</string>
     <string name="type.office.insurance">Aseguru-bulegoa</string>
@@ -1078,6 +1083,15 @@
     <string name="type.shop.chemist">Parafarmazia</string>
     <string name="type.shop.chocolate">Txokolate Denda</string>
     <string name="type.shop.clothes">Arropa denda</string>
+    <string name="type.shop.clothes.children">Haurrentzako arropa denda</string>
+    <string name="type.shop.clothes.fashion">Moda boutique</string>
+    <string name="type.shop.clothes.hats">Kapelu denda</string>
+    <string name="type.shop.clothes.men">Gizonezkoen arropa denda</string>
+    <string name="type.shop.clothes.sports">Kirol arropa denda</string>
+    <string name="type.shop.clothes.suits">Traje denda</string>
+    <string name="type.shop.clothes.underwear">Barneko arropa denda</string>
+    <string name="type.shop.clothes.wedding">Ezkontza arroparen denda</string>
+    <string name="type.shop.clothes.women">Emakumezkoen arropa denda</string>
     <string name="type.shop.coffee">Kafe Denda</string>
     <string name="type.shop.computer">Informatika-denda</string>
     <string name="type.shop.confectionery">Gozokiak</string>
@@ -1098,6 +1112,7 @@
     <string name="type.shop.funeral_directors">Ehorztetxea</string>
     <string name="type.shop.furniture">Altzari denda</string>
     <string name="type.shop.garden_centre">Haurtzaindegia</string>
+    <string name="type.shop.games">Jolastokia denda</string>
     <string name="type.shop.gas">Gas biltegia</string>
     <string name="type.shop.gift">Opari denda</string>
     <string name="type.shop.greengrocer">Barazki eta fruta-denda</string>
@@ -1254,6 +1269,7 @@
     <!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
     <string name="type.tourism.wilderness_hut">Kabina</string>
     <string name="type.tourism.zoo.petting">Maskota-zooa</string>
+    <string name="type.waterway.access_point">Ur-bideetarako sarbide-puntu</string>
     <string name="type.waterway.fish_pass">Arrainen eskailera</string>
     <string name="type.natural.water.ditch">Drainatze Zanga</string>
     <string name="type.waterway.ditch.tunnel">Zuloa</string>
@@ -1294,7 +1310,7 @@
     <string name="type.barrier.log">Enbor hesia</string>
     <string name="type.amenity.boat_rental">Itsasontz</string>
     <string name="type.shop.telecommunication">Telekomunikazioen denda</string>
-    <string name="type.leisure.indoor_play">Play Center</string>
+    <string name="type.leisure.indoor_play">Jolasgunea</string>
     <string name="type.tourism.camp_pitch">Kanpin-lekua</string>
     <string name="type.railway.miniature">Miniaturazko trenbidea</string>
     <string name="type.amenity.kneipp_water_cure">Kneipp Ur Sendapena</string>
@@ -1306,4 +1322,5 @@
     <string name="type.craft.watchmaker">Erlojugilea</string>
     <string name="type.xmas_feature.market">Gabonetako Merkatua</string>
     <string name="type.xmas_feature.tree">Gabonetako zuhaitza</string>
+    <string name="type.amenity.hookah_lounge">Nargile-taberna</string>
 </resources>

@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Osoite";
+"type.building.construction" = "Rakenteilla oleva rakennus";
 "type.building.has_parts" = "Rakennus";
 "type.building_part" = "Rakennus";
 "type.building.garage" = "Autotalli";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Välimeren keittiö";
 "type.cuisine.mexican" = "Meksikolainen keittiö";
 "type.cuisine.moroccan" = "Marokkolainen keittiö";
-"type.cuisine.noodles" = "Nuudelit";
+"type.cuisine.noodle" = "Nuudelit";
 "type.cuisine.oriental" = "Itämainen keittiö";
 "type.cuisine.pancake" = "Lettu";
 "type.cuisine.pasta" = "Pasta";
@@ -355,7 +356,8 @@
 "type.cuisine.sandwich" = "Voileipä";
 "type.cuisine.sausage" = "Makkara";
 "type.cuisine.savory_pancakes" = "Suolaiset letut";
-"type.cuisine.seafood" = "Meren elävät";
+"type.cuisine.seafood" = "Merenelävät";
+"type.cuisine.shawarma" = "Shawarma";
 "type.cuisine.soba" = "Sobanuudeli";
 "type.cuisine.spanish" = "Espanjalainen keittiö";
 "type.cuisine.steak_house" = "Pihviravintola";
@@ -455,7 +457,7 @@
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.motorway.tunnel" = "Moottoritietunneli";
 "type.highway.motorway_junction" = "Poistumistie";
-"type.highway.motorway_link" = "Mottoritieramppi";
+"type.highway.motorway_link" = "Moottoritieramppi";
 
 /* These translations are used for all type.highway.*.bridge. */
 "type.highway.motorway_link.bridge" = "Silta";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Puurivi";
 "type.natural.vineyard" = "Viinitila";
 "type.natural.volcano" = "Tulivuori";
+"type.natural.volcano.active" = "Aktiivinen tulivuori";
 "type.natural.water" = "Vettä";
 "type.natural.wetland" = "Soistuva maa";
 "type.natural.wetland.bog" = "Suo";
 "type.natural.wetland.marsh" = "Marsh";
 "type.noexit" = "Dead End";
 "type.office" = "Toimisto";
+"type.office.architect" = "Arkkitehtitoimisto";
 "type.office.company" = "Yhtiön toimisto";
+"type.office.educational_institution" = "Oppilaitos";
 "type.office.estate_agent" = "Kiinteistönvälittäjä";
 "type.office.government" = "Viranomaisen toimisto";
 "type.office.insurance" = "Vakuutuslaitos";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Kosmetiikkamyymälä";
 "type.shop.chocolate" = "Suklaakauppa";
 "type.shop.clothes" = "Vaatekauppa";
+"type.shop.clothes.children" = "Lastenvaatekauppa";
+"type.shop.clothes.fashion" = "Muotiboutique";
+"type.shop.clothes.hats" = "Hattukauppa";
+"type.shop.clothes.men" = "Miesten vaatekauppa";
+"type.shop.clothes.sports" = "Urheiluvaatekauppa";
+"type.shop.clothes.suits" = "Pukukauppa";
+"type.shop.clothes.underwear" = "Alusvaatekauppa";
+"type.shop.clothes.wedding" = "Hääpukukauppa";
+"type.shop.clothes.women" = "Naisten vaatekauppa";
 "type.shop.coffee" = "Kahvikauppa";
 "type.shop.computer" = "Tietokonekauppa";
 "type.shop.confectionery" = "Makeiskauppa";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Hautaustoimisto";
 "type.shop.furniture" = "Huonekalukauppa";
 "type.shop.garden_centre" = "Taimitarha";
+"type.shop.games" = "Pelikauppa";
 "type.shop.gas" = "Kaasukauppa";
 "type.shop.gift" = "Lahjatavaraliike";
 "type.shop.greengrocer" = "Vihanneskauppias";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Hidastetöyssy";
 "type.traffic_calming.hump" = "Traffic Hump";
 "type.waterway" = "Vesiväylä";
+"type.waterway.access_point" = "Vesiväylän liittymispiste";
 "type.waterway.canal" = "Kanaali";
 "type.waterway.canal.tunnel" = "Kanaali";
 "type.waterway.fish_pass" = "Kalatikkaat";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Kelloseppä";
 "type.xmas_feature.market" = "Joulumarkkinat";
 "type.xmas_feature.tree" = "Joulukuusi";
+"type.amenity.hookah_lounge" = "Vesipiippubaari";

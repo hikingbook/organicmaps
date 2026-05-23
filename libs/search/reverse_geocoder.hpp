@@ -24,17 +24,25 @@ namespace osm
 class Editor;
 }  // namespace osm
 
+namespace ftypes
+{
+class IsAddressInterpolChecker;
+class IsStreetOrSquareChecker;
+class IsLocalityChecker;
+class IsSuburbChecker;
+}  // namespace ftypes
+
 namespace search
 {
+class MwmContextBase;
 class MwmContext;
 class CityFinder;
 class RegionInfoGetter;
 
-class ReverseGeocoder
+/// @note Thread-safe.
+class ReverseGeocoderBase
 {
-  DataSource const & m_dataSource;
-  osm::Editor const & m_editor;
-
+protected:
   struct Object
   {
     FeatureID m_id;
@@ -51,10 +59,15 @@ class ReverseGeocoder
   friend std::string DebugPrint(Object const & obj);
 
 public:
+  ftypes::IsAddressInterpolChecker const & m_isAddressInterpol;
+  ftypes::IsStreetOrSquareChecker const & m_isStreetOrSquare;
+  ftypes::IsLocalityChecker const & m_isLocality;
+  ftypes::IsSuburbChecker const & m_isSuburb;
+
   /// All "Nearby" functions work in this lookup radius.
   static int constexpr kLookupRadiusM = 500;
 
-  explicit ReverseGeocoder(DataSource const & dataSource);
+  ReverseGeocoderBase();
 
   struct Street : public Object
   {
@@ -73,6 +86,23 @@ public:
     {}
   };
   using Place = Street;
+
+  /// @return Sorted by distance streets/places vector.
+  /// @{
+  std::vector<Street> GetNearbyStreets(search::MwmContextBase & context, m2::PointD const & center,
+                                       double radiusM = kLookupRadiusM) const;
+  std::vector<Place> GetNearbyPlaces(search::MwmContextBase & context, m2::PointD const & center, double radiusM) const;
+  /// @}
+};
+
+/// @note Not thread-safe in general.
+class ReverseGeocoder : public ReverseGeocoderBase
+{
+  DataSource const & m_dataSource;
+  osm::Editor const & m_editor;
+
+public:
+  explicit ReverseGeocoder(DataSource const & dataSource);
 
   struct Building : public Object
   {
@@ -141,15 +171,11 @@ public:
   /// or empty value if the match was not found.
   static std::optional<uint32_t> GetMatchedStreetIndex(std::string_view keyName, std::vector<Street> const & streets);
 
-  /// @return Sorted by distance streets vector for the specified MwmId.
-  /// Parameter |includeSquaresAndSuburbs| needed for backward compatibility:
-  /// existing mwms operate on streets without squares and suburbs.
-  static std::vector<Street> GetNearbyStreets(search::MwmContext & context, m2::PointD const & center,
-                                              double radiusM = kLookupRadiusM);
+  /// @return Sorted by distance streets/places vector.
+  /// @{
   std::vector<Street> GetNearbyStreets(MwmSet::MwmId const & id, m2::PointD const & center) const;
   std::vector<Street> GetNearbyStreets(FeatureType & ft) const;
-
-  static std::vector<Place> GetNearbyPlaces(search::MwmContext & context, m2::PointD const & center, double radiusM);
+  /// @}
 
   /// @return Default (NOT localized) Feature's street name.
   /// @{
@@ -204,6 +230,8 @@ private:
 
   /// Ignores changes from editor if |ignoreEdits| is true.
   bool GetSavedAddress(HouseTable & table, Building const & bld, bool ignoreEdits, Address & addr) const;
+
+  std::string const & GetHouseNumber(FeatureType & ft) const;
 
   /// @return Sorted by distance houses vector with valid house number.
   void GetNearbyBuildings(m2::PointD const & center, double maxDistanceM, std::vector<Building> & buildings) const;

@@ -34,7 +34,7 @@
     <string name="type.amenity.bicycle_repair_station">Kerékpárjavító állomás</string>
     <string name="type.amenity.biergarten">Sörkert</string>
     <string name="type.amenity.brothel">Bordélyház</string>
-    <string name="type.amenity.love_hotel">Szeretőszálló</string>
+    <string name="type.amenity.love_hotel">Szerelmi szálló</string>
     <string name="type.amenity.bureau_de_change">Pénzváltó</string>
     <string name="type.amenity.bus_station">Buszállomás</string>
     <string name="type.amenity.cafe">Kávézó</string>
@@ -237,6 +237,7 @@
     <string name="type.building">Épület</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Cím</string>
+    <string name="type.building.construction">Építés alatt álló épület</string>
     <string name="type.building.has_parts">Épület</string>
     <string name="type.building_part">Épületrész</string>
     <string name="type.building.garage">Garázs</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Mediterrán</string>
     <string name="type.cuisine.mexican">Mexikói</string>
     <string name="type.cuisine.moroccan">Marokkói</string>
-    <string name="type.cuisine.noodles">Tészta (noodle)</string>
+    <string name="type.cuisine.noodle">Tészta (noodle)</string>
     <string name="type.cuisine.oriental">Kelet-ázsiai</string>
     <string name="type.cuisine.pancake">Palacsinta</string>
     <string name="type.cuisine.pasta">Olasz tészta (pasta)</string>
@@ -343,6 +344,7 @@
     <string name="type.cuisine.sausage">Kolbász</string>
     <string name="type.cuisine.savory_pancakes">Sós palacsinta</string>
     <string name="type.cuisine.seafood">Tenger gyümölcsei</string>
+    <string name="type.cuisine.shawarma">Shawarma</string>
     <string name="type.cuisine.soba">Szo-ba</string>
     <string name="type.cuisine.spanish">Spanyol</string>
     <string name="type.cuisine.steak_house">Steak ház</string>
@@ -754,13 +756,16 @@
     <string name="type.natural.tree_row">Fasor</string>
     <string name="type.natural.vineyard">Szőlőskert</string>
     <string name="type.natural.volcano">Vulkán</string>
+    <string name="type.natural.volcano.active">Aktív vulkán</string>
     <string name="type.natural.water">Vizek</string>
     <string name="type.natural.wetland">Vizes terület</string>
     <string name="type.natural.wetland.bog">Láp</string>
     <string name="type.natural.wetland.marsh">Mocsár</string>
     <string name="type.noexit">Zsákutca</string>
     <string name="type.office">Iroda</string>
+    <string name="type.office.architect">Építészeti iroda</string>
     <string name="type.office.company">Vállalati iroda</string>
+    <string name="type.office.educational_institution">Oktatási intézmény</string>
     <string name="type.office.estate_agent">Ingatlanügynök</string>
     <string name="type.office.government">Állami iroda</string>
     <string name="type.office.insurance">Biztosítóiroda</string>
@@ -1155,6 +1160,15 @@
     <string name="type.shop.chemist">Drogéria</string>
     <string name="type.shop.chocolate">Csokoládébolt</string>
     <string name="type.shop.clothes">Ruházati bolt</string>
+    <string name="type.shop.clothes.children">Gyerekruhaszalon</string>
+    <string name="type.shop.clothes.fashion">Divatboutique</string>
+    <string name="type.shop.clothes.hats">Kalapüzlet</string>
+    <string name="type.shop.clothes.men">Férfiruházati bolt</string>
+    <string name="type.shop.clothes.sports">Sportruházati bolt</string>
+    <string name="type.shop.clothes.suits">Öltönyüzlet</string>
+    <string name="type.shop.clothes.underwear">Fehérnemű üzlet</string>
+    <string name="type.shop.clothes.wedding">Menyasszonyi ruha szalon</string>
+    <string name="type.shop.clothes.women">Női ruházati bolt</string>
     <string name="type.shop.coffee">Kávébolt</string>
     <string name="type.shop.computer">Számítógépüzlet</string>
     <string name="type.shop.confectionery">Édességbolt</string>
@@ -1175,6 +1189,7 @@
     <string name="type.shop.funeral_directors">Temetkezési vállalkozó</string>
     <string name="type.shop.furniture">Bútorbolt</string>
     <string name="type.shop.garden_centre">Kertészet</string>
+    <string name="type.shop.games">Játékbolt</string>
     <string name="type.shop.gas">Palackozottgáz-bolt</string>
     <string name="type.shop.gift">Ajándékbolt (souvenir)</string>
     <string name="type.shop.greengrocer">Zöldséges</string>
@@ -1341,6 +1356,7 @@
     <string name="type.traffic_calming.bump">Fekvőrendőr</string>
     <string name="type.traffic_calming.hump">Hosszú fekvőrendőr</string>
     <string name="type.waterway">Vízfolyás</string>
+    <string name="type.waterway.access_point">Víziút hozzáférési pont</string>
     <string name="type.waterway.canal">Csatorna</string>
     <string name="type.waterway.canal.tunnel">Csatornaalagút</string>
     <string name="type.waterway.fish_pass">Hallépcső</string>
@@ -1430,4 +1446,5 @@
     <string name="type.craft.watchmaker">Órás</string>
     <string name="type.xmas_feature.market">Karácsonyi piac</string>
     <string name="type.xmas_feature.tree">Karácsonyfa</string>
+    <string name="type.amenity.hookah_lounge">Vízipipa bár</string>
 </resources>

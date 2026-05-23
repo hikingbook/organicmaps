@@ -237,6 +237,7 @@
     <string name="type.building">Bygning</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Adresse</string>
+    <string name="type.building.construction">Bygning under opførelse</string>
     <string name="type.building.has_parts">Bygning</string>
     <string name="type.building_part">Bygning</string>
     <string name="type.building.garage">Garage</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Middelhavskøkken</string>
     <string name="type.cuisine.mexican">Mexicansk</string>
     <string name="type.cuisine.moroccan">Marokkansk</string>
-    <string name="type.cuisine.noodles">Nudler</string>
+    <string name="type.cuisine.noodle">Nudler</string>
     <string name="type.cuisine.oriental">Orientalsk</string>
     <string name="type.cuisine.pancake">Pandekage</string>
     <string name="type.cuisine.pasta">Pasta</string>
@@ -343,6 +344,7 @@
     <string name="type.cuisine.sausage">Pølse</string>
     <string name="type.cuisine.savory_pancakes">Madpandekage</string>
     <string name="type.cuisine.seafood">Fisk og skaldyr</string>
+    <string name="type.cuisine.shawarma">Shawarma</string>
     <string name="type.cuisine.soba">Soba</string>
     <string name="type.cuisine.spanish">Spansk</string>
     <string name="type.cuisine.steak_house">Bøfhus</string>
@@ -753,13 +755,16 @@
     <string name="type.natural.tree_row">Trærække</string>
     <string name="type.natural.vineyard">Vinmark</string>
     <string name="type.natural.volcano">Vulkan</string>
+    <string name="type.natural.volcano.active">Aktiv vulkan</string>
     <string name="type.natural.water">Vandmasse</string>
     <string name="type.natural.wetland">Vådområde</string>
     <string name="type.natural.wetland.bog">Mose</string>
     <string name="type.natural.wetland.marsh">Marsk</string>
     <string name="type.noexit">Blind vej</string>
     <string name="type.office">Kontor</string>
+    <string name="type.office.architect">Arkitektkontor</string>
     <string name="type.office.company">Selskabskontor</string>
+    <string name="type.office.educational_institution">Uddannelsesinstitution</string>
     <string name="type.office.estate_agent">Ejendomsmægler</string>
     <string name="type.office.government">Regeringskontor</string>
     <string name="type.office.insurance">Forsikringskontor</string>
@@ -837,7 +842,7 @@
     <string name="type.railway.disused">Ubenyttet jernbane</string>
     <string name="type.railway.disused.bridge">Ubenyttet jernbanebro</string>
     <string name="type.railway.disused.tunnel">Ubenyttet jernbanetunnel</string>
-    <string name="type.railway.funicular">Funicular</string>
+    <string name="type.railway.funicular">Funikular</string>
     <string name="type.railway.funicular.bridge">Kabelbanebro</string>
     <string name="type.railway.funicular.tunnel">Kabelbanetunnel</string>
     <string name="type.railway.halt">Togstation</string>
@@ -1148,6 +1153,15 @@
     <string name="type.shop.chemist">Materialist</string>
     <string name="type.shop.chocolate">Chokoladebutik</string>
     <string name="type.shop.clothes">Tøjbutik</string>
+    <string name="type.shop.clothes.children">Børnetøjsbutik</string>
+    <string name="type.shop.clothes.fashion">Modebutik</string>
+    <string name="type.shop.clothes.hats">Hattebutik</string>
+    <string name="type.shop.clothes.men">Herretøjsbutik</string>
+    <string name="type.shop.clothes.sports">Sportsklæderbutik</string>
+    <string name="type.shop.clothes.suits">Jakkesætbutik</string>
+    <string name="type.shop.clothes.underwear">Undertøjsbutik</string>
+    <string name="type.shop.clothes.wedding">Brudetøjsbutik</string>
+    <string name="type.shop.clothes.women">Dametøjsbutik</string>
     <string name="type.shop.coffee">Kaffehandel</string>
     <string name="type.shop.computer">Computerforretning</string>
     <string name="type.shop.confectionery">Slikbutik</string>
@@ -1163,11 +1177,12 @@
     <string name="type.shop.erotic">Erotikbutik</string>
     <string name="type.shop.fabric">Stofbutik</string>
     <string name="type.shop.farm">Foderhandel</string>
-    <string name="type.shop.fashion_accessories">Accessory-butik</string>
+    <string name="type.shop.fashion_accessories">Tilbehørsbutik</string>
     <string name="type.shop.florist">Blomsterbutik</string>
     <string name="type.shop.funeral_directors">Bedemand</string>
     <string name="type.shop.furniture">Møbelbutik</string>
     <string name="type.shop.garden_centre">Havecenter</string>
+    <string name="type.shop.games">Spilbutik</string>
     <string name="type.shop.gas">Gas butik</string>
     <string name="type.shop.gift">Gavebutik</string>
     <string name="type.shop.greengrocer">Grønthandler</string>
@@ -1328,11 +1343,12 @@
     <!-- Typically more basic, not staffed and free (compared to alpine_hut). -->
     <string name="type.tourism.wilderness_hut">Vildmarkshytte</string>
     <string name="type.tourism.zoo">Zoologisk have</string>
-    <string name="type.tourism.zoo.petting">Petting Zoo</string>
+    <string name="type.tourism.zoo.petting">Dyrepark med klappedyr</string>
     <string name="type.traffic_calming">Trafiksanering</string>
     <string name="type.traffic_calming.bump">Vejbump</string>
     <string name="type.traffic_calming.hump">Vejbump</string>
     <string name="type.waterway">Vandløb</string>
+    <string name="type.waterway.access_point">Adgangspunkt til vandvejen</string>
     <string name="type.waterway.canal">Kanal</string>
     <string name="type.waterway.canal.tunnel">Kanal</string>
     <string name="type.waterway.fish_pass">Fiskestige</string>
@@ -1420,4 +1436,5 @@
     <string name="type.craft.watchmaker">Urmager</string>
     <string name="type.xmas_feature.market">Julemarked</string>
     <string name="type.xmas_feature.tree">Juletræ</string>
+    <string name="type.amenity.hookah_lounge">Vandpibecafé</string>
 </resources>

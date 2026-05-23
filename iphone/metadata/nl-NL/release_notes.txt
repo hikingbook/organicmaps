@@ -1,23 +1,26 @@
-• OSM-kaartgegevens per 10 maart
-• Wikipedia-gegevens per 1 maart
-• Ondersteuning toegevoegd voor voorwaardelijke snelheidslimieten
-• Gedetailleerdere hoogtelijnen voor Chinese provincies
-• Lederwinkels en winkels die religieuze artikelen verkopen toegevoegd
-• Rijen bomen toegevoegd
-• Haltes van het openbaar vervoer zonder nabijgelegen bushaltes toegevoegd
-• Berekening van voortgang bij het downloaden van landen gecorrigeerd
-• Tanzania opgesplitst in kleinere regio's
-• Geschiedenis van recent gebruikte categorieën toegevoegd in de Editor
-• Verbeterd omhoog vegen op het routeplanningsscherm
-• Positie van liniaal voor CarPlay gecorrigeerd
-• Diverse crashes gecorrigeerd, stabiliteit en prestaties verbeterd
+- NIEUW! tik op een halte van het openbaar vervoer om de hele route op de kaart te markeren, zoals in de Transit-kaartstijl.
+- NIEUW! langeafstandsroutes van het openbaar vervoer en andere OpenStreetMap-relaties zijn nu over de kaartgrenzen heen met elkaar verbonden tot één ononderbroken lijn.
+- OpenStreetMap-gegevens bijgewerkt vanaf 3 mei.
+- Vietnam en Maleisië zijn nu opgesplitst in kleinere regio's die afzonderlijk kunnen worden gedownload.
+- Hong Kong, Macau en Hainan zijn nu gescheiden van Guangdong en de aangrenzende grenzen zijn bijgewerkt.
+- Contourlijnen voor Indonesië, Maleisië, Tanzania, Thailand en Vietnam bijgewerkt.
+- Een track-opnameknop toegevoegd aan het infopaneel in de navigatie.
+- Nieuwe OpenStreetMap types toegevoegd: vulkanen met actieve status, toegangspunten tot waterwegen, scheepshellingen, hookah lounges en gebouwen in aanbouw.
+- "Lookout" toegevoegd als zoeksynoniem voor uitkijkpunten, en "pkwy" als US-straatsynoniem.
+- De kleuren van voetgangersgebieden zijn iets donkerder voor een betere leesbaarheid.
+- Bladwijzerlabels op de kaart overlappen elkaar niet meer.
+- Meerregelige tekst wordt nu netjes geknipt, en straatnamen bevatten geen duplicaten meer.
+- Routing: hervatte routes verwijderen nu tussenliggende punten die u al gepasseerd bent.
+- De verkeerde bladwijzerlijst die werd gebruikt in TestFlight builds is opgelost.
+- KMB-bestandsimport verholpen.
+- Proefgelezen vertalingen voor categorieën, zoeksynoniemen en UI-strings bijgewerkt. Vertalingen toegevoegd voor New South Wales en Northern Territory beschrijvingen.
+- Stabiliteit en prestaties verbeterd, inclusief font shaping, glyph caching en routelijn clipping.
+- De hoogtekaart voor tracks en routes verbeterd.
+- In-navigatie menuknoppen groter gemaakt voor acties zoals TTS, instellingen en track opname.
+- De animatie van de uitklapbare beschrijvingssectie op de plaatspagina is verbeterd.
+- De pagina met plaatsinformatie sluit niet langer wanneer het scrubben van de hoogtekaart eindigt, springt niet langer onverwacht terug, en houdt de titel zichtbaar tijdens het bewerken met het toetsenbord open.
+- Vastgelopen crashes bij het verwijderen van een track of bladwijzer die niet meer bestaat.
 
-### Vertalingen
+## Platformondersteuning
 
-• Landbeschrijvingen verbeterd
-• Roemeense correcties van Eugen Dedu toegepast
-• Landnamen bijgewerkt
-• Vertalingen van Weblate-bijdragers bijgewerkt
-• Oekraïense vertaling gecorrigeerd
-
-Hartelijk dank aan iedereen die bijdraagt, doneert en Organic Maps ondersteunt! Laten we samen de beste kaarten maken!
+- Vanwege wijzigingen in TestFlight en de App Store ondersteunt deze release alleen iOS 15 en hoger. iOS 12, iOS 13 en iOS 14 worden niet langer ondersteund.

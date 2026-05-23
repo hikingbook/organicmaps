@@ -1,8 +1,3 @@
-enum VoidResult {
-  case success
-  case failure(Error)
-}
-
 enum WritingResult {
   case success
   case reloadCategoriesAtURLs([URL])
@@ -10,7 +5,6 @@ enum WritingResult {
   case failure(Error)
 }
 
-typealias VoidResultCompletionHandler = (VoidResult) -> Void
 typealias WritingResultCompletionHandler = (WritingResult) -> Void
 
 private let kBookmarksDirectoryName = "bookmarks"
@@ -64,13 +58,12 @@ final class iCloudSynchronizaionManager: NSObject {
     let synchronizationStateManager = iCloudSynchronizationStateResolver(isInitialSynchronization: isInitialSynchronization)
     do {
       let localDirectoryMonitor = try FileSystemDispatchSourceMonitor(fileManager: fileManager, directory: fileManager.bookmarksDirectoryUrl, fileType: fileType)
-      let clodStorageManager = iCloudSynchronizaionManager(fileManager: fileManager,
-                                                           settings: Settings.self,
-                                                           bookmarksManager: BookmarksManager.shared(),
-                                                           cloudDirectoryMonitor: cloudDirectoryMonitor,
-                                                           localDirectoryMonitor: localDirectoryMonitor,
-                                                           synchronizationStateManager: synchronizationStateManager)
-      return clodStorageManager
+      return iCloudSynchronizaionManager(fileManager: fileManager,
+                                         settings: Settings.self,
+                                         bookmarksManager: BookmarksManager.shared(),
+                                         cloudDirectoryMonitor: cloudDirectoryMonitor,
+                                         localDirectoryMonitor: localDirectoryMonitor,
+                                         synchronizationStateManager: synchronizationStateManager)
     } catch {
       fatalError("Failed to create shared iCloud storage manager with error: \(error)")
     }
@@ -298,11 +291,6 @@ private extension iCloudSynchronizaionManager {
 }
 
 // MARK: - Observation
-
-protocol SynchronizationStateObservation {
-  func addObserver(_ observer: AnyObject, synchronizationStateDidChangeHandler: @escaping (SynchronizationManagerState) -> Void)
-  func removeObserver(_ observer: AnyObject)
-}
 
 extension iCloudSynchronizaionManager {
   func addObserver(_ observer: AnyObject, synchronizationStateDidChangeHandler: @escaping (SynchronizationManagerState) -> Void) {

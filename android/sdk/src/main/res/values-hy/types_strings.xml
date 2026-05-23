@@ -15,11 +15,11 @@
     <string name="type.aeroway">Օդային ենթակառուցվածք</string>
     <string name="type.aeroway.aerodrome">Օդանավակայան</string>
     <string name="type.aeroway.aerodrome.international">Միջազգային օդանավակայան</string>
-    <string name="type.aeroway.apron">Օդանավակայանի կայանատեղի</string>
-    <string name="type.aeroway.gate">Ելք</string>
+    <string name="type.aeroway.apron">Օդանավերի կայանման հարթակ</string>
+    <string name="type.aeroway.gate">Ելքի դարպաս</string>
     <string name="type.aeroway.helipad">Ուղղաթիռի հրապարակ</string>
     <string name="type.aeroway.runway">Թռիչքուղի</string>
-    <string name="type.aeroway.taxiway">Գնացուղի</string>
+    <string name="type.aeroway.taxiway">Օդանավերի շարժուղի</string>
     <string name="type.aeroway.terminal">Տերմինալ</string>
     <string name="type.amenity">Ծառայություններ</string>
     <string name="type.amenity.arts_centre">Արվեստի կենտրոն</string>
@@ -237,6 +237,7 @@
     <string name="type.building">Շենք</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Հասցե</string>
+    <string name="type.building.construction">Կառուցվող շենք</string>
     <string name="type.building.has_parts">Շենք</string>
     <string name="type.building_part">Շենք</string>
     <string name="type.building.garage">Ավտոտնակ</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Միջերկրածովյան</string>
     <string name="type.cuisine.mexican">Մեքսիկական</string>
     <string name="type.cuisine.moroccan">Մարոկկոյական</string>
-    <string name="type.cuisine.noodles">Լապշա</string>
+    <string name="type.cuisine.noodle">Լապշա</string>
     <string name="type.cuisine.oriental">Արևելաասիական</string>
     <string name="type.cuisine.pancake">Նրբաբլիթներ</string>
     <string name="type.cuisine.pasta">Պաստա</string>
@@ -753,13 +754,16 @@
     <string name="type.natural.tree_row">Ծառաշարք</string>
     <string name="type.natural.vineyard">Խաղողի այգի</string>
     <string name="type.natural.volcano">Հրաբուխ</string>
+    <string name="type.natural.volcano.active">Գործող հրաբխ</string>
     <string name="type.natural.water">Ջուր</string>
     <string name="type.natural.wetland">Խոնավ տարածք</string>
     <string name="type.natural.wetland.bog">Տորֆաճահիճ</string>
     <string name="type.natural.wetland.marsh">Ճահիճ</string>
     <string name="type.noexit">Փակուղի</string>
     <string name="type.office">Գրասենյակ</string>
+    <string name="type.office.architect">Ճարտարապետական բյուրո</string>
     <string name="type.office.company">Ընկերության գրասենյակ</string>
+    <string name="type.office.educational_institution">Ուսումնական հաստատություն</string>
     <string name="type.office.estate_agent">Անշարժ գույքի գործակալություն</string>
     <string name="type.office.government">Կառավարական գրասենյակ</string>
     <string name="type.office.insurance">Ապահովագրական գրասենյակ</string>
@@ -1153,6 +1157,15 @@
     <string name="type.shop.chemist">Դեղատուն</string>
     <string name="type.shop.chocolate">Շոկոլադի խանութ</string>
     <string name="type.shop.clothes">Հագուստի խանութ</string>
+    <string name="type.shop.clothes.children">Մանկական հագուստի խանութ</string>
+    <string name="type.shop.clothes.fashion">Նորաձևության բուտիկ</string>
+    <string name="type.shop.clothes.hats">Գլխարկների խանութ</string>
+    <string name="type.shop.clothes.men">Տղամարդկանց հագուստի խանութ</string>
+    <string name="type.shop.clothes.sports">Սպորտային հագուստի խանութ</string>
+    <string name="type.shop.clothes.suits">Կոստյումների խանութ</string>
+    <string name="type.shop.clothes.underwear">Ներքնազգեստի խանութ</string>
+    <string name="type.shop.clothes.wedding">Հարսանյաց հագուստի խանութ</string>
+    <string name="type.shop.clothes.women">Կանացի հագուստի խանութ</string>
     <string name="type.shop.coffee">Սուրճի խանութ</string>
     <string name="type.shop.computer">Համակարգչային խանութ</string>
     <string name="type.shop.confectionery">Քաղցրավենիքի խանութ</string>
@@ -1173,6 +1186,7 @@
     <string name="type.shop.funeral_directors">Սգո ծառայություններ</string>
     <string name="type.shop.furniture">Կահույքի խանութ</string>
     <string name="type.shop.garden_centre">Այգեգործական կենտրոն</string>
+    <string name="type.shop.games">Խաղերի խանութ</string>
     <string name="type.shop.gas">Գազի խանութ</string>
     <string name="type.shop.gift">Նվերների խանութ</string>
     <string name="type.shop.greengrocer">Մրգի և բանջարեղենի խանութ</string>
@@ -1339,6 +1353,7 @@
     <string name="type.traffic_calming.bump">Արհեստական անհարթություն</string>
     <string name="type.traffic_calming.hump">Արհեստական թմբիկ</string>
     <string name="type.waterway">Ջրային ուղի</string>
+    <string name="type.waterway.access_point">Ջրային ճանապարհի մուտքի կետ</string>
     <string name="type.waterway.canal">Ջրանցք</string>
     <string name="type.waterway.canal.tunnel">Ջրանցքի թունել</string>
     <string name="type.waterway.fish_pass">Ձկնանցարան</string>
@@ -1428,4 +1443,5 @@
     <string name="type.craft.watchmaker">Ժամագործ</string>
     <string name="type.xmas_feature.market">Սուրբ Ծննդյան տոնավաճառ</string>
     <string name="type.xmas_feature.tree">Տոնածառ</string>
+    <string name="type.amenity.hookah_lounge">Նարգիլե բար</string>
 </resources>

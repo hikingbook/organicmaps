@@ -47,7 +47,7 @@
     <string name="type.leisure.adult_gaming_centre">Gaming-Zentrum für Erwachsene</string>
     <string name="type.leisure.amusement_arcade">Arkade</string>
     <string name="type.amenity.charging_station">Ladestation</string>
-    <string name="type.amenity.charging_station.bicycle">Fahrrad Ladestation</string>
+    <string name="type.amenity.charging_station.bicycle">Fahrrad-Ladestation</string>
     <string name="type.amenity.charging_station.motorcar">Kfz-Ladestation</string>
     <string name="type.amenity.childcare">Kindertagesstätte</string>
     <string name="type.amenity.cinema">Kino</string>
@@ -237,6 +237,7 @@
     <string name="type.building">Gebäude</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Adresse</string>
+    <string name="type.building.construction">Gebäude im Bau</string>
     <string name="type.building.has_parts">Gebäude</string>
     <string name="type.building_part">Gebäude</string>
     <string name="type.building.garage">Garage</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Mediterran</string>
     <string name="type.cuisine.mexican">Mexikanisch</string>
     <string name="type.cuisine.moroccan">Marokkanisch</string>
-    <string name="type.cuisine.noodles">Nudeln</string>
+    <string name="type.cuisine.noodle">Nudeln</string>
     <string name="type.cuisine.oriental">Orientalisch</string>
     <string name="type.cuisine.pancake">Pfannkuchen</string>
     <string name="type.cuisine.pasta">Pasta</string>
@@ -343,6 +344,7 @@
     <string name="type.cuisine.sausage">Wurst</string>
     <string name="type.cuisine.savory_pancakes">Herzhafte Pfannkuchen</string>
     <string name="type.cuisine.seafood">Meeresfrüchte</string>
+    <string name="type.cuisine.shawarma">Schawarma</string>
     <string name="type.cuisine.soba">Soba</string>
     <string name="type.cuisine.spanish">Spanisch</string>
     <string name="type.cuisine.steak_house">Steakhaus</string>
@@ -754,13 +756,16 @@
     <string name="type.natural.tree_row">Baumreihe</string>
     <string name="type.natural.vineyard">Weinberg</string>
     <string name="type.natural.volcano">Vulkan</string>
+    <string name="type.natural.volcano.active">Aktiver Vulkan</string>
     <string name="type.natural.water">Wasserfläche</string>
     <string name="type.natural.wetland">Feuchtgebiet</string>
     <string name="type.natural.wetland.bog">Moor</string>
     <string name="type.natural.wetland.marsh">Sumpf</string>
     <string name="type.noexit">Sackgasse</string>
     <string name="type.office">Büro</string>
+    <string name="type.office.architect">Architekturbüro</string>
     <string name="type.office.company">Firmenbüro</string>
+    <string name="type.office.educational_institution">Bildungseinrichtung</string>
     <string name="type.office.estate_agent">Immobilienmakler</string>
     <string name="type.office.government">Behörde</string>
     <string name="type.office.insurance">Versicherungsbüro</string>
@@ -1155,6 +1160,15 @@
     <string name="type.shop.chemist">Drogerie</string>
     <string name="type.shop.chocolate">Schokoladengeschäft</string>
     <string name="type.shop.clothes">Bekleidungsgeschäft</string>
+    <string name="type.shop.clothes.children">Kinderbekleidungsgeschäft</string>
+    <string name="type.shop.clothes.fashion">Modeboutique</string>
+    <string name="type.shop.clothes.hats">Hutgeschäft</string>
+    <string name="type.shop.clothes.men">Herrenbekleidungsgeschäft</string>
+    <string name="type.shop.clothes.sports">Sportbekleidungsgeschäft</string>
+    <string name="type.shop.clothes.suits">Anzuggeschäft</string>
+    <string name="type.shop.clothes.underwear">Dessousgeschäft</string>
+    <string name="type.shop.clothes.wedding">Brautmodengeschäft</string>
+    <string name="type.shop.clothes.women">Damenbekleidungsgeschäft</string>
     <string name="type.shop.coffee">Kaffeegeschäft</string>
     <string name="type.shop.computer">Computerfachgeschäft</string>
     <string name="type.shop.confectionery">Süßwarengeschäft</string>
@@ -1175,6 +1189,7 @@
     <string name="type.shop.funeral_directors">Bestattungsinstitut</string>
     <string name="type.shop.furniture">Möbelhaus</string>
     <string name="type.shop.garden_centre">Gartencenter</string>
+    <string name="type.shop.games">Spielegeschäft</string>
     <string name="type.shop.gas">Gas-Geschäft</string>
     <string name="type.shop.gift">Geschenkeladen</string>
     <string name="type.shop.greengrocer">Gemüseladen</string>
@@ -1341,6 +1356,7 @@
     <string name="type.traffic_calming.bump">kurze Bodenwelle</string>
     <string name="type.traffic_calming.hump">lange Bodenwelle</string>
     <string name="type.waterway">Wasserweg</string>
+    <string name="type.waterway.access_point">Wasserstraße Zugangspunkt</string>
     <string name="type.waterway.canal">Kanal</string>
     <string name="type.waterway.canal.tunnel">Kanal</string>
     <string name="type.waterway.fish_pass">Fischtreppe</string>
@@ -1430,4 +1446,5 @@
     <string name="type.craft.watchmaker">Uhrmacher</string>
     <string name="type.xmas_feature.market">Weihnachtsmarkt</string>
     <string name="type.xmas_feature.tree">Weihnachtsbaum</string>
+    <string name="type.amenity.hookah_lounge">Shisha-Bar</string>
 </resources>
