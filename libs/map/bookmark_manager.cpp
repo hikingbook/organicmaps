@@ -33,6 +33,7 @@
 #include <chrono>
 #include <limits>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace
 {
@@ -84,7 +85,12 @@ std::string GetFileNameForExport(BookmarkManager::KMLDataCollectionPtr::element_
   std::string fileName = RemoveInvalidSymbols(kml::GetDefaultStr(kmlToShare.second->m_categoryData.m_name));
   if (fileName.empty())
     fileName = base::GetNameFromFullPathWithoutExt(kmlToShare.first);
-  return fileName;
+  return TruncateToValidFileName(std::move(fileName));
+}
+
+std::string CategoryFileName(BookmarkCategory const & category)
+{
+  return base::FileNameFromFullPath(category.GetFileName());
 }
 
 BookmarkManager::SharingResult ExportSingleFileKml(
@@ -247,7 +253,11 @@ bool GetSortingType(std::string const & typeStr, BookmarkManager::SortingType & 
 
 kml::Timestamp FileModificationTimestamp(std::string const & fullFilePath)
 {
-  return kml::TimestampClock::from_time_t(Platform::GetFileModificationTime(fullFilePath));
+  auto const t = Platform::GetFileModificationTime(fullFilePath);
+  if (t > 0)
+    return kml::TimestampClock::from_time_t(t);
+  LOG(LWARNING, ("GetFileModificationTime failed for", fullFilePath, "- using current time"));
+  return kml::TimestampClock::now();
 }
 }  // namespace
 
@@ -491,6 +501,8 @@ Track * BookmarkManager::CreateTrack(kml::TrackData && trackData)
 Track const * BookmarkManager::GetTrack(kml::TrackId trackId) const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
+  if (m_tempRelationTrack && m_tempRelationTrack->GetId() == trackId)
+    return m_tempRelationTrack.get();
   auto it = m_tracks.find(trackId);
   return (it != m_tracks.end()) ? it->second.get() : nullptr;
 }
@@ -714,7 +726,7 @@ std::vector<BookmarkManager::SortingType> BookmarkManager::GetAvailableSortingTy
 
     if (!byTypeChecked && !bookmarkData.m_featureTypes.empty())
     {
-      auto const type = GetBookmarkBaseType(bookmarkData.m_featureTypes);
+      auto const type = GetBookmarkMatchInfo(bookmarkData.m_featureTypes).m_type;
       if (type == BookmarkBaseType::Hotel)
       {
         byTypeChecked = true;
@@ -884,12 +896,14 @@ void BookmarkManager::SetElevationMyPositionChangedCallback(ElevationMyPositionC
   m_elevationMyPositionChanged = cb;
 }
 
-void BookmarkManager::SetElevationActivePoint(kml::TrackId const & trackId, m2::PointD pt, double targetDistance)
+void BookmarkManager::SetElevationActivePoint(kml::TrackId const & trackId, double targetDistance)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   auto const track = GetTrack(trackId);
   CHECK(track != nullptr, ());
+
+  auto const pt = track->GetPoint(targetDistance);
 
   SetTrackSelectionInfo({trackId, pt, targetDistance}, true /* notifyListeners */);
 
@@ -921,6 +935,8 @@ Track::TrackSelectionInfo BookmarkManager::FindNearestTrack(m2::RectD const & to
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   Track::TrackSelectionInfo selectionInfo;
+  auto const tapPoint = touchRect.Center();
+  selectionInfo.SetDistanceFilter(touchRect);
 
   for (auto const & pair : m_categories)
   {
@@ -934,7 +950,7 @@ Track::TrackSelectionInfo BookmarkManager::FindNearestTrack(m2::RectD const & to
       if (tracksFilter && !tracksFilter(track))
         continue;
 
-      track->UpdateSelectionInfo(touchRect, selectionInfo);
+      track->UpdateSelectionInfo(tapPoint, selectionInfo);
     }
   }
 
@@ -1190,8 +1206,7 @@ std::string BookmarkManager::GenerateSavedRouteName(std::string const & from, st
   return GenerateTrackRecordingName();
 }
 
-kml::TrackId BookmarkManager::SaveRoute(std::vector<geometry::PointWithAltitude> points, std::string const & from,
-                                        std::string const & to)
+kml::TrackId BookmarkManager::SaveRoute(kml::TrackGeometry points, std::string const & from, std::string const & to)
 {
   CHECK(!points.empty(), ("Route points should not be empty"));
 
@@ -1218,6 +1233,32 @@ kml::TrackId BookmarkManager::SaveRoute(std::vector<geometry::PointWithAltitude>
   auto const trackId = track->GetId();
   AttachTrack(trackId, groupId);
   return trackId;
+}
+
+kml::TrackId BookmarkManager::SetTempRelationTrack(kml::TrackData && trackData)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  ClearTempRelationTrack();
+
+  trackData.m_id = kml::kTempRelationTrackId;
+  m_tempRelationTrack = std::make_unique<Track>(std::move(trackData));
+  m_changesTracker.OnAddLine(kml::kTempRelationTrackId);
+  return kml::kTempRelationTrackId;
+}
+
+void BookmarkManager::ClearTempRelationTrack()
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  if (!m_tempRelationTrack)
+    return;
+
+  DeleteTrackSelectionMark(kml::kTempRelationTrackId);
+  m_changesTracker.OnDeleteLine(kml::kTempRelationTrackId);
+  m_tempRelationTrack.reset();
+
+  NotifyChanges(false /* saveChangesOnDisk */);
 }
 
 void BookmarkManager::PrepareBookmarksAddresses(std::vector<SortBookmarkData> & bookmarksForSort,
@@ -1672,6 +1713,14 @@ void BookmarkManager::SetCategoryCustomProperty(kml::MarkGroupId categoryId, std
   GetBmCategory(categoryId)->SetCustomProperty(key, value);
 }
 
+std::string BookmarkManager::GetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+  auto const & properties = GetCategoryData(categoryId).m_properties;
+  auto const it = properties.find(key);
+  return (it != properties.end()) ? it->second : std::string();
+}
+
 std::string BookmarkManager::GetCategoryFileName(kml::MarkGroupId categoryId) const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
@@ -1775,6 +1824,9 @@ void BookmarkManager::SetIsVisible(kml::MarkGroupId groupId, bool visible)
 bool BookmarkManager::IsVisible(kml::MarkGroupId groupId) const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  if (groupId == kml::kInvalidMarkGroupId)
+    return true;
   return GetGroup(groupId)->IsVisible();
 }
 
@@ -1842,9 +1894,13 @@ void BookmarkManager::SetDrapeEngine(ref_ptr<df::DrapeEngine> engine)
   m_drapeEngine.Set(engine);
   m_firstDrapeNotification = true;
 
-  auto es = GetEditSession();
-  UpdateTrackMarksMinZoom();
-  RequestSymbolSizes();
+  if (engine)
+  {
+    /// @todo Why drape engine invokes "editing"?
+    auto es = GetEditSession();
+    UpdateTrackMarksMinZoom();
+    RequestSymbolSizes();
+  }
 }
 
 void BookmarkManager::InitRegionAddressGetter(DataSource const & dataSource,
@@ -1918,13 +1974,22 @@ Track * BookmarkManager::AddTrack(std::unique_ptr<Track> && track)
 
 void BookmarkManager::SaveState() const
 {
-  settings::Set(kLastEditedBookmarkCategory, m_lastCategoryUrl);
+  settings::Set(kLastEditedBookmarkCategory, m_lastCategoryFileName);
   settings::Set(kLastEditedBookmarkColor, static_cast<uint32_t>(m_lastColor));
 }
 
 void BookmarkManager::LoadState()
 {
-  settings::TryGet(kLastEditedBookmarkCategory, m_lastCategoryUrl);
+  settings::TryGet(kLastEditedBookmarkCategory, m_lastCategoryFileName);
+
+  // One-shot migration from older versions that stored an absolute path here.
+  // On iOS the sandbox container UUID is regenerated on TestFlight installs, so
+  // any persisted absolute path is stale on the next launch.
+  if (auto migrated = base::FileNameFromFullPath(m_lastCategoryFileName); migrated != m_lastCategoryFileName)
+  {
+    m_lastCategoryFileName = std::move(migrated);
+    settings::Set(kLastEditedBookmarkCategory, m_lastCategoryFileName);
+  }
 
   uint32_t color;
   if (settings::Get(kLastEditedBookmarkColor, color) && color > static_cast<uint32_t>(kml::PredefinedColor::None) &&
@@ -2306,14 +2371,10 @@ kml::MarkGroupId BookmarkManager::LastEditedBMCategory()
   if (HasBmCategory(m_lastEditedGroupId))
     return m_lastEditedGroupId;
 
-  for (auto & cat : m_categories)
-  {
-    if (cat.second->GetFileName() == m_lastCategoryUrl)
-    {
-      m_lastEditedGroupId = cat.first;
-      return m_lastEditedGroupId;
-    }
-  }
+  for (auto const & [groupId, category] : m_categories)
+    if (CategoryFileName(*category) == m_lastCategoryFileName)
+      return m_lastEditedGroupId = groupId;
+
   m_lastEditedGroupId = CheckAndCreateDefaultCategory();
   return m_lastEditedGroupId;
 }
@@ -2327,7 +2388,7 @@ kml::PredefinedColor BookmarkManager::LastEditedBMColor() const
 void BookmarkManager::SetLastEditedBmCategory(kml::MarkGroupId groupId)
 {
   m_lastEditedGroupId = groupId;
-  m_lastCategoryUrl = GetBmCategory(groupId)->GetFileName();
+  m_lastCategoryFileName = CategoryFileName(*GetBmCategory(groupId));
   SaveState();
 }
 
@@ -2636,12 +2697,6 @@ private:
 };
 }  // namespace
 
-UserMark const * BookmarkManager::FindNearestUserMark(m2::AnyRectD const & rect) const
-{
-  CHECK_THREAD_CHECKER(m_threadChecker, ());
-  return FindNearestUserMark([&rect](UserMark::Type) { return rect; }, [](UserMark::Type) { return false; });
-}
-
 UserMark const * BookmarkManager::FindNearestUserMark(TTouchRectHolder const & holder,
                                                       TFindOnlyVisibleChecker const & findOnlyVisible) const
 {
@@ -2936,22 +2991,28 @@ BookmarkManager::KMLDataCollectionPtr BookmarkManager::PrepareToSaveBookmarks(
     return nullptr;
 
   auto collection = std::make_shared<KMLDataCollection>();
+  // Tracks paths picked earlier in this batch so that two new categories
+  // whose names truncate to the same basename don't collide on disk before
+  // any of them is actually written.
+  std::unordered_set<std::string> reservedPaths;
   for (auto const groupId : groupIdCollection)
   {
     auto * group = GetBmCategory(groupId);
 
-    // Get valid file name from category name
     std::string file = group->GetFileName();
     if (file.empty())
     {
-      std::string name = RemoveInvalidSymbols(group->GetName());
-      if (name.empty())
-        name = kDefaultBookmarksFileName;
+      std::string base = TruncateToValidFileName(RemoveInvalidSymbols(group->GetName()));
+      if (base.empty())
+        base = kDefaultBookmarksFileName;
 
-      file = GenerateUniqueFileName(fileDir, std::move(name), kKmlExtension);
+      file = GenerateUniqueFileName(fileDir, base, kKmlExtension);
+      for (size_t i = 1; reservedPaths.contains(file); ++i)
+        file = GenerateUniqueFileName(fileDir, base + std::to_string(i), kKmlExtension);
       group->SetFileName(file);
     }
 
+    reservedPaths.insert(file);
     collection->emplace_back(std::move(file), CollectBmGroupKMLData(group));
   }
   return collection;
@@ -3650,6 +3711,23 @@ void BookmarkManager::EditSession::SetCategoryCustomProperty(kml::MarkGroupId ca
                                                              std::string const & value)
 {
   m_bmManager.SetCategoryCustomProperty(categoryId, key, value);
+}
+
+void BookmarkManager::EditSession::SetCategoryBookmarksColor(kml::MarkGroupId groupId, kml::PredefinedColor color)
+{
+  auto const & markIds = m_bmManager.GetUserMarkIds(groupId);
+  for (auto const markId : markIds)
+    if (auto * bm = m_bmManager.GetBookmarkForEdit(markId))
+      bm->SetColor(color);
+  m_bmManager.SetLastEditedBmColor(color);
+}
+
+void BookmarkManager::EditSession::SetCategoryTracksColor(kml::MarkGroupId groupId, kml::PredefinedColor color)
+{
+  auto const dpColor = ColorFromPredefinedColor(color);
+  auto const & trackIds = m_bmManager.GetTrackIds(groupId);
+  for (auto const trackId : trackIds)
+    EditSession::ChangeTrackColor(trackId, dpColor);
 }
 
 bool BookmarkManager::EditSession::DeleteBmCategory(kml::MarkGroupId groupId, bool permanently)

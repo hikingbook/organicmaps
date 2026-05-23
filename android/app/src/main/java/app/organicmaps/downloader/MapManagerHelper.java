@@ -171,40 +171,52 @@ public class MapManagerHelper
 
   /**
    * Enqueues failed items under given {@code root} node in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void retryDownload(Context context, @NonNull String countryId)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.retryDownload(countryId);
+    if (MapManager.nativeIsDownloading())
+      MapManager.retryDownload(countryId);
+    else
+      DownloaderService.startRetryDownload(context, countryId);
   }
 
   /**
    * Enqueues given {@code root} node with its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startUpdate(Context context, @NonNull String root)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.startUpdate(root);
+    if (MapManager.nativeIsDownloading())
+      MapManager.startUpdate(root);
+    else
+      DownloaderService.startUpdate(context, root);
   }
 
   /**
    * Enqueues the given list of nodes and its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startDownload(Context context, String... countries)
   {
-    DownloaderService.startForegroundService(context);
-    for (var countryId : countries)
+    if (MapManager.nativeIsDownloading())
     {
-      MapManager.startDownload(countryId);
+      for (var countryId : countries)
+        MapManager.startDownload(countryId);
     }
+    else
+      DownloaderService.startDownload(context, countries);
   }
 
   /**
    * Enqueues given {@code root} node and its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startDownload(Context context, @NonNull String countryId)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.startDownload(countryId);
+    if (MapManager.nativeIsDownloading())
+      MapManager.startDownload(countryId);
+    else
+      DownloaderService.startDownload(context, countryId);
   }
 }

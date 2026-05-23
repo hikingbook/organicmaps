@@ -2,9 +2,9 @@
 <resources>
 
     <!-- SECTION: Types -->
-    <string name="type.addr_interpolation">כתובת/שכונה</string>
-    <string name="type.addr_interpolation.even">כתובת/שכונה</string>
-    <string name="type.addr_interpolation.odd">כתובת/שכונה</string>
+    <string name="type.addr_interpolation">כתובת/בלוק</string>
+    <string name="type.addr_interpolation.even">כתובת/בלוק</string>
+    <string name="type.addr_interpolation.odd">כתובת/בלוק</string>
     <string name="type.aerialway.cable_car">רכבל</string>
     <string name="type.aerialway.chair_lift">רכבל סקי</string>
     <string name="type.aerialway.drag_lift">מעלית גרר לסקי</string>
@@ -81,7 +81,7 @@
     <string name="type.amenity.kindergarten">גן ילדים</string>
     <string name="type.amenity.library">ספרייה</string>
     <string name="type.amenity.loading_dock">מתחם העמסה</string>
-    <string name="type.amenity.marketplace">זירת מסחר</string>
+    <string name="type.amenity.marketplace">שוק</string>
     <string name="type.amenity.motorcycle_parking">חניית אופנועים</string>
     <string name="type.amenity.nightclub">מועדון לילה</string>
     <string name="type.amenity.nursing_home">בית אבות</string>
@@ -229,6 +229,7 @@
     <string name="type.building">מבנה</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">כתובת</string>
+    <string name="type.building.construction">בניין בבנייה</string>
     <string name="type.building.has_parts">מבנה</string>
     <string name="type.building_part">מבנה</string>
     <string name="type.building.garage">מחסן/חנייה</string>
@@ -318,7 +319,7 @@
     <string name="type.cuisine.mediterranean">מטבח ים-תיכוני</string>
     <string name="type.cuisine.mexican">מטבח מקסיקני</string>
     <string name="type.cuisine.moroccan">מטבח מרוקאי</string>
-    <string name="type.cuisine.noodles">אטריות</string>
+    <string name="type.cuisine.noodle">אטריות</string>
     <string name="type.cuisine.oriental">מטבח מזרחי</string>
     <string name="type.cuisine.pancake">פנקייק</string>
     <string name="type.cuisine.pasta">פסטה</string>
@@ -334,6 +335,7 @@
     <string name="type.cuisine.sausage">נקניק</string>
     <string name="type.cuisine.savory_pancakes">חביתיות מתובלות</string>
     <string name="type.cuisine.seafood">מאכלי ים</string>
+    <string name="type.cuisine.shawarma">שוארמה</string>
     <string name="type.cuisine.soba">אטריות סובה</string>
     <string name="type.cuisine.spanish">מטבח ספרדי</string>
     <string name="type.cuisine.steak_house">סטקייה</string>
@@ -737,12 +739,15 @@
     <string name="type.natural.tree_row">שורת עצים</string>
     <string name="type.natural.vineyard">כרם</string>
     <string name="type.natural.volcano">הר געש</string>
+    <string name="type.natural.volcano.active">הר געש פעיל</string>
     <string name="type.natural.water">מים</string>
     <string name="type.natural.wetland">ביצה</string>
     <string name="type.natural.wetland.bog">ביצת כבול</string>
     <string name="type.natural.wetland.marsh">ביצת עשב</string>
     <string name="type.office">משרד</string>
+    <string name="type.office.architect">משרד אדריכלות</string>
     <string name="type.office.company">משרד החברה</string>
+    <string name="type.office.educational_institution">מוסד חינוכי</string>
     <string name="type.office.estate_agent">משרד נדל״ן</string>
     <string name="type.office.government">משרד ממשלתי</string>
     <string name="type.office.insurance">משרד ביטוח</string>
@@ -876,6 +881,15 @@
     <string name="type.shop.carpet">חנות שטיחים</string>
     <string name="type.shop.chocolate">חנות שוקולדים</string>
     <string name="type.shop.clothes">חנות בגדים</string>
+    <string name="type.shop.clothes.children">חנות בגדי ילדים</string>
+    <string name="type.shop.clothes.fashion">בוטיק אופנה</string>
+    <string name="type.shop.clothes.hats">חנות כובעים</string>
+    <string name="type.shop.clothes.men">חנות בגדי גברים</string>
+    <string name="type.shop.clothes.sports">חנות ביגוד ספורט</string>
+    <string name="type.shop.clothes.suits">חנות חליפות</string>
+    <string name="type.shop.clothes.underwear">חנות הלבשה תחתונה</string>
+    <string name="type.shop.clothes.wedding">חנות שמלות כלה</string>
+    <string name="type.shop.clothes.women">חנות בגדי נשים</string>
     <string name="type.shop.coffee">בית קפה</string>
     <string name="type.shop.computer">חנות מחשבים</string>
     <string name="type.shop.confectionery">חנות ממתקים</string>
@@ -896,6 +910,7 @@
     <string name="type.shop.funeral_directors">מנהלי הלוויות</string>
     <string name="type.shop.furniture">חנות רהיטים</string>
     <string name="type.shop.garden_centre">משתלה</string>
+    <string name="type.shop.games">חנות משחקים</string>
     <string name="type.shop.gas">חנות גז</string>
     <string name="type.shop.gift">חנות מתנות</string>
     <string name="type.shop.greengrocer">ירקן</string>
@@ -1056,6 +1071,7 @@
     <string name="type.tourism.zoo.petting">פינת חי</string>
     <string name="type.traffic_calming.hump">פס האטה</string>
     <string name="type.waterway">נתיב מים</string>
+    <string name="type.waterway.access_point">נקודת גישה לנתיב מים</string>
     <string name="type.waterway.canal">תעלת מים</string>
     <string name="type.waterway.canal.tunnel">תעלת מים תת קרקעית</string>
     <string name="type.waterway.fish_pass">סולם דגים</string>
@@ -1105,4 +1121,5 @@
     <string name="type.craft.watchmaker">שָׁעָן</string>
     <string name="type.xmas_feature.market">שוק חג המולד</string>
     <string name="type.xmas_feature.tree">עץ חג המולד</string>
+    <string name="type.amenity.hookah_lounge">בר נרגילה</string>
 </resources>

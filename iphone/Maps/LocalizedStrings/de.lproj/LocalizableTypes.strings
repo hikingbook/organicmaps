@@ -47,7 +47,7 @@
 "type.leisure.adult_gaming_centre" = "Gaming-Zentrum für Erwachsene";
 "type.leisure.amusement_arcade" = "Arkade";
 "type.amenity.charging_station" = "Ladestation";
-"type.amenity.charging_station.bicycle" = "Fahrrad Ladestation";
+"type.amenity.charging_station.bicycle" = "Fahrrad-Ladestation";
 "type.amenity.charging_station.motorcar" = "Kfz-Ladestation";
 "type.amenity.childcare" = "Kindertagesstätte";
 "type.amenity.cinema" = "Kino";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Adresse";
+"type.building.construction" = "Gebäude im Bau";
 "type.building.has_parts" = "Gebäude";
 "type.building_part" = "Gebäude";
 "type.building.garage" = "Garage";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Mediterran";
 "type.cuisine.mexican" = "Mexikanisch";
 "type.cuisine.moroccan" = "Marokkanisch";
-"type.cuisine.noodles" = "Nudeln";
+"type.cuisine.noodle" = "Nudeln";
 "type.cuisine.oriental" = "Orientalisch";
 "type.cuisine.pancake" = "Pfannkuchen";
 "type.cuisine.pasta" = "Pasta";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Wurst";
 "type.cuisine.savory_pancakes" = "Herzhafte Pfannkuchen";
 "type.cuisine.seafood" = "Meeresfrüchte";
+"type.cuisine.shawarma" = "Schawarma";
 "type.cuisine.soba" = "Soba";
 "type.cuisine.spanish" = "Spanisch";
 "type.cuisine.steak_house" = "Steakhaus";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Baumreihe";
 "type.natural.vineyard" = "Weinberg";
 "type.natural.volcano" = "Vulkan";
+"type.natural.volcano.active" = "Aktiver Vulkan";
 "type.natural.water" = "Wasserfläche";
 "type.natural.wetland" = "Feuchtgebiet";
 "type.natural.wetland.bog" = "Moor";
 "type.natural.wetland.marsh" = "Sumpf";
 "type.noexit" = "Sackgasse";
 "type.office" = "Büro";
+"type.office.architect" = "Architekturbüro";
 "type.office.company" = "Firmenbüro";
+"type.office.educational_institution" = "Bildungseinrichtung";
 "type.office.estate_agent" = "Immobilienmakler";
 "type.office.government" = "Behörde";
 "type.office.insurance" = "Versicherungsbüro";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Drogerie";
 "type.shop.chocolate" = "Schokoladengeschäft";
 "type.shop.clothes" = "Bekleidungsgeschäft";
+"type.shop.clothes.children" = "Kinderbekleidungsgeschäft";
+"type.shop.clothes.fashion" = "Modeboutique";
+"type.shop.clothes.hats" = "Hutgeschäft";
+"type.shop.clothes.men" = "Herrenbekleidungsgeschäft";
+"type.shop.clothes.sports" = "Sportbekleidungsgeschäft";
+"type.shop.clothes.suits" = "Anzuggeschäft";
+"type.shop.clothes.underwear" = "Dessousgeschäft";
+"type.shop.clothes.wedding" = "Brautmodengeschäft";
+"type.shop.clothes.women" = "Damenbekleidungsgeschäft";
 "type.shop.coffee" = "Kaffeegeschäft";
 "type.shop.computer" = "Computerfachgeschäft";
 "type.shop.confectionery" = "Süßwarengeschäft";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Bestattungsinstitut";
 "type.shop.furniture" = "Möbelhaus";
 "type.shop.garden_centre" = "Gartencenter";
+"type.shop.games" = "Spielegeschäft";
 "type.shop.gas" = "Gas-Geschäft";
 "type.shop.gift" = "Geschenkeladen";
 "type.shop.greengrocer" = "Gemüseladen";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "kurze Bodenwelle";
 "type.traffic_calming.hump" = "lange Bodenwelle";
 "type.waterway" = "Wasserweg";
+"type.waterway.access_point" = "Wasserstraße Zugangspunkt";
 "type.waterway.canal" = "Kanal";
 "type.waterway.canal.tunnel" = "Kanal";
 "type.waterway.fish_pass" = "Fischtreppe";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Uhrmacher";
 "type.xmas_feature.market" = "Weihnachtsmarkt";
 "type.xmas_feature.tree" = "Weihnachtsbaum";
+"type.amenity.hookah_lounge" = "Shisha-Bar";

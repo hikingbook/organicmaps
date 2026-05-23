@@ -1,23 +1,26 @@
-• Données cartographiques OSM au 10 mars
-• Données Wikipédia au 1er mars
-• Ajout de la prise en charge des limitations de vitesse conditionnelles
-• Isolignes d'altitude plus détaillées pour les provinces chinoises
-• Ajout des magasins de cuir et des magasins vendant des articles religieux
-• Ajout de rangées d'arbres
-• Ajout des quais de transport public sans arrêts de bus à proximité
-• Correction du calcul de la progression du téléchargement des pays
-• Division de la Tanzanie en régions plus petites
-• Ajout de l'historique des catégories récemment utilisées dans l'éditeur
-• Amélioration du balayage vers le haut sur l'écran de planification d'itinéraire
-• Correction de la position de la règle pour CarPlay
-• Correction de plusieurs plantages, amélioration de la stabilité et des performances
+- NOUVEAU ! Appuyez sur un arrêt de transport en commun pour mettre en surbrillance l'itinéraire complet sur la carte, comme dans le style de carte « Transit ».
+- NOUVEAU ! Les itinéraires de transport en commun longue distance et autres relations OpenStreetMap sont désormais reliés au-delà des limites de la carte en une ligne continue.
+- Données OpenStreetMap mises à jour au 3 mai.
+- Le Vietnam et la Malaisie sont désormais divisés en régions plus petites pouvant être téléchargées séparément.
+- Hong Kong, Macao et Hainan sont désormais séparés du Guangdong, et les frontières voisines ont été mises à jour.
+- Mise à jour des courbes de niveau pour l'Indonésie, la Malaisie, la Tanzanie, la Thaïlande et le Vietnam.
+- Ajout d'un bouton d'enregistrement de parcours dans le panneau d'informations de navigation.
+- Ajout de nouveaux types OpenStreetMap : volcans en activité, points d'accès aux voies navigables, cales de halage, salons de narguilé et bâtiments en construction.
+- Ajout de « Lookout » comme synonyme de recherche pour les points de vue, et de « pkwy » comme synonyme de rue aux États-Unis.
+- Les couleurs des zones piétonnes sont légèrement plus foncées pour une meilleure lisibilité.
+- Les libellés des signets sur la carte ne se chevauchent plus.
+- Le texte sur plusieurs lignes est désormais correctement tronqué, et les noms de rue ne contiennent plus de doublons.
+- Calcul d'itinéraire : les itinéraires repris suppriment désormais les points intermédiaires que vous avez déjà dépassés.
+- Correction de l'utilisation d'une liste de signets erronée dans les versions TestFlight.
+- Correction de l'importation de fichiers KMB.
+- Mise à jour des traductions relues pour les catégories, les synonymes de recherche et les chaînes de l'interface utilisateur. Ajout de traductions pour les descriptions de la Nouvelle-Galles du Sud et du Territoire du Nord.
+- Amélioration de la stabilité et des performances, notamment au niveau de la mise en forme des polices, de la mise en cache des glyphes et du découpage des lignes d'itinéraire.
+- Amélioration du graphique d'altitude pour les tracés et les itinéraires.
+- Agrandissement des boutons du menu de navigation pour des actions telles que la synthèse vocale, les paramètres et l'enregistrement de tracé.
+- Amélioration de l'animation de la section de description extensible sur la page du lieu.
+- La page d'informations sur le lieu ne se ferme plus lorsque le défilement du graphique d'altitude prend fin, ne rebondit plus de manière inattendue et conserve le titre visible pendant la modification lorsque le clavier est ouvert.
+- Correction des plantages lors de la suppression d’un tracé ou d’un signet qui n’existe plus.
 
-### Traductions
+## Prise en charge des plateformes
 
-• Amélioration des descriptions des pays
-• Application des corrections roumaines d'Eugen Dedu
-• Mise à jour des noms de pays
-• Mise à jour des traductions des contributeurs Weblate
-• Correction de la traduction ukrainienne
-
-Merci à tous ceux qui contribuent, font des dons et soutiennent Organic Maps ! Construisons ensemble les meilleures cartes !
+- En raison de modifications apportées à TestFlight et à l’App Store, cette version ne prend en charge que iOS 15 et les versions ultérieures. iOS 12, iOS 13 et iOS 14 ne sont plus pris en charge.

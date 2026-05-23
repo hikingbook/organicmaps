@@ -1,23 +1,26 @@
-• Datos cartográficos de OSM a fecha de 10 de marzo
-• Datos de Wikipedia a fecha de 1 de marzo
-• Se ha añadido compatibilidad con límites de velocidad condicionales
-• Isólineas de elevación más detalladas para las provincias chinas
-• Se han añadido tiendas de cuero y tiendas que venden artículos religiosos
-• Se han añadido hileras de árboles
-• Se han añadido plataformas de transporte público sin paradas de autobús cercanas
-• Se ha corregido el cálculo del progreso de descarga de países
-• Se ha dividido Tanzania en regiones más pequeñas
-• Se ha añadido el historial de categorías utilizadas recientemente en el Editor
-• Se ha mejorado el deslizamiento hacia arriba en la pantalla de planificación de rutas
-• Se ha corregido la posición de la regla para CarPlay
-• Se han corregido varios fallos y se ha mejorado la estabilidad y el rendimiento
+- ¡NUEVO! Toque una parada de transporte público para resaltar toda la ruta en el mapa, como en el estilo de mapa Transit.
+- ¡NUEVO! Las rutas de transporte público de larga distancia y otras relaciones de OpenStreetMap se conectan ahora a través de los bordes del mapa en una línea continua.
+- Datos de OpenStreetMap actualizados a partir del 3 de mayo.
+- Vietnam y Malasia se dividen ahora en regiones más pequeñas que pueden descargarse por separado.
+- Hong Kong, Macao y Hainan están ahora separados de Guangdong, con las fronteras vecinas actualizadas.
+- Actualizadas las curvas de nivel de Indonesia, Malasia, Tanzania, Tailandia y Vietnam.
+- Añadido un botón de grabación de pistas al panel de información de navegación.
+- Añadidos nuevos tipos de OpenStreetMap: volcanes con estado activo, puntos de acceso a vías navegables, varaderos, salones de narguile y edificios en construcción.
+- Añadido "Lookout" como sinónimo de búsqueda de miradores, y "pkwy" como sinónimo de calle estadounidense.
+- Los colores de las zonas peatonales son ligeramente más oscuros para una mejor legibilidad.
+- Las etiquetas de los marcadores en el mapa ya no se solapan.
+- El texto de varias líneas se recorta ahora limpiamente, y los nombres de las calles ya no contienen duplicados.
+- Rutas: las rutas reanudadas eliminan ahora los puntos intermedios por los que ya ha pasado.
+- Corregida la lista de marcadores errónea que se utilizaba en las compilaciones de TestFlight.
+- Corregida la importación de archivos KMB.
+- Actualizadas las traducciones revisadas de categorías, sinónimos de búsqueda y cadenas de interfaz de usuario. Añadidas traducciones para las descripciones de Nueva Gales del Sur y Territorio del Norte.
+- Mejorada la estabilidad y el rendimiento, incluyendo la forma de las fuentes, el almacenamiento en caché de los glifos y el recorte de las líneas de ruta.
+- Mejorado el gráfico de elevación para pistas y rutas.
+- Hechos más grandes los botones del menú de navegación para acciones como TTS, ajustes y grabación de pistas.
+- Refinada la animación de la sección de descripción expandible en la página de lugar.
+- La página de información del lugar ya no se cierra cuando finaliza el barrido del gráfico de elevación, ya no rebota inesperadamente y mantiene el título visible mientras se edita con el teclado abierto.
+- Se han corregido los bloqueos al borrar una pista o un marcador que ya no existe.
 
-### Traducciones
+## Soporte de plataformas
 
-• Se han mejorado las descripciones de los países
-• Se han aplicado correcciones en rumano de Eugen Dedu
-• Se han actualizado los nombres de los países
-• Se han actualizado las traducciones de los colaboradores de Weblate
-• Se ha corregido la traducción al ucraniano
-
-¡Gracias a todos los que contribuyen, donan y apoyan a Organic Maps! ¡Construyamos juntos los mejores mapas!
+- Debido a cambios en TestFlight y en la App Store, esta versión sólo es compatible con iOS 15 y posteriores. iOS 12, iOS 13 e iOS 14 ya no son compatibles.

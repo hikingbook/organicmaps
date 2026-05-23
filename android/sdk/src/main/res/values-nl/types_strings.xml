@@ -11,7 +11,7 @@
     <string name="type.aerialway.drag_lift">Sleeplift</string>
     <string name="type.aerialway.gondola">Gondelbaan</string>
     <string name="type.aerialway.mixed_lift">Gecombineerde kabelbaan</string>
-    <string name="type.aerialway.station">Kabelwagenstation</string>
+    <string name="type.aerialway.station">Kabelbaanstation</string>
     <string name="type.aeroway">Luchtvaartinfrastructuur</string>
     <string name="type.aeroway.aerodrome">Vliegveld</string>
     <string name="type.aeroway.aerodrome.international">Vliegveld</string>
@@ -41,7 +41,7 @@
     <string name="type.amenity.car_rental">Autoverhuur</string>
     <string name="type.amenity.motorcycle_rental">Motorverhuur</string>
     <string name="type.amenity.car_sharing">Autodelen</string>
-    <string name="type.amenity.car_wash">Wasserette</string>
+    <string name="type.amenity.car_wash">Autowasstraat</string>
     <string name="type.amenity.casino">Casino</string>
     <string name="type.amenity.gambling">Gokken</string>
     <string name="type.leisure.adult_gaming_centre">Gamingcentrum voor volwassenen</string>
@@ -85,7 +85,7 @@
     <string name="type.amenity.internet_cafe">Internetcafé</string>
     <string name="type.amenity.kindergarten">Kleuterschool</string>
     <string name="type.amenity.library">Bibliotheek</string>
-    <string name="type.amenity.loading_dock">Laad-dock</string>
+    <string name="type.amenity.loading_dock">Laaddock</string>
     <string name="type.amenity.luggage_locker">Baggage Kluis</string>
     <string name="type.amenity.marketplace">Markt</string>
     <string name="type.amenity.motorcycle_parking">Parking Motorfietsen</string>
@@ -237,6 +237,7 @@
     <string name="type.building">Gebouw</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Adres</string>
+    <string name="type.building.construction">Gebouw in aanbouw</string>
     <string name="type.building.has_parts">Gebouw</string>
     <string name="type.building_part">Gebouw</string>
     <string name="type.building.garage">Garage</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Mediterraans</string>
     <string name="type.cuisine.mexican">Mexicaans</string>
     <string name="type.cuisine.moroccan">Marokkaans</string>
-    <string name="type.cuisine.noodles">Noedels</string>
+    <string name="type.cuisine.noodle">Noedels</string>
     <string name="type.cuisine.oriental">Oosters</string>
     <string name="type.cuisine.pancake">Pannenkoek</string>
     <string name="type.cuisine.pasta">Pasta</string>
@@ -343,6 +344,7 @@
     <string name="type.cuisine.sausage">Worst</string>
     <string name="type.cuisine.savory_pancakes">Hartige pannenkoeken</string>
     <string name="type.cuisine.seafood">Vis en zeevruchten</string>
+    <string name="type.cuisine.shawarma">Shoarma</string>
     <string name="type.cuisine.soba">Soba</string>
     <string name="type.cuisine.spanish">Spaans</string>
     <string name="type.cuisine.steak_house">Steakhouse</string>
@@ -694,9 +696,9 @@
     <string name="type.man_made.surveillance">Bewakingscamera</string>
     <string name="type.man_made.tower">Toren</string>
     <!-- A huge telecommunications tower. Often a local monument or a landmark. -->
-    <string name="type.man_made.communications_tower">Communicatie Toren</string>
+    <string name="type.man_made.communications_tower">Communicatietoren</string>
     <!-- A regular telecommunications tower / mast. -->
-    <string name="type.man_made.tower.communication">Communicatie Toren</string>
+    <string name="type.man_made.tower.communication">Communicatietoren</string>
     <!-- A deep hole drilled into the earth to extract oil or gas. -->
     <string name="type.man_made.petroleum_well">Olie- of gasput</string>
     <!-- A tower/mast constructed to burn off excess gas. -->
@@ -754,13 +756,16 @@
     <string name="type.natural.tree_row">Bomenrij</string>
     <string name="type.natural.vineyard">Wijngaard</string>
     <string name="type.natural.volcano">Vulkaan</string>
+    <string name="type.natural.volcano.active">Actieve vulkaan</string>
     <string name="type.natural.water">Waterlichaam</string>
     <string name="type.natural.wetland">Moerasland</string>
     <string name="type.natural.wetland.bog">Moeras</string>
     <string name="type.natural.wetland.marsh">Moeras</string>
     <string name="type.noexit">Doodlopende weg</string>
     <string name="type.office">Kantoor</string>
+    <string name="type.office.architect">Architectenbureau</string>
     <string name="type.office.company">Bedrijfskantoor</string>
+    <string name="type.office.educational_institution">Onderwijsinstelling</string>
     <string name="type.office.estate_agent">Makelaar</string>
     <string name="type.office.government">Overheidskantoor</string>
     <string name="type.office.insurance">Verzekeringskantoor</string>
@@ -1155,13 +1160,22 @@
     <string name="type.shop.chemist">Drogisterij</string>
     <string name="type.shop.chocolate">Chocolaterie</string>
     <string name="type.shop.clothes">Kledingwinkel</string>
+    <string name="type.shop.clothes.children">Kinderkledingwinkel</string>
+    <string name="type.shop.clothes.fashion">Modeboutique</string>
+    <string name="type.shop.clothes.hats">Hoedenzaak</string>
+    <string name="type.shop.clothes.men">Herenkledingwinkel</string>
+    <string name="type.shop.clothes.sports">Sportkledingwinkel</string>
+    <string name="type.shop.clothes.suits">Pakkenwinkel</string>
+    <string name="type.shop.clothes.underwear">Ondergoedwinkel</string>
+    <string name="type.shop.clothes.wedding">Bruidswinkel</string>
+    <string name="type.shop.clothes.women">Dameskledingwinkel</string>
     <string name="type.shop.coffee">Koffiewinkel</string>
     <string name="type.shop.computer">Computerwinkel</string>
     <string name="type.shop.confectionery">Snoepwinkel</string>
     <string name="type.shop.convenience">Buurtwinkel</string>
     <string name="type.shop.copyshop">Kopieerwinkel</string>
-    <string name="type.shop.cosmetics">Schoonheidsmiddelen</string>
-    <string name="type.shop.curtain">Gordijnen</string>
+    <string name="type.shop.cosmetics">Cosmeticawinkel</string>
+    <string name="type.shop.curtain">Gordijnenwinkel</string>
     <string name="type.shop.deli">Delicatessenwinkel</string>
     <string name="type.shop.department_store">Warenhuis</string>
     <string name="type.shop.doityourself">IJzerhandel</string>
@@ -1175,6 +1189,7 @@
     <string name="type.shop.funeral_directors">Begrafenisondernemer</string>
     <string name="type.shop.furniture">Meubelzaak</string>
     <string name="type.shop.garden_centre">Tuincentrum</string>
+    <string name="type.shop.games">Spellenwinkel</string>
     <string name="type.shop.gas">Gas winkel</string>
     <string name="type.shop.gift">Cadeauwinkel</string>
     <string name="type.shop.greengrocer">Groentenwinkel</string>
@@ -1286,7 +1301,7 @@
     <string name="type.sport.10pin">Bowlen</string>
     <string name="type.sport.9pin">Bowlen</string>
     <string name="type.sport.padel">Padel</string>
-    <string name="type.sport.futsal">Futsal</string>
+    <string name="type.sport.futsal">Zaalvoetbal</string>
     <string name="type.sport.ice_hockey">IJshockey</string>
     <string name="type.sport.field_hockey">Veldhockey</string>
     <string name="type.sport.badminton">Badminton</string>
@@ -1341,6 +1356,7 @@
     <string name="type.traffic_calming.bump">Verkeersdrempel</string>
     <string name="type.traffic_calming.hump">Verkeersheuvel</string>
     <string name="type.waterway">Waterweg</string>
+    <string name="type.waterway.access_point">Toegangspunt waterweg</string>
     <string name="type.waterway.canal">Kanaal</string>
     <string name="type.waterway.canal.tunnel">Kanaal</string>
     <string name="type.waterway.fish_pass">Vistrap</string>
@@ -1411,7 +1427,7 @@
     <string name="type.barrier.yes">Barrière</string>
     <string name="type.building.guardhouse">Wacht</string>
     <string name="type.office.security">Beveiligingsbureau</string>
-    <string name="type.power.portal">Kracht Toren (Portaal)</string>
+    <string name="type.power.portal">Krachttoren (Portaal)</string>
     <string name="type.shop.lighting">Verlichtingswinkel</string>
     <string name="type.barrier.jersey_barrier">Blok</string>
     <string name="type.barrier.debris">Puin</string>
@@ -1430,4 +1446,5 @@
     <string name="type.craft.watchmaker">Horlogemaker</string>
     <string name="type.xmas_feature.market">Kerstmarkt</string>
     <string name="type.xmas_feature.tree">Kerstboom</string>
+    <string name="type.amenity.hookah_lounge">Shisha bar</string>
 </resources>

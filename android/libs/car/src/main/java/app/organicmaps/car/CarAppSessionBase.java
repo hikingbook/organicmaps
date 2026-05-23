@@ -11,18 +11,23 @@ import androidx.car.app.Session;
 import androidx.car.app.SessionInfo;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
+import app.organicmaps.car.screens.NavigationScreen;
+import app.organicmaps.car.screens.PlaceScreen;
+import app.organicmaps.car.screens.download.DownloadMapsScreen;
 import app.organicmaps.car.util.CurrentCountryChangedListener;
 import app.organicmaps.car.util.ThemeUtils;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.OrganicMaps;
 import app.organicmaps.sdk.PlacePageActivationListener;
+import app.organicmaps.sdk.bookmarks.data.MapObject;
 import app.organicmaps.sdk.car.CarSensorsManager;
 import app.organicmaps.sdk.car.renderer.Renderer;
 import app.organicmaps.sdk.car.renderer.RendererFactory;
 import app.organicmaps.sdk.car.screens.BaseMapScreen;
 import app.organicmaps.sdk.display.DisplayManager;
 import app.organicmaps.sdk.location.LocationState;
-import app.organicmaps.sdk.util.LocationUtils;
+import app.organicmaps.sdk.location.LocationUtils;
+import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.log.Logger;
 import app.organicmaps.sdk.widget.placepage.PlacePageData;
 
@@ -36,6 +41,7 @@ public abstract class CarAppSessionBase
   protected final OrganicMaps mOrganicMapsContext;
   @Nullable
   protected final SessionInfo mSessionInfo;
+  protected final boolean mIsDebug;
   @NonNull
   protected final ScreenManager mScreenManager;
   @NonNull
@@ -49,10 +55,11 @@ public abstract class CarAppSessionBase
   @Nullable
   protected DisplayManager mDisplayManager;
 
-  public CarAppSessionBase(@NonNull OrganicMaps organicMapsContext, @Nullable SessionInfo sessionInfo)
+  public CarAppSessionBase(@NonNull OrganicMaps organicMapsContext, @Nullable SessionInfo sessionInfo, boolean isDebug)
   {
     mOrganicMapsContext = organicMapsContext;
     mSessionInfo = sessionInfo;
+    mIsDebug = isDebug;
     mScreenManager = getCarContext().getCarService(ScreenManager.class);
     mCurrentCountryChangedListener = new CurrentCountryChangedListener();
     getLifecycle().addObserver(this);
@@ -139,19 +146,82 @@ public abstract class CarAppSessionBase
 
   protected abstract boolean isCarScreenUsed();
 
-  protected abstract void onRestoreRoute();
-
-  @Override
-  public abstract void onPlacePageActivated(@NonNull PlacePageData data);
-
-  @Override
-  public abstract void onPlacePageDeactivated();
-
   @Override
   public void onMyPositionModeChanged(int newMode)
   {
     final Screen screen = mScreenManager.getTop();
     if (screen instanceof BaseMapScreen)
       screen.invalidate();
+  }
+
+  @Override
+  public void onPlacePageActivated(@NonNull PlacePageData data)
+  {
+    // TODO: How maps downloading can trigger place page activation?
+    if (DownloadMapsScreen.MARKER.equals(mScreenManager.getTop().getMarker()))
+      return;
+
+    final MapObject mapObject = (MapObject) data;
+    // Don't display the PlaceScreen for 'MY_POSITION' or during navigation
+    // TODO (AndrewShkrob): Implement the 'Add stop' functionality
+    if (mapObject.isMyPosition() || RoutingController.get().isNavigating())
+    {
+      Framework.nativeDeactivatePopup();
+      return;
+    }
+    final PlaceScreen placeScreen = new PlaceScreen.Builder(getCarContext(), mOrganicMapsContext, mSurfaceRenderer)
+                                        .setDebugMode(mIsDebug)
+                                        .setMapObject(mapObject)
+                                        .build();
+    mScreenManager.popToRoot();
+    mScreenManager.push(placeScreen);
+  }
+
+  @Override
+  public void onPlacePageDeactivated()
+  {
+    // The function is called when we close the PlaceScreen or when we enter the navigation mode.
+    // We only need to handle the first case
+    if (!(mScreenManager.getTop() instanceof PlaceScreen))
+      return;
+
+    RoutingController.get().cancel();
+    mScreenManager.popToRoot();
+  }
+
+  private void onRestoreRoute()
+  {
+    final RoutingController routingController = RoutingController.get();
+    final boolean isNavigating = routingController.isNavigating();
+    final boolean hasNavigatingScreen = hasNavigationScreenInStack();
+
+    if (!isNavigating && hasNavigatingScreen)
+      mScreenManager.popToRoot();
+
+    if (isNavigating && routingController.getLastRouterType() == PlaceScreen.ROUTER && hasNavigatingScreen)
+    {
+      mScreenManager.popTo(NavigationScreen.MARKER);
+      return;
+    }
+
+    if (routingController.isPlanning() || isNavigating || routingController.hasSavedRoute())
+    {
+      final PlaceScreen placeScreen = new PlaceScreen.Builder(getCarContext(), mOrganicMapsContext, mSurfaceRenderer)
+                                          .setMapObject(routingController.getEndPoint())
+                                          .setDebugMode(mIsDebug)
+                                          .build();
+      mScreenManager.popToRoot();
+      mScreenManager.push(placeScreen);
+    }
+  }
+
+  private boolean hasNavigationScreenInStack()
+  {
+    for (final Screen screen : mScreenManager.getScreenStack())
+    {
+      if (NavigationScreen.MARKER.equals(screen.getMarker()))
+        return true;
+    }
+    return false;
   }
 }

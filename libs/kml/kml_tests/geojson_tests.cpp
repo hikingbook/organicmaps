@@ -1,10 +1,12 @@
 #include "testing/testing.hpp"
 
+#include "kml/serdes_geojson.hpp"
+
+#include "indexer/classificator.hpp"
+
 #include "geometry/mercator.hpp"
 
-#include <sstream>
 #include "coding/string_utf8_multilang.hpp"
-#include "kml/serdes_geojson.hpp"
 
 namespace geojson_tests
 {
@@ -672,6 +674,67 @@ UNIT_TEST(GeoJson_Writer_UMap_Invalid_Json)
   TEST_EQUAL(jsonString, expected_geojson, ());
 }
 
+UNIT_TEST(GeoJson_Parse_FeatureCollection_NonStringProperties)
+{
+  // FeatureCollection-level "properties" may contain non-string values
+  // (numbers, booleans, nested objects). This should parse without errors.
+  std::string_view constexpr input = R"({
+  "type": "FeatureCollection",
+  "properties": {
+    "name": "My Collection",
+    "count": 42,
+    "active": true,
+    "rating": 3.14,
+    "metadata": {
+      "source": "test",
+      "version": 2
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Test Point"
+      },
+      "geometry": {
+        "coordinates": [13.39712, 52.48982],
+        "type": "Point"
+      }
+    }
+  ]
+})";
+
+  kml::FileData const dataFromText = LoadGeojsonFromString(input);
+
+  TEST_EQUAL(dataFromText.m_bookmarksData.size(), 1, ());
+  TEST_EQUAL(kml::GetDefaultStr(dataFromText.m_bookmarksData.front().m_name), "Test Point", ());
+}
+
+UNIT_TEST(GeoJson_Parse_FeatureCollection_NoProperties)
+{
+  // FeatureCollection without "properties" field should also parse fine.
+  std::string_view constexpr input = R"({
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "No Collection Props"
+      },
+      "geometry": {
+        "coordinates": [2.3522, 48.8566],
+        "type": "Point"
+      }
+    }
+  ]
+})";
+
+  kml::FileData const dataFromText = LoadGeojsonFromString(input);
+
+  TEST_EQUAL(dataFromText.m_bookmarksData.size(), 1, ());
+  TEST_EQUAL(kml::GetDefaultStr(dataFromText.m_bookmarksData.front().m_name), "No Collection Props", ());
+}
+
 kml::FileData GenerateKmlFileData()
 {
   auto const kDefaultLang = StringUtf8Multilang::kDefaultCode;
@@ -687,7 +750,10 @@ kml::FileData GenerateKmlFileData()
   bookmarkData.m_name[kEnLang] = "Test bookmark";
   bookmarkData.m_description[kDefaultLang] = "Test bookmark description";
   bookmarkData.m_description[kEsLang] = "Descripción del marcador de prueba";
-  bookmarkData.m_featureTypes = {718, 715};
+
+  auto const & cl = classif();
+  bookmarkData.m_featureTypes = {cl.GetTypeByPath({"historic", "castle"}), cl.GetTypeByPath({"historic", "memorial"})};
+
   bookmarkData.m_customName[kDefaultLang] = "Mi lugar favorito";
   bookmarkData.m_customName[kEnLang] = "My favorite place";
   bookmarkData.m_color = {kml::PredefinedColor::Blue, 0};

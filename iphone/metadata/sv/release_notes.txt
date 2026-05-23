@@ -1,23 +1,26 @@
-• OSM-kartdata per den 10 mars
-• Wikipedia-data per den 1 mars
-• Stöd för villkorade hastighetsbegränsningar har lagts till
-• Mer detaljerade höjdkurvor för kinesiska provinser
-• Läderbutiker och butiker som säljer religiösa varor har lagts till
-• Trädrader har lagts till
-• Plattformer för kollektivtrafik utan närliggande busshållplatser har lagts till
-• Beräkningen av nedladdningsförloppet för länder har korrigerats
-• Tanzania har delats upp i mindre regioner
-• Historik över nyligen använda kategorier har lagts till i redigeraren
-• Förbättrat svep uppåt på ruttplaneringsskärmen
-• Fixat linjalens position för CarPlay
-• Fixat flera krascher, förbättrat stabilitet och prestanda
+- NYHET! tryck på en hållplats för kollektivtrafik för att markera hela rutten på kartan, som i kartstilen Transit.
+- NYTT! långväga kollektivtrafikrutter och andra OpenStreetMap-relationer är nu anslutna över kartgränser till en kontinuerlig linje.
+- OpenStreetMap-data uppdaterade från och med den 3 maj.
+- Vietnam och Malaysia är nu uppdelade i mindre regioner som kan laddas ner separat.
+- Hongkong, Macao och Hainan är nu separerade från Guangdong, med uppdaterade angränsande gränser.
+- Uppdaterade konturlinjer för Indonesien, Malaysia, Tanzania, Thailand och Vietnam.
+- Lagt till en spårinspelningsknapp till infopanelen i navigationen.
+- Lagt till nya OpenStreetMap-typer: vulkaner med aktiv status, vattenvägsanslutningar, sliprar, vattenpipor och byggnader under uppförande.
+- Lagt till "Lookout" som en söksynonym för utsiktspunkter och "pkwy" som en synonym för amerikanska gator.
+- Färgerna för fotgängarområden är något mörkare för bättre läsbarhet.
+- Bokmärkesetiketter på kartan överlappar inte längre varandra.
+- Text på flera rader klipps nu rent, och gatunamn innehåller inte längre dubbletter.
+- Ruttplanering: återupptagna rutter tar nu bort mellanliggande punkter som du redan har passerat.
+- Fixat fel bokmärkeslista som används i TestFlight-byggnader.
+- Fast KMB-filimport.
+- Uppdaterade korrekturlästa översättningar för kategorier, söksynonymer och användargränssnittssträngar. Lagt till översättningar för beskrivningar av New South Wales och Northern Territory.
+- Förbättrad stabilitet och prestanda, inklusive teckensnittsformning, glyfcaching och klippning av ruttlinjer.
+- Förbättrat höjddiagrammet för spår och rutter.
+- Gjort menyknapparna i navigeringen större för åtgärder som TTS, inställningar och spårinspelning.
+- Förfinat animeringen av det expanderbara beskrivningsavsnittet på platssidan.
+- Sidan med platsinformation stängs inte längre när skurningen av höjddiagrammet avslutas, studsar inte längre oväntat och titeln förblir synlig när du redigerar med tangentbordet öppet.
+- Korrigerade krascher när du tar bort ett spår eller ett bokmärke som inte längre finns.
 
-### Översättningar
+## Plattformsstöd
 
-• Förbättrade landsbeskrivningar
-• Tillämpat rumänska korrigeringar från Eugen Dedu
-• Uppdaterade landsnamn
-• Uppdaterade översättningar från Weblate-bidragsgivare
-• Fixat ukrainsk översättning
-
-Tack till alla som bidrar, donerar och stöder Organic Maps! Låt oss bygga de bästa kartorna tillsammans!
+- På grund av ändringar i TestFlight och App Store stöder den här versionen endast iOS 15 och senare. iOS 12, iOS 13 och iOS 14 stöds inte längre.

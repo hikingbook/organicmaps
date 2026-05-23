@@ -1,6 +1,6 @@
 package app.organicmaps.sdk;
 
-import android.graphics.Bitmap;
+import androidx.annotation.IntDef;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +22,10 @@ import app.organicmaps.sdk.routing.RoutingRecommendationListener;
 import app.organicmaps.sdk.routing.TransitRouteInfo;
 import app.organicmaps.sdk.settings.SpeedCameraMode;
 import app.organicmaps.sdk.util.Constants;
+import app.organicmaps.sdk.widget.placepage.RouteInfo;
 import dalvik.annotation.optimization.FastNative;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +37,16 @@ import java.util.Locale;
  */
 public class Framework
 {
+  @Retention(RetentionPolicy.SOURCE)
+  @IntDef({DAY_TIME_TYPE_DAY, DAY_TIME_TYPE_NIGHT, DAY_TIME_TYPE_POLAR_DAY, DAY_TIME_TYPE_POLAR_NIGHT})
+  public @interface DayTimeType
+  {}
+
+  public static final int DAY_TIME_TYPE_DAY = 0;
+  public static final int DAY_TIME_TYPE_NIGHT = 1;
+  public static final int DAY_TIME_TYPE_POLAR_DAY = 2;
+  public static final int DAY_TIME_TYPE_POLAR_NIGHT = 3;
+
   // Used by JNI.
   @Keep
   @SuppressWarnings("unused")
@@ -43,18 +56,6 @@ public class Framework
     public boolean buildings;
   }
 
-  // Used by JNI.
-  @Keep
-  @SuppressWarnings("unused")
-  public static class RouteAltitudeLimits
-  {
-    public int totalAscent;
-    public int totalDescent;
-    public String totalAscentString;
-    public String totalDescentString;
-    public boolean isMetricUnits;
-  }
-
   // this class is just bridge between Java and C++ worlds, we must not create it
   private Framework() {}
 
@@ -62,25 +63,6 @@ public class Framework
   {
     return nativeGetGe0Url(lat, lon, zoomLevel, name)
         .replaceFirst(Constants.Url.SHORT_SHARE_PREFIX, Constants.Url.HTTP_SHARE_PREFIX);
-  }
-
-  /**
-   * Generates Bitmap with route altitude image chart taking into account current map style.
-   * @param width is width of the image.
-   * @param height is height of the image.
-   * @return Bitmap if there's pedestrian or bicycle route and null otherwise.
-   */
-  @Nullable
-  public static Bitmap generateRouteAltitudeChart(int width, int height, @NonNull RouteAltitudeLimits limits)
-  {
-    if (width <= 0 || height <= 0)
-      return null;
-
-    final int[] altitudeChartBits = Framework.nativeGenerateRouteAltitudeChartBits(width, height, limits);
-    if (altitudeChartBits == null)
-      return null;
-
-    return Bitmap.createBitmap(altitudeChartBits, width, height, Bitmap.Config.ARGB_8888);
   }
 
   public static void setSpeedCamerasMode(@NonNull SpeedCameraMode mode)
@@ -165,7 +147,8 @@ public class Framework
   public static native double[] nativeGetParsedCenterLatLon();
   public static native @Nullable String nativeGetParsedBackUrl();
 
-  public static native void nativeDeactivatePopup();
+  /// @return true if a transit route selection was recovered.
+  public static native boolean nativeDeactivatePopup();
   public static native void nativeDeactivateMapSelectionCircle(boolean restoreViewport);
 
   public static native String nativeGetDataFileExt();
@@ -208,8 +191,11 @@ public class Framework
   public static native JunctionInfo[] nativeGetRouteJunctionPoints(double maxDistM);
 
   @Nullable
-  public static native final int[] nativeGenerateRouteAltitudeChartBits(int width, int height,
-                                                                        RouteAltitudeLimits routeAltitudeLimits);
+  public static native app.organicmaps.sdk.routing.RouteAltitudeData nativeGetRouteAltitudeData();
+
+  public static native void nativeRouteSetElevationActivePoint(double distanceMeters);
+
+  public static native void nativeRouteRemoveElevationActivePoint();
 
   // When an end user is going to a turn he gets sound turn instructions.
   // If C++ part wants the client to pronounce an instruction nativeGenerateTurnNotifications returns
@@ -275,6 +261,23 @@ public class Framework
    */
   public static native boolean nativeIsDayTime(long utcTimeSeconds, double lat, double lon);
 
+  /**
+   * Returns the current astronomical day state at the given location.
+   */
+  public static native @DayTimeType int nativeGetDayTimeType(long utcTimeSeconds, double lat, double lon);
+
+  /**
+   * Returns the UTC time in seconds of sunrise for the local day represented by {@code utcTimeSeconds}.
+   * Returns -1 for polar day/night.
+   */
+  public static native long nativeGetSunriseTime(long utcTimeSeconds, double lat, double lon);
+
+  /**
+   * Returns the UTC time in seconds of sunset for the local day represented by {@code utcTimeSeconds}.
+   * Returns -1 for polar day/night.
+   */
+  public static native long nativeGetSunsetTime(long utcTimeSeconds, double lat, double lon);
+
   public static native void nativeGet3dMode(Params3dMode result);
   public static native void nativeSet3dMode(boolean allow3d, boolean allow3dBuildings);
 
@@ -311,7 +314,13 @@ public class Framework
 
   public static native String nativeGetActiveObjectFormattedCuisine();
 
-  public static native String nativeGetActiveObjectFormattedRouteRefs();
+  @Nullable
+  public static native RouteInfo[] nativeGetActiveObjectRoutes();
+
+  public static native void nativeShowRouteTransit(int relId);
+
+  @Nullable
+  public static native String nativeGetActiveTransitRouteRef();
 
   public static native void nativeSetVisibleRect(int left, int top, int right, int bottom);
 
