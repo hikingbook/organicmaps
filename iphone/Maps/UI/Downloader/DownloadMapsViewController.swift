@@ -13,12 +13,6 @@ class DownloadMapsViewController: MWMViewController {
     case delete
   }
 
-  private enum AllMapsButtonState {
-    case none
-    case download(String)
-    case cancel(String)
-  }
-
   // MARK: - Outlets
 
   @IBOutlet var tableView: UITableView!
@@ -80,12 +74,7 @@ class DownloadMapsViewController: MWMViewController {
     tableView.registerNib(cell: MWMMapDownloaderButtonTableViewCell.self)
     title = dataSource.title
     if mode == .downloaded {
-      let image: UIImage
-      if #available(iOS 13.0, *) {
-        image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))!
-      } else {
-        image = UIImage(resource: .icNavBarAdd)
-      }
+      let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))!
       let addMapsButton = UIBarButtonItem(image: image,
                                           style: .plain,
                                           target: self,
@@ -274,8 +263,7 @@ extension DownloadMapsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if hasAddMapSection, indexPath.section == dataSource.numberOfSections() {
       let cellType = MWMMapDownloaderButtonTableViewCell.self
-      let buttonCell = tableView.dequeueReusableCell(cell: cellType, indexPath: indexPath)
-      return buttonCell
+      return tableView.dequeueReusableCell(cell: cellType, indexPath: indexPath)
     }
 
     let nodeAttrs = dataSource.item(at: indexPath)

@@ -2,9 +2,9 @@
 
 /********** Types **********/
 
-"type.addr_interpolation" = "כתובת/שכונה";
-"type.addr_interpolation.even" = "כתובת/שכונה";
-"type.addr_interpolation.odd" = "כתובת/שכונה";
+"type.addr_interpolation" = "כתובת/בלוק";
+"type.addr_interpolation.even" = "כתובת/בלוק";
+"type.addr_interpolation.odd" = "כתובת/בלוק";
 "type.aerialway" = "Aerialway";
 "type.aerialway.cable_car" = "רכבל";
 "type.aerialway.chair_lift" = "רכבל סקי";
@@ -89,7 +89,7 @@
 "type.amenity.library" = "ספרייה";
 "type.amenity.loading_dock" = "מתחם העמסה";
 "type.amenity.luggage_locker" = "Luggage Locker";
-"type.amenity.marketplace" = "זירת מסחר";
+"type.amenity.marketplace" = "שוק";
 "type.amenity.motorcycle_parking" = "חניית אופנועים";
 "type.amenity.nightclub" = "מועדון לילה";
 "type.amenity.nursing_home" = "בית אבות";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "כתובת";
+"type.building.construction" = "בניין בבנייה";
 "type.building.has_parts" = "מבנה";
 "type.building_part" = "מבנה";
 "type.building.garage" = "מחסן/חנייה";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "מטבח ים-תיכוני";
 "type.cuisine.mexican" = "מטבח מקסיקני";
 "type.cuisine.moroccan" = "מטבח מרוקאי";
-"type.cuisine.noodles" = "אטריות";
+"type.cuisine.noodle" = "אטריות";
 "type.cuisine.oriental" = "מטבח מזרחי";
 "type.cuisine.pancake" = "פנקייק";
 "type.cuisine.pasta" = "פסטה";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "נקניק";
 "type.cuisine.savory_pancakes" = "חביתיות מתובלות";
 "type.cuisine.seafood" = "מאכלי ים";
+"type.cuisine.shawarma" = "שוארמה";
 "type.cuisine.soba" = "אטריות סובה";
 "type.cuisine.spanish" = "מטבח ספרדי";
 "type.cuisine.steak_house" = "סטקייה";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "שורת עצים";
 "type.natural.vineyard" = "כרם";
 "type.natural.volcano" = "הר געש";
+"type.natural.volcano.active" = "הר געש פעיל";
 "type.natural.water" = "מים";
 "type.natural.wetland" = "ביצה";
 "type.natural.wetland.bog" = "ביצת כבול";
 "type.natural.wetland.marsh" = "ביצת עשב";
 "type.noexit" = "Dead End";
 "type.office" = "משרד";
+"type.office.architect" = "משרד אדריכלות";
 "type.office.company" = "משרד החברה";
+"type.office.educational_institution" = "מוסד חינוכי";
 "type.office.estate_agent" = "משרד נדל״ן";
 "type.office.government" = "משרד ממשלתי";
 "type.office.insurance" = "משרד ביטוח";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Chemist";
 "type.shop.chocolate" = "חנות שוקולדים";
 "type.shop.clothes" = "חנות בגדים";
+"type.shop.clothes.children" = "חנות בגדי ילדים";
+"type.shop.clothes.fashion" = "בוטיק אופנה";
+"type.shop.clothes.hats" = "חנות כובעים";
+"type.shop.clothes.men" = "חנות בגדי גברים";
+"type.shop.clothes.sports" = "חנות ביגוד ספורט";
+"type.shop.clothes.suits" = "חנות חליפות";
+"type.shop.clothes.underwear" = "חנות הלבשה תחתונה";
+"type.shop.clothes.wedding" = "חנות שמלות כלה";
+"type.shop.clothes.women" = "חנות בגדי נשים";
 "type.shop.coffee" = "בית קפה";
 "type.shop.computer" = "חנות מחשבים";
 "type.shop.confectionery" = "חנות ממתקים";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "מנהלי הלוויות";
 "type.shop.furniture" = "חנות רהיטים";
 "type.shop.garden_centre" = "משתלה";
+"type.shop.games" = "חנות משחקים";
 "type.shop.gas" = "חנות גז";
 "type.shop.gift" = "חנות מתנות";
 "type.shop.greengrocer" = "ירקן";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Traffic Bump";
 "type.traffic_calming.hump" = "פס האטה";
 "type.waterway" = "נתיב מים";
+"type.waterway.access_point" = "נקודת גישה לנתיב מים";
 "type.waterway.canal" = "תעלת מים";
 "type.waterway.canal.tunnel" = "תעלת מים תת קרקעית";
 "type.waterway.fish_pass" = "סולם דגים";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "שָׁעָן";
 "type.xmas_feature.market" = "שוק חג המולד";
 "type.xmas_feature.tree" = "עץ חג המולד";
+"type.amenity.hookah_lounge" = "בר נרגילה";

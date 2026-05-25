@@ -13,12 +13,10 @@
 
 namespace storage
 {
-using namespace std;
-
 // Mwm subtree attributes. They can be calculated based on information contained in countries.txt.
 // The first in the pair is number of mwms in a subtree. The second is sum of sizes of
 // all mwms in a subtree.
-using MwmSubtreeAttrs = tuple<MwmCounter, MwmSize, MwmSize>;
+using MwmSubtreeAttrs = std::tuple<MwmCounter, MwmSize, MwmSize>;
 
 namespace
 {
@@ -37,7 +35,7 @@ public:
       base::SortUnique(entry.second);
   }
 
-  Country * InsertToCountryTree(CountryId const & id, MwmSize mapSize, string const & mapSha1,  MwmSize hikingbookProMapSize, string const & hikingbookProMapSha1, size_t depth,
+  Country * InsertToCountryTree(CountryId const & id, MwmSize mapSize, std::string const & mapSha1, MwmSize hikingbookProMapSize, std::string const & hikingbookProMapSha1, size_t depth,
                                 CountryId const & parent)
   {
     Country country(id, parent);
@@ -48,14 +46,14 @@ public:
 
   void InsertOldMwmMapping(CountryId const & newId, CountryId const & oldId) { m_idsMapping[oldId].insert(newId); }
 
-  void InsertAffiliation(CountryId const & countryId, string affiliation)
+  void InsertAffiliation(CountryId const & countryId, std::string affiliation)
   {
     ASSERT(!affiliation.empty(), ());
     ASSERT(!countryId.empty(), ());
     m_info.m_affiliations.emplace(std::move(affiliation), CountriesVec()).first->second.push_back(countryId);
   }
 
-  void InsertCountryNameSynonym(CountryId const & countryId, string synonym)
+  void InsertCountryNameSynonym(CountryId const & countryId, std::string synonym)
   {
     ASSERT(!synonym.empty(), ());
     ASSERT(!countryId.empty(), ());
@@ -69,15 +67,15 @@ public:
     VERIFY(m_info.m_mwmTopCityGeoIds.emplace(countryId, base::GeoObjectId(geoObjectId)).second, (countryId));
   }
 
-  void InsertTopCountryGeoIds(CountryId const & countryId, vector<uint64_t> const & geoObjectIds)
+  void InsertTopCountryGeoIds(CountryId const & countryId, std::vector<uint64_t> const & geoObjectIds)
   {
     ASSERT(!countryId.empty(), ());
     ASSERT(!geoObjectIds.empty(), ());
-    vector<base::GeoObjectId> ids(geoObjectIds.cbegin(), geoObjectIds.cend());
+    std::vector<base::GeoObjectId> ids(geoObjectIds.cbegin(), geoObjectIds.cend());
     VERIFY(m_info.m_mwmTopCountryGeoIds.emplace(countryId, std::move(ids)).second, (countryId));
   }
 
-  void InsertOldCountry(CountryId const & countryId, string oldId)
+  void InsertOldCountry(CountryId const & countryId, std::string oldId)
   {
     ASSERT(!oldId.empty(), ());
     ASSERT(!countryId.empty(), ());
@@ -210,7 +208,7 @@ Country & CountryTree::AddAtDepth(size_t level, Country && value)
   }
 
   ASSERT(added, ());
-  m_countryTreeMap.insert(make_pair(added->Value().Name(), added));
+  m_countryTreeMap.insert(std::make_pair(added->Value().Name(), added));
   return added->Value();
 }
 
@@ -261,7 +259,7 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   FromJSONObject(node, "id", id);
 
   {
-    vector<string> strings;
+    std::vector<std::string> strings;
     FromJSONObjectOptionalField(node, "old", strings);
     for (auto & v : strings)
       store.InsertOldCountry(id, std::move(v));
@@ -281,7 +279,7 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
     if (geoObjectId != 0)
       store.InsertMwmTopCityGeoId(id, geoObjectId);
 
-    vector<uint64_t> topCountryIds;
+    std::vector<uint64_t> topCountryIds;
     FromJSONObjectOptionalField(node, "top_countries_geo_ids", topCountryIds);
     if (!topCountryIds.empty())
       store.InsertTopCountryGeoIds(id, topCountryIds);
@@ -291,14 +289,14 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   FromJSONObjectOptionalField(node, "s", nodeSize);
   ASSERT_LESS_OR_EQUAL(0, nodeSize, ());
 
-  string nodeHash;
+  std::string nodeHash;
   FromJSONObjectOptionalField(node, "sha1_base64", nodeHash);
     
-    MwmSize hikingbookProMapNodeSize;
-    FromJSONObjectOptionalField(node, "hikingbook_pro_map_s", hikingbookProMapNodeSize);
+  MwmSize hikingbookProMapNodeSize;
+  FromJSONObjectOptionalField(node, "hikingbook_pro_map_s", hikingbookProMapNodeSize);
     
-    string hikingbookProMapNodeHash;
-    FromJSONObjectOptionalField(node, "hikingbook_pro_map_sha1_base64", hikingbookProMapNodeHash);
+  std::string hikingbookProMapNodeHash;
+  FromJSONObjectOptionalField(node, "hikingbook_pro_map_sha1_base64", hikingbookProMapNodeHash);
 
   // We expect that mwm and routing files should be less than 2GB.
   Country * addedNode = store.InsertToCountryTree(id, nodeSize, nodeHash, hikingbookProMapNodeSize, hikingbookProMapNodeHash, depth, parent);
@@ -306,7 +304,7 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   MwmCounter mwmCounter = 0;
   MwmSize mwmSize = 0;
   MwmSize hikingbookProMwmSize = 0;
-  vector<json_t *> children;
+  std::vector<json_t *> children;
   FromJSONObjectOptionalField(node, "g", children);
   if (children.empty())
   {
@@ -328,7 +326,7 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, json_t * node, CountryId const & par
   if (addedNode != nullptr)
     addedNode->SetSubtreeAttrs(mwmCounter, mwmSize, hikingbookProMwmSize);
 
-  return make_tuple(mwmCounter, mwmSize, hikingbookProMwmSize);
+  return std::make_tuple(mwmCounter, mwmSize, hikingbookProMwmSize);
 }
 
 bool LoadCountriesImpl(json_t * root, StoreCountries & store)
@@ -345,7 +343,7 @@ bool LoadCountriesImpl(json_t * root, StoreCountries & store)
   }
 }
 
-int64_t LoadCountriesFromBuffer(string const & jsonBuffer, CountryTree & countries, CountriesInfo & countriesInfo)
+int64_t LoadCountriesFromBuffer(std::string const & jsonBuffer, CountryTree & countries, CountriesInfo & countriesInfo)
 {
   countries.Clear();
   countriesInfo.Clear();
@@ -369,7 +367,7 @@ int64_t LoadCountriesFromBuffer(string const & jsonBuffer, CountryTree & countri
 
 namespace
 {
-unique_ptr<Reader> GetReaderImpl(Platform & pl, string const & file, string const & scope)
+std::unique_ptr<Reader> GetReaderImpl(Platform & pl, std::string const & file, std::string const & scope)
 {
   try
   {
@@ -381,9 +379,9 @@ unique_ptr<Reader> GetReaderImpl(Platform & pl, string const & file, string cons
 }
 }  // namespace
 
-int64_t LoadCountriesFromFile(string const & path, CountryTree & countries, CountriesInfo & countriesInfo)
+int64_t LoadCountriesFromFile(std::string const & path, CountryTree & countries, CountriesInfo & countriesInfo)
 {
-  string json;
+  std::string json;
   int64_t version = -1;
 
   // Choose the latest version from "resource" or "writable":

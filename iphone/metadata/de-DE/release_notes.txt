@@ -1,23 +1,26 @@
-• OSM-Kartendaten vom 10. März
-• Wikipedia-Daten vom 1. März
-• Unterstützung für bedingte Geschwindigkeitsbegrenzungen hinzugefügt
-• Detailliertere Höhenlinien für chinesische Provinzen
-• Ledergeschäfte und Geschäfte für religiöse Artikel hinzugefügt
-• Baumreihen hinzugefügt
-• Haltestellenplattformen für öffentliche Verkehrsmittel ohne nahegelegene Bushaltestellen hinzugefügt
-• Berechnung des Fortschritts beim Herunterladen von Ländern korrigiert
-• Tansania in kleinere Regionen aufgeteilt
-• Verlauf der zuletzt verwendeten Kategorien im Editor hinzugefügt
-• Verbessertes Wischen nach oben auf dem Routenplanungsbildschirm
-• Position des Lineals für CarPlay korrigiert
-• Mehrere Abstürze behoben, Stabilität und Leistung verbessert
+- NEU! Tippen Sie auf eine Haltestelle des öffentlichen Nahverkehrs, um die gesamte Route auf der Karte hervorzuheben, wie im Transit-Kartenstil.
+- NEU! Fernverkehrsstrecken des öffentlichen Nahverkehrs und andere OpenStreetMap-Relationen werden nun über Kartengrenzen hinweg zu einer durchgehenden Linie verbunden.
+- OpenStreetMap-Daten aktualisiert zum 3. Mai.
+- Vietnam und Malaysia sind nun in kleinere Regionen unterteilt, die separat heruntergeladen werden können.
+- Hongkong, Macau und Hainan sind nun von Guangdong getrennt, wobei die angrenzenden Grenzen aktualisiert wurden.
+- Aktualisierte Höhenlinien für Indonesien, Malaysia, Tansania, Thailand und Vietnam.
+- Dem Info-Fenster während der Navigation wurde eine Schaltfläche zur Streckenaufzeichnung hinzugefügt.
+- Neue OpenStreetMap-Typen hinzugefügt: Vulkane mit aktivem Status, Zugangspunkte zu Wasserwegen, Slipanlagen, Shisha-Lounges und im Bau befindliche Gebäude.
+- „Lookout“ wurde als Suchsynonym für Aussichtspunkte und „pkwy“ als Synonym für US-Straßen hinzugefügt.
+- Die Farben für Fußgängerbereiche sind zur besseren Lesbarkeit etwas dunkler.
+- Lesezeichenbeschriftungen auf der Karte überlappen sich nicht mehr.
+- Mehrzeiliger Text wird nun sauber abgeschnitten, und Straßennamen enthalten keine Duplikate mehr.
+- Routenführung: Bei fortgesetzten Routen werden nun Zwischenpunkte entfernt, die Sie bereits passiert haben.
+- Es wurde behoben, dass in TestFlight-Builds die falsche Lesezeichenliste verwendet wurde.
+- Der Import von KMB-Dateien wurde korrigiert.
+- Die überarbeiteten Übersetzungen für Kategorien, Suchsynonyme und UI-Strings wurden aktualisiert. Es wurden Übersetzungen für die Beschreibungen von New South Wales und dem Northern Territory hinzugefügt.
+- Die Stabilität und Leistung wurden verbessert, einschließlich Schriftgestaltung, Glyphen-Caching und Routenlinien-Beschneidung.
+- Das Höhenprofil für Tracks und Routen wurde verbessert.
+- Die Menüschaltflächen während der Navigation wurden für Aktionen wie TTS, Einstellungen und Streckenaufzeichnung vergrößert.
+- Die Animation des ausklappbaren Beschreibungsbereichs auf der Ortsseite wurde verfeinert.
+- Die Ortsinformationsseite schließt sich nicht mehr, wenn das Scrollen im Höhenprofil endet, springt nicht mehr unerwartet zurück und behält den Titel sichtbar, während die Bearbeitung bei geöffneter Tastatur erfolgt.
+- Abstürze beim Löschen einer Strecke oder eines Lesezeichens, die bzw. das nicht mehr existiert, wurden behoben.
 
-### Übersetzungen
+## Plattformunterstützung
 
-• Verbesserte Länderbeschreibungen
-• Rumänische Korrekturen von Eugen Dedu übernommen
-• Ländernamen aktualisiert
-• Übersetzungen von Weblate-Mitwirkenden aktualisiert
-• Ukrainische Übersetzung korrigiert
-
-Vielen Dank an alle, die zu Organic Maps beitragen, spenden und es unterstützen! Lasst uns gemeinsam die besten Karten erstellen!
+- Aufgrund von Änderungen bei TestFlight und im App Store unterstützt diese Version nur noch iOS 15 und höher. iOS 12, iOS 13 und iOS 14 werden nicht mehr unterstützt.

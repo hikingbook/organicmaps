@@ -18,7 +18,7 @@
     <string name="type.aeroway.apron">Plataforma de estacionamiento de aviones</string>
     <string name="type.aeroway.gate">Puerta de embarque</string>
     <string name="type.aeroway.helipad">Helipuerto</string>
-    <string name="type.aeroway.runway">Pista de despegue</string>
+    <string name="type.aeroway.runway">Pista</string>
     <string name="type.aeroway.taxiway">Pista de rodaje</string>
     <string name="type.aeroway.terminal">Terminal</string>
     <string name="type.amenity">Infraestructura</string>
@@ -27,7 +27,7 @@
     <string name="type.amenity.bank">Banco</string>
     <string name="type.amenity.bar">Bar</string>
     <string name="type.amenity.bbq">Barbacoa</string>
-    <string name="type.amenity.bench">Asiento</string>
+    <string name="type.amenity.bench">Banco</string>
     <string name="type.amenity.bicycle_parking">Aparcamiento de bicicletas</string>
     <string name="type.amenity.bicycle_parking.covered">Aparcamiento de bicicletas cubierto</string>
     <string name="type.amenity.bicycle_rental">Alquiler de bicicletas</string>
@@ -237,6 +237,7 @@
     <string name="type.building">Edificio</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Dirección</string>
+    <string name="type.building.construction">Edificio en construcción</string>
     <string name="type.building.has_parts">Edificio</string>
     <string name="type.building_part">Edificio</string>
     <string name="type.building.garage">Garaje</string>
@@ -327,7 +328,7 @@
     <string name="type.cuisine.mediterranean">Mediterránea</string>
     <string name="type.cuisine.mexican">Mexicana</string>
     <string name="type.cuisine.moroccan">Marroquí</string>
-    <string name="type.cuisine.noodles">Fideos</string>
+    <string name="type.cuisine.noodle">Fideos</string>
     <string name="type.cuisine.oriental">Oriental</string>
     <string name="type.cuisine.pancake">Tortitas</string>
     <string name="type.cuisine.pasta">Pastas</string>
@@ -343,6 +344,7 @@
     <string name="type.cuisine.sausage">Salchichas</string>
     <string name="type.cuisine.savory_pancakes">Tortitas saladas</string>
     <string name="type.cuisine.seafood">Mariscos</string>
+    <string name="type.cuisine.shawarma">Shawarma</string>
     <string name="type.cuisine.soba">Soba (fideos japoneses)</string>
     <string name="type.cuisine.spanish">Española</string>
     <string name="type.cuisine.steak_house">Asador</string>
@@ -754,13 +756,16 @@
     <string name="type.natural.tree_row">Fila de árboles</string>
     <string name="type.natural.vineyard">Viña</string>
     <string name="type.natural.volcano">Volcán</string>
+    <string name="type.natural.volcano.active">Volcán activo</string>
     <string name="type.natural.water">Cuerpo de agua</string>
     <string name="type.natural.wetland">Terreno pantanoso</string>
     <string name="type.natural.wetland.bog">Turbera</string>
     <string name="type.natural.wetland.marsh">Ciénaga</string>
     <string name="type.noexit">Sin salida</string>
     <string name="type.office">Oficina</string>
+    <string name="type.office.architect">Estudio de arquitectura</string>
     <string name="type.office.company">Oficina</string>
+    <string name="type.office.educational_institution">Institución educativa</string>
     <string name="type.office.estate_agent">Agente inmobiliario</string>
     <string name="type.office.government">Oficina gubernamental</string>
     <string name="type.office.insurance">Oficina de seguros</string>
@@ -1155,6 +1160,15 @@
     <string name="type.shop.chemist">Droguería</string>
     <string name="type.shop.chocolate">Chocolatería</string>
     <string name="type.shop.clothes">Tienda de ropa</string>
+    <string name="type.shop.clothes.children">Tienda de ropa infantil</string>
+    <string name="type.shop.clothes.fashion">Boutique de moda</string>
+    <string name="type.shop.clothes.hats">Sombrerería</string>
+    <string name="type.shop.clothes.men">Tienda de ropa para hombre</string>
+    <string name="type.shop.clothes.sports">Tienda de ropa deportiva</string>
+    <string name="type.shop.clothes.suits">Sastrería</string>
+    <string name="type.shop.clothes.underwear">Tienda de ropa interior</string>
+    <string name="type.shop.clothes.wedding">Tienda de vestidos de novia</string>
+    <string name="type.shop.clothes.women">Tienda de ropa para mujer</string>
     <string name="type.shop.coffee">Tienda de café</string>
     <string name="type.shop.computer">Tienda de informática</string>
     <string name="type.shop.confectionery">Confitería</string>
@@ -1175,6 +1189,7 @@
     <string name="type.shop.funeral_directors">Funeraria</string>
     <string name="type.shop.furniture">Tienda de muebles</string>
     <string name="type.shop.garden_centre">Centro de jardinería</string>
+    <string name="type.shop.games">Tienda de juegos</string>
     <string name="type.shop.gas">Tienda de gasolina</string>
     <string name="type.shop.gift">Tienda de regalos</string>
     <string name="type.shop.greengrocer">Frutería</string>
@@ -1341,6 +1356,7 @@
     <string name="type.traffic_calming.bump">Banda reductora</string>
     <string name="type.traffic_calming.hump">Resalte</string>
     <string name="type.waterway">Curso de agua</string>
+    <string name="type.waterway.access_point">Punto de acceso a la vía navegable</string>
     <string name="type.waterway.canal">Canal</string>
     <string name="type.waterway.canal.tunnel">Túnel de canal</string>
     <string name="type.waterway.fish_pass">Escalera de peces</string>
@@ -1430,4 +1446,5 @@
     <string name="type.craft.watchmaker">Relojero</string>
     <string name="type.xmas_feature.market">Mercado navideño</string>
     <string name="type.xmas_feature.tree">Árbol de Navidad</string>
+    <string name="type.amenity.hookah_lounge">Lounge de narguile</string>
 </resources>

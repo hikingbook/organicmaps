@@ -11,6 +11,7 @@ class PlacePageInteractor: NSObject {
   private let bookmarksManager = BookmarksManager.shared()
   private let trackRecordingManager = TrackRecordingManager.shared
   private var placePageData: PlacePageData
+  private weak var trackDeletionConfirmationDialog: UIAlertController?
 
   init(data: PlacePageData) {
     placePageData = data
@@ -39,6 +40,9 @@ class PlacePageInteractor: NSObject {
       updatePlacePage()
     case .track:
       guard let trackData = placePageData.trackData, bookmarksManager.hasTrack(trackData.trackId) else {
+        if let trackDeletionConfirmationDialog {
+          trackDeletionConfirmationDialog.dismiss(animated: true)
+        }
         presenter?.close()
         return
       }
@@ -140,6 +144,10 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
     let message = String(format: L("copied_to_clipboard"), content)
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     presenter?.showToast(message)
+  }
+
+  func didSelectPublicTransportRoute(scrollAnchor: UIView) {
+    presenter?.scrollToReveal(scrollAnchor)
   }
 
   func didPressOpenInApp(from sourceView: UIView) {
@@ -264,7 +272,10 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
     case .more:
       fatalError("More button should've been handled in ActionBarViewContoller")
     case .track:
-      guard placePageData.trackData != nil else { return }
+      guard let trackId = placePageData.trackData?.trackId, bookmarksManager.hasTrack(trackId) else {
+        presenter?.close()
+        return
+      }
       showTrackDeletionConfirmationDialog()
     case .saveTrackRecording:
       trackRecordingManager.stopAndSave { [weak self] result in
@@ -313,6 +324,7 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
     let cancelAction = UIAlertAction(title: L("cancel"), style: .cancel)
     alert.addAction(deleteAction)
     alert.addAction(cancelAction)
+    trackDeletionConfirmationDialog = alert
     presenter?.showAlert(alert)
   }
 
@@ -347,13 +359,9 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
 // MARK: - ElevationProfileViewControllerDelegate
 
 extension PlacePageInteractor: ElevationProfileViewControllerDelegate {
-  func openDifficultyPopup() {
-    MWMPlacePageManagerHelper.openElevationDifficultPopup(placePageData)
-  }
-
-  func updateMapPoint(_ point: CLLocationCoordinate2D, distance: Double) {
+  func updateMapPoint(distance: Double) {
     guard let trackData = placePageData.trackData, trackData.elevationProfileData?.isTrackRecording == false else { return }
-    bookmarksManager.setElevationActivePoint(point, distance: distance, trackId: trackData.trackId)
+    bookmarksManager.setElevationActivePointDistance(distance, trackId: trackData.trackId)
     placePageData.trackData?.updateActivePointDistance(distance)
   }
 }
@@ -383,8 +391,10 @@ extension PlacePageInteractor: PlacePageHeaderViewControllerDelegate {
       switch status {
       case .success:
         guard let url else { fatalError("Invalid sharing url") }
-        let shareViewController = ActivityViewController.share(for: url, message: self.placePageData.previewData.title!) { _, _, _, _ in
-          self.bookmarksManager.finishSharing()
+        let title = self.placePageData.previewData.title ?? "OrganicMaps"
+        let shareViewController = ActivityViewController.share(for: url, message: L("share_bookmarks_email_body"),
+                                                               displayName: title) { [weak self] _, _, _, _ in
+          self?.bookmarksManager.finishSharing()
         }
         self.presenter?.showActivity(shareViewController, from: sourceView)
       case .emptyCategory:
@@ -432,9 +442,20 @@ extension PlacePageInteractor: BookmarksObserver {
     updatePlacePageIfNeeded()
   }
 
+  func onBookmarkDeleted(_ bookmarkId: MWMMarkID) {
+    if placePageData.bookmarkData?.bookmarkId == bookmarkId {
+      FrameworkHelper.updateAfterDeleteBookmark()
+    }
+  }
+
   func onBookmarksCategoryDeleted(_ groupId: MWMMarkGroupID) {
-    guard let bookmarkGroupId = placePageData.bookmarkData?.bookmarkGroupId else { return }
-    if bookmarkGroupId == groupId {
+    if placePageData.bookmarkData?.bookmarkGroupId == groupId || placePageData.trackData?.groupId == groupId {
+      presenter?.close()
+    }
+  }
+
+  func onTrackDeleted(_ trackId: MWMTrackID) {
+    if placePageData.trackData?.trackId == trackId {
       presenter?.close()
     }
   }

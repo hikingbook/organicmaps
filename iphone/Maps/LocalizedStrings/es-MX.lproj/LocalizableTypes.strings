@@ -18,7 +18,7 @@
 "type.aeroway.apron" = "Plataforma de estacionamiento de aviones";
 "type.aeroway.gate" = "Puerta de embarque";
 "type.aeroway.helipad" = "Helipuerto";
-"type.aeroway.runway" = "Pista de despegue";
+"type.aeroway.runway" = "Pista";
 "type.aeroway.taxiway" = "Pista de rodaje";
 "type.aeroway.terminal" = "Terminal";
 "type.amenity" = "Infraestructura";
@@ -27,7 +27,7 @@
 "type.amenity.bank" = "Banco";
 "type.amenity.bar" = "Bar";
 "type.amenity.bbq" = "Barbacoa";
-"type.amenity.bench" = "Asiento";
+"type.amenity.bench" = "Banco";
 "type.amenity.bicycle_parking" = "Estacionamiento de bicicletas";
 "type.amenity.bicycle_parking.covered" = "Estacionamiento de bicicletas techado";
 "type.amenity.bicycle_rental" = "Renta de bicicletas";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Dirección";
+"type.building.construction" = "Edificio en construcción";
 "type.building.has_parts" = "Edificio";
 "type.building_part" = "Edificio";
 "type.building.garage" = "Garaje";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Mediterránea";
 "type.cuisine.mexican" = "Mexicana";
 "type.cuisine.moroccan" = "Marroquí";
-"type.cuisine.noodles" = "Fideos";
+"type.cuisine.noodle" = "Fideos";
 "type.cuisine.oriental" = "Oriental";
 "type.cuisine.pancake" = "Tortitas";
 "type.cuisine.pasta" = "Pastas";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Salchichas";
 "type.cuisine.savory_pancakes" = "Tortitas saladas";
 "type.cuisine.seafood" = "Mariscos";
+"type.cuisine.shawarma" = "Shawarma";
 "type.cuisine.soba" = "Soba (fideos japoneses)";
 "type.cuisine.spanish" = "Española";
 "type.cuisine.steak_house" = "Asador";
@@ -767,7 +769,7 @@
 "type.leisure.golf_course" = "Campo de golf";
 "type.leisure.miniature_golf" = "Minigolf";
 "type.leisure.hackerspace" = "Espacio para hackers";
-"type.leisure.ice_rink" = "Pisa de patinaje";
+"type.leisure.ice_rink" = "Pista de patinaje";
 "type.leisure.marina" = "Puerto o amarradero";
 "type.leisure.nature_reserve" = "Reserva natural";
 "type.leisure.outdoor_seating" = "Asientos al aire libre";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Fila de árboles";
 "type.natural.vineyard" = "Viña";
 "type.natural.volcano" = "Volcán";
+"type.natural.volcano.active" = "Volcán activo";
 "type.natural.water" = "Cuerpo de agua";
 "type.natural.wetland" = "Terreno pantanoso";
 "type.natural.wetland.bog" = "Turbera";
 "type.natural.wetland.marsh" = "Ciénaga";
 "type.noexit" = "Sin salida";
 "type.office" = "Oficina";
+"type.office.architect" = "Estudio de arquitectura";
 "type.office.company" = "Oficina";
+"type.office.educational_institution" = "Institución educativa";
 "type.office.estate_agent" = "Agente inmobiliario";
 "type.office.government" = "Oficina gubernamental";
 "type.office.insurance" = "Oficina de seguros";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Droguería";
 "type.shop.chocolate" = "Chocolatería";
 "type.shop.clothes" = "Tienda de ropa";
+"type.shop.clothes.children" = "Tienda de ropa infantil";
+"type.shop.clothes.fashion" = "Boutique de moda";
+"type.shop.clothes.hats" = "Sombrerería";
+"type.shop.clothes.men" = "Tienda de ropa para hombre";
+"type.shop.clothes.sports" = "Tienda de ropa deportiva";
+"type.shop.clothes.suits" = "Sastrería";
+"type.shop.clothes.underwear" = "Tienda de ropa interior";
+"type.shop.clothes.wedding" = "Tienda de vestidos de novia";
+"type.shop.clothes.women" = "Tienda de ropa para mujer";
 "type.shop.coffee" = "Tienda de café";
 "type.shop.computer" = "Tienda de informática";
 "type.shop.confectionery" = "Confitería";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Funeraria";
 "type.shop.furniture" = "Tienda de muebles";
 "type.shop.garden_centre" = "Vivero";
+"type.shop.games" = "Tienda de juegos";
 "type.shop.gas" = "Tienda de gasolina";
 "type.shop.gift" = "Tienda de regalos";
 "type.shop.greengrocer" = "Frutería";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Topes";
 "type.traffic_calming.hump" = "Lomo";
 "type.waterway" = "Curso de agua";
+"type.waterway.access_point" = "Punto de acceso a vías navegables";
 "type.waterway.canal" = "Canal";
 "type.waterway.canal.tunnel" = "Túnel de canal";
 "type.waterway.fish_pass" = "Escalera de peces";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Relojero";
 "type.xmas_feature.market" = "Mercado navideño";
 "type.xmas_feature.tree" = "Árbol de Navidad";
+"type.amenity.hookah_lounge" = "Lounge de narguile";
