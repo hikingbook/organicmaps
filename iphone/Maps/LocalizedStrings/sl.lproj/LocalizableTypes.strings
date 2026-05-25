@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Naslov";
+"type.building.construction" = "Stavba v gradnji";
 "type.building.has_parts" = "Stavba";
 "type.building_part" = "Stavba";
 "type.building.garage" = "Garaža";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Sredozemska";
 "type.cuisine.mexican" = "Mehiška";
 "type.cuisine.moroccan" = "Maroška";
-"type.cuisine.noodles" = "Rezanci";
+"type.cuisine.noodle" = "Rezanci";
 "type.cuisine.oriental" = "Vzhodnoazijska";
 "type.cuisine.pancake" = "Palačinka";
 "type.cuisine.pasta" = "Testenine";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Klobasa";
 "type.cuisine.savory_pancakes" = "Slane palačinke";
 "type.cuisine.seafood" = "Morska hrana";
+"type.cuisine.shawarma" = "Shawarma";
 "type.cuisine.soba" = "Soba";
 "type.cuisine.spanish" = "Španska";
 "type.cuisine.steak_house" = "Zrezkarna";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Drevored";
 "type.natural.vineyard" = "Vinograd";
 "type.natural.volcano" = "Vulkan";
+"type.natural.volcano.active" = "Aktivni vulkan";
 "type.natural.water" = "Voda";
 "type.natural.wetland" = "Mokrišče";
 "type.natural.wetland.bog" = "Barje";
 "type.natural.wetland.marsh" = "Močvirje";
 "type.noexit" = "Slepa ulica";
 "type.office" = "Pisarna";
+"type.office.architect" = "Arhitekturni biro";
 "type.office.company" = "Pisarna podjetja";
+"type.office.educational_institution" = "Izobraževalna ustanova";
 "type.office.estate_agent" = "Nepremičninska agencija";
 "type.office.government" = "Vladna pisarna";
 "type.office.insurance" = "Zavarovalniška pisarna";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Drogerija";
 "type.shop.chocolate" = "Čokoladnica";
 "type.shop.clothes" = "Trgovina z oblačili";
+"type.shop.clothes.children" = "Otroška oblačila";
+"type.shop.clothes.fashion" = "Modni butik";
+"type.shop.clothes.hats" = "Klobučarstvo";
+"type.shop.clothes.men" = "Moška oblačila";
+"type.shop.clothes.sports" = "Sportna oblačila";
+"type.shop.clothes.suits" = "Obleke";
+"type.shop.clothes.underwear" = "Spodnje perilo";
+"type.shop.clothes.wedding" = "Poročna oblačila";
+"type.shop.clothes.women" = "Ženska oblačila";
 "type.shop.coffee" = "Kavarna";
 "type.shop.computer" = "Računalniška trgovina";
 "type.shop.confectionery" = "Slaščičarna";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Pogrebno podjetje";
 "type.shop.furniture" = "Pohištvena trgovina";
 "type.shop.garden_centre" = "Vrtni center";
+"type.shop.games" = "Trgovina z igrami";
 "type.shop.gas" = "Trgovina s plinom";
 "type.shop.gift" = "Trgovina z darili";
 "type.shop.greengrocer" = "Zelenjavar";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Grbina";
 "type.traffic_calming.hump" = "Grbina";
 "type.waterway" = "Vodotok";
+"type.waterway.access_point" = "Dostopna točka do plovnih poti";
 "type.waterway.canal" = "Kanal";
 "type.waterway.canal.tunnel" = "Kanalski predor";
 "type.waterway.fish_pass" = "Ribja steza";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Watchmaker";
 "type.xmas_feature.market" = "Christmas Market";
 "type.xmas_feature.tree" = "Christmas Tree";
+"type.amenity.hookah_lounge" = "Hookah Lounge";

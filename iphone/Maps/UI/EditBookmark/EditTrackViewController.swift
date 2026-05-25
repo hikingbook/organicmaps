@@ -17,7 +17,6 @@ final class EditTrackViewController: MWMTableViewController {
 
   private var editingCompleted: (Bool) -> Void
 
-  private var placePageData: PlacePageData?
   private let trackId: MWMTrackID
   private var trackTitle: String?
   private var trackGroupTitle: String?
@@ -169,7 +168,7 @@ final class EditTrackViewController: MWMTableViewController {
   }
 
   private func openGroupPicker() {
-    let groupViewController = SelectBookmarkGroupViewController(groupName: trackGroupTitle ?? "", groupId: trackGroupId)
+    let groupViewController = SelectBookmarkGroupViewController(groupId: trackGroupId)
     groupViewController.delegate = self
     let navigationController = UINavigationController(rootViewController: groupViewController)
     present(navigationController, animated: true, completion: nil)
@@ -193,8 +192,9 @@ extension EditTrackViewController: MWMButtonCellDelegate {
     case .info:
       break
     case .delete:
+      cell.isUserInteractionEnabled = false
+      // goBack() is called by onTrackDeleted observer.
       bookmarksManager.deleteTrack(trackId)
-      goBack()
     default:
       fatalError("Invalid section")
     }
@@ -233,6 +233,12 @@ extension EditTrackViewController: BookmarksObserver {
 
   func onBookmarksCategoryDeleted(_ groupId: MWMMarkGroupID) {
     if trackGroupId == groupId {
+      goBack()
+    }
+  }
+
+  func onTrackDeleted(_ deletedTrackId: MWMTrackID) {
+    if trackId == deletedTrackId {
       goBack()
     }
   }

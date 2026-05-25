@@ -1,23 +1,26 @@
-• Dữ liệu bản đồ OSM tính đến ngày 10 tháng 3
-• Dữ liệu Wikipedia tính đến ngày 1 tháng 3
-• Thêm hỗ trợ cho giới hạn tốc độ điều kiện
-• Đường đồng mức độ cao chi tiết hơn cho các tỉnh Trung Quốc
-• Thêm cửa hàng da và cửa hàng bán đồ tôn giáo
-• Thêm hàng cây
-• Thêm bến xe buýt công cộng mà không có bến xe buýt gần đó
-• Sửa lỗi tính toán tiến độ tải xuống quốc gia
-• Chia Tanzania thành các khu vực nhỏ hơn
-• Thêm lịch sử các danh mục đã sử dụng gần đây trong Trình chỉnh sửa
-• Cải thiện thao tác vuốt lên trên màn hình lập kế hoạch đường đi
-• Sửa vị trí thước đo cho CarPlay
-• Sửa một số lỗi crash, cải thiện độ ổn định và hiệu suất
+- MỚI! Nhấn vào một trạm giao thông công cộng để làm nổi bật toàn bộ lộ trình trên bản đồ, giống như trong kiểu bản đồ Transit.
+- MỚI! Các tuyến giao thông công cộng đường dài và các mối quan hệ OpenStreetMap khác hiện được kết nối qua các ranh giới bản đồ thành một đường liên tục.
+- Dữ liệu OpenStreetMap được cập nhật tính đến ngày 3 tháng 5.
+- Việt Nam và Malaysia hiện đã được chia thành các khu vực nhỏ hơn có thể tải xuống riêng biệt.
+- Hong Kong, Macau và Hainan hiện đã được tách khỏi Quảng Đông, với các đường biên giới lân cận được cập nhật.
+- Cập nhật đường đồng mức cho Indonesia, Malaysia, Tanzania, Thái Lan và Việt Nam.
+- Đã thêm nút ghi lại đường đi vào bảng thông tin trong quá trình điều hướng.
+- Đã thêm các loại OpenStreetMap mới: núi lửa đang hoạt động, điểm tiếp cận đường thủy, đường trượt, phòng hút hookah và các tòa nhà đang xây dựng.
+- Đã thêm “Lookout” làm từ đồng nghĩa trong tìm kiếm cho các điểm quan sát, và “pkwy” làm từ đồng nghĩa cho đường phố ở Mỹ.
+- Màu sắc của khu vực dành cho người đi bộ được làm tối hơn một chút để dễ đọc hơn.
+- Các nhãn Bookmark trên bản đồ không còn chồng chéo lên nhau nữa.
+- Văn bản nhiều dòng hiện được cắt gọn gàng, và tên đường phố không còn chứa các bản sao trùng lặp.
+- Tính năng định tuyến: các lộ trình tiếp tục hiện sẽ loại bỏ các điểm trung gian mà bạn đã đi qua.
+- Đã sửa lỗi sử dụng danh sách dấu trang sai trong các bản dựng TestFlight.
+- Đã sửa lỗi nhập tệp KMB.
+- Đã cập nhật các bản dịch đã được hiệu đính cho các danh mục, từ đồng nghĩa tìm kiếm và chuỗi văn bản giao diện người dùng. Đã thêm bản dịch cho các mô tả về New South Wales và Northern Territory.
+- Đã cải thiện độ ổn định và hiệu suất, bao gồm định dạng phông chữ, lưu trữ ký tự và cắt đường dẫn.
+- Đã cải thiện biểu đồ độ cao cho các đường đi và lộ trình.
+- Đã làm lớn các nút menu trong quá trình điều hướng cho các thao tác như TTS, cài đặt và ghi lại đường đi.
+- Đã tinh chỉnh hiệu ứng động của phần mô tả có thể mở rộng trên trang địa điểm.
+- Trang thông tin địa điểm không còn đóng lại khi kết thúc thao tác vuốt biểu đồ độ cao, không còn bị giật bất ngờ và giữ tiêu đề hiển thị trong khi chỉnh sửa với bàn phím mở.
+- Đã khắc phục sự cố treo ứng dụng khi xóa một track hoặc bookmark không còn tồn tại.
 
-### Dịch thuật
+## Hỗ trợ nền tảng
 
-• Cải thiện mô tả quốc gia
-• Áp dụng các bản sửa lỗi tiếng Romania từ Eugen Dedu
-• Cập nhật tên quốc gia
-• Cập nhật bản dịch từ các nhà đóng góp trên Weblate
-• Sửa bản dịch tiếng Ukraine
-
-Cảm ơn tất cả mọi người đã đóng góp, ủng hộ và hỗ trợ Organic Maps! Hãy cùng nhau xây dựng những bản đồ tốt nhất!
+- Do những thay đổi trong TestFlight và App Store, phiên bản này chỉ hỗ trợ iOS 15 trở lên. iOS 12, iOS 13 và iOS 14 không còn được hỗ trợ.

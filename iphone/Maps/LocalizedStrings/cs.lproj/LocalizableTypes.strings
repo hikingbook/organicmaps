@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Adresa";
+"type.building.construction" = "Budova ve výstavbě";
 "type.building.has_parts" = "Stavba";
 "type.building_part" = "Stavba";
 "type.building.garage" = "Garáž";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Středomořská kuchyně";
 "type.cuisine.mexican" = "Mexická kuchyně";
 "type.cuisine.moroccan" = "Marocká kuchyně";
-"type.cuisine.noodles" = "Nudle";
+"type.cuisine.noodle" = "Nudle";
 "type.cuisine.oriental" = "Orientální kuchyně";
 "type.cuisine.pancake" = "Palačinka";
 "type.cuisine.pasta" = "Těstoviny";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Klobása";
 "type.cuisine.savory_pancakes" = "Pikantní palačinky";
 "type.cuisine.seafood" = "Mořské plody";
+"type.cuisine.shawarma" = "Šavarma";
 "type.cuisine.soba" = "Soba";
 "type.cuisine.spanish" = "Španělská kuchyně";
 "type.cuisine.steak_house" = "Steaková restaurace";
@@ -882,13 +884,16 @@
 "type.natural.tree_row" = "Řada stromů";
 "type.natural.vineyard" = "Vinice";
 "type.natural.volcano" = "Sopka";
+"type.natural.volcano.active" = "Aktivní sopka";
 "type.natural.water" = "Vodní plocha";
 "type.natural.wetland" = "Mokřadní oblast";
 "type.natural.wetland.bog" = "Rašeliniště";
 "type.natural.wetland.marsh" = "Bažina";
 "type.noexit" = "Slepý konec";
 "type.office" = "Kancelář";
+"type.office.architect" = "Architektonická kancelář";
 "type.office.company" = "Kancelář společnosti";
+"type.office.educational_institution" = "Vzdělávací instituce";
 "type.office.estate_agent" = "Realitní makléř";
 "type.office.government" = "Úřad vlády";
 "type.office.insurance" = "Pojišťovací kancelář";
@@ -1293,6 +1298,15 @@
 "type.shop.chemist" = "Drogerie";
 "type.shop.chocolate" = "Obchod s čokoládou";
 "type.shop.clothes" = "Oblečení";
+"type.shop.clothes.children" = "Dětský obchod s oblečením";
+"type.shop.clothes.fashion" = "Módní butik";
+"type.shop.clothes.hats" = "Obchod s klobouky";
+"type.shop.clothes.men" = "Pánský obchod s oblečením";
+"type.shop.clothes.sports" = "Obchod se sportovním oblečením";
+"type.shop.clothes.suits" = "Obchod s obleky";
+"type.shop.clothes.underwear" = "Obchod s prádlem";
+"type.shop.clothes.wedding" = "Obchod se svatebními šaty";
+"type.shop.clothes.women" = "Dámský obchod s oblečením";
 "type.shop.coffee" = "Obchod s kávou";
 "type.shop.computer" = "Obchod s počítači";
 "type.shop.confectionery" = "Cukrárna";
@@ -1313,6 +1327,7 @@
 "type.shop.funeral_directors" = "Pohřební služba";
 "type.shop.furniture" = "Nábytek";
 "type.shop.garden_centre" = "Školka";
+"type.shop.games" = "Obchod s hrami";
 "type.shop.gas" = "Obchod s plynem";
 "type.shop.gift" = "Obchod s dárkovým zbožím";
 "type.shop.greengrocer" = "Ovoce a zelenina";
@@ -1484,6 +1499,7 @@
 "type.traffic_calming.bump" = "Zpomalovací práh";
 "type.traffic_calming.hump" = "Zpomalovací hrbol";
 "type.waterway" = "Vodní cesta";
+"type.waterway.access_point" = "Přístupový bod k vodním cestám";
 "type.waterway.canal" = "Kanál";
 "type.waterway.canal.tunnel" = "Kanál";
 "type.waterway.fish_pass" = "Žebřík pro ryby";
@@ -1504,7 +1520,7 @@
 "type.waterway.stream.tunnel" = "Řeka";
 "type.waterway.waterfall" = "Vodopád";
 "type.waterway.weir" = "Jez";
-"type.wheelchair" = "Vozíčkář";
+"type.wheelchair" = "Invalidní vozík";
 "type.wheelchair.limited" = "Omezený bezbariérový přístup";
 "type.wheelchair.no" = "Žádný bezbariérový přístup";
 "type.wheelchair.yes" = "Plně bezbariérový přístup";
@@ -1554,9 +1570,9 @@
 "type.leisure.sports_hall" = "Sportovní hala";
 "type.sport.diving" = "Potápění";
 "type.man_made.crane" = "Jeřáb";
-"type.barrier.wicket_gate" = "Vjezdová brána";
+"type.barrier.wicket_gate" = "Branka";
 "type.barrier.yes" = "Bariéra";
-"type.building.guardhouse" = "Strážce";
+"type.building.guardhouse" = "Strážnice";
 "type.office.security" = "Bezpečnostní agentura";
 "type.power.portal" = "Energetická věž (portál)";
 "type.shop.lighting" = "Obchod s osvětlením";
@@ -1577,3 +1593,4 @@
 "type.craft.watchmaker" = "Hodinář";
 "type.xmas_feature.market" = "Vánoční trh";
 "type.xmas_feature.tree" = "Vánoční stromek";
+"type.amenity.hookah_lounge" = "Shisha bar";

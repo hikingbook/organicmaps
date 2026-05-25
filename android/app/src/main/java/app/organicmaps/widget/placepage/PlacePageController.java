@@ -55,6 +55,8 @@ public class PlacePageController
   private static final String TAG = PlacePageController.class.getSimpleName();
   private static final String PLACE_PAGE_BUTTONS_FRAGMENT_TAG = "PLACE_PAGE_BUTTONS";
   private static final String PLACE_PAGE_FRAGMENT_TAG = "PLACE_PAGE";
+  // Slide offset threshold below collapsed (0.0) at which the sheet is dismissed.
+  private static final float EASY_DISMISS_SLIDE_THRESHOLD = -0.15f;
 
   private BottomSheetBehavior<View> mPlacePageBehavior;
   private NestedScrollView mPlacePage;
@@ -75,6 +77,8 @@ public class PlacePageController
   private WindowInsetsCompat mCurrentWindowInsets;
 
   private boolean mShouldCollapse;
+  // Enabled after the sheet reaches COLLAPSED; prevents dismiss during initial open animation.
+  private boolean mEasyDismissEnabled;
   private int mDistanceToTop;
 
   private ValueAnimator mCustomPeekHeightAnimator;
@@ -92,6 +96,7 @@ public class PlacePageController
       // This callback may be called before insets are updated when resuming the app
       if (mCurrentWindowInsets == null)
         return;
+
       final int topInset = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
       // Only animate the status bar background if the place page can reach it
       if (mCoordinator.getHeight() - mPlacePageContainer.getHeight() < topInset)
@@ -142,8 +147,16 @@ public class PlacePageController
 
           PlacePageUtils.updateMapViewport(mCoordinator, mDistanceToTop, mViewportMinHeight);
 
+          if (PlacePageUtils.isExpandedState(newState))
+            mEasyDismissEnabled = false;
+          else if (PlacePageUtils.isCollapsedState(newState))
+            mEasyDismissEnabled = true;
+
           if (PlacePageUtils.isHiddenState(newState))
+          {
+            mEasyDismissEnabled = false;
             onHiddenInternal();
+          }
         }
 
         @Override
@@ -152,6 +165,8 @@ public class PlacePageController
           stopCustomPeekHeightAnimation();
           mDistanceToTop = bottomSheet.getTop();
           mViewModel.setPlacePageDistanceToTop(mDistanceToTop);
+          if (slideOffset < EASY_DISMISS_SLIDE_THRESHOLD && mEasyDismissEnabled)
+            mPlacePageBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         }
       };
 
@@ -188,7 +203,7 @@ public class PlacePageController
     mPlacePageBehavior.setHideable(true);
     mPlacePageBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     mPlacePageBehavior.setFitToContents(true);
-    mPlacePageBehavior.setSkipCollapsed(true);
+    mPlacePageBehavior.setSkipCollapsed(false);
 
     UiUtils.bringViewToFrontOf(view.findViewById(R.id.pp_buttons_fragment), mPlacePage);
 
@@ -227,11 +242,14 @@ public class PlacePageController
       });
     }
     mPlacePage.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      // This callback may be called before insets are updated when resuming the app
+      if (mCurrentWindowInsets == null)
+        return;
+
       final int topInset = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
       if (mPlacePage.getHeight() >= mCoordinator.getHeight() - topInset)
-      {
         mPlacePageDistanceToTopObserver.onChanged(oldTop);
-      }
+
       if (top != oldTop)
       {
         mDistanceToTop = oldTop;
@@ -263,12 +281,18 @@ public class PlacePageController
 
   private void onHiddenInternal()
   {
-    if (ChoosePositionMode.get() == ChoosePositionMode.None)
-      Framework.nativeDeactivatePopup();
-    Framework.nativeDeactivateMapSelectionCircle(false);
-    PlacePageUtils.updateMapViewport(mCoordinator, mDistanceToTop, mViewportMinHeight);
-    resetPlacePageHeightBounds();
+    // Must remove fragments before nativeDeactivatePopup() — the native call may
+    // restore a transit PP (re-creating fragments), and commitNow() ensures the old
+    // fragments are gone so createPlacePageFragments() sees no existing tags.
     removePlacePageFragments();
+    resetPlacePageHeightBounds();
+    boolean recovered = false;
+    if (ChoosePositionMode.get() == ChoosePositionMode.None)
+      recovered = Framework.nativeDeactivatePopup();
+    // Skip circle deselect when recovery re-activated the transit PP — it just drew a new circle.
+    if (!recovered)
+      Framework.nativeDeactivateMapSelectionCircle(false);
+    PlacePageUtils.updateMapViewport(mCoordinator, mDistanceToTop, mViewportMinHeight);
   }
 
   private void onTrackRecordingSelected()
@@ -384,10 +408,10 @@ public class PlacePageController
    */
   private void animatePeekHeight(int peekHeight)
   {
+    // This callback may be called before insets are updated when resuming the app
     if (mCurrentWindowInsets == null)
-    {
       return;
-    }
+
     final int bottomInsets = mCurrentWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
     // Make sure to start from the current height of the place page
     final int parentHeight = ((View) mPlacePage.getParent()).getHeight();
@@ -431,7 +455,9 @@ public class PlacePageController
     final int bottomMargins = getResources().getDimensionPixelSize(R.dimen.margin_double);
     final View plusDetailsContainer = mPlacePage.findViewById(R.id.plus_details);
     int peekHeight = mPreviewHeight + mButtonsHeight + bottomMargins;
-    if (mMapObject != null && mMapObject.getOpeningMode() == MapObject.OPENING_MODE_PREVIEW_PLUS)
+    final View routeRef = mPlacePage.findViewById(R.id.ll__place_route_ref);
+    final boolean hasRouteRefs = routeRef != null && routeRef.getVisibility() == View.VISIBLE;
+    if (mMapObject != null && mMapObject.getOpeningMode() == MapObject.OPENING_MODE_PREVIEW_PLUS && !hasRouteRefs)
     {
       peekHeight += plusDetailsContainer.getHeight();
     }
@@ -456,6 +482,7 @@ public class PlacePageController
       setPeekHeight();
       if (mShouldCollapse && !PlacePageUtils.isCollapsedState(mPlacePageBehavior.getState()))
       {
+        mEasyDismissEnabled = false;
         mPlacePageBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         // Make sure to reset the scroll position when opening the place page
         if (mPlacePage.getScrollY() != 0)
@@ -472,7 +499,7 @@ public class PlacePageController
     int state = mPlacePageBehavior.getState();
     stopCustomPeekHeightAnimation();
     if (PlacePageUtils.isExpandedState(state))
-      mPlacePageBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+      mPlacePageBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     else
       mPlacePageBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
   }
@@ -637,13 +664,14 @@ public class PlacePageController
     final Fragment placePageButtonsFragment = fm.findFragmentByTag(PLACE_PAGE_BUTTONS_FRAGMENT_TAG);
     final Fragment placePageFragment = fm.findFragmentByTag(PLACE_PAGE_FRAGMENT_TAG);
 
-    if (placePageButtonsFragment != null)
+    if (placePageButtonsFragment != null || placePageFragment != null)
     {
-      fm.beginTransaction().setReorderingAllowed(true).remove(placePageButtonsFragment).commit();
-    }
-    if (placePageFragment != null)
-    {
-      fm.beginTransaction().setReorderingAllowed(true).remove(placePageFragment).commit();
+      final var transaction = fm.beginTransaction();
+      if (placePageButtonsFragment != null)
+        transaction.remove(placePageButtonsFragment);
+      if (placePageFragment != null)
+        transaction.remove(placePageFragment);
+      transaction.commitNowAllowingStateLoss();
     }
     mViewModel.setMapObject(null);
   }
@@ -651,19 +679,17 @@ public class PlacePageController
   private void createPlacePageFragments()
   {
     final FragmentManager fm = getChildFragmentManager();
-    if (fm.findFragmentByTag(PLACE_PAGE_FRAGMENT_TAG) == null)
+    final boolean needPlacePage = fm.findFragmentByTag(PLACE_PAGE_FRAGMENT_TAG) == null;
+    final boolean needButtons = fm.findFragmentByTag(PLACE_PAGE_BUTTONS_FRAGMENT_TAG) == null;
+
+    if (needPlacePage || needButtons)
     {
-      fm.beginTransaction()
-          .setReorderingAllowed(true)
-          .add(R.id.placepage_fragment, PlacePageView.class, null, PLACE_PAGE_FRAGMENT_TAG)
-          .commit();
-    }
-    if (fm.findFragmentByTag(PLACE_PAGE_BUTTONS_FRAGMENT_TAG) == null)
-    {
-      fm.beginTransaction()
-          .setReorderingAllowed(true)
-          .add(R.id.pp_buttons_fragment, PlacePageButtons.class, null, PLACE_PAGE_BUTTONS_FRAGMENT_TAG)
-          .commit();
+      final var transaction = fm.beginTransaction().setReorderingAllowed(true);
+      if (needPlacePage)
+        transaction.add(R.id.placepage_fragment, PlacePageView.class, null, PLACE_PAGE_FRAGMENT_TAG);
+      if (needButtons)
+        transaction.add(R.id.pp_buttons_fragment, PlacePageButtons.class, null, PLACE_PAGE_BUTTONS_FRAGMENT_TAG);
+      transaction.commit();
     }
   }
 
@@ -705,7 +731,7 @@ public class PlacePageController
       {
         buttons.add(mapObject.isBookmark() ? PlacePageButtons.ButtonType.BOOKMARK_DELETE
                                            : PlacePageButtons.ButtonType.BOOKMARK_SAVE);
-        if (mapObject.isTrack())
+        if (mapObject.isTrack() && !((Track) mapObject).isTempRelationTrack())
           buttons.add(PlacePageButtons.ButtonType.TRACK_DELETE);
       }
 

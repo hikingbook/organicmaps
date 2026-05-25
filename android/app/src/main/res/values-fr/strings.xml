@@ -338,6 +338,8 @@
     <string name="pref_appearance_light">Claire</string>
     <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
     <string name="pref_appearance_dark">Sombre</string>
+    <!-- Settings "Appearance" category: "Scheduled" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_scheduled">Clair de l\'aube au crépuscule</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">Offrez des cartes gratuites et sans pub à des millions d\'utilisateurs !</string>
 
@@ -369,6 +371,8 @@
     <string name="clear_search">Effacer l\'historique de recherche</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
     <string name="read_in_wikipedia">Wikipédia</string>
+    <!-- Source attribution for Wikipedia articles displayed in the place description screen. -->
+    <string name="article_from_wikipedia">Article de wikipedia.org</string>
     <!-- Place Page link to Wikimedia Commons. -->
     <string name="wikimedia_commons">Wikimedia Commons</string>
     <string name="p2p_your_location">Votre emplacement</string>
@@ -486,7 +490,7 @@
     <!-- Hint of the input field in the OSM note section of the editor -->
     <string name="editor_note_hint">Décrivez les erreurs sur la carte ou les éléments qui ne peuvent pas être modifiés avec Organic Maps.</string>
     <!-- Information about OSM at the top of the editing page -->
-    <string name="editor_about_osm">Vos modifications sont téléchargées dans la base de données publique <a href="https://wiki.openstreetmap.org/wiki/FR:À_propos_d’OpenStreetMap">OpenStreetMap</a>. Veuillez ne pas ajouter d\'informations personnelles ou protégées par le droit d\'auteur.</string>
+    <string name="editor_about_osm">Vos modifications sont téléchargées dans la base de données publique <a href="https://wiki.openstreetmap.org/wiki/FR:About_OpenStreetMap">OpenStreetMap</a>. Veuillez ne pas ajouter d\'informations personnelles ou protégées par le droit d\'auteur.</string>
     <string name="editor_more_about_osm">En savoir plus sur OpenStreetMap</string>
     <string name="editor_osm_history">Votre historique d\'édition</string>
     <string name="editor_osm_notes">Vos notes sur les données cartographiques</string>
@@ -626,6 +630,10 @@
     <string name="layers_title">Styles et couches de cartes</string>
     <string name="bookmarks_empty_list_title">Cette liste est vide</string>
     <string name="bookmarks_empty_list_message">Pour ajouter un signet, appuyez sur un lieu sur la carte, puis appuyez sur l\'icône étoile</string>
+    <!-- Button to change the color of all bookmarks in the current list -->
+    <string name="change_all_bookmarks_color">Changer la couleur de tous les signets</string>
+    <!-- Button to change the color of all tracks in the current list -->
+    <string name="change_all_tracks_color">Changer la couleur de tous les tracés</string>
     <string name="category_desc_more">…plus</string>
     <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">Exporter KMZ</string>
@@ -704,6 +712,13 @@
     <string name="moreyear_ago_sorttype">Il y a plus d\'un an</string>
     <string name="near_me_sorttype">Près de moi</string>
     <string name="others_sorttype">Autres</string>
+    <!-- Place Page opening hours text -->
+    <string name="closed_now">Fermé actuellement</string>
+    <string name="opens_tomorrow_at">Ouvre demain à %s</string>
+    <string name="opens_dayoftheweek_at">Ouvre le %1$s à %2$s</string>
+    <string name="opens_at">Ouvre à %s</string>
+    <string name="closes_at">Ferme à %s</string>
+    <string name="editor_add_select_category_all_subtitle">Toutes les catégories</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Aliments</string>
@@ -764,7 +779,7 @@
     <!-- Include only languages supported on the website, add new translations here: https://github.com/organicmaps/website/tree/master/content -->
     <string name="translated_om_site_url">https://organicmaps.app/fr/</string>
     <!-- Link to OSM wiki for Editor, Profile and About pages -->
-    <string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/FR:À_propos_d’OpenStreetMap</string>
+    <string name="osm_wiki_about_url">https://wiki.openstreetmap.org/wiki/FR:About_OpenStreetMap</string>
     <!-- A number of bookmarks and a number of tracks, separated by comma, like: 1 bookmark, 5 tracks -->
     <string name="comma_separated_pair">%1$s, %2$s</string>
     <!-- App Tip #00 -->
@@ -852,7 +867,7 @@
     <string name="edit_track">Modifier le trace</string>
     <string name="uri_open_location_failed">Aucune application installée ne permet d\'ouvrir l\'emplacement</string>
     <!-- preference string for using auto theme only in navigation mode -->
-    <string name="nav_auto">Auto dans la navigation</string>
+    <string name="nav_auto">Auto pendant la navigation</string>
     <!-- Setting option to sync the app's theme with the operating system's dark/light mode -->
     <string name="follow_system">Suivre le système</string>
     <!-- Title of the bottom sheet when sharing the track -->
@@ -865,4 +880,10 @@
     <string name="login_osm_credentials">Connexion avec mot de passe</string>
     <!-- Login to OSM button text -->
     <string name="login_osm_browser">Se connecter à l\'aide d\'un navigateur</string>
+    <!-- Editor section title that shows recently used categories (types of objects) when adding a place on the map -->
+    <string name="editor_add_select_category_recent_subtitle">Récemment utilisées</string>
+    <!-- Toast message shown when bookmark colors are changed in category settings -->
+    <string name="toast_bookmarks_color_changed">Couleur des signets modifiée</string>
+    <!-- Toast message shown when track colors are changed in category settings -->
+    <string name="toast_tracks_color_changed">Couleur des tracés modifiée</string>
 </resources>

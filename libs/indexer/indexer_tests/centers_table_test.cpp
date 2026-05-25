@@ -16,11 +16,11 @@
 
 #include "base/file_name_utils.hpp"
 
-#include <cstdint>
 #include <string>
-#include <utility>
 #include <vector>
 
+namespace centers_table_test
+{
 using namespace search;
 using namespace std;
 
@@ -35,7 +35,7 @@ struct CentersTableTest
 
 UNIT_CLASS_TEST(CentersTableTest, Smoke)
 {
-  string const kMap = base::JoinPath(GetPlatform().WritableDir(), "minsk-pass.mwm");
+  string const kMap = base::JoinPath(GetPlatform().ResourcesDir(), "minsk-pass.mwm");
 
   FeaturesVectorTest fv(kMap);
 
@@ -55,44 +55,6 @@ UNIT_CLASS_TEST(CentersTableTest, Smoke)
   {
     MemReader reader(buffer.data(), buffer.size());
     auto table = CentersTable::LoadV1(reader);
-    TEST(table.get(), ());
-
-    fv.GetVector().ForEach([&](FeatureType & ft, uint32_t id)
-    {
-      m2::PointD actual;
-      TEST(table->Get(id, actual), ());
-
-      m2::PointD expected = feature::GetCenter(ft);
-
-      TEST_LESS_OR_EQUAL(mercator::DistanceOnEarth(actual, expected), 1.0, (id));
-    });
-  }
-}
-
-UNIT_CLASS_TEST(CentersTableTest, SmokeV0)
-{
-  string const kMap = base::JoinPath(GetPlatform().WritableDir(), "minsk-pass.mwm");
-
-  FeaturesVectorTest fv(kMap);
-
-  feature::DataHeader header(kMap);
-  auto const codingParams = header.GetDefGeometryCodingParams();
-
-  TBuffer buffer;
-
-  {
-    CentersTableBuilder builder;
-
-    builder.SetGeometryCodingParamsV0ForTests(codingParams);
-    fv.GetVector().ForEach([&](FeatureType & ft, uint32_t id) { builder.PutV0ForTests(id, feature::GetCenter(ft)); });
-
-    MemWriter<TBuffer> writer(buffer);
-    builder.FreezeV0ForTests(writer);
-  }
-
-  {
-    MemReader reader(buffer.data(), buffer.size());
-    auto table = CentersTable::LoadV0(reader, codingParams);
     TEST(table.get(), ());
 
     fv.GetVector().ForEach([&](FeatureType & ft, uint32_t id)
@@ -154,3 +116,4 @@ UNIT_CLASS_TEST(CentersTableTest, Subset)
   }
 }
 }  // namespace
+}  // namespace centers_table_test

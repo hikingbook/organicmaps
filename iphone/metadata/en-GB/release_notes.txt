@@ -1,23 +1,26 @@
-• OSM map data as of March 10
-• Wikipedia data as of March 1
-• Added support for conditional speed limits
-• More detailed elevation isolines for Chinese provinces
-• Added leather shops and shops selling religious goods
-• Added rows of trees
-• Added public transport stop platforms without nearby bus stops
-• Fixed country downloading progress calculation
-• Split Tanzania into smaller regions
-• Added recently used categories history in the Editor
-• Improved swiping up on the route planning screen
-• Fixed ruler position for CarPlay
-• Fixed several crashes, improved stability and performance
+- NEW! tap a public transport stop to highlight the entire route on the map, as in the Transit map style.
+- NEW! long-distance public transport routes and other OpenStreetMap relations are now connected across map borders into one continuous line.
+- OpenStreetMap data updated as of May 3.
+- Vietnam and Malaysia are now split into smaller regions that can be downloaded separately.
+- Hong Kong, Macau, and Hainan are now separated from Guangdong, with neighbouring borders updated.
+- Updated contour lines for Indonesia, Malaysia, Tanzania, Thailand, and Vietnam.
+- Added a track recording button to the in-navigation info panel.
+- Added new OpenStreetMap types: volcanoes with active status, waterway access points, slipways, hookah lounges, and buildings under construction.
+- Added “Lookout” as a search synonym for viewpoints, and “pkwy” as a US street synonym.
+- Pedestrian area colours are slightly darker for better legibility.
+- Bookmark labels on the map no longer overlap.
+- Multi-line text is now clipped cleanly, and street names no longer contain duplicates.
+- Routing: resumed routes now remove intermediate points that you have already passed.
+- Fixed the wrong bookmark list being used in TestFlight builds.
+- Fixed KMB file import.
+- Updated proofread translations for categories, search synonyms, and UI strings. Added translations for New South Wales and Northern Territory descriptions.
+- Improved stability and performance, including font shaping, glyph caching, and route line clipping.
+- Improved the elevation chart for tracks and routes.
+- Made in-navigation menu buttons larger for actions such as TTS, settings, and track recording.
+- Refined the animation of the expandable description section on the place page.
+- The place information page no longer closes when elevation chart scrubbing ends, no longer bounces unexpectedly, and keeps the title visible while editing with the keyboard open.
+- Fixed crashes when deleting a track or bookmark that no longer exists.
 
-### Translations
+## Platform Support
 
-• Improved country descriptions
-• Applied Romanian fixes from Eugen Dedu
-• Updated country names
-• Updated translations from Weblate contributors
-• Fixed Ukrainian translation
-
-Thanks to everyone who is contributing, donating and supporting Organic Maps! Let's build the best maps together!
+- Due to changes in TestFlight and the App Store, this release supports only iOS 15 and later. iOS 12, iOS 13, and iOS 14 are no longer supported.

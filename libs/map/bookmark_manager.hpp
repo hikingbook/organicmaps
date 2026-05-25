@@ -159,6 +159,9 @@ public:
     void SetCategoryTags(kml::MarkGroupId categoryId, std::vector<std::string> const & tags);
     void SetCategoryAccessRules(kml::MarkGroupId categoryId, kml::AccessRules accessRules);
     void SetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key, std::string const & value);
+    void SetCategoryBookmarksColor(kml::MarkGroupId groupId, kml::PredefinedColor color);
+    /// @todo(KK) Update to the dp::Color color when custom colors for tracks will be implemented on android.
+    void SetCategoryTracksColor(kml::MarkGroupId groupId, kml::PredefinedColor color);
 
     /// Removes the category from the list of categories and deletes the related file.
     /// @param permanently If true, the file will be removed from the disk. If false, the file will be marked as deleted
@@ -274,6 +277,7 @@ public:
   kml::MarkGroupId GetCategoryByFileName(std::string const & fileName) const;
   m2::RectD GetCategoryRect(kml::MarkGroupId categoryId, bool addIconsSize) const;
   kml::CategoryData const & GetCategoryData(kml::MarkGroupId categoryId) const;
+  std::string GetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key) const;
 
   kml::MarkGroupId GetCategoryId(std::string const & name) const;
 
@@ -293,7 +297,6 @@ public:
   using TFindOnlyVisibleChecker = std::function<bool(UserMark::Type)>;
   UserMark const * FindNearestUserMark(TTouchRectHolder const & holder,
                                        TFindOnlyVisibleChecker const & findOnlyVisible) const;
-  UserMark const * FindNearestUserMark(m2::AnyRectD const & rect) const;
   UserMark const * FindMarkInRect(kml::MarkGroupId groupId, m2::AnyRectD const & rect, bool findOnlyVisible,
                                   double & d) const;
 
@@ -399,7 +402,7 @@ public:
   static std::string GetSortedByTimeBlockName(SortedByTimeBlockType blockType);
   std::string GetLocalizedRegionAddress(m2::PointD const & pt);
 
-  void SetElevationActivePoint(kml::TrackId const & trackId, m2::PointD pt, double distanceInMeters);
+  void SetElevationActivePoint(kml::TrackId const & trackId, double distanceInMeters);
   // Returns distance from the start of the track to active point in meters.
   double GetElevationActivePoint(kml::TrackId const & trackId) const;
 
@@ -430,8 +433,12 @@ public:
   std::string GenerateTrackRecordingName() const;
   dp::Color GenerateTrackRecordingColor() const;
 
-  kml::TrackId SaveRoute(std::vector<geometry::PointWithAltitude> points, std::string const & from,
-                         std::string const & to);
+  kml::TrackId SaveRoute(kml::TrackGeometry points, std::string const & from, std::string const & to);
+
+  /// Creates a temporary track from relation data. Replaces any previous temp track.
+  kml::TrackId SetTempRelationTrack(kml::TrackData && trackData);
+  /// Removes the current temporary relation track, if any.
+  void ClearTempRelationTrack();
 
   void UpdateBookmarksTextPlacement();
 
@@ -660,7 +667,7 @@ private:
       : m_id(bmData.m_id)
       , m_name(GetPreferredBookmarkName(bmData))
       , m_point(bmData.m_point)
-      , m_type(GetBookmarkBaseType(bmData.m_featureTypes))
+      , m_type(GetBookmarkMatchInfo(bmData.m_featureTypes).m_type)
       , m_timestamp(bmData.m_timestamp)
       , m_address(address)
     {}
@@ -753,7 +760,7 @@ private:
   CategoriesCollection m_categories;
   kml::GroupIdCollection m_unsortedBmGroupsIdList;
 
-  std::string m_lastCategoryUrl;
+  std::string m_lastCategoryFileName;
   kml::MarkGroupId m_lastEditedGroupId = kml::kInvalidMarkGroupId;
   kml::PredefinedColor m_lastColor = kml::PredefinedColor::Red;
   UserMarkLayers m_userMarkLayers;
@@ -761,6 +768,7 @@ private:
   MarksCollection m_userMarks;
   BookmarksCollection m_bookmarks;
   TracksCollection m_tracks;
+  std::unique_ptr<Track> m_tempRelationTrack;
 
   StaticMarkPoint * m_selectionMark = nullptr;
   MyPositionMarkPoint * m_myPositionMark = nullptr;

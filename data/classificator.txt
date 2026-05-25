@@ -81,6 +81,7 @@ world  +
         grave_yard  +
             christian  -
             {}
+        hookah_lounge  -
         hospital  -
         hunting_stand  -
         ice_cream  -
@@ -275,6 +276,7 @@ world  +
         {}
     building  +
         address  -
+        construction  -
         garage  -
         guardhouse  -
         has_parts  -
@@ -370,7 +372,7 @@ world  +
         mediterranean  -
         mexican  -
         moroccan  -
-        noodles  -
+        noodle  -
         oriental  -
         pancake  -
         pasta  -
@@ -386,6 +388,7 @@ world  +
         sausage  -
         savory_pancakes  -
         seafood  -
+        shawarma  -
         soba  -
         spanish  -
         steak_house  -
@@ -801,7 +804,9 @@ world  +
             {}
         strait  -
         tree_row  -
-        volcano  -
+        volcano  +
+            active  -
+            {}
         water  +
             basin  -
             ditch  -
@@ -822,8 +827,10 @@ world  +
         {}
     noexit  -
     office  +
+        architect  -
         company  -
         diplomatic  -
+        educational_institution  -
         estate_agent  -
         government  -
         insurance  -
@@ -1310,7 +1317,17 @@ world  +
         cheese  -
         chemist  -
         chocolate  -
-        clothes  -
+        clothes  +
+            children  -
+            fashion  -
+            hats  -
+            men  -
+            sports  -
+            suits  -
+            underwear  -
+            wedding  -
+            women  -
+            {}
         coffee  -
         collector  -
         computer  -
@@ -1335,6 +1352,7 @@ world  +
         florist  -
         funeral_directors  -
         furniture  -
+        games  -
         garden_centre  -
         gas  -
         gift  -
@@ -1486,6 +1504,7 @@ world  +
         hump  -
         {}
     waterway  +
+        access_point  -
         canal  +
             tunnel  -
             {}

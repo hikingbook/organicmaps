@@ -2,19 +2,21 @@ package app.organicmaps.downloader;
 
 import android.content.Context;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Consumer;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.lang.ref.WeakReference;
+
 import app.organicmaps.R;
 import app.organicmaps.sdk.MapSource;
-import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.ExpandRetryConfirmationListener;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.util.ConnectionState;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import java.lang.ref.WeakReference;
 
 public class MapManagerHelper
 {
@@ -173,40 +175,52 @@ public class MapManagerHelper
 
   /**
    * Enqueues failed items under given {@code root} node in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void retryDownload(Context context, @NonNull String countryId, MapSource mapSource)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.retryDownload(countryId, mapSource);
+    if (MapManager.nativeIsDownloading())
+      MapManager.retryDownload(countryId, mapSource);
+    else
+      DownloaderService.startRetryDownload(context, countryId, mapSource);
   }
 
   /**
    * Enqueues given {@code root} node with its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startUpdate(Context context, @NonNull String root, MapSource mapSource)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.startUpdate(root, mapSource);
+    if (MapManager.nativeIsDownloading())
+      MapManager.startUpdate(root, mapSource);
+    else
+      DownloaderService.startUpdate(context, root, mapSource);
   }
 
   /**
    * Enqueues the given list of nodes and its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startDownload(Context context, MapSource mapSource, String... countries)
   {
-    DownloaderService.startForegroundService(context);
-    for (var countryId : countries)
+    if (MapManager.nativeIsDownloading())
     {
-      MapManager.startDownload(mapSource, countryId);
+      for (var countryId : countries)
+        MapManager.startDownload(countryId, mapSource);
     }
+    else
+      DownloaderService.startDownload(context, mapSource, countries);
   }
 
   /**
    * Enqueues given {@code root} node and its children in downloader.
+   * If the service is already running, enqueues directly; otherwise starts the service first.
    */
   public static void startDownload(Context context, @NonNull String countryId, MapSource mapSource)
   {
-    DownloaderService.startForegroundService(context);
-    MapManager.startDownload(countryId, mapSource);
+    if (MapManager.nativeIsDownloading())
+      MapManager.startDownload(countryId, mapSource);
+    else
+      DownloaderService.startDownload(context, mapSource, countryId);
   }
 }
