@@ -201,16 +201,23 @@ std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::LoadMetaConfigMa
 {
     Platform & pl = GetPlatform();
     std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, pl.MetaServerUrl() }, { MapSource::HikingbookProMaps, pl.HikingbookProMapsMetaServerUrl() }};
+
+    // SAFEGUARD: Cache member variables locally so we don't rely on `this`
+    // being alive after a 10-second blocking network call.
+    std::string safeDataVersion = std::to_string(m_dataVersion);
+    std::string safeAppVersion = pl.Version();
+    std::string safeAcceptLanguage = GetAcceptLanguage();
+
     std::map<MapSource, downloader::MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;
         if (!metaServerUrl.empty())
         {
             platform::HttpClient request(metaServerUrl);
-            request.SetRawHeader("X-OM-DataVersion", std::to_string(m_dataVersion));
+            request.SetRawHeader("X-OM-DataVersion", safeDataVersion);
 
-            request.SetRawHeader("X-OM-AppVersion", pl.Version());
-            request.SetRawHeader("Accept-Language", GetAcceptLanguage());
+            request.SetRawHeader("X-OM-AppVersion", safeAppVersion);
+            request.SetRawHeader("Accept-Language", safeAcceptLanguage);
 	
 			/// @DebugNote Uncomment to check donates flow.
     		// request.SetRawHeader("X-OM-AppVersion", "2025.09.19-6-ios");  // "2025.09.15-18-FDroid"
