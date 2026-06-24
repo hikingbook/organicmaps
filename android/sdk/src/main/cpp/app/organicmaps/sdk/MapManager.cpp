@@ -635,21 +635,6 @@ Java_app_organicmaps_sdk_downloader_MapManager_nativeUpdateAllMapsRegistration(J
     }
 }
 
-JNIEXPORT jint JNICALL
-Java_app_organicmaps_sdk_downloader_MapManager_nativeGetHikingbookProMapSize(JNIEnv *env,
-                                                                             jclass clazz, jstring root) {
-
-    if (!root) {
-        return 0;
-    }
-
-    auto const countryID = GetRootId(env, root);
-    if (!GetStorage().IsLeaf(countryID)) {
-        return 0;
-    }
-    return GetStorage().GetCountryFile(countryID).GetHikingbookProMapRemoteSize();
-}
-
 JNIEXPORT void JNICALL
 Java_app_organicmaps_sdk_downloader_MapManager_nativeSetRenderingEnabled(JNIEnv *env, jclass clazz, jboolean enabled) {
     if (enabled) {
