@@ -265,7 +265,5 @@ public final class MapManager
    */
   public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser, boolean isBeforeProMapGracePeriod, int numDownloadedMapsLimit);
 
-  public static native int nativeGetHikingbookProMapSize(String root);
-
   public static native void nativeSetRenderingEnabled(boolean enabled);
 }
