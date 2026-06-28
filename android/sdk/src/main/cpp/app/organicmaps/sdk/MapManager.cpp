@@ -644,4 +644,8 @@ Java_app_organicmaps_sdk_downloader_MapManager_nativeSetRenderingEnabled(JNIEnv 
         g_framework->NativeFramework()->SetRenderingDisabled(false);
     }
 }
+
+JNIEXPORT jint Java_app_organicmaps_sdk_downloader_MapManager_nativeGetCurrentDataVersion(JNIEnv * env, jclass clazz) {
+    return GetStorage().GetCurrentDataVersion();
+}
 }  // extern "C"

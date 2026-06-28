@@ -266,4 +266,6 @@ public final class MapManager
   public static native void nativeUpdateAllMapsRegistration(boolean isActivatedUser, boolean isBeforeProMapGracePeriod, int numDownloadedMapsLimit);
 
   public static native void nativeSetRenderingEnabled(boolean enabled);
+
+  public static native int nativeGetCurrentDataVersion();
 }
