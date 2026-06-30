@@ -586,53 +586,34 @@ Java_app_organicmaps_sdk_downloader_MapManager_nativeUpdateAllMapsRegistration(J
         return;
     }
 
-    auto isUpdated = false;
-    auto const numDownloadedCountries = s.GetDownloadedFilesCount();
-
     auto f = g_framework->NativeFramework();
-    f->RegisterAllMaps();
-    std::vector<std::shared_ptr<platform::LocalCountryFile>> localCountryFiles;
-    s.GetLocalMaps(localCountryFiles);
-
-    if (isActivatedUser) {
-        // World.mwm & WorldCoasts.mwm
-        if (numDownloadedCountries <= 2) {
-            isUpdated = true;
-            if (!isBeforeProMapGracePeriod) {
-                f->DeregisterAllMaps();
-                auto totalRegisteredMaps = 0;
-                for (auto const &localCountryFile: localCountryFiles) {
-                    auto mapSource = localCountryFile->GetMapSource();
-                    bool isWorldMap =
-                            localCountryFile->GetCountryName().find("World") != std::string::npos;
-                    if (isWorldMap || (mapSource == MapSource::Organicmaps &&
-                                       totalRegisteredMaps < numDownloadedMapsLimit)) {
-                        s.RegisterCountryFiles(localCountryFile);
-                        f->RegisterMap(*(localCountryFile.get()));
-                        if (!isWorldMap) {
-                            ++totalRegisteredMaps;
-                        }
-                    }
+    auto const shouldRegisterAllMaps = isActivatedUser && isBeforeProMapGracePeriod;
+    if (shouldRegisterAllMaps) {
+        f->RegisterAllMaps();
+    } else {
+        f->DeregisterAllMaps();
+        s.RegisterAllLocalMaps();
+        std::vector<std::shared_ptr<platform::LocalCountryFile>> localCountryFiles;
+        localCountryFiles.clear();
+        s.GetLocalMaps(localCountryFiles);
+        auto totalRegisteredMaps = 0;
+        for (auto const & localCountryFile : localCountryFiles) {
+            bool isWorldMap = localCountryFile->GetCountryName().find("World") != std::string::npos;
+            auto const mapSource = localCountryFile->GetMapSource();
+            auto const shouldRegisterFreeMap =
+                    isActivatedUser && mapSource == MapSource::Organicmaps &&
+                    totalRegisteredMaps < numDownloadedMapsLimit;
+            if (isWorldMap || shouldRegisterFreeMap) {
+                f->RegisterMap(*(localCountryFile));
+                if (!isWorldMap && shouldRegisterFreeMap) {
+                    ++totalRegisteredMaps;
                 }
             }
         }
     }
-    else if (numDownloadedCountries > 0) {
-        f->DeregisterAllMaps();
-        for (auto const & localCountryFile : localCountryFiles) {
-            bool isWorldMap = localCountryFile->GetCountryName().find("World") != std::string::npos;
-            if (isWorldMap) {
-                s.RegisterCountryFiles(localCountryFile);
-                f->RegisterMap(*(localCountryFile.get()));
-            }
-        }
-        isUpdated = true;
-    }
 
-    if (isUpdated) {
-        m2::RectD rect = mercator::Bounds::FullRect();
-        f->InvalidateRect(rect);
-    }
+    m2::RectD rect = mercator::Bounds::FullRect();
+    f->InvalidateRect(rect);
 }
 
 JNIEXPORT void JNICALL
