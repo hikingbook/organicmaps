@@ -921,6 +921,11 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativePlacePageActivationListe
     auto const & info = frm()->GetCurrentPlacePageInfo();
     jni::TScopedLocalRef placePageDataRef(env, nullptr);
     placePageDataRef.reset(CreateMapObject(env, info));
+    if (placePageDataRef.get() == nullptr)
+    {
+      LOG(LERROR, ("Skipping place page activation because place page data could not be created."));
+      return;
+    }
     env->CallVoidMethod(g_placePageActivationListener, activatedId, placePageDataRef.get());
   };
   auto const closePlacePage = [deactivateId]()
