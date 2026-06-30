@@ -6,6 +6,8 @@
 #include "app/organicmaps/sdk/bookmarks/data/TrackStatistics.hpp"
 #include "app/organicmaps/sdk/core/jni_helper.hpp"
 
+#include "base/logging.hpp"
+
 jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLocalObjectArrayRef const & jrawTypes,
                     jni::TScopedLocalRef const & routingPointInfo)
 {
@@ -33,6 +35,11 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
 
   auto const trackId = info.GetTrackId();
   auto const track = frm()->GetBookmarkManager().GetTrack(trackId);
+  if (track == nullptr)
+  {
+    LOG(LERROR, ("Unable to create place page track. Track is missing for id:", trackId));
+    return nullptr;
+  }
   ms::LatLon const ll = info.GetLatLon();
   // clang-format off
   jobject mapObject = env->NewObject(g_trackClazz, ctorId,
