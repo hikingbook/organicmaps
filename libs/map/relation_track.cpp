@@ -6,7 +6,9 @@
 
 #include "indexer/altitude_loader.hpp"
 #include "indexer/feature.hpp"
+#include "indexer/feature_algo.hpp"
 #include "indexer/features_offsets_table.hpp"
+#include "indexer/ftypes_matcher.hpp"
 #include "indexer/scales.hpp"
 
 #include "coding/point_coding.hpp"
@@ -25,7 +27,6 @@ namespace relation_track_merger  // Unity build protect
 namespace  // Avoid exposing symbols
 {
 using Geometry = RelationTrackBuilder::Geometry;
-using RelationID = RelationTrackBuilder::RelationID;
 
 bool IsEqual(m2::PointD const & lhs, m2::PointD const & rhs)
 {
@@ -237,41 +238,49 @@ RelationTrackBuilder::RelationTrackBuilder(DataSource const & dataSource, Featur
   , m_infoGetter(infoGetter)
 {}
 
-std::optional<RelationTrackBuilder::Data> RelationTrackBuilder::Build()
+void RelationTrackBuilder::ForEachMetadata(std::function<void(Metadata &&)> const & fn,
+                                           df::RelationsDrawSettings const & sett)
 {
-  df::RelationsDrawSettings sett;
-  sett.Load();
-  if (sett.IsEmpty())
-    return std::nullopt;
-
   FeaturesLoaderGuard guard(m_dataSource, m_fid.m_mwmId);
   auto ft = guard.GetFeatureByIndex(m_fid.m_index);
   ASSERT(ft, ());
 
   for (uint32_t const relID : ft->GetRelations())
   {
-    if (!sett.MatchHikingOrCycling(ft->ReadRelationType(relID)))
+    auto rel = ft->ReadRelation(relID);
+    if (!sett.MatchHikingOrCycling(rel.GetType()))
       continue;
 
-    auto const rel = ft->ReadRelation<feature::RouteRelation>(relID);
-    auto members = LoadMemberGeometries(rel, guard, RelationID(m_fid.m_mwmId, relID));
-    if (members.empty())
-      continue;
-
-    // Cross-MWM merging.
-    AppendNeighbourMembers(guard, relID, members);
-
-    auto lines = MergeAllMembers(members);
-    if (lines.empty())
-      continue;
-
-    Data data;
-    data.m_lines = std::move(lines);
-    data.m_name = std::string(rel.GetDefaultName());
-    data.m_color = rel.GetColor();
-    return data;
+    Metadata info;
+    info.m_relationId = {m_fid.m_mwmId, relID};
+    info.m_name = rel.GetDefaultName();
+    info.m_color = rel.GetColor();
+    fn(std::move(info));
   }
-  return std::nullopt;
+}
+
+std::optional<RelationTrackBuilder::Data> RelationTrackBuilder::Build(RelationID const & relationId)
+{
+  if (!relationId.IsValid())
+    return std::nullopt;
+
+  FeaturesLoaderGuard guard(m_dataSource, relationId.m_mwmId);
+  auto const rel = guard.GetRelation(relationId.m_index);
+  auto members = LoadMemberGeometries(rel, guard, relationId);
+  if (members.empty())
+    return std::nullopt;
+
+  AppendNeighbourMembers(guard, relationId.m_index, members);
+
+  auto lines = MergeAllMembers(members);
+  if (lines.empty())
+    return std::nullopt;
+
+  Data data;
+  data.m_lines = std::move(lines);
+  data.m_name = std::string(rel.GetDefaultName());
+  data.m_color = rel.GetColor();
+  return data;
 }
 
 void RelationTrackBuilder::AppendNeighbourMembers(FeaturesLoaderGuard const & guard, uint32_t relIdx,
@@ -357,10 +366,7 @@ bool RelationTrackBuilder::TryAppendFromMwm(MwmSet::MwmId const & mwmId, uint32_
 std::optional<df::TransitInfo> RelationTrackBuilder::BuildTransitInfo(uint32_t relID)
 {
   FeaturesLoaderGuard guard(m_dataSource, m_fid.m_mwmId);
-  auto ft = guard.GetFeatureByIndex(m_fid.m_index);
-  ASSERT(ft, ());
-
-  auto const rel = ft->ReadRelation<feature::RouteRelation>(relID);
+  auto const rel = guard.GetRelation(relID);
 
   df::TransitInfo info;
   info.m_color = rel.GetColor();
@@ -399,6 +405,9 @@ std::optional<df::TransitInfo> RelationTrackBuilder::BuildTransitInfo(uint32_t r
     if (!id.m_mwmId.IsAlive())
       return;
 
+    auto const & isStation = ftypes::IsRailwayStationChecker::Instance();
+    auto const & isStop = ftypes::IsPublicTransportStopChecker::Instance();
+
     auto const visit = [&](FeaturesLoaderGuard & g)
     {
       auto const r = g.GetRelation(id.m_index);
@@ -407,10 +416,16 @@ std::optional<df::TransitInfo> RelationTrackBuilder::BuildTransitInfo(uint32_t r
       for (uint32_t const ftIdx : r.GetMembers())
       {
         auto stopFt = g.GetFeatureByIndex(ftIdx);
-        if (!stopFt || stopFt->GetGeomType() != feature::GeomType::Point)
-          continue;
+        ASSERT(stopFt, ());
+        switch (stopFt->GetGeomType())
+        {
+        case feature::GeomType::Line: continue;
+        case feature::GeomType::Area:  // skip platforms
+          if (!isStation(*stopFt) && !isStop(*stopFt))
+            continue;
+        }
 
-        auto const ftCenter = stopFt->GetCenter();
+        auto const ftCenter = feature::GetCenter(*stopFt);
         df::TransitInfo::Stop stop;
         stop.m_featureId = stopFt->GetID();
         stop.m_pos = ftCenter;
@@ -502,10 +517,8 @@ std::optional<df::TransitInfo> RelationTrackBuilder::BuildTransitInfo(uint32_t r
 std::optional<df::SelectionInfo> RelationTrackBuilder::BuildSelectionInfo(uint32_t relID)
 {
   FeaturesLoaderGuard guard(m_dataSource, m_fid.m_mwmId);
-  auto ft = guard.GetFeatureByIndex(m_fid.m_index);
-  ASSERT(ft, ());
+  auto const rel = guard.GetRelation(relID);
 
-  auto const rel = ft->ReadRelation<feature::RouteRelation>(relID);
   auto members = LoadMemberGeometries(rel, guard, RelationID(m_fid.m_mwmId, relID));
   if (members.empty())
     return std::nullopt;

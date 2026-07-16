@@ -14,9 +14,38 @@
 #include "coding/url.hpp"
 
 #include "base/assert.hpp"
+#include "base/logging.hpp"
+#include "base/string_utils.hpp"
 
 namespace storage
 {
+bool NormalizeDebugMapDownloadServer(std::string const & rawUrl, std::string & normalizedUrl)
+{
+  normalizedUrl = rawUrl;
+  strings::Trim(normalizedUrl);
+
+  // Expect a plain "http(s)://host[/path]" with no spaces, query or fragment.
+  if (normalizedUrl.find_first_of(" \t\n\r\f\v?#") != std::string::npos)
+    return false;
+
+  // url::Url accepts any scheme and collapses repeated slashes, so enforce the explicit
+  // "scheme://host" shape before trusting the parsed result.
+  auto const schemeEnd = normalizedUrl.find("://");
+  if (schemeEnd == std::string::npos || schemeEnd + 3 >= normalizedUrl.size() || normalizedUrl[schemeEnd + 3] == '/')
+    return false;
+
+  url::Url const parsedUrl(normalizedUrl);
+  auto scheme = parsedUrl.GetScheme();
+  strings::AsciiToLower(scheme);
+  if ((scheme != "http" && scheme != "https") || parsedUrl.GetHost().empty())
+    return false;
+
+  if (!normalizedUrl.ends_with('/'))
+    normalizedUrl.push_back('/');
+
+  return true;
+}
+
 MapFilesDownloader::~MapFilesDownloader()
 {
   m_alive->store(false, std::memory_order_release);
@@ -52,8 +81,9 @@ void MapFilesDownloader::DownloadMapFile(QueuedCountry && queuedCountry)
 void MapFilesDownloader::RunMetaConfigAsync()
 {
   m_isMetaConfigRequested = true;
+  auto const metaConfigGeneration = m_metaConfigGeneration;
 
-  GetPlatform().RunTask(Platform::Thread::Network, [this, alive = m_alive]()
+  GetPlatform().RunTask(Platform::Thread::Network, [this, alive = m_alive, metaConfigGeneration]()
   {
     if (!alive->load(std::memory_order_acquire))
       return;
@@ -65,9 +95,9 @@ void MapFilesDownloader::RunMetaConfigAsync()
       products::ProductsSettings::Instance().Update(std::move(metaConfig.productsConfig));
     }
     
-    GetPlatform().RunTask(Platform::Thread::Gui, [this, alive, metaConfigMap = metaConfigMap]()
+    GetPlatform().RunTask(Platform::Thread::Gui, [this, alive, metaConfigGeneration, metaConfigMap = metaConfigMap]()
     {
-      if (!alive->load(std::memory_order_acquire))
+      if (!alive->load(std::memory_order_acquire) || metaConfigGeneration != m_metaConfigGeneration)
         return;
       for (auto & [mapSource, metaConfig] : metaConfigMap) {
         m_serversList[mapSource] = std::move(metaConfig.servers);
@@ -163,7 +193,33 @@ std::vector<std::string> MapFilesDownloader::MakeUrlListLegacy(MapSource mapSour
 
 void MapFilesDownloader::SetServersList(MapSource mapSource, ServersList const & serversList)
 {
+  if (m_downloadHandle)
+  {
+    m_downloadHandle->Cancel();
+    m_downloadHandle.reset();
+  }
+  ++m_generation;
+  ++m_metaConfigGeneration;
+
   m_serversList[mapSource] = serversList;
+  m_isMetaConfigRequested = false;
+
+  if (m_serversList.empty())
+  {
+    if (!m_metaConfigWaiters.empty())
+      RunMetaConfigAsync();
+    return;
+  }
+
+  auto waiters = std::move(m_metaConfigWaiters);
+  for (auto & w : waiters)
+    w();
+}
+
+void MapFilesDownloader::ResetServersList()
+{
+  SetServersList(MapSource::Organicmaps, {});
+  SetServersList(MapSource::HikingbookProMaps, {});
 }
 
 void MapFilesDownloader::SetDownloadingPolicy(DownloadingPolicy * policy)

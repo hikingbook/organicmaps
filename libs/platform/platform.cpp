@@ -1,5 +1,6 @@
 // This file is updated for Hikingbook Pro Maps by Zheng-Xiang Ke on 2022.
 #include "platform/platform.hpp"
+#include "platform/preferred_languages.hpp"
 
 #include "coding/internal/file_data.hpp"
 
@@ -188,7 +189,6 @@ void Platform::GetFontNames(FilesList & res) const
       "fonts/00_NotoSansThai-Regular.ttf",
       "fonts/00_NotoSerifDevanagari-Regular.ttf",
       "fonts/01_dejavusans.ttf",
-      "fonts/02_droidsans-fallback.ttf",
       "fonts/03_jomolhari-id-a3d.ttf",
       "fonts/04_padauk.ttf",
       "fonts/05_khmeros.ttf",
@@ -198,7 +198,17 @@ void Platform::GetFontNames(FilesList & res) const
   };
   res.insert(res.end(), arrDef, arrDef + ARRAY_SIZE(arrDef));
 
+  size_t const beforeSystem = res.size();
   GetSystemFontNames(res);
+
+  // Load CJK 02_droidsans-fallback.ttf only if needed.
+  bool const hasSystemCJK = std::any_of(res.begin() + beforeSystem, res.end(), [](std::string const & p)
+  {
+    return languages::CJKResolver::IsCJKContainerFileName(p) || languages::CJKResolver::FromFontFileName(p) ||
+           p.ends_with("/DroidSansFallback.ttf");
+  });
+  if (!hasSystemCJK)
+    res.push_back("fonts/02_droidsans-fallback.ttf");
 
   LOG(LINFO, ("Available font files:", (res)));
 }
@@ -396,6 +406,18 @@ std::string DebugPrint(Platform::ChargingStatus status)
   case Platform::ChargingStatus::Unknown: return "Unknown";
   case Platform::ChargingStatus::Plugged: return "Plugged";
   case Platform::ChargingStatus::Unplugged: return "Unplugged";
+  }
+  UNREACHABLE();
+}
+
+std::string DebugPrint(Platform::EConnectionType connectionType)
+{
+  switch (connectionType)
+  {
+    using enum Platform::EConnectionType;
+  case CONNECTION_NONE: return "No connection";
+  case CONNECTION_WIFI: return "WiFi or cable connection";
+  case CONNECTION_WWAN: return "Cellular connection";
   }
   UNREACHABLE();
 }

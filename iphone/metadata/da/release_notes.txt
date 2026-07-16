@@ -1,26 +1,28 @@
-- NYT! Tryk på et stoppested for offentlig transport for at fremhæve hele ruten på kortet, som i kortstilen Transit.
-- NYT! Langdistanceruter for offentlig transport og andre OpenStreetMap-relationer er nu forbundet på tværs af kortgrænser til en kontinuerlig linje.
-- OpenStreetMap-data opdateret pr. 3. maj.
-- Vietnam og Malaysia er nu opdelt i mindre regioner, som kan downloades separat.
-- Hong Kong, Macau og Hainan er nu adskilt fra Guangdong, og nabogrænserne er opdateret.
-- Opdaterede konturlinjer for Indonesien, Malaysia, Tanzania, Thailand og Vietnam.
-- Tilføjet en knap til optagelse af spor til infopanelet i navigationen.
-- Tilføjet nye OpenStreetMap-typer: vulkaner med aktiv status, adgangspunkter til vandveje, slæbesteder, vandpibesaloner og bygninger under opførelse.
-- Tilføjet "Lookout" som et søgesynonym for udsigtspunkter og "pkwy" som et amerikansk gadesynonym.
-- Farverne på fodgængerområderne er lidt mørkere for at gøre dem lettere at læse.
-- Bogmærkeetiketter på kortet overlapper ikke længere hinanden.
-- Tekst med flere linjer klippes nu rent, og gadenavne indeholder ikke længere dubletter.
-- Ruteplanlægning: Genoptagne ruter fjerner nu mellemliggende punkter, som du allerede har passeret.
-- Rettet den forkerte bogmærkeliste, der blev brugt i TestFlight-builds.
-- Rettet import af KMB-filer.
-- Opdaterede korrekturlæste oversættelser af kategorier, søgesynonymer og UI-strenge. Tilføjet oversættelser til beskrivelser af New South Wales og Northern Territory.
-- Forbedret stabilitet og ydeevne, herunder font shaping, glyph caching og route line clipping.
-- Forbedret højdekurve for spor og ruter.
-- Større menuknapper i navigationen til handlinger som TTS, indstillinger og sporoptagelse.
-- Forfinet animationen af den udvidelige beskrivelsessektion på stedsiden.
-- Siden med stedsoplysninger lukkes ikke længere, når scrubbing af højdekort slutter, den hopper ikke længere uventet og holder titlen synlig under redigering med åbent tastatur.
-- Rettet nedbrud ved sletning af et spor eller bogmærke, der ikke længere findes.
+• Den nye indstilling »Gem søgehistorik« hjælper dig med at holde din søgehistorik privat, hvis det er nødvendigt
 
-## Platformsstøtte
+## Kort og steder
+• OpenStreetMap-data pr. 14. juli
+• OpenStreetMap-noter placeres nu på den nøjagtige placering, du vælger, i stedet for midt i skoven
+• Forbedret kortvalg for regioner, der krydser 180°-antimeridianen
+• Højdeprofiler for ruter viser ikke længere forældede eller tomme diagrammer, når en rute fjernes
+• Det tomme højdediagram for registrerede ruter er blevet forbedret
+• Knappen til at fjerne bogmærker er nemmere at finde
+• Automatisk gemning af bogmærker, når du forlader redigeringsskærmen
+• Farvepaletten indeholder foruddefinerede farver og giver dig mulighed for at vælge en hvilken som helst brugerdefineret farve
+• Andre forbedringer af brugergrænsefladen
 
-- På grund af ændringer i TestFlight og App Store understøtter denne udgivelse kun iOS 15 og nyere. iOS 12, iOS 13 og iOS 14 understøttes ikke længere.
+## Offentlig transport
+• Navne på stoppesteder, skiftesteder og stationer har nu en hvid kontur, så de forbliver læselige i både lyse og mørke temaer
+• Metro-laget vises igen korrekt, når du lukker en forhåndsvisning af en rute med offentlig transport
+
+## Ruteplanlægning og navigation
+• Problemer med forkerte og manglende vejbeskrivelser er rettet
+• Ruteadvarsler (vejafgifter, færger, grusveje, trapper osv.) vises nu for alle alternative ruter
+• Et sjældent programnedbrud under ruteplanlægning er rettet, og håndteringen af blindveje samt start- og slutpunkter på en vej med adgangsbegrænsninger er forbedret
+• Rutefremdriften på startknappen er forbedret
+• Omarrangering af ruteholdesteder får ikke længere listen til at springe rundt
+
+## Oversættelser
+• Den kinesiske formulering er forbedret
+• De ukrainske oversættelser er opdateret
+• Oversættelserne af kortregioner på italiensk er rettet

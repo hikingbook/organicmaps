@@ -59,7 +59,6 @@ std::string GetBookmarkIconType(kml::BookmarkIcon const & icon)
 
 std::string const kCustomImageProperty = "CustomImage";
 std::string const kHasElevationProfileProperty = "has_elevation_profile";
-int constexpr kInvalidColor = 0;
 }  // namespace
 
 Bookmark::Bookmark(m2::PointD const & ptOrg) : Base(ptOrg, UserMark::BOOKMARK), m_groupId(kml::kInvalidMarkGroupId)
@@ -74,12 +73,14 @@ Bookmark::Bookmark(kml::BookmarkData && data)
   , m_groupId(kml::kInvalidMarkGroupId)
 {
   m_data.m_id = GetId();
+  m_data.m_color = kml::NormalizeBookmarkColorData(m_data.m_color);
 }
 
 void Bookmark::SetData(kml::BookmarkData const & data)
 {
   SetDirty();
   m_data = data;
+  m_data.m_color = kml::NormalizeBookmarkColorData(m_data.m_color);
 }
 
 kml::BookmarkData const & Bookmark::GetData() const
@@ -117,7 +118,7 @@ drape_ptr<df::UserPointMark::TitlesInfo> Bookmark::GetTitleDeclEx(settings::Plac
   default: UNREACHABLE();
   }
 
-  title.m_primaryTextFont.m_color = df::GetColorConstant(GetColorConstant());
+  title.m_primaryTextFont.m_color = GetColorForRendering();
   title.m_primaryTextFont.m_outlineColor = outlineColor;
   title.m_primaryTextFont.m_size = 11;  // most frequent font size in styles
   title.m_primaryText = GetPreferredName();
@@ -218,19 +219,26 @@ kml::PredefinedColor Bookmark::GetColor() const
   return m_data.m_color.m_predefinedColor;
 }
 
-void Bookmark::InvalidateRGBAColor()
+void Bookmark::SetColor(dp::Color color)
 {
-  m_data.m_color.m_rgba = kInvalidColor;
-}
-
-void Bookmark::SetColor(kml::PredefinedColor color)
-{
-  if (m_data.m_color.m_predefinedColor == color)
+  auto const colorData = kml::MakeCustomBookmarkColorData(color);
+  if (m_data.m_color == colorData)
     return;
 
   SetDirty();
-  m_data.m_color.m_predefinedColor = color;
-  InvalidateRGBAColor();
+  m_data.m_color = colorData;
+}
+
+std::optional<dp::Color> Bookmark::GetCustomColor() const
+{
+  if (kml::IsCustomBookmarkColor(m_data.m_color))
+    return dp::Color(m_data.m_color.m_rgba);
+  return std::nullopt;
+}
+
+dp::Color Bookmark::GetColorForRendering() const
+{
+  return GetCustomColor().value_or(df::GetColorConstant(GetColorConstant()));
 }
 
 std::string Bookmark::GetPreferredName() const
@@ -426,12 +434,6 @@ void BookmarkCategory::SetAccessRules(kml::AccessRules accessRules)
 
   SetDirty(true /* updateModificationTime */);
   m_data.m_accessRules = accessRules;
-}
-
-// static
-kml::PredefinedColor BookmarkCategory::GetDefaultColor()
-{
-  return kml::PredefinedColor::Red;
 }
 
 void BookmarkCategory::SetDirty(bool updateModificationDate)

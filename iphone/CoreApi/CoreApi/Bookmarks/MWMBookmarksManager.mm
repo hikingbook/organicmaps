@@ -1,7 +1,6 @@
 #import "MWMBookmarksManager.h"
 
 #import "MWMBookmark+Core.h"
-#import "MWMBookmarkColor+Core.h"
 #import "MWMBookmarkGroup.h"
 #import "MWMBookmarksSection.h"
 #import "MWMCarPlayBookmarkObject.h"
@@ -18,31 +17,6 @@
 #include "base/string_utils.hpp"
 
 #include <utility>
-
-static kml::PredefinedColor kmlColorFromBookmarkColor(MWMBookmarkColor bookmarkColor)
-{
-  switch (bookmarkColor)
-  {
-  case MWMBookmarkColorNone: return kml::PredefinedColor::None;
-  case MWMBookmarkColorRed: return kml::PredefinedColor::Red;
-  case MWMBookmarkColorBlue: return kml::PredefinedColor::Blue;
-  case MWMBookmarkColorPurple: return kml::PredefinedColor::Purple;
-  case MWMBookmarkColorYellow: return kml::PredefinedColor::Yellow;
-  case MWMBookmarkColorPink: return kml::PredefinedColor::Pink;
-  case MWMBookmarkColorBrown: return kml::PredefinedColor::Brown;
-  case MWMBookmarkColorGreen: return kml::PredefinedColor::Green;
-  case MWMBookmarkColorOrange: return kml::PredefinedColor::Orange;
-  case MWMBookmarkColorDeepPurple: return kml::PredefinedColor::DeepPurple;
-  case MWMBookmarkColorLightBlue: return kml::PredefinedColor::LightBlue;
-  case MWMBookmarkColorCyan: return kml::PredefinedColor::Cyan;
-  case MWMBookmarkColorTeal: return kml::PredefinedColor::Teal;
-  case MWMBookmarkColorLime: return kml::PredefinedColor::Lime;
-  case MWMBookmarkColorDeepOrange: return kml::PredefinedColor::DeepOrange;
-  case MWMBookmarkColorGray: return kml::PredefinedColor::Gray;
-  case MWMBookmarkColorBlueGray: return kml::PredefinedColor::BlueGray;
-  case MWMBookmarkColorCount: return kml::PredefinedColor::Count;
-  }
-}
 
 static MWMBookmarksSortingType convertSortingType(BookmarkManager::SortingType const & sortingType)
 {
@@ -79,6 +53,36 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
   }
 }
 
+static kml::PredefinedColor convertPredefinedColor(MWMPredefinedColor predefinedColor)
+{
+  return static_cast<kml::PredefinedColor>(predefinedColor);
+}
+
+static MWMPredefinedColor convertPredefinedColor(kml::PredefinedColor predefinedColor)
+{
+  return static_cast<MWMPredefinedColor>(predefinedColor);
+}
+
+static UIColor * UIColorFromCoreColor(dp::Color const & color)
+{
+  return [UIColor colorWithRed:color.GetRedF() green:color.GetGreenF() blue:color.GetBlueF() alpha:color.GetAlphaF()];
+}
+
+static void DeleteTemporaryBookmarksFile(std::string const & filePath)
+{
+  NSError * error;
+  NSString * path = [NSString stringWithUTF8String:filePath.c_str()];
+  if ([[NSFileManager defaultManager] removeItemAtPath:path error:&error])
+  {
+    LOG(LINFO, ("Temporary bookmarks file is deleted:", filePath));
+    [[NSFileManager defaultManager] removeItemAtPath:path.stringByDeletingLastPathComponent error:nil];
+  }
+  else
+  {
+    LOG(LWARNING, ("Failed to delete temporary bookmarks file:", filePath, error));
+  }
+}
+
 @interface MWMBookmarksManager ()
 
 @property(nonatomic, readonly) BookmarkManager & bm;
@@ -99,6 +103,20 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{ manager = [[self alloc] initManager]; });
   return manager;
+}
+
++ (NSArray<NSNumber *> *)predefinedColors
+{
+  NSMutableArray<NSNumber *> * result = [[NSMutableArray alloc] initWithCapacity:kml::kOrderedPredefinedColors.size()];
+  for (auto const predefinedColor : kml::kOrderedPredefinedColors)
+    if (predefinedColor != kml::PredefinedColor::None)
+      [result addObject:@(convertPredefinedColor(predefinedColor))];
+  return result;
+}
+
++ (UIColor *)colorFromPredefinedColor:(MWMPredefinedColor)predefinedColor
+{
+  return UIColorFromCoreColor(kml::ColorFromPredefinedColor(convertPredefinedColor(predefinedColor)));
 }
 
 - (BookmarkManager &)bm
@@ -157,6 +175,8 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
         if ([observer respondsToSelector:@selector(onBookmarksFileLoadSuccess)])
           [observer onBookmarksFileLoadSuccess];
       }];
+      if (isTemporaryFile)
+        DeleteTemporaryBookmarksFile(filePath);
     };
   }
   {
@@ -168,6 +188,8 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
         if ([observer respondsToSelector:@selector(onBookmarksFileLoadError)])
           [observer onBookmarksFileLoadError];
       }];
+      if (isTemporaryFile)
+        DeleteTemporaryBookmarksFile(filePath);
     };
   }
   self.bm.SetAsyncLoadingCallbacks(std::move(bookmarkCallbacks));
@@ -529,6 +551,12 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
   return [NSString stringWithUTF8String:description.c_str()];
 }
 
+- (NSString *)descriptionForTrackId:(MWMTrackID)trackId
+{
+  auto const description = self.bm.GetTrack(trackId)->GetDescription();
+  return [NSString stringWithUTF8String:description.c_str()];
+}
+
 - (NSArray<MWMBookmark *> *)bookmarksForGroup:(MWMMarkGroupID)groupId
 {
   auto const & bookmarkIds = self.bm.GetUserMarkIds(groupId);
@@ -701,7 +729,7 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
 - (void)updateBookmark:(MWMMarkID)bookmarkId
             setGroupId:(MWMMarkGroupID)groupId
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
            description:(NSString *)description
 {
   ASSERT_NOT_EQUAL(groupId, kml::kInvalidMarkGroupId, ());
@@ -713,42 +741,41 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
   auto bookmark = editSession.GetBookmarkForEdit(bookmarkId);
   ASSERT(bookmark, ("Invalid bookmark id:", bookmarkId));
 
-  auto kmlColor = kmlColorFromBookmarkColor(color);
-  if (kmlColor != bookmark->GetColor())
-    self.bm.SetLastEditedBmColor(kmlColor);
+  auto const newColor = [MWMBookmarksManager getColorFromUIColor:color];
+  if (newColor != bookmark->GetColorForRendering())
+    self.bm.SetLastEditedBmColor(kml::MakeCustomBookmarkColorData(newColor));
 
-  bookmark->SetColor(kmlColor);
+  bookmark->SetColor(newColor);
   bookmark->SetDescription(description.UTF8String);
   if (title.UTF8String != bookmark->GetPreferredName())
     bookmark->SetCustomName(title.UTF8String);
 }
 
-- (void)updateBookmark:(MWMMarkID)bookmarkId setColor:(MWMBookmarkColor)color
+- (void)updateBookmark:(MWMMarkID)bookmarkId setColor:(UIColor *)color
 {
   auto editSession = self.bm.GetEditSession();
 
   auto bookmark = editSession.GetBookmarkForEdit(bookmarkId);
   ASSERT(bookmark, ("Invalid bookmark id:", bookmarkId));
 
-  auto kmlColor = kmlColorFromBookmarkColor(color);
-  if (kmlColor != bookmark->GetColor())
-    self.bm.SetLastEditedBmColor(kmlColor);
+  auto const newColor = [MWMBookmarksManager getColorFromUIColor:color];
+  if (newColor != bookmark->GetColorForRendering())
+    self.bm.SetLastEditedBmColor(kml::MakeCustomBookmarkColorData(newColor));
 
-  bookmark->SetColor(kmlColor);
+  bookmark->SetColor(newColor);
 }
 
-- (void)setCategory:(MWMMarkGroupID)groupId bookmarksColor:(MWMBookmarkColor)color
+- (void)setCategory:(MWMMarkGroupID)groupId bookmarksColor:(UIColor *)color
 {
   auto editSession = self.bm.GetEditSession();
-  auto const kmlColor = kmlColorFromBookmarkColor(color);
-  editSession.SetCategoryBookmarksColor(groupId, kmlColor);
-  self.bm.SetLastEditedBmColor(kmlColor);
+  // SetCategoryBookmarksColor(dp::Color) also updates the last-edited color.
+  editSession.SetCategoryBookmarksColor(groupId, [MWMBookmarksManager getColorFromUIColor:color]);
 }
 
-- (void)setCategory:(MWMMarkGroupID)groupId tracksColor:(MWMBookmarkColor)color
+- (void)setCategory:(MWMMarkGroupID)groupId tracksColor:(UIColor *)color
 {
   auto editSession = self.bm.GetEditSession();
-  editSession.SetCategoryTracksColor(groupId, kmlColorFromBookmarkColor(color));
+  editSession.SetCategoryTracksColor(groupId, [MWMBookmarksManager getColorFromUIColor:color]);
 }
 
 - (void)moveBookmark:(MWMMarkID)bookmarkId toGroupId:(MWMMarkGroupID)groupId
@@ -766,6 +793,7 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
          setGroupId:(MWMMarkGroupID)groupId
               color:(UIColor *)color
               title:(NSString *)title
+        description:(NSString *)description
 {
   ASSERT_NOT_EQUAL(groupId, kml::kInvalidMarkGroupId, ());
   auto const currentGroupId = self.bm.GetTrack(trackId)->GetGroupId();
@@ -783,6 +811,7 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
     track->SetColor(newColor);
 
   track->SetName(title.UTF8String);
+  track->SetDescription(description.UTF8String);
 }
 
 - (void)updateTrack:(MWMTrackID)trackId setColor:(UIColor *)color
@@ -881,9 +910,12 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
 
 - (void)setElevationActivePointChanged:(uint64_t)trackId callback:(ElevationPointChangedBlock)callback
 {
-  __weak __typeof(self) ws = self;
-  self.bm.SetElevationActivePointChangedCallback([callback, trackId, ws]()
-  { callback(ws.bm.GetElevationActivePoint(trackId)); });
+  self.bm.SetElevationActivePointChangedCallback([callback, trackId](kml::TrackId changedTrackId, double distance)
+  {
+    if (changedTrackId != trackId)
+      return;
+    callback(distance);
+  });
 }
 
 - (void)resetElevationActivePointChanged
@@ -893,9 +925,12 @@ static FileType convertFileTypeToCore(MWMFileType fileType)
 
 - (void)setElevationMyPositionChanged:(uint64_t)trackId callback:(ElevationPointChangedBlock)callback
 {
-  __weak __typeof(self) ws = self;
-  self.bm.SetElevationMyPositionChangedCallback([callback, trackId, ws]()
-  { callback(ws.bm.GetElevationMyPosition(trackId)); });
+  self.bm.SetElevationMyPositionChangedCallback([callback, trackId](kml::TrackId changedTrackId, double distance)
+  {
+    if (changedTrackId != trackId)
+      return;
+    callback(distance);
+  });
 }
 
 - (void)resetElevationMyPositionChanged

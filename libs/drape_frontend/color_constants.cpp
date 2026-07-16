@@ -8,13 +8,29 @@
 
 #include "coding/reader.hpp"
 
-#include "base/assert.hpp"
 #include "base/string_utils.hpp"
 
-#include "cppjansson/cppjansson.hpp"
+#include <glaze/json.hpp>
+
+#include <map>
 
 namespace df
 {
+namespace transit_colors_json
+{
+struct TransitColorInfo
+{
+  std::string clear;
+  std::string night;
+  std::string text;
+};
+
+struct TransitColorsJson
+{
+  std::map<std::string, TransitColorInfo> colors;
+};
+}  // namespace transit_colors_json
+
 namespace
 {
 std::string const kTransitColorFileName = "transit_colors.txt";
@@ -22,14 +38,37 @@ std::string const kTransitColorFileName = "transit_colors.txt";
 class TransitColorsHolder
 {
 public:
+  /// @pre IsTransitColor.
   dp::Color GetColor(std::string_view name) const
   {
     auto const isDarkStyle = MapStyleIsDark(GetStyleReader().GetCurrentStyle());
     auto const & colors = isDarkStyle ? m_nightColors : m_clearColors;
     auto const it = colors.find(name);
-    if (it == colors.cend())
-      return dp::Color();
-    return it->second;
+    if (it != colors.cend())
+      return it->second;
+
+    // Not a (subway) palette name: bus/tram lines collected from OSM have raw color like "#RRGGBB".
+    // Parse it and adjust to the current theme like the PT relations rendering does.
+    auto raw = name;
+    if (raw.starts_with(kTransitLineColorPrefix))
+      raw.remove_prefix(kTransitLineColorPrefix.size());
+    else if (raw.starts_with(kTransitTextColorPrefix))
+      raw.remove_prefix(kTransitTextColorPrefix.size());
+
+    if (raw.starts_with('#'))
+      raw.remove_prefix(1);
+
+    unsigned int rgb;
+    if (raw.size() == 6 && strings::to_uint(raw, rgb, 16))
+    {
+      auto color = df::ToDrapeColor(static_cast<uint32_t>(rgb));
+      dp::HSL hsl = dp::Color2HSL(color);
+      if (hsl.AdjustLightness(!isDarkStyle))
+        color = dp::HSL2Color(hsl);
+      return color;
+    }
+
+    return dp::Color::Purple();  // Default purple.
   }
 
   void Load()
@@ -47,33 +86,20 @@ public:
 
     try
     {
-      base::Json root(data);
+      transit_colors_json::TransitColorsJson transitColors;
+      glz::opts constexpr opts{.error_on_unknown_keys = false};
+      if (auto const error = glz::read<opts>(transitColors, data); error)
+        MYTHROW(RootException, (glz::format_error(error, data)));
 
-      if (root.get() == nullptr)
-        return;
-
-      auto colors = json_object_get(root.get(), "colors");
-      if (colors == nullptr)
-        return;
-
-      char const * name = nullptr;
-      json_t * colorInfo = nullptr;
-      json_object_foreach(colors, name, colorInfo)
+      for (auto const & [name, colorInfo] : transitColors.colors)
       {
-        ASSERT(name != nullptr, ());
-        ASSERT(colorInfo != nullptr, ());
-
-        std::string strValue;
-        FromJSONObject(colorInfo, "clear", strValue);
-        m_clearColors[df::GetTransitColorName(name)] = ParseColor(strValue);
-        FromJSONObject(colorInfo, "night", strValue);
-        m_nightColors[df::GetTransitColorName(name)] = ParseColor(strValue);
-        FromJSONObject(colorInfo, "text", strValue);
-        m_clearColors[df::GetTransitTextColorName(name)] = ParseColor(strValue);
-        m_nightColors[df::GetTransitTextColorName(name)] = ParseColor(strValue);
+        m_clearColors[df::GetTransitColorName(name)] = ParseColor(colorInfo.clear);
+        m_nightColors[df::GetTransitColorName(name)] = ParseColor(colorInfo.night);
+        m_clearColors[df::GetTransitTextColorName(name)] = ParseColor(colorInfo.text);
+        m_nightColors[df::GetTransitTextColorName(name)] = ParseColor(colorInfo.text);
       }
     }
-    catch (base::Json::Exception const & e)
+    catch (RootException const & e)
     {
       LOG(LWARNING, ("Reading transit colors failed:", e.Msg()));
     }
@@ -104,12 +130,12 @@ TransitColorsHolder & TransitColors()
 
 std::string GetTransitColorName(ColorConstant const & localName)
 {
-  return (kTransitColorPrefix + kTransitLinePrefix).append(localName);
+  return kTransitLineColorPrefix + std::string(localName);
 }
 
 std::string GetTransitTextColorName(ColorConstant const & localName)
 {
-  return (kTransitColorPrefix + kTransitTextPrefix).append(localName);
+  return kTransitTextColorPrefix + std::string(localName);
 }
 
 bool IsTransitColor(ColorConstant const & constant)

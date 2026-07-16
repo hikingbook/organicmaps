@@ -9,6 +9,7 @@
 + (void)addBusiness;
 + (void)addPlace:(CLLocationCoordinate2D)coordinate;
 + (void)openWebsite:(PlacePageData *)data;
++ (void)openHeritageWebsite:(PlacePageData *)data;
 + (void)openWebsiteMenu:(PlacePageData *)data;
 + (void)openWikipedia:(PlacePageData *)data;
 + (void)openWikimediaCommons:(PlacePageData *)data;
@@ -29,7 +30,7 @@
 + (void)addBookmark:(PlacePageData *)data;
 + (void)updateBookmark:(PlacePageData *)data
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
               category:(MWMMarkGroupID)category;
 + (void)removeBookmark:(PlacePageData *)data;
 + (void)updateTrack:(PlacePageData *)data

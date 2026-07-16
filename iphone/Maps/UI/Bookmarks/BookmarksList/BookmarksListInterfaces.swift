@@ -40,7 +40,7 @@ protocol IBookmarksListItemViewModel {
   var name: String { get }
   var subtitle: String { get }
   var image: UIImage { get }
-  var colorDidTapAction: (() -> Void)? { get }
+  var colorDidTapAction: ((_ anchor: UIView?) -> Void)? { get }
 }
 
 protocol ISubgroupViewModel {
@@ -57,11 +57,10 @@ protocol IBookmarksListMenuItem {
 }
 
 protocol IBookmarksListView: AnyObject {
-  func setTitle(_ title: String)
   func setInfo(_ info: IBookmarksListInfoViewModel)
   func setSections(_ sections: [IBookmarksListSectionViewModel])
   func showMenu(_ items: [IBookmarksListMenuItem], from source: BookmarkToolbarButtonSource)
-  func showColorPicker(with pickerType: ColorPickerType, _ completion: ((UIColor) -> Void)?)
+  func showColorPicker(anchor: UIView?, currentColor: UIColor?, _ completion: ((UIColor) -> Void)?)
   func enableEditing(_ enable: Bool)
   func share(_ url: URL, displayName: String, completion: @escaping () -> Void)
   func showError(title: String, message: String)
@@ -76,6 +75,7 @@ protocol IBookmarksListPresenter {
   func search(_ text: String)
   func sort()
   func more()
+  func editCategory()
   func deleteItem(in section: IBookmarksListSectionViewModel, at index: Int)
   func moveItem(in section: IBookmarksListSectionViewModel, at index: Int)
   func editItem(in section: IBookmarksListSectionViewModel, at index: Int)
@@ -95,6 +95,7 @@ enum BookmarksListSortingType {
 protocol IBookmarksListInteractor {
   var onCategoryReload: ((GroupReloadingResult) -> Void)? { get set }
 
+  func reloadCategory()
   func getBookmarkGroup() -> BookmarkGroup
   func prepareForSearch()
   func search(_ text: String, completion: @escaping ([Bookmark]) -> Void)

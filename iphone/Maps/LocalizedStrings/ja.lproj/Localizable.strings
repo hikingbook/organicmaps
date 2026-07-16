@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "省電力モードで建物の 3D 表示がオフになっている";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "衛星画像";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "サーバーのURL";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "{z}/{x}/{y} を含む有効なURLを入力してください";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "キャッシュサイズ (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "面オブジェクトの不透明度";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "カスタムタイルのソースはご自身で用意するものです。アクセスが許可されているサービスのみを使用してください。帰属表示、ライセンス条件、APIキー、クォータ、利用制限についてはご自身の責任となります。";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "音声指示";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "音声言語";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "高品質の音声をダウンロードするには、「設定」アプリを開き、アクセシビリティ → VoiceOver → 読み上げ → 声 に移動します。";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "音声案内をテストする（TTS、Text-To-Speech）";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "サイクリング";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "衛星";
 "button_layer_subway" = "地下鉄";
 "layers_title" = "マップのスタイルとレイヤー";
 
@@ -707,6 +731,15 @@
 "toll_road" = "有料道路";
 "unpaved_road" = "未舗装道路";
 "ferry_crossing" = "フェリー";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "階段";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "ゲート";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "ブームバリア";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "はい";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "下降";
 "elevation_profile_min_elevation" = "最小標高";
 "elevation_profile_max_elevation" = "最大標高";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "移動を開始すると標高プロファイルが表示されます";
 "isolines_toast_zooms_1_10" = "等高線を調べるようにズームインしてください";
 "downloader_loading_ios" = "ダウンロード中";
 

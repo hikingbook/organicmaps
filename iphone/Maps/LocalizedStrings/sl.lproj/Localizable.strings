@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "3D zgradbe so onemogočene v načinu varčevanja z energijo";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Satelitske slike";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL strežnika";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Vnesite veljaven URL z {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Velikost predpomnilnika (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Neprosojnost ploskovnih objektov";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Vire ploščic po meri zagotavljate sami. Uporabljajte samo storitve, do katerih imate dovoljen dostop. Sami ste odgovorni za navedbo avtorstva, licenčne pogoje, ključe API, kvote in omejitve uporabe.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Glasovna navodila";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Jezik glasu";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Če želite prenesti glas višje kakovosti, odprite aplikacijo Nastavitve in pojdite v Dostopnost → VoiceOver → Govor → Glas.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Preizkusi glasovna navodila (TTS, pretvorba besedila v govor)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Kolesarjenje";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satelit";
 "button_layer_subway" = "Podzemna železnica";
 "layers_title" = "Slogi in plasti zemljevida";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Cestninska cesta";
 "unpaved_road" = "Makadamska cesta";
 "ferry_crossing" = "Prečkanje s trajektom";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Stopnice";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Vrata";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Dvižna zapornica";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Da";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Spust";
 "elevation_profile_min_elevation" = "Min. višina";
 "elevation_profile_max_elevation" = "Maks. višina";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Začnite se premikati, da vidite višinski profil";
 "isolines_toast_zooms_1_10" = "Povečajte za raziskovanje plastnic";
 "downloader_loading_ios" = "Prenašanje";
 

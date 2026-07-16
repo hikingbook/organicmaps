@@ -40,6 +40,7 @@ NSString * const kUDEditorPersonalInfoWarninWasShown = @"PersonalInfoWarningAler
 
 CGFloat constexpr kDefaultHeaderHeight = 28.;
 CGFloat constexpr kDefaultFooterHeight = 32.;
+CGFloat constexpr kDefaultEstimatedRowHeight = 56.;
 
 typedef NS_ENUM(NSUInteger, MWMEditorSection) {
   MWMEditorSectionCategory,
@@ -137,7 +138,6 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
                                        MWMButtonCellDelegate,
                                        MWMEditorAdditionalNamesProtocol>
 
-@property(nonatomic) NSMutableDictionary<Class, UITableViewCell *> * offscreenCells;
 @property(nonatomic) NSMutableArray<NSIndexPath *> * invalidCells;
 @property(nonatomic) MWMEditorAdditionalNamesHeader * additionalNamesHeader;
 @property(nonatomic) MWMEditorNotesFooter * notesFooter;
@@ -162,6 +162,10 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
   [super viewDidLoad];
   [self configTable];
   [self configNavBar];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(contentSizeCategoryDidChange)
+                                             name:UIContentSizeCategoryDidChangeNotification
+                                           object:nil];
   auto const & fid = m_mapObject.GetID();
   self.featureStatus = osm::Editor::Instance().GetFeatureStatus(fid.m_mwmId, fid.m_index);
   self.isFeatureUploaded = osm::Editor::Instance().IsFeatureUploaded(fid.m_mwmId, fid.m_index);
@@ -173,6 +177,18 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
                                                       target:self
                                                       action:@selector(onCancel)];
   }
+}
+
+- (void)dealloc
+{
+  [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)contentSizeCategoryDidChange
+{
+  self.additionalNamesHeader = nil;
+  self.notesFooter = nil;
+  [self.tableView reloadData];
 }
 
 - (void)setFeatureToEdit:(FeatureID const &)fid
@@ -303,22 +319,14 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
   }
 }
 
-#pragma mark - Offscreen cells
-
-- (UITableViewCell *)offscreenCellForClass:(Class)cls
-{
-  auto cell = self.offscreenCells[cls];
-  if (!cell)
-  {
-    cell = [NSBundle.mainBundle loadWithViewClass:cls owner:nil options:nil].firstObject;
-    self.offscreenCells[(id<NSCopying>)cls] = cell;
-  }
-  return cell;
-}
-
 - (void)configTable
 {
-  self.offscreenCells = [NSMutableDictionary dictionary];
+  self.tableView.estimatedRowHeight = kDefaultEstimatedRowHeight;
+  self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedSectionHeaderHeight = kDefaultHeaderHeight;
+  self.tableView.sectionFooterHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedSectionFooterHeight = kDefaultFooterHeight;
+
   self.invalidCells = [NSMutableArray array];
   m_sections.clear();
   m_cells.clear();
@@ -559,7 +567,7 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
   }
   case MWMEditorCellTypeAddAdditionalName:
   {
-    [static_cast<MWMEditorAddAdditionalNameTableViewCell *>(cell) configWithDelegate:self];
+    [static_cast<MWMEditorAddAdditionalNameTableViewCell *>(cell) config];
     break;
   }
   case MWMEditorCellTypeAddAdditionalNamePlaceholder: break;
@@ -749,26 +757,14 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
 
 - (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath
 {
-  Class cls = [self cellClassForIndexPath:indexPath];
-  auto cell = [self offscreenCellForClass:cls];
-  [self fillCell:cell atIndexPath:indexPath];
-  switch ([self cellTypeForIndexPath:indexPath])
-  {
-  case MetadataID::FMD_OPEN_HOURS: return ((MWMPlacePageOpeningHoursCell *)cell).cellHeight;
-  case MWMEditorCellTypeCategory:
-  case MWMEditorCellTypeReportButton: return self.tableView.rowHeight;
-  case MWMEditorCellTypeNote: return UITableViewAutomaticDimension;
-  default:
-  {
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    cell.bounds = {{}, {CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds)}};
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    CGSize const size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height;
-  }
-  }
+  return UITableViewAutomaticDimension;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  if ([self cellTypeForIndexPath:indexPath] == MWMEditorCellTypeAddAdditionalName)
+    [self editAdditionalNameLanguage:NSNotFound];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -813,27 +809,6 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
   }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-  return m_sections[section] == MWMEditorSectionNote ? kDefaultHeaderHeight * 2 : kDefaultHeaderHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-  switch (m_sections[section])
-  {
-  case MWMEditorSectionAddress: return 1.0;
-  case MWMEditorSectionDetails:
-    if (find(m_sections.begin(), m_sections.end(), MWMEditorSectionNote) == m_sections.end())
-      return self.notesFooter.height;
-    return 1.0;
-  case MWMEditorSectionNote: return self.notesFooter.height;
-  case MWMEditorSectionCategory:
-  case MWMEditorSectionAdditionalNames:
-  case MWMEditorSectionButton: return kDefaultFooterHeight;
-  }
-}
-
 #pragma mark - MWMPlacePageOpeningHoursCellProtocol
 
 - (BOOL)forcedButton
@@ -869,7 +844,6 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
 
 - (void)cell:(MWMNoteCell *)cell didChangeSizeAndText:(NSString *)text
 {
-  self.offscreenCells[(id<NSCopying>)cellClass(MWMEditorCellTypeNote)] = cell;
   self.note = text;
   dispatch_async(dispatch_get_main_queue(), ^{
     [UIView setAnimationsEnabled:NO];
@@ -1126,6 +1100,7 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
     auto const type = *(m_mapObject.GetTypes().begin());
     auto const readableType = classif().GetReadableObjectName(type);
     [dvc setSelectedCategory:readableType];
+    [dvc setCreatedPosition:m_mapObject.GetMercator()];
   }
   else if ([segue.identifier isEqualToString:kAdditionalNamesEditorSegue])
   {

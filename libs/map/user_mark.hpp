@@ -31,6 +31,9 @@ public:
     RoadWarningFirstDirty,
     RoadWarningFirstToll,
     RoadWarningFirstFerry,
+    RoadWarningFirstSteps,
+    RoadWarningFirstGate,
+    RoadWarningFirstLiftGate,
   };
 
   enum Type : uint32_t
@@ -48,6 +51,7 @@ public:
     TRACK_SELECTION,
     DEBUG_MARK,  // Plain "DEBUG" results in a name collision.
     COLORED,
+    ROUTE_ALT,  // ETA balloon attached to a route variant (active or alternative).
     USER_MARK_TYPES_COUNT,
     USER_MARK_TYPES_COUNT_MAX = 1000,
   };

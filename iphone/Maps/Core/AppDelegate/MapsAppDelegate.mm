@@ -108,8 +108,6 @@ void InitLocalizedStrings()
   [MapsAppDelegate customizeAppearance];
 
   self.standbyCounter = 0;
-  NSTimeInterval const minimumBackgroundFetchIntervalInSeconds = 6 * 60 * 60;
-  [UIApplication.sharedApplication setMinimumBackgroundFetchInterval:minimumBackgroundFetchIntervalInSeconds];
   [self updateApplicationIconBadgeNumber];
 //  [TrackRecordingManager.shared setup];
 }
@@ -167,13 +165,6 @@ void InitLocalizedStrings()
 {
   LOG(LINFO, ("applicationDidEnterBackground - begin"));
 //  [DeepLinkHandler.shared reset];
-  if ([MWMStorage sharedStorage].downloadInProgress)
-  {
-    m_backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
-      [application endBackgroundTask:self->m_backgroundTask];
-      self->m_backgroundTask = UIBackgroundTaskInvalid;
-    }];
-  }
 
   auto tasks = @[[[MWMBackgroundEditsUpload alloc] init]];
   [self runBackgroundTasks:tasks completionHandler:nil];
@@ -266,29 +257,6 @@ void InitLocalizedStrings()
   return NO;
 }
 
-- (void)disableDownloadIndicator
-{
-  --m_activeDownloadsCounter;
-  if (m_activeDownloadsCounter <= 0)
-  {
-    dispatch_async(dispatch_get_main_queue(),
-                   ^{ UIApplication.sharedApplication.networkActivityIndicatorVisible = NO; });
-    m_activeDownloadsCounter = 0;
-    if (UIApplication.sharedApplication.applicationState == UIApplicationStateBackground)
-    {
-      [UIApplication.sharedApplication endBackgroundTask:m_backgroundTask];
-      m_backgroundTask = UIBackgroundTaskInvalid;
-    }
-  }
-}
-
-- (void)enableDownloadIndicator
-{
-  ++m_activeDownloadsCounter;
-  dispatch_async(dispatch_get_main_queue(),
-                 ^{ UIApplication.sharedApplication.networkActivityIndicatorVisible = YES; });
-}
-
 + (void)customizeAppearanceForNavigationBar:(UINavigationBar *)navigationBar
 {
   auto backImage =
@@ -309,7 +277,7 @@ void InitLocalizedStrings()
 //            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 //{
 //  NSLog(@"application:openURL: %@ options: %@", url, options);
-//  return [DeepLinkHandler.shared applicationDidOpenUrl:url];
+//  return [DeepLinkHandler.shared applicationDidOpenUrl:url options:options];
 //}
 
 - (void)showMap

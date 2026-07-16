@@ -1,26 +1,28 @@
-- NOUVEAU ! Appuyez sur un arrêt de transport en commun pour mettre en surbrillance l'itinéraire complet sur la carte, comme dans le style de carte « Transit ».
-- NOUVEAU ! Les itinéraires de transport en commun longue distance et autres relations OpenStreetMap sont désormais reliés au-delà des limites de la carte en une ligne continue.
-- Données OpenStreetMap mises à jour au 3 mai.
-- Le Vietnam et la Malaisie sont désormais divisés en régions plus petites pouvant être téléchargées séparément.
-- Hong Kong, Macao et Hainan sont désormais séparés du Guangdong, et les frontières voisines ont été mises à jour.
-- Mise à jour des courbes de niveau pour l'Indonésie, la Malaisie, la Tanzanie, la Thaïlande et le Vietnam.
-- Ajout d'un bouton d'enregistrement de parcours dans le panneau d'informations de navigation.
-- Ajout de nouveaux types OpenStreetMap : volcans en activité, points d'accès aux voies navigables, cales de halage, salons de narguilé et bâtiments en construction.
-- Ajout de « Lookout » comme synonyme de recherche pour les points de vue, et de « pkwy » comme synonyme de rue aux États-Unis.
-- Les couleurs des zones piétonnes sont légèrement plus foncées pour une meilleure lisibilité.
-- Les libellés des signets sur la carte ne se chevauchent plus.
-- Le texte sur plusieurs lignes est désormais correctement tronqué, et les noms de rue ne contiennent plus de doublons.
-- Calcul d'itinéraire : les itinéraires repris suppriment désormais les points intermédiaires que vous avez déjà dépassés.
-- Correction de l'utilisation d'une liste de signets erronée dans les versions TestFlight.
-- Correction de l'importation de fichiers KMB.
-- Mise à jour des traductions relues pour les catégories, les synonymes de recherche et les chaînes de l'interface utilisateur. Ajout de traductions pour les descriptions de la Nouvelle-Galles du Sud et du Territoire du Nord.
-- Amélioration de la stabilité et des performances, notamment au niveau de la mise en forme des polices, de la mise en cache des glyphes et du découpage des lignes d'itinéraire.
-- Amélioration du graphique d'altitude pour les tracés et les itinéraires.
-- Agrandissement des boutons du menu de navigation pour des actions telles que la synthèse vocale, les paramètres et l'enregistrement de tracé.
-- Amélioration de l'animation de la section de description extensible sur la page du lieu.
-- La page d'informations sur le lieu ne se ferme plus lorsque le défilement du graphique d'altitude prend fin, ne rebondit plus de manière inattendue et conserve le titre visible pendant la modification lorsque le clavier est ouvert.
-- Correction des plantages lors de la suppression d’un tracé ou d’un signet qui n’existe plus.
+• Le nouveau paramètre « Enregistrer l’historique de recherche » vous aide à préserver la confidentialité de votre historique de recherche au besoin
 
-## Prise en charge des plateformes
+## Carte et lieux
+• Données OpenStreetMap à la date du 14 juillet
+• Les notes OpenStreetMap sont désormais placées à l’emplacement exact que vous sélectionnez, et non plus au milieu de la forêt
+• Amélioration de la sélection des cartes pour les régions traversant l’antiméridien de 180°
+• Les profils d’altitude des tracés n’affichent plus de graphiques obsolètes ou vides après la suppression d’un tracé
+• Amélioration du graphique d’altitude vide pour les tracés enregistrés
+• Le bouton permettant de supprimer les signets est plus facile à trouver
+• Enregistrement automatique des signets lorsque vous quittez l’écran d’édition
+• La palette de couleurs comprend des couleurs prédéfinies et vous permet de choisir n’importe quelle couleur personnalisée
+• Autres améliorations de l’interface utilisateur
 
-- En raison de modifications apportées à TestFlight et à l’App Store, cette version ne prend en charge que iOS 15 et les versions ultérieures. iOS 12, iOS 13 et iOS 14 ne sont plus pris en charge.
+## Transports en commun
+• Les noms des arrêts, des correspondances et des stations sont désormais entourés d’un contour blanc pour rester lisibles aussi bien avec le thème clair qu’avec le thème sombre
+• La couche « métro » réapparaît correctement après la fermeture de l’aperçu d’un itinéraire en transports en commun
+
+## Calcul d’itinéraire et navigation
+• Correction de problèmes liés à des indications erronées ou manquantes
+• Les avertissements d’itinéraire (péages, ferries, routes non goudronnées, escaliers, etc.) s’affichent désormais pour tous les itinéraires alternatifs
+• Correction d’un rare blocage lors de la création d’un itinéraire et amélioration de la gestion des impasses et des points de départ/d’arrivée sur une route à circulation restreinte
+• Amélioration de l’affichage de la progression de l’itinéraire sur le bouton « Démarrer »
+• Le réordonnancement des étapes d’un itinéraire ne provoque plus de sauts dans la liste
+
+## Traductions
+• Amélioration de la formulation en chinois
+• Mise à jour des traductions en ukrainien
+• Correction des traductions des régions cartographiques en italien

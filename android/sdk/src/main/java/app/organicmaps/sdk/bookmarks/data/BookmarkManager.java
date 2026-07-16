@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
+import androidx.annotation.ColorInt;
 import androidx.annotation.Keep;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -191,10 +192,10 @@ public enum BookmarkManager {
   @Keep
   @SuppressWarnings("unused")
   @MainThread
-  private void onElevationCurrentPositionChanged()
+  private void onElevationCurrentPositionChanged(long trackId, double distance)
   {
     if (mOnElevationCurrentPositionChangedListener != null)
-      mOnElevationCurrentPositionChangedListener.onCurrentPositionChanged();
+      mOnElevationCurrentPositionChangedListener.onCurrentPositionChanged(trackId, distance);
   }
 
   public void setElevationCurrentPositionChangedListener(@Nullable OnElevationCurrentPositionChangedListener listener)
@@ -211,10 +212,10 @@ public enum BookmarkManager {
   @Keep
   @SuppressWarnings("unused")
   @MainThread
-  private void onElevationActivePointChanged()
+  private void onElevationActivePointChanged(long trackId, double distance)
   {
     if (mOnElevationActivePointChangedListener != null)
-      mOnElevationActivePointChangedListener.onElevationActivePointChanged();
+      mOnElevationActivePointChangedListener.onElevationActivePointChanged(trackId, distance);
   }
 
   @Nullable
@@ -275,7 +276,7 @@ public enum BookmarkManager {
     nativeShowBookmarkCategoryOnMap(catId);
   }
 
-  @PredefinedColors.Color
+  @ColorInt
   public int getLastEditedColor()
   {
     return nativeGetLastEditedColor();
@@ -288,6 +289,7 @@ public enum BookmarkManager {
     nativeLoadBookmarksFile(path, isTemporaryFile);
   }
 
+  @WorkerThread
   static @Nullable String getBookmarksFilenameFromUri(@NonNull ContentResolver resolver, @NonNull Uri uri)
   {
     String filename = null;
@@ -362,6 +364,7 @@ public enum BookmarkManager {
     return null;
   }
 
+  @WorkerThread
   private static String guessExtensionByContent(@NonNull ContentResolver resolver, @NonNull Uri uri)
   {
     // If first symbol is '{' -> GeoJson
@@ -594,7 +597,7 @@ public enum BookmarkManager {
   @Nullable
   private native Bookmark nativeAddBookmarkToLastEditedCategory(double lat, double lon);
 
-  @PredefinedColors.Color
+  @ColorInt
   private native int nativeGetLastEditedColor();
 
   private static native void nativeLoadBookmarksFile(@NonNull String path, boolean isTemporaryFile);
@@ -653,12 +656,12 @@ public enum BookmarkManager {
 
   public interface OnElevationActivePointChangedListener
   {
-    void onElevationActivePointChanged();
+    void onElevationActivePointChanged(long trackId, double distance);
   }
 
   public interface OnElevationCurrentPositionChangedListener
   {
-    void onCurrentPositionChanged();
+    void onCurrentPositionChanged(long trackId, double distance);
   }
 
   static class BookmarkCategoriesCache

@@ -100,6 +100,7 @@ function(copy_resources)
   foreach(file ${ARGN})
     execute_process(
       COMMAND cp -r ${DATA_DIR}/${file} ${RESOURCES_FOLDER}
+      COMMAND_ERROR_IS_FATAL ANY
     )
   endforeach()
 endfunction()
@@ -115,13 +116,10 @@ copy_resources(
   classificator.txt
   colors.txt
   copyright.html
-  countries.txt
-  drules_proto_default_light.bin
-  drules_proto_default_dark.bin
-  drules_proto_outdoors_light.bin
-  drules_proto_outdoors_dark.bin
-  drules_proto_vehicle_light.bin
-  drules_proto_vehicle_dark.bin
+  countries.json
+  drules_default.bin
+  drules_outdoors.bin
+  drules_vehicle.bin
   editor.config
   packed_polygons.bin
   patterns.txt
@@ -184,14 +182,13 @@ if (BUILD_DESIGNER)
     COMMAND cp -rf ${OMIM_ROOT}/data/symbols/xxhdpi/light/ ${OMIM_ROOT}/data/symbols/xxhdpi/design/
     COMMAND cp -rf ${OMIM_ROOT}/data/symbols/6plus/light/ ${OMIM_ROOT}/data/symbols/6plus/design/
     COMMAND cp -rf ${OMIM_ROOT}/data/symbols/xxxhdpi/light/ ${OMIM_ROOT}/data/symbols/xxxhdpi/design/
-    COMMAND cp -f ${OMIM_ROOT}/data/drules_proto_default_light.bin ${OMIM_ROOT}/data/drules_proto_default_design.bin
     COMMAND cp -f ${OMIM_ROOT}/data/colors.txt ${OMIM_ROOT}/data/colors_design.txt
     COMMAND cp -f ${OMIM_ROOT}/data/patterns.txt ${OMIM_ROOT}/data/patterns_design.txt
   )
 
   copy_resources(
     colors_design.txt
-    drules_proto_default_design.bin
+    drules_design.bin
     mapcss-dynamic.txt
     mapcss-mapping.csv
     patterns_design.txt
@@ -209,7 +206,6 @@ if (BUILD_DESIGNER)
     COMMAND cp -rf ${OMIM_ROOT}/tools/kothic ${RESOURCES_FOLDER}/kothic/
     COMMAND cp -f ${OMIM_ROOT}/tools/python/stylesheet/drules_info.py ${RESOURCES_FOLDER}/kothic/src/
     COMMAND cp -rf ${OMIM_ROOT}/tools/python/stylesheet/ ${RESOURCES_FOLDER}/kothic/src/
-    COMMAND cp -f ${OMIM_ROOT}/3party/protobuf/protobuf-3.3.0-py2.7.egg ${RESOURCES_FOLDER}/kothic/
   )
 
   # Generate DMG
@@ -249,3 +245,5 @@ elseif (BUILD_STANDALONE)
 endif()
 
 add_subdirectory(qt_common)
+
+omim_add_test_subdirectory(qt_tests)

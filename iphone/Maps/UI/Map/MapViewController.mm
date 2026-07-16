@@ -13,6 +13,7 @@
 #import "MWMMapDownloadDialog.h"
 //#import "MWMMapViewControlsManager.h"
 //#import "MWMNetworkPolicy+UI.h"
+//#import "MWMObjectsCategorySelectorController.h"
 #import "MWMPlacePageProtocol.h"
 #import "MapsAppDelegate.h"
 #import "Hikingbook-Swift-Header.h"
@@ -45,7 +46,8 @@ NSString * const kDownloaderSegue = @"Map2MapDownloaderSegue";
 NSString * const kEditorSegue = @"Map2EditorSegue";
 NSString * const kUDViralAlertWasShown = @"ViralAlertWasShown";
 NSString * const kPP2BookmarkEditingSegue = @"PP2BookmarkEditing";
-NSString * const kSettingsSegue = @"Map2Settings";
+// Mirrors kMapToCategorySelectorSegue in MWMMapViewControlsManager.mm.
+NSString * const kCategorySelectorSegue = @"MapToCategorySelectorSegue";
 }  // namespace
 
 @interface NSValueWrapper : NSObject
@@ -429,11 +431,22 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //  [self.controlsManager viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
+- (void)updateMapFontScaleFactor
+{
+  double const scaleFactor =
+      [MapFontScaleFactor valueForContentSizeCategory:self.traitCollection.preferredContentSizeCategory];
+  [MWMFrameworkHelper setMapFontScaleFactor:scaleFactor];
+}
+
 //- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
 //{
 //  [super traitCollectionDidChange:previousTraitCollection];
 //  if (self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
 //    [self updatePlacePageContainerConstraints];
+//
+//  if (previousTraitCollection == nil || ![previousTraitCollection.preferredContentSizeCategory
+//                                            isEqualToString:self.traitCollection.preferredContentSizeCategory])
+//    [self updateMapFontScaleFactor];
 //}
 
 - (void)didReceiveMemoryWarning
@@ -457,6 +470,8 @@ NSString * const kSettingsSegue = @"Map2Settings";
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+
+  [self updateMapFontScaleFactor];
 
 //  if (self.navigationDashboardManager.state == MWMNavigationDashboardStateClosed)
 //    self.controlsManager.menuState = self.controlsManager.menuRestoreState;
@@ -701,7 +716,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 
 - (void)openSettings
 {
-  [self performSegueWithIdentifier:kSettingsSegue sender:nil];
+//  [self.navigationController pushViewController:[SettingsBuilder buildRoot] animated:YES];
 }
 
 - (void)openMapsDownloader:(MWMMapDownloaderMode)mode
@@ -731,9 +746,7 @@ NSString * const kSettingsSegue = @"Map2Settings";
 
 - (void)openDrivingOptions
 {
-//  UIStoryboard * sb = [UIStoryboard instance:MWMStoryboardDrivingOptions];
-//  UIViewController * vc = [sb instantiateInitialViewController];
-//  [self.navigationController pushViewController:vc animated:YES];
+//  [self.navigationController pushViewController:[SettingsBuilder buildDrivingOptions] animated:YES];
 }
 
 - (void)processMyPositionStateModeEvent:(MWMMyPositionMode)mode
@@ -833,6 +846,13 @@ NSString * const kSettingsSegue = @"Map2Settings";
 //    MWMDownloadMapsViewController * dvc = segue.destinationViewController;
 //    NSNumber * mode = sender;
 //    dvc.mode = (MWMMapDownloaderMode)mode.integerValue;
+//  }
+//  else if ([segue.identifier isEqualToString:kCategorySelectorSegue])
+//  {
+//    MWMObjectsCategorySelectorController * dvc = segue.destinationViewController;
+//    m2::PointD position;
+//    [(NSValue *)sender getValue:&position];
+//    [dvc setCreatedPosition:position];
 //  }
 //}
 
