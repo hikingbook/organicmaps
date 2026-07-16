@@ -2,6 +2,7 @@
 #import "MWMRouter.h"
 #import "MWMTextToSpeech+CPP.h"
 #import "Hikingbook-Swift-Header.h"
+#import "TTSTester.h"
 
 #include "LocaleTranslator.h"
 
@@ -17,6 +18,9 @@ NSString * const kUserDefaultsTTSLanguageBcp47 = @"UserDefaultsTTSLanguageBcp47"
 NSString * const kIsTTSEnabled = @"UserDefaultsNeedToEnableTTS";
 NSString * const kIsStreetNamesTTSEnabled = @"UserDefaultsNeedToEnableStreetNamesTTS";
 NSString * const kDefaultLanguage = @"en-US";
+
+MWMTTSLanguage * LanguageFromPair(std::pair<std::string, std::string> const & language);
+MWMTTSLanguage * LanguageWithBcp47(NSString * bcp47);
 
 std::vector<std::pair<std::string, std::string>> availableLanguages()
 {
@@ -42,9 +46,65 @@ std::vector<std::pair<std::string, std::string>> availableLanguages()
   return result;
 }
 
+AVSpeechSynthesisVoice * bestAvailableVoice(NSString * locale)
+{
+  AVSpeechSynthesisVoice * bestVoice = [AVSpeechSynthesisVoice voiceWithLanguage:locale];
+  for (AVSpeechSynthesisVoice * voice in [AVSpeechSynthesisVoice speechVoices])
+  {
+    if (![voice.language isEqualToString:locale])
+      continue;
+    if (!bestVoice || voice.quality > bestVoice.quality)
+      bestVoice = voice;
+  }
+  return bestVoice;
+}
+
 using Observer = id<MWMTextToSpeechObserver>;
 using Observers = NSHashTable<Observer>;
 }  // namespace
+
+@interface MWMTTSLanguage ()
+
+@property(nonatomic) NSString * bcp47;
+@property(nonatomic) NSString * title;
+
+@end
+
+@implementation MWMTTSLanguage
+
++ (instancetype)languageWithBcp47:(NSString *)bcp47 title:(NSString *)title
+{
+  MWMTTSLanguage * language = [[MWMTTSLanguage alloc] initLanguageWithBcp47:bcp47 title:title];
+  return language;
+}
+
+- (instancetype)initLanguageWithBcp47:(NSString *)bcp47 title:(NSString *)title
+{
+  self = [super init];
+  if (self)
+  {
+    _bcp47 = bcp47;
+    _title = title;
+  }
+  return self;
+}
+
+- (BOOL)isEqual:(id)object
+{
+  if (self == object)
+    return YES;
+  if (![object isKindOfClass:[MWMTTSLanguage class]])
+    return NO;
+  MWMTTSLanguage * language = object;
+  return [self.bcp47 isEqualToString:language.bcp47];
+}
+
+- (NSUInteger)hash
+{
+  return self.bcp47.hash;
+}
+
+@end
 
 @interface MWMTextToSpeech () <AVSpeechSynthesizerDelegate>
 {
@@ -54,6 +114,7 @@ using Observers = NSHashTable<Observer>;
 @property(nonatomic) AVSpeechSynthesizer * speechSynthesizer;
 @property(nonatomic) AVSpeechSynthesisVoice * speechVoice;
 @property(nonatomic) AVAudioPlayer * audioPlayer;
+@property(nonatomic) TTSTester * ttsTester;
 
 @property(nonatomic) Observers * observers;
 
@@ -72,6 +133,7 @@ using Observers = NSHashTable<Observer>;
 + (void)applicationDidBecomeActive
 {
   auto tts = [self tts];
+  tts->_availableLanguages = availableLanguages();
   tts.speechSynthesizer = nil;
   tts.speechVoice = nil;
 }
@@ -83,6 +145,7 @@ using Observers = NSHashTable<Observer>;
   {
     _availableLanguages = availableLanguages();
     _observers = [Observers weakObjectsHashTable];
+    _ttsTester = [[TTSTester alloc] init];
 
     NSString * saved = [[self class] savedLanguage];
     NSString * preferedLanguageBcp47;
@@ -193,6 +256,47 @@ using Observers = NSHashTable<Observer>;
 {
   return [NSUserDefaults.standardUserDefaults stringForKey:kUserDefaultsTTSLanguageBcp47];
 }
++ (NSArray<MWMTTSLanguage *> *)preferredLanguages
+{
+  MWMTextToSpeech * tts = [MWMTextToSpeech tts];
+  NSMutableArray<MWMTTSLanguage *> * languages = [NSMutableArray arrayWithCapacity:3];
+
+  MWMTTSLanguage * standard = LanguageFromPair(tts.standardLanguage);
+  [languages addObject:standard];
+
+  NSString * currentBcp47 = [AVSpeechSynthesisVoice currentLanguageCode];
+  if (currentBcp47.length && ![currentBcp47 isEqualToString:standard.bcp47])
+  {
+    MWMTTSLanguage * current = LanguageWithBcp47(currentBcp47);
+    if (current.title.length == 0 || [[self availableLanguages] containsObject:current])
+      [languages addObject:current];
+  }
+
+  NSString * savedLanguage = [self savedLanguage];
+  if (savedLanguage.length && ![savedLanguage isEqualToString:currentBcp47] &&
+      ![savedLanguage isEqualToString:standard.bcp47])
+  {
+    [languages addObject:LanguageWithBcp47(savedLanguage)];
+  }
+
+  return languages;
+}
++ (NSArray<MWMTTSLanguage *> *)availableLanguages
+{
+  std::vector<std::pair<std::string, std::string>> languages = [MWMTextToSpeech tts].availableLanguages;
+  NSMutableArray<MWMTTSLanguage *> * result = [NSMutableArray arrayWithCapacity:languages.size()];
+  for (auto const & language : languages)
+    [result addObject:LanguageFromPair(language)];
+  return result;
+}
++ (void)setNotificationsLanguage:(MWMTTSLanguage *)language
+{
+  [[MWMTextToSpeech tts] setNotificationsLocale:language.bcp47];
+}
++ (void)playRandomTestString
+{
+  [[MWMTextToSpeech tts].ttsTester playRandomTestString];
+}
 
 - (void)createVoice:(NSString *)locale
 {
@@ -212,7 +316,7 @@ using Observers = NSHashTable<Observer>;
   AVSpeechSynthesisVoice * voice = nil;
   for (NSString * loc in candidateLocales)
   {
-    voice = [AVSpeechSynthesisVoice voiceWithLanguage:loc];
+    voice = bestAvailableVoice(loc);
     if (voice)
       break;
   }
@@ -353,3 +457,17 @@ std::string translateLocale(std::string const & localeString)
   return std::string(localizedName.UTF8String);
 }
 }  // namespace tts
+
+namespace
+{
+MWMTTSLanguage * LanguageFromPair(std::pair<std::string, std::string> const & language)
+{
+  return [MWMTTSLanguage languageWithBcp47:@(language.first.c_str()) title:@(language.second.c_str())];
+}
+
+MWMTTSLanguage * LanguageWithBcp47(NSString * bcp47)
+{
+  std::string const bcp47String = bcp47.UTF8String;
+  return [MWMTTSLanguage languageWithBcp47:bcp47 title:@(tts::translateLocale(bcp47String).c_str())];
+}
+}  // namespace

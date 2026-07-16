@@ -249,11 +249,6 @@ public:
 
   void GetFontNames(FilesList & res) const;
 
-  // TODO: Optimize for each platform/device.
-  int VideoMemoryLimit() const;
-  // TODO: Optimize for each platform/device.
-  int PreCachingDepth() const;
-
   std::string DeviceName() const;
 
   std::string DeviceModel() const;
@@ -344,3 +339,4 @@ private:
 
 std::string DebugPrint(Platform::EError err);
 std::string DebugPrint(Platform::ChargingStatus status);
+std::string DebugPrint(Platform::EConnectionType connectionType);

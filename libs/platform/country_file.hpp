@@ -14,7 +14,7 @@ std::string GetFileName(std::string const & countryName, MapFileType type);
 
 /// This class represents a country file name and sizes of
 /// corresponding map files on a server, which should correspond to an
-/// entry in countries.txt file. Also, this class can be used to
+/// entry in countries.json file. Also, this class can be used to
 /// represent a hand-made-country name. Instances of this class don't
 /// represent paths to disk files.
 class CountryFile
@@ -22,7 +22,7 @@ class CountryFile
 public:
   CountryFile();
   explicit CountryFile(std::string name);
-  CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1);
+  CountryFile(std::string name, MwmSize size, std::string hash, MwmSize hikingbookProMapSize, std::string hikingbookProMapHash);
 
   std::string GetFileName(MapFileType type) const { return platform::GetFileName(m_name, type); }
 
@@ -31,13 +31,13 @@ public:
 
   std::string const & GetName() const { return m_name; }
   MwmSize GetRemoteSize() const { return m_mapSize; }
-  std::string const & GetSha1() const { return m_sha1; }
+  std::string const & GetHash() const { return m_hash; }
     // Hikingbook Pro Maps
     MwmSize GetHikingbookProMapRemoteSize() const { return m_hikingbookProMapSize; }
-    std::string const & GetHikingbookProMapSha1() const { return m_hikingbookProMapSha1; }
+    std::string const & GetHikingbookProMapHash() const { return m_hikingbookProMapHash; }
     
-    bool IsOrganicMapAvailable() const { return m_mapSize > 0 && !m_sha1.empty(); }
-    bool IsHikingbookProMapAvailable() const { return m_hikingbookProMapSize > 0 && !m_hikingbookProMapSha1.empty(); }
+    bool IsOrganicMapAvailable() const { return m_mapSize > 0 && !m_hash.empty(); }
+    bool IsHikingbookProMapAvailable() const { return m_hikingbookProMapSize > 0 && !m_hikingbookProMapHash.empty(); }
 
   inline bool operator<(CountryFile const & rhs) const { return m_name < rhs.m_name; }
   inline bool operator==(CountryFile const & rhs) const { return m_name == rhs.m_name; }
@@ -49,11 +49,11 @@ private:
   /// Base name (without any extensions) of the file. Same as id of country/region.
   std::string m_name;
   MwmSize m_mapSize = 0;
-  /// \note SHA1 is encoded to base64.
-  std::string m_sha1;
-    // Hikingbook Pro Maps
-    MwmSize m_hikingbookProMapSize = 0;
-    std::string m_hikingbookProMapSha1;
+  /// \note BLAKE3 integrity hash, truncated and base64-encoded. See coding::Blake3::CalculateMwmBase64.
+  std::string m_hash;
+  // Hikingbook Pro Maps
+  MwmSize m_hikingbookProMapSize = 0;
+  std::string m_hikingbookProMapHash;
 };
 
 std::string DebugPrint(CountryFile const & file);

@@ -13,7 +13,6 @@
 #include "base/assert.hpp"
 
 #include <algorithm>
-#include <unordered_map>
 
 namespace routing
 {
@@ -257,7 +256,8 @@ double EdgeEstimator::CalcOffroad(ms::LatLon const & from, ms::LatLon const & to
   if (offroadSpeedKMpH == kNotUsed)
     return 0.0;
 
-  return TimeBetweenSec(from, to, KmphToMps(offroadSpeedKMpH));
+  double const time = TimeBetweenSec(from, to, KmphToMps(offroadSpeedKMpH));
+  return purpose == Purpose::Weight ? time * m_transitWalkWeightFactor : time;
 }
 
 // PedestrianEstimator -----------------------------------------------------------------------------
@@ -283,9 +283,15 @@ public:
   double CalcSegmentWeight(Segment const & segment, RoadGeometry const & road, Purpose purpose,
                            time_t arrivalTime) const override
   {
-    return CalcClimbSegment(purpose, segment, road,
-                            [purpose](double speedMpS, double tangent, geometry::Altitude altitude)
+    if (purpose == Purpose::Weight && GetStrategy() == Strategy::Shortest)
+      return road.GetDistance(segment.GetSegmentIdx()) / GetMaxWeightSpeedMpS();
+
+    double const weight =
+        CalcClimbSegment(purpose, segment, road, [purpose](double speedMpS, double tangent, geometry::Altitude altitude)
     { return speedMpS / GetPedestrianClimbPenalty(purpose, tangent, altitude); });
+    // Bias the transit alternative away from walking (see SetTransitAltFactors). No-op (factor 1.0)
+    // for standalone pedestrian routing and for the primary transit route.
+    return purpose == Purpose::Weight ? weight * GetTransitWalkWeightFactor() : weight;
   }
 };
 
@@ -312,6 +318,9 @@ public:
   double CalcSegmentWeight(Segment const & segment, RoadGeometry const & road, Purpose purpose,
                            time_t arrivalTime) const override
   {
+    if (purpose == Purpose::Weight && GetStrategy() == Strategy::Shortest)
+      return road.GetDistance(segment.GetSegmentIdx()) / GetMaxWeightSpeedMpS();
+
     return CalcClimbSegment(purpose, segment, road,
                             [purpose, this](double speedMpS, double tangent, geometry::Altitude altitude)
     {
@@ -388,6 +397,9 @@ private:
 double CarEstimator::CalcSegmentWeight(Segment const & segment, RoadGeometry const & road, Purpose purpose,
                                        time_t arrivalTime) const
 {
+  if (purpose == Purpose::Weight && GetStrategy() == Strategy::Shortest)
+    return road.GetDistance(segment.GetSegmentIdx()) / GetMaxWeightSpeedMpS();
+
   double const speed = GetSpeedMpS(purpose, segment, road, arrivalTime);
 
   // Debug log ETA calculated speed.

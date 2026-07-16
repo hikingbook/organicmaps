@@ -1,5 +1,6 @@
 // This file is modified by Zheng-Xiang Ke on 2021.
 #import "MWMSettings.h"
+//#import "MWMAuthorizationCommon.h"
 #import "MWMCoreUnits.h"
 //#import "MWMMapViewControlsManager.h"
 #import "Hikingbook-Swift-Header.h"
@@ -7,12 +8,15 @@
 #include <CoreApi/Framework.h>
 #include <CoreApi/Logger.h>
 
+#include "map/gps_tracker.hpp"
+
 namespace
 {
 char const * kAutoDownloadEnabledKey = "AutoDownloadEnabled";
 char const * kZoomButtonsEnabledKey = "ZoomButtonsEnabled";
 char const * kCompassCalibrationEnabledKey = "CompassCalibrationEnabled";
 char const * kRoutingDisclaimerApprovedKey = "IsDisclaimerApproved";
+char const * kSearchHistoryEnabledKey = "SearchHistoryEnabled";
 
 // TODO(igrechuhin): Remove outdated kUDAutoNightModeOff
 NSString * const kUDAutoNightModeOff = @"AutoNightModeOff";
@@ -21,9 +25,16 @@ NSString * const kSpotlightLocaleLanguageId = @"SpotlightLocaleLanguageId";
 NSString * const kUDTrackWarningAlertWasShown = @"TrackWarningAlertWasShown";
 NSString * const kiCLoudSynchronizationEnabledKey = @"iCLoudSynchronizationEnabled";
 NSString * const kUDFileLoggingEnabledKey = @"FileLoggingEnabledKey";
+NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidShowICloudSynchronizationEnablingAlert";
 }  // namespace
 
 @implementation MWMSettings
+
++ (NSString *)osmUserName
+{
+    return @"";
+//  return osm_auth_ios::OSMUserName();
+}
 
 + (BOOL)autoDownloadEnabled
 {
@@ -163,6 +174,97 @@ NSString * const kUDFileLoggingEnabledKey = @"FileLoggingEnabledKey";
   f.AllowTransliteration(isTransliteration);
 }
 
++ (BOOL)map3dBuildingsEnabled
+{
+  bool allow3d = true, allow3dBuildings = true;
+  GetFramework().Load3dMode(allow3d, allow3dBuildings);
+  return allow3dBuildings;
+}
+
++ (void)setMap3dBuildingsEnabled:(BOOL)enabled
+{
+  auto & f = GetFramework();
+  bool allow3d = true, allow3dBuildings = true;
+  f.Load3dMode(allow3d, allow3dBuildings);
+  allow3dBuildings = static_cast<bool>(enabled);
+  f.Save3dMode(allow3d, allow3dBuildings);
+  f.Allow3dMode(allow3d, allow3dBuildings);
+}
+
++ (BOOL)perspectiveViewEnabled
+{
+  bool allow3d = true, allow3dBuildings = true;
+  GetFramework().Load3dMode(allow3d, allow3dBuildings);
+  return allow3d;
+}
+
++ (void)setPerspectiveViewEnabled:(BOOL)enabled
+{
+  auto & f = GetFramework();
+  bool allow3d = true, allow3dBuildings = true;
+  f.Load3dMode(allow3d, allow3dBuildings);
+  allow3d = static_cast<bool>(enabled);
+  f.Save3dMode(allow3d, allow3dBuildings);
+  f.Allow3dMode(allow3d, allow3dBuildings);
+}
+
++ (BOOL)autoZoomEnabled
+{
+  return GetFramework().LoadAutoZoom();
+}
+
++ (void)setAutoZoomEnabled:(BOOL)enabled
+{
+  auto & f = GetFramework();
+  f.AllowAutoZoom(enabled);
+  f.SaveAutoZoom(enabled);
+}
+
++ (BOOL)searchHistoryEnabled
+{
+  bool enabled = true;
+  UNUSED_VALUE(settings::Get(kSearchHistoryEnabledKey, enabled));
+  return enabled;
+}
+
++ (void)setSearchHistoryEnabled:(BOOL)enabled
+{
+  settings::Set(kSearchHistoryEnabledKey, static_cast<bool>(enabled));
+}
+
++ (MWMSettingsPowerManagement)powerManagement
+{
+  using power_management::Scheme;
+  switch (GetFramework().GetPowerManager().GetScheme())
+  {
+  case Scheme::None: return MWMSettingsPowerManagementNone;
+  case Scheme::Normal: return MWMSettingsPowerManagementNormal;
+  case Scheme::EconomyMedium: return MWMSettingsPowerManagementEconomyMedium;
+  case Scheme::EconomyMaximum: return MWMSettingsPowerManagementEconomyMaximum;
+  case Scheme::Auto: return MWMSettingsPowerManagementAuto;
+  }
+}
+
++ (void)setPowerManagement:(MWMSettingsPowerManagement)powerManagement
+{
+  using power_management::Scheme;
+  Scheme scheme = Scheme::Auto;
+  switch (powerManagement)
+  {
+  case MWMSettingsPowerManagementNone: scheme = Scheme::None; break;
+  case MWMSettingsPowerManagementNormal: scheme = Scheme::Normal; break;
+  case MWMSettingsPowerManagementEconomyMedium: scheme = Scheme::EconomyMedium; break;
+  case MWMSettingsPowerManagementEconomyMaximum: scheme = Scheme::EconomyMaximum; break;
+  case MWMSettingsPowerManagementAuto: scheme = Scheme::Auto; break;
+  }
+  GetFramework().GetPowerManager().SetScheme(scheme);
+}
+
++ (BOOL)isPowerManagementMaximum
+{
+  return [self powerManagement] == MWMSettingsPowerManagementEconomyMaximum;
+}
+
 + (BOOL)isTrackWarningAlertShown
 {
   return [NSUserDefaults.standardUserDefaults boolForKey:kUDTrackWarningAlertWasShown];
@@ -196,6 +298,16 @@ NSString * const kUDFileLoggingEnabledKey = @"FileLoggingEnabledKey";
   GetFramework().SetShowDownloadedRegions(isEnabled);
 }
 
+//+ (MWMNetworkPolicyPermission)mobileInternetPermission
+//{
+//  return MWMNetworkPolicy.sharedPolicy.permission;
+//}
+//
+//+ (void)setMobileInternetPermission:(MWMNetworkPolicyPermission)permission
+//{
+//  MWMNetworkPolicy.sharedPolicy.permission = permission;
+//}
+
 + (BOOL)iCLoudSynchronizationEnabled
 {
   return [NSUserDefaults.standardUserDefaults boolForKey:kiCLoudSynchronizationEnabledKey];
@@ -223,6 +335,21 @@ NSString * const kUDFileLoggingEnabledKey = @"FileLoggingEnabledKey";
 {
   [NSUserDefaults.standardUserDefaults setBool:fileLoggingEnabled forKey:kUDFileLoggingEnabledKey];
   [Logger setFileLoggingEnabled:fileLoggingEnabled];
+}
+
++ (uint64_t)logFileSize
+{
+  return [Logger getLogFileSize];
+}
+
++ (BOOL)didShowICloudSynchronizationEnablingAlert
+{
+  return [NSUserDefaults.standardUserDefaults boolForKey:kUDDidShowICloudSynchronizationEnablingAlert];
+}
+
++ (void)setICloudSynchronizationEnablingAlertShown
+{
+  [NSUserDefaults.standardUserDefaults setBool:YES forKey:kUDDidShowICloudSynchronizationEnablingAlert];
 }
 
 + (BOOL)canShowCrowdfundingPromo

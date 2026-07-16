@@ -22,6 +22,27 @@ typedef NS_ENUM(NSInteger, MWMBookmarksSortingType) {
   MWMBookmarksSortingTypeByName
 } NS_SWIFT_NAME(BookmarksSortingType);
 
+typedef NS_ENUM(NSInteger, MWMPredefinedColor) {
+  MWMPredefinedColorNone = 0,
+  MWMPredefinedColorRed,
+  MWMPredefinedColorBlue,
+  MWMPredefinedColorPurple,
+  MWMPredefinedColorYellow,
+  MWMPredefinedColorPink,
+  MWMPredefinedColorBrown,
+  MWMPredefinedColorGreen,
+  MWMPredefinedColorOrange,
+  MWMPredefinedColorDeepPurple,
+  MWMPredefinedColorLightBlue,
+  MWMPredefinedColorCyan,
+  MWMPredefinedColorTeal,
+  MWMPredefinedColorLime,
+  MWMPredefinedColorDeepOrange,
+  MWMPredefinedColorGray,
+  MWMPredefinedColorBlueGray,
+  MWMPredefinedColorCount
+} NS_SWIFT_NAME(PredefinedColor);
+
 typedef void (^PingCompletionBlock)(BOOL success);
 typedef void (^ElevationPointChangedBlock)(double distance);
 typedef void (^SearchBookmarksCompletionBlock)(NSArray<MWMBookmark *> * bookmarks);
@@ -39,6 +60,8 @@ NS_SWIFT_NAME(BookmarksManager)
 @interface MWMBookmarksManager : NSObject <BookmarksObservable, RecentlyDeletedCategoriesManager>
 
 + (MWMBookmarksManager *)sharedManager;
++ (NSArray<NSNumber *> *)predefinedColors NS_SWIFT_NAME(predefinedColors());
++ (UIColor *)colorFromPredefinedColor:(MWMPredefinedColor)predefinedColor NS_SWIFT_NAME(color(from:));
 
 - (BOOL)areBookmarksLoaded;
 - (void)loadBookmarks;
@@ -141,22 +164,24 @@ NS_SWIFT_NAME(BookmarksManager)
 - (MWMBookmarkGroup *)categoryForBookmarkId:(MWMMarkID)bookmarkId;
 - (MWMBookmarkGroup *)categoryForTrackId:(MWMTrackID)trackId;
 - (NSString *)descriptionForBookmarkId:(MWMMarkID)bookmarkId;
+- (NSString *)descriptionForTrackId:(MWMTrackID)trackId;
 - (void)updateBookmark:(MWMMarkID)bookmarkId
             setGroupId:(MWMMarkGroupID)groupId
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
            description:(NSString *)description;
 
-- (void)setCategory:(MWMMarkGroupID)groupId bookmarksColor:(MWMBookmarkColor)color;
-- (void)setCategory:(MWMMarkGroupID)groupId tracksColor:(MWMBookmarkColor)color;
-- (void)updateBookmark:(MWMMarkID)bookmarkId setColor:(MWMBookmarkColor)color;
+- (void)setCategory:(MWMMarkGroupID)groupId bookmarksColor:(UIColor *)color;
+- (void)setCategory:(MWMMarkGroupID)groupId tracksColor:(UIColor *)color;
+- (void)updateBookmark:(MWMMarkID)bookmarkId setColor:(UIColor *)color;
 
 - (void)moveBookmark:(MWMMarkID)bookmarkId toGroupId:(MWMMarkGroupID)groupId;
 
 - (void)updateTrack:(MWMTrackID)trackId
          setGroupId:(MWMMarkGroupID)groupId
               color:(UIColor *)color
-              title:(NSString *)title;
+              title:(NSString *)title
+        description:(NSString *)description;
 
 - (void)updateTrack:(MWMTrackID)trackId setColor:(UIColor *)color;
 

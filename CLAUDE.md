@@ -14,7 +14,7 @@ Libraries in `libs/` are strictly layered -- no circular or upward dependencies 
 4. **Domain:** `search`, `routing`, `storage` (map downloads), `traffic`
 5. **Rendering:** `drape` (OpenGL/Vulkan/Metal abstraction), `drape_frontend` (scene management), `shaders`
 6. **Application:** `map` (Framework class -- aggregates all subsystems)
-7. **UI:** in the project's root: `qt/` (desktop), `iphone/` (iOS), `android/` (Android)
+7. **UI:** in the project's root: `qt/` (desktop), `iphone/` (iOS), `android/` (Android), `dev_sandbox/` (graphics dev tool)
 
 Key namespaces: `m2::` (2D geometry, e.g. `m2::PointD`, `m2::RectD`), `ms::LatLon` (WGS84), `mercator::` (coordinate conversion), `search::`, `routing::`, `storage::`, `kml::`
 
@@ -53,6 +53,8 @@ The C++ core is accessed from platforms via bridging layers:
 
 ### C++ testing patterns
 ```cpp
+namespace test_file_name
+{
 // Unit tests use custom macros from testing/testing.hpp, not Google Test:
 UNIT_TEST(MyTestName)
 {
@@ -65,6 +67,7 @@ UNIT_TEST(MyTestName)
 }
 // Test files go in libs/<module>/<module>_tests/<name>_tests.cpp
 // Register tests in the corresponding CMakeLists.txt using omim_add_test()
+}  // namespace test_file_name
 ```
 
 ### C++ assertions, logging and exceptions
@@ -83,7 +86,7 @@ LOG(LERROR, ("error"));
 DECLARE_EXCEPTION(MyException, RootException);
 MYTHROW(MyException, ("Cannot process", filename));
 
-// All major types should implement DebugPrint():
+// All major types used in LOG and CHECK/ASSERT should implement DebugPrint():
 std::string DebugPrint(MyType const & t);
 ```
 
@@ -91,30 +94,35 @@ std::string DebugPrint(MyType const & t);
 - Follow the instructions in [docs/INSTALL.md](docs/INSTALL.md)
 
 ## Build on desktop
-1. CMake configure: `cmake -B build-$YOUR_NAME -S . -DCMAKE_BUILD_TYPE=Debug -GNinja` for debug configuration
+1. CMake configure: `cmake --preset debug -B build-$YOUR_NAME` for debug configuration
+   - the `debug` preset (in `CMakePresets.json`) sets Ninja + `CMAKE_BUILD_TYPE=Debug`; `-B` overrides the preset's build dir so each agent gets its own `build-$YOUR_NAME` and they don't clobber each other
    - if configure fails, repeat with `--fresh` option to clear CMake cache
 2. Build: `cmake --build build-$YOUR_NAME` to build all targets
    or specify `--target target_name` to build a specific target (e.g., `desktop` for the main app)
 3. To run tests:
 ```bash
-# Exclude some tests that are not relevant for most contributors.
-ctest -j --test-dir build-$YOUR_NAME --stop-on-failure --output-on-failure -E "drape_tests|generator_integration_tests|opening_hours_integration_tests|opening_hours_supported_features_tests|routing_benchmarks|routing_integration_tests|routing_quality_tests|search_quality_tests|storage_integration_tests|shaders_tests|world_feed_integration_tests"
+# Mirrors the default CMake test preset while keeping the per-agent build dir.
+CTEST_EXCLUDE_REGEX="drape_tests|drape_frontend_tests|generator_integration_tests|opening_hours_integration_tests|opening_hours_supported_features_tests|routing_benchmarks|routing_integration_tests|routing_quality_tests|search_quality_tests|storage_integration_tests|shaders_tests|world_feed_integration_tests"
+ctest -j --test-dir build-$YOUR_NAME --stop-on-failure --output-on-failure -L "omim-test" -E "$CTEST_EXCLUDE_REGEX"
+# Rendering tests need offscreen GL and are run separately.
+QT_QPA_PLATFORM=offscreen ctest --test-dir build-$YOUR_NAME --stop-on-failure --output-on-failure -R "drape_tests|drape_frontend_tests|shaders_tests"
 # Run only a specific test:
 ctest -j --test-dir build-$YOUR_NAME --stop-on-failure --output-on-failure -R test_name
 ```
 4. To filter specific tests inside a test binary, use `--filter=<ECMA Regexp>` option.
+5. Always check return result when launching test binaries to detect crashed/segfaulted test. Use `${pipestatus[*]}` array for zsh (default on MacOS) and `${PIPESTATUS[*]}` for bash.
 
 ### Common build targets
 - `desktop` -- Qt desktop app
 - `generator_tool` -- map generation CLI
-- `dev_sandbox` -- developer debugging tool
+- `dev_sandbox` -- developer graphics engine debugging tool
 - `<lib>_tests` -- test binary for a library (e.g., `base_tests`, `search_tests`, `routing_tests`)
 - `skin_generator_tool`, `track_generator_tool`, `topography_generator_tool` -- auxiliary tools
 
-## Build for iOS
+## Build for iOS Simulator
 ```
 xcodebuild archive -workspace xcode/omim.xcworkspace -configuration Debug -destination generic/platform='iOS Simulator' \
-    -scheme OMaps MARKETING_VERSION="$(date +%Y.%m.%d)" CURRENT_PROJECT_VERSION=1
+    -scheme OMaps MARKETING_VERSION="$(date +%Y.%m.%d)" CURRENT_PROJECT_VERSION=1 EXCLUDED_ARCHS=x86_64
 ```
 
 ## Build for Android
@@ -142,8 +150,9 @@ Format: `[subsystem] Summary in imperative mood` (max 80 chars). Examples of sub
 
 ## Main focus
 - On performance, simplicity, regressions, impact and code quality
-- Unit tests covering most/all corner cases or changes
+- Tests covering most/all corner cases or changes
 - Less code/cleaner code/less changes
+- Simple architecture and design for long-term maintenance
 
 ## Code review guidelines
 - Use `gh` CLI tool to review pull requests, leave comments and approve changes

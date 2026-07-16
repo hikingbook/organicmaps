@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "يتم إيقاف تشغيل المباني ثلاثية الأبعاد في وضع توفير الطاقة";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "صور الأقمار الصناعية";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "رابط الخادم";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "أدخل رابطًا صالحًا يحتوي على {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "حجم ذاكرة التخزين المؤقت (ميغابايت)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "عتامة الكائنات المساحية";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "مصادر المربعات المخصصة مقدَّمة منك. استخدم فقط الخدمات المسموح لك بالوصول إليها. أنت مسؤول عن الإسناد وشروط الترخيص ومفاتيح API والحصص وحدود الاستخدام.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "تعليمات صوتية";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "لغة الصوت";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "لتنزيل صوت بجودة أعلى، افتح تطبيق الإعدادات وانتقل إلى تسهيلات الاستخدام → VoiceOver → الكلام → الصوت.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "اختبار الاتجاهات الصوتية (TTS، تحويل النص إلى كلام)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "ركوب الدراجات";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "قمر صناعي";
 "button_layer_subway" = "مترو الانفاق";
 "layers_title" = "أنماط الخريطة وطبقاتها";
 
@@ -707,6 +731,15 @@
 "toll_road" = "طريق برسوم مرور";
 "unpaved_road" = "طريق غير معبد";
 "ferry_crossing" = "استخدام عبّارة";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "درج";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "بوابة";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "حاجز بوابة";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "نعم";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "تنازلي";
 "elevation_profile_min_elevation" = "أقل ارتفاع";
 "elevation_profile_max_elevation" = "أعلى ارتفاع";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "ابدأ التحرك لرؤية مخطط الارتفاع";
 "isolines_toast_zooms_1_10" = "قم بالتقريب لتكتشف خطوط الكنتور";
 "downloader_loading_ios" = "جاري التنزيل";
 

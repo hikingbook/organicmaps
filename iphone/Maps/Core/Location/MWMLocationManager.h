@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeObserver:(id<MWMLocationObserver>)observer NS_SWIFT_NAME(remove(observer:));
 
 + (void)setMyPositionMode:(MWMMyPositionMode)mode;
++ (void)setUseNavigationOtherLocationActivity:(BOOL)enabled;
 
 + (nullable CLLocation *)lastLocation;
 + (nullable CLHeading *)lastHeading;

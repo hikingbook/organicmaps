@@ -33,6 +33,10 @@ final class CarPlayService: NSObject {
     interfaceController?.rootTemplate as? CPMapTemplate
   }
 
+  private var isOnRoute: Bool {
+    MWMRouter.isOnRoute()
+  }
+
   @objc var carplayLayoutMargins: UIEdgeInsets {
     guard isCarplayActivated, let view = carplayVC?.view else {
       return .zero
@@ -99,16 +103,17 @@ final class CarPlayService: NSObject {
       title: L("car_continue_in_the_car"),
       style: .default,
       handler: { [weak self] _ in
-        self?.savedInterfaceController?.dismissTemplate(animated: false)
-        self?.showOnCarplay()
+        guard let self else { return }
+        savedInterfaceController?.dismissTemplate(animated: false, completion: templateCompletion)
+        showOnCarplay()
       }
     )
     let alert = CPAlertTemplate(
       titleVariants: [L("car_used_on_the_phone_screen")],
       actions: [switchToCarAction]
     )
-    savedInterfaceController?.dismissTemplate(animated: false)
-    savedInterfaceController?.presentTemplate(alert, animated: false)
+    savedInterfaceController?.dismissTemplate(animated: false, completion: templateCompletion)
+    savedInterfaceController?.presentTemplate(alert, animated: false, completion: templateCompletion)
   }
 
   private func switchScreenToPhone() {
@@ -187,17 +192,17 @@ final class CarPlayService: NSObject {
   }
 
   private func applyBaseRootTemplate() {
-    let mapTemplate = MapTemplateBuilder.buildBaseTemplate(positionMode: currentPositionMode)
+    let mapTemplate = MapTemplateBuilder.buildBaseTemplate(positionMode: currentPositionMode, isOnRoute: isOnRoute)
     mapTemplate.mapDelegate = self
     mapTemplate.tripEstimateStyle = rootTemplateStyle
-    interfaceController?.setRootTemplate(mapTemplate, animated: true)
+    interfaceController?.setRootTemplate(mapTemplate, animated: true, completion: templateCompletion)
     FrameworkHelper.rotateMap(0.0, animated: false)
   }
 
   private func applyNavigationRootTemplate(trip: CPTrip, routeInfo: RouteInfo) {
-    let mapTemplate = MapTemplateBuilder.buildNavigationTemplate()
+    let mapTemplate = MapTemplateBuilder.buildNavigationTemplate(positionMode: currentPositionMode)
     mapTemplate.mapDelegate = self
-    interfaceController?.setRootTemplate(mapTemplate, animated: true)
+    interfaceController?.setRootTemplate(mapTemplate, animated: true, completion: templateCompletion)
     router?.startNavigationSession(forTrip: trip, template: mapTemplate)
     if let estimates = createEstimates(routeInfo: routeInfo) {
       mapTemplate.tripEstimateStyle = rootTemplateStyle
@@ -213,8 +218,6 @@ final class CarPlayService: NSObject {
   func pushTemplate(_ templateToPush: CPTemplate, animated: Bool) {
     if let interfaceController = interfaceController {
       switch templateToPush {
-      case let list as CPListTemplate:
-        list.delegate = self
       case let search as CPSearchTemplate:
         search.delegate = self
       case let map as CPMapTemplate:
@@ -222,17 +225,17 @@ final class CarPlayService: NSObject {
       default:
         break
       }
-      interfaceController.pushTemplate(templateToPush, animated: animated)
+      interfaceController.pushTemplate(templateToPush, animated: animated, completion: templateCompletion)
     }
   }
 
   func popTemplate(animated: Bool) {
-    interfaceController?.popTemplate(animated: animated)
+    interfaceController?.popTemplate(animated: animated, completion: templateCompletion)
   }
 
   func presentAlert(_ template: CPAlertTemplate, animated: Bool) {
-    interfaceController?.dismissTemplate(animated: false)
-    interfaceController?.presentTemplate(template, animated: animated)
+    interfaceController?.dismissTemplate(animated: false, completion: templateCompletion)
+    interfaceController?.presentTemplate(template, animated: animated, completion: templateCompletion)
   }
 
   func cancelCurrentTrip() {
@@ -254,14 +257,7 @@ final class CarPlayService: NSObject {
     guard let mapTemplate = rootMapTemplate else {
       return
     }
-    MapTemplateBuilder.configureBaseUI(mapTemplate: mapTemplate)
-    if currentPositionMode == .pendingPosition {
-      mapTemplate.leadingNavigationBarButtons = []
-    } else if currentPositionMode == .follow || currentPositionMode == .followAndRotate {
-      MapTemplateBuilder.setupDestinationButton(mapTemplate: mapTemplate)
-    } else {
-      MapTemplateBuilder.setupRecenterButton(mapTemplate: mapTemplate)
-    }
+    MapTemplateBuilder.configureBaseUI(mapTemplate, positionMode: currentPositionMode, isOnRoute: isOnRoute)
     updateVisibleViewPortState(.default)
     FrameworkHelper.rotateMap(0.0, animated: true)
   }
@@ -286,7 +282,7 @@ final class CarPlayService: NSObject {
 
     let alert = CPNavigationAlert(titleVariants: [L("trip_finished")],
                                   subtitleVariants: [subtitle],
-                                  imageSet: nil,
+                                  image: nil,
                                   primaryAction: doneAction,
                                   secondaryAction: nil,
                                   duration: 0)
@@ -321,8 +317,13 @@ final class CarPlayService: NSObject {
        let info = presentedTemplate.userInfo as? [String: String],
        let alertType = info[CPConstants.TemplateKey.alert],
        alertType == CPConstants.TemplateType.downloadMap {
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     }
+  }
+
+  private func templateCompletion(_: Bool, _ error: Error?) {
+    guard let error else { return }
+    LOG(.warning, "CarPlay template operation failed with error: \(error.localizedDescription)")
   }
 }
 
@@ -404,16 +405,16 @@ extension CarPlayService: CPSessionConfigurationDelegate {
 
 extension CarPlayService: CPMapTemplateDelegate {
   func mapTemplateDidShowPanningInterface(_ mapTemplate: CPMapTemplate) {
-    MapTemplateBuilder.configurePanUI(mapTemplate: mapTemplate)
+    MapTemplateBuilder.configurePanUI(mapTemplate)
     FrameworkHelper.stopLocationFollow()
   }
 
   func mapTemplateDidDismissPanningInterface(_ mapTemplate: CPMapTemplate) {
     if let info = mapTemplate.userInfo as? MapInfo,
        info.type == CPConstants.TemplateType.navigation {
-      MapTemplateBuilder.configureNavigationUI(mapTemplate: mapTemplate)
+      MapTemplateBuilder.configureNavigationUI(mapTemplate, positionMode: currentPositionMode)
     } else {
-      MapTemplateBuilder.configureBaseUI(mapTemplate: mapTemplate)
+      MapTemplateBuilder.configureBaseUI(mapTemplate, positionMode: currentPositionMode, isOnRoute: isOnRoute)
     }
     FrameworkHelper.switchMyPositionMode()
   }
@@ -438,8 +439,9 @@ extension CarPlayService: CPMapTemplateDelegate {
     FrameworkHelper.moveMap(offset)
   }
 
-  func mapTemplate(_: CPMapTemplate, didUpdatePanGestureWithTranslation translation: CGPoint, velocity _: CGPoint) {
+  func mapTemplate(_ mapTemplate: CPMapTemplate, didUpdatePanGestureWithTranslation translation: CGPoint, velocity _: CGPoint) {
     let scaleFactor = carplayVC?.mapView?.contentScaleFactor ?? 1
+    mapTemplate.hidesButtonsWithNavigationBar = false
     FrameworkHelper.scrollMap(toDistanceX: -scaleFactor * translation.x, andY: -scaleFactor * translation.y)
   }
 
@@ -462,10 +464,10 @@ extension CarPlayService: CPMapTemplateDelegate {
       return
     }
 
-    MapTemplateBuilder.configureNavigationUI(mapTemplate: rootMapTemplate)
+    MapTemplateBuilder.configureNavigationUI(rootMapTemplate, positionMode: currentPositionMode)
 
     if interfaceController.templates.count > 1 {
-      interfaceController.popToRootTemplate(animated: false)
+      interfaceController.popToRootTemplate(animated: false, completion: templateCompletion)
     }
     router.startNavigationSession(forTrip: trip, template: rootMapTemplate)
     router.startRoute()
@@ -506,45 +508,6 @@ extension CarPlayService: CPMapTemplateDelegate {
     mapTemplate.updateEstimates(estimates, for: trip)
     routeChoice.userInfo = nil
     router?.rebuildRoute()
-  }
-}
-
-// MARK: - CPListTemplateDelegate implementation
-
-extension CarPlayService: CPListTemplateDelegate {
-  func listTemplate(_: CPListTemplate, didSelect item: CPListItem, completionHandler: @escaping () -> Void) {
-    if let userInfo = item.userInfo as? ListItemInfo {
-      switch userInfo.type {
-      case CPConstants.ListItemType.history:
-        let locale = window?.textInputMode?.primaryLanguage ?? "en"
-        guard let searchService = searchService else {
-          completionHandler()
-          return
-        }
-        searchService.searchText(item.text ?? "", forInputLocale: locale, completionHandler: { [weak self] results in
-          guard let self = self else { return }
-          let template = ListTemplateBuilder.buildListTemplate(for: .searchResults(results: results))
-          completionHandler()
-          self.pushTemplate(template, animated: true)
-        })
-      case CPConstants.ListItemType.bookmarkLists where userInfo.metadata is CategoryInfo:
-        let metadata = userInfo.metadata as! CategoryInfo
-        let template = ListTemplateBuilder.buildListTemplate(for: .bookmarks(category: metadata.category))
-        completionHandler()
-        pushTemplate(template, animated: true)
-      case CPConstants.ListItemType.bookmarks where userInfo.metadata is BookmarkInfo:
-        let metadata = userInfo.metadata as! BookmarkInfo
-        let bookmark = MWMCarPlayBookmarkObject(bookmarkId: metadata.bookmarkId)
-        preparePreview(forBookmark: bookmark)
-        completionHandler()
-      case CPConstants.ListItemType.searchResults where userInfo.metadata is SearchResultInfo:
-        let metadata = userInfo.metadata as! SearchResultInfo
-        preparePreviewForSearchResults(selectedRow: metadata.originalRow)
-        completionHandler()
-      default:
-        completionHandler()
-      }
-    }
   }
 }
 
@@ -644,24 +607,9 @@ extension CarPlayService: CarPlayRouterListener {
 extension CarPlayService: LocationModeListener {
   func processMyPositionStateModeEvent(_ mode: MWMMyPositionMode) {
     currentPositionMode = mode
-    guard let rootMapTemplate = rootMapTemplate,
-          let info = rootMapTemplate.userInfo as? MapInfo,
-          info.type == CPConstants.TemplateType.main
-    else {
-      return
-    }
-    switch mode {
-    case .follow, .followAndRotate:
-      if !rootMapTemplate.isPanningInterfaceVisible {
-        MapTemplateBuilder.setupDestinationButton(mapTemplate: rootMapTemplate)
-      }
-    case .notFollow:
-      if !rootMapTemplate.isPanningInterfaceVisible {
-        MapTemplateBuilder.setupRecenterButton(mapTemplate: rootMapTemplate)
-      }
-    case .pendingPosition, .notFollowNoPosition:
-      rootMapTemplate.leadingNavigationBarButtons = []
-    }
+    guard let rootMapTemplate else { return }
+    MapTemplateBuilder.setupMapButtons(rootMapTemplate, positionMode: mode)
+    MapTemplateBuilder.setupLeadingNavigationBarButtons(rootMapTemplate, positionMode: mode, isOnRoute: isOnRoute)
   }
 }
 
@@ -717,9 +665,9 @@ extension CarPlayService {
       mapTemplate.mapDelegate = self
 
       if interfaceController.templates.count > 1 {
-        interfaceController.popToRootTemplate(animated: false)
+        interfaceController.popToRootTemplate(animated: false, completion: templateCompletion)
       }
-      interfaceController.pushTemplate(mapTemplate, animated: false)
+      interfaceController.pushTemplate(mapTemplate, animated: false, completion: templateCompletion)
     }
   }
 
@@ -728,6 +676,48 @@ extension CarPlayService {
                                                         additionalRoutesButtonTitle: nil,
                                                         overviewButtonTitle: nil)
     mapTemplate.showTripPreviews(trips, textConfiguration: tripTextConfig)
+  }
+
+  func handleListItemSelection(_ selectableItem: CPSelectableListItem, completionHandler: @escaping () -> Void) {
+    guard let item = selectableItem as? CPListItem,
+          let userInfo = item.userInfo as? ListItemInfo else {
+      completionHandler()
+      return
+    }
+
+    switch userInfo.type {
+    case CPConstants.ListItemType.history:
+      let locale = window?.textInputMode?.primaryLanguage ?? "en"
+      guard let searchService = searchService else {
+        completionHandler()
+        return
+      }
+      searchService.searchText(item.text ?? "", forInputLocale: locale, completionHandler: { [weak self] results in
+        guard let self else {
+          completionHandler()
+          return
+        }
+        let template = ListTemplateBuilder.buildListTemplate(for: .searchResults(results: results))
+        completionHandler()
+        self.pushTemplate(template, animated: true)
+      })
+    case CPConstants.ListItemType.bookmarkLists where userInfo.metadata is CategoryInfo:
+      let metadata = userInfo.metadata as! CategoryInfo
+      let template = ListTemplateBuilder.buildListTemplate(for: .bookmarks(category: metadata.category))
+      completionHandler()
+      pushTemplate(template, animated: true)
+    case CPConstants.ListItemType.bookmarks where userInfo.metadata is BookmarkInfo:
+      let metadata = userInfo.metadata as! BookmarkInfo
+      let bookmark = MWMCarPlayBookmarkObject(bookmarkId: metadata.bookmarkId)
+      preparePreview(forBookmark: bookmark)
+      completionHandler()
+    case CPConstants.ListItemType.searchResults where userInfo.metadata is SearchResultInfo:
+      let metadata = userInfo.metadata as! SearchResultInfo
+      preparePreviewForSearchResults(selectedRow: metadata.originalRow)
+      completionHandler()
+    default:
+      completionHandler()
+    }
   }
 
   func createEstimates(routeInfo: RouteInfo) -> CPTravelEstimates? {
@@ -748,10 +738,10 @@ extension CarPlayService {
       router?.cancelTrip()
       updateMapTemplateUIToBase()
       preparedToPreviewTrips = trips
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let noAction = CPAlertAction(title: L("no"), style: .cancel, handler: { [unowned self] _ in
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let alert = CPAlertTemplate(titleVariants: [L("redirect_route_alert")], actions: [noAction, yesAction])
     alert.userInfo = [CPConstants.TemplateKey.alert: CPConstants.TemplateType.redirectRoute]
@@ -760,7 +750,7 @@ extension CarPlayService {
 
   func showKeyboardAlert() {
     let okAction = CPAlertAction(title: L("ok"), style: .default, handler: { [unowned self] _ in
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let alert = CPAlertTemplate(titleVariants: [L("keyboard_availability_alert")], actions: [okAction])
     presentAlert(alert, animated: true)
@@ -796,7 +786,7 @@ extension CarPlayService {
     }
 
     let okAction = CPAlertAction(title: L("ok"), style: .cancel, handler: { [unowned self] _ in
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let alert = CPAlertTemplate(titleVariants: titleVariants, actions: [okAction])
     presentAlert(alert, animated: true)
@@ -813,12 +803,12 @@ extension CarPlayService {
       trip.userInfo = info
       preparedToPreviewTrips = [trip]
       router?.updateStartPointAndRebuild(trip: trip)
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let noAction = CPAlertAction(title: L("cancel"), style: .cancel, handler: { [unowned self] _ in
       FrameworkHelper.rotateMap(0.0, animated: false)
       router?.completeRouteAndRemovePoints()
-      interfaceController?.dismissTemplate(animated: true)
+      interfaceController?.dismissTemplate(animated: true, completion: templateCompletion)
     })
     let title = isTypeCorrect ? L("dialog_routing_rebuild_from_current_location_carplay") : L("dialog_routing_rebuild_for_vehicle_carplay")
     let alert = CPAlertTemplate(titleVariants: [title], actions: [noAction, yesAction])

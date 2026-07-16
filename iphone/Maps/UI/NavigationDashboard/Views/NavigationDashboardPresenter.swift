@@ -27,6 +27,9 @@ extension NavigationDashboard {
       case .updateState(let state):
         viewModel.dashboardState = state
         viewModel.navigationInfo.state = state.navigationInfo
+        if state == .planning {
+          viewModel.progress = 0
+        }
         if state == .error {
           viewModel.routeElevationPreviewData = nil
         }

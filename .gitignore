@@ -82,6 +82,8 @@ GeneratedFiles
 # data
 data/[0-9][0-9][0-9][0-9][0-9][0-9]
 data/gps_track.dat
+# custom raster background tiles disk cache
+data/bg_tiles/
 # temporary files for downloader
 data/settings.ini
 data/test_data/world_feed_integration_tests_data
@@ -143,8 +145,11 @@ iphone/Maps/app.omaps/
 *.autosave
 
 # CMake
-cmake-build-*
+/cmake-build-*
 build/
+/build*/
+# Per-developer CMake preset overrides (CMakePresets.json is committed).
+CMakeUserPresets.json
 
 qt/res/Info.plist
 

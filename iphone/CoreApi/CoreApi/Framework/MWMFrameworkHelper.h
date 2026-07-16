@@ -4,6 +4,7 @@
 #import "MWMTypes.h"
 
 @class MWMMapSearchResult;
+@class PlacePageTrackSelectionData;
 @class TrackInfo;
 @class ElevationProfileData;
 
@@ -51,9 +52,12 @@ NS_SWIFT_NAME(FrameworkHelper)
 
 + (void)processFirstLaunch:(BOOL)hasLocation;
 + (void)setVisibleViewport:(CGRect)rect scaleFactor:(CGFloat)scale;
++ (void)setMapFontScaleFactor:(double)scaleFactor;
 + (void)setTheme:(MWMTheme)theme;
 + (MWMDayTime)daytimeAtLocation:(nullable CLLocation *)location;
 + (void)createFramework;
+/// Returns YES after the C++ Framework was destroyed during app termination.
++ (BOOL)isFrameworkDestroyed;
 + (MWMMarkID)invalidBookmarkId;
 + (MWMMarkGroupID)invalidCategoryId;
 + (void)zoomMap:(MWMZoomMode)mode;
@@ -75,6 +79,7 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (void)showOnMap:(MWMMarkGroupID)categoryId;
 + (void)showBookmark:(MWMMarkID)bookmarkId;
 + (void)showTrack:(MWMTrackID)trackId;
++ (void)selectTrackCandidate:(PlacePageTrackSelectionData *)trackSelection;
 + (void)updatePlacePageData;
 + (void)updateAfterDeleteBookmark;
 + (int)currentZoomLevel;

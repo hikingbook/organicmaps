@@ -38,7 +38,7 @@ class PlacePageInteractor: NSObject {
         return
       }
       updatePlacePage()
-    case .track:
+    case .track, .relationTrack:
       guard let trackData = placePageData.trackData, bookmarksManager.hasTrack(trackData.trackId) else {
         if let trackDeletionConfirmationDialog {
           trackDeletionConfirmationDialog.dismiss(animated: true)
@@ -54,7 +54,10 @@ class PlacePageInteractor: NSObject {
 
   private func subscribeOnTrackActivePointUpdatesIfNeeded() {
     unsubscribeFromTrackActivePointUpdates()
-    guard placePageData.objectType == .track, let trackData = placePageData.trackData else { return }
+    let isActivePointTrackingEnabled = placePageData.objectType == .track || placePageData.objectType == .relationTrack
+    guard isActivePointTrackingEnabled, let trackData = placePageData.trackData else {
+      return
+    }
     bookmarksManager.setElevationActivePointChanged(trackData.trackId) { [weak self] distance in
       self?.trackActivePointPresenter?.updateActivePointDistance(distance)
       trackData.updateActivePointDistance(distance)
@@ -105,6 +108,10 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
 
   func didPressWebsite() {
     MWMPlacePageManagerHelper.openWebsite(placePageData)
+  }
+
+  func didPressHeritageWebsite() {
+    MWMPlacePageManagerHelper.openHeritageWebsite(placePageData)
   }
 
   func didPressWebsiteMenu() {
@@ -202,11 +209,10 @@ extension PlacePageInteractor: PlacePageOSMContributionViewControllerDelegate {
 extension PlacePageInteractor: PlacePageEditBookmarkOrTrackViewControllerDelegate {
   func didUpdate(color: UIColor, category: MWMMarkGroupID, for data: PlacePageEditData) {
     switch data {
-    case .bookmark(let bookmarkData):
-      let bookmarkColor = BookmarkColor.bookmarkColor(from: color) ?? bookmarkData.color
+    case .bookmark:
       MWMPlacePageManagerHelper.updateBookmark(placePageData,
                                                title: placePageData.previewData.title,
-                                               color: bookmarkColor,
+                                               color: color,
                                                category: category)
     case .track:
       MWMPlacePageManagerHelper.updateTrack(placePageData,
@@ -376,6 +382,10 @@ extension PlacePageInteractor: PlacePageHeaderViewControllerDelegate {
 
   func previewDidPressExpand() {
     presenter?.showNextStop()
+  }
+
+  func previewDidSelectTrackCandidate(_ track: PlacePageTrackSelectionData) {
+    FrameworkHelper.selectTrackCandidate(track)
   }
 
   func previewDidPressShare(from sourceView: UIView) {

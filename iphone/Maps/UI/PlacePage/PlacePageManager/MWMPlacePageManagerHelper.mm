@@ -15,6 +15,7 @@
 - (void)addBusiness;
 - (void)addPlace:(CLLocationCoordinate2D)coordinate;
 - (void)openWebsite:(PlacePageData *)data;
+- (void)openHeritageWebsite:(PlacePageData *)data;
 - (void)openWebsiteMenu:(PlacePageData *)data;
 - (void)openWikipedia:(PlacePageData *)data;
 - (void)openWikimediaCommons:(PlacePageData *)data;
@@ -35,7 +36,7 @@
 - (void)addBookmark:(PlacePageData *)data;
 - (void)updateBookmark:(PlacePageData *)data
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
               category:(MWMMarkGroupID)category;
 - (void)removeBookmark:(PlacePageData *)data;
 - (void)updateTrack:(PlacePageData *)data
@@ -82,6 +83,11 @@
 + (void)openWebsite:(PlacePageData *)data
 {
   [[MWMMapViewControlsManager manager].placePageManager openWebsite:data];
+}
+
++ (void)openHeritageWebsite:(PlacePageData *)data
+{
+  [[MWMMapViewControlsManager manager].placePageManager openHeritageWebsite:data];
 }
 
 + (void)openWebsiteMenu:(PlacePageData *)data
@@ -176,7 +182,7 @@
 
 + (void)updateBookmark:(PlacePageData *)data
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
               category:(MWMMarkGroupID)category
 {
   [[MWMMapViewControlsManager manager].placePageManager updateBookmark:data title:title color:color category:category];

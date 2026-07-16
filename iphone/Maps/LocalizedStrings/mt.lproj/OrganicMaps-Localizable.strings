@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "Il-binjiet 3D huma mitfigħin fil-mod tal-iffrankar tal-enerġija";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Immaġini tas-satellita";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL tas-server";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Daħħal URL validu bi {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Daqs tal-cache (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Opaċità tal-oġġetti tal-erja";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Is-sorsi tal-madum personalizzati jiġu pprovduti minnek. Uża biss servizzi li int permess taċċessa. Inti responsabbli għall-attribuzzjoni, it-termini tal-liċenzja, iċ-ċwievet API, il-kwoti u l-limiti tal-użu.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Istruzzjonijiet tal-vuċi";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Lingwa tal-vuċi";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Biex tniżżel vuċi ta' kwalità ogħla, iftaħ l-app Settings u mur Aċċessibbiltà → VoiceOver → Diskors → Vuċi.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Ittestja id-Direzzjonijiet tal-vuċi (TTS, Test għad-diskors)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Ċikliżmu";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satellita";
 "button_layer_subway" = "Metro";
 "layers_title" = "Stili u Saffi tal-Mapep";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Triq għall-pedaġġ";
 "unpaved_road" = "Triq mhux pavimentata";
 "ferry_crossing" = "Qsim bil-lanċa";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Stairs";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Gate";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Lift Gate";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Iva";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Inżul";
 "elevation_profile_min_elevation" = "Elevazzjoni minima";
 "elevation_profile_max_elevation" = "Elevazzjoni massima";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Ibda ċċaqlaq biex tara l-profil tal-elevazzjoni";
 "isolines_toast_zooms_1_10" = "Iżżumja ’l ġewwa biex tesplora l-isolines";
 "downloader_loading_ios" = "Tniżżil";
 

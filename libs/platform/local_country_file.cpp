@@ -4,8 +4,8 @@
 #include "platform/mwm_version.hpp"
 #include "platform/platform.hpp"
 
+#include "coding/blake3.hpp"
 #include "coding/internal/file_data.hpp"
-#include "coding/sha1.hpp"
 
 #include "base/assert.hpp"
 #include "base/file_name_utils.hpp"
@@ -108,9 +108,9 @@ bool LocalCountryFile::operator==(LocalCountryFile const & rhs) const
 
 bool LocalCountryFile::ValidateIntegrity() const
 {
-  auto calculatedSha1 = coding::SHA1::CalculateBase64(GetPath(MapFileType::Map));
-//  ASSERT_EQUAL(calculatedSha1, m_countryFile.GetSha1(), ("Integrity failure"));
-  return calculatedSha1 == m_countryFile.GetSha1() || calculatedSha1 == m_countryFile.GetHikingbookProMapSha1();
+  auto calculatedHash = coding::Blake3::CalculateMwmBase64(GetPath(MapFileType::Map));
+//  ASSERT_EQUAL(calculatedHash, m_countryFile.GetHash(), ("Integrity failure"));
+  return calculatedHash == m_countryFile.GetHash() || calculatedHash == m_countryFile.GetHikingbookProMapHash();
 }
 
 MapSource LocalCountryFile::GetMapSource() const

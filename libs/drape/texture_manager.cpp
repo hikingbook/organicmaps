@@ -3,7 +3,6 @@
 #include "drape/font_constants.hpp"
 #include "drape/font_texture.hpp"
 #include "drape/gl_functions.hpp"
-#include "drape/hatching_decl.hpp"
 #include "drape/static_texture.hpp"
 #include "drape/stipple_pen_resource.hpp"
 #include "drape/support_manager.hpp"
@@ -317,7 +316,6 @@ void TextureManager::Release()
   m_glyphGroups.clear();
 
   m_symbolTextures.clear();
-  m_hatchingTextures.clear();
 
   m_stipplePenTexture.reset();
   m_colorTexture.reset();
@@ -501,13 +499,6 @@ void TextureManager::Init(ref_ptr<dp::GraphicsContext> context, Params const & p
   m_trafficArrowTexture = make_unique_dp<StaticTexture>(context, "traffic-arrow.png", m_resPostfix,
                                                         dp::TextureFormat::RGBA8, make_ref(m_textureAllocator));
 
-  /// @todo Introduce array of keys and use them as mask file name prefix.
-  m_hatchingTextures[k45dHatching] = make_unique_dp<StaticTexture>(
-      context, "area-hatching.png", m_resPostfix, dp::TextureFormat::RGBA8, make_ref(m_textureAllocator));
-  m_hatchingTextures[kDashHatching] =
-      make_unique_dp<StaticTexture>(context, "dash-hatching.png", StaticTexture::kDefaultResource,
-                                    dp::TextureFormat::RGBA8, make_ref(m_textureAllocator));
-
   m_arrowTexture = CreateArrowTexture(context, make_ref(m_textureAllocator), params.m_arrowTexturePath,
                                       params.m_arrowTextureUseDefaultResourceFolder);
 
@@ -541,7 +532,9 @@ void TextureManager::Init(ref_ptr<dp::GraphicsContext> context, Params const & p
   m_maxGlypsCount = static_cast<uint32_t>(ceil(kGlyphAreaCoverage * textureSquare / averageGlyphSquare));
 
   std::string_view constexpr kSpace{" "};
-  m_spaceGlyph = m_glyphManager->ShapeText(kSpace, "en").m_glyphs.front().m_key;
+  // The space glyph has no `locl` variants; the language tag is irrelevant here.
+  m_spaceGlyph =
+      m_glyphManager->ShapeText(kSpace, StringUtf8Multilang::kUnsupportedLanguageCode).m_glyphs.front().m_key;
 
   LOG(LDEBUG, ("Glyphs texture size =", kGlyphsTextureSize, "with max glyphs count =", m_maxGlypsCount));
 
@@ -701,7 +694,7 @@ std::optional<TextureManager::RainbowRegion> TextureManager::GetRainbowRegion(Ra
   return result;
 }
 
-text::TextMetrics TextureManager::ShapeSingleTextLine(std::string_view utf8,
+text::TextMetrics TextureManager::ShapeSingleTextLine(std::string_view utf8, int8_t lang,
                                                       TGlyphsBuffer * glyphRegions)  // TODO(AB): Better name?
 {
   ASSERT(!utf8.empty(), ());
@@ -710,8 +703,7 @@ text::TextMetrics TextureManager::ShapeSingleTextLine(std::string_view utf8,
   // TODO(AB): Is this mutex too slow?
   std::lock_guard lock(m_calcGlyphsMutex);
 
-  // TODO(AB): Fix hard-coded lang.
-  auto textMetrics = m_glyphManager->ShapeText(utf8, "en");
+  auto textMetrics = m_glyphManager->ShapeText(utf8, lang);
 
   auto const & glyphs = textMetrics.m_glyphs;
 
@@ -744,6 +736,7 @@ text::TextMetrics TextureManager::ShapeSingleTextLine(std::string_view utf8,
 }
 
 TextureManager::TShapedTextLines TextureManager::ShapeMultilineText(std::string_view utf8, char const * delimiters,
+                                                                    int8_t lang,
                                                                     TMultilineGlyphsBuffer & multilineGlyphRegions)
 {
   TShapedTextLines textLines;
@@ -754,7 +747,7 @@ TextureManager::TShapedTextLines TextureManager::ShapeMultilineText(std::string_
 
     multilineGlyphRegions.emplace_back();
 
-    textLines.emplace_back(ShapeSingleTextLine(line, &multilineGlyphRegions.back()));
+    textLines.emplace_back(ShapeSingleTextLine(line, lang, &multilineGlyphRegions.back()));
   });
 
   return textLines;
@@ -782,12 +775,6 @@ ref_ptr<Texture> TextureManager::GetTrafficArrowTexture() const
 {
   CHECK(m_isInitialized, ());
   return make_ref(m_trafficArrowTexture);
-}
-
-ref_ptr<Texture> TextureManager::GetHatchingTexture(std::string_view key) const
-{
-  CHECK(m_isInitialized, ());
-  return make_ref(m_hatchingTextures.at(key));
 }
 
 ref_ptr<Texture> TextureManager::GetArrowTexture() const

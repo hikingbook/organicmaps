@@ -3,6 +3,7 @@ protocol PlacePageInfoViewControllerDelegate: AnyObject {
 
   func didPressCall(to phone: PlacePagePhone)
   func didPressWebsite()
+  func didPressHeritageWebsite()
   func didPressWebsiteMenu()
   func didPressWikipedia()
   func didPressWikimediaCommons()
@@ -32,6 +33,7 @@ class PlacePageInfoViewController: UIViewController {
   private var rawOpeningHoursView: InfoItemView?
   private var phoneViews: [InfoItemView] = []
   private var websiteView: InfoItemView?
+  private var heritageWebsiteView: InfoItemView?
   private var websiteMenuView: InfoItemView?
   private var wikipediaView: InfoItemView?
   private var wikimediaCommonsView: InfoItemView?
@@ -59,7 +61,7 @@ class PlacePageInfoViewController: UIViewController {
   /// Relation id of the route most recently picked from the refs popup, or nil.
   /// Used to render exactly one selected row in the popup.
   private var selectedRouteRelId: UInt32?
-  private weak var routesSelectorViewController: RoutesSelectorViewController?
+  private weak var routesSelectorViewController: PopoverListSelectorViewController?
 
   weak var placePageInfoData: PlacePageInfoData!
   weak var delegate: PlacePageInfoViewControllerDelegate?
@@ -167,6 +169,19 @@ class PlacePageInfoViewController: UIViewController {
                                    longPressHandler: { [weak self] in
                                      self?.delegate?.didCopy(website)
                                    })
+    }
+
+    if let heritageWebsite = placePageInfoData.heritageWebsite {
+      // Strip website url only when the value is displayed, to avoid issues when it's opened or edited.
+      heritageWebsiteView = createInfoItem(stripUrl(str: heritageWebsite),
+                                           icon: UIImage(resource: .icPlacepageWebsite),
+                                           style: .link,
+                                           tapHandler: { [weak self] in
+                                             self?.delegate?.didPressHeritageWebsite()
+                                           },
+                                           longPressHandler: { [weak self] in
+                                             self?.delegate?.didCopy(heritageWebsite)
+                                           })
     }
 
     if let websiteMenu = placePageInfoData.websiteMenu {
@@ -323,29 +338,49 @@ class PlacePageInfoViewController: UIViewController {
 
   private func setupCoordinatesView() {
     guard let coordFormats = placePageInfoData.coordFormats as? [String] else { return }
-    var formatId = coordinatesFormatId
-    if formatId >= coordFormats.count {
-      formatId = 0
-    }
-    coordinatesView = createInfoItem(coordFormats[formatId],
+    // The saved format may be unavailable here (e.g. OS Grid outside Great Britain); its entry is
+    // empty. Show the next available format without overwriting the saved preference, so it is
+    // restored when the user returns to a supported area.
+    let displayId = effectiveFormatId(in: coordFormats)
+    coordinatesView = createInfoItem(coordFormats[displayId],
                                      icon: UIImage(resource: .icPlacepageCoordinate),
                                      style: .link,
                                      accessoryImage: UIImage(resource: .icPlacepageChange),
                                      tapHandler: { [weak self] in
                                        guard let self else { return }
-                                       let formatId = (self.coordinatesFormatId + 1) % coordFormats.count
+                                       let formatId = self.nextAvailableFormatId(after: self.effectiveFormatId(in: coordFormats), in: coordFormats)
                                        self.setCoordinatesSelected(formatId: formatId)
                                      },
                                      longPressHandler: { [weak self] in
                                        self?.copyCoordinatesToPasteboard()
                                      })
-    let menu = UIMenu(children: coordFormats.enumerated().map { index, format in
-      UIAction(title: format, handler: { [weak self] _ in
+    let menu = UIMenu(children: coordFormats.enumerated().compactMap { index, format in
+      format.isEmpty ? nil : UIAction(title: format, handler: { [weak self] _ in
         self?.setCoordinatesSelected(formatId: index)
         self?.copyCoordinatesToPasteboard()
       })
     })
     coordinatesView?.setAccessoryMenu(menu)
+  }
+
+  /// The format index actually shown: the saved one if available here, otherwise the next available.
+  /// Does not change the saved preference (`coordinatesFormatId`).
+  private func effectiveFormatId(in formats: [String]) -> Int {
+    let saved = coordinatesFormatId
+    let id = (saved >= 0 && saved < formats.count) ? saved : 0
+    return formats[id].isEmpty ? nextAvailableFormatId(after: id, in: formats) : id
+  }
+
+  /// Returns the format index following `current` whose value is non-empty (available at this location).
+  /// Falls back to `current` if none are available; the decimal formats are always present.
+  private func nextAvailableFormatId(after current: Int, in formats: [String]) -> Int {
+    for step in 1 ... formats.count {
+      let candidate = (current + step) % formats.count
+      if !formats[candidate].isEmpty {
+        return candidate
+      }
+    }
+    return current
   }
 
   private func setCoordinatesSelected(formatId: Int) {
@@ -357,31 +392,55 @@ class PlacePageInfoViewController: UIViewController {
 
   private func copyCoordinatesToPasteboard() {
     guard let coordFormats = placePageInfoData.coordFormats as? [String] else { return }
-    let coordinates: String = coordFormats[coordinatesFormatId]
+    let coordinates: String = coordFormats[effectiveFormatId(in: coordFormats)]
     delegate?.didCopy(coordinates)
   }
 
   private func showRoutesSelector() {
     guard let routeRefsView, let routes = placePageInfoData.routes else { return }
+
     if routes.count == 1 {
       selectRoute(routes[0])
-    } else {
-      let viewController = RoutesSelectorViewController(routes: routes,
-                                                        selectedRouteRelId: selectedRouteRelId,
-                                                        routeSelectedHandler: { [weak self] route in
-                                                          self?.dismiss(animated: true, completion: { [weak self] in
-                                                            self?.selectRoute(route)
-                                                          })
-                                                        })
-      viewController.modalPresentationStyle = .popover
-      viewController.overrideUserInterfaceStyle = traitCollection.userInterfaceStyle
-      viewController.popoverPresentationController?.sourceView = routeRefsView
-      viewController.popoverPresentationController?.sourceRect = routeRefsView.bounds
-      viewController.popoverPresentationController?.permittedArrowDirections = .any
-      viewController.popoverPresentationController?.delegate = viewController
-      routesSelectorViewController = viewController
-      present(viewController, animated: true)
+      return
     }
+
+    let popoverDataSource = routes.map { route in
+      PopoverListSelectorViewController.RowViewModel(title: .attributed(routeMenuLabel(route)),
+                                                     color: route.color,
+                                                     isSelected: route.relId == selectedRouteRelId,
+                                                     selectionHandler: { [weak self] in
+                                                       self?.dismiss(animated: true, completion: { [weak self] in
+                                                         self?.selectRoute(route)
+                                                       })
+                                                     })
+    }
+    let viewController = PopoverListSelectorBuilder(dataSource: popoverDataSource,
+                                                    style: .background,
+                                                    sourceView: routeRefsView,
+                                                    sourceRect: routeRefsView.bounds,
+                                                    userInterfaceStyle: traitCollection.userInterfaceStyle)
+      .build()
+    routesSelectorViewController = viewController
+    present(viewController, animated: true)
+  }
+
+  private func routeMenuLabel(_ route: PlacePageRoute) -> NSAttributedString {
+    let baseAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.regular14.dynamic,
+      .foregroundColor: UIColor.blackPrimaryText,
+    ]
+    let boldAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.bold14.dynamic,
+      .foregroundColor: UIColor.blackPrimaryText,
+    ]
+    let label = NSMutableAttributedString(string: route.ref, attributes: boldAttributes)
+    if !route.from.isEmpty || !route.to.isEmpty {
+      label.append(NSAttributedString(string: ": \(route.from)", attributes: baseAttributes))
+      if !route.to.isEmpty {
+        label.append(NSAttributedString(string: " → \(route.to)", attributes: baseAttributes))
+      }
+    }
+    return label
   }
 
   private func selectRoute(_ route: PlacePageRoute) {

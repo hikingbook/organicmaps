@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "ອາຄານ 3D ຖືກປິດໃຊ້ງານໃນໂໝດປະຢັດພະລັງງານ";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "ຮູບພາບດາວທຽມ";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL ຂອງເຊີບເວີ";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "ປ້ອນ URL ທີ່ຖືກຕ້ອງທີ່ມີ {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "ຂະໜາດແຄຊ (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "ຄວາມທຶບຂອງວັດຖຸພື້ນທີ່";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "ແຫຼ່ງແຜ່ນແບບກຳນົດເອງແມ່ນທ່ານເປັນຜູ້ສະໜອງ. ໃຊ້ສະເພາະບໍລິການທີ່ທ່ານໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງ. ທ່ານຮັບຜິດຊອບຕໍ່ການລະບຸແຫຼ່ງທີ່ມາ, ເງື່ອນໄຂໃບອະນຸຍາດ, ກະແຈ API, ໂກຕາ ແລະ ຂີດຈຳກັດການນຳໃຊ້.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "ຄຳແນະນຳດ້ວຍສຽງ";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "ພາສາຂອງສຽງ";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "ເພື່ອດາວໂຫຼດສຽງຄຸນນະພາບສູງກວ່າ, ເປີດແອັບ ການຕັ້ງຄ່າ ແລ້ວໄປທີ່ ການເຂົ້າເຖິງ → VoiceOver → ການເວົ້າ → ສຽງ.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "ທົດສອບຄຳແນະນຳດ້ວຍສຽງ (TTS)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "ການຂີ່ລົດຖີບ";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "ດາວທຽມ";
 "button_layer_subway" = "ລົດໄຟໃຕ້ດິນ";
 "layers_title" = "ຮູບແບບແຜນທີ່ ແລະ ເລເຢີ້";
 
@@ -707,6 +731,15 @@
 "toll_road" = "ທາງເສຍຄ່າທຳນຽມ";
 "unpaved_road" = "ທາງບໍ່ປູຢາງ";
 "ferry_crossing" = "ຈຸດຂ້າມເຮືອຟາກ";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "ຂັ້ນໄດ";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "ປະຕູຮົ້ວ";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "ໄມ້ກັ້ນຍົກ";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "ແມ່ນ";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "ທາງລົງ";
 "elevation_profile_min_elevation" = "ລະດັບຄວາມສູງຕ່ຳສຸດ";
 "elevation_profile_max_elevation" = "ລະດັບຄວາມສູງສູງສຸດ";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "ເລີ່ມເຄື່ອນທີ່ເພື່ອເບິ່ງໂປຣໄຟລ໌ລະດັບຄວາມສູງ";
 "isolines_toast_zooms_1_10" = "ຊູມເຂົ້າເພື່ອເບິ່ງເສັ້ນລະດັບຄວາມສູງ";
 "downloader_loading_ios" = "ກຳລັງດາວໂຫລດ";
 

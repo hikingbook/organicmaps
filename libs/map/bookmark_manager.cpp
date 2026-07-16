@@ -39,6 +39,9 @@ namespace
 {
 std::string const kLastEditedBookmarkCategory = "LastBookmarkCategory";
 std::string const kLastEditedBookmarkColor = "LastBookmarkColor";
+// Custom last-edited color (RGBA). Separate from the legacy predefined key above so old/new
+// clients stay forward/backward compatible: absent => 0 => no custom color.
+std::string const kLastEditedBookmarkColorRGBA = "LastBookmarkColorRGBA";
 std::string const kMetadataFileName = "bm.json";
 std::string const kSortingTypeProperty = "sortingType";
 std::string const kLargestBookmarkSymbolName = "bookmark-default-m";
@@ -367,7 +370,7 @@ Bookmark * BookmarkManager::CreateBookmark(kml::BookmarkData && bmData, kml::Mar
   group->SetIsVisible(true);
 
   SetLastEditedBmCategory(groupId);
-  SetLastEditedBmColor(bookmark->GetData().m_color.m_predefinedColor);
+  SetLastEditedBmColor(bookmark->GetData().m_color);
 
   return bookmark;
 }
@@ -526,6 +529,7 @@ void BookmarkManager::MoveTrack(kml::TrackId trackID, kml::MarkGroupId curGroupI
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   DetachTrack(trackID, curGroupID);
   AttachTrack(trackID, newGroupID);
+  m_changesTracker.OnUpdateLine(trackID);
 
   SetLastEditedBmCategory(newGroupID);
 }
@@ -837,7 +841,7 @@ std::string BookmarkManager::GetLocalizedRegionAddress(m2::PointD const & pt)
   return m_regionAddressGetter->GetLocalizedRegionAddress(pt);
 }
 
-void BookmarkManager::UpdateElevationMyPosition(kml::TrackId const & trackId)
+void BookmarkManager::UpdateElevationMyPosition(kml::TrackId const & trackId, bool ignoreLocationCache)
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
@@ -846,14 +850,16 @@ void BookmarkManager::UpdateElevationMyPosition(kml::TrackId const & trackId)
   if (m_myPositionMark->HasPosition())
   {
     double const kEps = 1e-5;
-    if (m_lastElevationMyPosition.EqualDxDy(m_myPositionMark->GetPivot(), kEps))
+    if (!ignoreLocationCache && m_lastElevationMyPosition.EqualDxDy(m_myPositionMark->GetPivot(), kEps))
       return;
     m_lastElevationMyPosition = m_myPositionMark->GetPivot();
 
     auto const snapRect =
         mercator::RectByCenterXYAndSizeInMeters(m_myPositionMark->GetPivot(), kMyPositionTrackSnapInMeters);
-    auto const selectionInfo =
-        FindNearestTrack(snapRect, [trackId](Track const * track) { return track->GetId() == trackId; });
+    Track::TrackSelectionInfo selectionInfo;
+    selectionInfo.SetDistanceFilter(snapRect);
+    if (auto const * track = GetTrack(trackId))
+      track->UpdateSelectionInfo(m_myPositionMark->GetPivot(), selectionInfo);
     if (selectionInfo.m_trackId == trackId)
       myPositionDistance = selectionInfo.m_distFromBegM;
   }
@@ -863,7 +869,7 @@ void BookmarkManager::UpdateElevationMyPosition(kml::TrackId const & trackId)
   }
 
   auto const markId = GetTrackSelectionMarkId(trackId);
-  if (markId == kml::kInvalidTrackId)
+  if (markId == kml::kInvalidMarkId)
     return;
 
   auto es = GetEditSession();
@@ -874,7 +880,7 @@ void BookmarkManager::UpdateElevationMyPosition(kml::TrackId const & trackId)
   {
     trackSelectionMark->SetMyPositionDistance(myPositionDistance);
     if (m_elevationMyPositionChanged)
-      m_elevationMyPositionChanged();
+      m_elevationMyPositionChanged(trackId, myPositionDistance);
   }
 }
 
@@ -930,13 +936,12 @@ void BookmarkManager::SetElevationActivePointChangedCallback(ElevationActivePoin
   m_elevationActivePointChanged = cb;
 }
 
-Track::TrackSelectionInfo BookmarkManager::FindNearestTrack(m2::RectD const & touchRect,
-                                                            TracksFilter const & tracksFilter) const
+std::vector<Track::TrackSelectionInfo> BookmarkManager::FindTracksInRect(m2::RectD const & touchRect,
+                                                                         TracksFilter const & tracksFilter) const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
-  Track::TrackSelectionInfo selectionInfo;
+  std::vector<Track::TrackSelectionInfo> selectionInfos;
   auto const tapPoint = touchRect.Center();
-  selectionInfo.SetDistanceFilter(touchRect);
 
   for (auto const & pair : m_categories)
   {
@@ -950,11 +955,22 @@ Track::TrackSelectionInfo BookmarkManager::FindNearestTrack(m2::RectD const & to
       if (tracksFilter && !tracksFilter(track))
         continue;
 
+      Track::TrackSelectionInfo selectionInfo;
+      selectionInfo.SetDistanceFilter(touchRect);
       track->UpdateSelectionInfo(tapPoint, selectionInfo);
+      if (selectionInfo.IsValid())
+        selectionInfos.push_back(selectionInfo);
     }
   }
 
-  return selectionInfo;
+  std::sort(selectionInfos.begin(), selectionInfos.end(), [](auto const & lhs, auto const & rhs)
+  {
+    if (lhs.m_squareDist != rhs.m_squareDist)
+      return lhs.m_squareDist < rhs.m_squareDist;
+    return lhs.m_trackId < rhs.m_trackId;
+  });
+
+  return selectionInfos;
 }
 
 Track::TrackSelectionInfo BookmarkManager::GetTrackSelectionInfo(kml::TrackId const & trackId) const
@@ -1057,7 +1073,7 @@ void BookmarkManager::SetTrackSelectionInfo(Track::TrackSelectionInfo const & tr
   trackSelectionMark->SetDistance(trackSelectionInfo.m_distFromBegM);
 
   if (notifyListeners && m_elevationActivePointChanged != nullptr)
-    m_elevationActivePointChanged();
+    m_elevationActivePointChanged(trackSelectionInfo.m_trackId, trackSelectionInfo.m_distFromBegM);
 }
 
 void BookmarkManager::OnTrackSelected(kml::TrackId trackId)
@@ -1251,10 +1267,11 @@ void BookmarkManager::ClearTempRelationTrack()
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
+  DeleteTrackSelectionMark(kml::kTempRelationTrackId);
+
   if (!m_tempRelationTrack)
     return;
 
-  DeleteTrackSelectionMark(kml::kTempRelationTrackId);
   m_changesTracker.OnDeleteLine(kml::kTempRelationTrackId);
   m_tempRelationTrack.reset();
 
@@ -1975,7 +1992,10 @@ Track * BookmarkManager::AddTrack(std::unique_ptr<Track> && track)
 void BookmarkManager::SaveState() const
 {
   settings::Set(kLastEditedBookmarkCategory, m_lastCategoryFileName);
-  settings::Set(kLastEditedBookmarkColor, static_cast<uint32_t>(m_lastColor));
+  // A custom color has m_predefinedColor == None, so old clients read it as "unset" and fall back
+  // to the default preset; new clients pick up the real color from the RGBA key below.
+  settings::Set(kLastEditedBookmarkColor, static_cast<uint32_t>(m_lastColor.m_predefinedColor));
+  settings::Set(kLastEditedBookmarkColorRGBA, m_lastColor.m_rgba);
 }
 
 void BookmarkManager::LoadState()
@@ -1991,16 +2011,17 @@ void BookmarkManager::LoadState()
     settings::Set(kLastEditedBookmarkCategory, m_lastCategoryFileName);
   }
 
-  uint32_t color;
-  if (settings::Get(kLastEditedBookmarkColor, color) && color > static_cast<uint32_t>(kml::PredefinedColor::None) &&
-      color < static_cast<uint32_t>(kml::PredefinedColor::Count))
+  kml::ColorData color;
+  uint32_t predefined;
+  if (settings::Get(kLastEditedBookmarkColor, predefined) &&
+      predefined > static_cast<uint32_t>(kml::PredefinedColor::None) &&
+      predefined < static_cast<uint32_t>(kml::PredefinedColor::Count))
   {
-    m_lastColor = static_cast<kml::PredefinedColor>(color);
+    color.m_predefinedColor = static_cast<kml::PredefinedColor>(predefined);
   }
-  else
-  {
-    m_lastColor = BookmarkCategory::GetDefaultColor();
-  }
+  // Absent on first launch after upgrade => 0 => no custom color (correct fallback).
+  settings::TryGet(kLastEditedBookmarkColorRGBA, color.m_rgba);
+  m_lastColor = kml::NormalizeBookmarkColorData(color);
 }
 
 std::string BookmarkManager::GetMetadataEntryName(kml::MarkGroupId groupId) const
@@ -2081,7 +2102,7 @@ void BookmarkManager::LoadMetadata()
     LOG(LWARNING, ("Exception while reading file:", metadataFilePath, "reason:", exception.what()));
     return;
   }
-  catch (base::Json::Exception const & exception)
+  catch (coding::JsonException const & exception)
   {
     LOG(LWARNING, ("Exception while parsing file:", metadataFilePath, "reason:", exception.what(), "json:", json));
     return;
@@ -2339,15 +2360,15 @@ void BookmarkManager::UpdateBookmark(kml::MarkId bmID, kml::BookmarkData const &
   CHECK_THREAD_CHECKER(m_threadChecker, ());
   auto * bookmark = GetBookmarkForEdit(bmID);
 
-  auto const prevColor = bookmark->GetColor();
-  bookmark->SetData(bm);
+  auto const prevColor = bookmark->GetData().m_color;
+  bookmark->SetData(bm);  // normalizes the incoming color
   ASSERT(bookmark->GetGroupId() != kml::kInvalidMarkGroupId, ());
 
-  if (prevColor != bookmark->GetColor())
-  {
-    bookmark->InvalidateRGBAColor();
-    SetLastEditedBmColor(bookmark->GetColor());
-  }
+  // Compare the full color (preset + rgba): comparing only the preset would miss custom->custom
+  // edits and leave a stale last-edited color.
+  auto const & newColor = bookmark->GetData().m_color;
+  if (prevColor != newColor)
+    SetLastEditedBmColor(newColor);
 }
 
 void BookmarkManager::ChangeTrackColor(kml::TrackId trackId, dp::Color color)
@@ -2379,10 +2400,11 @@ kml::MarkGroupId BookmarkManager::LastEditedBMCategory()
   return m_lastEditedGroupId;
 }
 
-kml::PredefinedColor BookmarkManager::LastEditedBMColor() const
+kml::ColorData BookmarkManager::LastEditedBMColor() const
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
-  return (m_lastColor != kml::PredefinedColor::None ? m_lastColor : BookmarkCategory::GetDefaultColor());
+  // m_lastColor is kept normalized (never the unset {None, 0}), so it is always a valid color.
+  return m_lastColor;
 }
 
 void BookmarkManager::SetLastEditedBmCategory(kml::MarkGroupId groupId)
@@ -2392,9 +2414,9 @@ void BookmarkManager::SetLastEditedBmCategory(kml::MarkGroupId groupId)
   SaveState();
 }
 
-void BookmarkManager::SetLastEditedBmColor(kml::PredefinedColor color)
+void BookmarkManager::SetLastEditedBmColor(kml::ColorData const & color)
 {
-  m_lastColor = color;
+  m_lastColor = kml::NormalizeBookmarkColorData(color);
   SaveState();
 }
 
@@ -2420,7 +2442,7 @@ void BookmarkManager::GetBookmarksInfo(kml::MarkIdSet const & marks, std::vector
     if (IsBookmark(markId))
     {
       auto const * bm = GetBookmark(markId);
-      bookmarksInfo.emplace_back(markId, bm->GetData(), bm->GetAddress());
+      bookmarksInfo.emplace_back(markId, &bm->GetData());
     }
   }
 }
@@ -3713,21 +3735,20 @@ void BookmarkManager::EditSession::SetCategoryCustomProperty(kml::MarkGroupId ca
   m_bmManager.SetCategoryCustomProperty(categoryId, key, value);
 }
 
-void BookmarkManager::EditSession::SetCategoryBookmarksColor(kml::MarkGroupId groupId, kml::PredefinedColor color)
+void BookmarkManager::EditSession::SetCategoryBookmarksColor(kml::MarkGroupId groupId, dp::Color color)
 {
   auto const & markIds = m_bmManager.GetUserMarkIds(groupId);
   for (auto const markId : markIds)
     if (auto * bm = m_bmManager.GetBookmarkForEdit(markId))
       bm->SetColor(color);
-  m_bmManager.SetLastEditedBmColor(color);
+  m_bmManager.SetLastEditedBmColor(kml::MakeCustomBookmarkColorData(color));
 }
 
-void BookmarkManager::EditSession::SetCategoryTracksColor(kml::MarkGroupId groupId, kml::PredefinedColor color)
+void BookmarkManager::EditSession::SetCategoryTracksColor(kml::MarkGroupId groupId, dp::Color color)
 {
-  auto const dpColor = ColorFromPredefinedColor(color);
   auto const & trackIds = m_bmManager.GetTrackIds(groupId);
   for (auto const trackId : trackIds)
-    EditSession::ChangeTrackColor(trackId, dpColor);
+    EditSession::ChangeTrackColor(trackId, color);
 }
 
 bool BookmarkManager::EditSession::DeleteBmCategory(kml::MarkGroupId groupId, bool permanently)

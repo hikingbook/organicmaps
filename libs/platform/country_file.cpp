@@ -25,12 +25,12 @@ CountryFile::CountryFile() : m_mapSize(0), m_hikingbookProMapSize(0) {}
 
 CountryFile::CountryFile(std::string name) : m_name(std::move(name)), m_mapSize(0), m_hikingbookProMapSize(0) {}
 
-CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1, MwmSize hikingbookProMapSize, std::string hikingbookProMapSha1)
+CountryFile::CountryFile(std::string name, MwmSize size, std::string hash, MwmSize hikingbookProMapSize, std::string hikingbookProMapHash)
   : m_name(std::move(name))
   , m_mapSize(size)
-  , m_sha1(std::move(sha1))
+  , m_hash(std::move(hash))
   , m_hikingbookProMapSize(hikingbookProMapSize)
-  , m_hikingbookProMapSha1(std::move(hikingbookProMapSha1))
+  , m_hikingbookProMapHash(std::move(hikingbookProMapHash))
 {}
 
 std::string DebugPrint(CountryFile const & file)

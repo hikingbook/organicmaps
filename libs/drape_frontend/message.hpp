@@ -43,6 +43,7 @@ public:
     BuildSelectionLines,
     AddSubroute,
     RemoveSubroute,
+    RemoveAlternativeSubroutes,
     PrepareSubrouteArrows,
     CacheSubrouteArrows,
     FlushSubroute,
@@ -110,9 +111,10 @@ public:
     OnEnterBackground,
     Arrow3dRecache,
     VisualScaleChanged,
+    AddTileBackgroundImage,
     SetTileBackgroundData,
     SetTileBackgroundMode,
-    AssignTileBackgroundTexture
+    AssignTileBackgroundImage
   };
 
   virtual ~Message() = default;

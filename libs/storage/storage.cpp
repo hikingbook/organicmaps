@@ -15,9 +15,9 @@
 #include "platform/preferred_languages.hpp"
 #include "platform/settings.hpp"
 
+#include "coding/blake3.hpp"
 #include "coding/file_writer.hpp"
 #include "coding/internal/file_data.hpp"
-#include "coding/sha1.hpp"
 
 #include "base/exception.hpp"
 #include "base/file_name_utils.hpp"
@@ -28,7 +28,7 @@
 
 #include "defines.hpp"
 
-#include "cppjansson/cppjansson.hpp"
+#include <glaze/json.hpp>
 
 #include <algorithm>
 #include <sstream>
@@ -154,6 +154,10 @@ Storage::Storage(std::string const & pathToCountriesFile /* = COUNTRIES_FILE */,
   LoadCountriesFile(pathToCountriesFile);
 
   m_downloader->SetDataVersion(m_currentVersion);
+
+  std::string debugServer;
+  if (GetDebugMapDownloadServer(debugServer))
+    m_downloader->SetServersList(MapSource::Organicmaps, {debugServer});
 }
 
 Storage::Storage(std::string const & referenceCountriesTxtJsonForTesting,
@@ -182,6 +186,37 @@ void Storage::SetDownloadingPolicy(DownloadingPolicy * policy)
 
   m_downloadingPolicy = policy;
   m_downloader->SetDownloadingPolicy(policy);
+}
+
+bool Storage::SetDebugMapDownloadServer(std::string const & serverUrl, std::string & normalizedUrl)
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  if (!NormalizeDebugMapDownloadServer(serverUrl, normalizedUrl))
+    return false;
+
+  settings::Set(kDebugMapDownloadServer, normalizedUrl);
+  m_downloader->SetServersList(MapSource::Organicmaps, {normalizedUrl});
+  return true;
+}
+
+void Storage::ResetDebugMapDownloadServer()
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  settings::Delete(kDebugMapDownloadServer);
+  m_downloader->ResetServersList();
+}
+
+bool Storage::GetDebugMapDownloadServer(std::string & serverUrl) const
+{
+  CHECK_THREAD_CHECKER(m_threadChecker, ());
+
+  std::string storedUrl;
+  if (!settings::Get(kDebugMapDownloadServer, storedUrl))
+    return false;
+
+  return NormalizeDebugMapDownloadServer(storedUrl, serverUrl);
 }
 
 void Storage::DeleteAllLocalMaps(CountriesVec * existedCountries /* = nullptr */)
@@ -478,7 +513,7 @@ namespace
 /// @return True if _really_ obsolete for regions which were not renamed after split.
 bool IsRealObsolete(LocalFilePtr const & lf)
 {
-  /// @todo "Old version" should be somewhere in countries.txt, but needs a deep refactoring.
+  /// @todo "Old version" should be somewhere in countries.json, but needs a deep refactoring.
   std::pair<std::string_view, int64_t> constexpr arr[] = {{"China_Guangdong", 260415}};
   for (auto const & e : arr)
     if (lf->GetCountryName() == e.first)
@@ -779,27 +814,27 @@ void Storage::OnDownloadFinished(QueuedCountry const & queuedCountry, DownloadSt
   {
     /// @todo Can/Should be combined with ApplyDiff routine when we will restore it.
     /// While this is simple and working solution, I think that Downloader component
-    /// should make this kind of checks (taking expecting SHA as input). But now it's
+    /// should make this kind of checks (taking the expected hash as input). But now it's
     /// not so simple as it may seem ..
 
     GetPlatform().RunTask(Platform::Thread::File,
-                          [path = GetFileDownloadPath(countryId, fileType), sha1 = GetCountryFile(countryId).GetSha1(), hikingbookProMapSha1 = GetCountryFile(countryId).GetHikingbookProMapSha1(),
+                          [path = GetFileDownloadPath(countryId, fileType), hash = GetCountryFile(countryId).GetHash(), hikingbookProMapHash = GetCountryFile(countryId).GetHikingbookProMapHash(),
                            fn = std::move(finishFn)]()
     {
       DownloadStatus status = DownloadStatus::Completed;
 
-        auto calculatedSha1 = coding::SHA1::CalculateBase64(path);
-      if (calculatedSha1 != sha1 && calculatedSha1 != hikingbookProMapSha1)
+      auto calculateMwmBase64 = coding::Blake3::CalculateMwmBase64(path);
+      if (calculateMwmBase64 != hash && calculateMwmBase64 != hikingbookProMapHash)
       {
         base::DeleteFileX(path);
-        status = DownloadStatus::FailedSHA;
-        LOG(LERROR, ("SHA check error for", path));
+        status = DownloadStatus::FailedIntegrityCheck;
+        LOG(LERROR, ("Integrity check error for", path));
       }
 
       GetPlatform().RunTask(Platform::Thread::Gui, [fn = std::move(fn), status]()
       {
         if (status == DownloadStatus::Completed)
-          LOG(LDEBUG, ("Successful SHA check"));
+          LOG(LDEBUG, ("Successful integrity check"));
 
         fn(status);
       });
@@ -1034,7 +1069,7 @@ void Storage::RegisterLocalFile(platform::LocalCountryFile const & localFile)
   uint64_t const size = ptr->GetSize(MapFileType::Map);
   LOG(LINFO, ("Found file:", countryId, "in directory:", ptr->GetDirectory(), "with size:", size));
 
-  /// Funny, but ptr->GetCountryFile() has valid name only. Size and sha1 are not initialized.
+  /// Funny, but ptr->GetCountryFile() has valid name only. Size and hash are not initialized.
   /// @todo Store only name (CountryId) in LocalCountryFile instead of CountryFile?
     if (m_currentVersion == ptr->GetVersion()) {
         auto countryFile = GetCountryFile(countryId);
@@ -1144,33 +1179,33 @@ int64_t Storage::ParseIndexAndGetDataVersion(std::string const & index) const
   try
   {
     // [ {"start app version" : data version}, ... ]
-    base::Json const json(index.c_str());
-    auto root = json.get();
+    glz::generic_u64 root;
+    if (auto const error = glz::read_json(root, index); error)
+      return 0;
 
-    if (root == nullptr || !json_is_array(root))
+    auto const * array = root.get_if<glz::generic_u64::array_t>();
+    if (array == nullptr)
       return 0;
 
     /// @todo Get correct value somehow ..
     int64_t const appVersion = 21042001;
     int64_t dataVersion = 0;
 
-    size_t const count = json_array_size(root);
-    for (size_t i = 0; i < count; ++i)
+    for (auto const & item : *array)
     {
       // Make safe parsing here to avoid download errors.
-      auto const it = json_object_iter(json_array_get(root, i));
-      if (it)
-      {
-        auto const key = json_object_iter_key(it);
-        auto const val = json_object_iter_value(it);
+      auto const * object = item.get_if<glz::generic_u64::object_t>();
+      if (object == nullptr || object->empty())
+        continue;
 
-        int appVer;
-        if (key && val && json_is_number(val) && strings::to_int(key, appVer))
-        {
-          int64_t const dataVer = json_integer_value(val);
-          if (appVersion >= appVer && dataVersion < dataVer)
-            dataVersion = dataVer;
-        }
+      auto const & [key, val] = *object->begin();
+
+      int appVer;
+      if (val.is_number() && strings::to_int(key, appVer))
+      {
+        int64_t const dataVer = val.as<int64_t>();
+        if (appVersion >= appVer && dataVersion < dataVer)
+          dataVersion = dataVer;
       }
     }
 
