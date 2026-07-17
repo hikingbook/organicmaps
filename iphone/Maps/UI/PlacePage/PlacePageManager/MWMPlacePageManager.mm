@@ -205,7 +205,7 @@ using namespace storage;
   }
   kml::BookmarkData bmData;
   bmData.m_name = info.FormatNewBookmarkName();
-  bmData.m_color.m_predefinedColor = f.LastEditedBMColor();
+  bmData.m_color = f.LastEditedBMColor();
   bmData.m_point = location_helpers::ToMercator(data.locationCoordinate);
   if (info.IsFeature())
     SaveFeatureTypes(info.GetTypes(), bmData);
@@ -220,7 +220,7 @@ using namespace storage;
 
 - (void)updateBookmark:(PlacePageData *)data
                  title:(NSString *)title
-                 color:(MWMBookmarkColor)color
+                 color:(UIColor *)color
               category:(MWMMarkGroupID)category
 {
   MWMBookmarksManager * bookmarksManager = [MWMBookmarksManager sharedManager];
@@ -243,7 +243,11 @@ using namespace storage;
            category:(MWMMarkGroupID)category
 {
   MWMBookmarksManager * bookmarksManager = [MWMBookmarksManager sharedManager];
-  [bookmarksManager updateTrack:data.trackData.trackId setGroupId:category color:color title:title];
+  [bookmarksManager updateTrack:data.trackData.trackId
+                     setGroupId:category
+                          color:color
+                          title:title
+                    description:data.trackData.trackDescription];
   [MWMFrameworkHelper updatePlacePageData];
 }
 
@@ -310,6 +314,11 @@ using namespace storage;
 - (void)openWebsite:(PlacePageData *)data
 {
   [self.ownerViewController openUrl:data.infoData.website externally:YES];
+}
+
+- (void)openHeritageWebsite:(PlacePageData *)data
+{
+  [self.ownerViewController openUrl:data.infoData.heritageWebsite externally:YES];
 }
 
 - (void)openWebsiteMenu:(PlacePageData *)data

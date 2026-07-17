@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "3D-bygninger er slått av i strømsparingsmodus";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Satellittbilder";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "Tjener-URL";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Skriv inn en gyldig URL med {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Bufferstørrelse (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Ugjennomsiktighet for områdeobjekter";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Tilpassede flisekilder leveres av deg. Bruk kun tjenester du har tillatelse til å bruke. Du er ansvarlig for kreditering, lisensvilkår, API-nøkler, kvoter og bruksgrenser.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Taleinstrukser";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Talespråk";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "For å laste ned en stemme med høyere kvalitet, åpne Innstillinger-appen og gå til Tilgjengelighet → VoiceOver → Tale → Stemme.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Test taleanvisninger (TTS, tekst-til-tale)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Sykling";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satellitt";
 "button_layer_subway" = "T-bane";
 "layers_title" = "Kartstiler og -lag";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Bompengevei";
 "unpaved_road" = "Uasfaltert vei";
 "ferry_crossing" = "Fergeovergang";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Trapper";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Port";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Bom";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Ja";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Nedstigning";
 "elevation_profile_min_elevation" = "Min. høyde";
 "elevation_profile_max_elevation" = "Maks. høyde";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Begynn å bevege deg for å se høydeprofilen";
 "isolines_toast_zooms_1_10" = "Forstørr kartet for å se høydekurver";
 "downloader_loading_ios" = "Nedlasting";
 

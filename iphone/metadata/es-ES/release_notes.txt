@@ -1,26 +1,28 @@
-- ¡NUEVO! Toque una parada de transporte público para resaltar toda la ruta en el mapa, como en el estilo de mapa Transit.
-- ¡NUEVO! Las rutas de transporte público de larga distancia y otras relaciones de OpenStreetMap se conectan ahora a través de los bordes del mapa en una línea continua.
-- Datos de OpenStreetMap actualizados a partir del 3 de mayo.
-- Vietnam y Malasia se dividen ahora en regiones más pequeñas que pueden descargarse por separado.
-- Hong Kong, Macao y Hainan están ahora separados de Guangdong, con las fronteras vecinas actualizadas.
-- Actualizadas las curvas de nivel de Indonesia, Malasia, Tanzania, Tailandia y Vietnam.
-- Añadido un botón de grabación de pistas al panel de información de navegación.
-- Añadidos nuevos tipos de OpenStreetMap: volcanes con estado activo, puntos de acceso a vías navegables, varaderos, salones de narguile y edificios en construcción.
-- Añadido "Lookout" como sinónimo de búsqueda de miradores, y "pkwy" como sinónimo de calle estadounidense.
-- Los colores de las zonas peatonales son ligeramente más oscuros para una mejor legibilidad.
-- Las etiquetas de los marcadores en el mapa ya no se solapan.
-- El texto de varias líneas se recorta ahora limpiamente, y los nombres de las calles ya no contienen duplicados.
-- Rutas: las rutas reanudadas eliminan ahora los puntos intermedios por los que ya ha pasado.
-- Corregida la lista de marcadores errónea que se utilizaba en las compilaciones de TestFlight.
-- Corregida la importación de archivos KMB.
-- Actualizadas las traducciones revisadas de categorías, sinónimos de búsqueda y cadenas de interfaz de usuario. Añadidas traducciones para las descripciones de Nueva Gales del Sur y Territorio del Norte.
-- Mejorada la estabilidad y el rendimiento, incluyendo la forma de las fuentes, el almacenamiento en caché de los glifos y el recorte de las líneas de ruta.
-- Mejorado el gráfico de elevación para pistas y rutas.
-- Hechos más grandes los botones del menú de navegación para acciones como TTS, ajustes y grabación de pistas.
-- Refinada la animación de la sección de descripción expandible en la página de lugar.
-- La página de información del lugar ya no se cierra cuando finaliza el barrido del gráfico de elevación, ya no rebota inesperadamente y mantiene el título visible mientras se edita con el teclado abierto.
-- Se han corregido los bloqueos al borrar una pista o un marcador que ya no existe.
+• La nueva opción «Guardar historial de búsqueda» te ayuda a mantener privado tu historial de búsqueda si lo necesitas
 
-## Soporte de plataformas
+## Mapas y lugares
+• Datos de OpenStreetMap a fecha de 14 de julio
+• Las notas de OpenStreetMap ahora se sitúan en la ubicación exacta que selecciones, en lugar de en medio del bosque
+• Se ha mejorado la selección de mapas para las regiones que cruzan el antimeridiano de 180°
+• Los perfiles de altitud de los recorridos ya no muestran gráficos obsoletos o vacíos tras eliminar un recorrido
+• Se ha mejorado el gráfico de altitud vacío para los recorridos grabados
+• El botón para eliminar marcadores es más fácil de encontrar
+• Se guardan automáticamente los marcadores al salir de la pantalla de edición
+• La paleta de colores incluye colores predefinidos y permite elegir cualquier color personalizado
+• Otras mejoras en la interfaz de usuario
 
-- Debido a cambios en TestFlight y en la App Store, esta versión sólo es compatible con iOS 15 y posteriores. iOS 12, iOS 13 e iOS 14 ya no son compatibles.
+## Transporte público
+• Los nombres de paradas, transbordos y estaciones ahora utilizan un contorno blanco para que sean legibles tanto en el tema claro como en el oscuro
+• La capa de metro vuelve a aparecer correctamente tras cerrar la vista previa de una ruta de transporte público
+
+## Rutas y navegación
+• Se han solucionado problemas relacionados con indicaciones erróneas o ausentes
+• Las advertencias de ruta (peajes, transbordadores, carreteras sin asfaltar, escaleras, etc.) se muestran ahora para todas las rutas alternativas
+• Se ha solucionado un bloqueo poco frecuente al trazar una ruta y se ha mejorado la gestión de callejones sin salida y de los puntos de inicio y fin en una carretera con restricciones
+• Se ha mejorado la indicación del progreso de la ruta en el botón de inicio
+• Al reordenar las paradas de la ruta, la lista ya no salta de un lado a otro
+
+## Traducciones
+• Se ha mejorado la redacción en chino
+• Se han actualizado las traducciones al ucraniano
+• Se han corregido las traducciones de las regiones del mapa en italiano

@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.CallSuper;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -38,7 +39,6 @@ import app.organicmaps.sdk.bookmarks.data.BookmarkSharingResult;
 import app.organicmaps.sdk.bookmarks.data.CategoryDataSource;
 import app.organicmaps.sdk.bookmarks.data.FileType;
 import app.organicmaps.sdk.bookmarks.data.Icon;
-import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
 import app.organicmaps.sdk.bookmarks.data.SortedBlock;
 import app.organicmaps.sdk.bookmarks.data.Track;
 import app.organicmaps.sdk.search.BookmarkSearchListener;
@@ -50,7 +50,7 @@ import app.organicmaps.util.WindowInsetUtils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
 import app.organicmaps.widget.SearchToolbarController;
-import app.organicmaps.widget.placepage.BookmarkColorDialogFragment;
+import app.organicmaps.widget.colorpicker.ColorPickerFragment;
 import app.organicmaps.widget.placepage.EditBookmarkFragment;
 import app.organicmaps.widget.recycler.DividerItemDecorationWithPadding;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -62,8 +62,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     implements BookmarkManager.BookmarksSharingListener, BookmarkManager.BookmarksSortingListener,
                BookmarkManager.BookmarksLoadingListener, BookmarkSearchListener,
                ChooseBookmarksSortingTypeFragment.ChooseSortingTypeListener,
-               MenuBottomSheetFragment.MenuBottomSheetInterface,
-               BookmarkColorDialogFragment.OnBookmarkColorChangeListener
+               MenuBottomSheetFragment.MenuBottomSheetInterface, ColorPickerFragment.OnColorChangeListener
 {
   public static final String TAG = BookmarksListFragment.class.getSimpleName();
   public static final String EXTRA_CATEGORY = "bookmark_category";
@@ -230,6 +229,23 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   private void onViewCreatedInternal(@NonNull View view)
   {
+    getChildFragmentManager().setFragmentResultListener(
+        EditBookmarkFragment.REQUEST_KEY, getViewLifecycleOwner(), (key, result) -> {
+          BookmarkListAdapter adapter = getBookmarkListAdapter();
+          if (adapter == null)
+            return;
+          final String action = result.getString(EditBookmarkFragment.RESULT_ACTION);
+          if (EditBookmarkFragment.ACTION_DELETED.equals(action))
+            resetSearchAndSort();
+          else if (EditBookmarkFragment.ACTION_SAVED.equals(action))
+          {
+            if (result.getBoolean(EditBookmarkFragment.RESULT_MOVED_FROM_CATEGORY, false))
+              resetSearchAndSort();
+            else
+              adapter.notifyDataSetChanged();
+          }
+        });
+
     configureBookmarksListAdapter();
 
 //    configureFab(view);
@@ -436,26 +452,23 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
   @Override
   public void onBookmarksSortingCompleted(@NonNull SortedBlock[] sortedBlocks, long timestamp)
   {
-    if (mLastSortTimestamp != timestamp)
-      return;
-    mLastSortTimestamp = 0;
-
-    BookmarkListAdapter adapter = getBookmarkListAdapter();
-    adapter.setSortedResults(sortedBlocks);
-    adapter.notifyDataSetChanged();
-
-    updateSortingProgressBar();
+    applySortedResults(sortedBlocks, timestamp);
   }
 
   @Override
   public void onBookmarksSortingCancelled(long timestamp)
   {
-    if (mLastSortTimestamp != timestamp)
+    applySortedResults(null, timestamp);
+  }
+
+  private void applySortedResults(@Nullable SortedBlock[] sortedBlocks, long timestamp)
+  {
+    if (mLastSortTimestamp == 0 || mLastSortTimestamp != timestamp)
       return;
     mLastSortTimestamp = 0;
 
     BookmarkListAdapter adapter = getBookmarkListAdapter();
-    adapter.setSortedResults(null);
+    adapter.setSortedResults(sortedBlocks);
     adapter.notifyDataSetChanged();
 
     updateSortingProgressBar();
@@ -645,65 +658,49 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
       return;
     mSelectedItemType = adapter.getItemViewType(position);
 
-    final Bundle args = new Bundle();
     if (mSelectedItemType == BookmarkListAdapter.TYPE_TRACK)
     {
       final Track track = (Track) item;
       mSelectedItemId = track.getTrackId();
-      args.putInt(BookmarkColorDialogFragment.ICON_COLOR, PredefinedColors.getPredefinedColorIndex(track.getColor()));
+      ColorPickerFragment.show(getChildFragmentManager(), track.getColor());
     }
     else if (mSelectedItemType == BookmarkListAdapter.TYPE_BOOKMARK)
     {
       final BookmarkInfo bookmark = (BookmarkInfo) item;
       mSelectedItemId = bookmark.getBookmarkId();
-      args.putInt(BookmarkColorDialogFragment.ICON_COLOR, bookmark.getIcon().getColor());
-      args.putInt(BookmarkColorDialogFragment.ICON_RES, bookmark.getIcon().getResId());
+      ColorPickerFragment.show(getChildFragmentManager(), bookmark.getIcon().argb());
     }
-
-    final BookmarkColorDialogFragment dialogFragment = new BookmarkColorDialogFragment();
-    dialogFragment.setArguments(args);
-    dialogFragment.show(getChildFragmentManager(), null);
   }
 
   @Override
-  public void onBookmarkColorSet(int colorPos)
+  public void onColorSet(@ColorInt int color)
   {
     if (mSelectedItemId == -1)
       return;
 
     final BookmarkListAdapter adapter = getBookmarkListAdapter();
     final int position = adapter.getPositionById(mSelectedItemId, mSelectedItemType);
-    if (position == -1)
-      return;
-
-    final Object item = adapter.getItem(position);
-    if (item == null)
-      return;
-
-    if (mSelectedItemType == BookmarkListAdapter.TYPE_TRACK)
+    if (position != -1)
     {
-      final Track track = (Track) item;
-      final int from = track.getColor();
-      final int to = PredefinedColors.getColor(colorPos);
-      if (from == to)
-        return;
-      track.setColor(to);
+      final Object item = adapter.getItem(position);
+      if (item instanceof Track track)
+      {
+        if (track.getColor() != color)
+        {
+          track.setColor(color);
+          adapter.notifyItemChanged(position);
+        }
+      }
+      else if (item instanceof BookmarkInfo bookmark)
+      {
+        if (bookmark.getIcon().argb() != color)
+        {
+          final Icon newIcon = new Icon(color, bookmark.getIcon().getType());
+          bookmark.update(bookmark.getName(), newIcon, bookmark.getDescription());
+          adapter.notifyItemChanged(position);
+        }
+      }
     }
-    else if (mSelectedItemType == BookmarkListAdapter.TYPE_BOOKMARK)
-    {
-      final BookmarkInfo bookmark = (BookmarkInfo) item;
-      final int from = bookmark.getIcon().getColor();
-      final int to = PredefinedColors.getColor(colorPos);
-      if (from == to)
-        return;
-      final int colorIndex = PredefinedColors.getPredefinedColorIndex(to);
-      if (colorIndex == -1)
-        return;
-      final Icon newIcon = new Icon(colorIndex, bookmark.getIcon().getType());
-      bookmark.update(bookmark.getName(), newIcon, bookmark.getDescription());
-    }
-
-    adapter.notifyItemChanged(position);
 
     mSelectedItemId = -1;
     mSelectedItemType = -1;
@@ -743,8 +740,8 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
 
   private void onDeleteTrackSelected(long trackId)
   {
-    BookmarkManager.INSTANCE.deleteTrack(trackId);
-    getBookmarkListAdapter().notifyDataSetChanged();
+    deleteBookmarkListItem(trackId, BookmarkListAdapter.TYPE_TRACK,
+                           () -> BookmarkManager.INSTANCE.deleteTrack(trackId));
   }
 
   private void onShareActionSelected()
@@ -764,14 +761,7 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     final BookmarkInfo info = BookmarkManager.INSTANCE.getBookmarkInfo(mSelectedItemId);
     if (info == null)
       return;
-    BookmarkListAdapter adapter = getBookmarkListAdapter();
-    EditBookmarkFragment.editBookmark(info.getCategoryId(), info.getBookmarkId(), requireActivity(),
-                                      getChildFragmentManager(), (bookmarkId, movedFromCategory) -> {
-                                        if (movedFromCategory)
-                                          resetSearchAndSort();
-                                        else
-                                          adapter.notifyDataSetChanged();
-                                      });
+    EditBookmarkFragment.editBookmark(info.getCategoryId(), info.getBookmarkId(), getChildFragmentManager());
   }
 
   private void onTrackEditActionSelected()
@@ -779,23 +769,29 @@ public class BookmarksListFragment extends BaseMwmRecyclerFragment<ConcatAdapter
     if (mSelectedItemId == -1)
       return;
     final Track track = BookmarkManager.INSTANCE.getTrack(mSelectedItemId);
-    EditBookmarkFragment.editTrack(track.getCategoryId(), track.getTrackId(), requireActivity(),
-                                   getChildFragmentManager(), (trackId, movedFromCategory) -> {
-                                     if (movedFromCategory)
-                                       resetSearchAndSort();
-                                     else
-                                       getBookmarkListAdapter().notifyDataSetChanged();
-                                   });
+    EditBookmarkFragment.editTrack(track.getCategoryId(), track.getTrackId(), getChildFragmentManager());
   }
 
   private void onDeleteActionSelected()
   {
     if (mSelectedItemId == -1)
       return;
-    BookmarkManager.INSTANCE.deleteBookmark(mSelectedItemId);
-    getBookmarkListAdapter().notifyDataSetChanged();
+    final long bookmarkId = mSelectedItemId;
+    deleteBookmarkListItem(bookmarkId, BookmarkListAdapter.TYPE_BOOKMARK,
+                           () -> BookmarkManager.INSTANCE.deleteBookmark(bookmarkId));
+  }
+
+  private void deleteBookmarkListItem(long itemId, int type, @NonNull Runnable deleteAction)
+  {
+    final BookmarkListAdapter adapter = getBookmarkListAdapter();
+    adapter.removeDeletedItem(itemId, type);
+    deleteAction.run();
+    adapter.refreshDataSource();
+    adapter.notifyDataSetChanged();
     if (mSearchMode)
       mNeedUpdateSorting = true;
+    mSelectedItemId = -1;
+    mSelectedItemType = -1;
     updateSearchVisibility();
     updateRecyclerVisibility();
   }

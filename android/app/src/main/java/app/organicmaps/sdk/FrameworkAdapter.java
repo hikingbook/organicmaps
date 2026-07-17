@@ -145,10 +145,6 @@ public enum FrameworkAdapter {
     }
 
     public void onCreateMwmActivity(Bundle savedInstanceState) {
-        mwmActivity.mIsTabletLayout = getApplication().getResources().getBoolean(R.bool.tabletLayout);
-        if (!mwmActivity.mIsTabletLayout)
-            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         mwmActivity.initDisplayManager();
         mwmActivity.initViews(false, savedInstanceState);
     }
@@ -267,7 +263,7 @@ public enum FrameworkAdapter {
         mwmActivity.updateBottomWidgetsOffset(offsetX, offsetY);
     }
 
-    public long createBookmark(String catName, String name, String description, @PredefinedColors.Color int color, double lat, double lon, int iconType) {
+    public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -369,7 +365,7 @@ public enum FrameworkAdapter {
         BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(catId);
     }
 
-    public long addTracks(long catId, String name, String description, Location[][] locations, @PredefinedColors.Color int color, double lineWidth) {
+    public long addTracks(long catId, String name, String description, Location[][] locations, int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -406,7 +402,7 @@ public enum FrameworkAdapter {
         BookmarkManager.INSTANCE.nativeDeleteAllTracksInCategory(catId);
     }
 
-    public int drawLineWithLocations(Location[] locations, @PredefinedColors.Color int color, double lineWidth) {
+    public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return Integer.MAX_VALUE;
         }

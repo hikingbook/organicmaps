@@ -23,6 +23,7 @@ import app.organicmaps.sdk.util.log.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -53,6 +54,8 @@ public enum TtsPlayer
   private static List<Pair<String, String>> sSupportedLanguages = null;
 
   public static Runnable sOnReloadCallback = null;
+
+  private static final CopyOnWriteArrayList<Runnable> sStateChangedListeners = new CopyOnWriteArrayList<>();
 
   private ContentObserver mTtsEngineObserver;
   private TextToSpeech mTts;
@@ -85,7 +88,7 @@ public enum TtsPlayer
 
     private void handleError(@NonNull String utteranceId, int errorCode)
     {
-      Logger.e(TAG, "TTS Utterance error: " + utteranceId + ", code: " + errorCode);
+      Logger.w(TAG, "TTS Utterance error: " + utteranceId + ", code: " + errorCode);
       handleStop(utteranceId);
     }
 
@@ -100,6 +103,9 @@ public enum TtsPlayer
   };
 
   private boolean mInitializing;
+  // Bumped on every initialize() start; the captured value lets the init callback
+  // detect that it belongs to a TextToSpeech we've already shutdown and bail out.
+  private int mInitGeneration;
   private boolean mReloadTriggered = false;
   private AudioFocusManager mAudioFocusManager;
 
@@ -109,8 +115,26 @@ public enum TtsPlayer
   @NonNull
   private Context mContext;
 
-  // TTS is locked down due to absence of supported languages
+  // Lockdown reasons: init ERROR, no OM-supported languages, engine IllegalArgumentException.
+  // Reset on ContentObserver.onChange so a switched engine can re-initialize.
   private boolean mUnavailable;
+  // Engine is ready and a downloaded, OM-supported voice language is selected.
+  // Reflects the result of the latest refreshLanguages() pass.
+  private boolean mHasUsableLanguage;
+
+  public enum State
+  {
+    INITIALIZING,
+    UNAVAILABLE,
+    NEEDS_LANGUAGE,
+    READY_ON,
+    READY_OFF;
+
+    public boolean isReady()
+    {
+      return this == READY_ON || this == READY_OFF;
+    }
+  }
 
   TtsPlayer() {}
 
@@ -190,15 +214,22 @@ public enum TtsPlayer
       return;
 
     mInitializing = true;
+    final int generation = ++mInitGeneration;
     // TextToSpeech.OnInitListener() can be called from a non-main thread
     // on LineageOS '20.0-20231127-RELEASE-thyme' 'Xiaomi/thyme/thyme'.
     // https://github.com/organicmaps/organicmaps/issues/6903
     mTts = new TextToSpeech(context, status -> UiThread.run(() -> {
+      // Stale callback from a TextToSpeech we've already shut down via onChange();
+      // mTts now points to the new engine, so running this body would clobber its
+      // in-flight initialization.
+      if (generation != mInitGeneration)
+        return;
       if (status == TextToSpeech.ERROR)
       {
         Logger.e(TAG, "Failed to initialize TextToSpeech");
         lockDown();
         mInitializing = false;
+        notifyStateChanged();
         return;
       }
       refreshLanguages();
@@ -213,6 +244,7 @@ public enum TtsPlayer
         sOnReloadCallback.run();
         mReloadTriggered = false;
       }
+      notifyStateChanged();
     }));
 
     if (mTtsEngineObserver == null)
@@ -228,6 +260,10 @@ public enum TtsPlayer
             mTts.shutdown();
             mTts = null;
           }
+          // Clear lockdown for the new engine; clear mInitializing because a pending
+          // old-engine callback will detect its stale generation and bail without resetting it.
+          mUnavailable = false;
+          mInitializing = false;
           initialize(mContext);
         }
       };
@@ -239,6 +275,41 @@ public enum TtsPlayer
   private static boolean isReady()
   {
     return INSTANCE.mTts != null && !INSTANCE.mUnavailable && !INSTANCE.mInitializing;
+  }
+
+  /**
+   * Registers a listener invoked on the UI thread whenever the TTS lifecycle state may have
+   * changed (init success / init failure / lockdown / enable toggle). Callers must remove
+   * the listener (via {@link #removeStateChangedListener}) when their host Activity is
+   * destroyed to avoid leaking its context.
+   */
+  public static void addStateChangedListener(@NonNull Runnable listener)
+  {
+    sStateChangedListeners.add(listener);
+  }
+
+  public static void removeStateChangedListener(@NonNull Runnable listener)
+  {
+    sStateChangedListeners.remove(listener);
+  }
+
+  private static void notifyStateChanged()
+  {
+    // CopyOnWriteArrayList iteration is safe under concurrent add/remove.
+    for (Runnable listener : sStateChangedListeners)
+      UiThread.run(listener);
+  }
+
+  @NonNull
+  public static State getState()
+  {
+    if (INSTANCE.mUnavailable)
+      return State.UNAVAILABLE;
+    if (INSTANCE.mTts == null || INSTANCE.mInitializing)
+      return State.INITIALIZING;
+    if (!INSTANCE.mHasUsableLanguage)
+      return State.NEEDS_LANGUAGE;
+    return Config.TTS.isEnabled() ? State.READY_ON : State.READY_OFF;
   }
 
   public void speak(@NonNull String textToSpeak)
@@ -333,8 +404,11 @@ public enum TtsPlayer
 
   public static void setEnabled(boolean enabled)
   {
+    final boolean wasEnabled = Config.TTS.isEnabled();
     Config.TTS.setEnabled(enabled);
     nativeEnableTurnNotifications(enabled);
+    if (wasEnabled != enabled)
+      notifyStateChanged();
   }
 
   public float getVolume()
@@ -405,9 +479,11 @@ public enum TtsPlayer
       return res;
 
     LanguageData lang = refreshLanguagesInternal(res);
+    mHasUsableLanguage = lang != null;
     setLanguage(lang);
 
     setEnabled(Config.TTS.isEnabled());
+    notifyStateChanged();
     return res;
   }
 

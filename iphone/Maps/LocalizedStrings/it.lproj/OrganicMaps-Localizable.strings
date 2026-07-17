@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "Gli edifici 3D sono disattivati in modalità risparmio energetico";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Immagini satellitari";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL del server";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Inserisci un URL valido con {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Dimensione della cache (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Opacità degli oggetti areali";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Le fonti dei tasselli personalizzati sono fornite da te. Utilizza solo i servizi a cui sei autorizzato ad accedere. Sei responsabile dell'attribuzione, dei termini di licenza, delle chiavi API, delle quote e dei limiti di utilizzo.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Istruzioni vocali";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Lingua per la voce";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Per scaricare una voce di qualità superiore, apri l'app Impostazioni e vai in Accessibilità → VoiceOver → Voce → Voce.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Prova le indicazioni vocali (TTS, Text-To-Speech)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Ciclismo";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satellite";
 "button_layer_subway" = "Metropolitana";
 "layers_title" = "Stili e livelli della mappa";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Strada a pedaggio";
 "unpaved_road" = "Strada non asfaltata";
 "ferry_crossing" = "Traghetto";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Scale";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Cancello";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Sbarra";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Sì";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Discesa";
 "elevation_profile_min_elevation" = "Elevazione minima";
 "elevation_profile_max_elevation" = "Elevazione massima";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Inizia a muoverti per vedere il profilo altimetrico";
 "isolines_toast_zooms_1_10" = "Ingrandisci la mappa per vedere le curve di livello";
 "downloader_loading_ios" = "Scaricamento";
 

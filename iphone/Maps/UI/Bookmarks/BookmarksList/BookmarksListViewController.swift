@@ -28,7 +28,7 @@ final class BookmarksListViewController: MWMViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let toolbarItemAttributes = [NSAttributedString.Key.font: UIFont.medium16(),
+    let toolbarItemAttributes = [NSAttributedString.Key.font: UIFont.medium16.dynamic,
                                  NSAttributedString.Key.foregroundColor: UIColor.linkBlue]
 
     sortToolbarItem.setTitleTextAttributes(toolbarItemAttributes, for: .normal)
@@ -235,8 +235,8 @@ extension BookmarksListViewController: IBookmarksListView {
     present(actionSheet, animated: true)
   }
 
-  func showColorPicker(with pickerType: ColorPickerType, _ completionHandler: ((UIColor) -> Void)?) {
-    ColorPicker.shared.present(from: self, pickerType: pickerType, completionHandler: completionHandler)
+  func showColorPicker(anchor: UIView?, currentColor: UIColor?, _ completionHandler: ((UIColor) -> Void)?) {
+    ColorPicker.shared.present(from: self, anchor: anchor, currentColor: currentColor, completionHandler: completionHandler)
   }
 
   func enableEditing(_ enable: Bool) {
@@ -261,6 +261,10 @@ extension BookmarksListViewController: IBookmarksListView {
 extension BookmarksListViewController: BookmarksListInfoViewControllerDelegate {
   func didPressDescription() {
     presenter.showDescription()
+  }
+
+  func didPressEdit() {
+    presenter.editCategory()
   }
 
   func didUpdateContent() {

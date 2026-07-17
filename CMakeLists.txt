@@ -92,22 +92,31 @@ if (PLATFORM_WIN)
   )
 endif()
 
-# Built-in CMake configurations: Debug, Release, RelWithDebInfo, MinSizeRel
-if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-  add_definitions(-DDEBUG)
-  if (NOT MSVC)
-    add_compile_options(-fno-omit-frame-pointer)
-  endif()
-elseif (${CMAKE_BUILD_TYPE} MATCHES "Rel")
-  add_definitions(-DRELEASE)
-  if (NOT MSVC)
-    add_compile_options(-O3)
-  endif()
-else()
-  message(FATAL_ERROR "Unknown build type: " ${CMAKE_BUILD_TYPE})
+# Built-in CMake configurations: Debug, Release, RelWithDebInfo, MinSizeRel.
+# Use generator expressions so this also works with multi-config generators
+# (Xcode, Visual Studio, Ninja Multi-Config) where CMAKE_BUILD_TYPE is empty
+# at configure time and the active config is only known per-build.
+add_compile_definitions(
+  $<$<CONFIG:Debug>:DEBUG>
+  $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:RELEASE>
+)
+if (NOT MSVC)
+  add_compile_options(
+    $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
+    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:-O3>
+  )
 endif()
 
-message(STATUS "Build type: " ${CMAKE_BUILD_TYPE})
+# For single-config generators we can still validate CMAKE_BUILD_TYPE early.
+get_property(_is_multi_config GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if (NOT _is_multi_config)
+  if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE MATCHES "Rel")
+    message(FATAL_ERROR "Unknown build type: " ${CMAKE_BUILD_TYPE})
+  endif()
+  message(STATUS "Build type: " ${CMAKE_BUILD_TYPE})
+else()
+  message(STATUS "Multi-config generator: build type selected per-build (Debug/Release/RelWithDebInfo/MinSizeRel)")
+endif()
 
 if (PLATFORM_LINUX OR PLATFORM_ANDROID)
   find_program(LLD_FOUND ld.lld)
@@ -123,15 +132,6 @@ if (PLATFORM_LINUX OR PLATFORM_ANDROID)
   endif()
 endif()
 
-if (NOT SKIP_TESTS)
-  enable_testing()
-  # Enables ctest -T memcheck with valgrind
-  include(CTest)
-  if (COVERAGE_REPORT)
-    include(OmimCoverage)
-  endif ()
-endif()
-
 if (NOT PYTHON_VERSION)
   # FDroid build server has 3.5.3 Python installed.
   set(PYTHON_VERSION 2.7)
@@ -145,7 +145,7 @@ find_package(Threads REQUIRED)
 
 if (NOT PLATFORM_IPHONE AND NOT PLATFORM_ANDROID)
   list(APPEND qt_components Core Network)
-  if (NOT SKIP_QT_GUI OR NOT SKIP_TESTS)
+  if (NOT SKIP_QT_GUI OR BUILD_TESTING)
     list(APPEND qt_components Widgets)
   endif()
   if (NOT SKIP_QT_GUI)
@@ -200,12 +200,18 @@ if (WITH_SYSTEM_PROVIDED_3PARTY)
   find_package(gflags REQUIRED)
 
   find_package(expat CONFIG REQUIRED)
-  find_package(jansson CONFIG REQUIRED)
+
   find_package(pugixml REQUIRED)
   find_package(utf8cpp REQUIRED)
-endif()
+  find_package(Boost REQUIRED)
+  if (BUILD_TESTING)
+    find_package(GTest REQUIRED)
+  endif()
 
-find_package(ZLIB REQUIRED)
+  # Otherwise zlib-ng is built from 3party/zlib-ng (see 3party/CMakeLists.txt) as
+  # a drop-in replacement -- system zlib is not available out of the box on Windows.
+  find_package(ZLIB REQUIRED)
+endif()
 
 # Include 3party dependencies.
 add_subdirectory(3party)

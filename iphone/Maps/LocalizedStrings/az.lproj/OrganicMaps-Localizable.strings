@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "3D binalar enerjiyə qənaət rejimində söndürülür";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Peyk görüntüləri";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "Server URL-i";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "{z}/{x}/{y} ehtiva edən etibarlı URL daxil edin";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Keş ölçüsü (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Sahə obyektlərinin qeyri-şəffaflığı";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Fərdi döşəmə mənbələrini siz təqdim edirsiniz. Yalnız daxil olmağa icazəniz olan xidmətlərdən istifadə edin. Mənbə göstərilməsi, lisenziya şərtləri, API açarları, kvotalar və istifadə limitlərinə görə siz məsuliyyət daşıyırsınız.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Səsli təlimatlar";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Audio Dil";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Daha yüksək keyfiyyətli səsi yükləmək üçün Parametrlər tətbiqini açın və Əlçatanlıq → VoiceOver → Nitq → Səs bölməsinə keçin.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Test səsli göstərişlər (TTS, Text-to-Speech)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Velosiped gəzintisi";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Peyk";
 "button_layer_subway" = "Metro";
 "layers_title" = "Xəritə Üslubları və Qatları";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Ücrətli yol";
 "unpaved_road" = "Asfaltsız yol";
 "ferry_crossing" = "Bərə keçidi";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Pilləkənlər";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Qapı";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Şlaqbaum";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Bəli";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Eniş";
 "elevation_profile_min_elevation" = "Min. hündürlük";
 "elevation_profile_max_elevation" = "Maks. hündürlük";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Hündürlük profilini görmək üçün hərəkətə başlayın";
 "isolines_toast_zooms_1_10" = "İzohipləri görmək üçün xəritəni böyüdün";
 "downloader_loading_ios" = "Endirilir";
 

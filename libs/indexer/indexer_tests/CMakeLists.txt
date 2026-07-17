@@ -14,8 +14,10 @@ set(SRC
   complex_serdes_utils_tests.cpp
   custom_keyvalue_tests.cpp
   data_source_test.cpp
+  drules_format_tests.cpp
   drules_selector_parser_test.cpp
   editable_map_object_test.cpp
+  feature_covering_test.cpp
   feature_metadata_test.cpp
   feature_names_test.cpp
   feature_to_osm_tests.cpp

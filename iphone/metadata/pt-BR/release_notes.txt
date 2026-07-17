@@ -1,26 +1,28 @@
-- NOVO! Toque em uma parada de transporte público para destacar a rota inteira no mapa, como no estilo de mapa Transit.
-- NOVO! As rotas de transporte público de longa distância e outras relações do OpenStreetMap agora estão conectadas através das bordas do mapa em uma linha contínua.
-- Dados do OpenStreetMap atualizados a partir de 3 de maio.
-- O Vietnã e a Malásia agora estão divididos em regiões menores que podem ser baixadas separadamente.
-- Hong Kong, Macau e Hainan agora estão separados de Guangdong, com as fronteiras vizinhas atualizadas.
-- Linhas de contorno atualizadas para Indonésia, Malásia, Tanzânia, Tailândia e Vietnã.
-- Adicionado um botão de gravação de trilha ao painel de informações na navegação.
-- Adição de novos tipos de OpenStreetMap: vulcões com status ativo, pontos de acesso a hidrovias, rampas de lançamento, salões de narguilé e edifícios em construção.
-- Adicionado "Lookout" como sinônimo de pesquisa para pontos de vista e "pkwy" como sinônimo de rua dos EUA.
-- As cores das áreas de pedestres estão um pouco mais escuras para melhor legibilidade.
-- Os rótulos dos marcadores no mapa não se sobrepõem mais.
-- O texto com várias linhas agora é recortado de forma limpa, e os nomes das ruas não contêm mais duplicatas.
-- Roteamento: as rotas retomadas agora removem os pontos intermediários pelos quais o usuário já passou.
-- Foi corrigida a lista errada de favoritos que estava sendo usada nas compilações do TestFlight.
-- Correção da importação de arquivos KMB.
-- Atualizadas as traduções revisadas para categorias, sinônimos de pesquisa e cadeias de caracteres da interface do usuário. Adicionadas traduções para as descrições de New South Wales e Northern Territory.
-- Melhoria na estabilidade e no desempenho, incluindo modelagem de fontes, cache de glifos e recorte de linhas de rotas.
-- Aprimoramos o gráfico de elevação para trilhas e rotas.
-- Aumentamos o tamanho dos botões do menu de navegação para ações como TTS, configurações e gravação de trilhas.
-- Aprimoramos a animação da seção de descrição expansível na página do local.
-- A página de informações do local não fecha mais quando a limpeza do gráfico de elevação termina, não salta mais inesperadamente e mantém o título visível durante a edição com o teclado aberto.
-- Correção de falhas ao excluir uma trilha ou marcador que não existe mais.
+• A nova configuração “Salvar histórico de pesquisa” ajuda você a manter seu histórico de pesquisa privado quando necessário
 
-## Suporte à plataforma
+## Mapa e locais
+• Dados do OpenStreetMap atualizados em 14 de julho
+• As anotações do OpenStreetMap agora são colocadas no local exato que você selecionar, em vez de no meio da floresta
+• Seleção de mapa aprimorada para regiões que cruzam o antimeridiano de 180°
+• Os perfis de elevação das trilhas não exibem mais gráficos desatualizados ou vazios após a remoção de uma trilha
+• O gráfico de elevação vazio para trilhas registradas foi aprimorado
+• O botão para remover marcadores ficou mais fácil de encontrar
+• Salvamento automático de marcadores ao sair da tela de edição
+• A paleta de cores inclui cores predefinidas e permite escolher qualquer cor personalizada
+• Outras melhorias na interface do usuário
 
-- Devido a alterações no TestFlight e na App Store, esta versão é compatível apenas com o iOS 15 e posterior. O iOS 12, o iOS 13 e o iOS 14 não são mais compatíveis.
+## Transporte público
+• Os nomes de paradas, baldeações e estações agora usam um contorno branco para permanecerem legíveis tanto no tema claro quanto no escuro
+• A camada do metrô reaparece corretamente após fechar a visualização de uma rota de transporte público
+
+## Roteamento e navegação
+• Corrigidos problemas com instruções incorretas ou ausentes
+• Os avisos de rota (pedágios, balsas, estradas não pavimentadas, escadas etc.) agora são exibidos para todas as rotas alternativas
+• Corrigido um raro travamento durante a criação de uma rota e melhorado o tratamento de becos sem saída e pontos de início/fim em uma via restrita
+• Aprimorada a exibição do progresso da rota no botão “Iniciar”
+• A reordenação das paradas da rota não faz mais com que a lista salte de um lugar para outro
+
+## Traduções
+• Aprimorada a redação em chinês
+• Atualizadas as traduções em ucraniano
+• Corrigidas as traduções das regiões do mapa em italiano

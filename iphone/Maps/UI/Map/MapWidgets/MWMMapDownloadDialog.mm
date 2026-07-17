@@ -105,20 +105,13 @@ using namespace storage;
     }
     self.node.text = @(nodeAttrs.m_nodeLocalName.c_str());
     self.node.textColor = [UIColor textBody];
-      
-    // nodeSize label should be hidden when presenting map size
-    [self hideMapInfoStackView:YES];
-      
 //    self.nodeSize.hidden = NO;
 //    self.nodeSize.textColor = [UIColor blackSecondaryText];
-//      switch ([self mapSourceForCountry:@(self->m_countryId.c_str())]) {
-//      case hikingbookProMaps:
-//          self.nodeSize.text = formattedSize(nodeAttrs.m_hikingbookProMapSize);
-//          break;
-//      default:
-//          self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
-//          break;
-//      }
+//    self.nodeSize.text = formattedSize(nodeAttrs.m_mwmSize);
+//    self.nodeSize.font = UIFont.medium14.dynamic.monospaced;
+
+    // nodeSize label should be hidden when presenting map size
+    [self hideMapInfoStackView:YES];
 
     // Modified by Zheng-Xiang Ke
     self.minimizeButton.hidden = nodeAttrs.m_status != NodeStatus::OnDisk && nodeAttrs.m_status != NodeStatus::OnDiskOutOfDate && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDisk && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDiskOutOfDate;

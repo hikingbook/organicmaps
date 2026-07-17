@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
+import androidx.annotation.ColorInt;
 import androidx.annotation.Keep;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -191,10 +192,10 @@ public enum BookmarkManager {
   @Keep
   @SuppressWarnings("unused")
   @MainThread
-  private void onElevationCurrentPositionChanged()
+  private void onElevationCurrentPositionChanged(long trackId, double distance)
   {
     if (mOnElevationCurrentPositionChangedListener != null)
-      mOnElevationCurrentPositionChangedListener.onCurrentPositionChanged();
+      mOnElevationCurrentPositionChangedListener.onCurrentPositionChanged(trackId, distance);
   }
 
   public void setElevationCurrentPositionChangedListener(@Nullable OnElevationCurrentPositionChangedListener listener)
@@ -211,10 +212,10 @@ public enum BookmarkManager {
   @Keep
   @SuppressWarnings("unused")
   @MainThread
-  private void onElevationActivePointChanged()
+  private void onElevationActivePointChanged(long trackId, double distance)
   {
     if (mOnElevationActivePointChangedListener != null)
-      mOnElevationActivePointChangedListener.onElevationActivePointChanged();
+      mOnElevationActivePointChangedListener.onElevationActivePointChanged(trackId, distance);
   }
 
   public boolean isVisible(long catId)
@@ -284,7 +285,7 @@ public enum BookmarkManager {
     nativeShowBookmarkCategoryOnMap(catId);
   }
 
-  @PredefinedColors.Color
+  @ColorInt
   public int getLastEditedColor()
   {
     return nativeGetLastEditedColor();
@@ -297,6 +298,7 @@ public enum BookmarkManager {
     nativeLoadBookmarksFile(path, isTemporaryFile);
   }
 
+  @WorkerThread
   static @Nullable String getBookmarksFilenameFromUri(@NonNull ContentResolver resolver, @NonNull Uri uri)
   {
     String filename = null;
@@ -371,6 +373,7 @@ public enum BookmarkManager {
     return null;
   }
 
+  @WorkerThread
   private static String guessExtensionByContent(@NonNull ContentResolver resolver, @NonNull Uri uri)
   {
     // If first symbol is '{' -> GeoJson
@@ -607,7 +610,7 @@ public enum BookmarkManager {
   @Nullable
   private native Bookmark nativeAddBookmarkToLastEditedCategory(double lat, double lon);
 
-  @PredefinedColors.Color
+  @ColorInt
   private native int nativeGetLastEditedColor();
 
   private static native void nativeLoadBookmarksFile(@NonNull String path, boolean isTemporaryFile);
@@ -646,39 +649,28 @@ public enum BookmarkManager {
   /**
    * Native method add by RobinChien 2020/07/10
    * */
-  @NonNull
-  public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription, @PredefinedColors.Color int color, double lat, double lon, int iconType);
+  public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon, int iconType);
 
-  @NonNull
-  public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, @PredefinedColors.Color int color, double lat, double lon);
+  public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon);
 
-  @NonNull
   public native void nativeDeleteAllBookmarkWithCategory(long catId);
 
-  @NonNull
   public native long nativeSearchBookmarkIDWithName(String bookmarkName, long catId);
 
-  @NonNull
   public native long nativeSearchCategoryIDWithName(String categoryName);
 
-  @NonNull
-  public native long nativeAddTracks(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, double[][] timestamps, @PredefinedColors.Color int color, double width);
+  public native long nativeAddTracks(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, double[][] timestamps, int color, double width);
 
-  @NonNull
   public native void nativeDeleteAllTracksInCategory(long catId);
 
-  @NonNull
-  public native int nativeDrawLineWithLocations(double[][] locations, @PredefinedColors.Color int color, double width);
+  public native int nativeDrawLineWithLocations(double[][] locations, int color, double width);
 
-  @NonNull
   public native void nativeRemoveLine(int lineID);
 
-  @NonNull
   public native void nativeClearLines();
 
-  public native int nativeDrawCircle(double lat, double lon, double radius, @PredefinedColors.Color int color, double width);
+  public native int nativeDrawCircle(double lat, double lon, double radius, int color, double width);
 
-  @NonNull
   public native void nativeResetRecentlyDeletedBookmark();
   public interface BookmarksLoadingListener
   {
@@ -703,12 +695,12 @@ public enum BookmarkManager {
 
   public interface OnElevationActivePointChangedListener
   {
-    void onElevationActivePointChanged();
+    void onElevationActivePointChanged(long trackId, double distance);
   }
 
   public interface OnElevationCurrentPositionChangedListener
   {
-    void onCurrentPositionChanged();
+    void onCurrentPositionChanged(long trackId, double distance);
   }
 
   static class BookmarkCategoriesCache

@@ -6,7 +6,36 @@
 #include "app/organicmaps/sdk/bookmarks/data/TrackStatistics.hpp"
 #include "app/organicmaps/sdk/core/jni_helper.hpp"
 
-#include "base/logging.hpp"
+namespace
+{
+jobjectArray BuildTrackCandidatesArray(JNIEnv * env, place_page::Info const & info)
+{
+  auto const & candidates = info.GetTrackCandidates();
+  if (candidates.empty())
+    return nullptr;
+
+  jni::TScopedLocalClassRef candidateClazz(
+      env, env->FindClass("app/organicmaps/sdk/bookmarks/data/TrackSelectionCandidate"));
+  static jmethodID const candidateCtor = jni::GetConstructorID(env, candidateClazz.get(), "(JLjava/lang/String;IZ)V");
+
+  jobjectArray result = env->NewObjectArray(static_cast<jsize>(candidates.size()), candidateClazz.get(), nullptr);
+
+  auto const isRelationTrack = info.IsRelationTrack();
+  auto const selectedTrackId = info.GetTrackId();
+  auto const & selectedRelationId = info.GetTrackRelationId();
+  for (size_t i = 0; i < candidates.size(); ++i)
+  {
+    auto const & c = candidates[i];
+    bool const isSelected = isRelationTrack ? c.m_relationId == selectedRelationId : c.m_trackId == selectedTrackId;
+    jni::TScopedLocalRef title(env, jni::ToJavaStringWithSupplementalCharsFix(env, c.m_title));
+    jni::TScopedLocalRef candidate(
+        env, env->NewObject(candidateClazz.get(), candidateCtor, static_cast<jlong>(c.m_trackId), title.get(),
+                            static_cast<jint>(c.m_color.GetARGB()), static_cast<jboolean>(isSelected)));
+    env->SetObjectArrayElement(result, static_cast<jsize>(i), candidate.get());
+  }
+  return result;
+}
+}  // namespace
 
 jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLocalObjectArrayRef const & jrawTypes,
                     jni::TScopedLocalRef const & routingPointInfo)
@@ -16,6 +45,7 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
     "("
     "J"                                               // categoryId
     "J"                                               // trackId
+    "Z"                                               // isRelationTrack
     "Ljava/lang/String;"                              // title
     "Ljava/lang/String;"                              // secondaryTitle
     "Ljava/lang/String;"                              // subtitle
@@ -29,6 +59,7 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
     "Lapp/organicmaps/sdk/util/Distance;"             // length
     "D"                                               // lat
     "D"                                               // lon
+    "[Lapp/organicmaps/sdk/bookmarks/data/TrackSelectionCandidate;"  // candidates
     ")V"
   );
   // clang-format on
@@ -41,10 +72,12 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
     return nullptr;
   }
   ms::LatLon const ll = info.GetLatLon();
+  jni::TScopedLocalObjectArrayRef candidatesArray(env, BuildTrackCandidatesArray(env, info));
   // clang-format off
   jobject mapObject = env->NewObject(g_trackClazz, ctorId,
     static_cast<jlong>(track->GetGroupId()),
     static_cast<jlong>(trackId),
+    static_cast<jboolean>(info.IsRelationTrack()),
     jni::ToJavaStringWithSupplementalCharsFix(env, info.GetTitle()),
     jni::ToJavaStringWithSupplementalCharsFix(env, info.GetSecondaryTitle()),
     jni::ToJavaStringWithSupplementalCharsFix(env, info.GetSubtitle()),
@@ -57,7 +90,8 @@ jobject CreateTrack(JNIEnv * env, place_page::Info const & info, jni::TScopedLoc
     track->GetColor(0).GetARGB(),
     ToJavaDistance(env, platform::Distance::CreateFormatted(track->GetLengthMeters())),
     static_cast<jdouble>(ll.m_lat),
-    static_cast<jdouble>(ll.m_lon)
+    static_cast<jdouble>(ll.m_lon),
+    candidatesArray.get()
   );
   // clang-format on
 

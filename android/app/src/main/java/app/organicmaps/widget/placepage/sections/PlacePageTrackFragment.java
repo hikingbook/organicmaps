@@ -26,7 +26,6 @@ public class PlacePageTrackFragment extends Fragment
   @Nullable
   private Track mTrack;
   private ElevationProfileViewRenderer mElevationProfileViewRenderer;
-  private View mElevationProfileView;
 
   @Nullable
   @Override
@@ -42,8 +41,7 @@ public class PlacePageTrackFragment extends Fragment
   {
     super.onViewCreated(view, savedInstanceState);
 
-    mElevationProfileView = view.findViewById(R.id.elevation_profile);
-    mElevationProfileViewRenderer = new ElevationProfileViewRenderer(mElevationProfileView);
+    mElevationProfileViewRenderer = new ElevationProfileViewRenderer(view.findViewById(R.id.elevation_profile));
   }
 
   @Override
@@ -65,12 +63,6 @@ public class PlacePageTrackFragment extends Fragment
   }
 
   @Override
-  public void onDestroy()
-  {
-    super.onDestroy();
-  }
-
-  @Override
   public void onChanged(@Nullable MapObject mapObject)
   {
     // MapObject could be something else than a Track if the user already has the place page
@@ -79,37 +71,38 @@ public class PlacePageTrackFragment extends Fragment
     if (mapObject == null || !mapObject.isTrack())
     {
       mTrack = null;
+      UiUtils.hide(requireView());
       return;
     }
 
     Track track = (Track) mapObject;
     if (track.getElevationInfo() != null)
     {
-      if (mTrack == null || mTrack.getTrackId() != track.getTrackId() || track.isTempRelationTrack())
-      {
+      if (mTrack == null || mTrack.getTrackId() != track.getTrackId() || track.isRelationTrack())
         mElevationProfileViewRenderer.render(track, track.getElevationInfo(), track.getTrackStatistics());
-        UiUtils.show(mElevationProfileView);
-      }
+      UiUtils.show(requireView());
     }
     else
-      UiUtils.hide(mElevationProfileView);
+      UiUtils.hide(requireView());
     mTrack = track;
   }
 
   @Override
-  public void onElevationActivePointChanged()
+  public void onElevationActivePointChanged(long trackId, double distance)
   {
-    if (mTrack == null)
+    if (mTrack == null || mTrack.getTrackId() != trackId)
       return;
-    mElevationProfileViewRenderer.onChartElevationActivePointChanged();
+    mElevationProfileViewRenderer.onChartElevationActivePointChanged(distance);
     final double[] coords = mTrack.getElevationActivePointCoordinates();
     mTrack.setLat(coords[0]);
     mTrack.setLon(coords[1]);
   }
 
   @Override
-  public void onCurrentPositionChanged()
+  public void onCurrentPositionChanged(long trackId, double distance)
   {
-    mElevationProfileViewRenderer.onChartCurrentPositionChanged();
+    if (mTrack == null || mTrack.getTrackId() != trackId)
+      return;
+    mElevationProfileViewRenderer.onChartCurrentPositionChanged(distance);
   }
 }

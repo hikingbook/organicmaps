@@ -142,8 +142,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   # expat
   # freetype
   # minizip
-  # cppjansson
-  # protobuf
   # succinct
   # stb_image
   # icu
@@ -156,7 +154,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   EGL
   GLESv2
   atomic
-  z
 )
 
 #target_link_options(${PROJECT_NAME} PRIVATE "-fuse-ld=gold")

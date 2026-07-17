@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "ساختمان های سه بعدی در حالت صرفه جویی در مصرف برق خاموش می شوند";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "تصاویر ماهواره‌ای";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "نشانی سرور";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "نشانی معتبری شامل {z}/{x}/{y} وارد کنید";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "اندازهٔ حافظهٔ نهان (مگابایت)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "کدری اشیای سطحی";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "منابع کاشی‌های سفارشی را شما فراهم می‌کنید. فقط از سرویس‌هایی استفاده کنید که اجازهٔ دسترسی به آن‌ها را دارید. شما مسئول ذکر منبع، شرایط مجوز، کلیدهای API، سهمیه‌ها و محدودیت‌های استفاده هستید.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "دستور العمل صوتی";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "زبان صوت";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "برای دانلود صدای باکیفیت‌تر، برنامه تنظیمات را باز کنید و به دسترس‌پذیری → VoiceOver → گفتار → صدا بروید.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "تست مسیرهای صوتی (TTS، تبدیل متن به گفتار)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "دوچرخه‌سواری";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "ماهواره";
 "button_layer_subway" = "مترو";
 "layers_title" = "سبک ها و لایه های نقشه";
 
@@ -707,6 +731,15 @@
 "toll_road" = "جاده دارای عوارض";
 "unpaved_road" = "جاده آسفالت نشده";
 "ferry_crossing" = "گذرگاه جاده‌ای";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "مسیر";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "دروازه";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "راهبند";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "بله";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "پایین آمدن";
 "elevation_profile_min_elevation" = "کم ارتفاع";
 "elevation_profile_max_elevation" = "بیش ارتفاع";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "برای دیدن نمایه ارتفاع حرکت را شروع کنید";
 "isolines_toast_zooms_1_10" = "برای بررسی خطوط تراز زوم کنید";
 "downloader_loading_ios" = "در حال دانلود";
 

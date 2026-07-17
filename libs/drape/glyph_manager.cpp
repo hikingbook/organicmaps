@@ -5,12 +5,14 @@
 #include "drape/harfbuzz_shaping.hpp"
 
 #include "platform/platform.hpp"
+#include "platform/preferred_languages.hpp"
 
 #include "coding/hex.hpp"
 #include "coding/reader.hpp"
 #include "coding/reader_streambuf.hpp"
 #include "coding/string_utf8_multilang.hpp"
 
+#include "base/checked_cast.hpp"
 #include "base/internal/message.hpp"
 #include "base/logging.hpp"
 #include "base/macros.hpp"
@@ -28,7 +30,9 @@
 #include <limits>
 #include <list>
 #include <memory>
+#include <optional>
 #include <string>
+#include <string_view>
 #include <unordered_set>
 #include <utility>
 #include <vector>
@@ -260,6 +264,55 @@ private:
                             TextMetricsCacheKeyEqual>
       m_index;
 };
+
+using CJKVariant = languages::CJKResolver::Variant;
+
+FT_Long PickCJKFaceIndex(std::string const & path, FT_Library lib, CJKVariant want)
+{
+  // /system/fonts/* are filesystem paths so FT_New_Face mmaps directly — no need to slurp the
+  // whole TTC into memory.
+  FT_Face probe = nullptr;
+  if (FT_New_Face(lib, path.c_str(), 0, &probe) != 0 || probe == nullptr)
+  {
+    LOG(LWARNING, ("CJK probe failed to open", path));
+    return 0;
+  }
+  FT_Long const numFaces = probe->num_faces;
+  FT_Done_Face(probe);
+
+  using Face = std::pair<FT_Long, CJKVariant>;
+  std::vector<Face> faces;
+  faces.reserve(base::asserted_cast<size_t>(numFaces));
+
+  for (FT_Long i = 0; i < numFaces; ++i)
+  {
+    FT_Face face = nullptr;
+    if (FT_New_Face(lib, path.c_str(), i, &face) != 0 || face == nullptr)
+      continue;
+    char const * const familyRaw = face->family_name;
+    auto const detected =
+        familyRaw ? languages::CJKResolver::FromSfntFamilyName(familyRaw) : std::optional<CJKVariant>{};
+    LOG(LINFO, ("CJK face", path, "index", i, "family", familyRaw ? familyRaw : "(null)", "->",
+                detected ? languages::DebugPrint(*detected) : std::string{"unknown"}));
+    if (detected)
+      faces.emplace_back(i, *detected);
+    FT_Done_Face(face);
+  }
+
+  for (auto const variant : languages::CJKResolver::FallbackChain(want))
+  {
+    auto const it = std::ranges::find(faces, variant, &Face::second);
+    if (it != faces.end())
+    {
+      LOG(LINFO, ("CJK chosen face for", path, "want", languages::DebugPrint(want), "got",
+                  languages::DebugPrint(it->second), "->", it->first));
+      return it->first;
+    }
+  }
+
+  LOG(LWARNING, ("CJK no chain match for", path, "fallback to face 0"));
+  return 0;
+}
 }  // namespace
 
 template <typename ToDo>
@@ -316,7 +369,8 @@ public:
   DECLARE_EXCEPTION(InvalidFontException, RootException);
   DISALLOW_COPY_AND_MOVE(Font);
 
-  Font(ReaderPtr<Reader> && fontReader, FT_Library lib) : m_fontReader(std::move(fontReader))
+  // faceIndex selects which face inside a TTC collection to open; pass 0 for single-face files.
+  Font(ReaderPtr<Reader> && fontReader, FT_Library lib, FT_Long faceIndex = 0) : m_fontReader(std::move(fontReader))
   {
     std::memset(&m_stream, 0, sizeof(m_stream));
     m_stream.size = static_cast<unsigned long>(m_fontReader.Size());
@@ -331,7 +385,7 @@ public:
     // Take ownership immediately so any throw between here and the end of the constructor
     // releases the FT_Face during member-unwind. ~Font is not invoked on partial construction.
     FT_Face raw = nullptr;
-    FT_Error const err = FT_Open_Face(lib, &args, 0, &raw);
+    FT_Error const err = FT_Open_Face(lib, &args, faceIndex, &raw);
     m_fontFace.reset(raw);
     if (err || !IsValid())
       MYTHROW(InvalidFontException, (err, err != 0 ? GetFreetypeErrorMessage(err) : "invalid or empty font face"));
@@ -592,24 +646,26 @@ struct GlyphManager::Impl
   // hb_language_from_string (a string-keyed lookup in HB's global language table) on the
   // common path. HB language pointers are stable singletons so a value cached today is valid
   // forever. ShapeText is the only caller and is single-threaded by contract.
+  //
+  // Negative codes (e.g. kUnsupportedLanguageCode == -1) mean "no language hint" -- return
+  // HB_LANGUAGE_INVALID. We deliberately avoid hb_language_get_default() because it calls
+  // setlocale(LC_CTYPE, nullptr) on first use, which is not thread-safe and would pick up
+  // the OS locale (unrelated to map data).
   hb_language_t ToHarfbuzzLanguage(int8_t lang)
   {
-    auto const resolve = [](int8_t code) -> hb_language_t
-    {
-      auto const svLang = StringUtf8Multilang::GetLangByCode(code);
-      auto const hb = hb_language_from_string(svLang.data(), static_cast<int>(svLang.size()));
-      return hb == HB_LANGUAGE_INVALID ? hb_language_get_default() : hb;
-    };
-
-    // Out-of-range codes (e.g. kUnsupportedLanguageCode == -1) bypass the cache.
     if (lang < 0 || static_cast<size_t>(lang) >= m_languageCache.size())
-      return resolve(lang);
+      return HB_LANGUAGE_INVALID;
 
     auto const idx = static_cast<size_t>(lang);
     if (auto const cached = m_languageCache[idx]; cached != HB_LANGUAGE_INVALID)
       return cached;
 
-    auto const hb = resolve(lang);
+    auto const svLang = StringUtf8Multilang::GetLangByCode(lang);
+    auto const hb = hb_language_from_string(svLang.data(), static_cast<int>(svLang.size()));
+    // Reserved-slot codes return an empty svLang and hb_language_from_string yields
+    // HB_LANGUAGE_INVALID for them. The cache uses HB_LANGUAGE_INVALID as the "unset" sentinel
+    // (see the hit check above), so those rare codes re-resolve on every call -- acceptable
+    // because reserved slots are never produced by the name selectors that drive this path.
     m_languageCache[idx] = hb;
     return hb;
   }
@@ -656,6 +712,9 @@ GlyphManager::GlyphManager(Params const & params) : m_impl(std::make_unique<Impl
   for (auto const module : {"sdf", "bsdf"})
     FREETYPE_CHECK(FT_Property_Set(m_impl->m_library, module, "spread", &kSdfBorder));
 
+  // Resolve once: only CJK collection fonts use this.
+  languages::CJKResolver const cjk;
+
   for (auto const & fontName : params.m_fonts)
   {
     if (std::ranges::any_of(blacklst, [&fontName](TFontAndBlockName const & p)
@@ -665,7 +724,11 @@ GlyphManager::GlyphManager(Params const & params) : m_impl(std::make_unique<Impl
     std::vector<FT_ULong> charCodes;
     try
     {
-      m_impl->m_fonts.emplace_back(std::make_unique<Font>(GetPlatform().GetReader(fontName), m_impl->m_library));
+      FT_Long const faceIndex = languages::CJKResolver::IsCJKContainerFileName(fontName)
+                                  ? PickCJKFaceIndex(fontName, m_impl->m_library, cjk.User())
+                                  : 0;
+      m_impl->m_fonts.emplace_back(
+          std::make_unique<Font>(GetPlatform().GetReader(fontName), m_impl->m_library, faceIndex));
       m_impl->m_fonts.back()->GetCharcodes(charCodes);
     }
     catch (RootException const & e)

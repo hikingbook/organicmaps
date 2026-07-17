@@ -225,6 +225,7 @@ class ChartYAxisView: UIView {
                  animationStyle: ChartAnimation = .none) {
     let gv = ChartYAxisInnerView()
     gv.alignment = alignment
+    gv.font = font
     gv.textColor = textColor
     gv.gridColor = gridColor
     gv.textBackgroundColor = textBackgroundColor

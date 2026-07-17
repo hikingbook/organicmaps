@@ -3,6 +3,7 @@ plugins {
 }
 
 //apply from: "${rootProject.rootDir}/groovy/common-config.gradle"
+//apply from: "${rootProject.rootDir}/groovy/publishing.gradle"
 apply from: "${rootProject.rootDir}/organicmaps/android/groovy/common-config.gradle"
 
 android {
@@ -12,8 +13,14 @@ android {
 
 dependencies {
   implementation project(':sdk')
-  implementation project(':sdk:location:core')
+  api project(':sdk:location:core')
 
   implementation libs.androidx.annotation
   implementation libs.google.gms.location
 }
+
+//Publish(project, [
+//    'artifactId' : 'location-google',
+//    'name'       : 'Organic Maps SDK. Google Fused Location',
+//    'description': 'A library that provides Google fused location services for the Organic Maps SDK'
+//])
