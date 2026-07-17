@@ -1,26 +1,28 @@
-- NEU! Tippen Sie auf eine Haltestelle des öffentlichen Nahverkehrs, um die gesamte Route auf der Karte hervorzuheben, wie im Transit-Kartenstil.
-- NEU! Fernverkehrsstrecken des öffentlichen Nahverkehrs und andere OpenStreetMap-Relationen werden nun über Kartengrenzen hinweg zu einer durchgehenden Linie verbunden.
-- OpenStreetMap-Daten aktualisiert zum 3. Mai.
-- Vietnam und Malaysia sind nun in kleinere Regionen unterteilt, die separat heruntergeladen werden können.
-- Hongkong, Macau und Hainan sind nun von Guangdong getrennt, wobei die angrenzenden Grenzen aktualisiert wurden.
-- Aktualisierte Höhenlinien für Indonesien, Malaysia, Tansania, Thailand und Vietnam.
-- Dem Info-Fenster während der Navigation wurde eine Schaltfläche zur Streckenaufzeichnung hinzugefügt.
-- Neue OpenStreetMap-Typen hinzugefügt: Vulkane mit aktivem Status, Zugangspunkte zu Wasserwegen, Slipanlagen, Shisha-Lounges und im Bau befindliche Gebäude.
-- „Lookout“ wurde als Suchsynonym für Aussichtspunkte und „pkwy“ als Synonym für US-Straßen hinzugefügt.
-- Die Farben für Fußgängerbereiche sind zur besseren Lesbarkeit etwas dunkler.
-- Lesezeichenbeschriftungen auf der Karte überlappen sich nicht mehr.
-- Mehrzeiliger Text wird nun sauber abgeschnitten, und Straßennamen enthalten keine Duplikate mehr.
-- Routenführung: Bei fortgesetzten Routen werden nun Zwischenpunkte entfernt, die Sie bereits passiert haben.
-- Es wurde behoben, dass in TestFlight-Builds die falsche Lesezeichenliste verwendet wurde.
-- Der Import von KMB-Dateien wurde korrigiert.
-- Die überarbeiteten Übersetzungen für Kategorien, Suchsynonyme und UI-Strings wurden aktualisiert. Es wurden Übersetzungen für die Beschreibungen von New South Wales und dem Northern Territory hinzugefügt.
-- Die Stabilität und Leistung wurden verbessert, einschließlich Schriftgestaltung, Glyphen-Caching und Routenlinien-Beschneidung.
-- Das Höhenprofil für Tracks und Routen wurde verbessert.
-- Die Menüschaltflächen während der Navigation wurden für Aktionen wie TTS, Einstellungen und Streckenaufzeichnung vergrößert.
-- Die Animation des ausklappbaren Beschreibungsbereichs auf der Ortsseite wurde verfeinert.
-- Die Ortsinformationsseite schließt sich nicht mehr, wenn das Scrollen im Höhenprofil endet, springt nicht mehr unerwartet zurück und behält den Titel sichtbar, während die Bearbeitung bei geöffneter Tastatur erfolgt.
-- Abstürze beim Löschen einer Strecke oder eines Lesezeichens, die bzw. das nicht mehr existiert, wurden behoben.
+• Mit der neuen Einstellung „Suchverlauf speichern“ können Sie Ihren Suchverlauf bei Bedarf privat halten
 
-## Plattformunterstützung
+## Karte & Orte
+• OpenStreetMap-Daten vom 14. Juli
+• OpenStreetMap-Notizen werden nun genau an der von Ihnen ausgewählten Stelle platziert und nicht mehr mitten im Wald
+• Verbesserte Kartenauswahl für Regionen, die den 180°-Antimeridian überschreiten
+• Höhenprofile von Tracks zeigen nach dem Löschen eines Tracks keine veralteten oder leeren Diagramme mehr an
+• Das leere Höhendiagramm für aufgezeichnete Tracks wurde verbessert
+• Die Schaltfläche zum Löschen von Lesezeichen ist leichter zu finden
+• Automatisches Speichern von Lesezeichen beim Verlassen des Bearbeitungsbildschirms
+• Die Farbpalette enthält vordefinierte Farben und ermöglicht die Auswahl beliebiger benutzerdefinierter Farben
+• Weitere Verbesserungen der Benutzeroberfläche
 
-- Aufgrund von Änderungen bei TestFlight und im App Store unterstützt diese Version nur noch iOS 15 und höher. iOS 12, iOS 13 und iOS 14 werden nicht mehr unterstützt.
+## Öffentlicher Nahverkehr
+• Haltestellen-, Umsteige- und Bahnhofsnamen werden nun mit weißem Umriss dargestellt, um sowohl im hellen als auch im dunklen Design lesbar zu bleiben
+• Die U-Bahn-Ebene wird nach dem Schließen der Vorschau einer ÖPNV-Route wieder korrekt angezeigt
+
+## Routenplanung & Navigation
+• Probleme mit falschen und fehlenden Wegbeschreibungen wurden behoben
+• Routenwarnungen (Maut, Fähren, unbefestigte Straßen, Treppen usw.) werden nun für alle alternativen Routen angezeigt
+• Ein selten auftretender Absturz beim Erstellen einer Route wurde behoben und die Behandlung von Sackgassen sowie Start- und Endpunkten auf einer gesperrten Straße verbessert
+• Der Routenfortschritt auf der Startschaltfläche wurde verbessert
+• Beim Neuanordnen von Routenpunkten springt die Liste nicht mehr unregelmäßig hin und her
+
+## Übersetzungen
+• Die chinesischen Formulierungen wurden verbessert
+• Die ukrainischen Übersetzungen wurden aktualisiert
+• Die Übersetzungen der Kartenregionen im Italienischen wurden korrigiert

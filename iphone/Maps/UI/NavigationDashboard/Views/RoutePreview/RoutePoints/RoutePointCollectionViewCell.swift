@@ -15,6 +15,10 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
   }
 
   private enum Constants {
+    static let fontStyle = FontStyleSheet.semibold14
+    static let minimumHeight: CGFloat = 44
+    static let titleNumberOfLines: Int = 2
+    static let verticalInset: CGFloat = 8
     static let logoSize: CGFloat = 28
     static let logoImageLeadingInset: CGFloat = 12
     static let reorderButtonSize: CGFloat = 24
@@ -57,11 +61,13 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
     contentView.clipsToBounds = false
 
     contentBackgroundView.setStyle(.pressBackground)
-    contentBackgroundView.layer.setCornerRadius(.buttonDefault)
+    contentBackgroundView.layer.setCornerRadius(.buttonDefaultBig)
     contentBackgroundView.clipsToBounds = false
 
     logoImageView.contentMode = .scaleAspectFill
     logoImageView.clipsToBounds = true
+
+    titleLabel.numberOfLines = Constants.titleNumberOfLines
 
     textStackView.axis = .vertical
     textStackView.alignment = .leading
@@ -122,7 +128,7 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
       logoImageView.image = viewModel.image
       logoImageView.setStyleAndApply(.black)
       didTapClose = viewModel.onCloseHandler
-      titleLabel.setFontStyleAndApply(.semibold14, color: viewModel.isPlaceholder ? .blackSecondary : .blackPrimary)
+      titleLabel.setFontStyleAndApply(Constants.fontStyle, color: viewModel.isPlaceholder ? .blackSecondary : .blackPrimary)
       closeButton.isHidden = !viewModel.showCloseButton
       reorderButton.isHidden = false
       contentBackgroundView.layer.maskedCorners = viewModel.maskedCorners
@@ -131,7 +137,7 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
       titleLabel.text = L("placepage_add_stop")
       logoImageView.image = UIImage(resource: .icAddButton)
       logoImageView.setStyleAndApply(.blue)
-      titleLabel.setFontStyleAndApply(.semibold14, color: .linkBlue)
+      titleLabel.setFontStyleAndApply(Constants.fontStyle, color: .linkBlue)
       closeButton.isHidden = true
       reorderButton.isHidden = true
       contentBackgroundView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -142,5 +148,10 @@ final class RoutePointCollectionViewCell: UICollectionViewCell {
   @objc
   private func didTapCloseButton() {
     didTapClose?()
+  }
+
+  static func height() -> CGFloat {
+    let titleHeight = Constants.fontStyle.font.dynamic.lineHeight * CGFloat(Constants.titleNumberOfLines)
+    return max(Constants.minimumHeight, ceil(titleHeight + Constants.verticalInset * 2))
   }
 }

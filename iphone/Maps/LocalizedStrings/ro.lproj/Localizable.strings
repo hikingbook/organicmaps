@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "Clădirile 3D sunt oprite în modul de economisire a energiei";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Imagini din satelit";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL-ul serverului";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Introduceți un URL valid cu {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Dimensiunea cache-ului (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Opacitatea obiectelor de suprafață";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Sursele de dale personalizate sunt furnizate de dvs. Folosiți doar servicii pe care aveți dreptul să le accesați. Sunteți responsabil pentru atribuire, termenii licenței, cheile API, cotele și limitele de utilizare.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Instrucțiuni vocale";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Limba ghidului vocal";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Pentru a descărca o voce de calitate superioară, deschideți aplicația Configurări și accesați Accesibilitate → VoiceOver → Vorbire → Voce.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Testarea indicațiilor vocale (TTS, Text-To-Speech)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Ciclism";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satelit";
 "button_layer_subway" = "Metrou";
 "layers_title" = "Stiluri și straturi de hartă";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Drum cu plată";
 "unpaved_road" = "Drum neasfaltat";
 "ferry_crossing" = "Trecere cu bac";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Scări";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Poartă";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Barieră cu braț";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Da";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Coborâre";
 "elevation_profile_min_elevation" = "Min. altitudine";
 "elevation_profile_max_elevation" = "Max. altitudine";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Începeți să vă deplasați pentru a vedea profilul altitudinii";
 "isolines_toast_zooms_1_10" = "Mărește harta pentru a vedea izoliniile";
 "downloader_loading_ios" = "Se descarcă";
 

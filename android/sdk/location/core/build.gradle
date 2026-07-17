@@ -3,6 +3,7 @@ plugins {
 }
 
 //apply from: "${rootProject.rootDir}/groovy/common-config.gradle"
+//apply from: "${rootProject.rootDir}/groovy/publishing.gradle"
 apply from: "${rootProject.rootDir}/organicmaps/android/groovy/common-config.gradle"
 
 android {
@@ -14,3 +15,9 @@ dependencies {
   implementation libs.androidx.annotation
   implementation libs.androidx.core
 }
+
+//Publish(project, [
+//    'artifactId' : 'location-core',
+//    'name'       : 'Organic Maps SDK. Location module',
+//    'description': 'A library that provides core location services for the Organic Maps SDK'
+//])

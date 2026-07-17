@@ -600,6 +600,12 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
     break;
   }
 
+  case Message::Type::RemoveAlternativeSubroutes:
+  {
+    m_routeRenderer->RemoveAlternativeSubroutes();
+    break;
+  }
+
   case Message::Type::FollowRoute:
   {
     ref_ptr<FollowRouteMessage> const msg = message;
@@ -994,26 +1000,35 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
   case Message::Type::SetTileBackgroundMode:
   {
     ref_ptr<SetTileBackgroundModeMessage> msg = message;
-    auto const prevMode = m_tileBackgroundRenderer->GetBackgroundMode();
     m_tileBackgroundRenderer->SetBackgroundMode(m_context, msg->GetMode());
-    if (prevMode != m_tileBackgroundRenderer->GetBackgroundMode())
+    if (msg->NeedInvalidate())
       InvalidateRect(m_userEventStream.GetCurrentScreen().ClipRect());
     break;
   }
 
-  case Message::Type::AssignTileBackgroundTexture:
+  case Message::Type::AssignTileBackgroundImage:
   {
-    ref_ptr<AssignTileBackgroundTextureMessage> msg = message;
-    if (m_context->GetApiVersion() == dp::ApiVersion::OpenGLES3)
+    ref_ptr<AssignTileBackgroundImageMessage> msg = message;
+    // Skip the GL upload for a uid we already hold: AssignTileBackgroundImage below would only dedupe
+    // and release this freshly-acquired texture, so uploading into it is wasted bandwidth. HasImage is
+    // checked after the API test so it runs only on the GL path (non-GL already uploaded in the backend).
+    if (m_context->GetApiVersion() == dp::ApiVersion::OpenGLES3 && !m_tileBackgroundRenderer->HasImage(msg->GetUid()))
     {
       void * data = msg->GetBytes().data();
       msg->GetTexturePool()->UpdateTextureData(m_context, msg->GetTextureId(), 0, 0, msg->GetWidth(), msg->GetHeight(),
                                                make_ref(data));
     }
 
-    m_tileBackgroundRenderer->AssignTileBackgroundTexture(m_context, msg->GetTileKey(), msg->GetTexturePool(),
-                                                          msg->GetTextureId(), msg->GetMode());
+    m_tileBackgroundRenderer->AssignTileBackgroundImage(m_context, msg->GetUid(), msg->GetTexturePool(),
+                                                        msg->GetTextureId(), msg->GetMode());
     msg->MarkProcessed();
+    break;
+  }
+
+  case Message::Type::SetTileBackgroundData:
+  {
+    ref_ptr<SetTileBackgroundDataMessage> msg = message;
+    m_tileBackgroundRenderer->SetTileBackgroundData(m_context, msg->GetTileKey(), msg->GetImageUid(), msg->GetRect());
     break;
   }
 
@@ -1054,6 +1069,13 @@ void FrontendRenderer::UpdateAll()
     layer.m_renderGroups.clear();
     layer.m_isDirty = false;
   }
+
+  // The render groups (and their owned OverlayHandles) just got destroyed; the overlay
+  // trees still hold non-owning ref_ptrs into that freed memory. Clear them so a
+  // SelectObject message arriving before the next BuildOverlayTree does not iterate
+  // dangling handles (manifests as __cxa_pure_virtual in OverlayHandle::GetPixelRect).
+  m_overlayTree->Clear();
+  m_searchMarkTextOverlayTree->Clear();
 
   // Must be recreated on map style changing.
   CHECK(m_context != nullptr, ());
@@ -1787,6 +1809,14 @@ void FrontendRenderer::RenderFrame()
   /// @todo Put ResolveZoomLevel under modelViewChanged after testing.
   ASSERT(!zoomChanged || modelViewChanged, ());
 
+  // Skip starting a new GPU frame if rendering is being disabled (e.g. the app is going to the
+  // background). SetRenderingEnabled(false) sets the flag on the UI thread and then blocks until this
+  // render thread reaches CheckRenderingEnabled(); bailing out here (before BeginRendering, so GPU frame
+  // scope stays balanced) lets that handshake complete after at most the already in-flight frame instead
+  // of waiting for a full PrepareScene + RenderScene + present. Prevents ANRs in Framework::DetachSurface.
+  if (!IsRenderingEnabled())
+    return;
+
   if (!m_context->BeginRendering())
     return;
 
@@ -2248,10 +2278,7 @@ bool FrontendRenderer::OnNewVisibleViewport(m2::RectD const & oldViewport, m2::R
     auto r = m_selectionShape->GetSelectionGeometryBoundingBox();
     r.Scale(kBoundingBoxScale);
 
-    m2::RectD pixelRect;
-    pixelRect.Add(screen.PtoP3d(screen.GtoP(r.LeftTop())));
-    pixelRect.Add(screen.PtoP3d(screen.GtoP(r.RightBottom())));
-
+    m2::RectD const pixelRect(screen.PtoP3d(screen.GtoP(r.LeftTop())), screen.PtoP3d(screen.GtoP(r.RightBottom())));
     rect.Inflate(pixelRect.SizeX(), pixelRect.SizeY());
     targetRect.Inflate(pixelRect.SizeX(), pixelRect.SizeY());
   }
@@ -2358,7 +2385,18 @@ TTilesCollection FrontendRenderer::ResolveTileKeys(ScreenBase const & screen)
   { return group->GetTileKey().m_zoomLevel != GetCurrentZoom(); });
 
   m_trafficRenderer->OnUpdateViewport(result, GetCurrentZoom(), tilesToDelete);
-  m_tileBackgroundRenderer->OnUpdateViewport(m_context, result, GetCurrentZoom(), tilesToDelete);
+
+  // Background raster tiles map OM tiles 1:1 onto external web-mercator tiles. On HiDPI screens one OM
+  // render tile spans many more device pixels than a standard 256px source tile, so a 256px source gets
+  // bilinearly up-scaled and looks soft. Deepen the coverage by +1 (4x tiles) when visualScale >= 2 so
+  // a source tile maps ~1:1 onto device pixels; low-DPI (desktop, visualScale ~1) needs no deepening.
+  // The real (unclamped) zoom is used: the vector-data coverage above clamps to GetUpperScale(), which
+  // would freeze m_x/m_y on a coarser grid and make ToSourceTile fetch a wrong tile (the background
+  // renderer reads rects with clipByDataMaxZoom=false to match).
+  int const extraBgZoom = VisualParams::Instance().GetVisualScale() >= 2.0 ? 1 : 0;
+  int const bgZoom = GetCurrentZoom() + extraBgZoom;
+  CoverageResult const bgCoverage = CalcTilesCoverage(rect, bgZoom, nullptr /* processTile */);
+  m_tileBackgroundRenderer->OnUpdateViewport(m_context, bgCoverage, bgZoom);
 
 #if defined(DRAPE_MEASURER_BENCHMARK) && defined(GENERATING_STATISTIC)
   DrapeMeasurer::Instance().StartScenePreparing();

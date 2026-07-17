@@ -439,7 +439,7 @@
         android:launchMode="singleTask"
         android:configChanges="uiMode"
         android:screenOrientation="fullUser"
-        android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+        android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 
 <!--    <activity-alias-->
 <!--        android:name="${applicationId}.ManageSpaceActivity"-->
@@ -455,21 +455,12 @@
         android:parentActivityName="app.organicmaps.MwmActivity"
         android:windowSoftInputMode="adjustResize" />
 
-    <activity
-        android:name="app.organicmaps.search.SearchActivity"
-        android:theme="@style/MwmTheme.CardBg"
-        android:configChanges="orientation|screenLayout|screenSize"
-        android:screenOrientation="fullUser"
-        android:label="@string/search_map"
-        android:parentActivityName="app.organicmaps.MwmActivity"
-        android:windowSoftInputMode="stateVisible|adjustResize" />
-
-<!--     <activity-->
-<!--         android:name="app.organicmaps.settings.SettingsActivity"-->
-<!--         android:configChanges="orientation|screenLayout|screenSize"-->
-<!--         android:screenOrientation="fullUser"-->
-<!--         android:label="@string/settings"-->
-<!--         android:parentActivityName="app.organicmaps.MwmActivity" />-->
+<!--    <activity-->
+<!--        android:name="app.organicmaps.settings.SettingsActivity"-->
+<!--        android:configChanges="orientation|screenLayout|screenSize"-->
+<!--        android:screenOrientation="fullUser"-->
+<!--        android:label="@string/settings"-->
+<!--        android:parentActivityName="app.organicmaps.MwmActivity" />-->
 
     <activity
         android:name="app.organicmaps.help.HelpActivity"

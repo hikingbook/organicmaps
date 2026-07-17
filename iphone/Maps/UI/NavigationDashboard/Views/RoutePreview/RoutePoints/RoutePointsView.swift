@@ -1,6 +1,5 @@
 final class RoutePointsView: UIView {
   private enum Constants {
-    static let cellHeight: CGFloat = 44
     static var bottomContentInset: CGFloat {
       let bottomActionBartHeight = RouteActionsBottomMenuView.Constants.height +
         RouteActionsBottomMenuView.Constants.insets.top +
@@ -40,6 +39,9 @@ final class RoutePointsView: UIView {
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
     updateCollectionViewInset()
+    if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+      collectionView.collectionViewLayout.invalidateLayout()
+    }
   }
 
   private func updateCollectionViewInset() {
@@ -129,7 +131,7 @@ extension RoutePointsView: UICollectionViewDataSource, UICollectionViewDelegate 
 
 extension RoutePointsView: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-    CGSize(width: collectionView.bounds.width, height: Constants.cellHeight)
+    CGSize(width: collectionView.bounds.width, height: RoutePointCollectionViewCell.height())
   }
 
   func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {

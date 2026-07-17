@@ -63,6 +63,10 @@ set(SRC
   trace.hpp
   string_storage_base.cpp
   string_storage_base.hpp
+  irish_grid_utils.cpp
+  irish_grid_utils.hpp
+  os_grid_utils.cpp
+  os_grid_utils.hpp
   utm_mgrs_utils.cpp
   utm_mgrs_utils.hpp
 )
@@ -71,14 +75,19 @@ if (PLATFORM_IPHONE)
   append(SRC
     background_downloader_ios.h
     background_downloader_ios.mm
+    connection_status_apple.mm
     gui_thread_apple.mm
     http_client_apple.mm
+    http_session_manager.h
+    http_session_manager.mm
     http_uploader_apple.mm
-    http_user_agent_ios.mm
+    http_uploader_background.hpp
+    http_uploader_background.mm
     localization.mm
     locale.mm
     network_policy_ios.h
     network_policy_ios.mm
+    platform_ios.h
     platform_ios.mm
     platform_unix_impl.cpp
     platform_unix_impl.hpp
@@ -132,6 +141,7 @@ else() # neither iPhone nor Android
     )
   elseif(${PLATFORM_MAC})
     append(SRC
+      connection_status_apple.mm
       gui_thread_apple.mm
       http_client_apple.mm
       http_uploader_apple.mm
@@ -174,7 +184,6 @@ target_link_libraries(${PROJECT_NAME}
   PUBLIC
     geometry  # mercator::YToLat
     coding
-    cppjansson
     glaze::glaze
     $<$<BOOL:${PLATFORM_DESKTOP}>:Qt6::Core>
     $<$<BOOL:${PLATFORM_LINUX}>:Qt6::Network>
@@ -182,7 +191,7 @@ target_link_libraries(${PROJECT_NAME}
     $<$<BOOL:${PLATFORM_WIN}>:shlwapi>  # PathIsDirectoryEmptyA
     $<$<BOOL:${PLATFORM_MAC}>:
       -framework\ Foundation
-      -framework\ SystemConfiguration
+      -framework\ Network
       -framework\ CFNetwork
       -framework\ Security  # SecPKCS12Import
       >

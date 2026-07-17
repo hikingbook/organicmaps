@@ -1,26 +1,28 @@
-- UUTUUS! Napauta julkisen liikenteen pysäkkiä korostaaksesi koko reitin kartalla, kuten Transit-karttatyylissä.
-- UUTUUS! pitkän matkan joukkoliikennereitit ja muut OpenStreetMap-suhteet yhdistetään nyt karttarajojen yli yhdeksi yhtenäiseksi viivaksi.
-- OpenStreetMap-tiedot päivitetty 3. toukokuuta.
-- Vietnam ja Malesia on nyt jaettu pienempiin alueisiin, jotka voi ladata erikseen.
-- Hongkong, Macao ja Hainan on nyt erotettu Guangdongista, ja naapurimaiden rajat on päivitetty.
-- Päivitetty Indonesian, Malesian, Tansanian, Thaimaan ja Vietnamin ääriviivat.
-- Navigoinnin infopaneeliin on lisätty radan tallennuspainike.
-- Lisätty uusia OpenStreetMap-tyyppejä: tulivuoria, joilla on aktiivinen tila, vesiväylien liittymispisteitä, liukumäkiä, vesipiippuhuoneita ja rakenteilla olevia rakennuksia.
-- Lisätty "Lookout" näköalapaikkojen hakusynonyymiksi ja "pkwy" yhdysvaltalaisen kadun synonyymiksi.
-- Jalankulkualueiden värit ovat hieman tummemmat luettavuuden parantamiseksi.
-- Kirjanmerkkien merkinnät kartalla eivät enää ole päällekkäisiä.
-- Monirivinen teksti leikataan nyt siististi, eivätkä kadunnimet enää sisällä kaksoiskappaleita.
-- Reititys: jatketut reitit poistavat nyt välipisteet, jotka olet jo ohittanut.
-- Korjattu väärän kirjanmerkkiluettelon käyttäminen TestFlight-rakennuksissa.
-- Korjattu KMB-tiedoston tuonti.
-- Päivitetty luokkien, hakusynonyymien ja käyttöliittymämerkkijonojen oikolukukäännökset. Lisätty käännökset New South Walesin ja Northern Territoryn kuvauksille.
-- Parannettu vakautta ja suorituskykyä, mukaan lukien fontin muotoilu, glyfien välimuistiin tallentaminen ja reittiviivojen leikkaaminen.
-- Parannettu ratojen ja reittien korkeuskäyriä.
-- Navigointivalikon painikkeista on tehty suurempia esimerkiksi TTS:n, asetusten ja radan tallennuksen kaltaisia toimintoja varten.
-- Paikkasivun laajennettavan kuvausosan animaatiota on parannettu.
-- Paikkatietosivu ei enää sulkeudu, kun korkeuskartan pyyhkäisy päättyy, se ei enää pomppaa odottamatta ja pitää otsikon näkyvissä, kun sitä muokataan näppäimistön ollessa auki.
-- Korjattu kaatumisia, kun poistettiin raita tai kirjanmerkki, jota ei enää ole olemassa.
+• Uusi ”Tallenna hakuhistoria” -asetus auttaa pitämään hakuhistoriasi yksityisenä tarvittaessa
 
-## Alustatuki
+## Kartta ja paikat
+• OpenStreetMap-tiedot päivätty 14. heinäkuuta
+• OpenStreetMap-muistiinpanot sijoitetaan nyt tarkalleen valitsemallesi paikalle, eivätkä enää metsän keskelle
+• Parannettu kartan valinta alueilla, jotka ylittävät 180°:n vastameridiaanin
+• Korkeusprofiileissa ei enää näy vanhentuneita tai tyhjiä kaavioita reitin poistamisen jälkeen
+• Tallennettujen reittien tyhjää korkeuskaaviota on parannettu
+• Kirjanmerkkien poistopainike on helpompi löytää
+• Kirjanmerkit tallennetaan automaattisesti, kun poistut muokkausnäytöltä
+• Värivalikoima sisältää valmiita värejä, ja voit valita minkä tahansa mukautetun värin
+• Muita käyttöliittymän parannuksia
 
-- TestFlightissa ja App Storessa tapahtuneiden muutosten vuoksi tämä julkaisu tukee vain iOS 15:tä ja uudempia. iOS 12, iOS 13 ja iOS 14 eivät ole enää tuettuja.
+## Julkinen liikenne
+• Pysäkkien, vaihtopaikkojen ja asemien nimissä käytetään nyt valkoista ääriviivaa, jotta ne ovat luettavissa sekä vaaleassa että tummassa teemassa
+• Metrokarttakerros tulee jälleen näkyviin oikein, kun suljet julkisen liikenteen reitin esikatselun
+
+## Reititys ja navigointi
+• Korjattu virheellisiä ja puuttuvia reittiohjeita koskevia ongelmia
+• Reittivaroitukset (tiemaksut, lautat, päällystämättömät tiet, portaat jne.) näkyvät nyt kaikilla vaihtoehtoisilla reiteillä
+• Korjattu harvinainen jumittuminen reitin suunnittelun aikana ja parannettu umpikujien sekä lähtö- ja päätepisteiden käsittelyä rajoitetuilla teillä
+• Parannettu reitin etenemisen näyttöä aloituspainikkeessa
+• Reitin pysähdyspaikkojen järjestyksen muuttaminen ei enää aiheuta luettelon hyppimistä
+
+## Käännökset
+• Parannettu kiinankielistä sanamuotoa
+• Päivitetty ukrainankielisiä käännöksiä
+• Korjattu kartta-alueiden käännöksiä italiaksi

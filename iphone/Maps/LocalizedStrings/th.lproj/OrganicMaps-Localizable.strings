@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "สิ่งปลูกสร้าง 3 มิติจะปิดในโหมดประหยัดพลังงาน";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "ภาพถ่ายดาวเทียม";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL ของเซิร์ฟเวอร์";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "ป้อน URL ที่ถูกต้องซึ่งมี {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "ขนาดแคช (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "ความทึบของวัตถุพื้นที่";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "แหล่งไทล์ที่กำหนดเองนั้นคุณเป็นผู้จัดหาเอง ใช้เฉพาะบริการที่คุณได้รับอนุญาตให้เข้าถึงเท่านั้น คุณเป็นผู้รับผิดชอบการระบุแหล่งที่มา เงื่อนไขสัญญาอนุญาต คีย์ API โควตา และขีดจำกัดการใช้งาน";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "คำแนะนำด้วยเสียง";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "ภาษาสำหรับเสียง";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "หากต้องการดาวน์โหลดเสียงคุณภาพสูงขึ้น ให้เปิดแอปการตั้งค่า แล้วไปที่ การช่วยการเข้าถึง → VoiceOver → การพูด → เสียง";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "ทดสอบเส้นทางด้วยเสียง (TTS, การอ่านออกเสียงข้อความ)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "การปั่นจักรยาน";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "ดาวเทียม";
 "button_layer_subway" = "รถไฟใต้ดิน";
 "layers_title" = "รูปแบบและเลเยอร์ของแผนที่";
 
@@ -707,6 +731,15 @@
 "toll_road" = "ถนนแบบเสียค่าผ่านทาง";
 "unpaved_road" = "ถนนดิน";
 "ferry_crossing" = "เรือข้ามฟาก";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "บันได";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "ประตู";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "ไม้กั้น";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "ใช่";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "การลง";
 "elevation_profile_min_elevation" = "ต่ำสุด";
 "elevation_profile_max_elevation" = "สูงสุด";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "เริ่มเคลื่อนที่เพื่อดูโปรไฟล์ระดับความสูง";
 "isolines_toast_zooms_1_10" = "ขยายเข้าเพื่อสำรวจเส้นชั้นความสูง";
 "downloader_loading_ios" = "การดาวน์โหลด";
 

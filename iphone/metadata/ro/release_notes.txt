@@ -1,26 +1,28 @@
-- NOU! atingeți o stație de transport public pentru a evidenția întregul traseu pe hartă, ca în stilul de hartă Transit.
-- NOU! rutele de transport public pe distanțe lungi și alte relații OpenStreetMap sunt acum conectate peste granițele hărții într-o singură linie continuă.
-- Date OpenStreetMap actualizate la data de 3 mai.
-- Vietnamul și Malaezia sunt acum împărțite în regiuni mai mici care pot fi descărcate separat.
-- Hong Kong, Macao și Hainan sunt acum separate de Guangdong, cu frontierele învecinate actualizate.
-- Liniile de contur actualizate pentru Indonezia, Malaezia, Tanzania, Thailanda și Vietnam.
-- Adăugat un buton de înregistrare a traseului la panoul de informații din navigație.
-- Adăugat noi tipuri OpenStreetMap: vulcani cu stare activă, puncte de acces la căile navigabile, șenile, saloane de narghilea și clădiri în construcție.
-- S-a adăugat "Lookout" ca sinonim de căutare pentru punctele de belvedere și "pkwy" ca sinonim de stradă din SUA.
-- Culorile zonelor pietonale sunt ușor mai închise pentru o mai bună lizibilitate.
-- Etichetele marcajelor de pe hartă nu se mai suprapun.
-- Textul pe mai multe linii este acum tăiat curat, iar numele străzilor nu mai conțin duplicate.
-- Rutare: rutele reluate elimină acum punctele intermediare pe lângă care ați trecut deja.
-- S-a rezolvat problema utilizării unei liste greșite de marcaje în versiunile TestFlight.
-- Fixat importul de fișiere KMB.
-- Actualizate traducerile corectate pentru categorii, sinonime de căutare și șiruri UI. Au fost adăugate traduceri pentru descrierile New South Wales și Northern Territory.
-- Stabilitate și performanță îmbunătățite, inclusiv modelarea fonturilor, salvarea în cache a glifurilor și decuparea liniilor de traseu.
-- Am îmbunătățit graficul de elevație pentru trasee și rute.
-- Butoanele din meniul de navigare au devenit mai mari pentru acțiuni precum TTS, setări și înregistrarea pistelor.
-- Am rafinat animația secțiunii de descriere extensibilă de pe pagina locului.
-- Pagina de informații despre loc nu se mai închide atunci când se termină scrutarea graficului de elevație, nu mai ricoșează neașteptat și păstrează titlul vizibil în timpul editării cu tastatura deschisă.
-- S-a remediat blocarea la ștergerea unei piese sau a unui marcaj care nu mai există.
+• Noua setare „Salvare istoric de căutare” vă ajută să vă păstrați istoricul căutărilor privat, dacă este necesar
 
-## Platform Support
+## Hărți și locuri
+• Date OpenStreetMap actualizate la 14 iulie
+• Notele OpenStreetMap sunt acum plasate exact în locația selectată de dvs., în loc să apară în mijlocul pădurii
+• Selecție îmbunătățită a hărții pentru regiunile care traversează antimeridianul de 180°
+• Profilurile de altitudine ale traseelor nu mai afișează grafice învechite sau goale după ce un traseu este șters
+• S-a îmbunătățit graficul de altitudine gol pentru traseele înregistrate
+• Butonul pentru ștergerea marcajelor este mai ușor de găsit
+• Salvarea automată a marcajelor atunci când părăsiți ecranul de editare
+• Paleta de culori include culori predefinite și vă permite să alegeți orice culoare personalizată
+• Alte îmbunătățiri ale interfeței utilizatorului
 
-- Datorită modificărilor din TestFlight și App Store, această versiune acceptă numai iOS 15 și versiunile ulterioare. iOS 12, iOS 13 și iOS 14 nu mai sunt acceptate.
+## Transportul public
+• Numele stațiilor, ale punctelor de transfer și ale stațiilor de metrou au acum un contur alb pentru a rămâne lizibile atât în tema deschisă, cât și în cea întunecată
+• Stratul de metrou reapare corect după ce închideți previzualizarea unui traseu de transport public
+
+## Calcularea traseului și navigarea
+• S-au remediat problemele legate de indicații de direcție greșite sau lipsă
+• Avertismentele privind traseul (taxe de drum, feriboturi, drumuri neasfaltate, scări etc.) sunt acum afișate pentru toate traseele alternative
+• S-a remediat o blocare rară care apărea în timpul creării unui traseu și s-a îmbunătățit gestionarea străzilor fără ieșire și a punctelor de start/sosire pe un drum cu acces restricționat
+• S-a îmbunătățit afișarea progresului traseului pe butonul de pornire
+• Reordonarea opririlor de pe traseu nu mai provoacă salturi ale listei
+
+## Traduceri
+• S-a îmbunătățit formularea în limba chineză
+• S-au actualizat traducerile în limba ucraineană
+• S-au remediat traducerile regiunilor de pe hartă în limba italiană

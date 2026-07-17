@@ -50,8 +50,8 @@ public:
 
   using BookmarksChangedCallback = std::function<void()>;
   using CategoriesChangedCallback = std::function<void()>;
-  using ElevationActivePointChangedCallback = std::function<void()>;
-  using ElevationMyPositionChangedCallback = std::function<void()>;
+  using ElevationActivePointChangedCallback = std::function<void(kml::TrackId, double)>;
+  using ElevationMyPositionChangedCallback = std::function<void(kml::TrackId, double)>;
 
   using OnSymbolSizesAcquiredCallback = std::function<void()>;
 
@@ -159,9 +159,8 @@ public:
     void SetCategoryTags(kml::MarkGroupId categoryId, std::vector<std::string> const & tags);
     void SetCategoryAccessRules(kml::MarkGroupId categoryId, kml::AccessRules accessRules);
     void SetCategoryCustomProperty(kml::MarkGroupId categoryId, std::string const & key, std::string const & value);
-    void SetCategoryBookmarksColor(kml::MarkGroupId groupId, kml::PredefinedColor color);
-    /// @todo(KK) Update to the dp::Color color when custom colors for tracks will be implemented on android.
-    void SetCategoryTracksColor(kml::MarkGroupId groupId, kml::PredefinedColor color);
+    void SetCategoryBookmarksColor(kml::MarkGroupId groupId, dp::Color color);
+    void SetCategoryTracksColor(kml::MarkGroupId groupId, dp::Color color);
 
     /// Removes the category from the list of categories and deletes the related file.
     /// @param permanently If true, the file will be removed from the disk. If false, the file will be marked as deleted
@@ -288,10 +287,10 @@ public:
   bool HasBookmark(kml::MarkId markId) const;
   bool HasTrack(kml::TrackId trackId) const;
   kml::MarkGroupId LastEditedBMCategory();
-  kml::PredefinedColor LastEditedBMColor() const;
+  kml::ColorData LastEditedBMColor() const;
 
   void SetLastEditedBmCategory(kml::MarkGroupId groupId);
-  void SetLastEditedBmColor(kml::PredefinedColor color);
+  void SetLastEditedBmColor(kml::ColorData const & color);
 
   using TTouchRectHolder = std::function<m2::AnyRectD(UserMark::Type)>;
   using TFindOnlyVisibleChecker = std::function<bool(UserMark::Type)>;
@@ -406,7 +405,7 @@ public:
   // Returns distance from the start of the track to active point in meters.
   double GetElevationActivePoint(kml::TrackId const & trackId) const;
 
-  void UpdateElevationMyPosition(kml::TrackId const & trackId);
+  void UpdateElevationMyPosition(kml::TrackId const & trackId, bool ignoreLocationCache = false);
   // Returns distance from the start of the track to my position in meters.
   // Returns negative value if my position is not on the track.
   double GetElevationMyPosition(kml::TrackId const & trackId) const;
@@ -415,8 +414,8 @@ public:
   void SetElevationMyPositionChangedCallback(ElevationMyPositionChangedCallback const & cb);
 
   using TracksFilter = std::function<bool(Track const * track)>;
-  Track::TrackSelectionInfo FindNearestTrack(m2::RectD const & touchRect,
-                                             TracksFilter const & tracksFilter = nullptr) const;
+  std::vector<Track::TrackSelectionInfo> FindTracksInRect(m2::RectD const & touchRect,
+                                                          TracksFilter const & tracksFilter = nullptr) const;
   Track::TrackSelectionInfo GetTrackSelectionInfo(kml::TrackId const & trackId) const;
 
   void SetTrackSelectionInfo(Track::TrackSelectionInfo const & trackSelectionInfo, bool notifyListeners);
@@ -762,7 +761,7 @@ private:
 
   std::string m_lastCategoryFileName;
   kml::MarkGroupId m_lastEditedGroupId = kml::kInvalidMarkGroupId;
-  kml::PredefinedColor m_lastColor = kml::PredefinedColor::Red;
+  kml::ColorData m_lastColor{kml::PredefinedColor::Red, 0};
   UserMarkLayers m_userMarkLayers;
 
   MarksCollection m_userMarks;

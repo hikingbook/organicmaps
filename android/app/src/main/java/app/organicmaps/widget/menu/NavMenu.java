@@ -4,6 +4,7 @@
  */
 package app.organicmaps.widget.menu;
 
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.util.Pair;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
 import app.organicmaps.sdk.routing.RoutingInfo;
@@ -27,7 +30,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
-public class NavMenu
+public class NavMenu implements DefaultLifecycleObserver
 {
   private final BottomSheetBehavior<View> mNavBottomSheetBehavior;
   private final View mBottomSheetBackground;
@@ -48,6 +51,7 @@ public class NavMenu
 
   private final AppCompatActivity mActivity;
   private final NavMenuListener mNavMenuListener;
+  private final Runnable mTtsStateListener = this::refreshTts;
 
   private int currentPeekHeight = 0;
 
@@ -116,6 +120,15 @@ public class NavMenu
     Button stop = bottomFrame.findViewById(R.id.stop);
     stop.setOnClickListener(v -> onStopClicked());
     UiUtils.updateRedButton(stop);
+
+    TtsPlayer.addStateChangedListener(mTtsStateListener);
+    mActivity.getLifecycle().addObserver(this);
+  }
+
+  @Override
+  public void onDestroy(@NonNull LifecycleOwner owner)
+  {
+    TtsPlayer.removeStateChangedListener(mTtsStateListener);
   }
 
   private void onStopClicked()
@@ -130,8 +143,15 @@ public class NavMenu
 
   private void onTtsClicked()
   {
-    TtsPlayer.setEnabled(!TtsPlayer.isEnabled());
-//    refreshTts();
+    switch (TtsPlayer.getState())
+    {
+    case INITIALIZING: return;
+    case UNAVAILABLE:
+    case NEEDS_LANGUAGE: mNavMenuListener.onTtsVoiceSettingsClicked(); return;
+    case READY_ON:
+    case READY_OFF: TtsPlayer.setEnabled(!TtsPlayer.isEnabled()); return;
+    default: return;
+    }
   }
 
   private void toggleNavMenu()
@@ -168,12 +188,22 @@ public class NavMenu
     return mNavBottomSheetBehavior.getState();
   }
 
-//  public void refreshTts()
-//  {
-//    mTts.setImageDrawable(TtsPlayer.isEnabled()
-//                              ? Graphics.tint(mActivity, R.drawable.ic_voice_on, androidx.appcompat.R.attr.colorAccent)
-//                              : Graphics.tint(mActivity, R.drawable.ic_voice_off));
-//  }
+  public void refreshTts()
+  {
+    final Drawable icon;
+    switch (TtsPlayer.getState())
+    {
+    case READY_ON:
+      icon = Graphics.tint(mActivity, R.drawable.ic_voice_on, androidx.appcompat.R.attr.colorAccent);
+      break;
+    case READY_OFF: icon = Graphics.tint(mActivity, R.drawable.ic_voice_off); break;
+    case INITIALIZING:
+    case UNAVAILABLE:
+    case NEEDS_LANGUAGE:
+    default: icon = Graphics.tint(mActivity, R.drawable.ic_voice_off, R.attr.iconTintDisabled); break;
+    }
+    mTts.setImageDrawable(icon);
+  }
 
   private void updateTime(int seconds)
   {
@@ -243,5 +273,7 @@ public class NavMenu
     void onStopClicked();
 
     void onSettingsClicked();
+
+    void onTtsVoiceSettingsClicked();
   }
 }

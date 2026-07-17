@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "Bangunan 3D dimatikan dalam mode hemat daya";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "Citra Satelit";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "URL server";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "Masukkan URL valid dengan {z}/{x}/{y}";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "Ukuran cache (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "Opasitas objek area";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "Sumber ubin khusus disediakan oleh Anda. Gunakan hanya layanan yang boleh Anda akses. Anda bertanggung jawab atas atribusi, ketentuan lisensi, kunci API, kuota, dan batas penggunaan.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "Petunjuk Suara";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Bahasa Suara";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "Untuk mengunduh suara berkualitas lebih tinggi, buka app Pengaturan dan buka Aksesibilitas → VoiceOver → Ucapan → Suara.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "Menguji petunjuk suara (TTS, Text-To-Speech)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "Bersepeda";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "Satelit";
 "button_layer_subway" = "Kereta bawah tanah";
 "layers_title" = "Gaya dan Lapisan Peta";
 
@@ -707,6 +731,15 @@
 "toll_road" = "Jalan tol";
 "unpaved_road" = "Jalan tanah";
 "ferry_crossing" = "Penyeberangan kapal feri";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "Tangga";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "Gerbang";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "Palang pintu";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "Ya";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "Menurun";
 "elevation_profile_min_elevation" = "Min. tinggi";
 "elevation_profile_max_elevation" = "Maks. tinggi";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "Mulai bergerak untuk melihat profil ketinggian";
 "isolines_toast_zooms_1_10" = "Perbesar untuk menjelajahi garis kontur";
 "downloader_loading_ios" = "Mengunduh";
 

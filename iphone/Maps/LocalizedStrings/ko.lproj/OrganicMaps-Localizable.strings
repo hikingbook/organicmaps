@@ -218,6 +218,24 @@
 /* A message in Settings/Preferences explaining why is it not possible to enable 3D buildings when max power saving mode is enabled */
 "pref_map_3d_buildings_disabled_summary" = "3D 빌딩은 절전 모드에서 꺼집니다.";
 
+/* Settings: title of the satellite imagery (custom raster tiles) screen */
+"pref_bg_tiles_title" = "위성 이미지";
+
+/* Settings «Satellite Imagery»: title of the tile server URL input field */
+"pref_bg_tiles_url_title" = "서버 URL";
+
+/* Settings «Satellite Imagery»: shown under the Server URL field when its value is malformed (must start with http(s):// and contain the {z}/{x}/{y} placeholders) */
+"pref_bg_tiles_url_error" = "{z}/{x}/{y}가 포함된 유효한 URL을 입력하세요";
+
+/* Settings «Satellite Imagery»: title of the on-disk tile cache size limit (in megabytes) */
+"pref_bg_tiles_size_title" = "캐시 크기 (MB)";
+
+/* Settings «Satellite Imagery»: opacity of vector area objects drawn over the imagery (0% hides them) */
+"pref_bg_tiles_opacity_title" = "면 객체 불투명도";
+
+/* Settings «Satellite Imagery»: legal note that the user is responsible for the custom tile source they configure */
+"pref_bg_tiles_disclaimer" = "사용자 지정 타일 소스는 사용자가 제공합니다. 접근 권한이 있는 서비스만 사용하세요. 출처 표시, 라이선스 약관, API 키, 할당량 및 사용 한도는 사용자 책임입니다.";
+
 /* Settings «Route» category: «Tts enabled» title */
 "pref_tts_enable_title" = "음성 지침";
 
@@ -229,6 +247,9 @@
 
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "음성 언어";
+
+/* Settings «Navigation» category: «Voice language» footer */
+"pref_tts_download_voices_description" = "더 높은 품질의 음성을 다운로드하려면 설정 앱을 열고 손쉬운 사용 → VoiceOver → 말하기 → 음성으로 이동하세요.";
 
 /* Settings «Route» category: «Test Voice Directions» title */
 "pref_tts_test_voice_title" = "음성 길 안내 테스트(TTS, 텍스트 음성 변환)";
@@ -648,6 +669,9 @@
 
 /* Cycling routes layer name in the Styles and Layers dialog */
 "button_layer_cycling" = "사이클링";
+
+/* Map layers menu: toggle button for the satellite imagery layer */
+"button_layer_satellite" = "위성";
 "button_layer_subway" = "지하철";
 "layers_title" = "맵 스타일 및 레이어";
 
@@ -707,6 +731,15 @@
 "toll_road" = "유료 도로";
 "unpaved_road" = "비포장 도로";
 "ferry_crossing" = "여객선 횡단길";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_steps" = "계단";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_gate" = "게이트";
+
+/* Route warning shown on the map for this obstacle type. */
+"road_warning_lift_gate" = "차량차단기";
 
 /* A generic "Yes" button in dialogs */
 "yes" = "네";
@@ -895,6 +928,9 @@
 "elevation_profile_descent" = "내려가기";
 "elevation_profile_min_elevation" = "최소 높이";
 "elevation_profile_max_elevation" = "최대 높이";
+
+/* Displayed in the elevation profile chart while track recording has fewer than two points. */
+"elevation_profile_placeholder" = "고도 프로필을 보려면 움직이기 시작하세요";
 "isolines_toast_zooms_1_10" = "등치선 탐색을 위한 확대";
 "downloader_loading_ios" = "다운로드 중";
 

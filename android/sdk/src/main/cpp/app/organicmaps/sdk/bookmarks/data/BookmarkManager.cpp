@@ -6,6 +6,8 @@
 #include "app/organicmaps/sdk/core/jni_helper.hpp"
 #include "app/organicmaps/sdk/util/Distance.hpp"
 
+#include "kml/type_utils.hpp"
+
 #include "map/bookmark_helpers.hpp"
 #include "map/place_page_info.hpp"
 
@@ -91,24 +93,26 @@ void PrepareClassRefs(JNIEnv * env)
                                                     ")V");
 
   g_onElevationCurrentPositionChangedMethod =
-      jni::GetMethodID(env, bookmarkManagerInstance, "onElevationCurrentPositionChanged", "()V");
+      jni::GetMethodID(env, bookmarkManagerInstance, "onElevationCurrentPositionChanged", "(JD)V");
   g_onElevationActivePointChangedMethod =
-      jni::GetMethodID(env, bookmarkManagerInstance, "onElevationActivePointChanged", "()V");
+      jni::GetMethodID(env, bookmarkManagerInstance, "onElevationActivePointChanged", "(JD)V");
 }
 
-void OnElevationCurPositionChanged(JNIEnv * env)
+void OnElevationCurPositionChanged(JNIEnv * env, kml::TrackId trackId, double distance)
 {
   ASSERT(g_bookmarkManagerClass, ());
   jobject bookmarkManagerInstance = env->GetStaticObjectField(g_bookmarkManagerClass, g_bookmarkManagerInstanceField);
-  env->CallVoidMethod(bookmarkManagerInstance, g_onElevationCurrentPositionChangedMethod);
+  env->CallVoidMethod(bookmarkManagerInstance, g_onElevationCurrentPositionChangedMethod, static_cast<jlong>(trackId),
+                      static_cast<jdouble>(distance));
   jni::HandleJavaException(env);
 }
 
-void OnElevationActivePointChanged(JNIEnv * env)
+void OnElevationActivePointChanged(JNIEnv * env, kml::TrackId trackId, double distance)
 {
   ASSERT(g_bookmarkManagerClass, ());
   jobject bookmarkManagerInstance = env->GetStaticObjectField(g_bookmarkManagerClass, g_bookmarkManagerInstanceField);
-  env->CallVoidMethod(bookmarkManagerInstance, g_onElevationActivePointChangedMethod);
+  env->CallVoidMethod(bookmarkManagerInstance, g_onElevationActivePointChangedMethod, static_cast<jlong>(trackId),
+                      static_cast<jdouble>(distance));
   jni::HandleJavaException(env);
 }
 
@@ -295,7 +299,7 @@ JNIEXPORT jobject Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_native
   bmData.m_name = info.FormatNewBookmarkName();
   bmData.m_point = mercator::FromLatLon(lat, lon);
   auto const lastEditedCategory = frm()->LastEditedBMCategory();
-  bmData.m_color.m_predefinedColor = frm()->LastEditedBMColor();
+  bmData.m_color = frm()->LastEditedBMColor();
 
   if (info.IsFeature())
     SaveFeatureTypes(info.GetTypes(), bmData);
@@ -317,7 +321,7 @@ JNIEXPORT jlong Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeGe
 
 JNIEXPORT jint Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeGetLastEditedColor(JNIEnv *, jobject)
 {
-  return static_cast<jint>(kml::kColorIndexMap[E2I(frm()->LastEditedBMColor())]);
+  return static_cast<jint>(kml::GetEffectiveColor(frm()->LastEditedBMColor()).GetARGB());
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeLoadBookmarksFile(JNIEnv * env, jclass,
@@ -378,7 +382,7 @@ JNIEXPORT jobject Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_native
   auto title = jni::ToJavaString(env, bookmark->GetPreferredName());
   auto description = jni::ToJavaString(env, bookmark->GetDescription());
   auto featureType = jni::ToJavaString(env, kml::GetLocalizedFeatureType(bookmark->GetData().m_featureTypes));
-  auto color = static_cast<jint>(kml::kColorIndexMap[base::E2I(bookmark->GetColor())]);
+  auto color = static_cast<jint>(bookmark->GetColorForRendering().GetARGB());
   auto iconType = static_cast<jint>(bookmark->GetData().m_icon);
   auto coords = jni::GetNewParcelablePointD(env, bookmark->GetPivot());
   auto scale = static_cast<jdouble>(bookmark->GetScale());
@@ -398,14 +402,16 @@ JNIEXPORT jobject Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_native
                                                                                          jlong trackId,
                                                                                          jclass trackClazz)
 {
-  // Track(long trackId, long categoryId, String name, String lengthString, int color)
+  // Track(long trackId, long categoryId, boolean isRelationTrack, String name, String lengthString, int color)
   static jmethodID const cId =
-      jni::GetConstructorID(env, trackClazz, "(JJLjava/lang/String;Lapp/organicmaps/sdk/util/Distance;I)V");
-  auto const * nTrack = frm()->GetBookmarkManager().GetTrack(static_cast<kml::TrackId>(trackId));
+      jni::GetConstructorID(env, trackClazz, "(JJZLjava/lang/String;Lapp/organicmaps/sdk/util/Distance;I)V");
+  auto const kmlTrackId = static_cast<kml::TrackId>(trackId);
+  auto const * nTrack = frm()->GetBookmarkManager().GetTrack(kmlTrackId);
 
   ASSERT(nTrack, ("Track must not be null with id:)", trackId));
 
-  return env->NewObject(trackClazz, cId, trackId, static_cast<jlong>(nTrack->GetGroupId()),
+  auto const isRelationTrack = static_cast<jboolean>(kmlTrackId == kml::kTempRelationTrackId);
+  return env->NewObject(trackClazz, cId, trackId, static_cast<jlong>(nTrack->GetGroupId()), isRelationTrack,
                         jni::ToJavaString(env, nTrack->GetName()),
                         ToJavaDistance(env, platform::Distance::CreateFormatted(nTrack->GetLengthMeters())),
                         nTrack->GetColor(0).GetARGB());
@@ -533,7 +539,8 @@ JNIEXPORT void JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeSetElevationCurrentPositionChangedListener(JNIEnv * env,
                                                                                                          jclass)
 {
-  frm()->GetBookmarkManager().SetElevationMyPositionChangedCallback(std::bind(&OnElevationCurPositionChanged, env));
+  frm()->GetBookmarkManager().SetElevationMyPositionChangedCallback([env](kml::TrackId trackId, double distance)
+  { OnElevationCurPositionChanged(env, trackId, distance); });
 }
 
 JNIEXPORT void JNICALL
@@ -553,7 +560,8 @@ JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeSet
 JNIEXPORT void JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeSetElevationActiveChangedListener(JNIEnv * env, jclass)
 {
-  frm()->GetBookmarkManager().SetElevationActivePointChangedCallback(std::bind(&OnElevationActivePointChanged, env));
+  frm()->GetBookmarkManager().SetElevationActivePointChangedCallback([env](kml::TrackId trackId, double distance)
+  { OnElevationActivePointChanged(env, trackId, distance); });
 }
 
 JNIEXPORT void JNICALL

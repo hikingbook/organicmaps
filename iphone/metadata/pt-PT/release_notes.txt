@@ -1,26 +1,28 @@
-- NOVO! toque numa paragem de transportes públicos para realçar todo o percurso no mapa, tal como no estilo de mapa Transit.
-- NOVO! Os percursos de transportes públicos de longa distância e outras relações do OpenStreetMap estão agora ligados através das fronteiras do mapa numa linha contínua.
-- Dados do OpenStreetMap atualizados a partir de 3 de maio.
-- O Vietname e a Malásia estão agora divididos em regiões mais pequenas que podem ser descarregadas separadamente.
-- Hong Kong, Macau e Hainan estão agora separados de Guangdong, com as fronteiras vizinhas atualizadas.
-- Linhas de contorno atualizadas para a Indonésia, Malásia, Tanzânia, Tailândia e Vietname.
-- Adicionado um botão de gravação de trajetos ao painel de informações na navegação.
-- Adicionados novos tipos de OpenStreetMap: vulcões com estado ativo, pontos de acesso a vias navegáveis, rampas de lançamento, salões de narguilé e edifícios em construção.
-- Adicionado "Lookout" como sinónimo de pesquisa para miradouros e "pkwy" como sinónimo de rua dos EUA.
-- As cores das áreas pedonais são ligeiramente mais escuras para uma melhor legibilidade.
-- As etiquetas dos marcadores no mapa já não se sobrepõem.
-- O texto com várias linhas é agora recortado de forma limpa e os nomes das ruas já não contêm duplicados.
-- Rotas: as rotas retomadas removem agora os pontos intermédios pelos quais já passou.
-- Foi corrigida a utilização da lista de favoritos errada nas compilações TestFlight.
-- Corrigida a importação de ficheiros KMB.
-- Atualização das traduções revistas para categorias, sinónimos de pesquisa e cadeias de caracteres UI. Adicionadas traduções para as descrições de New South Wales e Northern Territory.
-- Melhoria da estabilidade e desempenho, incluindo a modelação de fontes, cache de glifos e recorte de linhas de rota.
-- Melhorámos o gráfico de elevação para caminhos e rotas.
-- Tornou os botões do menu de navegação maiores para ações como TTS, definições e gravação de percursos.
-- Aperfeiçoou a animação da secção de descrição expansível na página do local.
-- A página de informações do local já não fecha quando a limpeza do gráfico de elevação termina, já não salta inesperadamente e mantém o título visível durante a edição com o teclado aberto.
-- Correção de falhas ao eliminar uma faixa ou marcador que já não existe.
+• A nova configuração «Guardar histórico de pesquisa» ajuda a manter privado o seu histórico de pesquisa, quando necessário
 
-## Suporte de plataforma
+## Mapas e locais
+• Dados do OpenStreetMap atualizados a 14 de julho
+• As notas do OpenStreetMap são agora colocadas na localização exata que selecionar, em vez de no meio da floresta
+• Seleção de mapas melhorada para regiões que atravessam o antimeridiano de 180°
+• Os perfis de elevação dos percursos já não mostram gráficos desatualizados ou vazios após a remoção de um percurso
+• Melhorou-se o gráfico de elevação vazio para percursos gravados
+• O botão para remover marcadores é mais fácil de encontrar
+• Gravação automática de marcadores ao sair do ecrã de edição
+• A paleta de cores inclui cores predefinidas e permite escolher qualquer cor personalizada
+• Outras melhorias na interface do utilizador
 
-- Devido a alterações no TestFlight e na App Store, esta versão suporta apenas o iOS 15 e posterior. O iOS 12, iOS 13 e iOS 14 já não são suportados.
+## Transportes públicos
+• Os nomes das paragens, transferências e estações utilizam agora um contorno branco para se manterem legíveis tanto no tema claro como no escuro
+• A camada do metro reaparece corretamente após fechar a pré-visualização de um percurso de transportes públicos
+
+## Traçado de percursos e navegação
+• Corrigidos problemas com indicações erradas ou em falta
+• Os avisos de percurso (portagens, ferries, estradas não pavimentadas, escadas, etc.) são agora apresentados para todas as rotas alternativas
+• Corrigido um congelamento raro durante a criação de um percurso e melhorado o tratamento de becos sem saída e pontos de partida/chegada numa estrada com restrições
+• Melhorou-se a indicação do progresso do percurso no botão «Iniciar»
+• A reordenação das paragens do percurso já não faz com que a lista salte de um lado para o outro
+
+## Traduções
+• Melhorou-se a redação em chinês
+• Atualizaram-se as traduções em ucraniano
+• Corrigiram-se as traduções das regiões do mapa em italiano

@@ -1,12 +1,13 @@
 protocol BookmarksListInfoViewControllerDelegate: AnyObject {
   func didPressDescription()
+  func didPressEdit()
   func didUpdateContent()
 }
 
 final class BookmarksListInfoViewController: UIViewController {
   var info: IBookmarksListInfoViewModel? {
     didSet {
-      guard isViewLoaded, let info = info else { return }
+      guard isViewLoaded, let info else { return }
       updateInfo(info)
     }
   }
@@ -15,19 +16,34 @@ final class BookmarksListInfoViewController: UIViewController {
 
   @IBOutlet private var titleImageView: UIImageView!
   @IBOutlet private var titleLabel: UILabel!
-  @IBOutlet private var descriptionButton: UIButton!
+  @IBOutlet private var editButton: UIButton!
+  @IBOutlet private var descriptionLabel: UILabel!
   @IBOutlet private var authorContainerView: UIView!
   @IBOutlet private var infoStack: UIStackView!
   @IBOutlet private var separatorsConstraints: [NSLayoutConstraint]!
 
-  @IBAction private func onDescription(_: UIButton) {
+  @objc private func onDescriptionTap() {
     delegate?.didPressDescription()
+  }
+
+  @IBAction private func onEditTap() {
+    delegate?.didPressEdit()
+  }
+
+  func setEditButtonHidden(_ hidden: Bool) {
+    editButton?.isHidden = hidden
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     separatorsConstraints.forEach { $0.constant = 1 / UIScreen.main.scale }
-    descriptionButton.titleLabel?.numberOfLines = 2
+    editButton.accessibilityLabel = L("edit")
+    editButton.tintColor = .linkBlue
+    descriptionLabel.numberOfLines = 2
+    descriptionLabel.lineBreakMode = .byTruncatingTail
+    descriptionLabel.isUserInteractionEnabled = true
+    descriptionLabel.accessibilityTraits.insert(.button)
+    descriptionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onDescriptionTap)))
 
     guard let info = info else { return }
     updateInfo(info)
@@ -35,12 +51,12 @@ final class BookmarksListInfoViewController: UIViewController {
 
   private func updateInfo(_ info: IBookmarksListInfoViewModel) {
     titleLabel.text = info.title
-    descriptionButton.isHidden = !info.hasDescription
+    descriptionLabel.isHidden = !info.hasDescription
     if info.hasDescription {
       let description = info.isHtmlDescription
         ? BookmarksListInfoViewController.getPlainText(info.description)
         : info.description
-      descriptionButton.setTitle(description, for: .normal)
+      descriptionLabel.text = description
     }
 
     titleImageView.isHidden = true

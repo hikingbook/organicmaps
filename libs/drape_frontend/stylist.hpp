@@ -40,6 +40,34 @@ private:
   uint32_t m_2levelDash;  // dash hatch
 };
 
+// Maps natural-surface area types to a solid-fill pattern key (analytic, single pass). Unlike hatching,
+// these modulate the surface colour in place (e.g. a darker speckle over sand) rather than overlaying a
+// transparent mask.
+class IsAreaPatternChecker
+{
+  IsAreaPatternChecker() = default;
+
+public:
+  DECLARE_CHECKER_INSTANCE(IsAreaPatternChecker);
+
+  std::string_view GetPattern(uint32_t type) const;
+  std::string_view GetPattern(feature::TypesHolder const & types) const;
+
+private:
+  struct Stipple : ftypes::BaseCheckerEx
+  {
+    Stipple();
+  } m_stipple;  // beach (incl. sand subtype) / desert
+  struct Speckle : ftypes::BaseCheckerEx
+  {
+    Speckle();
+  } m_speckle;  // scree / bare_rock
+  struct Grid : ftypes::BaseCheckerEx
+  {
+    Grid();
+  } m_grid;  // orchard / vineyard
+};
+
 struct CaptionDescription
 {
   void Init(FeatureType & f, int8_t deviceLang, int zoomLevel, feature::GeomType geomType, bool auxCaptionExists);
@@ -47,6 +75,14 @@ struct CaptionDescription
   std::string const & GetMainText() const { return m_mainText; }
   std::string const & GetAuxText() const { return m_auxText; }
   std::string const & GetHouseNumberText() const { return m_houseNumberText; }
+  // StringUtf8Multilang code of the language actually selected for main/aux text. Drives
+  // HarfBuzz OpenType `locl` substitutions downstream. kUnsupportedLanguageCode when empty.
+  int8_t GetMainTextLang() const { return m_mainTextLang; }
+  int8_t GetAuxTextLang() const { return m_auxTextLang; }
+  // First language declared in the feature's MWM region metadata, or kUnsupportedLanguageCode
+  // when the MWM declares none. Use as the locl hint for OSM-verbatim text that does not go
+  // through name selection (addr:housenumber, road shield ref tags).
+  int8_t GetMwmRegionLang() const { return m_mwmRegionLang; }
 
   bool IsNameExists() const { return !m_mainText.empty(); }
   bool IsHouseNumberExists() const { return !m_houseNumberText.empty(); }
@@ -55,20 +91,23 @@ private:
   std::string m_mainText;
   std::string m_auxText;
   std::string m_houseNumberText;
+  int8_t m_mainTextLang = StringUtf8Multilang::kUnsupportedLanguageCode;
+  int8_t m_auxTextLang = StringUtf8Multilang::kUnsupportedLanguageCode;
+  int8_t m_mwmRegionLang = StringUtf8Multilang::kUnsupportedLanguageCode;
 };
 
 class Stylist
 {
 public:
-  SymbolRuleProto const * m_symbolRule = nullptr;
-  CaptionRuleProto const * m_captionRule = nullptr;
-  CaptionRuleProto const * m_houseNumberRule = nullptr;
-  PathTextRuleProto const * m_pathtextRule = nullptr;
-  ShieldRuleProto const * m_shieldRule = nullptr;
-  AreaRuleProto const * m_areaRule = nullptr;
-  AreaRuleProto const * m_hatchingRule = nullptr;
+  drule::SymbolRule const * m_symbolRule = nullptr;
+  drule::CaptionRule const * m_captionRule = nullptr;
+  drule::CaptionRule const * m_houseNumberRule = nullptr;
+  drule::PathTextRule const * m_pathtextRule = nullptr;
+  drule::ShieldRule const * m_shieldRule = nullptr;
+  drule::AreaRule const * m_areaRule = nullptr;
+  drule::AreaRule const * m_hatchingRule = nullptr;
 
-  using LineRulesT = buffer_vector<LineRuleProto const *, 4>;
+  using LineRulesT = buffer_vector<drule::LineRule const *, 4>;
   LineRulesT m_lineRules;
 
   ftypes::RoadShieldsSetT m_roadShields;

@@ -1,7 +1,7 @@
 final class TransportTransitTrain: TransportTransitCell {
   enum Config {
     static var labelTextColor: UIColor { .whitePrimary }
-    static let labelTextFont = UIFont.bold12()
+    static let labelTextFont = UIFont.bold12
     static let labelTrailing: CGFloat = 4
   }
 
@@ -41,6 +41,8 @@ final class TransportTransitTrain: TransportTransitCell {
     case .subway: image.image = #imageLiteral(resourceName: "ic_20px_route_planning_metro")
     case .lightRail: image.image = #imageLiteral(resourceName: "ic_20px_route_planning_lightrail")
     case .monorail: image.image = #imageLiteral(resourceName: "ic_20px_route_planning_monorail")
+    case .tram: image.image = #imageLiteral(resourceName: "ic_20px_route_planning_tram")
+    case .bus: image.image = #imageLiteral(resourceName: "ic_20px_route_planning_bus")
     case .ruler: fatalError()
     }
     background.backgroundColor = step.color

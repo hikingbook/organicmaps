@@ -1,6 +1,7 @@
 #import "MWMFrameworkHelper.h"
 #import "ElevationProfileData+Core.h"
 #import "MWMMapSearchResult+Core.h"
+#import "PlacePageTrackSelectionData+Core.h"
 #import "Product+Core.h"
 #import "ProductsConfiguration+Core.h"
 #import "TrackInfo+Core.h"
@@ -41,6 +42,11 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
   CGFloat const x1 = x0 + rect.size.width * scale;
   CGFloat const y1 = y0 + rect.size.height * scale;
   GetFramework().SetVisibleViewport(m2::RectD(x0, y0, x1, y1));
+}
+
++ (void)setMapFontScaleFactor:(double)scaleFactor
+{
+  GetFramework().SetFontScaleFactor(scaleFactor);
 }
 
 + (void)setTheme:(MWMTheme)theme
@@ -89,6 +95,11 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
 + (void)createFramework
 {
   UNUSED_VALUE(GetFramework());
+}
+
++ (BOOL)isFrameworkDestroyed
+{
+  return IsFrameworkDestroyed();
 }
 
 + (MWMMarkID)invalidBookmarkId
@@ -210,6 +221,11 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
 + (void)showTrack:(MWMTrackID)trackId
 {
   GetFramework().ShowTrack(trackId);
+}
+
++ (void)selectTrackCandidate:(PlacePageTrackSelectionData *)trackSelection
+{
+  GetFramework().SelectTrackCandidate(trackSelection.trackId, trackSelection.relationId);
 }
 
 + (void)updatePlacePageData

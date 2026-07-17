@@ -13,6 +13,7 @@
 
 #include "drape/attribute_provider.hpp"
 #include "drape/batcher.hpp"
+#include "drape/font_constants.hpp"
 #include "drape/utils/vertex_decl.hpp"
 
 #include "indexer/feature_decl.hpp"
@@ -131,8 +132,9 @@ void GenerateColoredSymbolShapes(ref_ptr<dp::GraphicsContext> context, ref_ptr<d
   {
     CHECK(renderInfo.m_titleDecl, ());
     auto const & titleDecl = renderInfo.m_titleDecl->operator[](0);
-    auto const textMetrics = textures->ShapeSingleTextLine(titleDecl.m_primaryText, nullptr);
-    auto const fontScale = static_cast<float>(VisualParams::Instance().GetFontScale());
+    auto const textMetrics = textures->ShapeSingleTextLine(titleDecl.m_primaryText, titleDecl.m_primaryLang, nullptr);
+    auto const & vparams = VisualParams::Instance();
+    auto const fontScale = static_cast<float>(vparams.GetFontScale() * vparams.GetVisualScale());
     float const textRatio = titleDecl.m_primaryTextFont.m_size * fontScale / dp::kBaseFontSizePixels;
 
     sizeInc.x = textMetrics.m_lineWidthInPixels * textRatio;
@@ -409,7 +411,9 @@ void CacheUserMarks(ref_ptr<dp::GraphicsContext> context, TileKey const & tileKe
         glsl::vec2 const offset(pixelOffset.x, pixelOffset.y);
 
         dp::Color color = dp::Color::White();
-        if (!renderInfo.m_color.empty())
+        if (renderInfo.m_customColor)  // explicit custom color
+          color = *renderInfo.m_customColor;
+        else if (!renderInfo.m_color.empty())  // preset, theme-aware
           color = df::GetColorConstant(renderInfo.m_color);
 
         glsl::vec4 maskColor(color.GetRedF(), color.GetGreenF(), color.GetBlueF(), renderInfo.m_symbolOpacity);

@@ -26,7 +26,6 @@ import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.search.SearchEngine;
 import app.organicmaps.sdk.util.StorageUtils;
 import app.organicmaps.sdk.util.concurrency.ThreadPool;
-import app.organicmaps.search.SearchActivity;
 import app.organicmaps.sdk.FrameworkAdapter;
 import java.io.File;
 import java.util.Collections;
@@ -87,11 +86,13 @@ public class Factory
 
       case RequestType.MAP:
         SearchEngine.INSTANCE.cancelInteractiveSearch();
+        target.forceCloseSearchFragment();
         Map.executeMapApiRequest();
         return true;
 
       case RequestType.ROUTE:
         SearchEngine.INSTANCE.cancelInteractiveSearch();
+        target.forceCloseSearchFragment();
         final ParsedRoutingData data = Framework.nativeGetParsedRoutingData();
         RoutingController.get().setRouterType(data.mRouterType);
         final RoutePoint from = data.mPoints[0];
@@ -110,16 +111,17 @@ public class Factory
           Framework.nativeStopLocationFollow();
           Framework.nativeSetViewportCenter(latlon[0], latlon[1], SEARCH_IN_VIEWPORT_ZOOM);
           // We need to update viewport for search api manually because of drape engine
-          // will not notify subscribers when search activity is shown.
+          // will not notify subscribers when search is shown.
           if (!request.mIsSearchOnMap)
             Framework.nativeSetSearchViewport(latlon[0], latlon[1], SEARCH_IN_VIEWPORT_ZOOM);
         }
-        SearchActivity.start(target, request.mQuery, request.mLocale, request.mIsSearchOnMap);
+        target.showSearch(request.mQuery, request.mLocale, request.mIsSearchOnMap);
         return true;
       }
       case RequestType.CROSSHAIR:
       {
         SearchEngine.INSTANCE.cancelInteractiveSearch();
+        target.forceCloseSearchFragment();
         target.showPositionChooserForAPI(Framework.nativeGetParsedAppName());
 
         final double[] latlon = Framework.nativeGetParsedCenterLatLon();
@@ -134,6 +136,7 @@ public class Factory
       case RequestType.OAUTH2:
       {
         SearchEngine.INSTANCE.cancelInteractiveSearch();
+        target.forceCloseSearchFragment();
 
         final String oauth2code = Framework.nativeGetParsedOAuth2Code();
         OsmLoginActivity.OAuth2Callback(target, oauth2code);
@@ -155,8 +158,7 @@ public class Factory
     @Override
     public boolean process(@NonNull Intent intent, @NonNull MwmActivity activity)
     {
-      return handleIntent(intent,
-                          (query, searchOnMap) -> { SearchActivity.start(activity, query, null, searchOnMap); });
+      return handleIntent(intent, (query, searchOnMap) -> activity.showSearch(query, null, searchOnMap));
     }
   }
 }

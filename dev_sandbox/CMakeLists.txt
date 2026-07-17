@@ -53,12 +53,19 @@ if (Vulkan_FOUND)
 endif()
 
 if(PLATFORM_MAC)
-  target_embed_metal_shader_libraries(${PROJECT_NAME} shaders_metal)
+  omim_target_embed_metal_shader_libraries(${PROJECT_NAME} shaders_metal)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC GL_SILENCE_DEPRECATION)
 if (PLATFORM_MAC)
   set_target_properties(${PROJECT_NAME} PROPERTIES XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES)
+  # Xcode's multi-config generator puts the .app under $(CONFIGURATION)/ by default,
+  # while copy_resources() writes directly to ${CMAKE_BINARY_DIR}/${BUNDLE_NAME}.app.
+  # Force Xcode to drop the per-config subdir so resources end up in the running bundle.
+  if (CMAKE_GENERATOR STREQUAL "Xcode")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+      XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_BINARY_DIR}")
+  endif()
 endif()
 
 target_compile_definitions(${PROJECT_NAME}
@@ -87,6 +94,7 @@ function(copy_resources)
   foreach(file ${ARGN})
     execute_process(
       COMMAND cp -r ${DATA_DIR}/${file} ${RESOURCES_FOLDER}
+      COMMAND_ERROR_IS_FATAL ANY
     )
   endforeach()
 endfunction()
@@ -101,11 +109,10 @@ copy_resources(
   categories_cuisines.txt
   classificator.txt
   colors.txt
-  countries.txt
-  drules_proto_default_light.bin
-  drules_proto_default_dark.bin
-  drules_proto_vehicle_light.bin
-  drules_proto_vehicle_dark.bin
+  countries.json
+  drules_default.bin
+  drules_outdoors.bin
+  drules_vehicle.bin
   editor.config
   packed_polygons.bin
   patterns.txt

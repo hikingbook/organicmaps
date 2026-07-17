@@ -1,26 +1,28 @@
-- YENİ! Transit harita stilinde olduğu gibi, haritadaki tüm rotayı vurgulamak için bir toplu taşıma durağına dokunun.
-- YENİ! Uzun mesafeli toplu taşıma rotaları ve diğer OpenStreetMap ilişkileri artık harita sınırları boyunca tek bir kesintisiz çizgiye bağlanıyor.
-- OpenStreetMap verileri 3 Mayıs itibariyle güncellendi.
-- Vietnam ve Malezya artık ayrı olarak indirilebilen daha küçük bölgelere ayrılmıştır.
-- Hong Kong, Makao ve Hainan artık Guangdong'dan ayrılmış ve komşu sınırlar güncellenmiştir.
-- Endonezya, Malezya, Tanzanya, Tayland ve Vietnam için kontur çizgileri güncellendi.
-- Navigasyon içi bilgi paneline bir iz kayıt düğmesi eklendi.
-- Yeni OpenStreetMap türleri eklendi: aktif durumdaki yanardağlar, su yolu erişim noktaları, kızaklar, nargile salonları ve inşaat halindeki binalar.
-- Manzara noktaları için arama eşanlamlısı olarak "Lookout" ve ABD cadde eşanlamlısı olarak "pkwy" eklendi.
-- Yaya bölgesi renkleri daha iyi okunabilirlik için biraz daha koyulaştırıldı.
-- Haritadaki yer imi etiketleri artık üst üste gelmiyor.
-- Çok satırlı metinler artık temiz bir şekilde kırpılıyor ve sokak adları artık yinelemeler içermiyor.
-- Yönlendirme: yeniden başlatılan rotalar artık daha önce geçtiğiniz ara noktaları kaldırıyor.
-- TestFlight derlemelerinde kullanılan yanlış yer imi listesi düzeltildi.
-- KMB dosya içe aktarımı düzeltildi.
-- Kategoriler, arama eşanlamlıları ve kullanıcı arayüzü dizeleri için düzeltme çevirileri güncellendi. New South Wales ve Northern Territory açıklamaları için çeviriler eklendi.
-- Yazı tipi şekillendirme, glif önbelleğe alma ve rota çizgisi kırpma dahil olmak üzere kararlılık ve performans iyileştirildi.
-- Parkurlar ve rotalar için yükseklik grafiği iyileştirildi.
-- TTS, ayarlar ve parça kaydı gibi eylemler için gezinti içi menü düğmeleri daha büyük hale getirildi.
-- Yer sayfasındaki genişletilebilir açıklama bölümünün animasyonu iyileştirildi.
-- Yer bilgileri sayfası artık yükseklik grafiği tarama işlemi sona erdiğinde kapanmıyor, artık beklenmedik şekilde sekmiyor ve klavye açıkken düzenleme yaparken başlığı görünür tutuyor.
-- Artık var olmayan bir parça veya yer imi silinirken yaşanan çökmeler düzeltildi.
+• Yeni “Arama geçmişini kaydet” ayarı, gerektiğinde arama geçmişinizi gizli tutmanıza yardımcı olur
 
-## Platform Desteği
+## Harita ve yerler
+• 14 Temmuz itibarıyla OpenStreetMap verileri
+• OpenStreetMap notları artık ormanın ortasında değil, seçtiğiniz tam konumda yerleştiriliyor
+• 180° antimeridyenini geçen bölgeler için harita seçimi iyileştirildi
+• Bir rota silindikten sonra yükseklik profilleri artık güncel olmayan veya boş grafikler göstermiyor
+• Kaydedilen rotalar için boş yükseklik grafiği iyileştirildi
+• Yer imlerini silme düğmesi artık daha kolay bulunur
+• Düzenleme ekranından çıktığınızda yer imleri otomatik olarak kaydedilir
+• Renk paleti önceden tanımlanmış renkleri içerir ve istediğiniz herhangi bir özel rengi seçmenize olanak tanır
+• Diğer kullanıcı arayüzü iyileştirmeleri
 
-- TestFlight ve App Store'daki değişiklikler nedeniyle, bu sürüm yalnızca iOS 15 ve sonraki sürümleri desteklemektedir. iOS 12, iOS 13 ve iOS 14 artık desteklenmemektedir.
+## Toplu taşıma
+• Durak, aktarma noktası ve istasyon adları artık hem açık hem de koyu temalarda okunabilir kalması için beyaz bir çerçeve kullanıyor
+• Toplu taşıma güzergah önizlemesini kapattıktan sonra metro katmanı doğru şekilde yeniden görünüyor
+
+## Güzergah belirleme ve navigasyon
+• Yanlış ve eksik yol tarifleriyle ilgili sorunlar giderildi
+• Rota uyarıları (ücretli yollar, feribotlar, asfaltsız yollar, merdivenler vb.) artık tüm alternatif rotalar için gösteriliyor
+• Rota oluşturulurken nadiren yaşanan donma sorunu giderildi ve kısıtlı yollardaki çıkmazlar ile başlangıç/bitiş noktalarının işlenmesi iyileştirildi
+• Başlat düğmesindeki rota ilerleme göstergesi iyileştirildi
+• Rota duraklarının sırasını değiştirirken listenin atlaması sorunu giderildi
+
+## Çeviriler
+• Çince ifadeler iyileştirildi
+• Ukraynaca çeviriler güncellendi
+• İtalyanca harita bölgelerinin çevirilerindeki hatalar düzeltildi

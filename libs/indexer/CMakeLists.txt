@@ -40,13 +40,13 @@ set(SRC
   drawing_rule_def.hpp
   drawing_rules.cpp
   drawing_rules.hpp
-  drules_include.hpp
+  drules_format.cpp
+  drules_format.hpp
   drules_selector.cpp
   drules_selector.hpp
   drules_selector_parser.cpp
   drules_selector_parser.hpp
-  drules_struct.pb.cc
-  drules_struct.pb.h
+  drules_struct.hpp
   edit_journal.cpp
   edit_journal.hpp
   editable_map_object.cpp
@@ -105,6 +105,7 @@ set(SRC
   postcodes_matcher.hpp  # it's in indexer EditableMapObject depends on postcodes_matcher
   rank_table.cpp
   rank_table.hpp
+  route_relation.cpp
   route_relation.hpp
   road_shields_parser.cpp
   road_shields_parser.hpp
@@ -137,22 +138,12 @@ set(SRC
   validate_and_format_contacts.hpp
 )
 
-set(OTHER_FILES drules_struct.proto)
-
-# Disable warnings.
-set_source_files_properties(drules_struct.pb.cc PROPERTIES COMPILE_FLAGS
-  "$<$<CXX_COMPILER_ID:AppleClang,Clang>:-Wno-shorten-64-to-32> $<$<CXX_COMPILER_ID:GNU>:-Wno-deprecated-declarations>"
-)
-
-file(COPY ${OTHER_FILES} DESTINATION ${CMAKE_BINARY_DIR})
-
 omim_add_library(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     platform
     geometry
-    protobuf
     coding
     om::timezone
 )
