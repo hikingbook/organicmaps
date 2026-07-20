@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #import "ElevationProfileData+Core.h"
 #import "PlacePageTrackData+Core.h"
 #import "PlacePageTrackSelectionData+Core.h"
@@ -38,14 +39,17 @@
 
 @implementation PlacePageTrackData (Core)
 
-- (instancetype)initWithRawData:(place_page::Info const &)rawData
-           onActivePointChanged:(MWMVoidBlock)onActivePointChangedHandler
+- (nullable instancetype)initWithRawData:(place_page::Info const &)rawData
+                    onActivePointChanged:(MWMVoidBlock)onActivePointChangedHandler
 {
   self = [super init];
   if (self)
   {
     auto const & bm = GetFramework().GetBookmarkManager();
-    auto const & track = *bm.GetTrack(rawData.GetTrackId());
+    auto const * trackPtr = bm.GetTrack(rawData.GetTrackId());
+    if (!trackPtr)
+      return nil;
+    auto const & track = *trackPtr;
 
     _trackId = track.GetData().m_id;
 
