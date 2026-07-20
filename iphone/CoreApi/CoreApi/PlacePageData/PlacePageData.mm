@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #import "PlacePageData.h"
 
 #import "ElevationProfileData+Core.h"
@@ -48,7 +49,7 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
 
 @implementation PlacePageData
 
-- (instancetype)initWithLocalizationProvider:(id<IOpeningHoursLocalization>)localization
+- (nullable instancetype)initWithLocalizationProvider:(id<IOpeningHoursLocalization>)localization
 {
   self = [super init];
   if (self)
@@ -79,9 +80,12 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
     if (rawData().IsTrack())
     {
       __weak auto weakSelf = self;
-      _trackData =
+      auto * trackData =
           [[PlacePageTrackData alloc] initWithRawData:rawData()
                                  onActivePointChanged:^(void) { [weakSelf handleActiveTrackSelectionPointChanged]; }];
+      if (!trackData)
+        return nil;
+      _trackData = trackData;
     }
     _previewData = [[PlacePagePreviewData alloc] initWithRawData:rawData()];
 

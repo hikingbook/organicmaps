@@ -1,3 +1,4 @@
+// This file is modified by Ke Zheng-Xiang on 2026.
 #include "drape_frontend/frontend_renderer.hpp"
 #include "drape_frontend/animation/interpolation_holder.hpp"
 #include "drape_frontend/animation_system.hpp"
@@ -2078,7 +2079,9 @@ void FrontendRenderer::CheckIsometryMinScale(ScreenBase const & screen)
 bool FrontendRenderer::ResolveZoomLevel(ScreenBase const & screen)
 {
   int const prevZoomLevel = m_currentZoomLevel;
-  m_currentZoomLevel = GetDrawTileScale(screen);
+  // Scale animations may temporarily overshoot the maximum supported style zoom.
+  // Keep tile keys within the range expected by renderers and their zoom-indexed tables.
+  m_currentZoomLevel = std::min(GetDrawTileScale(screen), scales::GetUpperStyleScale());
   gui::DrapeGui::Instance().GetScaleFpsHelper().SetScale(m_currentZoomLevel);
 
   CheckIsometryMinScale(screen);
