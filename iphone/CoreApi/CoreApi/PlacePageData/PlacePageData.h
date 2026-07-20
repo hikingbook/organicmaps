@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
@@ -54,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) MWMVoidBlock onTrackRecordingProgressUpdate;
 @property(nonatomic, copy, nullable) void (^onMapNodeProgressUpdate)(uint64_t downloadedBytes, uint64_t totalBytes);
 
-- (instancetype)initWithLocalizationProvider:(id<IOpeningHoursLocalization>)localization;
+- (nullable instancetype)initWithLocalizationProvider:(id<IOpeningHoursLocalization>)localization;
 - (instancetype)initWithTrackInfo:(TrackInfo * _Nonnull)trackInfo
                     elevationInfo:(ElevationProfileData * _Nullable)elevationInfo;
 - (instancetype)init NS_UNAVAILABLE;
