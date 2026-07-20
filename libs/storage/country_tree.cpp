@@ -26,7 +26,7 @@ struct CountryNode
   std::vector<uint64_t> top_countries_geo_ids;
   int s = 0;
   std::string h;
-  int hikingbook_pro_map_s = 0;
+  uint64_t hikingbook_pro_map_s = 0;
   std::string hikingbook_pro_map_h;
   std::vector<CountryNode> g;
 };
