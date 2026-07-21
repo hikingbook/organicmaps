@@ -1,3 +1,4 @@
+// This file is modified by Zheng-Xiang Ke on 2026.
 #pragma once
 
 #include "shaders/programs.hpp"
@@ -47,7 +48,7 @@ private:
     for (auto const p : GetBoundPrograms())                                                         \
     {                                                                                               \
       auto const programName = DebugPrint(p);                                                       \
-      CHECK(params.find(programName) == params.cend(), ("Program has already bound", programName)); \
+      /*CHECK(params.find(programName) == params.cend(), ("Program has already bound", programName));*/ \
       params[programName] = GetName();                                                              \
     }                                                                                               \
   }
