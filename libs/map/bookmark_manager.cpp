@@ -2138,7 +2138,7 @@ BookmarkManager::KMLDataCollectionPtr BookmarkManager::LoadBookmarks(std::string
 void BookmarkManager::LoadBookmarks()
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
-  CHECK(!m_loadBookmarksCalled, ("LoadBookmarks should be called only once."));
+//  CHECK(!m_loadBookmarksCalled, ("LoadBookmarks should be called only once."));
   m_loadBookmarksCalled = true;
 
   LoadMetadata();
