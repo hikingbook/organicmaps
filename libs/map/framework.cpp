@@ -495,8 +495,15 @@ bool Framework::OnCountryFileDelete(storage::CountryId const & countryId, storag
   if (localFile)
   {
     rect = m_infoGetter->GetLimitRectForLeaf(countryId);
-    m_featuresFetcher.DeregisterMap(platform::CountryFile(countryId));
-    deferredDelete = true;
+    // A local file may be tracked by Storage without being registered in the
+    // feature data source (for example, an expired Hikingbook Pro map). In
+    // that case there will be no OnMapDeregistered() callback to finish a
+    // deferred deletion, so Storage must delete the file immediately.
+    if (m_featuresFetcher.IsLoaded(countryId))
+    {
+      m_featuresFetcher.DeregisterMap(platform::CountryFile(countryId));
+      deferredDelete = true;
+    }
   }
 
   InvalidateRect(rect);
