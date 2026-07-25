@@ -30,6 +30,7 @@ import app.organicmaps.R;
 import app.organicmaps.sdk.bookmarks.data.BookmarkCategory;
 import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
 import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
+import app.organicmaps.sdk.bookmarks.data.Track;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.intent.Factory;
@@ -400,6 +401,28 @@ public enum FrameworkAdapter {
             return;
         }
         BookmarkManager.INSTANCE.nativeDeleteAllTracksInCategory(catId);
+    }
+
+    public long searchTrackIDWithName(String trackName, long catId) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Long.MAX_VALUE;
+        }
+        BookmarkCategory category = BookmarkManager.INSTANCE.getCategoryById(catId);
+        for (int index = 0; index < category.getTracksCount(); index++) {
+            long trackId = category.getTrackIdByPosition(index);
+            Track track = BookmarkManager.INSTANCE.getTrack(trackId);
+            if (trackName.equals(track.getName())) {
+                return trackId;
+            }
+        }
+        return Long.MAX_VALUE;
+    }
+
+    public void showTrack(long trackId) {
+        if (!arePlatformAndCoreInitialized() || trackId == Long.MAX_VALUE) {
+            return;
+        }
+        Framework.nativeShowTrackRect(trackId);
     }
 
     public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {
