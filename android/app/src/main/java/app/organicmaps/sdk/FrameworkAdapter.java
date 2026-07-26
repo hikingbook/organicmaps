@@ -10,7 +10,6 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,13 +26,12 @@ import java.util.List;
 import app.organicmaps.MwmActivity;
 import app.organicmaps.MwmApplication;
 import app.organicmaps.R;
-import app.organicmaps.sdk.bookmarks.data.BookmarkCategory;
-import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
-import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
-import app.organicmaps.sdk.bookmarks.data.Track;
-import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.downloader.OnmapDownloader;
 import app.organicmaps.intent.Factory;
+import app.organicmaps.sdk.bookmarks.data.BookmarkCategory;
+import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
+import app.organicmaps.sdk.bookmarks.data.Track;
+import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.location.LocationHelper;
 import app.organicmaps.sdk.location.LocationListener;
 import app.organicmaps.sdk.location.LocationState;
@@ -417,12 +415,20 @@ public enum FrameworkAdapter {
         }
         return Long.MAX_VALUE;
     }
-
-    public void showTrack(long trackId) {
+    public boolean showTrack(long trackId, Location location) {
         if (!arePlatformAndCoreInitialized() || trackId == Long.MAX_VALUE) {
-            return;
+            return false;
         }
         Framework.nativeShowTrackRect(trackId);
+
+        if (location != null) {
+            Framework.nativeSetTrackSelectionPoint(
+                    trackId,
+                    location.getLatitude(),
+                    location.getLongitude()
+            );
+        }
+        return true;
     }
 
     public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {

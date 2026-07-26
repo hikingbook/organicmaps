@@ -75,6 +75,7 @@ public class Framework
   public static native void nativeRestoreDownloadQueue();
 
   public static native void nativeShowTrackRect(long track);
+  public static native boolean nativeSetTrackSelectionPoint(long track, double lat, double lon);
 
   public static native int nativeGetDrawScale();
 

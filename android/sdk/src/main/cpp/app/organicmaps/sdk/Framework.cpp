@@ -20,6 +20,7 @@
 #include "map/everywhere_search_params.hpp"
 #include "map/framework.hpp"
 #include "map/place_page_info.hpp"
+#include "map/track.hpp"
 #include "map/user_mark.hpp"
 
 #include "storage/country_info_getter.hpp"
@@ -1167,6 +1168,24 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRestoreDownloadQueue(JNI
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeShowTrackRect(JNIEnv * env, jclass, jlong track)
 {
   frm()->ShowTrack(static_cast<kml::TrackId>(track));
+}
+
+JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeSetTrackSelectionPoint(JNIEnv *, jclass, jlong trackId,
+                                                                                   jdouble lat, jdouble lon)
+{
+  auto & bookmarkManager = frm()->GetBookmarkManager();
+  auto const id = static_cast<kml::TrackId>(trackId);
+  auto const * track = bookmarkManager.GetTrack(id);
+  if (track == nullptr)
+    return JNI_FALSE;
+
+  Track::TrackSelectionInfo selectionInfo;
+  track->UpdateSelectionInfo(mercator::FromLatLon(lat, lon), selectionInfo);
+  if (!selectionInfo.IsValid())
+    return JNI_FALSE;
+
+  bookmarkManager.SetElevationActivePoint(id, selectionInfo.m_distFromBegM);
+  return JNI_TRUE;
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSelectTrackCandidate(JNIEnv *, jclass, jint index)
