@@ -13,6 +13,8 @@
 #include <CoreApi/CoreApi.h>
 #include "platform/network_policy.hpp"
 
+#include <algorithm>
+
 static place_page::Info & rawData()
 {
   return GetFramework().GetCurrentPlacePageInfo();
@@ -156,6 +158,11 @@ static PlacePageRoadType convertRoadType(RoadWarningMarkType roadType)
 + (BOOL)hasData
 {
   return GetFramework().HasPlacePageInfo();
+}
+
+- (BOOL)isPeak
+{
+  return std::find(m_rawTypes.begin(), m_rawTypes.end(), "natural-peak") != m_rawTypes.end();
 }
 
 #pragma mark - Private
