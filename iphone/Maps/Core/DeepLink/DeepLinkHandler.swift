@@ -149,7 +149,7 @@
       // Set viewport only when cll parameter was provided in url.
       // Equator and Prime Meridian are perfectly valid separately.
       if sd.hasValidCenterLatLon() {
-        MapViewController.setViewport(sd.centerLat, lon: sd.centerLon, zoomLevel: kSearchInViewportZoom)
+        MapViewController.setViewport(sd.centerLat, lon: sd.centerLon, zoomLevel: kSearchInViewportZoom, animated: false)
         // Need to update viewport for search API manually because Drape engine
         // will not notify subscribers when search view is shown.
         if !sd.isSearchOnMap {

@@ -971,14 +971,14 @@ NSString * const kCategorySelectorSegue = @"MapToCategorySelectorSegue";
   return UIEdgeInsetsMake(top, left, bottom, right);
 }
 
-+ (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomLevel
++ (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomLevel animated:(BOOL)animated
 {
   Framework & f = GetFramework();
 
   f.StopLocationFollow();
 
   auto const center = mercator::FromLatLon(lat, lon);
-  f.SetViewportCenter(center, zoomLevel, false);
+  f.SetViewportCenter(center, zoomLevel, animated);
 }
 
 //- (BookmarksCoordinator *)bookmarksCoordinator
