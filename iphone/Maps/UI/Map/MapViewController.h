@@ -51,7 +51,7 @@
                             insets:(UIEdgeInsets)insets
                   updatingViewport:(BOOL)updateViewport;
 
-+ (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomlevel;
++ (void)setViewport:(double)lat lon:(double)lon zoomLevel:(int)zoomlevel animated:(BOOL)animated;
 
 - (void)initialize;
 - (void)enableCarPlayRepresentation;
