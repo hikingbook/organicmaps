@@ -1170,6 +1170,25 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeShowTrackRect(JNIEnv * e
   frm()->ShowTrack(static_cast<kml::TrackId>(track));
 }
 
+JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusTrack(JNIEnv *, jclass, jlong trackId,
+                                                                        jboolean animated)
+{
+  auto & bookmarkManager = frm()->GetBookmarkManager();
+  auto const id = static_cast<kml::TrackId>(trackId);
+  auto const * track = bookmarkManager.GetTrack(id);
+  if (track == nullptr)
+    return JNI_FALSE;
+
+  auto editSession = bookmarkManager.GetEditSession();
+  editSession.SetIsVisible(track->GetGroupId(), true /* visible */);
+
+  auto rect = track->GetLimitRect();
+  ExpandRectForPreview(rect);
+  frm()->StopLocationFollow();
+  frm()->ShowRect(rect, static_cast<bool>(animated), true /* useVisibleViewport */);
+  return JNI_TRUE;
+}
+
 JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeSetTrackSelectionPoint(JNIEnv *, jclass, jlong trackId,
                                                                                    jdouble lat, jdouble lon)
 {
