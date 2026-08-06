@@ -1817,11 +1817,10 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetPowerManagerScheme(JN
   frm()->GetPowerManager().SetScheme(static_cast<power_management::Scheme>(schemeType));
 }
 
-JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetViewportCenter(JNIEnv *, jclass, jdouble lat, jdouble lon,
-                                                                          jint zoom)
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetViewportCenter__DDIZ(JNIEnv *, jclass, jdouble lat,
+                                                                                 jdouble lon, jint zoom, jboolean animated)
 {
-  // isAnim = true because of previous nativeSetChoosePositionMode animations.
-  frm()->SetViewportCenter(mercator::FromLatLon(lat, lon), static_cast<int>(zoom), true /* isAnim */);
+  frm()->SetViewportCenter(mercator::FromLatLon(lat, lon), static_cast<int>(zoom), static_cast<bool>(animated));
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeStopLocationFollow(JNIEnv *, jclass)
