@@ -431,6 +431,13 @@ public enum FrameworkAdapter {
         return true;
     }
 
+    public boolean focusTrack(long trackId, boolean animated) {
+        if (!arePlatformAndCoreInitialized() || trackId == Long.MAX_VALUE) {
+            return false;
+        }
+        return Framework.nativeFocusTrack(trackId, animated);
+    }
+
     public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return Integer.MAX_VALUE;

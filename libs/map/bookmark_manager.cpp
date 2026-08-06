@@ -913,6 +913,17 @@ void BookmarkManager::SetElevationActivePoint(kml::TrackId const & trackId, doub
 
   SetTrackSelectionInfo({trackId, pt, targetDistance}, true /* notifyListeners */);
 
+  // The renderer displays the active point with its selection shape.  Keep the
+  // track-selection mark hidden while this track is selected; otherwise its
+  // asynchronous update leaves the previous point visible until the renderer
+  // processes the new mark position.
+  if (trackId == m_selectedTrackId)
+  {
+    auto const markId = GetTrackSelectionMarkId(trackId);
+    if (markId != kml::kInvalidMarkId)
+      GetMarkForEdit<TrackSelectionMark>(markId)->SetIsVisible(false);
+  }
+
   m_drapeEngine.SafeCall(&df::DrapeEngine::SelectObject, df::SelectionShape::ESelectedObject::OBJECT_TRACK, pt,
                          FeatureID(), false /* isAnim */, false /* isGeometrySelectionAllowed */,
                          true /* isSelectionShapeVisible */);
