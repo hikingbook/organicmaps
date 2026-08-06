@@ -223,6 +223,15 @@ static Framework::ProductsPopupCloseReason ConvertProductPopupCloseReasonToCore(
   GetFramework().ShowTrack(trackId);
 }
 
++ (void)showRect:(CGRect)rect
+         animated:(BOOL)isAnimated
+useVisibleViewport:(BOOL)useVisibleViewport
+{
+  auto const rectD =
+      m2::RectD(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+  GetFramework().ShowRect(rectD, isAnimated, useVisibleViewport);
+}
+
 + (void)selectTrackCandidate:(PlacePageTrackSelectionData *)trackSelection
 {
   GetFramework().SelectTrackCandidate(trackSelection.trackId, trackSelection.relationId);
