@@ -381,7 +381,12 @@ public class Framework
   public static native boolean nativeIsShowDownloadedRegions();
   public static native void nativeSetShowDownloadedRegions(boolean show);
 
-  public static native void nativeSetViewportCenter(double lat, double lon, int zoom);
+  public static void nativeSetViewportCenter(double lat, double lon, int zoom)
+  {
+    nativeSetViewportCenter(lat, lon, zoom, true /* animated */);
+  }
+
+  public static native void nativeSetViewportCenter(double lat, double lon, int zoom, boolean animated);
   public static native void nativeStopLocationFollow();
 
   public static native void nativeSetSearchViewport(double lat, double lon, int zoom);
