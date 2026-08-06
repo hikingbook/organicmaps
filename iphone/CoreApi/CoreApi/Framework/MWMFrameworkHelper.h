@@ -79,6 +79,9 @@ NS_SWIFT_NAME(FrameworkHelper)
 + (void)showOnMap:(MWMMarkGroupID)categoryId;
 + (void)showBookmark:(MWMMarkID)bookmarkId;
 + (void)showTrack:(MWMTrackID)trackId;
++ (void)showRect:(CGRect)rect
+         animated:(BOOL)isAnimated
+useVisibleViewport:(BOOL)useVisibleViewport;
 + (void)selectTrackCandidate:(PlacePageTrackSelectionData *)trackSelection;
 + (void)updatePlacePageData;
 + (void)updateAfterDeleteBookmark;
