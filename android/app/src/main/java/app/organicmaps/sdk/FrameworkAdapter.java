@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
@@ -262,7 +263,7 @@ public enum FrameworkAdapter {
         mwmActivity.updateBottomWidgetsOffset(offsetX, offsetY);
     }
 
-    public long createBookmark(String catName, String name, String description, int color, double lat, double lon, int iconType) {
+    public long createBookmark(String catName, String name, String description, @ColorInt int color, double lat, double lon, int iconType) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -364,7 +365,7 @@ public enum FrameworkAdapter {
         BookmarkManager.INSTANCE.showBookmarkCategoryOnMap(catId);
     }
 
-    public long addTracks(long catId, String name, String description, Location[][] locations, int color, double lineWidth) {
+    public long addTracks(long catId, String name, String description, Location[][] locations, @ColorInt int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -438,7 +439,7 @@ public enum FrameworkAdapter {
         return Framework.nativeFocusTrack(trackId, animated);
     }
 
-    public int drawLineWithLocations(Location[] locations, int color, double lineWidth) {
+    public int drawLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return Integer.MAX_VALUE;
         }
@@ -449,6 +450,36 @@ public enum FrameworkAdapter {
 
         return BookmarkManager.INSTANCE.nativeDrawLineWithLocations(
                 doubleLocations,
+                color,
+                lineWidth
+        );
+    }
+
+    public int drawBorderedLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
+        if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
+            return Integer.MAX_VALUE;
+        }
+
+        double[][] doubleLocations = Arrays.stream(locations)
+                .map(location -> new double[]{location.getLatitude(), location.getLongitude(), location.getAltitude()})
+                .toArray(double[][]::new);
+
+        return BookmarkManager.INSTANCE.nativeDrawBorderedLineWithLocations(
+                doubleLocations,
+                color,
+                lineWidth
+        );
+    }
+
+    public int drawCircleWithCenter(Location center, double radius, @ColorInt int color, double lineWidth) {
+        if (!arePlatformAndCoreInitialized()) {
+            return Integer.MAX_VALUE;
+        }
+
+        return BookmarkManager.INSTANCE.nativeDrawCircle(
+                center.getLatitude(),
+                center.getLongitude(),
+                radius,
                 color,
                 lineWidth
         );

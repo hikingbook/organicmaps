@@ -29,6 +29,8 @@ using namespace std::placeholders;
 
 namespace
 {
+constexpr double kTrackLineBorderWidth = 4.0;
+
 jclass g_bookmarkManagerClass;
 jfieldID g_bookmarkManagerInstanceField;
 jmethodID g_onBookmarksChangedMethod;
@@ -604,7 +606,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
         bmData.m_icon = kml::BookmarkIcon::None;
     }
 
-    bmData.m_color.m_predefinedColor = kml::kOrderedPredefinedColors[color];
+    bmData.m_color = kml::MakeCustomBookmarkColorData(dp::Color::FromARGB(static_cast<uint32_t>(color)));
     bmData.m_point = mercator::FromLatLon(lat, lon);
     auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                            static_cast<kml::MarkGroupId>(groupId));
@@ -633,7 +635,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeUpdateBookmark(
     kml::SetDefaultStr(bmDescription, ToNativeString(env, description));
     bmData.m_description = bmDescription;
 
-    bmData.m_color.m_predefinedColor = kml::kOrderedPredefinedColors[color];
+    bmData.m_color = kml::MakeCustomBookmarkColorData(dp::Color::FromARGB(static_cast<uint32_t>(color)));
     bmData.m_point = mercator::FromLatLon(lat, lon);
 
     frm()->GetBookmarkManager().GetEditSession().UpdateBookmark(static_cast<kml::MarkId>(bookmarkID),
@@ -769,11 +771,13 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddTracks(
     kml::SetDefaultStr(trackDescription, ToNativeString(env, description));
     trackData.m_description = trackDescription;
 
-    kml::ColorData colorData;
-    colorData.m_predefinedColor = kml::kOrderedPredefinedColors[color];
-    uint32_t argb = kml::ColorFromPredefinedColor(colorData.m_predefinedColor).GetARGB();
-    uint8_t alpha = ExtractByte(argb, 3);
-    colorData.m_rgba = static_cast<uint32_t>(shift(argb, 8) + alpha);
+    auto const colorData = kml::MakeCustomBookmarkColorData(
+        dp::Color::FromARGB(static_cast<uint32_t>(color)));
+
+    kml::TrackLayer borderLayer;
+    borderLayer.m_color = kml::MakeCustomBookmarkColorData(dp::Color::White());
+    borderLayer.m_lineWidth = width + kTrackLineBorderWidth;
+    trackData.m_layers.emplace_back(borderLayer);
 
     kml::TrackLayer trackLayer;
     trackLayer.m_color = colorData;
@@ -832,7 +836,43 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
     }
 
     lineID++;
-    frm()->GetDrapeApi().AddLine(std::to_string(lineID), df::DrapeApiLineData(points, kml::ColorFromPredefinedColor(static_cast<kml::PredefinedColor>(color))).Width(width));
+    frm()->GetDrapeApi().AddLine(
+        std::to_string(lineID),
+        df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color))).Width(width));
+
+    return lineID;
+}
+
+JNIEXPORT jint JNICALL
+Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawBorderedLineWithLocations(
+        JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width)
+{
+    const jsize size = env->GetArrayLength(locations);
+    std::vector<m2::PointD> points;
+    points.reserve(size);
+    for (jsize i = 0; i < size; ++i) {
+        jobject jlocationArray = env->GetObjectArrayElement(locations, i);
+        auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
+        const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
+        double *locationData = env->GetDoubleArrayElements(locationDoubleArray, nullptr);
+        if (sizeLocationDoubleArray >= 2) {
+            m2::PointD const point(mercator::FromLatLon(locationData[0], locationData[1]));
+            if (points.empty() || points.back() != point) {
+                points.emplace_back(point);
+            }
+        }
+        env->DeleteLocalRef(jlocationArray);
+    }
+    if (points.size() < 2) {
+        return 0;
+    }
+
+    lineID++;
+    frm()->GetDrapeApi().AddLine(
+        std::to_string(lineID),
+        df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color)))
+            .Width(width)
+            .Outline(dp::Color::White(), width + kTrackLineBorderWidth));
 
     return lineID;
 }
@@ -857,7 +897,10 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawCircle(JNIEnv 
     std::vector<m2::PointD> points = ms::CreateCircleGeometryOnEarth(ms::LatLon(static_cast<double>(lat), static_cast<double>(lon)), radius, 1);
 
     lineID++;
-    frm()->GetDrapeApi().AddLine(std::to_string(lineID), df::DrapeApiLineData(points, kml::ColorFromPredefinedColor(static_cast<kml::PredefinedColor>(color))).Width(static_cast<double>(width)));
+    frm()->GetDrapeApi().AddLine(
+        std::to_string(lineID),
+        df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color)))
+            .Width(static_cast<double>(width)));
     return lineID;
 }
 
