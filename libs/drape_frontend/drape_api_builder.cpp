@@ -78,6 +78,16 @@ void DrapeApiBuilder::BuildLines(ref_ptr<dp::GraphicsContext> context, DrapeApi:
         lvp.m_color = data.m_color;
         lvp.m_width = data.m_width;
         lvp.m_join = dp::RoundJoin;
+
+        if (data.m_outlineWidth > data.m_width)
+        {
+          lvp.m_color = data.m_outlineColor;
+          lvp.m_width = data.m_outlineWidth;
+          LineShape(spline, lvp).Draw(context, make_ref(&batcher), textures);
+          lvp.m_color = data.m_color;
+          lvp.m_width = data.m_width;
+        }
+
         LineShape(spline, lvp).Draw(context, make_ref(&batcher), textures);
       }
 

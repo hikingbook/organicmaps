@@ -649,9 +649,9 @@ public enum BookmarkManager {
   /**
    * Native method add by RobinChien 2020/07/10
    * */
-  public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon, int iconType);
+  public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription, @ColorInt int color, double lat, double lon, int iconType);
 
-  public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, int color, double lat, double lon);
+  public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, @ColorInt int color, double lat, double lon);
 
   public native void nativeDeleteAllBookmarkWithCategory(long catId);
 
@@ -659,17 +659,19 @@ public enum BookmarkManager {
 
   public native long nativeSearchCategoryIDWithName(String categoryName);
 
-  public native long nativeAddTracks(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, double[][] timestamps, int color, double width);
+  public native long nativeAddTracks(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, double[][] timestamps, @ColorInt int color, double width);
 
   public native void nativeDeleteAllTracksInCategory(long catId);
 
-  public native int nativeDrawLineWithLocations(double[][] locations, int color, double width);
+  public native int nativeDrawLineWithLocations(double[][] locations, @ColorInt int color, double width);
+
+  public native int nativeDrawBorderedLineWithLocations(double[][] locations, @ColorInt int color, double width);
 
   public native void nativeRemoveLine(int lineID);
 
   public native void nativeClearLines();
 
-  public native int nativeDrawCircle(double lat, double lon, double radius, int color, double width);
+  public native int nativeDrawCircle(double lat, double lon, double radius, @ColorInt int color, double width);
 
   public native void nativeResetRecentlyDeletedBookmark();
   public interface BookmarksLoadingListener
