@@ -34,6 +34,13 @@ struct DrapeApiLineData
     return *this;
   }
 
+  DrapeApiLineData & Outline(dp::Color const & color, float width)
+  {
+    m_outlineColor = color;
+    m_outlineWidth = width;
+    return *this;
+  }
+
   DrapeApiLineData & ShowId()
   {
     m_showId = true;
@@ -43,6 +50,8 @@ struct DrapeApiLineData
   std::vector<m2::PointD> m_points;
   float m_width = 1.0f;
   dp::Color m_color;
+  float m_outlineWidth = 0.0f;
+  dp::Color m_outlineColor;
 
   bool m_showPoints = false;
   bool m_markPoints = false;
