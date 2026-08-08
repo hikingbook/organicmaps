@@ -1633,6 +1633,14 @@ bool Framework::GetDistanceAndAzimut(m2::PointD const & point, double lat, doubl
   return (d < 25000.0);
 }
 
+m2::PointD Framework::GtoP(m2::PointD const & p) const
+{
+  auto const pixelPoint = m_currentModelView.GtoP(p);
+  if (!m_currentModelView.IsReverseProjection3d(pixelPoint))
+    return m_currentModelView.PtoP3d(pixelPoint, 0.0);
+  return pixelPoint;
+}
+
 m2::PointD Framework::PtoG(m2::PointD const & p) const
 {
   auto pt = m_currentModelView.PtoG(p);
