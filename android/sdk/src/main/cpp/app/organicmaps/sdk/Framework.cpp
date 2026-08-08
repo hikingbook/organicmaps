@@ -1160,6 +1160,16 @@ JNIEXPORT jdoubleArray Java_app_organicmaps_sdk_Framework_nativeGetScreenRectCen
   return jLatLon;
 }
 
+JNIEXPORT jdoubleArray Java_app_organicmaps_sdk_Framework_nativeGetScreenPoint(
+    JNIEnv * env, jclass, jdouble lat, jdouble lon)
+{
+  m2::PointD const point = frm()->GtoP(mercator::FromLatLon(lat, lon));
+  double screenPoint[] = {point.x, point.y};
+  jdoubleArray jScreenPoint = env->NewDoubleArray(2);
+  env->SetDoubleArrayRegion(jScreenPoint, 0, 2, screenPoint);
+  return jScreenPoint;
+}
+
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRestoreDownloadQueue(JNIEnv * env, jclass)
 {
   frm()->GetStorage().RestoreDownloadQueue();

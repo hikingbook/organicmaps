@@ -85,6 +85,9 @@ public class Framework
   @Size(2)
   public static native double[] nativeGetScreenRectCenter();
 
+  @Size(2)
+  public static native double[] nativeGetScreenPoint(double lat, double lon);
+
   public static native DistanceAndAzimut nativeGetDistanceAndAzimuth(double dstMerX, double dstMerY, double srcLat,
                                                                      double srcLon, double north);
 
