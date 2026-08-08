@@ -524,6 +524,9 @@ public:
   bool GetDistanceAndAzimut(m2::PointD const & point, double lat, double lon, double north,
                             platform::Distance & distance, double & azimut);
 
+  /// Converts between map-global and screen-pixel coordinates.
+  m2::PointD GtoP(m2::PointD const & p) const;
+
   /// @name For Desktop only.
   /// @{
   m2::PointD PtoG(m2::PointD const & p) const;
