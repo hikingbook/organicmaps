@@ -1187,6 +1187,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
   }
 
+  public void updateMapOrnaments(float rulerX, float rulerBottomY, float compassX, float compassY,
+                                 float copyrightStartX, float copyrightBottomY)
+  {
+    if (mMapController == null)
+      return;
+
+    mMapController.updateMapOrnaments(rulerX, rulerBottomY, compassX, compassY,
+                                      copyrightStartX, copyrightBottomY);
+  }
+
 //  @Override
 //  public void updateMenu()
 //  {

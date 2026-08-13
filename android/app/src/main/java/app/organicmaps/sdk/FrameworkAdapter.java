@@ -263,6 +263,12 @@ public enum FrameworkAdapter {
         mwmActivity.updateBottomWidgetsOffset(offsetX, offsetY);
     }
 
+    public void updateMapOrnaments(float rulerX, float rulerBottomY, float compassX, float compassY,
+                                   float copyrightStartX, float copyrightBottomY) {
+        mwmActivity.updateMapOrnaments(rulerX, rulerBottomY, compassX, compassY,
+                copyrightStartX, copyrightBottomY);
+    }
+
     public long createBookmark(String catName, String name, String description, @ColorInt int color, double lat, double lon, int iconType) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
