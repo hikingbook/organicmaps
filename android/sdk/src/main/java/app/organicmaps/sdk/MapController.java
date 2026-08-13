@@ -54,6 +54,13 @@ public class MapController implements DefaultLifecycleObserver
     mMap.updateBottomWidgetsOffset(mMapView.getContext(), offsetX, offsetY);
   }
 
+  public void updateMapOrnaments(float rulerX, float rulerBottomY, float compassX, float compassY,
+                                 float copyrightStartX, float copyrightBottomY)
+  {
+    mMap.updateMapOrnaments(rulerX, rulerBottomY, compassX, compassY, copyrightStartX,
+                            copyrightBottomY);
+  }
+
   public void updateMyPositionRoutingOffset(int offsetY)
   {
     mMap.updateMyPositionRoutingOffset(offsetY);

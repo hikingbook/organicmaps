@@ -65,6 +65,13 @@ public final class Map
   private int mCurrentCompassOffsetY;
   private int mBottomWidgetOffsetX;
   private int mBottomWidgetOffsetY;
+  private boolean mHasCustomOrnamentLayout;
+  private float mRulerX;
+  private float mRulerBottomY;
+  private float mCompassX;
+  private float mCompassY;
+  private float mCopyrightStartX;
+  private float mCopyrightBottomY;
 
   private int mHeight;
   private int mWidth;
@@ -104,6 +111,11 @@ public final class Map
   {
     final int x = offsetX < 0 ? mCurrentCompassOffsetX : offsetX;
     final int y = offsetY < 0 ? mCurrentCompassOffsetY : offsetY;
+    mCurrentCompassOffsetX = x;
+    mCurrentCompassOffsetY = y;
+    if (mHasCustomOrnamentLayout)
+      return;
+
     final int navPadding = Utils.dimen(context, R.dimen.nav_frame_padding);
     final int marginX = Utils.dimen(context, R.dimen.margin_compass) + navPadding;
     final int marginY = Utils.dimen(context, R.dimen.margin_compass_top) + navPadding;
@@ -111,8 +123,6 @@ public final class Map
     nativeSetupWidget(WIDGET_COMPASS, x + marginX, mHeight - y - marginY, ANCHOR_CENTER);
     if (forceRedraw && mSurfaceCreated)
       nativeApplyWidgets();
-    mCurrentCompassOffsetX = x;
-    mCurrentCompassOffsetY = y;
   }
 
   public static void onCompassUpdated(double north, boolean forceRedraw)
@@ -131,10 +141,29 @@ public final class Map
   {
     final int x = offsetX < 0 ? mBottomWidgetOffsetX : offsetX;
     final int y = offsetY < 0 ? mBottomWidgetOffsetY : offsetY;
-    updateRulerOffset(context, x, y);
-    updateAttributionOffset(context, x, y);
     mBottomWidgetOffsetX = x;
     mBottomWidgetOffsetY = y;
+    if (mHasCustomOrnamentLayout)
+      return;
+
+    updateRulerOffset(context, x, y);
+    updateAttributionOffset(context, x, y);
+  }
+
+  /** Positions the ruler, compass, and copyright using map-surface coordinates. */
+  public void updateMapOrnaments(float rulerX, float rulerBottomY, float compassX, float compassY,
+                                 float copyrightStartX, float copyrightBottomY)
+  {
+    mHasCustomOrnamentLayout = true;
+    mRulerX = rulerX;
+    mRulerBottomY = rulerBottomY;
+    mCompassX = compassX;
+    mCompassY = compassY;
+    mCopyrightStartX = copyrightStartX;
+    mCopyrightBottomY = copyrightBottomY;
+    setupMapOrnaments();
+    if (mSurfaceCreated)
+      nativeApplyWidgets();
   }
 
   /**
@@ -346,19 +375,31 @@ public final class Map
     mWidth = width;
 
     nativeCleanWidgets();
-    updateBottomWidgetsOffset(context, mBottomWidgetOffsetX, mBottomWidgetOffsetY);
+    if (mHasCustomOrnamentLayout)
+      setupMapOrnaments();
+    else
+      updateBottomWidgetsOffset(context, mBottomWidgetOffsetX, mBottomWidgetOffsetY);
     if (mDisplayType == DisplayType.Device)
     {
       nativeSetupWidget(WIDGET_SCALE_FPS_LABEL, Utils.dimen(context, R.dimen.margin_base),
                         Utils.dimen(context, R.dimen.margin_base) * 2, ANCHOR_LEFT_TOP);
-      updateCompassOffset(context, mCurrentCompassOffsetX, mCurrentCompassOffsetY, false);
+      if (!mHasCustomOrnamentLayout)
+        updateCompassOffset(context, mCurrentCompassOffsetX, mCurrentCompassOffsetY, false);
     }
     else
     {
       nativeSetupWidget(WIDGET_SCALE_FPS_LABEL, (float) mWidth / 2 + Utils.dimen(context, R.dimen.margin_base) * 2,
                         Utils.dimen(context, R.dimen.margin_base), ANCHOR_LEFT_TOP);
-      updateCompassOffset(context, mWidth, mCurrentCompassOffsetY, true);
+      if (!mHasCustomOrnamentLayout)
+        updateCompassOffset(context, mWidth, mCurrentCompassOffsetY, true);
     }
+  }
+
+  private void setupMapOrnaments()
+  {
+    nativeSetupWidget(WIDGET_RULER, mRulerX, mRulerBottomY, ANCHOR_LEFT_BOTTOM);
+    nativeSetupWidget(WIDGET_COMPASS, mCompassX, mCompassY, ANCHOR_CENTER);
+    nativeSetupWidget(WIDGET_COPYRIGHT, mCopyrightStartX, mCopyrightBottomY, ANCHOR_LEFT_BOTTOM);
   }
 
   private void updateRulerOffset(final Context context, int offsetX, int offsetY)
