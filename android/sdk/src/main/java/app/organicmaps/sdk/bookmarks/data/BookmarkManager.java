@@ -663,9 +663,8 @@ public enum BookmarkManager {
 
   public native void nativeDeleteAllTracksInCategory(long catId);
 
-  public native int nativeDrawLineWithLocations(double[][] locations, @ColorInt int color, double width);
-
-  public native int nativeDrawBorderedLineWithLocations(double[][] locations, @ColorInt int color, double width);
+  public native int nativeDrawLineWithLocations(double[][] locations, @ColorInt int color, double width, double borderWidth,
+                                                 @Nullable String identifier);
 
   public native void nativeRemoveLine(int lineID);
 
