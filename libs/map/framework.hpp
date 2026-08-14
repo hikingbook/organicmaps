@@ -433,8 +433,6 @@ public:
 
 private:
   /// Depends on initialized Drape engine.
-  void SaveViewport();
-  /// Depends on initialized Drape engine.
   void LoadViewport();
 
   df::OnGraphicsContextInitialized m_onGraphicsContextInitialized;
@@ -663,6 +661,8 @@ public:
   osm::MapObject GetMapObjectByID(FeatureID const & fid) const;
 
   void MemoryWarning();
+  /// Persists the current viewport so it can be restored by the next map session.
+  void SaveViewport();
   void EnterBackground();
   void EnterForeground();
 
