@@ -11,6 +11,8 @@
 #include "map/bookmark_helpers.hpp"
 #include "map/place_page_info.hpp"
 
+#include "drape_frontend/visual_params.hpp"
+
 #include "coding/zip_creator.hpp"
 
 #include "platform/localization.hpp"
@@ -811,7 +813,8 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDeleteAllTracksInC
 int lineID = 0;
 JNIEXPORT jint JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocations(
-        JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width)
+        JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width, double borderWidth,
+        jstring identifier)
 {
     const jsize size = env->GetArrayLength(locations);
     std::vector<m2::PointD> points;
@@ -835,45 +838,19 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
         return 0;
     }
 
-    lineID++;
-    frm()->GetDrapeApi().AddLine(
-        std::to_string(lineID),
-        df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color))).Width(width));
-
-    return lineID;
-}
-
-JNIEXPORT jint JNICALL
-Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawBorderedLineWithLocations(
-        JNIEnv * env, jobject thiz, jobjectArray locations, jint color, double width)
-{
-    const jsize size = env->GetArrayLength(locations);
-    std::vector<m2::PointD> points;
-    points.reserve(size);
-    for (jsize i = 0; i < size; ++i) {
-        jobject jlocationArray = env->GetObjectArrayElement(locations, i);
-        auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
-        const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
-        double *locationData = env->GetDoubleArrayElements(locationDoubleArray, nullptr);
-        if (sizeLocationDoubleArray >= 2) {
-            m2::PointD const point(mercator::FromLatLon(locationData[0], locationData[1]));
-            if (points.empty() || points.back() != point) {
-                points.emplace_back(point);
-            }
-        }
-        env->DeleteLocalRef(jlocationArray);
+    auto const visualScale = df::VisualParams::Instance().GetVisualScale();
+    auto const visualWidth = width * visualScale;
+    auto lineData = df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color))).Width(visualWidth);
+    if (borderWidth > 0) {
+        lineData.Outline(dp::Color::White(), visualWidth + borderWidth * visualScale);
     }
-    if (points.size() < 2) {
+    if (identifier != nullptr) {
+        frm()->GetDrapeApi().AddLine(jni::ToNativeString(env, identifier), lineData);
         return 0;
     }
 
     lineID++;
-    frm()->GetDrapeApi().AddLine(
-        std::to_string(lineID),
-        df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color)))
-            .Width(width)
-            .Outline(dp::Color::White(), width + kTrackLineBorderWidth));
-
+    frm()->GetDrapeApi().AddLine(std::to_string(lineID), lineData);
     return lineID;
 }
 

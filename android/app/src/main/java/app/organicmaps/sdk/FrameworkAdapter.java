@@ -446,6 +446,11 @@ public enum FrameworkAdapter {
     }
 
     public int drawLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
+        return drawLineWithLocations(locations, color, lineWidth, 0, null);
+    }
+
+    public int drawLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth,
+                                     double borderWidth, @Nullable String identifier) {
         if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
             return Integer.MAX_VALUE;
         }
@@ -457,23 +462,9 @@ public enum FrameworkAdapter {
         return BookmarkManager.INSTANCE.nativeDrawLineWithLocations(
                 doubleLocations,
                 color,
-                lineWidth
-        );
-    }
-
-    public int drawBorderedLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
-        if (!arePlatformAndCoreInitialized() || locations.length <= 1) {
-            return Integer.MAX_VALUE;
-        }
-
-        double[][] doubleLocations = Arrays.stream(locations)
-                .map(location -> new double[]{location.getLatitude(), location.getLongitude(), location.getAltitude()})
-                .toArray(double[][]::new);
-
-        return BookmarkManager.INSTANCE.nativeDrawBorderedLineWithLocations(
-                doubleLocations,
-                color,
-                lineWidth
+                lineWidth,
+                borderWidth,
+                identifier
         );
     }
 
