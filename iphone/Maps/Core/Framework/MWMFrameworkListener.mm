@@ -47,22 +47,22 @@ void loopWrappers(Observers * observers, TLoopBlock block)
 
 + (void)addObserver:(Observer)observer
 {
-  dispatch_async(dispatch_get_main_queue(), ^{
+//  dispatch_async(dispatch_get_main_queue(), ^{
     MWMFrameworkListener * listener = [MWMFrameworkListener listener];
     if ([observer conformsToProtocol:pRouteBuildingObserver])
       [listener.routeBuildingObservers addObject:observer];
     if ([observer conformsToProtocol:pDrapeObserver])
       [listener.drapeObservers addObject:observer];
-  });
+//  });
 }
 
 + (void)removeObserver:(Observer)observer
 {
-  dispatch_async(dispatch_get_main_queue(), ^{
+//  dispatch_async(dispatch_get_main_queue(), ^{
     MWMFrameworkListener * listener = [MWMFrameworkListener listener];
     [listener.routeBuildingObservers removeObject:observer];
     [listener.drapeObservers removeObject:observer];
-  });
+//  });
 }
 
 - (instancetype)initListener
