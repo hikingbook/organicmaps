@@ -133,7 +133,7 @@ NSString * const kCategorySelectorSegue = @"MapToCategorySelectorSegue";
 {
 //  Modifined by Zheng-Xiang Ke
 //  return [MapsAppDelegate theApp].mapViewController;
-    return [FrameworkAdapter.shared getMapViewController:[UIApplication sharedApplication]];
+    return FrameworkAdapter.shared.mapViewController;
 }
 
 #pragma mark - PlacePage
