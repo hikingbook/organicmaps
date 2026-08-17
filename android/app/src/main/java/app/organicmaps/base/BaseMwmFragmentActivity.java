@@ -5,12 +5,11 @@
 
 package app.organicmaps.base;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 import androidx.activity.EdgeToEdge;
 import androidx.activity.SystemBarStyle;
 import androidx.annotation.CallSuper;
@@ -21,11 +20,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
-import app.organicmaps.MwmApplication;
+
 import app.organicmaps.R;
-import app.organicmaps.SplashActivity;
 import app.organicmaps.sdk.util.log.Logger;
-import java.util.Objects;
 
 public abstract class BaseMwmFragmentActivity extends AppCompatActivity
 {
@@ -81,7 +78,7 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
     if (layoutId != 0)
       setContentView(layoutId);
 
-    attachDefaultFragment();
+//    attachDefaultFragment();
     mSafeCreated = true;
   }
 
