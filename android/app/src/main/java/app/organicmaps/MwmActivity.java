@@ -598,7 +598,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 //    initPositionChooser();
   }
 
-  // Implementated by Zheng-Xiang
+  // Implemented by Zheng-Xiang
   public void initDisplayManager() {
       if (mDisplayManager == null) {
           mDisplayManager = MwmApplication.from(this).getDisplayManager();
