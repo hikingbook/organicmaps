@@ -1199,6 +1199,39 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusTrack(JNIEnv *,
   return JNI_TRUE;
 }
 
+JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusLocations(JNIEnv * env, jclass,
+                                                                            jobjectArray locations,
+                                                                            jboolean animated)
+{
+  if (locations == nullptr || env->GetArrayLength(locations) == 0)
+    return JNI_FALSE;
+
+  m2::RectD rect;
+  auto const count = env->GetArrayLength(locations);
+  for (jsize i = 0; i < count; ++i)
+  {
+    auto const location = reinterpret_cast<jdoubleArray>(env->GetObjectArrayElement(locations, i));
+    if (location == nullptr)
+      continue;
+
+    auto const coordinateCount = env->GetArrayLength(location);
+    auto const coordinates = env->GetDoubleArrayElements(location, nullptr);
+    if (coordinateCount >= 2)
+      rect.Add(mercator::FromLatLon(coordinates[0], coordinates[1]));
+    env->ReleaseDoubleArrayElements(location, coordinates, JNI_ABORT);
+    env->DeleteLocalRef(location);
+  }
+  if (!rect.IsValid())
+    return JNI_FALSE;
+  if (rect.IsEmptyInterior())
+    rect = mercator::RectByCenterXYAndSizeInMeters(rect.Center(), 1000.0);
+
+  ExpandRectForPreview(rect);
+  frm()->StopLocationFollow();
+  frm()->ShowRect(rect, static_cast<bool>(animated), true /* useVisibleViewport */);
+  return JNI_TRUE;
+}
+
 JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeSetTrackSelectionPoint(JNIEnv *, jclass, jlong trackId,
                                                                                    jdouble lat, jdouble lon)
 {
