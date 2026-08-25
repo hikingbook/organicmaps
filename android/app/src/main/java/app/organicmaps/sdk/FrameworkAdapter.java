@@ -445,6 +445,16 @@ public enum FrameworkAdapter {
         return Framework.nativeFocusTrack(trackId, animated);
     }
 
+    public boolean focusLocations(List<Location> locations, boolean animated) {
+        if (!arePlatformAndCoreInitialized() || locations.isEmpty()) {
+            return false;
+        }
+        double[][] coordinates = locations.stream()
+                .map(location -> new double[]{location.getLatitude(), location.getLongitude()})
+                .toArray(double[][]::new);
+        return Framework.nativeFocusLocations(coordinates, animated);
+    }
+
     public int drawLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
         return drawLineWithLocations(locations, color, lineWidth, 0, null);
     }
