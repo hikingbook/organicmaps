@@ -31,7 +31,7 @@ using namespace std::placeholders;
 
 namespace
 {
-constexpr double kTrackLineBorderWidth = 4.0;
+constexpr double kTrackLineBorderWidth = 3.0;
 
 jclass g_bookmarkManagerClass;
 jfieldID g_bookmarkManagerInstanceField;
@@ -773,8 +773,8 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddTracks(
     kml::SetDefaultStr(trackDescription, ToNativeString(env, description));
     trackData.m_description = trackDescription;
 
-    auto const colorData = kml::MakeCustomBookmarkColorData(
-        dp::Color::FromARGB(static_cast<uint32_t>(color)));
+    kml::ColorData colorData;
+    colorData.m_rgba = dp::Color::FromARGB(static_cast<uint32_t>(color)).GetRGBA();
 
     kml::TrackLayer borderLayer;
     borderLayer.m_color = kml::MakeCustomBookmarkColorData(dp::Color::White());
