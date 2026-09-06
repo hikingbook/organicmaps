@@ -558,7 +558,16 @@ JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeSet
     JNIEnv *, jclass, jlong trackId, jdouble distanceInMeters)
 {
   auto & bm = frm()->GetBookmarkManager();
-  bm.SetElevationActivePoint(static_cast<kml::TrackId>(trackId), static_cast<double>(distanceInMeters));
+  auto const id = static_cast<kml::TrackId>(trackId);
+  bm.SetElevationActivePoint(id, static_cast<double>(distanceInMeters));
+  bm.OnTrackSelected(id);
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeClearElevationActivePoint(JNIEnv *,
+                                                                                                        jclass)
+{
+  frm()->GetBookmarkManager().OnTrackDeselected();
+  frm()->DeactivateMapSelectionCircle(false /* restoreViewport */);
 }
 
 JNIEXPORT void JNICALL

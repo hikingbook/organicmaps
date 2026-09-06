@@ -575,6 +575,11 @@ public enum BookmarkManager {
     nativeSetElevationActivePoint(trackId, distance);
   }
 
+  public void clearElevationActivePoint()
+  {
+    nativeClearElevationActivePoint();
+  }
+
   @Nullable
   private native Bookmark nativeUpdateBookmarkPlacePage(long bmkId);
 
@@ -641,6 +646,8 @@ public enum BookmarkManager {
   public static native void nativeRemoveElevationCurrentPositionChangedListener();
 
   private static native void nativeSetElevationActivePoint(long trackId, double distanceInMeters);
+
+  private static native void nativeClearElevationActivePoint();
 
   private static native void nativeSetElevationActiveChangedListener();
 
