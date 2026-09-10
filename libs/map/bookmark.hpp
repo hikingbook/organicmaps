@@ -66,9 +66,12 @@ public:
 
   drape_ptr<TitlesInfo> GetTitleDeclEx(settings::Placement p, dp::Color outlineColor) const override;
   df::DepthLayer GetDepthLayerEx(settings::Placement p) const override;
+  float GetDepth() const override;
 
   dp::Anchor GetAnchor() const override;
   drape_ptr<SymbolNameZoomInfo> GetSymbolNames() const override;
+  drape_ptr<ColoredSymbolZoomInfo> GetColoredSymbols() const override;
+  bool ShouldAllowTitleOverlap() const override { return GetWaypointNumber() != nullptr; }
 
   df::ColorConstant GetColorConstant() const override;
 
@@ -86,6 +89,7 @@ public:
   kml::GroupIdCollection const & GetCompilations() const { return m_compilationIds; }
 
 private:
+  std::string const * GetWaypointNumber() const;
   drape_ptr<df::UserPointMark::SymbolNameZoomInfo> GetCustomSymbolNames() const;
 
   kml::BookmarkData m_data;

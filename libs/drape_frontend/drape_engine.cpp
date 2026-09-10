@@ -930,6 +930,7 @@ drape_ptr<UserMarkRenderParams> DrapeEngine::GenerateMarkRenderInfo(UserPointMar
   renderInfo->m_customColor = mark->GetCustomColor();
   renderInfo->m_symbolIsPOI = mark->SymbolIsPOI();
   renderInfo->m_hasTitlePriority = mark->HasTitlePriority();
+  renderInfo->m_titleAllowsOverlap = mark->ShouldAllowTitleOverlap();
   renderInfo->m_priority = mark->GetPriority();
   renderInfo->m_displacement = mark->GetDisplacement();
   renderInfo->m_index = mark->GetIndex();
