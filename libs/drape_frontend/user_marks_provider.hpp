@@ -84,6 +84,7 @@ public:
   virtual bool SymbolIsPOI() const = 0;
   /// @return true  Then GetPriority() and GetDisplacement() are also assigned to TextShape's from GetTitleDecl().
   virtual bool HasTitlePriority() const = 0;
+  virtual bool ShouldAllowTitleOverlap() const { return false; }
   virtual int GetMinZoom() const = 0;
   virtual int GetMinTitleZoom() const = 0;
   virtual FeatureID GetFeatureID() const = 0;

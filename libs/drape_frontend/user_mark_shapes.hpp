@@ -36,6 +36,7 @@ struct UserMarkRenderParams
   std::optional<dp::Color> m_customColor;
   bool m_symbolIsPOI = false;
   bool m_hasTitlePriority = false;
+  bool m_titleAllowsOverlap = false;
   uint16_t m_priority = 0;
   SpecialDisplacement m_displacement = SpecialDisplacement::UserMark;
   uint32_t m_index = 0;

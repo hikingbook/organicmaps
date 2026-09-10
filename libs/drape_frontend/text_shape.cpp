@@ -325,27 +325,36 @@ void TextShape::DrawSubStringPlain(ref_ptr<dp::GraphicsContext> context, Straigh
   state.SetColorTexture(color.GetTexture());
   state.SetMaskTexture(layout.GetMaskTexture());
 
-  gpu::TTextDynamicVertexBuffer initialDynBuffer(dynamicBuffer.size());
-
-  m2::PointF const & pixelSize = layout.GetPixelSize();
-
-  dp::OverlayID overlayId(m_params.m_featureId, m_params.m_markId, m_tile.coords, m_textIndex);
-  drape_ptr<StraightTextHandle> handle = make_unique_dp<StraightTextHandle>(
-      overlayId, layout.GetGlyphs(), m_params.m_titleDecl.m_anchor,
-      glsl::vec2(m_basePoint.x + m_tile.xOffset, m_basePoint.y), glsl::vec2(pixelSize.x, pixelSize.y), finalOffset,
-      GetOverlayPriority(), textures, isOptional, std::move(dynamicBuffer), m_params.m_minVisibleScale, true);
-  if (m_symbolSizes.size() > 1)
-    handle->SetDynamicSymbolSizes(layout, m_symbolSizes, m_symbolAnchor);
-  handle->SetPivotZ(m_params.m_posZ);
-
-  ASSERT_LESS(m_params.m_startOverlayRank + 1, dp::OverlayRanksCount, ());
-  handle->SetOverlayRank(isPrimary ? m_params.m_startOverlayRank : m_params.m_startOverlayRank + 1);
-
-  handle->SetExtendingSize(m_params.m_extendingSize);
-  if (m_params.m_specialDisplacement == SpecialDisplacement::UserMark ||
-      m_params.m_specialDisplacement == SpecialDisplacement::SpecialModeUserMark)
+  gpu::TTextDynamicVertexBuffer initialDynBuffer;
+  drape_ptr<dp::OverlayHandle> handle;
+  if (m_params.m_allowOverlap)
   {
-    handle->SetSpecialLayerOverlay(true);
+    initialDynBuffer = std::move(dynamicBuffer);
+  }
+  else
+  {
+    initialDynBuffer.resize(dynamicBuffer.size());
+
+    m2::PointF const & pixelSize = layout.GetPixelSize();
+    dp::OverlayID overlayId(m_params.m_featureId, m_params.m_markId, m_tile.coords, m_textIndex);
+    auto textHandle = make_unique_dp<StraightTextHandle>(
+        overlayId, layout.GetGlyphs(), m_params.m_titleDecl.m_anchor,
+        glsl::vec2(m_basePoint.x + m_tile.xOffset, m_basePoint.y), glsl::vec2(pixelSize.x, pixelSize.y), finalOffset,
+        GetOverlayPriority(), textures, isOptional, std::move(dynamicBuffer), m_params.m_minVisibleScale, true);
+    if (m_symbolSizes.size() > 1)
+      textHandle->SetDynamicSymbolSizes(layout, m_symbolSizes, m_symbolAnchor);
+    textHandle->SetPivotZ(m_params.m_posZ);
+
+    ASSERT_LESS(m_params.m_startOverlayRank + 1, dp::OverlayRanksCount, ());
+    textHandle->SetOverlayRank(isPrimary ? m_params.m_startOverlayRank : m_params.m_startOverlayRank + 1);
+
+    textHandle->SetExtendingSize(m_params.m_extendingSize);
+    if (m_params.m_specialDisplacement == SpecialDisplacement::UserMark ||
+        m_params.m_specialDisplacement == SpecialDisplacement::SpecialModeUserMark)
+    {
+      textHandle->SetSpecialLayerOverlay(true);
+    }
+    handle = std::move(textHandle);
   }
 
   dp::AttributeProvider provider(2, static_cast<uint32_t>(staticBuffer.size()));
@@ -377,27 +386,36 @@ void TextShape::DrawSubStringOutlined(ref_ptr<dp::GraphicsContext> context, Stra
   state.SetColorTexture(color.GetTexture());
   state.SetMaskTexture(layout.GetMaskTexture());
 
-  gpu::TTextDynamicVertexBuffer initialDynBuffer(dynamicBuffer.size());
-
-  m2::PointF const & pixelSize = layout.GetPixelSize();
-
-  dp::OverlayID overlayId(m_params.m_featureId, m_params.m_markId, m_tile.coords, m_textIndex);
-  drape_ptr<StraightTextHandle> handle = make_unique_dp<StraightTextHandle>(
-      overlayId, layout.GetGlyphs(), m_params.m_titleDecl.m_anchor,
-      glsl::vec2(m_basePoint.x + m_tile.xOffset, m_basePoint.y), glsl::vec2(pixelSize.x, pixelSize.y), finalOffset,
-      GetOverlayPriority(), textures, isOptional, std::move(dynamicBuffer), m_params.m_minVisibleScale, true);
-  if (m_symbolSizes.size() > 1)
-    handle->SetDynamicSymbolSizes(layout, m_symbolSizes, m_symbolAnchor);
-  handle->SetPivotZ(m_params.m_posZ);
-
-  ASSERT_LESS(m_params.m_startOverlayRank + 1, dp::OverlayRanksCount, ());
-  handle->SetOverlayRank(isPrimary ? m_params.m_startOverlayRank : m_params.m_startOverlayRank + 1);
-
-  handle->SetExtendingSize(m_params.m_extendingSize);
-  if (m_params.m_specialDisplacement == SpecialDisplacement::UserMark ||
-      m_params.m_specialDisplacement == SpecialDisplacement::SpecialModeUserMark)
+  gpu::TTextDynamicVertexBuffer initialDynBuffer;
+  drape_ptr<dp::OverlayHandle> handle;
+  if (m_params.m_allowOverlap)
   {
-    handle->SetSpecialLayerOverlay(true);
+    initialDynBuffer = std::move(dynamicBuffer);
+  }
+  else
+  {
+    initialDynBuffer.resize(dynamicBuffer.size());
+
+    m2::PointF const & pixelSize = layout.GetPixelSize();
+    dp::OverlayID overlayId(m_params.m_featureId, m_params.m_markId, m_tile.coords, m_textIndex);
+    auto textHandle = make_unique_dp<StraightTextHandle>(
+        overlayId, layout.GetGlyphs(), m_params.m_titleDecl.m_anchor,
+        glsl::vec2(m_basePoint.x + m_tile.xOffset, m_basePoint.y), glsl::vec2(pixelSize.x, pixelSize.y), finalOffset,
+        GetOverlayPriority(), textures, isOptional, std::move(dynamicBuffer), m_params.m_minVisibleScale, true);
+    if (m_symbolSizes.size() > 1)
+      textHandle->SetDynamicSymbolSizes(layout, m_symbolSizes, m_symbolAnchor);
+    textHandle->SetPivotZ(m_params.m_posZ);
+
+    ASSERT_LESS(m_params.m_startOverlayRank + 1, dp::OverlayRanksCount, ());
+    textHandle->SetOverlayRank(isPrimary ? m_params.m_startOverlayRank : m_params.m_startOverlayRank + 1);
+
+    textHandle->SetExtendingSize(m_params.m_extendingSize);
+    if (m_params.m_specialDisplacement == SpecialDisplacement::UserMark ||
+        m_params.m_specialDisplacement == SpecialDisplacement::SpecialModeUserMark)
+    {
+      textHandle->SetSpecialLayerOverlay(true);
+    }
+    handle = std::move(textHandle);
   }
 
   dp::AttributeProvider provider(2, static_cast<uint32_t>(staticBuffer.size()));

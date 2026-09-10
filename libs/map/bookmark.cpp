@@ -1,9 +1,13 @@
 #include "map/bookmark.hpp"
 #include "map/bookmark_helpers.hpp"
 
+#include "drape_frontend/visual_params.hpp"
+
 #include "indexer/scales.hpp"
 
 #include "base/string_utils.hpp"
+
+#include <algorithm>
 
 namespace
 {
@@ -59,6 +63,10 @@ std::string GetBookmarkIconType(kml::BookmarkIcon const & icon)
 
 std::string const kCustomImageProperty = "CustomImage";
 std::string const kHasElevationProfileProperty = "has_elevation_profile";
+std::string const kHikingbookWaypointNumberProperty = "HikingbookWaypointNumber";
+float constexpr kHikingbookWaypointTextSize = 11.0f;
+float constexpr kHikingbookWaypointRadius = 10.0f;
+float constexpr kHikingbookWaypointOutlineWidth = 1.5f;
 }  // namespace
 
 Bookmark::Bookmark(m2::PointD const & ptOrg) : Base(ptOrg, UserMark::BOOKMARK), m_groupId(kml::kInvalidMarkGroupId)
@@ -107,6 +115,21 @@ void Bookmark::SetIsVisible(bool isVisible)
 
 drape_ptr<df::UserPointMark::TitlesInfo> Bookmark::GetTitleDeclEx(settings::Placement p, dp::Color outlineColor) const
 {
+  if (auto const waypointNumber = GetWaypointNumber())
+  {
+    dp::TitleDecl title;
+    title.m_primaryText = *waypointNumber;
+    title.m_primaryTextFont.m_color = dp::Color::White();
+    title.m_primaryTextFont.m_outlineColor = dp::Color::White();
+    title.m_primaryTextFont.m_size = kHikingbookWaypointTextSize;
+    title.m_anchor = dp::Center;
+    title.m_forceNoWrap = true;
+
+    auto titles = make_unique_dp<TitlesInfo>();
+    titles->push_back(std::move(title));
+    return titles;
+  }
+
   if (p == settings::Placement::None)
     return nullptr;
 
@@ -131,6 +154,9 @@ drape_ptr<df::UserPointMark::TitlesInfo> Bookmark::GetTitleDeclEx(settings::Plac
 
 df::DepthLayer Bookmark::GetDepthLayerEx(settings::Placement p) const
 {
+  if (GetWaypointNumber() != nullptr)
+    return df::DepthLayer::UserMarkLayer;
+
   if (p == settings::Placement::None)
     return df::DepthLayer::UserMarkLayer;
 
@@ -140,13 +166,33 @@ df::DepthLayer Bookmark::GetDepthLayerEx(settings::Placement p) const
   return df::DepthLayer::SearchMarkLayer;
 }
 
+float Bookmark::GetDepth() const
+{
+  auto const waypointNumber = GetWaypointNumber();
+  if (waypointNumber == nullptr)
+    return Base::GetDepth();
+
+  uint32_t number = 0;
+  if (!strings::to_uint(*waypointNumber, number))
+    return Base::GetDepth();
+
+  // Match Mapbox annotation order: later waypoints cover earlier circles and their numbers as one marker.
+  return std::min(static_cast<float>(number), dp::kMaxDepth - 1.0f);
+}
+
 dp::Anchor Bookmark::GetAnchor() const
 {
+  if (GetWaypointNumber() != nullptr)
+    return dp::Center;
+
   return dp::Bottom;
 }
 
 drape_ptr<df::UserPointMark::SymbolNameZoomInfo> Bookmark::GetSymbolNames() const
 {
+  if (GetWaypointNumber() != nullptr)
+    return nullptr;
+
   auto symbolNames = GetCustomSymbolNames();
   if (symbolNames != nullptr)
     return symbolNames;
@@ -158,6 +204,35 @@ drape_ptr<df::UserPointMark::SymbolNameZoomInfo> Bookmark::GetSymbolNames() cons
   auto const iconType = GetBookmarkIconType(m_data.m_icon);
   symbolNames->insert(std::make_pair(14 /* zoomLevel */, "bookmark-" + iconType + "-m"));
   return symbolNames;
+}
+
+drape_ptr<df::UserPointMark::ColoredSymbolZoomInfo> Bookmark::GetColoredSymbols() const
+{
+  if (GetWaypointNumber() == nullptr)
+    return nullptr;
+
+  auto const visualScale = static_cast<float>(df::VisualParams::Instance().GetVisualScale());
+
+  df::ColoredSymbolViewParams params;
+  params.m_color = dp::Color::Black();
+  params.m_shape = df::ColoredSymbolViewParams::Shape::Circle;
+  params.m_radiusInPixels = kHikingbookWaypointRadius * visualScale;
+  params.m_outlineColor = dp::Color::White();
+  params.m_outlineWidth = kHikingbookWaypointOutlineWidth * visualScale;
+
+  auto coloredSymbol = make_unique_dp<ColoredSymbolZoomInfo>();
+  coloredSymbol->m_zoomInfo[1] = params;
+  coloredSymbol->m_needOverlay = false;
+  return coloredSymbol;
+}
+
+std::string const * Bookmark::GetWaypointNumber() const
+{
+  auto const it = m_data.m_properties.find(kHikingbookWaypointNumberProperty);
+  if (it == m_data.m_properties.end())
+    return nullptr;
+
+  return &it->second;
 }
 
 drape_ptr<df::UserPointMark::SymbolNameZoomInfo> Bookmark::GetCustomSymbolNames() const

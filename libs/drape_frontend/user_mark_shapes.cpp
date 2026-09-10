@@ -269,6 +269,7 @@ void GenerateTextShapes(ref_ptr<dp::GraphicsContext> context, ref_ptr<dp::Textur
     params.m_depthLayer = renderInfo.m_titleDepthLayer;
     params.m_minVisibleScale = renderInfo.m_minZoom;
     params.m_startOverlayRank = dp::OverlayRank0;
+    params.m_allowOverlap = renderInfo.m_titleAllowsOverlap;
 
     uint32_t const overlayIndex = kStartUserMarkOverlayIndex + renderInfo.m_index;
     if (renderInfo.m_hasTitlePriority)
