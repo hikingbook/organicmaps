@@ -392,6 +392,7 @@ public class Framework
   }
 
   public static native void nativeSetViewportCenter(double lat, double lon, int zoom, boolean animated);
+  public static native void nativeRotateMap(double azimuth, boolean animated);
   public static native void nativeStopLocationFollow();
 
   public static native void nativeSetSearchViewport(double lat, double lon, int zoom);
