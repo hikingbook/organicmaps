@@ -595,7 +595,8 @@ Java_app_organicmaps_sdk_widget_placepage_PlacePageButtonFactory_nativeHasRecent
  * */
 JNIEXPORT jlong JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
-        JNIEnv * env, jobject thiz, jlong groupId, jstring name, jstring description, jint color, double lat, double lon, jint iconType)
+        JNIEnv * env, jobject thiz, jlong groupId, jstring name, jstring description, jint color, double lat, double lon,
+        jint iconType, jstring waypointNumber)
 {
 
     BookmarkManager & bmMng = frm()->GetBookmarkManager();
@@ -619,6 +620,8 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
 
     bmData.m_color = kml::MakeCustomBookmarkColorData(dp::Color::FromARGB(static_cast<uint32_t>(color)));
     bmData.m_point = mercator::FromLatLon(lat, lon);
+    if (waypointNumber != nullptr)
+        bmData.m_properties["HikingbookWaypointNumber"] = ToNativeString(env, waypointNumber);
     auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                            static_cast<kml::MarkGroupId>(groupId));
     if (bookmark == nullptr) {

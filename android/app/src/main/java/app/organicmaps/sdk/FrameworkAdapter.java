@@ -269,7 +269,9 @@ public enum FrameworkAdapter {
                 copyrightStartX, copyrightBottomY);
     }
 
-    public long createBookmark(String catName, String name, String description, @ColorInt int color, double lat, double lon, int iconType) {
+    public long createBookmark(String catName, String name, String description, @ColorInt int color,
+                               double lat, double lon, int iconType,
+                               @Nullable String waypointNumber) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -284,7 +286,8 @@ public enum FrameworkAdapter {
                 color,
                 lat,
                 lon,
-                iconType
+                iconType,
+                waypointNumber
         );
     }
 
