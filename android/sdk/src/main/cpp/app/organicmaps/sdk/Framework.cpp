@@ -1885,6 +1885,12 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetViewportCenter__DDIZ(
   frm()->SetViewportCenter(mercator::FromLatLon(lat, lon), static_cast<int>(zoom), static_cast<bool>(animated));
 }
 
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRotateMap(JNIEnv *, jclass, jdouble azimuth,
+                                                                 jboolean animated)
+{
+  frm()->Rotate(static_cast<double>(azimuth), static_cast<bool>(animated));
+}
+
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeStopLocationFollow(JNIEnv *, jclass)
 {
   frm()->StopLocationFollow();
