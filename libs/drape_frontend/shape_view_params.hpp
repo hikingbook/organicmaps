@@ -98,6 +98,8 @@ struct TextViewParams : CommonOverlayViewParams
   dp::TitleDecl m_titleDecl;
   bool m_hasArea = false;
   bool m_createdByEditor = false;
+  // Draw text directly instead of using a collision-managed overlay handle.
+  bool m_allowOverlap = false;
   uint32_t m_extendingSize = 0;
   float m_posZ = 0;
   bool m_limitedText = false;
