@@ -375,6 +375,11 @@ public enum FrameworkAdapter {
     }
 
     public long addTracks(long catId, String name, String description, Location[][] locations, @ColorInt int color, double lineWidth) {
+        return addTracks(catId, name, description, locations, color, lineWidth, true);
+    }
+
+    public long addTracks(long catId, String name, String description, Location[][] locations, @ColorInt int color,
+                          double lineWidth, boolean hasBorder) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -397,7 +402,8 @@ public enum FrameworkAdapter {
                     doubleLocations,
                     doubleTimestamps,
                     color,
-                    lineWidth
+                    lineWidth,
+                    hasBorder
             );
         } catch (Exception e) {
             return Long.MAX_VALUE;

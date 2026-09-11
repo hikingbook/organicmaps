@@ -668,7 +668,9 @@ public enum BookmarkManager {
 
   public native long nativeSearchCategoryIDWithName(String categoryName);
 
-  public native long nativeAddTracks(long catId, String trackName, String trackDescription, double[][][] multipleLineLocations, double[][] timestamps, @ColorInt int color, double width);
+  public native long nativeAddTracks(long catId, String trackName, String trackDescription,
+                                     double[][][] multipleLineLocations, double[][] timestamps,
+                                     @ColorInt int color, double width, boolean hasBorder);
 
   public native void nativeDeleteAllTracksInCategory(long catId);
 
