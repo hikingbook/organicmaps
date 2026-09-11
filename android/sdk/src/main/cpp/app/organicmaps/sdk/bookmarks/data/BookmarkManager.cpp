@@ -713,7 +713,8 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeSearchCategoryIDWi
 
 JNIEXPORT jlong JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddTracks(
-        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray multipleLineLocations, jobjectArray timestamps, jint color, double width)
+        JNIEnv * env, jobject thiz, jlong catId, jstring name, jstring description, jobjectArray multipleLineLocations,
+        jobjectArray timestamps, jint color, double width, jboolean hasBorder)
 {
     if (!frm()->GetBookmarkManager().HasBmCategory(catId)) {
         return kml::kInvalidTrackId;
@@ -788,10 +789,12 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddTracks(
     kml::ColorData colorData;
     colorData.m_rgba = dp::Color::FromARGB(static_cast<uint32_t>(color)).GetRGBA();
 
-    kml::TrackLayer borderLayer;
-    borderLayer.m_color = kml::MakeCustomBookmarkColorData(dp::Color::White());
-    borderLayer.m_lineWidth = width + kTrackLineBorderWidth;
-    trackData.m_layers.emplace_back(borderLayer);
+    if (hasBorder) {
+        kml::TrackLayer borderLayer;
+        borderLayer.m_color = kml::MakeCustomBookmarkColorData(dp::Color::White());
+        borderLayer.m_lineWidth = width + kTrackLineBorderWidth;
+        trackData.m_layers.emplace_back(borderLayer);
+    }
 
     kml::TrackLayer trackLayer;
     trackLayer.m_color = colorData;
