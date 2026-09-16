@@ -167,7 +167,9 @@ public class OnmapDownloader
         UiUtils.showIf(isDownloading, mProgress);
         UiUtils.showIf(!isDownloading, mButton);
         UiUtils.showIf(hasParent, mParent);
-        UiUtils.showIf(isDownloaded(mCurrentCountry.status) || isDownloaded(mCurrentCountry.hikingbookProMapStatus), mMinimizeImage);
+        boolean isCountryDownloading = isDownloading(mCurrentCountry.status)
+            || isDownloading(mCurrentCountry.hikingbookProMapStatus);
+        UiUtils.showIf(isCountryDownloading, mMinimizeImage);
         if (!mMinimizeImage.isShown()) {
             updateMinimized(false);
         }
@@ -348,8 +350,10 @@ public class OnmapDownloader
     }
   }
 
-  private boolean isDownloaded(int status) {
-      return status == CountryItem.STATUS_DONE || status == CountryItem.STATUS_UPDATABLE || status == CountryItem.STATUS_PARTLY;
+  private boolean isDownloading(int status)
+  {
+    return status == CountryItem.STATUS_PROGRESS || status == CountryItem.STATUS_APPLYING
+        || status == CountryItem.STATUS_ENQUEUED;
   }
 
   private void updateMinimized(boolean isMinimized) {
