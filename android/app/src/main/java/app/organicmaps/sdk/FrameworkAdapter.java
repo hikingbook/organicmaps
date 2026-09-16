@@ -239,6 +239,16 @@ public enum FrameworkAdapter {
         return locationHelper.getSavedLocation();
     }
 
+    public int[] pavementTypesForLocations(@NonNull Location[] locations) {
+        if (!arePlatformAndCoreInitialized() || locations.length < 2) {
+            return new int[0];
+        }
+        double[][] coordinates = Arrays.stream(locations)
+                .map(location -> new double[]{location.getLatitude(), location.getLongitude()})
+                .toArray(double[][]::new);
+        return Framework.nativeGetPavementTypes(coordinates);
+    }
+
     @RequiresPermission(anyOf = {ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     public void switchLocationStateToNextMode() {
         if (!isMapEngineCreated()) {

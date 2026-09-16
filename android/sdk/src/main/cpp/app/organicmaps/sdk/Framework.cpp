@@ -37,9 +37,12 @@
 
 #include "geometry/angles.hpp"
 #include "geometry/mercator.hpp"
+#include "geometry/parametrized_segment.hpp"
 #include "geometry/point_with_altitude.hpp"
 
+#include "indexer/classificator.hpp"
 #include "indexer/feature_altitude.hpp"
+#include "indexer/ftypes_matcher.hpp"
 #include "indexer/validate_and_format_contacts.hpp"
 
 #include "routing/following_info.hpp"
@@ -65,7 +68,10 @@
 
 #include "ge0/url_generator.hpp"
 
+#include <algorithm>
+#include <cmath>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -98,6 +104,60 @@ static_assert(sizeof(int) >= 4, "Size of jint is less than 4 bytes.");
 namespace
 {
 jobject g_placePageActivationListener = nullptr;
+
+int constexpr kUnknownPavementType = 0;
+int constexpr kPavedPavementType = 1;
+int constexpr kUnpavedPavementType = 2;
+double constexpr kPavementRoadMatchRadiusMeters = 30.0;
+double constexpr kPavementSampleDistanceMeters = 20.0;
+
+int PavementType(FeatureType & ft)
+{
+  static uint32_t const pavedGood = classif().GetTypeByPath({"psurface", "paved_good"});
+  static uint32_t const pavedBad = classif().GetTypeByPath({"psurface", "paved_bad"});
+  static uint32_t const unpavedGood = classif().GetTypeByPath({"psurface", "unpaved_good"});
+  static uint32_t const unpavedBad = classif().GetTypeByPath({"psurface", "unpaved_bad"});
+
+  int pavementType = kUnknownPavementType;
+  ft.ForEachType([&](uint32_t type) {
+    if (type == pavedGood || type == pavedBad)
+      pavementType = kPavedPavementType;
+    else if (type == unpavedGood || type == unpavedBad)
+      pavementType = kUnpavedPavementType;
+  });
+  return pavementType;
+}
+
+int PavementType(double latitude, double longitude)
+{
+  auto const point = mercator::FromLatLon(latitude, longitude);
+  auto const rect = mercator::RectByCenterXYAndSizeInMeters(point, kPavementRoadMatchRadiusMeters);
+  double closestDistanceSquared = std::pow(rect.SizeX() / 2, 2);
+  int pavementType = kUnknownPavementType;
+  int const scale = scales::GetUpperScale();
+  auto const & isWay = ftypes::IsWayChecker::Instance();
+
+  frm()->GetDataSource().ForEachInRect(
+      [&](FeatureType & ft) {
+        if (ft.GetGeomType() != feature::GeomType::Line || !isWay(ft))
+          return;
+
+        ft.ParseGeometry(scale);
+        double featureDistanceSquared = closestDistanceSquared;
+        for (size_t index = 1; index < ft.GetPointsCount(); ++index)
+        {
+          featureDistanceSquared = std::min(featureDistanceSquared,
+                                            m2::SquaredDistanceFromSegmentToPoint()(
+                                                ft.GetPoint(index - 1), ft.GetPoint(index), point));
+        }
+        if (featureDistanceSquared >= closestDistanceSquared)
+          return;
+        closestDistanceSquared = featureDistanceSquared;
+        pavementType = PavementType(ft);
+      },
+      rect, scale);
+  return pavementType;
+}
 
 android::AndroidVulkanContextFactory * CastFactory(drape_ptr<dp::GraphicsContextFactory> const & f)
 {
@@ -1168,6 +1228,55 @@ JNIEXPORT jdoubleArray Java_app_organicmaps_sdk_Framework_nativeGetScreenPoint(
   jdoubleArray jScreenPoint = env->NewDoubleArray(2);
   env->SetDoubleArrayRegion(jScreenPoint, 0, 2, screenPoint);
   return jScreenPoint;
+}
+
+JNIEXPORT jintArray Java_app_organicmaps_sdk_Framework_nativeGetPavementTypes(
+    JNIEnv * env, jclass, jobjectArray locations)
+{
+  jsize const locationCount = env->GetArrayLength(locations);
+  if (locationCount < 2)
+    return env->NewIntArray(0);
+
+  std::vector<ms::LatLon> coordinates;
+  coordinates.reserve(locationCount);
+  for (jsize index = 0; index < locationCount; ++index)
+  {
+    auto const location = reinterpret_cast<jdoubleArray>(env->GetObjectArrayElement(locations, index));
+    if (location == nullptr || env->GetArrayLength(location) < 2)
+    {
+      if (location != nullptr)
+        env->DeleteLocalRef(location);
+      return env->NewIntArray(0);
+    }
+    jdouble coordinate[2];
+    env->GetDoubleArrayRegion(location, 0, 2, coordinate);
+    env->DeleteLocalRef(location);
+    coordinates.emplace_back(coordinate[0], coordinate[1]);
+  }
+
+  std::vector<jint> pavementTypes;
+  pavementTypes.reserve(locationCount - 1);
+  std::optional<m2::PointD> lastSamplePoint;
+  int lastPavementType = kUnknownPavementType;
+  for (size_t index = 1; index < coordinates.size(); ++index)
+  {
+    auto const & previous = coordinates[index - 1];
+    auto const & current = coordinates[index];
+    double const latitude = (previous.m_lat + current.m_lat) / 2;
+    double const longitude = (previous.m_lon + current.m_lon) / 2;
+    auto const midpoint = mercator::FromLatLon(latitude, longitude);
+    if (!lastSamplePoint ||
+        mercator::DistanceOnEarth(midpoint, *lastSamplePoint) >= kPavementSampleDistanceMeters)
+    {
+      lastPavementType = PavementType(latitude, longitude);
+      lastSamplePoint = midpoint;
+    }
+    pavementTypes.push_back(static_cast<jint>(lastPavementType));
+  }
+
+  jintArray result = env->NewIntArray(static_cast<jsize>(pavementTypes.size()));
+  env->SetIntArrayRegion(result, 0, static_cast<jsize>(pavementTypes.size()), pavementTypes.data());
+  return result;
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRestoreDownloadQueue(JNIEnv * env, jclass)
