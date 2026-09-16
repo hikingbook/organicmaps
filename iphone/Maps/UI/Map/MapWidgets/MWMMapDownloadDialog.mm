@@ -37,6 +37,12 @@ BOOL canAutoDownload(storage::CountryId const & countryId)
     return NO;
   return YES;
 }
+
+BOOL isDownloading(storage::NodeStatus status)
+{
+  return status == storage::NodeStatus::Downloading || status == storage::NodeStatus::Applying ||
+         status == storage::NodeStatus::InQueue;
+}
 }  // namespace
 
 using namespace storage;
@@ -114,7 +120,8 @@ using namespace storage;
     [self hideMapInfoStackView:YES];
 
     // Modified by Zheng-Xiang Ke
-    self.minimizeButton.hidden = nodeAttrs.m_status != NodeStatus::OnDisk && nodeAttrs.m_status != NodeStatus::OnDiskOutOfDate && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDisk && nodeAttrs.m_hikingbookProMapStatus != NodeStatus::OnDiskOutOfDate;
+    self.minimizeButton.hidden = !isDownloading(nodeAttrs.m_status) &&
+                                 !isDownloading(nodeAttrs.m_hikingbookProMapStatus);
     if (self.minimizeButton.hidden) {
         [self updateMinimized:NO];
     }
