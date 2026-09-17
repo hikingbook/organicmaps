@@ -81,6 +81,12 @@ public class Framework
 
   public static native int nativeGetDrawScale();
 
+  @Nullable
+  @Size(4)
+  public static native double[] nativeGetViewportState();
+
+  public static native void nativeScaleViewport(double factor);
+
   public static native long nativeAddRoutePreviewSegment(double startLat, double startLon,
                                                          double endLat, double endLon);
   public static native void nativeRemoveRoutePreviewSegment(long segmentId);
