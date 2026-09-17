@@ -27,6 +27,7 @@
 #include "storage/storage_defines.hpp"
 #include "storage/storage_helpers.hpp"
 
+#include "drape_frontend/drape_engine.hpp"
 #include "drape_frontend/user_event_stream.hpp"
 #include "drape_frontend/visual_params.hpp"
 
@@ -1202,6 +1203,31 @@ JNIEXPORT jlong Java_app_organicmaps_sdk_Framework_nativeGetDataVersion(JNIEnv *
 JNIEXPORT jint Java_app_organicmaps_sdk_Framework_nativeGetDrawScale(JNIEnv * env, jclass)
 {
   return static_cast<jint>(frm()->GetDrawScale());
+}
+
+JNIEXPORT jlong Java_app_organicmaps_sdk_Framework_nativeAddRoutePreviewSegment(
+    JNIEnv * env, jclass, jdouble startLat, jdouble startLon, jdouble endLat, jdouble endLon)
+{
+  if (!frm()->IsDrapeEngineCreated())
+    return 0;
+
+  auto const drapeEngine = frm()->GetDrapeEngine();
+  if (drapeEngine == nullptr)
+    return 0;
+
+  return static_cast<jlong>(drapeEngine->AddRoutePreviewSegment(mercator::FromLatLon(startLat, startLon),
+                                                                mercator::FromLatLon(endLat, endLon)));
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRemoveRoutePreviewSegment(
+    JNIEnv * env, jclass, jlong segmentId)
+{
+  if (!frm()->IsDrapeEngineCreated())
+    return;
+
+  auto const drapeEngine = frm()->GetDrapeEngine();
+  if (drapeEngine != nullptr)
+    drapeEngine->RemoveRoutePreviewSegment(static_cast<dp::DrapeID>(segmentId));
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativePokeSearchInViewport(JNIEnv * env, jclass)

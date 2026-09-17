@@ -81,6 +81,10 @@ public class Framework
 
   public static native int nativeGetDrawScale();
 
+  public static native long nativeAddRoutePreviewSegment(double startLat, double startLon,
+                                                         double endLat, double endLon);
+  public static native void nativeRemoveRoutePreviewSegment(long segmentId);
+
   public static native void nativePokeSearchInViewport();
 
   @Size(2)
