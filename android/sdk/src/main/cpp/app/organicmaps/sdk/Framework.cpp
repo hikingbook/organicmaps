@@ -1205,6 +1205,39 @@ JNIEXPORT jint Java_app_organicmaps_sdk_Framework_nativeGetDrawScale(JNIEnv * en
   return static_cast<jint>(frm()->GetDrawScale());
 }
 
+JNIEXPORT jdoubleArray Java_app_organicmaps_sdk_Framework_nativeGetViewportState(JNIEnv * env,
+                                                                                  jclass)
+{
+  auto & framework = *frm();
+  if (!framework.IsDrapeEngineCreated())
+    return nullptr;
+
+  auto const pixelCenter = framework.GetVisiblePixelCenter();
+  auto const center = framework.P3dtoG(pixelCenter);
+
+  auto const modelCenter = framework.GetViewportCenter();
+  auto const modelCenterPoint = framework.GtoP(modelCenter);
+  auto const northPoint = framework.GtoP({modelCenter.x, modelCenter.y + 1.0});
+  auto const bearingRadians =
+      std::atan2(modelCenterPoint.x - northPoint.x, modelCenterPoint.y - northPoint.y);
+  auto const bearingDegrees = std::fmod(math::RadToDeg(bearingRadians) + 360.0, 360.0);
+
+  auto adjacent = framework.P3dtoG({pixelCenter.x + 1.0, pixelCenter.y});
+  adjacent.x = mercator::NearestWrapX(adjacent.x, center.x);
+  auto const zoomLevel = df::GetZoomLevel(center.Length(adjacent));
+
+  double viewportState[] = {
+      mercator::YToLat(center.y), mercator::XToLon(center.x), zoomLevel, bearingDegrees};
+  jdoubleArray result = env->NewDoubleArray(4);
+  env->SetDoubleArrayRegion(result, 0, 4, viewportState);
+  return result;
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeScaleViewport(JNIEnv *, jclass, jdouble factor)
+{
+  frm()->Scale(static_cast<double>(factor), false);
+}
+
 JNIEXPORT jlong Java_app_organicmaps_sdk_Framework_nativeAddRoutePreviewSegment(
     JNIEnv * env, jclass, jdouble startLat, jdouble startLon, jdouble endLat, jdouble endLon)
 {
