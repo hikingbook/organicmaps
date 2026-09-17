@@ -497,6 +497,25 @@ public enum FrameworkAdapter {
         );
     }
 
+    public long addRoutePreviewSegment(Location startLocation, Location endLocation) {
+        if (!isMapEngineCreated()) {
+            return 0;
+        }
+        return Framework.nativeAddRoutePreviewSegment(
+                startLocation.getLatitude(),
+                startLocation.getLongitude(),
+                endLocation.getLatitude(),
+                endLocation.getLongitude()
+        );
+    }
+
+    public void removeRoutePreviewSegment(long segmentId) {
+        if (!isMapEngineCreated()) {
+            return;
+        }
+        Framework.nativeRemoveRoutePreviewSegment(segmentId);
+    }
+
     public int drawCircleWithCenter(Location center, double radius, @ColorInt int color, double lineWidth) {
         if (!arePlatformAndCoreInitialized()) {
             return Integer.MAX_VALUE;
