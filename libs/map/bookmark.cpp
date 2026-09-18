@@ -66,7 +66,7 @@ std::string const kHasElevationProfileProperty = "has_elevation_profile";
 std::string const kHikingbookWaypointNumberProperty = "HikingbookWaypointNumber";
 float constexpr kHikingbookWaypointTextSize = 11.0f;
 float constexpr kHikingbookWaypointRadius = 10.0f;
-float constexpr kHikingbookWaypointOutlineWidth = 1.5f;
+float constexpr kHikingbookWaypointOutlineWidth = 2.0f;
 }  // namespace
 
 Bookmark::Bookmark(m2::PointD const & ptOrg) : Base(ptOrg, UserMark::BOOKMARK), m_groupId(kml::kInvalidMarkGroupId)
