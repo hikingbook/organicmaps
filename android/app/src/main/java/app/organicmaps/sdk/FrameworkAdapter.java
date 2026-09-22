@@ -6,6 +6,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -385,11 +386,11 @@ public enum FrameworkAdapter {
     }
 
     public long addTracks(long catId, String name, String description, Location[][] locations, @ColorInt int color, double lineWidth) {
-        return addTracks(catId, name, description, locations, color, lineWidth, true);
+        return addTracks(catId, name, description, locations, color, lineWidth, Color.WHITE);
     }
 
     public long addTracks(long catId, String name, String description, Location[][] locations, @ColorInt int color,
-                          double lineWidth, boolean hasBorder) {
+                          double lineWidth, @Nullable Integer borderColor) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -413,7 +414,7 @@ public enum FrameworkAdapter {
                     doubleTimestamps,
                     color,
                     lineWidth,
-                    hasBorder
+                    borderColor != null ? borderColor : Color.TRANSPARENT
             );
         } catch (Exception e) {
             return Long.MAX_VALUE;

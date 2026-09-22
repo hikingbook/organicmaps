@@ -670,7 +670,7 @@ public enum BookmarkManager {
 
   public native long nativeAddTracks(long catId, String trackName, String trackDescription,
                                      double[][][] multipleLineLocations, double[][] timestamps,
-                                     @ColorInt int color, double width, boolean hasBorder);
+                                     @ColorInt int color, double width, @ColorInt int borderColor);
 
   public native void nativeDeleteAllTracksInCategory(long catId);
 
