@@ -42,7 +42,7 @@ public:
 
   void OnTap() override
   {
-    if (m_tapHandler != nullptr)
+    if (!DrapeGui::Instance().IsCompassHidden() && m_tapHandler != nullptr)
       m_tapHandler();
   }
 
@@ -56,7 +56,8 @@ public:
     bool isVisiblePrev = IsVisible();
     bool isVisibleAngle = angle > kVisibleStartAngle && angle < kVisibleEndAngle;
 
-    bool isVisible = isVisibleAngle || (isVisiblePrev && DrapeGui::Instance().IsInUserAction());
+    bool isVisible = !DrapeGui::Instance().IsCompassHidden() &&
+                     (isVisibleAngle || (isVisiblePrev && DrapeGui::Instance().IsInUserAction()));
 
     if (isVisible)
     {
