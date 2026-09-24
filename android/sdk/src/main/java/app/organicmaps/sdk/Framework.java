@@ -85,6 +85,8 @@ public class Framework
   @Size(4)
   public static native double[] nativeGetViewportState();
 
+  public static native void nativeSetCompassHidden(boolean hidden);
+
   public static native void nativeScaleViewport(double factor);
 
   public static native long nativeAddRoutePreviewSegment(double startLat, double startLon,
