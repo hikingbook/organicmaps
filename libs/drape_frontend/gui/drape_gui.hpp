@@ -10,6 +10,7 @@
 
 #include "geometry/rect2d.hpp"
 
+#include <atomic>
 #include <cstdint>
 #include <mutex>
 
@@ -40,6 +41,9 @@ public:
   bool IsInUserAction() const { return m_inUserAction; }
   void SetInUserAction(bool isInUserAction) { m_inUserAction = isInUserAction; }
 
+  bool IsCompassHidden() const { return m_compassHidden.load(); }
+  bool SetCompassHidden(bool hidden) { return m_compassHidden.exchange(hidden) != hidden; }
+
   bool IsCopyrightActive() const { return m_isCopyrightActive; }
   void DeactivateCopyright() { m_isCopyrightActive = false; }
 
@@ -61,6 +65,7 @@ private:
   m2::PointF m_surfaceSize;
 
   bool m_inUserAction = false;
+  std::atomic<bool> m_compassHidden = false;
   int8_t m_uiLang = StringUtf8Multilang::kUnsupportedLanguageCode;
   ScaleFpsHelper m_scaleFpsHelper;
 };
