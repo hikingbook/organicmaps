@@ -856,24 +856,36 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
 
     auto const visualScale = df::VisualParams::Instance().GetVisualScale();
     auto const visualWidth = width * visualScale;
-    auto lineData = df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color))).Width(visualWidth);
-    if (borderWidth > 0) {
-        lineData.Outline(dp::Color::White(), visualWidth + borderWidth * visualScale);
-    }
+
+    jint result = 0;
+    std::string lineIdentifier;
     if (identifier != nullptr) {
-        frm()->GetDrapeApi().AddLine(jni::ToNativeString(env, identifier), lineData);
-        return 0;
+        lineIdentifier = jni::ToNativeString(env, identifier);
+    } else {
+        lineID++;
+        result = lineID;
+        lineIdentifier = std::to_string(lineID);
     }
 
-    lineID++;
-    frm()->GetDrapeApi().AddLine(std::to_string(lineID), lineData);
-    return lineID;
+    auto & drapeApi = frm()->GetDrapeApi();
+    auto const outlineIdentifier = lineIdentifier + "-outline";
+    if (borderWidth > 0) {
+        // Draw the outline separately so its round joins stay behind the foreground line.
+        drapeApi.AddLine(outlineIdentifier, df::DrapeApiLineData(points, dp::Color::White())
+                                             .Width(visualWidth + borderWidth * visualScale));
+    } else if (identifier != nullptr) {
+        drapeApi.RemoveLine(outlineIdentifier);
+    }
+    drapeApi.AddLine(lineIdentifier, df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color)))
+                                         .Width(visualWidth));
+    return result;
 }
 
 JNIEXPORT void JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeRemoveLine(
         JNIEnv * env, jobject thiz, jint lineID)
 {
+    frm()->GetDrapeApi().RemoveLine(std::to_string(lineID) + "-outline");
     frm()->GetDrapeApi().RemoveLine(std::to_string(lineID));
 }
 
