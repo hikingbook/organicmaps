@@ -28,6 +28,7 @@
 #include "storage/storage_helpers.hpp"
 
 #include "drape_frontend/drape_engine.hpp"
+#include "drape_frontend/gui/drape_gui.hpp"
 #include "drape_frontend/user_event_stream.hpp"
 #include "drape_frontend/visual_params.hpp"
 
@@ -1236,6 +1237,12 @@ JNIEXPORT jdoubleArray Java_app_organicmaps_sdk_Framework_nativeGetViewportState
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeScaleViewport(JNIEnv *, jclass, jdouble factor)
 {
   frm()->Scale(static_cast<double>(factor), false);
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetCompassHidden(JNIEnv *, jclass, jboolean hidden)
+{
+  if (gui::DrapeGui::Instance().SetCompassHidden(hidden) && frm()->IsDrapeEngineCreated())
+    frm()->MakeFrameActive();
 }
 
 JNIEXPORT jlong Java_app_organicmaps_sdk_Framework_nativeAddRoutePreviewSegment(
