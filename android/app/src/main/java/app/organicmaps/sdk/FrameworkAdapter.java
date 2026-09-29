@@ -282,7 +282,7 @@ public enum FrameworkAdapter {
 
     public long createBookmark(String catName, String name, String description, @ColorInt int color,
                                double lat, double lon, int iconType,
-                               @Nullable String waypointNumber) {
+                               @Nullable String waypointNumber, int waypointDepth) {
         if (!arePlatformAndCoreInitialized()) {
             return Long.MAX_VALUE;
         }
@@ -298,7 +298,8 @@ public enum FrameworkAdapter {
                 lat,
                 lon,
                 iconType,
-                waypointNumber
+                waypointNumber,
+                waypointDepth
         );
     }
 

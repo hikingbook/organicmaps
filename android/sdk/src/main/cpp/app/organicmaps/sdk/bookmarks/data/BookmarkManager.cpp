@@ -24,6 +24,7 @@
 #include "geometry/circle_on_earth.hpp"
 
 #include <limits>
+#include <string>
 #include <utility>
 
 using namespace jni;
@@ -596,7 +597,7 @@ Java_app_organicmaps_sdk_widget_placepage_PlacePageButtonFactory_nativeHasRecent
 JNIEXPORT jlong JNICALL
 Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
         JNIEnv * env, jobject thiz, jlong groupId, jstring name, jstring description, jint color, double lat, double lon,
-        jint iconType, jstring waypointNumber)
+        jint iconType, jstring waypointNumber, jint waypointDepth)
 {
 
     BookmarkManager & bmMng = frm()->GetBookmarkManager();
@@ -622,6 +623,7 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
     bmData.m_point = mercator::FromLatLon(lat, lon);
     if (waypointNumber != nullptr)
         bmData.m_properties["HikingbookWaypointNumber"] = ToNativeString(env, waypointNumber);
+    bmData.m_properties["HikingbookWaypointDepth"] = std::to_string(waypointDepth);
     auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                            static_cast<kml::MarkGroupId>(groupId));
     if (bookmark == nullptr) {
