@@ -8,6 +8,7 @@
 #include "base/string_utils.hpp"
 
 #include <algorithm>
+#include <cmath>
 
 namespace
 {
@@ -64,6 +65,7 @@ std::string GetBookmarkIconType(kml::BookmarkIcon const & icon)
 std::string const kCustomImageProperty = "CustomImage";
 std::string const kHasElevationProfileProperty = "has_elevation_profile";
 std::string const kHikingbookWaypointNumberProperty = "HikingbookWaypointNumber";
+std::string const kHikingbookWaypointDepthProperty = "HikingbookWaypointDepth";
 float constexpr kHikingbookWaypointTextSize = 11.0f;
 float constexpr kHikingbookWaypointRadius = 10.0f;
 float constexpr kHikingbookWaypointOutlineWidth = 2.0f;
@@ -168,6 +170,14 @@ df::DepthLayer Bookmark::GetDepthLayerEx(settings::Placement p) const
 
 float Bookmark::GetDepth() const
 {
+  auto const depthProperty = m_data.m_properties.find(kHikingbookWaypointDepthProperty);
+  if (depthProperty != m_data.m_properties.end())
+  {
+    float depth = 0.0f;
+    if (strings::to_float(depthProperty->second, depth) && std::isfinite(depth))
+      return std::clamp(depth, dp::kMinDepth + 1.0f, dp::kMaxDepth - 1.0f);
+  }
+
   auto const waypointNumber = GetWaypointNumber();
   if (waypointNumber == nullptr)
     return Base::GetDepth();
