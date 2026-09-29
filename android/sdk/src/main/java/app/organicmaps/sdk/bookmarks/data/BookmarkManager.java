@@ -658,7 +658,7 @@ public enum BookmarkManager {
    * */
   public native long nativeAddBookmark(long catId, String bookmarkName, String bookmarkDescription,
                                        @ColorInt int color, double lat, double lon, int iconType,
-                                       @Nullable String waypointNumber);
+                                       @Nullable String waypointNumber, int waypointDepth);
 
   public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, @ColorInt int color, double lat, double lon);
 
