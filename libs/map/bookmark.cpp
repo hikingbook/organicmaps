@@ -224,7 +224,7 @@ drape_ptr<df::UserPointMark::ColoredSymbolZoomInfo> Bookmark::GetColoredSymbols(
   auto const visualScale = static_cast<float>(df::VisualParams::Instance().GetVisualScale());
 
   df::ColoredSymbolViewParams params;
-  params.m_color = dp::Color::Black();
+  params.m_color = GetColorForRendering();
   params.m_shape = df::ColoredSymbolViewParams::Shape::Circle;
   params.m_radiusInPixels = kHikingbookWaypointRadius * visualScale;
   params.m_outlineColor = dp::Color::White();
