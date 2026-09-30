@@ -47,6 +47,12 @@ struct DrapeApiLineData
     return *this;
   }
 
+  DrapeApiLineData & BelowUserMarks()
+  {
+    m_belowUserMarks = true;
+    return *this;
+  }
+
   std::vector<m2::PointD> m_points;
   float m_width = 1.0f;
   dp::Color m_color;
@@ -56,6 +62,7 @@ struct DrapeApiLineData
   bool m_showPoints = false;
   bool m_markPoints = false;
   bool m_showId = false;
+  bool m_belowUserMarks = false;
 };
 
 class DrapeApi
