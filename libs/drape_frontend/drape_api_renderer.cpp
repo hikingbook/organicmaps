@@ -41,7 +41,7 @@ void DrapeApiRenderer::Clear()
 }
 
 void DrapeApiRenderer::Render(ref_ptr<dp::GraphicsContext> context, ref_ptr<gpu::ProgramManager> mng,
-                              ScreenBase const & screen, FrameValues const & frameValues)
+                              ScreenBase const & screen, FrameValues const & frameValues, bool belowUserMarks)
 {
   if (m_properties.empty())
     return;
@@ -49,6 +49,9 @@ void DrapeApiRenderer::Render(ref_ptr<dp::GraphicsContext> context, ref_ptr<gpu:
   auto const & glyphParams = df::VisualParams::Instance().GetGlyphVisualParams();
   for (auto const & property : m_properties)
   {
+    if (property->m_belowUserMarks != belowUserMarks)
+      continue;
+
     auto const mv = AdjustedScreen(screen, property->m_center).GetShapeModelView();
     for (auto const & bucket : property->m_buckets)
     {

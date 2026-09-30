@@ -874,12 +874,14 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
     if (borderWidth > 0) {
         // Draw the outline separately so its round joins stay behind the foreground line.
         drapeApi.AddLine(outlineIdentifier, df::DrapeApiLineData(points, dp::Color::White())
-                                             .Width(visualWidth + borderWidth * visualScale));
+                                             .Width(visualWidth + borderWidth * visualScale)
+                                             .BelowUserMarks());
     } else if (identifier != nullptr) {
         drapeApi.RemoveLine(outlineIdentifier);
     }
     drapeApi.AddLine(lineIdentifier, df::DrapeApiLineData(points, dp::Color::FromARGB(static_cast<uint32_t>(color)))
-                                         .Width(visualWidth));
+                                         .Width(visualWidth)
+                                         .BelowUserMarks());
     return result;
 }
 

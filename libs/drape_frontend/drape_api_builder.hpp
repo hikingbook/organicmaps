@@ -16,6 +16,7 @@ struct DrapeApiRenderProperty
 {
   std::string m_id;
   m2::PointD m_center;
+  bool m_belowUserMarks = false;
   std::vector<std::pair<dp::RenderState, drape_ptr<dp::RenderBucket>>> m_buckets;
 };
 

@@ -23,7 +23,7 @@ public:
   void Clear();
 
   void Render(ref_ptr<dp::GraphicsContext> context, ref_ptr<gpu::ProgramManager> mng, ScreenBase const & screen,
-              FrameValues const & frameValues);
+              FrameValues const & frameValues, bool belowUserMarks);
 
 private:
   std::vector<drape_ptr<DrapeApiRenderProperty>> m_properties;
