@@ -59,6 +59,7 @@ void DrapeApiBuilder::BuildLines(ref_ptr<dp::GraphicsContext> context, DrapeApi:
     batcher.SetBatcherHash(static_cast<uint64_t>(BatcherBucket::Default));
     auto property = make_unique_dp<DrapeApiRenderProperty>();
     property->m_center = rect.Center();
+    property->m_belowUserMarks = data.m_belowUserMarks;
     {
       dp::SessionGuard guard(context, batcher,
                              [&property, &id](dp::RenderState const & state, drape_ptr<dp::RenderBucket> && b)
