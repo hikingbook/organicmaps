@@ -5,6 +5,7 @@
 
 package app.organicmaps.base;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 
 import app.organicmaps.R;
+import app.organicmaps.sdk.FrameworkAdapter;
 import app.organicmaps.sdk.util.log.Logger;
 
 public abstract class BaseMwmFragmentActivity extends AppCompatActivity
@@ -31,7 +33,7 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   private boolean mSafeCreated;
 
   /**
-   * Shows splash screen and initializes the core in case when it was not initialized.
+   * Returns to the host application's startup screen when the core is not initialized.
    * <p>
    * Do not override this method!
    * Use {@link #onSafeCreate(Bundle savedInstanceState)}
@@ -41,15 +43,20 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   protected final void onCreate(@Nullable Bundle savedInstanceState)
   {
     EdgeToEdge.enable(this, getStatusBarStyle());
+    if (!FrameworkAdapter.INSTANCE.arePlatformAndCoreInitialized())
+    {
+      // Restored map fragments also require the core, so skip their saved state on a cold launch.
+      super.onCreate(null);
+      final Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+      if (intent != null)
+        startActivity(intent);
+      else
+        Logger.e(TAG, "Host application has no launcher activity");
+      finish();
+      return;
+    }
+
     super.onCreate(savedInstanceState);
-//    if (!MwmApplication.from(this).getOrganicMaps().arePlatformAndCoreInitialized())
-//    {
-//      final Intent intent = Objects.requireNonNull(getIntent());
-//      intent.setComponent(new ComponentName(this, SplashActivity.class));
-//      startActivity(intent);
-//      finish();
-//      return;
-//    }
 
     onSafeCreate(savedInstanceState);
   }
