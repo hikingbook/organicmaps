@@ -94,7 +94,9 @@ drape_ptr<ShapeRenderer> Compass::Draw(ref_ptr<dp::GraphicsContext> context, ref
 {
   dp::TextureManager::SymbolRegion region;
   tex->GetSymbolRegion("compass", region);
-  auto const halfSize = glsl::ToVec2(region.GetPixelSize() * 0.5f);
+  // The source symbol is 40 points; match the app's 44-point map controls.
+  auto const compassSize = region.GetPixelSize() * (44.0f / 40.0f);
+  auto const halfSize = glsl::ToVec2(compassSize * 0.5f);
   auto const texRect = region.GetTexRect();
 
   ASSERT_EQUAL(m_position.m_anchor, dp::Center, ());
@@ -128,7 +130,7 @@ drape_ptr<ShapeRenderer> Compass::Draw(ref_ptr<dp::GraphicsContext> context, ref
   provider.InitStream(0, info, make_ref(&vertexes));
 
   drape_ptr<dp::OverlayHandle> handle = make_unique_dp<CompassHandle>(
-      EGuiHandle::GuiHandleCompass, m_position.m_pixelPivot, region.GetPixelSize(), tapHandler);
+      EGuiHandle::GuiHandleCompass, m_position.m_pixelPivot, compassSize, tapHandler);
 
   drape_ptr<ShapeRenderer> renderer = make_unique_dp<ShapeRenderer>();
   dp::Batcher batcher(dp::Batcher::IndexPerQuad, dp::Batcher::VertexPerQuad);
