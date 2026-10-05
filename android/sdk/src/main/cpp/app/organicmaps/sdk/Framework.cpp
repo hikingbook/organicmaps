@@ -1376,12 +1376,34 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusTrack(JNIEnv *,
 
 JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusLocations(JNIEnv * env, jclass,
                                                                             jobjectArray locations,
-                                                                            jboolean animated)
+                                                                            jboolean animated,
+                                                                            jdoubleArray focusRect,
+                                                                            jdoubleArray visibleRect)
 {
   if (locations == nullptr || env->GetArrayLength(locations) == 0)
     return JNI_FALSE;
 
+  bool const usesFocusViewport = focusRect != nullptr;
+  m2::RectD focusViewport;
+  m2::RectD visibleViewport;
+  if (usesFocusViewport)
+  {
+    if (env->GetArrayLength(focusRect) != 4 || visibleRect == nullptr ||
+        env->GetArrayLength(visibleRect) != 4 || !frm()->IsDrapeEngineCreated())
+      return JNI_FALSE;
+    double focus[4];
+    double visible[4];
+    env->GetDoubleArrayRegion(focusRect, 0, 4, focus);
+    env->GetDoubleArrayRegion(visibleRect, 0, 4, visible);
+    focusViewport = m2::RectD(focus[0], focus[1], focus[2], focus[3]);
+    visibleViewport = m2::RectD(visible[0], visible[1], visible[2], visible[3]);
+    if (focusViewport.IsEmptyInterior() || visibleViewport.IsEmptyInterior())
+      return JNI_FALSE;
+  }
+
   m2::RectD rect;
+  double originX = 0;
+  bool hasLocation = false;
   auto const count = env->GetArrayLength(locations);
   for (jsize i = 0; i < count; ++i)
   {
@@ -1391,19 +1413,61 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeFocusLocations(JNIEn
 
     auto const coordinateCount = env->GetArrayLength(location);
     auto const coordinates = env->GetDoubleArrayElements(location, nullptr);
-    if (coordinateCount >= 2)
-      rect.Add(mercator::FromLatLon(coordinates[0], coordinates[1]));
+    if (coordinateCount >= 2 && std::isfinite(coordinates[0]) && std::isfinite(coordinates[1]) &&
+        coordinates[0] >= -90.0 && coordinates[0] <= 90.0 &&
+        coordinates[1] >= -180.0 && coordinates[1] <= 180.0)
+    {
+      auto point = mercator::FromLatLon(coordinates[0], coordinates[1]);
+      if (!hasLocation)
+      {
+        originX = point.x;
+        hasLocation = true;
+      }
+      point.x = mercator::NearestWrapX(point.x, originX);
+      rect.Add(point);
+    }
     env->ReleaseDoubleArrayElements(location, coordinates, JNI_ABORT);
     env->DeleteLocalRef(location);
   }
-  if (!rect.IsValid())
+  if (!hasLocation)
     return JNI_FALSE;
-  if (rect.IsEmptyInterior())
+  bool const needsDefaultBounds = usesFocusViewport
+      ? rect.SizeX() == 0 && rect.SizeY() == 0
+      : rect.IsEmptyInterior();
+  if (needsDefaultBounds)
     rect = mercator::RectByCenterXYAndSizeInMeters(rect.Center(), 1000.0);
 
-  ExpandRectForPreview(rect);
+  if (usesFocusViewport)
+  {
+    // ShowRect preserves rotation, so fit the rotated Mercator bounds.
+    auto const modelCenter = frm()->GetViewportCenter();
+    auto const centerPoint = frm()->GtoP(modelCenter);
+    auto const northPoint = frm()->GtoP({modelCenter.x, modelCenter.y + 1.0});
+    double const angle = std::atan2(centerPoint.x - northPoint.x, centerPoint.y - northPoint.y);
+    double const width = rect.SizeX() * std::abs(std::cos(angle)) + rect.SizeY() * std::abs(std::sin(angle));
+    double const height = rect.SizeX() * std::abs(std::sin(angle)) + rect.SizeY() * std::abs(std::cos(angle));
+    auto const center = rect.Center();
+    rect = m2::RectD(center.x - std::max(width, 1e-9) / 2, center.y - std::max(height, 1e-9) / 2,
+                     center.x + std::max(width, 1e-9) / 2, center.y + std::max(height, 1e-9) / 2);
+  }
+  else
+  {
+    ExpandRectForPreview(rect);
+  }
   frm()->StopLocationFollow();
-  frm()->ShowRect(rect, static_cast<bool>(animated), true /* useVisibleViewport */);
+  if (usesFocusViewport)
+  {
+    auto const engine = frm()->GetDrapeEngine();
+    // Ordered render-thread events apply this area for the fit only.
+    engine->SetVisibleViewport(focusViewport);
+    engine->SetModelViewRect(rect, true /* applyRotation */, -1 /* zoom */,
+                             static_cast<bool>(animated), true /* useVisibleViewport */);
+    engine->SetVisibleViewport(visibleViewport);
+  }
+  else
+  {
+    frm()->ShowRect(rect, static_cast<bool>(animated), true /* useVisibleViewport */);
+  }
   return JNI_TRUE;
 }
 

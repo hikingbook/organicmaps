@@ -76,7 +76,8 @@ public class Framework
 
   public static native void nativeShowTrackRect(long track);
   public static native boolean nativeFocusTrack(long track, boolean animated);
-  public static native boolean nativeFocusLocations(double[][] locations, boolean animated);
+  public static native boolean nativeFocusLocations(double[][] locations, boolean animated,
+                                                       @Nullable double[] focusRect, @Nullable double[] visibleRect);
   public static native boolean nativeSetTrackSelectionPoint(long track, double lat, double lon);
 
   public static native int nativeGetDrawScale();

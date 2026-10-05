@@ -7,6 +7,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.RectF;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -466,14 +467,20 @@ public enum FrameworkAdapter {
         return Framework.nativeFocusTrack(trackId, animated);
     }
 
-    public boolean focusLocations(List<Location> locations, boolean animated) {
+    // A null focusRect uses the current visible viewport and preview padding.
+    public boolean focusLocations(List<Location> locations, boolean animated,
+                                  @Nullable RectF focusRect, @Nullable RectF visibleRect) {
         if (!arePlatformAndCoreInitialized() || locations.isEmpty()) {
             return false;
         }
         double[][] coordinates = locations.stream()
                 .map(location -> new double[]{location.getLatitude(), location.getLongitude()})
                 .toArray(double[][]::new);
-        return Framework.nativeFocusLocations(coordinates, animated);
+        double[] focusViewport = focusRect == null ? null : new double[]{
+                focusRect.left, focusRect.top, focusRect.right, focusRect.bottom};
+        double[] visibleViewport = visibleRect == null ? null : new double[]{
+                visibleRect.left, visibleRect.top, visibleRect.right, visibleRect.bottom};
+        return Framework.nativeFocusLocations(coordinates, animated, focusViewport, visibleViewport);
     }
 
     public int drawLineWithLocations(Location[] locations, @ColorInt int color, double lineWidth) {
