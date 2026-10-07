@@ -2118,10 +2118,43 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetPowerManagerScheme(JN
   frm()->GetPowerManager().SetScheme(static_cast<power_management::Scheme>(schemeType));
 }
 
-JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetViewportCenter__DDIZ(JNIEnv *, jclass, jdouble lat,
-                                                                                 jdouble lon, jint zoom, jboolean animated)
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSetViewportCenter__DDIZZ(
+    JNIEnv *, jclass, jdouble lat, jdouble lon, jint zoom, jboolean animated, jboolean trackVisibleViewport)
 {
-  frm()->SetViewportCenter(mercator::FromLatLon(lat, lon), static_cast<int>(zoom), static_cast<bool>(animated));
+  auto & framework = *frm();
+  if (!framework.IsDrapeEngineCreated())
+    return;
+
+  if (trackVisibleViewport)
+    framework.StopLocationFollow();
+  framework.SetViewportCenter(mercator::FromLatLon(lat, lon), static_cast<int>(zoom), static_cast<bool>(animated),
+                             static_cast<bool>(trackVisibleViewport));
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeShowBookmarkPreservingZoom(JNIEnv *, jclass, jlong bookmarkId,
+                                                                                jboolean animated)
+{
+  auto & framework = *frm();
+  if (!framework.IsDrapeEngineCreated())
+    return;
+
+  auto const * bookmark = framework.GetBookmarkManager().GetBookmark(static_cast<kml::MarkId>(bookmarkId));
+  if (bookmark == nullptr)
+    return;
+
+  auto const center = bookmark->GetPivot();
+  framework.StopLocationFollow();
+  auto editSession = framework.GetBookmarkManager().GetEditSession();
+  editSession.SetIsVisible(bookmark->GetGroupId(), true /* visible */);
+
+  // Long-distance animations zoom out and back in, so recenter before the selection callback without animation.
+  framework.SetViewportCenter(center, df::kDoNotChangeZoom, false /* isAnim */, true /* trackVisibleViewport */);
+
+  place_page::BuildInfo info;
+  info.m_mercator = center;
+  info.m_userMarkId = bookmark->GetId();
+  info.m_needAnimationOnSelection = static_cast<bool>(animated);
+  framework.BuildAndSetPlacePageInfo(info);
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeRotateMap(JNIEnv *, jclass, jdouble azimuth,
