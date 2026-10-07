@@ -327,11 +327,15 @@ public enum FrameworkAdapter {
         return BookmarkManager.INSTANCE.nativeSearchBookmarkIDWithName(bmkName, catId);
     }
 
-    public void showBookmark(long bmkId) {
-        if (!arePlatformAndCoreInitialized()) {
+    public void showBookmark(long bmkId, boolean preservingZoom, boolean animated) {
+        if (!arePlatformAndCoreInitialized() || bmkId == Long.MAX_VALUE) {
             return;
         }
-        BookmarkManager.INSTANCE.showBookmarkOnMap(bmkId);
+        if (preservingZoom) {
+            Framework.nativeShowBookmarkPreservingZoom(bmkId, animated);
+        } else {
+            BookmarkManager.INSTANCE.showBookmarkOnMap(bmkId);
+        }
     }
 
     public long createCategory(@NonNull String catName) {

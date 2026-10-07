@@ -406,7 +406,14 @@ public class Framework
     nativeSetViewportCenter(lat, lon, zoom, true /* animated */);
   }
 
-  public static native void nativeSetViewportCenter(double lat, double lon, int zoom, boolean animated);
+  public static void nativeSetViewportCenter(double lat, double lon, int zoom, boolean animated)
+  {
+    nativeSetViewportCenter(lat, lon, zoom, animated, false /* trackVisibleViewport */);
+  }
+
+  public static native void nativeSetViewportCenter(double lat, double lon, int zoom, boolean animated,
+                                                  boolean trackVisibleViewport);
+  public static native void nativeShowBookmarkPreservingZoom(long bookmarkId, boolean animated);
   public static native void nativeRotateMap(double azimuth, boolean animated);
   public static native void nativeStopLocationFollow();
 
