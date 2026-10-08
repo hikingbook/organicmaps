@@ -6,7 +6,6 @@ import android.location.Location;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -43,7 +42,6 @@ public class OnmapDownloader
   private final WheelProgressView mProgress;
   private final Button mButton;
   private final TextView mNote;
-  private final ImageView mMinimizeImage;
   public IDownloaderDelegate downloaderDelegate;
 
   private int mStorageSubscriptionSlot;
@@ -100,7 +98,6 @@ public class OnmapDownloader
         public void onCurrentCountryChanged(String countryId)
         {
           mCurrentCountry = (TextUtils.isEmpty(countryId) ? null : CountryItem.fill(countryId));
-          updateMinimized(false);
           updateState(true);
 		  if (downloaderDelegate != null) {
         	downloaderDelegate.onCurrentCountryChanged(mCurrentCountry);
@@ -122,10 +119,7 @@ public class OnmapDownloader
     if (country == null)
       return false;
 
-    boolean enqueued = country.status == CountryItem.STATUS_ENQUEUED;
-    boolean progress = country.status == CountryItem.STATUS_PROGRESS;
-    boolean applying = country.status == CountryItem.STATUS_APPLYING;
-    return enqueued || progress || applying;
+    return isDownloading(country.status) || isDownloading(country.hikingbookProMapStatus);
   }
 
   public WheelProgressView getProgressView() {
@@ -139,6 +133,7 @@ public class OnmapDownloader
 
   private void updateStateInternal(boolean shouldAutoDownload)
   {
+    updateMinimized(isMapDownloading(mCurrentCountry));
     boolean showFrame =
         (mCurrentCountry != null && !mCurrentCountry.present && !RoutingController.get().isNavigating()) && !isMinimized;
     if (showFrame)
@@ -167,12 +162,6 @@ public class OnmapDownloader
         UiUtils.showIf(isDownloading, mProgress);
         UiUtils.showIf(!isDownloading, mButton);
         UiUtils.showIf(hasParent, mParent);
-        boolean isCountryDownloading = isDownloading(mCurrentCountry.status)
-            || isDownloading(mCurrentCountry.hikingbookProMapStatus);
-        UiUtils.showIf(isCountryDownloading, mMinimizeImage);
-        if (!mMinimizeImage.isShown()) {
-            updateMinimized(false);
-        }
 
         if (hasParent)
           mParent.setText(mCurrentCountry.topmostParentName);
@@ -263,7 +252,6 @@ public class OnmapDownloader
     mMapSource = mFrame.findViewById(R.id.downloader_map_source);
     mSize = mFrame.findViewById(R.id.downloader_size);
     mNote = mFrame.findViewById(R.id.text_view_note);
-    mMinimizeImage = mFrame.findViewById(R.id.minimize_image);
 
     View controls = mFrame.findViewById(R.id.downloader_controls_frame);
     mProgress = controls.findViewById(R.id.wheel_downloader_progress);
@@ -303,13 +291,6 @@ public class OnmapDownloader
             }
           });
         });
-    mMinimizeImage.setOnClickListener(
-            v -> {
-                updateMinimized(true);
-                UiUtils.showIf(false, mFrame);
-            }
-    );
-
     ViewCompat.setOnApplyWindowInsetsListener(mFrame, PaddingInsetsListener.allSides());
   }
 
@@ -350,7 +331,7 @@ public class OnmapDownloader
     }
   }
 
-  private boolean isDownloading(int status)
+  private static boolean isDownloading(int status)
   {
     return status == CountryItem.STATUS_PROGRESS || status == CountryItem.STATUS_APPLYING
         || status == CountryItem.STATUS_ENQUEUED;
