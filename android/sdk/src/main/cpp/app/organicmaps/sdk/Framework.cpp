@@ -2147,8 +2147,8 @@ JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeShowBookmarkPreservingZo
   auto editSession = framework.GetBookmarkManager().GetEditSession();
   editSession.SetIsVisible(bookmark->GetGroupId(), true /* visible */);
 
-  // Long-distance animations zoom out and back in, so recenter before the selection callback without animation.
-  framework.SetViewportCenter(center, df::kDoNotChangeZoom, false /* isAnim */, true /* trackVisibleViewport */);
+  framework.SetViewportCenter(center, df::kDoNotChangeZoom, static_cast<bool>(animated),
+                             true /* trackVisibleViewport */);
 
   place_page::BuildInfo info;
   info.m_mercator = center;
