@@ -56,7 +56,6 @@ using namespace storage;
 //@property(strong, nonatomic) IBOutlet UIView * progressWrapper;
 @property (weak, nonatomic) IBOutlet UIStackView *mapInfoStackView;
 @property (weak, nonatomic) IBOutlet UILabel *mapStyleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *minimizeButton;
 
 @property(weak, nonatomic) MapViewController * controller;
 @property(nonatomic) MWMCircularProgress * progress;
@@ -97,12 +96,23 @@ using namespace storage;
   NodeAttrs nodeAttrs;
   s.GetNodeAttrs(m_countryId, nodeAttrs);
 
+  BOOL const downloading = isDownloading(nodeAttrs.m_status) ||
+                           isDownloading(nodeAttrs.m_hikingbookProMapStatus);
+  [self updateMinimized:downloading];
+  if (downloading)
+  {
+    [self removeFromSuperview];
+    return;
+  }
+
   if (!nodeAttrs.m_present && ![MWMRouter isRoutingActive])
   {
     BOOL const isMultiParent = nodeAttrs.m_parentInfo.size() > 1;
     BOOL const noParrent = (nodeAttrs.m_parentInfo[0].m_id == s.GetRootId());
     BOOL const hideParent = (noParrent || isMultiParent);
     self.parentNode.hidden = hideParent;
+    self.parentNode.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    self.parentNode.adjustsFontForContentSizeCategory = YES;
     self.nodeTopOffset.priority = hideParent ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow;
     if (!hideParent)
     {
@@ -110,6 +120,8 @@ using namespace storage;
       self.parentNode.textColor = [UIColor textBodyTertiary];
     }
     self.node.text = @(nodeAttrs.m_nodeLocalName.c_str());
+    self.node.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2];
+    self.node.adjustsFontForContentSizeCategory = YES;
     self.node.textColor = [UIColor textBody];
 //    self.nodeSize.hidden = NO;
 //    self.nodeSize.textColor = [UIColor blackSecondaryText];
@@ -120,11 +132,6 @@ using namespace storage;
     [self hideMapInfoStackView:YES];
 
     // Modified by Zheng-Xiang Ke
-    self.minimizeButton.hidden = !isDownloading(nodeAttrs.m_status) &&
-                                 !isDownloading(nodeAttrs.m_hikingbookProMapStatus);
-    if (self.minimizeButton.hidden) {
-        [self updateMinimized:NO];
-    }
     NSString *countryID = @(m_countryId.c_str());
     NodeStatus status = nodeAttrs.m_status;
     MWMMapSource mapSource = [self mapSourceForCountry:countryID];
@@ -156,10 +163,6 @@ using namespace storage;
       break;
     }
     case NodeStatus::Downloading:
-      if (nodeAttrs.m_downloadingProgress.m_bytesTotal != 0)
-        [self showDownloading:(CGFloat)nodeAttrs.m_downloadingProgress.m_bytesDownloaded /
-                              nodeAttrs.m_downloadingProgress.m_bytesTotal];
-      break;
     case NodeStatus::Applying:
     case NodeStatus::InQueue: [self showInQueue]; break;
     case NodeStatus::Undefined:
@@ -246,46 +249,20 @@ using namespace storage;
     }
 }
 
-- (void)showDownloading:(CGFloat)progress
-{
-  [self hideMapInfoStackView:NO];
-  self.nodeSize.textColor = [UIColor textBodyTertiary];
-  self.nodeSize.text = [NSString stringWithFormat:@"%@ %.2f%%", L(@"downloader_downloading"), progress * 100.f];
-  self.downloadButton.hidden = YES;
-  self.progressWrapper.hidden = NO;
-  self.progress.progress = progress;
-  [self addToSuperview];
-    
-    // Added by Zheng-Xiang Ke
-    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:viewDidAppearWithIsDownloading:isInQueue:)]) {
-      [delegate downloadDialog:self viewDidAppearWithIsDownloading:YES isInQueue:NO];
-    }
-}
-
 - (void)showInQueue
 {
-  [self hideMapInfoStackView:NO];
-  self.nodeSize.textColor = [UIColor textBodyTertiary];
-  self.nodeSize.text = L(@"downloader_queued");
-  self.downloadButton.hidden = YES;
-  self.progressWrapper.hidden = NO;
-  self.progress.state = MWMCircularProgressStateSpinner;
-  [self addToSuperview];
-    
-    // Added by Zheng-Xiang Ke
-    id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
-    if ([delegate respondsToSelector:@selector(downloadDialog:viewDidAppearWithIsDownloading:isInQueue:)]) {
-      [delegate downloadDialog:self viewDidAppearWithIsDownloading:NO isInQueue:YES];
-    }
+  [self updateMinimized:YES];
+  [self removeFromSuperview];
 }
 
 - (void)processViewportCountryEvent:(CountryId const &)countryId
 {
-  [self updateMinimized:NO];
   m_countryId = countryId;
   if (countryId == kInvalidCountryId)
+  {
+    [self updateMinimized:NO];
     [self removeFromSuperview];
+  }
   else
     [self configDialog];
 }
@@ -321,12 +298,6 @@ using namespace storage;
 //    [self configDialog];
 //  else
 //    [self removeFromSuperview];
-}
-
-- (void)processCountry:(NSString *)countryId downloadedBytes:(uint64_t)downloadedBytes totalBytes:(uint64_t)totalBytes
-{
-  if (self.superview && m_countryId == countryId.UTF8String)
-    [self showDownloading:(CGFloat)downloadedBytes / totalBytes];
 }
 
 #pragma mark - MWMCircularProgressDelegate
@@ -369,12 +340,6 @@ using namespace storage;
         [[MWMStorage sharedStorage] downloadNode:countryID mapSource:[self mapSourceForCountry:countryID]
                                        onSuccess:^{ [self showInQueue]; }];
     }
-}
-
-- (IBAction)minimize
-{
-    [self updateMinimized:YES];
-    [self removeFromSuperview];
 }
 
 #pragma mark - Properties
