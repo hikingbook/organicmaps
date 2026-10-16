@@ -78,6 +78,8 @@ internal class TrackEditTarget(private val data: Track) : EditTarget {
     override val toolbarTitleRes: Int = R.string.edit_track
     override var color: Int = data.color
 
+    var stagedVisibility: Boolean = data.isVisible
+
     override fun buildSwatch(context: Context): Drawable = Graphics.drawCircle(
         color,
         R.dimen.track_circle_size,
@@ -90,13 +92,19 @@ internal class TrackEditTarget(private val data: Track) : EditTarget {
         newName != data.name ||
             newDescription != data.description ||
             category.id != data.categoryId ||
-            color != data.color
+            color != data.color ||
+            stagedVisibility != data.isVisible
 
     override fun save(newName: String, newDescription: String, category: BookmarkCategory): Boolean {
         val movedFromCategory = data.categoryId != category.id
         if (movedFromCategory) data.categoryId = category.id
         data.update(newName, color, newDescription)
         return movedFromCategory
+    }
+
+    /** Hiding the selected track closes its Place Page, so this runs after the rest is persisted. */
+    fun applyStagedVisibility() {
+        if (stagedVisibility != data.isVisible) data.setVisibility(stagedVisibility)
     }
 
     override fun delete() {

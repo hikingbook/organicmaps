@@ -138,7 +138,4 @@ public class Bookmark extends MapObject
   static native void nativeUpdateParams(long bookmarkId, @NonNull String name, @ColorInt int color,
                                         @NonNull String description);
   static native void nativeChangeCategory(long oldCatId, long newCatId, long bookmarkId);
-
-  @NonNull
-  private static native String nativeEncode2Ge0Url(long bookmarkId, boolean addName);
 }

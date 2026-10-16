@@ -120,7 +120,7 @@
     <string name="category_hotel">Hotel</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">Pamätihodnosť</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">Zábava</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">Bankomat</string>
@@ -142,7 +142,7 @@
     <string name="category_police">Polícia</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Recyklácia</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">Voda</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">Pre RV</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">Prepáčte, nastavenie uloženia máp je dočasne nedostupné.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">Práve prebieha sťahovanie krajiny.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Pozrite si moju aktuálnu polohu v aplikácii Organic Maps! %1$s alebo %2$s Nemáte offline mapy? Stiahnite si ich tu: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">Pozri na moju značku na mape Organic Maps</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Pozrite si moju aktuálnu polohu na mape Organic Maps</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Ahoj,\n\nPráve som tu: %1$s. Stlačte jeden z týchto odkazov %2$s, %3$s a uvidíte toto miesto na mape.\n\nVďaka</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Zdieľať</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s v Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">Miesto v Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">E-mail</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">Príklady hodnôt</string>
     <string name="editor_correct_mistake">Opraviť chybu</string>
     <string name="editor_add_select_location">Vyberte miesto</string>
-    <string name="editor_report_problem_desription_1">Prosím, pridajte detailný popis problému, aby mohla komunita OpenStreetMap opraviť danú chybu.</string>
-    <string name="editor_report_problem_desription_2">K oprave môžete prispieť aj vy na stránke https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Odoslať</string>
-    <string name="editor_report_problem_title">Problém</string>
-    <string name="editor_report_problem_no_place_title">Dané miesto neexistuje</string>
-    <string name="editor_report_problem_under_construction_title">Zatvorené kvôli prebiehajúcej údržbe</string>
-    <string name="editor_report_problem_duplicate_place_title">Duplicitné miesto</string>
     <string name="autodownload">Automaticky stiahnuť</string>
     <!-- Place Page opening hours text -->
     <string name="daily">Denne</string>
     <string name="twentyfour_seven">Deň a noc</string>
     <string name="day_off_today">Dnes deň voľna</string>
     <string name="day_off">Zatvorené</string>
+    <string name="midnight">Polnoc</string>
+    <string name="noon">Poludnie</string>
     <string name="today">Dnes</string>
     <string name="opens_in">Otvoria o %s</string>
     <string name="closes_in">Zatvoria o %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">Tak, ako sa píše v miestnom jazyku</string>
     <string name="editor_edit_place_category_title">Kategória</string>
-    <string name="detailed_problem_description">Podrobný popis problému</string>
-    <string name="editor_report_problem_other_title">Iný problém</string>
     <string name="placepage_add_business_button">Pridať organizáciu</string>
     <string name="message_invalid_feature_position">Objekt sa tu nedá umiestniť</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">d</string>
     <string name="second">s</string>
     <string name="placepage_more_button">Viac</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">Upraviť záložku</string>
     <string name="placepage_personal_notes_hint">Osobné poznámky (text alebo html)</string>
     <string name="editor_comment_hint">Poznámka…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">Na zobrazenie podrobnejších informácií o miestach, napríklad fotografií, cien a recenzií, sa vyžaduje mobilný internet.</string>
     <string name="mobile_data_option_never">Nikdy nepoužiť</string>
     <string name="mobile_data_option_ask">Vždy sa opýtať</string>
-    <string name="traffic_update_maps_text">Na zobrazenie dopravných informácií je potrebné aktualizovať mapy.</string>
     <string name="big_font">Zväčšiť veľkosť písma na mape</string>
-    <string name="traffic_update_app">Aktualizujte si aplikáciu Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">Dopravné informácie nie sú k dispozícii</string>
     <string name="enable_logging">Zapnúť zaznamenávanie</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Všeobecné pripomienky</string>
@@ -582,6 +568,7 @@
     <string name="planning_route_manage_route">Spravovať trasu</string>
     <string name="button_plan">Naplánovať</string>
     <string name="placepage_remove_stop">Odstrániť zastávku</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
     <string name="placepage_add_stop">Pridať zastávku</string>
     <string name="drag_to_reorder">Zmeniť poradie</string>
     <string name="saved">Uložené</string>
@@ -672,6 +659,10 @@
     <string name="show_at_the_bottom">Zobraziť v dolnej časti</string>
     <string name="enable_logging_warning_message">Týmto zapnete záznamenávanie diagnostických informácií, ktoré môžete poslať našej technickej podpore v prípade problémov s aplikáciou. Záznam môže obsahovať údaje o vašej polohe.</string>
     <string name="driving_options_title">Možnosti trasy</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">Optimalizácia trasy</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">Automaticky zmení poradie priebežných zastávok a vytvorí efektívnejšiu trasu.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Vyhnúť sa spoplatneným cestám</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -752,6 +743,12 @@
     <string name="medicine">Medicína</string>
     <string name="search_in_the_list">Vyhľadať v zozname</string>
     <string name="religious_places">Náboženské miesta</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">Vybrať</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">Vybrať všetko</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">Zrušiť výber</string>
     <string name="select_list">Vybrať zoznam</string>
     <string name="button_layer_isolines">Terén</string>
     <string name="isolines_activation_error_dialog">Ak chcete aktivovať a používať topografickú vrstvu, aktualizujte alebo stiahnite mapu oblasti</string>
@@ -836,15 +833,14 @@
     <string name="pref_tts_no_system_tts">Nastavenia syntézy reči neboli nájdené, ste si istí, že ich vaše zariadenie podporuje?</string>
     <string name="drive_through">Drive-thru</string>
     <string name="clear_the_search">Vymazať vyhľadávanie</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_in">Priblíženie</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
-    <string name="zoom_out">Zväčšenie</string>
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
+    <string name="zoom_out">Oddialenie</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">Odkaz na menu</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Zobraziť menu</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">Otvoriť v inej aplikácii</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Samoobslužné služby</string>
     <string name="select_option">Vyberte možnosť</string>
@@ -879,6 +875,30 @@
     <string name="share_track">Zdieľať trať</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Vymazať %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="one">Vybraté: %d</item>
+        <item quantity="few">Vybraté: %d</item>
+        <item quantity="other">Vybraté: %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="one">Odstrániť %d položku?</item>
+        <item quantity="few">Odstrániť %d položky?</item>
+        <item quantity="other">Odstrániť %d položiek?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">Presunúť</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">Zmena farby</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">Skryť trasu</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">Zobraziť trasu</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">Vy</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -907,4 +927,22 @@
     <string name="color_picker_grid">Mriežka</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">Hlasové vyhľadávanie</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">Vybrať na mape</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">Začiatok</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">Cieľ</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">Zmeniť začiatok</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">Zmeniť cieľ</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">Zmeniť zastávku</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">Dosiahnutý maximálny počet zastávok</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">Posúvajte a zväčšujte mapu, aby ste umiestnili krížik</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">Zastaviť a uložiť</string>
 </resources>

@@ -14,14 +14,12 @@ namespace
 {
 char const * kAutoDownloadEnabledKey = "AutoDownloadEnabled";
 char const * kZoomButtonsEnabledKey = "ZoomButtonsEnabled";
-char const * kCompassCalibrationEnabledKey = "CompassCalibrationEnabled";
 char const * kRoutingDisclaimerApprovedKey = "IsDisclaimerApproved";
 char const * kSearchHistoryEnabledKey = "SearchHistoryEnabled";
 
 // TODO(igrechuhin): Remove outdated kUDAutoNightModeOff
 NSString * const kUDAutoNightModeOff = @"AutoNightModeOff";
 NSString * const kThemeMode = @"ThemeMode";
-NSString * const kSpotlightLocaleLanguageId = @"SpotlightLocaleLanguageId";
 NSString * const kUDTrackWarningAlertWasShown = @"TrackWarningAlertWasShown";
 NSString * const kiCLoudSynchronizationEnabledKey = @"iCLoudSynchronizationEnabled";
 NSString * const kUDFileLoggingEnabledKey = @"FileLoggingEnabledKey";
@@ -100,18 +98,6 @@ NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidShowIClo
   GetFramework().SetBookmarksTextPlacement(setting);
 }
 
-+ (BOOL)compassCalibrationEnabled
-{
-  bool enabled = true;
-  UNUSED_VALUE(settings::Get(kCompassCalibrationEnabledKey, enabled));
-  return enabled;
-}
-
-+ (void)setCompassCalibrationEnabled:(BOOL)compassCalibrationEnabled
-{
-  settings::Set(kCompassCalibrationEnabledKey, static_cast<bool>(compassCalibrationEnabled));
-}
-
 + (MWMTheme)theme
 {
   auto ud = NSUserDefaults.standardUserDefaults;
@@ -142,17 +128,6 @@ NSString * const kUDDidShowICloudSynchronizationEnablingAlert = @"kUDDidShowIClo
 {
   settings::Set(kRoutingDisclaimerApprovedKey, true);
 }
-+ (NSString *)spotlightLocaleLanguageId
-{
-  return [NSUserDefaults.standardUserDefaults stringForKey:kSpotlightLocaleLanguageId];
-}
-
-+ (void)setSpotlightLocaleLanguageId:(NSString *)spotlightLocaleLanguageId
-{
-  NSUserDefaults * ud = NSUserDefaults.standardUserDefaults;
-  [ud setObject:spotlightLocaleLanguageId forKey:kSpotlightLocaleLanguageId];
-}
-
 + (BOOL)largeFontSize
 {
   return GetFramework().LoadLargeFontsSize();

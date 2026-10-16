@@ -565,7 +565,8 @@ public enum FrameworkAdapter {
         if (!arePlatformAndCoreInitialized()) {
             return false;
         }
-        String geoUrl = Framework.nativeGetGe0Url(location.getLatitude(), location.getLongitude(), 15, "");
+        String geoUrl = Framework.nativeGenerateShortShowMapUrl(
+                location.getLatitude(), location.getLongitude(), 15, "");
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(geoUrl));
         Factory.UrlProcessor urlProcessor = new Factory.UrlProcessor();

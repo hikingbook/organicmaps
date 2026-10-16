@@ -157,7 +157,7 @@ void AsyncRouter::SetRouter(std::unique_ptr<IRouter> && router, std::unique_ptr<
 }
 
 void AsyncRouter::CalculateRoute(Checkpoints const & checkpoints, m2::PointD const & direction, bool adjustToPrevRoute,
-                                 ReadyCallbackOwnership const & readyCallback,
+                                 bool needAlternatives, ReadyCallbackOwnership const & readyCallback,
                                  NeedMoreMapsCallback const & needMoreMapsCallback,
                                  RemoveRouteCallback const & removeRouteCallback,
                                  ProgressCallback const & progressCallback, uint32_t timeoutSec)
@@ -167,6 +167,7 @@ void AsyncRouter::CalculateRoute(Checkpoints const & checkpoints, m2::PointD con
   m_checkpoints = checkpoints;
   m_startDirection = direction;
   m_adjustToPrevRoute = adjustToPrevRoute;
+  m_needAlternatives = needAlternatives;
 
   ResetDelegate();
 
@@ -209,14 +210,12 @@ void AsyncRouter::LogCode(RouterResultCode code, double const elapsedSec)
   case RouterResultCode::EndPointNotFound: LOG(LWARNING, ("Can't find end point node")); break;
   case RouterResultCode::PointsInDifferentMWM: LOG(LWARNING, ("Points are in different MWMs")); break;
   case RouterResultCode::RouteNotFound: LOG(LWARNING, ("Route not found")); break;
-  case RouterResultCode::RouteFileNotExist: LOG(LWARNING, ("There is no routing file")); break;
   case RouterResultCode::NeedMoreMaps:
     LOG(LINFO, ("Routing can find a better way with additional maps, elapsed seconds:", elapsedSec));
     break;
   case RouterResultCode::Cancelled: LOG(LINFO, ("Route calculation cancelled, elapsed seconds:", elapsedSec)); break;
   case RouterResultCode::NoError: LOG(LINFO, ("Route found, elapsed seconds:", elapsedSec)); break;
   case RouterResultCode::NoCurrentPosition: LOG(LINFO, ("No current position")); break;
-  case RouterResultCode::InconsistentMWMandRoute: LOG(LINFO, ("Inconsistent mwm and route")); break;
   case RouterResultCode::InternalError: LOG(LINFO, ("Internal error")); break;
   case RouterResultCode::FileTooOld: LOG(LINFO, ("File too old")); break;
   case RouterResultCode::IntermediatePointNotFound: LOG(LWARNING, ("Can't find intermediate point node")); break;
@@ -274,6 +273,7 @@ void AsyncRouter::CalculateRoute()
   std::shared_ptr<RouterDelegateProxy> delegateProxy;
   m2::PointD startDirection;
   bool adjustToPrevRoute = false;
+  bool needAlternatives = true;
   std::shared_ptr<AbsentRegionsFinder> absentRegionsFinder;
   std::shared_ptr<IRouter> router;
   uint64_t routeId = 0;
@@ -301,6 +301,7 @@ void AsyncRouter::CalculateRoute()
     routerName = router->GetName();
     router->SetGuides(std::move(m_guides));
     m_guides.clear();
+    needAlternatives = m_needAlternatives;
   }
 
   auto result = std::make_shared<RoutesResult>(router->GetName(), routeId);
@@ -320,8 +321,8 @@ void AsyncRouter::CalculateRoute()
 
     if (code == RouterResultCode::NoError)
     {
-      code =
-          router->CalculateRoute(checkpoints, startDirection, adjustToPrevRoute, delegateProxy->GetDelegate(), *result);
+      code = router->CalculateRoute(checkpoints, startDirection, adjustToPrevRoute, needAlternatives,
+                                    delegateProxy->GetDelegate(), *result);
     }
 
     router->SetGuides({});

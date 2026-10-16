@@ -718,7 +718,8 @@
 "type.junction.roundabout" = "Rotatória";
 "type.landuse" = "Uso do solo";
 "type.landuse.allotments" = "Horta comunitária";
-"type.landuse.basin" = "Reservatório";
+"type.landuse.basin" = "Bacia";
+"type.landuse.basin.intermittent" = "Bacia intermitente";
 "type.landuse.brownfield" = "Terreno industrial devoluto";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Pedreira";
 "type.landuse.railway" = "Área ferroviária";
 "type.landuse.recreation_ground" = "Área de lazer";
-"type.landuse.reservoir" = "Água";
 "type.landuse.residential" = "Área residencial";
 "type.landuse.retail" = "Área de varejo";
 "type.landuse.salt_pond" = "Salinas";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Rinque de patinação";
 "type.leisure.marina" = "Marina";
 "type.leisure.nature_reserve" = "Reserva natural";
+"type.leisure.bird_hide" = "Observatório de aves";
 "type.leisure.outdoor_seating" = "Assentos ao ar livre";
 "type.leisure.firepit" = "Pira";
 "type.leisure.park" = "Parque";
@@ -870,12 +871,15 @@
 "type.natural.water.lock" = "Eclusa";
 "type.natural.water.pond" = "Lagoa";
 "type.natural.water.reservoir" = "Reservatório";
-"type.natural.water.basin" = "Reservatório";
+"type.natural.water.basin" = "Bacia";
 "type.natural.water.river" = "Rio";
+"type.natural.water.intermittent" = "Corpo de água intermitente";
 "type.natural.land" = "Terra";
 "type.natural.meadow" = "Pradaria";
 "type.natural.orchard" = "Pomar";
 "type.natural.peak" = "Pico";
+"type.natural.hill" = "Colina";
+"type.natural.arch" = "Arco de Pedra";
 "type.natural.saddle" = "Sela de montanha";
 "type.natural.rock" = "Rocha";
 "type.natural.scrub" = "Matagal";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Unidade de assistência social";
+"type.amenity.stage" = "Palco";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Entrada da ala de emergência";

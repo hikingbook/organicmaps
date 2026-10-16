@@ -1244,8 +1244,6 @@ void Storage::ApplyCountries(std::string const & countriesBuffer, Storage & stor
   // Affiliations, synonyms, etc can be updated with the app update.
   // m_affiliations = std::move(storage.m_affiliations);
   // m_countryNameSynonyms = std::move(storage.m_countryNameSynonyms);
-  // m_mwmTopCityGeoIds = std::move(storage.m_mwmTopCityGeoIds);
-  // m_mwmTopCountryGeoIds = std::move(storage.m_mwmTopCountryGeoIds);
 
   LOG(LDEBUG, ("Version", m_currentVersion, "is applied"));
 
@@ -1418,15 +1416,14 @@ void Storage::DownloadNode(CountryId const & countryId, MapSource mapSource, boo
 {
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
-  LOG(LINFO, ("Downloading", countryId));
-
-  CountryTree::Node const * const node = m_countries.FindFirst(countryId);
-
+  CountryTree::Node const * node = m_countries.FindFirst(countryId);
   if (!node)
     return;
 
   if (GetNodeStatus(*node, mapSource).status == NodeStatus::OnDisk)
     return;
+
+  LOG(LINFO, ("Downloading", countryId));
 
   auto downloadAction = [this, mapSource, isUpdate](CountryTree::Node const & descendantNode)
   {

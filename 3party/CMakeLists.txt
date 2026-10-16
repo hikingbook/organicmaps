@@ -9,7 +9,7 @@ if (NOT WITH_SYSTEM_PROVIDED_3PARTY)
 
   add_library(Boost_headers INTERFACE)
   add_library(Boost::headers ALIAS Boost_headers)
-  target_include_directories(Boost_headers SYSTEM INTERFACE "${OMIM_ROOT}/3party/boost")
+  target_include_directories(Boost_headers SYSTEM INTERFACE "${OMIM_ROOT}/3party/boost_headers")
 
   # Configure expat library.
   set(EXPAT_BUILD_TOOLS OFF)
@@ -86,13 +86,11 @@ if (NOT WITH_SYSTEM_PROVIDED_3PARTY)
   endif()
 endif()
 
-add_subdirectory(agg)
 add_subdirectory(BLAKE3/c)
 add_subdirectory(bsdiff-courgette)
 add_subdirectory(glaze)
 add_subdirectory(minizip)
 add_subdirectory(open-location-code)
-add_subdirectory(opening_hours)
 add_subdirectory(stb_image)
 add_subdirectory(succinct)
 

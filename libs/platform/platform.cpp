@@ -7,9 +7,10 @@
 #include "base/file_name_utils.hpp"
 #include "base/logging.hpp"
 #include "base/random.hpp"
-#include "base/string_utils.hpp"
 
 #include <algorithm>
+#include <filesystem>
+#include <system_error>
 #include <thread>
 
 #include "private.h"
@@ -309,28 +310,13 @@ bool Platform::MkDirRecursively(std::string const & dirName)
 {
   CHECK(!dirName.empty(), ());
 
-  std::string::value_type const sep[] = {base::GetNativeSeparator(), 0};
-  std::string path = dirName.starts_with(sep[0]) ? sep : ".";
-  for (auto const & t : strings::Tokenize(dirName, sep))
-  {
-    path = base::JoinPath(path, std::string{t});
-    if (!IsFileExistsByFullPath(path))
-    {
-      switch (MkDir(path))
-      {
-      case ERR_OK: break;
-      case ERR_FILE_ALREADY_EXISTS:
-      {
-        if (!IsDirectory(path))
-          return false;
-        break;
-      }
-      default: return false;
-      }
-    }
-  }
-
-  return true;
+  // create_directories handles both separator kinds and Windows drive roots, and tolerates directories
+  // created concurrently by other processes.
+  std::error_code ec;
+  std::filesystem::create_directories(dirName, ec);
+  if (ec)
+    LOG(LWARNING, ("Can't create directory", dirName, ec.message()));
+  return !ec;
 }
 
 unsigned Platform::CpuCores()
@@ -367,18 +353,6 @@ void Platform::RunThreads()
 void Platform::SetGuiThread(std::unique_ptr<base::TaskLoop> guiThread)
 {
   m_guiThread = std::move(guiThread);
-}
-
-void Platform::CancelTask(Thread thread, base::TaskLoop::TaskId id)
-{
-  ASSERT(m_networkThread && m_fileThread && m_backgroundThread, ());
-  switch (thread)
-  {
-  case Thread::File: m_fileThread->Cancel(id); return;
-  case Thread::Network: m_networkThread->Cancel(id); return;
-  case Thread::Gui: CHECK(false, ("Task cancelling for gui thread is not supported yet")); return;
-  case Thread::Background: m_backgroundThread->Cancel(id); return;
-  }
 }
 
 std::string DebugPrint(Platform::EError err)

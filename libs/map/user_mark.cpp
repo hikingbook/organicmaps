@@ -3,8 +3,6 @@
 
 #include "drape_frontend/visual_params.hpp"
 
-#include "indexer/scales.hpp"
-
 #include "geometry/mercator.hpp"
 
 UserMark::UserMark(kml::MarkId id, m2::PointD const & ptOrg, UserMark::Type type)
@@ -98,7 +96,6 @@ std::string DebugPrint(UserMark::Type type)
   case UserMark::Type::ROUTING: return "ROUTING";
   case UserMark::Type::ROAD_WARNING: return "ROAD_WARNING";
   case UserMark::Type::SPEED_CAM: return "SPEED_CAM";
-  case UserMark::Type::LOCAL_ADS: return "LOCAL_ADS";
   case UserMark::Type::TRANSIT: return "TRANSIT";
   case UserMark::Type::TRACK_INFO: return "TRACK_INFO";
   case UserMark::Type::TRACK_SELECTION: return "TRACK_SELECTION";

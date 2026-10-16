@@ -130,7 +130,7 @@ private extension AboutController {
     func setupOSM() {
       osmView.setMapDate(Self.formattedMapsDataVersion())
       osmView.didTapHandler = { [weak self] in
-        self?.openUrl("https://www.openstreetmap.org/")
+        self?.openUrl(AppConstants.openStreetMapURL)
       }
     }
 
@@ -256,7 +256,7 @@ private extension AboutController {
   func buildInfoTableViewData() -> [AboutInfoTableViewCellModel] {
     let infoContent: [AboutInfo] = [.faq, .reportMapDataProblem, .reportABug, .news, .volunteer, .rateTheApp]
     return infoContent.map { [weak self] aboutInfo in
-      return AboutInfoTableViewCellModel(title: aboutInfo.title, image: aboutInfo.image, didTapHandler: {
+      AboutInfoTableViewCellModel(title: aboutInfo.title, image: aboutInfo.image, didTapHandler: {
         switch aboutInfo {
         case .faq:
           self?.navigationController?.pushViewController(FaqController(), animated: true)
@@ -276,7 +276,7 @@ private extension AboutController {
   func buildSocialMediaCollectionViewData() -> [SocialMediaCollectionViewCellModel] {
     let socialMediaContent = SocialMedia.allCases
     return socialMediaContent.map { [weak self] socialMedia in
-      return SocialMediaCollectionViewCellModel(image: socialMedia.image, didTapHandler: {
+      SocialMediaCollectionViewCellModel(image: socialMedia.image, didTapHandler: {
         switch socialMedia {
         case .telegram: fallthrough
         case .github: fallthrough

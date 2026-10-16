@@ -28,8 +28,6 @@
 
 #include "geometry/mercator.hpp"
 
-// If you have a "missing header error" here, then please run configure.sh script in the root repo
-// folder.
 #import "../../../private.h"
 
 extern NSString * const kMap2FBLoginSegue = @"Map2FBLogin";
@@ -38,7 +36,11 @@ extern NSString * const kMap2GoogleLoginSegue = @"Map2GoogleLogin";
 static CGFloat kPlacePageCompactWidth = 350;
 static CGFloat kPlacePageLeadingOffset = IPAD ? 20 : 0;
 
-typedef NS_ENUM(NSUInteger, UserTouchesAction) { UserTouchesActionNone, UserTouchesActionDrag, UserTouchesActionScale };
+typedef NS_ENUM(NSUInteger, UserTouchesAction) {
+  UserTouchesActionNone,
+  UserTouchesActionDrag,
+  UserTouchesActionScale
+};
 
 namespace
 {
@@ -554,7 +556,7 @@ NSString * const kCategorySelectorSegue = @"MapToCategorySelectorSegue";
   [super viewDidAppear:animated];
   // Cold start deep links should be handled when the map is initialized.
   // Otherwise PP container view is nil, or there is no animation/selection of the point.
-  if (DeepLinkHandler.shared.isLaunchedByDeeplink)
+  if (DeepLinkHandler.shared.hasPendingColdLaunchDeepLink)
     (void)[DeepLinkHandler.shared handleDeepLinkAndReset];
 }
 
@@ -1005,6 +1007,7 @@ NSString * const kCategorySelectorSegue = @"MapToCategorySelectorSegue";
 
 - (void)enableCarPlayRepresentation
 {
+//  [_searchManager close];
   UIViewController * presentedController = self.presentedViewController;
   if (presentedController != nil)
     [presentedController dismissViewControllerAnimated:NO completion:nil];

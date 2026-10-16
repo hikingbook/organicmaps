@@ -30,8 +30,9 @@ extension NavigationDashboard {
         if state == .planning {
           viewModel.progress = 0
         }
-        if state == .error {
+        if state == .prepare || state == .error {
           viewModel.routeElevationPreviewData = nil
+          viewModel.routeElevationActivePointDistance = nil
         }
 
       case .close:
@@ -77,14 +78,15 @@ extension NavigationDashboard {
       case .updateTrackRecordingState(let state):
         viewModel.trackRecordingState = state
 
-      case .updateElevationInfo(let elevationInfo):
+      case .updateElevationInfo(let elevationInfo, let activePointDistance):
         viewModel.routeElevationPreviewData = elevationInfo
+        viewModel.routeElevationActivePointDistance = activePointDistance
 
       case .updateNavigationInfoAvailableArea(let rect):
         viewModel.navigationInfo.availableArea = rect
 
       case .updateSearchState(let state):
-        isSearchOpened = state == .searching
+        isSearchOpened = state == .searching || state == .mapPointPicker
         switch state {
         case .closed:
           viewModel = resolve(action: .setHidden(false), with: viewModel)
@@ -92,7 +94,7 @@ extension NavigationDashboard {
         case .hidden:
           viewModel = resolve(action: .setHidden(PlacePageData.hasData), with: viewModel)
           viewModel.navigationSearchState = .minimizedNormal
-        case .searching:
+        case .mapPointPicker, .searching:
           viewModel = resolve(action: .setHidden(true), with: viewModel)
           viewModel.navigationSearchState = .minimizedNormal
         @unknown default:

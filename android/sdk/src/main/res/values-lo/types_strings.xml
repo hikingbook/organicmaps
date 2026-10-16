@@ -604,6 +604,7 @@
     <string name="type.landuse">ການນຳໃຊ້ທີ່ດິນ</string>
     <string name="type.landuse.allotments">ສວນຜັກຊຸມຊົນ</string>
     <string name="type.landuse.basin">ແອ່ງຮັບນໍ້າ</string>
+    <string name="type.landuse.basin.intermittent">ແອ່ງຮັບນໍ້າຊົ່ວຄາວ</string>
     <string name="type.landuse.brownfield">ພື້ນທີ່ລໍຖ້າການພັດທະນາ</string>
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery">ປ່າຊ້າ</string>
@@ -634,7 +635,6 @@
     <string name="type.landuse.quarry">ໂຮງໂມ້ຫີນ</string>
     <string name="type.landuse.railway">ພື້ນທີ່ທາງລົດໄຟ</string>
     <string name="type.landuse.recreation_ground">ສະຖານທີ່ພັກຜ່ອນ</string>
-    <string name="type.landuse.reservoir">ອ່າງເກັບນໍ້າ</string>
     <string name="type.landuse.residential">ເຂດທີ່ພັກອາໄສ</string>
     <string name="type.landuse.retail">ເຂດຂາຍຍ່ອຍ</string>
     <string name="type.landuse.salt_pond">ນາເກືອ</string>
@@ -656,6 +656,7 @@
     <string name="type.leisure.ice_rink">ລານສະເກັດນໍ້າແຂງ</string>
     <string name="type.leisure.marina">ທ່າຈອດເຮືອສຳລານ</string>
     <string name="type.leisure.nature_reserve">ເຂດສະຫງວນທຳມະຊາດ</string>
+    <string name="type.leisure.bird_hide">ບ່ອນສັງເກດນົກ</string>
     <string name="type.leisure.outdoor_seating">ບ່ອນນັ່ງກາງແຈ້ງ</string>
     <string name="type.leisure.firepit">ກອງໄຟ</string>
     <string name="type.leisure.park">ສວນສາທາລະນະ</string>
@@ -742,10 +743,13 @@
     <string name="type.natural.water.reservoir">ອ່າງເກັບນໍ້າ</string>
     <string name="type.natural.water.basin">ແອ່ງນໍ້າ</string>
     <string name="type.natural.water.river">ແມ່ນໍ້າ</string>
+    <string name="type.natural.water.intermittent">ແຫຼ່ງນ້ຳຊົ່ວຄາວ</string>
     <string name="type.natural.land">ພື້ນດິນ</string>
     <string name="type.natural.meadow">ທົ່ງຫຍ້າ</string>
     <string name="type.natural.orchard">ສວນໝາກໄມ້</string>
     <string name="type.natural.peak">ຈອມພູ</string>
+    <string name="type.natural.hill">ພູ</string>
+    <string name="type.natural.arch">Rock Arch</string>
     <string name="type.natural.saddle">ກິ່ວພູ</string>
     <string name="type.natural.rock">ໂງ່ນຫີນ</string>
     <string name="type.natural.scrub">ປ່າເລົ່າ</string>
@@ -1414,6 +1418,7 @@
     <string name="type.self_service.no">ບໍ່ມີບໍລິການຕົນເອງ</string>
     <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
     <string name="type.amenity.social_facility">ສິ່ງອຳນວຍຄວາມສະດວກທາງສັງຄົມ</string>
+    <string name="type.amenity.stage">ເວທີ</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
     <string name="type.emergency.emergency_ward_entrance">ທາງເຂົ້າແຜນກສຸກເສີນ</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->

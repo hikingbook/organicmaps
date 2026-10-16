@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import app.organicmaps.MwmActivity;
 import app.organicmaps.R;
 import app.organicmaps.maplayer.MapButtonsViewModel;
 import app.organicmaps.sdk.bookmarks.data.MapObject;
@@ -369,15 +370,31 @@ public class SearchFragmentController extends Fragment implements SearchFragment
   }
 
   @Override
+  public void onQuerySubmitted()
+  {
+    showSearchSheet(BottomSheetBehavior.STATE_COLLAPSED);
+  }
+
+  @Override
   public void closeSearch()
   {
     hideSearchSheet();
+  }
+
+  @Override
+  public void onChooseOnMapClicked()
+  {
+    // Closes the search sheet on its way in; the pending POI pick survives and the crosshair commits into it.
+    ((MwmActivity) requireActivity()).showPositionChooserForRoutePoint();
   }
 
   // The sheet is kept non-hideable while visible so a swipe can't dismiss it. Re-enable hideable here so
   // this programmatic close is the only path to STATE_HIDDEN (setState(HIDDEN) is rejected when !hideable).
   private void hideSearchSheet()
   {
+    // Dismiss the keyboard on every programmatic close path (X button, back, place page, forceCloseSearchFragment).
+    // Otherwise the IME inset lingers and the routing panel re-appearing underneath gets pushed down by it.
+    InputUtils.hideKeyboard(mSearchPageContainer);
     mBottomSheetBehavior.setHideable(true);
     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
   }

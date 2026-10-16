@@ -120,7 +120,7 @@
     <string name="category_hotel">Hotel</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">Obiective turistice</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">Divertisment</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">Bancomat</string>
@@ -142,7 +142,7 @@
     <string name="category_police">Poliția</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Reciclare</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">Apă</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">Pentru rulote</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">Opțiunile pentru stocarea hărților sunt dezactivate în acest moment.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">Harta este în curs de descărcare.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Poți vedea poziția mea pe harta Organic Maps! %1$s sau %2$s Nu ai descărcat aplicația? O poți descărca de aici: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">Poți vedea locul meu preferat pe harta Organic Maps!</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Poți vedea poziția mea pe harta Organic Maps!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Bună,\n\nAcum sunt aici: %1$s. Apasă pe adresa %2$s sau pe %3$s pentru a vedea locul pe hartă.\n\nMulțumesc.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Trimite</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s pe Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">Un loc pe Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">E-mail</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">Exemple</string>
     <string name="editor_correct_mistake">Corectare greșeală</string>
     <string name="editor_add_select_location">Selectați locația</string>
-    <string name="editor_report_problem_desription_1">Descrie problema în detaliu, astfel încât comunitatea OpenStreetMap să poată remedia eroarea.</string>
-    <string name="editor_report_problem_desription_2">Sau corecteaz-o tu pe https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Trimite</string>
-    <string name="editor_report_problem_title">Problemă</string>
-    <string name="editor_report_problem_no_place_title">Acest loc nu există</string>
-    <string name="editor_report_problem_under_construction_title">Închis pentru întreținere</string>
-    <string name="editor_report_problem_duplicate_place_title">Loc duplicat</string>
     <string name="autodownload">Descărcare automată</string>
     <!-- Place Page opening hours text -->
     <string name="daily">Zilnic</string>
     <string name="twentyfour_seven">24/7</string>
     <string name="day_off_today">Închis astăzi</string>
     <string name="day_off">Închis</string>
+    <string name="midnight">Miezul nopții</string>
+    <string name="noon">Amiază</string>
     <string name="today">Azi</string>
     <string name="opens_in">Deschide în %s</string>
     <string name="closes_in">Închide în %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">Așa cum este scris în limba locală</string>
     <string name="editor_edit_place_category_title">Categorie</string>
-    <string name="detailed_problem_description">Descriere detaliată a problemei</string>
-    <string name="editor_report_problem_other_title">Altă problemă</string>
     <string name="placepage_add_business_button">Adaugă o firmă</string>
     <string name="message_invalid_feature_position">Niciun obiect nu poate fi poziționat aici</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">z</string>
     <string name="second">s</string>
     <string name="placepage_more_button">Mai mult</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">Modifică locul preferat</string>
     <string name="placepage_personal_notes_hint">Însemnări personale (text sau html)</string>
     <string name="editor_comment_hint">Comentariu…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">Internetul mobil este necesar pentru a afișa informații detaliate despre locuri generale și cele preferate.</string>
     <string name="mobile_data_option_never">Nu utiliza niciodată</string>
     <string name="mobile_data_option_ask">Întreabă întotdeauna</string>
-    <string name="traffic_update_maps_text">Pentru a afișa datele privind traficul, hărțile trebuie actualizate.</string>
     <string name="big_font">Mărește dimensiunea literelor pe hartă</string>
-    <string name="traffic_update_app">Actualizează Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">Datele privind traficul nu sunt disponibile</string>
     <string name="enable_logging">Activează jurnalizarea</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Părere generală</string>
@@ -582,6 +568,7 @@
     <string name="planning_route_manage_route">Gestionare traseu</string>
     <string name="button_plan">Planifică</string>
     <string name="placepage_remove_stop">Scoateți opritorul</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
     <string name="placepage_add_stop">Adaugă oprire</string>
     <string name="drag_to_reorder">Reordonare</string>
     <string name="saved">Salvat</string>
@@ -667,10 +654,14 @@
     <!-- Settings/Bookmark Text Placement -->
     <string name="bookmarks_text_placement_title">Nume de marcaje pe hartă</string>
     <string name="bookmarks_text_placement_description">Dacă există prea multe marcaje, afișarea numelor acestora pe hartă poate încetini aplicația.</string>
-    <string name="show_to_the_right">Arată la dreapta</string>
-    <string name="show_at_the_bottom">Afișare în partea de jos</string>
+    <string name="show_to_the_right">Afișează în partea dreaptă</string>
+    <string name="show_at_the_bottom">Afișează în partea de jos</string>
     <string name="enable_logging_warning_message">Opțiunea activează jurnalizarea în scopuri de diagnosticare. Aceasta poate fi utilă echipei noastre pentru a rezolva problemele cu aplicația. Activează temporar această opțiune pentru a înregistra și a ne trimite jurnale detaliate despre problema ta.</string>
     <string name="driving_options_title">Opțiuni de ocolire</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">Optimizarea traseului</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">Reordonează automat opririle intermediare pentru a crea un traseu mai eficient.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Evitați drumurile cu taxă</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -751,6 +742,12 @@
     <string name="medicine">Farmacii</string>
     <string name="search_in_the_list">Caută în listă</string>
     <string name="religious_places">Locuri sfinte</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">Selectează</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">Selectează tot</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">Deselectează tot</string>
     <string name="select_list">Alege lista</string>
     <string name="button_layer_isolines">Înălțimi</string>
     <string name="isolines_activation_error_dialog">Pentru a activa și utiliza stratul topografic actualizează sau descarcă harta zonei</string>
@@ -835,15 +832,14 @@
     <string name="pref_tts_no_system_tts">Nu au fost găsite setările de sinteză vocală, sunteți sigur că dispozitivul dvs. le acceptă?</string>
     <string name="drive_through">Servire în mașină</string>
     <string name="clear_the_search">Ștergeți căutarea</string>
-    <string name="zoom_in">A mari</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
-    <string name="zoom_out">A micsora</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
+    <string name="zoom_in">Mărire</string>
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
+    <string name="zoom_out">Micșorare</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">Legătura de meniu</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Vezi meniul</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">Deschidere în altă aplicație</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Autoservire</string>
     <string name="select_option">Selectați opțiunea</string>
@@ -878,6 +874,30 @@
     <string name="share_track">Partajează traseul</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Ștergeți %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="one">Selectat: %d</item>
+        <item quantity="few">Selectate: %d</item>
+        <item quantity="other">Selectate: %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="one">Ștergeți %d element?</item>
+        <item quantity="few">Ștergeți %d elemente?</item>
+        <item quantity="other">Ștergeți %d de elemente?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">Mută</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">Schimbă culoarea</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">Ascundeți traseul</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">Afișează traseul</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">Tu</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -906,4 +926,22 @@
     <string name="color_picker_grid">Grilă</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">Căutare vocală</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">Alege pe hartă</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">Plecare</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">Destinație</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">Schimbă plecarea</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">Schimbă destinația</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">Schimbă oprirea</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">S-a atins numărul maxim de opriri</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">Deplasați și măriți/micșorați harta pentru a poziționa crucea</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">Oprire și salvare</string>
 </resources>

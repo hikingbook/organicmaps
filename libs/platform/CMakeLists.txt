@@ -29,6 +29,7 @@ set(SRC
   http_request.hpp
   http_uploader.hpp
   http_uploader_background.hpp
+  languages.hpp
   local_country_file.cpp
   local_country_file.hpp
   local_country_file_utils.cpp
@@ -163,6 +164,7 @@ else() # neither iPhone nor Android
       http_uploader_background_dummy.cpp
       locale_std.cpp
       platform_linux.cpp
+      platform_linux_migration.hpp
       platform_unix_impl.cpp
       platform_unix_impl.hpp
       secure_storage_qt.cpp

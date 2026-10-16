@@ -120,7 +120,7 @@
     <string name="category_hotel">Khách sạn</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">Điểm tham quan</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">Giải trí</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">ATM</string>
@@ -142,7 +142,7 @@
     <string name="category_police">Cảnh sát</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Tái chế rác thải</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">Nước</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">Đối với RV</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">Rất tiếc, cài đặt Lưu trữ Bản đồ hiện đã bị tắt.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">Hiện đang tải xuống quốc gia.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Này, hãy xem vị trí hiện tại của tôi tại Organic Maps! %1$s hoặc %2$s Bạn không có bản đồ ngoại tuyến? Tải xuống tại đây: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">Này, hãy xem ghim của tôi tại Organic Maps map</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Này, hãy xem vị trí hiện tại của tôi tại Organic Maps map!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Chào,\n\nTôi hiện đang ở đây: %1$s. Hãy nhấn vào liên kết này %2$s hoặc liên kết này %3$s để xem địa điểm trên bản đồ.\n\nCám ơn.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Chia sẻ</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s trên Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">Một địa điểm trên Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">Email</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">Giá trị ví dụ</string>
     <string name="editor_correct_mistake">Sửa lỗi</string>
     <string name="editor_add_select_location">Chọn vị trí</string>
-    <string name="editor_report_problem_desription_1">Xin mô tả chi tiết vấn đề để cộng đồng OpenStreetMap có thể sửa lỗi đó.</string>
-    <string name="editor_report_problem_desription_2">Hoặc bạn có thể tự sửa tại https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Gửi</string>
-    <string name="editor_report_problem_title">Vấn đề</string>
-    <string name="editor_report_problem_no_place_title">Địa điểm này không tồn tại</string>
-    <string name="editor_report_problem_under_construction_title">Tạm dừng để bảo trì</string>
-    <string name="editor_report_problem_duplicate_place_title">Địa điểm trùng lặp</string>
     <string name="autodownload">Tự động tải về</string>
     <!-- Place Page opening hours text -->
     <string name="daily">Hàng ngày</string>
     <string name="twentyfour_seven">ngày và đêm</string>
     <string name="day_off_today">Nghỉ hôm nay</string>
     <string name="day_off">Ngày nghỉ</string>
+    <string name="midnight">Nửa đêm</string>
+    <string name="noon">Trưa</string>
     <string name="today">Hôm nay</string>
     <string name="opens_in">Mở trong %s</string>
     <string name="closes_in">Đóng trong %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">Vì nó được viết bằng ngôn ngữ địa phương</string>
     <string name="editor_edit_place_category_title">Thể loại</string>
-    <string name="detailed_problem_description">Mô tả chi tiết của vấn đề</string>
-    <string name="editor_report_problem_other_title">Một vấn đề khác</string>
     <string name="placepage_add_business_button">Thêm tổ chức</string>
     <string name="message_invalid_feature_position">Một đối tượng không thể đặt được ở đây</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">ngày</string>
     <string name="second">giây</string>
     <string name="placepage_more_button">Bổ sung</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">Sửa Dấu Trang</string>
     <string name="placepage_personal_notes_hint">Ghi chú cá nhân (văn bản hoặc html)</string>
     <string name="editor_comment_hint">Nhận xét…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">Internet di động là cần thiết để hiển thị thông tin chi tiết về các nơi, ví dụ như ảnh chụp, giá cả và đánh giá.</string>
     <string name="mobile_data_option_never">Không bao giờ sử dụng</string>
     <string name="mobile_data_option_ask">Luôn Hỏi</string>
-    <string name="traffic_update_maps_text">Để hiển thị dữ liệu giao thông, cần cập nhật bản đồ.</string>
     <string name="big_font">Tăng kích cỡ phông chữ trên bản đồ</string>
-    <string name="traffic_update_app">Vui lòng cập nhật Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">Dữ liệu giao thông không khả dụng</string>
     <string name="enable_logging">Bật nhật ký</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Phản hồi chung</string>
@@ -582,6 +568,7 @@
     <string name="planning_route_manage_route">Quản lý lộ trình</string>
     <string name="button_plan">Kế hoạch</string>
     <string name="placepage_remove_stop">Xóa điểm dừng</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
     <string name="placepage_add_stop">Thêm điểm dừng</string>
     <string name="drag_to_reorder">Sắp xếp lại</string>
     <string name="saved">Đã lưu</string>
@@ -669,6 +656,10 @@
     <string name="show_at_the_bottom">Hiển thị ở phía dưới</string>
     <string name="enable_logging_warning_message">Tùy chọn này được kích hoạt để ghi nhật ký đăng nhập cho mục đích chẩn đoán. Điều này sẽ giúp nhóm chúng tôi làm rõ các vấn đề liên quan đến ứng dụng. Hãy bật tùy chọn này chỉ khi nào có yêu cầu hỗ trợ từ Organic Maps.</string>
     <string name="driving_options_title">Thiết lập đi vòng</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">Tối ưu hóa tuyến đường</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">Tự động sắp xếp lại các điểm dừng trung gian để tạo tuyến đường hiệu quả hơn.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Tránh đường thu phí</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -749,6 +740,12 @@
     <string name="medicine">Y tế</string>
     <string name="search_in_the_list">Tìm trong danh sách</string>
     <string name="religious_places">Những nơi tôn nghiêm</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">Chọn</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">Chọn tất cả</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">Bỏ chọn tất cả</string>
     <string name="select_list">Chọn danh sách</string>
     <string name="button_layer_isolines">Độ cao</string>
     <string name="isolines_activation_error_dialog">Để sử dụng các đường chỉ độ cao, hãy cập nhật hoặc tải xuống bản đồ của khu vực bạn mong muốn</string>
@@ -833,15 +830,14 @@
     <string name="pref_tts_no_system_tts">Không tìm thấy cài đặt Tổng hợp giọng nói, bạn có chắc thiết bị của mình hỗ trợ nó không?</string>
     <string name="drive_through">Lái xe qua</string>
     <string name="clear_the_search">Xóa tìm kiếm</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_in">Phóng to</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_out">Thu nhỏ</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">Liên kết thực đơn</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Xem thực đơn</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">Mở trong ứng dụng khác</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Tự phục vụ</string>
     <string name="select_option">Chọn tùy chọn</string>
@@ -854,7 +850,7 @@
     <!-- Prompt for stopping a track recording. -->
     <string name="stop_track_recording">Dừng ghi âm đường đi</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
-    <string name="track_recording_title">Ghi âm hành trình</string>
+    <string name="track_recording_title">Ghi lại hành trình</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
     <string name="stop_without_saving">Dừng mà không lưu</string>
     <!-- Title for the "Stop Without Saving" action for the alert when saving a track recording. -->
@@ -876,6 +872,26 @@
     <string name="share_track">Chia sẻ lộ trình</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Xóa %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="other">Đã chọn %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="other">Xóa %d mục?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">Di chuyển</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">Thay đổi màu sắc</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">Ẩn tuyến đường</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">Hiển thị tuyến đường</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">Bạn</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -904,4 +920,22 @@
     <string name="color_picker_grid">Lưới</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">Tìm kiếm bằng giọng nói</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">Chọn trên bản đồ</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">Điểm đi</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">Điểm đến</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">Đổi điểm đi</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">Đổi điểm đến</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">Đổi điểm dừng</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">Đã đạt đến số điểm dừng tối đa</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">Di chuyển và thu phóng bản đồ để đặt dấu thập</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">Dừng và lưu</string>
 </resources>

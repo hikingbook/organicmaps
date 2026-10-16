@@ -115,7 +115,7 @@
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
 "category_tourism" = "Sights";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. */
 "category_entertainment" = "Arruelu";
 
 /* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
@@ -148,7 +148,7 @@
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "Reciclaxe";
 
-/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. */
 "category_water" = "Water";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
@@ -174,11 +174,23 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "Your location hasn't been determined yet";
 
-/* Subject for emailed bookmark */
-"bookmark_share_email_subject" = "Hey, check out my pin in Organic Maps!";
+/* Text shown before a shared "my position" link, and the email subject when sharing the current location. */
+"share_my_position" = "Toi equí en Organic Maps";
 
-/* Subject for emailed position */
-"my_position_share_email_subject" = "Hey, check out my current location on the Organic Maps map!";
+/* Email subject when sharing a place. %1$@ is the place name or address. */
+"share_place_subject" = "%1$@ n’Organic Maps";
+
+/* Email subject when sharing a place that has no name or address. */
+"share_place_subject_default" = "Un llugar n’Organic Maps";
+
+/* Shared email link text; opens the shared place in Organic Maps or in a web browser. */
+"share_open_in_om_or_browser" = "Abrir n’Organic Maps o nun restolador";
+
+/* Shared email link text; leads to the Organic Maps download page. */
+"share_get_om" = "Consiguir Organic Maps";
+
+/* Title for the "Open in Another App" button on the PlacePage; also shared email link text: opens the shared place in another (geo:) maps app. */
+"open_in_app" = "Abrir n’otra aplicación";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "Email";
@@ -195,6 +207,7 @@
 /* Length of track in cell that describes route */
 "length" = "Llonxitú";
 "share_my_location" = "Compartir el mio allugamientu";
+"prefs_group_network" = "Rede";
 "prefs_group_route" = "Navigation";
 
 /* Setting name which enables or disables zoom buttons on the map screen. */
@@ -251,8 +264,14 @@
 /* Settings «Navigation» category: «Voice language» footer */
 "pref_tts_download_voices_description" = "Pa descargar una voz de meyor calidá, abre l'app Axustes y ve a Accesibilidá → VoiceOver → Voz → Voz.";
 
-/* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "Probar indicaciones de voz (TTS, Text-To-Speech)";
+/* Header above Apple's group of novelty text-to-speech voices (Bells, Bubbles, Zarvox...), shown after the regional voice sections and Eloquence group. Use Apple's term for this group from Settings > Accessibility > VoiceOver > Speech. */
+"pref_tts_voice_group_novelty" = "Novelty";
+
+/* Accessibility label of the button that plays a sample of a text-to-speech voice. */
+"pref_tts_voice_preview_play" = "Play sample";
+
+/* Accessibility label of the button that stops the sample of a text-to-speech voice being played. */
+"pref_tts_voice_preview_stop" = "Stop sample";
 "pref_map_auto_zoom" = "Auto zoom";
 "placepage_distance" = "Distancia";
 "search_show_on_map" = "Ver nel mapa";
@@ -388,9 +407,6 @@
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
 "pref_appearance_dark" = "Escuru";
 
-/* Title for "Other" section in TTS settings. */
-"pref_tts_other_section_title" = "Other";
-
 /* Tex label above the Donate button */
 "donate_description" = "¡Regala mapes gratis y ensin anuncios a millones d'usuarios!";
 
@@ -408,9 +424,6 @@
 
 /* Alert title */
 "email_error_title" = "Error sending email";
-
-/* Settings item title */
-"pref_calibration_title" = "Calibración de la brúxula";
 
 /* Downloaded maps category */
 "downloader_available_maps" = "Available";
@@ -509,6 +522,8 @@
 "twentyfour_seven" = "24/7";
 "day_off_today" = "Closed today";
 "day_off" = "Closed";
+"midnight" = "Medianueche";
+"noon" = "Mediudía";
 "today" = "Güei";
 "opens_in" = "Opens in %@";
 "closes_in" = "Closes in %@";
@@ -567,7 +582,7 @@
 "editor_storey_number" = "Number of floors (maximum of %d)";
 
 /* Error message in Editor when a user tries to set the number of floors for a building higher than %d floors */
-"error_enter_correct_storey_number" = "The number of floors must non exceed %d";
+"error_enter_correct_storey_number" = "The number of floors must not exceed %d";
 "editor_zip_code" = "Códigu postal";
 "error_enter_correct_zip_code" = "Enter a valid ZIP code";
 
@@ -592,9 +607,6 @@
 "day" = "d";
 "second" = "s";
 "placepage_more_button" = "Más";
-
-/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
-"placepage_edit_bookmark_button" = "Editar marcador";
 "placepage_personal_notes_hint" = "Notes personales (testu o HTML)";
 "editor_comment_hint" = "Comentariu…";
 "editor_reset_edits_message" = "Discard all local changes?";
@@ -642,6 +654,8 @@
 "planning_route_manage_route" = "Manage Route";
 "button_plan" = "Plan";
 "placepage_remove_stop" = "Desaniciar parada";
+
+/* Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. */
 "placepage_add_stop" = "Amestar parada";
 "saved" = "Guardáu";
 "error_enter_correct_name" = "Please enter a correct name";
@@ -661,6 +675,9 @@
 "bookmarks_error_title_list_name_already_taken" = "This name is already taken";
 "profile" = "Perfil d’OpenStreetMap";
 "restore" = "Restore";
+
+/* Settings privacy group in settings screen */
+"privacy" = "Privacidá";
 "privacy_policy" = "Privacy policy";
 "terms_of_use" = "Terms of use";
 
@@ -714,6 +731,12 @@
 "show_at_the_bottom" = "Show at the bottom";
 "enable_logging_warning_message" = "Enable this option temporarily to record and manually send detailed diagnostic logs about your issue to us using \"Report a bug\" in the Help dialog. Logs may include location info.";
 "driving_options_title" = "Opciones d’encaminamientu";
+
+/* Routing setting that automatically reorders intermediate stops */
+"route_optimization" = "Optimización de la ruta";
+
+/* Explains that route optimization automatically reorders intermediate stops */
+"route_optimization_description" = "Reordena automáticamente les paraes intermedies pa crear una ruta más eficiente.";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "Avoid tolls";
@@ -822,7 +845,6 @@
 "location_services_disabled_on_device_3" = "3. Select Location Services";
 "location_services_disabled_on_device_4" = "4. Turn on Location Services";
 "location_services_disabled_on_device_additional_message" = "Or continue using Organic Maps without Location";
-"book_button" = "Book";
 "placepage_call_button" = "Call";
 "placepage_bookmark_name_hint" = "Bookmark Name";
 "placepage_delete_bookmark_button" = "Delete Bookmark";
@@ -833,9 +855,6 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Disable recording of your recently travelled route?";
 "off_recent_track_background_button" = "Disable";
-
-/* For sharing via SMS and so on */
-"sharing_call_action_look" = "Check out";
 "recent_track_background_dialog_message" = "Organic Maps uses your location in the background to record your recently travelled route.";
 "general_settings" = "General settings";
 
@@ -864,12 +883,6 @@
 "popular_place" = "Popular";
 "hide_from_map" = "Hide from map";
 "tags_loading_error_subtitle" = "An error occurred while loading tags, please try again";
-
-/* Position of the name label on the map relative to the bookmark pin (on the right) */
-"right" = "Right";
-
-/* Position of the name label on the map relative to the bookmark pin (at the bottom) */
-"bottom" = "Bottom";
 "trip_start" = "¡Vamos!";
 "pick_destination" = "Destination";
 "follow_my_position" = "Re-center";
@@ -918,6 +931,15 @@
 "medicine" = "Medicine";
 "search_in_the_list" = "Guetar na llista";
 "religious_places" = "Llugares relixosos";
+
+/* Button that starts multi-selection in a bookmark list. */
+"select" = "Esbillar";
+
+/* Action that selects every bookmark and track in a bookmark list. */
+"select_all" = "Esbillar too";
+
+/* Action that clears the multi-selection in a bookmark list. */
+"deselect_all" = "Desesbillar too";
 "transit_not_found" = "La navegación per metro nesta rexón tovía nun ta disponible";
 "dialog_pedestrian_route_is_long_header" = "No subway route found";
 "dialog_pedestrian_route_is_long_message" = "Please choose a start or end point closer to a subway station";
@@ -995,11 +1017,14 @@
 "bookmarks_export" = "Esportar tolos marcadores y trayeutos";
 "drive_through" = "Serviciu dende’l coche";
 
+/* Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_in" = "Zoom in";
+
+/* Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_out" = "Zoom out";
+
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Menu Link";
-
-/* Title for the "Open in Another App" button on the PlacePage. */
-"open_in_app" = "Abrir n’otra aplicación";
 
 /* To indicate if the place proposed self service… */
 "self_service" = "Autoserviciu";
@@ -1052,6 +1077,12 @@
 /* Text for the editing the Track's color button. */
 "change_color" = "Change Color";
 
+/* Text for the hiding track. */
+"hide_track" = "Hide track";
+
+/* Text for the showing track. */
+"show_track" = "Show track";
+
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Mapa";
 
@@ -1070,7 +1101,7 @@
 /* Message for the "iCloud is Disabled" alert. */
 "icloud_disabled_message" = "Please enable iCloud in your device's settings to use this feature.";
 
-/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+/* Action button that enables a disabled feature, such as iCloud synchronization or location services. */
 "enable" = "Enable";
 
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
@@ -1167,3 +1198,27 @@
 
 /* Toast message shown when track colors are changed in category settings */
 "toast_tracks_color_changed" = "Tracks color changed";
+
+/* Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair */
+"choose_on_map" = "Choose on map";
+
+/* Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_start_location" = "Start point";
+
+/* Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_destination" = "Destination";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_start_location" = "Change start";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_destination" = "Change destination";
+
+/* Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_stop_along_route" = "Change stop";
+
+/* Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number */
+"routing_max_stops_reached" = "Maximum number of stops reached";
+
+/* Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it */
+"choose_point_on_map_hint" = "Move and zoom the map to place the cross";

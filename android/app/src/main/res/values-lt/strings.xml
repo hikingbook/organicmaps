@@ -120,7 +120,7 @@
     <string name="category_hotel">Viešbutis</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">Lankytina vieta</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">Pramogos</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">Bankomatas</string>
@@ -142,7 +142,7 @@
     <string name="category_police">Policija</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Antrinės žaliavos</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">Vanduo</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">Kemperių aptarnavimas</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">Deja, šiuo metu žemėlapio saugyklos nustatymai negalimi.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">Vyksta žemėlapio atsiuntimas.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Pažiūrėk, kur dabar esu „Organic Maps“ autonominių žemėlapių programėlėje! %1$s arba %2$s . Neturi jos? Atsisiųsk čia: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">Labas, pažvelk, ką aš pasižymėjau „Organic Maps“ žemėlapyje!</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Žvilgtelk, kur dabar esu, „Organic Maps“ žemėlapyje!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Labas, \n\nŠiuo metu esu čia: %1$s. Spustelėk čia: %2$s, arba čia: %3$s, kad pamatytum šią vietą žemėlapyje. \n \nAčiū.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Bendrinti</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s per „Organic Maps“</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">Vieta per „Organic Maps“</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">El. paštas</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">Reikšmių pavyzdžiai</string>
     <string name="editor_correct_mistake">Taisyti klaidą</string>
     <string name="editor_add_select_location">Pasirinkite vietą</string>
-    <string name="editor_report_problem_desription_1">Išsamiai aprašykite problemą, kad „OpenStreetMap“ bendruomenę galėtų ištaisyti klaidą.</string>
-    <string name="editor_report_problem_desription_2">Arba atlikite tai patys svetainėje https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Siųsti</string>
-    <string name="editor_report_problem_title">Problema</string>
-    <string name="editor_report_problem_no_place_title">Vieta neegzistuoja</string>
-    <string name="editor_report_problem_under_construction_title">Uždaryta remontui</string>
-    <string name="editor_report_problem_duplicate_place_title">Vieta dubliuojasi</string>
     <string name="autodownload">Automatiškai atsiųsti žemėlapius</string>
     <!-- Place Page opening hours text -->
     <string name="daily">Kasdien</string>
     <string name="twentyfour_seven">24×7</string>
     <string name="day_off_today">Šiandien uždaryta</string>
     <string name="day_off">Uždaryta</string>
+    <string name="midnight">Vidurnaktis</string>
+    <string name="noon">Vidurdienis</string>
     <string name="today">Šiandien</string>
     <string name="opens_in">Atsidaro už %s</string>
     <string name="closes_in">Užsidaro už %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">Kaip rašoma vietos kalba</string>
     <string name="editor_edit_place_category_title">Kategorija</string>
-    <string name="detailed_problem_description">Išsamus problemos aprašymas</string>
-    <string name="editor_report_problem_other_title">Kita problema</string>
     <string name="placepage_add_business_button">Pridėti verslą</string>
     <string name="message_invalid_feature_position">Čia negalima talpinti jokių objektų</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">d</string>
     <string name="second">s</string>
     <string name="placepage_more_button">Išsamiau</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">Taisyti žymę</string>
     <string name="placepage_personal_notes_hint">Asmeninės pastabos (tekstas arba HTML)</string>
     <string name="editor_comment_hint">Komentaras…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">Pranešimams apie žemėlapių naujinius ir pataisų įkėlimui reikalingas mobilusis internetas.</string>
     <string name="mobile_data_option_never">Niekada nenaudoti</string>
     <string name="mobile_data_option_ask">Visada klausti</string>
-    <string name="traffic_update_maps_text">Jeigu norite matyti eismo duomenis, reikia atnaujinti žemėlapius.</string>
     <string name="big_font">Padidinti žemėlapio užrašų šrifto dydį</string>
-    <string name="traffic_update_app">Atnaujinkite „Organic Maps“</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">Eismo duomenys neprieinami</string>
     <string name="enable_logging">Įgalinti derinimo žurnalą</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Bendro pobūdžio atsiliepimas</string>
@@ -582,6 +568,7 @@
     <string name="planning_route_manage_route">Tvarkyti maršrutą</string>
     <string name="button_plan">Planas</string>
     <string name="placepage_remove_stop">Šalinti stotelę</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
     <string name="placepage_add_stop">Pridėti stotelę</string>
     <string name="drag_to_reorder">Pakeisti tvarką</string>
     <string name="saved">Įrašyta</string>
@@ -674,6 +661,10 @@
     <string name="show_at_the_bottom">Rodyti apačioje</string>
     <string name="enable_logging_warning_message">Įjunkite šią parinktį, jei norite kurį laiką rašyti derinimo žurnalą. Pasinaudodami mygtuku „Pranešti apie klaidą“, esančiu žinyno dialogo lange, galėsite pranešti apie problemą, pridėdami sukauptą žurnalą. Žurnaluose gali būti vietos duomenų.</string>
     <string name="driving_options_title">Maršruto apskaičiavimo parinktys</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">Maršruto optimizavimas</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">Automatiškai pertvarko tarpinius sustojimus, kad sukurtų efektyvesnį maršrutą.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Vengti mokamų kelių</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -754,6 +745,12 @@
     <string name="medicine">Medicina</string>
     <string name="search_in_the_list">Ieškoti sąraše</string>
     <string name="religious_places">Religinės vietos</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">Pasirinkti</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">Pasirinkti viską</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">Atšaukti pasirinkimą</string>
     <string name="select_list">Pasirinkite sąrašą</string>
     <string name="button_layer_isolines">Reljefas</string>
     <string name="isolines_activation_error_dialog">Atsisiųskite vietovės žemėlapį, jei norite aktyvinti ir naudoti reljefo sluoksnį</string>
@@ -848,15 +845,14 @@
     <string name="pref_tts_no_system_tts">Šnekos sintezės nustatymų modulis nerastas, ar esate tikri, kad jūsų įrenginys ją palaiko?</string>
     <string name="drive_through">Pravažiavimas</string>
     <string name="clear_the_search">Išvalyti paiešką</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_in">Pritraukti vaizdą</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_out">Atitraukti vaizdą</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">Nuoroda į meniu</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Peržiūrėti meniu</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">Atverti kitoje programėlėje</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Savitarna</string>
     <string name="select_option">Pasirinkite</string>
@@ -891,6 +887,30 @@
     <string name="share_track">Dalintis trasa</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Šalinti %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="one">Pasirinkta: %d</item>
+        <item quantity="few">Pasirinkta: %d</item>
+        <item quantity="other">Pasirinkta: %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="one">Ištrinti %d elementą?</item>
+        <item quantity="few">Ištrinti %d elementus?</item>
+        <item quantity="other">Ištrinti %d elementų?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">Perkelti</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">Keisti spalvą</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">Paslėpti trasą</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">Rodyti trasą</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">Jūs</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -919,4 +939,22 @@
     <string name="color_picker_grid">Tinklelis</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">Balso paieška</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">Pasirinkti žemėlapyje</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">Pradžia</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">Tikslas</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">Keisti pradžią</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">Keisti tikslą</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">Keisti stotelę</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">Pasiektas maksimalus stotelių skaičius</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">Slinkite ir keiskite žemėlapio mastelį, kad nustatytumėte kryžiuko padėtį</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">Stabdyti ir įrašyti</string>
 </resources>

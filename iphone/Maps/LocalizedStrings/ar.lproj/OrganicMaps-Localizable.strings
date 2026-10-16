@@ -115,7 +115,7 @@
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
 "category_tourism" = "سياحة";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. */
 "category_entertainment" = "تسلية";
 
 /* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
@@ -148,7 +148,7 @@
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "إعادة تدوير";
 
-/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. */
 "category_water" = "ماء";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
@@ -174,11 +174,23 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "لم يتم تحديد موقعك بعد";
 
-/* Subject for emailed bookmark */
-"bookmark_share_email_subject" = "مرحباً، تفقد الدبوس الخاص بي على خريطة Organic Maps!";
+/* Text shown before a shared "my position" link, and the email subject when sharing the current location. */
+"share_my_position" = "أنا هنا على Organic Maps";
 
-/* Subject for emailed position */
-"my_position_share_email_subject" = "مرحباً، تحقق من موقعي الحالي على خريطة Organic Maps!";
+/* Email subject when sharing a place. %1$@ is the place name or address. */
+"share_place_subject" = "%1$@ على Organic Maps";
+
+/* Email subject when sharing a place that has no name or address. */
+"share_place_subject_default" = "مكان على Organic Maps";
+
+/* Shared email link text; opens the shared place in Organic Maps or in a web browser. */
+"share_open_in_om_or_browser" = "افتح في Organic Maps أو في المتصفح";
+
+/* Shared email link text; leads to the Organic Maps download page. */
+"share_get_om" = "احصل على Organic Maps";
+
+/* Title for the "Open in Another App" button on the PlacePage; also shared email link text: opens the shared place in another (geo:) maps app. */
+"open_in_app" = "فتح في تطبيق آخر";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "البريد الالكتروني";
@@ -195,6 +207,7 @@
 /* Length of track in cell that describes route */
 "length" = "الطول";
 "share_my_location" = "مشاركة موقعي";
+"prefs_group_network" = "الشبكة";
 "prefs_group_route" = "الملاحة";
 
 /* Setting name which enables or disables zoom buttons on the map screen. */
@@ -251,8 +264,14 @@
 /* Settings «Navigation» category: «Voice language» footer */
 "pref_tts_download_voices_description" = "لتنزيل صوت بجودة أعلى، افتح تطبيق الإعدادات وانتقل إلى تسهيلات الاستخدام → VoiceOver → الكلام → الصوت.";
 
-/* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "اختبار الاتجاهات الصوتية (TTS، تحويل النص إلى كلام)";
+/* Header above Apple's group of novelty text-to-speech voices (Bells, Bubbles, Zarvox...), shown after the regional voice sections and Eloquence group. Use Apple's term for this group from Settings > Accessibility > VoiceOver > Speech. */
+"pref_tts_voice_group_novelty" = "Novelty";
+
+/* Accessibility label of the button that plays a sample of a text-to-speech voice. */
+"pref_tts_voice_preview_play" = "Play sample";
+
+/* Accessibility label of the button that stops the sample of a text-to-speech voice being played. */
+"pref_tts_voice_preview_stop" = "Stop sample";
 "pref_map_auto_zoom" = "تكبير تلقائي";
 "placepage_distance" = "المسافة";
 "search_show_on_map" = "مشاهدة على الخريطة";
@@ -388,9 +407,6 @@
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
 "pref_appearance_dark" = "داكن";
 
-/* Title for "Other" section in TTS settings. */
-"pref_tts_other_section_title" = "آخر";
-
 /* Tex label above the Donate button */
 "donate_description" = "اهْدِ خرائط مجانية بدون إعلانات لملايين المستخدمين!";
 
@@ -408,9 +424,6 @@
 
 /* Alert title */
 "email_error_title" = "حدث خطأ في إرسال البريد الإلكتروني";
-
-/* Settings item title */
-"pref_calibration_title" = "معايرة البوصلة";
 
 /* Downloaded maps category */
 "downloader_available_maps" = "متوفر";
@@ -509,6 +522,8 @@
 "twentyfour_seven" = "٢٤/٧(ليلاً ونهاراً)";
 "day_off_today" = "مغلق اليوم";
 "day_off" = "مغلق";
+"midnight" = "منتصف الليل";
+"noon" = "الظهر";
 "today" = "اليوم";
 "opens_in" = "يفتح بعد %@";
 "closes_in" = "يغلق في غضون %@";
@@ -592,9 +607,6 @@
 "day" = "يوم";
 "second" = "ث";
 "placepage_more_button" = "المزيد";
-
-/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
-"placepage_edit_bookmark_button" = "تحرير العلامة المرجعية";
 "placepage_personal_notes_hint" = "ملاحظات شخصية (نص أو html)";
 "editor_comment_hint" = "تعليق…";
 "editor_reset_edits_message" = "هل تريد مسح كافة التغييرات المحلية؟";
@@ -642,6 +654,8 @@
 "planning_route_manage_route" = "إدارة المسار";
 "button_plan" = "خطة";
 "placepage_remove_stop" = "إزالة نقطة توقف";
+
+/* Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. */
 "placepage_add_stop" = "إضافة نقطة توقف";
 "saved" = "حُفظت";
 "error_enter_correct_name" = "الرجاء إدخال اسم صحيح";
@@ -661,6 +675,9 @@
 "bookmarks_error_title_list_name_already_taken" = "هذا الاسم موجود سابقا";
 "profile" = "ملف الشخصي على خريطة الشارع المفتوحة";
 "restore" = "استعادة";
+
+/* Settings privacy group in settings screen */
+"privacy" = "خصوصية";
 "privacy_policy" = "سياسة الخصوصية";
 "terms_of_use" = "شروط الاستخدام";
 
@@ -714,6 +731,12 @@
 "show_at_the_bottom" = "اعرض في الأسفل";
 "enable_logging_warning_message" = "هذا الخيار يقوم ببدأ تسجيل سجلات التطبيق لإغراض التشخيصة. يمكن أن يكون مفيدًا لفريق الدعم الخاص بنا لحل المشاكل التي تواجهكم داخل التطبيق. قم بتفعيل هذا الخيار بشكل مؤقت فقط في حالة طلب الدعم من Organic Maps.";
 "driving_options_title" = "خيارات رسم المسار";
+
+/* Routing setting that automatically reorders intermediate stops */
+"route_optimization" = "تحسين المسار";
+
+/* Explains that route optimization automatically reorders intermediate stops */
+"route_optimization_description" = "يعيد ترتيب المحطات الوسيطة تلقائيًا لإنشاء مسار أكثر كفاءة.";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "تجنب الطرق ذات الرسوم";
@@ -822,7 +845,6 @@
 "location_services_disabled_on_device_3" = "3. حدد خدمات الموقع";
 "location_services_disabled_on_device_4" = "4. قم بتشغيل خدمات الموقع";
 "location_services_disabled_on_device_additional_message" = "أو استمر في استخدام Organic Maps بدون تحديد الموقع";
-"book_button" = "حجز";
 "placepage_call_button" = "اتصال";
 "placepage_bookmark_name_hint" = "اسم العلامة المرجعية";
 "placepage_delete_bookmark_button" = "حذف العلامة المرجعية";
@@ -833,9 +855,6 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "هل تريد تعطيل تسجيل مسارات سفرك؟";
 "off_recent_track_background_button" = "تعطيل";
-
-/* For sharing via SMS and so on */
-"sharing_call_action_look" = "اتطلع على";
 "recent_track_background_dialog_message" = "يستخدم Organic Maps موقعك الجغرافي في الخلفية لتسجيل مسار سفرك الأخير.";
 "general_settings" = "الإعدادات العامة";
 
@@ -864,12 +883,6 @@
 "popular_place" = "رائج";
 "hide_from_map" = "إخفاء من الخريطة";
 "tags_loading_error_subtitle" = "حدث خطأ أثناء تحميل العلامات ، يرجى المحاولة مرة أخرى";
-
-/* Position of the name label on the map relative to the bookmark pin (on the right) */
-"right" = "صحيح";
-
-/* Position of the name label on the map relative to the bookmark pin (at the bottom) */
-"bottom" = "القاع";
 "trip_start" = "هيا بنا";
 "pick_destination" = "جهة الوصول";
 "follow_my_position" = "العودة إلى الوسط";
@@ -918,6 +931,15 @@
 "medicine" = "دواء";
 "search_in_the_list" = "ابحث في القائمة";
 "religious_places" = "أماكن دينية";
+
+/* Button that starts multi-selection in a bookmark list. */
+"select" = "تحديد";
+
+/* Action that selects every bookmark and track in a bookmark list. */
+"select_all" = "تحديد الكل";
+
+/* Action that clears the multi-selection in a bookmark list. */
+"deselect_all" = "إلغاء تحديد الكل";
 "transit_not_found" = "التنقل باستخدام مترو الأنفاق في هذه المنطقة غير متاح حتى الآن";
 "dialog_pedestrian_route_is_long_header" = "لم يتم العثور على مسار مترو الأنفاق";
 "dialog_pedestrian_route_is_long_message" = "يرجى اختيار نقطة بداية أو نهاية أقرب لمحطة مترو الأنفاق";
@@ -995,11 +1017,14 @@
 "bookmarks_export" = "تصدير كافة الإشارات المرجعية والمسارات";
 "drive_through" = "خدمة من السيارة";
 
+/* Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_in" = "تكبير";
+
+/* Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_out" = "تصغير";
+
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "رابط القائمة";
-
-/* Title for the "Open in Another App" button on the PlacePage. */
-"open_in_app" = "فتح في تطبيق آخر";
 
 /* To indicate if the place proposed self service… */
 "self_service" = "الخدمة الذاتية";
@@ -1052,6 +1077,12 @@
 /* Text for the editing the Track's color button. */
 "change_color" = "غير اللون";
 
+/* Text for the hiding track. */
+"hide_track" = "إخفاء المسار";
+
+/* Text for the showing track. */
+"show_track" = "عرض المسار";
+
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "الخريطة";
 
@@ -1070,8 +1101,8 @@
 /* Message for the "iCloud is Disabled" alert. */
 "icloud_disabled_message" = "يرجى تمكين iCloud في إعدادات جهازك لاستخدام هذه الميزة.";
 
-/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
-"enable" = "يُمكَِن";
+/* Action button that enables a disabled feature, such as iCloud synchronization or location services. */
+"enable" = "تفعيل";
 
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
 "backup" = "دعم";
@@ -1167,3 +1198,27 @@
 
 /* Toast message shown when track colors are changed in category settings */
 "toast_tracks_color_changed" = "تم تغيير لون المسارات";
+
+/* Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair */
+"choose_on_map" = "اختر على الخريطة";
+
+/* Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_start_location" = "نقطة البداية";
+
+/* Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_destination" = "الوجهة";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_start_location" = "تغيير البداية";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_destination" = "تغيير الوجهة";
+
+/* Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_stop_along_route" = "تغيير نقطة التوقف";
+
+/* Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number */
+"routing_max_stops_reached" = "تم الوصول إلى الحد الأقصى لعدد نقاط التوقف";
+
+/* Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it */
+"choose_point_on_map_hint" = "حرك الخريطة وقم بتكبيرها أو تصغيرها لوضع الصليب";

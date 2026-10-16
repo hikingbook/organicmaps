@@ -718,7 +718,8 @@
 "type.junction.roundabout" = "Krožišče";
 "type.landuse" = "Raba zemljišč";
 "type.landuse.allotments" = "Vrtički";
-"type.landuse.basin" = "Bazen";
+"type.landuse.basin" = "Vodni bazen";
+"type.landuse.basin.intermittent" = "Občasni vodni bazen";
 "type.landuse.brownfield" = "Degradirano območje";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Kamnolom";
 "type.landuse.railway" = "Železniško območje";
 "type.landuse.recreation_ground" = "Rekreacijsko območje";
-"type.landuse.reservoir" = "Zadrževalnik";
 "type.landuse.residential" = "Stanovanjsko območje";
 "type.landuse.retail" = "Trgovsko območje";
 "type.landuse.salt_pond" = "Solni bazen";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Drsališče";
 "type.leisure.marina" = "Marina";
 "type.leisure.nature_reserve" = "Naravni rezervat";
+"type.leisure.bird_hide" = "Opazovalnica ptic";
 "type.leisure.outdoor_seating" = "Sedenje na prostem";
 "type.leisure.firepit" = "Kurišče";
 "type.leisure.park" = "Park";
@@ -870,12 +871,15 @@
 "type.natural.water.lock" = "Zapornica";
 "type.natural.water.pond" = "Ribnik";
 "type.natural.water.reservoir" = "Zadrževalnik";
-"type.natural.water.basin" = "Bazen";
+"type.natural.water.basin" = "Vodni bazen";
 "type.natural.water.river" = "Reka";
+"type.natural.water.intermittent" = "Občasna vodna površina";
 "type.natural.land" = "Zemljišče";
 "type.natural.meadow" = "Travnik";
 "type.natural.orchard" = "Sadovnjak";
 "type.natural.peak" = "Vrh";
+"type.natural.hill" = "Hrib";
+"type.natural.arch" = "Skalni lok";
 "type.natural.saddle" = "Gorsko sedlo";
 "type.natural.rock" = "Skala";
 "type.natural.scrub" = "Grmičevje";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Socialna ustanova";
+"type.amenity.stage" = "Oder";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Vhod v urgentni oddelek";

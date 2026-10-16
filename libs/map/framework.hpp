@@ -15,6 +15,7 @@
 #include "map/search_api.hpp"
 #include "map/search_mark.hpp"
 #include "map/selection_processor.hpp"
+#include "map/share.hpp"
 #include "map/track.hpp"
 #include "map/track_statistics.hpp"
 #include "map/traffic_manager.hpp"
@@ -281,6 +282,14 @@ public:
   void ShowBookmark(kml::MarkId id);
   void ShowBookmark(Bookmark const * bookmark);
   void ShowTrack(kml::TrackId trackId);
+  // Sets individual track visibility. Hiding the track that is currently shown in the
+  // Place Page also resets the selection so nothing stays selected on an invisible track.
+  void SetTrackVisibility(kml::TrackId trackId, bool visible);
+  // Deletes the track, closing the Place Page first if it currently shows this track.
+  void DeleteTrack(kml::TrackId trackId);
+  // Same for a whole multi-select batch. Call this rather than the EditSession method it wraps, so that the
+  // Place Page cleanup does not have to be repeated per platform.
+  void DeleteBookmarksAndTracks(kml::MarkIdCollection const & bookmarkIds, kml::TrackIdCollection const & trackIds);
   void ShowFeature(FeatureID const & featureId);
   void ShowBookmarkCategory(kml::MarkGroupId categoryId, bool animation = true);
 
@@ -347,7 +356,8 @@ public:
   void InvalidateRendering();
   void EnableDebugRectRendering(bool enabled);
 
-  void EnableChoosePositionMode(bool enable, bool enableBounds, m2::PointD const * optionalPosition);
+  void EnableChoosePositionMode(bool enable, bool enableBounds, m2::PointD const * optionalPosition,
+                                bool shouldChangeViewport = true);
   void BlockTapEvents(bool block);
 
   using TCurrentCountryChanged = std::function<void(storage::CountryId const &)>;
@@ -489,7 +499,8 @@ private:
   std::optional<RouteTransitSelection> m_routeTransitSelection;
 
 public:
-  // Moves viewport to the search result and taps on it.
+  // Stops location follow, opens the result's place page and centers the viewport
+  // without cancelling searches or clearing their marks.
   void SelectSearchResult(search::Result const & res, bool animation);
 
   // Highlights a public-transport route line on the map, using the current place page's feature
@@ -504,10 +515,10 @@ public:
   // Is called on PT PP close. Clears drape's transit scheme if ShowRouteTransit above was called before.
   void HideRouteTransitIfNeeded();
 
-  // Cancels all searches, stops location follow and then selects
-  // search result.
+  // Cancels all searches, then selects the result via SelectSearchResult.
   void ShowSearchResult(search::Result const & res, bool animation = true);
 
+  // Applies the search results viewport policy, see search::AdjustViewportToSearchResults().
   void UpdateViewport(search::Results const & results);
 
   void FillSearchResultsMarks(bool clear, search::Results const & results);
@@ -525,7 +536,7 @@ public:
   /// Converts between map-global and screen-pixel coordinates.
   m2::PointD GtoP(m2::PointD const & p) const;
 
-  /// @name For Desktop only.
+  /// @name Screen pixel to geo point conversions.
   /// @{
   m2::PointD PtoG(m2::PointD const & p) const;
   m2::PointD P3dtoG(m2::PointD const & p) const;
@@ -536,7 +547,9 @@ public:
 
   m2::PointD GetVisiblePixelCenter() const;
 
-  m2::PointD const & GetViewportCenter() const;
+  /// @returns Geo point under the visible viewport center: the pixel where the Add-Place crosshair
+  /// is drawn and the anchor that SetViewportCenter() matches its argument to.
+  m2::PointD GetViewportCenter() const;
   void SetViewportCenter(m2::PointD const & pt, int zoomLevel = -1, bool isAnim = true,
                          bool trackVisibleViewport = false);
 
@@ -630,7 +643,9 @@ private:
 
   static bool ParseAllTypesDebugCommand(search::SearchParams const & params);
 
-  void FillUserMarkInfo(UserMark const * mark, place_page::Info & outInfo);
+  /// @return false if @a outInfo was not filled (e.g. a stale track mark), so the caller should fall
+  /// back to the regular tap matching instead of activating an empty selection.
+  bool FillUserMarkInfo(UserMark const * mark, place_page::Info & outInfo);
   void FillApiMarkInfo(ApiMarkPoint const & api, place_page::Info & info) const;
   void FillSearchResultInfo(SearchMarkPoint const & smp, place_page::Info & info) const;
   void FillMyPositionInfo(place_page::Info & info, place_page::BuildInfo const & buildInfo) const;
@@ -647,6 +662,14 @@ private:
 
 public:
   search::ReverseGeocoder::Address GetAddressAtPoint(m2::PointD const & pt) const;
+
+  /// Builds the text shared for a place page object (a place, a bookmark or an unknown map point).
+  /// The address is reverse-geocoded when the place page has none.
+  share::Result GetShareData(place_page::Info const & info) const;
+  /// Builds the text shared for the current user position at |ll| (reverse-geocodes the address).
+  share::Result GetShareDataForMyPosition(ms::LatLon const & ll) const;
+  /// Builds the text shared for a bookmark by id (used when sharing straight from the bookmarks list).
+  share::Result GetShareDataForBookmark(kml::MarkId id) const;
 
   /// Delegates to SelectionProcessor::GetFeatureAtPoint.
   FeatureID GetFeatureAtPoint(m2::PointD const & mercator) const;
@@ -677,9 +700,6 @@ public:
                               double elapsedSeconds);
 
 public:
-  static std::string CodeGe0url(Bookmark const * bmk, bool addName);
-  static std::string CodeGe0url(double lat, double lon, double zoomLevel, std::string const & name);
-
   /// @name Api
   std::string GenerateApiBackUrl(ApiMarkPoint const & point) const;
   url_scheme::ParsedMapApi const & GetApiDataHolder() const { return m_parsedMapApi; }
@@ -838,7 +858,6 @@ public:
   std::string GetDonateUrl() const;
   bool CanShowCrowdfundingPromo() const;
   void DidShowDonationPage() const;
-  void DidPossiblyReturnFromDonationPage() const;
   // Only for testing purposes.
   void ResetDonations();
 

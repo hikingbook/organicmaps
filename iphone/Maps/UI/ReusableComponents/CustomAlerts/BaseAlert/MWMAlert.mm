@@ -89,10 +89,8 @@
   case routing::RouterResultCode::TransitRouteNotFoundTooLongPedestrian:
     return [MWMDefaultAlert routeNotFoundTooLongPedestrianAlert];
   case routing::RouterResultCode::RouteNotFoundRedressRouteError:
-  case routing::RouterResultCode::RouteNotFound:
-  case routing::RouterResultCode::InconsistentMWMandRoute: return [MWMDefaultAlert routeNotFoundAlert];
-  case routing::RouterResultCode::RouteFileNotExist:
-  case routing::RouterResultCode::FileTooOld: return [MWMDefaultAlert routeFileNotExistAlert];
+  case routing::RouterResultCode::RouteNotFound: return [MWMDefaultAlert routeNotFoundAlert];
+  case routing::RouterResultCode::FileTooOld: return [MWMDefaultAlert routeFileTooOldAlert];
   case routing::RouterResultCode::InternalError: return [MWMDefaultAlert internalRoutingErrorAlert];
   case routing::RouterResultCode::Cancelled:
   case routing::RouterResultCode::NoError:
@@ -102,9 +100,9 @@
   }
 }
 
-+ (MWMAlert *)incorrectFeaturePositionAlert
++ (MWMAlert *)incorrectFeaturePositionAlertWithOkBlock:(MWMVoidBlock)okBlock
 {
-  return [MWMDefaultAlert incorrectFeaturePositionAlert];
+  return [MWMDefaultAlert incorrectFeaturePositionAlertWithOkBlock:okBlock];
 }
 
 + (MWMAlert *)notEnoughSpaceAlert

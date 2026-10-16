@@ -719,6 +719,7 @@
 "type.landuse" = "Пољопривредно земљиште";
 "type.landuse.allotments" = "Парцела";
 "type.landuse.basin" = "Резервоар";
+"type.landuse.basin.intermittent" = "Повремени резервоар";
 "type.landuse.brownfield" = "Грађевинско земљиште";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Каменолом";
 "type.landuse.railway" = "Железничке просторије";
 "type.landuse.recreation_ground" = "Простор за рекреацију";
-"type.landuse.reservoir" = "Вештачко језеро";
 "type.landuse.residential" = "Стамбена зона";
 "type.landuse.retail" = "Пословна зона";
 "type.landuse.salt_pond" = "Слано језеро";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Клизалиште";
 "type.leisure.marina" = "Марина";
 "type.leisure.nature_reserve" = "Природни резерват";
+"type.leisure.bird_hide" = "Осматрачница за птице";
 "type.leisure.outdoor_seating" = "Седење на отвореном";
 "type.leisure.firepit" = "Firepit";
 "type.leisure.park" = "Парк";
@@ -869,13 +870,16 @@
 "type.natural.water.lake" = "Језеро";
 "type.natural.water.lock" = "Преводница";
 "type.natural.water.pond" = "Језерце";
-"type.natural.water.reservoir" = "Резервоар";
+"type.natural.water.reservoir" = "Акумулационо језеро";
 "type.natural.water.basin" = "Природни базен";
 "type.natural.water.river" = "Река";
+"type.natural.water.intermittent" = "Повремена водена површина";
 "type.natural.land" = "Земљиште";
 "type.natural.meadow" = "Ливада";
 "type.natural.orchard" = "Воћњак";
 "type.natural.peak" = "Врх";
+"type.natural.hill" = "Брдо";
+"type.natural.arch" = "Стенови лук";
 "type.natural.saddle" = "Планинско седло";
 "type.natural.rock" = "Камен";
 "type.natural.scrub" = "Шикара";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Социјална установа";
+"type.amenity.stage" = "Сцена";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Улаз у хитну помоћ";

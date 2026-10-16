@@ -120,7 +120,7 @@
     <string name="category_hotel">Готель</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">Пам’ятні місця</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">Розваги</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">Банкомат</string>
@@ -142,7 +142,7 @@
     <string name="category_police">Поліція</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">Переробка відходів</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">Вода</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">Для автобудинків</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">Вибачте, налаштування папки з мапами зараз недоступні.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">Зараз відбувається завантаження країни.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">Перегляньте моє поточне місцезнаходження в Organic Maps! %1$s або %2$s Не маєте офлайн мап? Завантажте їх тут: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">Поглянь на мою мітку на мапі Organic Maps!</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">Поглянь на моє поточне розташування на мапі Organic Maps!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">Привіт,\n\nЯ зараз тут: %1$s. Натисни на це посилання %2$s або на це посилання %3$s щоб побачити місце на мапі.\n\nДякую.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">Поділитись</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s в Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">Місце в Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">Ел. пошта</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">Приклади значень</string>
     <string name="editor_correct_mistake">Виправте помилку</string>
     <string name="editor_add_select_location">Виберіть місце розташування</string>
-    <string name="editor_report_problem_desription_1">Будь ласка, докладно опишіть проблему, щоб спільнота OpenStreetMap виправила помилку.</string>
-    <string name="editor_report_problem_desription_2">Або зробіть це самостійно на сайті https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">Надіслати</string>
-    <string name="editor_report_problem_title">Проблема</string>
-    <string name="editor_report_problem_no_place_title">Місця не існує</string>
-    <string name="editor_report_problem_under_construction_title">Зачинено на ремонт</string>
-    <string name="editor_report_problem_duplicate_place_title">Дублікат місця</string>
     <string name="autodownload">Автоматичне завантаження</string>
     <!-- Place Page opening hours text -->
     <string name="daily">Щоденно</string>
     <string name="twentyfour_seven">Цілодобово</string>
     <string name="day_off_today">Сьогодні не працює</string>
     <string name="day_off">Зачинено</string>
+    <string name="midnight">Північ</string>
+    <string name="noon">Полудень</string>
     <string name="today">Сьогодні</string>
     <string name="opens_in">Відкривається через %s</string>
     <string name="closes_in">Зачиняється через %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">Місцевою мовою</string>
     <string name="editor_edit_place_category_title">Категорія</string>
-    <string name="detailed_problem_description">Детальний опис проблеми</string>
-    <string name="editor_report_problem_other_title">Інші проблема</string>
     <string name="placepage_add_business_button">Додати організацію</string>
     <string name="message_invalid_feature_position">Об\'єкт не може перебувати в цьому місцезнаходженні</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">д</string>
     <string name="second">с</string>
     <string name="placepage_more_button">Ще</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">Редагувати мітку</string>
     <string name="placepage_personal_notes_hint">Примітка (текст чи html)</string>
     <string name="editor_comment_hint">Коментар…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">Використання мобільних даних необхідно для сповіщень про оновлення мапи та для відображення докладної інформації про місця та мітки.</string>
     <string name="mobile_data_option_never">Ніколи</string>
     <string name="mobile_data_option_ask">Завжди питати</string>
-    <string name="traffic_update_maps_text">Для відображення інформації про трафік необхідно оновити мапи.</string>
     <string name="big_font">Збільшити розмір шрифту на мапі</string>
-    <string name="traffic_update_app">Будь ласка, встановіть оновлення Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">Дані про трафік недоступні</string>
     <string name="enable_logging">Включити логіювання</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">Загальний відгук</string>
@@ -582,6 +568,7 @@
     <string name="planning_route_manage_route">Редагування маршруту</string>
     <string name="button_plan">Маршрут</string>
     <string name="placepage_remove_stop">Видалити зупинку</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
     <string name="placepage_add_stop">Додати зупинку</string>
     <string name="drag_to_reorder">Змінити порядок</string>
     <string name="saved">Збережено</string>
@@ -678,6 +665,10 @@
     <string name="show_at_the_bottom">Показати внизу</string>
     <string name="enable_logging_warning_message">Дана опція вмикається для логування дій з метою діагностики. Це допомагає команді виявити проблеми з додатком. Тимчасово включайте цю настройку тільки для відправки детальної інформації про знайдену вами проблему в додатку через кнопку \"Сповістити про помилку\".</string>
     <string name="driving_options_title">Налаштування об’їзду</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">Оптимізація маршруту</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">Автоматично змінює порядок проміжних зупинок для побудови ефективнішого маршруту.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">Уникати платних доріг</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -758,6 +749,12 @@
     <string name="medicine">Медицина</string>
     <string name="search_in_the_list">Пошук у списку</string>
     <string name="religious_places">Святі місця</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">Вибрати</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">Вибрати все</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">Скасувати вибір</string>
     <string name="select_list">Обрати список</string>
     <string name="button_layer_isolines">Висоти</string>
     <string name="isolines_activation_error_dialog">Щоб скористатися лініями висот, оновіть чи завантажте мапу потрібної місцевості</string>
@@ -852,15 +849,14 @@
     <string name="pref_tts_no_system_tts">Налаштування синтезу мовлення не знайдено, ви впевнені, що ваш пристрій його підтримує?</string>
     <string name="drive_through">З віконцем для водіїв</string>
     <string name="clear_the_search">Очистити пошук</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_in">Збільшити</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_out">Зменшити</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">Посилання на меню</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">Переглянути меню</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">Відкрити в іншому застосунку</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">Самообслуговування</string>
     <string name="select_option">Виберіть варіант</string>
@@ -895,6 +891,32 @@
     <string name="share_track">Поділитися треком</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Видалити %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="one">Вибрано: %d</item>
+        <item quantity="few">Вибрано: %d</item>
+        <item quantity="many">Вибрано: %d</item>
+        <item quantity="other">Вибрано: %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="one">Видалити %d об\'єкт?</item>
+        <item quantity="few">Видалити %d об\'єкти?</item>
+        <item quantity="many">Видалити %d об\'єктів?</item>
+        <item quantity="other">Видалити %d об\'єктів?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">Перемістити</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">Змінити колір</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">Приховати трек</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">Показати трек</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">Ви</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -923,4 +945,22 @@
     <string name="color_picker_grid">Сітка</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">Голосовий пошук</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">Вибрати на мапі</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">Звідки</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">Куди</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">Змінити початок</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">Змінити пункт призначення</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">Змінити зупинку</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">Досягнуто максимальної кількості зупинок</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">Переміщайте та масштабуйте мапу, щоб розмістити хрестик</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">Зупинити та зберегти</string>
 </resources>

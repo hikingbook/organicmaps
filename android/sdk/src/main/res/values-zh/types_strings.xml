@@ -605,7 +605,8 @@
     <string name="type.junction.roundabout">环形交叉口</string>
     <string name="type.landuse">土地利用要素</string>
     <string name="type.landuse.allotments">市民农园</string>
-    <string name="type.landuse.basin">水盆地</string>
+    <string name="type.landuse.basin">蓄水池</string>
+    <string name="type.landuse.basin.intermittent">间歇性蓄水池</string>
     <string name="type.landuse.brownfield">废弃的工业用地</string>
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery">墓地</string>
@@ -636,7 +637,6 @@
     <string name="type.landuse.quarry">矿场</string>
     <string name="type.landuse.railway">铁路用地</string>
     <string name="type.landuse.recreation_ground">娱乐场地</string>
-    <string name="type.landuse.reservoir">水库</string>
     <string name="type.landuse.residential">住宅区</string>
     <string name="type.landuse.retail">零售区</string>
     <string name="type.landuse.salt_pond">盐田</string>
@@ -658,6 +658,7 @@
     <string name="type.leisure.ice_rink">滑冰场</string>
     <string name="type.leisure.marina">游艇码头</string>
     <string name="type.leisure.nature_reserve">自然保护区</string>
+    <string name="type.leisure.bird_hide">观鸟屋</string>
     <string name="type.leisure.outdoor_seating">室外座椅</string>
     <string name="type.leisure.firepit">火坑</string>
     <string name="type.leisure.park">公园</string>
@@ -742,12 +743,15 @@
     <string name="type.natural.water.lock">船闸</string>
     <string name="type.natural.water.pond">池塘</string>
     <string name="type.natural.water.reservoir">水库</string>
-    <string name="type.natural.water.basin">水盆地</string>
+    <string name="type.natural.water.basin">蓄水池</string>
     <string name="type.natural.water.river">河流</string>
+    <string name="type.natural.water.intermittent">间歇性水体</string>
     <string name="type.natural.land">陆地</string>
     <string name="type.natural.meadow">草甸</string>
     <string name="type.natural.orchard">果园</string>
     <string name="type.natural.peak">山峰</string>
+    <string name="type.natural.hill">山丘</string>
+    <string name="type.natural.arch">岩石拱门</string>
     <string name="type.natural.saddle">山坳</string>
     <string name="type.natural.rock">岩石</string>
     <string name="type.natural.scrub">灌木丛</string>
@@ -1430,6 +1434,7 @@
     <string name="type.self_service.no">无自助服务</string>
     <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
     <string name="type.amenity.social_facility">社会设施</string>
+    <string name="type.amenity.stage">舞台</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
     <string name="type.emergency.emergency_ward_entrance">急诊室入口</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->

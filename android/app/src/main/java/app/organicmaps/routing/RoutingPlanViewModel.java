@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import app.organicmaps.util.SingleLiveEvent;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import java.util.Objects;
 
 public class RoutingPlanViewModel extends ViewModel
 {
@@ -12,6 +13,7 @@ public class RoutingPlanViewModel extends ViewModel
   private final MutableLiveData<Boolean> mShowRoutingBottomSheet = new MutableLiveData<>();
   private final MutableLiveData<Boolean> mIsPlacePageActive = new MutableLiveData<>();
   private final MutableLiveData<Boolean> mIsSearchActive = new MutableLiveData<>();
+  private final MutableLiveData<Boolean> mIsPointChooserActive = new MutableLiveData<>();
   private final MutableLiveData<Integer> mMenuUpdateTrigger = new MutableLiveData<>(0);
   private final MutableLiveData<int[]> mBuildProgress = new MutableLiveData<>();
   private final MutableLiveData<Integer> mDrivingOptionsCount = new MutableLiveData<>(0);
@@ -33,9 +35,11 @@ public class RoutingPlanViewModel extends ViewModel
     return mIsPlacePageActive;
   }
 
+  // State, not an event: only dispatch on change.
   public void setIsPlacePageActive(boolean active)
   {
-    mIsPlacePageActive.setValue(active);
+    if (!Objects.equals(mIsPlacePageActive.getValue(), active))
+      mIsPlacePageActive.setValue(active);
   }
 
   public LiveData<Boolean> getIsSearchActive()
@@ -46,6 +50,17 @@ public class RoutingPlanViewModel extends ViewModel
   public void setIsSearchActive(boolean active)
   {
     mIsSearchActive.setValue(active);
+  }
+
+  public LiveData<Boolean> getIsPointChooserActive()
+  {
+    return mIsPointChooserActive;
+  }
+
+  public void setIsPointChooserActive(boolean active)
+  {
+    if (!Objects.equals(mIsPointChooserActive.getValue(), active))
+      mIsPointChooserActive.setValue(active);
   }
 
   public LiveData<Boolean> getShowRoutingBottomSheet()

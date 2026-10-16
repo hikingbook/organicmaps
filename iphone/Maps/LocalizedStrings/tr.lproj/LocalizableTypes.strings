@@ -719,6 +719,7 @@
 "type.landuse" = "Arazi Kullanımı";
 "type.landuse.allotments" = "Tahsisler";
 "type.landuse.basin" = "Havza";
+"type.landuse.basin.intermittent" = "Geçici havza";
 "type.landuse.brownfield" = "Terkedilmiş Endüstri Bölgesi";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Taş Ocağı";
 "type.landuse.railway" = "Demiryolu Tesisleri";
 "type.landuse.recreation_ground" = "Dinlenme Alanı";
-"type.landuse.reservoir" = "Su";
 "type.landuse.residential" = "Yerleşim Alanı";
 "type.landuse.retail" = "Perakende Satış Alanı";
 "type.landuse.salt_pond" = "Tuzla";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Buz Pateni Pisti";
 "type.leisure.marina" = "Liman";
 "type.leisure.nature_reserve" = "Doğal Koruma Alanı";
+"type.leisure.bird_hide" = "Kuş gözlem kulübesi";
 "type.leisure.outdoor_seating" = "Dış Mekan Oturağı";
 "type.leisure.firepit" = "Ateş Çukuru";
 "type.leisure.park" = "Park";
@@ -872,10 +873,13 @@
 "type.natural.water.reservoir" = "Rezervuar";
 "type.natural.water.basin" = "Havza";
 "type.natural.water.river" = "Nehir";
+"type.natural.water.intermittent" = "Geçici su";
 "type.natural.land" = "Arazi";
 "type.natural.meadow" = "Çayır";
 "type.natural.orchard" = "Meyve Bahçesi";
 "type.natural.peak" = "Zirve";
+"type.natural.hill" = "Tepe";
+"type.natural.arch" = "Kaya Kemeri";
 "type.natural.saddle" = "Dağ Eyeri";
 "type.natural.rock" = "Kaya";
 "type.natural.scrub" = "Çalılık";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Sosyal Tesis";
+"type.amenity.stage" = "Sahne";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Acil Servis Girişi";

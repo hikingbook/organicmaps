@@ -237,10 +237,6 @@ extension PlacePageInteractor: PlacePageEditBookmarkOrTrackViewControllerDelegat
 extension PlacePageInteractor: ActionBarViewControllerDelegate {
   func actionBar(_: ActionBarViewController, didPressButton type: ActionBarButtonType) {
     switch type {
-    case .booking:
-      MWMPlacePageManagerHelper.book(placePageData)
-    case .bookingSearch:
-      MWMPlacePageManagerHelper.searchBookingHotels(placePageData)
     case .bookmark:
       if placePageData.bookmarkData != nil {
         MWMPlacePageManagerHelper.removeBookmark(placePageData)
@@ -259,8 +255,6 @@ extension PlacePageInteractor: ActionBarViewControllerDelegate {
       }
     case .download:
       startMapDownloading()
-    case .opentable:
-      fatalError("Opentable is not supported and will be deleted")
     case .routeAddStop, .routeReplaceStop:
       MWMPlacePageManagerHelper.routeAddStop(placePageData)
     case .routeFrom:
@@ -452,8 +446,9 @@ extension PlacePageInteractor: BookmarksObserver {
     updatePlacePageIfNeeded()
   }
 
-  func onBookmarkDeleted(_ bookmarkId: MWMMarkID) {
-    if placePageData.bookmarkData?.bookmarkId == bookmarkId {
+  func onBookmarksDeleted(_ bookmarkIds: [NSNumber]) {
+    if let bookmarkId = placePageData.bookmarkData?.bookmarkId,
+       bookmarkIds.contains(NSNumber(value: bookmarkId)) {
       FrameworkHelper.updateAfterDeleteBookmark()
     }
   }
@@ -464,8 +459,9 @@ extension PlacePageInteractor: BookmarksObserver {
     }
   }
 
-  func onTrackDeleted(_ trackId: MWMTrackID) {
-    if placePageData.trackData?.trackId == trackId {
+  func onTracksDeleted(_ trackIds: [NSNumber]) {
+    if let trackId = placePageData.trackData?.trackId,
+       trackIds.contains(NSNumber(value: trackId)) {
       presenter?.close()
     }
   }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.car.app.Screen;
 import androidx.car.app.ScreenManager;
 import androidx.car.app.Session;
@@ -15,6 +14,7 @@ import app.organicmaps.car.screens.NavigationScreen;
 import app.organicmaps.car.screens.PlaceScreen;
 import app.organicmaps.car.screens.download.DownloadMapsScreen;
 import app.organicmaps.car.util.CurrentCountryChangedListener;
+import app.organicmaps.car.util.IntentUtils;
 import app.organicmaps.car.util.ThemeUtils;
 import app.organicmaps.sdk.Framework;
 import app.organicmaps.sdk.OrganicMaps;
@@ -39,8 +39,10 @@ public abstract class CarAppSessionBase
 
   @NonNull
   protected final OrganicMaps mOrganicMapsContext;
-  @Nullable
+  @NonNull
   protected final SessionInfo mSessionInfo;
+  @NonNull
+  protected final DisplayManager mDisplayManager;
   protected final boolean mIsDebug;
   @NonNull
   protected final ScreenManager mScreenManager;
@@ -52,19 +54,20 @@ public abstract class CarAppSessionBase
   @SuppressWarnings("NotNullFieldNotInitialized")
   @NonNull
   protected CarSensorsManager mSensorsManager;
-  @Nullable
-  protected DisplayManager mDisplayManager;
 
-  public CarAppSessionBase(@NonNull OrganicMaps organicMapsContext, @Nullable SessionInfo sessionInfo, boolean isDebug)
+  public CarAppSessionBase(@NonNull OrganicMaps organicMapsContext, @NonNull DisplayManager displayManager,
+                           @NonNull SessionInfo sessionInfo, boolean isDebug)
   {
     mOrganicMapsContext = organicMapsContext;
     mSessionInfo = sessionInfo;
+    mDisplayManager = displayManager;
     mIsDebug = isDebug;
     mScreenManager = getCarContext().getCarService(ScreenManager.class);
     mCurrentCountryChangedListener = new CurrentCountryChangedListener();
     getLifecycle().addObserver(this);
   }
 
+  @CallSuper
   @Override
   public void onCreate(@NonNull LifecycleOwner owner)
   {
@@ -75,32 +78,35 @@ public abstract class CarAppSessionBase
                                             mOrganicMapsContext.getLocationHelper());
   }
 
+  @CallSuper
   @Override
   public void onCarConfigurationChanged(@NonNull Configuration newConfiguration)
   {
     Logger.d(TAG, "New configuration: " + newConfiguration);
-
-    if (mSurfaceRenderer.isRenderingActive())
-    {
-      ThemeUtils.update(getCarContext());
-      mScreenManager.getTop().invalidate();
-    }
+    if (mDisplayManager.isCarDisplayUsed())
+      ThemeUtils.update(getCarContext(), mSurfaceRenderer.isRenderingActive());
   }
 
   @NonNull
   @Override
-  public Screen onCreateScreen(@NonNull Intent intent)
+  public final Screen onCreateScreen(@NonNull Intent intent)
   {
     Logger.d(TAG);
 
     Logger.i(TAG, "Session info: " + mSessionInfo);
     Logger.i(TAG, "API Level: " + getCarContext().getCarAppApiLevel());
-    if (mSessionInfo != null)
-      Logger.i(TAG, "Supported templates: " + mSessionInfo.getSupportedTemplates(getCarContext().getCarAppApiLevel()));
+    Logger.i(TAG, "Supported templates: " + mSessionInfo.getSupportedTemplates(getCarContext().getCarAppApiLevel()));
     Logger.i(TAG, "Host info: " + getCarContext().getHostInfo());
     Logger.i(TAG, "Car configuration: " + getCarContext().getResources().getConfiguration());
 
     return prepareScreens();
+  }
+
+  @Override
+  public final void onNewIntent(@NonNull Intent intent)
+  {
+    Logger.d(TAG, intent.toString());
+    IntentUtils.processIntent(getCarContext(), mOrganicMapsContext, mSurfaceRenderer, mDisplayManager, intent);
   }
 
   @CallSuper
@@ -108,7 +114,7 @@ public abstract class CarAppSessionBase
   public void onStart(@NonNull LifecycleOwner owner)
   {
     Logger.d(TAG);
-    if (isCarScreenUsed())
+    if (mDisplayManager.isCarDisplayUsed())
     {
       LocationState.nativeSetListener(this);
       Framework.nativePlacePageActivationListener(this);
@@ -118,9 +124,9 @@ public abstract class CarAppSessionBase
     if (LocationUtils.checkFineLocationPermission(getCarContext()))
       mSensorsManager.onStart();
 
-    if (isCarScreenUsed())
+    if (mDisplayManager.isCarDisplayUsed())
     {
-      ThemeUtils.update(getCarContext());
+      ThemeUtils.update(getCarContext(), mSurfaceRenderer.isRenderingActive());
       onRestoreRoute();
     }
   }
@@ -133,7 +139,7 @@ public abstract class CarAppSessionBase
 
     mSensorsManager.onStop();
 
-    if (isCarScreenUsed())
+    if (mDisplayManager.isCarDisplayUsed())
     {
       LocationState.nativeRemoveListener();
       Framework.nativeRemovePlacePageActivationListener(this);
@@ -142,12 +148,11 @@ public abstract class CarAppSessionBase
     mCurrentCountryChangedListener.onStop();
   }
 
+  @NonNull
   protected abstract Screen prepareScreens();
 
-  protected abstract boolean isCarScreenUsed();
-
   @Override
-  public void onMyPositionModeChanged(int newMode)
+  public final void onMyPositionModeChanged(int newMode)
   {
     final Screen screen = mScreenManager.getTop();
     if (screen instanceof BaseMapScreen)
@@ -155,7 +160,7 @@ public abstract class CarAppSessionBase
   }
 
   @Override
-  public void onPlacePageActivated(@NonNull PlacePageData data)
+  public final void onPlacePageActivated(@NonNull PlacePageData data)
   {
     // TODO: How maps downloading can trigger place page activation?
     if (DownloadMapsScreen.MARKER.equals(mScreenManager.getTop().getMarker()))
@@ -178,7 +183,7 @@ public abstract class CarAppSessionBase
   }
 
   @Override
-  public void onPlacePageDeactivated()
+  public final void onPlacePageDeactivated()
   {
     // The function is called when we close the PlaceScreen or when we enter the navigation mode.
     // We only need to handle the first case.

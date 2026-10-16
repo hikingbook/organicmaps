@@ -1,25 +1,9 @@
-namespace ms
-{
-class LatLon;
-}  // namespace ms
+@interface MWMShareActivityItem : NSObject
 
-@protocol MWMPlacePageObject <NSObject>
-
-- (BOOL)isMyPosition;
-- (NSString *)title;
-- (NSString *)subtitle;
-- (NSString *)address;
-- (NSString *)phoneNumber;
-- (ms::LatLon)latLon;
-
-@end
-
-@class PlacePageData;
-
-@interface MWMShareActivityItem : NSObject <UIActivityItemSource>
+@property(nonatomic, readonly) NSArray<id<UIActivityItemSource>> * activityItems;
 
 - (instancetype)initForMyPositionAtLocation:(CLLocationCoordinate2D const &)location;
-- (instancetype)initForPlacePageObject:(id<MWMPlacePageObject>)object;
-- (instancetype)initForPlacePage:(PlacePageData *)data;
+// The place page is open, so the core has the info (with metadata) to build the shared text.
+- (instancetype)initForCurrentPlacePage;
 
 @end

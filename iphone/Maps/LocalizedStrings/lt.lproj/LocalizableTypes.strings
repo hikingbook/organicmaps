@@ -718,7 +718,8 @@
 "type.junction.roundabout" = "Žiedinė sankryža";
 "type.landuse" = "Žemėnauda";
 "type.landuse.allotments" = "Sodų bendrija";
-"type.landuse.basin" = "Baseinas";
+"type.landuse.basin" = "Vandens baseinas";
+"type.landuse.basin.intermittent" = "Periodinis vandens baseinas";
 "type.landuse.brownfield" = "Apleista teritorija";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Karjeras";
 "type.landuse.railway" = "Geležinkelio teritorija";
 "type.landuse.recreation_ground" = "Poilsio zona";
-"type.landuse.reservoir" = "Rezervuaras";
 "type.landuse.residential" = "Gyvenamoji zona";
 "type.landuse.retail" = "Prekybos zona";
 "type.landuse.salt_pond" = "Druskos tvenkinys";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Čiuožykla";
 "type.leisure.marina" = "Prieplauka";
 "type.leisure.nature_reserve" = "Gamtos rezervatas";
+"type.leisure.bird_hide" = "Paukščių stebėjimo slėptuvė";
 "type.leisure.outdoor_seating" = "Lauko kavinė";
 "type.leisure.firepit" = "Laužavietė";
 "type.leisure.park" = "Parkas";
@@ -870,12 +871,15 @@
 "type.natural.water.lock" = "Šliuzas";
 "type.natural.water.pond" = "Tvenkinys";
 "type.natural.water.reservoir" = "Vandens saugykla";
-"type.natural.water.basin" = "Baseinas";
+"type.natural.water.basin" = "Vandens baseinas";
 "type.natural.water.river" = "Upė";
+"type.natural.water.intermittent" = "Periodinis vandens telkinys";
 "type.natural.land" = "Sausuma";
 "type.natural.meadow" = "Pievos";
 "type.natural.orchard" = "Sodas";
 "type.natural.peak" = "Viršūnė";
+"type.natural.hill" = "Kalva";
+"type.natural.arch" = "Uolų arka";
 "type.natural.saddle" = "Balnas";
 "type.natural.rock" = "Akmuo";
 "type.natural.scrub" = "Krūmynai";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Socialinė priemonė";
+"type.amenity.stage" = "Scena";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Skubios pagalbos skyriaus įėjimas";

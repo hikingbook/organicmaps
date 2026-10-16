@@ -89,6 +89,18 @@
       "binaryDir": "${sourceDir}/build"
     },
     {
+      "name": "ci-windows",
+      "displayName": "CI (Windows)",
+      "description": "Mirrors the Windows CI leg: flat build/ dir. Pass -DCMAKE_BUILD_TYPE on top.",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/build",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "ci-xcode",
       "displayName": "CI (Xcode)",
       "description": "Mirrors the Xcode CI leg. Multi-config: choose Debug/Release at build/test time.",
@@ -125,6 +137,10 @@
       "configurePreset": "ci"
     },
     {
+      "name": "ci-windows",
+      "configurePreset": "ci-windows"
+    },
+    {
       "name": "xcode",
       "configurePreset": "xcode",
       "configuration": "Debug"
@@ -147,7 +163,7 @@
           "label": "omim-test"
         },
         "exclude": {
-          "name": "drape_tests|drape_frontend_tests|generator_integration_tests|opening_hours_integration_tests|opening_hours_supported_features_tests|routing_benchmarks|routing_integration_tests|routing_quality_tests|search_quality_tests|storage_integration_tests|shaders_tests|world_feed_integration_tests"
+          "name": "drape_tests|drape_frontend_tests|generator_integration_tests|routing_benchmarks|routing_integration_tests|routing_quality_tests|search_quality_tests|storage_integration_tests|shaders_tests"
         }
       }
     },
@@ -196,6 +212,16 @@
       "name": "ci-drape",
       "inherits": "drape-tests",
       "configurePreset": "ci"
+    },
+    {
+      "name": "ci-windows",
+      "inherits": "omim-tests",
+      "configurePreset": "ci-windows"
+    },
+    {
+      "name": "ci-drape-windows",
+      "inherits": "drape-tests",
+      "configurePreset": "ci-windows"
     },
     {
       "name": "ci-xcode",

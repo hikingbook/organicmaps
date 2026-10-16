@@ -8,7 +8,10 @@
 @class TrackInfo;
 @class ElevationProfileData;
 
-typedef NS_ENUM(NSUInteger, MWMZoomMode) { MWMZoomModeIn = 0, MWMZoomModeOut };
+typedef NS_ENUM(NSUInteger, MWMZoomMode) {
+  MWMZoomModeIn = 0,
+  MWMZoomModeOut
+};
 
 typedef NS_ENUM(NSInteger, ProductsPopupCloseReason) {
   ProductsPopupCloseReasonClose,
@@ -30,9 +33,7 @@ typedef void (^TrackRecordingUpdatedHandler)(TrackInfo * _Nonnull trackInfo);
 + (void)saveTrackRecordingWithName:(nonnull NSString *)name;
 + (BOOL)isTrackRecordingEnabled;
 + (BOOL)isTrackRecordingEmpty;
-/// Returns current track recording elevation info.
-/// If the track recording is not in progress, returns empty ElevationProfileData.
-+ (ElevationProfileData * _Nonnull)trackRecordingElevationInfo;
++ (ElevationProfileData * _Nullable)trackRecordingElevationInfo;
 
 @end
 
@@ -76,6 +77,14 @@ NS_SWIFT_NAME(FrameworkHelper)
                inputLocale:(NSString *)locale
                 completion:(SearchInDownloaderCompletions)completion;
 + (BOOL)canEditMapAtViewportCenter;
++ (BOOL)canEditMapAtMercatorPoint:(CGPoint)point;
++ (void)startChoosePositionModeWithEnableBounds:(BOOL)enableBounds
+                        initialMercatorPosition:(nullable NSValue *)initialMercatorPosition
+                           shouldChangeViewport:(BOOL)shouldChangeViewport;
++ (void)stopChoosePositionMode;
++ (CGPoint)mercatorViewportCenter;
+/// Returns a formatted nearby address, or nil when none is available.
++ (nullable NSString *)addressAtMercatorPoint:(CGPoint)point NS_SWIFT_NAME(address(at:));
 + (void)showOnMap:(MWMMarkGroupID)categoryId;
 + (void)showBookmark:(MWMMarkID)bookmarkId;
 + (void)showTrack:(MWMTrackID)trackId;

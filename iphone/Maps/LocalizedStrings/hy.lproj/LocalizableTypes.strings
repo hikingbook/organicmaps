@@ -719,6 +719,7 @@
 "type.landuse" = "Հողօգտագործում";
 "type.landuse.allotments" = "Հողամասեր";
 "type.landuse.basin" = "Ավազան";
+"type.landuse.basin.intermittent" = "Ընդհատվող ավազան";
 "type.landuse.brownfield" = "Լքված տարածք";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Քարհանք";
 "type.landuse.railway" = "Երկաթուղային գոտի";
 "type.landuse.recreation_ground" = "Հանգստի գոտի";
-"type.landuse.reservoir" = "Ջրամբար";
 "type.landuse.residential" = "Բնակելի թաղամաս";
 "type.landuse.retail" = "Առևտրի գոտի";
 "type.landuse.salt_pond" = "Աղի լճակ";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Սահադաշտ";
 "type.leisure.marina" = "Նավակայան";
 "type.leisure.nature_reserve" = "Արգելոց";
+"type.leisure.bird_hide" = "Թռչունների դիտակետ";
 "type.leisure.outdoor_seating" = "Բացօթյա նստատեղեր";
 "type.leisure.firepit" = "Խարուկատեղ";
 "type.leisure.park" = "Զբոսայգի";
@@ -872,10 +873,13 @@
 "type.natural.water.reservoir" = "Ջրամբար";
 "type.natural.water.basin" = "Ավազան";
 "type.natural.water.river" = "Գետ";
+"type.natural.water.intermittent" = "Ընդհատվող ջրային մարմին";
 "type.natural.land" = "Ցամաք";
 "type.natural.meadow" = "Մարգագետին";
 "type.natural.orchard" = "Պտղատու այգի";
 "type.natural.peak" = "Գագաթ";
+"type.natural.hill" = "Բլուր";
+"type.natural.arch" = "Քարե կամար";
 "type.natural.saddle" = "Թամբարդ";
 "type.natural.rock" = "Քար";
 "type.natural.scrub" = "Թփուտ";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Սոցիալական հաստատություն";
+"type.amenity.stage" = "Բեմ";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Շտապօգնության բաժանմունքի մուտք";

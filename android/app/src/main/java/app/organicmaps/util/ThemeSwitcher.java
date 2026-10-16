@@ -96,8 +96,7 @@ public enum ThemeSwitcher
 //    var isDarkMode = ThemeUtils.isDarkTheme(context);
     var mapStyle = calculateMapStyle(false);
 
-    var oldStyle = MapStyle.get();
-    if (oldStyle != mapStyle)
+    if (MapStyle.get() != mapStyle)
       setMapStyle(mapStyle, isRendererActive);
   }
 

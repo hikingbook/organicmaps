@@ -7,7 +7,7 @@ extension NavigationDashboard {
     case showError(String)
 
     case selectRouterType(MWMRouterType)
-    case selectRoutePoint(MWMRoutePoint?)
+    case selectRoutePoint(MWMRoutePointSelection)
     case deleteRoutePoint(MWMRoutePoint)
     case moveRoutePoint(from: Int, to: Int)
     case swapStartAndFinishPoints
@@ -21,7 +21,7 @@ extension NavigationDashboard {
 
     case updateRouteBuildingProgress(CGFloat, routerType: MWMRouterType)
     case updateNavigationInfo(MWMNavigationDashboardEntity)
-    case updateElevationInfo(RouteElevationPreviewData?)
+    case updateElevationInfo(RouteElevationPreviewData?, activePointDistance: Double?)
     case updateTrackRecordingState(TrackRecordingState)
     case updateVisibleAreaInsets(UIEdgeInsets)
     case updateNavigationInfoAvailableArea(CGRect)

@@ -46,7 +46,6 @@ public:
     SPEED_CAM,
     ROAD_WARNING,
     TRANSIT,
-    LOCAL_ADS,
     TRACK_INFO,
     TRACK_SELECTION,
     DEBUG_MARK,  // Plain "DEBUG" results in a name collision.
@@ -55,6 +54,7 @@ public:
     USER_MARK_TYPES_COUNT,
     USER_MARK_TYPES_COUNT_MAX = 1000,
   };
+  static_assert(BOOKMARK == 0);
 
   UserMark(kml::MarkId id, m2::PointD const & ptOrg, UserMark::Type type);
   UserMark(m2::PointD const & ptOrg, UserMark::Type type);

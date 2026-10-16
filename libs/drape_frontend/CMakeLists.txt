@@ -163,6 +163,8 @@ set(SRC
   route_renderer.hpp
   route_shape.cpp
   route_shape.hpp
+  search_mark_overlay_filter.cpp
+  search_mark_overlay_filter.hpp
   rule_drawer.cpp
   rule_drawer.hpp
   scenario_manager.cpp
@@ -218,6 +220,9 @@ set(SRC
 )
 
 omim_add_library(${PROJECT_NAME} ${SRC})
+
+# fast_obj.h defines unprefixed macros (array_size, BUFFER_SIZE, ...) and never undefines them.
+set_property(SOURCE arrow3d.cpp PROPERTY SKIP_UNITY_BUILD_INCLUSION ON)
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC

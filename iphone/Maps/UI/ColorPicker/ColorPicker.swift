@@ -1,8 +1,13 @@
 final class ColorPicker: NSObject {
   static let shared = ColorPicker()
 
-  private var pickerViewController: UIViewController?
+  private var pickerViewController: ColorGridViewController?
+  // Strong reference: on macOS the "Show Colors..." button closes the picker and hands the
+  // selection over to the system color panel, which keeps reporting through this picker's
+  // delegate only while the picker is alive (FB8981193).
+  private var nativeColorPickerViewController: UIColorPickerViewController?
   private var onUpdateColorHandler: ((UIColor) -> Void)?
+  private var isIOSAppOnMac: Bool { ProcessInfo.processInfo.isiOSAppOnMac }
   private var nativePickedColor: UIColor?
 
   /// Presents the default bookmark/track color grid.
@@ -13,25 +18,54 @@ final class ColorPicker: NSObject {
                anchor: UIView?,
                currentColor: UIColor?,
                completionHandler: ((UIColor) -> Void)?) {
+    present(from: rootViewController,
+            anchorView: anchor,
+            anchorBarButtonItem: nil,
+            currentColor: currentColor,
+            completionHandler: completionHandler)
+  }
+
+  /// Presents the color grid as a popover anchored to a bar button item.
+  func present(from rootViewController: UIViewController,
+               anchor: UIBarButtonItem,
+               currentColor: UIColor?,
+               completionHandler: ((UIColor) -> Void)?) {
+    present(from: rootViewController,
+            anchorView: nil,
+            anchorBarButtonItem: anchor,
+            currentColor: currentColor,
+            completionHandler: completionHandler)
+  }
+
+  private func present(from rootViewController: UIViewController,
+                       anchorView: UIView?,
+                       anchorBarButtonItem: UIBarButtonItem?,
+                       currentColor: UIColor?,
+                       completionHandler: ((UIColor) -> Void)?) {
+    nativeColorPickerViewController = nil
     let picker = ColorGridViewController(currentColor: currentColor,
                                          predefinedColors: BookmarksManager.predefinedColors().compactMap {
                                            PredefinedColor(rawValue: $0.intValue)
                                          }) { [weak self] color in
-      self?.commitSelection(color)
+      self?.selectColor(color)
     } onSelectCustomColor: { [weak self] viewController in
       self?.presentNativeColorPicker(from: viewController, currentColor: currentColor)
     }
     picker.onDismiss = { [weak self] in
-      self?.resetPresentationState()
+      self?.endColorPicker()
     }
     picker.modalPresentationStyle = .popover
     if let popover = picker.popoverPresentationController {
-      let sourceView: UIView = anchor ?? rootViewController.view
-      popover.sourceView = sourceView
-      popover.sourceRect = anchor?.bounds ?? CGRect(x: sourceView.bounds.midX,
-                                                    y: sourceView.bounds.midY,
-                                                    width: 1,
-                                                    height: 1)
+      if let anchorBarButtonItem {
+        popover.barButtonItem = anchorBarButtonItem
+      } else {
+        let sourceView: UIView = anchorView ?? rootViewController.view
+        popover.sourceView = sourceView
+        popover.sourceRect = anchorView?.bounds ?? CGRect(x: sourceView.bounds.midX,
+                                                          y: sourceView.bounds.midY,
+                                                          width: 1,
+                                                          height: 1)
+      }
       popover.permittedArrowDirections = .any
       popover.delegate = picker
     }
@@ -40,34 +74,46 @@ final class ColorPicker: NSObject {
     onUpdateColorHandler = completionHandler
     updatePopoverUserInterfaceStyle(rootViewController.traitCollection.userInterfaceStyle)
     subscribeToTraitChanges()
-    rootViewController.present(picker, animated: true)
+    // Animated presentation can cause visual artifacts on macOS; dismissal can remain animated.
+    rootViewController.present(picker, animated: !isIOSAppOnMac)
   }
 
-  private func commitSelection(_ color: UIColor) {
-    let onUpdateColorHandler = onUpdateColorHandler
-    self.onUpdateColorHandler = nil
+  private func selectColor(_ color: UIColor) {
     onUpdateColorHandler?(color)
-    pickerViewController?.dismiss(animated: true)
-    resetPresentationState()
+    endColorPicker()
   }
 
   private func presentNativeColorPicker(from rootViewController: UIViewController, currentColor: UIColor?) {
-    let picker = UIColorPickerViewController()
+    let picker = DismissReportingColorPickerViewController()
     picker.supportsAlpha = false
     if let currentColor {
       picker.selectedColor = currentColor
     }
     picker.delegate = self
-    picker.presentationController?.delegate = self
+    picker.onDismiss = { [weak self] in
+      guard let self else { return }
+      let didCommitSelection = self.commitNativeSelection()
+
+      // On macOS the system color panel ("Show Colors...") keeps reporting through the
+      // dismissed picker's delegate. On iOS a cancelled picker can be released immediately.
+      if didCommitSelection {
+        self.endColorPicker(keepingNativePicker: isIOSAppOnMac)
+      } else if !isIOSAppOnMac {
+        self.nativeColorPickerViewController = nil
+      }
+    }
+    nativeColorPickerViewController = picker
     nativePickedColor = nil
     rootViewController.present(picker, animated: true)
   }
 
-  private func finishNativeColorPicker() {
-    guard let nativePickedColor else { return }
+  @discardableResult
+  private func commitNativeSelection() -> Bool {
+    guard let nativePickedColor else { return false }
 
     self.nativePickedColor = nil
-    commitSelection(nativePickedColor)
+    onUpdateColorHandler?(nativePickedColor)
+    return true
   }
 
   private func subscribeToTraitChanges() {
@@ -95,10 +141,20 @@ final class ColorPicker: NSObject {
     pickerViewController?.overrideUserInterfaceStyle = userInterfaceStyle
   }
 
-  private func resetPresentationState() {
+  private func closeColorGrid() {
     unsubscribeFromTraitChanges()
+    let picker = pickerViewController
     pickerViewController = nil
-    onUpdateColorHandler = nil
+    picker?.onDismiss = nil
+    picker?.dismiss(animated: true)
+  }
+
+  private func endColorPicker(keepingNativePicker: Bool = false) {
+    closeColorGrid()
+    if !keepingNativePicker {
+      nativeColorPickerViewController = nil
+      onUpdateColorHandler = nil
+    }
   }
 }
 
@@ -113,21 +169,29 @@ extension ColorGridViewController: UIPopoverPresentationControllerDelegate {
 }
 
 extension ColorPicker: UIColorPickerViewControllerDelegate {
-  func colorPickerViewController(_: UIColorPickerViewController, didSelect color: UIColor, continuously _: Bool) {
+  func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
     nativePickedColor = color.sRGBColor
-  }
-
-  func colorPickerViewControllerDidFinish(_: UIColorPickerViewController) {
-    finishNativeColorPicker()
+    // On macOS colorPickerViewControllerDidFinish is never called, so commit and close
+    // the picker as soon as the user clicks a color.
+    if isIOSAppOnMac, !continuously {
+      commitNativeSelection()
+      viewController.dismiss(animated: true)
+      closeColorGrid()
+    }
   }
 }
 
-extension ColorPicker: UIAdaptivePresentationControllerDelegate {
-  func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-    guard presentationController.presentedViewController is UIColorPickerViewController else {
-      return
+/// Reports the start of the picker's dismissal — the only signal delivered on every platform.
+/// colorPickerViewControllerDidFinish is not called at all on macOS, and on iOS it is not
+/// called for the interactive swipe-down dismissal.
+private final class DismissReportingColorPickerViewController: UIColorPickerViewController {
+  var onDismiss: (() -> Void)?
+
+  override func viewWillDisappear(_ animated: Bool) {
+    // Skip transient disappearances (e.g. the eyedropper): commit only on a real dismissal.
+    if isBeingDismissed {
+      onDismiss?()
     }
-    // Swipe-down dismissal does not call colorPickerViewControllerDidFinish(_:).
-    finishNativeColorPicker()
+    super.viewWillDisappear(animated)
   }
 }

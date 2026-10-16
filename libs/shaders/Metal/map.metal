@@ -180,7 +180,9 @@ fragment half4 fsHatchingArea(const HatchingAreaFragment_T in [[stage_in]])
   float dist = min(m, kPeriodPx - m);
   float aa = fwidth(diag);
   float coverage = 1.0 - smoothstep(kHalfWidthPx - aa, kHalfWidthPx + aa, dist);
-  return in.color * half(coverage);
+  // coverage is the line's alpha, rgb stays the surface colour: blending is straight
+  // (SourceAlpha, OneMinusSourceAlpha), so scaling rgb would apply coverage a second time.
+  return half4(in.color.rgb, in.color.a * half(coverage));
 }
 
 // Analytic dashed hatch (see GL/hatching_area_dash.fsh.glsl).
@@ -204,7 +206,8 @@ fragment half4 fsHatchingAreaDash(const HatchingAreaFragment_T in [[stage_in]])
   float aaX = fwidth(px.x);
   float onDash = 1.0 - smoothstep(kDashHalfPx - aaX, kDashHalfPx + aaX, xDist);
 
-  return in.color * half(onRow * onDash);
+  // Alpha only - see the note in fsHatchingArea.
+  return half4(in.color.rgb, in.color.a * half(onRow * onDash));
 }
 
 // AreaPattern hash for jittered solid-fill patterns (stipple/speckle).
@@ -215,7 +218,16 @@ static float AreaPatternHash(float2 p)
   return fract(p.x * p.y);
 }
 
-// Analytic stipple (see GL/area_stipple.fsh.glsl): single-pass solid fill modulated by darker dots.
+// Shades a fill under an area pattern dot (see ModulateByPatternDots in GL/shaders_lib.glsl).
+static half3 ModulateByPatternDots(half3 color, float darken, float coverage)
+{
+  constexpr float kLighten = 0.075;
+  if (dot(float3(color), float3(0.2126, 0.7152, 0.0722)) < 0.5)
+    return color + half(coverage * kLighten);
+  return color * half(mix(1.0, darken, coverage));
+}
+
+// Analytic stipple (see GL/area_stipple.fsh.glsl): single-pass solid fill modulated by dots.
 fragment half4 fsAreaStipple(const HatchingAreaFragment_T in [[stage_in]])
 {
   constexpr float kCellPx = 8.0;
@@ -230,7 +242,7 @@ fragment half4 fsAreaStipple(const HatchingAreaFragment_T in [[stage_in]])
   float aa = max(fwidth(px.x), fwidth(px.y));
   float coverage = 1.0 - smoothstep(kRadiusPx - aa, kRadiusPx + aa, d);
   half4 color = in.color;
-  color.rgb *= half(mix(1.0, kDarken, coverage));
+  color.rgb = ModulateByPatternDots(color.rgb, kDarken, coverage);
   return color;
 }
 
@@ -251,7 +263,7 @@ fragment half4 fsAreaSpeckle(const HatchingAreaFragment_T in [[stage_in]])
   float aa = max(fwidth(px.x), fwidth(px.y));
   float coverage = 1.0 - smoothstep(radius - aa, radius + aa, d);
   half4 color = in.color;
-  color.rgb *= half(mix(1.0, kDarken, coverage));
+  color.rgb = ModulateByPatternDots(color.rgb, kDarken, coverage);
   return color;
 }
 
@@ -267,7 +279,7 @@ fragment half4 fsAreaGrid(const HatchingAreaFragment_T in [[stage_in]])
   float aa = max(fwidth(px.x), fwidth(px.y));
   float coverage = 1.0 - smoothstep(kRadiusPx - aa, kRadiusPx + aa, d);
   half4 color = in.color;
-  color.rgb *= half(mix(1.0, kDarken, coverage));
+  color.rgb = ModulateByPatternDots(color.rgb, kDarken, coverage);
   return color;
 }
 

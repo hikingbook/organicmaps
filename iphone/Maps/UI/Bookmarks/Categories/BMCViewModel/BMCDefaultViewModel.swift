@@ -99,9 +99,7 @@ extension BMCDefaultViewModel {
   }
 
   func areAllCategoriesHidden() -> Bool {
-    var result = true
-    categories.forEach { if $0.isVisible { result = false } }
-    return result
+    !categories.contains { $0.isVisible }
   }
 
   func updateAllCategoriesVisibility(isShowAll: Bool) {
@@ -170,7 +168,7 @@ extension BMCDefaultViewModel: BookmarksObserver {
     reloadData()
   }
 
-  func onBookmarkDeleted(_: MWMMarkID) {
+  func onBookmarksDeleted(_: [NSNumber]) {
     reloadData()
   }
 }

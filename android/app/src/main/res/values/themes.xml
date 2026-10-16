@@ -105,16 +105,22 @@
     <item name="android:navigationBarColor">@android:color/transparent</item>
   </style>
 
-  <style name="MwmMain.DialogFragment.TimePicker" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+  <style name="MwmTheme.DialogFragment.Rounded" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+    <item name="android:windowBackground">@drawable/bg_dialog_window</item>
+  </style>
+
+  <style name="MwmMain.DialogFragment.TimePicker" parent="MwmTheme.AlertDialog">
     <item name="colorAccent">@color/base_accent</item>
     <item name="colorPrimary">?buttonDialogTextColor</item>
     <item name="android:fontFamily">@string/robotoMedium</item>
-    <item name="android:windowBackground">@color/bg_cards</item>
-    <item name="android:background">@color/bg_cards</item>
   </style>
 
   <style name="MwmTheme.ProgressDialog" parent="MwmTheme.AlertDialog">
     <item name="android:textColor">?textDialogTheme</item>
+  </style>
+
+  <style name="MwmTheme.StackedButtonsDialog" parent="MwmTheme.AlertDialog">
+    <item name="windowNoTitle">true</item>
   </style>
 
   <style name="MwmTheme.Downloader">

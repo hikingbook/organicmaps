@@ -2,7 +2,6 @@
 package app.organicmaps.sdk;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -55,8 +54,6 @@ public final class Map
 
   @NonNull
   private final DisplayType mDisplayType;
-  @NonNull
-  private final Context mContext;
 
   @Nullable
   private LocationHelper mLocationHelper;
@@ -79,7 +76,6 @@ public final class Map
   private boolean mSurfaceCreated;
   private boolean mSurfaceAttached;
   private boolean mLaunchByDeepLink;
-  private int mNightModeFlagOnPause = Configuration.UI_MODE_NIGHT_UNDEFINED;
   @Nullable
   private MapRenderingListener mMapRenderingListener;
   @Nullable
@@ -87,10 +83,9 @@ public final class Map
 
   private static int sCurrentDpi = 0;
 
-  public Map(@NonNull DisplayType mapType, @NonNull Context context)
+  public Map(@NonNull DisplayType mapType)
   {
     mDisplayType = mapType;
-    mContext = context;
     onCreate(false);
   }
 
@@ -180,12 +175,6 @@ public final class Map
   {
     Assert.debug(mLocationHelper != null, "LocationHelper must be initialized before calling onSurfaceCreated");
 
-    if (isThemeChangingProcess())
-    {
-      Logger.d(TAG, "Theme changing process, skip 'onSurfaceCreated' callback");
-      return;
-    }
-
     Logger.d(TAG, "mSurfaceCreated = " + mSurfaceCreated);
     if (nativeIsEngineCreated())
     {
@@ -235,12 +224,6 @@ public final class Map
   public void onSurfaceChanged(final Context context, final Surface surface, Rect surfaceFrame,
                                boolean isSurfaceCreating)
   {
-    if (isThemeChangingProcess())
-    {
-      Logger.d(TAG, "Theme changing process, skip 'onSurfaceChanged' callback");
-      return;
-    }
-
     Logger.d(TAG, "mSurfaceCreated = " + mSurfaceCreated);
     if (!mSurfaceCreated || (!mRequireResize && isSurfaceCreating))
       return;
@@ -296,8 +279,6 @@ public final class Map
 
   public void onPause()
   {
-    mNightModeFlagOnPause = getNightModeFlag();
-
     // Pause/Resume can be called without surface creation/destroy.
     if (mSurfaceAttached)
       nativePauseSurfaceRendering();
@@ -419,17 +400,6 @@ public final class Map
                       mHeight - Utils.dimen(context, R.dimen.margin_ruler) - offsetY, ANCHOR_LEFT_BOTTOM);
     if (mSurfaceCreated)
       nativeApplyWidgets();
-  }
-
-  private boolean isThemeChangingProcess()
-  {
-    return mNightModeFlagOnPause != Configuration.UI_MODE_NIGHT_UNDEFINED
- && mNightModeFlagOnPause != getNightModeFlag();
-  }
-
-  private int getNightModeFlag()
-  {
-    return mContext.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
   }
 
   // Engine

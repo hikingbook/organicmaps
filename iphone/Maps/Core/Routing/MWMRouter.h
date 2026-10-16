@@ -3,7 +3,12 @@
 
 @class RouteElevationPreviewData;
 
-typedef NS_ENUM(NSInteger, MWMRoadType) { MWMRoadTypeToll, MWMRoadTypeDirty, MWMRoadTypeFerry, MWMRoadTypeMotorway };
+typedef NS_ENUM(NSInteger, MWMRoadType) {
+  MWMRoadTypeToll,
+  MWMRoadTypeDirty,
+  MWMRoadTypeFerry,
+  MWMRoadTypeMotorway
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isSpeedCamLimitExceeded;
 
 + (BOOL)canAddIntermediatePoint;
++ (BOOL)isRoutePointsLimitReached;
 
 + (void)startRouting;
 + (void)stopRouting;
@@ -64,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)hasRouteAltitude;
 + (void)saveRouteAsTrack;
 + (nullable RouteElevationPreviewData *)routeElevationProfileData;
++ (void)setRouteElevationActivePointDistance:(double)distance;
++ (void)resetRouteElevationActivePoint;
 
 + (void)saveRouteIfNeeded;
 + (void)restoreRouteIfNeeded;
@@ -73,6 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updateRoute;
 + (BOOL)hasActiveDrivingOptions;
 + (void)avoidRoadTypeAndRebuild:(MWMRoadType)type;
++ (void)optimizeRoutePointsAndRebuild;
 //+ (void)showNavigationMapControls;
 //+ (void)hideNavigationMapControls;
 

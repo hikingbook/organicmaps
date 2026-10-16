@@ -115,7 +115,7 @@
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
 "category_tourism" = "Vivutio";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. */
 "category_entertainment" = "Burudani";
 
 /* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
@@ -148,7 +148,7 @@
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "Urejelezaji";
 
-/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. */
 "category_water" = "Maji";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
@@ -174,11 +174,23 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "Mahali pako bado halijabainishwa";
 
-/* Subject for emailed bookmark */
-"bookmark_share_email_subject" = "Hey, angalia alama yangu katika Organic Maps!";
+/* Text shown before a shared "my position" link, and the email subject when sharing the current location. */
+"share_my_position" = "Niko hapa kwenye Organic Maps";
 
-/* Subject for emailed position */
-"my_position_share_email_subject" = "Hey, angalia eneo langu la sasa kwenye ramani ya Organic Maps!";
+/* Email subject when sharing a place. %1$@ is the place name or address. */
+"share_place_subject" = "%1$@ kwenye Organic Maps";
+
+/* Email subject when sharing a place that has no name or address. */
+"share_place_subject_default" = "Mahali kwenye Organic Maps";
+
+/* Shared email link text; opens the shared place in Organic Maps or in a web browser. */
+"share_open_in_om_or_browser" = "Fungua kwenye Organic Maps au kwenye kivinjari";
+
+/* Shared email link text; leads to the Organic Maps download page. */
+"share_get_om" = "Pata Organic Maps";
+
+/* Title for the "Open in Another App" button on the PlacePage; also shared email link text: opens the shared place in another (geo:) maps app. */
+"open_in_app" = "Fungua Katika Programu Nyingine";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "Barua pepe";
@@ -195,6 +207,7 @@
 /* Length of track in cell that describes route */
 "length" = "Urefu";
 "share_my_location" = "Shiriki Mahali Pangu";
+"prefs_group_network" = "Mtandao";
 "prefs_group_route" = "Uelekezi";
 
 /* Setting name which enables or disables zoom buttons on the map screen. */
@@ -251,8 +264,14 @@
 /* Settings «Navigation» category: «Voice language» footer */
 "pref_tts_download_voices_description" = "Ili kupakua sauti ya ubora wa juu, fungua programu ya Mipangilio na uende kwenye Ufikivu → VoiceOver → Matamshi → Sauti.";
 
-/* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "Jaribu maelekezo ya sauti (TTS, maandishi-kwa-hotuba)";
+/* Header above Apple's group of novelty text-to-speech voices (Bells, Bubbles, Zarvox...), shown after the regional voice sections and Eloquence group. Use Apple's term for this group from Settings > Accessibility > VoiceOver > Speech. */
+"pref_tts_voice_group_novelty" = "Novelty";
+
+/* Accessibility label of the button that plays a sample of a text-to-speech voice. */
+"pref_tts_voice_preview_play" = "Play sample";
+
+/* Accessibility label of the button that stops the sample of a text-to-speech voice being played. */
+"pref_tts_voice_preview_stop" = "Stop sample";
 "pref_map_auto_zoom" = "Kuzoom kiotomatiki";
 "placepage_distance" = "Umbali";
 "search_show_on_map" = "Tazama kwenye ramani";
@@ -388,9 +407,6 @@
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
 "pref_appearance_dark" = "Giza";
 
-/* Title for "Other" section in TTS settings. */
-"pref_tts_other_section_title" = "Mengine";
-
 /* Tex label above the Donate button */
 "donate_description" = "Zawadia mamilioni ya watumiaji ramani za bure bila matangazo!";
 
@@ -408,9 +424,6 @@
 
 /* Alert title */
 "email_error_title" = "Hitilafu katika kutuma barua pepe";
-
-/* Settings item title */
-"pref_calibration_title" = "Kalibresheni ya kompasi";
 
 /* Downloaded maps category */
 "downloader_available_maps" = "Inapatikana";
@@ -509,6 +522,8 @@
 "twentyfour_seven" = "24/7";
 "day_off_today" = "Imefungwa leo";
 "day_off" = "Imefungwa";
+"midnight" = "Usiku wa manane";
+"noon" = "Adhuhuri";
 "today" = "Leo";
 "opens_in" = "Inafunguka katika %@";
 "closes_in" = "Inakaribia kwa %@";
@@ -592,9 +607,6 @@
 "day" = "d";
 "second" = "s";
 "placepage_more_button" = "Zaidi";
-
-/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
-"placepage_edit_bookmark_button" = "Hariri alama ya ukurasa";
 "placepage_personal_notes_hint" = "Vidokezo vya kibinafsi (maandishi au HTML)";
 "editor_comment_hint" = "Maoni…";
 "editor_reset_edits_message" = "Tupa mabadiliko yote ya ndani?";
@@ -642,7 +654,9 @@
 "planning_route_manage_route" = "Dhibiti njia ya kufuata";
 "button_plan" = "Panga";
 "placepage_remove_stop" = "Ondoa eneo la kusimama";
-"placepage_add_stop" = "Ongeza eneo la kusimama";
+
+/* Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. */
+"placepage_add_stop" = "Ongeza kituo";
 "saved" = "Imehifadhiwa";
 "error_enter_correct_name" = "Tafadhali, weka jina sahihi";
 "bookmark_lists" = "Orodha";
@@ -661,6 +675,9 @@
 "bookmarks_error_title_list_name_already_taken" = "Jina hili tayari limechukuliwa";
 "profile" = "Wasifu wa OpenStreetMap";
 "restore" = "Rejesha";
+
+/* Settings privacy group in settings screen */
+"privacy" = "Faragha";
 "privacy_policy" = "Sera ya faragha";
 "terms_of_use" = "Masharti ya matumizi";
 
@@ -714,6 +731,12 @@
 "show_at_the_bottom" = "Onyesha chini";
 "enable_logging_warning_message" = "Chaguo huwasha data kwa madhumuni ya uchunguzi. Itakuwa muhimu kwa wafanyakazi wetu ambao wanatatua matatizo ya programu. Washa chaguo hili kwa maombi ya mhudumu wa Organic Maps tu.";
 "driving_options_title" = "Machaguo ya njia";
+
+/* Routing setting that automatically reorders intermediate stops */
+"route_optimization" = "Uboreshaji wa njia";
+
+/* Explains that route optimization automatically reorders intermediate stops */
+"route_optimization_description" = "Hupanga upya vituo vya kati kiotomatiki ili kuunda njia yenye ufanisi zaidi.";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "Epuka barabara za ushuru";
@@ -822,7 +845,6 @@
 "location_services_disabled_on_device_3" = "3. Chagua Huduma za Mahali";
 "location_services_disabled_on_device_4" = "4. Washa Huduma za Mahali";
 "location_services_disabled_on_device_additional_message" = "Au endelea kutumia Organic Maps bila Mahali";
-"book_button" = "Kitabu";
 "placepage_call_button" = "Piga simu";
 "placepage_bookmark_name_hint" = "Jina la alama ya ukurasa";
 "placepage_delete_bookmark_button" = "Futa alama ya ukurasa";
@@ -833,9 +855,6 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "Zima kurekodi njia yako uliyopita hivi karibuni?";
 "off_recent_track_background_button" = "Zima";
-
-/* For sharing via SMS and so on */
-"sharing_call_action_look" = "Angalia";
 "recent_track_background_dialog_message" = "Organic Maps inatumia eneo lako kwa nyuma ili kurekodi njia uliyopita hivi karibuni.";
 "general_settings" = "Mipangilio ya jumla";
 
@@ -864,12 +883,6 @@
 "popular_place" = "Maarufu";
 "hide_from_map" = "Ficha kwenye ramani";
 "tags_loading_error_subtitle" = "Kosa limetokea wakati wa kupakua vibandiko, tafadhali jaribu tena";
-
-/* Position of the name label on the map relative to the bookmark pin (on the right) */
-"right" = "Sahihi";
-
-/* Position of the name label on the map relative to the bookmark pin (at the bottom) */
-"bottom" = "Chini";
 "trip_start" = "Twende zetu";
 "pick_destination" = "Mahali";
 "follow_my_position" = "Weka kati tena";
@@ -918,6 +931,15 @@
 "medicine" = "Dawa";
 "search_in_the_list" = "Tafuta kwenye orodha";
 "religious_places" = "Sehemu za ibada";
+
+/* Button that starts multi-selection in a bookmark list. */
+"select" = "Chagua";
+
+/* Action that selects every bookmark and track in a bookmark list. */
+"select_all" = "Chagua zote";
+
+/* Action that clears the multi-selection in a bookmark list. */
+"deselect_all" = "Ondoa uteuzi";
 "transit_not_found" = "Uabiri wa njia ya chini kwa chini katika mkoa huu haupatikani bado";
 "dialog_pedestrian_route_is_long_header" = "Njia ya chini kwa chini haipatikani";
 "dialog_pedestrian_route_is_long_message" = "Chagua nyota au alama ya mwisho karibu ya kituo cha njia ya chini kwa chini";
@@ -995,11 +1017,14 @@
 "bookmarks_export" = "Hamisha Alamisho na Nyimbo zote";
 "drive_through" = "Kuendesha-kupitia";
 
+/* Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_in" = "Vuta karibu";
+
+/* Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_out" = "Vuta mbali";
+
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "Kiungo cha menyu";
-
-/* Title for the "Open in Another App" button on the PlacePage. */
-"open_in_app" = "Fungua Katika Programu Nyingine";
 
 /* To indicate if the place proposed self service… */
 "self_service" = "Kujihudumia";
@@ -1052,6 +1077,12 @@
 /* Text for the editing the Track's color button. */
 "change_color" = "Badilisha rangi";
 
+/* Text for the hiding track. */
+"hide_track" = "Ficha njia";
+
+/* Text for the showing track. */
+"show_track" = "Onyesha njia";
+
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "Ramani";
 
@@ -1070,7 +1101,7 @@
 /* Message for the "iCloud is Disabled" alert. */
 "icloud_disabled_message" = "Tafadhali wezesha iCloud katika mipangilio ya kifaa chako ili kutumia kipengele hiki.";
 
-/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+/* Action button that enables a disabled feature, such as iCloud synchronization or location services. */
 "enable" = "Wezesha";
 
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
@@ -1167,3 +1198,27 @@
 
 /* Toast message shown when track colors are changed in category settings */
 "toast_tracks_color_changed" = "Rangi ya njia imebadilishwa";
+
+/* Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair */
+"choose_on_map" = "Chagua kwenye ramani";
+
+/* Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_start_location" = "Kuanzia";
+
+/* Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_destination" = "Marudio";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_start_location" = "Badilisha kuanzia";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_destination" = "Badilisha marudio";
+
+/* Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_stop_along_route" = "Badilisha kituo";
+
+/* Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number */
+"routing_max_stops_reached" = "Idadi ya juu ya vituo imefikiwa";
+
+/* Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it */
+"choose_point_on_map_hint" = "Sogeza na zuma ramani ili kuweka msalaba";
