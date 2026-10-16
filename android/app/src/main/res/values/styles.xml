@@ -7,8 +7,6 @@
 
   <style name="MwmWidget.FrameLayout"/>
 
-  <style name="MwmWidget.Downloader"/>
-
   <style name="MwmWidget.MapButton" parent="Theme.Material3.Dark">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
@@ -81,6 +79,7 @@
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_marginBottom">@dimen/margin_dialog_title</item>
     <item name="android:textAppearance">@style/MwmTextAppearance.Body1</item>
+    <item name="android:textColor">?titleDialogTheme</item>
     <item name="android:fontFamily">@string/robotoMedium</item>
   </style>
 
@@ -156,6 +155,15 @@
     <item name="cornerSize">@dimen/bottom_sheet_corner_radius</item>
   </style>
 
+  <style name="ShapeAppearance.App.Dialog" parent="ShapeAppearance.Material3.MediumComponent">
+    <item name="cornerSize">@dimen/dialog_corner_radius</item>
+  </style>
+
+  <style name="MwmWidget.AlertDialog" parent="AlertDialog.AppCompat">
+    <item name="shapeAppearance">@style/ShapeAppearance.App.Dialog</item>
+    <item name="backgroundTint">?cardBackground</item>
+  </style>
+
   <style name="MwmWidget.ToolbarStyle" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
     <item name="android:background">?colorPrimary</item>
     <item name="android:displayOptions">homeAsUp|showTitle</item>
@@ -205,6 +213,53 @@
     <item name="android:homeAsUpIndicator">@drawable/ic_down</item>
   </style>
 
+  <!-- Cannot inherit MwmWidget.ToolbarStyle: that family is a Dark.ActionBar overlay, where
+       ?android:textColorPrimary resolves to white and the light theme breaks. -->
+  <style name="MwmWidget.Toolbar.Card" parent="">
+    <item name="android:background">?cardBackground</item>
+    <item name="android:elevation">0dp</item>
+    <item name="contentInsetStart">0dp</item>
+    <item name="titleTextAppearance">@style/MwmTextAppearance.Toolbar.Title</item>
+    <item name="titleTextColor">?android:textColorPrimary</item>
+  </style>
+
+  <style name="ThemeOverlay.Mwm.Toolbar.Card" parent="ThemeOverlay.MaterialComponents">
+    <item name="android:gravity">center_vertical</item>
+    <item name="colorControlNormal">?android:textColorPrimary</item>
+    <item name="iconTint">?android:textColorPrimary</item>
+    <item name="actionMenuTextColor">?android:textColorPrimary</item>
+    <item name="actionMenuTextAppearance">@style/MwmTextAppearance.Body1</item>
+    <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+    <!-- The shared search controls are drawn on this card surface rather than on the branded bar, so their
+         white theme defaults would be invisible. -->
+    <item name="searchToolbarTextAppearance">@style/MwmTextAppearance.Toolbar.SearchSheet</item>
+    <item name="searchToolbarEndIconTint">?android:textColorSecondary</item>
+  </style>
+
+  <!-- Modern filled TextInputLayout with pill-rounded corners inspired by the search bar. -->
+  <style name="MwmWidget.TextInput.Filled" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <item name="boxBackgroundColor">?panel</item>
+    <item name="boxCornerRadiusTopStart">@dimen/corner_radius_pill</item>
+    <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_pill</item>
+    <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_pill</item>
+    <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_pill</item>
+    <item name="hintTextColor">?android:textColorSecondary</item>
+    <item name="boxStrokeWidth">0dp</item>
+    <item name="boxStrokeWidthFocused">0dp</item>
+    <item name="cursorColor">@color/cursor_edit_field</item>
+  </style>
+
+  <style name="MwmWidget.TextInput.Filled.EditText" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
+    <item name="android:paddingStart">@dimen/margin_base</item>
+    <item name="android:paddingEnd">@dimen/margin_base</item>
+    <item name="android:textAppearance">@style/MwmTextAppearance.Body1</item>
+    <item name="android:theme">@style/ThemeOverlay.Mwm.EditText</item>
+  </style>
+
+  <style name="ThemeOverlay.Mwm.EditText" parent="ThemeOverlay.MaterialComponents">
+    <item name="colorControlActivated">@color/cursor_edit_field</item>
+  </style>
+
   <style name="MwmWidget.ListView" parent="Widget.AppCompat.ListView">
     <item name="android:fadingEdge">none</item>
     <item name="android:divider">@color/divider</item>
@@ -241,6 +296,24 @@
     <item name="android:singleLine">true</item>
     <item name="android:background">?clickableBackground</item>
     <item name="android:drawablePadding">@dimen/margin_base_plus</item>
+  </style>
+
+  <style name="MwmWidget.SearchAction" parent="Widget.MaterialComponents.Button.TextButton">
+    <item name="android:layout_width">@dimen/search_input_height</item>
+    <item name="android:layout_height">@dimen/search_input_height</item>
+    <item name="android:minWidth">@dimen/dp_0</item>
+    <item name="android:minHeight">@dimen/dp_0</item>
+    <item name="android:insetTop">@dimen/dp_0</item>
+    <item name="android:insetBottom">@dimen/dp_0</item>
+    <item name="android:paddingStart">@dimen/dp_0</item>
+    <item name="android:paddingEnd">@dimen/dp_0</item>
+    <item name="backgroundTint">@color/bg_search</item>
+    <item name="rippleColor">@color/ripple_search_action</item>
+    <item name="iconSize">@dimen/search_action_icon_size</item>
+    <item name="iconPadding">@dimen/dp_0</item>
+    <item name="iconGravity">textStart</item>
+    <item name="iconTint">?attr/textSearchField</item>
+    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Button.Round</item>
   </style>
 
   <style name="MwmWidget.TextView.Direction">
@@ -323,16 +396,6 @@
     <item name="tabIndicatorColor">?android:textColorPrimary</item>
     <item name="tabRippleColor">@android:color/transparent</item>
     <item name="tabSelectedTextColor">?android:textColorPrimary</item>
-  </style>
-
-  <style name="MwmWidget.Downloader.ToolbarButton">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">match_parent</item>
-    <item name="android:gravity">center</item>
-    <item name="android:layout_gravity">end|center_vertical</item>
-    <item name="android:background">?selectableItemBackgroundBorderless</item>
-    <item name="android:padding">@dimen/margin_half</item>
-    <item name="android:textAppearance">@style/MwmTextAppearance.Toolbar.Title.Button</item>
   </style>
 
   <style name="MwmWidget.MaterialCalendar.Theme.FullScreen.Dark"

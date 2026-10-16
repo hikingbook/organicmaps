@@ -719,6 +719,7 @@
 "type.landuse" = "Ús del sòl";
 "type.landuse.allotments" = "Horts";
 "type.landuse.basin" = "Conca";
+"type.landuse.basin.intermittent" = "Conca intermitent";
 "type.landuse.brownfield" = "Camp industrial";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Pedrera";
 "type.landuse.railway" = "Instal·lacions ferroviàries";
 "type.landuse.recreation_ground" = "Zona recreativa";
-"type.landuse.reservoir" = "Embassament";
 "type.landuse.residential" = "Zona residencial";
 "type.landuse.retail" = "Zona comercial";
 "type.landuse.salt_pond" = "Estany salat";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Pista de gel";
 "type.leisure.marina" = "Port esportiu";
 "type.leisure.nature_reserve" = "Reserva natural";
+"type.leisure.bird_hide" = "Aguait d'ocells";
 "type.leisure.outdoor_seating" = "Seients a l’aire lliure";
 "type.leisure.firepit" = "Braser";
 "type.leisure.park" = "Parc";
@@ -872,10 +873,13 @@
 "type.natural.water.reservoir" = "Embassament";
 "type.natural.water.basin" = "Conca";
 "type.natural.water.river" = "Riu";
+"type.natural.water.intermittent" = "Massa d'aigua intermitent";
 "type.natural.land" = "Terreny";
 "type.natural.meadow" = "Prat de dall";
 "type.natural.orchard" = "Verger";
 "type.natural.peak" = "Cim";
+"type.natural.hill" = "Turó";
+"type.natural.arch" = "Arc rocós";
 "type.natural.saddle" = "Sella de muntanya";
 "type.natural.rock" = "Roca";
 "type.natural.scrub" = "Matoll";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Servei social";
+"type.amenity.stage" = "Escenari";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Entrada d’urgències";

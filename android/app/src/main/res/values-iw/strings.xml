@@ -120,7 +120,7 @@
     <string name="category_hotel">בית מלון</string>
     <!-- Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! -->
     <string name="category_tourism">נקודות עיניין</string>
-    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! -->
+    <!-- Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. -->
     <string name="category_entertainment">בידור</string>
     <!-- Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! -->
     <string name="category_atm">כספומט</string>
@@ -142,7 +142,7 @@
     <string name="category_police">משטרה</string>
     <!-- Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! -->
     <string name="category_recycling">מיחזור</string>
-    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type -->
+    <!-- Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. -->
     <string name="category_water">מים</string>
     <!-- Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! -->
     <string name="category_rv">עבור קרוואנים</string>
@@ -171,16 +171,12 @@
     <string name="cant_change_this_setting">מצטערים, הגדרות שמירת מפה אינן זמינות כרגע.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">הורדת מפת המדינה מתבצעת כעת.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">קבלו את המיקום שלי ב-Organic Maps!\n%1$s או %2$s\nאין לך מפות בלי אינטרנט? להוריד כאן: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">היי, בדוק את הסיכה שלי במפה של Organic Maps!</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">היי, בדקו את המיקום הנוכחי שלי במפה של Organic Maps!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">היי,\n\nאני כאן: %1$s. הקש על הלינק %2$s או על %3$s כדי לראות את המקום על המפה.\n\nתודה.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">שיתוף</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s ב-Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">מקום ב-Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">דוא\"ל</string>
     <!-- Text for message when used successfully copied something -->
@@ -413,19 +409,15 @@
     <string name="editor_example_values">ערכים לדוגמה</string>
     <string name="editor_correct_mistake">תקן טעות</string>
     <string name="editor_add_select_location">בחר מיקום</string>
-    <string name="editor_report_problem_desription_1">בבקשה תארו את הבעיה בפירוט כדי שקהילת OpenStreetMap תוכל לתקן אותה.</string>
-    <string name="editor_report_problem_desription_2">או תקנו אותה בעצמכם: https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">שלח</string>
-    <string name="editor_report_problem_title">בעיה</string>
-    <string name="editor_report_problem_no_place_title">המקום הזה לא קיים</string>
-    <string name="editor_report_problem_under_construction_title">סגור בשל עבודות תחזוקה</string>
-    <string name="editor_report_problem_duplicate_place_title">מקום כפול</string>
     <string name="autodownload">הורדה אוטומטית של מפות</string>
     <!-- Place Page opening hours text -->
     <string name="daily">יומי</string>
     <string name="twentyfour_seven">24/7</string>
     <string name="day_off_today">סגור היום</string>
     <string name="day_off">סגור</string>
+    <string name="midnight">חצות</string>
+    <string name="noon">צהריים</string>
     <string name="today">היום</string>
     <string name="opens_in">נפתח עוד %s</string>
     <string name="closes_in">נסגר עוד %s</string>
@@ -478,8 +470,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">כפי שנכתב בשפה המקומית</string>
     <string name="editor_edit_place_category_title">קטגוריה</string>
-    <string name="detailed_problem_description">תאור מפורט של הבעיה</string>
-    <string name="editor_report_problem_other_title">בעיה אחרת</string>
     <string name="placepage_add_business_button">הוסף בית עסק</string>
     <string name="message_invalid_feature_position">לא ניתן למקם כאן פריט</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -522,7 +512,7 @@
     <string name="day">י</string>
     <string name="second">ש׳׳</string>
     <string name="placepage_more_button">עוד</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">ערוך סימניה</string>
     <string name="placepage_personal_notes_hint">הערות אישיות (טקסט או HTML)</string>
     <string name="editor_comment_hint">תגובה…</string>
@@ -566,11 +556,7 @@
     <string name="mobile_data_description">אינטרנט סלולרי נחוץ בשביל הודעות על עדכון מפות ובשביל העלאת עריכות.</string>
     <string name="mobile_data_option_never">אף פעם אל תשתמש</string>
     <string name="mobile_data_option_ask">שאל תמיד</string>
-    <string name="traffic_update_maps_text">כדי להציג מידע על עומס תנועה, יש לעדכן את המפות.</string>
     <string name="big_font">הגדל תגיות במפה</string>
-    <string name="traffic_update_app">נא לעדכן את Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">מידע על עומס תנועה לא זמין.</string>
     <string name="enable_logging">הפעל logging</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">משוב כללי</string>
@@ -582,7 +568,8 @@
     <string name="planning_route_manage_route">ניהול מסלול</string>
     <string name="button_plan">תכנון</string>
     <string name="placepage_remove_stop">הסר עצירה</string>
-    <string name="placepage_add_stop">הוסף עצירה</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
+    <string name="placepage_add_stop">הוספת עצירה</string>
     <string name="drag_to_reorder">סידור מחדש</string>
     <string name="saved">נשמר</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -671,6 +658,10 @@
     <string name="show_at_the_bottom">הצג בתחתית</string>
     <string name="enable_logging_warning_message">הפעל אפשרות זו כדי לתעד ובאופן ידני לשלוח אלינו פרטים דיאגנוסטיים על הבעיה שלך בעזרת הכפתור \"דווח על באג\" בתפריט עזרה. הפרטים עשויים לכלול מידע על מיקום.</string>
     <string name="driving_options_title">אפשרויות מסלול</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">מיטוב המסלול</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">מסדר מחדש באופן אוטומטי את תחנות הביניים כדי ליצור מסלול יעיל יותר.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">הימנע מכבישי אגרה</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -751,6 +742,12 @@
     <string name="medicine">רפואה</string>
     <string name="search_in_the_list">חפש ברשימה</string>
     <string name="religious_places">מקומות דת</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">בחר</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">בחר הכול</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">בטל בחירה</string>
     <string name="select_list">בחר רשימה</string>
     <string name="button_layer_isolines">קווי מתאר</string>
     <string name="isolines_activation_error_dialog">כדי להפעיל קווי מתאר יש להוריד את המפה לאזור זה</string>
@@ -835,15 +832,14 @@
     <string name="pref_tts_no_system_tts">הגדרות סינתזת דיבור לא נמצאו, האם אתה בטוח שהמכשיר שלך תומך בזה?</string>
     <string name="drive_through">דרייב ת\'רו</string>
     <string name="clear_the_search">נקה את החיפוש</string>
-    <string name="zoom_in">לְהִתְמַקֵד</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
-    <string name="zoom_out">להקטין את התצוגה</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
+    <string name="zoom_in">להתקרב</string>
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
+    <string name="zoom_out">להתרחק</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">קישור לתפריט</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">תפריט תצוגה</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">פתח באפליקציה אחרת</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">שירות עצמי</string>
     <string name="select_option">בחר אפשרות</string>
@@ -878,6 +874,28 @@
     <string name="share_track">שתף מסלול</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">למחוק %s?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="one">%d נבחר</item>
+        <item quantity="other">%d נבחרו</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="one">למחוק %d פריט?</item>
+        <item quantity="other">למחוק %d פריטים?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">הזז</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">שנה צבע</string>
+    <!-- Text for the hiding track. -->
+    <string name="hide_track">הסתר מסלול</string>
+    <!-- Text for the showing track. -->
+    <string name="show_track">הצג מסלול</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">המיקום שלי</string>
 
     <!-- SECTION: gps strings -->
     <!-- Login to OSM button text -->
@@ -906,4 +924,22 @@
     <string name="color_picker_grid">רשת</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">חיפוש קולי</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">בחר במפה</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">נקודת התחלה</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">יעד</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">שינוי ההתחלה</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">שינוי היעד</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">שינוי העצירה</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">המספר המרבי של העצירות הושג</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">הזז את המפה ושנה את רמת הזום כדי למקם את הצלב</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">הפסק ושמור</string>
 </resources>

@@ -115,7 +115,7 @@
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
 "category_tourism" = "पर्यटन";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. */
 "category_entertainment" = "मनोरंजन";
 
 /* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
@@ -148,7 +148,7 @@
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "भंगारवाला";
 
-/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. */
 "category_water" = "पाणी";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
@@ -174,11 +174,23 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "तुमचे स्थान अद्याप निश्चित केलेले नाही";
 
-/* Subject for emailed bookmark */
-"bookmark_share_email_subject" = "Organic Maps द्वारे एक खूणपत्र पाठवत आहे!";
+/* Text shown before a shared "my position" link, and the email subject when sharing the current location. */
+"share_my_position" = "मी Organic Maps वर येथे आहे";
 
-/* Subject for emailed position */
-"my_position_share_email_subject" = "Organic Maps द्वारे माझे वर्तमान स्थान पाठवत आहे!";
+/* Email subject when sharing a place. %1$@ is the place name or address. */
+"share_place_subject" = "%1$@ Organic Maps वर";
+
+/* Email subject when sharing a place that has no name or address. */
+"share_place_subject_default" = "Organic Maps वरील ठिकाण";
+
+/* Shared email link text; opens the shared place in Organic Maps or in a web browser. */
+"share_open_in_om_or_browser" = "Organic Maps किंवा ब्राउझरमध्ये उघडा";
+
+/* Shared email link text; leads to the Organic Maps download page. */
+"share_get_om" = "Organic Maps मिळवा";
+
+/* Title for the "Open in Another App" button on the PlacePage; also shared email link text: opens the shared place in another (geo:) maps app. */
+"open_in_app" = "दुसऱ्या ॲपमध्ये उघडा";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "ई-मेल";
@@ -195,6 +207,7 @@
 /* Length of track in cell that describes route */
 "length" = "लांबी";
 "share_my_location" = "माझे स्थान सामायिक करा";
+"prefs_group_network" = "नेटवर्क";
 "prefs_group_route" = "मार्गनिर्देशन";
 
 /* Setting name which enables or disables zoom buttons on the map screen. */
@@ -251,8 +264,14 @@
 /* Settings «Navigation» category: «Voice language» footer */
 "pref_tts_download_voices_description" = "उच्च-गुणवत्तेचा आवाज डाउनलोड करण्यासाठी, सेटिंग्ज अॅप उघडा आणि प्रवेशयोग्यता → VoiceOver → स्पीच → व्हॉइस येथे जा.";
 
-/* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "चाचणी आवाज दिशानिर्देश (TTS, टेक्स्ट-टू-स्पीच)";
+/* Header above Apple's group of novelty text-to-speech voices (Bells, Bubbles, Zarvox...), shown after the regional voice sections and Eloquence group. Use Apple's term for this group from Settings > Accessibility > VoiceOver > Speech. */
+"pref_tts_voice_group_novelty" = "Novelty";
+
+/* Accessibility label of the button that plays a sample of a text-to-speech voice. */
+"pref_tts_voice_preview_play" = "Play sample";
+
+/* Accessibility label of the button that stops the sample of a text-to-speech voice being played. */
+"pref_tts_voice_preview_stop" = "Stop sample";
 "pref_map_auto_zoom" = "स्वयं झूम";
 "placepage_distance" = "अंतर";
 "search_show_on_map" = "नकाशावर पहा";
@@ -388,9 +407,6 @@
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
 "pref_appearance_dark" = "अंधार";
 
-/* Title for "Other" section in TTS settings. */
-"pref_tts_other_section_title" = "इतर";
-
 /* Tex label above the Donate button */
 "donate_description" = "लाखो वापरकर्त्यांना जाहिरातीशिवाय विनामूल्य नकाशे भेट द्या!";
 
@@ -408,9 +424,6 @@
 
 /* Alert title */
 "email_error_title" = "मेल पाठवताना त्रुटी";
-
-/* Settings item title */
-"pref_calibration_title" = "होकायंत्र अंशशोधन";
 
 /* Downloaded maps category */
 "downloader_available_maps" = "उपलब्ध";
@@ -509,6 +522,8 @@
 "twentyfour_seven" = "२४/७";
 "day_off_today" = "आज बंद";
 "day_off" = "बंद";
+"midnight" = "मध्यरात्र";
+"noon" = "मध्यान्ह";
 "today" = "आज";
 "opens_in" = "आणखी %@ मध्ये उघडेल";
 "closes_in" = "आणखी %@ मध्ये बंद होईल";
@@ -592,9 +607,6 @@
 "day" = "दि";
 "second" = "सेकंद";
 "placepage_more_button" = "अधिक";
-
-/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
-"placepage_edit_bookmark_button" = "खूणपत्र संपादित करा";
 "placepage_personal_notes_hint" = "वैयक्तिक चिठ्ठ्या (मजकूर किंवा html)";
 "editor_comment_hint" = "टिप्पणी…";
 "editor_reset_edits_message" = "सर्व स्थानिक बदल टाकून द्यायचे?";
@@ -642,7 +654,9 @@
 "planning_route_manage_route" = "मार्ग व्यवस्थापन";
 "button_plan" = "नियोजन";
 "placepage_remove_stop" = "थांबा काढा";
-"placepage_add_stop" = "स्टॉप जोडा";
+
+/* Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. */
+"placepage_add_stop" = "थांबा जोडा";
 "saved" = "जतन केले";
 "error_enter_correct_name" = "कृपया योग्य नाव प्रविष्ट करा";
 "bookmark_lists" = "याद्या";
@@ -661,6 +675,9 @@
 "bookmarks_error_title_list_name_already_taken" = "हे नाव आधीच वापरात आहे";
 "profile" = "OpenStreetMap प्रोफाइल";
 "restore" = "पूर्ववत् करा";
+
+/* Settings privacy group in settings screen */
+"privacy" = "गोपनीयता";
 "privacy_policy" = "गोपनीयता धोरण";
 "terms_of_use" = "वापरण्याच्या अटी";
 
@@ -714,6 +731,12 @@
 "show_at_the_bottom" = "तळाशी दाखवा";
 "enable_logging_warning_message" = "निदान करण्याकरिता हा पर्याय लॉगिंग चालू करतो. ह्याने ऍपच्या समस्यांचे निवारण करणे आम्हाला उपयुक्त ठरू शकते. तुमच्या समस्येबद्दल तपशीलवार नोंदी रेकॉर्ड करण्यासाठी आणि आम्हाला पाठवण्यासाठी हा पर्याय तात्पुरता चालू करा.";
 "driving_options_title" = "मार्गशोधी पर्याय";
+
+/* Routing setting that automatically reorders intermediate stops */
+"route_optimization" = "मार्ग अनुकूलन";
+
+/* Explains that route optimization automatically reorders intermediate stops */
+"route_optimization_description" = "अधिक कार्यक्षम मार्ग तयार करण्यासाठी मधले थांबे आपोआप पुनर्क्रमित करते.";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "टोल रस्ते टाळा";
@@ -822,7 +845,6 @@
 "location_services_disabled_on_device_3" = "3. स्थान सेवा निवडा";
 "location_services_disabled_on_device_4" = "4. स्थान सेवा चालू करा";
 "location_services_disabled_on_device_additional_message" = "किंवा स्थानशिवाय Organic Maps वापरणे सुरू ठेवा";
-"book_button" = "पुस्तक";
 "placepage_call_button" = "फोन करा";
 "placepage_bookmark_name_hint" = "खूणपत्राचे नाव";
 "placepage_delete_bookmark_button" = "खूणपत्र पुसा";
@@ -833,9 +855,6 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "तुम्ही अलीकडे प्रवास केलेल्या मार्गाचे रेकॉर्डिंग बंद करायचे?";
 "off_recent_track_background_button" = "बंद करा";
-
-/* For sharing via SMS and so on */
-"sharing_call_action_look" = "तपासा";
 "recent_track_background_dialog_message" = "तुम्ही अलीकडे प्रवास केलेला मार्ग रेकॉर्ड करण्यासाठी Organic Maps पार्श्वभूमीत तुमचे स्थान वापरते.";
 "general_settings" = "सामान्य सेटिंग";
 
@@ -864,12 +883,6 @@
 "popular_place" = "लोकप्रिय";
 "hide_from_map" = "नकाशावरून लपवा";
 "tags_loading_error_subtitle" = "टॅग लोड करताना त्रुटी आढळली, कृपया पुन्हा प्रयत्न करा";
-
-/* Position of the name label on the map relative to the bookmark pin (on the right) */
-"right" = "उजवे";
-
-/* Position of the name label on the map relative to the bookmark pin (at the bottom) */
-"bottom" = "तळ";
 "trip_start" = "चल जाऊया";
 "pick_destination" = "गंतव्यस्थाना";
 "follow_my_position" = "पुनरकेंद्रित करा";
@@ -918,6 +931,15 @@
 "medicine" = "औषध";
 "search_in_the_list" = "यादीत शोधा";
 "religious_places" = "धार्मिक स्थळ";
+
+/* Button that starts multi-selection in a bookmark list. */
+"select" = "निवडा";
+
+/* Action that selects every bookmark and track in a bookmark list. */
+"select_all" = "सर्व निवडा";
+
+/* Action that clears the multi-selection in a bookmark list. */
+"deselect_all" = "निवड रद्द करा";
 "transit_not_found" = "या प्रदेशात मेट्रोचे मार्गनिर्देशन अद्याप उपलब्ध नाही";
 "dialog_pedestrian_route_is_long_header" = "मेट्रो मार्ग सापडला नाही";
 "dialog_pedestrian_route_is_long_message" = "कृपया मेट्रो स्थानकाजवळचा प्रारंभ किंवा शेवटचा बिंदू निवडा";
@@ -995,11 +1017,14 @@
 "bookmarks_export" = "सर्व बुकमार्क आणि ट्रॅक निर्यात करा";
 "drive_through" = "मार्गे चला";
 
+/* Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_in" = "मोठे करा";
+
+/* Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_out" = "लहान करा";
+
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "मेनू लिंक";
-
-/* Title for the "Open in Another App" button on the PlacePage. */
-"open_in_app" = "दुसऱ्या ॲपमध्ये उघडा";
 
 /* To indicate if the place proposed self service… */
 "self_service" = "स्व: सेवा";
@@ -1052,6 +1077,12 @@
 /* Text for the editing the Track's color button. */
 "change_color" = "रंग बदला";
 
+/* Text for the hiding track. */
+"hide_track" = "मार्ग लपवा";
+
+/* Text for the showing track. */
+"show_track" = "मार्ग दाखवा";
+
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "नकाशा";
 
@@ -1070,7 +1101,7 @@
 /* Message for the "iCloud is Disabled" alert. */
 "icloud_disabled_message" = "कृपया हे वैशिष्ट्य वापरण्यासाठी तुमच्या डिव्हाइसच्या सेटिंग्जमध्ये iCloud सक्षम करा.";
 
-/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+/* Action button that enables a disabled feature, such as iCloud synchronization or location services. */
 "enable" = "सक्षम करा";
 
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
@@ -1167,3 +1198,27 @@
 
 /* Toast message shown when track colors are changed in category settings */
 "toast_tracks_color_changed" = "ट्रॅकांचा रंग बदलला";
+
+/* Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair */
+"choose_on_map" = "नकाशावर निवडा";
+
+/* Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_start_location" = "प्रारंभ स्थान";
+
+/* Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_destination" = "गंतव्य";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_start_location" = "प्रारंभ बदला";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_destination" = "गंतव्य बदला";
+
+/* Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_stop_along_route" = "थांबा बदला";
+
+/* Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number */
+"routing_max_stops_reached" = "थांब्यांची कमाल संख्या गाठली आहे";
+
+/* Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it */
+"choose_point_on_map_hint" = "क्रॉस ठेवण्यासाठी नकाशा हलवा आणि झूम करा";

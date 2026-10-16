@@ -63,6 +63,16 @@ static MWMPredefinedColor convertPredefinedColor(kml::PredefinedColor predefined
   return static_cast<MWMPredefinedColor>(predefinedColor);
 }
 
+template <typename IdCollection>
+static IdCollection convertIdsToCore(NSArray<NSNumber *> * ids)
+{
+  IdCollection result;
+  result.reserve(ids.count);
+  for (NSNumber * value in ids)
+    result.push_back(value.unsignedLongLongValue);
+  return result;
+}
+
 static UIColor * UIColorFromCoreColor(dp::Color const & color)
 {
   return [UIColor colorWithRed:color.GetRedF() green:color.GetGreenF() blue:color.GetBlueF() alpha:color.GetAlphaF()];
@@ -290,19 +300,6 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
   return @(self.bm.GetCategoryData(groupId).m_authorId.c_str());
 }
 
-- (MWMBookmarkGroupType)getCategoryGroupType:(MWMMarkGroupID)groupId
-{
-  if (self.bm.IsCompilation(groupId) == false)
-    return MWMBookmarkGroupTypeRoot;
-  switch (self.bm.GetCompilationType(groupId))
-  {
-  case kml::CompilationType::Category: return MWMBookmarkGroupTypeCategory;
-  case kml::CompilationType::Collection: return MWMBookmarkGroupTypeCollection;
-  case kml::CompilationType::Day: return MWMBookmarkGroupTypeDay;
-  }
-  return MWMBookmarkGroupTypeRoot;
-}
-
 - (nullable NSURL *)getCategoryImageUrl:(MWMMarkGroupID)groupId
 {
   NSString * urlString = @(self.bm.GetCategoryData(groupId).m_imageUrl.c_str());
@@ -356,6 +353,11 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
 - (void)setCatalogCategoriesVisible:(BOOL)isVisible
 {
   self.bm.SetAllCategoriesVisibility(isVisible);
+}
+
+- (void)setTrack:(MWMTrackID)trackId isVisible:(BOOL)isVisible
+{
+  GetFramework().SetTrackVisibility(trackId, isVisible);
 }
 
 - (void)deleteCategory:(MWMMarkGroupID)groupId
@@ -505,22 +507,70 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
   return [collection copy];
 }
 
+- (void)notifyDeletedBookmarks:(MWMMarkIDCollection)bookmarkIds tracks:(MWMTrackIDCollection)trackIds
+{
+  BOOL const hasBookmarks = bookmarkIds.count > 0;
+  BOOL const hasTracks = trackIds.count > 0;
+  // Report every requested id, including ones Core no longer has: subscribers such as EditBookmarkViewController
+  // wait for their own id to come back to dismiss, and must not be left hanging on an already-deleted id.
+  [self loopObservers:^(id<MWMBookmarksObserver> observer) {
+    if (hasBookmarks && [observer respondsToSelector:@selector(onBookmarksDeleted:)])
+      [observer onBookmarksDeleted:bookmarkIds];
+
+    if (hasTracks && [observer respondsToSelector:@selector(onTracksDeleted:)])
+      [observer onTracksDeleted:trackIds];
+  }];
+}
+
 - (void)deleteBookmark:(MWMMarkID)bookmarkId
 {
-  self.bm.GetEditSession().DeleteBookmark(bookmarkId);
-  [self loopObservers:^(id<MWMBookmarksObserver> observer) {
-    if ([observer respondsToSelector:@selector(onBookmarkDeleted:)])
-      [observer onBookmarkDeleted:bookmarkId];
-  }];
+  auto & bm = self.bm;
+  if (bm.HasBookmark(bookmarkId))
+    bm.GetEditSession().DeleteBookmark(bookmarkId);
+
+  [self notifyDeletedBookmarks:@[@(bookmarkId)] tracks:@[]];
 }
 
 - (void)deleteTrack:(MWMTrackID)trackId
 {
-  self.bm.GetEditSession().DeleteTrack(trackId);
-  [self loopObservers:^(id<MWMBookmarksObserver> observer) {
-    if ([observer respondsToSelector:@selector(onTrackDeleted:)])
-      [observer onTrackDeleted:trackId];
-  }];
+  auto & bm = self.bm;
+  if (bm.HasTrack(trackId))
+    bm.GetEditSession().DeleteTrack(trackId);
+
+  [self notifyDeletedBookmarks:@[] tracks:@[@(trackId)]];
+}
+
+- (void)deleteBookmarks:(MWMMarkIDCollection)bookmarkIds tracks:(MWMTrackIDCollection)trackIds
+{
+  if (bookmarkIds.count == 0 && trackIds.count == 0)
+    return;
+
+  auto const marks = convertIdsToCore<kml::MarkIdCollection>(bookmarkIds);
+  auto const tracks = convertIdsToCore<kml::TrackIdCollection>(trackIds);
+  GetFramework().DeleteBookmarksAndTracks(marks, tracks);
+  [self notifyDeletedBookmarks:bookmarkIds tracks:trackIds];
+}
+
+- (void)moveBookmarks:(MWMMarkIDCollection)bookmarkIds
+               tracks:(MWMTrackIDCollection)trackIds
+            toGroupId:(MWMMarkGroupID)groupId
+{
+  if (bookmarkIds.count == 0 && trackIds.count == 0)
+    return;
+
+  auto const marks = convertIdsToCore<kml::MarkIdCollection>(bookmarkIds);
+  auto const tracks = convertIdsToCore<kml::TrackIdCollection>(trackIds);
+  self.bm.GetEditSession().MoveBookmarksAndTracks(marks, tracks, groupId);
+}
+
+- (void)setColor:(UIColor *)color forBookmarks:(MWMMarkIDCollection)bookmarkIds tracks:(MWMTrackIDCollection)trackIds
+{
+  if (bookmarkIds.count == 0 && trackIds.count == 0)
+    return;
+
+  auto const marks = convertIdsToCore<kml::MarkIdCollection>(bookmarkIds);
+  auto const tracks = convertIdsToCore<kml::TrackIdCollection>(trackIds);
+  self.bm.GetEditSession().SetBookmarksAndTracksColor(marks, tracks, [MWMBookmarksManager getColorFromUIColor:color]);
 }
 
 - (MWMBookmark *)bookmarkWithId:(MWMMarkID)bookmarkId
@@ -614,26 +664,6 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
 
   for (auto trackId : trackIds)
     [result addObject:[[MWMTrack alloc] initWithTrackId:trackId trackData:self.bm.GetTrack(trackId)]];
-  return result;
-}
-
-- (NSArray<MWMBookmarkGroup *> *)collectionsForGroup:(MWMMarkGroupID)groupId
-{
-  auto const & collectionIds = self.bm.GetChildrenCollections(groupId);
-  NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:collectionIds.size()];
-
-  for (auto collectionId : collectionIds)
-    [result addObject:[[MWMBookmarkGroup alloc] initWithCategoryId:collectionId bookmarksManager:self]];
-  return result;
-}
-
-- (NSArray<MWMBookmarkGroup *> *)categoriesForGroup:(MWMMarkGroupID)groupId
-{
-  auto const & categoryIds = self.bm.GetChildrenCategories(groupId);
-  NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:categoryIds.size()];
-
-  for (auto categoryId : categoryIds)
-    [result addObject:[[MWMBookmarkGroup alloc] initWithCategoryId:categoryId bookmarksManager:self]];
   return result;
 }
 
@@ -751,20 +781,6 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
     bookmark->SetCustomName(title.UTF8String);
 }
 
-- (void)updateBookmark:(MWMMarkID)bookmarkId setColor:(UIColor *)color
-{
-  auto editSession = self.bm.GetEditSession();
-
-  auto bookmark = editSession.GetBookmarkForEdit(bookmarkId);
-  ASSERT(bookmark, ("Invalid bookmark id:", bookmarkId));
-
-  auto const newColor = [MWMBookmarksManager getColorFromUIColor:color];
-  if (newColor != bookmark->GetColorForRendering())
-    self.bm.SetLastEditedBmColor(kml::MakeCustomBookmarkColorData(newColor));
-
-  bookmark->SetColor(newColor);
-}
-
 - (void)setCategory:(MWMMarkGroupID)groupId bookmarksColor:(UIColor *)color
 {
   auto editSession = self.bm.GetEditSession();
@@ -776,17 +792,6 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
 {
   auto editSession = self.bm.GetEditSession();
   editSession.SetCategoryTracksColor(groupId, [MWMBookmarksManager getColorFromUIColor:color]);
-}
-
-- (void)moveBookmark:(MWMMarkID)bookmarkId toGroupId:(MWMMarkGroupID)groupId
-{
-  ASSERT_NOT_EQUAL(groupId, kml::kInvalidMarkGroupId, ());
-  auto const currentGroupId = self.bm.GetBookmark(bookmarkId)->GetGroupId();
-  if (currentGroupId != groupId)
-  {
-    auto editSession = self.bm.GetEditSession();
-    editSession.MoveBookmark(bookmarkId, currentGroupId, groupId);
-  }
 }
 
 - (void)updateTrack:(MWMTrackID)trackId
@@ -812,31 +817,6 @@ static void DeleteTemporaryBookmarksFile(std::string const & filePath)
 
   track->SetName(title.UTF8String);
   track->SetDescription(description.UTF8String);
-}
-
-- (void)updateTrack:(MWMTrackID)trackId setColor:(UIColor *)color
-{
-  auto editSession = self.bm.GetEditSession();
-
-  auto track = editSession.GetTrackForEdit(trackId);
-  ASSERT(track, ("Invalid track id:", trackId));
-
-  auto const currentColor = track->GetColor(0);
-  auto const newColor = [MWMBookmarksManager getColorFromUIColor:color];
-
-  if (newColor != currentColor)
-    track->SetColor(newColor);
-}
-
-- (void)moveTrack:(MWMTrackID)trackId toGroupId:(MWMMarkGroupID)groupId
-{
-  ASSERT_NOT_EQUAL(groupId, kml::kInvalidMarkGroupId, ());
-  auto const currentGroupId = self.bm.GetTrack(trackId)->GetGroupId();
-  if (currentGroupId != groupId)
-  {
-    auto editSession = self.bm.GetEditSession();
-    editSession.MoveTrack(trackId, currentGroupId, groupId);
-  }
 }
 
 - (BOOL)hasRecentlyDeletedBookmark

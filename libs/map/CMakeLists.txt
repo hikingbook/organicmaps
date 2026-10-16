@@ -12,12 +12,8 @@ set(SRC
   bookmark_manager.cpp
   bookmark_manager.hpp
   bookmarks_search_params.hpp
-  chart_generator.cpp
-  chart_generator.hpp
   elevation_info.cpp
   elevation_info.hpp
-  everywhere_search_callback.cpp
-  everywhere_search_callback.hpp
   everywhere_search_params.hpp
   extrapolation/extrapolator.cpp
   extrapolation/extrapolator.hpp
@@ -41,6 +37,8 @@ set(SRC
   mwm_url.hpp
   place_page_info.cpp
   place_page_info.hpp
+  share.cpp
+  share.hpp
   selection_processor.cpp
   selection_processor.hpp
   position_provider.hpp
@@ -60,7 +58,6 @@ set(SRC
   search_api.hpp
   search_mark.cpp
   search_mark.hpp
-  search_product_info.hpp
   track.cpp
   track.hpp
   track_statistics.cpp
@@ -104,7 +101,6 @@ target_link_libraries(${PROJECT_NAME}
     kml
     ge0
     drape_frontend
-    agg
   PRIVATE
     stb_image
 )

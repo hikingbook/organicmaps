@@ -81,7 +81,7 @@ final class ListTemplateBuilder {
     let bookmarkManager = BookmarksManager.shared()
     let categories = bookmarkManager.sortedUserCategories()
     let items: [CPListItem] = categories.compactMap { category in
-      if category.bookmarksCount == 0 { return nil }
+      guard category.bookmarksCount > 0 else { return nil }
       let placesString = category.placesCountTitle()
       let item = CPListItem(text: category.title, detailText: placesString)
       item.userInfo = ListItemInfo(type: CPConstants.ListItemType.bookmarkLists,
@@ -116,17 +116,21 @@ final class ListTemplateBuilder {
     template.updateSections([section])
   }
 
+  /// The item shape shared by the search template's type-ahead list and the pushed results list.
+  class func buildSearchResultItem(_ object: MWMCarPlaySearchResultObject) -> CPListItem {
+    let item = CPListItem(text: object.title, detailText: object.address)
+    item.userInfo = ListItemInfo(type: CPConstants.ListItemType.searchResults,
+                                 metadata: SearchResultInfo(result: object))
+    return item
+  }
+
   private class func convertSearchResults(_ results: [MWMCarPlaySearchResultObject], template: CPListTemplate) {
-    var items = [CPListItem]()
-    for object in results {
-      let item = CPListItem(text: object.title, detailText: object.address)
-      item.userInfo = ListItemInfo(type: CPConstants.ListItemType.searchResults,
-                                   metadata: SearchResultInfo(originalRow: object.originalRow))
+    let items = results.map { object -> CPListItem in
+      let item = buildSearchResultItem(object)
       item.handler = Self.itemHandler
-      items.append(item)
+      return item
     }
-    let section = CPListSection(items: items)
-    template.updateSections([section])
+    template.updateSections([CPListSection(items: items)])
   }
 
   // MARK: - CPBarButton builder

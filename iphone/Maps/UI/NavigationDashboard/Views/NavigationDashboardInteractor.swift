@@ -4,6 +4,8 @@ extension NavigationDashboard {
     private let router: MWMRouter.Type
     private let mapViewController: MapViewController
     private let searchManager: SearchOnMapManager
+    private var routeElevationActivePointDistance: Double?
+    private var presentationStep: NavigationDashboardModalPresentationStep = .hidden
 
     weak var delegate: MWMRoutePreviewDelegate?
 
@@ -36,17 +38,21 @@ extension NavigationDashboard {
         router.rebuild(withBestRouter: false)
         return .none
 
-      case .selectRoutePoint(let point):
-        delegate?.routePreviewDidSelect(point, shouldAppend: false)
-        searchManager.startSearching(isRouting: false)
-        if let point, !point.isMyPosition, let textToSearch = point.title {
-          searchManager.searchText(SearchQuery(textToSearch, source: .typedText))
-        }
+      case .selectRoutePoint(let selection):
+        delegate?.routePreviewDidSelect(selection)
+        searchManager.startSearching(isRouting: true)
         return .setHidden(true)
 
       case .addRoutePointButtonDidTap:
-        delegate?.routePreviewDidSelect(nil, shouldAppend: true)
-        searchManager.startSearching(isRouting: false)
+        guard !router.isRoutePointsLimitReached() else {
+          Toast.show(withText: L("routing_max_stops_reached"))
+          return .none
+        }
+        let selection = MWMRoutePointSelection(point: nil,
+                                               type: .intermediate,
+                                               shouldAppend: true)
+        delegate?.routePreviewDidSelect(selection)
+        searchManager.startSearching(isRouting: true)
         return .setHidden(true)
 
       case .deleteRoutePoint(let point):
@@ -55,9 +61,11 @@ extension NavigationDashboard {
         return .show(points: router.points(), routerType: router.type())
 
       case .startNavigation:
+        clearRouteElevationActivePoint()
         return .showNavigationDashboard
 
       case .stopNavigation:
+        clearRouteElevationActivePoint()
         return .close
 
       case .showError(let errorMessage):
@@ -92,15 +100,15 @@ extension NavigationDashboard {
       case .updateTrackRecordingState(let state):
         return .updateTrackRecordingState(state)
 
-      case .updateElevationInfo(let elevationInfo):
-        return .updateElevationInfo(elevationInfo)
+      case .updateElevationInfo(let elevationInfo, let activePointDistance):
+        return .updateElevationInfo(elevationInfo, activePointDistance: activePointDistance)
 
       case .updateNavigationInfoAvailableArea(let frame):
         return .updateNavigationInfoAvailableArea(frame)
 
       case .updateSearchState(let state):
         if state == .closed {
-          delegate?.routePreviewDidSelect(nil, shouldAppend: false)
+          delegate?.routePreviewDidCancelPointSelection()
         }
         return .updateSearchState(state)
 
@@ -125,6 +133,11 @@ extension NavigationDashboard {
         return .setHidden(hidden)
 
       case .didUpdatePresentationStep(let step):
+        let shouldRestoreActivePoint = presentationStep == .hidden && step != .hidden
+        presentationStep = step
+        if shouldRestoreActivePoint {
+          restoreRouteElevationActivePoint()
+        }
         return .updatePresentationStep(step)
 
       case .close:
@@ -132,6 +145,25 @@ extension NavigationDashboard {
         return .close
       }
     }
+
+    fileprivate func clearRouteElevationActivePoint() {
+      routeElevationActivePointDistance = nil
+      router.resetRouteElevationActivePoint()
+    }
+
+    fileprivate func restoreRouteElevationActivePoint() {
+      guard let routeElevationActivePointDistance else { return }
+      router.setRouteElevationActivePointDistance(routeElevationActivePointDistance)
+    }
+  }
+}
+
+// MARK: - ElevationProfileViewControllerDelegate
+
+extension NavigationDashboard.Interactor: ElevationProfileViewControllerDelegate {
+  func updateMapPoint(distance: Double) {
+    routeElevationActivePointDistance = distance
+    router.setRouteElevationActivePointDistance(distance)
   }
 }
 
@@ -167,6 +199,7 @@ extension NavigationDashboard.Interactor: NavigationDashboardView {
   }
 
   func statePrepare() {
+    clearRouteElevationActivePoint()
     process(.updateState(.prepare))
   }
 
@@ -209,7 +242,19 @@ extension NavigationDashboard.Interactor: NavigationDashboardView {
   }
 
   private func buildElevationInfoIfNeeded() {
-    let elevationInfo = router.routeElevationProfileData()
-    process(.updateElevationInfo(elevationInfo))
+    guard let elevationInfo = router.routeElevationProfileData() else {
+      clearRouteElevationActivePoint()
+      process(.updateElevationInfo(nil, activePointDistance: nil))
+      return
+    }
+
+    let maxDistance = elevationInfo.elevationProfileData?.points.last?.distance ?? 0
+    let activePointDistance = routeElevationActivePointDistance.map { min(max(0, $0), maxDistance) }
+    routeElevationActivePointDistance = activePointDistance
+    process(.updateElevationInfo(elevationInfo, activePointDistance: activePointDistance))
+    // Restore on the next run loop because Place Page finishes deselecting its map marker after the route-ready callback.
+    DispatchQueue.main.async { [weak self] in
+      self?.restoreRouteElevationActivePoint()
+    }
   }
 }

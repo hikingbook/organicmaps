@@ -22,8 +22,6 @@ struct CountryNode
   std::vector<std::string> old;
   std::vector<std::string> country_name_synonyms;
   std::vector<std::string> affiliations;
-  uint64_t top_city_geo_id = 0;
-  std::vector<uint64_t> top_countries_geo_ids;
   int s = 0;
   std::string h;
   uint64_t hikingbook_pro_map_s = 0;
@@ -43,7 +41,6 @@ class StoreCountries
 {
   CountryTree & m_countries;
   CountriesInfo & m_info;
-  OldMwmMapping m_idsMapping;
 
 public:
   StoreCountries(CountryTree & countries, CountriesInfo & countriesInfo) : m_countries(countries), m_info(countriesInfo)
@@ -63,8 +60,6 @@ public:
     return &m_countries.AddAtDepth(depth, std::move(country));
   }
 
-  void InsertOldMwmMapping(CountryId const & newId, CountryId const & oldId) { m_idsMapping[oldId].insert(newId); }
-
   void InsertAffiliation(CountryId const & countryId, std::string affiliation)
   {
     ASSERT(!affiliation.empty(), ());
@@ -79,21 +74,6 @@ public:
     VERIFY(m_info.m_countryNameSynonyms.emplace(std::move(synonym), countryId).second, (countryId));
   }
 
-  void InsertMwmTopCityGeoId(CountryId const & countryId, uint64_t const & geoObjectId)
-  {
-    ASSERT(!countryId.empty(), ());
-    ASSERT_NOT_EQUAL(geoObjectId, 0, ());
-    VERIFY(m_info.m_mwmTopCityGeoIds.emplace(countryId, base::GeoObjectId(geoObjectId)).second, (countryId));
-  }
-
-  void InsertTopCountryGeoIds(CountryId const & countryId, std::vector<uint64_t> const & geoObjectIds)
-  {
-    ASSERT(!countryId.empty(), ());
-    ASSERT(!geoObjectIds.empty(), ());
-    std::vector<base::GeoObjectId> ids(geoObjectIds.cbegin(), geoObjectIds.cend());
-    VERIFY(m_info.m_mwmTopCountryGeoIds.emplace(countryId, std::move(ids)).second, (countryId));
-  }
-
   void InsertOldCountry(CountryId const & countryId, std::string oldId)
   {
     ASSERT(!oldId.empty(), ());
@@ -103,8 +83,6 @@ public:
     /// Current countries.json example is "Caribisch Nederland".
     m_info.m_mwmToOld.emplace(countryId, std::move(oldId));
   }
-
-  OldMwmMapping GetMapping() const { return m_idsMapping; }
 };
 
 }  // namespace
@@ -286,12 +264,6 @@ MwmSubtreeAttrs LoadGroupImpl(size_t depth, countries_json::CountryNode const & 
 
     for (auto v : node.affiliations)
       store.InsertAffiliation(id, std::move(v));
-
-    if (node.top_city_geo_id != 0)
-      store.InsertMwmTopCityGeoId(id, node.top_city_geo_id);
-
-    if (!node.top_countries_geo_ids.empty())
-      store.InsertTopCountryGeoIds(id, node.top_countries_geo_ids);
   }
 
   int nodeSize = node.s;

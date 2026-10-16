@@ -23,14 +23,14 @@ static NSString * const kDefaultAlertNibName = @"MWMDefaultAlert";
 
 @implementation MWMDefaultAlert
 
-+ (instancetype)routeFileNotExistAlert
++ (instancetype)routeFileTooOldAlert
 {
   return [self defaultAlertWithTitle:L(@"dialog_routing_download_files")
                              message:L(@"dialog_routing_download_and_update_all")
                     rightButtonTitle:L(@"ok")
                      leftButtonTitle:nil
                    rightButtonAction:nil
-                                 log:@"Route File Not Exist Alert"];
+                                 log:@"Route File Too Old Alert"];
 }
 
 + (instancetype)routeNotFoundAlert
@@ -40,7 +40,7 @@ static NSString * const kDefaultAlertNibName = @"MWMDefaultAlert";
                     rightButtonTitle:L(@"ok")
                      leftButtonTitle:nil
                    rightButtonAction:nil
-                                 log:@"Route File Not Exist Alert"];
+                                 log:@"Route Not Found Alert"];
 }
 
 + (instancetype)routeNotFoundNoPublicTransportAlert
@@ -166,14 +166,14 @@ static NSString * const kDefaultAlertNibName = @"MWMDefaultAlert";
                                  log:@"Internal Routing Error Alert"];
 }
 
-+ (instancetype)incorrectFeaturePositionAlert
++ (instancetype)incorrectFeaturePositionAlertWithOkBlock:(MWMVoidBlock)okBlock
 {
   return [self defaultAlertWithTitle:L(@"dialog_incorrect_feature_position")
                              message:L(@"message_invalid_feature_position")
                     rightButtonTitle:L(@"ok")
                      leftButtonTitle:nil
-                   rightButtonAction:nil
-                                 log:@"Incorrect Feature Possition Alert"];
+                   rightButtonAction:okBlock
+                                 log:@"Incorrect Feature Position Alert"];
 }
 
 + (instancetype)notEnoughSpaceAlert
@@ -215,7 +215,7 @@ static NSString * const kDefaultAlertNibName = @"MWMDefaultAlert";
   MWMVoidBlock action = ^{ GetFramework().SwitchMyPositionNextMode(); };
   return [self defaultAlertWithTitle:L(@"dialog_routing_location_turn_on")
                              message:L(@"dialog_routing_location_unknown_turn_on")
-                    rightButtonTitle:L(@"turn_on")
+                    rightButtonTitle:L(@"enable")
                      leftButtonTitle:L(@"later")
                    rightButtonAction:action
                                  log:@"Disabled Location Alert"];

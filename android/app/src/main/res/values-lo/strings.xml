@@ -125,16 +125,12 @@
     <string name="cant_change_this_setting">ຂໍອະໄພ, ການຕັ້ງຄ່າບ່ອນເກັບຂໍ້ມູນແຜນທີ່ຖືກປິດການໃຊ້ງານໃນຂະນະນີ້.</string>
     <!-- Alert message that downloading is in progress. -->
     <string name="downloading_is_active">ພວມຢູ່ໃນຂະນະດາວໂຫລດແຜນທີ່.</string>
-    <!-- Share my position using SMS, %1$@ contains om:// and %2$@ https://omaps.app link WITHOUT NAME. @NOTE non-ascii symbols in the link will result in max 70 characters SMS instead of 140. -->
-    <string name="my_position_share_sms">ເບິ່ງຕຳແໜ່ງປັດຈຸບັນຂອງຂ້ອຍໃນ Organic Maps! %1$s ຫຼື %2$s ຫາກບໍ່ມີແຜນທີ່ອອບລາຍ? ດາວໂຫລດໄດ້ທີ່ນີ້: https://omaps.app/get</string>
-    <!-- Subject for emailed bookmark -->
-    <string name="bookmark_share_email_subject">ເຮີ້ຍ, ເບິ່ງປັກໝຸດຂອງຂ້ອຍໃນ Organic Maps ແມ້!</string>
-    <!-- Subject for emailed position -->
-    <string name="my_position_share_email_subject">ເຮີ້ຍ, ເບິ່ງຕຳແໜ່ງປັດຈຸບັນຂອງຂ້ອຍໃນແຜນທີ່ Organic Maps ແມ້!</string>
-    <!-- Share my position using EMail, %1$@ is om:// and %2$@ is https://omaps.app link WITHOUT NAME -->
-    <string name="my_position_share_email">ສະບາຍດີ,\n\nຕອນນີ້ຂ້ອຍຢູ່ທີ່ນີ້: %1$s. ຄລິກລິ້ງນີ້ %2$s ຫຼື ອັນນີ້ %3$s ເພື່ອເບິ່ງສະຖານທີ່ໃນແຜນທີ່.\n\nຂອບໃຈ.</string>
     <!-- Share button text which opens menu with more buttons, like Message, EMail, Facebook etc. -->
     <string name="share">ແບ່ງປັນ</string>
+    <!-- Email subject when sharing a place. %1$@ is the place name or address. -->
+    <string name="share_place_subject">%1$s ໃນ Organic Maps</string>
+    <!-- Email subject when sharing a place that has no name or address. -->
+    <string name="share_place_subject_default">ສະຖານທີ່ໃນ Organic Maps</string>
     <!-- Share by email button text, also used in editor and About. -->
     <string name="email">ອີເມລ</string>
     <!-- Text for message when used successfully copied something -->
@@ -367,19 +363,15 @@
     <string name="editor_example_values">ຕົວຢ່າງຄ່າ</string>
     <string name="editor_correct_mistake">ແກ້ໄຂຂໍ້ຜິດພາດ</string>
     <string name="editor_add_select_location">ເລືອກຕຳແໜ່ງທີ່ຕັ້ງ</string>
-    <string name="editor_report_problem_desription_1">ກະລຸນາອະທິບາຍບັນຫາໂດຍລະອຽດເພື່ອໃຫ້ຊຸມຊົນ OpenStreetMap ສາມາດແກ້ໄຂໄດ້.</string>
-    <string name="editor_report_problem_desription_2">ຫຼື ເຮັດດ້ວຍຕົນເອງໄດ້ທີ່ https://www.openstreetmap.org/</string>
     <string name="editor_report_problem_send_button">ສົ່ງ</string>
-    <string name="editor_report_problem_title">ບັນຫາ</string>
-    <string name="editor_report_problem_no_place_title">ສະຖານທີ່ນີ້ບໍ່ມີຢູ່ແທ້</string>
-    <string name="editor_report_problem_under_construction_title">ປິດເພື່ອປັບປຸງ</string>
-    <string name="editor_report_problem_duplicate_place_title">ສະຖານທີ່ຊ້ຳຊ້ອນ</string>
     <string name="autodownload">ດາວໂຫລດແຜນທີ່ອັດຕະໂນມັດ</string>
     <!-- Place Page opening hours text -->
     <string name="daily">ທຸກມື້</string>
     <string name="twentyfour_seven">24/7</string>
     <string name="day_off_today">ປິດມື້ນີ້</string>
     <string name="day_off">ປິດ</string>
+    <string name="midnight">ທ່ຽງຄືນ</string>
+    <string name="noon">ທ່ຽງວັນ</string>
     <string name="today">ມື້ນີ້</string>
     <string name="opens_in">ຈະເປີດໃນອີກ %s</string>
     <string name="closes_in">ຈະປິດໃນອີກ %s</string>
@@ -432,8 +424,6 @@
     <!-- The second part of the editor_edit_place_name_hint to explain that name should be entered in a local language, see https://wiki.openstreetmap.org/wiki/Key:name -->
     <string name="editor_default_language_hint">ຕາມທີ່ຂຽນໃນພາສາທ້ອງຖິ່ນ</string>
     <string name="editor_edit_place_category_title">ໝວດໝູ່</string>
-    <string name="detailed_problem_description">ລາຍລະອຽດຂອງບັນຫາ</string>
-    <string name="editor_report_problem_other_title">ບັນຫາອື່ນໆ</string>
     <string name="placepage_add_business_button">ເພີ່ມທຸລະກິດ</string>
     <string name="message_invalid_feature_position">ບໍ່ມີວັດຖຸໃດສາມາດຕັ້ງຢູ່ບ່ອນນີ້ໄດ້</string>
     <!-- Text in About and OSM Login screens. First %@ is replaced by a local, human readable date. -->
@@ -476,7 +466,7 @@
     <string name="day">ມື້</string>
     <string name="second">ວິ</string>
     <string name="placepage_more_button">ເພີ່ມເຕີມ</string>
-    <!-- A disable button text in the explanation dialog that opens hotel details page on Kayak website. -->
+    <!-- Toolbar title of the Edit Bookmark screen. -->
     <string name="placepage_edit_bookmark_button">ແກ້ໄຂບຸກມາກ</string>
     <string name="placepage_personal_notes_hint">ບັນທຶກສ່ວນຕົວ (ຂໍ້ຄວາມ ຫຼື html)</string>
     <string name="editor_comment_hint">ສະແດງຄວາມຄິດເຫັນ…</string>
@@ -520,11 +510,7 @@
     <string name="mobile_data_description">ຕ້ອງການອິນເຕີເນັດມືຖືສຳລັບການແຈ້ງເຕືອນອັບເດດແຜນທີ່ ແລະ ການອັບໂຫລດການແກ້ໄຂ.</string>
     <string name="mobile_data_option_never">ບໍ່ໃຊ້ເລີຍ</string>
     <string name="mobile_data_option_ask">ຖາມທຸກຄັ້ງ</string>
-    <string name="traffic_update_maps_text">ເພື່ອສະແດງຂໍ້ມູນການຈະລາຈອນ, ຕ້ອງອັບເດດແຜນທີ່ກ່ອນ.</string>
     <string name="big_font">ເພີ່ມຂະໜາດສຳລັບປ້າຍຊື່ໃນແຜນທີ່</string>
-    <string name="traffic_update_app">ກະລຸນາອັບເດດ Organic Maps</string>
-    <!-- "traffic" as in "road congestion" -->
-    <string name="traffic_data_unavailable">ຂໍ້ມູນການຈະລາຈອນບໍ່ພ້ອມໃຊ້ງານ</string>
     <string name="enable_logging">ເປີດການບັນທຶກລັອກ</string>
     <!-- Settings: "Send general feedback" button -->
     <string name="feedback_general">ຄຳຕິຊົມທົ່ວໄປ</string>
@@ -536,7 +522,8 @@
     <string name="planning_route_manage_route">ຈັດການເສັ້ນທາງ</string>
     <string name="button_plan">ວາງແຜນ</string>
     <string name="placepage_remove_stop">ເອົາຈຸດແວ່ພັກອອກ</string>
-    <string name="placepage_add_stop">ເພີ່ມຈຸດແວ່ພັກ</string>
+    <!-- Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. -->
+    <string name="placepage_add_stop">ເພີ່ມຈຸດຈອດ</string>
     <string name="drag_to_reorder">ຈັດຮຽງໃໝ່</string>
     <string name="saved">ບັນທຶກແລ້ວ</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
@@ -625,6 +612,10 @@
     <string name="show_at_the_bottom">ສະແດງທາງເບື້ອງລຸ່ມ</string>
     <string name="enable_logging_warning_message">ເປີດໃຊ້ຕົວເລືອກນີ້ຊົ່ວຄາວເພື່ອບັນທຶກ ແລະ ສົ່ງລັອກການວິນິດໄສໂດຍລະອຽດກ່ຽວກັບບັນຫາຂອງທ່ານໃຫ້ພວກເຮົາໂດຍໃຊ້ \"ລາຍງານຂໍ້ຜິດພາດ\" ໃນສ່ວນຊ່ວຍເຫຼືອ. ລັອກອາດຈະລວມມີຂໍ້ມູນຕຳແໜ່ງທີ່ຕັ້ງ.</string>
     <string name="driving_options_title">ຕົວເລືອກການສ້າງເສັ້ນທາງ</string>
+    <!-- Routing setting that automatically reorders intermediate stops -->
+    <string name="route_optimization">ການປັບເສັ້ນທາງໃຫ້ເໝາະສົມ</string>
+    <!-- Explains that route optimization automatically reorders intermediate stops -->
+    <string name="route_optimization_description">ຈັດລຽງຈຸດຢຸດລະຫວ່າງທາງໃໝ່ອັດຕະໂນມັດ ເພື່ອສ້າງເສັ້ນທາງທີ່ມີປະສິດທິພາບກວ່າ.</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
     <string name="avoid_tolls">ເລ່ຽງທາງເສຍຄ່າທຳນຽມ</string>
     <!-- Recommended length for CarPlay and Android Auto is around 25-27 characters -->
@@ -705,6 +696,12 @@
     <string name="medicine">ການແພດ</string>
     <string name="search_in_the_list">ຄົ້ນຫາໃນລາຍການ</string>
     <string name="religious_places">ສະຖານທີ່ທາງສາດສະໜາ</string>
+    <!-- Button that starts multi-selection in a bookmark list. -->
+    <string name="select">ເລືອກ</string>
+    <!-- Action that selects every bookmark and track in a bookmark list. -->
+    <string name="select_all">ເລືອກທັງໝົດ</string>
+    <!-- Action that clears the multi-selection in a bookmark list. -->
+    <string name="deselect_all">ຍົກເລີກການເລືອກ</string>
     <string name="select_list">ເລືອກລາຍການ</string>
     <string name="button_layer_isolines">ເສັ້ນລະດັບຄວາມສູງ</string>
     <string name="isolines_activation_error_dialog">ການເປີດໃຊ້ເສັ້ນລະດັບຄວາມສູງຕ້ອງດາວໂຫລດຂໍ້ມູນແຜນທີ່ສຳລັບພາກພື້ນນີ້</string>
@@ -797,15 +794,14 @@
     <string name="pref_tts_no_system_tts">ບໍ່ພົບການຕັ້ງຄ່າການສັງເຄາະສຽງ, ທ່ານແນ່ໃຈບໍ່ວ່າອຸປະກອນຂອງທ່ານຮອງຮັບ?</string>
     <string name="drive_through">ໄດຣຟ໌ທຣູ</string>
     <string name="clear_the_search">ລຶບການຄົ້ນຫາ</string>
+    <!-- Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_in">ຊູມເຂົ້າ</string>
-    <!-- Accessibility text for the zoom-out button on the map -->
+    <!-- Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. -->
     <string name="zoom_out">ຊູມອອກ</string>
     <!-- Restaurant or other food place's menu URL field in the Editor -->
     <string name="website_menu">ລິ້ງເມນູ</string>
     <!-- Button in the Place Page which opens a restaurant or other food place's menu in a browser -->
     <string name="view_menu">ເບິ່ງເມນູ</string>
-    <!-- Title for the "Open in Another App" button on the PlacePage. -->
-    <string name="open_in_app">ເປີດໃນແອັບອື່ນ</string>
     <!-- To indicate if the place proposed self service… -->
     <string name="self_service">ບໍລິການຕົນເອງ</string>
     <string name="select_option">ເລືອກຕົວເລືອກ</string>
@@ -840,6 +836,24 @@
     <string name="share_track">ແບ່ງປັນເສັ້ນທາງ</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">ລຶບ %s ບໍ່?</string>
+    <!-- Bookmark list title in multi-selection mode. %d is the number of selected bookmarks and tracks. -->
+    <plurals name="n_items_selected">
+        <item quantity="zero">ເລືອກ %d</item>
+        <item quantity="other">ເລືອກ %d</item>
+    </plurals>
+    <!-- Title for the dialog when deleting several bookmarks and tracks at once. %d is their number. -->
+    <plurals name="delete_n_items_dialog_title">
+        <item quantity="zero">ລຶບ %d ລາຍການບໍ?</item>
+        <item quantity="other">ລຶບ %d ລາຍການບໍ?</item>
+    </plurals>
+    <!-- move track or bookmark from the list button text -->
+    <string name="move">ຍ້າຍ</string>
+    <!-- Text for the editing the Track's color button. -->
+    <string name="change_color">ປ່ຽນສີ</string>
+
+    <!-- SECTION: Uncategorized -->
+    <!-- Short label of the user's position marker on the elevation profile chart. Where a bare pronoun would be unnatural or gendered, a location noun ("My location") is preferred. -->
+    <string name="you">ທ່ານ</string>
 
     <!-- SECTION: gps strings -->
     <!-- Editor section title that shows recently used categories (types of objects) when adding a place on the map -->
@@ -864,4 +878,22 @@
     <string name="color_picker_grid">ຕາຂ່າຍ</string>
     <!-- Accessibility label for the voice-search mic button in the search bar -->
     <string name="voice_search">ຄົ້ນຫາດ້ວຍສຽງ</string>
+    <!-- Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair -->
+    <string name="choose_on_map">ເລືອກຢູ່ໃນແຜນທີ່</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_start_location">ຈຸດເລີ່ມຕົ້ນ</string>
+    <!-- Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="choose_destination">ປາຍທາງ</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_start_location">ປ່ຽນຈຸດເລີ່ມຕົ້ນ</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_destination">ປ່ຽນປາຍທາງ</string>
+    <!-- Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field -->
+    <string name="change_stop_along_route">ປ່ຽນຈຸດຈອດ</string>
+    <!-- Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number -->
+    <string name="routing_max_stops_reached">ຮອດຈຳນວນຈຸດຈອດສູງສຸດແລ້ວ</string>
+    <!-- Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it -->
+    <string name="choose_point_on_map_hint">ຍ້າຍ ແລະ ຊູມແຜນທີ່ເພື່ອວາງເຄື່ອງໝາຍບວກ</string>
+    <!-- Track recording notification button: stops the recording and saves the recorded track. -->
+    <string name="track_recording_stop_and_save">ຢຸດ ແລະ ບັນທຶກ</string>
 </resources>

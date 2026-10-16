@@ -21,6 +21,7 @@
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <UserNotifications/UserNotifications.h>
 
+#import <CoreApi/AppInfo.h>
 #import <CoreApi/Framework.h>
 #import <CoreApi/MWMFrameworkHelper.h>
 
@@ -32,8 +33,6 @@
 #include "base/assert.hpp"
 
 #include "private.h"
-// If you have a "missing header error" here, then please run configure.sh script in the root repo
-// folder.
 
 namespace
 {
@@ -56,7 +55,11 @@ void InitLocalizedStrings()
   f.AddString("core_my_places", L(@"core_my_places").UTF8String);
   f.AddString("core_my_position", L(@"core_my_position").UTF8String);
   f.AddString("core_placepage_unknown_place", L(@"core_placepage_unknown_place").UTF8String);
+  f.AddString("open_in_app", L(@"open_in_app").UTF8String);
   f.AddString("postal_code", L(@"postal_code").UTF8String);
+  f.AddString("share_my_position", L(@"share_my_position").UTF8String);
+  f.AddString("share_open_in_om_or_browser", L(@"share_open_in_om_or_browser").UTF8String);
+  f.AddString("share_get_om", L(@"share_get_om").UTF8String);
 }
 }  // namespace
 
@@ -71,6 +74,9 @@ void InitLocalizedStrings()
 @end
 
 @implementation MapsAppDelegate
+{
+  UINavigationController * _mainNavigationController;
+}
 
 + (MapsAppDelegate *)theApp
 {
@@ -87,11 +93,11 @@ void InitLocalizedStrings()
   return self.mapViewController.mapView.drapeEngineCreated;
 }
 
-- (void)searchText:(NSString *)searchString
+- (void)searchQuery:(SearchQuery *)query
 {
   if (!self.isDrapeEngineCreated)
   {
-    dispatch_async(dispatch_get_main_queue(), ^{ [self searchText:searchString]; });
+    dispatch_async(dispatch_get_main_queue(), ^{ [self searchQuery:query]; });
     return;
   }
 //  SearchQuery * query = [[SearchQuery alloc] init:[searchString stringByAppendingString:@" "]
@@ -112,10 +118,40 @@ void InitLocalizedStrings()
 //  [TrackRecordingManager.shared setup];
 }
 
+#pragma mark - Application lifecycle
+
+// With UIScene adopted, UIKit reports activation and background transitions per scene and no
+// longer calls the UIApplicationDelegate lifecycle methods. The framework, rendering and location
+// updates must follow the application as a whole: stay active while any scene (phone or CarPlay)
+// is in the foreground and go to background only when all of them are. That aggregate is exactly
+// what the app-wide UIApplication notifications express, and UIKit keeps posting them for
+// scene-based apps.
+- (void)observeApplicationLifecycle
+{
+  NSNotificationCenter * nc = NSNotificationCenter.defaultCenter;
+  [nc addObserver:self
+         selector:@selector(handleApplicationDidBecomeActive:)
+             name:UIApplicationDidBecomeActiveNotification
+           object:nil];
+  [nc addObserver:self
+         selector:@selector(handleApplicationWillResignActive:)
+             name:UIApplicationWillResignActiveNotification
+           object:nil];
+  [nc addObserver:self
+         selector:@selector(handleApplicationWillEnterForeground:)
+             name:UIApplicationWillEnterForegroundNotification
+           object:nil];
+  [nc addObserver:self
+         selector:@selector(handleApplicationDidEnterBackground:)
+             name:UIApplicationDidEnterBackgroundNotification
+           object:nil];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSLog(@"application:didFinishLaunchingWithOptions: %@", launchOptions);
 
+  [self observeApplicationLifecycle];
   InitLocalizedStrings();
   [MWMThemeManager invalidate];
 
@@ -130,14 +166,12 @@ void InitLocalizedStrings()
 //  if (![MapsAppDelegate isTestsEnvironment])
 //    [[iCloudSynchronizaionManager shared] start];
 
-//  [[DeepLinkHandler shared] applicationDidFinishLaunching:launchOptions];
-  // application:openUrl:options is called later for deep links if YES is returned.
+  // Launch URLs, user activities and quick actions arrive with the scene connection options in
+  // MainSceneDelegate; launchOptions carries none of them for a scene-based app.
   return YES;
 }
 
-- (void)application:(UIApplication *)application
-    performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
-               completionHandler:(void (^)(BOOL))completionHandler
+- (void)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
 {
   [self.mapViewController performAction:shortcutItem.type];
   completionHandler(YES);
@@ -161,7 +195,7 @@ void InitLocalizedStrings()
   DeleteFramework();
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)handleApplicationDidEnterBackground:(NSNotification *)notification
 {
   LOG(LINFO, ("applicationDidEnterBackground - begin"));
 //  [DeepLinkHandler.shared reset];
@@ -173,7 +207,7 @@ void InitLocalizedStrings()
   LOG(LINFO, ("applicationDidEnterBackground - end"));
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (void)handleApplicationWillResignActive:(NSNotification *)notification
 {
   LOG(LINFO, ("applicationWillResignActive - begin"));
   [self.mapViewController onGetFocus:NO];
@@ -184,7 +218,7 @@ void InitLocalizedStrings()
   LOG(LINFO, ("applicationWillResignActive - end"));
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+- (void)handleApplicationWillEnterForeground:(NSNotification *)notification
 {
   LOG(LINFO, ("applicationWillEnterForeground - begin"));
   if (!GpsTracker::Instance().IsEnabled())
@@ -204,7 +238,7 @@ void InitLocalizedStrings()
   LOG(LINFO, ("applicationWillEnterForeground - end"));
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
+- (void)handleApplicationDidBecomeActive:(NSNotification *)notification
 {
   LOG(LINFO, ("applicationDidBecomeActive - begin"));
 
@@ -213,7 +247,9 @@ void InitLocalizedStrings()
   [self.mapViewController onGetFocus:YES];
   f.SetRenderingEnabled();
   [MWMLocationManager applicationDidBecomeActive];
-  [MWMSearch addCategoriesToSpotlight];
+  // Unit tests exercise indexing with a mock and must not modify the system index.
+  if (![MapsAppDelegate isTestsEnvironment])
+    [MWMSearch addCategoriesToSpotlight];
 //  [MWMKeyboard applicationDidBecomeActive];
 //  [MWMTextToSpeech applicationDidBecomeActive];
 
@@ -234,9 +270,7 @@ void InitLocalizedStrings()
   return isTests;
 }
 
-- (BOOL)application:(UIApplication *)application
-    continueUserActivity:(NSUserActivity *)userActivity
-      restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
+- (BOOL)handleUserActivity:(NSUserActivity *)userActivity
 {
 //  if ([userActivity.activityType isEqualToString:CSSearchableItemActionType])
 //  {
@@ -282,7 +316,7 @@ void InitLocalizedStrings()
 
 - (void)showMap
 {
-  [(UINavigationController *)self.window.rootViewController popToRootViewControllerAnimated:YES];
+  [self.mainNavigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)updateApplicationIconBadgeNumber
@@ -339,9 +373,22 @@ void InitLocalizedStrings()
 
 #pragma mark - Properties
 
+- (UINavigationController *)mainNavigationController
+{
+  // Lazily load the Main storyboard's root navigation controller so a single shared MapViewController
+  // (and its Drape engine) exists even on a CarPlay-first cold launch, before MainSceneDelegate connects
+  // the phone window scene. Both the phone scene and CarPlayService reuse this same instance.
+  if (!_mainNavigationController)
+  {
+    UIStoryboard * storyboard = [UIStoryboard instance:MWMStoryboardMain];
+    _mainNavigationController = (UINavigationController *)[storyboard instantiateInitialViewController];
+  }
+  return _mainNavigationController;
+}
+
 - (MapViewController *)mapViewController
 {
-  for (id vc in [(UINavigationController *)self.window.rootViewController viewControllers])
+  for (id vc in self.mainNavigationController.viewControllers)
     if ([vc isKindOfClass:[MapViewController class]])
       return vc;
   NSAssert(false, @"Please check the logic");

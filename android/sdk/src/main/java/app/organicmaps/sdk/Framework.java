@@ -21,7 +21,6 @@ import app.organicmaps.sdk.routing.RoutingProgressListener;
 import app.organicmaps.sdk.routing.RoutingRecommendationListener;
 import app.organicmaps.sdk.routing.TransitRouteInfo;
 import app.organicmaps.sdk.settings.SpeedCameraMode;
-import app.organicmaps.sdk.util.Constants;
 import app.organicmaps.sdk.widget.placepage.CoordinatesFormatEntry;
 import app.organicmaps.sdk.widget.placepage.RouteInfo;
 import dalvik.annotation.optimization.FastNative;
@@ -60,10 +59,27 @@ public class Framework
   // this class is just bridge between Java and C++ worlds, we must not create it
   private Framework() {}
 
-  public static String getHttpGe0Url(double lat, double lon, double zoomLevel, String name)
+  // The plain body, HTML body and subject basis produced by the core share::Build. Used by JNI.
+  @Keep
+  @SuppressWarnings("unused")
+  public static final class ShareData
   {
-    return nativeGetGe0Url(lat, lon, zoomLevel, name)
-        .replaceFirst(Constants.Url.SHORT_SHARE_PREFIX, Constants.Url.HTTP_SHARE_PREFIX);
+    @NonNull
+    public final String mText;
+    @NonNull
+    public final String mHtml;
+    /// Place name, else address, else empty. Platforms build the localized email subject from it.
+    @NonNull
+    public final String mSubjectBasis;
+    public final boolean mIsMyPosition;
+
+    private ShareData(@NonNull String text, @NonNull String html, @NonNull String subjectBasis, boolean isMyPosition)
+    {
+      mText = text;
+      mHtml = html;
+      mSubjectBasis = subjectBasis;
+      mIsMyPosition = isMyPosition;
+    }
   }
 
   public static void setSpeedCamerasMode(@NonNull SpeedCameraMode mode)
@@ -108,8 +124,15 @@ public class Framework
 
   public static native String nativeFormatSpeed(double speed);
 
-  public static native String nativeGetGe0Url(double lat, double lon, double zoomLevel, String name);
   public static native String nativeGetGeoUri(double lat, double lon, double zoomLevel, String name);
+
+  // Built by the core share::Build. Requires an open place page.
+  @NonNull
+  public static native ShareData nativeGetShareData();
+  @NonNull
+  public static native ShareData nativeGetShareDataForMyPosition(double lat, double lon);
+  @NonNull
+  public static native ShareData nativeGetShareDataForBookmark(long bookmarkId);
 
   public static native String nativeGetAddress(double lat, double lon);
 
@@ -245,20 +268,28 @@ public class Framework
 
   public static native void nativeShowCountry(String countryId, boolean zoomToDownloadButton);
 
-  public static void addRoutePoint(RouteMarkData point)
+  public static boolean addRoutePoint(RouteMarkData point, boolean allowOptimization)
   {
-    addRoutePoint(point, true);
+    return Framework.nativeAddRoutePoint(point.mTitle, point.mSubtitle, point.mPointType, point.mIsMyPosition,
+                                         point.mLat, point.mLon, allowOptimization);
   }
 
-  public static void addRoutePoint(RouteMarkData point, boolean reorderIntermediatePoints)
-  {
-    Framework.nativeAddRoutePoint(point.mTitle, point.mSubtitle, point.mPointType, point.mIntermediateIndex,
-                                  point.mIsMyPosition, point.mLat, point.mLon, reorderIntermediatePoints);
-  }
+  public static native boolean nativeAddRoutePoint(String title, String subtitle, @NonNull RouteMarkType markType,
+                                                   boolean isMyPosition, double lat, double lon,
+                                                   boolean allowOptimization);
 
-  public static native void nativeAddRoutePoint(String title, String subtitle, @NonNull RouteMarkType markType,
-                                                int intermediateIndex, boolean isMyPosition, double lat, double lon,
-                                                boolean reorderIntermediatePoints);
+  public static native void nativeReplaceRoutePoint(String title, String subtitle, @NonNull RouteMarkType markType,
+                                                    int intermediateIndex, boolean isMyPosition, double lat,
+                                                    double lon);
+
+  /**
+   * Appends the point to the end of the route: the current finish becomes the last intermediate point and
+   * the given point becomes the new finish.
+   *
+   * @return {@code false} if the route has no finish point or the route points limit is reached.
+   */
+  public static native boolean nativeContinueRouteToPoint(String title, String subtitle, boolean isMyPosition,
+                                                          double lat, double lon);
 
   public static native void nativeRemoveRoutePoints();
 
@@ -266,7 +297,13 @@ public class Framework
 
   public static native void nativeRemoveIntermediateRoutePoints();
 
+  public static native boolean nativeOptimizeRoutePoints();
+
   public static native boolean nativeCouldAddIntermediatePoint();
+
+  /** Checks the mark limit even when a route build has failed and routing is inactive. */
+  public static native boolean nativeIsRoutePointsLimitReached();
+
   @NonNull
   public static native RouteMarkData[] nativeGetRoutePoints();
 

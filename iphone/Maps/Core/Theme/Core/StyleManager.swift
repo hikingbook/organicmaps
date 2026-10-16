@@ -22,28 +22,6 @@
     theme != nil
   }
 
-  func update() {
-    for window in UIApplication.shared.allConnectedWindows {
-      updateView(window.rootViewController?.view)
-    }
-
-//    let appDelegate = UIApplication.shared.delegate as! MapsAppDelegate
-//    if let vc = appDelegate.window.rootViewController?.presentedViewController {
-//      vc.applyTheme()
-//      updateView(vc.view)
-//    } else if let vcs = appDelegate.window.rootViewController?.children {
-//      for vc in vcs {
-//        vc.applyTheme()
-//      }
-//    }
-
-    for container in listeners {
-      if let listener = container.value {
-        listener.applyTheme()
-      }
-    }
-  }
-
   private func updateView(_ view: UIView?) {
     guard let view = view else {
       return
@@ -71,7 +49,31 @@
 
   @objc func removeListener(_ themeListener: ThemeListener) {
     listeners.removeAll { container -> Bool in
-      return container.value === themeListener
+      container.value === themeListener
+    }
+  }
+}
+
+extension StyleManager {
+  func update() {
+    for window in UIApplication.shared.allConnectedWindows {
+      updateView(window.rootViewController?.view)
+    }
+
+//    let appDelegate = UIApplication.shared.delegate as! MapsAppDelegate
+//    if let vc = appDelegate.window.rootViewController?.presentedViewController {
+//      vc.applyTheme()
+//      updateView(vc.view)
+//    } else if let vcs = appDelegate.window.rootViewController?.children {
+//      for vc in vcs {
+//        vc.applyTheme()
+//      }
+//    }
+
+    for container in listeners {
+      if let listener = container.value {
+        listener.applyTheme()
+      }
     }
   }
 }

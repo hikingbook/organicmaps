@@ -34,6 +34,7 @@ public class SearchToolbarController extends ToolbarController
   @Nullable
   private final TextInputLayout mQueryLayout;
   private boolean mEndIconQueryEmpty;
+  private int mAppliedHint;
   private boolean mFromCategory = false;
   // Pending listener that shows the keyboard once the window gains focus (see activate()).
   @Nullable
@@ -96,7 +97,7 @@ public class SearchToolbarController extends ToolbarController
     {
       mQueryLayout.setEndIconDrawable(R.drawable.ic_close_rounded);
       mQueryLayout.setEndIconContentDescription(R.string.clear_the_search);
-      mQueryLayout.setEndIconOnClickListener(v -> clear());
+      mQueryLayout.setEndIconOnClickListener(v -> onClearClick());
       mQueryLayout.setEndIconVisible(true);
     }
     else if (supportsVoiceSearch() && mVoiceInputSupported)
@@ -195,6 +196,13 @@ public class SearchToolbarController extends ToolbarController
     setQuery("");
   }
 
+  // X button only: programmatic clear() (search close, back press) must not restore focus.
+  private void onClearClick()
+  {
+    clear();
+    activate();
+  }
+
   public boolean hasQuery()
   {
     return !getQuery().isEmpty();
@@ -266,8 +274,13 @@ public class SearchToolbarController extends ToolbarController
     }
   }
 
+  // Idempotent like updateEndIcon(): setHint() rebuilds the text layout and invalidates without
+  // comparing against the current hint, and callers refresh on unrelated events. 0 is never a res id.
   public void setHint(@StringRes int hint)
   {
+    if (mAppliedHint == hint)
+      return;
+    mAppliedHint = hint;
     mQuery.setHint(hint);
   }
 

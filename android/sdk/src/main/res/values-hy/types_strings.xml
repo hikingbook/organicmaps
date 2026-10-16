@@ -604,6 +604,7 @@
     <string name="type.landuse">Հողօգտագործում</string>
     <string name="type.landuse.allotments">Հողամասեր</string>
     <string name="type.landuse.basin">Ավազան</string>
+    <string name="type.landuse.basin.intermittent">Ընդհատվող ավազան</string>
     <string name="type.landuse.brownfield">Լքված տարածք</string>
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery">Գերեզմանոց</string>
@@ -634,7 +635,6 @@
     <string name="type.landuse.quarry">Քարհանք</string>
     <string name="type.landuse.railway">Երկաթուղային գոտի</string>
     <string name="type.landuse.recreation_ground">Հանգստի գոտի</string>
-    <string name="type.landuse.reservoir">Ջրամբար</string>
     <string name="type.landuse.residential">Բնակելի թաղամաս</string>
     <string name="type.landuse.retail">Առևտրի գոտի</string>
     <string name="type.landuse.salt_pond">Աղի լճակ</string>
@@ -656,6 +656,7 @@
     <string name="type.leisure.ice_rink">Սահադաշտ</string>
     <string name="type.leisure.marina">Նավակայան</string>
     <string name="type.leisure.nature_reserve">Արգելոց</string>
+    <string name="type.leisure.bird_hide">Թռչունների դիտակետ</string>
     <string name="type.leisure.outdoor_seating">Բացօթյա նստատեղեր</string>
     <string name="type.leisure.firepit">Խարուկատեղ</string>
     <string name="type.leisure.park">Զբոսայգի</string>
@@ -742,10 +743,13 @@
     <string name="type.natural.water.reservoir">Ջրամբար</string>
     <string name="type.natural.water.basin">Ավազան</string>
     <string name="type.natural.water.river">Գետ</string>
+    <string name="type.natural.water.intermittent">Ընդհատվող ջրային մարմին</string>
     <string name="type.natural.land">Ցամաք</string>
     <string name="type.natural.meadow">Մարգագետին</string>
     <string name="type.natural.orchard">Պտղատու այգի</string>
     <string name="type.natural.peak">Գագաթ</string>
+    <string name="type.natural.hill">Բլուր</string>
+    <string name="type.natural.arch">Քարե կամար</string>
     <string name="type.natural.saddle">Թամբարդ</string>
     <string name="type.natural.rock">Քար</string>
     <string name="type.natural.scrub">Թփուտ</string>
@@ -1426,6 +1430,7 @@
     <string name="type.self_service.no">Ինքնասպասարկում չկա</string>
     <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
     <string name="type.amenity.social_facility">Սոցիալական հաստատություն</string>
+    <string name="type.amenity.stage">Բեմ</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
     <string name="type.emergency.emergency_ward_entrance">Շտապօգնության բաժանմունքի մուտք</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->

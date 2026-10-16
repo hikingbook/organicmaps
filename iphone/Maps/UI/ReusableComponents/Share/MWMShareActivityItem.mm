@@ -1,23 +1,50 @@
 #import "MWMShareActivityItem.h"
 
+#include "base/assert.hpp"
+
 #include <CoreApi/Framework.h>
-#import <CoreApi/PlacePageData.h>
-#import <CoreApi/PlacePageInfoData.h>
-#import <CoreApi/PlacePagePhone.h>
-#import <CoreApi/PlacePagePreviewData.h>
+
 #import <LinkPresentation/LPLinkMetadata.h>
 
-NSString * httpGe0Url(NSString * shortUrl)
+@interface MWMAirDropActivityItem : NSObject <UIActivityItemSource>
+
+- (instancetype)initWithURL:(NSURL *)url;
+
+@end
+
+@implementation MWMAirDropActivityItem
 {
-  // Replace 'om://' with 'https://omaps.app/'
-  return [shortUrl stringByReplacingCharactersInRange:NSMakeRange(0, 5) withString:@"https://omaps.app/"];
+  NSURL * _url;
 }
 
-@interface MWMShareActivityItem ()
+- (instancetype)initWithURL:(NSURL *)url
+{
+  self = [super init];
+  if (self)
+    _url = url;
+  return self;
+}
 
-@property(nonatomic) PlacePageData * data;
-@property(nonatomic) CLLocationCoordinate2D location;
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
+{
+  return _url;
+}
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController
+         itemForActivityType:(UIActivityType)activityType
+{
+  return [activityType isEqualToString:UIActivityTypeAirDrop] ? _url : nil;
+}
+
+@end
+
+@interface MWMShareActivityItem () <UIActivityItemSource>
+
 @property(nonatomic) BOOL isMyPosition;
+@property(nonatomic) NSURL * shareUrl;
+@property(nonatomic, copy) NSString * shareText;
+@property(nonatomic, copy) NSString * shareHtml;
+@property(nonatomic, copy) NSString * subjectBasis;
 
 @end
 
@@ -27,138 +54,100 @@ NSString * httpGe0Url(NSString * shortUrl)
 {
   self = [super init];
   if (self)
-  {
-    _location = location;
-    _isMyPosition = YES;
-  }
+    [self fillFrom:GetFramework().GetShareDataForMyPosition(ms::LatLon(location.latitude, location.longitude))];
   return self;
 }
 
-- (instancetype)initForPlacePageObject:(id<MWMPlacePageObject>)object
-{
-  NSAssert(false, @"deprecated");
-
-  return nil;
-}
-
-- (instancetype)initForPlacePage:(PlacePageData *)data
+- (instancetype)initForCurrentPlacePage
 {
   self = [super init];
   if (self)
   {
-    NSAssert(data, @"Entity can't be nil!");
-    _isMyPosition = data.isMyPosition;
-    _data = data;
+    auto & f = GetFramework();
+    [self fillFrom:f.GetShareData(f.GetCurrentPlacePageInfo())];
   }
   return self;
 }
 
-- (NSString *)url:(BOOL)isShort
+- (void)fillFrom:(share::Result const &)result
 {
-  auto & f = GetFramework();
+  _isMyPosition = result.m_isMyPosition;
+  // ge0 %-escapes unsafe ASCII but leaves non-ASCII place name bytes raw, which NSURL rejects before iOS 17.
+  // Encoding only non-ASCII preserves existing ge0 escapes. Backslash is the only unsafe ASCII byte ge0 leaves raw,
+  // so it is encoded here as well.
+  NSMutableCharacterSet * allowed = [[NSCharacterSet characterSetWithRange:NSMakeRange(0, 128)] mutableCopy];
+  [allowed removeCharactersInString:@"\\"];
+  NSString * url = [@(result.m_url.c_str()) stringByAddingPercentEncodingWithAllowedCharacters:allowed];
+  _shareUrl = [NSURL URLWithString:url];
+  ASSERT(_shareUrl != nil, ("Failed to build a share URL from", result.m_url));
+  _shareText = @(result.m_text.c_str());
+  _shareHtml = @(result.m_html.c_str());
+  _subjectBasis = @(result.m_subjectBasis.c_str());
+}
 
-  auto const title = ^NSString *(PlacePageData * data) {
-    if (!data || data.isMyPosition)
-      return L(@"core_my_position");
-    else if (data.previewData.title.length > 0)
-      return data.previewData.title;
-    else if (data.previewData.subtitle.length)
-      return data.previewData.subtitle;
-    else if (data.previewData.secondarySubtitle.length)
-      return data.previewData.secondarySubtitle;
-    else
-      return @"";
+- (NSArray<id<UIActivityItemSource>> *)activityItems
+{
+  // AirDrop types its payload from the source's placeholder, and this source's placeholder is plain text.
+  // A separate NSURL-placeholder source provides an openable link only to AirDrop; dataTypeIdentifierForActivityType:
+  // applies to NSData only. A bare NSURL item would go to every target and duplicate the link in shareText.
+  return @[self, [[MWMAirDropActivityItem alloc] initWithURL:self.shareUrl]];
+}
+
+// Email subject: place name/address, "I am here" for the current position, or a generic fallback.
+- (NSString *)subject
+{
+  if (self.isMyPosition)
+    return L(@"share_my_position");
+  if (self.subjectBasis.length > 0)
+    return [NSString stringWithFormat:L(@"share_place_subject"), self.subjectBasis];
+  return L(@"share_place_subject_default");
+}
+
+// A rich attributed body so Mail sends formatted HTML; nil when the HTML can't be parsed.
+// This is created lazily after Mail is selected so other share extensions only receive plain text.
+- (NSAttributedString *)attributedBody
+{
+  NSData * data = [self.shareHtml dataUsingEncoding:NSUTF8StringEncoding];
+  if (!data)
+    return nil;
+  NSDictionary * options = @{
+    NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+    NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)
   };
-
-  ms::LatLon const ll = self.data
-                          ? ms::LatLon(self.data.locationCoordinate.latitude, self.data.locationCoordinate.longitude)
-                          : ms::LatLon(self.location.latitude, self.location.longitude);
-  std::string const & s = f.CodeGe0url(ll.m_lat, ll.m_lon, f.GetDrawScale(), title(self.data).UTF8String);
-
-  NSString * url = @(s.c_str());
-  if (!isShort)
-    return url;
-  NSUInteger const kGe0UrlLength = 16;
-  return [url substringWithRange:NSMakeRange(0, kGe0UrlLength)];
+  return [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
 }
 
 #pragma mark - UIActivityItemSource
 
 - (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
 {
-  return [self url:YES];
+  return self.shareText;
 }
 
 - (id)activityViewController:(UIActivityViewController *)activityViewController
-         itemForActivityType:(NSString *)activityType
+         itemForActivityType:(UIActivityType)activityType
 {
-  NSString * type = activityType;
-  if ([UIActivityTypePostToTwitter isEqualToString:type])
-    return self.itemForTwitter;
-  return [self itemDefaultWithActivityType:type];
+  // The URL-typed source in -activityItems serves AirDrop; returning text here would add a second payload.
+  if ([activityType isEqualToString:UIActivityTypeAirDrop])
+    return nil;
+  if ([activityType isEqualToString:UIActivityTypeMail])
+    return [self attributedBody] ?: [[NSAttributedString alloc] initWithString:self.shareText];
+  return self.shareText;
 }
 
 - (NSString *)activityViewController:(UIActivityViewController *)activityViewController
-              subjectForActivityType:(NSString *)activityType
+              subjectForActivityType:(UIActivityType)activityType
 {
-  return [self subjectDefault];
+  return [self subject];
 }
 
 - (LPLinkMetadata *)activityViewControllerLinkMetadata:(UIActivityViewController *)activityViewController
 {
   LPLinkMetadata * metadata = [[LPLinkMetadata alloc] init];
-  metadata.originalURL = [NSURL URLWithString:[self url:NO]];
-  metadata.title = self.isMyPosition ? L(@"core_my_position") : self.data.previewData.title;
+  metadata.originalURL = self.shareUrl;
+  metadata.title = [self subject];
   metadata.iconProvider = [[NSItemProvider alloc] initWithObject:[UIImage imageNamed:@"imgLogo"]];
   return metadata;
-}
-
-#pragma mark - Message
-
-- (NSString *)itemForTwitter
-{
-  NSString * shortUrl = [self url:YES];
-  return [NSString
-      stringWithFormat:@"%@\n%@", httpGe0Url(shortUrl),
-                       self.isMyPosition ? L(@"my_position_share_email_subject") : self.data.previewData.title];
-}
-
-- (NSString *)itemDefaultWithActivityType:(NSString *)activityType
-{
-  NSString * ge0Url = [self url:NO];
-  NSString * url = httpGe0Url(ge0Url);
-  if (self.isMyPosition)
-  {
-    BOOL const hasSubject = [activityType isEqualToString:UIActivityTypeMail];
-    if (hasSubject)
-      return [NSString stringWithFormat:@"%@ %@", url, ge0Url];
-    return [NSString stringWithFormat:@"%@ %@\n%@", L(@"my_position_share_email_subject"), url, ge0Url];
-  }
-
-  NSMutableArray * phones = [NSMutableArray new];
-  [self.data.infoData.phones enumerateObjectsUsingBlock:^(PlacePagePhone * _Nonnull phone, NSUInteger idx,
-                                                          BOOL * _Nonnull stop) { [phones addObject:phone.phone]; }];
-
-  NSMutableString * result = [L(@"sharing_call_action_look") mutableCopy];
-  std::vector<NSString *> strings{self.data.previewData.title,
-                                  self.data.previewData.subtitle,
-                                  self.data.previewData.secondarySubtitle,
-                                  [phones componentsJoinedByString:@"; "],
-                                  url,
-                                  ge0Url};
-
-  for (auto const & str : strings)
-    if (str.length)
-      [result appendString:[NSString stringWithFormat:@"\n%@", str]];
-
-  return result;
-}
-
-#pragma mark - Subject
-
-- (NSString *)subjectDefault
-{
-  return self.isMyPosition ? L(@"my_position_share_email_subject") : L(@"bookmark_share_email_subject");
 }
 
 @end

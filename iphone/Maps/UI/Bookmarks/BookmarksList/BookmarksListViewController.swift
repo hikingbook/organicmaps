@@ -9,12 +9,57 @@ final class BookmarksListViewController: MWMViewController {
   private let cellStrategy = BookmarksListCellStrategy()
 
   private var canEdit = false
+  private var isSearchActive = false
+  private var searchStateBeforeShowingOnMap: (isTyping: Bool, text: String?)?
+  private var defaultToolbarItems: [UIBarButtonItem] = []
+  private var selectedItemIds = Set<BookmarksListItemId>()
 
   @IBOutlet private var tableView: UITableView!
   @IBOutlet private var toolBar: UIToolbar!
   @IBOutlet private var sortToolbarItem: UIBarButtonItem!
   @IBOutlet private var moreToolbarItem: UIBarButtonItem!
   private let searchController = UISearchController(searchResultsController: nil)
+  private lazy var selectBarButtonItem = UIBarButtonItem(title: L("select"),
+                                                         style: .plain,
+                                                         target: self,
+                                                         action: #selector(selectButtonDidTap))
+  private lazy var selectAllBarButtonItem = UIBarButtonItem(title: L("select_all"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(selectAllButtonDidTap))
+  private lazy var cancelBarButtonItem = UIBarButtonItem(title: L("cancel"),
+                                                         style: .plain,
+                                                         target: self,
+                                                         action: #selector(cancelButtonDidTap))
+  private lazy var moveToolbarItem: UIBarButtonItem = {
+    let item = UIBarButtonItem(image: UIImage(named: "ic_folder")?.withRenderingMode(.alwaysTemplate),
+                               style: .plain,
+                               target: self,
+                               action: #selector(moveButtonDidTap))
+    item.accessibilityLabel = L("move")
+    item.tintColor = .linkBlue
+    return item
+  }()
+
+  private lazy var colorToolbarItem: UIBarButtonItem = {
+    let item = UIBarButtonItem(image: UIImage(named: "ic_palette")?.withRenderingMode(.alwaysTemplate),
+                               style: .plain,
+                               target: self,
+                               action: #selector(colorButtonDidTap))
+    item.accessibilityLabel = L("change_color")
+    item.tintColor = .linkBlue
+    return item
+  }()
+
+  private lazy var deleteToolbarItem: UIBarButtonItem = {
+    let item = UIBarButtonItem(image: UIImage(named: "ic_route_manager_trash")?.withRenderingMode(.alwaysTemplate),
+                               style: .plain,
+                               target: self,
+                               action: #selector(deleteButtonDidTap))
+    item.accessibilityLabel = L("delete")
+    item.tintColor = .redPrimary
+    return item
+  }()
 
   private lazy var infoViewController: BookmarksListInfoViewController = {
     let infoViewController = BookmarksListInfoViewController()
@@ -30,26 +75,26 @@ final class BookmarksListViewController: MWMViewController {
 
     let toolbarItemAttributes = [NSAttributedString.Key.font: UIFont.medium16.dynamic,
                                  NSAttributedString.Key.foregroundColor: UIColor.linkBlue]
-
     sortToolbarItem.setTitleTextAttributes(toolbarItemAttributes, for: .normal)
     moreToolbarItem.setTitleTextAttributes(toolbarItemAttributes, for: .normal)
     sortToolbarItem.title = L("sort")
+    defaultToolbarItems = toolBar.items ?? []
 
     extendedLayoutIncludesOpaqueBars = true
     searchController.searchBar.placeholder = L("search_in_the_list")
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = alternativeSizeClass(iPhone: true, iPad: false)
+    searchController.delegate = self
     searchController.searchBar.delegate = self
     searchController.searchBar.applyTheme()
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
 
+    tableView.keyboardDismissMode = .onDrag
+    tableView.allowsMultipleSelectionDuringEditing = true
     cellStrategy.registerCells(tableView)
-    cellStrategy.cellCheckHandler = { [weak self] viewModel, index, checked in
-      self?.presenter.checkItem(in: viewModel, at: index, checked: checked)
-    }
-    cellStrategy.cellVisibilityHandler = { [weak self] viewModel in
-      self?.presenter.toggleVisibility(in: viewModel)
+    cellStrategy.cellEditHandler = { [weak self] cell in
+      self?.editItem(in: cell)
     }
     presenter.viewDidLoad()
     MWMKeyboard.add(self)
@@ -57,6 +102,22 @@ final class BookmarksListViewController: MWMViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    if let searchState = searchStateBeforeShowingOnMap {
+      searchController.searchBar.text = searchState.text
+      let wasSearchActive = searchController.isActive
+      searchController.isActive = true
+      isSearchActive = true
+      updateNavigationButton()
+      toolBar.setHidden(searchState.isTyping)
+      // Keep the presenter's query aligned with the restored field before reloading the category.
+      presenter.restoreSearchText(searchState.text)
+      if wasSearchActive {
+        if searchState.isTyping {
+          searchController.searchBar.becomeFirstResponder()
+        }
+        searchStateBeforeShowingOnMap = nil
+      }
+    }
     presenter.viewDidAppear()
   }
 
@@ -87,9 +148,147 @@ final class BookmarksListViewController: MWMViewController {
     presenter.more()
   }
 
+  @objc private func selectButtonDidTap() {
+    // An open swipe action leaves the table in editing mode, which would make entering multi-select a no-op.
+    tableView.setEditing(false, animated: false)
+    setEditing(true, animated: true)
+  }
+
+  @objc private func cancelButtonDidTap() {
+    setEditing(false, animated: true)
+  }
+
+  @objc private func selectAllButtonDidTap() {
+    guard isEditing, let sections else { return }
+
+    if areAllEditableItemsSelected {
+      clearSelection(animated: false)
+      updateSelectionActionsState()
+      return
+    }
+
+    for (sectionIndex, section) in sections.enumerated() {
+      for (row, item) in section.editableItems.enumerated() {
+        selectedItemIds.insert(item.itemId)
+        tableView.selectRow(at: IndexPath(row: row, section: sectionIndex), animated: false, scrollPosition: .none)
+      }
+    }
+    updateSelectionActionsState()
+  }
+
+  @objc private func moveButtonDidTap() {
+    guard !selectedItemIds.isEmpty else { return }
+    presenter.moveItems(with: selectedItemIds)
+  }
+
+  @objc private func colorButtonDidTap() {
+    guard !selectedItemIds.isEmpty else { return }
+    presenter.changeColor(of: selectedItemIds)
+  }
+
+  @objc private func deleteButtonDidTap() {
+    guard !selectedItemIds.isEmpty else { return }
+
+    let itemIds = selectedItemIds
+    setEditing(false, animated: true)
+    presenter.deleteItems(with: itemIds)
+  }
+
   override func setEditing(_ editing: Bool, animated: Bool) {
     super.setEditing(editing, animated: animated)
     tableView.setEditing(editing, animated: animated)
+    updateNavigationButton()
+    searchController.searchBar.searchTextField.isEnabled = !editing
+    searchController.searchBar.isUserInteractionEnabled = !editing
+    updateToolbar(editing: editing, animated: animated)
+
+    if !editing {
+      clearSelection(animated: animated)
+    }
+  }
+
+  private func updateToolbar(editing: Bool, animated: Bool) {
+    guard editing else {
+      toolBar.setItems(defaultToolbarItems, animated: animated)
+      return
+    }
+
+    updateSelectionActionsState()
+    toolBar.setItems([sortToolbarItem,
+                      UIBarButtonItem(systemItem: .flexibleSpace),
+                      moveToolbarItem,
+                      colorToolbarItem,
+                      deleteToolbarItem],
+                     animated: animated)
+  }
+
+  private func updateSelectionActionsState() {
+    let isEnabled = !selectedItemIds.isEmpty
+    moveToolbarItem.isEnabled = isEnabled
+    colorToolbarItem.isEnabled = isEnabled
+    deleteToolbarItem.isEnabled = isEnabled
+    selectAllBarButtonItem.title = L(areAllEditableItemsSelected ? "deselect_all" : "select_all")
+    selectAllBarButtonItem.isEnabled = editableItemsCount > 0
+  }
+
+  private var editableItemsCount: Int {
+    sections?.reduce(0) { $0 + $1.editableItems.count } ?? 0
+  }
+
+  private var areAllEditableItemsSelected: Bool {
+    editableItemsCount > 0 && selectedItemIds.count == editableItemsCount
+  }
+
+  private func updateNavigationButton() {
+    guard canEdit else {
+      navigationItem.leftBarButtonItem = nil
+      navigationItem.rightBarButtonItem = nil
+      return
+    }
+
+    if isEditing {
+      navigationItem.leftBarButtonItem = selectAllBarButtonItem
+      navigationItem.rightBarButtonItem = cancelBarButtonItem
+    } else {
+      navigationItem.leftBarButtonItem = nil
+      selectBarButtonItem.isEnabled = !isSearchActive
+      navigationItem.rightBarButtonItem = selectBarButtonItem
+    }
+  }
+
+  private func itemId(at indexPath: IndexPath) -> BookmarksListItemId? {
+    guard let section = sections?[indexPath.section] else { fatalError() }
+    let items = section.editableItems
+    guard items.indices.contains(indexPath.row) else { return nil }
+    return items[indexPath.row].itemId
+  }
+
+  private func editItem(in cell: UITableViewCell) {
+    // A missing index path is legitimate: the cell can leave the table between the tap and its
+    // delivery. A missing section under a configured cell can only be a bug.
+    guard let indexPath = tableView.indexPath(for: cell) else { return }
+    guard let section = sections?[indexPath.section] else { fatalError() }
+    presenter.editItem(in: section, at: indexPath.row)
+  }
+
+  private func restoreSelection() {
+    guard isEditing, let sections else { return }
+
+    // Drop ids whose items disappeared after reload, then re-apply the surviving selection.
+    var restoredItemIds = Set<BookmarksListItemId>()
+    for (sectionIndex, section) in sections.enumerated() {
+      for (row, item) in section.editableItems.enumerated() where selectedItemIds.contains(item.itemId) {
+        restoredItemIds.insert(item.itemId)
+        tableView.selectRow(at: IndexPath(row: row, section: sectionIndex), animated: false, scrollPosition: .none)
+      }
+    }
+    selectedItemIds = restoredItemIds
+    updateSelectionActionsState()
+  }
+
+  private func clearSelection(animated: Bool) {
+    selectedItemIds.removeAll()
+    tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: animated) }
   }
 }
 
@@ -119,34 +318,40 @@ extension BookmarksListViewController: UITableViewDelegate {
     return cellStrategy.headerView(tableView, for: section)
   }
 
-  func tableView(_: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    indexPath
-  }
-
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard !isEditing else {
+      if let itemId = itemId(at: indexPath) {
+        selectedItemIds.insert(itemId)
+      }
+      updateSelectionActionsState()
+      return
+    }
+
     tableView.deselectRow(at: indexPath, animated: true)
     guard let section = sections?[indexPath.section] else { fatalError() }
     presenter.selectItem(in: section, at: indexPath.row)
   }
 
-  func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    guard let section = sections?[indexPath.section] else { fatalError() }
-    return canEdit && section.canEdit
+  func tableView(_: UITableView, canEditRowAt _: IndexPath) -> Bool {
+    canEdit
   }
 
-  func tableView(_: UITableView, willBeginEditingRowAt _: IndexPath) {
-    isEditing = true
-  }
-
-  func tableView(_: UITableView, didEndEditingRowAt _: IndexPath?) {
-    isEditing = false
+  func tableView(_: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    guard isEditing else { return }
+    if let itemId = itemId(at: indexPath) {
+      selectedItemIds.remove(itemId)
+    }
+    updateSelectionActionsState()
   }
 
   func tableView(_: UITableView,
                  leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let moveAction = UIContextualAction(style: .normal, title: L("move")) { [weak self] _, _, completion in
-      guard let section = self?.sections?[indexPath.section] else { fatalError() }
-      self?.presenter.moveItem(in: section, at: indexPath.row)
+      guard let self, let itemId = self.itemId(at: indexPath) else {
+        completion(false)
+        return
+      }
+      presenter.moveItems(with: [itemId])
       completion(true)
     }
     return UISwipeActionsConfiguration(actions: [moveAction])
@@ -155,8 +360,11 @@ extension BookmarksListViewController: UITableViewDelegate {
   func tableView(_: UITableView,
                  trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let deleteAction = UIContextualAction(style: .destructive, title: L("delete")) { [weak self] _, _, completion in
-      guard let section = self?.sections?[indexPath.section] else { fatalError() }
-      self?.presenter.deleteItem(in: section, at: indexPath.row)
+      guard let self, let itemId = self.itemId(at: indexPath) else {
+        completion(false)
+        return
+      }
+      self.presenter.deleteItems(with: [itemId])
       completion(true)
     }
     let editAction = UIContextualAction(style: .normal, title: L("edit")) { [weak self] _, _, completion in
@@ -166,28 +374,39 @@ extension BookmarksListViewController: UITableViewDelegate {
     }
     return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
   }
+}
 
-  func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    guard let section = sections?[indexPath.section] else { fatalError() }
-    presenter.editItem(in: section, at: indexPath.row)
+extension BookmarksListViewController: UISearchControllerDelegate {
+  func didPresentSearchController(_ searchController: UISearchController) {
+    if searchStateBeforeShowingOnMap?.isTyping == true {
+      // The integrated search field is attached to its window after this callback on iOS 26.
+      DispatchQueue.main.async { [weak searchController] in
+        guard let searchController, searchController.isActive else { return }
+        searchController.searchBar.becomeFirstResponder()
+      }
+    }
+    searchStateBeforeShowingOnMap = nil
   }
 }
 
 extension BookmarksListViewController: UISearchBarDelegate {
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+  func searchBarTextDidBeginEditing(_: UISearchBar) {
+    isSearchActive = true
+    updateNavigationButton()
     toolBar.setHidden(true)
-    searchBar.setShowsCancelButton(true, animated: true)
     presenter.activateSearch()
   }
 
   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    isSearchActive = !(searchBar.text?.isEmpty ?? true)
+    updateNavigationButton()
     toolBar.setHidden(false)
-    searchBar.setShowsCancelButton(false, animated: true)
-    presenter.deactivateSearch()
   }
 
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     searchBar.text = nil
+    isSearchActive = false
+    updateNavigationButton()
     searchBar.resignFirstResponder()
     presenter.cancelSearch()
   }
@@ -203,11 +422,18 @@ extension BookmarksListViewController: UISearchBarDelegate {
 }
 
 extension BookmarksListViewController: IBookmarksListView {
-  func setTitle(_ title: String) {
-    self.title = title
+  func saveSearchStateBeforeShowingOnMap(searchText: String?) {
+    // Hiding the list dismisses search; the presenter retains the query if UIKit has cleared the field.
+    let text = searchController.searchBar.text.flatMap { $0.isEmpty ? nil : $0 } ?? searchText
+    if searchController.isActive || text != nil {
+      searchStateBeforeShowingOnMap = (searchController.searchBar.searchTextField.isFirstResponder, text)
+    } else {
+      searchStateBeforeShowingOnMap = nil
+    }
   }
 
   func setInfo(_ info: IBookmarksListInfoViewModel) {
+    navigationItem.backButtonTitle = info.title
     infoViewController.info = info
     updateInfoSize()
   }
@@ -215,6 +441,7 @@ extension BookmarksListViewController: IBookmarksListView {
   func setSections(_ sections: [IBookmarksListSectionViewModel]) {
     self.sections = sections
     tableView.reloadData()
+    restoreSelection()
   }
 
   func showMenu(_ items: [IBookmarksListMenuItem], from source: BookmarkToolbarButtonSource) {
@@ -239,9 +466,25 @@ extension BookmarksListViewController: IBookmarksListView {
     ColorPicker.shared.present(from: self, anchor: anchor, currentColor: currentColor, completionHandler: completionHandler)
   }
 
+  func showBatchColorPicker(_ completionHandler: ((UIColor) -> Void)?) {
+    ColorPicker.shared.present(from: self,
+                               anchor: colorToolbarItem,
+                               currentColor: nil,
+                               completionHandler: completionHandler)
+  }
+
+  func finishEditing() {
+    // Move and color finish while their modal controller is still being dismissed.
+    // Avoid running a competing toolbar transition underneath that dismissal.
+    setEditing(false, animated: false)
+  }
+
   func enableEditing(_ enable: Bool) {
     canEdit = enable
-    navigationItem.rightBarButtonItem = enable ? editButtonItem : nil
+    if !enable, isEditing {
+      setEditing(false, animated: false)
+    }
+    updateNavigationButton()
   }
 
   func share(_ url: URL, displayName: String, completion: @escaping () -> Void) {

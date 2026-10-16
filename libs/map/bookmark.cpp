@@ -63,7 +63,6 @@ std::string GetBookmarkIconType(kml::BookmarkIcon const & icon)
 }
 
 std::string const kCustomImageProperty = "CustomImage";
-std::string const kHasElevationProfileProperty = "has_elevation_profile";
 std::string const kHikingbookWaypointNumberProperty = "HikingbookWaypointNumber";
 std::string const kHikingbookWaypointDepthProperty = "HikingbookWaypointDepth";
 float constexpr kHikingbookWaypointTextSize = 11.0f;
@@ -107,12 +106,6 @@ void Bookmark::SetAddress(search::ReverseGeocoder::RegionAddress const & address
 {
   SetDirty();
   m_address = address;
-}
-
-void Bookmark::SetIsVisible(bool isVisible)
-{
-  SetDirty();
-  m_isVisible = isVisible;
 }
 
 drape_ptr<df::UserPointMark::TitlesInfo> Bookmark::GetTitleDeclEx(settings::Placement p, dp::Color outlineColor) const
@@ -348,11 +341,6 @@ void Bookmark::SetName(std::string const & name, int8_t langCode)
   m_data.m_name[langCode] = name;
 }
 
-std::string Bookmark::GetCustomName() const
-{
-  return GetPreferredBookmarkStr(m_data.m_customName);
-}
-
 void Bookmark::SetCustomName(std::string const & customName)
 {
   SetDirty();
@@ -414,19 +402,14 @@ void Bookmark::Attach(kml::MarkGroupId groupId)
 {
   ASSERT_NOT_EQUAL(groupId, kml::kInvalidMarkGroupId, ());
   ASSERT_EQUAL(m_groupId, kml::kInvalidMarkGroupId, ());
+  // A restored bookmark may have been rendered before, so re-attaching has to make it dirty again.
+  SetDirty();
   m_groupId = groupId;
-}
-
-void Bookmark::AttachCompilation(kml::MarkGroupId groupId)
-{
-  ASSERT(groupId != kml::kInvalidMarkGroupId, ());
-  m_compilationIds.push_back(groupId);
 }
 
 void Bookmark::Detach()
 {
   m_groupId = kml::kInvalidMarkGroupId;
-  m_compilationIds.clear();
 }
 
 BookmarkCategory::BookmarkCategory(std::string const & name, kml::MarkGroupId groupId, bool autoSave)
@@ -494,22 +477,6 @@ void BookmarkCategory::SetCustomProperty(std::string const & key, std::string co
 std::string BookmarkCategory::GetName() const
 {
   return GetPreferredBookmarkStr(m_data.m_name);
-}
-
-bool BookmarkCategory::HasElevationProfile() const
-{
-  auto const it = m_data.m_properties.find(kHasElevationProfileProperty);
-  return (it != m_data.m_properties.end()) && (it->second != "0");
-}
-
-void BookmarkCategory::SetAuthor(std::string const & name, std::string const & id)
-{
-  if (m_data.m_authorName == name && m_data.m_authorId == id)
-    return;
-
-  SetDirty(true /* updateModificationTime */);
-  m_data.m_authorName = name;
-  m_data.m_authorId = id;
 }
 
 void BookmarkCategory::SetAccessRules(kml::AccessRules accessRules)

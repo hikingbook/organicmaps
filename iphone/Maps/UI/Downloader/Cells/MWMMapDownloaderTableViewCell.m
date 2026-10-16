@@ -29,6 +29,12 @@
   [self addGestureRecognizer:lpGR];
 }
 
+- (void)layoutSubviews
+{
+  [super layoutSubviews];
+  [self alignSeparatorWithView:self.title];
+}
+
 - (void)prepareForReuse
 {
   [super prepareForReuse];
@@ -132,7 +138,7 @@
 
 - (void)setDownloadProgress:(CGFloat)progress
 {
-  self.progress.progress = kMaxProgress * progress;
+  self.progress.progress = AppConstants.maxProgress * progress;
 }
 
 #pragma mark - MWMCircularProgressProtocol

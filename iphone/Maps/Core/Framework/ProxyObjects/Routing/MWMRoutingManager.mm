@@ -10,9 +10,28 @@
 
 #include <CoreApi/Framework.h>
 
+#include "geometry/mercator.hpp"
+#include "indexer/feature_meta.hpp"
+#include "platform/country_file.hpp"
+#include "storage/country_info_getter.hpp"
+
+namespace
+{
+bool IsLeftHandTraffic(storage::CountryId const & countryId)
+{
+  auto & framework = GetFramework();
+  auto const mwmId = framework.GetDataSource().GetMwmIdByCountryFile(platform::CountryFile(countryId));
+  auto const & info = mwmId.GetInfo();
+  return info && info->GetRegionData().Get(feature::RegionData::RD_DRIVING) == "l";
+}
+}  // namespace
+
 @interface MWMRoutingManager () <MWMFrameworkRouteBuilderObserver, MWMLocationObserver>
 @property(nonatomic, readonly) RoutingManager & rm;
 @property(strong, nonatomic) NSHashTable<id<MWMRoutingManagerListener>> * listeners;
+@property(nonatomic) storage::CountryInfoGetterBase::RegionId trafficRegionId;
+@property(nonatomic) BOOL isLeftHandTraffic;
+@property(strong, nonatomic) CLLocation * trafficSideLocation;
 @end
 
 @implementation MWMRoutingManager
@@ -31,6 +50,7 @@
   if (self)
   {
     self.listeners = [NSHashTable<id<MWMRoutingManagerListener>> weakObjectsHashTable];
+    self.trafficRegionId = storage::CountryInfoGetterBase::kInvalidId;
     [MWMFrameworkListener addObserver:self];
     [MWMLocationManager addObserver:self];
   }
@@ -122,6 +142,7 @@
 - (void)stopRoutingAndRemoveRoutePoints:(BOOL)flag
 {
   self.rm.CloseRouting(flag);
+  [MWMThemeManager invalidate];
 }
 
 - (void)deleteSavedRoutePoints
@@ -137,7 +158,7 @@
 - (void)addRoutePoint:(MWMRoutePoint *)point
 {
   RouteMarkData startPt = point.routeMarkData;
-  self.rm.AddRoutePoint(std::move(startPt));
+  self.rm.AddRoutePoint(std::move(startPt), false /* optimize */);
 }
 
 - (void)saveRoute
@@ -179,6 +200,7 @@
 {
   [self saveRoute];
   self.rm.FollowRoute();
+  [MWMThemeManager invalidate];
 }
 
 - (MWMSpeedCameraManagerMode)speedCameraMode
@@ -265,6 +287,35 @@
   NSArray<id<MWMRoutingManagerListener>> * objects = self.listeners.allObjects;
   for (id<MWMRoutingManagerListener> object in objects)
     [object didLocationUpdate:turnNotifications];
+}
+
+- (void)updateTrafficSideAtLocation:(CLLocation *)location
+{
+  if (!location)
+    return;
+  if ([self.trafficSideLocation isEqual:location])
+    return;
+  self.trafficSideLocation = location;
+
+  auto & countryInfoGetter = GetFramework().GetCountryInfoGetter();
+  auto const coordinate = location.coordinate;
+  auto const position = mercator::FromLatLon(coordinate.latitude, coordinate.longitude);
+  if (self.trafficRegionId != storage::CountryInfoGetterBase::kInvalidId &&
+      countryInfoGetter.BelongsToAnyRegion(position, {self.trafficRegionId}))
+  {
+    return;
+  }
+
+  auto const countryId = countryInfoGetter.GetRegionCountryId(position);
+  if (countryId.empty())
+  {
+    self.trafficRegionId = storage::CountryInfoGetterBase::kInvalidId;
+    self.isLeftHandTraffic = NO;
+    return;
+  }
+
+  self.trafficRegionId = countryInfoGetter.GetRegionId(countryId);
+  self.isLeftHandTraffic = IsLeftHandTraffic(countryId);
 }
 
 - (NSString *)turnImageName:(routing::turns::CarDirection)turn isPrimary:(BOOL)isPrimary

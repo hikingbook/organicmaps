@@ -1,11 +1,5 @@
 import Foundation
 
-enum BookmarksListVisibilityButtonState {
-  case hidden
-  case hideAll
-  case showAll
-}
-
 enum BookmarkToolbarButtonSource {
   case sort
   case more
@@ -16,11 +10,15 @@ enum GroupReloadingResult {
   case notFound
 }
 
+enum BookmarksListItemId: Hashable {
+  case bookmark(MWMMarkID)
+  case track(MWMTrackID)
+}
+
 protocol IBookmarksListSectionViewModel {
   var numberOfItems: Int { get }
   var sectionTitle: String { get }
-  var visibilityButtonState: BookmarksListVisibilityButtonState { get }
-  var canEdit: Bool { get }
+  var editableItems: [IBookmarksListItemViewModel] { get }
 }
 
 protocol IBookmarksSectionViewModel: IBookmarksListSectionViewModel {
@@ -28,25 +26,20 @@ protocol IBookmarksSectionViewModel: IBookmarksListSectionViewModel {
 }
 
 protocol ITracksSectionViewModel: IBookmarksListSectionViewModel {
-  var tracks: [IBookmarksListItemViewModel] { get }
-}
-
-protocol ISubgroupsSectionViewModel: IBookmarksListSectionViewModel {
-  var subgroups: [ISubgroupViewModel] { get }
-  var type: BookmarkGroupType { get }
+  var tracks: [ITrackViewModel] { get }
 }
 
 protocol IBookmarksListItemViewModel {
+  var itemId: BookmarksListItemId { get }
   var name: String { get }
   var subtitle: String { get }
   var image: UIImage { get }
   var colorDidTapAction: ((_ anchor: UIView?) -> Void)? { get }
 }
 
-protocol ISubgroupViewModel {
-  var subgroupName: String { get }
-  var subtitle: String { get }
+protocol ITrackViewModel: IBookmarksListItemViewModel {
   var isVisible: Bool { get }
+  var visibilityDidTapAction: () -> Void { get }
 }
 
 protocol IBookmarksListMenuItem {
@@ -57,10 +50,13 @@ protocol IBookmarksListMenuItem {
 }
 
 protocol IBookmarksListView: AnyObject {
+  func saveSearchStateBeforeShowingOnMap(searchText: String?)
   func setInfo(_ info: IBookmarksListInfoViewModel)
   func setSections(_ sections: [IBookmarksListSectionViewModel])
   func showMenu(_ items: [IBookmarksListMenuItem], from source: BookmarkToolbarButtonSource)
   func showColorPicker(anchor: UIView?, currentColor: UIColor?, _ completion: ((UIColor) -> Void)?)
+  func showBatchColorPicker(_ completion: ((UIColor) -> Void)?)
+  func finishEditing()
   func enableEditing(_ enable: Bool)
   func share(_ url: URL, displayName: String, completion: @escaping () -> Void)
   func showError(title: String, message: String)
@@ -69,19 +65,18 @@ protocol IBookmarksListView: AnyObject {
 protocol IBookmarksListPresenter {
   func viewDidLoad()
   func viewDidAppear()
+  func restoreSearchText(_ text: String?)
   func activateSearch()
-  func deactivateSearch()
   func cancelSearch()
   func search(_ text: String)
   func sort()
   func more()
   func editCategory()
-  func deleteItem(in section: IBookmarksListSectionViewModel, at index: Int)
-  func moveItem(in section: IBookmarksListSectionViewModel, at index: Int)
+  func deleteItems(with itemIds: Set<BookmarksListItemId>)
+  func moveItems(with itemIds: Set<BookmarksListItemId>)
+  func changeColor(of itemIds: Set<BookmarksListItemId>)
   func editItem(in section: IBookmarksListSectionViewModel, at index: Int)
   func selectItem(in section: IBookmarksListSectionViewModel, at index: Int)
-  func checkItem(in section: IBookmarksListSectionViewModel, at index: Int, checked: Bool)
-  func toggleVisibility(in section: IBookmarksListSectionViewModel)
   func showDescription()
 }
 
@@ -103,16 +98,15 @@ protocol IBookmarksListInteractor {
   func viewOnMap()
   func viewBookmarkOnMap(_ bookmarkId: MWMMarkID)
   func viewTrackOnMap(_ trackId: MWMTrackID)
-  func setGroup(_ groupId: MWMMarkGroupID, visible: Bool)
+  func setTrack(_ trackId: MWMTrackID, visible: Bool)
   func sort(_ sortingType: BookmarksListSortingType,
             location: CLLocation?,
             completion: @escaping ([BookmarksSection]) -> Void)
   func resetSort()
   func lastSortingType() -> BookmarksListSortingType?
-  func deleteBookmark(_ bookmarkId: MWMMarkID)
-  func deleteTrack(_ trackId: MWMTrackID)
-  func moveBookmark(_ bookmarkId: MWMMarkID, toGroupId: MWMMarkGroupID)
-  func moveTrack(_ trackId: MWMTrackID, toGroupId: MWMMarkGroupID)
+  func deleteItems(with itemIds: Set<BookmarksListItemId>)
+  func moveItems(with itemIds: Set<BookmarksListItemId>, toGroupId: MWMMarkGroupID)
+  func setColor(_ color: UIColor, for itemIds: Set<BookmarksListItemId>)
   func deleteBookmarksGroup()
   func canDeleteGroup() -> Bool
   func exportFile(fileType: FileType, completion: @escaping SharingResultCompletionHandler)
@@ -123,7 +117,6 @@ protocol IBookmarksListRouter {
   func listSettings(_ bookmarkGroup: BookmarkGroup, delegate: CategorySettingsViewControllerDelegate?)
   func viewOnMap(_ bookmarkGroup: BookmarkGroup)
   func showDescription(_ bookmarkGroup: BookmarkGroup)
-  func showSubgroup(_ subgroupId: MWMMarkGroupID)
   func selectGroup(currentGroupId groupId: MWMMarkGroupID,
                    delegate: SelectBookmarkGroupViewControllerDelegate?)
   func editBookmark(bookmarkId: MWMMarkID, completion: @escaping (Bool) -> Void)

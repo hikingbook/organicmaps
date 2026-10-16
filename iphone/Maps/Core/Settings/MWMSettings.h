@@ -32,17 +32,11 @@ typedef NS_ENUM(NSUInteger, MWMSettingsPowerManagement) {
 + (MWMPlacement)bookmarksTextPlacement;
 + (void)setBookmarksTextPlacement:(MWMPlacement)placement;
 
-+ (BOOL)compassCalibrationEnabled;
-+ (void)setCompassCalibrationEnabled:(BOOL)compassCalibrationEnabled;
-
 + (MWMTheme)theme;
 + (void)setTheme:(MWMTheme)theme;
 
 + (BOOL)routingDisclaimerApproved;
 + (void)setRoutingDisclaimerApproved;
-
-+ (NSString *)spotlightLocaleLanguageId;
-+ (void)setSpotlightLocaleLanguageId:(NSString *)spotlightLocaleLanguageId;
 
 + (BOOL)largeFontSize;
 + (void)setLargeFontSize:(BOOL)largeFontSize;

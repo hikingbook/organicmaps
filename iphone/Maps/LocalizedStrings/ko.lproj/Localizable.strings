@@ -115,7 +115,7 @@
 /* Search category sight seeings and touristic attractions; any changes should be duplicated in categories.txt @category_tourism! */
 "category_tourism" = "관광";
 
-/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! */
+/* Search category for entertainment; any changes should be duplicated in categories.txt @category_entertainment! Also a bookmarks list group header when sorting by type. */
 "category_entertainment" = "엔터테인먼트";
 
 /* Search category for ATMs; any changes should be duplicated in categories.txt @category_atm! */
@@ -148,7 +148,7 @@
 /* Search category for recycling; any changes should be duplicated in categories.txt @category_recycling! */
 "category_recycling" = "재활용";
 
-/* Search category for water; any changes should be duplicated in categories.txt @category_water! also used to sort bookmarks by type */
+/* Search category for water; any changes should be duplicated in categories.txt @category_water! Also a bookmarks list group header when sorting by type. */
 "category_water" = "물";
 
 /* Search category for RV facilities; any changes should be duplicated in categories.txt @category_rv! */
@@ -174,11 +174,23 @@
 /* Warning message when doing search around current position */
 "unknown_current_position" = "귀하의 위치를 아직 알아내지 못 했습니다";
 
-/* Subject for emailed bookmark */
-"bookmark_share_email_subject" = "Organic Maps 지도에서 내 핀 보기";
+/* Text shown before a shared "my position" link, and the email subject when sharing the current location. */
+"share_my_position" = "Organic Maps에서 여기에 있습니다";
 
-/* Subject for emailed position */
-"my_position_share_email_subject" = "Organic Maps 지도에서 제 현재 위치를 살펴 보시기 바랍니다";
+/* Email subject when sharing a place. %1$@ is the place name or address. */
+"share_place_subject" = "%1$@ - Organic Maps";
+
+/* Email subject when sharing a place that has no name or address. */
+"share_place_subject_default" = "Organic Maps의 장소";
+
+/* Shared email link text; opens the shared place in Organic Maps or in a web browser. */
+"share_open_in_om_or_browser" = "Organic Maps 또는 브라우저에서 열기";
+
+/* Shared email link text; leads to the Organic Maps download page. */
+"share_get_om" = "Organic Maps 받기";
+
+/* Title for the "Open in Another App" button on the PlacePage; also shared email link text: opens the shared place in another (geo:) maps app. */
+"open_in_app" = "다른 앱에서 열기";
 
 /* Share by email button text, also used in editor and About. */
 "email" = "이메일";
@@ -195,6 +207,7 @@
 /* Length of track in cell that describes route */
 "length" = "길이";
 "share_my_location" = "내 위치 공유";
+"prefs_group_network" = "네트워크";
 "prefs_group_route" = "내비게이션";
 
 /* Setting name which enables or disables zoom buttons on the map screen. */
@@ -251,8 +264,14 @@
 /* Settings «Navigation» category: «Voice language» footer */
 "pref_tts_download_voices_description" = "더 높은 품질의 음성을 다운로드하려면 설정 앱을 열고 손쉬운 사용 → VoiceOver → 말하기 → 음성으로 이동하세요.";
 
-/* Settings «Route» category: «Test Voice Directions» title */
-"pref_tts_test_voice_title" = "음성 길 안내 테스트(TTS, 텍스트 음성 변환)";
+/* Header above Apple's group of novelty text-to-speech voices (Bells, Bubbles, Zarvox...), shown after the regional voice sections and Eloquence group. Use Apple's term for this group from Settings > Accessibility > VoiceOver > Speech. */
+"pref_tts_voice_group_novelty" = "Novelty";
+
+/* Accessibility label of the button that plays a sample of a text-to-speech voice. */
+"pref_tts_voice_preview_play" = "Play sample";
+
+/* Accessibility label of the button that stops the sample of a text-to-speech voice being played. */
+"pref_tts_voice_preview_stop" = "Stop sample";
 "pref_map_auto_zoom" = "자동 줌";
 "placepage_distance" = "거리";
 "search_show_on_map" = "지도 보기";
@@ -388,9 +407,6 @@
 /* Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. */
 "pref_appearance_dark" = "다크";
 
-/* Title for "Other" section in TTS settings. */
-"pref_tts_other_section_title" = "다른 언어";
-
 /* Tex label above the Donate button */
 "donate_description" = "수백만 명의 사용자에게 광고 없는 무료 지도를 선물하세요!";
 
@@ -408,9 +424,6 @@
 
 /* Alert title */
 "email_error_title" = "메일 전송 중 오류";
-
-/* Settings item title */
-"pref_calibration_title" = "나침반 보정";
 
 /* Downloaded maps category */
 "downloader_available_maps" = "사용 가능";
@@ -509,6 +522,8 @@
 "twentyfour_seven" = "24 시간";
 "day_off_today" = "오늘 영업 종료됨";
 "day_off" = "종료됨";
+"midnight" = "자정";
+"noon" = "정오";
 "today" = "오늘";
 "opens_in" = "%@에서 열립니다";
 "closes_in" = "%@로 마감";
@@ -592,9 +607,6 @@
 "day" = "일";
 "second" = "초";
 "placepage_more_button" = "자세히";
-
-/* A disable button text in the explanation dialog that opens hotel details page on Kayak website. */
-"placepage_edit_bookmark_button" = "즐겨찾기 편집";
 "placepage_personal_notes_hint" = "개인 메모 (글자 혹은 html)";
 "editor_comment_hint" = "설명…";
 "editor_reset_edits_message" = "지역 변경 사항을 재설정하시겠습니까?";
@@ -642,7 +654,9 @@
 "planning_route_manage_route" = "경로 관리";
 "button_plan" = "계획";
 "placepage_remove_stop" = "정류장 제거";
-"placepage_add_stop" = "스톱 추가";
+
+/* Keep it short: PlacePage button, search field hint and full-screen map point picker title shown while choosing a new intermediate stop of a route. */
+"placepage_add_stop" = "경유지 추가";
 "saved" = "저장됨";
 "error_enter_correct_name" = "올바른 이름을 입력하세요.";
 "bookmark_lists" = "목록";
@@ -661,6 +675,9 @@
 "bookmarks_error_title_list_name_already_taken" = "이 이름은 이미 사용 중입니다.";
 "profile" = "OpenStreetMap 프로필";
 "restore" = "복원";
+
+/* Settings privacy group in settings screen */
+"privacy" = "개인정보 보호";
 "privacy_policy" = "개인정보 보호 방침";
 "terms_of_use" = "사용 약관";
 
@@ -714,6 +731,12 @@
 "show_at_the_bottom" = "하단에 표시";
 "enable_logging_warning_message" = "이 옵션은 진단을 목적으로 로그를 엽니다 이를 통해 앱에 대한 문제를 분석하는 우리의 스탭을 도울 수 있습니다 이 옵션은 오직 Organic Maps 지원 요청에서만 가능합니다.";
 "driving_options_title" = "운전 옵션";
+
+/* Routing setting that automatically reorders intermediate stops */
+"route_optimization" = "경로 최적화";
+
+/* Explains that route optimization automatically reorders intermediate stops */
+"route_optimization_description" = "더 효율적인 경로를 만들도록 중간 경유지를 자동으로 재정렬합니다.";
 
 /* Recommended length for CarPlay and Android Auto is around 25-27 characters */
 "avoid_tolls" = "유료 도로 피하기";
@@ -822,7 +845,6 @@
 "location_services_disabled_on_device_3" = "3. 위치 서비스 선택";
 "location_services_disabled_on_device_4" = "4. 위치 서비스 켜기";
 "location_services_disabled_on_device_additional_message" = "또는 위치 정보 없이 Organic Maps을 계속 사용하세요";
-"book_button" = "예약";
 "placepage_call_button" = "전화";
 "placepage_bookmark_name_hint" = "즐겨찾기 이름";
 "placepage_delete_bookmark_button" = "즐겨찾기 삭제";
@@ -833,9 +855,6 @@
 /* iOS dialog for the case when recent track recording is on and the app comes back from background */
 "recent_track_background_dialog_title" = "최근 여행한 경로 녹음을 비활성화하시겠습니까?";
 "off_recent_track_background_button" = "비활성화";
-
-/* For sharing via SMS and so on */
-"sharing_call_action_look" = "체크아웃";
 "recent_track_background_dialog_message" = "Organic Maps는 최근 여행한 경로를 녹음하기 위해 배경 화면에서 지역 위치 서비스를 사용합니다.";
 "general_settings" = "일반 설정";
 
@@ -864,12 +883,6 @@
 "popular_place" = "인기";
 "hide_from_map" = "지도에서 숨기기";
 "tags_loading_error_subtitle" = "태그를 불러오는 중 에러가 발생했습니다. 다시 시도해보세요";
-
-/* Position of the name label on the map relative to the bookmark pin (on the right) */
-"right" = "오른쪽";
-
-/* Position of the name label on the map relative to the bookmark pin (at the bottom) */
-"bottom" = "하단";
 "trip_start" = "가자";
 "pick_destination" = "목적지";
 "follow_my_position" = "내 위치 조정하기";
@@ -918,6 +931,15 @@
 "medicine" = "의료";
 "search_in_the_list" = "리스트에서 검색";
 "religious_places" = "종교적 장소";
+
+/* Button that starts multi-selection in a bookmark list. */
+"select" = "선택";
+
+/* Action that selects every bookmark and track in a bookmark list. */
+"select_all" = "모두 선택";
+
+/* Action that clears the multi-selection in a bookmark list. */
+"deselect_all" = "선택 해제";
 "transit_not_found" = "이 지역의 지하철 노선 기능이 아직 없습니다";
 "dialog_pedestrian_route_is_long_header" = "지하철 루트가 발견되지 않았습니다";
 "dialog_pedestrian_route_is_long_message" = "지하철역에서 가까운 출발점 또는 종점을 선택하세요";
@@ -995,11 +1017,14 @@
 "bookmarks_export" = "모든 북마크 및 트랙 내보내기";
 "drive_through" = "드라이브 스루";
 
+/* Accessibility text for the zoom-in button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_in" = "확대";
+
+/* Accessibility text for the zoom-out button on the map and visible title for the CarPlay dashboard button. Keep it short. */
+"zoom_out" = "축소";
+
 /* Restaurant or other food place's menu URL field in the Editor */
 "website_menu" = "메뉴 링크";
-
-/* Title for the "Open in Another App" button on the PlacePage. */
-"open_in_app" = "다른 앱에서 열기";
 
 /* To indicate if the place proposed self service… */
 "self_service" = "셀프 서비스";
@@ -1052,6 +1077,12 @@
 /* Text for the editing the Track's color button. */
 "change_color" = "색상 변경";
 
+/* Text for the hiding track. */
+"hide_track" = "경로 숨기기";
+
+/* Text for the showing track. */
+"show_track" = "경로 표시";
+
 /* Main screen title "Map" displayed in the navigation back button's menu. */
 "map" = "지도";
 
@@ -1070,7 +1101,7 @@
 /* Message for the "iCloud is Disabled" alert. */
 "icloud_disabled_message" = "이 기능을 사용하려면 기기 설정에서 iCloud를 활성화하세요.";
 
-/* Title for the "Enable iCloud Syncronization" alert's "Enable" action button. */
+/* Action button that enables a disabled feature, such as iCloud synchronization or location services. */
 "enable" = "사용";
 
 /* Title for the "Enable iCloud Syncronization" alert's "Backup" action button. */
@@ -1167,3 +1198,27 @@
 
 /* Toast message shown when track colors are changed in category settings */
 "toast_tracks_color_changed" = "트랙 색상이 변경됨";
+
+/* Accessibility label of the icon-only button beside the search field, shown while choosing or replacing a route point; it opens a full-screen map picker with a crosshair */
+"choose_on_map" = "지도에서 선택";
+
+/* Search field hint and full-screen map point picker title shown while choosing the starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_start_location" = "출발지";
+
+/* Search field hint and full-screen map point picker title shown while choosing the destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"choose_destination" = "목적지";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set starting point of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_start_location" = "출발지 변경";
+
+/* Search field hint and full-screen map point picker title shown while replacing the already set destination of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_destination" = "목적지 변경";
+
+/* Search field hint and full-screen map point picker title shown while replacing an already added intermediate stop of a route. Kept short because shortcut and voice-search buttons narrow the field */
+"change_stop_along_route" = "경유지 변경";
+
+/* Toast shown when the user tries to add one more intermediate stop to a route that already holds the maximum allowed number */
+"routing_max_stops_reached" = "경유지 최대 개수에 도달했습니다";
+
+/* Hint under the title of the full-screen route point picker: a crosshair stays fixed in the centre of the screen while the user moves the map under it */
+"choose_point_on_map_hint" = "지도를 이동하고 확대/축소하여 십자선을 원하는 위치에 배치하세요";

@@ -534,6 +534,7 @@
     <string name="type.internet_access">อินเทอร์เน็ต</string>
     <string name="type.internet_access.wlan">อินเทอร์เน็ต</string>
     <string name="type.landuse.basin">อ่างน้ำ</string>
+    <string name="type.landuse.basin.intermittent">อ่างน้ำชั่วคราว</string>
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
     <string name="type.landuse.cemetery">สุสาน</string>
     <!-- In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. -->
@@ -549,7 +550,6 @@
     <string name="type.landuse.grass">สนามหญ้า</string>
     <string name="type.landuse.landfill">พื้นที่ฝังกลบ</string>
     <string name="type.landuse.railway">ที่ก่อสร้างทางรถไฟ</string>
-    <string name="type.landuse.reservoir">น้ำ</string>
     <string name="type.landuse.residential">เขตที่อยู่อาศัย</string>
     <string name="type.leisure.dog_park">สถานที่พาสุนัขเดินเล่น</string>
     <string name="type.leisure.fitness_centre">ฟิตเนสเซ็นเตอร์</string>
@@ -561,6 +561,7 @@
     <string name="type.leisure.miniature_golf">มินิกอล์ฟ</string>
     <string name="type.leisure.hackerspace">แฮกเกอร์สเปซ</string>
     <string name="type.leisure.nature_reserve">เขตอนุรักษ์ธรรมชาติ</string>
+    <string name="type.leisure.bird_hide">ที่ซ่อนดูนก</string>
     <string name="type.leisure.outdoor_seating">ที่นั่งกลางแจ้ง</string>
     <string name="type.leisure.park">สวนสาธารณะ</string>
     <string name="type.leisure.park.no.access">สวนสาธารณะ</string>
@@ -626,10 +627,13 @@
     <string name="type.natural.water.reservoir">อ่างเก็บน้ำ</string>
     <string name="type.natural.water.basin">อ่างน้ำ</string>
     <string name="type.natural.water.river">แม่น้ำ</string>
+    <string name="type.natural.water.intermittent">แหล่งน้ำชั่วคราว</string>
     <string name="type.natural.land">พื้นดิน</string>
     <string name="type.natural.meadow">ทุ่งหญ้า</string>
     <string name="type.natural.orchard">สวนผลไม้</string>
     <string name="type.natural.peak">จุดสูงสุด</string>
+    <string name="type.natural.hill">เนินเขา</string>
+    <string name="type.natural.arch">ซุ้มหิน</string>
     <string name="type.natural.saddle">อานภูเขา</string>
     <string name="type.natural.rock">หิน</string>
     <string name="type.natural.scrub">ป่าละเมาะ</string>
@@ -1218,6 +1222,7 @@
     <string name="type.self_service.no">ไม่มีบริการตนเอง</string>
     <!-- https://wiki.openstreetmap.org/wiki/Key:social_facility -->
     <string name="type.amenity.social_facility">สิ่งอำนวยความสะดวกทางสังคม</string>
+    <string name="type.amenity.stage">เวที</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance -->
     <string name="type.emergency.emergency_ward_entrance">ทางเข้าแผนกฉุกเฉิน</string>
     <!-- https://wiki.openstreetmap.org/wiki/Tag:amenity=dojo -->

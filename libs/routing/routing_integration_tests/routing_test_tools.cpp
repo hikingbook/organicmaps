@@ -152,8 +152,9 @@ TRouteResult CalculateRoute(IRouterComponents const & routerComponents, m2::Poin
 {
   RouterDelegate delegate;
   RoutesResult res("mapsme", 0 /* routes id */);
-  RouterResultCode result = routerComponents.GetRouter().CalculateRoute(
-      Checkpoints(startPoint, finalPoint), startDirection, false /* adjust */, delegate, res);
+  RouterResultCode result =
+      routerComponents.GetRouter().CalculateRoute(Checkpoints(startPoint, finalPoint), startDirection,
+                                                  false /* adjust */, true /* needAlternatives */, delegate, res);
   routerComponents.GetRouter().SetGuides({});
   return TRouteResult(PromoteActive(res), result);
 }
@@ -164,8 +165,9 @@ TRouteResult CalculateRoute(IRouterComponents const & routerComponents, Checkpoi
   RouterDelegate delegate;
   RoutesResult res("mapsme", 0 /* routes id */);
   routerComponents.GetRouter().SetGuides(std::move(guides));
-  RouterResultCode result = routerComponents.GetRouter().CalculateRoute(
-      checkpoints, m2::PointD::Zero() /* startDirection */, false /* adjust */, delegate, res);
+  RouterResultCode result =
+      routerComponents.GetRouter().CalculateRoute(checkpoints, m2::PointD::Zero() /* startDirection */,
+                                                  false /* adjust */, true /* needAlternatives */, delegate, res);
   routerComponents.GetRouter().SetGuides({});
   return TRouteResult(PromoteActive(res), result);
 }
@@ -174,8 +176,9 @@ TRoutesResult CalculateRoutes(IRouterComponents const & routerComponents, Checkp
 {
   RouterDelegate delegate;
   RoutesResult res("mapsme", 0 /* routes id */);
-  RouterResultCode const result = routerComponents.GetRouter().CalculateRoute(
-      checkpoints, m2::PointD::Zero() /* startDirection */, false /* adjust */, delegate, res);
+  RouterResultCode const result =
+      routerComponents.GetRouter().CalculateRoute(checkpoints, m2::PointD::Zero() /* startDirection */,
+                                                  false /* adjust */, true /* needAlternatives */, delegate, res);
   routerComponents.GetRouter().SetGuides({});
 
   vector<shared_ptr<Route>> routes;
@@ -190,7 +193,8 @@ TRoutesResult CalculateRoutes(IRouterComponents const & routerComponents, Checkp
   return {std::move(routes), result};
 }
 
-TransitRouteInfo GetTransitRouteInfo(IRouterComponents const & routerComponents, Route const & route)
+TransitRouteInfo GetTransitRouteInfo(IRouterComponents const & routerComponents, Route const & route,
+                                     std::vector<df::Subroute> * subroutes)
 {
   auto & fetcher = routerComponents.GetFeaturesFetcher();
   auto & dataSource = fetcher.GetDataSource();
@@ -216,6 +220,8 @@ TransitRouteInfo GetTransitRouteInfo(IRouterComponents const & routerComponents,
     // the subroute start point in CreateDrapeSubroute, so do the same here.
     subroute.m_polyline.Add(route.GetSubrouteAttrs(i).GetStart().GetPoint());
     display.ProcessSubroute(segments, subroute);
+    if (subroutes)
+      subroutes->push_back(std::move(subroute));
   }
 
   return display.GetRouteInfo();
@@ -345,6 +351,12 @@ TestTurn const & TestTurn::TestOneOfDirections(set<routing::turns::CarDirection>
   return *this;
 }
 
+TestTurn const & TestTurn::TestLanes(turns::lanes::LanesInfo const & expectedLanes) const
+{
+  TEST_EQUAL(m_lanes, expectedLanes, ());
+  return *this;
+}
+
 TestTurn const & TestTurn::TestRoundAboutExitNum(uint32_t expectedRoundAboutExitNum) const
 {
   TEST_EQUAL(m_roundAboutExitNum, expectedRoundAboutExitNum, ());
@@ -362,7 +374,7 @@ TestTurn GetNthTurn(routing::Route const & route, uint32_t turnNumber)
   }
 
   TurnItem const & turn = turns[turnNumber];
-  return TestTurn(route.GetPoly().GetPoint(turn.m_index), turn.m_turn, turn.m_exitNum);
+  return TestTurn(route.GetPoly().GetPoint(turn.m_index), turn.m_turn, turn.m_lanes, turn.m_exitNum);
 }
 
 bool IsSubwayExists(Route const & route)

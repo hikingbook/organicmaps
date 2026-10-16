@@ -5,12 +5,12 @@
 + (instancetype)routeNotFoundAlert;
 + (instancetype)routeNotFoundNoPublicTransportAlert;
 + (instancetype)routeNotFoundTooLongPedestrianAlert;
-+ (instancetype)routeFileNotExistAlert;
++ (instancetype)routeFileTooOldAlert;
 + (instancetype)endPointNotFoundAlert;
 + (instancetype)startPointNotFoundAlert;
 + (instancetype)intermediatePointNotFoundAlert;
 + (instancetype)internalRoutingErrorAlert;
-+ (instancetype)incorrectFeaturePositionAlert;
++ (instancetype)incorrectFeaturePositionAlertWithOkBlock:(MWMVoidBlock)okBlock;
 + (instancetype)notEnoughSpaceAlert;
 + (instancetype)invalidUserNameOrPasswordAlert;
 + (instancetype)noCurrentPositionAlert;

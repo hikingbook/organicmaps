@@ -719,6 +719,7 @@
 "type.landuse" = "Landnutzung";
 "type.landuse.allotments" = "Kleingarten";
 "type.landuse.basin" = "Wasserbecken";
+"type.landuse.basin.intermittent" = "Wasserbecken (zeitweise)";
 "type.landuse.brownfield" = "Brachfläche";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Steinbruch";
 "type.landuse.railway" = "Eisenbahnanlagen";
 "type.landuse.recreation_ground" = "Erholungsgebiet";
-"type.landuse.reservoir" = "Wasserfläche";
 "type.landuse.residential" = "Wohngebiet";
 "type.landuse.retail" = "Einzelhandelsgebiet";
 "type.landuse.salt_pond" = "Saline";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Eislaufplatz";
 "type.leisure.marina" = "Jachthafen";
 "type.leisure.nature_reserve" = "Naturschutzgebiet";
+"type.leisure.bird_hide" = "Vogelbeobachtungsstand";
 "type.leisure.outdoor_seating" = "Außensitzplätze";
 "type.leisure.firepit" = "Feuerstelle";
 "type.leisure.park" = "Park";
@@ -869,13 +870,16 @@
 "type.natural.water.lake" = "See";
 "type.natural.water.lock" = "Schleusenkammer";
 "type.natural.water.pond" = "Teich";
-"type.natural.water.reservoir" = "Reservoir";
+"type.natural.water.reservoir" = "Stausee";
 "type.natural.water.basin" = "Wasserbecken";
 "type.natural.water.river" = "Fluss";
+"type.natural.water.intermittent" = "Wasserfläche (zeitweise)";
 "type.natural.land" = "Land";
 "type.natural.meadow" = "Wiese";
 "type.natural.orchard" = "Obstplantage";
 "type.natural.peak" = "Gipfel";
+"type.natural.hill" = "Hügel";
+"type.natural.arch" = "Felsenbogen";
 "type.natural.saddle" = "Bergsattel";
 "type.natural.rock" = "Fels";
 "type.natural.scrub" = "Dickicht";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Soziale Einrichtung";
+"type.amenity.stage" = "Bühne";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Eingang der Notfallstation";

@@ -106,7 +106,6 @@ boundary-protected_area-6                           # icon z10-17 (also has capt
 leisure-nature_reserve                              # icon z10-17 and caption z9 (also has caption(optional) z11-17, area z8-17)
 === 6700
 
-landuse-reservoir                                   # caption z10- (also has area z12-)
 natural-water-lake                                  # caption z8- (also has area z1-)
 natural-water-reservoir                             # caption z10- (also has area z1-)
 === 6650
@@ -239,6 +238,7 @@ railway-station-subway-shiraz                       # icon z13- (also has captio
 railway-station-subway-singapore                    # icon z13- (also has caption(optional) z14-)
 railway-station-subway-sofia                        # icon z13- (also has caption(optional) z14-)
 railway-station-subway-stockholm                    # icon z12- (also has caption(optional) z14-)
+railway-station-subway-suzhou                       # icon z13- (also has caption(optional) z14-)
 railway-station-subway-tabriz                       # icon z13- (also has caption(optional) z14-)
 railway-station-subway-taipei                       # icon z13- (also has caption(optional) z14-)
 railway-station-subway-taoyuan                      # icon z13- (also has caption(optional) z14-)
@@ -311,6 +311,9 @@ natural-volcano                                     # icon z10- (also has captio
 natural-volcano-active                              # icon z10- (also has caption(optional) z13-)
 === 5400
 
+natural-hill                                        # icon z13- (also has caption(optional) z13-)
+=== 5300
+
 amenity-theatre                                     # icon z14- (also has caption(optional) z14-)
 historic-battlefield                                # icon z15- (also has caption(optional) z15-)
 historic-city_gate                                  # icon z13- (also has caption(optional) z13-)
@@ -352,6 +355,7 @@ landuse-forest-deciduous                            # icon z12- (also has captio
 landuse-forest-mixed                                # icon z12- (also has caption(optional) z13-, area z10-)
 === 4800
 
+natural-arch                                        # icon z16- (also has caption(optional) z16-)
 natural-cave_entrance                               # icon z10- (also has caption(optional) z11-)
 natural-geyser                                      # icon z10- (also has caption(optional) z12-)
 natural-hot_spring                                  # icon z12- (also has caption(optional) z15-)
@@ -376,6 +380,7 @@ amenity-community_centre                            # icon z15- (also has captio
 amenity-conference_centre                           # icon z16- (also has caption(optional) z16-)
 amenity-events_venue                                # icon z16- (also has caption(optional) z16-)
 amenity-exhibition_centre                           # icon z16- (also has caption(optional) z16-)
+amenity-stage                                       # icon z17- (also has caption(optional) z17-)
 tourism-attraction                                  # icon z14- (also has caption(optional) z14-)
 tourism-gallery                                     # icon z15- (also has caption(optional) z15-)
 === 4300
@@ -534,6 +539,7 @@ railway-subway_entrance-shiraz                      # icon z16- (also has captio
 railway-subway_entrance-singapore                   # icon z16- (also has caption(optional) z17-)
 railway-subway_entrance-sofia                       # icon z16- (also has caption(optional) z17-)
 railway-subway_entrance-stockholm                   # icon z16- (also has caption(optional) z17-)
+railway-subway_entrance-suzhou                      # icon z16- (also has caption(optional) z17-)
 railway-subway_entrance-tabriz                      # icon z16- (also has caption(optional) z17-)
 railway-subway_entrance-taipei                      # icon z16- (also has caption(optional) z17-)
 railway-subway_entrance-taoyuan                     # icon z16- (also has caption(optional) z17-)
@@ -708,6 +714,9 @@ waterway-stream-ephemeral                           # pathtext z13- (also has li
 waterway-stream-intermittent                        # pathtext z13- (also has line z13-)
 waterway-weir                                       # pathtext z15- (also has line z14-)
 === 2900
+
+natural-water-intermittent                          # caption z10- (also has area z1-)
+=== 2890
 
 highway-ford                                        # icon z14- and pathtext z16- (also has line z13-)
 natural-rock                                        # icon z14- (also has caption(optional) z17-)
@@ -905,6 +914,7 @@ barrier-swing_gate                                  # icon z16- (also has captio
 barrier-turnstile                                   # icon z16- (also has caption(optional) z16-)
 barrier-wicket_gate                                 # icon z16- (also has caption(optional) z16-)
 barrier-yes                                         # icon z16- (also has caption(optional) z16-)
+leisure-bird_hide                                   # icon z15- (also has caption(optional) z15-)
 leisure-dog_park                                    # icon z16- (also has caption(optional) z16-)
 === 2300
 
@@ -1496,6 +1506,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # railway-station-subway-singapore                  # caption(optional) z14- (also has icon z13-)
 # railway-station-subway-sofia                      # caption(optional) z14- (also has icon z13-)
 # railway-station-subway-stockholm                  # caption(optional) z14- (also has icon z12-)
+# railway-station-subway-suzhou                     # caption(optional) z14- (also has icon z13-)
 # railway-station-subway-tabriz                     # caption(optional) z14- (also has icon z13-)
 # railway-station-subway-taipei                     # caption(optional) z14- (also has icon z13-)
 # railway-station-subway-taoyuan                    # caption(optional) z14- (also has icon z13-)
@@ -1525,6 +1536,9 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # natural-volcano                                   # caption(optional) z13- (also has icon z10-)
 # natural-volcano-active                            # caption(optional) z13- (also has icon z10-)
 # === -4600
+
+# natural-hill                                      # caption(optional) z13- (also has icon z13-)
+# === -4700
 
 # amenity-theatre                                   # caption(optional) z14- (also has icon z14-)
 # historic-battlefield                              # caption(optional) z15- (also has icon z15-)
@@ -1566,6 +1580,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # landuse-forest-mixed                              # caption(optional) z13- (also has icon z12-, area z10-)
 # === -5200
 
+# natural-arch                                      # caption(optional) z16- (also has icon z16-)
 # natural-cave_entrance                             # caption(optional) z11- (also has icon z10-)
 # natural-geyser                                    # caption(optional) z12- (also has icon z10-)
 # natural-hot_spring                                # caption(optional) z15- (also has icon z12-)
@@ -1589,6 +1604,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # amenity-conference_centre                         # caption(optional) z16- (also has icon z16-)
 # amenity-events_venue                              # caption(optional) z16- (also has icon z16-)
 # amenity-exhibition_centre                         # caption(optional) z16- (also has icon z16-)
+# amenity-stage                                     # caption(optional) z17- (also has icon z17-)
 # tourism-attraction                                # caption(optional) z14- (also has icon z14-)
 # tourism-gallery                                   # caption(optional) z15- (also has icon z15-)
 # === -5700
@@ -1747,6 +1763,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # railway-subway_entrance-singapore                 # caption(optional) z17- (also has icon z16-)
 # railway-subway_entrance-sofia                     # caption(optional) z17- (also has icon z16-)
 # railway-subway_entrance-stockholm                 # caption(optional) z17- (also has icon z16-)
+# railway-subway_entrance-suzhou                    # caption(optional) z17- (also has icon z16-)
 # railway-subway_entrance-tabriz                    # caption(optional) z17- (also has icon z16-)
 # railway-subway_entrance-taipei                    # caption(optional) z17- (also has icon z16-)
 # railway-subway_entrance-taoyuan                   # caption(optional) z17- (also has icon z16-)
@@ -1940,6 +1957,7 @@ leisure-swimming_pool-private                       # icon z17- (also has captio
 # barrier-turnstile                                 # caption(optional) z16- (also has icon z16-)
 # barrier-wicket_gate                               # caption(optional) z16- (also has icon z16-)
 # barrier-yes                                       # caption(optional) z16- (also has icon z16-)
+# leisure-bird_hide                                 # caption(optional) z15- (also has icon z15-)
 # leisure-dog_park                                  # caption(optional) z16- (also has icon z16-)
 # === -7700
 

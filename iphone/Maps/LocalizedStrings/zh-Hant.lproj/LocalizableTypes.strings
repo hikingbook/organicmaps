@@ -718,7 +718,8 @@
 "type.junction.roundabout" = "環形交叉口";
 "type.landuse" = "土地利用";
 "type.landuse.allotments" = "市民農園";
-"type.landuse.basin" = "水庫";
+"type.landuse.basin" = "蓄水池";
+"type.landuse.basin.intermittent" = "間歇性蓄水池";
 "type.landuse.brownfield" = "廢棄的工業用地";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "礦場";
 "type.landuse.railway" = "鐵路設施";
 "type.landuse.recreation_ground" = "娛樂場地";
-"type.landuse.reservoir" = "水庫";
 "type.landuse.residential" = "住宅區";
 "type.landuse.retail" = "零售區";
 "type.landuse.salt_pond" = "鹽田";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "滑冰場";
 "type.leisure.marina" = "遊艇碼頭";
 "type.leisure.nature_reserve" = "自然保護區";
+"type.leisure.bird_hide" = "觀鳥屋";
 "type.leisure.outdoor_seating" = "戶外座位";
 "type.leisure.firepit" = "火坑";
 "type.leisure.park" = "公園";
@@ -870,12 +871,15 @@
 "type.natural.water.lock" = "船閘";
 "type.natural.water.pond" = "潭";
 "type.natural.water.reservoir" = "水庫";
-"type.natural.water.basin" = "水庫";
+"type.natural.water.basin" = "蓄水池";
 "type.natural.water.river" = "河流";
+"type.natural.water.intermittent" = "間歇性水體";
 "type.natural.land" = "陸地";
 "type.natural.meadow" = "草甸";
 "type.natural.orchard" = "果園";
 "type.natural.peak" = "山峰";
+"type.natural.hill" = "山丘";
+"type.natural.arch" = "岩石拱門";
 "type.natural.saddle" = "山坳";
 "type.natural.rock" = "岩石";
 "type.natural.scrub" = "叢林";
@@ -1574,6 +1578,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "社會設施";
+"type.amenity.stage" = "舞台";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "急診病房入口";

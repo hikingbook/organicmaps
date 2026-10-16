@@ -1,10 +1,5 @@
 #include "transit/transit_types.hpp"
 
-#include "transit/transit_serdes.hpp"
-#include "transit/transit_version.hpp"
-
-#include "base/string_utils.hpp"
-
 namespace
 {
 double constexpr kPointsEqualEpsilon = 1e-6;
@@ -32,7 +27,7 @@ TransitHeader::TransitHeader(uint16_t version, uint32_t stopsOffset, uint32_t ga
 
 void TransitHeader::Reset()
 {
-  m_version = static_cast<uint16_t>(::transit::TransitVersion::OnlySubway);
+  m_version = kTransitVersion;
   m_reserve = 0;
   m_stopsOffset = 0;
   m_gatesOffset = 0;

@@ -8,6 +8,9 @@
 #include "map/framework.hpp"
 
 #include "platform/platform.hpp"
+#ifdef OMIM_OS_LINUX
+#include "platform/platform_linux_migration.hpp"
+#endif
 #include "platform/preferred_languages.hpp"
 #include "platform/settings.hpp"
 #include "platform/style_utils.hpp"
@@ -44,7 +47,7 @@ DEFINE_string(rects, "",
               "[;lat_leftBottom,lon_leftBottom,lat_rightTop,lon_rightTop]\" or path to a file with "
               "rects in the same format. Each rect defines a place on the map to take screenshot.");
 DEFINE_string(dst_path, "", "Path to a directory to save screenshots.");
-DEFINE_string(lang, "", "Device language.");
+DEFINE_string(lang, "", "Preferred language override.");
 DEFINE_int32(width, 0, "Screenshot width.");
 DEFINE_int32(height, 0, "Screenshot height.");
 DEFINE_double(
@@ -108,6 +111,9 @@ int main(int argc, char * argv[])
   // See http://dbaron.org/log/20121222-locale for more details.
   std::setlocale(LC_NUMERIC, "C");
 
+#ifdef OMIM_OS_LINUX
+  platform::EnableDesktopDataMigration();
+#endif
   Platform & platform = GetPlatform();
 
   LOG(LINFO, ("Organic Maps", platform.Version(), "built with QT:", QT_VERSION_STR, "runtime QT:", qVersion(),
@@ -116,6 +122,9 @@ int main(int argc, char * argv[])
   gflags::SetUsageMessage("Desktop application.");
   gflags::SetVersionString(platform.Version());
   gflags::ParseCommandLineFlags(&argc, &argv, true);
+
+  if (!FLAGS_lang.empty())
+    languages::SetPreferredLanguageOverride(FLAGS_lang);
 
   if (!FLAGS_resources_path.empty())
     platform.SetResourceDir(FLAGS_resources_path);
@@ -170,9 +179,6 @@ int main(int argc, char * argv[])
   if (eulaAccepted)  // User has accepted EULA
   {
     std::unique_ptr<qt::ScreenshotParams> screenshotParams;
-
-    if (!FLAGS_lang.empty())
-      (void)::setenv("LANGUAGE", FLAGS_lang.c_str(), 1);
 
     if (!FLAGS_kml_path.empty() || !FLAGS_points.empty() || !FLAGS_rects.empty())
     {

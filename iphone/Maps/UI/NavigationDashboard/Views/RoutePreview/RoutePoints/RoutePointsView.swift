@@ -1,11 +1,9 @@
 final class RoutePointsView: UIView {
   private enum Constants {
     static var bottomContentInset: CGFloat {
-      let bottomActionBartHeight = RouteActionsBottomMenuView.Constants.height +
-        RouteActionsBottomMenuView.Constants.insets.top +
-        RouteActionsBottomMenuView.Constants.insets.bottom
-      let safeAreaInsets = MapsAppDelegate.theApp().window.safeAreaInsets
-      return bottomActionBartHeight + safeAreaInsets.bottom + safeAreaInsets.top
+      let safeAreaInsets = MapsAppDelegate.theApp().window?.safeAreaInsets ?? .zero
+      let bottomActionBarHeight = RouteActionsBottomMenuView.reservedContentHeight(for: safeAreaInsets)
+      return bottomActionBarHeight + safeAreaInsets.bottom + safeAreaInsets.top
     }
   }
 
@@ -42,6 +40,11 @@ final class RoutePointsView: UIView {
     if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
       collectionView.collectionViewLayout.invalidateLayout()
     }
+  }
+
+  override func safeAreaInsetsDidChange() {
+    super.safeAreaInsetsDidChange()
+    updateCollectionViewInset()
   }
 
   private func updateCollectionViewInset() {
@@ -122,7 +125,10 @@ extension RoutePointsView: UICollectionViewDataSource, UICollectionViewDelegate 
     case routePoints.count:
       interactor?.process(.addRoutePointButtonDidTap)
     default:
-      interactor?.process(.selectRoutePoint(routePoints[indexPath.item]))
+      let selection = MWMRoutePointSelection(point: routePoints[indexPath.item],
+                                             type: routePoints.type(for: indexPath.item),
+                                             shouldAppend: false)
+      interactor?.process(.selectRoutePoint(selection))
     }
   }
 }

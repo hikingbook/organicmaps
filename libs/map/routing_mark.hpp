@@ -53,7 +53,6 @@ public:
   void SetRoutePointFullType(RouteMarkType type, size_t intermediateIndex);
   bool IsEqualFullType(RouteMarkType type, size_t intermediateIndex) const;
 
-  void SetIsMyPosition(bool isMyPosition);
   bool IsMyPosition() const { return m_markData.m_isMyPosition; }
 
   void SetPassed(bool isPassed);
@@ -88,7 +87,8 @@ public:
 
   RoutePointsLayout(BookmarkManager & manager);
 
-  void AddRoutePoint(RouteMarkData && data);
+  /// Returns the created mark, or nullptr at capacity.
+  RouteMarkPoint * AddRoutePoint(RouteMarkData && data);
   RouteMarkPoint const * GetRoutePoint(RouteMarkType type, size_t intermediateIndex = 0) const;
   RouteMarkPoint * GetRoutePointForEdit(RouteMarkType type, size_t intermediateIndex = 0);
   RouteMarkPoint const * GetMyPositionPoint() const;

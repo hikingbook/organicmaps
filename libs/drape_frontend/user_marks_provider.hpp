@@ -95,7 +95,7 @@ public:
   virtual bool IsMarkAboveText() const = 0;
   virtual float GetSymbolOpacity() const = 0;
 
-  /// Used in CreateSymbolOverlayHandle only.
+  /// Non-POI sprites need an overlay handle to participate in hit testing.
   virtual bool IsSymbolSelectable() const = 0;
 
 private:
@@ -120,6 +120,7 @@ public:
   virtual dp::Color GetColor(size_t layerIndex) const = 0;
   virtual float GetWidth(size_t layerIndex) const = 0;
   virtual float GetDepth(size_t layerIndex) const = 0;
+  virtual bool IsVisible() const = 0;
 
   using GeometryFnT = std::function<void(std::vector<m2::PointD> &&)>;
   virtual void ForEachGeometry(GeometryFnT && fn) const = 0;

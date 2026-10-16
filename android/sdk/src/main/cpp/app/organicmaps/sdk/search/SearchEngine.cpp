@@ -20,18 +20,16 @@
 #include "defines.hpp"
 
 #include <chrono>
+#include <functional>
 #include <memory>
+#include <string>
 #include <vector>
-
-using namespace std::placeholders;
-using search::Result;
-using search::Results;
 
 namespace
 {
-// This cache is needed only for showing a specific result on the map after click on the list item.
-// Don't use it with another intentions!
-Results g_results;
+// This cache is needed only for showing the results on the map (a specific result after click on the list item
+// or the viewport update on the search button). Don't use it with another intentions!
+search::Results g_results;
 
 // Timestamp of last search query. Results with older stamps are ignored.
 jlong g_queryTimestamp;
@@ -61,8 +59,7 @@ bool PopularityHasHigherPriority(bool hasPosition, double distanceInMeters)
   return !hasPosition || distanceInMeters > search::Result::kPopularityHighPriorityMinDistance;
 }
 
-jobject ToJavaResult(Result const & result, search::ProductInfo const & productInfo, bool hasPosition, double lat,
-                     double lon)
+jobject ToJavaResult(search::Result const & result, bool hasPosition, double lat, double lon)
 {
   JNIEnv * env = jni::GetEnv();
 
@@ -109,10 +106,12 @@ jobject ToJavaResult(Result const & result, search::ProductInfo const & productI
 
   bool const popularityHasHigherPriority = PopularityHasHigherPriority(hasPosition, distanceInMeters);
 
-  jni::TScopedLocalRef featureType(env, jni::ToJavaString(env, result.GetLocalizedFeatureType()));
+  std::string const localizedFeatureType = result.GetLocalizedFeatureType();
+  jni::TScopedLocalRef featureType(env, jni::ToJavaString(env, localizedFeatureType));
   jni::TScopedLocalRef address(env, jni::ToJavaString(env, result.GetAddress()));
   jni::TScopedLocalRef dist(env, ToJavaDistance(env, distance));
-  jni::TScopedLocalRef description(env, jni::ToJavaStringWithSupplementalCharsFix(env, result.GetFeatureDescription()));
+  jni::TScopedLocalRef description(
+      env, jni::ToJavaStringWithSupplementalCharsFix(env, result.GetFeatureDescription(localizedFeatureType)));
 
   jni::TScopedLocalRef desc(
       env, env->NewObject(g_descriptionClass, g_descriptionConstructor, featureType.get(), address.get(), dist.get(),
@@ -128,8 +127,7 @@ jobject ToJavaResult(Result const & result, search::ProductInfo const & productI
                         descRanges.get(), popularity.get());
 }
 
-jobjectArray BuildSearchResults(std::vector<search::ProductInfo> const & productInfo, bool hasPosition, double lat,
-                                double lon)
+jobjectArray BuildSearchResults(bool hasPosition, double lat, double lon)
 {
   JNIEnv * env = jni::GetEnv();
 
@@ -137,14 +135,13 @@ jobjectArray BuildSearchResults(std::vector<search::ProductInfo> const & product
   jobjectArray const jResults = env->NewObjectArray(count, g_resultClass, nullptr);
   for (jsize i = 0; i < count; i++)
   {
-    jni::TScopedLocalRef jRes(env, ToJavaResult(g_results[i], productInfo[i], hasPosition, lat, lon));
+    jni::TScopedLocalRef jRes(env, ToJavaResult(g_results[i], hasPosition, lat, lon));
     env->SetObjectArrayElement(jResults, i, jRes.get());
   }
   return jResults;
 }
 
-void OnResults(Results results, std::vector<search::ProductInfo> const & productInfo, jlong timestamp,
-               bool isMapAndTable, bool hasPosition, double lat, double lon)
+void OnResults(search::Results results, jlong timestamp, bool isMapAndTable, bool hasPosition, double lat, double lon)
 {
   // Ignore results from obsolete searches.
   if (g_queryTimestamp > timestamp)
@@ -155,7 +152,7 @@ void OnResults(Results results, std::vector<search::ProductInfo> const & product
   if (!results.IsEndMarker() || results.IsEndedNormal())
   {
     g_results = std::move(results);
-    jni::TScopedLocalObjectArrayRef jResults(env, BuildSearchResults(productInfo, hasPosition, lat, lon));
+    jni::TScopedLocalObjectArrayRef jResults(env, BuildSearchResults(hasPosition, lat, lon));
     env->CallVoidMethod(g_javaListener, g_updateResultsId, jResults.get(), timestamp);
   }
 
@@ -263,11 +260,12 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_search_SearchEngine_nativeRunSearch(
                                                                                 jboolean hasPosition, jdouble lat,
                                                                                 jdouble lon)
 {
-  search::EverywhereSearchParams params{jni::ToNativeString(env, bytes),
-                                        jni::ToNativeString(env, lang),
-                                        {},  // default timeout
-                                        static_cast<bool>(isCategory),
-                                        std::bind(&OnResults, _1, _2, timestamp, false, hasPosition, lat, lon)};
+  search::EverywhereSearchParams params{
+      jni::ToNativeString(env, bytes),
+      jni::ToNativeString(env, lang),
+      {},  // default timeout
+      static_cast<bool>(isCategory),
+      std::bind(&OnResults, std::placeholders::_1, timestamp, false, hasPosition, lat, lon)};
   bool const searchStarted = g_framework->NativeFramework()->GetSearchAPI().SearchEverywhere(std::move(params));
   if (searchStarted)
     g_queryTimestamp = timestamp;
@@ -299,7 +297,7 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_search_SearchEngine_nativeRunInterac
         std::move(vparams.m_inputLocale),
         {},  // default timeout
         static_cast<bool>(isCategory),
-        std::bind(&OnResults, _1, _2, timestamp, isMapAndTable, hasPosition, lat, lon)};
+        std::bind(&OnResults, std::placeholders::_1, timestamp, isMapAndTable, hasPosition, lat, lon)};
 
     if (g_framework->NativeFramework()->GetSearchAPI().SearchEverywhere(std::move(eparams)))
     {
@@ -318,7 +316,7 @@ JNIEXPORT void Java_app_organicmaps_sdk_search_SearchEngine_nativeRunSearchMaps(
                                                                                 jlong timestamp)
 {
   storage::DownloaderSearchParams params{jni::ToNativeString(env, bytes), jni::ToNativeString(env, lang),
-                                         std::bind(&OnMapSearchResults, _1, timestamp)};
+                                         std::bind(&OnMapSearchResults, std::placeholders::_1, timestamp)};
 
   if (g_framework->NativeFramework()->GetSearchAPI().SearchInDownloader(std::move(params)))
     g_queryTimestamp = timestamp;
@@ -328,8 +326,9 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_search_SearchEngine_nativeRunSearchI
                                                                                            jbyteArray query,
                                                                                            jlong catId, jlong timestamp)
 {
-  search::BookmarksSearchParams params{jni::ToNativeString(env, query), static_cast<kml::MarkGroupId>(catId),
-                                       std::bind(&OnBookmarksSearchResults, _1, _2, timestamp)};
+  search::BookmarksSearchParams params{
+      jni::ToNativeString(env, query), static_cast<kml::MarkGroupId>(catId),
+      std::bind(&OnBookmarksSearchResults, std::placeholders::_1, std::placeholders::_2, timestamp)};
 
   bool const searchStarted = g_framework->NativeFramework()->GetSearchAPI().SearchInBookmarks(std::move(params));
   if (searchStarted)
@@ -348,11 +347,13 @@ JNIEXPORT void Java_app_organicmaps_sdk_search_SearchEngine_nativeSelectResult(J
 {
   if (index < 0 || index >= static_cast<jint>(g_results.GetCount()))
     return;
-  // Ideally this location mode change should happen in core automatically, without specifically changing the mode.
-  auto const mode = g_framework->GetMyPositionMode();
-  if (mode == location::Follow || mode == location::FollowAndRotate)
-    g_framework->NativeFramework()->StopLocationFollow();
   g_framework->NativeFramework()->SelectSearchResult(g_results[index], true /* animation */);
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_search_SearchEngine_nativeUpdateViewportWithLastResults(JNIEnv * env,
+                                                                                                jclass clazz)
+{
+  g_framework->NativeFramework()->UpdateViewport(g_results);
 }
 
 JNIEXPORT void Java_app_organicmaps_sdk_search_SearchEngine_nativeCancelInteractiveSearch(JNIEnv * env, jclass clazz)

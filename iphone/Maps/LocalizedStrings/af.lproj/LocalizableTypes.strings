@@ -719,6 +719,7 @@
 "type.landuse" = "Grondgebruik";
 "type.landuse.allotments" = "Tuinplotte";
 "type.landuse.basin" = "Vanggebied";
+"type.landuse.basin.intermittent" = "Tydelike vanggebied";
 "type.landuse.brownfield" = "Natuurlike bruin";
 
 /* In most (European) countries, сemeteries are usually independent of places of worship (e.g. military cemeteries), while grave yards are usually the yard of a place of worship. */
@@ -751,7 +752,6 @@
 "type.landuse.quarry" = "Steengroef";
 "type.landuse.railway" = "Spoorwegfasiliteite";
 "type.landuse.recreation_ground" = "Ontspanningsone";
-"type.landuse.reservoir" = "Reservoir";
 "type.landuse.residential" = "Woongebied";
 "type.landuse.retail" = "Handelsgebied";
 "type.landuse.salt_pond" = "Soutpoel";
@@ -773,6 +773,7 @@
 "type.leisure.ice_rink" = "Ysskaatsbaan";
 "type.leisure.marina" = "Jaghawe";
 "type.leisure.nature_reserve" = "Natuurreservaat";
+"type.leisure.bird_hide" = "Voëlskuiling";
 "type.leisure.outdoor_seating" = "Outdoor Seating";
 "type.leisure.firepit" = "Firepit";
 "type.leisure.park" = "Park";
@@ -872,10 +873,13 @@
 "type.natural.water.reservoir" = "Reservoir";
 "type.natural.water.basin" = "Vanggebied";
 "type.natural.water.river" = "Rivier";
+"type.natural.water.intermittent" = "Tydelike water";
 "type.natural.land" = "Land";
 "type.natural.meadow" = "Weiland";
 "type.natural.orchard" = "Boord";
 "type.natural.peak" = "Piek";
+"type.natural.hill" = "Heuwel";
+"type.natural.arch" = "Rotsboog";
 "type.natural.saddle" = "Bergsaal";
 "type.natural.rock" = "Klip";
 "type.natural.scrub" = "Ruigte";
@@ -1573,6 +1577,7 @@
 
 /* https://wiki.openstreetmap.org/wiki/Key:social_facility */
 "type.amenity.social_facility" = "Sosiale fasiliteit";
+"type.amenity.stage" = "Toneel";
 
 /* https://wiki.openstreetmap.org/wiki/Tag:emergency=emergency_ward_entrance */
 "type.emergency.emergency_ward_entrance" = "Noodsaal-ingang";

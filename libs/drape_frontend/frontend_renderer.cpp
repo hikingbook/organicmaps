@@ -675,7 +675,17 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
 
   case Message::Type::UpdateMapStyle: UpdateAll<SwitchMapStyleMessage>(); break;
 
-  case Message::Type::VisualScaleChanged: UpdateAll<VisualScaleChangedMessage>(); break;
+  case Message::Type::VisualScaleChanged:
+  {
+    double const vs = VisualParams::Instance().GetVisualScale();
+    m_overlayTree->SetVisualScale(vs);
+    m_searchMarkTextOverlayTree->SetVisualScale(vs);
+    // Draw tile zoom depends on the visual scale, but ResolveZoomLevel runs only when the model view
+    // changes, so re-resolve it here before all tiles are re-requested in UpdateAll.
+    ResolveZoomLevel(m_userEventStream.GetCurrentScreen());
+    UpdateAll<VisualScaleChangedMessage>();
+    break;
+  }
 
   case Message::Type::AllowAutoZoom:
   {
@@ -791,7 +801,7 @@ void FrontendRenderer::AcceptMessage(ref_ptr<Message> message)
     ref_ptr<SetAddNewPlaceModeMessage> msg = message;
     m_userEventStream.SetKineticScrollEnabled(msg->IsKineticScrollEnabled());
     m_dragBoundArea = msg->AcceptBoundArea();
-    if (msg->IsEnabled())
+    if (msg->IsEnabled() && msg->ShouldChangeViewport())
     {
       auto const pt = msg->GetOptionalPosition();
       if (pt || m_dragBoundArea.empty())
@@ -1533,7 +1543,7 @@ void FrontendRenderer::RenderScene(ScreenBase const & modelView, bool activeFram
       RenderUserMarksLayer(modelView, DepthLayer::UserMarkLayer);
       RenderUserMarksLayer(modelView, DepthLayer::RoutingBottomMarkLayer);
       RenderUserMarksLayer(modelView, DepthLayer::RoutingMarkLayer);
-      RenderNonDisplaceableUserMarksLayer(modelView, DepthLayer::SearchMarkLayer);
+      RenderUserMarksLayer(modelView, DepthLayer::SearchMarkLayer);
     }
 
     if (!HasRouteData())
@@ -1572,8 +1582,7 @@ void FrontendRenderer::RenderTileBackgroundLayer(ScreenBase const & modelView)
 {
   TRACE_SECTION("[drape] RenderTileBackgroundLayer");
   DEBUG_LABEL(m_context, "Tile Background");
-  m_tileBackgroundRenderer->Render(m_context, make_ref(m_gpuProgramManager), modelView, GetCurrentZoom(),
-                                   m_frameValues);
+  m_tileBackgroundRenderer->Render(m_context, make_ref(m_gpuProgramManager), modelView, m_frameValues);
 }
 
 void FrontendRenderer::Render2dLayer(ScreenBase const & modelView)
@@ -1642,8 +1651,16 @@ void FrontendRenderer::RenderOverlayLayer(ScreenBase const & modelView)
   DEBUG_LABEL(m_context, "Overlay Layer");
   RenderLayer & overlay = m_layers[static_cast<size_t>(DepthLayer::OverlayLayer)];
   BuildOverlayTree(modelView);
+  UpdateSearchMarkTextOverlay(modelView);
+  m_searchMarkOverlayFilter.Collect(m_layers[static_cast<size_t>(DepthLayer::SearchMarkLayer)].m_renderGroups,
+                                    modelView);
   for (drape_ptr<RenderGroup> & group : overlay.m_renderGroups)
+  {
+    // Keep POIs in the displacement tree for their captions while drawing search marks above them.
+    m_searchMarkOverlayFilter.HideOverlappingSymbols(*group, modelView);
     RenderSingleGroup(m_context, modelView, make_ref(group));
+    m_searchMarkOverlayFilter.RestoreHiddenSymbols();
+  }
 }
 
 bool FrontendRenderer::HasTransitRouteData() const
@@ -1749,26 +1766,6 @@ void FrontendRenderer::RenderUserMarksLayer(ScreenBase const & modelView, DepthL
     RenderSingleGroup(m_context, modelView, make_ref(group));
 }
 
-void FrontendRenderer::RenderNonDisplaceableUserMarksLayer(ScreenBase const & modelView, DepthLayer layerId)
-{
-  TRACE_SECTION("[drape] RenderNonDisplaceableUserMarksLayer");
-  if (layerId == DepthLayer::SearchMarkLayer)
-  {
-    UpdateSearchMarkTextOverlay(modelView);
-    RenderUserMarksLayer(modelView, layerId);
-    return;
-  }
-
-  auto & layer = m_layers[static_cast<size_t>(layerId)];
-  layer.Sort(nullptr);
-  for (drape_ptr<RenderGroup> & group : layer.m_renderGroups)
-  {
-    group->SetOverlayVisibility(true);
-    group->Update(modelView);
-  }
-  RenderUserMarksLayer(modelView, layerId);
-}
-
 void FrontendRenderer::RenderEmptyFrame()
 {
   TRACE_SECTION("[drape] RenderEmptyFrame");
@@ -1810,9 +1807,7 @@ void FrontendRenderer::RenderFrame()
   if (viewportChanged || m_needRestoreSize)
     OnResize(modelView);
 
-  bool const zoomChanged = ResolveZoomLevel(modelView);
-  /// @todo Put ResolveZoomLevel under modelViewChanged after testing.
-  ASSERT(!zoomChanged || modelViewChanged, ());
+  bool const zoomChanged = modelViewChanged && ResolveZoomLevel(modelView);
 
   // Skip starting a new GPU frame if rendering is being disabled (e.g. the app is going to the
   // background). SetRenderingEnabled(false) sets the flag on the UI thread and then blocks until this
@@ -1895,10 +1890,9 @@ void FrontendRenderer::RenderFrame()
 #if defined(OMIM_OS_DESKTOP)
     EmitGraphicsReady();
 #endif
-    // Process a message or wait for a message.
-    // IsRenderingEnabled() can return false in case of rendering disabling and we must prevent
-    // possibility of infinity waiting in ProcessSingleMessage.
-    ProcessSingleMessage(IsRenderingEnabled());
+    // Process a message, or park until one arrives. SetRenderingEnabled(false) and CloseQueue() both
+    // cancel the wait, and the cancellation is sticky, so this cannot block indefinitely.
+    ProcessSingleMessage();
     m_frameData.m_forceFullRedrawNextFrame = true;
     m_frameData.m_timer.Reset();
     m_frameData.m_inactiveFramesCounter = 0;
@@ -2403,7 +2397,7 @@ TTilesCollection FrontendRenderer::ResolveTileKeys(ScreenBase const & screen)
   int const extraBgZoom = VisualParams::Instance().GetVisualScale() >= 2.0 ? 1 : 0;
   int const bgZoom = GetCurrentZoom() + extraBgZoom;
   CoverageResult const bgCoverage = CalcTilesCoverage(rect, bgZoom, nullptr /* processTile */);
-  m_tileBackgroundRenderer->OnUpdateViewport(m_context, bgCoverage, bgZoom);
+  m_tileBackgroundRenderer->OnUpdateViewport(m_context, bgCoverage, base::asserted_cast<uint8_t>(bgZoom));
 
 #if defined(DRAPE_MEASURER_BENCHMARK) && defined(GENERATING_STATISTIC)
   DrapeMeasurer::Instance().StartScenePreparing();
@@ -2493,9 +2487,7 @@ void FrontendRenderer::OnContextCreate()
   m_debugRectRenderer->SetEnabled(m_isDebugRectRenderingEnabled);
 
   m_overlayTree->SetDebugRectRenderer(make_ref(m_debugRectRenderer));
-  m_overlayTree->SetVisualScale(VisualParams::Instance().GetVisualScale());
   m_searchMarkTextOverlayTree->SetDebugRectRenderer(make_ref(m_debugRectRenderer));
-  m_searchMarkTextOverlayTree->SetVisualScale(VisualParams::Instance().GetVisualScale());
 
   // Resources recovering.
   m_screenQuadRenderer = make_unique_dp<ScreenQuadRenderer>(m_context);
@@ -2621,8 +2613,10 @@ void FrontendRenderer::AddUserEvent(drape_ptr<UserEvent> && event)
     return;
 #endif
   m_userEventStream.AddEvent(std::move(event));
-  if (IsInInfinityWaiting())
-    CancelMessageWaiting();
+  // User events bypass the message queue, so a renderer parked in a blocking PopMessage() after a few
+  // idle frames would not see this one. CancelWait() is sticky, so the wake-up also lands when the event
+  // arrives just before the renderer starts waiting.
+  CancelMessageWaiting();
 }
 
 void FrontendRenderer::PositionChanged(m2::PointD const & position, bool hasPosition)

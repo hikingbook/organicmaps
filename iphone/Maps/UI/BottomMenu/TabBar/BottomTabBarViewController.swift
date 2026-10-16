@@ -33,11 +33,8 @@ class BottomTabBarViewController: UIViewController {
   }
 
   func updateAboutButtonIcon(isCrowdfunding: Bool) {
-    if isCrowdfunding {
-      helpButton.setImage(UIImage(resource: .icCrowdfunding), for: .normal)
-      return
-    }
-    helpButton.setImage(UIImage(resource: Settings.isNY() ? .icChristmasTree : .logo), for: .normal)
+    let icon: ImageResource = isCrowdfunding ? .icCrowdfunding : (Settings.isNY() ? .icChristmasTree : .logo)
+    helpButton.setImage(UIImage(resource: icon), for: .normal)
     updateBadge()
   }
 
@@ -77,7 +74,7 @@ class BottomTabBarViewController: UIViewController {
                           height: avaliableArea.height)
     let alpha: CGFloat = isHidden ? 0 : 1
     if animated {
-      UIView.animate(withDuration: kDefaultAnimationDuration,
+      UIView.animate(withDuration: AppConstants.defaultAnimationDuration,
                      delay: 0,
                      options: [.beginFromCurrentState],
                      animations: {

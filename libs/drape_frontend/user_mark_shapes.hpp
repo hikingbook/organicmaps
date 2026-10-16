@@ -17,7 +17,7 @@ namespace df
 {
 using MarksIDGroups = std::map<kml::MarkGroupId, drape_ptr<IDCollections>>;
 
-/// Created and initialize in DrapeEngine::GenerateMarkRenderInfo only.
+/// Prepared by DrapeEngine::GenerateMarkRenderInfo for user-mark geometry and overlays.
 struct UserMarkRenderParams
 {
   kml::MarkId m_markId = kml::kInvalidMarkId;
@@ -70,6 +70,7 @@ struct UserLineRenderParams
   DepthLayer m_depthLayer = DepthLayer::UserLineLayer;
   std::vector<LineLayer> m_layers;
   std::vector<m2::SharedSpline> m_splines;
+  bool m_visible = true;
 };
 
 using UserMarksRenderCollection = std::unordered_map<kml::MarkId, drape_ptr<UserMarkRenderParams>>;
@@ -130,7 +131,8 @@ class TracksSource : public SourceBase
 public:
   using SourceBase::SourceBase;
 
-  /// Iterates unique tracks across all visible groups, filtering by minZoom.
+  /// Iterates unique tracks across all visible groups, skipping individually-hidden tracks
+  /// (m_visible) and those above their minZoom.
   /// @param fn is called with UserLineRenderParams const &.
   template <class FnT>
   void ForEachUniqueTrack(int zoom, UserLinesRenderCollection const & lines, FnT && fn) const
@@ -142,7 +144,7 @@ public:
         if (visited.insert(lineId).second)
         {
           auto it = lines.find(lineId);
-          if (it != lines.end() && it->second->m_minZoom <= zoom)
+          if (it != lines.end() && it->second->m_visible && it->second->m_minZoom <= zoom)
             fn(*it->second);
         }
     });
@@ -163,6 +165,10 @@ struct UserMarkRenderData
 };
 
 using TUserMarksRenderData = std::vector<UserMarkRenderData>;
+
+// Hit testing and search-symbol suppression need the same anchor and pixel offset as the sprite vertices.
+drape_ptr<dp::OverlayHandle> CreateUserMarkOverlayHandle(UserMarkRenderParams const & renderInfo,
+                                                         TileKey const & tileKey, m2::RectD const & pixelRect);
 
 void CacheUserMarks(ref_ptr<dp::GraphicsContext> context, TileKey const & tileKey, ref_ptr<dp::TextureManager> textures,
                     MarksSource const & source, UserMarksRenderCollection const & renderParams, dp::Batcher & batcher);
