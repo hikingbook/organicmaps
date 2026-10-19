@@ -60,7 +60,7 @@ public:
     SpeedMacro m_backward;
 
     SpeedMacro m_conditional = SpeedMacro::Undefined;
-    osmoh::OpeningHours m_conditionalTime;
+    std::vector<uint8_t> m_conditionalTimeData;
   };
 
   using HW2SpeedMap = std::map<HighwayType, SpeedMacro>;
@@ -116,7 +116,6 @@ public:
 
     // Saving complex maxspeeds.
     uint32_t prevFeatureId = 0;
-    auto serDes = GetSerDes();
     for (auto const & s : featureSpeeds)
     {
       if (!s.IsComplex())
@@ -133,10 +132,7 @@ public:
 
       WriteToSink(sink, static_cast<uint8_t>(s.m_conditional));
       if (s.m_conditional != SpeedMacro::Undefined)
-      {
-        BitWriter<Sink> bitWriter(sink);
-        serDes.Serialize(bitWriter, s.m_conditionalTime);
-      }
+        sink.Write(s.m_conditionalTimeData.data(), s.m_conditionalTimeData.size());
     }
 
     // Save HighwayType speeds, sorted by type.
