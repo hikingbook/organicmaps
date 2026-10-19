@@ -53,11 +53,13 @@ ReverseGeocoder::ReverseGeocoder(DataSource const & dataSource)
 
 template <class ObjT, class FilterT>
 std::vector<ObjT> GetNearbyObjects(search::MwmContextBase & context, m2::PointD const & center, double radiusM,
-                                   FilterT && filter)
+                                   FilterT && filter, std::vector<bool> const * candidates)
 {
   std::vector<ObjT> objs;
 
   m2::RectD const rect = GetLookupRect(center, radiusM);
+  auto const isCandidate = [candidates](uint32_t index)
+  { return !candidates || (index < candidates->size() && (*candidates)[index]); };
   context.ForEachFeature(rect, [&](FeatureType & ft)
   {
     if (filter(ft))
@@ -66,7 +68,7 @@ std::vector<ObjT> GetNearbyObjects(search::MwmContextBase & context, m2::PointD 
       if (!name.empty())
         objs.emplace_back(ft.GetID(), feature::GetMinDistanceMeters(ft, center), name, ft.GetNames());
     }
-  });
+  }, isCandidate);
 
   std::sort(objs.begin(), objs.end(), base::LessBy(&ObjT::m_distanceMeters));
   return objs;
@@ -74,10 +76,11 @@ std::vector<ObjT> GetNearbyObjects(search::MwmContextBase & context, m2::PointD 
 
 std::vector<ReverseGeocoder::Street> ReverseGeocoderBase::GetNearbyStreets(search::MwmContextBase & context,
                                                                            m2::PointD const & center,
-                                                                           double radiusM) const
+                                                                           double radiusM,
+                                                                           std::vector<bool> const * candidates) const
 {
   return GetNearbyObjects<Street>(context, center, radiusM,
-                                  [this](FeatureType & ft) { return m_isStreetOrSquare(ft); });
+                                  [this](FeatureType & ft) { return m_isStreetOrSquare(ft); }, candidates);
 }
 
 std::vector<ReverseGeocoder::Street> ReverseGeocoder::GetNearbyStreets(MwmSet::MwmId const & id,
@@ -100,10 +103,11 @@ std::vector<ReverseGeocoder::Street> ReverseGeocoder::GetNearbyStreets(FeatureTy
 
 std::vector<ReverseGeocoder::Place> ReverseGeocoderBase::GetNearbyPlaces(search::MwmContextBase & context,
                                                                          m2::PointD const & center,
-                                                                         double radiusM) const
+                                                                         double radiusM,
+                                                                         std::vector<bool> const * candidates) const
 {
   return GetNearbyObjects<Place>(context, center, radiusM, [this](FeatureType & ft)
-  { return (m_isLocality.GetType(ft) >= ftypes::LocalityType::City || m_isSuburb(ft)); });
+  { return (m_isLocality.GetType(ft) >= ftypes::LocalityType::City || m_isSuburb(ft)); }, candidates);
 }
 
 std::string ReverseGeocoder::GetFeatureStreetName(FeatureType & ft) const
