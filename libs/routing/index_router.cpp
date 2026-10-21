@@ -54,6 +54,7 @@
 #include <deque>
 #include <iterator>
 #include <map>
+#include <utility>
 
 namespace routing
 {
@@ -1540,14 +1541,23 @@ bool IndexRouter::PointsOnEdgesSnapping::FindBestEdges(m2::PointD const & checkp
   // Sorting from the closest features to the further ones. The idea is the closer
   // a feature to a |checkpoint| the more chances that it crosses the segment
   // |checkpoint|, projections of |checkpoint| on feature edges. It confirmed with benchmarks.
-  std::sort(closestRoads.begin(), closestRoads.end(), [&checkpoint](RoadInfoT const & lhs, RoadInfoT const & rhs)
+  // Cache distances before sorting: fast-math can round fused and unfused distance calculations
+  // differently inside the comparator, violating strict weak ordering for coincident road points.
+  std::vector<std::pair<double, size_t>> roadOrder;
+  roadOrder.reserve(closestRoads.size());
+  for (size_t i = 0; i < closestRoads.size(); ++i)
   {
-    auto const & lj = lhs.m_roadInfo.m_junctions;
-    auto const & rj = rhs.m_roadInfo.m_junctions;
-    ASSERT(!lj.empty() && !rj.empty(), ());
+    auto const & junctions = closestRoads[i].m_roadInfo.m_junctions;
+    ASSERT(!junctions.empty(), ());
+    roadOrder.emplace_back(checkpoint.SquaredLength(junctions[0].GetPoint()), i);
+  }
+  std::sort(roadOrder.begin(), roadOrder.end());
 
-    return checkpoint.SquaredLength(lj[0].GetPoint()) < checkpoint.SquaredLength(rj[0].GetPoint());
-  });
+  std::vector<RoadInfoT> sortedRoads;
+  sortedRoads.reserve(closestRoads.size());
+  for (auto const & entry : roadOrder)
+    sortedRoads.emplace_back(std::move(closestRoads[entry.second]));
+  closestRoads = std::move(sortedRoads);
 
   // Note about necessity of removing dead ends twice.
   // At first, only real dead ends and roads which are not correct according to |worldGraph|

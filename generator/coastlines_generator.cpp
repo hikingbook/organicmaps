@@ -11,9 +11,14 @@
 
 #include "base/logging.hpp"
 
+#include <algorithm>
 #include <condition_variable>
 #include <functional>
+#include <list>
+#include <memory>
+#include <mutex>
 #include <thread>
+#include <utility>
 
 namespace coastlines_generator
 {
@@ -84,49 +89,58 @@ public:
 
 class DoDifference
 {
-  RectT m_src;
-  std::vector<RegionT> m_res;
+  RegionT m_cell;
+  std::vector<RegionT> m_regions;
 
 public:
-  explicit DoDifference(RegionT const & rgn)
-  {
-    m_res.push_back(rgn);
-    m_src = rgn.GetRect();
-  }
+  explicit DoDifference(RegionT const & rgn) : m_cell(rgn) {}
 
   void operator()(RegionT const & r)
   {
+    auto const & bounds = m_cell.GetRect();
+    auto const & regionBounds = r.GetRect();
+    // Match the spatial index's strict overlap check, excluding shared edges.
+    if (bounds.maxX() <= regionBounds.minX() || bounds.minX() >= regionBounds.maxX() ||
+        bounds.maxY() <= regionBounds.minY() || bounds.minY() >= regionBounds.maxY())
+      return;
+
     // if r is fully inside source rect region,
     // put it to the result vector without any intersection
-    if (m_src.IsRectInside(r.GetRect()))
-      m_res.push_back(r);
+    if (bounds.IsRectInside(regionBounds))
+      m_regions.push_back(r);
     else
-      m2::IntersectRegions(m_res.front(), r, m_res);
+      m2::IntersectRegions(m_cell, r, m_regions);
   }
 
   size_t GetPointsCount() const
   {
-    size_t count = 0;
-    for (size_t i = 0; i < m_res.size(); ++i)
-      count += m_res[i].GetPointsCount();
+    size_t count = m_cell.GetPointsCount();
+    for (auto const & region : m_regions)
+      count += region.GetPointsCount();
     return count;
   }
 
+  std::vector<RegionT> TakeRegions() { return std::move(m_regions); }
+
   void AssignGeometry(feature::FeatureBuilder & fb)
   {
-    for (size_t i = 0; i < m_res.size(); ++i)
+    auto const addPolygon = [&fb](RegionT const & region)
     {
       std::vector<m2::PointD> points;
-      points.reserve(m_res[i].Size() + 1);
+      points.reserve(region.Size() + 1);
 
-      m_res[i].ForEachPoint([&points](PointT const & p)
+      region.ForEachPoint([&points](PointT const & p)
       {
         points.push_back(
             PointUToPointD(m2::PointU(static_cast<uint32_t>(p.x), static_cast<uint32_t>(p.y)), kPointCoordBits));
       });
 
       fb.AddPolygon(std::move(points));
-    }
+    };
+
+    addPolygon(m_cell);
+    for (auto const & region : m_regions)
+      addPolygon(region);
   }
 };
 }  // namespace coastlines_generator
@@ -179,18 +193,27 @@ public:
   using TCell = RectId;
   using TIndex = m4::Tree<m2::RegionI>;
   using TProcessResultFunc = std::function<void(TCell const &, coastlines_generator::DoDifference &)>;
+  using Regions = std::vector<coastlines_generator::RegionT>;
 
   static int constexpr kStartLevel = 4;
   static int constexpr kHighLevel = 10;
   static int constexpr kMaxPoints = 20000;
 
 protected:
+  struct Task
+  {
+    TCell cell;
+    std::shared_ptr<Regions const> regions;
+  };
+
   struct Context
   {
     std::mutex mutexTasks;
-    std::list<TCell> listTasks;
+    std::list<Task> listTasks;
     std::condition_variable listCondVar;
     size_t inWork = 0;
+    size_t processedCells = 0;
+    size_t emittedCells = 0;
     TProcessResultFunc processResultFunc;
   };
 
@@ -200,24 +223,21 @@ protected:
   RegionInCellSplitter(Context & ctx, TIndex const & index) : m_ctx(ctx), m_index(index) {}
 
 public:
-  static bool Process(size_t numThreads, size_t baseScale, TIndex const & index, TProcessResultFunc funcResult)
+  static bool Process(size_t numThreads, TIndex const & index, TProcessResultFunc funcResult)
   {
     /// @todo Replace with base::ComputationalThreadPool
 
     Context ctx;
 
-    for (size_t i = 0; i < TCell::TotalCellsOnLevel(baseScale); ++i)
-      ctx.listTasks.push_back(TCell::FromBitsAndLevel(i, static_cast<int>(baseScale)));
+    ctx.listTasks.push_back({TCell::Root(), nullptr});
 
     ctx.processResultFunc = funcResult;
 
-    std::vector<RegionInCellSplitter> instances;
+    numThreads = std::max(size_t{1}, numThreads);
     std::vector<std::thread> threads;
+    threads.reserve(numThreads);
     for (size_t i = 0; i < numThreads; ++i)
-    {
-      instances.emplace_back(RegionInCellSplitter(ctx, index));
-      threads.emplace_back(instances.back());
-    }
+      threads.emplace_back(RegionInCellSplitter(ctx, index));
 
     for (auto & thread : threads)
       thread.join();
@@ -226,8 +246,9 @@ public:
     return ctx.listTasks.empty();
   }
 
-  bool ProcessCell(TCell const & cell)
+  bool ProcessCell(Task const & task, std::shared_ptr<Regions const> & childRegions)
   {
+    auto const & cell = task.cell;
     // get rect cell
     double minX, minY, maxX, maxY;
     CellIdConverter<mercator::Bounds, TCell>::GetCellBounds(cell, minX, minY, maxX, maxY);
@@ -241,11 +262,25 @@ public:
     // Do 'and' with all regions and accumulate the result, including bound region.
     // In 'odd' parts we will have an ocean.
     DoDifference doDiff(rectR);
-    m_index.ForEachInRect(GetLimitRect(rectR), std::bind<void>(std::ref(doDiff), std::placeholders::_1));
+    if (task.regions)
+    {
+      for (auto const & region : *task.regions)
+        doDiff(region);
+    }
+    else
+    {
+      // Only the root reads whole coastlines. Descendants reuse clipped pieces
+      // so a small coastal cell never needs to clip an entire continent again.
+      m_index.ForEachInRect(GetLimitRect(rectR), std::ref(doDiff));
+    }
 
-    // Check if too many points for feature.
-    if (cell.Level() < kHighLevel && doDiff.GetPointsCount() >= kMaxPoints)
+    if (cell.Level() < kStartLevel || (cell.Level() < kHighLevel && doDiff.GetPointsCount() >= kMaxPoints))
+    {
+      // The cell rectangle is an output water mask, not a coastline ring.
+      // Pass only coastline pieces to the four children, sharing them read-only.
+      childRegions = std::make_shared<Regions>(doDiff.TakeRegions());
       return false;
+    }
 
     m_ctx.processResultFunc(cell, doDiff);
     return true;
@@ -261,20 +296,37 @@ public:
       if (m_ctx.listTasks.empty())
         break;
 
-      TCell currentCell = m_ctx.listTasks.front();
+      Task currentTask = std::move(m_ctx.listTasks.front());
       m_ctx.listTasks.pop_front();
       ++m_ctx.inWork;
       lock.unlock();
 
-      bool const done = ProcessCell(currentCell);
+      std::shared_ptr<Regions const> childRegions;
+      bool const done = ProcessCell(currentTask, childRegions);
 
       lock.lock();
       // return to queue not ready cells
       if (!done)
+      {
+        // Process descendants first to release large parent geometries sooner.
         for (int8_t i = 0; i < TCell::MAX_CHILDREN; ++i)
-          m_ctx.listTasks.push_back(currentCell.Child(i));
+          m_ctx.listTasks.push_front({currentTask.cell.Child(i), childRegions});
+      }
+      else
+      {
+        ++m_ctx.emittedCells;
+      }
       --m_ctx.inWork;
+      ++m_ctx.processedCells;
+      if (currentTask.cell.Level() <= 1 || m_ctx.processedCells % 1000 == 0 ||
+          (m_ctx.listTasks.empty() && m_ctx.inWork == 0))
+      {
+        LOG(LINFO, ("Coastline cells processed:", m_ctx.processedCells, "emitted:", m_ctx.emittedCells,
+                    "queued:", m_ctx.listTasks.size(), "active:", m_ctx.inWork));
+      }
       m_ctx.listCondVar.notify_all();
+      // Releasing a parent can free a large geometry buffer; do it outside the queue lock.
+      lock.unlock();
     }
   }
 };
@@ -287,7 +339,7 @@ std::vector<feature::FeatureBuilder> CoastlineFeaturesGenerator::GetFeatures(siz
   std::mutex featuresMutex;
 
   RegionInCellSplitter::Process(
-      maxThreads, RegionInCellSplitter::kStartLevel, m_tree,
+      maxThreads, m_tree,
       [&](RegionInCellSplitter::TCell const & cell, coastlines_generator::DoDifference & cellData)
   {
     feature::FeatureBuilder fb;

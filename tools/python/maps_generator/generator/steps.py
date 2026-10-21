@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import shutil
+import struct
 import subprocess
 from typing import AnyStr
 
@@ -115,7 +116,38 @@ def step_preprocess(env: Env, **kwargs):
     )
 
 
+def _validate_isolines(countries, isolines_path):
+    if not isolines_path:
+        return
+
+    invalid = []
+    # Contours<Altitude> V0 stores a 15-byte header even when it has no contours.
+    header_format = "<BhhhII"
+    for country in countries:
+        if country in WORLDS_NAMES:
+            continue
+        path = os.path.join(isolines_path, f"{country}.isolines")
+        try:
+            with open(path, "rb") as source:
+                header = source.read(struct.calcsize(header_format))
+                has_contours = bool(source.read(1))
+            version, minimum, maximum, step, _, levels = struct.unpack(header_format, header)
+            if version != 0 or minimum > maximum or step <= 0 or levels == 0 or not has_contours:
+                invalid.append(path)
+        except (OSError, struct.error):
+            invalid.append(path)
+
+    if invalid:
+        raise ValidationError(
+            "Missing, empty or invalid isolines files: " + ", ".join(invalid) + ". "
+            "Download the required SRTM tiles and regenerate these country isolines "
+            "before generating maps. Existing country isolines are cached; use a new "
+            "output directory or remove only the affected files before regeneration."
+        )
+
+
 def step_features(env: Env, **kwargs):
+    _validate_isolines(env.countries, kwargs.get("isolines_path"))
     if any(x not in WORLDS_NAMES for x in env.countries):
         kwargs.update({"generate_packed_borders": True})
     if any(x == WORLD_NAME for x in env.countries):
@@ -335,6 +367,7 @@ def step_srtm(env: Env, country: AnyStr, **kwargs):
 
 
 def step_isolines_info(env: Env, country: AnyStr, **kwargs):
+    _validate_isolines([country], PathProvider.isolines_path())
     run_gen_tool_with_recovery_country(
         env,
         env.gen_tool,

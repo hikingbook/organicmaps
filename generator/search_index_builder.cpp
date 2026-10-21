@@ -16,6 +16,7 @@
 #include "indexer/feature_algo.hpp"
 #include "indexer/feature_visibility.hpp"
 #include "indexer/features_vector.hpp"
+#include "indexer/ftypes_matcher.hpp"
 #include "indexer/postcodes_matcher.hpp"
 #include "indexer/road_shields_parser.hpp"
 #include "indexer/scales_patch.hpp"
@@ -441,6 +442,9 @@ std::optional<uint32_t> MatchObjectByName(std::string_view keyName, std::vector<
 void BuildAddressTable(FilesContainerR & container, std::string const & addressDataFile, Writer & streetsWriter,
                        Writer & placesWriter, uint32_t threadsCount)
 {
+  LOG(LINFO, ("Start building address tables for", container.GetFileName()));
+  base::Timer timer;
+
   std::vector<feature::AddressData> addrs;
   ReadAddressData(addressDataFile, addrs);
 
@@ -455,7 +459,27 @@ void BuildAddressTable(FilesContainerR & container, std::string const & addressD
     mwmId = regResult.first;
   }
 
-  // Thread-safe, because GetNearbyStreets/Places use only constant checkers from the ReverseGeocoder.
+  // Build compact, read-only filters once instead of decoding every nearby feature per address.
+  std::vector<bool> streetCandidates(featuresCount, false);
+  std::vector<bool> placeCandidates(featuresCount, false);
+  {
+    FeaturesVectorTest features(container);
+    CHECK_EQUAL(features.GetVector().GetNumFeatures(), featuresCount, ());
+    auto const & isStreet = ftypes::IsStreetOrSquareChecker::Instance();
+    auto const & isLocality = ftypes::IsLocalityChecker::Instance();
+    auto const & isSuburb = ftypes::IsSuburbChecker::Instance();
+    features.GetVector().ForEach([&](FeatureType & ft, uint32_t index)
+    {
+      if (!ft.HasName())
+        return;
+
+      streetCandidates[index] = isStreet(ft);
+      placeCandidates[index] = isLocality.GetType(ft) >= ftypes::LocalityType::City || isSuburb(ft);
+    });
+  }
+  LOG(LINFO, ("Prepared address candidates, elapsed seconds:", timer.ElapsedSeconds()));
+
+  // Shared checkers and candidate masks are read-only during address matching.
   search::ReverseGeocoderBase reverseGeocoder;
   std::vector<std::unique_ptr<search::MwmContext>> contexts(threadsCount);
 
@@ -493,7 +517,8 @@ void BuildAddressTable(FilesContainerR & container, std::string const & addressD
 
       if (!street.empty())
       {
-        auto const streets = reverseGeocoder.GetNearbyStreets(*contexts[threadIdx], center, kStreetRadiusM);
+        auto const streets = reverseGeocoder.GetNearbyStreets(*contexts[threadIdx], center, kStreetRadiusM,
+                                                             &streetCandidates);
         streetId = MatchObjectByName(street, streets, [](std::string_view name)
         { return search::GetStreetNameAsKey(name, false /* ignoreStreetSynonyms */); });
 
@@ -506,7 +531,8 @@ void BuildAddressTable(FilesContainerR & container, std::string const & addressD
 
       if (!place.empty())
       {
-        auto const places = reverseGeocoder.GetNearbyPlaces(*contexts[threadIdx], center, kPlaceRadiusM);
+        auto const places = reverseGeocoder.GetNearbyPlaces(*contexts[threadIdx], center, kPlaceRadiusM,
+                                                            &placeCandidates);
         placeId = MatchObjectByName(place, places, [](std::string_view name) { return strings::MakeUniString(name); });
       }
 
@@ -560,6 +586,7 @@ void BuildAddressTable(FilesContainerR & container, std::string const & addressD
   if (address > 0)
     matchedPercent = 100.0 * (1.0 - static_cast<double>(missing) / static_cast<double>(address));
   LOG(LINFO, ("Matched addresses percent:", matchedPercent, "Total:", address, "Missing:", missing));
+  LOG(LINFO, ("End building address tables, elapsed seconds:", timer.ElapsedSeconds()));
 }
 }  // namespace
 

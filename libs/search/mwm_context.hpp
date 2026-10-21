@@ -44,10 +44,20 @@ public:
   template <class Fn>
   void ForEachFeature(m2::RectD const & rect, Fn && fn) const
   {
+    ForEachFeature(rect, fn, [](uint32_t) { return true; });
+  }
+
+  /// The index filter runs before loading feature data.
+  template <class Fn, class Filter>
+  void ForEachFeature(m2::RectD const & rect, Fn && fn, Filter && filter) const
+  {
     int const scale = GetMwmScale();
     covering::CoveringGetter covering(rect, covering::ViewportWithLowLevels);
     ForEachIndexImpl(covering.Get(scale), scale, [&](uint32_t index)
     {
+      if (!filter(index))
+        return;
+
       auto ft = GetFeature(index);
       if (ft)
         fn(*ft);

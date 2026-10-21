@@ -22,3 +22,9 @@ set(
 )
 
 add_library(${PROJECT_NAME} ${SRC})
+
+if (NOT MSVC)
+  # The sweep relies on stable EdgeSign/EdgeEval predicates near collinear edges.
+  # Reassociation and fused multiply-add can break edge ordering and corrupt the mesh.
+  target_compile_options(${PROJECT_NAME} PRIVATE -fno-fast-math -ffp-contract=off)
+endif()

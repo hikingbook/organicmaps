@@ -88,10 +88,14 @@ public:
   using Place = Street;
 
   /// @return Sorted by distance streets/places vector.
+  /// Optional candidates mask is indexed by feature id for this context's map.
+  /// False or missing entries skip feature loading. Use only while the map is unchanged.
   /// @{
   std::vector<Street> GetNearbyStreets(search::MwmContextBase & context, m2::PointD const & center,
-                                       double radiusM = kLookupRadiusM) const;
-  std::vector<Place> GetNearbyPlaces(search::MwmContextBase & context, m2::PointD const & center, double radiusM) const;
+                                       double radiusM = kLookupRadiusM,
+                                       std::vector<bool> const * candidates = nullptr) const;
+  std::vector<Place> GetNearbyPlaces(search::MwmContextBase & context, m2::PointD const & center, double radiusM,
+                                      std::vector<bool> const * candidates = nullptr) const;
   /// @}
 };
 
