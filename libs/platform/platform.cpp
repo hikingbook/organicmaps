@@ -149,17 +149,28 @@ std::string Platform::ReadPathForFile(std::string const & file, std::string sear
 
 std::string Platform::MetaServerUrl() const
 {
-  return METASERVER_URL;
+  return m_metaServerUrl.empty() ? METASERVER_URL : m_metaServerUrl;
 }
 
-std:: string Platform::DefaultUrlsJSON(std::string const & meatServerUrl) const
+void Platform::SetMetaServerUrl(std::string const & metaServerUrl)
 {
-  return meatServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : HIKINGBOOK_PRO_MAPS_DEFAULT_URLS_JSON;
+  m_metaServerUrl = metaServerUrl;
+}
+
+std::string Platform::DefaultUrlsJSON(std::string const & metaServerUrl) const
+{
+  return metaServerUrl == MetaServerUrl() ? DEFAULT_URLS_JSON : m_hikingbookProMapsDefaultUrlsJSON;
+}
+
+void Platform::SetHikingbookProMapsServers(std::string const & metaServerUrl, std::string const & defaultUrlsJSON)
+{
+  m_hikingbookProMapsMetaServerUrl = metaServerUrl;
+  m_hikingbookProMapsDefaultUrlsJSON = defaultUrlsJSON;
 }
 
 std::string Platform::HikingbookProMapsMetaServerUrl() const
 {
-  return HIKINGBOOK_PRO_MAPS_METASERVER_URL;
+  return m_hikingbookProMapsMetaServerUrl;
 }
 
 bool Platform::RemoveFileIfExists(std::string const & filePath)

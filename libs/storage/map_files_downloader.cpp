@@ -256,14 +256,10 @@ std::string GetAcceptLanguage()
 std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
 {
     Platform & pl = GetPlatform();
-    std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, pl.MetaServerUrl() }, { MapSource::HikingbookProMaps, pl.HikingbookProMapsMetaServerUrl() }};
-
-    // SAFEGUARD: Cache member variables locally so we don't rely on `this`
-    // being alive after a 10-second blocking network call.
-    std::string safeDataVersion = std::to_string(m_dataVersion);
-    std::string safeAppVersion = pl.Version();
-    std::string safeAcceptLanguage = GetAcceptLanguage();
-
+    std::map<MapSource, std::string> metaServerUrls = {{MapSource::Organicmaps, pl.MetaServerUrl()}};
+    auto const proMapsMetaServerUrl = pl.HikingbookProMapsMetaServerUrl();
+    if (!proMapsMetaServerUrl.empty())
+        metaServerUrls.emplace(MapSource::HikingbookProMaps, proMapsMetaServerUrl);
     std::map<MapSource, downloader::MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;
