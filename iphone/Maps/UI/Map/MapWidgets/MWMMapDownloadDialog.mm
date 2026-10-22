@@ -216,22 +216,36 @@ using namespace storage;
   self.downloadButton.hidden = YES;
   self.progressWrapper.hidden = NO;
   self.progress.state = MWMCircularProgressStateFailed;
-  MWMAlertViewController * avc = self.controller.alertController;
   [self addToSuperview];
+  NSString * countryId = @(m_countryId.c_str());
+  MWMMapSource const mapSource = [self mapSourceForCountry:countryId];
   auto const retryBlock = ^{
-    [self showInQueue];
-    [[MWMStorage sharedStorage] retryDownloadNode:@(self->m_countryId.c_str()) mapSource:[self mapSourceForCountry:@(self->m_countryId.c_str())]];
+    if (self->m_countryId == countryId.UTF8String)
+      [self showInQueue];
+    [[MWMStorage sharedStorage] retryDownloadNode:countryId mapSource:mapSource];
   };
-  auto const cancelBlock = ^{ [[MWMStorage sharedStorage] cancelDownloadNode:@(self->m_countryId.c_str())]; };
+  auto const cancelBlock = ^{ [[MWMStorage sharedStorage] cancelDownloadNode:countryId]; };
+  id<MWMMapDownloadDialogDelegate> delegate = self.delegate;
   switch (errorCode)
   {
   case NodeErrorCode::NoError: break;
   case NodeErrorCode::UnknownError:
-    [avc presentDownloaderInternalErrorAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
+    if ([delegate respondsToSelector:@selector(downloadDialog:presentInternalErrorWithRetryBlock:cancelBlock:)])
+      [delegate downloadDialog:self presentInternalErrorWithRetryBlock:retryBlock cancelBlock:cancelBlock];
+    else
+      [self.controller.alertController presentDownloaderInternalErrorAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
     break;
-  case NodeErrorCode::OutOfMemFailed: [avc presentDownloaderNotEnoughSpaceAlert]; break;
+  case NodeErrorCode::OutOfMemFailed:
+    if ([delegate respondsToSelector:@selector(downloadDialogPresentNotEnoughSpaceError:)])
+      [delegate downloadDialogPresentNotEnoughSpaceError:self];
+    else
+      [self.controller.alertController presentDownloaderNotEnoughSpaceAlert];
+    break;
   case NodeErrorCode::NoInetConnection:
-    [avc presentDownloaderNoConnectionAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
+    if ([delegate respondsToSelector:@selector(downloadDialog:presentNoConnectionErrorWithRetryBlock:cancelBlock:)])
+      [delegate downloadDialog:self presentNoConnectionErrorWithRetryBlock:retryBlock cancelBlock:cancelBlock];
+    else
+      [self.controller.alertController presentDownloaderNoConnectionAlertWithOkBlock:retryBlock cancelBlock:cancelBlock];
     break;
   }
 }
