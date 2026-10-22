@@ -6,6 +6,17 @@
 
 extern "C"
 {
+// static void nativeConfigureMapServers(String metaServerUrl, String proMapsMetaServerUrl,
+//                                      String proMapsDefaultUrlsJSON);
+JNIEXPORT void Java_app_organicmaps_sdk_OrganicMaps_nativeConfigureMapServers(
+    JNIEnv * env, jclass clazz, jstring metaServerUrl, jstring proMapsMetaServerUrl, jstring proMapsDefaultUrlsJSON)
+{
+  auto & platform = android::Platform::Instance();
+  platform.SetMetaServerUrl(jni::ToNativeString(env, metaServerUrl));
+  platform.SetHikingbookProMapsServers(jni::ToNativeString(env, proMapsMetaServerUrl),
+                                     jni::ToNativeString(env, proMapsDefaultUrlsJSON));
+}
+
 // static void nativeSetSettingsDir(String settingsPath);
 JNIEXPORT void Java_app_organicmaps_sdk_OrganicMaps_nativeSetSettingsDir(JNIEnv * env, jclass clazz,
                                                                          jstring settingsPath)

@@ -260,6 +260,13 @@ std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::LoadMetaConfigMa
     auto const proMapsMetaServerUrl = pl.HikingbookProMapsMetaServerUrl();
     if (!proMapsMetaServerUrl.empty())
         metaServerUrls.emplace(MapSource::HikingbookProMaps, proMapsMetaServerUrl);
+
+    // SAFEGUARD: Cache member variables locally so we don't rely on `this`
+    // being alive after a 10-second blocking network call.
+    std::string safeDataVersion = std::to_string(m_dataVersion);
+    std::string safeAppVersion = pl.Version();
+    std::string safeAcceptLanguage = GetAcceptLanguage();
+
     std::map<MapSource, downloader::MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;

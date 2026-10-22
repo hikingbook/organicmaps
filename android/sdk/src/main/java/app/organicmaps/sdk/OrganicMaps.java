@@ -125,6 +125,13 @@ public final class OrganicMaps implements DefaultLifecycleObserver
     ConnectionState.INSTANCE.initialize(mContext);
   }
 
+  /** Call once at startup, before initializing the native core. */
+  public static void configureMapServers(@NonNull String metaServerUrl, @NonNull String proMapsMetaServerUrl,
+                                        @NonNull String proMapsDefaultUrlsJSON)
+  {
+    nativeConfigureMapServers(metaServerUrl, proMapsMetaServerUrl, proMapsDefaultUrlsJSON);
+  }
+
   /**
    * Initialize native core of application: platform and framework.
    *
@@ -235,6 +242,10 @@ public final class OrganicMaps implements DefaultLifecycleObserver
     nativeAddLocalization("share_open_in_om_or_browser", mContext.getString(R.string.share_open_in_om_or_browser));
     nativeAddLocalization("share_get_om", mContext.getString(R.string.share_get_om));
   }
+
+  private static native void nativeConfigureMapServers(@NonNull String metaServerUrl,
+                                                       @NonNull String proMapsMetaServerUrl,
+                                                       @NonNull String proMapsDefaultUrlsJSON);
 
   private static native void nativeSetSettingsDir(String settingsPath);
 
