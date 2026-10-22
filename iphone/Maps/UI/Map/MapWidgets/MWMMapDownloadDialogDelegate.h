@@ -20,5 +20,8 @@
 -(NSString *)downloadDialog:(MWMMapDownloadDialog *)downloadDialog l10nMapSource:(MWMMapSource)mapSorce;
 -(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog cancelDownload:(NSString *)countryId mapSource:(MWMMapSource)mapSorce;
 -(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog isMinimized:(BOOL)isMinimized;
+-(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog presentInternalErrorWithRetryBlock:(void (^)(void))retryBlock cancelBlock:(void (^)(void))cancelBlock;
+-(void)downloadDialog:(MWMMapDownloadDialog *)downloadDialog presentNoConnectionErrorWithRetryBlock:(void (^)(void))retryBlock cancelBlock:(void (^)(void))cancelBlock;
+-(void)downloadDialogPresentNotEnoughSpaceError:(MWMMapDownloadDialog *)downloadDialog;
 
 @end
