@@ -256,7 +256,10 @@ std::string GetAcceptLanguage()
 std::map<MapSource, downloader::MetaConfig> MapFilesDownloader::LoadMetaConfigMap()
 {
     Platform & pl = GetPlatform();
-    std::map<MapSource, std::string> metaServerUrls = { {MapSource::Organicmaps, pl.MetaServerUrl() }, { MapSource::HikingbookProMaps, pl.HikingbookProMapsMetaServerUrl() }};
+    std::map<MapSource, std::string> metaServerUrls = {{MapSource::Organicmaps, pl.MetaServerUrl()}};
+    auto const proMapsMetaServerUrl = pl.HikingbookProMapsMetaServerUrl();
+    if (!proMapsMetaServerUrl.empty())
+        metaServerUrls.emplace(MapSource::HikingbookProMaps, proMapsMetaServerUrl);
     std::map<MapSource, downloader::MetaConfig> metaConfigMap;
     for (auto const & [mapSource, metaServerUrl] : metaServerUrls) {
         std::string httpResult;

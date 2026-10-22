@@ -262,13 +262,17 @@ public:
   /// @return url for clients to download maps
   std::string MetaServerUrl() const;
 
+  /// Override at startup, before creating the framework or starting downloads. Empty restores the default.
+  void SetMetaServerUrl(std::string const & metaServerUrl);
+
   /// @return JSON-encoded list of urls if metaserver is unreachable
-  std::string DefaultUrlsJSON(std::string const & meatServerUrl) const;
-    
-    /// @return url for clients to download Hikingbook Pro maps
-    //@{
-    std::string HikingbookProMapsMetaServerUrl() const;
-    //@}
+  std::string DefaultUrlsJSON(std::string const & metaServerUrl) const;
+
+  /// Configure once at startup, before creating the framework or starting downloads.
+  void SetHikingbookProMapsServers(std::string const & metaServerUrl, std::string const & defaultUrlsJSON);
+
+  /// @return url for clients to download Hikingbook Pro maps, or empty if not configured.
+  std::string HikingbookProMapsMetaServerUrl() const;
 
   bool IsTablet() const { return m_isTablet; }
 
@@ -324,6 +328,10 @@ public:
   platform::BatteryLevelTracker & GetBatteryTracker() { return m_batteryTracker; }
 
 private:
+  std::string m_metaServerUrl;
+  std::string m_hikingbookProMapsMetaServerUrl;
+  std::string m_hikingbookProMapsDefaultUrlsJSON;
+
   void RunThreads();
   void ShutdownThreads();
 
