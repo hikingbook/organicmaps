@@ -1780,6 +1780,16 @@ JNIEXPORT jboolean Java_app_organicmaps_sdk_Framework_nativeDeactivatePopup(JNIE
   return static_cast<jboolean>(g_framework->DeactivatePopup());
 }
 
+JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeSelectPoint(JNIEnv *, jclass, jdouble lat, jdouble lon)
+{
+  place_page::BuildInfo info;
+  info.m_mercator = mercator::FromLatLon(lat, lon);
+  // Skip hit testing so a point on a track remains a place selection.
+  info.m_match = place_page::BuildInfo::Match::Nothing;
+  info.m_needAnimationOnSelection = false;
+  frm()->BuildAndSetPlacePageInfo(info);
+}
+
 JNIEXPORT void Java_app_organicmaps_sdk_Framework_nativeDeactivateMapSelectionCircle(JNIEnv * env, jclass,
                                                                                      jboolean restoreViewport)
 {

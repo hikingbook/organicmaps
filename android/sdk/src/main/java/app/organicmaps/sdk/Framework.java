@@ -226,6 +226,7 @@ public class Framework
   /// @return true if a transit route selection was recovered.
   public static native boolean nativeDeactivatePopup();
   public static native void nativeDeactivateMapSelectionCircle(boolean restoreViewport);
+  public static native void nativeSelectPoint(double lat, double lon);
 
   public static native String nativeGetDataFileExt();
 
