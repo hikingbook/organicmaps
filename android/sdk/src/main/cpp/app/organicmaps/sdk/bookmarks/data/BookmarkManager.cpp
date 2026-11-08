@@ -858,8 +858,9 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeDrawLineWithLocati
         jobject jlocationArray = env->GetObjectArrayElement(locations, i);
         auto locationDoubleArray = reinterpret_cast<jdoubleArray>(jlocationArray);
         const jsize sizeLocationDoubleArray = env->GetArrayLength(locationDoubleArray);
-        double *locationData = env->GetDoubleArrayElements(locationDoubleArray, nullptr);
         if (sizeLocationDoubleArray >= 2) {
+            jdouble locationData[2];
+            env->GetDoubleArrayRegion(locationDoubleArray, 0, 2, locationData);
             double lat = locationData[0];
             double lon = locationData[1];
             m2::PointD const point(mercator::FromLatLon(lat, lon));
