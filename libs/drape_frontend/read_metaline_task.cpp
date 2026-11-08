@@ -67,6 +67,8 @@ std::map<FeatureID, std::vector<m2::PointD>> ReadPoints(df::MapDataProvider & mo
   {
     ft.ParseGeometry(FeatureType::BEST_GEOMETRY);
     size_t const count = ft.GetPointsCount();
+    if (count == 0)
+      return;
 
     std::vector<m2::PointD> featurePoints;
     featurePoints.reserve(count);
@@ -91,6 +93,10 @@ std::map<FeatureID, std::vector<m2::PointD>> ReadPoints(df::MapDataProvider & mo
 std::vector<m2::PointD> MergePoints(std::map<FeatureID, std::vector<m2::PointD>> && points,
                                     std::vector<FeatureID> const & featuresOrder)
 {
+  // A map can be unregistered between reading its metalines and reading its features.
+  if (points.size() != featuresOrder.size())
+    return {};
+
   if (points.size() == 1)
     return std::move(points.begin()->second);
 
