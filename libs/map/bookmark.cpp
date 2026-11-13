@@ -89,6 +89,7 @@ void Bookmark::SetData(kml::BookmarkData const & data)
 {
   SetDirty();
   m_data = data;
+  m_ptOrg = data.m_point;
   m_data.m_color = kml::NormalizeBookmarkColorData(m_data.m_color);
 }
 
