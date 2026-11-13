@@ -8,6 +8,7 @@
 
 #include "kml/type_utils.hpp"
 
+#include "map/bookmark.hpp"
 #include "map/bookmark_helpers.hpp"
 #include "map/place_page_info.hpp"
 
@@ -639,8 +640,8 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeAddBookmark(
     bmData.m_color = kml::MakeCustomBookmarkColorData(dp::Color::FromARGB(static_cast<uint32_t>(color)));
     bmData.m_point = mercator::FromLatLon(lat, lon);
     if (waypointNumber != nullptr)
-        bmData.m_properties["HikingbookWaypointNumber"] = jni::ToNativeString(env, waypointNumber);
-    bmData.m_properties["HikingbookWaypointDepth"] = std::to_string(waypointDepth);
+        bmData.m_properties[kHikingbookWaypointNumberProperty] = jni::ToNativeString(env, waypointNumber);
+    bmData.m_properties[kHikingbookWaypointDepthProperty] = std::to_string(waypointDepth);
     auto *bookmark = bmMng.GetEditSession().CreateBookmark(std::move(bmData),
                                                            static_cast<kml::MarkGroupId>(groupId));
     if (bookmark == nullptr) {
@@ -673,6 +674,40 @@ Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeUpdateBookmark(
 
     frm()->GetBookmarkManager().GetEditSession().UpdateBookmark(static_cast<kml::MarkId>(bookmarkID),
                                                                 std::move(bmData));
+}
+
+JNIEXPORT void JNICALL
+Java_app_organicmaps_sdk_bookmarks_data_BookmarkManager_nativeUpdateWaypointBookmark(
+    JNIEnv * env, jobject, jlong bookmarkId, jstring description, jint color, jdouble lat, jdouble lon,
+    jstring waypointNumber, jint waypointDepth)
+{
+  auto & framework = *frm();
+  auto & manager = framework.GetBookmarkManager();
+  auto const id = static_cast<kml::MarkId>(bookmarkId);
+  auto const * bookmark = manager.GetBookmark(id);
+  if (bookmark == nullptr)
+    return;
+
+  auto data = bookmark->GetData();
+  kml::SetDefaultStr(data.m_description, jni::ToNativeString(env, description));
+  data.m_color = kml::MakeCustomBookmarkColorData(dp::Color::FromARGB(static_cast<uint32_t>(color)));
+  data.m_point = mercator::FromLatLon(lat, lon);
+  data.m_properties[kHikingbookWaypointNumberProperty] = jni::ToNativeString(env, waypointNumber);
+  data.m_properties[kHikingbookWaypointDepthProperty] = std::to_string(waypointDepth);
+  {
+    auto session = manager.GetEditSession();
+    session.UpdateBookmark(id, data);
+  }
+
+  if (framework.HasPlacePageInfo() && framework.GetCurrentPlacePageInfo().GetBookmarkId() == id)
+  {
+    // Rebuild the selected marker at its updated position without changing the viewport or follow mode.
+    place_page::BuildInfo info;
+    info.m_userMarkId = id;
+    info.m_mercator = data.m_point;
+    info.m_needAnimationOnSelection = false;
+    framework.BuildAndSetPlacePageInfo(info);
+  }
 }
 
 /**

@@ -717,6 +717,10 @@ public enum BookmarkManager {
 
   public native void nativeUpdateBookmark(long bookmarkId, String bookmarkName, String bookmarkDescription, @ColorInt int color, double lat, double lon);
 
+  public native void nativeUpdateWaypointBookmark(long bookmarkId, @NonNull String description, @ColorInt int color,
+                                                  double lat, double lon, @NonNull String waypointNumber,
+                                                  int waypointDepth);
+
   public native void nativeDeleteAllBookmarkWithCategory(long catId);
 
   public native long nativeSearchBookmarkIDWithName(String bookmarkName, long catId);

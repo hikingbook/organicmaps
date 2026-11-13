@@ -13,6 +13,9 @@
 #include <string>
 #include <vector>
 
+inline constexpr char kHikingbookWaypointNumberProperty[] = "HikingbookWaypointNumber";
+inline constexpr char kHikingbookWaypointDepthProperty[] = "HikingbookWaypointDepth";
+
 class Bookmark : public UserMark
 {
   using Base = UserMark;

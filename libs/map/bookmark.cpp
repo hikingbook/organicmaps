@@ -63,8 +63,6 @@ std::string GetBookmarkIconType(kml::BookmarkIcon const & icon)
 }
 
 std::string const kCustomImageProperty = "CustomImage";
-std::string const kHikingbookWaypointNumberProperty = "HikingbookWaypointNumber";
-std::string const kHikingbookWaypointDepthProperty = "HikingbookWaypointDepth";
 float constexpr kHikingbookWaypointTextSize = 11.0f;
 float constexpr kHikingbookWaypointRadius = 10.0f;
 float constexpr kHikingbookWaypointOutlineWidth = 2.0f;
@@ -89,6 +87,7 @@ void Bookmark::SetData(kml::BookmarkData const & data)
 {
   SetDirty();
   m_data = data;
+  m_ptOrg = data.m_point;
   m_data.m_color = kml::NormalizeBookmarkColorData(m_data.m_color);
 }
 
